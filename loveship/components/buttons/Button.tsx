@@ -10,8 +10,11 @@ export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night60
 
 export interface ButtonMods {
     color?: ButtonColorType;
+    /** @default '36' */
     size?: ControlSize | '42' | '18';
+    /** @default 'square' */
     shape?: ControlShape;
+    /** @default 'solid' */
     fill?: FillStyle;
 }
 
@@ -26,7 +29,7 @@ export type ButtonProps = Omit<UuiButtonProps, 'color' | 'fill'> & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
-        css['size-' + (mods.size || defaultSize)],
+        `uui-size-${mods.size || defaultSize}`,
         css['style-' + (mods.shape || 'square')],
     ];
 }

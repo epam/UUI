@@ -42,7 +42,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
                 rawProps={ this.props.rawProps }
             >
                 {this.props.title && (
-                    <Text size="48" fontSize="18" font="semibold">
+                    <Text size="48" fontSize="18" fontWeight="600">
                         {this.props.title}
                     </Text>
                 )}

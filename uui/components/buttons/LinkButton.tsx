@@ -10,7 +10,13 @@ export type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';
 export const allLinkButtonColors: LinkButtonColorType[] = ['primary', 'secondary', 'contrast'];
 
 export interface LinkButtonMods {
+    /**
+     * @default '36'
+     */
     size?: types.ControlSize | '42';
+    /**
+     * @default 'primary'
+     */
     color?: LinkButtonColorType;
 }
 
@@ -20,7 +26,7 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
         'uui-link_button',
         css.root,
-        css['size-' + (mods.size || defaultSize)],
+        `uui-size-${mods.size || defaultSize}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || 'primary'}`,
     ];

@@ -1,5 +1,17 @@
 @use '~@epam/assets/theme/theme_promo' as *;
+@use '~@epam/assets/theme/theme_loveship' as *;
 @use '~@epam/promo/assets/styles/index.scss' as *;
+
+:global {
+    .uui-theme-loveship_important.uui-theme-loveship_important.uui-theme-loveship_important.uui-theme-loveship_important {
+        @include theme-loveship();
+    }
+
+    .uui-theme-promo_important.uui-theme-promo_important.uui-theme-promo_important.uui-theme-promo_important {
+        @include theme-promo();
+    }
+}
+
 
 .secondary-navigation {
     box-sizing: border-box;
@@ -33,21 +45,6 @@
     max-width: 960px;
 }
 
-.not-support {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .back-button {
-        padding-top: 0;
-
-        :global(.uui-caption) {
-            font-size: 16px;
-        }
-    }
-}
-
 .table-border {
     border: 1px solid var(--uui-divider);
     border-bottom: 0 none;
@@ -66,5 +63,7 @@
 }
 
 .theme-promo {
-    @include theme-promo();
+    :global {
+        @include theme-promo();
+    }
 }

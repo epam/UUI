@@ -388,7 +388,7 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 .show(
                     (props) => (
                         <ErrorNotification { ...props }>
-                            <Text size="36" font="regular" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 File size shouldn't exceed 5 MB and cannot upload more than 20 files!
                             </Text>
                         </ErrorNotification>
@@ -483,7 +483,7 @@ export function DemoForm() {
                 .show(
                     (props) => (
                         <SuccessNotification { ...props }>
-                            <Text size="36" font="regular" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>

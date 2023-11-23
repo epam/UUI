@@ -1,0 +1,641 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI Themes allows changing appearance of components to align them with your brand requirements. Theme is a set of Figma Tokens and CSS variables, which defines components colors, fonts, and other visuals. You can find an example of a theme "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/develop/epam-assets/theme/theme_electric.scss",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "here"
+          }
+        ]
+      },
+      {
+        "text": ". "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Components in the "
+      },
+      {
+        "text": "@epam/uui",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " package, and other UUI packages, use theme variables for their styling.  "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Theme variables are also useful directly in App's code, to structure CSS, and allow switching Themes in Apps."
+      }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "How to add theme to your project"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI provides a set of built-in themes: Electric, Loveship, Loveship Dark and Promo. \n"
+      },
+      {
+        "text": "List of exists theme classes:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Electric - \"uui-theme-electric\","
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Loveship - \"uui-theme-loveship\","
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Loveship Dark - \"uui-theme-loveship_dark\","
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "data": {},
+            "children": [
+              {
+                "text": "Promo - \"uui-theme-promo\"."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To add theme to your project:"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "1. Import Theme from ",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "@epam/assets",
+        "uui-richTextEditor-code": true,
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " package to the root of your app(e.g., index.tsx):",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "data": {},
+    "children": [
+      {
+        "text": "index.tsx",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "\n"
+      },
+      {
+        "text": "// Import theme styles:\nimport '@epam/assets/css/theme/theme-{theme_name}.css';\n\n",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "uui-richTextEditor-span-mark": true,
+        "text": "E.g.\n",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "uui-richTextEditor-span-mark": true,
+        "text": "\nimport '@epam/assets/css/theme/theme-electric.css';"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "2. Add theme class to the body:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "index.html",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "\n\n<body class=\"uui-theme-{"
+      },
+      {
+        "text": "theme_name}",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "\">"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-span-mark": true,
+        "text": "3. Import and use components from the ",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "@epam/uui",
+        "uui-richTextEditor-code": true,
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " package.",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Skins"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Along with a set of themes, UUI has Skins - packages based on @epam/uui components, to provide additional Brand-specific features."
+      }
+    ],
+    "data": {}
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Existing skins are "
+      },
+      {
+        "text": "@epam/electric",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "@epam/loveship",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "@epam/promo",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "What is the difference between a Skin and a Theme?",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Skin can define its own set of colors. Instead, or in addition to pre-defined semantic colors, such as primary/secondary/success/critical, Skins can provide an extended and brand-named set of colors and modifiers."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Skin, being a separate package, can define custom, brand-specific components which don't exist in the base "
+              },
+              {
+                "text": "@epam/uui",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " package."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "If you build UI on top of a particular Skin, it won't work with an arbitrary Theme. E.g. if you take components from @epam/loveship package, you can't apply electric Theme on top. This is expected, as you might use some Skin-specific colors, components, and modifiers, which are absent in another Theme. If you consider switching to another Theme later, you can simplify this, by preferring to use semantic colors and CSS variables, and use Skin-specific features only when needed."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Skins acts as backward-compatibility layer - we can keep supporting certain modifiers in colors in certain Skins, and independently change same APIs in other Skins."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "In general, you would prefer to use Skin package, if exists.\nYou might opt to use @epam/uui components directly, if there are no Skin package for your Theme, or you are building theme-agnostic UI."
+      }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Usage of theme variables in your project"
+      }
+    ],
+    "data": {}
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Theme variables are not limited to style UUI components. You can use these variables in your application's components. This would allow your app to switch Themes as well, for example to build dark/light theme switcher, or change your app's theme between brands. "
+      }
+    ]
+  },
+  {
+    "type": "note-link",
+    "data": {},
+    "children": [
+      {
+        "text": "CSS Variables and Figma Tokes are aligned. You can copy CSS code variables from Figma Dev Mode directly into your code."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "UUI CSS variables are split into groups:"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "UUI semantic variables"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Semantic variables relate to a specific context or abstraction.  Semantic variable helps communicate the intended purpose of a variable, and are effective when a value with a single intent will appear in multiple places. E.g. Defines semantic colors (like Primary and Neutral). Semantic colors have the same names across different Themes."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "--uui-primary-50: var(--electric-50);",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-code": true,
+        "text": "--uui-control-bg: var(--uui-neutral-0);"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "It's safe to use semantic variables if you need to build Theme-agnostic UI, which can work in different Themes."
+      }
+    ]
+  },
+  {
+    "type": "note-link",
+    "data": {},
+    "children": [
+      {
+        "text": "Documentation for UUI Semantic Variables is planned. However, choosing CSS variables by hand is rarely needed, as they can be copied from Figma."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Theme-specific variables",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Palette variables are primitive color values in our library. Palette defines colors, specific to a particular theme. Color set and names can be different between Themes."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "--electric-50: #0A68F1;",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " Use these variables if you target only one Theme. Note that this would make your UI bound to a particular Theme, and it would complicate switching to another Theme later. Exception: light and dark versions of the same Theme, as they would usually have the same set and names for colors."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "Color classes"
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "data": {},
+    "children": [
+      {
+        "text": "This API isn't stable yet and can be changed. We discourage using this in your projects until a stable version is released."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Color classes are sets of semantic and additional colors grouped in classes to use in colored components. "
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "data": {},
+    "children": [
+      {
+        "text": ".uui-color-primary",
+        "color": "critical"
+      },
+      {
+        "text": " {\n    --uui-color-5: "
+      },
+      {
+        "text": "var(--uui-primary-5)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-10: "
+      },
+      {
+        "text": "var(--uui-primary-10)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-20: "
+      },
+      {
+        "text": "var(--uui-primary-20)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-50: "
+      },
+      {
+        "text": "var(--uui-primary-50)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-60: "
+      },
+      {
+        "text": "var(--uui-primary-60)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-70: "
+      },
+      {
+        "text": "var(--uui-primary-70)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n    --uui-color-contrast: "
+      },
+      {
+        "text": "var(--white)",
+        "color": "critical"
+      },
+      {
+        "text": ";\n}"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "Component-specific variables"
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "data": {},
+    "children": [
+      {
+        "text": "This API isn't stable yet and can be changed. We discourage using this in your projects until a stable version is released."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Component-specific variables are an exhaustive representation of every CSS value associated with a component. Components defaults their values defaults to core variables, so there's no need to explicitly define them. However, these variables can be overridden to tweak a particular component in Theme definition, or in-place."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "--uui-spinner: var(--uui-primary-50)",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Also if component has set of colors they can inherit values from color classes.\n"
+      },
+      {
+        "text": "--uui-btn-bg: var(--uui-color-50)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "\n"
+      }
+    ]
+  }
+]

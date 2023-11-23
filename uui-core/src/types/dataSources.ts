@@ -291,10 +291,15 @@ export interface LazyDataSourceApiResponse<TItem> {
     from?: number;
 
     /**
-     * Total count of items which match current filter.
+     * Total count of items which match current filter and pagination.
      * If not specified, total count will be detected only when user scrolls to the end of the list.
      */
     count?: number;
+
+    /**
+     * Total count of items which match current filter.
+     */
+    totalCount?: number;
 }
 
 /** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */

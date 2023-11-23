@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, TextArea } from '@epam/uui';
+import { FlexCell, TextArea, LabeledInput } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicTextAreaExample() {
@@ -7,11 +7,18 @@ export default function BasicTextAreaExample() {
 
     return (
         <FlexCell cx={ css.container } width={ 350 }>
-            <TextArea value={ value } onValueChange={ onValueChange } />
-            <TextArea value={ value } onValueChange={ onValueChange } placeholder="Placeholder" />
-            <TextArea isDisabled value={ value } onValueChange={ onValueChange } placeholder="Disabled" />
-            <TextArea isReadonly value={ value } onValueChange={ onValueChange } placeholder="Readonly" />
-            <TextArea isInvalid value={ value } onValueChange={ onValueChange } placeholder="Invalid" />
+            <LabeledInput label="Label">
+                <TextArea value={ value } onValueChange={ onValueChange } placeholder="Type text" />
+            </LabeledInput>
+            <LabeledInput label="Disabled">
+                <TextArea isDisabled value={ value } onValueChange={ onValueChange } placeholder="Type text" />
+            </LabeledInput>
+            <LabeledInput label="Readonly">
+                <TextArea isReadonly value={ value } onValueChange={ onValueChange } placeholder="Type text" />
+            </LabeledInput>
+            <LabeledInput label="Invalid">
+                <TextArea isInvalid value={ value } onValueChange={ onValueChange } placeholder="Type text" />
+            </LabeledInput>
         </FlexCell>
     );
 }

@@ -6,7 +6,7 @@
     width: 960px;
 
     :global(.asterisk) {
-        color: var(--uui-labeled_input-asterisk);
-        font-family: var(--font-semibold);
+        color: var(--uui-error-50);
+        font-weight: 600;
     }
 }
