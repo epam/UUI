@@ -1,6 +1,6 @@
 @use '~@epam/promo/assets/styles/colors' as *;
-@use 'themePromo';
-@use 'themeLoveshipDark';
+@use '~@epam/assets/theme/theme_promo' as *;
+@use '~@epam/assets/theme/theme_loveship_dark' as *;
 
 html, body {
     padding: 0;

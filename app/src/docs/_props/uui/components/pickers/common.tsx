@@ -1,6 +1,5 @@
 import { ArrayDataSource, LazyDataSource, AsyncDataSource, PickerBaseOptions } from '@epam/uui-core';
-import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
-import { demoData } from '@epam/uui-docs';
+import { DocBuilder, IPropSamplesCreationContext, demoData } from '@epam/uui-docs';
 
 const dataSourcesMap: any = {
     languages: null,
@@ -13,7 +12,7 @@ const dataSourcesMap: any = {
     persons: null,
 };
 
-export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
+export const getDataSourceExamples = (ctx: IPropSamplesCreationContext) => {
     dataSourcesMap.languages = dataSourcesMap.languages
         || new AsyncDataSource({
             api: () => ctx.demoApi.languages({}).then((r) => r.items),
@@ -83,6 +82,11 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
 
 export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
     .prop('dataSource', { examples: getDataSourceExamples, isRequired: true })
+    .prop('sorting', {
+        examples: [
+            { value: { field: 'name', direction: 'asc' }, name: 'name' }, { value: { field: 'id', direction: 'asc' }, name: 'id' }, { value: { field: 'population', direction: 'asc' }, name: 'population' },
+        ],
+    })
     .prop('emptyValue', {
         examples: [
             { name: 'undefined', value: undefined }, { name: 'null', value: null }, { name: '[]', value: [] },

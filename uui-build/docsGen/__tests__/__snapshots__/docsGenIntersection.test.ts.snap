@@ -28,6 +28,9 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "from": "test/test.tsx:TIntersectionMemberA",
       "required": true
      },
@@ -36,6 +39,9 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "name": "a2",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "test/test.tsx:TIntersectionMemberA",
       "required": true
@@ -46,6 +52,9 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "from": "test/test.tsx:IIntersectionMemberB",
       "required": true
      },
@@ -54,6 +63,9 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "name": "b2",
       "typeValue": {
        "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "from": "test/test.tsx:IIntersectionMemberB",
       "required": true
@@ -116,6 +128,9 @@ exports[`docsGen:intersection should convert top level type with Omit 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "from": "test/test.tsx:TFirst",
       "required": true
      }
@@ -166,6 +181,9 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "from": "test/test.tsx:IFirstPart1",
       "required": true
      },
@@ -174,6 +192,9 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "name": "f3",
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "test/test.tsx:IFirstPart2",
       "required": true
@@ -184,6 +205,9 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "from": "test/test.tsx:IFirstPart2",
       "required": true
      },
@@ -193,6 +217,9 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "typeValue": {
        "raw": "number"
       },
+      "editor": {
+       "type": "number"
+      },
       "from": "test/test.tsx:TSecond",
       "required": true
      },
@@ -201,6 +228,9 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "name": "s2",
       "typeValue": {
        "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "test/test.tsx:TSecond",
       "required": true

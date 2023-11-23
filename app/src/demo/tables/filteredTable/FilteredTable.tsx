@@ -51,7 +51,7 @@ export function FilteredTable() {
         const result = await svc.api.demo.personsPaged({
             ...rq,
             filter: rq.filter || {},
-            page: rq.page - 1,
+            page: rq.page,
             pageSize: rq.pageSize,
         });
         setTotalCount(() => result.totalCount);
@@ -90,7 +90,7 @@ export function FilteredTable() {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" lineHeight="30" font="primary" cx={ css.presetsTitle }>
+                <Text fontSize="24" lineHeight="30" cx={ css.presetsTitle }>
                     Users Dashboard
                 </Text>
                 <PresetsPanel { ...presetsApi } />

@@ -6,6 +6,7 @@
     width: 100%;
     box-sizing: border-box;
     touch-action: auto;
+    column-gap: 6px;
 
     &.not-pinned:not(:hover) {
         .pin-icon-button {

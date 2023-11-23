@@ -3,9 +3,7 @@
 
 @mixin theme-loveship_dark {
     --uui-font: 'Source Sans Pro', sans-serif;
-    --font-primary: 'Sans Semibold', Arial, sans-serif;
-    --font-promo: 'Sans Semibold', Arial, sans-serif;
-    --font-mono: monospace;
+    --uui-font-mono: 'Roboto Mono', monospace;
 
     --night50: #FAFAFC;
     --night100: #E1E3EB;
@@ -205,7 +203,6 @@
     --uui-text-secondary: var(--uui-neutral-10);
     --uui-text-tertiary: var(--uui-neutral-20);
     --uui-text-disabled: var(--uui-neutral-30);
-    --uui-text-contrast: var(--uui-neutral-70);
 
     --uui-text-info: var(--uui-info-70);
     --uui-text-warning: var(--uui-warning-70);
@@ -236,7 +233,8 @@
     --uui-control-border-focus: var(--uui-primary-60);
     --uui-control-border-disabled: var(--uui-neutral-40);
 
-    --uui-control-placeholder: var(--uui-neutral-30);
+    --uui-control-placeholder: var(--uui-neutral-20);
+    --uui-control-placeholder-disabled: var(--uui-neutral-30);
 
     --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
@@ -697,16 +695,13 @@
 
     .uui-tooltip-container.uui-color-neutral {
         --uui-tooltip-bg: var(--uui-surface-main);
+        --uui-tooltip-border: var(--uui-neutral-50);
         --uui-color-contrast: var(--uui-text-primary);
     }
 
-    .uui-tooltip-container.uui-color-contrast {
+    .uui-tooltip-container.uui-color-inverted {
         --uui-tooltip-bg: var(--uui-neutral-10);
-        --uui-color-contrast: var(--uui-text-contrast);
-    }
-
-    .uui-tooltip-container.uui-color-neutral {
-        --uui-tooltip-border: var(--uui-neutral-50);
+        --uui-tooltip-text: var(--uui-neutral-70);
     }
 
     /* CountIndicator */
@@ -790,12 +785,6 @@
         --uui-text_placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-30) 0%, var(--uui-neutral-50) 50%, var(--uui-neutral-30) 100%);
     }
 
-    .uui-typography {
-        .uui-highlight {
-            background-color: var(--uui-warning-20);
-        }
-    }
-
     /* fonts */
 
     .uui-font-sans {
@@ -809,20 +798,35 @@
 
     }
 
-    .uui-font-sans-italic {
-        --uui-text-font: var(--uui-font);
-        --uui-text-font-weight: 400;
-        --uui-text-font-style: italic;
-    }
-
-    .uui-font-museo-sans {
-        --uui-text-font: var(--font-primary);
-        --uui-text-font-weight: normal;
-    }
-
     .uui-font-sans-light {
         --uui-text-font: var(--uui-font);
         --uui-text-font-weight: 300;
+    }
+
+    /* Typography */
+
+    .uui-typography {
+        .uui-highlight {
+            background-color: var(--uui-warning-20);
+        }
+
+        h1 {
+            font-weight: 600;
+        }
+
+        h2 {
+            font-weight: 700;
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+
+        .hero-header {
+            font-size: 72px;
+            line-height: 72px;
+            font-weight: 700;
+        }
     }
 }
 

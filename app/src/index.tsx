@@ -15,6 +15,7 @@ import { getApi, TApi, TAppContext } from './data';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import '@epam/assets/theme/theme_loveship_dark.scss';
+import '@epam/assets/theme/theme_electric.scss';
 import './index.module.scss';
 
 const router6 = createBrowserRouter([

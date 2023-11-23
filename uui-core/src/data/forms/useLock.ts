@@ -1,36 +1,34 @@
-import { useEffect, useRef } from 'react';
-import { Lock, useUuiContext } from '../../services';
+import { useEffect } from 'react';
+import { useUuiContext } from '../../services';
+import { Link } from '../../types/objects';
 
 export interface UseLockProps {
-    handleLeave: () => Promise<boolean>;
+    handleLeave?: () => Promise<boolean>;
     isEnabled?: boolean;
 }
 
-export function useLock({ handleLeave, isEnabled }: UseLockProps): Lock {
-    if (!handleLeave) return;
-
+export function useLock({ handleLeave, isEnabled }: UseLockProps) {
     const context = useUuiContext();
-    const handleLeaveRef = useRef<UseLockProps>({ isEnabled: false, handleLeave: null });
 
     useEffect(() => {
+        if (!handleLeave || !isEnabled) return;
+
+        let unblock: () => void;
+
+        const routerWillLeave = (nextLocation: Link) =>
+            handleLeave()
+                .then(() => {
+                    unblock();
+                    context.uuiRouter.redirect(nextLocation);
+                })
+                .catch(() => {});
+
+        unblock = context.uuiRouter.block((location) => {
+            routerWillLeave(location);
+        });
+
         return () => {
-            if (!handleLeaveRef.current.isEnabled) return;
-            const currentLock = context.uuiLocks.getCurrentLock();
-            currentLock && context.uuiLocks.release(currentLock);
+            unblock();
         };
-    }, []);
-
-    handleLeaveRef.current.handleLeave = handleLeave;
-
-    if (!handleLeaveRef.current.isEnabled && isEnabled) {
-        context.uuiLocks.acquire(() => handleLeaveRef.current.handleLeave());
-    }
-
-    if (handleLeaveRef.current.isEnabled && !isEnabled) {
-        context.uuiLocks.release(context.uuiLocks.getCurrentLock());
-    }
-
-    handleLeaveRef.current.isEnabled = isEnabled;
-
-    return context.uuiLocks.getCurrentLock();
+    }, [isEnabled]);
 }
