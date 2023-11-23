@@ -263,7 +263,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
 
     render() {
         const { title, skin, docs, isLoaded, onRedirectBackToDocs, generatedFromType } = this.props;
-        const { showCode, inputData, selectedContext, isInited } = this.state;
+        const { showCode, inputData, selectedContext, isInited, componentKey } = this.state;
         const currentTheme = getTheme(skin);
         const { component: DemoComponent, name: tagName, contexts, props } = docs || {};
         const selectedCtxName = selectedContext || (contexts?.length > 0 ? contexts[0].name : undefined);
@@ -273,6 +273,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
             <ComponentEditorView
                 contexts={ contexts }
                 currentTheme={ currentTheme }
+                componentKey={ componentKey }
                 DemoComponent={ DemoComponent }
                 generatedFromType={ generatedFromType }
                 inputData={ inputData }

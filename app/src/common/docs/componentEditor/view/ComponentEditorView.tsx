@@ -19,6 +19,7 @@ import { getInputValuesFromInputData } from '../utils';
 interface IComponentEditorViewProps {
     contexts: DemoContext[],
     currentTheme: string;
+    componentKey?: string;
     DemoComponent: React.ComponentType<any>;
     generatedFromType?: TDocsGenExportedType;
     isDocUnsupportedForSkin: boolean;
@@ -45,7 +46,16 @@ interface IComponentEditorViewProps {
     onToggleShowCode: () => void;
 }
 export function ComponentEditorView(props: IComponentEditorViewProps) {
-    const inputValues = React.useMemo(() => getInputValuesFromInputData(props.inputData), [props.inputData]);
+    const inputValues = React.useMemo(() => {
+        const map = getInputValuesFromInputData(props.inputData);
+        if (props.componentKey) {
+            return {
+                ...map,
+                key: props.componentKey,
+            };
+        }
+        return map;
+    }, [props.inputData, props.componentKey]);
 
     if (props.isDocUnsupportedForSkin) {
         return <NotSupportedForSkin onRedirectBackToDocs={ props.onRedirectBackToDocs } />;
