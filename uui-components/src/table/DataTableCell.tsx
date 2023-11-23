@@ -5,7 +5,7 @@ import {
 import css from './DataTableCell.module.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
-import { CellFocusAPI, DataTableFocusContext } from './tableCellsFocus';
+import { CellFocusAPI, DataTableFocusContext, DataTableFocusContextState } from './tableCellsFocus';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -25,7 +25,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         focus: () => editorRef.current?.focus(),
     });
 
-    const tableFocusContext = useContext(DataTableFocusContext);
+    const tableFocusContext = useContext<DataTableFocusContextState<TId>>(DataTableFocusContext);
 
     useEffect(() => {
         tableFocusContext?.dataTableFocusManager
@@ -51,7 +51,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const isEditable = !!props.onValueChange;
 
     const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
-        props.rowProps.onSelect?.(props.rowProps);
         if (editorRef.current === e.target || editorRef.current.parentNode === e.target) {
             editorRef.current?.focus();
         }
@@ -62,6 +61,12 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     } else if (props.rowProps.isUnknown) {
         content = props.renderUnknown(props);
     } else if (isEditable) {
+        const onFocus = () => {
+            props.rowProps.onSelect?.(props.rowProps);
+            setState((currentState) => ({ ...currentState, inFocus: true }));
+            tableFocusContext?.dataTableFocusManager?.setNewFocusCoordinates(row.id, props.index);
+        };
+
         // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props
         // We don't use any helpers and/or deconstruction syntax, as this is performance-sensitive part of code
         const editorProps: RenderEditorProps<TItem, TId, any> = {
@@ -73,7 +78,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             isRequired: props.isRequired ?? props.rowProps.isRequired,
             validationMessage: props.validationMessage ?? props.rowProps.validationMessage,
             validationProps: props.validationProps ?? props.rowProps.validationProps,
-            onFocus: () => setState({ ...state, inFocus: true }),
+            onFocus,
             onBlur: () => setState({ ...state, inFocus: false }),
             rowProps: props.rowProps,
             mode: 'cell',
