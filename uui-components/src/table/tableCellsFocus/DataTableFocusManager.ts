@@ -81,16 +81,11 @@ export class DataTableFocusManager<TId> {
 
         const indexes = [...this.rowsIndexToIds.keys()];
         const nextIndexes = indexes.slice(startingFromIndex, indexes.length);
-        const nextFocusableRowIndex = nextIndexes.find((nextIndex) => this.isFocusableRow(this.getRowIdByIndex(nextIndex)));
-        if (nextFocusableRowIndex !== undefined) {
-            this.focusRow(this.getRowIdByIndex(nextFocusableRowIndex));
-            return;
-        }
+        const focused = this.focusToNextFocusableRow(nextIndexes);
 
-        const prevIndexes = indexes.slice(0, startingFromIndex);
-        const prevFocusableRowIndex = prevIndexes.find((prevIndex) => this.isFocusableRow(this.getRowIdByIndex(prevIndex)));
-        if (prevFocusableRowIndex !== undefined) {
-            this.focusRow(this.getRowIdByIndex(prevFocusableRowIndex));
+        if (!focused) {
+            const prevIndexes = indexes.slice(0, startingFromIndex);
+            this.focusToNextFocusableRow(prevIndexes);
         }
     }
 
@@ -103,17 +98,11 @@ export class DataTableFocusManager<TId> {
         const indexes = [...this.rowsIndexToIds.keys()];
 
         const prevIndexes = indexes.slice(0, startingFromIndex).reverse();
-        const prevFocusableRowIndex = prevIndexes.find((prevIndex) => this.isFocusableRow(this.getRowIdByIndex(prevIndex)));
-        if (prevFocusableRowIndex !== undefined) {
-            this.focusRow(this.getRowIdByIndex(prevFocusableRowIndex));
-            return;
-        }
+        const focused = this.focusToNextFocusableRow(prevIndexes);
 
-        const nextIndexes = indexes.slice(startingFromIndex, indexes.length).reverse();
-        const nextFocusableRowIndex = nextIndexes.find((nextIndex) => this.isFocusableRow(this.getRowIdByIndex(nextIndex)));
-        if (nextFocusableRowIndex !== undefined) {
-            this.focusRow(this.getRowIdByIndex(nextFocusableRowIndex));
-            return;
+        if (!focused) {
+            const nextIndexes = indexes.slice(startingFromIndex, indexes.length).reverse();
+            this.focusToNextFocusableRow(nextIndexes);
         }
     }
 
@@ -148,6 +137,18 @@ export class DataTableFocusManager<TId> {
 
         const row = this.rowsRegistry.get(rowKey);
         delete row[index];
+    }
+
+    private focusToNextFocusableRow(indexes: number[]) {
+        const nextFocusableRowIndex = indexes.find(
+            (nextIndex) =>this.isFocusableRow(this.getRowIdByIndex(nextIndex)),
+        );
+
+        if (nextFocusableRowIndex !== undefined) {
+            this.focusRow(this.getRowIdByIndex(nextFocusableRowIndex));
+            return true;
+        }
+        return false;
     }
 
     private getKeyById = (id: TId) => {
