@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IEditable, IHasPlaceholder, IHasRawProps,
+    IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IEditable, IHasForwardedRef, IHasPlaceholder, IHasRawProps,
     IDropdownToggler,
 } from '../../props';
 import { CX } from '../../objects';
@@ -13,7 +13,8 @@ export interface BaseDatePickerProps
     IDisableable,
     IHasPlaceholder,
     ICanBeReadonly,
-    IAnalyticableOnChange<string> {
+    IAnalyticableOnChange<string>,
+    IHasForwardedRef<HTMLElement> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 
@@ -26,7 +27,10 @@ export interface BaseDatePickerProps
     /** Defines where to place calendar icon */
     iconPosition?: 'left' | 'right';
 
-    /** Disable clearing date value (e.g. via cross icon) */
+    /**
+     * Disable clearing date value (e.g. via cross icon)
+     * @default false
+     */
     disableClear?: boolean;
 
     /** Overrides rendering of the single day. For example, to highlight certain days */

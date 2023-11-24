@@ -3,8 +3,9 @@ import { IConverter, IConverterContext, TConvertable, TTypeConverted } from '../
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { SymbolUtils } from './converterUtils/symbolUtils';
 import { ConvertableUtils } from './converterUtils/convertableUtils';
-import { TTypeDetails, TTypeValue } from '../types/sharedTypes';
+import { TPropEditor, TTypeDetails, TTypeValue } from '../types/sharedTypes';
 import { getTypeRefFromTypeSummary } from './converterUtils/converterUtils';
+import { PropEditorUtils } from './converterUtils/propEditorUtils';
 
 export class Converter implements IConverter {
     constructor(public readonly context: IConverterContext) {}
@@ -14,9 +15,15 @@ export class Converter implements IConverter {
         const print = !isProperty;
         if (Node.isNode(convertable)) {
             const node = ConvertableUtils.getNode(convertable);
-            return NodeUtils.getTypeValueFromNode(node, print);
+            return NodeUtils.getTypeValueFromNode({ typeNode: node, print });
         }
-        return SymbolUtils.getTypeValueFromNode(convertable, print);
+        return SymbolUtils.getTypeValueFromSymbol({ symbol: convertable, print });
+    }
+
+    convertPropEditor(params: { convertable: TConvertable }): TPropEditor | undefined {
+        const { convertable } = params;
+        const type = ConvertableUtils.getType(convertable);
+        return PropEditorUtils.getPropEditorByType(type);
     }
 
     isSupported(nodeOrSymbol: TConvertable) {

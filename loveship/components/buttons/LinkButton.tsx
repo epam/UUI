@@ -2,6 +2,9 @@ import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { LinkButtonCoreProps, LinkButton as UuiLinkButton } from '@epam/uui';
 
 export interface LinkButtonMods {
+    /**
+     * @default 'sky'
+     */
     color?: 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 }
 

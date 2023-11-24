@@ -18,19 +18,30 @@ export class ApiCallError extends Error {
 }
 
 export interface FileUploadOptions {
+    /** Called during the file uploading, used to track upload progress */
     onProgress?: (progress: number) => any;
-    getXHR?: (xhr: XMLHttpRequest) => any; // get xhr to be able to cancel the request
+    /** Callback to receive the instance of xhr. Can be used to abort the request. */
+    getXHR?: (xhr: XMLHttpRequest) => any;
 }
 
 export interface FileUploadResponse {
+    /** ID of the file */
     id: number;
+    /** Name of the file */
     name: string;
+    /** File size */
     size: number;
+    /** Path to the file source */
     path?: string;
+    /** Type of file representation. Used for UUI SlateRTE file displaying. */
     type?: BlockTypes;
+    /** Extension of the file */
     extension?: string;
+    /** Upload error  */
     error?: {
+        /** If true, indicates about error while file uploading */
         isError: boolean;
+        /** Error message */
         message?: string;
     };
 }
@@ -39,8 +50,18 @@ export type IProcessRequest = (url: string, method: string, data?: any, options?
 
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
 export interface ApiContextProps {
+    /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.
+     * Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.
+     * @default '/auth/login'
+     * */
     apiReloginPath?: string;
+    /** Url to the api, which ApiContext will start pinging in case of 'connection lost', until it gets 200 status. Then it will retry failed requests.
+     * @default '/auth/ping'
+     * */
     apiPingPath?: string;
+    /** Url to the server api under which all requests will be processed. Usefully for cases, when all api located by some specific url, which is not much app url.
+     * @default ''
+     * */
     apiServerUrl?: string;
 }
 

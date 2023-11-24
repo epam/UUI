@@ -8,6 +8,9 @@ export const allIconColors: IconColor[] = [
 ];
 
 export interface IconButtonMods {
+    /**
+     * @default 'default'
+     */
     color?: IconColor;
 }
 

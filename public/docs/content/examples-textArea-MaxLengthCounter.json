@@ -1,0 +1,46 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To limit the number of characters the user can enter use "
+      },
+      {
+        "text": "maxLength",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " If you need a chars counter, wrap TextArea into "
+      },
+      {
+        "text": "LabeledInput",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " with "
+      },
+      {
+        "text": "maxLength",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "charsCounter={ true }",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props."
+      }
+    ]
+  }
+]

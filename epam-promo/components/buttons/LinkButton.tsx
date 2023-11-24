@@ -2,6 +2,9 @@ import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { LinkButtonCoreProps, LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
 
 export interface LinkButtonMods {
+    /**
+     * @default 'blue'
+     */
     color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
 }
 

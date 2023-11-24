@@ -28,8 +28,8 @@
 
 .content-wrapper {
     display: flex;
-    flex-grow: 1;
     min-width: 0;
+    flex: 1;
 }
 
 .editor-wrapper {

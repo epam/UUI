@@ -1,12 +1,15 @@
 import css from './TabButton.module.scss';
-import { TabButton as UuiTabButton, TabButtonProps as UuiTabButtonProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 
-export type TabButtonMods = UuiTabButtonProps & {
+export type TabButtonMods = uui.TabButtonProps & {
     theme?: 'light' | 'dark';
 };
-function applyTabButtonMods(mods: TabButtonMods & UuiTabButtonProps) {
+
+function applyTabButtonMods(mods: TabButtonMods & uui.TabButtonProps) {
     return [mods.theme === 'dark' && css.themeDark];
 }
 
-export const TabButton = withMods<UuiTabButtonProps, TabButtonMods>(UuiTabButton, applyTabButtonMods);
+export type TabButtonProps = uui.TabButtonProps & TabButtonMods;
+
+export const TabButton = withMods<uui.TabButtonProps, TabButtonMods>(uui.TabButton, applyTabButtonMods);

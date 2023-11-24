@@ -2,19 +2,25 @@ import { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasRawProps, IDropdownToggler,
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasForwardedRef, IHasRawProps, IDropdownToggler,
 } from '../../props';
 import * as React from 'react';
 import { CX } from '../../objects';
 
 export interface RangeDatePickerValue {
+    /** RangeDatePicker 'from' value */
     from: string | null;
+    /** RangeDatePicker 'to' value */
     to: string | null;
 }
 
+export type RangeDatePickerInputType = 'from' | 'to';
+
 export type RangeDatePickerPresets = {
     [key: string]: {
+        /** Name of the preset to display in rangeDatePicker body */
         name: ReactNode;
+        /** A pure function that gets range value which will be applied by preset selection */
         getRange: () => RangeDatePickerPresetValue;
     };
 };
@@ -25,7 +31,11 @@ export type RangeDatePickerPresetValue = {
     order?: number;
 };
 
-export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
+export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>,
+    IDisableable,
+    ICanBeReadonly,
+    IAnalyticableOnChange<RangeDatePickerValue>,
+    IHasForwardedRef<HTMLElement> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 
@@ -47,10 +57,16 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
      */
     presets?: RangeDatePickerPresets;
 
-    /** Disables clearing component (with the cross icon) */
+    /**
+     * Disables clearing component (with the cross icon)
+     * @default false
+     */
     disableClear?: boolean;
 
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    /**
+     * Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)
+     * @default 'bottom-start'
+     */
     placement?: Placement;
 
     /** If this function returns true, the day will be highlighted as holiday */
@@ -67,12 +83,16 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
 
     /** rawProps as HTML attributes */
     rawProps?: {
+        /** Any HTML attributes (native or 'data-') to put on 'from' input */
         from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** Any HTML attributes (native or 'data-') to put on 'to' input */
         to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** Any HTML attributes (native or 'data-') to put on date picker body */
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 
-    /** Styles for input and body components in RangeDatePicker */
+    /** CSS class(es) to put on rangeDatePicker input */
     inputCx?: CX;
+    /** CSS class(es) to put on datepicker body */
     bodyCx?: CX;
 }

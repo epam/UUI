@@ -38,8 +38,6 @@ describe('docsGen:complexTypes', () => {
 
                 propExternalTypeTest: HTMLElement;
 
-                unionPropTest: TUnionTest;
-
                 /** This is PropertySignature */
                 propSignatureTest: { name: string; value: any }[];
 
