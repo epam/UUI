@@ -3,7 +3,9 @@ import { useUuiContext } from '../../services';
 import { Link } from '../../types/objects';
 
 export interface UseLockProps {
+    /** Callback which will be called on router change */
     handleLeave?: () => Promise<boolean>;
+    /** Pass true, to enable lock */
     isEnabled?: boolean;
 }
 

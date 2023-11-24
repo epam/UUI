@@ -6,7 +6,9 @@ import { ILens } from '../../data/lenses';
 import { ValidationMode } from '../../data/validation';
 
 export interface FormSaveResponse<T> {
+    /** New form value, which will replace previous one */
     form?: T;
+    /** Server-side validation state. It's applied in priority over client validation. */
     validation?: ICanBeInvalid;
 }
 
