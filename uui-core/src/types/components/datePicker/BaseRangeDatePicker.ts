@@ -26,8 +26,11 @@ export type RangeDatePickerPresets = {
 };
 
 export type RangeDatePickerPresetValue = {
+    /** Range from value */
     from: string;
+    /** Range to value */
     to: string;
+    /** Preset order in presets list */
     order?: number;
 };
 

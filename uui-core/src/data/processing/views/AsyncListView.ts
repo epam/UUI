@@ -3,6 +3,11 @@ import { ArrayListView, BaseArrayListViewProps } from './ArrayListView';
 import { NOT_FOUND_RECORD } from './tree';
 
 export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
+    /** A function to retrieve the data, asynchronously. This function usually performs a REST API call.
+     * Should return the array of items, which will be processed by dataSource.
+     * This api called only once during the initialization and assumed to return the full amount of data.
+     * For lazy loading cases, use LazyDataSource
+     * */
     api(): Promise<TItem[]>;
 }
 

@@ -7,7 +7,9 @@ import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
 
 interface ApiCall extends ApiCallInfo {
+    /** Request promise resolve callback */
     resolve: (value?: any) => any;
+    /** Request promise reject callback */
     reject: (value?: any) => any;
 }
 

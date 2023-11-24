@@ -18,7 +18,3 @@ export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasi
     /** Count value to be placed in component */
     count?: React.ReactNode;
 }
-
-export interface ButtonSemanticProps {
-    type?: 'success' | 'cancel' | 'action';
-}
