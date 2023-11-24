@@ -1,3 +1,8 @@
+# 5.3.1 - __.__.2023
+
+**What's Fixed**
+* [Calendar]: fixed disabled text `color`
+
 # 5.3.0 - 21.11.2023
 
 **What's New**
