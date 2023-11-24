@@ -49,6 +49,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             isFirstColumn,
             isLastColumn,
             rowLens,
+            isTableCell: true,
         });
     };
 
