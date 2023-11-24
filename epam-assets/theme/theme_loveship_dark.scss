@@ -762,8 +762,55 @@
 
     /* Tag */
 
-    .uui-tag.uui-color-neutral {
-        --uui-tag-bg: var(--uui-neutral-40);
+    .uui-tag {
+        &.uui-fill-solid {
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--white) 10%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--white) 50%, transparent);
+            }
+
+            &.uui-color-neutral {
+                --uui-tag-bg: var(--uui-neutral-40);
+                --uui-tag-bg-hover: var(--uui-neutral-30);
+                --uui-tag-border: var(--uui-neutral-40);
+                --uui-tag-border-hover: var(--uui-neutral-30);
+                --uui-tag-caption: var(--uui-neutral-5);
+                --uui-tag-fill: var(--uui-neutral-10);
+
+                .uui-count_indicator {
+                    --uui-count_indicator-bg: var(--uui-neutral-0);
+                    --uui-count_indicator-border: var(--uui-neutral-0);
+                }
+            }
+
+            &.uui-color-warning {
+                --uui-tag-caption: var(--uui-neutral-70);
+                --uui-tag-fill: var(--uui-neutral-70);
+            }
+        }
+
+        &.uui-fill-outline {
+            --uui-tag-caption: var(--uui-neutral-5);
+            --uui-tag-fill: var(--uui-neutral-10);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-70);
+                --uui-count_indicator-border: var(--uui-neutral-40);
+                --uui-count_indicator-caption: var(--uui-neutral-10);
+            }
+
+            &.uui-color-neutral {
+                --uui-tag-bg: var(--uui-neutral-60);
+                --uui-tag-bg-hover: var(--uui-neutral-50);
+                --uui-tag-border: var(--uui-neutral-40);
+                --uui-tag-border-hover: var(--uui-neutral-40);
+
+                .uui-count_indicator {
+                    --uui-count_indicator-bg: var(--uui-neutral-40);
+                    --uui-count_indicator-border: var(--uui-neutral-40);
+                }
+            }
+        }
     }
 
     .uui-presets-panel-input .uui-icon-cancel {

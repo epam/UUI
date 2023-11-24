@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-23",
+ "timestamp": "2023-11-24",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -2535,7 +2535,7 @@
     "typeValue": {
      "raw": "BaseDatePickerProps",
      "print": [
-      "interface BaseDatePickerProps extends IEditable<string | null>, ICanFocus<HTMLInputElement>, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {",
+      "interface BaseDatePickerProps extends IEditable<string | null>, ICanFocus<HTMLInputElement>, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string>, IHasForwardedRef<HTMLElement> {",
       "    /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */",
       "    format?: string;",
       "    /** Filter selectable days. Days, for which this callback returns false - will be disabled */",
@@ -2961,6 +2961,20 @@
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
       "required": false
+     },
+     {
+      "uid": 24,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -3252,7 +3266,7 @@
     "typeValue": {
      "raw": "BaseRangeDatePickerProps",
      "print": [
-      "interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {",
+      "interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue>, IHasForwardedRef<HTMLElement> {",
       "    /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */",
       "    format?: string;",
       "    /** Filter selectable days. Days, for which this callback returns false - will be disabled */",
@@ -3703,6 +3717,20 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": 25,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -10323,6 +10351,20 @@
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
       "required": false
+     },
+     {
+      "uid": 25,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -10957,7 +10999,7 @@
     "typeValue": {
      "raw": "DropdownProps",
      "print": [
-      "interface DropdownProps extends Partial<IEditable<boolean>> {",
+      "interface DropdownProps extends Partial<IEditable<boolean>>, IHasForwardedRef<HTMLElement> {",
       "    /** Render callback fo the dropdown target.",
       "     Note, that it's required to pass 'props' parameters to the target component.",
       "     */",
@@ -11481,6 +11523,20 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 26,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -15873,6 +15929,7 @@
      "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
+      "    /** Name of currently selected predicate */",
       "    selectedPredicate?: string;",
       "};"
      ]
@@ -16327,6 +16384,11 @@
      {
       "uid": 125,
       "name": "selectedPredicate",
+      "comment": {
+       "raw": [
+        "Name of currently selected predicate"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -22418,8 +22480,13 @@
      "raw": "ModalBlockerProps",
      "print": [
       "interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "    /** Pass true to disabled locking focus inside modal.",
+      "     * If omitted, first clickable element of modal will receive focus on mount and focus will be looped inside modal.",
+      "     * */",
       "    disableFocusLock?: boolean;",
+      "    /** Pass true to disabled modal closing by 'esc' key */",
       "    disableCloseByEsc?: boolean;",
+      "    /** Pass true to disabled modal closing by click outside modal window */",
       "    disallowClickOutside?: boolean;",
       "}"
      ]
@@ -22428,6 +22495,12 @@
      {
       "uid": 1,
       "name": "disableFocusLock",
+      "comment": {
+       "raw": [
+        "Pass true to disabled locking focus inside modal.",
+        " If omitted, first clickable element of modal will receive focus on mount and focus will be looped inside modal."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -22439,6 +22512,11 @@
      {
       "uid": 2,
       "name": "disableCloseByEsc",
+      "comment": {
+       "raw": [
+        "Pass true to disabled modal closing by 'esc' key"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -22450,6 +22528,11 @@
      {
       "uid": 3,
       "name": "disallowClickOutside",
+      "comment": {
+       "raw": [
+        "Pass true to disabled modal closing by click outside modal window"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -22647,6 +22730,7 @@
      "raw": "ModalFooterCoreProps",
      "print": [
       "interface ModalFooterCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    /** Pass true to enable the top border of ModalFooter */",
       "    borderTop?: boolean;",
       "}"
      ]
@@ -22655,6 +22739,11 @@
      {
       "uid": 1,
       "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true to enable the top border of ModalFooter"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -22722,7 +22811,9 @@
      "raw": "ModalHeaderCoreProps",
      "print": [
       "interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    /** Called when cross icon in ModalHeader is clicked */",
       "    onClose?: () => any;",
+      "    /** Modal title to display in header */",
       "    title?: React.ReactNode;",
       "}"
      ]
@@ -22731,6 +22822,11 @@
      {
       "uid": 1,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when cross icon in ModalHeader is clicked"
+       ]
+      },
       "typeValue": {
        "raw": "() => any"
       },
@@ -22742,6 +22838,11 @@
      {
       "uid": 2,
       "name": "title",
+      "comment": {
+       "raw": [
+        "Modal title to display in header"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -23131,6 +23232,7 @@
       "    isFoldedByDefault?(item: TItem): boolean;",
       "    /** Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field. */",
       "    getSearchFields?(item: TItem): string[];",
+      "    ref?: React.Ref<HTMLElement>;",
       "};"
      ]
     },
@@ -23361,6 +23463,14 @@
        "type": "func"
       },
       "required": false
+     },
+     {
+      "uid": 15,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -23386,7 +23496,7 @@
     },
     "props": [
      {
-      "uid": 76,
+      "uid": 79,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -23403,7 +23513,7 @@
       "required": false
      },
      {
-      "uid": 77,
+      "uid": 80,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -23420,7 +23530,7 @@
       "required": false
      },
      {
-      "uid": 78,
+      "uid": 81,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -23434,7 +23544,7 @@
       "required": true
      },
      {
-      "uid": 79,
+      "uid": 82,
       "name": "getName",
       "comment": {
        "raw": [
@@ -23452,7 +23562,7 @@
       "required": false
      },
      {
-      "uid": 80,
+      "uid": 83,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -23469,7 +23579,7 @@
       "required": false
      },
      {
-      "uid": 81,
+      "uid": 84,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -23486,7 +23596,7 @@
       "required": false
      },
      {
-      "uid": 82,
+      "uid": 85,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -23504,7 +23614,7 @@
       "required": false
      },
      {
-      "uid": 83,
+      "uid": 86,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -23518,7 +23628,7 @@
       "required": false
      },
      {
-      "uid": 84,
+      "uid": 87,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -23535,7 +23645,7 @@
       "required": false
      },
      {
-      "uid": 85,
+      "uid": 88,
       "name": "filter",
       "comment": {
        "raw": [
@@ -23549,7 +23659,7 @@
       "required": false
      },
      {
-      "uid": 86,
+      "uid": 89,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -23563,7 +23673,7 @@
       "required": false
      },
      {
-      "uid": 87,
+      "uid": 90,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -23593,7 +23703,7 @@
       "required": false
      },
      {
-      "uid": 88,
+      "uid": 91,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -23610,7 +23720,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 92,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -23627,7 +23737,16 @@
       "required": false
      },
      {
-      "uid": 40,
+      "uid": 93,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 42,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -23647,7 +23766,7 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -23667,7 +23786,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "value",
       "comment": {
        "raw": [
@@ -23681,7 +23800,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -23698,7 +23817,7 @@
       "required": true
      },
      {
-      "uid": 94,
+      "uid": 98,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -23715,7 +23834,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 99,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -23730,7 +23849,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 100,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -23744,7 +23863,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 101,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -23761,7 +23880,7 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 102,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -23778,7 +23897,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 103,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -23795,7 +23914,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 104,
       "name": "getValueChangeAnalyticsEvent",
       "comment": {
        "raw": [
@@ -23813,7 +23932,7 @@
       "required": false
      },
      {
-      "uid": 41,
+      "uid": 43,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -23833,7 +23952,7 @@
       "required": true
      },
      {
-      "uid": 42,
+      "uid": 44,
       "name": "value",
       "comment": {
        "raw": [
@@ -23847,7 +23966,7 @@
       "required": true
      },
      {
-      "uid": 43,
+      "uid": 45,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -23864,7 +23983,7 @@
       "required": true
      },
      {
-      "uid": 90,
+      "uid": 94,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -23884,7 +24003,7 @@
       "required": true
      },
      {
-      "uid": 66,
+      "uid": 69,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -23904,7 +24023,7 @@
       "required": false
      },
      {
-      "uid": 67,
+      "uid": 70,
       "name": "value",
       "comment": {
        "raw": [
@@ -23918,7 +24037,7 @@
       "required": true
      },
      {
-      "uid": 68,
+      "uid": 71,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -23935,7 +24054,7 @@
       "required": true
      },
      {
-      "uid": 91,
+      "uid": 95,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -23955,7 +24074,7 @@
       "required": true
      },
      {
-      "uid": 92,
+      "uid": 96,
       "name": "value",
       "comment": {
        "raw": [
@@ -23969,7 +24088,7 @@
       "required": true
      },
      {
-      "uid": 93,
+      "uid": 97,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -25068,6 +25187,7 @@
       "    rowProps: DataRowProps<TItem, TId>;",
       "    /** Cell mode signal the editor component to adapt it's visuals to cell editor */",
       "    mode: 'cell';",
+      "    ref?: ForwardedRef<HTMLElement>;",
       "}"
      ]
     },
@@ -25107,6 +25227,14 @@
      },
      {
       "uid": 3,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
       "name": "value",
       "comment": {
        "raw": [
@@ -25120,7 +25248,7 @@
       "required": true
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -25137,7 +25265,7 @@
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -25154,7 +25282,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -25169,7 +25297,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -25183,7 +25311,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -25200,7 +25328,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -25217,7 +25345,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -25234,7 +25362,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "onFocus",
       "comment": {
        "raw": [
@@ -25251,7 +25379,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "onBlur",
       "comment": {
        "raw": [
@@ -30277,7 +30405,7 @@
     "typeValue": {
      "raw": "BaseTimePickerProps",
      "print": [
-      "interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder {",
+      "interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder, ICanFocus<HTMLElement>, IHasForwardedRef<HTMLElement> {",
       "    minutesStep?: number;",
       "    format?: 12 | 24;",
       "    id?: string;",
@@ -30518,6 +30646,54 @@
        "raw": "any"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -40950,7 +41126,7 @@
     "typeValue": {
      "raw": "NumericInputProps",
      "print": [
-      "interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */",
       "    max?: number;",
       "    /**",
@@ -41433,20 +41609,6 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 28,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -42719,7 +42881,7 @@
     },
     "props": [
      {
-      "uid": 151,
+      "uid": 154,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -42736,7 +42898,7 @@
       "required": false
      },
      {
-      "uid": 152,
+      "uid": 155,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -42753,7 +42915,7 @@
       "required": false
      },
      {
-      "uid": 153,
+      "uid": 156,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -42767,7 +42929,7 @@
       "required": true
      },
      {
-      "uid": 154,
+      "uid": 157,
       "name": "getName",
       "comment": {
        "raw": [
@@ -42785,7 +42947,7 @@
       "required": false
      },
      {
-      "uid": 155,
+      "uid": 158,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -42802,7 +42964,7 @@
       "required": false
      },
      {
-      "uid": 156,
+      "uid": 159,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -42819,7 +42981,7 @@
       "required": false
      },
      {
-      "uid": 157,
+      "uid": 160,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -42837,7 +42999,7 @@
       "required": false
      },
      {
-      "uid": 158,
+      "uid": 161,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -42851,7 +43013,7 @@
       "required": false
      },
      {
-      "uid": 159,
+      "uid": 162,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -42868,7 +43030,7 @@
       "required": false
      },
      {
-      "uid": 160,
+      "uid": 163,
       "name": "filter",
       "comment": {
        "raw": [
@@ -42882,7 +43044,7 @@
       "required": false
      },
      {
-      "uid": 161,
+      "uid": 164,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -42896,7 +43058,7 @@
       "required": false
      },
      {
-      "uid": 162,
+      "uid": 165,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -42926,7 +43088,7 @@
       "required": false
      },
      {
-      "uid": 163,
+      "uid": 166,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -42943,7 +43105,7 @@
       "required": false
      },
      {
-      "uid": 164,
+      "uid": 167,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -42960,7 +43122,16 @@
       "required": false
      },
      {
-      "uid": 65,
+      "uid": 168,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 67,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -42980,7 +43151,7 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -43000,7 +43171,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "value",
       "comment": {
        "raw": [
@@ -43014,7 +43185,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -43031,7 +43202,7 @@
       "required": true
      },
      {
-      "uid": 169,
+      "uid": 173,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -43048,7 +43219,7 @@
       "required": false
      },
      {
-      "uid": 170,
+      "uid": 174,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -43063,7 +43234,7 @@
       "required": false
      },
      {
-      "uid": 171,
+      "uid": 175,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -43077,7 +43248,7 @@
       "required": false
      },
      {
-      "uid": 172,
+      "uid": 176,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -43094,7 +43265,7 @@
       "required": false
      },
      {
-      "uid": 173,
+      "uid": 177,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -43111,7 +43282,7 @@
       "required": false
      },
      {
-      "uid": 174,
+      "uid": 178,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -43128,7 +43299,7 @@
       "required": false
      },
      {
-      "uid": 175,
+      "uid": 179,
       "name": "getValueChangeAnalyticsEvent",
       "comment": {
        "raw": [
@@ -43146,7 +43317,7 @@
       "required": false
      },
      {
-      "uid": 176,
+      "uid": 180,
       "name": "onFocus",
       "comment": {
        "raw": [
@@ -43163,7 +43334,7 @@
       "required": false
      },
      {
-      "uid": 177,
+      "uid": 181,
       "name": "onBlur",
       "comment": {
        "raw": [
@@ -43180,7 +43351,7 @@
       "required": false
      },
      {
-      "uid": 178,
+      "uid": 182,
       "name": "placeholder",
       "comment": {
        "raw": [
@@ -43194,7 +43365,7 @@
       "required": false
      },
      {
-      "uid": 179,
+      "uid": 183,
       "name": "icon",
       "comment": {
        "raw": [
@@ -43211,7 +43382,7 @@
       "required": false
      },
      {
-      "uid": 180,
+      "uid": 184,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -43232,7 +43403,7 @@
       "required": false
      },
      {
-      "uid": 181,
+      "uid": 185,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -43249,7 +43420,7 @@
       "required": false
      },
      {
-      "uid": 182,
+      "uid": 186,
       "name": "editMode",
       "comment": {
        "raw": [
@@ -43269,7 +43440,7 @@
       "required": false
      },
      {
-      "uid": 183,
+      "uid": 187,
       "name": "maxItems",
       "comment": {
        "raw": [
@@ -43285,7 +43456,7 @@
       "required": false
      },
      {
-      "uid": 184,
+      "uid": 188,
       "name": "minBodyWidth",
       "comment": {
        "raw": [
@@ -43301,7 +43472,7 @@
       "required": false
      },
      {
-      "uid": 185,
+      "uid": 189,
       "name": "isSingleLine",
       "comment": {
        "raw": [
@@ -43317,7 +43488,7 @@
       "required": false
      },
      {
-      "uid": 186,
+      "uid": 190,
       "name": "dropdownPlacement",
       "comment": {
        "raw": [
@@ -43350,7 +43521,7 @@
       "required": false
      },
      {
-      "uid": 187,
+      "uid": 191,
       "name": "renderToggler",
       "comment": {
        "raw": [
@@ -43366,7 +43537,7 @@
       "required": false
      },
      {
-      "uid": 188,
+      "uid": 192,
       "name": "searchPosition",
       "comment": {
        "raw": [
@@ -43392,7 +43563,7 @@
       "required": false
      },
      {
-      "uid": 189,
+      "uid": 193,
       "name": "disableClear",
       "comment": {
        "raw": [
@@ -43408,7 +43579,7 @@
       "required": false
      },
      {
-      "uid": 190,
+      "uid": 194,
       "name": "minCharsToSearch",
       "comment": {
        "raw": [
@@ -43427,7 +43598,7 @@
       "required": false
      },
      {
-      "uid": 191,
+      "uid": 195,
       "name": "dropdownHeight",
       "comment": {
        "raw": [
@@ -43443,7 +43614,7 @@
       "required": false
      },
      {
-      "uid": 192,
+      "uid": 196,
       "name": "autoFocus",
       "comment": {
        "raw": [
@@ -43459,7 +43630,7 @@
       "required": false
      },
      {
-      "uid": 193,
+      "uid": 197,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -43472,7 +43643,7 @@
       "required": false
      },
      {
-      "uid": 194,
+      "uid": 198,
       "name": "renderFooter",
       "comment": {
        "raw": [
@@ -43488,7 +43659,7 @@
       "required": false
      },
      {
-      "uid": 195,
+      "uid": 199,
       "name": "fixedBodyPosition",
       "comment": {
        "raw": [
@@ -43504,7 +43675,7 @@
       "required": false
      },
      {
-      "uid": 196,
+      "uid": 200,
       "name": "portalTarget",
       "typeValue": {
        "raw": "HTMLElement"
@@ -43512,7 +43683,7 @@
       "required": false
      },
      {
-      "uid": 197,
+      "uid": 201,
       "name": "inputCx",
       "comment": {
        "raw": [
@@ -43526,7 +43697,7 @@
       "required": false
      },
      {
-      "uid": 198,
+      "uid": 202,
       "name": "bodyCx",
       "comment": {
        "raw": [
@@ -43540,7 +43711,7 @@
       "required": false
      },
      {
-      "uid": 199,
+      "uid": 203,
       "name": "highlightSearchMatches",
       "comment": {
        "raw": [
@@ -43556,7 +43727,7 @@
       "required": false
      },
      {
-      "uid": 200,
+      "uid": 204,
       "name": "searchDebounceDelay",
       "comment": {
        "raw": [
@@ -43572,7 +43743,7 @@
       "required": false
      },
      {
-      "uid": 66,
+      "uid": 68,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -43592,7 +43763,7 @@
       "required": true
      },
      {
-      "uid": 67,
+      "uid": 69,
       "name": "value",
       "comment": {
        "raw": [
@@ -43606,7 +43777,7 @@
       "required": true
      },
      {
-      "uid": 68,
+      "uid": 70,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -43623,7 +43794,7 @@
       "required": true
      },
      {
-      "uid": 165,
+      "uid": 169,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -43643,7 +43814,7 @@
       "required": true
      },
      {
-      "uid": 116,
+      "uid": 119,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -43663,7 +43834,7 @@
       "required": false
      },
      {
-      "uid": 117,
+      "uid": 120,
       "name": "value",
       "comment": {
        "raw": [
@@ -43677,7 +43848,7 @@
       "required": true
      },
      {
-      "uid": 118,
+      "uid": 121,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -43694,7 +43865,7 @@
       "required": true
      },
      {
-      "uid": 166,
+      "uid": 170,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -43714,7 +43885,7 @@
       "required": true
      },
      {
-      "uid": 167,
+      "uid": 171,
       "name": "value",
       "comment": {
        "raw": [
@@ -43728,7 +43899,7 @@
       "required": true
      },
      {
-      "uid": 168,
+      "uid": 172,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -43787,7 +43958,7 @@
     },
     "props": [
      {
-      "uid": 88,
+      "uid": 91,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -43804,7 +43975,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 92,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -43821,7 +43992,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 93,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -43835,7 +44006,7 @@
       "required": true
      },
      {
-      "uid": 91,
+      "uid": 94,
       "name": "getName",
       "comment": {
        "raw": [
@@ -43853,7 +44024,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 95,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -43870,7 +44041,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 96,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -43887,7 +44058,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 97,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -43905,7 +44076,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 98,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -43919,7 +44090,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 99,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -43936,7 +44107,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 100,
       "name": "filter",
       "comment": {
        "raw": [
@@ -43950,7 +44121,7 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 101,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -43964,7 +44135,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 102,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -43994,7 +44165,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 103,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -44011,7 +44182,7 @@
       "required": false
      },
      {
-      "uid": 101,
+      "uid": 104,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -44028,7 +44199,16 @@
       "required": false
      },
      {
-      "uid": 44,
+      "uid": 105,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 46,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -44048,7 +44228,7 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -44068,7 +44248,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "value",
       "comment": {
        "raw": [
@@ -44082,7 +44262,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -44099,7 +44279,7 @@
       "required": true
      },
      {
-      "uid": 106,
+      "uid": 110,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -44116,7 +44296,7 @@
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 111,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -44131,7 +44311,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 112,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -44145,7 +44325,7 @@
       "required": false
      },
      {
-      "uid": 109,
+      "uid": 113,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -44162,7 +44342,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 114,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -44179,7 +44359,7 @@
       "required": false
      },
      {
-      "uid": 111,
+      "uid": 115,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -44196,7 +44376,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 116,
       "name": "getValueChangeAnalyticsEvent",
       "comment": {
        "raw": [
@@ -44214,7 +44394,7 @@
       "required": false
      },
      {
-      "uid": 113,
+      "uid": 117,
       "name": "maxDefaultItems",
       "comment": {
        "raw": [
@@ -44234,7 +44414,7 @@
       "required": false
      },
      {
-      "uid": 114,
+      "uid": 118,
       "name": "maxTotalItems",
       "comment": {
        "raw": [
@@ -44254,7 +44434,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 119,
       "name": "defaultIds",
       "comment": {
        "raw": [
@@ -44268,7 +44448,7 @@
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 120,
       "name": "settingsKey",
       "comment": {
        "raw": [
@@ -44284,7 +44464,7 @@
       "required": false
      },
      {
-      "uid": 45,
+      "uid": 47,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -44304,7 +44484,7 @@
       "required": true
      },
      {
-      "uid": 46,
+      "uid": 48,
       "name": "value",
       "comment": {
        "raw": [
@@ -44318,7 +44498,7 @@
       "required": true
      },
      {
-      "uid": 47,
+      "uid": 49,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -44335,7 +44515,7 @@
       "required": true
      },
      {
-      "uid": 102,
+      "uid": 106,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -44355,7 +44535,7 @@
       "required": true
      },
      {
-      "uid": 74,
+      "uid": 77,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -44375,7 +44555,7 @@
       "required": false
      },
      {
-      "uid": 75,
+      "uid": 78,
       "name": "value",
       "comment": {
        "raw": [
@@ -44389,7 +44569,7 @@
       "required": true
      },
      {
-      "uid": 76,
+      "uid": 79,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -44406,7 +44586,7 @@
       "required": true
      },
      {
-      "uid": 103,
+      "uid": 107,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -44426,7 +44606,7 @@
       "required": true
      },
      {
-      "uid": 104,
+      "uid": 108,
       "name": "value",
       "comment": {
        "raw": [
@@ -44440,7 +44620,7 @@
       "required": true
      },
      {
-      "uid": 105,
+      "uid": 109,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -45889,7 +46069,7 @@
     "typeValue": {
      "raw": "RadioGroupProps<TValue>",
      "print": [
-      "interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {",
+      "interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement>, ICanFocus<HTMLFieldSetElement> {",
       "    RadioInput?: React.ComponentType<RadioInputProps>;",
       "    items: RadioGroupItem<TValue>[];",
       "    radioInputProps?: RadioInputProps & {",
@@ -46109,6 +46289,40 @@
       },
       "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
+     },
+     {
+      "uid": 16,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLFieldSetElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLFieldSetElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -46129,7 +46343,7 @@
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
-      "interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement> {",
+      "interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, ICanFocus<HTMLInputElement> {",
       "    icon?: Icon;",
       "    renderLabel?(): React.ReactNode;",
       "    tabIndex?: number;",
@@ -46386,6 +46600,40 @@
        "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      }
     ],
@@ -53347,7 +53595,7 @@
     "typeValue": {
      "raw": "SwitchProps",
      "print": [
-      "interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex {",
+      "interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex, ICanFocus<HTMLInputElement> {",
       "    id?: string;",
       "}"
      ]
@@ -53586,6 +53834,40 @@
       },
       "from": "@epam/uui-core:IHasTabIndex",
       "required": false
+     },
+     {
+      "uid": 16,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -53606,7 +53888,7 @@
     "typeValue": {
      "raw": "TextAreaProps",
      "print": [
-      "interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {",
+      "interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, ICanFocus<HTMLTextAreaElement> {",
       "    /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */",
       "    rows?: number;",
       "    /**",
@@ -53623,6 +53905,7 @@
       "    maxLength?: number;",
       "    /** HTML id attribute to put on the HTML Input element */",
       "    id?: string;",
+      "    forwardedRef?: React.ForwardedRef<HTMLInputElement>;",
       "}"
      ]
     },
@@ -53739,6 +54022,14 @@
      },
      {
       "uid": 8,
+      "name": "forwardedRef",
+      "typeValue": {
+       "raw": "null | (instance: HTMLInputElement | null) => void | React.MutableRefObject<HTMLInputElement | null>"
+      },
+      "required": false
+     },
+     {
+      "uid": 9,
       "name": "cx",
       "comment": {
        "raw": [
@@ -53753,7 +54044,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "value",
       "comment": {
        "raw": [
@@ -53770,7 +54061,7 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -53787,7 +54078,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -53804,7 +54095,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -53819,7 +54110,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 14,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -53833,7 +54124,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -53850,7 +54141,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -53867,7 +54158,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -53884,7 +54175,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "placeholder",
       "comment": {
        "raw": [
@@ -53898,7 +54189,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -53909,20 +54200,6 @@
        "raw": "React.TextareaHTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 19,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -55832,7 +56109,7 @@
     },
     "props": [
      {
-      "uid": 157,
+      "uid": 160,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -55849,7 +56126,7 @@
       "required": false
      },
      {
-      "uid": 158,
+      "uid": 161,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -55866,7 +56143,7 @@
       "required": false
      },
      {
-      "uid": 159,
+      "uid": 162,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -55880,7 +56157,7 @@
       "required": true
      },
      {
-      "uid": 160,
+      "uid": 163,
       "name": "getName",
       "comment": {
        "raw": [
@@ -55898,7 +56175,7 @@
       "required": false
      },
      {
-      "uid": 161,
+      "uid": 164,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -55915,7 +56192,7 @@
       "required": false
      },
      {
-      "uid": 162,
+      "uid": 165,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -55932,7 +56209,7 @@
       "required": false
      },
      {
-      "uid": 163,
+      "uid": 166,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -55950,7 +56227,7 @@
       "required": false
      },
      {
-      "uid": 164,
+      "uid": 167,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -55964,7 +56241,7 @@
       "required": false
      },
      {
-      "uid": 165,
+      "uid": 168,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -55981,7 +56258,7 @@
       "required": false
      },
      {
-      "uid": 166,
+      "uid": 169,
       "name": "filter",
       "comment": {
        "raw": [
@@ -55995,7 +56272,7 @@
       "required": false
      },
      {
-      "uid": 167,
+      "uid": 170,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -56009,7 +56286,7 @@
       "required": false
      },
      {
-      "uid": 168,
+      "uid": 171,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -56039,7 +56316,7 @@
       "required": false
      },
      {
-      "uid": 169,
+      "uid": 172,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -56056,7 +56333,7 @@
       "required": false
      },
      {
-      "uid": 170,
+      "uid": 173,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -56073,7 +56350,16 @@
       "required": false
      },
      {
-      "uid": 67,
+      "uid": 174,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 69,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -56093,7 +56379,7 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -56113,7 +56399,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "value",
       "comment": {
        "raw": [
@@ -56127,7 +56413,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -56144,7 +56430,7 @@
       "required": true
      },
      {
-      "uid": 175,
+      "uid": 179,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -56161,7 +56447,7 @@
       "required": false
      },
      {
-      "uid": 176,
+      "uid": 180,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -56176,7 +56462,7 @@
       "required": false
      },
      {
-      "uid": 177,
+      "uid": 181,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -56190,7 +56476,7 @@
       "required": false
      },
      {
-      "uid": 178,
+      "uid": 182,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -56207,7 +56493,7 @@
       "required": false
      },
      {
-      "uid": 179,
+      "uid": 183,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -56224,7 +56510,7 @@
       "required": false
      },
      {
-      "uid": 180,
+      "uid": 184,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -56241,7 +56527,7 @@
       "required": false
      },
      {
-      "uid": 181,
+      "uid": 185,
       "name": "getValueChangeAnalyticsEvent",
       "comment": {
        "raw": [
@@ -56259,7 +56545,7 @@
       "required": false
      },
      {
-      "uid": 182,
+      "uid": 186,
       "name": "onFocus",
       "comment": {
        "raw": [
@@ -56276,7 +56562,7 @@
       "required": false
      },
      {
-      "uid": 183,
+      "uid": 187,
       "name": "onBlur",
       "comment": {
        "raw": [
@@ -56293,7 +56579,7 @@
       "required": false
      },
      {
-      "uid": 184,
+      "uid": 188,
       "name": "placeholder",
       "comment": {
        "raw": [
@@ -56307,7 +56593,7 @@
       "required": false
      },
      {
-      "uid": 185,
+      "uid": 189,
       "name": "icon",
       "comment": {
        "raw": [
@@ -56324,7 +56610,7 @@
       "required": false
      },
      {
-      "uid": 186,
+      "uid": 190,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -56345,7 +56631,7 @@
       "required": false
      },
      {
-      "uid": 187,
+      "uid": 191,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -56362,7 +56648,7 @@
       "required": false
      },
      {
-      "uid": 188,
+      "uid": 192,
       "name": "editMode",
       "comment": {
        "raw": [
@@ -56383,7 +56669,7 @@
       "required": false
      },
      {
-      "uid": 189,
+      "uid": 193,
       "name": "maxItems",
       "comment": {
        "raw": [
@@ -56400,7 +56686,7 @@
       "required": false
      },
      {
-      "uid": 190,
+      "uid": 194,
       "name": "minBodyWidth",
       "comment": {
        "raw": [
@@ -56417,7 +56703,7 @@
       "required": false
      },
      {
-      "uid": 191,
+      "uid": 195,
       "name": "isSingleLine",
       "comment": {
        "raw": [
@@ -56434,7 +56720,7 @@
       "required": false
      },
      {
-      "uid": 192,
+      "uid": 196,
       "name": "dropdownPlacement",
       "comment": {
        "raw": [
@@ -56468,7 +56754,7 @@
       "required": false
      },
      {
-      "uid": 193,
+      "uid": 197,
       "name": "renderToggler",
       "comment": {
        "raw": [
@@ -56485,7 +56771,7 @@
       "required": false
      },
      {
-      "uid": 194,
+      "uid": 198,
       "name": "searchPosition",
       "comment": {
        "raw": [
@@ -56512,7 +56798,7 @@
       "required": false
      },
      {
-      "uid": 195,
+      "uid": 199,
       "name": "disableClear",
       "comment": {
        "raw": [
@@ -56529,7 +56815,7 @@
       "required": false
      },
      {
-      "uid": 196,
+      "uid": 200,
       "name": "minCharsToSearch",
       "comment": {
        "raw": [
@@ -56549,7 +56835,7 @@
       "required": false
      },
      {
-      "uid": 197,
+      "uid": 201,
       "name": "dropdownHeight",
       "comment": {
        "raw": [
@@ -56566,7 +56852,7 @@
       "required": false
      },
      {
-      "uid": 198,
+      "uid": 202,
       "name": "autoFocus",
       "comment": {
        "raw": [
@@ -56583,7 +56869,7 @@
       "required": false
      },
      {
-      "uid": 199,
+      "uid": 203,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -56597,7 +56883,7 @@
       "required": false
      },
      {
-      "uid": 200,
+      "uid": 204,
       "name": "renderFooter",
       "comment": {
        "raw": [
@@ -56614,7 +56900,7 @@
       "required": false
      },
      {
-      "uid": 201,
+      "uid": 205,
       "name": "fixedBodyPosition",
       "comment": {
        "raw": [
@@ -56631,7 +56917,7 @@
       "required": false
      },
      {
-      "uid": 202,
+      "uid": 206,
       "name": "portalTarget",
       "typeValue": {
        "raw": "HTMLElement"
@@ -56640,7 +56926,7 @@
       "required": false
      },
      {
-      "uid": 203,
+      "uid": 207,
       "name": "inputCx",
       "comment": {
        "raw": [
@@ -56655,7 +56941,7 @@
       "required": false
      },
      {
-      "uid": 204,
+      "uid": 208,
       "name": "bodyCx",
       "comment": {
        "raw": [
@@ -56670,7 +56956,7 @@
       "required": false
      },
      {
-      "uid": 205,
+      "uid": 209,
       "name": "highlightSearchMatches",
       "comment": {
        "raw": [
@@ -56687,7 +56973,7 @@
       "required": false
      },
      {
-      "uid": 206,
+      "uid": 210,
       "name": "searchDebounceDelay",
       "comment": {
        "raw": [
@@ -56704,7 +56990,7 @@
       "required": false
      },
      {
-      "uid": 207,
+      "uid": 211,
       "name": "toggleModalOpening",
       "typeValue": {
        "raw": "(opened: boolean) => void"
@@ -56715,7 +57001,7 @@
       "required": false
      },
      {
-      "uid": 208,
+      "uid": 212,
       "name": "shouldShowBody",
       "typeValue": {
        "raw": "() => boolean"
@@ -56726,7 +57012,7 @@
       "required": false
      },
      {
-      "uid": 68,
+      "uid": 70,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -56746,7 +57032,7 @@
       "required": true
      },
      {
-      "uid": 69,
+      "uid": 71,
       "name": "value",
       "comment": {
        "raw": [
@@ -56760,7 +57046,7 @@
       "required": true
      },
      {
-      "uid": 70,
+      "uid": 72,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -56777,7 +57063,7 @@
       "required": true
      },
      {
-      "uid": 171,
+      "uid": 175,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -56797,7 +57083,7 @@
       "required": true
      },
      {
-      "uid": 120,
+      "uid": 123,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -56817,7 +57103,7 @@
       "required": false
      },
      {
-      "uid": 121,
+      "uid": 124,
       "name": "value",
       "comment": {
        "raw": [
@@ -56831,7 +57117,7 @@
       "required": true
      },
      {
-      "uid": 122,
+      "uid": 125,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -56848,7 +57134,7 @@
       "required": true
      },
      {
-      "uid": 172,
+      "uid": 176,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -56868,7 +57154,7 @@
       "required": true
      },
      {
-      "uid": 173,
+      "uid": 177,
       "name": "value",
       "comment": {
        "raw": [
@@ -56882,7 +57168,7 @@
       "required": true
      },
      {
-      "uid": 174,
+      "uid": 178,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -56922,7 +57208,7 @@
     },
     "props": [
      {
-      "uid": 88,
+      "uid": 91,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -56939,7 +57225,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 92,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -56956,7 +57242,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 93,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -56970,7 +57256,7 @@
       "required": true
      },
      {
-      "uid": 91,
+      "uid": 94,
       "name": "getName",
       "comment": {
        "raw": [
@@ -56988,7 +57274,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 95,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -57005,7 +57291,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 96,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -57022,7 +57308,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 97,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -57040,7 +57326,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 98,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -57054,7 +57340,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 99,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -57071,7 +57357,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 100,
       "name": "filter",
       "comment": {
        "raw": [
@@ -57085,7 +57371,7 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 101,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -57099,7 +57385,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 102,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -57129,7 +57415,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 103,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -57146,7 +57432,7 @@
       "required": false
      },
      {
-      "uid": 101,
+      "uid": 104,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -57163,7 +57449,16 @@
       "required": false
      },
      {
-      "uid": 44,
+      "uid": 105,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 46,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -57183,7 +57478,7 @@
       "required": true
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -57203,7 +57498,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "value",
       "comment": {
        "raw": [
@@ -57217,7 +57512,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -57234,7 +57529,7 @@
       "required": true
      },
      {
-      "uid": 106,
+      "uid": 110,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -57251,7 +57546,7 @@
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 111,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -57266,7 +57561,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 112,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -57280,7 +57575,7 @@
       "required": false
      },
      {
-      "uid": 109,
+      "uid": 113,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -57297,7 +57592,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 114,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -57314,7 +57609,7 @@
       "required": false
      },
      {
-      "uid": 111,
+      "uid": 115,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -57331,7 +57626,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 116,
       "name": "getValueChangeAnalyticsEvent",
       "comment": {
        "raw": [
@@ -57349,7 +57644,7 @@
       "required": false
      },
      {
-      "uid": 113,
+      "uid": 117,
       "name": "maxDefaultItems",
       "comment": {
        "raw": [
@@ -57370,7 +57665,7 @@
       "required": false
      },
      {
-      "uid": 114,
+      "uid": 118,
       "name": "maxTotalItems",
       "comment": {
        "raw": [
@@ -57391,7 +57686,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 119,
       "name": "defaultIds",
       "comment": {
        "raw": [
@@ -57406,7 +57701,7 @@
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 120,
       "name": "settingsKey",
       "comment": {
        "raw": [
@@ -57423,7 +57718,7 @@
       "required": false
      },
      {
-      "uid": 45,
+      "uid": 47,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -57443,7 +57738,7 @@
       "required": true
      },
      {
-      "uid": 46,
+      "uid": 48,
       "name": "value",
       "comment": {
        "raw": [
@@ -57457,7 +57752,7 @@
       "required": true
      },
      {
-      "uid": 47,
+      "uid": 49,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -57474,7 +57769,7 @@
       "required": true
      },
      {
-      "uid": 102,
+      "uid": 106,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -57494,7 +57789,7 @@
       "required": true
      },
      {
-      "uid": 74,
+      "uid": 77,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -57514,7 +57809,7 @@
       "required": false
      },
      {
-      "uid": 75,
+      "uid": 78,
       "name": "value",
       "comment": {
        "raw": [
@@ -57528,7 +57823,7 @@
       "required": true
      },
      {
-      "uid": 76,
+      "uid": 79,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -57545,7 +57840,7 @@
       "required": true
      },
      {
-      "uid": 103,
+      "uid": 107,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -57565,7 +57860,7 @@
       "required": true
      },
      {
-      "uid": 104,
+      "uid": 108,
       "name": "value",
       "comment": {
        "raw": [
@@ -57579,7 +57874,7 @@
       "required": true
      },
      {
-      "uid": 105,
+      "uid": 109,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -57619,7 +57914,7 @@
     },
     "props": [
      {
-      "uid": 88,
+      "uid": 91,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -57636,7 +57931,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 92,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -57653,7 +57948,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 93,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -57667,7 +57962,7 @@
       "required": true
      },
      {
-      "uid": 91,
+      "uid": 94,
       "name": "getName",
       "comment": {
        "raw": [
@@ -57685,7 +57980,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 95,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -57702,7 +57997,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 96,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -57719,7 +58014,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 97,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -57737,7 +58032,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 98,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -57751,7 +58046,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 99,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -57768,7 +58063,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 100,
       "name": "filter",
       "comment": {
        "raw": [
@@ -57782,7 +58077,7 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 101,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -57796,7 +58091,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 102,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -57826,7 +58121,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 103,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -57843,7 +58138,7 @@
       "required": false
      },
      {
-      "uid": 101,
+      "uid": 104,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -57860,7 +58155,16 @@
       "required": false
      },
      {
-      "uid": 102,
+      "uid": 105,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 106,
       "name": "caption",
       "comment": {
        "raw": [
@@ -57874,7 +58178,7 @@
       "required": false
      },
      {
-      "uid": 45,
+      "uid": 47,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'single'"
@@ -57889,7 +58193,7 @@
       "required": true
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "valueType",
       "typeValue": {
        "raw": "'id'"
@@ -57904,7 +58208,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "initialValue",
       "typeValue": {
        "raw": "TId"
@@ -57913,7 +58217,7 @@
       "required": true
      },
      {
-      "uid": 106,
+      "uid": 110,
       "name": "isActive",
       "comment": {
        "raw": [
@@ -57930,7 +58234,7 @@
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 111,
       "name": "key",
       "comment": {
        "raw": [
@@ -57947,7 +58251,7 @@
       "required": true
      },
      {
-      "uid": 108,
+      "uid": 112,
       "name": "zIndex",
       "comment": {
        "raw": [
@@ -57964,7 +58268,7 @@
       "required": true
      },
      {
-      "uid": 22,
+      "uid": 23,
       "name": "success",
       "comment": {
        "raw": [
@@ -57981,7 +58285,7 @@
       "required": true
      },
      {
-      "uid": 110,
+      "uid": 114,
       "name": "abort",
       "comment": {
        "raw": [
@@ -57998,7 +58302,7 @@
       "required": true
      },
      {
-      "uid": 111,
+      "uid": 115,
       "name": "parameters",
       "comment": {
        "raw": [
@@ -58012,7 +58316,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 116,
       "name": "depth",
       "comment": {
        "raw": [
@@ -58029,7 +58333,7 @@
       "required": false
      },
      {
-      "uid": 113,
+      "uid": 117,
       "name": "renderFilter",
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
@@ -58041,7 +58345,7 @@
       "required": false
      },
      {
-      "uid": 114,
+      "uid": 118,
       "name": "renderFooter",
       "typeValue": {
        "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
@@ -58053,7 +58357,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 119,
       "name": "disallowClickOutside",
       "comment": {
        "raw": [
@@ -58073,7 +58377,7 @@
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 120,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -58087,7 +58391,7 @@
       "required": false
      },
      {
-      "uid": 46,
+      "uid": 48,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -58102,7 +58406,7 @@
       "required": true
      },
      {
-      "uid": 47,
+      "uid": 49,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem"
@@ -58111,7 +58415,7 @@
       "required": true
      },
      {
-      "uid": 51,
+      "uid": 53,
       "name": "success",
       "comment": {
        "raw": [
@@ -58128,7 +58432,7 @@
       "required": true
      },
      {
-      "uid": 103,
+      "uid": 107,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'multi'"
@@ -58143,7 +58447,7 @@
       "required": true
      },
      {
-      "uid": 75,
+      "uid": 78,
       "name": "valueType",
       "typeValue": {
        "raw": "'id'"
@@ -58158,7 +58462,7 @@
       "required": true
      },
      {
-      "uid": 76,
+      "uid": 79,
       "name": "initialValue",
       "typeValue": {
        "raw": "TId[]"
@@ -58167,7 +58471,7 @@
       "required": true
      },
      {
-      "uid": 80,
+      "uid": 83,
       "name": "success",
       "comment": {
        "raw": [
@@ -58184,7 +58488,7 @@
       "required": true
      },
      {
-      "uid": 104,
+      "uid": 108,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -58199,7 +58503,7 @@
       "required": true
      },
      {
-      "uid": 105,
+      "uid": 109,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem[]"
@@ -58208,7 +58512,7 @@
       "required": true
      },
      {
-      "uid": 109,
+      "uid": 113,
       "name": "success",
       "comment": {
        "raw": [
@@ -62101,7 +62405,7 @@
     },
     "props": [
      {
-      "uid": 157,
+      "uid": 160,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -62121,7 +62425,7 @@
       "required": false
      },
      {
-      "uid": 158,
+      "uid": 161,
       "name": "mode",
       "comment": {
        "raw": [
@@ -62146,7 +62450,7 @@
       "required": false
      },
      {
-      "uid": 159,
+      "uid": 162,
       "name": "entityName",
       "comment": {
        "raw": [
@@ -62163,7 +62467,7 @@
       "required": false
      },
      {
-      "uid": 160,
+      "uid": 163,
       "name": "entityPluralName",
       "comment": {
        "raw": [
@@ -62180,7 +62484,7 @@
       "required": false
      },
      {
-      "uid": 161,
+      "uid": 164,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -62194,7 +62498,7 @@
       "required": true
      },
      {
-      "uid": 162,
+      "uid": 165,
       "name": "getName",
       "comment": {
        "raw": [
@@ -62212,7 +62516,7 @@
       "required": false
      },
      {
-      "uid": 163,
+      "uid": 166,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -62229,7 +62533,7 @@
       "required": false
      },
      {
-      "uid": 164,
+      "uid": 167,
       "name": "getRowOptions",
       "comment": {
        "raw": [
@@ -62246,7 +62550,7 @@
       "required": false
      },
      {
-      "uid": 165,
+      "uid": 168,
       "name": "renderNotFound",
       "comment": {
        "raw": [
@@ -62264,7 +62568,7 @@
       "required": false
      },
      {
-      "uid": 166,
+      "uid": 169,
       "name": "emptyValue",
       "comment": {
        "raw": [
@@ -62278,7 +62582,7 @@
       "required": false
      },
      {
-      "uid": 167,
+      "uid": 170,
       "name": "sortBy",
       "comment": {
        "raw": [
@@ -62295,7 +62599,7 @@
       "required": false
      },
      {
-      "uid": 168,
+      "uid": 171,
       "name": "filter",
       "comment": {
        "raw": [
@@ -62309,7 +62613,7 @@
       "required": false
      },
      {
-      "uid": 169,
+      "uid": 172,
       "name": "sorting",
       "comment": {
        "raw": [
@@ -62323,7 +62627,7 @@
       "required": false
      },
      {
-      "uid": 170,
+      "uid": 173,
       "name": "cascadeSelection",
       "comment": {
        "raw": [
@@ -62353,7 +62657,7 @@
       "required": false
      },
      {
-      "uid": 171,
+      "uid": 174,
       "name": "isFoldedByDefault",
       "comment": {
        "raw": [
@@ -62370,7 +62674,7 @@
       "required": false
      },
      {
-      "uid": 172,
+      "uid": 175,
       "name": "getSearchFields",
       "comment": {
        "raw": [
@@ -62387,7 +62691,16 @@
       "required": false
      },
      {
-      "uid": 69,
+      "uid": 176,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 71,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -62407,7 +62720,7 @@
       "required": true
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -62427,7 +62740,7 @@
       "required": false
      },
      {
-      "uid": 19,
+      "uid": 20,
       "name": "value",
       "comment": {
        "raw": [
@@ -62441,7 +62754,7 @@
       "required": true
      },
      {
-      "uid": 20,
+      "uid": 21,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -62458,7 +62771,7 @@
       "required": true
      },
      {
-      "uid": 177,
+      "uid": 181,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -62475,7 +62788,7 @@
       "required": false
      },
      {
-      "uid": 178,
+      "uid": 182,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -62490,7 +62803,7 @@
       "required": false
      },
      {
-      "uid": 179,
+      "uid": 183,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -62504,7 +62817,7 @@
       "required": false
      },
      {
-      "uid": 180,
+      "uid": 184,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -62521,7 +62834,7 @@
       "required": false
      },
      {
-      "uid": 181,
+      "uid": 185,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -62538,7 +62851,7 @@
       "required": false
      },
      {
-      "uid": 182,
+      "uid": 186,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -62555,7 +62868,7 @@
       "required": false
      },
      {
-      "uid": 183,
+      "uid": 187,
       "name": "getValueChangeAnalyticsEvent",
       "comment": {
        "raw": [
@@ -62573,7 +62886,7 @@
       "required": false
      },
      {
-      "uid": 184,
+      "uid": 188,
       "name": "onFocus",
       "comment": {
        "raw": [
@@ -62590,7 +62903,7 @@
       "required": false
      },
      {
-      "uid": 185,
+      "uid": 189,
       "name": "onBlur",
       "comment": {
        "raw": [
@@ -62607,7 +62920,7 @@
       "required": false
      },
      {
-      "uid": 186,
+      "uid": 190,
       "name": "placeholder",
       "comment": {
        "raw": [
@@ -62621,7 +62934,7 @@
       "required": false
      },
      {
-      "uid": 187,
+      "uid": 191,
       "name": "icon",
       "comment": {
        "raw": [
@@ -62638,7 +62951,7 @@
       "required": false
      },
      {
-      "uid": 188,
+      "uid": 192,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -62659,7 +62972,7 @@
       "required": false
      },
      {
-      "uid": 189,
+      "uid": 193,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -62676,7 +62989,7 @@
       "required": false
      },
      {
-      "uid": 190,
+      "uid": 194,
       "name": "editMode",
       "comment": {
        "raw": [
@@ -62697,7 +63010,7 @@
       "required": false
      },
      {
-      "uid": 191,
+      "uid": 195,
       "name": "maxItems",
       "comment": {
        "raw": [
@@ -62714,7 +63027,7 @@
       "required": false
      },
      {
-      "uid": 192,
+      "uid": 196,
       "name": "minBodyWidth",
       "comment": {
        "raw": [
@@ -62731,7 +63044,7 @@
       "required": false
      },
      {
-      "uid": 193,
+      "uid": 197,
       "name": "isSingleLine",
       "comment": {
        "raw": [
@@ -62748,7 +63061,7 @@
       "required": false
      },
      {
-      "uid": 194,
+      "uid": 198,
       "name": "dropdownPlacement",
       "comment": {
        "raw": [
@@ -62782,7 +63095,7 @@
       "required": false
      },
      {
-      "uid": 195,
+      "uid": 199,
       "name": "renderToggler",
       "comment": {
        "raw": [
@@ -62799,7 +63112,7 @@
       "required": false
      },
      {
-      "uid": 196,
+      "uid": 200,
       "name": "searchPosition",
       "comment": {
        "raw": [
@@ -62826,7 +63139,7 @@
       "required": false
      },
      {
-      "uid": 197,
+      "uid": 201,
       "name": "disableClear",
       "comment": {
        "raw": [
@@ -62843,7 +63156,7 @@
       "required": false
      },
      {
-      "uid": 198,
+      "uid": 202,
       "name": "minCharsToSearch",
       "comment": {
        "raw": [
@@ -62863,7 +63176,7 @@
       "required": false
      },
      {
-      "uid": 199,
+      "uid": 203,
       "name": "dropdownHeight",
       "comment": {
        "raw": [
@@ -62880,7 +63193,7 @@
       "required": false
      },
      {
-      "uid": 200,
+      "uid": 204,
       "name": "autoFocus",
       "comment": {
        "raw": [
@@ -62897,7 +63210,7 @@
       "required": false
      },
      {
-      "uid": 201,
+      "uid": 205,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -62911,7 +63224,7 @@
       "required": false
      },
      {
-      "uid": 202,
+      "uid": 206,
       "name": "renderFooter",
       "comment": {
        "raw": [
@@ -62928,7 +63241,7 @@
       "required": false
      },
      {
-      "uid": 203,
+      "uid": 207,
       "name": "fixedBodyPosition",
       "comment": {
        "raw": [
@@ -62945,7 +63258,7 @@
       "required": false
      },
      {
-      "uid": 204,
+      "uid": 208,
       "name": "portalTarget",
       "typeValue": {
        "raw": "HTMLElement"
@@ -62954,7 +63267,7 @@
       "required": false
      },
      {
-      "uid": 205,
+      "uid": 209,
       "name": "inputCx",
       "comment": {
        "raw": [
@@ -62969,7 +63282,7 @@
       "required": false
      },
      {
-      "uid": 206,
+      "uid": 210,
       "name": "bodyCx",
       "comment": {
        "raw": [
@@ -62984,7 +63297,7 @@
       "required": false
      },
      {
-      "uid": 207,
+      "uid": 211,
       "name": "highlightSearchMatches",
       "comment": {
        "raw": [
@@ -63001,7 +63314,7 @@
       "required": false
      },
      {
-      "uid": 208,
+      "uid": 212,
       "name": "searchDebounceDelay",
       "comment": {
        "raw": [
@@ -63018,7 +63331,7 @@
       "required": false
      },
      {
-      "uid": 70,
+      "uid": 72,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -63038,7 +63351,7 @@
       "required": true
      },
      {
-      "uid": 71,
+      "uid": 73,
       "name": "value",
       "comment": {
        "raw": [
@@ -63052,7 +63365,7 @@
       "required": true
      },
      {
-      "uid": 72,
+      "uid": 74,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -63069,7 +63382,7 @@
       "required": true
      },
      {
-      "uid": 173,
+      "uid": 177,
       "name": "selectionMode",
       "comment": {
        "raw": [
@@ -63089,7 +63402,7 @@
       "required": true
      },
      {
-      "uid": 122,
+      "uid": 125,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -63109,7 +63422,7 @@
       "required": false
      },
      {
-      "uid": 123,
+      "uid": 126,
       "name": "value",
       "comment": {
        "raw": [
@@ -63123,7 +63436,7 @@
       "required": true
      },
      {
-      "uid": 124,
+      "uid": 127,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -63140,7 +63453,7 @@
       "required": true
      },
      {
-      "uid": 174,
+      "uid": 178,
       "name": "valueType",
       "comment": {
        "raw": [
@@ -63160,7 +63473,7 @@
       "required": true
      },
      {
-      "uid": 175,
+      "uid": 179,
       "name": "value",
       "comment": {
        "raw": [
@@ -63174,7 +63487,7 @@
       "required": true
      },
      {
-      "uid": 176,
+      "uid": 180,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -66193,6 +66506,20 @@
      },
      {
       "uid": 25,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 26,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -66212,7 +66539,7 @@
       "required": false
      },
      {
-      "uid": 26,
+      "uid": 27,
       "name": "mode",
       "comment": {
        "raw": [
@@ -67569,6 +67896,26 @@
      "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
      "print": [
       "type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
+     ]
+    }
+   }
+  },
+  "@epam/uui:EpamTagSemanticColor": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "EpamTagSemanticColor",
+     "nameFull": "EpamTagSemanticColor"
+    },
+    "src": "uui/components/types.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
+     "print": [
+      "type EpamTagSemanticColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
      ]
     }
    }
@@ -72501,6 +72848,11 @@
      {
       "uid": 11,
       "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true to enable the top border of ModalFooter"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -72723,6 +73075,11 @@
      {
       "uid": 11,
       "name": "onClose",
+      "comment": {
+       "raw": [
+        "Called when cross icon in ModalHeader is clicked"
+       ]
+      },
       "typeValue": {
        "raw": "() => any"
       },
@@ -72735,6 +73092,11 @@
      {
       "uid": 12,
       "name": "title",
+      "comment": {
+       "raw": [
+        "Modal title to display in header"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -73947,20 +74309,6 @@
      },
      {
       "uid": 28,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": 29,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -73980,7 +74328,7 @@
       "required": false
      },
      {
-      "uid": 30,
+      "uid": 29,
       "name": "mode",
       "comment": {
        "raw": [
@@ -75882,7 +76230,7 @@
     },
     "props": [
      {
-      "uid": 115,
+      "uid": 118,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -75902,7 +76250,7 @@
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 119,
       "name": "placeholder",
       "comment": {
        "raw": [
@@ -75913,6 +76261,1234 @@
        "raw": "any"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": 120,
+      "name": "renderFilter",
+      "typeValue": {
+       "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:PickerModalOptions",
+      "required": false
+     },
+     {
+      "uid": 121,
+      "name": "renderFooter",
+      "typeValue": {
+       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:PickerModalOptions",
+      "required": false
+     },
+     {
+      "uid": 122,
+      "name": "disallowClickOutside",
+      "comment": {
+       "raw": [
+        "@default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerModalOptions",
+      "required": false
+     },
+     {
+      "uid": 123,
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 124,
+      "name": "renderModalToggler",
+      "typeValue": {
+       "raw": "(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": 125,
+      "name": "noOptionsMessage",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     },
+     {
+      "uid": 126,
+      "name": "entityName",
+      "comment": {
+       "raw": [
+        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 127,
+      "name": "entityPluralName",
+      "comment": {
+       "raw": [
+        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 128,
+      "name": "dataSource",
+      "comment": {
+       "raw": [
+        "Datasource to get data for the picker"
+       ]
+      },
+      "typeValue": {
+       "raw": "IDataSource<TItem, TId, any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": true
+     },
+     {
+      "uid": 129,
+      "name": "getName",
+      "comment": {
+       "raw": [
+        "A pure function that gets entity name from entity object.",
+        "     Default: (item) => item.name."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 130,
+      "name": "renderRow",
+      "comment": {
+       "raw": [
+        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 131,
+      "name": "getRowOptions",
+      "comment": {
+       "raw": [
+        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 132,
+      "name": "renderNotFound",
+      "comment": {
+       "raw": [
+        "Overrides the default 'no records found' banner.",
+        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 133,
+      "name": "emptyValue",
+      "comment": {
+       "raw": [
+        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | []"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 134,
+      "name": "sortBy",
+      "comment": {
+       "raw": [
+        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "((item: TItem, sorting: SortingOption<any>) => any) & ((item: TItem, sorting: SortingOption<any>) => string)"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 135,
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 136,
+      "name": "sorting",
+      "comment": {
+       "raw": [
+        "Defines sorting to pass to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "SortingOption<any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 137,
+      "name": "cascadeSelection",
+      "comment": {
+       "raw": [
+        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+        " - false: All nodes are selected independently (default).",
+        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+        " - 'implicit': Selecting a parent node means that all children are considered checked.",
+        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 138,
+      "name": "isFoldedByDefault",
+      "comment": {
+       "raw": [
+        "You can return true for all, or some items to fold them."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 139,
+      "name": "getSearchFields",
+      "comment": {
+       "raw": [
+        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string[]"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 140,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 63,
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'single'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "single"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": 25,
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": false
+     },
+     {
+      "uid": 26,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 27,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TId) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 145,
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 146,
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 147,
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 148,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 149,
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 150,
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 151,
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: any, oldValue: any) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": 152,
+      "name": "maxDefaultItems",
+      "comment": {
+       "raw": [
+        "Number of default items to show initially, when nothing is selected.",
+        " @default 10"
+       ],
+       "tags": {
+        "@default": 10
+       }
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": 153,
+      "name": "maxTotalItems",
+      "comment": {
+       "raw": [
+        "Maximum total number of items to show, including selected",
+        " @default 50"
+       ],
+       "tags": {
+        "@default": 50
+       }
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": 154,
+      "name": "defaultIds",
+      "comment": {
+       "raw": [
+        "Ids of items to show first.",
+        " If not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId[]"
+      },
+      "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": 155,
+      "name": "settingsKey",
+      "comment": {
+       "raw": [
+        "If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": 156,
+      "name": "mode",
+      "comment": {
+       "raw": [
+        "Visual mode for component:",
+        " - form: default visuals, to use in forms.",
+        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
+        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
+       ]
+      },
+      "typeValue": {
+       "raw": "'inline' | 'form' | 'cell'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "inline",
+        "form",
+        "cell"
+       ]
+      },
+      "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": 64,
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "entity"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": 65,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 66,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TItem) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 141,
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'multi'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "multi"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": 103,
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": false
+     },
+     {
+      "uid": 104,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 105,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TId[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 142,
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "entity"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": 143,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 144,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TItem[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
+   }
+  },
+  "@epam/uui:PickerModalProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PickerModalProps",
+     "nameFull": "PickerModalProps<TItem, TId>"
+    },
+    "src": "uui/components/pickers/PickerModal.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any> & PickerModalOptions<TItem, TId>",
+     "print": [
+      "type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 91,
+      "name": "entityName",
+      "comment": {
+       "raw": [
+        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 92,
+      "name": "entityPluralName",
+      "comment": {
+       "raw": [
+        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 93,
+      "name": "dataSource",
+      "comment": {
+       "raw": [
+        "Datasource to get data for the picker"
+       ]
+      },
+      "typeValue": {
+       "raw": "IDataSource<TItem, TId, any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": true
+     },
+     {
+      "uid": 94,
+      "name": "getName",
+      "comment": {
+       "raw": [
+        "A pure function that gets entity name from entity object.",
+        "     Default: (item) => item.name."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 95,
+      "name": "renderRow",
+      "comment": {
+       "raw": [
+        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 96,
+      "name": "getRowOptions",
+      "comment": {
+       "raw": [
+        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 97,
+      "name": "renderNotFound",
+      "comment": {
+       "raw": [
+        "Overrides the default 'no records found' banner.",
+        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 98,
+      "name": "emptyValue",
+      "comment": {
+       "raw": [
+        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | []"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 99,
+      "name": "sortBy",
+      "comment": {
+       "raw": [
+        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, sorting: SortingOption<any>) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 100,
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 101,
+      "name": "sorting",
+      "comment": {
+       "raw": [
+        "Defines sorting to pass to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "SortingOption<any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 102,
+      "name": "cascadeSelection",
+      "comment": {
+       "raw": [
+        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+        " - false: All nodes are selected independently (default).",
+        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+        " - 'implicit': Selecting a parent node means that all children are considered checked.",
+        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 103,
+      "name": "isFoldedByDefault",
+      "comment": {
+       "raw": [
+        "You can return true for all, or some items to fold them."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 104,
+      "name": "getSearchFields",
+      "comment": {
+       "raw": [
+        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string[]"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 105,
+      "name": "ref",
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": 106,
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": 47,
+      "name": "selectionMode",
+      "typeValue": {
+       "raw": "'single'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "single"
+       ]
+      },
+      "from": "@epam/uui-components:PickerModalScalarProps",
+      "required": true
+     },
+     {
+      "uid": 18,
+      "name": "valueType",
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-components:PickerModalScalarProps",
+      "required": true
+     },
+     {
+      "uid": 19,
+      "name": "initialValue",
+      "typeValue": {
+       "raw": "TId"
+      },
+      "from": "@epam/uui-components:PickerModalScalarProps",
+      "required": true
+     },
+     {
+      "uid": 110,
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Indicates whether the modal is currently displayed"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 111,
+      "name": "key",
+      "comment": {
+       "raw": [
+        "Unique key of the modal"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": true
+     },
+     {
+      "uid": 112,
+      "name": "zIndex",
+      "comment": {
+       "raw": [
+        "Modal zIndex value. Calculated via LayoutContext."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": true
+     },
+     {
+      "uid": 23,
+      "name": "success",
+      "comment": {
+       "raw": [
+        "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
+       ]
+      },
+      "typeValue": {
+       "raw": "(result: TId) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": true
+     },
+     {
+      "uid": 114,
+      "name": "abort",
+      "comment": {
+       "raw": [
+        "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
+       ]
+      },
+      "typeValue": {
+       "raw": "(result?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": true
+     },
+     {
+      "uid": 115,
+      "name": "parameters",
+      "comment": {
+       "raw": [
+        "Parameters that provided via second param of `modalContext.show` method"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IModal",
+      "required": false
+     },
+     {
+      "uid": 116,
+      "name": "depth",
+      "comment": {
+       "raw": [
+        "Depth of current modal layer"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IModal",
       "required": false
      },
      {
@@ -75974,1217 +77550,7 @@
       "required": false
      },
      {
-      "uid": 121,
-      "name": "renderModalToggler",
-      "typeValue": {
-       "raw": "(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": 122,
-      "name": "noOptionsMessage",
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "required": false
-     },
-     {
-      "uid": 123,
-      "name": "entityName",
-      "comment": {
-       "raw": [
-        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 124,
-      "name": "entityPluralName",
-      "comment": {
-       "raw": [
-        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 125,
-      "name": "dataSource",
-      "comment": {
-       "raw": [
-        "Datasource to get data for the picker"
-       ]
-      },
-      "typeValue": {
-       "raw": "IDataSource<TItem, TId, any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": true
-     },
-     {
-      "uid": 126,
-      "name": "getName",
-      "comment": {
-       "raw": [
-        "A pure function that gets entity name from entity object.",
-        "     Default: (item) => item.name."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 127,
-      "name": "renderRow",
-      "comment": {
-       "raw": [
-        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 128,
-      "name": "getRowOptions",
-      "comment": {
-       "raw": [
-        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 129,
-      "name": "renderNotFound",
-      "comment": {
-       "raw": [
-        "Overrides the default 'no records found' banner.",
-        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 130,
-      "name": "emptyValue",
-      "comment": {
-       "raw": [
-        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | []"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 131,
-      "name": "sortBy",
-      "comment": {
-       "raw": [
-        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "((item: TItem, sorting: SortingOption<any>) => any) & ((item: TItem, sorting: SortingOption<any>) => string)"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 132,
-      "name": "filter",
-      "comment": {
-       "raw": [
-        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 133,
-      "name": "sorting",
-      "comment": {
-       "raw": [
-        "Defines sorting to pass to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "SortingOption<any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 134,
-      "name": "cascadeSelection",
-      "comment": {
-       "raw": [
-        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
-        " - false: All nodes are selected independently (default).",
-        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-        " - 'implicit': Selecting a parent node means that all children are considered checked.",
-        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
-        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
-        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
-        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean | 'implicit' | 'explicit'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        false,
-        true,
-        "implicit",
-        "explicit"
-       ]
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 135,
-      "name": "isFoldedByDefault",
-      "comment": {
-       "raw": [
-        "You can return true for all, or some items to fold them."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 136,
-      "name": "getSearchFields",
-      "comment": {
-       "raw": [
-        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string[]"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 61,
-      "name": "selectionMode",
-      "comment": {
-       "raw": [
-        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
-       ]
-      },
-      "typeValue": {
-       "raw": "'single'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "single"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": true
-     },
-     {
-      "uid": 24,
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": false
-     },
-     {
-      "uid": 25,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 26,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TId) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 141,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 142,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 143,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 144,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 145,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 146,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 147,
-      "name": "getValueChangeAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "Given a value, returns an analytics event to send when component is edited.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: any, oldValue: any) => AnalyticsEvent"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": 148,
-      "name": "maxDefaultItems",
-      "comment": {
-       "raw": [
-        "Number of default items to show initially, when nothing is selected.",
-        " @default 10"
-       ],
-       "tags": {
-        "@default": 10
-       }
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerListBaseProps",
-      "required": false
-     },
-     {
-      "uid": 149,
-      "name": "maxTotalItems",
-      "comment": {
-       "raw": [
-        "Maximum total number of items to show, including selected",
-        " @default 50"
-       ],
-       "tags": {
-        "@default": 50
-       }
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerListBaseProps",
-      "required": false
-     },
-     {
-      "uid": 150,
-      "name": "defaultIds",
-      "comment": {
-       "raw": [
-        "Ids of items to show first.",
-        " If not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId[]"
-      },
-      "from": "@epam/uui-components:PickerListBaseProps",
-      "required": false
-     },
-     {
-      "uid": 151,
-      "name": "settingsKey",
-      "comment": {
-       "raw": [
-        "If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:PickerListBaseProps",
-      "required": false
-     },
-     {
-      "uid": 152,
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     },
-     {
-      "uid": 62,
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'entity'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "entity"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": true
-     },
-     {
-      "uid": 63,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TItem"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 64,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TItem) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 137,
-      "name": "selectionMode",
-      "comment": {
-       "raw": [
-        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
-       ]
-      },
-      "typeValue": {
-       "raw": "'multi'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "multi"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": true
-     },
-     {
-      "uid": 100,
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": false
-     },
-     {
-      "uid": 101,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId[]"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 102,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TId[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 138,
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'entity'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "entity"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": true
-     },
-     {
-      "uid": 139,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TItem[]"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 140,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TItem[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     }
-    ],
-    "propsFromUnion": true
-   }
-  },
-  "@epam/uui:PickerModalProps": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "PickerModalProps",
-     "nameFull": "PickerModalProps<TItem, TId>"
-    },
-    "src": "uui/components/pickers/PickerModal.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any> & PickerModalOptions<TItem, TId>",
-     "print": [
-      "type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> & IHasCaption & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) & PickerModalOptions<TItem, TId>;"
-     ]
-    },
-    "props": [
-     {
-      "uid": 88,
-      "name": "entityName",
-      "comment": {
-       "raw": [
-        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 89,
-      "name": "entityPluralName",
-      "comment": {
-       "raw": [
-        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 90,
-      "name": "dataSource",
-      "comment": {
-       "raw": [
-        "Datasource to get data for the picker"
-       ]
-      },
-      "typeValue": {
-       "raw": "IDataSource<TItem, TId, any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": true
-     },
-     {
-      "uid": 91,
-      "name": "getName",
-      "comment": {
-       "raw": [
-        "A pure function that gets entity name from entity object.",
-        "     Default: (item) => item.name."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 92,
-      "name": "renderRow",
-      "comment": {
-       "raw": [
-        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 93,
-      "name": "getRowOptions",
-      "comment": {
-       "raw": [
-        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 94,
-      "name": "renderNotFound",
-      "comment": {
-       "raw": [
-        "Overrides the default 'no records found' banner.",
-        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 95,
-      "name": "emptyValue",
-      "comment": {
-       "raw": [
-        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | []"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 96,
-      "name": "sortBy",
-      "comment": {
-       "raw": [
-        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, sorting: SortingOption<any>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 97,
-      "name": "filter",
-      "comment": {
-       "raw": [
-        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 98,
-      "name": "sorting",
-      "comment": {
-       "raw": [
-        "Defines sorting to pass to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "SortingOption<any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 99,
-      "name": "cascadeSelection",
-      "comment": {
-       "raw": [
-        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
-        " - false: All nodes are selected independently (default).",
-        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-        " - 'implicit': Selecting a parent node means that all children are considered checked.",
-        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
-        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
-        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
-        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean | 'implicit' | 'explicit'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        false,
-        true,
-        "implicit",
-        "explicit"
-       ]
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 100,
-      "name": "isFoldedByDefault",
-      "comment": {
-       "raw": [
-        "You can return true for all, or some items to fold them."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 101,
-      "name": "getSearchFields",
-      "comment": {
-       "raw": [
-        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string[]"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": 102,
-      "name": "caption",
-      "comment": {
-       "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasCaption",
-      "required": false
-     },
-     {
-      "uid": 45,
-      "name": "selectionMode",
-      "typeValue": {
-       "raw": "'single'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "single"
-       ]
-      },
-      "from": "@epam/uui-components:PickerModalScalarProps",
-      "required": true
-     },
-     {
-      "uid": 17,
-      "name": "valueType",
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-components:PickerModalScalarProps",
-      "required": true
-     },
-     {
-      "uid": 18,
-      "name": "initialValue",
-      "typeValue": {
-       "raw": "TId"
-      },
-      "from": "@epam/uui-components:PickerModalScalarProps",
-      "required": true
-     },
-     {
-      "uid": 106,
-      "name": "isActive",
-      "comment": {
-       "raw": [
-        "Indicates whether the modal is currently displayed"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": false
-     },
-     {
-      "uid": 107,
-      "name": "key",
-      "comment": {
-       "raw": [
-        "Unique key of the modal"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": true
-     },
-     {
-      "uid": 108,
-      "name": "zIndex",
-      "comment": {
-       "raw": [
-        "Modal zIndex value. Calculated via LayoutContext."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": true
-     },
-     {
-      "uid": 22,
-      "name": "success",
-      "comment": {
-       "raw": [
-        "Call to successfully close the modal. It's resolves `modalContext.show()` promise with provided value."
-       ]
-      },
-      "typeValue": {
-       "raw": "(result: TId) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": true
-     },
-     {
-      "uid": 110,
-      "name": "abort",
-      "comment": {
-       "raw": [
-        "Call to close the modal with abort action. It's rejects `modalContext.show()` promise with provided value."
-       ]
-      },
-      "typeValue": {
-       "raw": "(result?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": true
-     },
-     {
-      "uid": 111,
-      "name": "parameters",
-      "comment": {
-       "raw": [
-        "Parameters that provided via second param of `modalContext.show` method"
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": false
-     },
-     {
-      "uid": 112,
-      "name": "depth",
-      "comment": {
-       "raw": [
-        "Depth of current modal layer"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IModal",
-      "required": false
-     },
-     {
-      "uid": 113,
-      "name": "renderFilter",
-      "typeValue": {
-       "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerModalOptions",
-      "required": false
-     },
-     {
-      "uid": 114,
-      "name": "renderFooter",
-      "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerModalOptions",
-      "required": false
-     },
-     {
-      "uid": 115,
-      "name": "disallowClickOutside",
-      "comment": {
-       "raw": [
-        "@default false"
-       ],
-       "tags": {
-        "@default": false
-       }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerModalOptions",
-      "required": false
-     },
-     {
-      "uid": 116,
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 46,
+      "uid": 48,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -77199,7 +77565,7 @@
       "required": true
      },
      {
-      "uid": 47,
+      "uid": 49,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem"
@@ -77208,7 +77574,7 @@
       "required": true
      },
      {
-      "uid": 51,
+      "uid": 53,
       "name": "success",
       "comment": {
        "raw": [
@@ -77225,7 +77591,7 @@
       "required": true
      },
      {
-      "uid": 103,
+      "uid": 107,
       "name": "selectionMode",
       "typeValue": {
        "raw": "'multi'"
@@ -77240,7 +77606,7 @@
       "required": true
      },
      {
-      "uid": 75,
+      "uid": 78,
       "name": "valueType",
       "typeValue": {
        "raw": "'id'"
@@ -77255,7 +77621,7 @@
       "required": true
      },
      {
-      "uid": 76,
+      "uid": 79,
       "name": "initialValue",
       "typeValue": {
        "raw": "TId[]"
@@ -77264,7 +77630,7 @@
       "required": true
      },
      {
-      "uid": 80,
+      "uid": 83,
       "name": "success",
       "comment": {
        "raw": [
@@ -77281,7 +77647,7 @@
       "required": true
      },
      {
-      "uid": 104,
+      "uid": 108,
       "name": "valueType",
       "typeValue": {
        "raw": "'entity'"
@@ -77296,7 +77662,7 @@
       "required": true
      },
      {
-      "uid": 105,
+      "uid": 109,
       "name": "initialValue",
       "typeValue": {
        "raw": "TItem[]"
@@ -77305,7 +77671,7 @@
       "required": true
      },
      {
-      "uid": 109,
+      "uid": 113,
       "name": "success",
       "comment": {
        "raw": [
@@ -78009,6 +78375,40 @@
        "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 20,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      }
     ],
@@ -78759,6 +79159,20 @@
      },
      {
       "uid": 26,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 27,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -80924,6 +81338,40 @@
      },
      {
       "uid": 16,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 17,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 18,
       "name": "size",
       "comment": {
        "raw": [
@@ -81519,6 +81967,46 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TagColor": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagColor",
+     "nameFull": "TagColor"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
+     "print": [
+      "type TagColor = EpamTagSemanticColor;"
+     ]
+    }
+   }
+  },
+  "@epam/uui:TagFill": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagFill",
+     "nameFull": "TagFill"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'solid' | 'outline'",
+     "print": [
+      "type TagFill = 'solid' | 'outline';"
+     ]
+    }
+   }
+  },
   "@epam/uui:TagMods": {
    "summary": {
     "module": "@epam/uui",
@@ -81535,10 +82023,12 @@
      "raw": "TagMods",
      "print": [
       "interface TagMods {",
-      "    /**",
-      "     * @default '36'",
-      "     */",
+      "    /** @default '36' */",
       "    size?: TagSize;",
+      "    /** @default 'neutral' */",
+      "    color?: TagColor;",
+      "    /** @default 'solid' */",
+      "    fill?: TagFill;",
       "}"
      ]
     },
@@ -81566,6 +82056,55 @@
         "36",
         "42",
         "48"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "info",
+        "success",
+        "warning",
+        "critical",
+        "neutral"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline"
        ]
       },
       "required": false
@@ -82064,6 +82603,57 @@
       },
       "from": "@epam/uui:TagMods",
       "required": false
+     },
+     {
+      "uid": 29,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "info",
+        "success",
+        "warning",
+        "critical",
+        "neutral"
+       ]
+      },
+      "from": "@epam/uui:TagMods",
+      "required": false
+     },
+     {
+      "uid": 30,
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline"
+       ]
+      },
+      "from": "@epam/uui:TagMods",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -82305,6 +82895,15 @@
      },
      {
       "uid": 8,
+      "name": "forwardedRef",
+      "typeValue": {
+       "raw": "null | (instance: HTMLInputElement | null) => void | React.MutableRefObject<HTMLInputElement | null>"
+      },
+      "from": "@epam/uui-components:TextAreaProps",
+      "required": false
+     },
+     {
+      "uid": 9,
       "name": "cx",
       "comment": {
        "raw": [
@@ -82319,7 +82918,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "value",
       "comment": {
        "raw": [
@@ -82336,7 +82935,7 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -82353,7 +82952,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -82370,7 +82969,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -82385,7 +82984,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 14,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -82399,7 +82998,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -82416,7 +83015,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -82433,7 +83032,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -82450,7 +83049,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "placeholder",
       "comment": {
        "raw": [
@@ -82464,7 +83063,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -82475,20 +83074,6 @@
        "raw": "React.TextareaHTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 19,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -84246,6 +84831,54 @@
      },
      {
       "uid": 17,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 18,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 19,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 20,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -84265,7 +84898,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 21,
       "name": "mode",
       "comment": {
        "raw": [
@@ -99165,6 +99798,40 @@
       },
       "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
+     },
+     {
+      "uid": 20,
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": 21,
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -102516,7 +103183,7 @@
     "typeValue": {
      "raw": "TagMods",
      "print": [
-      "interface TagMods extends uui.TagMods {",
+      "interface TagMods extends Omit<uui.TagMods, 'fill'> {",
       "    /**",
       "     * @default 'solid'",
       "     */",
@@ -102552,6 +103219,33 @@
      },
      {
       "uid": 2,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'success' | 'warning' | 'info' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "success",
+        "warning",
+        "info",
+        "critical",
+        "neutral"
+       ]
+      },
+      "from": "@epam/uui:TagMods",
+      "required": false
+     },
+     {
+      "uid": 3,
       "name": "size",
       "comment": {
        "raw": [
@@ -102597,13 +103291,40 @@
     "typeValue": {
      "raw": "TagProps",
      "print": [
-      "interface TagProps extends Omit<uui.TagProps, 'color'>, TagMods {",
+      "interface TagProps extends Omit<uui.TagProps, 'fill'>, TagMods {",
       "}"
      ]
     },
     "props": [
      {
       "uid": 1,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'success' | 'warning' | 'info' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "success",
+        "warning",
+        "info",
+        "critical",
+        "neutral"
+       ]
+      },
+      "from": "@epam/uui:TagMods",
+      "required": false
+     },
+     {
+      "uid": 2,
       "name": "icon",
       "comment": {
        "raw": [
@@ -102620,7 +103341,7 @@
       "required": false
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "size",
       "comment": {
        "raw": [
@@ -102648,7 +103369,7 @@
       "required": false
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "cx",
       "comment": {
        "raw": [
@@ -102662,7 +103383,7 @@
       "required": false
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -102676,7 +103397,7 @@
       "required": false
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "clearIcon",
       "comment": {
        "raw": [
@@ -102693,7 +103414,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "captionCX",
       "comment": {
        "raw": [
@@ -102707,7 +103428,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "countIndicator",
       "comment": {
        "raw": [
@@ -102721,7 +103442,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "dropdownIcon",
       "comment": {
        "raw": [
@@ -102738,7 +103459,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "dropdownIconPosition",
       "comment": {
        "raw": [
@@ -102759,7 +103480,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "count",
       "comment": {
        "raw": [
@@ -102773,7 +103494,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -102790,7 +103511,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "link",
       "comment": {
        "raw": [
@@ -102804,7 +103525,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 14,
       "name": "href",
       "comment": {
        "raw": [
@@ -102821,7 +103542,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -102838,7 +103559,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "target",
       "comment": {
        "raw": [
@@ -102858,7 +103579,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -102875,7 +103596,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -102896,7 +103617,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -102913,7 +103634,7 @@
       "required": false
      },
      {
-      "uid": 19,
+      "uid": 20,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
@@ -102928,7 +103649,7 @@
       "required": false
      },
      {
-      "uid": 20,
+      "uid": 21,
       "name": "tabIndex",
       "comment": {
        "raw": [
@@ -102945,7 +103666,7 @@
       "required": false
      },
      {
-      "uid": 21,
+      "uid": 22,
       "name": "caption",
       "comment": {
        "raw": [
@@ -102959,7 +103680,7 @@
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 23,
       "name": "onClear",
       "comment": {
        "raw": [
@@ -102976,7 +103697,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 24,
       "name": "isOpen",
       "comment": {
        "raw": [
@@ -102993,7 +103714,7 @@
       "required": false
      },
      {
-      "uid": 24,
+      "uid": 25,
       "name": "isDropdown",
       "comment": {
        "raw": [
@@ -103010,7 +103731,7 @@
       "required": false
      },
      {
-      "uid": 25,
+      "uid": 26,
       "name": "toggleDropdownOpening",
       "comment": {
        "raw": [
@@ -103027,7 +103748,7 @@
       "required": false
      },
      {
-      "uid": 26,
+      "uid": 27,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -103044,7 +103765,7 @@
       "required": false
      },
      {
-      "uid": 27,
+      "uid": 28,
       "name": "ref",
       "comment": {
        "raw": [
@@ -103058,7 +103779,7 @@
       "required": false
      },
      {
-      "uid": 28,
+      "uid": 29,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -103072,7 +103793,7 @@
       "required": false
      },
      {
-      "uid": 29,
+      "uid": 30,
       "name": "fill",
       "comment": {
        "raw": [

@@ -4,6 +4,7 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Tag.module.scss';
+import { EpamTagSemanticColor } from '../types';
 
 const defaultSize = '36';
 
@@ -17,6 +18,8 @@ const mapSize = {
 };
 
 export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
+export type TagFill = 'solid' | 'outline';
+export type TagColor = EpamTagSemanticColor;
 
 const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     18: '12',
@@ -28,17 +31,20 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
 };
 
 export interface TagMods {
-    /**
-     * @default '36'
-     */
+    /** @default '36' */
     size?: TagSize;
+    /** @default 'neutral' */
+    color?: TagColor;
+    /** @default 'solid' */
+    fill?: TagFill;
 }
 
 export function applyTagMods(mods: TagMods) {
     return [
         css['size-' + (mods.size || defaultSize)],
         css.root,
-        'uui-color-neutral',
+        `uui-color-${mods.color || 'neutral'}`,
+        `uui-fill-${mods.fill || 'solid'}`,
         'uui-tag',
     ];
 }
@@ -51,7 +57,7 @@ export const Tag = withMods<ButtonProps, TagMods>(Button, applyTagMods, (props) 
     countIndicator: (countIndicatorProps) => (
         <CountIndicator
             { ...countIndicatorProps }
-            color="white"
+            color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
             size={ mapCountIndicatorSizes[props.size || defaultSize] }
         />
     ),

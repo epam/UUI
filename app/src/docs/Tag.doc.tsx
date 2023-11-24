@@ -34,6 +34,7 @@ export class TagDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/tag/Basic.example.tsx" />
                 <DocExample title="Size" path="./_examples/tag/Size.example.tsx" />
+                <DocExample title="Color variants" path="./_examples/tag/Colors.example.tsx" />
             </>
         );
     }
