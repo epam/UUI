@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 720,
-   "amountTypes": 239
+   "amountProps": 718,
+   "amountTypes": 238
   },
   "value": [
    {
@@ -317,12 +317,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IFilterItemBodyProps",
-    "value": [
-     "selectedPredicate"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IHasChildren",
     "value": [
      "children"
@@ -440,27 +434,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ModalBlockerProps",
-    "value": [
-     "disableCloseByEsc",
-     "disableFocusLock",
-     "disallowClickOutside"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ModalFooterCoreProps",
-    "value": [
-     "borderTop"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ModalHeaderCoreProps",
-    "value": [
-     "onClose",
-     "title"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ModalOperation",
     "value": [
      "component",
@@ -476,6 +449,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-core:PickerBaseOptions",
+    "value": [
+     "ref"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-core:RangeDatePickerPresets",
     "value": [
      "[key: string]"
@@ -487,6 +466,12 @@
      "from",
      "order",
      "to"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:RenderEditorProps",
+    "value": [
+     "ref"
     ]
    },
    {
@@ -1058,6 +1043,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-components:TextAreaProps",
+    "value": [
+     "forwardedRef"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-components:TimePickerBodyProps",
     "value": [
      "addIcon",
@@ -1520,6 +1511,8 @@
    {
     "typeRef": "@epam/uui:TagMods",
     "value": [
+     "color",
+     "fill",
      "size"
     ]
    },
@@ -1924,7 +1917,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 472
+   "amountTypes": 475
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2191,6 +2184,7 @@
    "@epam/uui:DropMarkerProps",
    "@epam/uui:DropSpotProps",
    "@epam/uui:EpamBadgeSemanticColor",
+   "@epam/uui:EpamTagSemanticColor",
    "@epam/uui:FileCardItem",
    "@epam/uui:FileCardProps",
    "@epam/uui:FillStyle",
@@ -2257,6 +2251,8 @@
    "@epam/uui:SwitchProps",
    "@epam/uui:TabButtonMods",
    "@epam/uui:TabButtonProps",
+   "@epam/uui:TagColor",
+   "@epam/uui:TagFill",
    "@epam/uui:TagMods",
    "@epam/uui:TagProps",
    "@epam/uui:TagSize",
@@ -2403,11 +2399,11 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 821,
+   "allExports": 822,
    "byModule": {
     "@epam/uui-core": 129,
     "@epam/uui-components": 105,
-    "@epam/uui": 153,
+    "@epam/uui": 154,
     "@epam/promo": 128,
     "@epam/electric": 105,
     "@epam/loveship": 138,
@@ -2616,7 +2612,6 @@
      "DataTableCell",
      "DataTableSelectionProvider",
      "FlexSpacer",
-     "NumericInput",
      "PortalRoot",
      "ScrollSpy",
      "Tooltip",
@@ -2642,6 +2637,7 @@
      "handleDataSourceKeyboard",
      "i18n",
      "IconContainer",
+     "NumericInput",
      "PickerToggler",
      "Portal",
      "ProgressBar",
@@ -2674,6 +2670,7 @@
      "allButtonColors",
      "allButtonFills",
      "allEpamBadgeSemanticColors",
+     "allEpamTagSemanticColors",
      "allFillStyles",
      "allFontStyles",
      "allFontWeights",
@@ -2702,7 +2699,9 @@
      "DataPickerHeader",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -2737,11 +2736,13 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "propsMods",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "rangeDatePickerPresets",
      "renderCell",
      "renderDropMarkers",
@@ -2761,6 +2762,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "useColumnsWithFilters",
      "uuiDatePickerBody",
@@ -2789,7 +2791,6 @@
      "DataRowsContainer",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -2800,7 +2801,6 @@
      "Form",
      "getTextClasses",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerListItem",
      "PickerModal",
@@ -2814,16 +2814,13 @@
      "DataPickerBody",
      "DataPickerRow",
      "DataTableHeaderCell",
-     "DatePicker",
      "DatePickerBody",
      "DropSpot",
      "MainMenuDropdown",
      "ModalFooter",
      "ModalHeader",
      "PickerItem",
-     "RangeDatePicker",
-     "RangeDatePickerBody",
-     "TimePicker"
+     "RangeDatePickerBody"
     ],
     "EnumDeclaration": [
      "EditMode",
@@ -2863,7 +2860,9 @@
      "DataPickerFooter",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -2897,10 +2896,12 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "Rating",
      "RichTextView",
      "ScrollBars",
@@ -2918,6 +2919,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "VerticalTabButton",
      "VirtualList",
@@ -2932,7 +2934,6 @@
      "ColumnsConfigurationModal",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -2942,7 +2943,6 @@
      "FlexSpacer",
      "Form",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerModal",
      "PresetsPanel",
@@ -2953,16 +2953,13 @@
      "ConfirmationModal",
      "DataPickerBody",
      "DataPickerRow",
-     "DatePicker",
      "DropSpot",
      "MainMenuCustomElement",
      "MainMenuDropdown",
      "MainMenuLogo",
      "ModalFooter",
      "ModalHeader",
-     "PickerItem",
-     "RangeDatePicker",
-     "TimePicker"
+     "PickerItem"
     ],
     "EnumDeclaration": [
      "EditMode"
@@ -2990,7 +2987,9 @@
      "DataPickerHeader",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -3019,11 +3018,13 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "PromoButton",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "RichTextView",
      "ScrollBars",
      "Spinner",
@@ -3036,6 +3037,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "VerticalTabButton",
      "VirtualList",
@@ -3048,7 +3050,6 @@
      "DataRowsContainer",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -3057,7 +3058,6 @@
      "FlexSpacer",
      "Form",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerListItem",
      "PickerModal",
@@ -3070,15 +3070,12 @@
      "DataPickerBody",
      "DataPickerRow",
      "DataTableHeaderCell",
-     "DatePicker",
      "DropSpot",
      "MainMenuDropdown",
      "ModalFooter",
      "ModalHeader",
      "PickerItem",
-     "RangeDatePicker",
-     "RangeDatePickerBody",
-     "TimePicker"
+     "RangeDatePickerBody"
     ]
    },
    "@epam/loveship": {
@@ -3112,7 +3109,9 @@
      "DataPickerFooter",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -3145,10 +3144,12 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "RangeSlider",
      "Rating",
      "recoveryWordings",
@@ -3169,6 +3170,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "VerticalTabButton",
      "VirtualList",
@@ -3185,7 +3187,6 @@
      "ColumnsConfigurationModal",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -3196,7 +3197,6 @@
      "Form",
      "getIconClass",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerModal",
      "PresetsPanel",
@@ -3208,7 +3208,6 @@
      "ConfirmationModal",
      "DataPickerBody",
      "DataPickerRow",
-     "DatePicker",
      "DropSpot",
      "ErrorPage",
      "InstanceItem",
@@ -3219,11 +3218,9 @@
      "ModalFooter",
      "ModalHeader",
      "PickerItem",
-     "RangeDatePicker",
      "SliderRating",
      "Snackbar",
      "TextOverflow",
-     "TimePicker",
      "UploadFileToggler"
     ]
    },
@@ -3300,11 +3297,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 554,
+   "allExports": 557,
    "byModule": {
     "@epam/uui-core": 199,
     "@epam/uui-components": 91,
-    "@epam/uui": 133,
+    "@epam/uui": 136,
     "@epam/promo": 53,
     "@epam/electric": 3,
     "@epam/loveship": 65,
@@ -3714,6 +3711,7 @@
      "CompletePickerInputProps",
      "ControlSize",
      "EpamBadgeSemanticColor",
+     "EpamTagSemanticColor",
      "FillStyle",
      "FlexCellMods",
      "FlexCellProps",
@@ -3740,6 +3738,8 @@
      "StatusIndicatorColors",
      "SwitchProps",
      "TabButtonProps",
+     "TagColor",
+     "TagFill",
      "TagProps",
      "TagSize",
      "TextAreaProps",
