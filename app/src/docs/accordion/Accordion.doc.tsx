@@ -11,7 +11,7 @@ export class AccordionDoc extends BaseDocsBlock {
 
     override config: TDocConfig = {
         name: 'Accordion',
-        contexts: [TDocContext.Default, TDocContext.Resizable],
+        contexts: [TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI3_loveship]: { type: '@epam/uui:AccordionProps', component: loveship.Accordion },
             [TSkin.UUI4_promo]: { type: '@epam/uui:AccordionProps', component: promo.Accordion },
