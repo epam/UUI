@@ -5,7 +5,7 @@ import {
 import css from './DataTableCell.module.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
-import { CellFocusAPI, DataTableFocusContext, DataTableFocusContextState } from './tableCellsFocus';
+import { DataTableFocusContext, DataTableFocusContextState } from './tableCellsFocus';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -22,20 +22,17 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const editorRef = React.useRef<HTMLElement>();
     const isEditable = !!props.onValueChange;
 
-    const cellRef = React.useRef<CellFocusAPI>({
-        focus: () => editorRef.current?.focus(),
-    });
-
     const tableFocusContext = useContext<DataTableFocusContextState<TId>>(DataTableFocusContext);
 
     useEffect(() => {
         if (props.isTableCell && isEditable) {
             tableFocusContext?.dataTableFocusManager
-                ?.registerCell({ id: row.id, index: row.index }, cellRef, {
+                ?.registerCell({ id: row.id, index: row.index }, {
                     index: props.index,
                     isDisabled: props.isDisabled,
                     isReadonly: props.isReadonly,
                     key: props.key,
+                    focus: () => editorRef.current?.focus(),
                 });
         }
 

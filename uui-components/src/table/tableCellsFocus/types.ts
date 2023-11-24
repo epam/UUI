@@ -1,21 +1,16 @@
 import { DataTableCellProps } from '@epam/uui-core';
 import type { DataTableFocusManager } from './DataTableFocusManager';
 
-export type RowsRegistry<TId> = Map<TId | string, Array<CellInfo>>;
+export type RowsRegistry<TId> = Map<TId | string, Array<CellProps>>;
 
 export interface DataTableFocusManagerProps {
     enableMovementShortcuts?: boolean;
 }
 
-export type CellProps = Pick<DataTableCellProps, 'index' | 'key' | 'isReadonly' | 'isDisabled'>;
+export type CellProps = Pick<DataTableCellProps, 'index' | 'key' | 'isReadonly' | 'isDisabled'> & CellActions;
 
-export interface CellFocusAPI {
+export interface CellActions {
     focus: () => void;
-}
-
-export interface CellInfo {
-    ref: React.RefObject<CellFocusAPI>,
-    cellProps: CellProps;
 }
 
 export interface RowInfo<TId> {
