@@ -19,6 +19,10 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
+export type ButtonCoreProps = uuiButtonProps & {
+    size?: ControlSize | '18';
+};
+
 export type ButtonProps = ButtonMods & Omit<uuiButtonProps, 'count' | 'indicator'>;
 
 export function applyButtonMods(mods: ButtonProps) {
@@ -31,7 +35,7 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<Omit<uuiButtonProps, 'count' | 'indicator'>, ButtonMods>(
+export const Button = withMods<uuiButtonProps, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
