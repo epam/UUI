@@ -1,7 +1,7 @@
 import React from 'react';
 import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, MainMenuDropdown } from '@epam/promo';
 import { Anchor, MainMenuLogo } from '@epam/uui-components';
-import { UUI } from './docs';
+import { TSkin } from '@epam/uui-docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
@@ -49,7 +49,7 @@ export function AppHeader() {
                     link={ {
                         pathname: '/documents',
                         query: {
-                            id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
+                            id: 'accordion', mode: 'doc', skin: TSkin.UUI, category: 'components',
                         },
                     } }
                     isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -133,7 +133,7 @@ export function AppHeader() {
                         link={ {
                             pathname: '/documents',
                             query: {
-                                id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
+                                id: 'accordion', mode: 'doc', skin: TSkin.UUI, category: 'components',
                             },
                         } }
                         isLinkActive={ pathName === '/documents' && category === 'components' }

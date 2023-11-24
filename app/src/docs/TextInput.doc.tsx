@@ -1,20 +1,28 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextInputProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/textInput.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/textInput.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/textInput.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'TextInput',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form, TDocContext.Table],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:TextInputProps', component: uui.TextInput },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:TextInputProps', component: loveship.TextInput },
+            [TSkin.UUI4_promo]: { type: '@epam/uui:TextInputProps', component: promo.TextInput },
+        },
+        doc: (doc: DocBuilder<uui.TextInputProps | loveship.TextInputProps>) => {
+            doc.merge('type', { defaultValue: 'text' });
+            doc.merge('mode', { defaultValue: 'form' });
+            doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.merge('maxLength', { examples: [10, 20, 30] });
+        },
+    };
 
     renderContent() {
         return (

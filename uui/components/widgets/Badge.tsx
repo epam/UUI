@@ -22,7 +22,9 @@ export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
 
 export interface BadgeMods {
     color?: BadgeColor;
+    /** @default 'solid' */
     fill?: BadgeFill;
+    /** @default '36' */
     size?: BadgeSize;
     indicator?: boolean;
 }

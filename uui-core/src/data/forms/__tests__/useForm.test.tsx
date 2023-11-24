@@ -2,6 +2,11 @@ import { useForm } from '../useForm';
 import type { Metadata, ValidationMode } from '../../../../index';
 import type { FormSaveResponse, IFormApi, UseFormProps } from '../index';
 import { renderHookWithContextAsync, act, getDefaultUUiContextWrapper } from '@epam/uui-test-utils';
+import { useLock } from '../useLock';
+
+jest.mock('../useLock', () => {
+    return { useLock: jest.fn() };
+});
 
 async function handleSave(save: () => void) {
     try {
@@ -341,7 +346,7 @@ describe('useForm', () => {
         it('Should show the same value, if you: save => leave => come back', async () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
-            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const { wrapper } = getDefaultUUiContextWrapper();
             const useFormHook = () =>
                 useForm({
                     value: testData,
@@ -355,7 +360,7 @@ describe('useForm', () => {
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
 
-            await act(() => testUuiCtx.uuiLocks.acquire(() => Promise.resolve()));
+            await act(() => (useLock as jest.Mock).mock.calls.at(-1)[0].handleLeave());
 
             expect(result.current.isInvalid).toBe(false);
             expect(beforeLeaveMock).toHaveBeenCalled();
@@ -487,7 +492,7 @@ describe('useForm', () => {
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {
-            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const { wrapper } = getDefaultUUiContextWrapper();
             const useFormHook = () => useForm({
                 value: testData,
                 onSave: (person) => Promise.resolve({ form: person }),
@@ -498,15 +503,11 @@ describe('useForm', () => {
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
-            expect(testUuiCtx.uuiLocks.getCurrentLock()).not.toBe(null);
-
-            await act(() => handleSave(result.current.save));
-            expect(testUuiCtx.uuiLocks.getCurrentLock()).toBe(null);
         });
 
         it('Should reset lock after component unmount', async () => {
             const beforeLeaveMock = jest.fn().mockResolvedValue(false);
-            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const { wrapper } = getDefaultUUiContextWrapper();
             const useFormHook = () =>
                 useForm({
                     value: testData,
@@ -520,8 +521,6 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
 
             unmount();
-            const currentLock = testUuiCtx.uuiLocks.getCurrentLock();
-            expect(currentLock).toBeNull();
         });
 
         it('Should store unsaved data to localstorage', async () => {

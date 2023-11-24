@@ -1,7 +1,4 @@
-import * as React from 'react';
-import { Dropdown as UuiDropdown } from '@epam/uui-components';
-import { DropdownProps } from '@epam/uui-core';
+import { Dropdown as uuiDropdown } from '@epam/uui-components';
+import { DropdownProps, withMods } from '@epam/uui-core';
 
-export function Dropdown(props: DropdownProps) {
-    return <UuiDropdown { ...props } />;
-}
+export const Dropdown = withMods<DropdownProps>(uuiDropdown);

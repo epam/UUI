@@ -1,8 +1,8 @@
 @use  '../../../assets/styles/effects' as *;
 
 .root {
-    --uui-main_menu-text: var(--uui-text-contrast);
-    --uui-main_menu-text-active: var(--uui-text-contrast);
+    --uui-main_menu-text: var(--uui-neutral-5);
+    --uui-main_menu-text-active: var(--uui-neutral-5);
     --uui-main_menu-bg: var(--uui-neutral-80);
     --uui-main_menu-hover: var(--uui-neutral-90);
     --uui-main_menu-active: var(--uui-neutral-90);
@@ -14,9 +14,9 @@
     --uui-main_menu-search-text: var(--uui-text-disabled);
     --uui-main_menu-search-icon: var(--uui-icon-disabled);
 
-    --uui-main_menu-icon: var(--uui-text-contrast);
-    --uui-main_menu-icon-hover: var(--uui-text-contrast);
-    --uui-main_menu-icon-active: var(--uui-text-contrast);
+    --uui-main_menu-icon: var(--uui-neutral-5);
+    --uui-main_menu-icon-hover: var(--uui-neutral-5);
+    --uui-main_menu-icon-active: var(--uui-neutral-5);
 
     --uui-main_menu-font: var(--uui-font);
     --uui-main_menu-font-weight: 600;

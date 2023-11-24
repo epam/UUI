@@ -5,7 +5,9 @@ export type DropPosition = 'top' | 'bottom' | 'left' | 'right' | 'inside';
 export type DropPositionOptions = Partial<Record<DropPosition, boolean>>;
 
 export interface AcceptDropParams<TSrcData, TDstData> {
+    /** Source item data. This is the srcData of the actor that is being dropped into. */
     srcData: TSrcData;
+    /** Destination item data. This is the dstData of the actor into which the drop is performed. */
     dstData?: TDstData;
     offsetLeft: number;
     offsetTop: number;
@@ -14,6 +16,7 @@ export interface AcceptDropParams<TSrcData, TDstData> {
 }
 
 export interface DropParams<TSrcData, TDstData> extends AcceptDropParams<TSrcData, TDstData> {
+    /** Current drop position, indicates where item will be dropped relative to the destination */
     position: DropPosition;
 }
 

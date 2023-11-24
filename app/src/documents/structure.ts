@@ -15,10 +15,11 @@ import {
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
     DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc, OverviewDoc, StatusIndicatorDoc,
+    ThemesDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
-import { AnchorDoc } from '../docs/Anchor.doc';
+import { AnchorDoc } from '../docs/anchor/Anchor.doc';
 
 export interface DocItem {
     id: string;
@@ -141,6 +142,8 @@ export const items: DocItem[] = [
     { id: 'modalContext', name: 'Modal Context', component: ModalContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
+
+    { id: 'themes', name: 'Themes', component: ThemesDoc },
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },

@@ -15,8 +15,9 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         this.initCache();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {}
+    public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
+        this.props = props;
+    }
 
     public getById = (id: TId): TItem | void => {
         const item = this.cache.byId(id);
@@ -40,7 +41,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     public clearCache() {
         this.initCache();
-        this.views.forEach((view) => view.reload());
+        super.reload();
     }
 
     public getView = <TState extends DataSourceState<any, TId>>(

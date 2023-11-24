@@ -120,8 +120,10 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
                     break;
             }
         } else {
-            const formatInputValue = toCustomDateRangeFormat(this.state.inputValue, this.getFormat());
-            this.setState({ inputValue: formatInputValue });
+            this.setState((state) => {
+                const formatInputValue = toCustomDateRangeFormat(state.inputValue, this.getFormat());
+                return { inputValue: formatInputValue };
+            });
         }
     };
 
@@ -233,6 +235,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                 placement={ this.props.placement }
+                forwardedRef={ this.props.forwardedRef }
             />
         );
     }

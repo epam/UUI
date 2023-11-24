@@ -36,7 +36,6 @@
         @include text-color('primary');
         @include text-color('secondary');
         @include text-color('disabled');
-        @include text-color('contrast');
 
         @include font-weight(200);
         @include font-weight(300);
