@@ -25,7 +25,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const tableFocusContext = useContext<DataTableFocusContextState<TId>>(DataTableFocusContext);
 
     useEffect(() => {
-        if (props.isTableCell && isEditable) {
+        if (isEditable) {
             tableFocusContext?.dataTableFocusManager
                 ?.registerCell({ id: row.id, index: row.index }, {
                     index: props.index,
@@ -37,7 +37,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         }
 
         return () => {
-            if (props.isTableCell && isEditable) {
+            if (isEditable) {
                 tableFocusContext?.dataTableFocusManager
                     ?.unregisterCell(row.id, props.index);
             }
@@ -48,6 +48,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         props.index,
         props.isDisabled,
         props.isReadonly,
+        isEditable,
     ]);
 
     let content: React.ReactNode;
@@ -68,9 +69,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         const onFocus = () => {
             props.rowProps.onSelect?.(props.rowProps);
             setState((currentState) => ({ ...currentState, inFocus: true }));
-            
-            if (!props.isTableCell) return;
-            
             tableFocusContext?.dataTableFocusManager
                 ?.setNewFocusCoordinates(row.id, props.index);
         };
