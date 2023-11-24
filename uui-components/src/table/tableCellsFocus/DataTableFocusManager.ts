@@ -24,20 +24,26 @@ export class DataTableFocusManager<TId> {
 
         const row = this.rowsRegistry.get(rowKey);
 
-        if (this.focusedCell !== undefined && row[this.focusedCell]) {
+        if (this.focusedCell !== undefined && this.isFocusableCell(row[this.focusedCell])) {
             const cell = row[this.focusedCell];
-            if (this.isFocusableCell(cell)) {
-                cell.focus();
-                this.setNewFocusCoordinates(id, cell.index);
-            }
-        } else {
-            const firstFocusableCell = row.find((cell) => this.isFocusableCell(cell));
-            if (!firstFocusableCell) return;
-            firstFocusableCell.focus();
-            this.setNewFocusCoordinates(id, firstFocusableCell.index);
+            cell.focus();
+            this.setNewFocusCoordinates(id, cell.index);
+            this.unsetPendingFocusRow();
+            return;
         }
 
-        this.unsetPendingFocusRow();
+        this.focusNextFocusableCell(id);
+    }
+
+    private focusNextFocusableCell(id: TId) {
+        const rowKey = this.getKeyById(id);
+        const row = this.rowsRegistry.get(rowKey);
+        const firstFocusableCell = row.find((cell) => this.isFocusableCell(cell));
+        if (firstFocusableCell) {
+            firstFocusableCell.focus();
+            this.setNewFocusCoordinates(id, firstFocusableCell.index);
+            this.unsetPendingFocusRow();
+        }
     }
 
     public setNewFocusCoordinates(focusedRow: TId, focusedCell: number) {
@@ -46,39 +52,69 @@ export class DataTableFocusManager<TId> {
     }
 
     public focusNextRow() {
-        const currentRowFocusIndex = this.focusedRow !== undefined
-            ? this.findRowIndexById(this.focusedRow)
-            : undefined;
-        const nextRowIndex = currentRowFocusIndex + 1;
-
-        if (currentRowFocusIndex === undefined || currentRowFocusIndex === -1 || !this.hasRowWithIndex(nextRowIndex)) {
-            if (this.hasRowWithIndex(0)) {
-                this.focusRow(this.getRowIdByIndex(0));
-            }
+        const currentFocusedRowIndex = this.currentFocusedRowIndex();
+        if (currentFocusedRowIndex === undefined || currentFocusedRowIndex === -1) {
+            this.moveToNextFocusableRow(0);
             return;
         }
 
-        this.focusRow(this.getRowIdByIndex(nextRowIndex));
+        const nextRowIndex = currentFocusedRowIndex + 1;
+        this.moveToNextFocusableRow(nextRowIndex);
     }
 
     public focusPrevRow() {
-        const currentRowFocusIndex = this.focusedRow !== undefined
-            ? this.findRowIndexById(this.focusedRow)
-            : undefined;
-        const prevRowIndex = currentRowFocusIndex - 1;
+        const currentFocusedRowIndex = this.currentFocusedRowIndex();
+        if (this.focusedRow === undefined || currentFocusedRowIndex === -1) {
+            this.moveToPrevFocusableRow(0);
+            return;
+        }
 
-        if (this.focusedRow === undefined || currentRowFocusIndex === -1) {
-            if (this.hasRowWithIndex(0)) {
-                this.focusRow(this.getRowIdByIndex(0));
-            }
+        const prevRowIndex = currentFocusedRowIndex - 1;
+        this.moveToPrevFocusableRow(prevRowIndex);
+    }
+
+    private moveToNextFocusableRow(startingFromIndex: number) {
+        if (this.hasRowWithIndex(startingFromIndex) && this.isFocusableRow(this.getRowIdByIndex(startingFromIndex))) {
+            this.focusRow(this.getRowIdByIndex(startingFromIndex));
             return;
         }
-        if (prevRowIndex < 0) {
-            const lastRowId = this.getRowIdByIndex(this.getLastRowIndex());
-            this.focusRow(lastRowId);
+
+        const indexes = [...this.rowsIndexToIds.keys()];
+        const nextIndexes = indexes.slice(startingFromIndex, indexes.length);
+        const nextFocusableRowIndex = nextIndexes.find((nextIndex) => this.isFocusableRow(this.getRowIdByIndex(nextIndex)));
+        if (nextFocusableRowIndex !== undefined) {
+            this.focusRow(this.getRowIdByIndex(nextFocusableRowIndex));
             return;
         }
-        this.focusRow(this.getRowIdByIndex(prevRowIndex));
+
+        const prevIndexes = indexes.slice(0, startingFromIndex);
+        const prevFocusableRowIndex = prevIndexes.find((prevIndex) => this.isFocusableRow(this.getRowIdByIndex(prevIndex)));
+        if (prevFocusableRowIndex !== undefined) {
+            this.focusRow(this.getRowIdByIndex(prevFocusableRowIndex));
+        }
+    }
+
+    private moveToPrevFocusableRow(startingFromIndex: number) {
+        if (this.hasRowWithIndex(startingFromIndex) && this.isFocusableRow(this.getRowIdByIndex(startingFromIndex))) {
+            this.focusRow(this.getRowIdByIndex(startingFromIndex));
+            return;
+        }
+
+        const indexes = [...this.rowsIndexToIds.keys()];
+
+        const prevIndexes = indexes.slice(0, startingFromIndex).reverse();
+        const prevFocusableRowIndex = prevIndexes.find((prevIndex) => this.isFocusableRow(this.getRowIdByIndex(prevIndex)));
+        if (prevFocusableRowIndex !== undefined) {
+            this.focusRow(this.getRowIdByIndex(prevFocusableRowIndex));
+            return;
+        }
+
+        const nextIndexes = indexes.slice(startingFromIndex, indexes.length).reverse();
+        const nextFocusableRowIndex = nextIndexes.find((nextIndex) => this.isFocusableRow(this.getRowIdByIndex(nextIndex)));
+        if (nextFocusableRowIndex !== undefined) {
+            this.focusRow(this.getRowIdByIndex(nextFocusableRowIndex));
+            return;
+        }
     }
 
     public registerCell(rowInfo: RowInfo<TId>, cellProps: CellProps) {
@@ -129,6 +165,12 @@ export class DataTableFocusManager<TId> {
         this.pendingRowToBeFocused = null;
     }
 
+    private isFocusableRow = (id: TId) => {
+        const rowKey = this.getKeyById(id);
+        const row = this.rowsRegistry.get(rowKey);
+        return row.some((cell) => this.isFocusableCell(cell));
+    };
+
     private isFocusableCell = (cellProps?: CellProps) =>
         cellProps && !cellProps.isDisabled && !cellProps.isReadonly;
 
@@ -157,7 +199,9 @@ export class DataTableFocusManager<TId> {
         return this.rowsIndexToIds.delete(index);
     }
 
-    private getLastRowIndex() {
-        return this.lastRowIndex;
+    private currentFocusedRowIndex() {
+        return this.focusedRow !== undefined
+            ? this.findRowIndexById(this.focusedRow)
+            : undefined;
     }
 }

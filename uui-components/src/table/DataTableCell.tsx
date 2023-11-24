@@ -53,7 +53,9 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
 
     const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
-        if (editorRef.current === e.target || editorRef.current.parentNode === e.target) {
+        if (!props.isReadonly && !props.isDisabled
+            && (editorRef.current === e.target || editorRef.current.parentNode === e.target)
+        ) {
             editorRef.current?.focus();
         }
     }, []);
@@ -66,9 +68,11 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         const onFocus = () => {
             props.rowProps.onSelect?.(props.rowProps);
             setState((currentState) => ({ ...currentState, inFocus: true }));
-            if (props.isTableCell) {
-                tableFocusContext?.dataTableFocusManager?.setNewFocusCoordinates(row.id, props.index);
-            }
+            
+            if (!props.isTableCell) return;
+            
+            tableFocusContext?.dataTableFocusManager
+                ?.setNewFocusCoordinates(row.id, props.index);
         };
 
         // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props
