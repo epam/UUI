@@ -86,6 +86,7 @@ export interface IHasLabel {
 
 /** Component has direction of child components. */
 export interface IHasDirection {
+    /** Direction of child components. */
     direction?: 'vertical' | 'horizontal';
 }
 
@@ -116,6 +117,7 @@ export interface IHasIcon {
 
 /** Component can have child components */
 export interface IHasChildren {
+    /** Component children */
     children?: ReactNode;
 }
 
@@ -222,6 +224,7 @@ IClickable &
 IHasRawProps<HTMLAttributes<HTMLDivElement>> &
 IHasForwardedRef<HTMLDivElement> &
 IAnalyticableClick & {
+    /** Native style attributes */
     style?: CSSProperties;
 };
 

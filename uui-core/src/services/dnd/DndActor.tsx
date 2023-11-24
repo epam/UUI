@@ -16,6 +16,7 @@ import { UuiContext } from '../ContextProvider';
 import { DndContextState } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
+    /** Render callback for DragActor content */
     render(props: DndActorRenderParams): React.ReactNode;
 }
 

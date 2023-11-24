@@ -164,20 +164,34 @@
      "raw": "ApiCallInfo",
      "print": [
       "interface ApiCallInfo {",
+      "    /** Request URl */",
       "    url: string;",
+      "    /** Name of the request received by processRequest data.operationName */",
       "    name: string;",
+      "    /** Request method */",
       "    method: string;",
+      "    /** Request payload */",
       "    requestData: {};",
+      "    /** Request options */",
       "    options?: ApiCallOptions;",
+      "    /** ApiContext request status */",
       "    status: ApiCallStatus;",
+      "    /** Request http status */",
       "    httpStatus?: number;",
+      "    /** Response data */",
       "    responseData?: {",
+      "        /** Request error message */",
       "        errorMessage?: string;",
       "    };",
+      "    /** Request error status */",
       "    errorStatus?: number;",
+      "    /** Timestamp of request start */",
       "    startedAt?: Date;",
+      "    /** Timestamp of request finish */",
       "    finishedAt?: Date;",
+      "    /** Number of ping attempts */",
       "    attemptsCount: number;",
+      "    /** Discard request error and remove it from requests queue */",
       "    dismissError(): void;",
       "}"
      ]
@@ -186,6 +200,11 @@
      {
       "uid": 1,
       "name": "url",
+      "comment": {
+       "raw": [
+        "Request URl"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -197,6 +216,11 @@
      {
       "uid": 2,
       "name": "name",
+      "comment": {
+       "raw": [
+        "Name of the request received by processRequest data.operationName"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -208,6 +232,11 @@
      {
       "uid": 3,
       "name": "method",
+      "comment": {
+       "raw": [
+        "Request method"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -219,6 +248,11 @@
      {
       "uid": 4,
       "name": "requestData",
+      "comment": {
+       "raw": [
+        "Request payload"
+       ]
+      },
       "typeValue": {
        "raw": "{}"
       },
@@ -227,6 +261,11 @@
      {
       "uid": 5,
       "name": "options",
+      "comment": {
+       "raw": [
+        "Request options"
+       ]
+      },
       "typeValue": {
        "raw": "ApiCallOptions"
       },
@@ -235,6 +274,11 @@
      {
       "uid": 6,
       "name": "status",
+      "comment": {
+       "raw": [
+        "ApiContext request status"
+       ]
+      },
       "typeValue": {
        "raw": "'scheduled' | 'running' | 'error'"
       },
@@ -252,6 +296,11 @@
      {
       "uid": 7,
       "name": "httpStatus",
+      "comment": {
+       "raw": [
+        "Request http status"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -263,6 +312,11 @@
      {
       "uid": 8,
       "name": "responseData",
+      "comment": {
+       "raw": [
+        "Response data"
+       ]
+      },
       "typeValue": {
        "raw": "{ errorMessage?: string | undefined; }"
       },
@@ -271,6 +325,11 @@
      {
       "uid": 9,
       "name": "errorStatus",
+      "comment": {
+       "raw": [
+        "Request error status"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -282,6 +341,11 @@
      {
       "uid": 10,
       "name": "startedAt",
+      "comment": {
+       "raw": [
+        "Timestamp of request start"
+       ]
+      },
       "typeValue": {
        "raw": "Date"
       },
@@ -290,6 +354,11 @@
      {
       "uid": 11,
       "name": "finishedAt",
+      "comment": {
+       "raw": [
+        "Timestamp of request finish"
+       ]
+      },
       "typeValue": {
        "raw": "Date"
       },
@@ -298,6 +367,11 @@
      {
       "uid": 12,
       "name": "attemptsCount",
+      "comment": {
+       "raw": [
+        "Number of ping attempts"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -309,6 +383,11 @@
      {
       "uid": 13,
       "name": "dismissError",
+      "comment": {
+       "raw": [
+        "Discard request error and remove it from requests queue"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -1652,6 +1731,14 @@
      {
       "uid": 1,
       "name": "api",
+      "comment": {
+       "raw": [
+        "A function to retrieve the data, asynchronously. This function usually performs a REST API call.",
+        " Should return the array of items, which will be processed by dataSource.",
+        " This api called only once during the initialization and assumed to return the full amount of data.",
+        " For lazy loading cases, use LazyDataSource"
+       ]
+      },
       "typeValue": {
        "raw": "() => Promise<TItem[]>"
       },
@@ -1955,6 +2042,11 @@
      "raw": "AsyncListViewProps<TItem, TId, TFilter>",
      "print": [
       "interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {",
+      "    /** A function to retrieve the data, asynchronously. This function usually performs a REST API call.",
+      "     * Should return the array of items, which will be processed by dataSource.",
+      "     * This api called only once during the initialization and assumed to return the full amount of data.",
+      "     * For lazy loading cases, use LazyDataSource",
+      "     * */",
       "    api(): Promise<TItem[]>;",
       "}"
      ]
@@ -1963,6 +2055,14 @@
      {
       "uid": 1,
       "name": "api",
+      "comment": {
+       "raw": [
+        "A function to retrieve the data, asynchronously. This function usually performs a REST API call.",
+        " Should return the array of items, which will be processed by dataSource.",
+        " This api called only once during the initialization and assumed to return the full amount of data.",
+        " For lazy loading cases, use LazyDataSource"
+       ]
+      },
       "typeValue": {
        "raw": "() => Promise<TItem[]>"
       },
@@ -4502,47 +4602,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:ButtonSemanticProps": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "ButtonSemanticProps",
-     "nameFull": "ButtonSemanticProps"
-    },
-    "src": "uui-core/src/types/components/Button.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ButtonSemanticProps",
-     "print": [
-      "interface ButtonSemanticProps {",
-      "    type?: 'success' | 'cancel' | 'action';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "type",
-      "typeValue": {
-       "raw": "'success' | 'cancel' | 'action'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "success",
-        "cancel",
-        "action"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-core:CascadeSelection": {
    "summary": {
     "module": "@epam/uui-core",
@@ -5068,7 +5127,9 @@
      "raw": "ContextProviderProps<TApi, TAppContext>",
      "print": [
       "interface ContextProviderProps<TApi, TAppContext> extends UuiServicesProps<TApi>, IHasChildren {",
+      "    /** Callback to load the AppContext data. AppContext is used to load global data, before application mount */",
       "    loadAppContext?: (api: TApi) => Promise<TAppContext>;",
+      "    /** Called when all contexts were initiated */",
       "    onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;",
       "    history?: IHistory4;",
       "    gaCode?: string;",
@@ -5079,6 +5140,11 @@
      {
       "uid": 1,
       "name": "loadAppContext",
+      "comment": {
+       "raw": [
+        "Callback to load the AppContext data. AppContext is used to load global data, before application mount"
+       ]
+      },
       "typeValue": {
        "raw": "(api: TApi) => Promise<TAppContext>"
       },
@@ -5090,6 +5156,11 @@
      {
       "uid": 2,
       "name": "onInitCompleted",
+      "comment": {
+       "raw": [
+        "Called when all contexts were initiated"
+       ]
+      },
       "typeValue": {
        "raw": "(svc: CommonContexts<TApi, TAppContext>) => void"
       },
@@ -5120,6 +5191,13 @@
      {
       "uid": 5,
       "name": "apiDefinition",
+      "comment": {
+       "raw": [
+        "Function to get the api definitions.",
+        " Usually, api definitions this is an object which contain object with all api requests of the app.",
+        " Then you can call this requests via 'uuiContext.api.myApi(myData)'"
+       ]
+      },
       "typeValue": {
        "raw": "(processRequest: IProcessRequest) => TApi"
       },
@@ -5196,6 +5274,11 @@
      {
       "uid": 9,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -5261,8 +5344,9 @@
       "    minWidth?: number;",
       "    /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */",
       "    grow?: number;",
-      "    /** Aligns cell content horizontally */",
+      "    /** Aligns cell and header content horizontally */",
       "    textAlign?: 'left' | 'center' | 'right';",
+      "    /** Aligns only cell content horizontally */",
       "    justifyContent?: CSS.JustifyContentProperty;",
       "    /** Align cell content vertically */",
       "    alignSelf?: CSS.AlignSelfProperty;",
@@ -5393,7 +5477,7 @@
       "name": "textAlign",
       "comment": {
        "raw": [
-        "Aligns cell content horizontally"
+        "Aligns cell and header content horizontally"
        ]
       },
       "typeValue": {
@@ -5412,6 +5496,11 @@
      {
       "uid": 7,
       "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Aligns only cell content horizontally"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -6198,6 +6287,7 @@
       "    indent?: number;",
       "    /** True if row is in loading state. 'value' is empty in this case */",
       "    isLoading?: boolean;",
+      "    /** True if item doesn't exist in a dataSource */",
       "    isUnknown?: boolean;",
       "    /** True if row be folded or unfolded (usually because it contains children) */",
       "    isFoldable?: boolean;",
@@ -6238,6 +6328,7 @@
       "    /** Handles row focusing.",
       "         */",
       "    onFocus?(focusedIndex: number): void;",
+      "    /** True if row pinned, it means that it will be sticky inside his nesting level */",
       "    isPinned?: boolean;",
       "};"
      ]
@@ -6287,6 +6378,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -6687,6 +6783,11 @@
      {
       "uid": 30,
       "name": "isUnknown",
+      "comment": {
+       "raw": [
+        "True if item doesn't exist in a dataSource"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -6910,6 +7011,11 @@
      {
       "uid": 44,
       "name": "isPinned",
+      "comment": {
+       "raw": [
+        "True if row pinned, it means that it will be sticky inside his nesting level"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -7576,8 +7682,11 @@
       "interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {",
       "    /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */",
       "    addons?: React.ReactNode;",
-      "    /** Overrides default loading placeholder ('skeleton') rendering  */",
+      "    /** Overrides default loading placeholder ('skeleton') rendering.",
+      "     * By default: () => <Text> Unknown </Text>",
+      "     * */",
       "    renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;",
+      "    /** Overrides default unknown item rendering */",
       "    renderUnknown?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;",
       "    /**",
       "     * If passed, the cell is rendered as editable - receives focus, show validation errors.",
@@ -7613,7 +7722,8 @@
       "name": "renderPlaceholder",
       "comment": {
        "raw": [
-        "Overrides default loading placeholder ('skeleton') rendering"
+        "Overrides default loading placeholder ('skeleton') rendering.",
+        " By default: () => <Text> Unknown </Text>"
        ]
       },
       "typeValue": {
@@ -7627,6 +7737,11 @@
      {
       "uid": 3,
       "name": "renderUnknown",
+      "comment": {
+       "raw": [
+        "Overrides default unknown item rendering"
+       ]
+      },
       "typeValue": {
        "raw": "(cellProps: DataTableCellProps<TItem, TId, TCellValue>) => React.ReactNode"
       },
@@ -8019,6 +8134,7 @@
      "raw": "DataTableConfigModalParams",
      "print": [
       "type DataTableConfigModalParams = IEditable<DataSourceState> & {",
+      "    /** Array of all table columns */",
       "    columns: DataColumnProps[];",
       "};"
      ]
@@ -8155,6 +8271,11 @@
      {
       "uid": 9,
       "name": "columns",
+      "comment": {
+       "raw": [
+        "Array of all table columns"
+       ]
+      },
       "typeValue": {
        "raw": "DataColumnProps<any, any, any>[]"
       },
@@ -8990,6 +9111,11 @@
      {
       "uid": 7,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -9398,6 +9524,11 @@
      {
       "uid": 33,
       "name": "isUnknown",
+      "comment": {
+       "raw": [
+        "True if item doesn't exist in a dataSource"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -9635,6 +9766,11 @@
      {
       "uid": 47,
       "name": "isPinned",
+      "comment": {
+       "raw": [
+        "True if row pinned, it means that it will be sticky inside his nesting level"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -10464,6 +10600,7 @@
      "raw": "DndActorProps<TSrcData, TDstData>",
      "print": [
       "interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {",
+      "    /** Render callback for DragActor content */",
       "    render(props: DndActorRenderParams): React.ReactNode;",
       "}"
      ]
@@ -10472,6 +10609,11 @@
      {
       "uid": 1,
       "name": "render",
+      "comment": {
+       "raw": [
+        "Render callback for DragActor content"
+       ]
+      },
       "typeValue": {
        "raw": "(props: DndActorRenderParams) => React.ReactNode"
       },
@@ -11805,9 +11947,13 @@
       "interface ErrorPageInfo {",
       "    /** Error status code */",
       "    status?: number;",
+      "    /** Title of error page */",
       "    title?: React.ReactNode;",
+      "    /** Subtitle of error page */",
       "    subtitle?: React.ReactNode;",
+      "    /** Url of error image to display on error page */",
       "    imageUrl?: string;",
+      "    /** Url of error image to display on error page in case of mobile layout (app width < 720px) */",
       "    mobileImageUrl?: string;",
       "}"
      ]
@@ -11832,6 +11978,11 @@
      {
       "uid": 2,
       "name": "title",
+      "comment": {
+       "raw": [
+        "Title of error page"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -11841,6 +11992,11 @@
      {
       "uid": 3,
       "name": "subtitle",
+      "comment": {
+       "raw": [
+        "Subtitle of error page"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -11850,6 +12006,11 @@
      {
       "uid": 4,
       "name": "imageUrl",
+      "comment": {
+       "raw": [
+        "Url of error image to display on error page"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -11861,6 +12022,11 @@
      {
       "uid": 5,
       "name": "mobileImageUrl",
+      "comment": {
+       "raw": [
+        "Url of error image to display on error page in case of mobile layout (app width < 720px)"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -12359,6 +12525,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -12551,6 +12722,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -14394,6 +14570,11 @@
      {
       "uid": 2,
       "name": "appContext",
+      "comment": {
+       "raw": [
+        "AppContext value"
+       ]
+      },
       "typeValue": {
        "raw": "TAppContext"
       },
@@ -14403,6 +14584,13 @@
      {
       "uid": 3,
       "name": "apiDefinition",
+      "comment": {
+       "raw": [
+        "Function to get the api definitions.",
+        " Usually, api definitions this is an object which contain object with all api requests of the app.",
+        " Then you can call this requests via 'uuiContext.api.myApi(myData)'"
+       ]
+      },
       "typeValue": {
        "raw": "(processRequest: IProcessRequest) => TApi"
       },
@@ -17221,6 +17409,7 @@
      "print": [
       "/** Component can have child components */",
       "interface IHasChildren {",
+      "    /** Component children */",
       "    children?: ReactNode;",
       "}"
      ]
@@ -17229,6 +17418,11 @@
      {
       "uid": 1,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -17319,6 +17513,7 @@
      "print": [
       "/** Component has direction of child components. */",
       "interface IHasDirection {",
+      "    /** Direction of child components. */",
       "    direction?: 'vertical' | 'horizontal';",
       "}"
      ]
@@ -17327,6 +17522,11 @@
      {
       "uid": 1,
       "name": "direction",
+      "comment": {
+       "raw": [
+        "Direction of child components."
+       ]
+      },
       "typeValue": {
        "raw": "'vertical' | 'horizontal'"
       },
@@ -20699,6 +20899,11 @@
      {
       "uid": 15,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -20771,8 +20976,11 @@
      "raw": "LayoutLayer",
      "print": [
       "interface LayoutLayer {",
+      "    /** ID of the layer */",
       "    id: number;",
+      "    /** Level of the layer depth */",
       "    depth: number;",
+      "    /** zIndex of the layer */",
       "    zIndex: number;",
       "}"
      ]
@@ -20781,6 +20989,11 @@
      {
       "uid": 1,
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID of the layer"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -20792,6 +21005,11 @@
      {
       "uid": 2,
       "name": "depth",
+      "comment": {
+       "raw": [
+        "Level of the layer depth"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -20803,6 +21021,11 @@
      {
       "uid": 3,
       "name": "zIndex",
+      "comment": {
+       "raw": [
+        "zIndex of the layer"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -22804,6 +23027,11 @@
      {
       "uid": 12,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -22884,6 +23112,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -22981,6 +23214,11 @@
      {
       "uid": 3,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -23101,6 +23339,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -23171,6 +23414,11 @@
      {
       "uid": 7,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -25036,8 +25284,11 @@
      "raw": "RangeDatePickerPresetValue",
      "print": [
       "type RangeDatePickerPresetValue = {",
+      "    /** Range from value */",
       "    from: string;",
+      "    /** Range to value */",
       "    to: string;",
+      "    /** Preset order in presets list */",
       "    order?: number;",
       "};"
      ]
@@ -25046,6 +25297,11 @@
      {
       "uid": 1,
       "name": "from",
+      "comment": {
+       "raw": [
+        "Range from value"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -25057,6 +25313,11 @@
      {
       "uid": 2,
       "name": "to",
+      "comment": {
+       "raw": [
+        "Range to value"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -25068,6 +25329,11 @@
      {
       "uid": 3,
       "name": "order",
+      "comment": {
+       "raw": [
+        "Preset order in presets list"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -28369,7 +28635,9 @@
      "raw": "UseUuiServicesProps<TApi, TAppContext>",
      "print": [
       "interface UseUuiServicesProps<TApi, TAppContext> extends UuiServicesProps<TApi> {",
+      "    /** AppContext value */",
       "    appContext?: TAppContext;",
+      "    /** Instance of the router */",
       "    router: IRouterContext;",
       "}"
      ]
@@ -28378,6 +28646,11 @@
      {
       "uid": 1,
       "name": "appContext",
+      "comment": {
+       "raw": [
+        "AppContext value"
+       ]
+      },
       "typeValue": {
        "raw": "TAppContext"
       },
@@ -28386,6 +28659,11 @@
      {
       "uid": 2,
       "name": "router",
+      "comment": {
+       "raw": [
+        "Instance of the router"
+       ]
+      },
       "typeValue": {
        "raw": "IRouterContext"
       },
@@ -28394,6 +28672,13 @@
      {
       "uid": 3,
       "name": "apiDefinition",
+      "comment": {
+       "raw": [
+        "Function to get the api definitions.",
+        " Usually, api definitions this is an object which contain object with all api requests of the app.",
+        " Then you can call this requests via 'uuiContext.api.myApi(myData)'"
+       ]
+      },
       "typeValue": {
        "raw": "(processRequest: IProcessRequest) => TApi"
       },
@@ -28649,6 +28934,10 @@
      "raw": "UuiServicesProps<TApi>",
      "print": [
       "interface UuiServicesProps<TApi> extends ApiContextProps {",
+      "    /** Function to get the api definitions.",
+      "     * Usually, api definitions this is an object which contain object with all api requests of the app.",
+      "     * Then you can call this requests via 'uuiContext.api.myApi(myData)'",
+      "     * */",
       "    apiDefinition?: (processRequest: IProcessRequest) => TApi;",
       "}"
      ]
@@ -28657,6 +28946,13 @@
      {
       "uid": 1,
       "name": "apiDefinition",
+      "comment": {
+       "raw": [
+        "Function to get the api definitions.",
+        " Usually, api definitions this is an object which contain object with all api requests of the app.",
+        " Then you can call this requests via 'uuiContext.api.myApi(myData)'"
+       ]
+      },
       "typeValue": {
        "raw": "(processRequest: IProcessRequest) => TApi"
       },
@@ -28954,6 +29250,7 @@
      "raw": "VPanelProps",
      "print": [
       "type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLAttributes<HTMLDivElement>> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {",
+      "    /** Native style attributes */",
       "    style?: CSSProperties;",
       "};"
      ]
@@ -28977,6 +29274,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -29047,6 +29349,11 @@
      {
       "uid": 7,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -29263,6 +29570,11 @@
      {
       "uid": 16,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -29414,42 +29726,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/uui-components:AccordionState": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "AccordionState",
-     "nameFull": "AccordionState"
-    },
-    "src": "uui-components/src/layout/Accordion.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "AccordionState",
-     "print": [
-      "interface AccordionState {",
-      "    opened: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "opened",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/uui-components:AdaptiveItemProps": {
@@ -29692,6 +29968,11 @@
      {
       "uid": 6,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -32480,6 +32761,11 @@
      {
       "uid": 12,
       "name": "direction",
+      "comment": {
+       "raw": [
+        "Direction of child components."
+       ]
+      },
       "typeValue": {
        "raw": "'vertical' | 'horizontal'"
       },
@@ -33106,7 +33392,7 @@
       "name": "textAlign",
       "comment": {
        "raw": [
-        "Aligns cell content horizontally"
+        "Aligns cell and header content horizontally"
        ]
       },
       "typeValue": {
@@ -33126,6 +33412,11 @@
      {
       "uid": 16,
       "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Aligns only cell content horizontally"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -33453,6 +33744,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -34861,6 +35157,11 @@
      {
       "uid": 15,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -40192,6 +40493,11 @@
      {
       "uid": 17,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -40331,6 +40637,11 @@
      {
       "uid": 6,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -40377,6 +40688,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -46034,6 +46350,11 @@
      {
       "uid": 3,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -46434,6 +46755,11 @@
      {
       "uid": 13,
       "name": "direction",
+      "comment": {
+       "raw": [
+        "Direction of child components."
+       ]
+      },
       "typeValue": {
        "raw": "'vertical' | 'horizontal'"
       },
@@ -47295,6 +47621,11 @@
      {
       "uid": 3,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -55165,6 +55496,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -56132,6 +56468,11 @@
      {
       "uid": 6,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -59224,6 +59565,11 @@
      {
       "uid": 20,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -59505,6 +59851,11 @@
      {
       "uid": 6,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -64557,6 +64908,11 @@
      {
       "uid": 9,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -64965,6 +65321,11 @@
      {
       "uid": 35,
       "name": "isUnknown",
+      "comment": {
+       "raw": [
+        "True if item doesn't exist in a dataSource"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -65202,6 +65563,11 @@
      {
       "uid": 49,
       "name": "isPinned",
+      "comment": {
+       "raw": [
+        "True if row pinned, it means that it will be sticky inside his nesting level"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -66886,6 +67252,11 @@
      {
       "uid": 8,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -67222,6 +67593,11 @@
      {
       "uid": 15,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -67495,6 +67871,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -67565,6 +67946,11 @@
      {
       "uid": 9,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -68581,6 +68967,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -68787,6 +69178,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -70270,6 +70666,11 @@
      {
       "uid": 17,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -73050,6 +73451,11 @@
      {
       "uid": 12,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -73292,6 +73698,11 @@
      {
       "uid": 13,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -73417,6 +73828,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -73487,6 +73903,11 @@
      {
       "uid": 7,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -73907,6 +74328,11 @@
      {
       "uid": 10,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -74644,6 +75070,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -74714,6 +75145,11 @@
      {
       "uid": 7,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -74980,6 +75416,11 @@
      {
       "uid": 10,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -75388,6 +75829,11 @@
      {
       "uid": 36,
       "name": "isUnknown",
+      "comment": {
+       "raw": [
+        "True if item doesn't exist in a dataSource"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -75625,6 +76071,11 @@
      {
       "uid": 50,
       "name": "isPinned",
+      "comment": {
+       "raw": [
+        "True if row pinned, it means that it will be sticky inside his nesting level"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -75734,6 +76185,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -76142,6 +76598,11 @@
      {
       "uid": 31,
       "name": "isUnknown",
+      "comment": {
+       "raw": [
+        "True if item doesn't exist in a dataSource"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -76379,6 +76840,11 @@
      {
       "uid": 45,
       "name": "isPinned",
+      "comment": {
+       "raw": [
+        "True if row pinned, it means that it will be sticky inside his nesting level"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79526,6 +79992,11 @@
      {
       "uid": 3,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -84326,6 +84797,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -86541,6 +87017,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -88866,6 +89347,11 @@
      {
       "uid": 15,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -89235,6 +89721,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -89288,6 +89779,11 @@
      {
       "uid": 1,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -91296,6 +91792,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -91543,6 +92044,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -91613,6 +92119,11 @@
      {
       "uid": 7,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -92755,6 +93266,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -94059,6 +94575,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -96452,6 +96973,11 @@
      {
       "uid": 15,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -96870,6 +97396,11 @@
      {
       "uid": 5,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -96964,6 +97495,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -99075,6 +99611,11 @@
      {
       "uid": 4,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -99322,6 +99863,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -99392,6 +99938,11 @@
      {
       "uid": 7,
       "name": "style",
+      "comment": {
+       "raw": [
+        "Native style attributes"
+       ]
+      },
       "typeValue": {
        "raw": "React.CSSProperties"
       },
@@ -101877,6 +102428,11 @@
      {
       "uid": 8,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
@@ -104776,6 +105332,11 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
       "typeValue": {
        "raw": "React.ReactNode"
       },
