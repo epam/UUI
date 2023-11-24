@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx, IHasForwardedRef, IHasCaption } from '@epam/uui-core';
+import { Icon, uuiElement, uuiMarkers, CX, cx, IHasForwardedRef, IHasCaption, ButtonComponentProps } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { ButtonBase } from './ButtonBase';
 import css from './Button.module.scss';
 
-export interface ButtonProps
-    extends ButtonCoreProps,
-    IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>,
-    IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {
+export type ButtonProps = ButtonComponentProps &
+IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & {
     /** Icon for clear value button (usually cross) */
     clearIcon?: Icon;
 
@@ -16,7 +14,7 @@ export interface ButtonProps
 
     /** CountIndicator component */
     countIndicator?: React.ComponentType<IHasCaption> ;
-}
+};
 
 export class Button extends ButtonBase<ButtonProps> {
     constructor(props: ButtonProps) {
