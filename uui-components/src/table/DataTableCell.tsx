@@ -20,7 +20,8 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
     const editorRef = React.useRef<HTMLElement>();
-    
+    const isEditable = !!props.onValueChange;
+
     const cellRef = React.useRef<CellFocusAPI>({
         focus: () => editorRef.current?.focus(),
     });
@@ -28,17 +29,21 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const tableFocusContext = useContext<DataTableFocusContextState<TId>>(DataTableFocusContext);
 
     useEffect(() => {
-        tableFocusContext?.dataTableFocusManager
-            ?.registerCell({ id: row.id, index: row.index }, cellRef, {
-                index: props.index,
-                isDisabled: props.isDisabled,
-                isReadonly: props.isReadonly,
-                key: props.key,
-            });
+        if (props.isTableCell && isEditable) {
+            tableFocusContext?.dataTableFocusManager
+                ?.registerCell({ id: row.id, index: row.index }, cellRef, {
+                    index: props.index,
+                    isDisabled: props.isDisabled,
+                    isReadonly: props.isReadonly,
+                    key: props.key,
+                });
+        }
 
         return () => {
-            tableFocusContext?.dataTableFocusManager
-                ?.unregisterCell(row.id, props.index);
+            if (props.isTableCell && isEditable) {
+                tableFocusContext?.dataTableFocusManager
+                    ?.unregisterCell(row.id, props.index);
+            }
         };
     }, [
         tableFocusContext?.dataTableFocusManager,
@@ -49,7 +54,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     ]);
 
     let content: React.ReactNode;
-    const isEditable = !!props.onValueChange;
 
     const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
         if (editorRef.current === e.target || editorRef.current.parentNode === e.target) {
@@ -65,7 +69,9 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         const onFocus = () => {
             props.rowProps.onSelect?.(props.rowProps);
             setState((currentState) => ({ ...currentState, inFocus: true }));
-            tableFocusContext?.dataTableFocusManager?.setNewFocusCoordinates(row.id, props.index);
+            if (props.isTableCell) {
+                tableFocusContext?.dataTableFocusManager?.setNewFocusCoordinates(row.id, props.index);
+            }
         };
 
         // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props

@@ -188,6 +188,8 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
 
     /** HTML tabIndex attribute to set on the cell */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+
+    isTableCell?: boolean;
 }
 
 export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
