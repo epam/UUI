@@ -1,5 +1,5 @@
 import * as uui from '@epam/uui';
-import { devLogger, withMods } from '@epam/uui-core';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { FillStyle } from '../types';
 import css from './Button.module.scss';
 
@@ -18,13 +18,10 @@ const mapFill: Record<FillStyle, uui.ButtonFill> = {
     none: 'none',
 };
 
-export type ButtonProps = Omit<uui.ButtonProps, 'color' | 'fill'> & ButtonMods;
+export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
-export const Button = withMods<Omit<uui.ButtonProps, 'color' | 'fill'>, ButtonMods>(
+export const Button = createSkinComponent<uui.ButtonCoreProps, ButtonProps>(
     uui.Button,
-    (props) => [
-        ['42', '48'].includes(props.size) && css.uppercase,
-    ],
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
@@ -39,4 +36,7 @@ export const Button = withMods<Omit<uui.ButtonProps, 'color' | 'fill'>, ButtonMo
             fill: mapFill[props.fill] || mapFill.solid,
         } as any; // TODO: need new helper to rewrite types
     },
+    (props) => [
+        ['42', '48'].includes(props.size) && css.uppercase,
+    ],
 );
