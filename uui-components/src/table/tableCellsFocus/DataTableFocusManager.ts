@@ -1,4 +1,4 @@
-import { CellInfo, DataTableFocusManagerProps, RowInfo, RowsRegistry } from './types';
+import { CellProps, DataTableFocusManagerProps, RowInfo, RowsRegistry } from './types';
 
 export class DataTableFocusManager<TId> {
     private rowsRegistry: RowsRegistry<TId> = null;
@@ -26,15 +26,15 @@ export class DataTableFocusManager<TId> {
 
         if (this.focusedCell !== undefined && row[this.focusedCell]) {
             const cell = row[this.focusedCell];
-            if (cell && this.isFocusableCell(cell)) {
-                cell.ref.current.focus();
-                this.setNewFocusCoordinates(id, cell.cellProps.index);
+            if (this.isFocusableCell(cell)) {
+                cell.focus();
+                this.setNewFocusCoordinates(id, cell.index);
             }
         } else {
             const firstFocusableCell = row.find((cell) => this.isFocusableCell(cell));
             if (!firstFocusableCell) return;
-            firstFocusableCell.ref.current.focus();
-            this.setNewFocusCoordinates(id, firstFocusableCell.cellProps.index);
+            firstFocusableCell.focus();
+            this.setNewFocusCoordinates(id, firstFocusableCell.index);
         }
 
         this.unsetPendingFocusRow();
@@ -81,7 +81,7 @@ export class DataTableFocusManager<TId> {
         this.focusRow(this.getRowIdByIndex(prevRowIndex));
     }
 
-    public registerCell(rowInfo: RowInfo<TId>, ref: CellInfo['ref'], cellProps: CellInfo['cellProps']) {
+    public registerCell(rowInfo: RowInfo<TId>, cellProps: CellProps) {
         const rowKey = this.getKeyById(rowInfo.id);
 
         this.setRowIdByIndex(rowInfo.index, rowInfo.id);
@@ -93,10 +93,9 @@ export class DataTableFocusManager<TId> {
             this.lastRowIndex = rowInfo.index;
         }
         const row = this.rowsRegistry.get(rowKey);
-        const cell = { ref, cellProps };
-        row[cellProps.index] = cell;
+        row[cellProps.index] = cellProps;
 
-        if (this.pendingRowToBeFocused === rowInfo.id && this.isFocusableCell(cell)) {
+        if (this.pendingRowToBeFocused === rowInfo.id && this.isFocusableCell(cellProps)) {
             this.focusRow(rowInfo.id);
         }
     }
@@ -130,8 +129,8 @@ export class DataTableFocusManager<TId> {
         this.pendingRowToBeFocused = null;
     }
 
-    private isFocusableCell = (cell?: CellInfo) =>
-        cell && !cell.cellProps.isDisabled && !cell.cellProps.isReadonly;
+    private isFocusableCell = (cellProps?: CellProps) =>
+        cellProps && !cellProps.isDisabled && !cellProps.isReadonly;
 
     private findRowIndexById(id: TId) {
         for (const [index, rowId] of this.rowsIndexToIds.entries()) {
