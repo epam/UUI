@@ -16,6 +16,7 @@ export default function LazyDataSourceGetChildCountExample() {
             const filter = search ? {} : { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, search, filter });
         },
+        flattenSearchResults: false,
         getChildCount: () => 0,
         getParentId: (i) => i.parentId,
     }, []);
@@ -29,6 +30,7 @@ export default function LazyDataSourceGetChildCountExample() {
             const filter = search ? {} : { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, search, filter });
         },
+        flattenSearchResults: false,
         cascadeSelection: true,
         getId: (i) => i.id,
         getParentId: (i) => i.parentId,
