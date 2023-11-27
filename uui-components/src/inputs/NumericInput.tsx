@@ -196,13 +196,14 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     ]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
-    
+
     const handleWrapperFocus = () => {
         inputRef.current?.focus();
     };
 
     return (
         <div
+            data-testid="uui-numeric-input-wrapper"
             className={ cx(
                 css.container,
                 uuiElement.inputBox,
@@ -222,6 +223,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
             { ...props.rawProps }
         >
             <input
+                data-testid="uui-numeric-input"
                 type="number"
                 className={ cx(uuiElement.input, props.inputCx, props.align === 'right' && css.alignRight, isPlaceholderColored && uuiElement.valueInPlaceholder) }
                 disabled={ props.isDisabled }
