@@ -20,7 +20,7 @@ type EditableAccordionProps = GeneralAccordionProps & IEditable<boolean>;
 
 export type AccordionProps = GeneralAccordionProps | EditableAccordionProps;
 
-export interface AccordionState {
+interface AccordionState {
     opened: boolean;
 }
 
