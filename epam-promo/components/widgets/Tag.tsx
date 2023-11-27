@@ -2,17 +2,11 @@ import { withMods } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
-const defaultSize = '18';
-
 export interface TagMods extends Omit<uui.TagProps, 'color'> {
     /**
-     * @default '18'
+     * @default 'gray30'
      */
-    size?: uui.TagMods['size'];
-    /**
-     * @default 'night300'
-     */
-    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';
+    color?: EpamPrimaryColor | 'blue' | 'white' | 'gray10' | 'gray30' | 'gray70';
 }
 
 export interface TagProps extends Omit<uui.TagProps, 'color'>, TagMods {}
@@ -21,7 +15,6 @@ export const Tag = withMods<Omit<TagProps, 'color'>, TagMods>(
     uui.Tag,
     () => [],
     (props) => ({
-        size: props.size || defaultSize,
-        color: props.color || 'night300',
-    }),
+        color: props.color || 'gray30',
+    } as TagProps),
 );

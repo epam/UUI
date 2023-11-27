@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 718,
-   "amountTypes": 238
+   "amountProps": 720,
+   "amountTypes": 239
   },
   "value": [
    {
@@ -1663,6 +1663,12 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:TagMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:TextMods",
     "value": [
      "color",
@@ -1851,7 +1857,8 @@
    {
     "typeRef": "@epam/loveship:TagMods",
     "value": [
-     "fill"
+     "color",
+     "size"
     ]
    },
    {
@@ -1917,7 +1924,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 475
+   "amountTypes": 477
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2316,6 +2323,8 @@
    "@epam/promo:SizeMod",
    "@epam/promo:StatusIndicatorMods",
    "@epam/promo:StatusIndicatorProps",
+   "@epam/promo:TagMods",
+   "@epam/promo:TagProps",
    "@epam/promo:TextMods",
    "@epam/promo:TextProps",
    "@epam/promo:TextSize",
@@ -2399,14 +2408,14 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 822,
+   "allExports": 821,
    "byModule": {
     "@epam/uui-core": 129,
     "@epam/uui-components": 105,
     "@epam/uui": 154,
     "@epam/promo": 128,
     "@epam/electric": 105,
-    "@epam/loveship": 138,
+    "@epam/loveship": 137,
     "@epam/uui-editor": 63
    }
   },
@@ -3182,7 +3191,6 @@
      "applyButtonMods",
      "applyIconContainerMods",
      "applyRangeSliderMods",
-     "applyTagMods",
      "applyTextInputMods",
      "ColumnsConfigurationModal",
      "DataTable",
@@ -3297,12 +3305,12 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 557,
+   "allExports": 559,
    "byModule": {
     "@epam/uui-core": 199,
     "@epam/uui-components": 91,
     "@epam/uui": 136,
-    "@epam/promo": 53,
+    "@epam/promo": 55,
     "@epam/electric": 3,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
@@ -3778,6 +3786,8 @@
      "RowSizeMod",
      "SizeMod",
      "StatusIndicatorMods",
+     "TagMods",
+     "TagProps",
      "TextInputProps",
      "TextMods",
      "TooltipMods"
