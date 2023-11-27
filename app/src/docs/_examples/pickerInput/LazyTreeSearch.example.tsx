@@ -15,7 +15,7 @@ export default function LazyTreeSearch() {
                 const filter = search ? {} : { parentId: ctx?.parentId };
                 return svc.api.demo.locations({ ...request, search, filter });
             },
-            cascadeSelection: false,
+            cascadeSelection: true,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
@@ -38,7 +38,7 @@ export default function LazyTreeSearch() {
                 return svc.api.demo.locations({ ...request, filter });
             },
             flattenSearchResults: false,
-            cascadeSelection: false,
+            cascadeSelection: true,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
