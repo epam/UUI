@@ -4,6 +4,7 @@ import { AnalyticsEvent, Link } from '../types/objects';
 import { isClientSide } from '../helpers/ssr';
 
 interface AnalyticsContextOptions {
+    /** Instance of UUI router context */
     router: IRouterContext;
 }
 
