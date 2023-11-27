@@ -8,7 +8,7 @@
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api-deprecated": "ts-node ./getComponentsPropsSet.ts",
     "generate-components-api": "ts-node docsGen/main.ts",
-    "run-figma-scripts": "ts-node scripts/runFigmaScripts.ts",
+    "process-figma-files": "ts-node scripts/processFigmaFiles.ts",
     "prepublish": "yarn build",
     "track-bundle-size": "node scripts/trackBundleSize.js",
     "lint": "node ../uui-build/scripts/lint",
