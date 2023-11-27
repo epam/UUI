@@ -3,8 +3,11 @@ import maxBy from 'lodash.maxby';
 import { isClientSide } from '../helpers/ssr';
 
 export interface LayoutLayer {
+    /** ID of the layer */
     id: number;
+    /** Level of the layer depth */
     depth: number;
+    /** zIndex of the layer */
     zIndex: number;
 }
 function genUniqueId() {

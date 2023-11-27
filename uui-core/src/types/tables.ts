@@ -51,9 +51,10 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
     grow?: number;
 
-    /** Aligns cell content horizontally */
+    /** Aligns cell and header content horizontally */
     textAlign?: 'left' | 'center' | 'right';
 
+    /** Aligns only cell content horizontally */
     justifyContent?: CSS.JustifyContentProperty;
 
     /** Align cell content vertically */
@@ -122,6 +123,7 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
 }
 
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
+    /** Array of all table columns */
     columns: DataColumnProps[];
 };
 
@@ -194,9 +196,12 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
 
-    /** Overrides default loading placeholder ('skeleton') rendering  */
+    /** Overrides default loading placeholder ('skeleton') rendering.
+     * By default: () => <Text> Unknown </Text>
+     * */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
+    /** Overrides default unknown item rendering */
     renderUnknown?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
     /**

@@ -48,6 +48,7 @@ DataRowOptions<TItem, TId> & {
     /** True if row is in loading state. 'value' is empty in this case */
     isLoading?: boolean;
 
+    /** True if item doesn't exist in a dataSource */
     isUnknown?: boolean;
 
     /** True if row be folded or unfolded (usually because it contains children) */
@@ -104,6 +105,7 @@ DataRowOptions<TItem, TId> & {
          */
     onFocus?(focusedIndex: number): void;
 
+    /** True if row pinned, it means that it will be sticky inside his nesting level */
     isPinned?: boolean;
 };
 

@@ -14,7 +14,7 @@ import { FormProps, FormSaveResponse, IFormApi } from './Form';
 import { useLock } from './useLock';
 import { shouldCreateUndoCheckpoint } from './shouldCreateUndoCheckpoint';
 
-export interface FormState<T> {
+interface FormState<T> {
     form: T;
     validationState: ICanBeInvalid;
     serverValidationState: ICanBeInvalid;
