@@ -2,10 +2,11 @@ import * as React from 'react';
 import { DataRowProps, DataColumnProps } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { FlexSpacer, IconContainer } from '../layout';
-import { DataTableCell } from '../tables/DataTableCell';
+import { DataPickerCell } from './DataPickerCell';
 import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';
+
 import css from './DataPickerRow.module.scss';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
@@ -57,7 +58,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
 
     renderContent = () => {
         return (
-            <DataTableCell
+            <DataPickerCell
                 key="name"
                 size={ this.props.size || '36' }
                 padding={ this.props.padding || '24' }
