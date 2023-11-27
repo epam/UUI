@@ -18,12 +18,14 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
+      data-testid="uui-numeric-input-wrapper"
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
         className="uui-input uui-value-in-placeholder"
+        data-testid="uui-numeric-input"
         inputMode="numeric"
         max={12}
         min={1}
@@ -76,12 +78,14 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
+      data-testid="uui-numeric-input-wrapper"
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
         className="uui-input uui-value-in-placeholder"
+        data-testid="uui-numeric-input"
         inputMode="numeric"
         max={59}
         min={0}
@@ -181,12 +185,14 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
+      data-testid="uui-numeric-input-wrapper"
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
         className="uui-input uui-value-in-placeholder"
+        data-testid="uui-numeric-input"
         inputMode="numeric"
         max={12}
         min={0}
@@ -239,12 +245,14 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     </div>
     <div
       className="container uui-input-box -clickable uui-timepicker-input"
+      data-testid="uui-numeric-input-wrapper"
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
         className="uui-input uui-value-in-placeholder"
+        data-testid="uui-numeric-input"
         inputMode="numeric"
         max={59}
         min={0}

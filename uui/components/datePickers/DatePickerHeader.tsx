@@ -24,31 +24,31 @@ export interface DatePickerHeaderProps extends IEditable<PickerBodyValue<string>
     navIconRight?: Icon;
 }
 
+const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.subtract(1, 'month');
+};
+
+export const getNextMonthFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.add(1, 'month');
+};
+
+const getPrevYearFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.subtract(1, 'year');
+};
+
+export const getNextYearFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.add(1, 'year');
+};
+
+const getPrevListYearFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.subtract(16, 'year');
+};
+
+export const getNextListYearFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.add(16, 'year');
+};
+
 export function DatePickerHeader(props: DatePickerHeaderProps) {
-    const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.subtract(1, 'month');
-    };
-
-    const getNextMonthFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.add(1, 'month');
-    };
-
-    const getPrevYearFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.subtract(1, 'year');
-    };
-
-    const getNextYearFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.add(1, 'year');
-    };
-
-    const getPrevListYearFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.subtract(16, 'year');
-    };
-
-    const getNextListYearFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.add(16, 'year');
-    };
-
     const onLeftNavigationArrow = () => {
         switch (props.value.view) {
             case 'DAY_SELECTION':
