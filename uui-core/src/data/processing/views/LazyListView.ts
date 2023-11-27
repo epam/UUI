@@ -115,7 +115,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private defaultGetId = (i: any) => i.id;
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
-        if ((props.cascadeSelection || (props.flattenSearchResults ?? true)) && !props.getParentId) {
+        if (props.getChildCount && (props.cascadeSelection || (props.flattenSearchResults ?? true)) && !props.getParentId) {
             console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
         }
 
