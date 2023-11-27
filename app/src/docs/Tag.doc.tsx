@@ -13,14 +13,8 @@ export class TagDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TagProps', component: uui.Tag },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:TagProps', component: promo.Tag },
-            [TSkin.UUI3_loveship]: {
-                type: '@epam/loveship:TagProps',
-                component: loveship.Tag,
-                doc: (doc: DocBuilder<loveship.TagProps>) => {
-                    doc.merge('size', { defaultValue: '18' });
-                },
-            },
+            [TSkin.UUI4_promo]: { type: '@epam/promo:TagProps', component: promo.Tag },
+            [TSkin.UUI3_loveship]: { type: '@epam/loveship:TagProps', component: loveship.Tag },
         },
         doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
