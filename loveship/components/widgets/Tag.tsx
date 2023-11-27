@@ -18,7 +18,7 @@ export interface TagMods extends Omit<uui.TagProps, 'color'> {
 export interface TagProps extends Omit<uui.TagProps, 'color'>, TagMods {}
 
 export const Tag = withMods<Omit<TagProps, 'color'>, TagMods>(
-    uui.Tag,
+    uui.Tag as any, // TODO: rework after new withMods implementation.
     () => [],
     (props) => ({
         size: props.size || defaultSize,
