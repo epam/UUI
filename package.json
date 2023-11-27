@@ -13,6 +13,7 @@
     "eslint": "cross-env LINT_SCRIPT=true yarn --cwd uui-build lint --eslint",
     "eslint-fix": "yarn eslint --fix",
     "generate-components-api": "yarn --cwd uui-build generate-components-api",
+    "run-figma-scripts": "yarn --cwd uui-build run-figma-scripts",
     "lint-staged": "cross-env LINT_STAGED=true npx lint-staged",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
     "postinstall": "cd server && yarn",

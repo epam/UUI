@@ -1,0 +1,9 @@
+{
+  "sourceFigmaVarCollection": "uui-build/config/figmaScriptsConfig/Theme.json",
+  "resultsDir": "uui-build/config/figmaScriptsConfig",
+  "tokens": {
+    "--uui-text-contrast": { "isSupportedByUUiApp": false },
+    "--uui-text-white": { "isSupportedByUUiApp": false },
+    "--uui-text-black": { "isSupportedByUUiApp": false }
+  }
+}
