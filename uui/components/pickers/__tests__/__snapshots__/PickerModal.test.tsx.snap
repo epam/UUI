@@ -194,7 +194,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -246,7 +246,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -587,7 +587,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -654,7 +654,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -721,7 +721,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -788,7 +788,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -855,7 +855,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -922,7 +922,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -989,7 +989,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1056,7 +1056,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1123,7 +1123,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1190,7 +1190,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1257,7 +1257,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1516,7 +1516,7 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -1545,7 +1545,7 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="cell uui-dt-vars data-picker-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
