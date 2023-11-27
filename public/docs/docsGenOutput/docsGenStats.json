@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 682,
-   "amountTypes": 231
+   "amountProps": 642,
+   "amountTypes": 214
   },
   "value": [
    {
@@ -12,24 +12,6 @@
      "offsetTop",
      "targetHeight",
      "targetWidth"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ApiCallInfo",
-    "value": [
-     "attemptsCount",
-     "dismissError",
-     "errorStatus",
-     "finishedAt",
-     "httpStatus",
-     "method",
-     "name",
-     "options",
-     "requestData",
-     "responseData",
-     "startedAt",
-     "status",
-     "url"
     ]
    },
    {
@@ -61,18 +43,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:AsyncListViewProps",
-    "value": [
-     "api"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ButtonSemanticProps",
-    "value": [
-     "type"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:CommonContexts",
     "value": [
      "api",
@@ -84,15 +54,7 @@
     "typeRef": "@epam/uui-core:ContextProviderProps",
     "value": [
      "gaCode",
-     "history",
-     "loadAppContext",
-     "onInitCompleted"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataColumnProps",
-    "value": [
-     "justifyContent"
+     "history"
     ]
    },
    {
@@ -107,25 +69,6 @@
      "id",
      "isLastChild",
      "value"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataRowProps",
-    "value": [
-     "isPinned",
-     "isUnknown"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableCellProps",
-    "value": [
-     "renderUnknown"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableConfigModalParams",
-    "value": [
-     "columns"
     ]
    },
    {
@@ -154,12 +97,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:DndActorProps",
-    "value": [
-     "render"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:DndContextState",
     "value": [
      "ghostOffsetX",
@@ -167,15 +104,6 @@
      "ghostWidth",
      "isDragging",
      "renderGhost"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ErrorPageInfo",
-    "value": [
-     "imageUrl",
-     "mobileImageUrl",
-     "subtitle",
-     "title"
     ]
    },
    {
@@ -261,18 +189,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IHasChildren",
-    "value": [
-     "children"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IHasDirection",
-    "value": [
-     "direction"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IHistory4",
     "value": [
      "block",
@@ -338,14 +254,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:LayoutLayer",
-    "value": [
-     "depth",
-     "id",
-     "zIndex"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:Link",
     "value": [
      "hash",
@@ -389,14 +297,6 @@
     "typeRef": "@epam/uui-core:RangeDatePickerPresets",
     "value": [
      "[key: string]"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:RangeDatePickerPresetValue",
-    "value": [
-     "from",
-     "order",
-     "to"
     ]
    },
    {
@@ -463,13 +363,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:UseUuiServicesProps",
-    "value": [
-     "appContext",
-     "router"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:UuiContexts",
     "value": [
      "uuiAnalytics",
@@ -489,24 +382,6 @@
     "value": [
      "subtitle",
      "title"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:UuiServicesProps",
-    "value": [
-     "apiDefinition"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:VPanelProps",
-    "value": [
-     "style"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AccordionState",
-    "value": [
-     "opened"
     ]
    },
    {
@@ -1846,7 +1721,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 471
+   "amountTypes": 469
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1871,7 +1746,6 @@
    "@epam/uui-core:BlockTypes",
    "@epam/uui-core:ButtonBaseCoreProps",
    "@epam/uui-core:ButtonCoreProps",
-   "@epam/uui-core:ButtonSemanticProps",
    "@epam/uui-core:CascadeSelection",
    "@epam/uui-core:CheckboxCoreProps",
    "@epam/uui-core:ColumnsConfig",
@@ -1984,7 +1858,6 @@
    "@epam/uui-core:UuiRecoveryErrorInfo",
    "@epam/uui-core:ValidationMode",
    "@epam/uui-components:AccordionProps",
-   "@epam/uui-components:AccordionState",
    "@epam/uui-components:AdaptiveItemProps",
    "@epam/uui-components:AdaptivePanelProps",
    "@epam/uui-components:AnchorProps",
@@ -3221,10 +3094,10 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 553,
+   "allExports": 551,
    "byModule": {
-    "@epam/uui-core": 198,
-    "@epam/uui-components": 91,
+    "@epam/uui-core": 197,
+    "@epam/uui-components": 90,
     "@epam/uui": 133,
     "@epam/promo": 53,
     "@epam/electric": 3,
@@ -3254,7 +3127,6 @@
      "BatchPromiseOptions",
      "ButtonBaseCoreProps",
      "ButtonCoreProps",
-     "ButtonSemanticProps",
      "CheckboxCoreProps",
      "CommonContexts",
      "ContextProviderProps",
@@ -3457,7 +3329,6 @@
      "ViewType"
     ],
     "InterfaceDeclaration": [
-     "AccordionState",
      "AdaptivePanelProps",
      "AnchorProps",
      "AvatarProps",
