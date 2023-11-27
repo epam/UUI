@@ -115,7 +115,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private defaultGetId = (i: any) => i.id;
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
-        if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
+        if ((props.cascadeSelection || (props.flattenSearchResults ?? true)) && !props.getParentId) {
             console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
         }
 
@@ -483,7 +483,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             rowsCount,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount() ?? 0,
+            totalCount: rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount(),
             selectAll: this.selectAll,
             isReloading: this.isReloading,
         };
@@ -496,7 +496,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     };
 
     protected isFlattenSearch = () => {
-        return this.value.search && this.props.flattenSearchResults;
+        return this.value.search && (this.props.flattenSearchResults ?? true);
     };
 
     protected isPartialLoad = () => true;

@@ -15,7 +15,6 @@ export default function LazyTreePicker() {
                 return svc.api.demo.locations({ ...request, search, filter });
             },
             cascadeSelection: true,
-            flattenSearchResults: true,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
