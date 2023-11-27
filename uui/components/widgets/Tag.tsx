@@ -35,11 +35,16 @@ export interface TagMods {
     size?: TagSize;
     /** @default 'neutral' */
     color?: TagColor;
-    /** @default 'solid' */
-    fill?: TagFill;
 }
 
-export function applyTagMods(mods: TagMods) {
+export type TagCoreProps = ButtonProps & {
+    /** @default 'solid' */
+    fill?: TagFill;
+};
+
+export type TagProps = TagCoreProps & TagMods;
+
+export function applyTagMods(mods: TagProps) {
     return [
         css['size-' + (mods.size || defaultSize)],
         css.root,
@@ -49,9 +54,7 @@ export function applyTagMods(mods: TagMods) {
     ];
 }
 
-export type TagProps = ButtonProps & TagMods;
-
-export const Tag = withMods<ButtonProps, TagMods>(Button, applyTagMods, (props) => ({
+export const Tag = withMods<TagCoreProps, TagMods>(Button, applyTagMods, (props) => ({
     dropdownIcon: systemIcons[mapSize[props.size] || defaultSize].foldingArrow,
     clearIcon: systemIcons[mapSize[props.size] || defaultSize].clear,
     countIndicator: (countIndicatorProps) => (
