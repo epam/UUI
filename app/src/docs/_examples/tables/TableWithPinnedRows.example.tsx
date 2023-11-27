@@ -59,6 +59,7 @@ export default function TableWithPinnedRows() {
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
         backgroundReload: true,
+        flattenSearchResults: false,
     }, []);
 
     useEffect(() => {

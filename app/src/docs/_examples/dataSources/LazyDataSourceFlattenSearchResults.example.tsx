@@ -19,7 +19,6 @@ export default function LazyDataSourceFlattenSearchResultsExample() {
         },
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
-        flattenSearchResults: true,
     }, []);
 
     return (
