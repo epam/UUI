@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 642,
-   "amountTypes": 214
+   "amountProps": 640,
+   "amountTypes": 215
   },
   "value": [
    {
@@ -40,6 +40,12 @@
     "value": [
      "sortBy",
      "sorting"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:ButtonSemanticProps",
+    "value": [
+     "type"
     ]
    },
    {
@@ -382,21 +388,6 @@
     "value": [
      "subtitle",
      "title"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AdaptiveItemProps",
-    "value": [
-     "collapsedContainer",
-     "id",
-     "priority",
-     "render"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AdaptivePanelProps",
-    "value": [
-     "items"
     ]
    },
    {
@@ -909,6 +900,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:BadgeCoreProps",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:BadgeMods",
     "value": [
      "color",
@@ -928,6 +925,12 @@
     "typeRef": "@epam/uui:BurgerGroupHeaderProps",
     "value": [
      "caption"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:ButtonCoreProps",
+    "value": [
+     "size"
     ]
    },
    {
@@ -1145,6 +1148,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:LinkButtonCoreProps",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:LinkButtonMods",
     "value": [
      "color",
@@ -1162,12 +1171,6 @@
     "typeRef": "@epam/uui:MainMenuButtonMods",
     "value": [
      "type"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:MainMenuIconProps",
-    "value": [
-     "icon"
     ]
    },
    {
@@ -1721,7 +1724,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 469
+   "amountTypes": 475
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1745,7 +1748,8 @@
    "@epam/uui-core:BatchPromiseOptions",
    "@epam/uui-core:BlockTypes",
    "@epam/uui-core:ButtonBaseCoreProps",
-   "@epam/uui-core:ButtonCoreProps",
+   "@epam/uui-core:ButtonComponentProps",
+   "@epam/uui-core:ButtonSemanticProps",
    "@epam/uui-core:CascadeSelection",
    "@epam/uui-core:CheckboxCoreProps",
    "@epam/uui-core:ColumnsConfig",
@@ -1821,6 +1825,7 @@
    "@epam/uui-core:ListApiSettings",
    "@epam/uui-core:LoadingStatus",
    "@epam/uui-core:LoadTreeOptions",
+   "@epam/uui-core:MergedRawProps",
    "@epam/uui-core:Metadata",
    "@epam/uui-core:ModalBlockerProps",
    "@epam/uui-core:ModalFooterCoreProps",
@@ -1947,6 +1952,7 @@
    "@epam/uui:AccordionProps",
    "@epam/uui:AlertProps",
    "@epam/uui:BadgeColor",
+   "@epam/uui:BadgeCoreProps",
    "@epam/uui:BadgeFill",
    "@epam/uui:BadgeMods",
    "@epam/uui:BadgeProps",
@@ -1956,6 +1962,7 @@
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
    "@epam/uui:ButtonColor",
+   "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",
@@ -1996,6 +2003,7 @@
    "@epam/uui:FontWeight",
    "@epam/uui:GlobalMenuProps",
    "@epam/uui:HighlightRange",
+   "@epam/uui:IconButtonCoreProps",
    "@epam/uui:IconButtonMods",
    "@epam/uui:IconButtonProps",
    "@epam/uui:IconColor",
@@ -2006,6 +2014,7 @@
    "@epam/uui:LabeledInputMods",
    "@epam/uui:LabeledInputProps",
    "@epam/uui:LinkButtonColorType",
+   "@epam/uui:LinkButtonCoreProps",
    "@epam/uui:LinkButtonMods",
    "@epam/uui:LinkButtonProps",
    "@epam/uui:MainMenuAvatarProps",
@@ -2197,9 +2206,9 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 821,
+   "allExports": 822,
    "byModule": {
-    "@epam/uui-core": 129,
+    "@epam/uui-core": 130,
     "@epam/uui-components": 105,
     "@epam/uui": 153,
     "@epam/promo": 128,
@@ -2302,6 +2311,7 @@
      "blurFocusedElement",
      "closestTargetParentByCondition",
      "ContextProvider",
+     "createSkinComponent",
      "deleteCookie",
      "Form",
      "formatBytes",
@@ -3094,11 +3104,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 551,
+   "allExports": 558,
    "byModule": {
-    "@epam/uui-core": 197,
+    "@epam/uui-core": 200,
     "@epam/uui-components": 90,
-    "@epam/uui": 133,
+    "@epam/uui": 137,
     "@epam/promo": 53,
     "@epam/electric": 3,
     "@epam/loveship": 65,
@@ -3127,6 +3137,7 @@
      "BatchPromiseOptions",
      "ButtonBaseCoreProps",
      "ButtonCoreProps",
+     "ButtonSemanticProps",
      "CheckboxCoreProps",
      "CommonContexts",
      "ContextProviderProps",
@@ -3256,6 +3267,7 @@
      "ArrayElement",
      "ArrayPickerProps",
      "BlockTypes",
+     "ButtonComponentProps",
      "CascadeSelection",
      "ClassValue",
      "ColumnsConfig",
@@ -3288,6 +3300,7 @@
      "LazyDataSourceApi",
      "LazyLoadedMapLoadCallback",
      "LoadingStatus",
+     "MergedRawProps",
      "PickerBaseOptions",
      "PickerBaseProps",
      "PickerBindingProps",
@@ -3313,7 +3326,11 @@
     "TypeAliasDeclaration": [
      "AccordionProps",
      "AdaptiveItemProps",
+     "AnchorProps",
      "ArrayPickerProps",
+     "ButtonBaseProps",
+     "ButtonProps",
+     "IconButtonBaseProps",
      "IRenderInputProps",
      "PickerBindingProps",
      "PickerBindingValueType",
@@ -3330,15 +3347,12 @@
     ],
     "InterfaceDeclaration": [
      "AdaptivePanelProps",
-     "AnchorProps",
      "AvatarProps",
      "AvatarStackProps",
      "BaseRatingProps",
      "BaseTimePickerProps",
      "BlockerProps",
      "BurgerProps",
-     "ButtonBaseProps",
-     "ButtonProps",
      "CalendarPresetsProps",
      "CalendarProps",
      "CarouselProps",
@@ -3359,7 +3373,6 @@
      "DropSpotRenderParams",
      "FlexSpacerProps",
      "HeaderCellContentProps",
-     "IconButtonBaseProps",
      "InputAddonProps",
      "IProgressBarProps",
      "IScrollSpyApi",
@@ -3444,7 +3457,6 @@
      "GlobalMenuProps",
      "HighlightRange",
      "IconButtonMods",
-     "IconButtonProps",
      "IDropdownMenuItemProps",
      "IHasEditMode",
      "IndeterminateBarMods",
@@ -3453,7 +3465,6 @@
      "LinkButtonMods",
      "MainMenuAvatarProps",
      "MainMenuButtonMods",
-     "MainMenuIconProps",
      "MainMenuMods",
      "MainMenuSearchProps",
      "ModalFooterProps",
@@ -3495,10 +3506,12 @@
     "TypeAliasDeclaration": [
      "AccordionProps",
      "BadgeColor",
+     "BadgeCoreProps",
      "BadgeFill",
      "BadgeProps",
      "BadgeSize",
      "ButtonColor",
+     "ButtonCoreProps",
      "ButtonFill",
      "ButtonProps",
      "CheckboxProps",
@@ -3510,11 +3523,15 @@
      "FlexCellProps",
      "FontStyle",
      "FontWeight",
+     "IconButtonCoreProps",
+     "IconButtonProps",
      "IconColor",
      "InputType",
      "LabeledInputProps",
      "LinkButtonColorType",
+     "LinkButtonCoreProps",
      "LinkButtonProps",
+     "MainMenuIconProps",
      "MainMenuProps",
      "ModalWindowProps",
      "NumericInputProps",
@@ -3645,10 +3662,6 @@
      "SliderRatingProps",
      "SnackbarCardProps",
      "StatusIndicatorMods",
-     "TabButtonMods",
-     "TabButtonProps",
-     "TagMods",
-     "TagProps",
      "TextInputMods",
      "TextMods",
      "TooltipMods"
@@ -3677,6 +3690,10 @@
      "RowSize",
      "SearchInputProps",
      "StatusIndicatorProps",
+     "TabButtonMods",
+     "TabButtonProps",
+     "TagMods",
+     "TagProps",
      "TextInputProps",
      "TextProps",
      "TextSize",
