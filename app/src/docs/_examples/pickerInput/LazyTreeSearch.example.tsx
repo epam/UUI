@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DataPickerRow, FlexCell, FlexRow, PickerInput, PickerItem } from '@epam/uui';
-import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { FlexCell, FlexRow, PickerInput } from '@epam/uui';
+import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LazyTreeSearch() {
@@ -45,16 +45,6 @@ export default function LazyTreeSearch() {
         },
         [],
     );
-
-    const getSubtitle = ({ path }: DataRowProps<Location, string>, { search }: DataSourceState) => {
-        if (!search) return;
-
-        return path
-            .map(({ value }) => value?.name)
-            .filter(Boolean)
-            .join(' / ');
-    };
-
     return (
         <FlexCell width={ 612 }>
             <FlexRow spacing="12">
@@ -67,21 +57,6 @@ export default function LazyTreeSearch() {
                     selectionMode="multi"
                     valueType="id"
                     placeholder="Flatten search results"
-                    renderRow={ (props: DataRowProps<Location, string>, dataSourceState) => (
-                        <DataPickerRow
-                            { ...props }
-                            key={ props.rowKey }
-                            padding="12"
-                            renderItem={ (item) => (
-                                <PickerItem
-                                    { ...props }
-                                    dataSourceState={ dataSourceState }
-                                    title={ item.name }
-                                    subtitle={ getSubtitle(props, dataSourceState) }
-                                />
-                            ) }
-                        />
-                    ) }
                 />
                 <PickerInput
                     dataSource={ dataSource2 }
