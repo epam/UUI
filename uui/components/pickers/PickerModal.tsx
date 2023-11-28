@@ -48,7 +48,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     };
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        const { flattenSearchResults } = view.getProps();
+        const { flattenSearchResults } = view.getConfig();
         return (
             <PickerItem
                 title={ getName(item) }
