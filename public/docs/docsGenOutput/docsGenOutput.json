@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-27",
+ "timestamp": "2023-11-28",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -18121,6 +18121,45 @@
       },
       "typeValue": {
        "raw": "T & Record<`data-${string}`, string>"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:IHasStyleAttrs": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IHasStyleAttrs",
+     "nameFull": "IHasStyleAttrs"
+    },
+    "src": "uui-core/src/types/props.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "IHasStyleAttrs",
+     "print": [
+      "interface IHasStyleAttrs {",
+      "    /** CSS style prop to put on the component */",
+      "    style?: React.CSSProperties;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
       },
       "required": false
      }
@@ -39684,12 +39723,17 @@
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
-      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {",
+      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {",
+      "    /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */",
       "    width?: number | 'auto';",
+      "    /** Defines maximum width in 'px'. */",
       "    maxWidth?: number;",
+      "    /** Defines height in 'px'. */",
       "    height?: number;",
+      "    /** If true, arrow tip will be shown",
+      "     * @default false",
+      "     * */",
       "    showArrow?: boolean;",
-      "    style?: React.CSSProperties;",
       "    /**",
       "     * Pass true to wrap DropdownContainer with FocusLock component to support keyboard navigation.",
       "     * If omitted, true value will be used.",
@@ -39736,6 +39780,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -39744,6 +39793,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -39755,6 +39809,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -39766,6 +39825,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -39776,14 +39844,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -39806,7 +39866,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -39823,7 +39883,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -39840,7 +39900,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -39853,7 +39913,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -39866,7 +39926,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -39882,7 +39942,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -39899,7 +39959,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -39916,7 +39976,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -39931,7 +39991,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -39943,6 +40003,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
@@ -40126,6 +40200,7 @@
      "raw": "DropSpotRenderParams",
      "print": [
       "interface DropSpotRenderParams extends DropSpotState {",
+      "    /** Event handlers to put on your rendered component */",
       "    eventHandlers: EventHandlers;",
       "}"
      ]
@@ -40134,6 +40209,11 @@
      {
       "uid": 1,
       "name": "eventHandlers",
+      "comment": {
+       "raw": [
+        "Event handlers to put on your rendered component"
+       ]
+      },
       "typeValue": {
        "raw": "EventHandlers"
       },
@@ -40994,7 +41074,8 @@
      "raw": "InputAddonProps",
      "print": [
       "interface InputAddonProps extends IHasCX {",
-      "    content: string;",
+      "    /** Content to be rendered in addon */",
+      "    content: React.ReactNode;",
       "}"
      ]
     },
@@ -41002,13 +41083,16 @@
      {
       "uid": 1,
       "name": "content",
+      "comment": {
+       "raw": [
+        "Content to be rendered in addon"
+       ]
+      },
       "typeValue": {
-       "raw": "string"
+       "raw": "React.ReactNode"
       },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
      },
      {
       "uid": 2,
@@ -46114,28 +46198,39 @@
      "raw": "MainMenuProps",
      "print": [
       "interface MainMenuProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "    /** Array of menu items to be rendered */",
       "    items?: AdaptiveItemProps[];",
+      "    /** @deprecated",
+      "     * Use 'items' prop to define menu content */",
       "    children?: any;",
-      "    externalGap?: number;",
+      "    /** Path to the logo source */",
       "    appLogoUrl?: string;",
-      "    appLogoBgColor?: string;",
+      "    /** SPA link to navigate on logo click */",
+      "    logoLink?: Link;",
+      "    /** Href to navigate on logo click */",
+      "    logoHref?: string;",
+      "    /** Called when logo is clicked */",
+      "    onLogoClick?: (e: MouseEvent) => any;",
+      "    /** Path to the customer logo source */",
       "    customerLogoUrl?: string;",
+      "    /** SPA link to navigate on customer logo click */",
+      "    customerLogoLink?: Link;",
+      "    /** Href to navigate on customer logo click */",
+      "    customerLogoHref?: string;",
       "    customerLogoBgColor?: string;",
-      "    customerLogoWidth?: number;",
       "    isTransparent?: boolean;",
+      "    /** Render callback for burger menu content.",
+      "     * Burger will appear, which some items don't fit the menu width.",
+      "     * */",
       "    renderBurger?: (props: {",
       "        onClose: () => void;",
       "    }) => React.ReactNode;",
+      "    /** If true, Burger button will be always visible */",
       "    alwaysShowBurger?: boolean;",
       "    serverBadge?: string;",
-      "    tooltipTechInfo?: React.ReactNode;",
-      "    logoLink?: Link;",
-      "    logoHref?: string;",
-      "    logoWidth?: number;",
-      "    onLogoClick?: (e: MouseEvent) => any;",
-      "    customerLogoLink?: Link;",
-      "    customerLogoHref?: string;",
+      "    /** Internal prop to define component for MainMenuDropdown */",
       "    MainMenuDropdown?: React.ComponentType<MainMenuDropdownProps>;",
+      "    /** Internal prop to define component for Burger */",
       "    Burger?: React.ComponentType<BurgerProps>;",
       "}"
      ]
@@ -46144,6 +46239,11 @@
      {
       "uid": 1,
       "name": "items",
+      "comment": {
+       "raw": [
+        "Array of menu items to be rendered"
+       ]
+      },
       "typeValue": {
        "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]"
       },
@@ -46152,6 +46252,12 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "@deprecated",
+        " Use 'items' prop to define menu content"
+       ]
+      },
       "typeValue": {
        "raw": "any"
       },
@@ -46159,18 +46265,12 @@
      },
      {
       "uid": 3,
-      "name": "externalGap",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": 4,
       "name": "appLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the logo source"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -46180,8 +46280,26 @@
       "required": false
      },
      {
+      "uid": 4,
+      "name": "logoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "required": false
+     },
+     {
       "uid": 5,
-      "name": "appLogoBgColor",
+      "name": "logoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on logo click"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -46192,7 +46310,28 @@
      },
      {
       "uid": 6,
+      "name": "onLogoClick",
+      "comment": {
+       "raw": [
+        "Called when logo is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": 7,
       "name": "customerLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the customer logo source"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -46202,7 +46341,36 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
+      "name": "customerLogoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "customerLogoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": 10,
       "name": "customerLogoBgColor",
       "typeValue": {
        "raw": "string"
@@ -46213,18 +46381,7 @@
       "required": false
      },
      {
-      "uid": 8,
-      "name": "customerLogoWidth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": 9,
+      "uid": 11,
       "name": "isTransparent",
       "typeValue": {
        "raw": "boolean"
@@ -46235,8 +46392,14 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 12,
       "name": "renderBurger",
+      "comment": {
+       "raw": [
+        "Render callback for burger menu content.",
+        " Burger will appear, which some items don't fit the menu width."
+       ]
+      },
       "typeValue": {
        "raw": "(props: { onClose: () => void; }) => React.ReactNode"
       },
@@ -46246,8 +46409,13 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 13,
       "name": "alwaysShowBurger",
+      "comment": {
+       "raw": [
+        "If true, Burger button will be always visible"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -46257,7 +46425,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 14,
       "name": "serverBadge",
       "typeValue": {
        "raw": "string"
@@ -46268,92 +46436,33 @@
       "required": false
      },
      {
-      "uid": 13,
-      "name": "tooltipTechInfo",
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "required": false
-     },
-     {
-      "uid": 14,
-      "name": "logoLink",
-      "typeValue": {
-       "raw": "Link"
-      },
-      "required": false
-     },
-     {
       "uid": 15,
-      "name": "logoHref",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": 16,
-      "name": "logoWidth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": 17,
-      "name": "onLogoClick",
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": 18,
-      "name": "customerLogoLink",
-      "typeValue": {
-       "raw": "Link"
-      },
-      "required": false
-     },
-     {
-      "uid": 19,
-      "name": "customerLogoHref",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": 20,
       "name": "MainMenuDropdown",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for MainMenuDropdown"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>"
       },
       "required": false
      },
      {
-      "uid": 21,
+      "uid": 16,
       "name": "Burger",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for Burger"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>"
       },
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 17,
       "name": "cx",
       "comment": {
        "raw": [
@@ -46368,7 +46477,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 18,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -46382,211 +46491,7 @@
       "required": false
      },
      {
-      "uid": 24,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:MonthSelectionProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "MonthSelectionProps",
-     "nameFull": "MonthSelectionProps"
-    },
-    "src": "uui-components/src/inputs/DatePicker/MonthSelection.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MonthSelectionProps",
-     "print": [
-      "interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
-      "    selectedDate: Dayjs;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "selectedDate",
-      "typeValue": {
-       "raw": "Dayjs"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "Dayjs"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: Dayjs) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 4,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": 11,
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 12,
+      "uid": 19,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -47458,54 +47363,6 @@
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:PickerBindingHelper": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "PickerBindingHelper",
-     "nameFull": "PickerBindingHelper<TItem, TId>"
-    },
-    "src": "uui-components/src/pickers/bindingHelpers.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "PickerBindingHelper<TItem, TId>",
-     "print": [
-      "interface PickerBindingHelper<TItem, TId> {",
-      "    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): any;",
-      "    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId>;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "dataSourceStateToValue",
-      "typeValue": {
-       "raw": "(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "applyValueToDataSourceState",
-      "typeValue": {
-       "raw": "(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) => DataSourceState<any, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -51313,7 +51170,11 @@
      "raw": "PortalProps",
      "print": [
       "interface PortalProps extends IHasChildren {",
+      "    /** Element where portal content will be rendered",
+      "     * By default, it will be node with 'main' or 'root' id or document.body",
+      "     * */",
       "    target?: HTMLElement;",
+      "    /** Key of portal component */",
       "    key?: string;",
       "}"
      ]
@@ -51322,6 +51183,12 @@
      {
       "uid": 1,
       "name": "target",
+      "comment": {
+       "raw": [
+        "Element where portal content will be rendered",
+        " By default, it will be node with 'main' or 'root' id or document.body"
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -51330,6 +51197,11 @@
      {
       "uid": 2,
       "name": "key",
+      "comment": {
+       "raw": [
+        "Key of portal component"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -73488,6 +73360,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -73497,6 +73374,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -73509,6 +73391,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -73521,6 +73408,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -73532,15 +73428,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -73564,7 +73451,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -73582,7 +73469,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -73600,7 +73487,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -73614,7 +73501,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -73628,7 +73515,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -73645,7 +73532,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -73663,7 +73550,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -73681,7 +73568,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -73696,7 +73583,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -73708,6 +73595,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
@@ -79656,6 +79557,11 @@
      {
       "uid": 1,
       "name": "items",
+      "comment": {
+       "raw": [
+        "Array of menu items to be rendered"
+       ]
+      },
       "typeValue": {
        "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]"
       },
@@ -79665,6 +79571,12 @@
      {
       "uid": 2,
       "name": "children",
+      "comment": {
+       "raw": [
+        "@deprecated",
+        " Use 'items' prop to define menu content"
+       ]
+      },
       "typeValue": {
        "raw": "any"
       },
@@ -79673,19 +79585,12 @@
      },
      {
       "uid": 3,
-      "name": "externalGap",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 4,
       "name": "appLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the logo source"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -79696,8 +79601,27 @@
       "required": false
      },
      {
+      "uid": 4,
+      "name": "logoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
       "uid": 5,
-      "name": "appLogoBgColor",
+      "name": "logoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on logo click"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -79709,19 +79633,29 @@
      },
      {
       "uid": 6,
-      "name": "customerLogoUrl",
+      "name": "onLogoClick",
+      "comment": {
+       "raw": [
+        "Called when logo is clicked"
+       ]
+      },
       "typeValue": {
-       "raw": "string"
+       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any"
       },
       "editor": {
-       "type": "string"
+       "type": "func"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
      },
      {
       "uid": 7,
-      "name": "customerLogoBgColor",
+      "name": "customerLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the customer logo source"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -79733,18 +79667,49 @@
      },
      {
       "uid": 8,
-      "name": "customerLogoWidth",
-      "typeValue": {
-       "raw": "number"
+      "name": "customerLogoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on customer logo click"
+       ]
       },
-      "editor": {
-       "type": "number"
+      "typeValue": {
+       "raw": "Link"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
      },
      {
       "uid": 9,
+      "name": "customerLogoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "customerLogoBgColor",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": 11,
       "name": "isTransparent",
       "typeValue": {
        "raw": "boolean"
@@ -79756,8 +79721,14 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 12,
       "name": "renderBurger",
+      "comment": {
+       "raw": [
+        "Render callback for burger menu content.",
+        " Burger will appear, which some items don't fit the menu width."
+       ]
+      },
       "typeValue": {
        "raw": "(props: { onClose: () => void; }) => React.ReactNode"
       },
@@ -79768,8 +79739,13 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 13,
       "name": "alwaysShowBurger",
+      "comment": {
+       "raw": [
+        "If true, Burger button will be always visible"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79780,7 +79756,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 14,
       "name": "serverBadge",
       "typeValue": {
        "raw": "string"
@@ -79792,84 +79768,13 @@
       "required": false
      },
      {
-      "uid": 13,
-      "name": "tooltipTechInfo",
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 14,
-      "name": "logoLink",
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
       "uid": 15,
-      "name": "logoHref",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 16,
-      "name": "logoWidth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 17,
-      "name": "onLogoClick",
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 18,
-      "name": "customerLogoLink",
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 19,
-      "name": "customerLogoHref",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": 20,
       "name": "MainMenuDropdown",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for MainMenuDropdown"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>"
       },
@@ -79877,8 +79782,13 @@
       "required": false
      },
      {
-      "uid": 21,
+      "uid": 16,
       "name": "Burger",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for Burger"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>"
       },
@@ -79886,7 +79796,7 @@
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 17,
       "name": "cx",
       "comment": {
        "raw": [
@@ -79901,7 +79811,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 18,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -79915,7 +79825,7 @@
       "required": false
      },
      {
-      "uid": 24,
+      "uid": 19,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -96756,6 +96666,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -96765,6 +96680,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -96777,6 +96697,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -96789,6 +96714,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -96800,15 +96734,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -96832,7 +96757,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -96850,7 +96775,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -96868,7 +96793,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -96882,7 +96807,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -96896,7 +96821,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -96913,7 +96838,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -96931,7 +96856,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -96949,7 +96874,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -96964,7 +96889,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -96976,6 +96901,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
@@ -104696,6 +104635,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -104705,6 +104649,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -104717,6 +104666,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -104729,6 +104683,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -104740,15 +104703,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -104772,7 +104726,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -104790,7 +104744,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -104808,7 +104762,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -104822,7 +104776,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -104836,7 +104790,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -104853,7 +104807,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -104871,7 +104825,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -104889,7 +104843,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -104904,7 +104858,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -104916,6 +104870,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
