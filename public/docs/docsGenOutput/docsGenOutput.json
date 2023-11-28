@@ -67049,12 +67049,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:ButtonColors": {
+  "@epam/uui:ButtonColor": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "ButtonColors",
-     "nameFull": "ButtonColors"
+     "name": "ButtonColor",
+     "nameFull": "ButtonColor"
     },
     "src": "uui/components/buttons/Button.tsx",
     "exported": true
@@ -67064,7 +67064,7 @@
     "typeValue": {
      "raw": "'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'",
      "print": [
-      "type ButtonColors = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';"
+      "type ButtonColor = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';"
      ]
     }
    }
@@ -67646,7 +67646,7 @@
       "interface ButtonMods {",
       "    size?: ControlSize | '18';",
       "    fill?: ButtonFill;",
-      "    color?: ButtonColors;",
+      "    color?: ButtonColor;",
       "}"
      ]
     },
@@ -89795,12 +89795,12 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:TagColors": {
+  "@epam/uui:TagColor": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "TagColors",
-     "nameFull": "TagColors"
+     "name": "TagColor",
+     "nameFull": "TagColor"
     },
     "src": "uui/components/widgets/Tag.tsx",
     "exported": true
@@ -89810,7 +89810,7 @@
     "typeValue": {
      "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
      "print": [
-      "type TagColors = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
+      "type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
      ]
     }
    }
@@ -90424,7 +90424,7 @@
      "print": [
       "type TagMods = {",
       "    /** @default 'neutral' */",
-      "    color?: TagColors;",
+      "    color?: TagColor;",
       "};"
      ]
     },
