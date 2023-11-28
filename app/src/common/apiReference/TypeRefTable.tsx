@@ -136,7 +136,7 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
                     return null;
                 }
                 return (
-                    <Code codeAsHtml={ item.typeValue.html } isCompact={ true } />
+                    <Code cx={ css.codeBg } codeAsHtml={ item.typeValue.html } isCompact={ true } />
                 );
             },
             width: WIDTH.typeValue,

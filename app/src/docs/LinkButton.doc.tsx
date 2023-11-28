@@ -13,8 +13,8 @@ export class LinkButtonDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:LinkButtonProps', component: uui.LinkButton },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:LinkButtonProps', component: loveship.LinkButton },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:LinkButtonProps', component: promo.LinkButton },
+            [TSkin.Loveship]: { type: '@epam/loveship:LinkButtonProps', component: loveship.LinkButton },
+            [TSkin.Promo]: { type: '@epam/promo:LinkButtonProps', component: promo.LinkButton },
         },
         doc: (doc: DocBuilder<promo.LinkButtonProps | loveship.LinkButtonProps | uui.LinkButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });

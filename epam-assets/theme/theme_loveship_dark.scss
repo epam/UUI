@@ -782,7 +782,7 @@
     }
 
     .uui-text-placeholder {
-        --uui-text_placeholder-gradient: linear-gradient(90deg, var(--uui-neutral-30) 0%, var(--uui-neutral-50) 50%, var(--uui-neutral-30) 100%);
+        --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--uui-neutral-30) 0, var(--uui-neutral-50) 150px, var(--uui-neutral-30) 300px);
     }
 
     /* fonts */

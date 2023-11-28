@@ -12,8 +12,8 @@ export class TextAreaDoc extends BaseDocsBlock {
         name: 'TextArea',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:TextAreaProps', component: loveship.TextArea },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:TextAreaProps', component: promo.TextArea },
+            [TSkin.Loveship]: { type: '@epam/uui:TextAreaProps', component: loveship.TextArea },
+            [TSkin.Promo]: { type: '@epam/uui:TextAreaProps', component: promo.TextArea },
             [TSkin.UUI]: { type: '@epam/uui:TextAreaProps', component: uui.TextArea },
         },
         doc: (doc: DocBuilder<uui.TextAreaProps>) => {

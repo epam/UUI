@@ -11,3 +11,6 @@ export {
     DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, IndicatorBar, ProgressBar,
     DataRowsContainer, ColumnHeaderDropdown, RichTextView, CountIndicator,
 } from '@epam/uui';
+export type {
+    AlertProps,
+} from '@epam/uui';

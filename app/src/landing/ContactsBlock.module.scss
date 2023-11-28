@@ -2,7 +2,7 @@
 
 .layout {
     margin: 0 auto;
-    background-color: $gray10;
+    background-color: var(--uui-surface-lower);
 
     .contacts {
         display: flex;
@@ -12,7 +12,7 @@
         width: 100%;
         margin: 0 auto;
         padding: 60px 0;
-        border-bottom: 1px solid $gray40;
+        //border-bottom: 1px solid var(--uui-divider);
     }
 
     .wrapper {
@@ -20,6 +20,7 @@
     }
 
     .header {
+        font-weight: 600;
         font-size: 30px;
         line-height: 36px;
         padding: 0;
@@ -32,7 +33,7 @@
 
         .card {
             display: flex;
-            background-color: $white;
+            background-color: var(--uui-surface-main);
             max-width: 588px;
             flex-grow: 1;
 
@@ -83,7 +84,7 @@
 
             .card {
                 display: flex;
-                background-color: $white;
+                background-color: var(--uui-surface-main);
                 max-width: none;
                 flex-grow: unset;
 
@@ -115,7 +116,7 @@
         }
 
         .banner {
-            background-color: $white;
+            background-color: var(--uui-surface-main);
             box-sizing: border-box;
             max-width: 1200px;
             width: 100%;
@@ -123,7 +124,7 @@
 
             .banner-text {
                 font-size: 24px;
-                color: $blue;
+                color: var(--uui-info-50);
             }
         }
     }
@@ -153,7 +154,7 @@
 
             .card {
                 display: flex;
-                background-color: $white;
+                background-color: var(--uui-surface-main);
 
                 &:not(:last-child) {
                     margin-right: 12px;
@@ -192,7 +193,7 @@
                 font-size: 24px;
                 padding-top: 0;
                 text-align: center;
-                color: $blue;
+                color: var(--uui-info-50);
             }
         }
     }

@@ -3,8 +3,11 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "If you prefer to handle table state changes manually, you can provide the ",
-        "color": "rgb(55, 65, 81)"
+        "text": "If you prefer to handle table state changes manually, you can provide the"
+      },
+      {
+        "color": "rgb(55, 65, 81)",
+        "text": " "
       },
       {
         "text": "value",
@@ -12,16 +15,22 @@
         "color": "var(--tw-prose-code)"
       },
       {
-        "text": " and ",
+        "text": " ",
         "color": "rgb(55, 65, 81)"
+      },
+      {
+        "text": "and"
+      },
+      {
+        "color": "rgb(55, 65, 81)",
+        "text": " "
       },
       {
         "text": "onValueChange",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " parameters with your table state value and change handler, respectively. ",
-        "color": "rgb(55, 65, 81)"
+        "text": " parameters with your table state value and change handler, respectively. "
       }
     ]
   },
@@ -29,7 +38,6 @@
     "type": "paragraph",
     "children": [
       {
-        "color": "rgb(55, 65, 81)",
         "text": "This will override the default behavior of storing the state in the URL and allow you to have full control over the state management."
       }
     ]
