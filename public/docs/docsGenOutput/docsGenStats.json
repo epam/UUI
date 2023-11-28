@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 648,
-   "amountTypes": 218
+   "amountProps": 636,
+   "amountTypes": 213
   },
   "value": [
    {
@@ -391,21 +391,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:AdaptiveItemProps",
-    "value": [
-     "collapsedContainer",
-     "id",
-     "priority",
-     "render"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AdaptivePanelProps",
-    "value": [
-     "items"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:ArrayPickerProps",
     "value": [
      "emptyValue",
@@ -561,34 +546,12 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:DropdownContainerProps",
-    "value": [
-     "height",
-     "maxWidth",
-     "showArrow",
-     "style",
-     "width"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:DropSpotRenderParams",
-    "value": [
-     "eventHandlers"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:HeaderCellContentProps",
     "value": [
      "onResize",
      "onResizeEnd",
      "onResizeStart",
      "toggleSort"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:InputAddonProps",
-    "value": [
-     "content"
     ]
    },
    {
@@ -1747,7 +1710,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 476
+   "amountTypes": 477
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1825,6 +1788,7 @@
    "@epam/uui-core:IFilterItemBodyProps",
    "@epam/uui-core:IFilterPredicate",
    "@epam/uui-core:IFormApi",
+   "@epam/uui-core:IHasStyleAttrs",
    "@epam/uui-core:IHistory4",
    "@epam/uui-core:ILayoutContext",
    "@epam/uui-core:ILens",
@@ -2409,7 +2373,6 @@
      "DropSpot",
      "ErrorCatch",
      "IconButton",
-     "InputAddon",
      "LabeledInput",
      "MainMenu",
      "MainMenuCustomElement",
@@ -2444,6 +2407,7 @@
      "DataTableCell",
      "DataTableSelectionProvider",
      "FlexSpacer",
+     "InputAddon",
      "PortalRoot",
      "ScrollSpy",
      "Tooltip",
@@ -3116,9 +3080,9 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 557,
+   "allExports": 558,
    "byModule": {
-    "@epam/uui-core": 200,
+    "@epam/uui-core": 201,
     "@epam/uui-components": 90,
     "@epam/uui": 134,
     "@epam/promo": 55,
@@ -3214,6 +3178,7 @@
      "IHasIcon",
      "IHasLabel",
      "IHasPlaceholder",
+     "IHasStyleAttrs",
      "IHasTabIndex",
      "IHistory4",
      "ILayoutContext",

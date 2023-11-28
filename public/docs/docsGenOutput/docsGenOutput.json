@@ -18128,6 +18128,45 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:IHasStyleAttrs": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IHasStyleAttrs",
+     "nameFull": "IHasStyleAttrs"
+    },
+    "src": "uui-core/src/types/props.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "IHasStyleAttrs",
+     "print": [
+      "interface IHasStyleAttrs {",
+      "    /** CSS style prop to put on the component */",
+      "    style?: React.CSSProperties;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:IHasTabIndex": {
    "summary": {
     "module": "@epam/uui-core",
@@ -33933,9 +33972,16 @@
      "raw": "AdaptiveItemProps<T>",
      "print": [
       "type AdaptiveItemProps<T = unknown> = T & {",
+      "    /** Render callback of the item. It renders items inside the panel and measures their width.",
+      "     * Pay attention that we can't measure margins. If you need to have margins, please make a wrapper and add margins inside",
+      "     * */",
       "    render: (item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[], displayedItems?: AdaptiveItemProps<T>[]) => any;",
+      "    /** Item collapsed priority. An item with lower priority will be hidden first, and so on. If several items have the same priority, all of them will be hidden; */",
       "    priority: number;",
+      "    /** If true, this item will be shown when some other items was hidden; for example, you can use it to render dropdowns with hidden items.",
+      "     * You can provide more than one collapsedContainer item, but will be shown only those which has minimal priority, but this priority can't be less than the last hidden item’s priority. */",
       "    collapsedContainer?: boolean;",
+      "    /** Unique ID of item */",
       "    id: string;",
       "};"
      ]
@@ -33944,6 +33990,12 @@
      {
       "uid": 1,
       "name": "render",
+      "comment": {
+       "raw": [
+        "Render callback of the item. It renders items inside the panel and measures their width.",
+        " Pay attention that we can't measure margins. If you need to have margins, please make a wrapper and add margins inside"
+       ]
+      },
       "typeValue": {
        "raw": "(item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[] | undefined, displayedItems?: AdaptiveItemProps<T>[] | undefined) => any"
       },
@@ -33955,6 +34007,11 @@
      {
       "uid": 2,
       "name": "priority",
+      "comment": {
+       "raw": [
+        "Item collapsed priority. An item with lower priority will be hidden first, and so on. If several items have the same priority, all of them will be hidden;"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -33966,6 +34023,12 @@
      {
       "uid": 3,
       "name": "collapsedContainer",
+      "comment": {
+       "raw": [
+        "If true, this item will be shown when some other items was hidden; for example, you can use it to render dropdowns with hidden items.",
+        " You can provide more than one collapsedContainer item, but will be shown only those which has minimal priority, but this priority can't be less than the last hidden item’s priority."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -33977,6 +34040,11 @@
      {
       "uid": 4,
       "name": "id",
+      "comment": {
+       "raw": [
+        "Unique ID of item"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -34005,6 +34073,7 @@
      "raw": "AdaptivePanelProps",
      "print": [
       "interface AdaptivePanelProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    /** Array of items to be rendered in AdaptivePanel */",
       "    items: AdaptiveItemProps[];",
       "}"
      ]
@@ -34013,6 +34082,11 @@
      {
       "uid": 1,
       "name": "items",
+      "comment": {
+       "raw": [
+        "Array of items to be rendered in AdaptivePanel"
+       ]
+      },
       "typeValue": {
        "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]"
       },
@@ -39649,12 +39723,17 @@
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
-      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {",
+      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {",
+      "    /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */",
       "    width?: number | 'auto';",
+      "    /** Defines maximum width in 'px'. */",
       "    maxWidth?: number;",
+      "    /** Defines height in 'px'. */",
       "    height?: number;",
+      "    /** If true, arrow tip will be shown",
+      "     * @default false",
+      "     * */",
       "    showArrow?: boolean;",
-      "    style?: React.CSSProperties;",
       "    /**",
       "     * Pass true to wrap DropdownContainer with FocusLock component to support keyboard navigation.",
       "     * If omitted, true value will be used.",
@@ -39701,6 +39780,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -39709,6 +39793,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -39720,6 +39809,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -39731,6 +39825,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -39741,14 +39844,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -39771,7 +39866,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -39788,7 +39883,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -39805,7 +39900,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -39818,7 +39913,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -39831,7 +39926,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -39847,7 +39942,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -39864,7 +39959,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -39881,7 +39976,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -39896,7 +39991,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -39908,6 +40003,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
@@ -40091,6 +40200,7 @@
      "raw": "DropSpotRenderParams",
      "print": [
       "interface DropSpotRenderParams extends DropSpotState {",
+      "    /** Event handlers to put on your rendered component */",
       "    eventHandlers: EventHandlers;",
       "}"
      ]
@@ -40099,6 +40209,11 @@
      {
       "uid": 1,
       "name": "eventHandlers",
+      "comment": {
+       "raw": [
+        "Event handlers to put on your rendered component"
+       ]
+      },
       "typeValue": {
        "raw": "EventHandlers"
       },
@@ -40959,7 +41074,8 @@
      "raw": "InputAddonProps",
      "print": [
       "interface InputAddonProps extends IHasCX {",
-      "    content: string;",
+      "    /** Content to be rendered in addon */",
+      "    content: React.ReactNode;",
       "}"
      ]
     },
@@ -40967,13 +41083,16 @@
      {
       "uid": 1,
       "name": "content",
+      "comment": {
+       "raw": [
+        "Content to be rendered in addon"
+       ]
+      },
       "typeValue": {
-       "raw": "string"
+       "raw": "React.ReactNode"
       },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
      },
      {
       "uid": 2,
@@ -73403,6 +73522,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -73412,6 +73536,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -73424,6 +73553,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -73436,6 +73570,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -73447,15 +73590,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -73479,7 +73613,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -73497,7 +73631,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -73515,7 +73649,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -73529,7 +73663,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -73543,7 +73677,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -73560,7 +73694,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -73578,7 +73712,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -73596,7 +73730,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -73611,7 +73745,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -73623,6 +73757,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
@@ -97207,6 +97355,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -97216,6 +97369,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -97228,6 +97386,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -97240,6 +97403,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -97251,15 +97423,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -97283,7 +97446,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -97301,7 +97464,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -97319,7 +97482,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -97333,7 +97496,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -97347,7 +97510,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -97364,7 +97527,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -97382,7 +97545,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -97400,7 +97563,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -97415,7 +97578,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -97427,6 +97590,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
@@ -105803,6 +105980,11 @@
      {
       "uid": 1,
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
+       ]
+      },
       "typeValue": {
        "raw": "number | 'auto'"
       },
@@ -105812,6 +105994,11 @@
      {
       "uid": 2,
       "name": "maxWidth",
+      "comment": {
+       "raw": [
+        "Defines maximum width in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -105824,6 +106011,11 @@
      {
       "uid": 3,
       "name": "height",
+      "comment": {
+       "raw": [
+        "Defines height in 'px'."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -105836,6 +106028,15 @@
      {
       "uid": 4,
       "name": "showArrow",
+      "comment": {
+       "raw": [
+        "If true, arrow tip will be shown",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -105847,15 +106048,6 @@
      },
      {
       "uid": 5,
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": 6,
       "name": "focusLock",
       "comment": {
        "raw": [
@@ -105879,7 +106071,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 6,
       "name": "returnFocus",
       "comment": {
        "raw": [
@@ -105897,7 +106089,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 7,
       "name": "persistentFocus",
       "comment": {
        "raw": [
@@ -105915,7 +106107,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 8,
       "name": "lockProps",
       "comment": {
        "raw": [
@@ -105929,7 +106121,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 9,
       "name": "shards",
       "comment": {
        "raw": [
@@ -105943,7 +106135,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 10,
       "name": "as",
       "comment": {
        "raw": [
@@ -105960,7 +106152,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 11,
       "name": "closeOnEsc",
       "comment": {
        "raw": [
@@ -105978,7 +106170,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 12,
       "name": "onKeyDown",
       "comment": {
        "raw": [
@@ -105996,7 +106188,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 13,
       "name": "cx",
       "comment": {
        "raw": [
@@ -106011,7 +106203,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 14,
       "name": "children",
       "comment": {
        "raw": [
@@ -106023,6 +106215,20 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": 15,
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-core:IHasStyleAttrs",
       "required": false
      },
      {
