@@ -664,7 +664,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public loadData() {}
     public abstract reload(): void;
 
-    public getProps() {
+    public getConfig() {
         return {
             complexIds: this.props.complexIds,
             cascadeSelection: this.props.cascadeSelection,

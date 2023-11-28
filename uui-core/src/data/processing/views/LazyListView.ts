@@ -511,7 +511,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return isFetchPositionAndAmountChanged && lastIndex > this.rows.length;
     };
 
-    public getProps() {
+    public getConfig() {
         return {
             complexIds: this.props.complexIds,
             cascadeSelection: this.props.cascadeSelection,

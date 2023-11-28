@@ -108,7 +108,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        const { flattenSearchResults } = view.getProps();
+        const { flattenSearchResults } = view.getConfig();
 
         return (
             <PickerItem
