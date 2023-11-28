@@ -15,7 +15,6 @@ export function getExamplesList(examples: PropDoc<any, any>['examples'], ctx: IP
 }
 
 export function getSkin(theme: TUUITheme, isSkin: boolean): TSkin {
-    console.log('get skin', isSkin, theme);
     if (!isSkin) return TSkin.UUI;
 
     switch (theme) {
