@@ -75,4 +75,4 @@ export const SuccessAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'c
 
 export const HintAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ HintIcon } color="info" ref={ ref } { ...props } />);
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="error" ref={ ref } { ...props } />);
+export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="critical" ref={ ref } { ...props } />);
