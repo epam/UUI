@@ -17,11 +17,11 @@ export default function BasicExample() {
         <FlexCell width="100%">
             <RichTextView><h6>Solid</h6></RichTextView>
             <FlexRow spacing="12">
-                {items.map((tag) => <Tag icon={ MyIcon } color={ tag.color } caption={ `Color ${tag.color}` } count={ value } onClick={ () => {} } />)}
+                {items.map((tag) => <Tag key={ tag.color + '-solid' } icon={ MyIcon } color={ tag.color } caption={ `Color ${tag.color}` } count={ value } onClick={ () => {} } />)}
             </FlexRow>
             <RichTextView><h6>Outline</h6></RichTextView>
             <FlexRow spacing="12">
-                {items.map((tag) => <Tag fill="outline" icon={ MyIcon } color={ tag.color } caption={ `Color ${tag.color}` } count={ value } onClick={ () => {} } />)}
+                {items.map((tag) => <Tag key={ tag.color + '-outline' } fill="outline" icon={ MyIcon } color={ tag.color } caption={ `Color ${tag.color}` } count={ value } onClick={ () => {} } />)}
             </FlexRow>
         </FlexCell>
     );

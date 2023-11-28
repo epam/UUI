@@ -4,7 +4,7 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Tag.module.scss';
-import { EpamTagSemanticColor } from '../types';
+import { SemanticColor } from '../types';
 
 const defaultSize = '36';
 
@@ -19,7 +19,6 @@ const mapSize = {
 
 export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
 export type TagFill = 'solid' | 'outline';
-export type TagColor = EpamTagSemanticColor;
 
 const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     18: '12',
@@ -30,14 +29,14 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-export interface TagMods {
-    /** @default '36' */
-    size?: TagSize;
+export type TagMods = {
     /** @default 'neutral' */
-    color?: TagColor;
-}
+    color?: SemanticColor;
+};
 
 export type TagCoreProps = ButtonProps & {
+    /** @default '36' */
+    size?: TagSize;
     /** @default 'solid' */
     fill?: TagFill;
 };

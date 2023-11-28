@@ -9,7 +9,7 @@ import {
     FlexRow,
     Text,
     Switch,
-    BadgeColor,
+    SemanticColor,
     Badge,
 } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
@@ -30,7 +30,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as SemanticColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
