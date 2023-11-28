@@ -30,6 +30,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
                 context.current.setProperty('value', newValue);
             }),
             onOpenChange: jest.fn(),
+            size: '48',
         }),
         (props) => <RangeDatePicker { ...props } />,
     );

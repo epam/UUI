@@ -28,6 +28,7 @@ async function setupDatePicker(params: Partial<DatePickerProps>) {
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current.setProperty('value', newValue);
             }),
+            size: '48',
         }),
         (props) => <DatePicker { ...props } />,
     );

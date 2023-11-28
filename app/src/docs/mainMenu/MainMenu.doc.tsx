@@ -21,7 +21,6 @@ export class MainMenuDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.MainMenuProps>) => {
             doc.merge('children', { examples: childrenExamples });
-            doc.merge('appLogoBgColor', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });
