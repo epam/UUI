@@ -1,236 +1,61 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Adaptive panel component accepts ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "items",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop, all items will be rendered according to the order in this array. ",
-            "marks": []
-          }
-        ]
+        "text": "Adaptive panel component accepts "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For each item, you need to provide: ",
-            "marks": []
-          }
-        ]
+        "text": "items",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "id",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " - unique string value;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "render",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " -  your render function; it renders items inside the panel and measures their width. Pay attention that we can't measure item margins. If you need to have margins, please make a wrapper and add margins inside;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "priority",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " - item collapsed priority. An item with lower priority will be hidden first, and so on. If several items have the same priority, all of them will be hidden;",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "collapsedContainer",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " - if provided, this item will only be shown when some items are hidden; for example, you can use it to render dropdowns with hidden items. You can provide more than one ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "collapsedContainer",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " item, but will be shown only those which has minimal priority, but this priority can't be less than the last hidden item’s priority.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "text": " prop, all items will be rendered according to the order in this array. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Each item has the following api: "
+      }
+    ]
+  },
+  {
+    "data": {
+      "typePath": "@epam/uui-components:AdaptiveItemProps"
+    },
+    "type": "type-ref-table",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Also, you can provide a generic to "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, you can provide a generic to ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "AdaptiveItemProps<T>",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to add any of your properties to the adaptive item config. For example, if you need a different rendering for hidden items inside ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "CollapsedContainer",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", you can use these props.",
-            "marks": []
-          }
-        ]
+        "text": "AdaptiveItemProps<T>",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to add any of your properties to the adaptive item config. For example, if you need a different rendering for hidden items inside "
+      },
+      {
+        "text": "CollapsedContainer",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", you can use these props."
       }
     ]
   }
-}
+]
