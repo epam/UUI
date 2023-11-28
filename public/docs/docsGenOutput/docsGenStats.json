@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 614,
-   "amountTypes": 196
+   "amountProps": 610,
+   "amountTypes": 209
   },
   "value": [
    {
@@ -61,16 +61,6 @@
     "value": [
      "gaCode",
      "history"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataColumnProps",
-    "value": [
-     "groupBy",
-     "groupCaptionCX",
-     "headerFontSize",
-     "onGroupClick",
-     "onHeaderClick"
     ]
    },
    {
@@ -401,21 +391,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:AdaptiveItemProps",
-    "value": [
-     "collapsedContainer",
-     "id",
-     "priority",
-     "render"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AdaptivePanelProps",
-    "value": [
-     "items"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:ArrayPickerProps",
     "value": [
      "emptyValue",
@@ -439,6 +414,7 @@
     "value": [
      "from",
      "renderRating",
+     "step",
      "to"
     ]
    },
@@ -570,34 +546,12 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:DropdownContainerProps",
-    "value": [
-     "height",
-     "maxWidth",
-     "showArrow",
-     "style",
-     "width"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:DropSpotRenderParams",
-    "value": [
-     "eventHandlers"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:HeaderCellContentProps",
     "value": [
      "onResize",
      "onResizeEnd",
      "onResizeStart",
      "toggleSort"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:InputAddonProps",
-    "value": [
-     "content"
     ]
    },
    {
@@ -644,33 +598,9 @@
    {
     "typeRef": "@epam/uui-components:MainMenuProps",
     "value": [
-     "Burger",
-     "MainMenuDropdown",
-     "alwaysShowBurger",
-     "appLogoBgColor",
-     "appLogoUrl",
-     "children",
      "customerLogoBgColor",
-     "customerLogoHref",
-     "customerLogoLink",
-     "customerLogoUrl",
-     "customerLogoWidth",
-     "externalGap",
      "isTransparent",
-     "items",
-     "logoHref",
-     "logoLink",
-     "logoWidth",
-     "onLogoClick",
-     "renderBurger",
-     "serverBadge",
-     "tooltipTechInfo"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:MonthSelectionProps",
-    "value": [
-     "selectedDate"
+     "serverBadge"
     ]
    },
    {
@@ -682,13 +612,6 @@
      "isLast",
      "pages",
      "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:PickerBindingHelper",
-    "value": [
-     "applyValueToDataSourceState",
-     "dataSourceStateToValue"
     ]
    },
    {
@@ -731,6 +654,7 @@
    {
     "typeRef": "@epam/uui-components:PickerModalOptions",
     "value": [
+     "disallowClickOutside",
      "renderFilter",
      "renderFooter"
     ]
@@ -763,13 +687,6 @@
      "pickerMode",
      "renderItem",
      "searchPosition"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:PortalProps",
-    "value": [
-     "key",
-     "target"
     ]
    },
    {
@@ -992,7 +909,8 @@
    {
     "typeRef": "@epam/uui:CountIndicatorProps",
     "value": [
-     "color"
+     "color",
+     "size"
     ]
    },
    {
@@ -1143,6 +1061,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:IDropdownMenuItemProps",
     "value": [
      "indent",
@@ -1170,6 +1094,13 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:LinkButtonMods",
+    "value": [
+     "color",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:MainMenuAvatarProps",
     "value": [
      "avatarUrl",
@@ -1192,6 +1123,7 @@
    {
     "typeRef": "@epam/uui:MultiSwitchProps",
     "value": [
+     "color",
      "items"
     ]
    },
@@ -1253,6 +1185,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:RadioInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:RangeDatePickerBodyProps",
     "value": [
      "focusPart",
@@ -1272,6 +1210,12 @@
     "value": [
      "from",
      "to"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:RichTextViewMods",
+    "value": [
+     "size"
     ]
    },
    {
@@ -1301,13 +1245,32 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:SwitchMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TabButtonMods",
     "value": [
+     "size",
      "withNotify"
     ]
    },
    {
+    "typeRef": "@epam/uui:TagMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TextAreaMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:TextInputMods",
     "value": [
      "size"
     ]
@@ -1326,6 +1289,13 @@
     "value": [
      "fontSize",
      "lineHeight"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:TimePickerProps",
+    "value": [
+     "format",
+     "minutesStep"
     ]
    },
    {
@@ -1377,10 +1347,28 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:LinkButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:ModalWindowMods",
     "value": [
      "height",
      "width"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:MultiSwitchMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -1398,6 +1386,18 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:RatingMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:RowMods",
+    "value": [
+     "background"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:RowSizeMod",
     "value": [
      "size"
@@ -1407,6 +1407,13 @@
     "typeRef": "@epam/promo:StatusIndicatorMods",
     "value": [
      "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:TextMods",
+    "value": [
+     "color",
+     "font"
     ]
    },
    {
@@ -1472,6 +1479,18 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:LinkButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:MakeMeItemProps",
     "value": [
      "api"
@@ -1495,6 +1514,12 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:MultiSwitchMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:NotificationCardMods",
     "value": [
      "color"
@@ -1509,9 +1534,23 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:RadioInputMods",
+    "value": [
+     "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:RatingMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:RowMods",
     "value": [
-     "spacing"
+     "background",
+     "spacing",
+     "type"
     ]
    },
    {
@@ -1529,10 +1568,13 @@
    {
     "typeRef": "@epam/loveship:SliderRatingProps",
     "value": [
+     "from",
      "getHandlerIcon",
      "getScaleIcon",
      "renderTooltip",
-     "tooltipColor"
+     "size",
+     "tooltipColor",
+     "withoutNa"
     ]
    },
    {
@@ -1551,6 +1593,25 @@
     "typeRef": "@epam/loveship:TabButtonMods",
     "value": [
      "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TagMods",
+    "value": [
+     "fill"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TextInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TextMods",
+    "value": [
+     "color",
+     "font"
     ]
    },
    {
@@ -1603,7 +1664,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 475
+   "amountTypes": 474
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1681,6 +1742,7 @@
    "@epam/uui-core:IFilterItemBodyProps",
    "@epam/uui-core:IFilterPredicate",
    "@epam/uui-core:IFormApi",
+   "@epam/uui-core:IHasStyleAttrs",
    "@epam/uui-core:IHistory4",
    "@epam/uui-core:ILayoutContext",
    "@epam/uui-core:ILens",
@@ -1785,11 +1847,9 @@
    "@epam/uui-components:MainMenuDropdownProps",
    "@epam/uui-components:MainMenuLogoProps",
    "@epam/uui-components:MainMenuProps",
-   "@epam/uui-components:MonthSelectionProps",
    "@epam/uui-components:NumericInputProps",
    "@epam/uui-components:PaginatorParams",
    "@epam/uui-components:PaginatorProps",
-   "@epam/uui-components:PickerBindingHelper",
    "@epam/uui-components:PickerBindingProps",
    "@epam/uui-components:PickerBindingValueType",
    "@epam/uui-components:PickerBodyBaseProps",
@@ -2264,7 +2324,6 @@
      "DropSpot",
      "ErrorCatch",
      "IconButton",
-     "InputAddon",
      "LabeledInput",
      "MainMenu",
      "MainMenuCustomElement",
@@ -2299,6 +2358,7 @@
      "DataTableCell",
      "DataTableSelectionProvider",
      "FlexSpacer",
+     "InputAddon",
      "PortalRoot",
      "ScrollSpy",
      "Tooltip",
@@ -2983,13 +3043,13 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 559,
+   "allExports": 557,
    "byModule": {
-    "@epam/uui-core": 200,
-    "@epam/uui-components": 90,
+    "@epam/uui-core": 201,
+    "@epam/uui-components": 88,
     "@epam/uui": 137,
     "@epam/promo": 53,
-    "@epam/electric": 4,
+    "@epam/electric": 3,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
    }
@@ -3081,6 +3141,7 @@
      "IHasIcon",
      "IHasLabel",
      "IHasPlaceholder",
+     "IHasStyleAttrs",
      "IHasTabIndex",
      "IHistory4",
      "ILayoutContext",
@@ -3261,11 +3322,9 @@
      "MainMenuDropdownProps",
      "MainMenuLogoProps",
      "MainMenuProps",
-     "MonthSelectionProps",
      "NumericInputProps",
      "PaginatorParams",
      "PaginatorProps",
-     "PickerBindingHelper",
      "PickerBodyBaseProps",
      "PickerBodyValue",
      "PickerModalOptions",
@@ -3501,7 +3560,6 @@
    },
    "@epam/electric": {
     "InterfaceDeclaration": [
-     "AlertProps",
      "PromoButtonMods"
     ],
     "TypeAliasDeclaration": [
