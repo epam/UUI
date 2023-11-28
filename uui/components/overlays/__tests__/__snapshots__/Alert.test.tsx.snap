@@ -76,7 +76,7 @@ exports[`Alert should render with minimum props 1`] = `
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-error size48"
+  className="uui-alert root alertWrapper uui-color-critical size48"
   role="alert"
 >
   <div
