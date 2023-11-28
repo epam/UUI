@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { IHasIcon } from '@epam/uui-core';
 import { ColorPicker, DocBuilder, IPropDocEditor } from '@epam/uui-docs';
-import { ColorMod } from '@epam/uui';
 import { getIconList } from '../../../../documents/iconListHelpers';
 import { IconPickerWithInfo } from '../components/iconPicker/IconPicker';
+
+interface ColorMod {
+    /** Component color */
+    color?: 'info' | 'success' | 'warning' | 'error';
+}
 
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' }).prop('color', {
     editorType: function UuiColorPicker(props: IPropDocEditor) {

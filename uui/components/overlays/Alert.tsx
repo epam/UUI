@@ -3,7 +3,6 @@ import cx from 'classnames';
 import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton, LinkButton } from '../buttons';
-import { SemanticColor } from '../types';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
@@ -20,7 +19,7 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
     /** List of actions to display in the alert. Each action has name and 'action' callback */
     actions?: notificationAction[];
     /** Alert color */
-    color: SemanticColor;
+    color: 'info' | 'success' | 'warning' | 'error';
     /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
@@ -75,4 +74,4 @@ export const SuccessAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'c
 
 export const HintAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ HintIcon } color="info" ref={ ref } { ...props } />);
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="critical" ref={ ref } { ...props } />);
+export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="error" ref={ ref } { ...props } />);
