@@ -1,7 +1,14 @@
-# 5.3.1 - __.__.2023
+# 5.4.1 - ??.??.2023
+
+**What's New**
+* [Site]: rework for theming support
 
 **What's Fixed**
 * [Calendar]: fixed disabled text `color`
+* [TextPlaceholder]: changed animation
+* [Text]: fixed default font
+* [Panel]: fixed "background" prop
+* fixed variables for "theme-vanilla-thunder"
 
 # 5.3.0 - 21.11.2023
 
