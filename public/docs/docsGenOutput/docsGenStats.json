@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 636,
-   "amountTypes": 213
+   "amountProps": 613,
+   "amountTypes": 210
   },
   "value": [
    {
@@ -598,33 +598,9 @@
    {
     "typeRef": "@epam/uui-components:MainMenuProps",
     "value": [
-     "Burger",
-     "MainMenuDropdown",
-     "alwaysShowBurger",
-     "appLogoBgColor",
-     "appLogoUrl",
-     "children",
      "customerLogoBgColor",
-     "customerLogoHref",
-     "customerLogoLink",
-     "customerLogoUrl",
-     "customerLogoWidth",
-     "externalGap",
      "isTransparent",
-     "items",
-     "logoHref",
-     "logoLink",
-     "logoWidth",
-     "onLogoClick",
-     "renderBurger",
-     "serverBadge",
-     "tooltipTechInfo"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:MonthSelectionProps",
-    "value": [
-     "selectedDate"
+     "serverBadge"
     ]
    },
    {
@@ -636,13 +612,6 @@
      "isLast",
      "pages",
      "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:PickerBindingHelper",
-    "value": [
-     "applyValueToDataSourceState",
-     "dataSourceStateToValue"
     ]
    },
    {
@@ -718,13 +687,6 @@
      "pickerMode",
      "renderItem",
      "searchPosition"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:PortalProps",
-    "value": [
-     "key",
-     "target"
     ]
    },
    {
@@ -1710,7 +1672,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 477
+   "amountTypes": 475
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1893,11 +1855,9 @@
    "@epam/uui-components:MainMenuDropdownProps",
    "@epam/uui-components:MainMenuLogoProps",
    "@epam/uui-components:MainMenuProps",
-   "@epam/uui-components:MonthSelectionProps",
    "@epam/uui-components:NumericInputProps",
    "@epam/uui-components:PaginatorParams",
    "@epam/uui-components:PaginatorProps",
-   "@epam/uui-components:PickerBindingHelper",
    "@epam/uui-components:PickerBindingProps",
    "@epam/uui-components:PickerBindingValueType",
    "@epam/uui-components:PickerBodyBaseProps",
@@ -1948,7 +1908,7 @@
    "@epam/uui:BurgerGroupHeaderProps",
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
-   "@epam/uui:ButtonColors",
+   "@epam/uui:ButtonColor",
    "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
@@ -2041,7 +2001,7 @@
    "@epam/uui:SwitchProps",
    "@epam/uui:TabButtonMods",
    "@epam/uui:TabButtonProps",
-   "@epam/uui:TagColors",
+   "@epam/uui:TagColor",
    "@epam/uui:TagCoreProps",
    "@epam/uui:TagFill",
    "@epam/uui:TagMods",
@@ -3080,10 +3040,10 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 558,
+   "allExports": 556,
    "byModule": {
     "@epam/uui-core": 201,
-    "@epam/uui-components": 90,
+    "@epam/uui-components": 88,
     "@epam/uui": 134,
     "@epam/promo": 55,
     "@epam/electric": 3,
@@ -3359,11 +3319,9 @@
      "MainMenuDropdownProps",
      "MainMenuLogoProps",
      "MainMenuProps",
-     "MonthSelectionProps",
      "NumericInputProps",
      "PaginatorParams",
      "PaginatorProps",
-     "PickerBindingHelper",
      "PickerBodyBaseProps",
      "PickerBodyValue",
      "PickerModalOptions",
@@ -3483,7 +3441,7 @@
      "BadgeFill",
      "BadgeProps",
      "BadgeSize",
-     "ButtonColors",
+     "ButtonColor",
      "ButtonCoreProps",
      "ButtonFill",
      "ButtonProps",
@@ -3516,7 +3474,7 @@
      "StatusIndicatorColors",
      "SwitchProps",
      "TabButtonProps",
-     "TagColors",
+     "TagColor",
      "TagCoreProps",
      "TagFill",
      "TagMods",
