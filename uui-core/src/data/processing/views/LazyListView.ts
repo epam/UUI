@@ -510,4 +510,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         return isFetchPositionAndAmountChanged && lastIndex > this.rows.length;
     };
+
+    public getProps() {
+        return {
+            complexIds: this.props.complexIds,
+            cascadeSelection: this.props.cascadeSelection,
+            selectAll: this.props.selectAll,
+            backgroundReload: this.props.backgroundReload,
+            flattenSearchResults: this.props.flattenSearchResults,
+        };
+    }
 }

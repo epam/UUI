@@ -1,8 +1,8 @@
 import React from 'react';
 import { IconContainer, PickerModalArrayProps, PickerModalOptions, PickerModalScalarProps, handleDataSourceKeyboard, usePickerModal } from '@epam/uui-components';
-import { DataRowProps, IHasCaption, PickerBaseOptions } from '@epam/uui-core';
+import { DataRowProps, DataSourceState, IHasCaption, PickerBaseOptions } from '@epam/uui-core';
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../typography';
+import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout';
 import {
@@ -14,6 +14,7 @@ import { ReactComponent as SearchIcon } from '../../icons/search-with-background
 import css from './PickerModal.module.scss';
 import { SearchInput, Switch } from '../inputs';
 import { DataPickerBody } from './DataPickerBody';
+import { PickerItem } from './PickerItem';
 
 export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
 IHasCaption &
@@ -37,6 +38,28 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         handleDataSourceValueChange,
     } = usePickerModal<TItem, TId>(props);
 
+    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
+        if (!search) return;
+
+        return path
+            .map(({ value }) => getName(value))
+            .filter(Boolean)
+            .join(' / ');
+    };
+
+    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
+        const { flattenSearchResults } = view.getProps();
+        return (
+            <PickerItem
+                title={ getName(item) }
+                size="36"
+                dataSourceState={ dsState }
+                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dataSourceState) } : {}) }
+                { ...rowProps }
+            />
+        );
+    };
+    
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         return props.renderRow ? (
             props.renderRow(rowProps, dataSourceState)
@@ -47,7 +70,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                 borderBottom="none"
                 padding="24"
                 size="36"
-                renderItem={ (i: TItem & { name?: string }) => <Text size="36">{rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : getName(i)}</Text> }
+                renderItem={ (item, itemProps) => renderItem(item, itemProps, dataSourceState) }
             />
         );
     };

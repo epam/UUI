@@ -663,4 +663,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isPartialLoad = () => false;
     public loadData() {}
     public abstract reload(): void;
+
+    public getProps() {
+        return {
+            complexIds: this.props.complexIds,
+            cascadeSelection: this.props.cascadeSelection,
+            selectAll: this.props.selectAll,
+            backgroundReload: this.props.backgroundReload,
+        };
+    }
 }

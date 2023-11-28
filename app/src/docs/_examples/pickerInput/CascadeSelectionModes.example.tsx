@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DataPickerRow, FlexRow, MultiSwitch, FlexCell, PickerInput, PickerItem } from '@epam/uui';
-import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { FlexRow, MultiSwitch, FlexCell, PickerInput } from '@epam/uui';
+import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 const cascadeSelectionModes: Array<{ id: 'explicit' | 'implicit'; caption: string }> = [
@@ -33,15 +33,6 @@ export default function CascadeSelectionModesExample() {
         [],
     );
 
-    const getSubtitle = ({ path }: DataRowProps<Location, string>, { search }: DataSourceState) => {
-        if (!search) return;
-
-        return path
-            .map(({ value: pathValue }) => pathValue?.name)
-            .filter(Boolean)
-            .join(' / ');
-    };
-
     return (
         <FlexCell width={ 350 }>
             <FlexRow vPadding="12">
@@ -56,14 +47,6 @@ export default function CascadeSelectionModesExample() {
                 selectionMode="multi"
                 valueType="id"
                 cascadeSelection={ cascadeSelection }
-                renderRow={ (props: DataRowProps<Location, string>, dataSourceState) => (
-                    <DataPickerRow
-                        { ...props }
-                        key={ props.rowKey }
-                        padding="12"
-                        renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ getSubtitle(props, dataSourceState) } /> }
-                    />
-                ) }
             />
         </FlexCell>
     );
