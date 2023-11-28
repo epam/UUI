@@ -18,7 +18,7 @@ const mapSize = {
 
 export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
 export type TagFill = 'solid' | 'outline';
-export type TagColors = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+export type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     18: '12',
@@ -31,7 +31,7 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
 
 export type TagMods = {
     /** @default 'neutral' */
-    color?: TagColors;
+    color?: TagColor;
 };
 
 export type TagCoreProps = ButtonProps & {
@@ -43,12 +43,12 @@ export type TagCoreProps = ButtonProps & {
 
 export type TagProps = TagCoreProps & TagMods;
 
-export function applyTagMods(mods: TagProps) {
+export function applyTagMods(props: TagProps) {
     return [
-        css['size-' + (mods.size || defaultSize)],
+        css['size-' + (props.size || defaultSize)],
         css.root,
-        `uui-color-${mods.color || 'neutral'}`,
-        `uui-fill-${mods.fill || 'solid'}`,
+        `uui-color-${props.color || 'neutral'}`,
+        `uui-fill-${props.fill || 'solid'}`,
         'uui-tag',
     ];
 }

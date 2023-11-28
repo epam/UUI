@@ -7,13 +7,13 @@ import { CountIndicator } from '../widgets';
 import css from './Button.module.scss';
 
 const defaultSize = '36';
-export type ButtonColors = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
+export type ButtonColor = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
 export type ButtonFill = 'solid' | 'outline' | 'ghost' | 'none';
 
 export interface ButtonMods {
     size?: ControlSize | '18';
     fill?: ButtonFill;
-    color?: ButtonColors;
+    color?: ButtonColor;
 }
 
 export type ButtonCoreProps = uuiButtonProps & {
