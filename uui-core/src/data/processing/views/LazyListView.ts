@@ -115,14 +115,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private defaultGetId = (i: any) => i.id;
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
-        if (props.getChildCount && (props.cascadeSelection || (props.flattenSearchResults ?? true)) && !props.getParentId) {
+        const newProps = {
+            ...props,
+            getId: props.getId ?? this.defaultGetId,
+            flattenSearchResults: props.flattenSearchResults ?? true,
+        };
+
+        if (newProps.getChildCount && (newProps.cascadeSelection || newProps.flattenSearchResults) && !newProps.getParentId) {
             console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
         }
 
-        return {
-            ...props,
-            getId: props.getId ?? this.defaultGetId,
-        };
+        return newProps;
     }
 
     public update(
@@ -143,6 +146,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.props = {
             ...props,
             legacyLoadDataBehavior: props.legacyLoadDataBehavior ?? this.props.legacyLoadDataBehavior,
+            flattenSearchResults: this.props.flattenSearchResults ?? props.flattenSearchResults ?? true,
         };
 
         this.updateRowOptions();
@@ -496,7 +500,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     };
 
     protected isFlattenSearch = () => {
-        return this.value.search && (this.props.flattenSearchResults ?? true);
+        return this.value.search && this.props.flattenSearchResults;
     };
 
     protected isPartialLoad = () => true;

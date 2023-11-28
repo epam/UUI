@@ -11,12 +11,19 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     cache: ListApiCache<TItem, TId, TFilter> = null;
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
         super(props);
-        this.props = props;
+        this.props = {
+            ...props,
+            flattenSearchResults: props.flattenSearchResults ?? true,
+        };
         this.initCache();
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
-        this.props = props;
+        this.props = {
+            ...this.props,
+            ...props,
+            flattenSearchResults: props.flattenSearchResults ?? true,
+        };
     }
 
     public getById = (id: TId): TItem | void => {
@@ -50,15 +57,10 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> => {
         const view = this.views.get(onValueChange) as LazyListView<TItem, TId, TFilter>;
-        const currentProps: LazyListViewProps<TItem, TId, TFilter> = {
+        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             getId: this.getId,
             ...props,
-        };
-
-        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
-            ...currentProps,
-            flattenSearchResults: currentProps.flattenSearchResults ?? true,
         };
 
         if (view) {
@@ -77,15 +79,10 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): LazyListView<TItem, TId, TFilter> {
-        const currentProps: LazyListViewProps<TItem, TId, TFilter> = {
+        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             getId: this.getId,
             ...props,
-        };
-
-        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
-            ...currentProps,
-            flattenSearchResults: currentProps.flattenSearchResults ?? true,
         };
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
