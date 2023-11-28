@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import {
-    DataTable, Panel, FlexRow, Text, PresetsPanel, SemanticColor, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
-    ModalHeader, FlexSpacer,
+    DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
+    ModalHeader, FlexSpacer, BadgeColors,
 } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 
@@ -21,7 +21,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as SemanticColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColors } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 160,

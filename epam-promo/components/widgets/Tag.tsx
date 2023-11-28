@@ -6,7 +6,7 @@ export type TagMods = {
     /**
      * @default 'gray30'
      */
-    color?: EpamPrimaryColor | 'blue' | 'white' | 'gray10' | 'gray30' | 'gray70';
+    color?: EpamPrimaryColor | 'white' | 'gray10' | 'gray30' | 'gray70';
 };
 
 export type TagProps = UuiTagCoreProps & TagMods;

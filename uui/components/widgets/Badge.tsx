@@ -4,7 +4,6 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
-import { SemanticColor } from '../types';
 
 const defaultSize = '36';
 
@@ -19,9 +18,10 @@ const mapSize = {
 
 export type BadgeFill = 'solid' | 'outline';
 export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
+export type BadgeColors = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 export interface BadgeMods {
-    color?: SemanticColor;
+    color?: BadgeColors;
     /** @default 'solid' */
     fill?: BadgeFill;
     /** @default '36' */

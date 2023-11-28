@@ -2,7 +2,7 @@
  "missingPropComment": {
   "totals": {
    "amountProps": 648,
-   "amountTypes": 219
+   "amountTypes": 218
   },
   "value": [
    {
@@ -1302,15 +1302,10 @@
      "margin",
      "padding",
      "rowGap",
+     "size",
      "spacing",
      "topShadow",
      "vPadding"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:RowSizeMod",
-    "value": [
-     "size"
     ]
    },
    {
@@ -1335,14 +1330,14 @@
    {
     "typeRef": "@epam/uui:TagCoreProps",
     "value": [
-     "fill"
+     "fill",
+     "size"
     ]
    },
    {
     "typeRef": "@epam/uui:TagMods",
     "value": [
-     "color",
-     "size"
+     "color"
     ]
    },
    {
@@ -1752,7 +1747,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 481
+   "amountTypes": 476
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1979,7 +1974,7 @@
    "@epam/uui:AccordionMods",
    "@epam/uui:AccordionProps",
    "@epam/uui:AlertProps",
-   "@epam/uui:BadgeColor",
+   "@epam/uui:BadgeColors",
    "@epam/uui:BadgeCoreProps",
    "@epam/uui:BadgeFill",
    "@epam/uui:BadgeMods",
@@ -1989,14 +1984,13 @@
    "@epam/uui:BurgerGroupHeaderProps",
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
-   "@epam/uui:ButtonColor",
+   "@epam/uui:ButtonColors",
    "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",
    "@epam/uui:CheckboxMods",
    "@epam/uui:CheckboxProps",
-   "@epam/uui:ColorMod",
    "@epam/uui:ColumnsConfigurationModalProps",
    "@epam/uui:CompletePickerInputProps",
    "@epam/uui:ConfirmationModalWindowProps",
@@ -2019,17 +2013,12 @@
    "@epam/uui:DropdownMenuContainerProps",
    "@epam/uui:DropMarkerProps",
    "@epam/uui:DropSpotProps",
-   "@epam/uui:EpamBadgeSemanticColor",
-   "@epam/uui:EpamTagSemanticColor",
    "@epam/uui:FileCardItem",
    "@epam/uui:FileCardProps",
-   "@epam/uui:FillStyle",
    "@epam/uui:FiltersPanelProps",
    "@epam/uui:FlexCellMods",
    "@epam/uui:FlexCellProps",
    "@epam/uui:FlexRowProps",
-   "@epam/uui:FontStyle",
-   "@epam/uui:FontWeight",
    "@epam/uui:GlobalMenuProps",
    "@epam/uui:HighlightRange",
    "@epam/uui:IconButtonCoreProps",
@@ -2078,7 +2067,6 @@
    "@epam/uui:RangeDatePickerValue",
    "@epam/uui:RichTextViewMods",
    "@epam/uui:RichTextViewProps",
-   "@epam/uui:RowSize",
    "@epam/uui:SearchInputProps",
    "@epam/uui:SliderMods",
    "@epam/uui:SliderProps",
@@ -2089,7 +2077,7 @@
    "@epam/uui:SwitchProps",
    "@epam/uui:TabButtonMods",
    "@epam/uui:TabButtonProps",
-   "@epam/uui:TagColor",
+   "@epam/uui:TagColors",
    "@epam/uui:TagCoreProps",
    "@epam/uui:TagFill",
    "@epam/uui:TagMods",
@@ -2098,6 +2086,8 @@
    "@epam/uui:TextAreaMods",
    "@epam/uui:TextAreaProps",
    "@epam/uui:TextColor",
+   "@epam/uui:TextFontStyle",
+   "@epam/uui:TextFontWeight",
    "@epam/uui:TextInputProps",
    "@epam/uui:TextMods",
    "@epam/uui:TextPlaceholderProps",
@@ -2240,11 +2230,11 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 822,
+   "allExports": 810,
    "byModule": {
     "@epam/uui-core": 130,
     "@epam/uui-components": 105,
-    "@epam/uui": 154,
+    "@epam/uui": 142,
     "@epam/promo": 128,
     "@epam/electric": 105,
     "@epam/loveship": 137,
@@ -2509,20 +2499,8 @@
     "VariableDeclaration": [
      "Accordion",
      "Alert",
-     "allButtonColors",
-     "allButtonFills",
-     "allEpamBadgeSemanticColors",
-     "allEpamTagSemanticColors",
-     "allFillStyles",
-     "allFontStyles",
-     "allFontWeights",
      "allIconColors",
      "allLinkButtonColors",
-     "allRowSizes",
-     "allSemanticColors",
-     "allSizes",
-     "allTextColors",
-     "allTextSizes",
      "Anchor",
      "Avatar",
      "AvatarStack",
@@ -3138,11 +3116,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 564,
+   "allExports": 557,
    "byModule": {
     "@epam/uui-core": 200,
     "@epam/uui-components": 90,
-    "@epam/uui": 141,
+    "@epam/uui": 134,
     "@epam/promo": 55,
     "@epam/electric": 3,
     "@epam/loveship": 65,
@@ -3463,7 +3441,6 @@
      "BurgerSearchProps",
      "ButtonMods",
      "CheckboxMods",
-     "ColorMod",
      "ColumnsConfigurationModalProps",
      "ConfirmationModalWindowProps",
      "CountIndicatorProps",
@@ -3518,8 +3495,6 @@
      "RangeDatePickerProps",
      "RangeDatePickerValue",
      "RichTextViewMods",
-     "RowMods",
-     "RowSizeMod",
      "SearchInputProps",
      "SizeMod",
      "SliderMods",
@@ -3527,7 +3502,6 @@
      "StatusIndicatorProps",
      "SwitchMods",
      "TabButtonMods",
-     "TagMods",
      "TextAreaMods",
      "TextInputMods",
      "TextInputProps",
@@ -3539,25 +3513,20 @@
     ],
     "TypeAliasDeclaration": [
      "AccordionProps",
-     "BadgeColor",
+     "BadgeColors",
      "BadgeCoreProps",
      "BadgeFill",
      "BadgeProps",
      "BadgeSize",
-     "ButtonColor",
+     "ButtonColors",
      "ButtonCoreProps",
      "ButtonFill",
      "ButtonProps",
      "CheckboxProps",
      "CompletePickerInputProps",
      "ControlSize",
-     "EpamBadgeSemanticColor",
-     "EpamTagSemanticColor",
-     "FillStyle",
      "FlexCellMods",
      "FlexCellProps",
-     "FontStyle",
-     "FontWeight",
      "IconButtonCoreProps",
      "IconButtonProps",
      "IconColor",
@@ -3577,19 +3546,21 @@
      "pickerPart",
      "RadioInputProps",
      "RichTextViewProps",
-     "RowSize",
-     "SemanticColor",
+     "RowMods",
      "SpinnerProps",
      "StatusIndicatorColors",
      "SwitchProps",
      "TabButtonProps",
-     "TagColor",
+     "TagColors",
      "TagCoreProps",
      "TagFill",
+     "TagMods",
      "TagProps",
      "TagSize",
      "TextAreaProps",
      "TextColor",
+     "TextFontStyle",
+     "TextFontWeight",
      "TextPlaceholderProps",
      "TextProps",
      "TextSize",
