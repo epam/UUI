@@ -26,6 +26,6 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        return getQuery('skin') === TSkin.UUI3_loveship ? this.renderLoveshipContent() : this.renderPromoContent();
+        return getQuery('skin') === TSkin.Loveship ? this.renderLoveshipContent() : this.renderPromoContent();
     }
 }

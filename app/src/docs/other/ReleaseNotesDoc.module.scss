@@ -1,7 +1,8 @@
 @use '~@epam/promo/assets/styles/index' as *;
 
 .title {
-    font-family: $font-museo-sans;
+    font-family: var(--uui-font);
+    font-weight: 600;
     margin: 24px 0;
     font-size: 36px;
     line-height: 48px;
@@ -23,7 +24,7 @@
     .release-content {
         max-width: 714px;
         width: 100%;
-        border-bottom: 1px solid $gray40;
+        border-bottom: 1px solid var(--uui-divider);
         padding-bottom: 24px;
     }
 

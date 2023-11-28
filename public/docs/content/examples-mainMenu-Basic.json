@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Simple ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "MainMenu",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " usage example",
-            "marks": []
-          }
-        ]
+        "text": "Simple "
+      },
+      {
+        "text": "MainMenu",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " usage example"
       }
     ]
   }
-}
+]

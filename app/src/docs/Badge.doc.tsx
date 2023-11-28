@@ -13,8 +13,8 @@ export class BadgeDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:BadgeProps', component: uui.Badge },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
+            [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
+            [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
         },
         doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });

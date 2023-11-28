@@ -19,7 +19,7 @@ interface Person {
     displayAdsAgreed?: boolean;
 }
 
-export function ThemeDemo() {
+export function ThemeElectricDemo() {
     const svc = useUuiContext();
 
     const countryDataSource = useAsyncDataSource<Country, string, unknown>(
@@ -77,7 +77,7 @@ export function ThemeDemo() {
                 },
             },
         }),
-        settingsKey: 'theme-demo',
+        settingsKey: 'theme-electric-demo',
     });
 
     const renderDemoForm = () => {

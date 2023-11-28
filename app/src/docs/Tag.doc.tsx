@@ -13,8 +13,8 @@ export class TagDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TagProps', component: uui.Tag },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:TagProps', component: promo.Tag },
-            [TSkin.UUI3_loveship]: {
+            [TSkin.Promo]: { type: '@epam/uui:TagProps', component: promo.Tag },
+            [TSkin.Loveship]: {
                 type: '@epam/loveship:TagProps',
                 component: loveship.Tag,
                 doc: (doc: DocBuilder<loveship.TagProps>) => {

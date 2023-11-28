@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
-import { FlexCell, FlexRow, Text } from '@epam/promo';
+import { FlexCell, FlexRow, Text } from '@epam/uui';
 import css from './InfoBlock.module.scss';
 
 const infoData = [
@@ -18,10 +18,10 @@ export class InfoBlock extends React.Component {
                 <FlexRow cx={ css.info }>
                     {infoData.map((data) => (
                         <FlexCell cx={ css.infoContainer } key={ data.caption } width="auto">
-                            <Text font="museo-sans" cx={ css.infoValue }>
+                            <Text cx={ css.infoValue }>
                                 {data.value}
                             </Text>
-                            <Text font="museo-slab" cx={ cx(css.infoCaption, data.pulse && css.pulse) }>
+                            <Text cx={ cx(css.infoCaption, data.pulse && css.pulse) }>
                                 {data.caption}
                             </Text>
                         </FlexCell>

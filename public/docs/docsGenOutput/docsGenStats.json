@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 642,
-   "amountTypes": 214
+   "amountProps": 614,
+   "amountTypes": 196
   },
   "value": [
    {
@@ -43,6 +43,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-core:ButtonSemanticProps",
+    "value": [
+     "type"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-core:CommonContexts",
     "value": [
      "api",
@@ -55,6 +61,16 @@
     "value": [
      "gaCode",
      "history"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:DataColumnProps",
+    "value": [
+     "groupBy",
+     "groupCaptionCX",
+     "headerFontSize",
+     "onGroupClick",
+     "onHeaderClick"
     ]
    },
    {
@@ -423,7 +439,6 @@
     "value": [
      "from",
      "renderRating",
-     "step",
      "to"
     ]
    },
@@ -716,7 +731,6 @@
    {
     "typeRef": "@epam/uui-components:PickerModalOptions",
     "value": [
-     "disallowClickOutside",
      "renderFilter",
      "renderFooter"
     ]
@@ -909,6 +923,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:BadgeCoreProps",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:BadgeMods",
     "value": [
      "color",
@@ -928,6 +948,12 @@
     "typeRef": "@epam/uui:BurgerGroupHeaderProps",
     "value": [
      "caption"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:ButtonCoreProps",
+    "value": [
+     "size"
     ]
    },
    {
@@ -966,8 +992,7 @@
    {
     "typeRef": "@epam/uui:CountIndicatorProps",
     "value": [
-     "color",
-     "size"
+     "color"
     ]
    },
    {
@@ -1118,12 +1143,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:IconButtonMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:IDropdownMenuItemProps",
     "value": [
      "indent",
@@ -1145,9 +1164,8 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:LinkButtonMods",
+    "typeRef": "@epam/uui:LinkButtonCoreProps",
     "value": [
-     "color",
      "size"
     ]
    },
@@ -1165,12 +1183,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:MainMenuIconProps",
-    "value": [
-     "icon"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:ModalWindowMods",
     "value": [
      "height",
@@ -1180,7 +1192,6 @@
    {
     "typeRef": "@epam/uui:MultiSwitchProps",
     "value": [
-     "color",
      "items"
     ]
    },
@@ -1242,12 +1253,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:RadioInputMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:RangeDatePickerBodyProps",
     "value": [
      "focusPart",
@@ -1267,12 +1272,6 @@
     "value": [
      "from",
      "to"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:RichTextViewMods",
-    "value": [
-     "size"
     ]
    },
    {
@@ -1302,32 +1301,13 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:SwitchMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:TabButtonMods",
     "value": [
-     "size",
      "withNotify"
     ]
    },
    {
-    "typeRef": "@epam/uui:TagMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:TextAreaMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:TextInputMods",
     "value": [
      "size"
     ]
@@ -1346,13 +1326,6 @@
     "value": [
      "fontSize",
      "lineHeight"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:TimePickerProps",
-    "value": [
-     "format",
-     "minutesStep"
     ]
    },
    {
@@ -1404,28 +1377,10 @@
     ]
    },
    {
-    "typeRef": "@epam/promo:IconButtonMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
-    "typeRef": "@epam/promo:LinkButtonMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
     "typeRef": "@epam/promo:ModalWindowMods",
     "value": [
      "height",
      "width"
-    ]
-   },
-   {
-    "typeRef": "@epam/promo:MultiSwitchMods",
-    "value": [
-     "color"
     ]
    },
    {
@@ -1443,18 +1398,6 @@
     ]
    },
    {
-    "typeRef": "@epam/promo:RatingMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/promo:RowMods",
-    "value": [
-     "background"
-    ]
-   },
-   {
     "typeRef": "@epam/promo:RowSizeMod",
     "value": [
      "size"
@@ -1464,13 +1407,6 @@
     "typeRef": "@epam/promo:StatusIndicatorMods",
     "value": [
      "color"
-    ]
-   },
-   {
-    "typeRef": "@epam/promo:TextMods",
-    "value": [
-     "color",
-     "font"
     ]
    },
    {
@@ -1536,18 +1472,6 @@
     ]
    },
    {
-    "typeRef": "@epam/loveship:IconButtonMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:LinkButtonMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
     "typeRef": "@epam/loveship:MakeMeItemProps",
     "value": [
      "api"
@@ -1571,12 +1495,6 @@
     ]
    },
    {
-    "typeRef": "@epam/loveship:MultiSwitchMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
     "typeRef": "@epam/loveship:NotificationCardMods",
     "value": [
      "color"
@@ -1591,23 +1509,9 @@
     ]
    },
    {
-    "typeRef": "@epam/loveship:RadioInputMods",
-    "value": [
-     "theme"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:RatingMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
     "typeRef": "@epam/loveship:RowMods",
     "value": [
-     "background",
-     "spacing",
-     "type"
+     "spacing"
     ]
    },
    {
@@ -1625,13 +1529,10 @@
    {
     "typeRef": "@epam/loveship:SliderRatingProps",
     "value": [
-     "from",
      "getHandlerIcon",
      "getScaleIcon",
      "renderTooltip",
-     "size",
-     "tooltipColor",
-     "withoutNa"
+     "tooltipColor"
     ]
    },
    {
@@ -1650,25 +1551,6 @@
     "typeRef": "@epam/loveship:TabButtonMods",
     "value": [
      "theme"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:TagMods",
-    "value": [
-     "fill"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:TextInputMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:TextMods",
-    "value": [
-     "color",
-     "font"
     ]
    },
    {
@@ -1721,7 +1603,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 469
+   "amountTypes": 475
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1745,7 +1627,8 @@
    "@epam/uui-core:BatchPromiseOptions",
    "@epam/uui-core:BlockTypes",
    "@epam/uui-core:ButtonBaseCoreProps",
-   "@epam/uui-core:ButtonCoreProps",
+   "@epam/uui-core:ButtonComponentProps",
+   "@epam/uui-core:ButtonSemanticProps",
    "@epam/uui-core:CascadeSelection",
    "@epam/uui-core:CheckboxCoreProps",
    "@epam/uui-core:ColumnsConfig",
@@ -1821,6 +1704,7 @@
    "@epam/uui-core:ListApiSettings",
    "@epam/uui-core:LoadingStatus",
    "@epam/uui-core:LoadTreeOptions",
+   "@epam/uui-core:MergedRawProps",
    "@epam/uui-core:Metadata",
    "@epam/uui-core:ModalBlockerProps",
    "@epam/uui-core:ModalFooterCoreProps",
@@ -1947,6 +1831,7 @@
    "@epam/uui:AccordionProps",
    "@epam/uui:AlertProps",
    "@epam/uui:BadgeColor",
+   "@epam/uui:BadgeCoreProps",
    "@epam/uui:BadgeFill",
    "@epam/uui:BadgeMods",
    "@epam/uui:BadgeProps",
@@ -1956,6 +1841,7 @@
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
    "@epam/uui:ButtonColor",
+   "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",
@@ -1996,6 +1882,7 @@
    "@epam/uui:FontWeight",
    "@epam/uui:GlobalMenuProps",
    "@epam/uui:HighlightRange",
+   "@epam/uui:IconButtonCoreProps",
    "@epam/uui:IconButtonMods",
    "@epam/uui:IconButtonProps",
    "@epam/uui:IconColor",
@@ -2006,6 +1893,7 @@
    "@epam/uui:LabeledInputMods",
    "@epam/uui:LabeledInputProps",
    "@epam/uui:LinkButtonColorType",
+   "@epam/uui:LinkButtonCoreProps",
    "@epam/uui:LinkButtonMods",
    "@epam/uui:LinkButtonProps",
    "@epam/uui:MainMenuAvatarProps",
@@ -2197,9 +2085,9 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 821,
+   "allExports": 822,
    "byModule": {
-    "@epam/uui-core": 129,
+    "@epam/uui-core": 130,
     "@epam/uui-components": 105,
     "@epam/uui": 153,
     "@epam/promo": 128,
@@ -2302,6 +2190,7 @@
      "blurFocusedElement",
      "closestTargetParentByCondition",
      "ContextProvider",
+     "createSkinComponent",
      "deleteCookie",
      "Form",
      "formatBytes",
@@ -3094,13 +2983,13 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 551,
+   "allExports": 559,
    "byModule": {
-    "@epam/uui-core": 197,
+    "@epam/uui-core": 200,
     "@epam/uui-components": 90,
-    "@epam/uui": 133,
+    "@epam/uui": 137,
     "@epam/promo": 53,
-    "@epam/electric": 3,
+    "@epam/electric": 4,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
    }
@@ -3127,6 +3016,7 @@
      "BatchPromiseOptions",
      "ButtonBaseCoreProps",
      "ButtonCoreProps",
+     "ButtonSemanticProps",
      "CheckboxCoreProps",
      "CommonContexts",
      "ContextProviderProps",
@@ -3256,6 +3146,7 @@
      "ArrayElement",
      "ArrayPickerProps",
      "BlockTypes",
+     "ButtonComponentProps",
      "CascadeSelection",
      "ClassValue",
      "ColumnsConfig",
@@ -3288,6 +3179,7 @@
      "LazyDataSourceApi",
      "LazyLoadedMapLoadCallback",
      "LoadingStatus",
+     "MergedRawProps",
      "PickerBaseOptions",
      "PickerBaseProps",
      "PickerBindingProps",
@@ -3313,7 +3205,11 @@
     "TypeAliasDeclaration": [
      "AccordionProps",
      "AdaptiveItemProps",
+     "AnchorProps",
      "ArrayPickerProps",
+     "ButtonBaseProps",
+     "ButtonProps",
+     "IconButtonBaseProps",
      "IRenderInputProps",
      "PickerBindingProps",
      "PickerBindingValueType",
@@ -3330,15 +3226,12 @@
     ],
     "InterfaceDeclaration": [
      "AdaptivePanelProps",
-     "AnchorProps",
      "AvatarProps",
      "AvatarStackProps",
      "BaseRatingProps",
      "BaseTimePickerProps",
      "BlockerProps",
      "BurgerProps",
-     "ButtonBaseProps",
-     "ButtonProps",
      "CalendarPresetsProps",
      "CalendarProps",
      "CarouselProps",
@@ -3359,7 +3252,6 @@
      "DropSpotRenderParams",
      "FlexSpacerProps",
      "HeaderCellContentProps",
-     "IconButtonBaseProps",
      "InputAddonProps",
      "IProgressBarProps",
      "IScrollSpyApi",
@@ -3444,7 +3336,6 @@
      "GlobalMenuProps",
      "HighlightRange",
      "IconButtonMods",
-     "IconButtonProps",
      "IDropdownMenuItemProps",
      "IHasEditMode",
      "IndeterminateBarMods",
@@ -3453,7 +3344,6 @@
      "LinkButtonMods",
      "MainMenuAvatarProps",
      "MainMenuButtonMods",
-     "MainMenuIconProps",
      "MainMenuMods",
      "MainMenuSearchProps",
      "ModalFooterProps",
@@ -3495,10 +3385,12 @@
     "TypeAliasDeclaration": [
      "AccordionProps",
      "BadgeColor",
+     "BadgeCoreProps",
      "BadgeFill",
      "BadgeProps",
      "BadgeSize",
      "ButtonColor",
+     "ButtonCoreProps",
      "ButtonFill",
      "ButtonProps",
      "CheckboxProps",
@@ -3510,11 +3402,15 @@
      "FlexCellProps",
      "FontStyle",
      "FontWeight",
+     "IconButtonCoreProps",
+     "IconButtonProps",
      "IconColor",
      "InputType",
      "LabeledInputProps",
      "LinkButtonColorType",
+     "LinkButtonCoreProps",
      "LinkButtonProps",
+     "MainMenuIconProps",
      "MainMenuProps",
      "ModalWindowProps",
      "NumericInputProps",
@@ -3605,6 +3501,7 @@
    },
    "@epam/electric": {
     "InterfaceDeclaration": [
+     "AlertProps",
      "PromoButtonMods"
     ],
     "TypeAliasDeclaration": [
@@ -3645,10 +3542,6 @@
      "SliderRatingProps",
      "SnackbarCardProps",
      "StatusIndicatorMods",
-     "TabButtonMods",
-     "TabButtonProps",
-     "TagMods",
-     "TagProps",
      "TextInputMods",
      "TextMods",
      "TooltipMods"
@@ -3677,6 +3570,10 @@
      "RowSize",
      "SearchInputProps",
      "StatusIndicatorProps",
+     "TabButtonMods",
+     "TabButtonProps",
+     "TagMods",
+     "TagProps",
      "TextInputProps",
      "TextProps",
      "TextSize",

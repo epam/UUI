@@ -1,11 +1,12 @@
 import React from 'react';
-import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, MainMenuDropdown } from '@epam/promo';
-import { Anchor, MainMenuLogo } from '@epam/uui-components';
-import { TSkin } from '@epam/uui-docs';
+import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, MainMenuDropdown } from '@epam/uui';
+import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { useTheme } from '../helpers/useTheme';
+import { TMode } from './docs';
+import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
+import { ReactComponent as LogoIcon } from '../icons/logo.svg';
 import css from './AppHeader.module.scss';
 
 export type Theme = 'uui-theme-promo' | 'uui-theme-loveship' | 'uui-theme-loveship_dark' | 'uui-theme-electric' | 'uui-theme-vanilla_thunder';
@@ -49,7 +50,7 @@ export function AppHeader() {
                     link={ {
                         pathname: '/documents',
                         query: {
-                            id: 'accordion', mode: 'doc', skin: TSkin.UUI, category: 'components',
+                            category: 'components', id: 'accordion', mode: TMode.doc,
                         },
                     } }
                     isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -94,7 +95,13 @@ export function AppHeader() {
             {
                 id: 'logo',
                 priority: 100499,
-                render: () => <MainMenuLogo link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') } logoUrl="/static/logo.svg" key="logo" />,
+                render: () => (
+                    <MainMenuCustomElement key="logo">
+                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent('Welcome') } key="logo">
+                            <IconContainer icon={ LogoIcon } cx={ css.logoIcon } />
+                        </Anchor>
+                    </MainMenuCustomElement>
+                ),
             },
             {
                 id: 'documents',
@@ -133,7 +140,7 @@ export function AppHeader() {
                         link={ {
                             pathname: '/documents',
                             query: {
-                                id: 'accordion', mode: 'doc', skin: TSkin.UUI, category: 'components',
+                                category: 'components', id: 'accordion', mode: 'doc',
                             },
                         } }
                         isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -170,7 +177,7 @@ export function AppHeader() {
                 render: () => (
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
                         <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
-                        <Text font="sans-semibold" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
+                        <Text fontWeight="600" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
                             Open Git
                         </Text>
                     </Anchor>

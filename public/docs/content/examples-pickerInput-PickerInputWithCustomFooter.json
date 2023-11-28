@@ -1,65 +1,34 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "By default,  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataPickerFooter",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " is rendered as a footer. But it is possible to pass a  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderFooter",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " method, which is suitable for some specific cases. ",
-            "marks": []
-          }
-        ]
+        "text": "By default,  "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In this example, it is shown how to render a custom footer.",
-            "marks": []
-          }
-        ]
+        "text": "DataPickerFooter",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is rendered as a footer. But it is possible to pass a  "
+      },
+      {
+        "text": "renderFooter",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, which is suitable for some specific cases. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In this example, it is shown how to render a custom footer."
       }
     ]
   }
-}
+]

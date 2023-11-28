@@ -402,7 +402,6 @@
       },
       {
         "text": "'react-popper'",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -421,7 +420,6 @@
       },
       {
         "text": "'react-popper'",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -431,7 +429,6 @@
       },
       {
         "text": "Popper",
-        "color": "#7a7a43",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -440,7 +437,6 @@
       },
       {
         "text": "function ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -456,7 +452,6 @@
       },
       {
         "text": "any",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -466,7 +461,6 @@
       },
       {
         "text": "return ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -476,7 +470,6 @@
       },
       {
         "text": "ref",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -495,7 +488,6 @@
       },
       {
         "text": "update",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -514,7 +506,6 @@
       },
       {
         "text": "style",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -524,7 +515,6 @@
       },
       {
         "text": "arrowProps",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -534,7 +524,6 @@
       },
       {
         "text": "ref",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -553,7 +542,6 @@
       },
       {
         "text": "placement",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -563,7 +551,6 @@
       },
       {
         "text": "'bottom-start'",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -573,7 +560,6 @@
       },
       {
         "text": "isReferenceHidden",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -583,7 +569,6 @@
       },
       {
         "text": "false",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -632,79 +617,56 @@
     "type": "note-quote",
     "children": [
       {
-        "text": "jest.",
-        "color": "rgb(0, 0, 0)"
+        "text": "jest."
       },
       {
         "text": "mock",
-        "uui-richTextEditor-italic": true,
-        "color": "rgb(0, 0, 0)"
+        "uui-richTextEditor-italic": true
       },
       {
-        "text": "(",
-        "color": "rgb(0, 0, 0)"
+        "text": "("
       },
       {
         "text": "'react-focus-lock'",
-        "color": "rgb(0, 128, 0)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ", () => ({\n    ...jest.",
-        "color": "rgb(0, 0, 0)"
+        "text": ", () => ({\n    ...jest."
       },
       {
         "text": "requireActual",
-        "uui-richTextEditor-italic": true,
-        "color": "rgb(0, 0, 0)"
+        "uui-richTextEditor-italic": true
       },
       {
-        "text": "(",
-        "color": "rgb(0, 0, 0)"
+        "text": "("
       },
       {
         "text": "'react-focus-lock'",
-        "color": "rgb(0, 128, 0)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": "),\n    ",
-        "color": "rgb(0, 0, 0)"
+        "text": "),\n    "
       },
       {
         "text": "__esModule",
-        "color": "rgb(102, 14, 122)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ": ",
-        "color": "rgb(0, 0, 0)"
+        "text": ": "
       },
       {
         "text": "true",
-        "color": "rgb(0, 0, 128)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ",\n   ",
-        "color": "rgb(0, 0, 0)"
+        "text": ",\n   "
       },
       {
         "text": "default",
-        "color": "rgb(122, 122, 67)",
         "uui-richTextEditor-bold": true
       },
       {
-        "text": ": ({ children }) => (<>{ children }</>),\n   ",
-        "color": "rgb(0, 0, 0)"
-      },
-      {
-        "text": "FreeFocusInside",
-        "color": "rgb(122, 122, 67)"
-      },
-      {
-        "text": ": ({ children }) => (<>{ children }</>),\n}));",
-        "color": "rgb(0, 0, 0)"
+        "text": ": ({ children }) => (<>{ children }</>),\n   FreeFocusInside: ({ children }) => (<>{ children }</>),\n}));"
       }
     ]
   },
@@ -727,7 +689,6 @@
     "children": [
       {
         "text": "import ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -754,15 +715,7 @@
         "text": "} "
       },
       {
-        "text": "from ",
-        "color": "#000080",
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "'@epam/uui-test-utils'",
-        "color": "#008000",
+        "text": "from '@epam/uui-test-utils'",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -772,7 +725,6 @@
       },
       {
         "text": "it",
-        "color": "#660e7a",
         "font-weight": "bold",
         "font-style": null,
         "": null,
@@ -783,7 +735,6 @@
       },
       {
         "text": "'should render with maximum props'",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -793,7 +744,6 @@
       },
       {
         "text": "async ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -803,14 +753,12 @@
       },
       {
         "text": "const ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
       {
         "text": "portalMock ",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -828,14 +776,12 @@
       },
       {
         "text": "const ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
       {
         "text": "tree ",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -844,7 +790,6 @@
       },
       {
         "text": "await ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -866,7 +811,6 @@
       },
       {
         "text": "Test ",
-        "color": "#000080",
         "background-color": null,
         "font-weight": "bold",
         "": null,
@@ -883,7 +827,6 @@
       },
       {
         "text": "portalMock",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -892,7 +835,6 @@
       },
       {
         "text": "mockClear",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -902,7 +844,6 @@
       },
       {
         "text": "expect",
-        "color": "#660e7a",
         "font-weight": "bold",
         "font-style": null,
         "": null,
@@ -913,7 +854,6 @@
       },
       {
         "text": "tree",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -922,7 +862,6 @@
       },
       {
         "text": "toMatchSnapshot",
-        "color": "#7a7a43",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -956,7 +895,6 @@
     "children": [
       {
         "text": "import ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -983,15 +921,7 @@
         "text": "} "
       },
       {
-        "text": "from ",
-        "color": "#000080",
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "'@epam/uui-test-utils'",
-        "color": "#008000",
+        "text": "from '@epam/uui-test-utils'",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1001,7 +931,6 @@
       },
       {
         "text": "it",
-        "color": "#660e7a",
         "font-weight": "bold",
         "font-style": null,
         "": null,
@@ -1012,7 +941,6 @@
       },
       {
         "text": "'should render with maximum props'",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1022,7 +950,6 @@
       },
       {
         "text": "async ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1032,14 +959,12 @@
       },
       {
         "text": "const ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
       {
         "text": "tree ",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1048,7 +973,6 @@
       },
       {
         "text": "await ",
-        "color": "#000080",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1069,24 +993,7 @@
         "uui-richTextEditor-span-mark": true
       },
       {
-        "text": "Test ",
-        "color": "#000080",
-        "background-color": null,
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "icon",
-        "color": "#0000ff",
-        "background-color": null,
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "=",
-        "color": "#008000",
+        "text": "Test icon=",
         "background-color": null,
         "font-weight": "bold",
         "": null,
@@ -1115,7 +1022,6 @@
       },
       {
         "text": "expect",
-        "color": "#660e7a",
         "font-weight": "bold",
         "font-style": null,
         "": null,
@@ -1126,7 +1032,6 @@
       },
       {
         "text": "tree",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1135,7 +1040,6 @@
       },
       {
         "text": "toMatchSnapshot",
-        "color": "#7a7a43",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1210,8 +1114,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "How to fix errors like this?",
-        "color": "rgb(31, 35, 40)",
+        "text": "How to fix errors like this? ",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1237,33 +1140,6 @@
         "uui-richTextEditor-span-mark": true
       },
       {
-        "text": " ",
-        "uui-richTextEditor-span-mark": true,
-        "color": "rgb(31, 35, 40)",
-        "font-family": null,
-        "font-size": "16px",
-        "font-style": null,
-        "font-variant-ligatures": "normal",
-        "font-variant-caps": "normal",
-        "font-weight": "400",
-        "letter-spacing": "normal",
-        "orphans": "2",
-        "text-align": "left",
-        "text-indent": "0px",
-        "text-transform": "none",
-        "white-space": "normal",
-        "widows": "2",
-        "word-spacing": "0px",
-        "-webkit-text-stroke-width": "0px",
-        "background-color": null,
-        "text-decoration-thickness": "initial",
-        "text-decoration-style": "initial",
-        "text-decoration-color": "initial",
-        "display": "inline !important",
-        "float": "none",
-        "": null
-      },
-      {
         "text": "Warning: An update to inside a test was not wrapped in act",
         "uui-richTextEditor-code": true
       }
@@ -1275,7 +1151,6 @@
     "children": [
       {
         "text": "Answer",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1302,8 +1177,7 @@
         "uui-richTextEditor-underlined": true
       },
       {
-        "text": ": Please check next article:",
-        "color": "rgb(31, 35, 40)",
+        "text": ": Please check next article: ",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1327,33 +1201,6 @@
         "float": "none",
         "": null,
         "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": " ",
-        "uui-richTextEditor-span-mark": true,
-        "color": "rgb(31, 35, 40)",
-        "font-family": null,
-        "font-size": "16px",
-        "font-style": null,
-        "font-variant-ligatures": "normal",
-        "font-variant-caps": "normal",
-        "font-weight": "400",
-        "letter-spacing": "normal",
-        "orphans": "2",
-        "text-align": "left",
-        "text-indent": "0px",
-        "text-transform": "none",
-        "white-space": "normal",
-        "widows": "2",
-        "word-spacing": "0px",
-        "-webkit-text-stroke-width": "0px",
-        "background-color": null,
-        "text-decoration-thickness": "initial",
-        "text-decoration-style": "initial",
-        "text-decoration-color": "initial",
-        "display": "inline !important",
-        "float": "none",
-        "": null
       },
       {
         "data": {
@@ -1406,7 +1253,6 @@
       },
       {
         "text": "How do I test only part of the object/array?",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1442,7 +1288,6 @@
       },
       {
         "text": "Answer",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1469,35 +1314,7 @@
         "uui-richTextEditor-underlined": true
       },
       {
-        "text": ": ",
-        "color": "rgb(31, 35, 40)",
-        "font-family": null,
-        "font-size": "16px",
-        "font-style": null,
-        "font-variant-ligatures": "normal",
-        "font-variant-caps": "normal",
-        "font-weight": "400",
-        "letter-spacing": "normal",
-        "orphans": "2",
-        "text-align": "left",
-        "text-indent": "0px",
-        "text-transform": "none",
-        "white-space": "normal",
-        "widows": "2",
-        "word-spacing": "0px",
-        "-webkit-text-stroke-width": "0px",
-        "background-color": null,
-        "text-decoration-thickness": "initial",
-        "text-decoration-style": "initial",
-        "text-decoration-color": "initial",
-        "display": "inline !important",
-        "float": "none",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "Use partial matchers like ",
-        "color": "rgb(31, 35, 40)",
+        "text": ": Use partial matchers like ",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1524,7 +1341,6 @@
       },
       {
         "text": "objectContaining",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1552,7 +1368,6 @@
       },
       {
         "text": ", ",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1579,7 +1394,6 @@
       },
       {
         "text": "arrayContaining",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1606,35 +1420,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": ", etc. ",
-        "color": "rgb(31, 35, 40)",
-        "font-family": null,
-        "font-size": "16px",
-        "font-style": null,
-        "font-variant-ligatures": "normal",
-        "font-variant-caps": "normal",
-        "font-weight": "400",
-        "letter-spacing": "normal",
-        "orphans": "2",
-        "text-align": "left",
-        "text-indent": "0px",
-        "text-transform": "none",
-        "white-space": "normal",
-        "widows": "2",
-        "word-spacing": "0px",
-        "-webkit-text-stroke-width": "0px",
-        "background-color": null,
-        "text-decoration-thickness": "initial",
-        "text-decoration-style": "initial",
-        "text-decoration-color": "initial",
-        "display": "inline !important",
-        "float": "none",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "E.g.",
-        "color": "rgb(31, 35, 40)",
+        "text": ", etc. E.g.",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1667,7 +1453,6 @@
     "children": [
       {
         "text": "expect",
-        "color": "#660e7a",
         "font-weight": "bold",
         "font-style": null,
         "": null,
@@ -1678,7 +1463,6 @@
       },
       {
         "text": "mocks",
-        "color": "#458383",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1687,7 +1471,6 @@
       },
       {
         "text": "setTableState",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1697,7 +1480,6 @@
       },
       {
         "text": "lastCalledWith",
-        "color": "#7a7a43",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1706,7 +1488,6 @@
       },
       {
         "text": "expect",
-        "color": "#660e7a",
         "font-weight": "bold",
         "font-style": null,
         "": null,
@@ -1717,7 +1498,6 @@
       },
       {
         "text": "objectContaining",
-        "color": "#7a7a43",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1726,7 +1506,6 @@
       },
       {
         "text": "filter",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1736,7 +1515,6 @@
       },
       {
         "text": "position",
-        "color": "#660e7a",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -1746,7 +1524,6 @@
       },
       {
         "text": "2",
-        "color": "#0000ff",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1755,7 +1532,6 @@
       },
       {
         "text": "3",
-        "color": "#0000ff",
         "": null,
         "uui-richTextEditor-span-mark": true
       },
@@ -1783,7 +1559,6 @@
       },
       {
         "text": " use DOM API (such as ",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1810,7 +1585,6 @@
       },
       {
         "text": "querySelectorAll",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1838,7 +1612,6 @@
       },
       {
         "text": ") for testing?",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1871,7 +1644,6 @@
     "children": [
       {
         "text": "Answer",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1899,7 +1671,6 @@
       },
       {
         "text": ": ",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1954,8 +1725,7 @@
         "text": " "
       },
       {
-        "text": "How to  add",
-        "color": "rgb(31, 35, 40)",
+        "text": "How to  add ",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -1979,42 +1749,14 @@
         "float": "none",
         "": null,
         "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": " ",
-        "uui-richTextEditor-span-mark": true,
-        "color": "rgb(31, 35, 40)",
-        "font-family": null,
-        "font-size": "16px",
-        "font-style": null,
-        "font-variant-ligatures": "normal",
-        "font-variant-caps": "normal",
-        "font-weight": "400",
-        "letter-spacing": "normal",
-        "orphans": "2",
-        "text-align": "left",
-        "text-indent": "0px",
-        "text-transform": "none",
-        "white-space": "normal",
-        "widows": "2",
-        "word-spacing": "0px",
-        "-webkit-text-stroke-width": "0px",
-        "background-color": null,
-        "text-decoration-thickness": "initial",
-        "text-decoration-style": "initial",
-        "text-decoration-color": "initial",
-        "display": "inline !important",
-        "float": "none",
-        "": null
       },
       {
         "text": "data-testid",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " ",
+        "text": " attribute to UUI component?",
         "uui-richTextEditor-span-mark": true,
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -2037,33 +1779,6 @@
         "display": "inline !important",
         "float": "none",
         "": null
-      },
-      {
-        "text": "attribute to UUI component?",
-        "color": "rgb(31, 35, 40)",
-        "font-family": null,
-        "font-size": "16px",
-        "font-style": null,
-        "font-variant-ligatures": "normal",
-        "font-variant-caps": "normal",
-        "font-weight": "400",
-        "letter-spacing": "normal",
-        "orphans": "2",
-        "text-align": "left",
-        "text-indent": "0px",
-        "text-transform": "none",
-        "white-space": "normal",
-        "widows": "2",
-        "word-spacing": "0px",
-        "-webkit-text-stroke-width": "0px",
-        "background-color": null,
-        "text-decoration-thickness": "initial",
-        "text-decoration-style": "initial",
-        "text-decoration-color": "initial",
-        "display": "inline !important",
-        "float": "none",
-        "": null,
-        "uui-richTextEditor-span-mark": true
       }
     ]
   },
@@ -2076,7 +1791,6 @@
       },
       {
         "text": "Answer",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -2104,7 +1818,6 @@
       },
       {
         "text": ": ",
-        "color": "rgb(31, 35, 40)",
         "font-family": null,
         "font-size": "16px",
         "font-style": null,
@@ -2152,24 +1865,7 @@
         "uui-richTextEditor-span-mark": true
       },
       {
-        "text": "Test ",
-        "color": "#000080",
-        "background-color": null,
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "rawProps",
-        "color": "#0000ff",
-        "background-color": null,
-        "font-weight": "bold",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "=",
-        "color": "#008000",
+        "text": "Test rawProps=",
         "background-color": null,
         "font-weight": "bold",
         "": null,
@@ -2180,7 +1876,6 @@
       },
       {
         "text": "'data-testid'",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true
@@ -2190,7 +1885,6 @@
       },
       {
         "text": "'...' ",
-        "color": "#008000",
         "font-weight": "bold",
         "": null,
         "uui-richTextEditor-span-mark": true

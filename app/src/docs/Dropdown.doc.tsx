@@ -12,8 +12,8 @@ export class DropdownDoc extends BaseDocsBlock {
     override config: TDocConfig = {
         name: 'Dropdown',
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-core:DropdownProps', component: loveship.Dropdown },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-core:DropdownProps', component: promo.Dropdown },
+            [TSkin.Loveship]: { type: '@epam/uui-core:DropdownProps', component: loveship.Dropdown },
+            [TSkin.Promo]: { type: '@epam/uui-core:DropdownProps', component: promo.Dropdown },
             [TSkin.UUI]: { type: '@epam/uui-core:DropdownProps', component: uui.Dropdown },
         },
         doc: (doc: DocBuilder<DropdownProps>) => {

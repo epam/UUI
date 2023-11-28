@@ -13,8 +13,8 @@ export class IconButtonDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:IconButtonProps', component: uui.IconButton },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:IconButtonProps', component: loveship.IconButton },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:IconButtonProps', component: promo.IconButton },
+            [TSkin.Loveship]: { type: '@epam/loveship:IconButtonProps', component: loveship.IconButton },
+            [TSkin.Promo]: { type: '@epam/promo:IconButtonProps', component: promo.IconButton },
         },
         doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });

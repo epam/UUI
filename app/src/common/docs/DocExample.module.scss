@@ -1,4 +1,3 @@
-@use '~@epam/assets/theme/theme_promo' as *;
 @use '~@epam/promo/assets/styles/index' as *;
 @import '../../themes/themeVariables.module';
 
@@ -9,18 +8,12 @@
 
 .container-footer {
     justify-content: space-between;
-    background-color: $white;
-
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
+    background-color: var(--uui-surface-sunken);
 }
 
 .preview-container {
-    background: var(--uui-docs-bg, var(--uui-surface-main));
-    border: 1px solid $gray40;
+    background: var(--uui-surface-sunken);
+    border: 1px solid var(--uui-divider);
     width: 960px;
     max-width: 100%;
 

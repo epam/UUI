@@ -13,8 +13,8 @@ export class AnchorDoc extends BaseDocsBlock {
     override config: TDocConfig = {
         name: 'Anchor',
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:AnchorProps', component: loveship.Anchor },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-components:AnchorProps', component: promo.Anchor },
+            [TSkin.Loveship]: { type: '@epam/uui-components:AnchorProps', component: loveship.Anchor },
+            [TSkin.Promo]: { type: '@epam/uui-components:AnchorProps', component: promo.Anchor },
             [TSkin.UUI]: { type: '@epam/uui-components:AnchorProps', component: uui.Anchor },
         },
         doc: (doc: DocBuilder<AnchorProps>) => {

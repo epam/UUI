@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './Slider.module.scss';
 import { Slide, SlideProps } from './Slide';
-import { IconButton } from '@epam/promo';
+import { IconButton } from '@epam/uui';
 import { IAnalyticableOnChange, UuiContext, UuiContexts } from '@epam/uui-core';
 import { ReactComponent as ArrowPrev } from '../../icons/navigation-left.svg';
 import { ReactComponent as ArrowNext } from '../../icons/navigation-right.svg';
@@ -43,14 +43,14 @@ export class Slider extends React.Component<SliderProps> {
                 <div className={ css.controls }>
                     <IconButton
                         rawProps={ { 'aria-label': 'Backward' } }
-                        color="blue"
+                        color="info"
                         isDisabled={ this.state.activeSlide === 0 }
                         icon={ ArrowPrev }
                         onClick={ this.handlePreviousClick }
                     />
                     <IconButton
                         rawProps={ { 'aria-label': 'Forward' } }
-                        color="blue"
+                        color="info"
                         isDisabled={ this.state.activeSlide === this.props.slides.length - 1 }
                         icon={ ArrowNext }
                         onClick={ this.handleNextClick }

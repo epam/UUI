@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Panel, TextInput, FlexRow } from '@epam/promo';
+import { Panel, TextInput, FlexRow } from '@epam/uui';
 import { DataQueryFilter, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 import { DataSourceViewer } from '@epam/uui-docs';

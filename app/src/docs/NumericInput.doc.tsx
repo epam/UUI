@@ -13,8 +13,8 @@ export class NumericInputDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Table, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:NumericInputProps', component: uui.NumericInput },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:NumericInputProps', component: loveship.NumericInput },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:NumericInputProps', component: promo.NumericInput },
+            [TSkin.Loveship]: { type: '@epam/uui:NumericInputProps', component: loveship.NumericInput },
+            [TSkin.Promo]: { type: '@epam/uui:NumericInputProps', component: promo.NumericInput },
         },
         doc: (doc: DocBuilder<uui.NumericInputProps>) => {
             doc.merge('value', { examples: [{ value: 0, isDefault: true }, 123, 123.99] });
