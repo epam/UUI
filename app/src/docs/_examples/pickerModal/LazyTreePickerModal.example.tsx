@@ -21,7 +21,6 @@ export default function LazyTreePickerModal() {
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
-            flattenSearchResults: false,
         },
         [],
     );
