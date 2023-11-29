@@ -3,7 +3,6 @@ import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
 import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
-import { SemanticColor } from '../types';
 import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
@@ -23,7 +22,7 @@ export interface DefaultNotificationProps extends INotification, IHasChildren, I
 
 export interface NotificationCardProps extends DefaultNotificationProps {
     icon?: Icon;
-    color?: SemanticColor;
+    color?: 'info' | 'success' | 'warning' | 'error';
 }
 
 export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {

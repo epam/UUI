@@ -9,8 +9,7 @@ import {
     FlexRow,
     Text,
     Switch,
-    BadgeColor,
-    Badge,
+    Badge, BadgeColor,
 } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';

@@ -1,7 +1,12 @@
 # 5.3.1 - __.__.2023
 
+**What's New**
+* [Tag]: remade Tag by new design. It has new `colors` and new fill mods `solid & outline`;
+* [Breaking change]: Tag in loveship changed default `size` to `36px`. It was 18px;
+
 **What's Fixed**
-* [Calendar]: fixed disabled text `color`
+* [Calendar]: fixed disabled text `color`.
+
 
 # 5.3.0 - 21.11.2023
 
