@@ -21,7 +21,7 @@
 * [Panel]: fixed "background" property, in default state it transparent
 * fixed variables for "theme-vanilla-thunder"
 
-# 5.3.0 - 21.11.2023
+# 5.4.0 - 21.11.2023
 
 **What's New**
 * This release introduced stable Theming approach and theme css variables:
