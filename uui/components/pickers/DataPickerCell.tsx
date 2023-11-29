@@ -47,7 +47,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
         );
     } else {
         content = (
-            <div key={ props.rowProps.key } className={ css.renderItem }>
+            <div key={ `${props.rowProps.id}` } className={ css.renderItem }>
                 {props.renderItem(props.rowProps.value, props.rowProps)}
                 <FlexSpacer />
                 {(props.rowProps.isChildrenSelected || props.rowProps.isSelected) && (
