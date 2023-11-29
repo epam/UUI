@@ -17,7 +17,6 @@
 }
 
 @mixin resize-handle {
-    top: 0;
     display: flex;
     width: 1.5rem;
     -webkit-user-select: none;
@@ -32,33 +31,37 @@
 
 .left-handle {
     @include resize-handle();
+    top: 0;
     height: 100%;
     cursor: col-resize;
 
-    // for left only
-    // margin-left: -0.75rem;
-    // left: -0.75rem;
-    // padding-left: 0.75rem;
+    // for left (used only in image element)
+    margin-left: -0.75rem;
+    left: -0.75rem;
+    padding-left: 0.75rem;
 }
 
 .right-handle {
     @include resize-handle();
+    top: 0;
     height: 100%;
     cursor: col-resize;
 
-    // only for right
-    // align-items: flex-end;
-    // right: -0.75rem;
-    // margin-right: -0.75rem;
-    // padding-right: 0.75rem;
+    // only for right (used only in image element)
+    align-items: flex-end;
+    right: -0.75rem;
+    margin-right: -0.75rem;
+    padding-right: 0.75rem;
 }
 
+// used only in table element
 .top-handle {
     @include resize-handle();
     width: 100%;
     cursor: row-resize;
 }
 
+// used only in table element
 .bottom-handle {
     @include resize-handle();
     width: 100%;
