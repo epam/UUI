@@ -14,6 +14,7 @@ import {
     ScrollToConfig,
 } from '../../../types';
 import { ITree, NOT_FOUND_RECORD } from './tree/ITree';
+import { flushSync } from 'react-dom';
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -43,7 +44,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
     _forceUpdate = () => {
-        !this.isDestroyed && this.onValueChange({ ...this.value });
+        if (!this.isDestroyed) {
+            flushSync(() => { this.onValueChange({ ...this.value }); });
+        }
     };
 
     public destroy() {
