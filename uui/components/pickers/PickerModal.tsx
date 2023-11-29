@@ -44,7 +44,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom="none"
                 padding="24"
                 size="36"
                 renderItem={ (i: TItem & { name?: string }) => <Text size="36">{rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : getName(i)}</Text> }

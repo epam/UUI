@@ -3,7 +3,6 @@ export * from './PickerBodyBase';
 export * from './KeyboardUtils';
 export * from './PickerToggler';
 export * from './DataPickerRow';
-export * from './DataPickerCell';
 export type {
     PickerInputBaseProps,
     PickerListBaseProps,

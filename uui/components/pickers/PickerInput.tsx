@@ -116,7 +116,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom="none"
                 size={ getRowSize() }
                 padding={ props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
