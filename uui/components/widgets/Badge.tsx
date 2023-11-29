@@ -18,10 +18,10 @@ const mapSize = {
 
 export type BadgeFill = 'solid' | 'outline';
 export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
-export type BadgeColors = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 export interface BadgeMods {
-    color?: BadgeColors;
+    color?: BadgeColor;
     /** @default 'solid' */
     fill?: BadgeFill;
     /** @default '36' */

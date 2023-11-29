@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, FlexRow, IconButton, LinkButton } from '@epam/promo';
-import { Badge, BadgeColors } from '@epam/uui';
+import { Badge, BadgeColor } from '@epam/uui';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTablePaged.module.scss';
@@ -20,7 +20,7 @@ export const personColumns = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColors } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         grow: 0,
