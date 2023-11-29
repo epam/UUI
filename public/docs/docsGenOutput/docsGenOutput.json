@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-28",
+ "timestamp": "2023-11-29",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -64758,12 +64758,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:BadgeColors": {
+  "@epam/uui:BadgeColor": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "BadgeColors",
-     "nameFull": "BadgeColors"
+     "name": "BadgeColor",
+     "nameFull": "BadgeColor"
     },
     "src": "uui/components/widgets/Badge.tsx",
     "exported": true
@@ -64773,7 +64773,7 @@
     "typeValue": {
      "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
      "print": [
-      "type BadgeColors = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
+      "type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
      ]
     }
    }
@@ -65352,7 +65352,7 @@
      "raw": "BadgeMods",
      "print": [
       "interface BadgeMods {",
-      "    color?: BadgeColors;",
+      "    color?: BadgeColor;",
       "    /** @default 'solid' */",
       "    fill?: BadgeFill;",
       "    /** @default '36' */",

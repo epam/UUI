@@ -1898,7 +1898,7 @@
    "@epam/uui:AccordionMods",
    "@epam/uui:AccordionProps",
    "@epam/uui:AlertProps",
-   "@epam/uui:BadgeColors",
+   "@epam/uui:BadgeColor",
    "@epam/uui:BadgeCoreProps",
    "@epam/uui:BadgeFill",
    "@epam/uui:BadgeMods",
@@ -3436,7 +3436,7 @@
     ],
     "TypeAliasDeclaration": [
      "AccordionProps",
-     "BadgeColors",
+     "BadgeColor",
      "BadgeCoreProps",
      "BadgeFill",
      "BadgeProps",
