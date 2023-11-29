@@ -56,20 +56,6 @@
     }
 }
 
-.checkbox {
-    padding-right: 12px;
-}
-
-.indent {
-    display: flex;
-    justify-content: flex-start;
-    flex-grow: 0;
-    flex-shrink: 0;
-    width: 12px;
-    padding-right: 12px;
-    box-sizing: content-box; // to fix reset css like *, *::before, *::after { box-sizing: border-box; }
-}
-
 .icon-container {
     fill: var(--uui-icon);
 }
