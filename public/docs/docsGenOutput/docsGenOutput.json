@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-11-28",
+ "timestamp": "2023-11-29",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -65005,7 +65005,7 @@
       "    /** List of actions to display in the alert. Each action has name and 'action' callback */",
       "    actions?: notificationAction[];",
       "    /** Alert color */",
-      "    color: SemanticColor;",
+      "    color: 'info' | 'success' | 'warning' | 'error';",
       "    /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */",
       "    onClose?(): void;",
       "    /** An optional icon to show on the left of the alert */",
@@ -65043,7 +65043,6 @@
       "typeValue": {
        "raw": "'info' | 'success' | 'warning' | 'error'"
       },
-      "typeValueRef": "@epam/uui:SemanticColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -65175,7 +65174,7 @@
     "typeValue": {
      "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
      "print": [
-      "type BadgeColor = EpamBadgeSemanticColor;"
+      "type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
      ]
     }
    }
@@ -68021,7 +68020,7 @@
      "name": "ButtonFill",
      "nameFull": "ButtonFill"
     },
-    "src": "uui/components/types.ts",
+    "src": "uui/components/buttons/Button.tsx",
     "exported": true
    },
    "details": {
@@ -69058,55 +69057,6 @@
        "type": "number"
       },
       "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:ColorMod": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "ColorMod",
-     "nameFull": "ColorMod"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ColorMod",
-     "print": [
-      "interface ColorMod {",
-      "    // TODO remove",
-      "    /** Component color */",
-      "    color?: SemanticColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Component color"
-       ]
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'error'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "error"
-       ]
-      },
       "required": false
      }
     ],
@@ -74892,26 +74842,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:EpamBadgeSemanticColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "EpamBadgeSemanticColor",
-     "nameFull": "EpamBadgeSemanticColor"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
-     "print": [
-      "type EpamBadgeSemanticColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
-     ]
-    }
-   }
-  },
   "@epam/uui:FileCardItem": {
    "summary": {
     "module": "@epam/uui",
@@ -75216,26 +75146,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui:FillStyle": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "FillStyle",
-     "nameFull": "FillStyle"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'solid' | 'outline' | 'none' | 'ghost'",
-     "print": [
-      "type FillStyle = ButtonFill;"
-     ]
-    }
    }
   },
   "@epam/uui:FiltersPanelProps": {
@@ -75655,46 +75565,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui:FontStyle": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "FontStyle",
-     "nameFull": "FontStyle"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'normal' | 'italic'",
-     "print": [
-      "type FontStyle = 'normal' | 'italic';"
-     ]
-    }
-   }
-  },
-  "@epam/uui:FontWeight": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "FontWeight",
-     "nameFull": "FontWeight"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'200' | '300' | '400' | '600' | '700' | '900'",
-     "print": [
-      "type FontWeight = '200' | '300' | '400' | '600' | '700' | '900';"
-     ]
-    }
    }
   },
   "@epam/uui:GlobalMenuProps": {
@@ -81070,6 +80940,26 @@
     "props": [
      {
       "uid": 1,
+      "name": "size",
+      "typeValue": {
+       "raw": "null | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        null
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": 2,
       "name": "borderBottom",
       "typeValue": {
        "raw": "boolean"
@@ -81081,7 +80971,7 @@
       "required": false
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "columnGap",
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
@@ -81090,7 +80980,7 @@
       "required": false
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "margin",
       "typeValue": {
        "raw": "'12' | '24'"
@@ -81106,7 +80996,7 @@
       "required": false
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "padding",
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
@@ -81124,7 +81014,7 @@
       "required": false
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "rowGap",
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
@@ -81133,7 +81023,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "spacing",
       "typeValue": {
        "raw": "'6' | '12' | '18'"
@@ -81150,7 +81040,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "topShadow",
       "typeValue": {
        "raw": "boolean"
@@ -81162,7 +81052,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "vPadding",
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
@@ -81181,7 +81071,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "background",
       "typeValue": {
        "raw": "'surface'"
@@ -81193,26 +81083,6 @@
        ]
       },
       "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "size",
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
-       ]
-      },
-      "from": "@epam/uui:RowSizeMod",
       "required": false
      },
      {
@@ -81302,6 +81172,26 @@
     "props": [
      {
       "uid": 1,
+      "name": "size",
+      "typeValue": {
+       "raw": "null | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        null
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": 2,
       "name": "borderBottom",
       "typeValue": {
        "raw": "boolean"
@@ -81313,7 +81203,7 @@
       "required": false
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "columnGap",
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
@@ -81322,7 +81212,7 @@
       "required": false
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "margin",
       "typeValue": {
        "raw": "'12' | '24'"
@@ -81338,7 +81228,7 @@
       "required": false
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "padding",
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
@@ -81356,7 +81246,7 @@
       "required": false
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "rowGap",
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
@@ -81365,7 +81255,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "spacing",
       "typeValue": {
        "raw": "'6' | '12' | '18'"
@@ -81382,7 +81272,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "topShadow",
       "typeValue": {
        "raw": "boolean"
@@ -81394,7 +81284,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "vPadding",
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
@@ -81413,7 +81303,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "background",
       "typeValue": {
        "raw": "'surface'"
@@ -81425,26 +81315,6 @@
        ]
       },
       "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "size",
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
-       ]
-      },
-      "from": "@epam/uui:RowSizeMod",
       "required": false
      },
      {
@@ -81967,7 +81837,7 @@
      "print": [
       "interface NotificationCardProps extends DefaultNotificationProps {",
       "    icon?: Icon;",
-      "    color?: SemanticColor;",
+      "    color?: 'info' | 'success' | 'warning' | 'error';",
       "}"
      ]
     },
@@ -87874,11 +87744,12 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RowMods",
      "print": [
-      "interface RowMods extends RowSizeMod {",
+      "type RowMods = {",
+      "    size?: null | '24' | '30' | '36' | '42' | '48';",
       "    borderBottom?: boolean;",
       "    columnGap?: number | '6' | '12' | '18' | '24' | '36';",
       "    margin?: '12' | '24';",
@@ -87888,12 +87759,31 @@
       "    topShadow?: boolean;",
       "    vPadding?: '12' | '18' | '24' | '36' | '48';",
       "    background?: 'surface';",
-      "}"
+      "};"
      ]
     },
     "props": [
      {
       "uid": 1,
+      "name": "size",
+      "typeValue": {
+       "raw": "null | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        null
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
       "name": "borderBottom",
       "typeValue": {
        "raw": "boolean"
@@ -87904,7 +87794,7 @@
       "required": false
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "columnGap",
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
@@ -87912,7 +87802,7 @@
       "required": false
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "margin",
       "typeValue": {
        "raw": "'12' | '24'"
@@ -87927,7 +87817,7 @@
       "required": false
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "padding",
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
@@ -87944,7 +87834,7 @@
       "required": false
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "rowGap",
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
@@ -87952,7 +87842,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "spacing",
       "typeValue": {
        "raw": "'6' | '12' | '18'"
@@ -87968,7 +87858,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "topShadow",
       "typeValue": {
        "raw": "boolean"
@@ -87979,7 +87869,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "vPadding",
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
@@ -87997,7 +87887,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "background",
       "typeValue": {
        "raw": "'surface'"
@@ -88006,90 +87896,6 @@
        "type": "oneOf",
        "options": [
         "surface"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "size",
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
-       ]
-      },
-      "from": "@epam/uui:RowSizeMod",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:RowSize": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RowSize",
-     "nameFull": "RowSize"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "null | '36' | '48' | '24' | '30' | '42'",
-     "print": [
-      "type RowSize = null | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
-  "@epam/uui:RowSizeMod": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RowSizeMod",
-     "nameFull": "RowSizeMod"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RowSizeMod",
-     "print": [
-      "interface RowSizeMod {",
-      "    size?: RowSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "size",
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
        ]
       },
       "required": false
@@ -88884,26 +88690,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui:SemanticColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "SemanticColor",
-     "nameFull": "SemanticColor"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'error'",
-     "print": [
-      "type SemanticColor = 'info' | 'success' | 'warning' | 'error';"
-     ]
-    }
    }
   },
   "@epam/uui:SizeMod": {
@@ -90501,68 +90287,12 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:TagMods": {
+  "@epam/uui:TagColor": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "TagMods",
-     "nameFull": "TagMods"
-    },
-    "src": "uui/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TagMods",
-     "print": [
-      "interface TagMods {",
-      "    /**",
-      "     * @default '36'",
-      "     */",
-      "    size?: TagSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "size",
-      "comment": {
-       "raw": [
-        "/**\r",
-        "     * @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:TagProps": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TagProps",
-     "nameFull": "TagProps"
+     "name": "TagColor",
+     "nameFull": "TagColor"
     },
     "src": "uui/components/widgets/Tag.tsx",
     "exported": true
@@ -90570,14 +90300,39 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods",
+     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
      "print": [
-      "type TagProps = ButtonProps & TagMods;"
+      "type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
+     ]
+    }
+   }
+  },
+  "@epam/uui:TagCoreProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagCoreProps",
+     "nameFull": "TagCoreProps"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; }",
+     "print": [
+      "type TagCoreProps = ButtonProps & {",
+      "    /** @default '36' */",
+      "    size?: TagSize;",
+      "    /** @default 'solid' */",
+      "    fill?: TagFill;",
+      "};"
      ]
     },
     "props": [
      {
-      "uid": 57,
+      "uid": 59,
       "name": "link",
       "comment": {
        "raw": [
@@ -90591,7 +90346,7 @@
       "required": false
      },
      {
-      "uid": 86,
+      "uid": 89,
       "name": "href",
       "comment": {
        "raw": [
@@ -90608,7 +90363,7 @@
       "required": false
      },
      {
-      "uid": 87,
+      "uid": 90,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -90625,7 +90380,7 @@
       "required": false
      },
      {
-      "uid": 88,
+      "uid": 91,
       "name": "target",
       "comment": {
        "raw": [
@@ -90645,7 +90400,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 92,
       "name": "dropdownIcon",
       "comment": {
        "raw": [
@@ -90662,7 +90417,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 93,
       "name": "dropdownIconPosition",
       "comment": {
        "raw": [
@@ -90683,7 +90438,7 @@
       "required": false
      },
      {
-      "uid": 91,
+      "uid": 94,
       "name": "count",
       "comment": {
        "raw": [
@@ -90698,7 +90453,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 95,
       "name": "cx",
       "comment": {
        "raw": [
@@ -90713,7 +90468,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 96,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -90730,7 +90485,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 97,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -90747,7 +90502,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 98,
       "name": "icon",
       "comment": {
        "raw": [
@@ -90764,7 +90519,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 99,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -90785,7 +90540,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 100,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -90802,13 +90557,12 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 101,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * An analytics event to send (via AnalyticsContext) when component is clicked.\r",
-        "     * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+        "An analytics event to send (via AnalyticsContext) when component is clicked.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
        ]
       },
       "typeValue": {
@@ -90818,7 +90572,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 102,
       "name": "tabIndex",
       "comment": {
        "raw": [
@@ -90835,7 +90589,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 103,
       "name": "caption",
       "comment": {
        "raw": [
@@ -90849,7 +90603,7 @@
       "required": false
      },
      {
-      "uid": 101,
+      "uid": 104,
       "name": "onClear",
       "comment": {
        "raw": [
@@ -90866,7 +90620,7 @@
       "required": false
      },
      {
-      "uid": 102,
+      "uid": 105,
       "name": "isOpen",
       "comment": {
        "raw": [
@@ -90883,7 +90637,7 @@
       "required": false
      },
      {
-      "uid": 103,
+      "uid": 106,
       "name": "isDropdown",
       "comment": {
        "raw": [
@@ -90900,7 +90654,7 @@
       "required": false
      },
      {
-      "uid": 104,
+      "uid": 107,
       "name": "toggleDropdownOpening",
       "comment": {
        "raw": [
@@ -90917,7 +90671,7 @@
       "required": false
      },
      {
-      "uid": 105,
+      "uid": 108,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -90934,7 +90688,7 @@
       "required": false
      },
      {
-      "uid": 106,
+      "uid": 109,
       "name": "ref",
       "comment": {
        "raw": [
@@ -90957,7 +90711,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 111,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -90971,7 +90725,7 @@
       "required": false
      },
      {
-      "uid": 109,
+      "uid": 112,
       "name": "clearIcon",
       "comment": {
        "raw": [
@@ -90988,7 +90742,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 113,
       "name": "captionCX",
       "comment": {
        "raw": [
@@ -91003,7 +90757,7 @@
       "required": false
      },
      {
-      "uid": 111,
+      "uid": 114,
       "name": "countIndicator",
       "comment": {
        "raw": [
@@ -91017,7 +90771,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 115,
       "name": "size",
       "comment": {
        "raw": [
@@ -91042,11 +90796,33 @@
         "48"
        ]
       },
-      "from": "@epam/uui:TagMods",
       "required": false
      },
      {
-      "uid": 85,
+      "uid": 116,
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 88,
       "name": "link",
       "comment": {
        "raw": [
@@ -91060,7 +90836,7 @@
       "required": false
      },
      {
-      "uid": 58,
+      "uid": 60,
       "name": "href",
       "comment": {
        "raw": [
@@ -91074,7 +90850,7 @@
       "required": false
      },
      {
-      "uid": 51,
+      "uid": 52,
       "name": "rawProps",
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
@@ -91083,7 +90859,7 @@
       "required": false
      },
      {
-      "uid": 79,
+      "uid": 81,
       "name": "rawProps",
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
@@ -91092,7 +90868,677 @@
       "required": false
      },
      {
+      "uid": 110,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+      },
+      "from": "@epam/uui-core:AnchorRawProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": true
+   }
+  },
+  "@epam/uui:TagFill": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagFill",
+     "nameFull": "TagFill"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'solid' | 'outline'",
+     "print": [
+      "type TagFill = 'solid' | 'outline';"
+     ]
+    }
+   }
+  },
+  "@epam/uui:TagMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagMods",
+     "nameFull": "TagMods"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TagMods",
+     "print": [
+      "type TagMods = {",
+      "    /** @default 'neutral' */",
+      "    color?: TagColor;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "info",
+        "success",
+        "warning",
+        "critical",
+        "neutral"
+       ]
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:TagProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagProps",
+     "nameFull": "TagProps"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
+     "print": [
+      "type TagProps = TagCoreProps & TagMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 61,
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "undefined"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 92,
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 93,
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 94,
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 95,
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:ButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": 96,
+      "name": "dropdownIconPosition",
+      "comment": {
+       "raw": [
+        "Position of the dropdown icon ('left' of 'right')"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:ButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": 97,
+      "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": 98,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 99,
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": 100,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 101,
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 102,
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Position of the icon (left of right)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 103,
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Click handler for the icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 104,
+      "name": "clickAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "/**\r",
+        "     * An analytics event to send (via AnalyticsContext) when component is clicked.\r",
+        "     * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
+      "uid": 105,
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": 106,
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
       "uid": 107,
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBasicPickerToggler",
+      "required": false
+     },
+     {
+      "uid": 108,
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 109,
+      "name": "isDropdown",
+      "comment": {
+       "raw": [
+        "Shows chevron icon, enabling component to act as dropdown toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 110,
+      "name": "toggleDropdownOpening",
+      "comment": {
+       "raw": [
+        "Called when associated dropdown should open or close"
+       ]
+      },
+      "typeValue": {
+       "raw": "(value: boolean) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 111,
+      "name": "isInteractedOutside",
+      "comment": {
+       "raw": [
+        "Called when component is interacted outside, to close the dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "(event: Event) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 112,
+      "name": "ref",
+      "comment": {
+       "raw": [
+        "Component's ref"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: any) => void | React.RefObject<any>"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 23,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+      },
+      "from": "@epam/uui-core:HrefButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 114,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLButtonElement | HTMLAnchorElement | null) => void | React.MutableRefObject<HTMLButtonElement | HTMLAnchorElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 115,
+      "name": "clearIcon",
+      "comment": {
+       "raw": [
+        "Icon for clear value button (usually cross)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": 116,
+      "name": "captionCX",
+      "comment": {
+       "raw": [
+        "CSS classes to put on the caption"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": 117,
+      "name": "countIndicator",
+      "comment": {
+       "raw": [
+        "CountIndicator component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": 118,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "/**\r",
+        "     * @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": 119,
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline"
+       ]
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": 120,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "info",
+        "success",
+        "warning",
+        "critical",
+        "neutral"
+       ]
+      },
+      "from": "@epam/uui:TagMods",
+      "required": false
+     },
+     {
+      "uid": 91,
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 62,
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "undefined"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 53,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+      },
+      "from": "@epam/uui-core:LinkButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 83,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+      },
+      "from": "@epam/uui-core:ButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 113,
       "name": "rawProps",
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
@@ -91631,6 +92077,46 @@
      "raw": "'info' | 'success' | 'warning' | 'error' | 'primary' | 'secondary' | 'white' | 'brand' | 'disabled'",
      "print": [
       "type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';"
+     ]
+    }
+   }
+  },
+  "@epam/uui:TextFontStyle": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextFontStyle",
+     "nameFull": "TextFontStyle"
+    },
+    "src": "uui/components/typography/Text.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'normal' | 'italic'",
+     "print": [
+      "type TextFontStyle = 'normal' | 'italic';"
+     ]
+    }
+   }
+  },
+  "@epam/uui:TextFontWeight": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextFontWeight",
+     "nameFull": "TextFontWeight"
+    },
+    "src": "uui/components/typography/Text.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'200' | '300' | '400' | '600' | '700' | '900'",
+     "print": [
+      "type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';"
      ]
     }
    }
@@ -92488,9 +92974,9 @@
      "print": [
       "interface TextMods extends TextSettings {",
       "    color?: TextColor;",
-      "    fontWeight?: types.FontWeight;",
-      "    fontStyle?: types.FontStyle;",
-      "    size?: types.TextSize | '42';",
+      "    fontWeight?: TextFontWeight;",
+      "    fontStyle?: TextFontStyle;",
+      "    size?: TextSize;",
       "}"
      ]
     },
@@ -93000,15 +93486,15 @@
      "name": "TextSize",
      "nameFull": "TextSize"
     },
-    "src": "uui/components/types.ts",
+    "src": "uui/components/typography/Text.tsx",
     "exported": true
    },
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "'18' | '36' | '48' | '24' | '30' | 'none'",
+     "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'",
      "print": [
-      "type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';"
+      "type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';"
      ]
     }
    }
@@ -97993,7 +98479,7 @@
         null
        ]
       },
-      "from": "@epam/uui:RowSizeMod",
+      "from": "@epam/uui:RowMods",
       "required": false
      },
      {
@@ -100995,7 +101481,7 @@
         null
        ]
       },
-      "from": "@epam/uui:RowSizeMod",
+      "from": "@epam/uui:RowMods",
       "required": false
      },
      {
@@ -101497,6 +101983,662 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/promo:TagMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "TagMods",
+     "nameFull": "TagMods"
+    },
+    "src": "epam-promo/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TagMods",
+     "print": [
+      "type TagMods = {",
+      "    /**",
+      "     * @default 'gray30'",
+      "     */",
+      "    color?: EpamPrimaryColor | 'white' | 'gray10' | 'gray30' | 'gray70';",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'gray30'"
+       ],
+       "tags": {
+        "@default": "gray30"
+       }
+      },
+      "typeValue": {
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray10' | 'gray30' | 'gray70'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "blue",
+        "green",
+        "amber",
+        "red",
+        "white",
+        "gray10",
+        "gray30",
+        "gray70"
+       ]
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/promo:TagProps": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "TagProps",
+     "nameFull": "TagProps"
+    },
+    "src": "epam-promo/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
+     "print": [
+      "type TagProps = UuiTagCoreProps & TagMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": 61,
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "undefined"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 92,
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 93,
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 94,
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 95,
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:ButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": 96,
+      "name": "dropdownIconPosition",
+      "comment": {
+       "raw": [
+        "Position of the dropdown icon ('left' of 'right')"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:ButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": 97,
+      "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": 98,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 99,
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": 100,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 101,
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 102,
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Position of the icon (left of right)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 103,
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Click handler for the icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 104,
+      "name": "clickAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "An analytics event to send (via AnalyticsContext) when component is clicked.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
+      "uid": 105,
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": 106,
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": 107,
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBasicPickerToggler",
+      "required": false
+     },
+     {
+      "uid": 108,
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 109,
+      "name": "isDropdown",
+      "comment": {
+       "raw": [
+        "Shows chevron icon, enabling component to act as dropdown toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 110,
+      "name": "toggleDropdownOpening",
+      "comment": {
+       "raw": [
+        "Called when associated dropdown should open or close"
+       ]
+      },
+      "typeValue": {
+       "raw": "(value: boolean) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 111,
+      "name": "isInteractedOutside",
+      "comment": {
+       "raw": [
+        "Called when component is interacted outside, to close the dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "(event: Event) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 112,
+      "name": "ref",
+      "comment": {
+       "raw": [
+        "Component's ref"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: any) => void | React.RefObject<any>"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": 23,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+      },
+      "from": "@epam/uui-core:HrefButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 114,
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLButtonElement | HTMLAnchorElement | null) => void | React.MutableRefObject<HTMLButtonElement | HTMLAnchorElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": 115,
+      "name": "clearIcon",
+      "comment": {
+       "raw": [
+        "Icon for clear value button (usually cross)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": 116,
+      "name": "captionCX",
+      "comment": {
+       "raw": [
+        "CSS classes to put on the caption"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": 117,
+      "name": "countIndicator",
+      "comment": {
+       "raw": [
+        "CountIndicator component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": 118,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": 119,
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline"
+       ]
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": 120,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'gray30'"
+       ],
+       "tags": {
+        "@default": "gray30"
+       }
+      },
+      "typeValue": {
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray10' | 'gray30' | 'gray70'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "blue",
+        "green",
+        "amber",
+        "red",
+        "white",
+        "gray10",
+        "gray30",
+        "gray70"
+       ]
+      },
+      "from": "@epam/promo:TagMods",
+      "required": false
+     },
+     {
+      "uid": 91,
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 62,
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "undefined"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": 53,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+      },
+      "from": "@epam/uui-core:LinkButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 83,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+      },
+      "from": "@epam/uui-core:ButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 113,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+      },
+      "from": "@epam/uui-core:AnchorRawProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": true
    }
   },
   "@epam/promo:TextMods": {
@@ -104166,7 +105308,7 @@
       "interface ButtonMods {",
       "    color?: ButtonColorType;",
       "    /** @default '36' */",
-      "    size?: ControlSize | '42' | '18';",
+      "    size?: ControlSize | '18';",
       "    /** @default 'square' */",
       "    shape?: ControlShape;",
       "    /** @default 'solid' */",
@@ -106127,7 +107269,7 @@
         null
        ]
       },
-      "from": "@epam/uui:RowSizeMod",
+      "from": "@epam/uui:RowMods",
       "required": false
      },
      {
@@ -109748,7 +110890,7 @@
         null
        ]
       },
-      "from": "@epam/uui:RowSizeMod",
+      "from": "@epam/uui:RowMods",
       "required": false
      },
      {
@@ -112648,11 +113790,11 @@
     "typeValue": {
      "raw": "TagMods",
      "print": [
-      "type TagMods = uui.TagMods & {",
+      "type TagMods = {",
       "    /**",
-      "     * @default 'solid'",
+      "     * @default 'night300'",
       "     */",
-      "    fill?: types.FillStyle;",
+      "    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';",
       "};"
      ]
     },
@@ -112662,8 +113804,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * @default '36'"
+        "@default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -112691,23 +113832,26 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * @default 'solid'"
+        "@default 'solid'"
        ],
        "tags": {
-        "@default": "solid"
+        "@default": "night300"
        }
       },
       "typeValue": {
-       "raw": "'white' | 'solid' | 'none' | 'light'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night100' | 'night300' | 'night700'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "sky",
+        "grass",
+        "sun",
+        "fire",
         "white",
-        "solid",
-        "none",
-        "light"
+        "night100",
+        "night300",
+        "night700"
        ]
       },
       "required": false
@@ -112729,14 +113873,14 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods & { fill?: FillStyle | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods & { fill?: FillStyle | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods & { fill?: FillStyle | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TagMods & { fill?: FillStyle | undefined; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
-      "type TagProps = uui.TagProps & TagMods;"
+      "type TagProps = UuiTagCoreProps & TagMods;"
      ]
     },
     "props": [
      {
-      "uid": 59,
+      "uid": 61,
       "name": "link",
       "comment": {
        "raw": [
@@ -112750,7 +113894,7 @@
       "required": false
      },
      {
-      "uid": 89,
+      "uid": 92,
       "name": "href",
       "comment": {
        "raw": [
@@ -112767,7 +113911,7 @@
       "required": false
      },
      {
-      "uid": 90,
+      "uid": 93,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -112784,7 +113928,7 @@
       "required": false
      },
      {
-      "uid": 91,
+      "uid": 94,
       "name": "target",
       "comment": {
        "raw": [
@@ -112804,7 +113948,7 @@
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 95,
       "name": "dropdownIcon",
       "comment": {
        "raw": [
@@ -112821,7 +113965,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 96,
       "name": "dropdownIconPosition",
       "comment": {
        "raw": [
@@ -112842,7 +113986,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 97,
       "name": "count",
       "comment": {
        "raw": [
@@ -112857,7 +114001,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 98,
       "name": "cx",
       "comment": {
        "raw": [
@@ -112872,7 +114016,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 99,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -112889,7 +114033,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 100,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -112906,7 +114050,7 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 101,
       "name": "icon",
       "comment": {
        "raw": [
@@ -112923,7 +114067,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 102,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -112944,7 +114088,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 103,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -112961,7 +114105,7 @@
       "required": false
      },
      {
-      "uid": 101,
+      "uid": 104,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
@@ -112977,7 +114121,7 @@
       "required": false
      },
      {
-      "uid": 102,
+      "uid": 105,
       "name": "tabIndex",
       "comment": {
        "raw": [
@@ -112994,7 +114138,7 @@
       "required": false
      },
      {
-      "uid": 103,
+      "uid": 106,
       "name": "caption",
       "comment": {
        "raw": [
@@ -113008,7 +114152,7 @@
       "required": false
      },
      {
-      "uid": 104,
+      "uid": 107,
       "name": "onClear",
       "comment": {
        "raw": [
@@ -113025,7 +114169,7 @@
       "required": false
      },
      {
-      "uid": 105,
+      "uid": 108,
       "name": "isOpen",
       "comment": {
        "raw": [
@@ -113042,7 +114186,7 @@
       "required": false
      },
      {
-      "uid": 106,
+      "uid": 109,
       "name": "isDropdown",
       "comment": {
        "raw": [
@@ -113059,7 +114203,7 @@
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 110,
       "name": "toggleDropdownOpening",
       "comment": {
        "raw": [
@@ -113076,7 +114220,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 111,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -113093,7 +114237,7 @@
       "required": false
      },
      {
-      "uid": 109,
+      "uid": 112,
       "name": "ref",
       "comment": {
        "raw": [
@@ -113116,7 +114260,7 @@
       "required": false
      },
      {
-      "uid": 111,
+      "uid": 114,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -113130,7 +114274,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 115,
       "name": "clearIcon",
       "comment": {
        "raw": [
@@ -113147,7 +114291,7 @@
       "required": false
      },
      {
-      "uid": 113,
+      "uid": 116,
       "name": "captionCX",
       "comment": {
        "raw": [
@@ -113162,7 +114306,7 @@
       "required": false
      },
      {
-      "uid": 114,
+      "uid": 117,
       "name": "countIndicator",
       "comment": {
        "raw": [
@@ -113176,7 +114320,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 118,
       "name": "size",
       "comment": {
        "raw": [
@@ -113201,11 +114345,11 @@
         "48"
        ]
       },
-      "from": "@epam/uui:TagMods",
+      "from": "@epam/uui:TagCoreProps",
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 119,
       "name": "fill",
       "comment": {
        "raw": [
@@ -113217,22 +114361,50 @@
        }
       },
       "typeValue": {
-       "raw": "'white' | 'solid' | 'none' | 'light'"
+       "raw": "'solid' | 'outline'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "white",
         "solid",
-        "none",
-        "light"
+        "outline"
+       ]
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": 120,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'night300'"
+       ],
+       "tags": {
+        "@default": "night300"
+       }
+      },
+      "typeValue": {
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night100' | 'night300' | 'night700'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "sky",
+        "grass",
+        "sun",
+        "fire",
+        "white",
+        "night100",
+        "night300",
+        "night700"
        ]
       },
       "from": "@epam/loveship:TagMods",
       "required": false
      },
      {
-      "uid": 88,
+      "uid": 91,
       "name": "link",
       "comment": {
        "raw": [
@@ -113246,7 +114418,7 @@
       "required": false
      },
      {
-      "uid": 60,
+      "uid": 62,
       "name": "href",
       "comment": {
        "raw": [
@@ -113260,7 +114432,7 @@
       "required": false
      },
      {
-      "uid": 52,
+      "uid": 53,
       "name": "rawProps",
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
@@ -113269,7 +114441,7 @@
       "required": false
      },
      {
-      "uid": 81,
+      "uid": 83,
       "name": "rawProps",
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
@@ -113278,7 +114450,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 113,
       "name": "rawProps",
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"

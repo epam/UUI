@@ -13,14 +13,8 @@ export class TagDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TagProps', component: uui.Tag },
-            [TSkin.Promo]: { type: '@epam/uui:TagProps', component: promo.Tag },
-            [TSkin.Loveship]: {
-                type: '@epam/loveship:TagProps',
-                component: loveship.Tag,
-                doc: (doc: DocBuilder<loveship.TagProps>) => {
-                    doc.merge('size', { defaultValue: '18' });
-                },
-            },
+            [TSkin.Promo]: { type: '@epam/promo:TagProps', component: promo.Tag },
+            [TSkin.Loveship]: { type: '@epam/loveship:TagProps', component: loveship.Tag },
         },
         doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
@@ -34,6 +28,7 @@ export class TagDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/tag/Basic.example.tsx" />
                 <DocExample title="Size" path="./_examples/tag/Size.example.tsx" />
+                <DocExample title="Color variants" path="./_examples/tag/Colors.example.tsx" />
             </>
         );
     }

@@ -25,7 +25,7 @@
     --sun-250: #F67E00;
     --sun-300: #F2682A;
 
-    --chromatic-0: #FFF;
+    --chromatic-0: #FFFFFF;
     --chromatic-100: #F7F7FD;
     --chromatic-150: #E5E5EE;
     --chromatic-200: #CDCDD9;
@@ -42,7 +42,7 @@
     --fire-60: #CC2929;
     --fire-70: #B32424;
 
-    --white: #FFF;
+    --white: #FFFFFF;
 
     --night50: #FAFAFC;
     --night100: #F5F6FA;
@@ -278,7 +278,6 @@
     }
 
 
-
     .uui-button {
         --uui-border-radius: 8px;
         --uui-btn-font: var(--font-museo-sans);
@@ -391,6 +390,52 @@
 
     .uui-text-placeholder {
         --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--chromatic-200) 0, var(--chromatic-100) 150px, var(--chromatic-200) 300px);
+    }
+
+    /* Tag */
+
+    .uui-tag {
+        &.uui-color-warning, &.uui-color-sun {
+            --uui-tag-caption: var(--uui-text-primary);
+            --uui-tag-fill: var(--uui-neutral-90);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-neutral-90) 5%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--uui-neutral-90) 30%, transparent);
+            }
+
+            &.uui-fill-outline .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-0);
+                --uui-count_indicator-border: var(--uui-neutral-40);
+            }
+
+        }
+
+        &.uui-color-neutral, &.uui-color-night300 {
+            --uui-tag-bg: var(--uui-neutral-30);
+            --uui-tag-bg-hover: var(--uui-neutral-40);
+            --uui-tag-border: var(--uui-neutral-30);
+            --uui-tag-border-hover: var(--uui-neutral-40);
+            --uui-tag-caption: var(--uui-text-primary);
+            --uui-tag-fill: var(--uui-neutral-60);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-0);
+                --uui-count_indicator-border: var(--uui-neutral-0);
+            }
+
+            &.uui-fill-outline {
+                --uui-tag-bg: var(--uui-neutral-20);
+                --uui-tag-bg-hover: var(--uui-neutral-30);
+                --uui-tag-border: var(--uui-neutral-40);
+                --uui-tag-border-hover: var(--uui-neutral-40);
+
+                .uui-count_indicator {
+                    --uui-count_indicator-bg: var(--uui-neutral-30);
+                    --uui-count_indicator-border: var(--uui-neutral-30);
+                }
+            }
+        }
     }
 
     .uui-button {
