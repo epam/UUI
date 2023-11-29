@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useRef } from 'react';
 import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
@@ -72,27 +72,34 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): LazyListView<TItem, TId, TFilter> {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const initializedRef = useRef<boolean>(false);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const viewRef = useRef<LazyListView<TItem, TId, TFilter>>(null);
+    
         const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             getId: this.getId,
             ...props,
         };
          
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const view = useMemo(
-            () => new LazyListView({ value, onValueChange }, viewProps, this.cache),
-            [...deps, this], // every time, datasource is updated, view should be recreated
-        );
+        const createView = () => new LazyListView({ value, onValueChange }, viewProps, this.cache);
+        if (!initializedRef.current && !viewRef.current) {
+            viewRef.current = createView();
+        }
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => {
-                unsubscribe();
-            };
-        }, [view]);
+            if (initializedRef.current) {
+                viewRef.current = createView();
+            }
+            const unsubscribe = this.subscribe(viewRef.current);
+        
+            initializedRef.current = true;
+            return () => { unsubscribe(); };
+        }, [...deps, this]);
 
-        view.update({ value, onValueChange }, viewProps);
-        return view;
+        viewRef.current.update({ value, onValueChange }, viewProps);
+        return viewRef.current;
     }
 }
