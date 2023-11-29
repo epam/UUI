@@ -24,5 +24,9 @@
     .git-icon {
         fill: #FFFFFF;
     }
+
+    .theme-switcher-button:hover {
+        background-color: color-mix(in srgb, var(--white) 5%, transparent);
+    }
 }
 
