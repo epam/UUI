@@ -120,7 +120,7 @@ const ContextSwitcher = React.memo(
                 size="36"
                 padding="12"
                 spacing="6"
-                background="surface"
+                background="surface-main"
                 borderBottom
                 cx={ css.contextSettingRow }
             >
@@ -158,7 +158,7 @@ const Toolbar = React.memo(
 );
 const Header = React.memo(function HeaderComponent() {
     return (
-        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface">
+        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface-main">
             <FlexCell key="name" width={ 130 }>
                 <Text size="24" fontWeight="600">
                     NAME

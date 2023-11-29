@@ -508,7 +508,7 @@ export function DemoForm() {
                 </RichTextView>
                 <FlexSpacer />
             </FlexRow>
-            <Panel background="surface" cx={ css.formPanel } shadow>
+            <Panel background="surface-main" cx={ css.formPanel } shadow>
                 <FlexCell width="100%">
                     <PersonalInfo lens={ lens.prop('personalInfo') } />
                     <Location lens={ lens.prop('location') } countriesDS={ countriesDS } />

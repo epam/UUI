@@ -35,7 +35,7 @@ export function ThemeElectricDemo() {
                 <ModalWindow width={ 360 }>
                     <ModalHeader borderBottom title="Simple modal example " onClose={ () => props.abort() } />
                     <ScrollBars>
-                        <Panel background="surface" margin="24">
+                        <Panel background="surface-main" margin="24">
                             <Text color="primary" fontSize="16">
                                 Changes will be undone!
                             </Text>
@@ -242,7 +242,7 @@ export function ThemeElectricDemo() {
                     <PromoButton caption="BUTTON" size="42" isDisabled onClick={ () => {} } />
                 </FlexRow>
             </div>
-            <Panel background="surface" shadow rawProps={ { style: { margin: '24px auto' } } }>
+            <Panel background="surface-main" shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>{renderDemoForm()}</ScrollBars>
             </Panel>
         </div>

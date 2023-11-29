@@ -25,7 +25,7 @@ export class PagePanelContext extends React.Component<DemoComponentProps, DemoCo
                 <FlexRow padding="12" borderBottom>
                     <Text fontWeight="600">{item.country}</Text>
                 </FlexRow>
-                <FlexRow padding="12" background="surface" borderBottom>
+                <FlexRow padding="12" background="surface-main" borderBottom>
                     <FlexCell minWidth={ 100 } grow={ 4 }>
                         <Text fontWeight="600" size="24">
                             Column1
@@ -100,7 +100,7 @@ export class PagePanelContext extends React.Component<DemoComponentProps, DemoCo
 
         return (
             <Panel cx={ css.container } margin="24">
-                <Panel background="surface" cx={ css.demo }>
+                <Panel background="surface-main" cx={ css.demo }>
                     {this.renderTable(items[props.value - 1])}
                     <FlexRow padding="12" vPadding="12" size="36">
                         <DemoComponent { ...props } totalPages={ this.state.totalPages } />
