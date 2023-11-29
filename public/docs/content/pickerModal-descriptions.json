@@ -1,41 +1,23 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "PickerModal is a selectable list of items opened in modal window.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          }
-        ]
+        "text": "PickerModal is a selectable list of items opened in modal window.",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#303240",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
       }
     ]
   }
-}
+]

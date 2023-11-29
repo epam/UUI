@@ -40,7 +40,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
         return props.renderRow ? (
             props.renderRow(rowProps, dataSourceState)
         ) : (
-            <DataPickerRow { ...rowProps } key={ rowProps.rowKey } borderBottom="none" size="36" padding="12" renderItem={ renderItem } />
+            <DataPickerRow { ...rowProps } key={ rowProps.rowKey } size="36" padding="12" renderItem={ renderItem } />
         );
     };
 

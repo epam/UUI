@@ -29,7 +29,6 @@ export default function LazyTreePickerModal() {
         <DataPickerRow
             { ...rowProps }
             key={ rowProps.rowKey }
-            borderBottom="none"
             size="36"
             padding="24"
             renderItem={ (item: Location, pickerItemProps: DataRowProps<Location, string>) => (

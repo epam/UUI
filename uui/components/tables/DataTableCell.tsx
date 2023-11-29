@@ -1,63 +1,18 @@
 import * as React from 'react';
-import { uuiMarkers, DataTableCellProps } from '@epam/uui-core';
-import { DragHandle, DataTableCell as UuiDataTableCell } from '@epam/uui-components';
+import { DataTableCellProps } from '@epam/uui-core';
+import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
+import { DataRowAddons } from '../addons';
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
-import { Checkbox } from '../inputs';
-import { ReactComponent as FoldingArrow } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { Tooltip } from '../overlays';
-import { IconContainer } from '../layout';
 import css from './DataTableCell.module.scss';
 import './variables.scss';
-
-function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
-    const row = props.rowProps;
-    const additionalItemSize = +props.size < 30 ? '12' : '18';
-
-    return (
-        <>
-            {row.dnd?.srcData && <DragHandle key="dh" cx={ css.dragHandle } />}
-            {row?.checkbox?.isVisible && (
-                <Checkbox
-                    key="cb"
-                    cx={ css.checkbox }
-                    tabIndex={ props.tabIndex }
-                    size={ additionalItemSize }
-                    value={ row.isChecked }
-                    indeterminate={ !row.isChecked && row.isChildrenChecked }
-                    onValueChange={ () => row.onCheck?.(row) }
-                    isDisabled={ row.checkbox.isDisabled }
-                    isInvalid={ row.checkbox.isInvalid }
-                />
-            )}
-            {row.indent > 0 && (
-                <div key="fold" className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
-                    {row.isFoldable && (
-                        <IconContainer
-                            rawProps={ {
-                                'aria-label': row.isFolded ? 'Unfold' : 'Fold',
-                                role: 'button',
-                            } }
-                            key="icon"
-                            icon={ FoldingArrow }
-                            cx={ [
-                                css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable, css.iconContainer,
-                            ] }
-                            rotate={ row.isFolded ? '90ccw' : '0' }
-                            onClick={ () => row.onFold(row) }
-                        />
-                    )}
-                </div>
-            )}
-        </>
-    );
-}
 
 export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     props = { ...props };
 
     if (props.isFirstColumn) {
-        props.addons = <DataTableRowAddons { ...props } />;
+        props.addons = <DataRowAddons { ...props } />;
     }
 
     props.renderPlaceholder = props.renderPlaceholder

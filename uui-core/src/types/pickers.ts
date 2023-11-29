@@ -148,17 +148,7 @@ export interface DataPickerCellProps<TItem = any, TId = any> extends IHasCX {
     /** DataPickerRowProps object for the table row the cell is at */
     rowProps: DataPickerRowProps<TItem, TId>;
 
-    /** DataPickerColumnProps object for the column the cell is at */
-    column: DataPickerColumnProps<TItem, TId>;
-
-    /** True if the cell is in the first column */
-    isFirstColumn: boolean;
-
-    /** True if the cell is in the last column */
-    isLastColumn: boolean;
-
-    /** HTML tabIndex attribute to set on the cell */
-    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
 }
 
 export interface DataPickerRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
