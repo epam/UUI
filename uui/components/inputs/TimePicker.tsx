@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { devLogger, DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
+import { devLogger, DropdownBodyProps, IDropdownToggler, withMods } from '@epam/uui-core';
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer } from '../overlays/DropdownContainer';
@@ -23,7 +23,7 @@ export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditM
     format?: 12 | 24;
 }
 
-export class TimePicker extends BaseTimePicker<TimePickerProps> {
+class TimePickerComponent extends BaseTimePicker<TimePickerProps> {
     renderInput = (props: IDropdownToggler) => {
         if (__DEV__) {
             if (this.props.size === '48') {
@@ -59,11 +59,12 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
     };
 
     renderBody = (props: DropdownBodyProps) => {
+        const { forwardedRef, ...timePickerBodyProps } = this.props;
         return (
             !this.props.isDisabled && !this.props.isReadonly && (
                 <DropdownContainer { ...props } focusLock={ false }>
                     <TimePickerBody
-                        { ...this.props }
+                        { ...timePickerBodyProps }
                         value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
                         rawProps={ this.props.rawProps?.body }
                         cx={ this.props.bodyCx }
@@ -73,3 +74,5 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
         );
     };
 }
+
+export const TimePicker = withMods(TimePickerComponent);

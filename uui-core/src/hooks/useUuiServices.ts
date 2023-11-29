@@ -11,10 +11,16 @@ import { UserSettingsContext } from '../services/UserSettingsContext';
 import { useEffect, useState } from 'react';
 
 export interface UuiServicesProps<TApi> extends ApiContextProps {
+    /** Function to get the api definitions.
+     * Usually, api definitions this is an object which contain object with all api requests of the app.
+     * Then you can call this requests via 'uuiContext.api.myApi(myData)'
+     * */
     apiDefinition?: (processRequest: IProcessRequest) => TApi;
 }
 export interface UseUuiServicesProps<TApi, TAppContext> extends UuiServicesProps<TApi> {
+    /** AppContext value */
     appContext?: TAppContext;
+    /** Instance of the router */
     router: IRouterContext;
 }
 

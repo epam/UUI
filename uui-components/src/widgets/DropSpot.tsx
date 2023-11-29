@@ -13,6 +13,7 @@ interface DropSpotProps {
 }
 
 export interface DropSpotRenderParams extends DropSpotState {
+    /** Event handlers to put on your rendered component */
     eventHandlers: EventHandlers;
 }
 

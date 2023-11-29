@@ -1,4 +1,4 @@
-import { devLogger, withMods } from '@epam/uui-core';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as types from '../../components/types';
 import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
 import css from './Badge.module.scss';
@@ -24,9 +24,8 @@ export function applyBadgeMods(mods: BadgeMods) {
 
 export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> & BadgeMods;
 
-export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, BadgeMods>(
+export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
     UuiBadge,
-    applyBadgeMods,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'fill'>({
@@ -41,6 +40,7 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
             color: props.color || 'sky',
             size: props.size || defaultSize,
             fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
-        } as BadgeProps;
+        };
     },
+    applyBadgeMods,
 );

@@ -65,13 +65,13 @@ export function preventDefaultIfTargetFocused(e: Event) {
 /**
  * Works exactly like native "closest" method, with next enhancements:
  * - supports HTMLElement as a selector
- * - takes Event as an input and performs search for the "event target"
+ * - takes Event as an input and performs search for the "event target" or "event related target" for focus/blur events.
  *
  * @param event
  * @param condition
  */
-export function closestTargetParentByCondition(event: Event, condition: string | HTMLElement) {
-    const element = _getEventTarget(event) as HTMLElement;
+export function closestTargetParentByCondition(e: Event, condition: string | HTMLElement) {
+    const element = _getInteractionTarget(e) as HTMLElement;
     if (!element || !condition) {
         return null;
     }
@@ -169,7 +169,13 @@ function _getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement 
  */
 function _getEventTarget(event: Event | React.SyntheticEvent) {
     if (event instanceof Event) {
-        const target = event.target;
+        let target;
+        if (['focus', 'blur', 'focusin', 'focusout'].includes(event.type)) {
+            target = (event as FocusEvent).relatedTarget;
+        } else {
+            target = event.target;
+        }
+
         if (target instanceof Element && target.shadowRoot) {
             /**
              * If event occurs inside shadow DOM and caught outside the shadow dom,
@@ -181,4 +187,15 @@ function _getEventTarget(event: Event | React.SyntheticEvent) {
     }
     // event target is always correct in synthetic events.
     return event.target;
+}
+
+const _isFocusEvent = (e: Event | React.SyntheticEvent | FocusEvent): e is FocusEvent =>
+    ['focus', 'blur', 'focusin', 'focusout'].includes(e.type);
+
+function _getInteractionTarget(e: Event | React.SyntheticEvent) {
+    if (_isFocusEvent(e)) {
+        return e.relatedTarget;
+    }
+
+    return _getEventTarget(e);
 }

@@ -3,7 +3,6 @@ import { INotification } from '@epam/uui-core';
 import { IconButton, FlexRow, FlexSpacer, NotificationCard, Switch, Text, Tooltip } from '@epam/uui';
 //
 import { copyTextToClipboard } from '../../../../helpers';
-import { isPropValueEmpty } from '../utils';
 import { svc } from '../../../../services';
 //
 import css from './DemoCode.module.scss';
@@ -50,6 +49,18 @@ function showNotification() {
     ).catch(() => {});
 }
 
+/**
+ * It never throws error
+ * @param o
+ */
+function safeJsonStringify(o: any) {
+    let res = '...';
+    try {
+        res = JSON.stringify(o);
+    } catch (err) {}
+    return res;
+}
+
 function renderCode(params: { demoComponentProps: { [p: string]: any }, tagName: string }) {
     const {
         demoComponentProps,
@@ -59,37 +70,28 @@ function renderCode(params: { demoComponentProps: { [p: string]: any }, tagName:
     let children: string = null;
     Object.keys(demoComponentProps).forEach((name) => {
         const val = demoComponentProps[name];
-
-        if (!isPropValueEmpty(val)) {
-            if (name === 'children') {
-                children = '{/* ' + (val.displayName || 'children') + ' */}';
-            } else if (val === true) {
-                props.push(name);
-            } else if (val === null) {
-                props.push(`${name}={null}`);
-            } else if (typeof val === 'string') {
-                props.push(`${name}="${val}"`);
-            } else if (typeof val === 'number') {
-                props.push(`${name}={${val}}`);
-            } else if (val.displayName) {
-                props.push(`${name}={${val.displayName}}`);
-            } else if (val.$$typeof?.toString() === 'Symbol(react.forward_ref)') {
-                props.push(`${name}={${val.render.name}}`);
-            } else if (typeof val === 'function') {
-                props.push(`${name}={() => { /* code */ }`);
-            } else if (name === 'dataSource') {
-                props.push(`${name}={() => { /* code */ }`);
-            } else {
-                props.push(`${name}={${JSON.stringify(val)}}`);
-            }
+        if (val === undefined) {
+            props.push(`${name}={undefined}`);
+        } else if (name === 'children') {
+            children = '{/* ' + (val.displayName || 'children') + ' */}';
+        } else if (val === true) {
+            props.push(name);
+        } else if (val === null) {
+            props.push(`${name}={null}`);
+        } else if (typeof val === 'string') {
+            props.push(`${name}="${val}"`);
+        } else if (typeof val === 'number') {
+            props.push(`${name}={${val}}`);
+        } else if (val.displayName) {
+            props.push(`${name}={${val.displayName}}`);
+        } else if (val.$$typeof?.toString() === 'Symbol(react.forward_ref)') {
+            props.push(`${name}={${val.render.name}}`);
+        } else if (typeof val === 'function') {
+            props.push(`${name}={() => { /* code */ }`);
+        } else if (name === 'dataSource') {
+            props.push(`${name}={() => { /* code */ }`);
         } else {
-            if (name !== 'key') { // we ignore key because it's always passed
-                if (val === undefined) {
-                    props.push(`${name}={undefined}`);
-                } else {
-                    props.push(`${name}={}`);
-                }
-            }
+            props.push(`${name}={${safeJsonStringify(val)}}`);
         }
     });
 

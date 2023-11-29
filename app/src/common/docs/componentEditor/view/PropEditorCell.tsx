@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {
-    PropDoc, SharedPropEditorsMap,
-    IPropDocEditor, TPropDocEditorType, PropExampleObject,
-} from '@epam/uui-docs';
-import { IconButton, Tooltip, FlexRow, FlexCell } from '@epam/uui';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
+import { PropDoc, SharedPropEditorsMap, IPropDocEditor, TPropDocEditorType, PropExampleObject } from '@epam/uui-docs';
+import { IconButton, Tooltip, FlexRow, FlexCell, FlexSpacer } from '@epam/uui';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-fill-18.svg';
 
 interface IPropEditorCell<TProp> {
     prop: PropDoc<any, any>;
@@ -42,6 +39,7 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
         return (
             <FlexRow size="24" spacing="6" rawProps={ { style: { marginTop: '6px', marginBottom: '6px', flexWrap: 'wrap' } } }>
                 <Component { ...peProps } />
+                <FlexSpacer />
                 { descriptionNode }
             </FlexRow>
         );

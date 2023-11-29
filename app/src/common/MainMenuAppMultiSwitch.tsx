@@ -7,9 +7,9 @@ import {
 } from '@epam/promo';
 import { svc } from '../services';
 
-interface MainMenuAppMultiSwitchPropsItem<TValue> extends ButtonProps, ButtonMods {
+type MainMenuAppMultiSwitchPropsItem<TValue> = ButtonProps & ButtonMods & {
     id: TValue;
-}
+};
 
 export interface MainMenuAppMultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IAnalyticableOnChange<TValue> {
     items: MainMenuAppMultiSwitchPropsItem<TValue>[];

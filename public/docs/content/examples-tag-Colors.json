@@ -1,0 +1,48 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can change the Tag color via the "
+      },
+      {
+        "text": "color",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. Color "
+      },
+      {
+        "text": "neutral",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is set by default."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Also, you can configure Tag's "
+      },
+      {
+        "text": "fill",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " . Fill "
+      },
+      {
+        "text": "solid",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is set by default."
+      }
+    ]
+  }
+]

@@ -9,7 +9,9 @@ import { GAListener } from './analytics';
 import { UuiServicesProps, useUuiServices } from '../hooks/useUuiServices';
 
 export interface ContextProviderProps<TApi, TAppContext> extends UuiServicesProps<TApi>, IHasChildren {
+    /** Callback to load the AppContext data. AppContext is used to load global data, before application mount */
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
+    /** Called when all contexts were initiated */
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
     history?: IHistory4;
     gaCode?: string;

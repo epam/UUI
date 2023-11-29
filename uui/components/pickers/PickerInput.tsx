@@ -17,7 +17,7 @@ const pickerWidth = 360;
 export type PickerInputProps = SizeMod & IHasEditMode & {};
 export type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;
 
-export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...props }: CompletePickerInputProps<TItem, TId>) {
+function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: CompletePickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
@@ -175,6 +175,12 @@ export function PickerInput<TItem, TId>({ highlightSearchMatches = true, ...prop
             modifiers={ popperModifiers }
             closeBodyOnTogglerHidden={ !isMobile() }
             portalTarget={ props.portalTarget }
+            ref={ ref }
         />
     );
 }
+
+export const PickerInput = React.forwardRef(PickerInputComponent) as <TItem, TId>(
+    props: CompletePickerInputProps<TItem, TId>,
+    ref: React.ForwardedRef<HTMLElement>
+) => JSX.Element;
