@@ -7,7 +7,7 @@ import {
 } from '@epam/electric';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
-import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
+import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/communication-geo_tag-18.svg';
 import { Country } from '@epam/uui-docs';
 
 interface Person {
