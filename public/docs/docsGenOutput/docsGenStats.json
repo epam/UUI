@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 610,
-   "amountTypes": 209
+   "amountProps": 582,
+   "amountTypes": 189
   },
   "value": [
    {
@@ -1227,9 +1227,16 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:TagCoreProps",
+    "value": [
+     "fill",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TagMods",
     "value": [
-     "size"
+     "color"
     ]
    },
    {
@@ -1333,13 +1340,6 @@
     "typeRef": "@epam/promo:StatusIndicatorMods",
     "value": [
      "color"
-    ]
-   },
-   {
-    "typeRef": "@epam/promo:TextMods",
-    "value": [
-     "color",
-     "font"
     ]
    },
    {
@@ -1484,25 +1484,6 @@
     "typeRef": "@epam/loveship:TabButtonMods",
     "value": [
      "theme"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:TagMods",
-    "value": [
-     "fill"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:TextInputMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:TextMods",
-    "value": [
-     "color",
-     "font"
     ]
    },
    {
@@ -2923,12 +2904,12 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 557,
+   "allExports": 556,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
-    "@epam/uui": 137,
-    "@epam/promo": 53,
+    "@epam/uui": 134,
+    "@epam/promo": 55,
     "@epam/electric": 3,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
@@ -3439,7 +3420,6 @@
    },
    "@epam/electric": {
     "InterfaceDeclaration": [
-     "AlertProps",
      "PromoButtonMods"
     ],
     "TypeAliasDeclaration": [
