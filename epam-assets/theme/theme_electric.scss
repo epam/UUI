@@ -518,6 +518,26 @@
         }
     }
 
+    /* MainMenu */
+
+    .uui-main_menu {
+        --uui-main_menu-bg: var(--uui-neutral-95);
+        --uui-main_menu-hover: var(--uui-neutral-90);
+        --uui-main_menu-border-active-gradient: var(--gradient-1);
+    }
+
+    .uui-main_menu-dropdown {
+        --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-95);
+    }
+
+    /* BurgerMenu */
+
+    .uui-burger {
+        --uui-burger_menu-bg: var(--uui-neutral-95);
+        --uui-burger_menu-bg-hover: var(--uui-neutral-95);
+        --uui-burger_menu-item: var(--uui-neutral-95);
+    }
+
     /* Typography */
 
     .uui-typography {

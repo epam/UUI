@@ -67,7 +67,7 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                         } }
                     />
                 </FlexRow>
-                <Panel background="surface" cx={ css.demo }>
+                <Panel background="surface-main" cx={ css.demo }>
                     {this.state.activeContent === 'form' ? this.renderForm() : this.renderText()}
                     <DemoComponent { ...props } />
                 </Panel>

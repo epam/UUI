@@ -329,7 +329,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <div
-            className="uui-panel root margin-24 uui-color-surface container"
+            className="uui-panel root margin-24 uui-surface-main container"
           >
             <div>
               Test content

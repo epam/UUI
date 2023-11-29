@@ -28,7 +28,7 @@
         cursor: pointer;
     }
 
-    &:global(.uui-panel.uui-color-surface) {
+    &.uui-surface-main {
         --uui-panel-bg: var(--uui-surface-main);
     }
 }

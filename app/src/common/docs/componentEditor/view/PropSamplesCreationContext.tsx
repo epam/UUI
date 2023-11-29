@@ -18,7 +18,7 @@ export class PropSamplesCreationContext implements IPropSamplesCreationContext<a
             svc.uuiNotifications
                 .show(
                     () => (
-                        <Panel shadow={ true } background="surface">
+                        <Panel shadow={ true } background="surface-main">
                             <FlexRow padding="24" vPadding="12" borderBottom={ true }>
                                 <pre>
                                     {name}
