@@ -81074,12 +81074,12 @@
       "uid": 10,
       "name": "background",
       "typeValue": {
-       "raw": "'surface'"
+       "raw": "'surface-main'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "surface"
+        "surface-main"
        ]
       },
       "from": "@epam/uui:RowMods",
@@ -81306,12 +81306,12 @@
       "uid": 10,
       "name": "background",
       "typeValue": {
-       "raw": "'surface'"
+       "raw": "'surface-main'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "surface"
+        "surface-main"
        ]
       },
       "from": "@epam/uui:RowMods",
@@ -82647,7 +82647,7 @@
       "interface PanelMods {",
       "    shadow?: boolean;",
       "    margin?: '24';",
-      "    background?: 'surface';",
+      "    background?: 'surface-main';",
       "}"
      ]
     },
@@ -82681,12 +82681,12 @@
       "uid": 3,
       "name": "background",
       "typeValue": {
-       "raw": "'surface'"
+       "raw": "'surface-main'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "surface"
+        "surface-main"
        ]
       },
       "required": false
@@ -82850,12 +82850,12 @@
       "uid": 10,
       "name": "background",
       "typeValue": {
-       "raw": "'surface'"
+       "raw": "'surface-main'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "surface"
+        "surface-main"
        ]
       },
       "from": "@epam/uui:PanelMods",
@@ -87758,7 +87758,7 @@
       "    spacing?: '6' | '12' | '18';",
       "    topShadow?: boolean;",
       "    vPadding?: '12' | '18' | '24' | '36' | '48';",
-      "    background?: 'surface';",
+      "    background?: 'surface-main';",
       "};"
      ]
     },
@@ -87890,12 +87890,12 @@
       "uid": 10,
       "name": "background",
       "typeValue": {
-       "raw": "'surface'"
+       "raw": "'surface-main'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "surface"
+        "surface-main"
        ]
       },
       "required": false
@@ -90561,8 +90561,9 @@
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+        "/**\r",
+        "     * An analytics event to send (via AnalyticsContext) when component is clicked.\r",
+        "     * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
        ]
       },
       "typeValue": {
@@ -90775,8 +90776,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * @default '36'"
+        "@default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -91416,8 +91416,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * @default '36'"
+        "@default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -102014,7 +102013,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray30'"
+        "/**\r",
+        "     * @default 'gray30'"
        ],
        "tags": {
         "@default": "gray30"
@@ -102291,8 +102291,9 @@
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+        "/**\r",
+        "     * An analytics event to send (via AnalyticsContext) when component is clicked.\r",
+        "     * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
        ]
       },
       "typeValue": {
@@ -102557,7 +102558,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray30'"
+        "/**\r",
+        "     * @default 'gray30'"
        ],
        "tags": {
         "@default": "gray30"
@@ -113801,38 +113803,11 @@
     "props": [
      {
       "uid": 1,
-      "name": "size",
+      "name": "color",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:TagMods",
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "@default 'solid'"
+        "/**\r",
+        "     * @default 'night300'"
        ],
        "tags": {
         "@default": "night300"
@@ -114324,8 +114299,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * @default '36'"
+        "@default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -114353,8 +114327,7 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "/**\r",
-        "     * @default 'solid'"
+        "@default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -114378,7 +114351,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'night300'"
+        "/**\r",
+        "     * @default 'night300'"
        ],
        "tags": {
         "@default": "night300"
