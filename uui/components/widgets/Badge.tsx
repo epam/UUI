@@ -1,5 +1,4 @@
 import React from 'react';
-import { EpamBadgeSemanticColor } from '../types';
 import { devLogger, withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
@@ -16,9 +15,10 @@ const mapSize = {
     24: '30',
     18: '18',
 };
-export type BadgeColor = EpamBadgeSemanticColor;
+
 export type BadgeFill = 'solid' | 'outline';
 export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
+export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 export interface BadgeMods {
     color?: BadgeColor;
