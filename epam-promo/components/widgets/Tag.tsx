@@ -4,9 +4,9 @@ import { EpamPrimaryColor } from '../types';
 
 export type TagMods = {
     /**
-     * @default 'night300'
+     * @default 'gray30'
      */
-    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';
+    color?: EpamPrimaryColor | 'white' | 'gray10' | 'gray30' | 'gray70';
 };
 
 export type TagProps = UuiTagCoreProps & TagMods;

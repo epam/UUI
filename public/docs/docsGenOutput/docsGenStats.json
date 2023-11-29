@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 610,
-   "amountTypes": 209
+   "amountProps": 613,
+   "amountTypes": 210
   },
   "value": [
    {
@@ -1227,15 +1227,10 @@
      "margin",
      "padding",
      "rowGap",
+     "size",
      "spacing",
      "topShadow",
      "vPadding"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:RowSizeMod",
-    "value": [
-     "size"
     ]
    },
    {
@@ -1258,9 +1253,16 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:TagCoreProps",
+    "value": [
+     "fill",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TagMods",
     "value": [
-     "size"
+     "color"
     ]
    },
    {
@@ -1405,6 +1407,12 @@
    },
    {
     "typeRef": "@epam/promo:StatusIndicatorMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:TagMods",
     "value": [
      "color"
     ]
@@ -1598,7 +1606,7 @@
    {
     "typeRef": "@epam/loveship:TagMods",
     "value": [
-     "fill"
+     "color"
     ]
    },
    {
@@ -1664,7 +1672,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 474
+   "amountTypes": 475
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1907,7 +1915,6 @@
    "@epam/uui:ButtonProps",
    "@epam/uui:CheckboxMods",
    "@epam/uui:CheckboxProps",
-   "@epam/uui:ColorMod",
    "@epam/uui:ColumnsConfigurationModalProps",
    "@epam/uui:CompletePickerInputProps",
    "@epam/uui:ConfirmationModalWindowProps",
@@ -1930,16 +1937,12 @@
    "@epam/uui:DropdownMenuContainerProps",
    "@epam/uui:DropMarkerProps",
    "@epam/uui:DropSpotProps",
-   "@epam/uui:EpamBadgeSemanticColor",
    "@epam/uui:FileCardItem",
    "@epam/uui:FileCardProps",
-   "@epam/uui:FillStyle",
    "@epam/uui:FiltersPanelProps",
    "@epam/uui:FlexCellMods",
    "@epam/uui:FlexCellProps",
    "@epam/uui:FlexRowProps",
-   "@epam/uui:FontStyle",
-   "@epam/uui:FontWeight",
    "@epam/uui:GlobalMenuProps",
    "@epam/uui:HighlightRange",
    "@epam/uui:IconButtonCoreProps",
@@ -1988,7 +1991,6 @@
    "@epam/uui:RangeDatePickerValue",
    "@epam/uui:RichTextViewMods",
    "@epam/uui:RichTextViewProps",
-   "@epam/uui:RowSize",
    "@epam/uui:SearchInputProps",
    "@epam/uui:SliderMods",
    "@epam/uui:SliderProps",
@@ -1999,12 +2001,17 @@
    "@epam/uui:SwitchProps",
    "@epam/uui:TabButtonMods",
    "@epam/uui:TabButtonProps",
+   "@epam/uui:TagColor",
+   "@epam/uui:TagCoreProps",
+   "@epam/uui:TagFill",
    "@epam/uui:TagMods",
    "@epam/uui:TagProps",
    "@epam/uui:TagSize",
    "@epam/uui:TextAreaMods",
    "@epam/uui:TextAreaProps",
    "@epam/uui:TextColor",
+   "@epam/uui:TextFontStyle",
+   "@epam/uui:TextFontWeight",
    "@epam/uui:TextInputProps",
    "@epam/uui:TextMods",
    "@epam/uui:TextPlaceholderProps",
@@ -2062,6 +2069,8 @@
    "@epam/promo:SizeMod",
    "@epam/promo:StatusIndicatorMods",
    "@epam/promo:StatusIndicatorProps",
+   "@epam/promo:TagMods",
+   "@epam/promo:TagProps",
    "@epam/promo:TextMods",
    "@epam/promo:TextProps",
    "@epam/promo:TextSize",
@@ -2145,14 +2154,14 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 822,
+   "allExports": 810,
    "byModule": {
     "@epam/uui-core": 130,
     "@epam/uui-components": 105,
-    "@epam/uui": 153,
+    "@epam/uui": 142,
     "@epam/promo": 128,
     "@epam/electric": 105,
-    "@epam/loveship": 138,
+    "@epam/loveship": 137,
     "@epam/uui-editor": 63
    }
   },
@@ -2414,19 +2423,8 @@
     "VariableDeclaration": [
      "Accordion",
      "Alert",
-     "allButtonColors",
-     "allButtonFills",
-     "allEpamBadgeSemanticColors",
-     "allFillStyles",
-     "allFontStyles",
-     "allFontWeights",
      "allIconColors",
      "allLinkButtonColors",
-     "allRowSizes",
-     "allSemanticColors",
-     "allSizes",
-     "allTextColors",
-     "allTextSizes",
      "Anchor",
      "Avatar",
      "AvatarStack",
@@ -2928,7 +2926,6 @@
      "applyButtonMods",
      "applyIconContainerMods",
      "applyRangeSliderMods",
-     "applyTagMods",
      "applyTextInputMods",
      "ColumnsConfigurationModal",
      "DataTable",
@@ -3043,12 +3040,12 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 557,
+   "allExports": 556,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
-    "@epam/uui": 137,
-    "@epam/promo": 53,
+    "@epam/uui": 134,
+    "@epam/promo": 55,
     "@epam/electric": 3,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
@@ -3367,7 +3364,6 @@
      "BurgerSearchProps",
      "ButtonMods",
      "CheckboxMods",
-     "ColorMod",
      "ColumnsConfigurationModalProps",
      "ConfirmationModalWindowProps",
      "CountIndicatorProps",
@@ -3422,8 +3418,6 @@
      "RangeDatePickerProps",
      "RangeDatePickerValue",
      "RichTextViewMods",
-     "RowMods",
-     "RowSizeMod",
      "SearchInputProps",
      "SizeMod",
      "SliderMods",
@@ -3431,7 +3425,6 @@
      "StatusIndicatorProps",
      "SwitchMods",
      "TabButtonMods",
-     "TagMods",
      "TextAreaMods",
      "TextInputMods",
      "TextInputProps",
@@ -3455,12 +3448,8 @@
      "CheckboxProps",
      "CompletePickerInputProps",
      "ControlSize",
-     "EpamBadgeSemanticColor",
-     "FillStyle",
      "FlexCellMods",
      "FlexCellProps",
-     "FontStyle",
-     "FontWeight",
      "IconButtonCoreProps",
      "IconButtonProps",
      "IconColor",
@@ -3480,16 +3469,21 @@
      "pickerPart",
      "RadioInputProps",
      "RichTextViewProps",
-     "RowSize",
-     "SemanticColor",
+     "RowMods",
      "SpinnerProps",
      "StatusIndicatorColors",
      "SwitchProps",
      "TabButtonProps",
+     "TagColor",
+     "TagCoreProps",
+     "TagFill",
+     "TagMods",
      "TagProps",
      "TagSize",
      "TextAreaProps",
      "TextColor",
+     "TextFontStyle",
+     "TextFontWeight",
      "TextPlaceholderProps",
      "TextProps",
      "TextSize",
@@ -3553,6 +3547,8 @@
      "NotificationCardProps",
      "RowSize",
      "StatusIndicatorProps",
+     "TagMods",
+     "TagProps",
      "TextProps",
      "TextSize",
      "TooltipProps"
