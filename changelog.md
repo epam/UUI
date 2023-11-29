@@ -3,7 +3,15 @@
 **What's New**
 * [Tag]: remade Tag by new design. It has new `colors` and new fill mods `solid & outline`;
 * [Breaking change]: Tag in loveship changed default `size` to `36px`. It was 18px;
-
+* Upload new icons pack
+  * Breaking changes:
+    * 'action-update' icon was removed use 'navigation-refresh' instead
+    * 'content-plus' icon was removed use 'action-add' instead
+    * 'action-map_pin' icon was removed use 'communication-geo_tag' instead
+    * 'table-info-outline' icon was removed use 'notification-info-outline' instead
+    * 'action-chat' icon was removed use 'communication-chat' instead
+    * 'not-recommended' icon was removed use 'blacklist' instead
+    * 'copy-content' icon was removed use 'action-copy_content' instead
 **What's Fixed**
 * [Calendar]: fixed disabled text `color`.
 

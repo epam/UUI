@@ -7,7 +7,7 @@ import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { ReactComponent as aimIcon } from '@epam/assets/icons/common/action-target-18.svg';
 import { ReactComponent as telescopeIcon } from '@epam/assets/icons/common/communication-telescope-18.svg';
-import { ReactComponent as chatIcon } from '@epam/assets/icons/common/action-chat-18.svg';
+import { ReactComponent as chatIcon } from '@epam/assets/icons/common/communication-chat-18.svg';
 import { ReactComponent as githubIcon } from '@epam/assets/icons/common/social-network-github-18.svg';
 import { ReactComponent as skypeIcon } from '@epam/assets/icons/common/communication-skype-18.svg';
 import { ReactComponent as instaIcon } from '@epam/assets/icons/common/social-network-instagram-18.svg';
@@ -15,7 +15,7 @@ import { ReactComponent as shareIcon } from '@epam/assets/icons/common/social-sh
 import { ReactComponent as phoneIcon } from '@epam/assets/icons/common/communication-phone-18.svg';
 import { ReactComponent as mailIcon } from '@epam/assets/icons/common/communication-mail-18.svg';
 import { ReactComponent as inIcon } from '@epam/assets/icons/common/social-network-linkedin-18.svg';
-import { ReactComponent as geoIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
+import { ReactComponent as geoIcon } from '@epam/assets/icons/common/communication-geo_tag-18.svg';
 import { ReactComponent as rightArrIcon } from '@epam/assets/icons/common/navigation-chevron-right-12.svg';
 
 export default function BasicDropdownExample() {
