@@ -1,5 +1,6 @@
-import { withMods } from '@epam/uui-core';
-import { ButtonProps, Button } from '@epam/uui-components';
+import { createSkinComponent } from '@epam/uui-core';
+import { Button } from '@epam/uui-components';
+import { ButtonCoreProps } from '@epam/uui';
 import css from './PromoButton.module.scss';
 
 const defaultSize = '36';
@@ -10,7 +11,7 @@ export interface PromoButtonMods {
     size?: PromoButtonSize;
 }
 
-type ButtonPropsWithOmit = Omit<ButtonProps, 'count' | 'indicator' | 'dropdownIcon' | 'dropdownIconPosition' | 'isDropdown' | 'isOpen' | 'clearIcon' | 'countIndicator' | 'onClear' | 'toggleDropdownOpening'>;
+type ButtonPropsWithOmit = Omit<ButtonCoreProps, 'count' | 'indicator' | 'dropdownIcon' | 'dropdownIconPosition' | 'isDropdown' | 'isOpen' | 'clearIcon' | 'countIndicator' | 'onClear' | 'toggleDropdownOpening'>;
 
 export type PromoButtonProps = ButtonPropsWithOmit & PromoButtonMods;
 
@@ -22,7 +23,8 @@ export function applyButtonMods(mods: PromoButtonProps) {
     ];
 }
 
-export const PromoButton = withMods<ButtonPropsWithOmit, PromoButtonMods>(
+export const PromoButton = createSkinComponent<ButtonCoreProps, PromoButtonProps>(
     Button,
+    undefined,
     applyButtonMods,
 );

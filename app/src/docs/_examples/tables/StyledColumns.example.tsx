@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { BadgeColor, Badge, DataTable, FlexRow, Panel, Text } from '@epam/uui';
+import { Badge, BadgeColor, DataTable, FlexRow, Panel, Text } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import css from './TablesExamples.module.scss';

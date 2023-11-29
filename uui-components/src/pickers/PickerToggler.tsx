@@ -49,8 +49,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             inputContainer.current?.focus();
         }
 
-        return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
-    }, [props.isOpen]);
+        return () => window.document.removeEventListener('click', handleClick);
+    }, [props.isOpen, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
         if (props.isReadonly) return false;
@@ -70,7 +70,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onFocus?.(e);
         setInFocus(true);
-        inputContainer.current?.focus();
+        props.searchPosition === 'input' && inputContainer.current?.focus();
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
@@ -148,6 +148,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.isDisabled || props.isReadonly) return;
         e.preventDefault();
         if (inFocus && props.value && props.minCharsToSearch) return;
+
+        toggleContainer.current.focus();
         props.onClick?.();
     };
 

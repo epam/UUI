@@ -3,7 +3,7 @@ import { ButtonBaseProps, ButtonBase } from './ButtonBase';
 import { IconContainer } from '../layout';
 import css from './Button.module.scss';
 
-export interface IconButtonBaseProps extends ButtonBaseProps {}
+export type IconButtonBaseProps = ButtonBaseProps & {};
 
 export class IconButton extends ButtonBase<IconButtonBaseProps> {
     constructor(props: IconButtonBaseProps) {

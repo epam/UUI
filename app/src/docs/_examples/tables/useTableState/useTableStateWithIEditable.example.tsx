@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
-import { DataTable, Panel, FlexRow, Text, BadgeColor, Badge } from '@epam/uui';
+import { DataTable, Panel, FlexRow, Text, Badge, BadgeColor } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [

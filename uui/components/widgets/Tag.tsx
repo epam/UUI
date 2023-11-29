@@ -17,6 +17,8 @@ const mapSize = {
 };
 
 export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
+export type TagFill = 'solid' | 'outline';
+export type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     18: '12',
@@ -27,31 +29,37 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-export interface TagMods {
-    /**
-     * @default '36'
-     */
-    size?: TagSize;
-}
+export type TagMods = {
+    /** @default 'neutral' */
+    color?: TagColor;
+};
 
-export function applyTagMods(mods: TagMods) {
+export type TagCoreProps = ButtonProps & {
+    /** @default '36' */
+    size?: TagSize;
+    /** @default 'solid' */
+    fill?: TagFill;
+};
+
+export type TagProps = TagCoreProps & TagMods;
+
+export function applyTagMods(props: TagProps) {
     return [
-        css['size-' + (mods.size || defaultSize)],
+        css['size-' + (props.size || defaultSize)],
         css.root,
-        'uui-color-neutral',
+        `uui-color-${props.color || 'neutral'}`,
+        `uui-fill-${props.fill || 'solid'}`,
         'uui-tag',
     ];
 }
 
-export type TagProps = ButtonProps & TagMods;
-
-export const Tag = withMods<ButtonProps, TagMods>(Button, applyTagMods, (props) => ({
+export const Tag = withMods<TagCoreProps, TagMods>(Button, applyTagMods, (props) => ({
     dropdownIcon: systemIcons[mapSize[props.size] || defaultSize].foldingArrow,
     clearIcon: systemIcons[mapSize[props.size] || defaultSize].clear,
     countIndicator: (countIndicatorProps) => (
         <CountIndicator
             { ...countIndicatorProps }
-            color="white"
+            color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
             size={ mapCountIndicatorSizes[props.size || defaultSize] }
         />
     ),

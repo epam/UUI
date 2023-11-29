@@ -1,45 +1,17 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 736,
-   "amountTypes": 240
+   "amountProps": 613,
+   "amountTypes": 210
   },
   "value": [
    {
     "typeRef": "@epam/uui-core:AcceptDropParams",
     "value": [
-     "dstData",
      "offsetLeft",
      "offsetTop",
-     "srcData",
      "targetHeight",
      "targetWidth"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ApiCallInfo",
-    "value": [
-     "attemptsCount",
-     "dismissError",
-     "errorStatus",
-     "finishedAt",
-     "httpStatus",
-     "method",
-     "name",
-     "options",
-     "requestData",
-     "responseData",
-     "startedAt",
-     "status",
-     "url"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ApiContextProps",
-    "value": [
-     "apiPingPath",
-     "apiReloginPath",
-     "apiServerUrl"
     ]
    },
    {
@@ -71,12 +43,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:AsyncListViewProps",
-    "value": [
-     "api"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ButtonSemanticProps",
     "value": [
      "type"
@@ -94,15 +60,7 @@
     "typeRef": "@epam/uui-core:ContextProviderProps",
     "value": [
      "gaCode",
-     "history",
-     "loadAppContext",
-     "onInitCompleted"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataColumnProps",
-    "value": [
-     "justifyContent"
+     "history"
     ]
    },
    {
@@ -117,25 +75,6 @@
      "id",
      "isLastChild",
      "value"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataRowProps",
-    "value": [
-     "isPinned",
-     "isUnknown"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableCellProps",
-    "value": [
-     "renderUnknown"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataTableConfigModalParams",
-    "value": [
-     "columns"
     ]
    },
    {
@@ -164,12 +103,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:DndActorProps",
-    "value": [
-     "render"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:DndContextState",
     "value": [
      "ghostOffsetX",
@@ -177,62 +110,6 @@
      "ghostWidth",
      "isDragging",
      "renderGhost"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DropdownProps",
-    "value": [
-     "boundaryElement",
-     "closeBodyOnTogglerHidden",
-     "closeDelay",
-     "closeOnClickOutside",
-     "closeOnMouseLeave",
-     "closeOnTargetClick",
-     "isNotUnfoldable",
-     "modifiers",
-     "onClose",
-     "openDelay",
-     "openOnClick",
-     "openOnHover",
-     "placement",
-     "portalTarget",
-     "renderBody",
-     "renderTarget",
-     "zIndex"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DropParams",
-    "value": [
-     "position"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ErrorPageInfo",
-    "value": [
-     "imageUrl",
-     "mobileImageUrl",
-     "subtitle",
-     "title"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:FileUploadOptions",
-    "value": [
-     "getXHR",
-     "onProgress"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:FileUploadResponse",
-    "value": [
-     "error",
-     "extension",
-     "id",
-     "name",
-     "path",
-     "size",
-     "type"
     ]
    },
    {
@@ -250,27 +127,6 @@
      "nin",
      "not",
      "notInRange"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:FormSaveResponse",
-    "value": [
-     "form",
-     "validation"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:FormState",
-    "value": [
-     "form",
-     "formHistory",
-     "historyIndex",
-     "isChanged",
-     "isInProgress",
-     "isInSaveMode",
-     "lastSentForm",
-     "serverValidationState",
-     "validationState"
     ]
    },
    {
@@ -339,24 +195,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:IFilterItemBodyProps",
-    "value": [
-     "selectedPredicate"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IHasChildren",
-    "value": [
-     "children"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:IHasDirection",
-    "value": [
-     "direction"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:IHistory4",
     "value": [
      "block",
@@ -365,19 +203,6 @@
      "location",
      "push",
      "replace"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ILens",
-    "value": [
-     "default",
-     "get",
-     "index",
-     "onChange",
-     "prop",
-     "set",
-     "toProps",
-     "update"
     ]
    },
    {
@@ -435,14 +260,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:LayoutLayer",
-    "value": [
-     "depth",
-     "id",
-     "zIndex"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:Link",
     "value": [
      "hash",
@@ -462,27 +279,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:ModalBlockerProps",
-    "value": [
-     "disableCloseByEsc",
-     "disableFocusLock",
-     "disallowClickOutside"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ModalFooterCoreProps",
-    "value": [
-     "borderTop"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:ModalHeaderCoreProps",
-    "value": [
-     "onClose",
-     "title"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:ModalOperation",
     "value": [
      "component",
@@ -498,17 +294,21 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-core:PickerBaseOptions",
+    "value": [
+     "ref"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-core:RangeDatePickerPresets",
     "value": [
      "[key: string]"
     ]
    },
    {
-    "typeRef": "@epam/uui-core:RangeDatePickerPresetValue",
+    "typeRef": "@epam/uui-core:RenderEditorProps",
     "value": [
-     "from",
-     "order",
-     "to"
+     "ref"
     ]
    },
    {
@@ -542,7 +342,8 @@
    {
     "typeRef": "@epam/uui-core:TreeNodeInfo",
     "value": [
-     "count"
+     "count",
+     "totalCount"
     ]
    },
    {
@@ -568,13 +369,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-core:UseUuiServicesProps",
-    "value": [
-     "appContext",
-     "router"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-core:UuiContexts",
     "value": [
      "uuiAnalytics",
@@ -594,39 +388,6 @@
     "value": [
      "subtitle",
      "title"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:UuiServicesProps",
-    "value": [
-     "apiDefinition"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:VPanelProps",
-    "value": [
-     "style"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AccordionState",
-    "value": [
-     "opened"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AdaptiveItemProps",
-    "value": [
-     "collapsedContainer",
-     "id",
-     "priority",
-     "render"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:AdaptivePanelProps",
-    "value": [
-     "items"
     ]
    },
    {
@@ -785,34 +546,12 @@
     ]
    },
    {
-    "typeRef": "@epam/uui-components:DropdownContainerProps",
-    "value": [
-     "height",
-     "maxWidth",
-     "showArrow",
-     "style",
-     "width"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:DropSpotRenderParams",
-    "value": [
-     "eventHandlers"
-    ]
-   },
-   {
     "typeRef": "@epam/uui-components:HeaderCellContentProps",
     "value": [
      "onResize",
      "onResizeEnd",
      "onResizeStart",
      "toggleSort"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:InputAddonProps",
-    "value": [
-     "content"
     ]
    },
    {
@@ -859,33 +598,9 @@
    {
     "typeRef": "@epam/uui-components:MainMenuProps",
     "value": [
-     "Burger",
-     "MainMenuDropdown",
-     "alwaysShowBurger",
-     "appLogoBgColor",
-     "appLogoUrl",
-     "children",
      "customerLogoBgColor",
-     "customerLogoHref",
-     "customerLogoLink",
-     "customerLogoUrl",
-     "customerLogoWidth",
-     "externalGap",
      "isTransparent",
-     "items",
-     "logoHref",
-     "logoLink",
-     "logoWidth",
-     "onLogoClick",
-     "renderBurger",
-     "serverBadge",
-     "tooltipTechInfo"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:MonthSelectionProps",
-    "value": [
-     "selectedDate"
+     "serverBadge"
     ]
    },
    {
@@ -897,13 +612,6 @@
      "isLast",
      "pages",
      "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:PickerBindingHelper",
-    "value": [
-     "applyValueToDataSourceState",
-     "dataSourceStateToValue"
     ]
    },
    {
@@ -979,13 +687,6 @@
      "pickerMode",
      "renderItem",
      "searchPosition"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-components:PortalProps",
-    "value": [
-     "key",
-     "target"
     ]
    },
    {
@@ -1079,6 +780,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui-components:TextAreaProps",
+    "value": [
+     "forwardedRef"
+    ]
+   },
+   {
     "typeRef": "@epam/uui-components:TimePickerBodyProps",
     "value": [
      "addIcon",
@@ -1133,6 +840,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:BadgeCoreProps",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:BadgeMods",
     "value": [
      "color",
@@ -1152,6 +865,12 @@
     "typeRef": "@epam/uui:BurgerGroupHeaderProps",
     "value": [
      "caption"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:ButtonCoreProps",
+    "value": [
+     "size"
     ]
    },
    {
@@ -1369,6 +1088,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:LinkButtonCoreProps",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:LinkButtonMods",
     "value": [
      "color",
@@ -1386,12 +1111,6 @@
     "typeRef": "@epam/uui:MainMenuButtonMods",
     "value": [
      "type"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:MainMenuIconProps",
-    "value": [
-     "icon"
     ]
    },
    {
@@ -1508,15 +1227,10 @@
      "margin",
      "padding",
      "rowGap",
+     "size",
      "spacing",
      "topShadow",
      "vPadding"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:RowSizeMod",
-    "value": [
-     "size"
     ]
    },
    {
@@ -1539,9 +1253,16 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:TagCoreProps",
+    "value": [
+     "fill",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TagMods",
     "value": [
-     "size"
+     "color"
     ]
    },
    {
@@ -1686,6 +1407,12 @@
    },
    {
     "typeRef": "@epam/promo:StatusIndicatorMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:TagMods",
     "value": [
      "color"
     ]
@@ -1879,7 +1606,7 @@
    {
     "typeRef": "@epam/loveship:TagMods",
     "value": [
-     "fill"
+     "color"
     ]
    },
    {
@@ -1945,7 +1672,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 472
+   "amountTypes": 475
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1969,7 +1696,7 @@
    "@epam/uui-core:BatchPromiseOptions",
    "@epam/uui-core:BlockTypes",
    "@epam/uui-core:ButtonBaseCoreProps",
-   "@epam/uui-core:ButtonCoreProps",
+   "@epam/uui-core:ButtonComponentProps",
    "@epam/uui-core:ButtonSemanticProps",
    "@epam/uui-core:CascadeSelection",
    "@epam/uui-core:CheckboxCoreProps",
@@ -2009,7 +1736,6 @@
    "@epam/uui-core:FlexCellProps",
    "@epam/uui-core:FormProps",
    "@epam/uui-core:FormSaveResponse",
-   "@epam/uui-core:FormState",
    "@epam/uui-core:IAdaptiveItem",
    "@epam/uui-core:IAnalyticsContext",
    "@epam/uui-core:IAnalyticsListener",
@@ -2024,6 +1750,7 @@
    "@epam/uui-core:IFilterItemBodyProps",
    "@epam/uui-core:IFilterPredicate",
    "@epam/uui-core:IFormApi",
+   "@epam/uui-core:IHasStyleAttrs",
    "@epam/uui-core:IHistory4",
    "@epam/uui-core:ILayoutContext",
    "@epam/uui-core:ILens",
@@ -2047,6 +1774,7 @@
    "@epam/uui-core:ListApiSettings",
    "@epam/uui-core:LoadingStatus",
    "@epam/uui-core:LoadTreeOptions",
+   "@epam/uui-core:MergedRawProps",
    "@epam/uui-core:Metadata",
    "@epam/uui-core:ModalBlockerProps",
    "@epam/uui-core:ModalFooterCoreProps",
@@ -2084,7 +1812,6 @@
    "@epam/uui-core:UuiRecoveryErrorInfo",
    "@epam/uui-core:ValidationMode",
    "@epam/uui-components:AccordionProps",
-   "@epam/uui-components:AccordionState",
    "@epam/uui-components:AdaptiveItemProps",
    "@epam/uui-components:AdaptivePanelProps",
    "@epam/uui-components:AnchorProps",
@@ -2128,11 +1855,9 @@
    "@epam/uui-components:MainMenuDropdownProps",
    "@epam/uui-components:MainMenuLogoProps",
    "@epam/uui-components:MainMenuProps",
-   "@epam/uui-components:MonthSelectionProps",
    "@epam/uui-components:NumericInputProps",
    "@epam/uui-components:PaginatorParams",
    "@epam/uui-components:PaginatorProps",
-   "@epam/uui-components:PickerBindingHelper",
    "@epam/uui-components:PickerBindingProps",
    "@epam/uui-components:PickerBindingValueType",
    "@epam/uui-components:PickerBodyBaseProps",
@@ -2174,6 +1899,7 @@
    "@epam/uui:AccordionProps",
    "@epam/uui:AlertProps",
    "@epam/uui:BadgeColor",
+   "@epam/uui:BadgeCoreProps",
    "@epam/uui:BadgeFill",
    "@epam/uui:BadgeMods",
    "@epam/uui:BadgeProps",
@@ -2183,12 +1909,12 @@
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
    "@epam/uui:ButtonColor",
+   "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",
    "@epam/uui:CheckboxMods",
    "@epam/uui:CheckboxProps",
-   "@epam/uui:ColorMod",
    "@epam/uui:ColumnsConfigurationModalProps",
    "@epam/uui:CompletePickerInputProps",
    "@epam/uui:ConfirmationModalWindowProps",
@@ -2211,18 +1937,15 @@
    "@epam/uui:DropdownMenuContainerProps",
    "@epam/uui:DropMarkerProps",
    "@epam/uui:DropSpotProps",
-   "@epam/uui:EpamBadgeSemanticColor",
    "@epam/uui:FileCardItem",
    "@epam/uui:FileCardProps",
-   "@epam/uui:FillStyle",
    "@epam/uui:FiltersPanelProps",
    "@epam/uui:FlexCellMods",
    "@epam/uui:FlexCellProps",
    "@epam/uui:FlexRowProps",
-   "@epam/uui:FontStyle",
-   "@epam/uui:FontWeight",
    "@epam/uui:GlobalMenuProps",
    "@epam/uui:HighlightRange",
+   "@epam/uui:IconButtonCoreProps",
    "@epam/uui:IconButtonMods",
    "@epam/uui:IconButtonProps",
    "@epam/uui:IconColor",
@@ -2233,6 +1956,7 @@
    "@epam/uui:LabeledInputMods",
    "@epam/uui:LabeledInputProps",
    "@epam/uui:LinkButtonColorType",
+   "@epam/uui:LinkButtonCoreProps",
    "@epam/uui:LinkButtonMods",
    "@epam/uui:LinkButtonProps",
    "@epam/uui:MainMenuAvatarProps",
@@ -2267,7 +1991,6 @@
    "@epam/uui:RangeDatePickerValue",
    "@epam/uui:RichTextViewMods",
    "@epam/uui:RichTextViewProps",
-   "@epam/uui:RowSize",
    "@epam/uui:SearchInputProps",
    "@epam/uui:SliderMods",
    "@epam/uui:SliderProps",
@@ -2278,12 +2001,17 @@
    "@epam/uui:SwitchProps",
    "@epam/uui:TabButtonMods",
    "@epam/uui:TabButtonProps",
+   "@epam/uui:TagColor",
+   "@epam/uui:TagCoreProps",
+   "@epam/uui:TagFill",
    "@epam/uui:TagMods",
    "@epam/uui:TagProps",
    "@epam/uui:TagSize",
    "@epam/uui:TextAreaMods",
    "@epam/uui:TextAreaProps",
    "@epam/uui:TextColor",
+   "@epam/uui:TextFontStyle",
+   "@epam/uui:TextFontWeight",
    "@epam/uui:TextInputProps",
    "@epam/uui:TextMods",
    "@epam/uui:TextPlaceholderProps",
@@ -2341,6 +2069,8 @@
    "@epam/promo:SizeMod",
    "@epam/promo:StatusIndicatorMods",
    "@epam/promo:StatusIndicatorProps",
+   "@epam/promo:TagMods",
+   "@epam/promo:TagProps",
    "@epam/promo:TextMods",
    "@epam/promo:TextProps",
    "@epam/promo:TextSize",
@@ -2424,14 +2154,14 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 821,
+   "allExports": 810,
    "byModule": {
-    "@epam/uui-core": 129,
+    "@epam/uui-core": 130,
     "@epam/uui-components": 105,
-    "@epam/uui": 153,
+    "@epam/uui": 142,
     "@epam/promo": 128,
     "@epam/electric": 105,
-    "@epam/loveship": 138,
+    "@epam/loveship": 137,
     "@epam/uui-editor": 63
    }
   },
@@ -2529,6 +2259,7 @@
      "blurFocusedElement",
      "closestTargetParentByCondition",
      "ContextProvider",
+     "createSkinComponent",
      "deleteCookie",
      "Form",
      "formatBytes",
@@ -2583,7 +2314,6 @@
      "BaseRangeDatePicker",
      "BaseRating",
      "BaseTimePicker",
-     "Blocker",
      "Burger",
      "Button",
      "ButtonBase",
@@ -2603,7 +2333,6 @@
      "DropSpot",
      "ErrorCatch",
      "IconButton",
-     "InputAddon",
      "LabeledInput",
      "MainMenu",
      "MainMenuCustomElement",
@@ -2638,7 +2367,7 @@
      "DataTableCell",
      "DataTableSelectionProvider",
      "FlexSpacer",
-     "NumericInput",
+     "InputAddon",
      "PortalRoot",
      "ScrollSpy",
      "Tooltip",
@@ -2654,6 +2383,7 @@
      "Anchor",
      "Avatar",
      "AvatarStack",
+     "Blocker",
      "DataTableRow",
      "DataTableSelectionContext",
      "defaultFormat",
@@ -2663,6 +2393,7 @@
      "handleDataSourceKeyboard",
      "i18n",
      "IconContainer",
+     "NumericInput",
      "PickerToggler",
      "Portal",
      "ProgressBar",
@@ -2692,19 +2423,8 @@
     "VariableDeclaration": [
      "Accordion",
      "Alert",
-     "allButtonColors",
-     "allButtonFills",
-     "allEpamBadgeSemanticColors",
-     "allFillStyles",
-     "allFontStyles",
-     "allFontWeights",
      "allIconColors",
      "allLinkButtonColors",
-     "allRowSizes",
-     "allSemanticColors",
-     "allSizes",
-     "allTextColors",
-     "allTextSizes",
      "Anchor",
      "Avatar",
      "AvatarStack",
@@ -2723,7 +2443,9 @@
      "DataPickerHeader",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -2758,11 +2480,13 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "propsMods",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "rangeDatePickerPresets",
      "renderCell",
      "renderDropMarkers",
@@ -2782,6 +2506,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "useColumnsWithFilters",
      "uuiDatePickerBody",
@@ -2810,7 +2535,6 @@
      "DataRowsContainer",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -2821,7 +2545,6 @@
      "Form",
      "getTextClasses",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerListItem",
      "PickerModal",
@@ -2835,16 +2558,13 @@
      "DataPickerBody",
      "DataPickerRow",
      "DataTableHeaderCell",
-     "DatePicker",
      "DatePickerBody",
      "DropSpot",
      "MainMenuDropdown",
      "ModalFooter",
      "ModalHeader",
      "PickerItem",
-     "RangeDatePicker",
-     "RangeDatePickerBody",
-     "TimePicker"
+     "RangeDatePickerBody"
     ],
     "EnumDeclaration": [
      "EditMode",
@@ -2884,7 +2604,9 @@
      "DataPickerFooter",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -2918,10 +2640,12 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "Rating",
      "RichTextView",
      "ScrollBars",
@@ -2939,6 +2663,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "VerticalTabButton",
      "VirtualList",
@@ -2953,7 +2678,6 @@
      "ColumnsConfigurationModal",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -2963,7 +2687,6 @@
      "FlexSpacer",
      "Form",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerModal",
      "PresetsPanel",
@@ -2974,16 +2697,13 @@
      "ConfirmationModal",
      "DataPickerBody",
      "DataPickerRow",
-     "DatePicker",
      "DropSpot",
      "MainMenuCustomElement",
      "MainMenuDropdown",
      "MainMenuLogo",
      "ModalFooter",
      "ModalHeader",
-     "PickerItem",
-     "RangeDatePicker",
-     "TimePicker"
+     "PickerItem"
     ],
     "EnumDeclaration": [
      "EditMode"
@@ -3011,7 +2731,9 @@
      "DataPickerHeader",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -3040,11 +2762,13 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "PromoButton",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "RichTextView",
      "ScrollBars",
      "Spinner",
@@ -3057,6 +2781,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "VerticalTabButton",
      "VirtualList",
@@ -3069,7 +2794,6 @@
      "DataRowsContainer",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -3078,7 +2802,6 @@
      "FlexSpacer",
      "Form",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerListItem",
      "PickerModal",
@@ -3091,15 +2814,12 @@
      "DataPickerBody",
      "DataPickerRow",
      "DataTableHeaderCell",
-     "DatePicker",
      "DropSpot",
      "MainMenuDropdown",
      "ModalFooter",
      "ModalHeader",
      "PickerItem",
-     "RangeDatePicker",
-     "RangeDatePickerBody",
-     "TimePicker"
+     "RangeDatePickerBody"
     ]
    },
    "@epam/loveship": {
@@ -3133,7 +2853,9 @@
      "DataPickerFooter",
      "DataTableHeaderRow",
      "DataTableRow",
+     "DatePicker",
      "defaultPredicates",
+     "Dropdown",
      "DropdownContainer",
      "DropdownMenuBody",
      "DropdownMenuButton",
@@ -3166,10 +2888,12 @@
      "NotificationCard",
      "NumericInput",
      "Panel",
+     "PickerInput",
      "PickerToggler",
      "ProgressBar",
      "RadioGroup",
      "RadioInput",
+     "RangeDatePicker",
      "RangeSlider",
      "Rating",
      "recoveryWordings",
@@ -3190,6 +2914,7 @@
      "TextArea",
      "TextInput",
      "TextPlaceholder",
+     "TimePicker",
      "Tooltip",
      "VerticalTabButton",
      "VirtualList",
@@ -3201,12 +2926,10 @@
      "applyButtonMods",
      "applyIconContainerMods",
      "applyRangeSliderMods",
-     "applyTagMods",
      "applyTextInputMods",
      "ColumnsConfigurationModal",
      "DataTable",
      "DataTableCell",
-     "Dropdown",
      "DropdownMenuHeader",
      "DropdownMenuSplitter",
      "DropdownMenuSwitchButton",
@@ -3217,7 +2940,6 @@
      "Form",
      "getIconClass",
      "Paginator",
-     "PickerInput",
      "PickerList",
      "PickerModal",
      "PresetsPanel",
@@ -3229,7 +2951,6 @@
      "ConfirmationModal",
      "DataPickerBody",
      "DataPickerRow",
-     "DatePicker",
      "DropSpot",
      "ErrorPage",
      "InstanceItem",
@@ -3240,11 +2961,9 @@
      "ModalFooter",
      "ModalHeader",
      "PickerItem",
-     "RangeDatePicker",
      "SliderRating",
      "Snackbar",
      "TextOverflow",
-     "TimePicker",
      "UploadFileToggler"
     ]
    },
@@ -3321,12 +3040,12 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 554,
+   "allExports": 556,
    "byModule": {
-    "@epam/uui-core": 199,
-    "@epam/uui-components": 91,
-    "@epam/uui": 133,
-    "@epam/promo": 53,
+    "@epam/uui-core": 201,
+    "@epam/uui-components": 88,
+    "@epam/uui": 134,
+    "@epam/promo": 55,
     "@epam/electric": 3,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
@@ -3385,7 +3104,6 @@
      "FileUploadResponse",
      "FormProps",
      "FormSaveResponse",
-     "FormState",
      "IAdaptiveItem",
      "IAnalyticableClick",
      "IAnalyticableOnChange",
@@ -3420,6 +3138,7 @@
      "IHasIcon",
      "IHasLabel",
      "IHasPlaceholder",
+     "IHasStyleAttrs",
      "IHasTabIndex",
      "IHistory4",
      "ILayoutContext",
@@ -3485,6 +3204,7 @@
      "ArrayElement",
      "ArrayPickerProps",
      "BlockTypes",
+     "ButtonComponentProps",
      "CascadeSelection",
      "ClassValue",
      "ColumnsConfig",
@@ -3517,6 +3237,7 @@
      "LazyDataSourceApi",
      "LazyLoadedMapLoadCallback",
      "LoadingStatus",
+     "MergedRawProps",
      "PickerBaseOptions",
      "PickerBaseProps",
      "PickerBindingProps",
@@ -3542,7 +3263,11 @@
     "TypeAliasDeclaration": [
      "AccordionProps",
      "AdaptiveItemProps",
+     "AnchorProps",
      "ArrayPickerProps",
+     "ButtonBaseProps",
+     "ButtonProps",
+     "IconButtonBaseProps",
      "IRenderInputProps",
      "PickerBindingProps",
      "PickerBindingValueType",
@@ -3558,17 +3283,13 @@
      "ViewType"
     ],
     "InterfaceDeclaration": [
-     "AccordionState",
      "AdaptivePanelProps",
-     "AnchorProps",
      "AvatarProps",
      "AvatarStackProps",
      "BaseRatingProps",
      "BaseTimePickerProps",
      "BlockerProps",
      "BurgerProps",
-     "ButtonBaseProps",
-     "ButtonProps",
      "CalendarPresetsProps",
      "CalendarProps",
      "CarouselProps",
@@ -3589,7 +3310,6 @@
      "DropSpotRenderParams",
      "FlexSpacerProps",
      "HeaderCellContentProps",
-     "IconButtonBaseProps",
      "InputAddonProps",
      "IProgressBarProps",
      "IScrollSpyApi",
@@ -3599,11 +3319,9 @@
      "MainMenuDropdownProps",
      "MainMenuLogoProps",
      "MainMenuProps",
-     "MonthSelectionProps",
      "NumericInputProps",
      "PaginatorParams",
      "PaginatorProps",
-     "PickerBindingHelper",
      "PickerBodyBaseProps",
      "PickerBodyValue",
      "PickerModalOptions",
@@ -3646,7 +3364,6 @@
      "BurgerSearchProps",
      "ButtonMods",
      "CheckboxMods",
-     "ColorMod",
      "ColumnsConfigurationModalProps",
      "ConfirmationModalWindowProps",
      "CountIndicatorProps",
@@ -3674,7 +3391,6 @@
      "GlobalMenuProps",
      "HighlightRange",
      "IconButtonMods",
-     "IconButtonProps",
      "IDropdownMenuItemProps",
      "IHasEditMode",
      "IndeterminateBarMods",
@@ -3683,7 +3399,6 @@
      "LinkButtonMods",
      "MainMenuAvatarProps",
      "MainMenuButtonMods",
-     "MainMenuIconProps",
      "MainMenuMods",
      "MainMenuSearchProps",
      "ModalFooterProps",
@@ -3703,8 +3418,6 @@
      "RangeDatePickerProps",
      "RangeDatePickerValue",
      "RichTextViewMods",
-     "RowMods",
-     "RowSizeMod",
      "SearchInputProps",
      "SizeMod",
      "SliderMods",
@@ -3712,7 +3425,6 @@
      "StatusIndicatorProps",
      "SwitchMods",
      "TabButtonMods",
-     "TagMods",
      "TextAreaMods",
      "TextInputMods",
      "TextInputProps",
@@ -3725,26 +3437,28 @@
     "TypeAliasDeclaration": [
      "AccordionProps",
      "BadgeColor",
+     "BadgeCoreProps",
      "BadgeFill",
      "BadgeProps",
      "BadgeSize",
      "ButtonColor",
+     "ButtonCoreProps",
      "ButtonFill",
      "ButtonProps",
      "CheckboxProps",
      "CompletePickerInputProps",
      "ControlSize",
-     "EpamBadgeSemanticColor",
-     "FillStyle",
      "FlexCellMods",
      "FlexCellProps",
-     "FontStyle",
-     "FontWeight",
+     "IconButtonCoreProps",
+     "IconButtonProps",
      "IconColor",
      "InputType",
      "LabeledInputProps",
      "LinkButtonColorType",
+     "LinkButtonCoreProps",
      "LinkButtonProps",
+     "MainMenuIconProps",
      "MainMenuProps",
      "ModalWindowProps",
      "NumericInputProps",
@@ -3755,16 +3469,21 @@
      "pickerPart",
      "RadioInputProps",
      "RichTextViewProps",
-     "RowSize",
-     "SemanticColor",
+     "RowMods",
      "SpinnerProps",
      "StatusIndicatorColors",
      "SwitchProps",
      "TabButtonProps",
+     "TagColor",
+     "TagCoreProps",
+     "TagFill",
+     "TagMods",
      "TagProps",
      "TagSize",
      "TextAreaProps",
      "TextColor",
+     "TextFontStyle",
+     "TextFontWeight",
      "TextPlaceholderProps",
      "TextProps",
      "TextSize",
@@ -3828,6 +3547,8 @@
      "NotificationCardProps",
      "RowSize",
      "StatusIndicatorProps",
+     "TagMods",
+     "TagProps",
      "TextProps",
      "TextSize",
      "TooltipProps"
@@ -3875,10 +3596,6 @@
      "SliderRatingProps",
      "SnackbarCardProps",
      "StatusIndicatorMods",
-     "TabButtonMods",
-     "TabButtonProps",
-     "TagMods",
-     "TagProps",
      "TextInputMods",
      "TextMods",
      "TooltipMods"
@@ -3907,6 +3624,10 @@
      "RowSize",
      "SearchInputProps",
      "StatusIndicatorProps",
+     "TabButtonMods",
+     "TabButtonProps",
+     "TagMods",
+     "TagProps",
      "TextInputProps",
      "TextProps",
      "TextSize",

@@ -135,20 +135,34 @@ export type ApiRecoveryReason = 'auth-lost' | 'connection-lost' | 'server-overlo
 type ApiCallStatus = 'scheduled' | 'running' | 'error';
 
 export interface ApiCallInfo {
+    /** Request URl */
     url: string;
+    /** Name of the request received by processRequest data.operationName */
     name: string;
+    /** Request method */
     method: string;
+    /** Request payload */
     requestData: {};
+    /** Request options */
     options?: ApiCallOptions;
+    /** ApiContext request status */
     status: ApiCallStatus;
+    /** Request http status */
     httpStatus?: number;
+    /** Response data */
     responseData?: {
+        /** Request error message */
         errorMessage?: string;
     };
+    /** Request error status */
     errorStatus?: number;
+    /** Timestamp of request start */
     startedAt?: Date;
+    /** Timestamp of request finish */
     finishedAt?: Date;
+    /** Number of ping attempts */
     attemptsCount: number;
+    /** Discard request error and remove it from requests queue */
     dismissError(): void;
 }
 
