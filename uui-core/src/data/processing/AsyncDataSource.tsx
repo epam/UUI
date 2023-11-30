@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { BaseArrayListViewProps } from './views/ArrayListView';
 import { DataSourceState, IDataSourceView } from '../../types';
@@ -75,11 +75,6 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const initializedRef = useRef<boolean>(false);
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const viewRef = useRef<AsyncListView<TItem, TId, TFilter>>(null);
-
         const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             api: this.api,
@@ -90,26 +85,21 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
 
-        const createView = () => new AsyncListView({ value, onValueChange }, viewProps);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const view = useMemo(
+            () => new AsyncListView({ value, onValueChange }, viewProps),
+            [...deps, this],
+        );
 
-        if (!initializedRef.current && !viewRef.current) {
-            viewRef.current = createView();
-        }
-    
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            if (initializedRef.current) {
-                viewRef.current = createView();
-            }
-            const unsubscribe = this.subscribe(viewRef.current);
-            
-            initializedRef.current = true;
+            const unsubscribe = this.subscribe(view);
             return () => { unsubscribe(); };
         }, [...deps, this]);
 
-        viewRef.current.update({ value, onValueChange }, viewProps);
-        this.loadViewData(viewRef.current);
+        view.update({ value, onValueChange }, viewProps);
+        this.loadViewData(view);
 
-        return viewRef.current;
+        return view;
     }
 }
