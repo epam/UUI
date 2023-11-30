@@ -1,22 +1,27 @@
-# 5.3.1 - __.__.2023
+# 5.4.1 - ??.??.2023
 
 **What's New**
+* [Site]: rework for theming support
 * [Tag]: remade Tag by new design. It has new `colors` and new fill mods `solid & outline`;
 * [Breaking change]: Tag in loveship changed default `size` to `36px`. It was 18px;
 * Upload new icons pack
-  * Breaking changes:
-    * 'action-update' icon was removed use 'navigation-refresh' instead
-    * 'content-plus' icon was removed use 'action-add' instead
-    * 'action-map_pin' icon was removed use 'communication-geo_tag' instead
-    * 'table-info-outline' icon was removed use 'notification-info-outline' instead
-    * 'action-chat' icon was removed use 'communication-chat' instead
-    * 'not-recommended' icon was removed use 'blacklist' instead
-    * 'copy-content' icon was removed use 'action-copy_content' instead
+    * Breaking changes:
+        * 'action-update' icon was removed use 'navigation-refresh' instead
+        * 'content-plus' icon was removed use 'action-add' instead
+        * 'action-map_pin' icon was removed use 'communication-geo_tag' instead
+        * 'table-info-outline' icon was removed use 'notification-info-outline' instead
+        * 'action-chat' icon was removed use 'communication-chat' instead
+        * 'not-recommended' icon was removed use 'blacklist' instead
+        * 'copy-content' icon was removed use 'action-copy_content' instead
+
 **What's Fixed**
-* [Calendar]: fixed disabled text `color`.
+* [Calendar]: fixed disabled text `color`
+* [TextPlaceholder]: changed animation
+* [Text]: fixed default font
+* [Panel]: fixed "background" property, in default state it transparent
+* fixed variables for "theme-vanilla-thunder"
 
-
-# 5.3.0 - 21.11.2023
+# 5.4.0 - 21.11.2023
 
 **What's New**
 * This release introduced stable Theming approach and theme css variables:

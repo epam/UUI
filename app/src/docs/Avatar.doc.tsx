@@ -12,8 +12,8 @@ export class AvatarDoc extends BaseDocsBlock {
     override config: TDocConfig = {
         name: 'Avatar',
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:AvatarProps', component: loveship.Avatar },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-components:AvatarProps', component: promo.Avatar },
+            [TSkin.Loveship]: { type: '@epam/uui-components:AvatarProps', component: loveship.Avatar },
+            [TSkin.Promo]: { type: '@epam/uui-components:AvatarProps', component: promo.Avatar },
             [TSkin.UUI]: { type: '@epam/uui-components:AvatarProps', component: uui.Avatar },
         },
         doc: (doc: DocBuilder<AvatarProps>) => {

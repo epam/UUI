@@ -28,10 +28,12 @@
             border: 0 none;
             line-height: inherit;
             text-align: left;
+            color: var(--uui-text-primary);
         }
 
         .title {
-            font-family: $font-museo-sans;
+            font-family: var(--uui-font);
+            font-weight: 600;
             margin-bottom: 24px;
             font-size: 36px;
             line-height: 48px;
@@ -51,15 +53,15 @@
                 margin: 9px;
                 width: 72px;
                 height: 72px;
-                border: 1px solid $gray40;
-                background: white;
+                border: 1px solid var(--uui-divider);
+                background: var(--uui-surface-main);
                 cursor: pointer;
                 box-sizing: border-box;
 
                 .itemIcon {
                     padding: 11px 0 6px;
                     align-items: center;
-                    fill: $gray60;
+                    fill: var(--uui-icon);
 
                     svg {
                         width: 36px;
@@ -74,19 +76,19 @@
                 }
 
                 &:hover {
-                    border-color: $blue;
+                    border-color: var(--uui-info-50);
 
                     .itemIcon {
-                        fill: $blue;
+                        fill: var(--uui-info-50);
                     }
                 }
             }
 
             .activeItem {
-                border-color: $blue;
+                border-color: var(--uui-info-50);
 
                 .itemIcon {
-                    fill: $blue;
+                    fill: var(--uui-info-50);
                 }
             }
         }
@@ -101,7 +103,7 @@
                 margin-bottom: 12px;
 
                 span {
-                    font-family: $font-sans-semibold;
+                    font-family: var(--font-semibold);
                 }
             }
         }
@@ -124,8 +126,8 @@
 
         .icon-card {
             box-sizing: border-box;
-            border: 1px solid $gray40;
-            background-color: #FFFFFF;
+            border: 1px solid var(--uui-divider);
+            background-color: var(--uui-surface-main);
             min-height: 380px;
 
             .icon-card-title {
@@ -134,7 +136,7 @@
 
             .lock-button {
                 :global(.uui-icon) {
-                    fill: $gray60;
+                    fill: var(--uui-icon);
                 }
             }
 
@@ -144,9 +146,9 @@
                 margin-top: 18px;
                 padding: 9px;
                 box-sizing: border-box;
-                border: 1px solid $gray40;
-                background: $gray5;
-                fill: $gray60;
+                border: 1px solid var(--uui-divider);
+                background: var(--uui-surface-low);
+                fill: var(--uui-icon);
             }
 
             .icon-box {
@@ -154,45 +156,46 @@
 
                 .size-icon {
                     padding: 8px;
-                    border: 1px solid $gray40;
-                    fill: $gray40;
+                    border: 1px solid var(--uui-divider);
+                    fill: var(--uui-icon-disabled);
                 }
 
                 .selected-icon {
-                    border-color: $gray60;
-                    fill: $gray60;
+                    border-color: var(--uui-control-border-hover);
+                    fill: var(--uui-icon);
                 }
 
                 .selectable-icon {
-                    border-color: $gray60;
-                    fill: $gray60;
+                    border-color: var(--uui-control-border-hover);
+                    fill: var(--uui-icon);
                     cursor: pointer;
 
                     &:hover {
-                        border-color: $blue;
-                        background-color: $blue-lightest;
-                        fill: $blue;
+                        border-color: var(--uui-info-50);
+                        background-color: var(--uui-info-10);
+                        fill: var(--uui-info-50);
                     }
 
                     &:active {
-                        background-color: $blue-light;
+                        background-color: var(--uui-info-20);
                     }
 
                     &.selected-icon {
-                        border-color: $blue;
-                        fill: $blue;
+                        border-color: var(--uui-info-50);
+                        fill: var(--uui-info-50);
                     }
                 }
             }
 
             .icon-box-label {
-                font-family: $font-sans-semibold;
+                font-family: var(--font-semibold);
                 font-size: 12px;
                 line-height: 18px;
-                color: $gray80;
+                color: var(--uui-text-primary);
             }
 
             .recommended-size {
+                background-color: var(--uui-surface-main);
                 z-index: 1;
             }
 
@@ -219,21 +222,21 @@
                     cursor: pointer;
 
                     &:hover {
-                        background-color: $blue-lightest;
+                        background-color: var(--uui-info-10);
                     }
                 }
 
                 .disabled-sizes {
                     .sizes-text {
-                        color: $gray40;
+                        color: var(--uui-text-disabled);
                     }
                 }
 
                 .selected-sizes {
-                    background-color: $blue-lightest;
+                    background-color: var(--uui-info-10);
 
                     .sizes-text {
-                        color: $blue;
+                        color: var(--uui-info-50);
                     }
                 }
 
@@ -251,7 +254,7 @@
                         width: 60px;
                         height: 60px;
                         border-radius: 50%;
-                        background-color: $red-lightest;
+                        background-color: var(--uui-error-10);
                         animation: pulse-wrapper 3s infinite linear;
                     }
 
@@ -270,7 +273,7 @@
                             width: 36px;
                             height: 36px;
                             border-radius: 50%;
-                            background-color: $red-light;
+                            background-color: var(--uui-error-20);
                             z-index: -1;
                             animation: pulse-icon 3s infinite linear;
                         }
@@ -349,7 +352,8 @@
             }
 
             .icon-card-import {
-                font-family: $font-sans;
+                background-color: var(--uui-surface-low);
+                font-family: var(--font-regular);
                 font-size: 14px;
                 line-height: 24px;
                 cursor: pointer;

@@ -134,7 +134,7 @@ export default function ProjectTimeReportDemo() {
     };
 
     return (
-        <Panel background="surface" shadow cx={ css.container }>
+        <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
                 headerTextCase="upper"
                 onCopy={ onCopy }

@@ -181,7 +181,7 @@ export default function EditableTableExample() {
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return (
-        <Panel background="surface" shadow>
+        <Panel background="surface-main" shadow>
             {/* Render a panel with Save/Revert buttons to control the form */}
             <FlexRow spacing="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">

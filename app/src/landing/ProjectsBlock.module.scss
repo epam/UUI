@@ -2,7 +2,7 @@
 
 .layout {
     margin: 0 auto;
-    background-color: $gray10;
+    background-color: var(--uui-surface-lower);
 
     .projects {
         max-width: 1200px;
@@ -33,7 +33,7 @@
             text-decoration: none;
 
             &:hover {
-                background-color: white;
+                background-color: var(--uui-surface-main);
             }
         }
 
@@ -48,16 +48,16 @@
         .overflow-projects {
             font-size: 36px;
             line-height: 48px;
-            color: $blue;
+            color: var(--uui-info-50);
         }
 
         .project-caption {
-            color: $gray80;
+            color: var(--uui-text-primary);
             text-align: center;
         }
 
         .project-caption-all {
-            color: $blue;
+            color: var(--uui-info-50);
             text-align: center;
         }
     }
@@ -105,14 +105,14 @@
             }
 
             .project-caption {
-                color: $gray80;
+                color: var(--uui-text-primary);
                 text-align: center;
                 padding-top: 2px;
                 padding-bottom: 2px;
             }
 
             .project-caption-all {
-                color: $blue;
+                color: var(--uui-info-50);
                 text-align: center;
                 padding-top: 2px;
                 padding-bottom: 2px;

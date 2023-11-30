@@ -11,17 +11,23 @@
         "uui-richTextEditor-code": true
       },
       {
-        "color": "rgb(48, 50, 64)",
-        "text": " library requires "
+        "text": " ",
+        "color": "rgb(48, 50, 64)"
       },
       {
-        "color": "rgb(48, 50, 64)",
+        "text": "library requires "
+      },
+      {
         "text": "React ^18",
-        "uui-richTextEditor-code": true
+        "uui-richTextEditor-code": true,
+        "color": "rgb(48, 50, 64)"
       },
       {
         "color": "rgb(48, 50, 64)",
-        "text": " If this version of React cannot be used, then it's still possible to test UUI components using approach below."
+        "text": " "
+      },
+      {
+        "text": "If this version of React cannot be used, then it's still possible to test UUI components using approach below."
       }
     ]
   }
