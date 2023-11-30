@@ -53,6 +53,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.isDestroyed = true;
     }
 
+    public init() {
+        this.isDestroyed = false;
+    }
+
     protected constructor(editable: IEditable<DataSourceState<TFilter, TId>>, protected props: BaseListViewProps<TItem, TId, TFilter>) {
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;

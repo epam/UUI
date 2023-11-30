@@ -205,6 +205,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];
     getSelectedRowsCount(): number;
     reload(): void;
+    init(): void;
     destroy(): void;
     loadData(): void;
     _forceUpdate(): void;

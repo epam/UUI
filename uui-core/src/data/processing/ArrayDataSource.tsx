@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
@@ -87,10 +87,6 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const initializedRef = useRef<boolean>(false);
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const viewRef = useRef<ArrayListView<TItem, TId, TFilter>>(null);
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             items: this.tree,
@@ -100,24 +96,20 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
-         
-        const createView = () => new ArrayListView({ value, onValueChange }, viewProps);
-        if (!initializedRef.current && !viewRef.current) {
-            viewRef.current = createView();
-        }
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const view = useMemo(
+            () => new ArrayListView({ value, onValueChange }, viewProps),
+            [...deps, this],
+        );
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            if (initializedRef.current) {
-                viewRef.current = createView();
-            }
-            const unsubscribe = this.subscribe(viewRef.current);
-            
-            initializedRef.current = true;
+            const unsubscribe = this.subscribe(view);
             return () => { unsubscribe(); };
         }, [...deps, this]);
 
-        viewRef.current.update({ value, onValueChange }, viewProps);
-        return viewRef.current;
+        view.update({ value, onValueChange }, viewProps);
+        return view;
     }
 }

@@ -53,6 +53,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     };
     
     protected subscribe(view: IDataSourceView<TItem, TId, TFilter>) {
+        view.init();
         this.subscriptions.set(view, view._forceUpdate);
         return () => {
             this.subscriptions.delete(view);
