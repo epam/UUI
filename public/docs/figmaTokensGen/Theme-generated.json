@@ -1054,7 +1054,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1131,7 +1131,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1208,7 +1208,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1285,7 +1285,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1362,7 +1362,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1439,7 +1439,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1516,7 +1516,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1593,7 +1593,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1670,7 +1670,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1747,7 +1747,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1824,7 +1824,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1901,7 +1901,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -1978,7 +1978,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2055,7 +2055,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2132,7 +2132,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2209,7 +2209,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2286,7 +2286,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2363,7 +2363,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2440,7 +2440,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2517,7 +2517,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2594,7 +2594,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2671,7 +2671,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2748,7 +2748,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2825,7 +2825,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2902,7 +2902,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -2979,7 +2979,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3056,7 +3056,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3133,7 +3133,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3210,7 +3210,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3287,7 +3287,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3364,7 +3364,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3441,7 +3441,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3518,7 +3518,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3595,7 +3595,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3672,7 +3672,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3749,7 +3749,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3826,7 +3826,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3903,7 +3903,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -3980,7 +3980,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4057,7 +4057,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4134,7 +4134,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4211,7 +4211,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4288,7 +4288,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4365,7 +4365,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4442,7 +4442,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4519,7 +4519,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4596,7 +4596,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4673,7 +4673,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4750,7 +4750,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4827,7 +4827,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4904,7 +4904,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -4981,7 +4981,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5058,7 +5058,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5135,7 +5135,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5212,7 +5212,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5289,7 +5289,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5366,7 +5366,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5443,7 +5443,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5520,7 +5520,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5597,7 +5597,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5674,7 +5674,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5751,7 +5751,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5828,7 +5828,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5905,7 +5905,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -5982,7 +5982,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6059,7 +6059,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6136,7 +6136,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6213,7 +6213,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6290,7 +6290,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6367,7 +6367,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6444,7 +6444,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6521,7 +6521,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6598,7 +6598,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6675,7 +6675,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6752,7 +6752,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6829,7 +6829,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -6906,7 +6906,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -8297,7 +8297,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -8370,7 +8370,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -8443,7 +8443,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11367,7 +11367,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11440,7 +11440,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11513,7 +11513,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11586,7 +11586,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11659,7 +11659,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11732,7 +11732,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11805,7 +11805,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11878,7 +11878,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -11951,7 +11951,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12024,7 +12024,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12097,7 +12097,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12170,7 +12170,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12243,7 +12243,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12316,7 +12316,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12389,7 +12389,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12462,7 +12462,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12535,7 +12535,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12608,7 +12608,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12681,7 +12681,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12754,7 +12754,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12827,7 +12827,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12900,7 +12900,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -12973,7 +12973,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13046,7 +13046,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13119,7 +13119,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13192,7 +13192,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13265,7 +13265,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13338,7 +13338,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13411,7 +13411,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13484,7 +13484,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13557,7 +13557,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13630,7 +13630,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13703,7 +13703,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13776,7 +13776,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13849,7 +13849,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13922,7 +13922,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -13995,7 +13995,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14068,7 +14068,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14141,7 +14141,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14214,7 +14214,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14287,7 +14287,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14360,7 +14360,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14433,7 +14433,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14506,7 +14506,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14579,7 +14579,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14652,7 +14652,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14725,7 +14725,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14798,7 +14798,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14871,7 +14871,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -14944,7 +14944,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15017,7 +15017,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15090,7 +15090,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15163,7 +15163,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15236,7 +15236,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15309,7 +15309,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15382,7 +15382,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15455,7 +15455,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15528,7 +15528,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15601,7 +15601,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15674,7 +15674,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15747,7 +15747,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15820,7 +15820,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15893,7 +15893,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -15966,7 +15966,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16039,7 +16039,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16112,7 +16112,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16185,7 +16185,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16258,7 +16258,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16331,7 +16331,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16404,7 +16404,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16477,7 +16477,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16550,7 +16550,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16623,7 +16623,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16696,7 +16696,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16769,7 +16769,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16842,7 +16842,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16915,7 +16915,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -16988,7 +16988,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17061,7 +17061,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17134,7 +17134,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17207,7 +17207,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17280,7 +17280,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17353,7 +17353,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17426,7 +17426,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17499,7 +17499,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17572,7 +17572,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17645,7 +17645,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17718,7 +17718,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17791,7 +17791,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17864,7 +17864,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -17937,7 +17937,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18010,7 +18010,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18083,7 +18083,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18156,7 +18156,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18229,7 +18229,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18302,7 +18302,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18375,7 +18375,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18448,7 +18448,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18521,7 +18521,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18594,7 +18594,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18667,7 +18667,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18740,7 +18740,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18813,7 +18813,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18886,7 +18886,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -18959,7 +18959,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19032,7 +19032,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19105,7 +19105,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19178,7 +19178,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19251,7 +19251,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19324,7 +19324,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19397,7 +19397,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19470,7 +19470,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19543,7 +19543,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19616,7 +19616,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19689,7 +19689,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19762,7 +19762,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19835,7 +19835,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19908,7 +19908,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -19981,7 +19981,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20054,7 +20054,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20127,7 +20127,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20200,7 +20200,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20273,7 +20273,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20346,7 +20346,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20419,7 +20419,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20492,7 +20492,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20565,7 +20565,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20638,7 +20638,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20711,7 +20711,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20784,7 +20784,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20857,7 +20857,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -20930,7 +20930,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21003,7 +21003,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21076,7 +21076,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21149,7 +21149,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21222,7 +21222,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21295,7 +21295,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21368,7 +21368,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21441,7 +21441,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21514,7 +21514,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21587,7 +21587,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21660,7 +21660,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21733,7 +21733,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21806,7 +21806,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21879,7 +21879,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -21952,7 +21952,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22025,7 +22025,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22098,7 +22098,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22171,7 +22171,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22244,7 +22244,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22317,7 +22317,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22390,7 +22390,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22463,7 +22463,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22536,7 +22536,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22609,7 +22609,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22682,7 +22682,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22755,7 +22755,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22828,7 +22828,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22901,7 +22901,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -22974,7 +22974,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23047,7 +23047,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23120,7 +23120,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23193,7 +23193,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23266,7 +23266,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23339,7 +23339,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23412,7 +23412,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23489,7 +23489,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23562,7 +23562,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23635,7 +23635,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23708,7 +23708,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23781,7 +23781,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23854,7 +23854,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -23927,7 +23927,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24000,7 +24000,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24073,7 +24073,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24146,7 +24146,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24219,7 +24219,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24292,7 +24292,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24365,7 +24365,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24438,7 +24438,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24511,7 +24511,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24584,7 +24584,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24657,7 +24657,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24730,7 +24730,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24803,7 +24803,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24876,7 +24876,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -24949,7 +24949,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25022,7 +25022,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25095,7 +25095,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25168,7 +25168,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25241,7 +25241,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25314,7 +25314,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25387,7 +25387,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25460,7 +25460,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25533,7 +25533,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25606,7 +25606,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25679,7 +25679,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25752,7 +25752,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25825,7 +25825,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25898,7 +25898,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -25971,7 +25971,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26044,7 +26044,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26117,7 +26117,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26190,7 +26190,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26263,7 +26263,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26336,7 +26336,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26409,7 +26409,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26482,7 +26482,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26555,7 +26555,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26628,7 +26628,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26701,7 +26701,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26774,7 +26774,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26847,7 +26847,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26920,7 +26920,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -26993,7 +26993,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27066,7 +27066,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27139,7 +27139,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27212,7 +27212,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27285,7 +27285,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27358,7 +27358,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27431,7 +27431,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27504,7 +27504,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27577,7 +27577,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27650,7 +27650,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27723,7 +27723,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27796,7 +27796,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27869,7 +27869,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -27942,7 +27942,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28015,7 +28015,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28088,7 +28088,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28161,7 +28161,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28234,7 +28234,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28307,7 +28307,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28380,7 +28380,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28453,7 +28453,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28526,7 +28526,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28599,7 +28599,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28672,7 +28672,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28745,7 +28745,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28818,7 +28818,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28891,7 +28891,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -28964,7 +28964,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29037,7 +29037,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29110,7 +29110,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29183,7 +29183,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29257,7 +29257,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29330,7 +29330,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29403,7 +29403,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29476,7 +29476,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29549,7 +29549,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29622,7 +29622,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29695,7 +29695,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29768,7 +29768,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29841,7 +29841,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29914,7 +29914,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -29987,7 +29987,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30060,7 +30060,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30133,7 +30133,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30206,7 +30206,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30279,7 +30279,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30352,7 +30352,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30425,7 +30425,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30498,7 +30498,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30571,7 +30571,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30644,7 +30644,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30717,7 +30717,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30790,7 +30790,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30863,7 +30863,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -30936,7 +30936,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31009,7 +31009,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31082,7 +31082,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31155,7 +31155,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31228,7 +31228,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31301,7 +31301,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31374,7 +31374,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31447,7 +31447,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31520,7 +31520,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31593,7 +31593,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31666,7 +31666,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31739,7 +31739,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31812,7 +31812,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31885,7 +31885,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -31958,7 +31958,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32031,7 +32031,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32104,7 +32104,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32177,7 +32177,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32250,7 +32250,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32323,7 +32323,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32396,7 +32396,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32469,7 +32469,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32542,7 +32542,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32615,7 +32615,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32688,7 +32688,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32761,7 +32761,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32834,7 +32834,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32908,7 +32908,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -32982,7 +32982,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33055,7 +33055,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33128,7 +33128,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33201,7 +33201,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33274,7 +33274,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33347,7 +33347,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33420,7 +33420,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33493,7 +33493,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33567,7 +33567,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33641,7 +33641,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33714,7 +33714,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33787,7 +33787,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33860,7 +33860,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -33933,7 +33933,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34006,7 +34006,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34079,7 +34079,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34152,7 +34152,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34225,7 +34225,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34298,7 +34298,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34371,7 +34371,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34444,7 +34444,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34517,7 +34517,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34590,7 +34590,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34663,7 +34663,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34736,7 +34736,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34809,7 +34809,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34882,7 +34882,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -34955,7 +34955,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35028,7 +35028,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35101,7 +35101,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35174,7 +35174,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35247,7 +35247,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35320,7 +35320,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35393,7 +35393,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35466,7 +35466,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35539,7 +35539,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35612,7 +35612,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35685,7 +35685,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35758,7 +35758,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35831,7 +35831,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35904,7 +35904,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -35977,7 +35977,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36050,7 +36050,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36123,7 +36123,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36196,7 +36196,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36269,7 +36269,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36342,7 +36342,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36415,7 +36415,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36488,7 +36488,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36561,7 +36561,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36634,7 +36634,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36707,7 +36707,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36780,7 +36780,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36853,7 +36853,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36926,7 +36926,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -36999,7 +36999,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37072,7 +37072,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37145,7 +37145,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37218,7 +37218,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37291,7 +37291,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37364,7 +37364,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37437,7 +37437,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37510,7 +37510,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37583,7 +37583,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37656,7 +37656,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37729,7 +37729,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37802,7 +37802,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37875,7 +37875,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -37948,7 +37948,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38021,7 +38021,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38094,7 +38094,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38168,7 +38168,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38242,7 +38242,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38315,7 +38315,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38388,7 +38388,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38461,7 +38461,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38534,7 +38534,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38607,7 +38607,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38680,7 +38680,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38753,7 +38753,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38827,7 +38827,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38901,7 +38901,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -38974,7 +38974,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39047,7 +39047,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39120,7 +39120,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39193,7 +39193,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39266,7 +39266,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39339,7 +39339,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39412,7 +39412,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39485,7 +39485,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39558,7 +39558,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39631,7 +39631,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39704,7 +39704,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39777,7 +39777,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39850,7 +39850,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39923,7 +39923,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -39996,7 +39996,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40069,7 +40069,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40142,7 +40142,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40215,7 +40215,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40288,7 +40288,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40361,7 +40361,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40434,7 +40434,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40507,7 +40507,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40580,7 +40580,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40653,7 +40653,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40726,7 +40726,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40799,7 +40799,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40872,7 +40872,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -40945,7 +40945,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41018,7 +41018,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41091,7 +41091,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41164,7 +41164,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41237,7 +41237,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41310,7 +41310,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41383,7 +41383,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41456,7 +41456,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41529,7 +41529,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41602,7 +41602,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41675,7 +41675,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41748,7 +41748,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41821,7 +41821,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41894,7 +41894,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -41967,7 +41967,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42040,7 +42040,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42113,7 +42113,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42186,7 +42186,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42259,7 +42259,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42332,7 +42332,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42405,7 +42405,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42478,7 +42478,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42551,7 +42551,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42624,7 +42624,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42697,7 +42697,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42770,7 +42770,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42843,7 +42843,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42916,7 +42916,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -42989,7 +42989,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43062,7 +43062,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43135,7 +43135,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43208,7 +43208,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43281,7 +43281,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43354,7 +43354,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43427,7 +43427,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43500,7 +43500,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43573,7 +43573,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43646,7 +43646,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43719,7 +43719,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43792,7 +43792,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43865,7 +43865,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -43938,7 +43938,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44011,7 +44011,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44084,7 +44084,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44157,7 +44157,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44230,7 +44230,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44303,7 +44303,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44376,7 +44376,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44449,7 +44449,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44522,7 +44522,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44595,7 +44595,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44668,7 +44668,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44741,7 +44741,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44814,7 +44814,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44887,7 +44887,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -44960,7 +44960,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45033,7 +45033,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45106,7 +45106,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45179,7 +45179,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45252,7 +45252,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45325,7 +45325,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45398,7 +45398,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45471,7 +45471,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45544,7 +45544,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45617,7 +45617,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45690,7 +45690,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45763,7 +45763,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45836,7 +45836,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45909,7 +45909,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -45982,7 +45982,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46055,7 +46055,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46128,7 +46128,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46201,7 +46201,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46274,7 +46274,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46347,7 +46347,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46421,7 +46421,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46494,7 +46494,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46567,7 +46567,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46640,7 +46640,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46713,7 +46713,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46786,7 +46786,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46859,7 +46859,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -46932,7 +46932,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47005,7 +47005,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47078,7 +47078,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47151,7 +47151,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47224,7 +47224,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47297,7 +47297,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47370,7 +47370,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47443,7 +47443,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47516,7 +47516,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47593,7 +47593,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47666,7 +47666,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47743,7 +47743,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47820,7 +47820,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47893,7 +47893,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -47970,7 +47970,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48044,7 +48044,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48120,7 +48120,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48193,7 +48193,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48266,7 +48266,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48343,7 +48343,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48416,7 +48416,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48489,7 +48489,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48562,7 +48562,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48639,7 +48639,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48712,7 +48712,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48785,7 +48785,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48858,7 +48858,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -48935,7 +48935,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49008,7 +49008,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49081,7 +49081,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49154,7 +49154,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49231,7 +49231,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49304,7 +49304,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49377,7 +49377,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49450,7 +49450,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49527,7 +49527,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49600,7 +49600,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49673,7 +49673,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49746,7 +49746,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49823,7 +49823,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49896,7 +49896,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -49969,7 +49969,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50042,7 +50042,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50119,7 +50119,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50192,7 +50192,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50265,7 +50265,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50338,7 +50338,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50415,7 +50415,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50488,7 +50488,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50561,7 +50561,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50634,7 +50634,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50711,7 +50711,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50784,7 +50784,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50857,7 +50857,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -50930,7 +50930,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51007,7 +51007,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51080,7 +51080,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51153,7 +51153,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51226,7 +51226,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51303,7 +51303,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51376,7 +51376,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51449,7 +51449,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51522,7 +51522,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51599,7 +51599,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51672,7 +51672,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51745,7 +51745,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51818,7 +51818,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51895,7 +51895,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -51968,7 +51968,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52041,7 +52041,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52114,7 +52114,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52191,7 +52191,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52264,7 +52264,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52338,7 +52338,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52412,7 +52412,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52486,7 +52486,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52560,7 +52560,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52634,7 +52634,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52711,7 +52711,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52784,7 +52784,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52857,7 +52857,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -52930,7 +52930,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53003,7 +53003,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53076,7 +53076,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53149,7 +53149,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53222,7 +53222,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53299,7 +53299,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53372,7 +53372,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53445,7 +53445,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53522,7 +53522,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53612,7 +53612,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53665,7 +53665,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53718,7 +53718,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53771,7 +53771,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53824,7 +53824,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53877,7 +53877,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53930,7 +53930,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -53983,7 +53983,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54020,7 +54020,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54057,7 +54057,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54134,7 +54134,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54211,7 +54211,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54288,7 +54288,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54365,7 +54365,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54442,7 +54442,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54519,7 +54519,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54596,7 +54596,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54673,7 +54673,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54750,7 +54750,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54827,7 +54827,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54904,7 +54904,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -54981,7 +54981,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55058,7 +55058,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55135,7 +55135,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55212,7 +55212,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55289,7 +55289,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55366,7 +55366,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55443,7 +55443,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55519,7 +55519,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55592,7 +55592,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55665,7 +55665,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55738,7 +55738,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55811,7 +55811,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55884,7 +55884,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -55957,7 +55957,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56031,7 +56031,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56104,7 +56104,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56141,7 +56141,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56178,7 +56178,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56255,7 +56255,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56332,7 +56332,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56409,7 +56409,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56486,7 +56486,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56563,7 +56563,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56640,7 +56640,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56717,7 +56717,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56794,7 +56794,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56871,7 +56871,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -56948,7 +56948,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57100,7 +57100,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57176,7 +57176,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57252,7 +57252,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57328,7 +57328,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57404,7 +57404,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57480,7 +57480,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57556,7 +57556,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57632,7 +57632,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57708,7 +57708,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57784,7 +57784,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57860,7 +57860,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -57936,7 +57936,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58012,7 +58012,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58088,7 +58088,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58164,7 +58164,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58240,7 +58240,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58316,7 +58316,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58392,7 +58392,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58468,7 +58468,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58544,7 +58544,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58620,7 +58620,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58696,7 +58696,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58772,7 +58772,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58848,7 +58848,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -58924,7 +58924,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59000,7 +59000,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59076,7 +59076,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59152,7 +59152,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59228,7 +59228,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59304,7 +59304,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59380,7 +59380,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59456,7 +59456,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59532,7 +59532,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59608,7 +59608,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59684,7 +59684,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59725,7 +59725,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59766,7 +59766,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59807,7 +59807,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -59957,7 +59957,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60141,7 +60141,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60214,7 +60214,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60287,7 +60287,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60360,7 +60360,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60433,7 +60433,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60506,7 +60506,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60579,7 +60579,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60655,7 +60655,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60729,7 +60729,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60803,7 +60803,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60877,7 +60877,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -60951,7 +60951,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61025,7 +61025,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61099,7 +61099,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61173,7 +61173,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61247,7 +61247,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61321,7 +61321,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61395,7 +61395,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61469,7 +61469,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61543,7 +61543,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61620,7 +61620,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61696,7 +61696,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61773,7 +61773,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61846,7 +61846,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61919,7 +61919,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -61992,7 +61992,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62065,7 +62065,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62138,7 +62138,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62211,7 +62211,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62284,7 +62284,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62357,7 +62357,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62430,7 +62430,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62503,7 +62503,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62576,7 +62576,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62649,7 +62649,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62722,7 +62722,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62795,7 +62795,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62868,7 +62868,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -62941,7 +62941,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63014,7 +63014,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63087,7 +63087,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63160,7 +63160,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63233,7 +63233,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63306,7 +63306,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63379,7 +63379,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63453,7 +63453,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63529,7 +63529,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63566,7 +63566,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63902,7 +63902,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -63976,7 +63976,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64053,7 +64053,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64130,7 +64130,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64207,7 +64207,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64284,7 +64284,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64361,7 +64361,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64438,7 +64438,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64515,7 +64515,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64592,7 +64592,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64669,7 +64669,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64746,7 +64746,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64823,7 +64823,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64900,7 +64900,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -64977,7 +64977,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65054,7 +65054,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65131,7 +65131,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65208,7 +65208,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65285,7 +65285,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65362,7 +65362,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65439,7 +65439,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65516,7 +65516,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -65592,7 +65592,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -66617,7 +66617,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -66693,7 +66693,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -66769,7 +66769,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -66845,7 +66845,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -66921,7 +66921,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70554,7 +70554,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70628,7 +70628,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70702,7 +70702,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70776,7 +70776,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70850,7 +70850,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70924,7 +70924,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -70998,7 +70998,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71072,7 +71072,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71146,7 +71146,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71220,7 +71220,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71294,7 +71294,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71368,7 +71368,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71442,7 +71442,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71516,7 +71516,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
@@ -71590,7 +71590,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* var is not supported in UUI */"
+        "WEB": "/* UUI internal variable */"
       }
     },
     {
