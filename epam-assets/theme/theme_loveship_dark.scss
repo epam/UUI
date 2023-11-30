@@ -778,7 +778,8 @@
             }
         }
 
-        &.uui-color-neutral {
+        &.uui-color-neutral,
+        &.uui-color-night300 {
             --uui-tag-bg: var(--uui-neutral-40);
             --uui-tag-bg-hover: var(--uui-neutral-30);
             --uui-tag-border: var(--uui-neutral-40);
@@ -800,6 +801,87 @@
                 .uui-count_indicator {
                     --uui-count_indicator-bg: var(--uui-neutral-40);
                     --uui-count_indicator-border: var(--uui-neutral-40);
+                }
+            }
+        }
+
+        &.uui-color-white {
+            --uui-tag-caption: var(--uui-neutral-70);
+            --uui-tag-fill: var(--uui-neutral-70);
+            --uui-tag-bg-hover: var(--uui-neutral-5);
+            --uui-tag-border-hover: var(--uui-neutral-5);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-40);
+                --uui-count_indicator-border: var(--uui-neutral-40);
+                --uui-count_indicator-caption: var(--uui-neutral-10);
+            }
+
+            &.uui-fill-outline {
+                --uui-tag-caption: var(--uui-neutral-0);
+                --uui-tag-fill: var(--uui-neutral-0);
+                --uui-tag-bg: color-mix(in srgb, var(--uui-neutral-0) 5%, transparent);
+                --uui-tag-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 10%, transparent);
+                --uui-tag-border: var(--uui-neutral-0);
+                --uui-tag-border-hover: var(--uui-neutral-0);
+
+                .uui-count_indicator {
+                    --uui-count_indicator-bg: var(--uui-neutral-40);
+                    --uui-count_indicator-border: var(--uui-neutral-40);
+                    --uui-count_indicator-caption: var(--uui-neutral-10);
+                }
+            }
+
+        }
+
+        &.uui-color-night100 {
+            --uui-tag-bg: var(--uui-neutral-40);
+            --uui-tag-bg-hover: var(--uui-neutral-30);
+            --uui-tag-border: var(--uui-neutral-40);
+            --uui-tag-border-hover: var(--uui-neutral-30);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-40);
+                --uui-count_indicator-border: var(--uui-neutral-40);
+                --uui-count_indicator-caption: var(--uui-neutral-10);
+            }
+
+            &.uui-fill-outline {
+                --uui-tag-bg: color-mix(in srgb, var(--uui-neutral-0) 12%, transparent);
+                --uui-tag-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 15%, transparent);
+                --uui-tag-border: var(--uui-neutral-20);
+                --uui-tag-border-hover: var(--uui-neutral-20);
+
+                .uui-count_indicator {
+                    --uui-count_indicator-bg: var(--uui-neutral-40);
+                    --uui-count_indicator-border: var(--uui-neutral-40);
+                    --uui-count_indicator-caption: var(--uui-neutral-10);
+                }
+            }
+        }
+
+        &.uui-color-night700 {
+            --uui-tag-bg: var(--uui-neutral-80);
+            --uui-tag-bg-hover: var(--uui-neutral-70);
+            --uui-tag-border: var(--uui-neutral-80);
+            --uui-tag-border-hover: var(--uui-neutral-70);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-neutral-0) 10%, transparent);
+                --uui-count_indicator-border: var(--uui-neutral-40);
+                --uui-count_indicator-caption: var(--uui-neutral-0);
+            }
+
+            &.uui-fill-outline {
+                --uui-tag-bg: var(--uui-neutral-80);
+                --uui-tag-bg-hover: var(--uui-neutral-70);
+                --uui-tag-border: var(--uui-neutral-50);
+                --uui-tag-border-hover: var(--uui-neutral-50);
+
+                .uui-count_indicator {
+                    --uui-count_indicator-bg: var(--uui-neutral-70);
+                    --uui-count_indicator-border: color-mix(in srgb, var(--uui-neutral-0) 50%, transparent);
+                    --uui-count_indicator-caption: var(--uui-neutral-10);
                 }
             }
         }
