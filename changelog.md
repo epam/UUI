@@ -17,8 +17,9 @@
 **What's Fixed**
 * [Calendar]: fixed disabled text `color`
 * [TextPlaceholder]: changed animation
-* [Text]: fixed default font
+* [Text]: fixed default font, fixed colors for semantic colors(info, warning, error, success), for skin colors
 * [Panel]: fixed "background" property, in default state it transparent
+* [MainMenu]: fixed colors for 'electric' theme
 * fixed variables for "theme-vanilla-thunder"
 
 # 5.4.0 - 21.11.2023
