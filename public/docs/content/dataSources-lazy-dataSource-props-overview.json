@@ -4,25 +4,20 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Below, you can review the ",
-        "color": "rgb(55, 65, 81)"
+        "text": "Below, you can review the "
       },
       {
-        "color": "rgb(55, 65, 81)",
         "text": "LazyDataSourceProps",
         "uui-richTextEditor-code": true
       },
       {
-        "color": "rgb(55, 65, 81)",
         "text": " interface accepted by "
       },
       {
-        "color": "rgb(55, 65, 81)",
         "text": "LazyDataSource",
         "uui-richTextEditor-code": true
       },
       {
-        "color": "rgb(55, 65, 81)",
         "text": "."
       }
     ]

@@ -70,9 +70,10 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
 }
 
 export enum TSkin {
-    UUI3_loveship = 'UUI3_loveship',
-    UUI4_promo = 'UUI4_promo',
-    UUI = 'UUI'
+    UUI = 'uui',
+    Electric = 'electric',
+    Loveship = 'loveship',
+    Promo = 'promo'
 }
 
 export type TDocConfig = {

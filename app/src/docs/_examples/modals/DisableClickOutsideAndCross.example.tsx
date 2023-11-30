@@ -7,7 +7,7 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
     return (
         <ModalBlocker disallowClickOutside { ...props } disableCloseByEsc={ true }>
             <ModalWindow>
-                <Panel background="surface">
+                <Panel background="surface-main">
                     <ModalHeader title="Simple modal example " />
                     <ScrollBars hasTopShadow hasBottomShadow>
                         <FlexRow padding="24" vPadding="12">

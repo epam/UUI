@@ -1,137 +1,73 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can configure how many tags should be shown in the picker toggler via the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "maxItems",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop; if you have more items than the maxItem number, they will be wrapped into one tag.",
-            "marks": []
-          }
-        ]
+        "text": "You can configure how many tags should be shown in the picker toggler via the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "By default, PickerInput wraps tags in a new line. You can change this behavior via the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "isSingleLine={ true }",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
+        "text": "maxItems",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "If you prefer the autocomplete behavior — when the dropdown opens after you type some number of symbols - use  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "minCharsToSearch",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop. Pay attention that you set ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "searchPosition='input'",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " in this case.",
-            "marks": []
-          }
-        ]
+        "text": " prop; if you have more items than the maxItem number, they will be wrapped into one tag."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default, PickerInput wraps tags in a new line. You can change this behavior via the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "At last, you can define your own toggler components via the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderToggler",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback.",
-            "marks": []
-          }
-        ]
+        "text": "isSingleLine={ true }",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "If you prefer the autocomplete behavior — when the dropdown opens after you type some number of symbols - use  "
+      },
+      {
+        "text": "minCharsToSearch",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. Pay attention that you set "
+      },
+      {
+        "text": "searchPosition='input'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in this case."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "At last, you can define your own toggler components via the "
+      },
+      {
+        "text": "renderToggler",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback."
       }
     ]
   }
-}
+]

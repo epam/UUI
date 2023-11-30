@@ -14,7 +14,7 @@ export class FlexRowDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:FlexRowProps', component: uui.FlexRow },
-            [TSkin.UUI3_loveship]: {
+            [TSkin.Loveship]: {
                 type: '@epam/loveship:FlexRowProps',
                 component: loveship.FlexRow,
                 doc: (doc: DocBuilder<loveship.FlexRowProps>) => {
@@ -23,7 +23,7 @@ export class FlexRowDoc extends BaseDocsBlock {
                     doc.merge('size', { defaultValue: '36' });
                 },
             },
-            [TSkin.UUI4_promo]: {
+            [TSkin.Promo]: {
                 type: '@epam/promo:FlexRowProps',
                 component: promo.FlexRow,
                 doc: (doc: DocBuilder<promo.FlexRowProps>) => {

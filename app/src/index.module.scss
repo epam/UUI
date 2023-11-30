@@ -1,4 +1,6 @@
 @use '~@epam/assets/theme/theme_promo' as *;
+/* Fonts for vanilla */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body, html {
     height: 100%;
@@ -8,15 +10,15 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    background: var(--uui-app-bg);
 
     > div {
         flex: 1 0 auto;
     }
 
-    :global(.landing) {
-        :global {
-            @include theme-promo();
-        }
+    &:global(.uui-theme-vanilla_thunder) {
+        --font-inter: 'Inter', sans-serif;
+        --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     }
 }
 

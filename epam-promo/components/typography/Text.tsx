@@ -17,7 +17,7 @@ export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
 export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
     UuiText,
-    (props) => [`uui-font-${props.font || 'sans'}`],
+    (props) => [props.font && `uui-font-${props.font}`],
     (props) => {
         if (__DEV__) {
             if (props.font) {

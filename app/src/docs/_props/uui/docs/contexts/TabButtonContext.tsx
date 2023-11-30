@@ -21,7 +21,7 @@ export class TabButtonContext extends React.Component<DemoComponentProps<ButtonP
     render() {
         const { DemoComponent, props } = this.props;
         return (
-            <Panel background="surface" margin="24" style={ { padding: '6px' } }>
+            <Panel background="surface-main" margin="24" style={ { padding: '6px' } }>
                 <FlexRow borderBottom size="36">
                     <DemoComponent caption="Main" onClick={ () => this.setTab('Main', props.onClick) } size={ props.size } isLinkActive={ this.state.activeTab === 'Main' } />
                     <DemoComponent

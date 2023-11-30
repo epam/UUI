@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlexRow, Text } from '@epam/promo';
+import { FlexRow, Text } from '@epam/uui';
 import css from './BenefitsBlock.module.scss';
 import { cx } from '@epam/uui-core';
 import { svc } from '../services';
@@ -54,7 +54,7 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
             <div className={ css.layout }>
                 <FlexRow cx={ css.benefits } borderBottom>
                     <div className={ css.wrapper }>
-                        <Text font="museo-sans" cx={ css.header }>
+                        <Text cx={ css.header }>
                             Why to Use
                         </Text>
                         <div className={ css.content }>
@@ -73,8 +73,7 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
                                         >
                                             <Text
                                                 cx={ css.reasonCaption }
-                                                font="museo-sans"
-                                                color={ this.state.reason === reason ? 'gray80' : 'gray60' }
+                                                color={ this.state.reason === reason ? 'primary' : 'secondary' }
                                                 fontSize="24"
                                                 lineHeight="30"
                                             >
@@ -87,7 +86,7 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
                             <ul id={ this.state.reason }>
                                 {benefits[this.state.reason].points.map((point: string, index: number) => (
                                     <li key={ index } className={ css.pointWrapper }>
-                                        <Text font="sans" fontSize="24" cx={ css.point }>
+                                        <Text fontSize="24" cx={ css.point }>
                                             {point}
                                         </Text>
                                     </li>

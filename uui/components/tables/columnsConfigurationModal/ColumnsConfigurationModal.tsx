@@ -111,7 +111,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () => (
-                            <Panel background="surface" shadow={ true }>
+                            <Panel background="surface-main" shadow={ true }>
                                 <DropdownMenuButton caption={ i18n.clearAllButton } onClick={ uncheckAll } />
                                 <DropdownMenuButton caption={ i18n.selectAllButton } onClick={ checkAll } />
                             </Panel>
@@ -119,7 +119,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                         renderTarget={ (props) => <Button { ...props } fill="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
                     />
                 </FlexRow>
-                <Panel background="surface" cx={ styles.mainPanel }>
+                <Panel background="surface-main" cx={ styles.mainPanel }>
                     <ScrollBars>
                         {renderVisible()}
                         {renderHidden()}

@@ -3,8 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "By default, alerts can be 48 (48 pixels high) or you can set the size to 36 (36 pixels high).",
-        "color": "rgb(22, 23, 25)"
+        "text": "By default, alerts can be 48 (48 pixels high) or you can set the size to 36 (36 pixels high)."
       }
     ]
   }

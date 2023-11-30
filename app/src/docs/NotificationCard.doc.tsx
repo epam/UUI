@@ -12,8 +12,8 @@ export class NotificationCardDoc extends BaseDocsBlock {
         name: 'NotificationCard',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:NotificationCardProps', component: uui.NotificationCard },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:NotificationCardProps', component: loveship.NotificationCard },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:NotificationCardProps', component: promo.NotificationCard },
+            [TSkin.Loveship]: { type: '@epam/loveship:NotificationCardProps', component: loveship.NotificationCard },
+            [TSkin.Promo]: { type: '@epam/promo:NotificationCardProps', component: promo.NotificationCard },
         },
         doc: (doc: DocBuilder<uui.NotificationCardProps | loveship.NotificationCardProps| promo.NotificationCardProps>) => {
             doc.merge('clearTimer', { remountOnChange: true });

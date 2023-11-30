@@ -15,8 +15,8 @@ export class TimePickerDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form, TDocContext.Table],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TimePickerProps', component: uui.TimePicker },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:TimePickerProps', component: loveship.TimePicker },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:TimePickerProps', component: promo.TimePicker },
+            [TSkin.Loveship]: { type: '@epam/uui:TimePickerProps', component: loveship.TimePicker },
+            [TSkin.Promo]: { type: '@epam/uui:TimePickerProps', component: promo.TimePicker },
         },
         doc: (doc: DocBuilder<uui.TimePickerProps>) => {
             doc.merge('minutesStep', { examples: [5, 10, 15] });

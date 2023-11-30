@@ -177,7 +177,7 @@ export default function FiltersPanelExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel background="surface" shadow style={ { height: '400px' } }>
+        <Panel background="surface-main" shadow style={ { height: '400px' } }>
             <FlexRow padding="12" vPadding="24" rawProps={ { style: { flexWrap: 'wrap', gap: '3px' } } }>
                 <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>

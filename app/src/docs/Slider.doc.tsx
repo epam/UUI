@@ -13,8 +13,8 @@ export class SliderDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:SliderProps', component: uui.Slider },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:SliderProps', component: promo.Slider },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:SliderProps', component: loveship.Slider },
+            [TSkin.Promo]: { type: '@epam/uui:SliderProps', component: promo.Slider },
+            [TSkin.Loveship]: { type: '@epam/uui:SliderProps', component: loveship.Slider },
         },
         doc: (doc: DocBuilder<uui.SliderProps>) => {
             doc.merge('min', { examples: [{ value: 0, isDefault: true }, 1, 50] });

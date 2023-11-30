@@ -1,32 +1,35 @@
 import * as React from 'react';
+import cx from 'classnames';
+import { TDocConfig, TSkin } from '@epam/uui-docs';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
-import { FlexRow, FlexSpacer, MultiSwitch, RichTextView, ScrollBars, TabButton } from '@epam/promo';
+import { Checkbox, FlexRow, FlexSpacer, RichTextView, ScrollBars, TabButton, Tooltip, IconContainer } from '@epam/uui';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import { TypeRefSection } from '../apiReference/TypeRefSection';
 import { ComponentEditorWrapper } from './componentEditor/ComponentEditor';
-import cx from 'classnames';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import css from './BaseDocsBlock.module.scss';
-import { TDocConfig, TSkin } from '@epam/uui-docs';
 
-enum TMode {
+export enum TMode {
     doc = 'doc',
     propsEditor = 'propsEditor'
 }
 
-const DEFAULT_SKIN = TSkin.UUI;
+export enum TTheme {
+    electric = 'electric',
+    loveship = 'loveship',
+    loveship_dark = 'loveship_dark',
+    promo = 'promo',
+    vanilla_thunder = 'vanilla_thunder'
+}
+
+export type TUUITheme = `uui-theme-${TTheme}`;
+
 const DEFAULT_MODE = TMode.doc;
+const DEFAULT_THEME: TUUITheme = 'uui-theme-loveship';
 
-const themeName: Record<TSkin, string> = {
-    [TSkin.UUI4_promo]: 'uui-theme-promo_important',
-    [TSkin.UUI3_loveship]: 'uui-theme-loveship_important',
-    [TSkin.UUI]: '',
-};
-
-const items: { id: TSkin; caption: string }[] = [
-    { caption: 'UUI [Themeable]', id: TSkin.UUI }, { caption: 'UUI3 [Loveship]', id: TSkin.UUI3_loveship }, { caption: 'UUI4 [Promo]', id: TSkin.UUI4_promo },
-];
+const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific package will be used, according to the selected theme (for example, "@epam/loveship"). If unchecked, it will use a component from the "@epam/uui" package, only with semantic props.';
 
 interface BaseDocsBlockState {}
 
@@ -41,12 +44,20 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
     }
 
-    private getSkin(): TSkin {
-        return getQuery('skin') || DEFAULT_SKIN;
+    private isSkin(): boolean {
+        return getQuery('isSkin') ?? JSON.parse(localStorage.getItem('app-theme-context'))?.isSkin ?? true;
     }
 
     private getMode(): TMode {
         return getQuery('mode') || DEFAULT_MODE;
+    }
+
+    private getTheme(): TUUITheme {
+        return getQuery('theme') ?? (localStorage.getItem('app-theme') as TUUITheme) ?? DEFAULT_THEME;
+    }
+
+    private hasSkin(): boolean {
+        return ['electric', 'loveship', 'loveship_dark', 'promo'].includes(this.getTheme().split('-').pop());
     }
 
     abstract title: string;
@@ -89,13 +100,16 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     };
 
     protected renderSkinSwitcher() {
+        if (this.getMode() !== TMode.propsEditor || !this.hasSkin()) return;
+
         return (
-            <MultiSwitch<TSkin>
-                size="36"
-                items={ items }
-                value={ this.getSkin() }
-                onValueChange={ (newValue: TSkin) => this.handleChangeSkin(newValue) }
-            />
+            <>
+                <FlexSpacer />
+                <Checkbox label="Show theme specific props" value={ this.isSkin() } onValueChange={ this.handleChangeSkin } />
+                <Tooltip content={ CONTROL_DESCRIPTION } color="inverted">
+                    <IconContainer icon={ InfoIcon } cx={ css.infoIcon } />
+                </Tooltip>
+            </>
         );
     }
 
@@ -104,7 +118,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             <FlexRow
                 rawProps={ { role: 'tablist' } }
                 padding="12"
-                cx={ [css.uuiThemePromo, css.secondaryNavigation] }
+                cx={ [css.secondaryNavigation] }
                 borderBottom
             >
                 <TabButton
@@ -119,8 +133,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                     isLinkActive={ this.getMode() === TMode.propsEditor }
                     onClick={ () => this.handleChangeMode(TMode.propsEditor) }
                 />
-                <FlexSpacer />
-                {this.getMode() === TMode.propsEditor && this.renderSkinSwitcher()}
+                {this.renderSkinSwitcher()}
             </FlexRow>
         );
     }
@@ -130,20 +143,23 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     };
 
     private renderPropsEditor() {
-        const skin = this.getSkin();
+        const isSkin = this.isSkin();
+        const theme = this.getTheme();
+
         return (
             <ComponentEditorWrapper
                 onRedirectBackToDocs={ () => this.handleChangeMode(TMode.doc) }
                 config={ this.config }
                 title={ this.title }
-                skin={ skin }
+                isSkin={ isSkin }
+                theme={ theme }
             />
         );
     }
 
     protected renderSectionTitle(title: string) {
         return (
-            <RichTextView cx={ css.themePromo }>
+            <RichTextView>
                 <h2>{title}</h2>
             </RichTextView>
         );
@@ -151,7 +167,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     protected renderDocTitle() {
         return (
-            <RichTextView cx={ css.themePromo }>
+            <RichTextView>
                 <h1>{this.title}</h1>
             </RichTextView>
         );
@@ -169,31 +185,21 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         );
     }
 
-    handlePortalTheme(prop: 'clear' | TSkin) {
-        // TODO: remove this when all our site will use one 'theme-color-picker' with PropertyExplorer
-        const portalId = this.context.uuiLayout.getPortalRootId();
-        const rootPortal = document.getElementById(portalId);
+    private handleChangeSkin = () => {
+        const isSkin = this.isSkin();
 
-        if (prop === 'clear') {
-            rootPortal.className = '';
-        } else {
-            rootPortal.className = themeName[prop];
-        }
-    }
-
-    private handleChangeSkin(skin: TSkin) {
-        this.handlePortalTheme(skin);
-        this.handleNav({ skin });
-    }
+        localStorage.setItem('app-theme-context', JSON.stringify({ isSkin: !isSkin }));
+        this.handleNav({ isSkin: !isSkin });
+    };
 
     private handleChangeMode(mode: TMode) {
-        this.handlePortalTheme('clear');
-        this.handleNav({ mode, skin: DEFAULT_SKIN });
+        this.handleNav({ mode });
     }
 
-    private handleNav = (params: { mode?: TMode, skin?: TSkin }) => {
+    private handleNav = (params: { mode?: TMode, isSkin?: boolean, theme?: TUUITheme }) => {
         const mode: TMode = params.mode ? params.mode : this.getMode();
-        const skin: TSkin = params.skin ? params.skin : this.getSkin();
+        const isSkin: boolean = params.isSkin ?? this.isSkin();
+        const theme: TUUITheme = params.theme ? params.theme : this.getTheme();
 
         svc.uuiRouter.redirect({
             pathname: '/documents',
@@ -201,7 +207,8 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 category: 'components',
                 id: getQuery('id'),
                 mode,
-                skin,
+                isSkin: isSkin,
+                theme,
             },
         });
     };

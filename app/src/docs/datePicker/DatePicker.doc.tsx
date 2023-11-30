@@ -15,8 +15,8 @@ export class DatePickerDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable, TDocContext.Table],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:DatePickerProps', component: uui.DatePicker },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:DatePickerProps', component: loveship.DatePicker },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:DatePickerProps', component: promo.DatePicker },
+            [TSkin.Loveship]: { type: '@epam/uui:DatePickerProps', component: loveship.DatePicker },
+            [TSkin.Promo]: { type: '@epam/uui:DatePickerProps', component: promo.DatePicker },
         },
         doc: (doc: DocBuilder<uui.DatePickerProps>) => {
             doc.merge('size', { defaultValue: '36' });

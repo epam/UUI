@@ -14,8 +14,8 @@ export class RadioGroupDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:RadioGroupProps', component: uui.RadioGroup },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:RadioGroupProps', component: loveship.RadioGroup },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-components:RadioGroupProps', component: promo.RadioGroup },
+            [TSkin.Loveship]: { type: '@epam/uui-components:RadioGroupProps', component: loveship.RadioGroup },
+            [TSkin.Promo]: { type: '@epam/uui-components:RadioGroupProps', component: promo.RadioGroup },
         },
         doc: (doc: DocBuilder<uuiComponents.RadioGroupProps<any>>) => {
             doc.merge('items', {

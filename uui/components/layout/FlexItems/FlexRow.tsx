@@ -12,7 +12,7 @@ export type RowMods = {
     spacing?: '6' | '12' | '18';
     topShadow?: boolean;
     vPadding?: '12' | '18' | '24' | '36' | '48';
-    background?: 'surface';
+    background?: 'surface-main';
 };
 
 export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
@@ -27,6 +27,6 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
         props.topShadow && css.topShadow,
         props.borderBottom && css.borderBottom,
         props.spacing && css['spacing-' + props.spacing],
-        props.background && `uui-color-${props.background}`,
+        props.background && css[`uui-${props.background}`],
     ];
 });
