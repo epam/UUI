@@ -55,8 +55,8 @@
     "VariableID:28101:155698",
     "VariableID:28101:155699",
     "VariableID:28101:155700",
-    "VariableID:28101:155701",
     "VariableID:25178:7106",
+    "VariableID:28101:155701",
     "VariableID:27513:151881",
     "VariableID:27513:151882",
     "VariableID:27513:151883",
@@ -3222,7 +3222,7 @@
         "25178:0": {
           "r": 1,
           "g": 1,
-          "b": 0.9411764740943909,
+          "b": 0.9607843160629272,
           "a": 1
         },
         "25178:1": {
@@ -3234,13 +3234,13 @@
         "25178:2": {
           "r": 1,
           "g": 1,
-          "b": 0.9411764740943909,
+          "b": 0.9607843160629272,
           "a": 1
         },
         "26302:0": {
           "r": 1,
           "g": 1,
-          "b": 0.9411764740943909,
+          "b": 0.9607843160629272,
           "a": 1
         }
       },
@@ -3249,7 +3249,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": null
@@ -3267,7 +3267,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": null
@@ -3276,7 +3276,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": null
@@ -3298,8 +3298,8 @@
       "valuesByMode": {
         "25178:0": {
           "r": 1,
-          "g": 0.9960784316062927,
-          "b": 0.800000011920929,
+          "g": 1,
+          "b": 0.8980392217636108,
           "a": 1
         },
         "25178:1": {
@@ -3310,14 +3310,14 @@
         },
         "25178:2": {
           "r": 1,
-          "g": 0.9960784316062927,
-          "b": 0.800000011920929,
+          "g": 1,
+          "b": 0.8980392217636108,
           "a": 1
         },
         "26302:0": {
           "r": 1,
-          "g": 0.9960784316062927,
-          "b": 0.800000011920929,
+          "g": 1,
+          "b": 0.8980392217636108,
           "a": 1
         }
       },
@@ -3325,8 +3325,8 @@
         "25178:0": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": null
@@ -3343,8 +3343,8 @@
         "25178:2": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": null
@@ -3352,8 +3352,8 @@
         "26302:0": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": null
@@ -3528,9 +3528,9 @@
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
-          "r": 0.9764705896377563,
-          "g": 0.7176470756530762,
-          "b": 0.11372549086809158,
+          "r": 0.929411768913269,
+          "g": 0.7450980544090271,
+          "b": 0.007843137718737125,
           "a": 1
         },
         "25178:1": {
@@ -3540,24 +3540,24 @@
           "a": 1
         },
         "25178:2": {
-          "r": 0.9764705896377563,
-          "g": 0.7176470756530762,
-          "b": 0.11372549086809158,
+          "r": 0.929411768913269,
+          "g": 0.7450980544090271,
+          "b": 0.007843137718737125,
           "a": 1
         },
         "26302:0": {
-          "r": 0.9764705896377563,
-          "g": 0.7176470756530762,
-          "b": 0.11372549086809158,
+          "r": 0.929411768913269,
+          "g": 0.7450980544090271,
+          "b": 0.007843137718737125,
           "a": 1
         }
       },
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": null
@@ -3573,18 +3573,18 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": null
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": null
@@ -3605,9 +3605,9 @@
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
-          "r": 0.8274509906768799,
-          "g": 0.5686274766921997,
-          "b": 0.0470588244497776,
+          "r": 0.7372549176216125,
+          "g": 0.4941176474094391,
+          "b": 0.007843137718737125,
           "a": 1
         },
         "25178:1": {
@@ -3617,24 +3617,24 @@
           "a": 1
         },
         "25178:2": {
-          "r": 0.8274509906768799,
-          "g": 0.5686274766921997,
-          "b": 0.0470588244497776,
+          "r": 0.7372549176216125,
+          "g": 0.4941176474094391,
+          "b": 0.007843137718737125,
           "a": 1
         },
         "26302:0": {
-          "r": 0.8274509906768799,
-          "g": 0.5686274766921997,
-          "b": 0.0470588244497776,
+          "r": 0.7372549176216125,
+          "g": 0.4941176474094391,
+          "b": 0.007843137718737125,
           "a": 1
         }
       },
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": null
@@ -3650,18 +3650,18 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": null
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": null
@@ -5992,9 +5992,9 @@
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
-          "r": 0.9607843160629272,
-          "g": 0.9843137264251709,
-          "b": 1,
+          "r": 0.9647058844566345,
+          "g": 0.9960784316062927,
+          "b": 0.9960784316062927,
           "a": 1
         },
         "25178:1": {
@@ -6019,9 +6019,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.9607843160629272,
-            "g": 0.9843137264251709,
-            "b": 1,
+            "r": 0.9647058844566345,
+            "g": 0.9960784316062927,
+            "b": 0.9960784316062927,
             "a": 1
           },
           "alias": null
@@ -6300,9 +6300,9 @@
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
-          "r": 0.05882352963089943,
-          "g": 0.6196078658103943,
-          "b": 0.6196078658103943,
+          "r": 0.07058823853731155,
+          "g": 0.7098039388656616,
+          "b": 0.7098039388656616,
           "a": 1
         },
         "25178:1": {
@@ -6312,9 +6312,9 @@
           "a": 1
         },
         "25178:2": {
-          "r": 0.05882352963089943,
-          "g": 0.6196078658103943,
-          "b": 0.6196078658103943,
+          "r": 0.07058823853731155,
+          "g": 0.7098039388656616,
+          "b": 0.7098039388656616,
           "a": 1
         },
         "26302:0": {
@@ -6327,9 +6327,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": null
@@ -6345,9 +6345,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": null
@@ -6762,9 +6762,9 @@
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
-          "r": 0.18039216101169586,
-          "g": 0.6196078658103943,
-          "b": 0.40784314274787903,
+          "r": 0.1921568661928177,
+          "g": 0.6666666865348816,
+          "b": 0.43921568989753723,
           "a": 1
         },
         "25178:1": {
@@ -6774,9 +6774,9 @@
           "a": 1
         },
         "25178:2": {
-          "r": 0.18039216101169586,
-          "g": 0.6196078658103943,
-          "b": 0.40784314274787903,
+          "r": 0.1921568661928177,
+          "g": 0.6666666865348816,
+          "b": 0.43921568989753723,
           "a": 1
         },
         "26302:0": {
@@ -6789,9 +6789,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": null
@@ -6807,9 +6807,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": null
@@ -13343,7 +13343,7 @@
     },
     {
       "id": "VariableID:25178:7210",
-      "name": "button/button-color-negative/button-bg-color",
+      "name": "button/button-color-critical/button-bg-color",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13416,7 +13416,7 @@
     },
     {
       "id": "VariableID:25178:7211",
-      "name": "button/button-color-negative/button-bg-color-hover",
+      "name": "button/button-color-critical/button-bg-color-hover",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13489,7 +13489,7 @@
     },
     {
       "id": "VariableID:25178:7212",
-      "name": "button/button-color-negative/button-bg-color-active",
+      "name": "button/button-color-critical/button-bg-color-active",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13562,7 +13562,7 @@
     },
     {
       "id": "VariableID:25178:7213",
-      "name": "button/button-color-negative/button-bg-color-halftone",
+      "name": "button/button-color-critical/button-bg-color-halftone",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13635,7 +13635,7 @@
     },
     {
       "id": "VariableID:25178:7214",
-      "name": "button/button-color-negative/button-bg-color-halftone-hover",
+      "name": "button/button-color-critical/button-bg-color-halftone-hover",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13708,7 +13708,7 @@
     },
     {
       "id": "VariableID:25178:7215",
-      "name": "button/button-color-negative/button-bg-color-halftone-active",
+      "name": "button/button-color-critical/button-bg-color-halftone-active",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13781,7 +13781,7 @@
     },
     {
       "id": "VariableID:25178:7216",
-      "name": "button/button-color-negative/button-border-color",
+      "name": "button/button-color-critical/button-border-color",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -13854,7 +13854,7 @@
     },
     {
       "id": "VariableID:25178:7217",
-      "name": "button/button-color-negative/button-border-color-hover",
+      "name": "button/button-color-critical/button-border-color-hover",
       "description": "Only for FE developers for Solid buttons",
       "type": "COLOR",
       "valuesByMode": {
@@ -13927,7 +13927,7 @@
     },
     {
       "id": "VariableID:25178:7218",
-      "name": "button/button-color-negative/button-border-color-active",
+      "name": "button/button-color-critical/button-border-color-active",
       "description": "Only for FE developers for Solid buttons",
       "type": "COLOR",
       "valuesByMode": {
@@ -14000,7 +14000,7 @@
     },
     {
       "id": "VariableID:25178:7219",
-      "name": "button/button-color-negative/button-bg-color-disabled",
+      "name": "button/button-color-critical/button-bg-color-disabled",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -14073,7 +14073,7 @@
     },
     {
       "id": "VariableID:25178:7220",
-      "name": "button/button-color-negative/button-border-color-disabled",
+      "name": "button/button-color-critical/button-border-color-disabled",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -14146,7 +14146,7 @@
     },
     {
       "id": "VariableID:25178:7221",
-      "name": "button/button-color-negative/button-caption-color",
+      "name": "button/button-color-critical/button-caption-color",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -14219,7 +14219,7 @@
     },
     {
       "id": "VariableID:25178:7222",
-      "name": "button/button-color-negative/button-caption-halftone-color",
+      "name": "button/button-color-critical/button-caption-halftone-color",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -14292,7 +14292,7 @@
     },
     {
       "id": "VariableID:25178:7223",
-      "name": "button/button-color-negative/button-caption-color-disabled",
+      "name": "button/button-color-critical/button-caption-color-disabled",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -17528,9 +17528,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -17538,9 +17538,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -17548,9 +17548,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -17558,9 +17558,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -17601,9 +17601,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -17611,9 +17611,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -17621,9 +17621,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -17631,9 +17631,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -19280,9 +19280,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -19290,9 +19290,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -19300,9 +19300,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -19310,9 +19310,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -19572,9 +19572,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -19582,9 +19582,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -19592,9 +19592,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -19602,9 +19602,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -31890,13 +31890,13 @@
     },
     {
       "id": "VariableID:25178:7466",
-      "name": "tag/tag-negative/tag-bg",
+      "name": "tag/tag-critical/tag-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155699"
+          "id": "VariableID:28101:155675"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -31919,8 +31919,8 @@
             "b": 0.25882354378700256,
             "a": 1
           },
-          "alias": "VariableID:28101:155699",
-          "aliasName": "core/semantic/error-50"
+          "alias": "VariableID:28101:155675",
+          "aliasName": "core/semantic/critical-50"
         },
         "25178:1": {
           "resolvedValue": {
@@ -31963,13 +31963,13 @@
     },
     {
       "id": "VariableID:25178:7467",
-      "name": "tag/tag-negative/tag-bg-hover",
+      "name": "tag/tag-critical/tag-bg-hover",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155700"
+          "id": "VariableID:28101:155676"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -31992,8 +31992,8 @@
             "b": 0.16470588743686676,
             "a": 1
           },
-          "alias": "VariableID:28101:155700",
-          "aliasName": "core/semantic/error-60"
+          "alias": "VariableID:28101:155676",
+          "aliasName": "core/semantic/critical-60"
         },
         "25178:1": {
           "resolvedValue": {
@@ -32036,7 +32036,7 @@
     },
     {
       "id": "VariableID:25178:7468",
-      "name": "tag/tag-negative/tag-caption",
+      "name": "tag/tag-critical/tag-caption",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -32109,7 +32109,7 @@
     },
     {
       "id": "VariableID:25178:7469",
-      "name": "tag/tag-negative/tag-icon",
+      "name": "tag/tag-critical/tag-icon",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -32182,13 +32182,13 @@
     },
     {
       "id": "VariableID:25178:7470",
-      "name": "tag/tag-negative-outline/tag-bg",
+      "name": "tag/tag-critical-outline/tag-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155696"
+          "id": "VariableID:28101:155672"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -32211,8 +32211,8 @@
             "b": 0.9647058844566345,
             "a": 1
           },
-          "alias": "VariableID:28101:155696",
-          "aliasName": "core/semantic/error-5"
+          "alias": "VariableID:28101:155672",
+          "aliasName": "core/semantic/critical-5"
         },
         "25178:1": {
           "resolvedValue": {
@@ -32255,13 +32255,13 @@
     },
     {
       "id": "VariableID:25178:7471",
-      "name": "tag/tag-negative-outline/tag-bg-hover",
+      "name": "tag/tag-critical-outline/tag-bg-hover",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155697"
+          "id": "VariableID:28101:155673"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -32284,8 +32284,8 @@
             "b": 0.8823529481887817,
             "a": 1
           },
-          "alias": "VariableID:28101:155697",
-          "aliasName": "core/semantic/error-10"
+          "alias": "VariableID:28101:155673",
+          "aliasName": "core/semantic/critical-10"
         },
         "25178:1": {
           "resolvedValue": {
@@ -32328,13 +32328,13 @@
     },
     {
       "id": "VariableID:25178:7472",
-      "name": "tag/tag-negative-outline/tag-border",
+      "name": "tag/tag-critical-outline/tag-border",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155698"
+          "id": "VariableID:28101:155674"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -32357,8 +32357,8 @@
             "b": 0.7137255072593689,
             "a": 1
           },
-          "alias": "VariableID:28101:155698",
-          "aliasName": "core/semantic/error-20"
+          "alias": "VariableID:28101:155674",
+          "aliasName": "core/semantic/critical-20"
         },
         "25178:1": {
           "resolvedValue": {
@@ -32401,7 +32401,7 @@
     },
     {
       "id": "VariableID:25178:7473",
-      "name": "tag/tag-negative-outline/tag-caption",
+      "name": "tag/tag-critical-outline/tag-caption",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -32474,7 +32474,7 @@
     },
     {
       "id": "VariableID:25178:7474",
-      "name": "tag/tag-negative-outline/tag-icon",
+      "name": "tag/tag-critical-outline/tag-icon",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -37150,13 +37150,13 @@
     },
     {
       "id": "VariableID:25178:7538",
-      "name": "badge/badge-negative/badge-bg",
+      "name": "badge/badge-critical/badge-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155699"
+          "id": "VariableID:28101:155675"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37179,8 +37179,8 @@
             "b": 0.25882354378700256,
             "a": 1
           },
-          "alias": "VariableID:28101:155699",
-          "aliasName": "core/semantic/error-50"
+          "alias": "VariableID:28101:155675",
+          "aliasName": "core/semantic/critical-50"
         },
         "25178:1": {
           "resolvedValue": {
@@ -37223,13 +37223,13 @@
     },
     {
       "id": "VariableID:25178:7539",
-      "name": "badge/badge-negative/badge-bg-hover",
+      "name": "badge/badge-critical/badge-bg-hover",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155700"
+          "id": "VariableID:28101:155676"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37252,8 +37252,8 @@
             "b": 0.16470588743686676,
             "a": 1
           },
-          "alias": "VariableID:28101:155700",
-          "aliasName": "core/semantic/error-60"
+          "alias": "VariableID:28101:155676",
+          "aliasName": "core/semantic/critical-60"
         },
         "25178:1": {
           "resolvedValue": {
@@ -37296,7 +37296,7 @@
     },
     {
       "id": "VariableID:25178:7540",
-      "name": "badge/badge-negative/badge-caption",
+      "name": "badge/badge-critical/badge-caption",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -37369,7 +37369,7 @@
     },
     {
       "id": "VariableID:25178:7541",
-      "name": "badge/badge-negative/badge-icon",
+      "name": "badge/badge-critical/badge-icon",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -37442,13 +37442,13 @@
     },
     {
       "id": "VariableID:25178:7542",
-      "name": "badge/badge-negative-outline/badge-bg",
+      "name": "badge/badge-critical-outline/badge-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155696"
+          "id": "VariableID:28101:155672"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37471,8 +37471,8 @@
             "b": 0.9647058844566345,
             "a": 1
           },
-          "alias": "VariableID:28101:155696",
-          "aliasName": "core/semantic/error-5"
+          "alias": "VariableID:28101:155672",
+          "aliasName": "core/semantic/critical-5"
         },
         "25178:1": {
           "resolvedValue": {
@@ -37515,13 +37515,13 @@
     },
     {
       "id": "VariableID:25178:7543",
-      "name": "badge/badge-negative-outline/badge-bg-hover",
+      "name": "badge/badge-critical-outline/badge-bg-hover",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155697"
+          "id": "VariableID:28101:155673"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37544,8 +37544,8 @@
             "b": 0.8823529481887817,
             "a": 1
           },
-          "alias": "VariableID:28101:155697",
-          "aliasName": "core/semantic/error-10"
+          "alias": "VariableID:28101:155673",
+          "aliasName": "core/semantic/critical-10"
         },
         "25178:1": {
           "resolvedValue": {
@@ -37588,13 +37588,13 @@
     },
     {
       "id": "VariableID:25178:7544",
-      "name": "badge/badge-negative-outline/badge-border",
+      "name": "badge/badge-critical-outline/badge-border",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155698"
+          "id": "VariableID:28101:155674"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37617,8 +37617,8 @@
             "b": 0.7137255072593689,
             "a": 1
           },
-          "alias": "VariableID:28101:155698",
-          "aliasName": "core/semantic/error-20"
+          "alias": "VariableID:28101:155674",
+          "aliasName": "core/semantic/critical-20"
         },
         "25178:1": {
           "resolvedValue": {
@@ -37661,13 +37661,13 @@
     },
     {
       "id": "VariableID:25178:7545",
-      "name": "badge/badge-negative-outline/badge-caption",
+      "name": "badge/badge-critical-outline/badge-caption",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155701"
+          "id": "VariableID:28101:155677"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37690,8 +37690,8 @@
             "b": 0,
             "a": 1
           },
-          "alias": "VariableID:28101:155701",
-          "aliasName": "core/semantic/error-70"
+          "alias": "VariableID:28101:155677",
+          "aliasName": "core/semantic/critical-70"
         },
         "25178:1": {
           "resolvedValue": {
@@ -37734,13 +37734,13 @@
     },
     {
       "id": "VariableID:25178:7546",
-      "name": "badge/badge-negative-outline/badge-icon",
+      "name": "badge/badge-critical-outline/badge-icon",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155701"
+          "id": "VariableID:28101:155677"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -37763,8 +37763,8 @@
             "b": 0,
             "a": 1
           },
-          "alias": "VariableID:28101:155701",
-          "aliasName": "core/semantic/error-70"
+          "alias": "VariableID:28101:155677",
+          "aliasName": "core/semantic/critical-70"
         },
         "25178:1": {
           "resolvedValue": {
@@ -39879,9 +39879,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -39889,9 +39889,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -39899,9 +39899,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -39909,9 +39909,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.9764705896377563,
-            "g": 0.7176470756530762,
-            "b": 0.11372549086809158,
+            "r": 0.929411768913269,
+            "g": 0.7450980544090271,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7018",
@@ -40100,7 +40100,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": "VariableID:25178:7014",
@@ -40110,7 +40110,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": "VariableID:25178:7014",
@@ -40120,7 +40120,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": "VariableID:25178:7014",
@@ -40130,7 +40130,7 @@
           "resolvedValue": {
             "r": 1,
             "g": 1,
-            "b": 0.9411764740943909,
+            "b": 0.9607843160629272,
             "a": 1
           },
           "alias": "VariableID:25178:7014",
@@ -40172,8 +40172,8 @@
         "25178:0": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": "VariableID:25178:7015",
@@ -40182,8 +40182,8 @@
         "25178:1": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": "VariableID:25178:7015",
@@ -40192,8 +40192,8 @@
         "25178:2": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": "VariableID:25178:7015",
@@ -40202,8 +40202,8 @@
         "26302:0": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.9960784316062927,
-            "b": 0.800000011920929,
+            "g": 1,
+            "b": 0.8980392217636108,
             "a": 1
           },
           "alias": "VariableID:25178:7015",
@@ -40317,9 +40317,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40327,9 +40327,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40337,9 +40337,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40347,9 +40347,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40390,9 +40390,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40400,9 +40400,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40410,9 +40410,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -40420,9 +40420,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -43821,9 +43821,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -43831,9 +43831,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -43841,9 +43841,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -43851,9 +43851,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.05882352963089943,
-            "g": 0.6196078658103943,
-            "b": 0.6196078658103943,
+            "r": 0.07058823853731155,
+            "g": 0.7098039388656616,
+            "b": 0.7098039388656616,
             "a": 1
           },
           "alias": "VariableID:25178:7054",
@@ -44040,9 +44040,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.9607843160629272,
-            "g": 0.9843137264251709,
-            "b": 1,
+            "r": 0.9647058844566345,
+            "g": 0.9960784316062927,
+            "b": 0.9960784316062927,
             "a": 1
           },
           "alias": "VariableID:25178:7050",
@@ -44050,9 +44050,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.9607843160629272,
-            "g": 0.9843137264251709,
-            "b": 1,
+            "r": 0.9647058844566345,
+            "g": 0.9960784316062927,
+            "b": 0.9960784316062927,
             "a": 1
           },
           "alias": "VariableID:25178:7050",
@@ -44060,9 +44060,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.9607843160629272,
-            "g": 0.9843137264251709,
-            "b": 1,
+            "r": 0.9647058844566345,
+            "g": 0.9960784316062927,
+            "b": 0.9960784316062927,
             "a": 1
           },
           "alias": "VariableID:25178:7050",
@@ -44070,9 +44070,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.9607843160629272,
-            "g": 0.9843137264251709,
-            "b": 1,
+            "r": 0.9647058844566345,
+            "g": 0.9960784316062927,
+            "b": 0.9960784316062927,
             "a": 1
           },
           "alias": "VariableID:25178:7050",
@@ -44478,9 +44478,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -44488,9 +44488,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -44498,9 +44498,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -44508,9 +44508,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.18039216101169586,
-            "g": 0.6196078658103943,
-            "b": 0.40784314274787903,
+            "r": 0.1921568661928177,
+            "g": 0.6666666865348816,
+            "b": 0.43921568989753723,
             "a": 1
           },
           "alias": "VariableID:25178:7060",
@@ -46572,7 +46572,7 @@
     },
     {
       "id": "VariableID:25178:7684",
-      "name": "informer/informer-negative/informer-bg",
+      "name": "informer/informer-critical/informer-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -46645,7 +46645,7 @@
     },
     {
       "id": "VariableID:25178:7685",
-      "name": "informer/informer-negative/informer-caption",
+      "name": "informer/informer-critical/informer-caption",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -49605,7 +49605,7 @@
     },
     {
       "id": "VariableID:25178:7737",
-      "name": "indicator/indicator-negative/indicator-solid-bg",
+      "name": "indicator/indicator-critical/indicator-solid-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -49678,7 +49678,7 @@
     },
     {
       "id": "VariableID:25178:7738",
-      "name": "indicator/indicator-negative/indicator-highlited-bg",
+      "name": "indicator/indicator-critical/indicator-highlited-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -49751,7 +49751,7 @@
     },
     {
       "id": "VariableID:25178:7739",
-      "name": "indicator/indicator-negative/indicator-outline-bg",
+      "name": "indicator/indicator-critical/indicator-outline-bg",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -49828,7 +49828,7 @@
     },
     {
       "id": "VariableID:25178:7740",
-      "name": "indicator/indicator-negative/indicator-outline-border",
+      "name": "indicator/indicator-critical/indicator-outline-border",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -49925,9 +49925,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -49935,9 +49935,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -49945,9 +49945,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -49955,9 +49955,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -65598,7 +65598,7 @@
     {
       "id": "VariableID:27513:151881",
       "name": "core/neutral/neutral-0",
-      "description": "#FFFFFF",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -66927,7 +66927,7 @@
     {
       "id": "VariableID:28101:155654",
       "name": "core/semantic/primary-5",
-      "description": "",
+      "description": "Uses for primary actions and component states.  It's primary theme color.",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -70929,7 +70929,7 @@
     },
     {
       "id": "VariableID:30544:3728",
-      "name": "indicator/indicator-negative/indicator-label",
+      "name": "indicator/indicator-critical/indicator-label",
       "description": "",
       "type": "COLOR",
       "valuesByMode": {
@@ -71029,9 +71029,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -71048,9 +71048,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
@@ -71058,9 +71058,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.8274509906768799,
-            "g": 0.5686274766921997,
-            "b": 0.0470588244497776,
+            "r": 0.7372549176216125,
+            "g": 0.4941176474094391,
+            "b": 0.007843137718737125,
             "a": 1
           },
           "alias": "VariableID:25178:7019",
