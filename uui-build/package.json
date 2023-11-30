@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -62,9 +62,9 @@
     "ts-node": "10.9.1"
   },
   "devDependencies": {
+    "@microsoft/tsdoc": "0.14.2",
     "@testing-library/jest-dom": "5.16.5",
-    "typescript": "4.9.3",
-    "@microsoft/tsdoc": "0.14.2"
+    "typescript": "4.9.3"
   },
   "publishConfig": {
     "directory": "build"
