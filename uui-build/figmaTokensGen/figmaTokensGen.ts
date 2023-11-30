@@ -2,12 +2,13 @@ import { IFigmaVar, TUuiCssToken } from './types';
 import { FileUtils } from './utils/fileUtils';
 import { IGNORED_VAR_PLACEHOLDER } from './constants';
 import { FigmaScriptsContext } from './context/context';
+import { CONFIG } from './config';
 
 export function genFigmaTokens() {
     const ctx = new FigmaScriptsContext();
     const source = FileUtils.readFigmaVarCollection();
     const variables = source.variables.map((figmaVar) => {
-        const { isSupported, cssVar, cssToken } = extractCssTokenFromVar({ figmaVar, ctx });
+        const { isSupported, cssVar, cssToken } = extractCssTokenFromVar({ figmaVar });
         if (isSupported) {
             ctx.log.logSupported(cssToken);
         } else {
@@ -31,20 +32,20 @@ export function genFigmaTokens() {
     });
 }
 
-function isSupportedByUuiApp(params: { figmaVar: IFigmaVar, cssToken: TUuiCssToken, ctx: FigmaScriptsContext }) {
-    const { figmaVar, cssToken, ctx } = params;
+function isSupportedByUuiApp(params: { figmaVar: IFigmaVar, cssToken: TUuiCssToken }) {
+    const { figmaVar, cssToken } = params;
     const isIgnoredByConvention = figmaVar.name.indexOf('core/') !== 0;
-    const isIgnoredByConfig = ctx.config.tokens[cssToken]?.isSupportedByUUiApp === false;
+    const isIgnoredByConfig = CONFIG.tokens[cssToken]?.isSupportedByUUiApp === false;
     return !isIgnoredByConvention && !isIgnoredByConfig;
 }
 
-function extractCssTokenFromVar(params: { figmaVar: IFigmaVar, ctx: FigmaScriptsContext }) {
-    const { figmaVar, ctx } = params;
+function extractCssTokenFromVar(params: { figmaVar: IFigmaVar }) {
+    const { figmaVar } = params;
     const { name } = figmaVar;
     const tokens = name.split('/');
     const lastToken = tokens[tokens.length - 1];
     const cssToken: TUuiCssToken = `--uui-${lastToken}`;
     const cssVar = `var(${cssToken})`;
-    const isSupported = isSupportedByUuiApp({ figmaVar, cssToken, ctx });
+    const isSupported = isSupportedByUuiApp({ figmaVar, cssToken });
     return { cssVar, isSupported, cssToken };
 }
