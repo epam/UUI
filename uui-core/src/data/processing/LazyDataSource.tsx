@@ -81,14 +81,14 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
             () => new LazyListView({ value, onValueChange }, viewProps, this.cache),
-            [...deps, this],
+            [...deps, this], // every time, datasource is updated, view should be recreated
         );
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.subscribe(view);
             return () => { unsubscribe(); };
-        }, [...deps, this]);
+        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
 
         view.update({ value, onValueChange }, viewProps);
         return view;
