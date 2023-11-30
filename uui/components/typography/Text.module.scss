@@ -36,6 +36,10 @@
         @include text-color('primary');
         @include text-color('secondary');
         @include text-color('disabled');
+        @include text-color('info');
+        @include text-color('warning');
+        @include text-color('error');
+        @include text-color('success');
 
         @include font-weight(200);
         @include font-weight(300);
