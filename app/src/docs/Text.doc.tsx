@@ -1,20 +1,33 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TextDoc extends BaseDocsBlock {
     title = 'Text';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TextProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/typography/text.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/typography/text.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/typography/text.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Text',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:TextProps', component: uui.Text },
+            [TSkin.Loveship]: { type: '@epam/loveship:TextProps', component: loveship.Text },
+            [TSkin.Promo]: { type: '@epam/promo:TextProps', component: promo.Text },
+        },
+        doc: (doc: DocBuilder<promo.TextProps | loveship.TextProps | uui.TextProps>) => {
+            doc.merge('children', {
+                examples: [
+                    { value: 'Hello World', isDefault: true }, {
+                        value: 'At EPAM, we believe that technology defines business success, and we relentlessly pursue the best solution for every client to solve where others fail.',
+                        name: 'long text',
+                    },
+                ],
+                editorType: 'StringWithExamplesEditor',
+            });
+        },
+    };
 
     renderContent() {
         return (

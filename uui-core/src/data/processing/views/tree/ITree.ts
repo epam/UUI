@@ -25,6 +25,7 @@ export interface ApplySortOptions<TItem, TId, TFilter> {
 
 export interface TreeNodeInfo {
     count?: number;
+    totalCount?: number;
 }
 
 export interface LoadTreeOptions<TItem, TId, TFilter>

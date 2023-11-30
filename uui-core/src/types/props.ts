@@ -5,6 +5,7 @@ import { Link, CX, Icon, AnalyticsEvent } from './objects';
 import * as CSS from 'csstype';
 import { PopperArrowProps } from 'react-popper';
 import { Placement } from '@popperjs/core';
+import * as React from 'react';
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -86,6 +87,7 @@ export interface IHasLabel {
 
 /** Component has direction of child components. */
 export interface IHasDirection {
+    /** Direction of child components. */
     direction?: 'vertical' | 'horizontal';
 }
 
@@ -116,6 +118,7 @@ export interface IHasIcon {
 
 /** Component can have child components */
 export interface IHasChildren {
+    /** Component children */
     children?: ReactNode;
 }
 
@@ -128,6 +131,11 @@ export interface IHasPlaceholder {
 export interface IHasTabIndex {
     /** Controls the order of keyboard navigation between components */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+}
+
+export interface IHasStyleAttrs {
+    /** CSS style prop to put on the component */
+    style?: React.CSSProperties;
 }
 
 // TBD: remove when MainMenu old api of items providing will be removed
@@ -222,6 +230,7 @@ IClickable &
 IHasRawProps<HTMLAttributes<HTMLDivElement>> &
 IHasForwardedRef<HTMLDivElement> &
 IAnalyticableClick & {
+    /** Native style attributes */
     style?: CSSProperties;
 };
 

@@ -31,7 +31,7 @@ export default function BasicExample() {
     const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownContainer showArrow={ true } width="auto" { ...props }>
-                <Panel background="surface">
+                <Panel background="surface-main">
                     <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} } />
                     <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
                     <DropdownMenuButton caption="Phone" icon={ phoneIcon } onClick={ () => {} } />

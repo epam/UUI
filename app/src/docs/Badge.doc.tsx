@@ -1,20 +1,25 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:BadgeProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/widgets/badge.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/badge.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/widgets/badge.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Badge',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:BadgeProps', component: uui.Badge },
+            [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
+            [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
+        },
+        doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps>) => {
+            doc.merge('iconPosition', { defaultValue: 'left' });
+        },
+    };
 
     renderContent() {
         return (

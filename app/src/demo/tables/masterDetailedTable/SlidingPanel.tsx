@@ -46,7 +46,7 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({
     );
 
     return (
-        <Panel background="surface" cx={ className } style={ style }>
+        <Panel background="surface-main" cx={ className } style={ style }>
             {children}
         </Panel>
     );

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, FlexRow, IconButton, LinkButton } from '@epam/promo';
-import { BadgeColor, Badge } from '@epam/uui';
+import { Badge, BadgeColor } from '@epam/uui';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTablePaged.module.scss';

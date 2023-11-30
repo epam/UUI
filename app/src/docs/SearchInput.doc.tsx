@@ -1,20 +1,25 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class SearchInputDoc extends BaseDocsBlock {
     title = 'Search Input';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:SearchInputProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/searchInput.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/searchInput.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/searchInput.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'SearchInput',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable, TDocContext.Table],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:SearchInputProps', component: uui.SearchInput },
+            [TSkin.Loveship]: { type: '@epam/loveship:SearchInputProps', component: loveship.SearchInput },
+            [TSkin.Promo]: { type: '@epam/uui:SearchInputProps', component: promo.SearchInput },
+        },
+        doc: (doc: DocBuilder<uui.SearchInputProps | loveship.SearchInputProps>) => {
+            doc.merge('iconPosition', { defaultValue: 'left' });
+        },
+    };
 
     renderContent() {
         return (

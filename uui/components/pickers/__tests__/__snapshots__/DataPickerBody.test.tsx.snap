@@ -20,7 +20,6 @@ Array [
     >
       <div
         className="container uui-input-box -clickable root size-48 mode-form"
-        onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
       >
@@ -36,7 +35,9 @@ Array [
           aria-invalid={false}
           className="uui-input"
           inputMode="search"
+          onBlur={[Function]}
           onChange={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           placeholder="Search"
           tabIndex={0}

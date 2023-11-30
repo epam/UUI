@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 import {
     DropdownBodyProps, isFocusReceiverInsideFocusLock, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder,
-    IDropdownToggler, IHasRawProps, CX,
+    IDropdownToggler, IHasRawProps, CX, IHasForwardedRef, ICanFocus,
 } from '@epam/uui-core';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { Dropdown } from '../overlays';
@@ -14,7 +14,12 @@ export interface TimePickerValue {
     minutes: number;
 }
 
-export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder {
+export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>,
+    IDisableable,
+    ICanBeReadonly,
+    IHasPlaceholder,
+    ICanFocus<HTMLElement>,
+    IHasForwardedRef<HTMLElement> {
     minutesStep?: number;
     format?: 12 | 24;
     id?: string;
@@ -51,7 +56,8 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     abstract renderBody: (props: DropdownBodyProps) => React.ReactNode;
     componentDidUpdate(prevProps: BaseTimePickerProps) {
         if (this.props.value !== prevProps.value) {
-            this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });
+            this.setState((state) =>
+                ({ ...state, value: valueToTimeString(this.props.value, this.props.format) }));
         }
     }
 
@@ -64,35 +70,37 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     };
 
     onToggle = (value: boolean) => {
-        this.setState({ ...this.state, isOpen: value });
+        this.setState((state) => ({ ...state, isOpen: value }));
     };
 
     handleInputChange = (newValue: string) => {
         if (this.getFormat() === 'hh:mm A' && newValue.length < 8) {
-            this.setState({ ...this.state, value: newValue });
+            this.setState((state) => ({ ...state, value: newValue }));
         } else if (dayjs(newValue, this.getFormat(), true).isValid()) {
             const value = dayjs(newValue, this.getFormat(), true);
             this.props.onValueChange({ hours: value.hour(), minutes: value.minute() });
-            this.setState({ ...this.state, value: newValue });
+            this.setState((state) => ({ ...state, value: newValue }));
         } else {
-            this.setState({ ...this.state, value: newValue });
+            this.setState((state) => ({ ...state, value: newValue }));
         }
     };
 
-    handleFocus = () => {
+    handleFocus = (e: React.FocusEvent<HTMLElement>) => {
         this.onToggle(true);
+        this.props.onFocus?.(e);
     };
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isFocusReceiverInsideFocusLock(e)) return;
         this.onToggle(false);
+        this.props.onBlur?.(e);
 
         if (this.state.value === '') {
             this.props.onValueChange(null);
-            this.setState({ ...this.state, value: null });
+            this.setState((state) => ({ ...state, value: null }));
         } else if (!dayjs(this.state.value, this.getFormat(), true).isValid()) {
             this.props.onValueChange(this.props.value);
-            this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });
+            this.setState((state) => ({ ...state, value: valueToTimeString(this.props.value, this.props.format) }));
         }
     };
 
@@ -104,6 +112,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+                forwardedRef={ this.props.forwardedRef }
             />
         );
     }

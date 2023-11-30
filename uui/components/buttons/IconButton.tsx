@@ -8,10 +8,15 @@ export const allIconColors: IconColor[] = [
 ];
 
 export interface IconButtonMods {
+    /**
+     * @default 'default'
+     */
     color?: IconColor;
 }
 
-export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
+export type IconButtonProps = IconButtonBaseProps & IconButtonMods;
+
+export type IconButtonCoreProps= IconButtonBaseProps & {};
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return ['uui-icon_button', `uui-color-${mods.color || 'neutral'}`, css.root];

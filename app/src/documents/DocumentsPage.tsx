@@ -1,18 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { FlexRow } from '@epam/promo';
-import { AppHeader, Page, Sidebar, TSkin } from '../common';
+import { DataRowProps } from '@epam/uui-core';
+import { TreeListItem } from '@epam/uui-components';
+import { FlexRow } from '@epam/uui';
+import { AppHeader, Page, Sidebar, TMode, TUUITheme, TypeRefPage } from '../common';
 import { svc } from '../services';
 import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
-import { TreeListItem } from '@epam/uui-components';
-import { DataRowProps } from '@epam/uui-core';
-import { TypeRefPage } from '../common';
 
 type DocsQuery = {
     id: string;
-    mode?: string;
-    skin?: TSkin.UUI3_loveship | TSkin.UUI4_promo;
+    mode?: TMode;
+    isSkin?: boolean;
+    theme?: TUUITheme;
     category?: string;
 };
 
@@ -58,13 +58,14 @@ const redirectTo = (query: DocsQuery) =>
 
 export function DocumentsPage() {
     const queryParamId: string = useQuery('id');
-    const mode = useQuery('mode') || 'doc';
-    const skin = useQuery<DocsQuery['skin']>('skin') || TSkin.UUI4_promo;
+    const mode = useQuery<DocsQuery['mode']>('mode') || TMode.doc;
+    const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
+    const theme = useQuery<DocsQuery['theme']>('theme');
     const itemsInfo = useItems(queryParamId);
 
     useEffect(() => {
         if (itemsInfo && !itemsInfo.PageComponent) {
-            redirectTo({ id: itemsInfo.items[0].id, mode: 'doc', skin: TSkin.UUI4_promo });
+            redirectTo({ id: itemsInfo.items[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
         }
     }, [itemsInfo]);
 
@@ -81,10 +82,11 @@ export function DocumentsPage() {
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
         if (row.parentId === 'components') {
             redirectTo({
-                id: row.id,
-                mode,
-                skin,
                 category: row.parentId,
+                mode,
+                id: row.id,
+                isSkin,
+                theme,
             });
         } else {
             redirectTo({ id: row.id, category: row.parentId });
@@ -103,8 +105,8 @@ export function DocumentsPage() {
                             pathname: '/documents',
                             query: {
                                 id: row.id,
-                                mode: (row.parentId && mode) || 'doc',
-                                skin: (row.parentId && skin) || TSkin.UUI4_promo,
+                                mode: (row.parentId && mode),
+                                isSkin: (row.parentId && isSkin),
                                 category: row.parentId,
                             },
                         } }

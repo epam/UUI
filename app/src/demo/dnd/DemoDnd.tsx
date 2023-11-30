@@ -62,7 +62,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
             <FlexRow cx={ css.root } alignItems="stretch">
                 {isDesktop && (
                     <>
-                        <Panel background="surface" shadow>
+                        <Panel background="surface-main" shadow>
                             <FlexCell minWidth={ 282 }>
                                 <FlexRow padding="18" borderBottom>
                                     <Text size="48" fontWeight="600">

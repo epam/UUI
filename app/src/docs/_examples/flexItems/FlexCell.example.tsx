@@ -6,7 +6,7 @@ export default function FlexCellExample() {
     const [value, onValueChange] = useState(null);
 
     return (
-        <Panel background="surface" shadow cx={ css.root }>
+        <Panel background="surface-main" shadow cx={ css.root }>
             <FlexRow padding="12">
                 <Text fontWeight="600" size="48">
                     Identity Document

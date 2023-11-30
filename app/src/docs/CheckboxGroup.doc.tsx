@@ -1,18 +1,32 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI } from '../common';
+import * as uuiComponents from '@epam/uui-components';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class CheckboxGroupDoc extends BaseDocsBlock {
     title = 'CheckboxGroup';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:CheckboxGroupProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/layout/checkboxGroup.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/checkboxGroup.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/layout/checkboxGroup.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'CheckboxGroup',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui-components:CheckboxGroupProps', component: uui.CheckboxGroup },
+            [TSkin.Loveship]: { type: '@epam/uui-components:CheckboxGroupProps', component: loveship.CheckboxGroup },
+            [TSkin.Promo]: { type: '@epam/uui-components:CheckboxGroupProps', component: promo.CheckboxGroup },
+        },
+        doc: (doc: DocBuilder<uuiComponents.CheckboxGroupProps<any>>) => {
+            doc.merge('CheckboxInput', {
+                examples: [{ name: '<Checkbox />', value: null }],
+                editorType: 'SingleUnknownEditor',
+            });
+            doc.merge('value', { editorType: 'JsonView', examples: [] });
+            const itemsExample = [{ name: 'Mentee', id: 1 }, { name: 'Direct Subordinates', id: 2 }, { name: 'Project Members', id: 3 }];
+            doc.merge('items', { examples: [{ name: JSON.stringify(itemsExample, undefined, 1), value: itemsExample, isDefault: true }] });
+        },
+    };
 
     renderContent() {
         return (

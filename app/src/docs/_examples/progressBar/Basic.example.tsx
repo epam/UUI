@@ -24,7 +24,7 @@ export default function BasicProgressBarExample() {
     }, []);
 
     return (
-        <Panel background="surface" style={ { flexBasis: '100%' } } cx={ css.root }>
+        <Panel background="surface-main" style={ { flexBasis: '100%' } } cx={ css.root }>
             <ProgressBar cx={ css.bar } progress={ progress } hideLabel />
             <ProgressBar cx={ css.bar } progress={ progress } size="18" />
             <ProgressBar cx={ css.bar } progress={ progress } size="24" striped />

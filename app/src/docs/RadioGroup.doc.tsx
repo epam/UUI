@@ -1,18 +1,38 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI } from '../common';
+import * as uui from '@epam/uui';
+import * as uuiComponents from '@epam/uui-components';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class RadioGroupDoc extends BaseDocsBlock {
     title = 'RadioGroup';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:RadioGroupProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/layout/radioGroup.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/radioGroup.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/layout/radioGroup.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'RadioGroup',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui-components:RadioGroupProps', component: uui.RadioGroup },
+            [TSkin.Loveship]: { type: '@epam/uui-components:RadioGroupProps', component: loveship.RadioGroup },
+            [TSkin.Promo]: { type: '@epam/uui-components:RadioGroupProps', component: promo.RadioGroup },
+        },
+        doc: (doc: DocBuilder<uuiComponents.RadioGroupProps<any>>) => {
+            doc.merge('items', {
+                examples: [
+                    {
+                        name: 'Languages',
+                        value: [{ name: 'English', id: 1 }, { name: 'Russian', id: 2 }, { name: 'German', id: 3 }],
+                        isDefault: true,
+                    },
+                ],
+            });
+            doc.merge('direction', { defaultValue: 'vertical' });
+            doc.merge('value', { editorType: 'JsonView' });
+            doc.merge('radioInputProps', { editorType: 'JsonEditor' });
+            doc.merge('RadioInput', { examples: [{ value: uui.RadioInput, name: 'RadioInput' }] });
+        },
+    };
 
     renderContent() {
         return (

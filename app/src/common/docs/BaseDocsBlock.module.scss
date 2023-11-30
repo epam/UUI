@@ -1,28 +1,7 @@
-@use '~@epam/assets/theme/theme_promo' as *;
-@use '~@epam/assets/theme/theme_loveship' as *;
-@use '~@epam/promo/assets/styles/index.scss' as *;
-
-:global {
-    .uui-theme-loveship_important.uui-theme-loveship_important.uui-theme-loveship_important.uui-theme-loveship_important {
-        @include theme-loveship();
-    }
-
-    .uui-theme-promo_important.uui-theme-promo_important.uui-theme-promo_important.uui-theme-promo_important {
-        @include theme-promo();
-    }
-}
-
-
 .secondary-navigation {
     box-sizing: border-box;
     min-height: 60px;
     background-color: var(--uui-surface-main);
-
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
 }
 
 .container {
@@ -32,6 +11,9 @@
     min-width: 0;
     height: calc(100vh - 60px);
     overflow: hidden;
+    background-color: var(--uui-surface-main);
+    border-top: 1px solid var(--uui-divider);
+    box-sizing: border-box;
 }
 
 .content-container {
@@ -45,21 +27,6 @@
     max-width: 960px;
 }
 
-.not-support {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .back-button {
-        padding-top: 0;
-
-        :global(.uui-caption) {
-            font-size: 16px;
-        }
-    }
-}
-
 .table-border {
     border: 1px solid var(--uui-divider);
     border-bottom: 0 none;
@@ -69,16 +36,7 @@
     margin: auto;
 }
 
-.api-block {
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
-}
-
-.theme-promo {
-    :global {
-        @include theme-promo();
-    }
+.info-icon {
+    padding-left: 9px;
+    fill: var(--uui-icon);
 }

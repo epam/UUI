@@ -1,5 +1,4 @@
 import React from 'react';
-import { EpamBadgeSemanticColor } from '../types';
 import { devLogger, withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
@@ -16,20 +15,27 @@ const mapSize = {
     24: '30',
     18: '18',
 };
-export type BadgeColor = EpamBadgeSemanticColor;
+
 export type BadgeFill = 'solid' | 'outline';
 export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
+export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 export interface BadgeMods {
     color?: BadgeColor;
+    /** @default 'solid' */
     fill?: BadgeFill;
+    /** @default '36' */
     size?: BadgeSize;
     indicator?: boolean;
 }
 
-export type BadgeProps = ButtonProps & BadgeMods;
+export type BadgeCoreProps = ButtonProps & {
+    size?: BadgeSize;
+};
 
-export function applyBadgeMods(mods: BadgeMods) {
+export type BadgeProps = BadgeCoreProps & BadgeMods;
+
+export function applyBadgeMods(mods: BadgeProps) {
     return [
         'uui-badge',
         css.root,
@@ -49,7 +55,7 @@ const mapCountIndicatorSizes: Record<BadgeSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, (props) => {
+export const Badge = withMods<BadgeProps, BadgeMods>(Button, applyBadgeMods, (props) => {
     if (__DEV__) {
         devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
             component: 'Badge',

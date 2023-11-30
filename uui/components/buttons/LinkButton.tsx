@@ -10,11 +10,20 @@ export type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';
 export const allLinkButtonColors: LinkButtonColorType[] = ['primary', 'secondary', 'contrast'];
 
 export interface LinkButtonMods {
+    /**
+     * @default '36'
+     */
     size?: types.ControlSize | '42';
+    /**
+     * @default 'primary'
+     */
     color?: LinkButtonColorType;
 }
 
-export type LinkButtonProps = LinkButtonMods & ButtonProps;
+export type LinkButtonCoreProps = ButtonProps & {
+    size?: types.ControlSize | '42';
+};
+export type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
@@ -26,7 +35,7 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
     ];
 }
 
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
+export const LinkButton = withMods<LinkButtonCoreProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
     dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
     clearIcon: systemIcons[props.size || defaultSize].clear,
 }));

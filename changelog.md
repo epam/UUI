@@ -1,3 +1,29 @@
+# 5.4.1 - 30.11.2023
+
+**What's New**
+* [uui.epam.com](https://uui.epam.com/) site now fully support theming. You can choose preferred theme in app main menu.
+* [Tag]: 
+  * rework according to the new design. Added new `colors` and new `solid` & `outline` mods;
+  * [Breaking change]: for loveship package, changed default `size` from `18px` to `36px`.
+* Upload new icons pack
+    * [Breaking changes]:
+        * 'action-update' icon was removed use 'navigation-refresh' instead
+        * 'content-plus' icon was removed use 'action-add' instead
+        * 'action-map_pin' icon was removed use 'communication-geo_tag' instead
+        * 'table-info-outline' icon was removed use 'notification-info-outline' instead
+        * 'action-chat' icon was removed use 'communication-chat' instead
+        * 'not-recommended' icon was removed use 'blacklist' instead
+        * 'copy-content' icon was removed use 'action-copy_content' instead
+
+**What's Fixed**
+* [Calendar]: fixed disabled days text color
+* [Text]: 
+  * fixed font-weight prop in skins.
+  * fixed color values for semantic colors(info, warning, error, success) and for skin colors
+* [TextPlaceholder]: improved animation
+* [Panel]: fixed "background" property. Return `transparent` value by default.
+* [MainMenu]: fixed colors for 'electric' theme
+
 # 5.4.0 - 21.11.2023
 
 **What's New**

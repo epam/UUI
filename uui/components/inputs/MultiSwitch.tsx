@@ -5,14 +5,17 @@ import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonMods } from '../buttons';
 import { SizeMod } from '../types';
 
-interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
+type MultiSwitchItem<TValue> = ButtonProps & ButtonMods & {
     id: TValue;
-}
+};
 
 export type UuiMultiSwitchColor = 'primary' | 'secondary';
 
 export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     items: MultiSwitchItem<TValue>[];
+    /**
+     * @default 'primary'
+     */
     color?: UuiMultiSwitchColor;
 }
 

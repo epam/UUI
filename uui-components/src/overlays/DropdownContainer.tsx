@@ -2,6 +2,7 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 import {
     uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef, IDropdownBodyProps,
+    IHasStyleAttrs,
 } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
@@ -9,19 +10,26 @@ import PopoverArrow from './PopoverArrow';
 export interface DropdownContainerProps
     extends IHasCX,
     IHasChildren,
+    IHasStyleAttrs,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     IHasForwardedRef<HTMLDivElement>,
     IDropdownBodyProps {
+    /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */
     width?: number | 'auto';
+    /** Defines maximum width in 'px'. */
     maxWidth?: number;
+    /** Defines height in 'px'. */
     height?: number;
+    /** If true, arrow tip will be shown
+     * @default false
+     * */
     showArrow?: boolean;
-    style?: React.CSSProperties;
     /**
      * Pass true to wrap DropdownContainer with FocusLock component to support keyboard navigation.
      * If omitted, true value will be used.
      *
      * After DropdownContainer appeared the focus will be set on the first focusable element inside.
+     * @default true
      */
     focusLock?: boolean;
     /**

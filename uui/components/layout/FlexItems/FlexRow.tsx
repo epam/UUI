@@ -1,9 +1,9 @@
 import { FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
-import { RowSizeMod } from '../../types';
 import css from './FlexRow.module.scss';
 
-export interface RowMods extends RowSizeMod {
+export type RowMods = {
+    size?: null | '24' | '30' | '36' | '42' | '48';
     borderBottom?: boolean;
     columnGap?: number | '6' | '12' | '18' | '24' | '36';
     margin?: '12' | '24';
@@ -12,8 +12,8 @@ export interface RowMods extends RowSizeMod {
     spacing?: '6' | '12' | '18';
     topShadow?: boolean;
     vPadding?: '12' | '18' | '24' | '36' | '48';
-    background?: 'surface';
-}
+    background?: 'surface-main';
+};
 
 export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
 
@@ -27,6 +27,6 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
         props.topShadow && css.topShadow,
         props.borderBottom && css.borderBottom,
         props.spacing && css['spacing-' + props.spacing],
-        props.background && `uui-color-${props.background}`,
+        props.background && css[`uui-${props.background}`],
     ];
 });

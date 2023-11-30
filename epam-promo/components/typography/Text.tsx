@@ -3,7 +3,13 @@ import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
 import * as types from '../types';
 
 export interface TextMods {
+    /**
+     * @default 'gray80'
+     */
     color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';
+    /**
+     * @default 'sans'
+     */
     font?: types.FontStyle;
 }
 
@@ -11,7 +17,7 @@ export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
 export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
     UuiText,
-    (props) => [`uui-font-${props.font || 'sans'}`],
+    (props) => [props.font && `uui-font-${props.font}`],
     (props) => {
         if (__DEV__) {
             if (props.font) {

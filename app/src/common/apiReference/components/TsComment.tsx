@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { RichTextView } from '@epam/promo';
 import css from './TsComment.module.scss';
+import { TComment } from '../sharedTypes';
 
 function formatComment(commentInput: string) {
     // Playground to modify and debug https://regex101.com/r/dd4hyi/1
@@ -11,9 +12,9 @@ function formatComment(commentInput: string) {
 }
 
 function escapeArr(htmlStr: string[]) {
-    return htmlStr.map(escapeLine);
+    return htmlStr.map(escapeLineForHtml);
 }
-function escapeLine(htmlStr: string) {
+function escapeLineForHtml(htmlStr: string) {
     return htmlStr.replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -21,15 +22,16 @@ function escapeLine(htmlStr: string) {
         .replace(/'/g, '&#39;');
 }
 
-export function TsComment(props: { text?: string[], keepBreaks: boolean, isCompact?: boolean }) {
-    const { text, keepBreaks, isCompact } = props;
+export function TsComment(props: { comment?: TComment, keepBreaks: boolean, isCompact?: boolean }) {
+    const { comment, keepBreaks, isCompact } = props;
+    const text = comment?.raw;
 
     const textStr = useMemo(() => {
         if (text && text.length > 0) {
             if (keepBreaks) {
                 return `<p>${formatComment(escapeArr(text).join('<br />'))}</p>`;
             }
-            return `<p>${formatComment(escapeLine(text.join(' ')))}</p>`;
+            return `<p>${formatComment(escapeLineForHtml(text.join(' ')))}</p>`;
         }
     }, [text, keepBreaks]);
 

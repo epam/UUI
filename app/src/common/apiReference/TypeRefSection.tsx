@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { Checkbox, FlexRow, FlexSpacer, IconContainer, RichTextView, Text, Tooltip } from '@epam/uui';
-import { TDocsGenExportedType } from './types';
+import { TDocsGenExportedType } from '@epam/uui-docs';
 import { useDocsGenForType, useDocsGenSummaries } from './dataHooks';
 import { TType } from './sharedTypes';
 import css from './TypeRefSection.module.scss';
 import { CodeExpandable } from './components/CodeExpandable';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-fill-18.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 import { TypeRefTable } from './TypeRefTable';
 
 interface TypeRefSectionProps {

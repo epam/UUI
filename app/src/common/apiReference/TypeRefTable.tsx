@@ -136,7 +136,7 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
                     return null;
                 }
                 return (
-                    <Code codeAsHtml={ item.typeValue.raw } isCompact={ true } />
+                    <Code cx={ css.codeBg } codeAsHtml={ item.typeValue.html } isCompact={ true } />
                 );
             },
             width: WIDTH.typeValue,
@@ -146,7 +146,7 @@ function getColumns(summaries: TDocsGenTypeSummary): DataColumnProps<TApiRefProp
             key: 'comment',
             caption: 'Comment',
             render: (item) => {
-                return <TsComment text={ item.comment } keepBreaks={ true } isCompact={ true } />;
+                return <TsComment comment={ item.comment } keepBreaks={ true } isCompact={ true } />;
             },
             width: WIDTH.comment,
             grow: 1,

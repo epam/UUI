@@ -3,13 +3,14 @@
 exports[`TextInput should be rendered correctly 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
-  onBlur={[Function]}
   onFocus={[Function]}
   tabIndex={-1}
 >
   <input
     className="uui-input"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     tabIndex={0}
     type="text"
@@ -21,13 +22,14 @@ exports[`TextInput should be rendered correctly 1`] = `
 exports[`TextInput should be rendered correctly 2`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
-  onBlur={[Function]}
   onFocus={[Function]}
   tabIndex={-1}
 >
   <input
     className="uui-input"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     tabIndex={0}
     type="text"

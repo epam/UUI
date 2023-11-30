@@ -36,11 +36,11 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
     });
 
     return (
-        <ModalBlocker { ...modalProps } abort={ () => close().then(modalProps.abort) }>
+        <ModalBlocker { ...modalProps } abort={ () => close().then(modalProps.abort).catch(() => {}) }>
             <ModalWindow>
-                <ModalHeader borderBottom title="New committee" onClose={ () => close().then(modalProps.abort) } />
+                <ModalHeader borderBottom title="New committee" onClose={ () => close().then(modalProps.abort).catch(() => {}) } />
                 <ScrollBars>
-                    <Panel background="surface">
+                    <Panel background="surface-main">
                         <FlexRow padding="24" vPadding="12">
                             <FlexCell grow={ 1 }>
                                 <LabeledInput label="First Name" { ...lens.prop('firstName').toProps() }>
