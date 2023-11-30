@@ -10,4 +10,4 @@ export type TagMods = {
 
 export type TagProps = UuiTagCoreProps & TagMods;
 
-export const Tag = createSkinComponent<UuiTagProps, TagMods>(UuiTag);
+export const Tag = createSkinComponent<UuiTagProps, TagProps>(UuiTag);

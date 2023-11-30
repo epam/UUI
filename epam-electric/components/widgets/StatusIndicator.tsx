@@ -7,4 +7,4 @@ export type StatusIndicatorMods = {
 
 export type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;
 
-export const StatusIndicator = createSkinComponent<UuiStatusIndicatorProps, StatusIndicatorMods>(UuiStatusIndicator);
+export const StatusIndicator = createSkinComponent<UuiStatusIndicatorProps, StatusIndicatorProps>(UuiStatusIndicator);
