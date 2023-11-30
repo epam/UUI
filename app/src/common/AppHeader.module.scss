@@ -8,7 +8,7 @@
 
         .link-caption {
             padding-left: 6px;
-            color: #FFFFFF;
+            color: var(--uui-main_menu-text);
             white-space: nowrap;
         }
     }
@@ -21,8 +21,12 @@
         min-width: 320px;
     }
 
-    .git-icon {
-        fill: #FFFFFF;
+    .git-icon, .logo-icon {
+        fill: var(--uui-main_menu-text);
+    }
+
+    .theme-switcher-button:hover {
+        background-color: color-mix(in srgb, var(--white) 5%, transparent);
     }
 }
 

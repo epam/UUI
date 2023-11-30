@@ -4,7 +4,7 @@ import {
     LabeledInput, TextInput, FlexRow, FlexCell, Button, FlexSpacer, PickerInput, LinkButton, RichTextView,
 } from '@epam/loveship';
 import { PersonExperienceItem } from '@epam/uui-docs';
-import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-plus-18.svg';
+import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 
 export interface ExperienceEditorProps extends IEditable<PersonExperienceItem[]> {

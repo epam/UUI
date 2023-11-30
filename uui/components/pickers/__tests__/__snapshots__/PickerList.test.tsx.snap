@@ -622,7 +622,6 @@ exports[`PickerList should render with maximum props 1`] = `
       >
         <label
           class="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
-          tabindex="-1"
         >
           <div
             class="uui-checkbox uui-checked"
@@ -656,7 +655,6 @@ exports[`PickerList should render with maximum props 1`] = `
       >
         <label
           class="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
-          tabindex="-1"
         >
           <div
             class="uui-checkbox uui-checked"

@@ -77,7 +77,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                         onPointerUp={ props.eventHandlers.onPointerUp }
                         className={ cx(css.dragElement, props.classNames) }
                     >
-                        <Panel background="surface" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow>
+                        <Panel background="surface-main" cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow>
                             <FlexRow
                                 padding="24"
                                 vPadding="12"

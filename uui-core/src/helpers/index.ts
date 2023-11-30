@@ -25,3 +25,4 @@ export * from './queryToSearch';
 export * from './searchToQuery';
 export * from './uuiLogger';
 export * from './clearEmptyValueFromRecord';
+export * from './createSkinComponent';

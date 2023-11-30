@@ -1,18 +1,49 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI } from '../common';
+import * as uuiComponents from '@epam/uui-components';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:ControlGroupProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/layout/controlGroup.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/controlGroup.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/layout/controlGroup.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'ControlGroup',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui-components:ControlGroupProps', component: uui.ControlGroup },
+            [TSkin.Loveship]: { type: '@epam/uui-components:ControlGroupProps', component: loveship.ControlGroup },
+            [TSkin.Promo]: { type: '@epam/uui-components:ControlGroupProps', component: promo.ControlGroup },
+        },
+        doc: (doc: DocBuilder<uuiComponents.ControlGroupProps>) => {
+            doc.merge('children', {
+                examples: [
+                    {
+                        name: '<Button/>, <Button/>, <Button/>',
+                        value: (
+                            <React.Fragment>
+                                <uui.Button color="accent" fill="solid" caption="Submit" onClick={ () => {} } />
+                                <uui.Button caption="Help" onClick={ () => {} } />
+                                <uui.Button fill="none" color="secondary" caption="Cancel" onClick={ () => {} } />
+                            </React.Fragment>
+                        ),
+                        isDefault: true,
+                    }, {
+                        name: '<TextInput/>, <TextInput/>, <TextInput/>',
+                        value: (
+                            <React.Fragment>
+                                <uui.TextInput value="Alex" onValueChange={ null } />
+                                <uui.TextInput value="Minsk" onValueChange={ null } />
+                                <uui.TextInput value="Belarus" onValueChange={ null } />
+                            </React.Fragment>
+                        ),
+                    },
+                ],
+            });
+        },
+    };
 
     renderContent() {
         return (

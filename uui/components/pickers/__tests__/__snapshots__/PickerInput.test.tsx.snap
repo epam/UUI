@@ -4,8 +4,8 @@ exports[`PickerInput should open body 1`] = `
 <body>
   <div>
     <div
-      class="container uui-input-box -clickable root size-36 mode-form"
-      tabindex="0"
+      class="container uui-input-box -clickable uui-focus root size-36 mode-form"
+      tabindex="-1"
     >
       <div
         class="body"
@@ -403,7 +403,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-tag"
+      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -424,7 +424,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       </div>
     </button>
     <button
-      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-tag"
+      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
       onClick={[Function]}
       tabIndex={-1}
       type="button"

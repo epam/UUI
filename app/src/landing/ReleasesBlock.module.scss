@@ -2,7 +2,7 @@
 
 .layout {
     margin: 0 auto;
-    background: #FFFFFF;
+    background: var(--uui-surface-main);
 
     .releases {
         display: flex;
@@ -23,6 +23,7 @@
             }
 
             .header {
+                font-weight: 600;
                 font-size: 30px;
                 line-height: 36px;
                 padding: 0;
@@ -47,7 +48,7 @@
                 display: flex;
                 justify-content: center;
                 padding: 24px 0;
-                border-top: 1px solid $gray40;
+                border-top: 1px solid var(--uui-divider);
             }
         }
     }

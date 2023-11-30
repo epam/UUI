@@ -3,7 +3,6 @@
 exports[`DatePicker should render with maximum props defined 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
-  onBlur={[Function]}
   onClick={null}
   onFocus={[Function]}
   tabIndex={-1}
@@ -18,7 +17,9 @@ exports[`DatePicker should render with maximum props defined 1`] = `
   </div>
   <input
     className="uui-input"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     placeholder="Test"
     tabIndex={0}
@@ -31,7 +32,6 @@ exports[`DatePicker should render with maximum props defined 1`] = `
 exports[`DatePicker should render with minimum props defined 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
-  onBlur={[Function]}
   onClick={null}
   onFocus={[Function]}
   tabIndex={-1}
@@ -46,7 +46,9 @@ exports[`DatePicker should render with minimum props defined 1`] = `
   </div>
   <input
     className="uui-input"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     placeholder="MMM D, YYYY"
     tabIndex={0}

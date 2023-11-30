@@ -1,18 +1,54 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, TDocsGenType, UUI3, UUI4, UUI } from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { AvatarStackProps } from '@epam/uui-components';
+import { uuiMarkers } from '@epam/uui-core';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class AvatarStackDoc extends BaseDocsBlock {
     title = 'AvatarStack';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:AvatarStackProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/widgets/avatarStack.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/avatarStack.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/widgets/avatarStack.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'AvatarStack',
+        bySkin: {
+            [TSkin.Loveship]: { type: '@epam/uui-components:AvatarStackProps', component: loveship.AvatarStack },
+            [TSkin.Promo]: { type: '@epam/uui-components:AvatarStackProps', component: promo.AvatarStack },
+            [TSkin.UUI]: { type: '@epam/uui-components:AvatarStackProps', component: uui.AvatarStack },
+        },
+        doc: (doc: DocBuilder<AvatarStackProps>) => {
+            doc.setDefaultPropExample('avatarSize', ({ value }) => value === '48');
+            doc.merge('urlArray', {
+                examples: [
+                    {
+                        name: 'Olivia',
+                        value: new Array(3).fill('https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4'),
+                        isDefault: true,
+                    },
+                ],
+            });
+            doc.merge('renderItem', {
+                examples: [
+                    {
+                        value: (url) => (
+                            // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
+                            <img
+                                src={ url }
+                                alt="avatar"
+                                width={ 36 }
+                                height={ 36 }
+                                onClick={ () => {} }
+                                className={ uuiMarkers.clickable }
+                            />
+                        ),
+                        name: '(url) => React.ReactElement',
+                        isDefault: false,
+                    },
+                ],
+            });
+        },
+    };
 
     renderContent() {
         return (

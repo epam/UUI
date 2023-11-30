@@ -35,10 +35,13 @@ export class ErrorContext extends BaseContext implements IErrorContext {
 export interface ErrorPageInfo {
     /** Error status code */
     status?: number;
-
+    /** Title of error page */
     title?: React.ReactNode;
+    /** Subtitle of error page */
     subtitle?: React.ReactNode;
+    /** Url of error image to display on error page */
     imageUrl?: string;
+    /** Url of error image to display on error page in case of mobile layout (app width < 720px) */
     mobileImageUrl?: string;
 }
 

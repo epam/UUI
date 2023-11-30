@@ -1,6 +1,6 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
-import { Button as uuiButton, ButtonFill, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
-import { devLogger, withMods } from '@epam/uui-core';
+import { Button as uuiButton, ButtonFill, ControlSize, ButtonCoreProps } from '@epam/uui';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.module.scss';
 
@@ -10,8 +10,11 @@ export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night60
 
 export interface ButtonMods {
     color?: ButtonColorType;
-    size?: ControlSize | '42' | '18';
+    /** @default '36' */
+    size?: ControlSize | '18';
+    /** @default 'square' */
     shape?: ControlShape;
+    /** @default 'solid' */
     fill?: FillStyle;
 }
 
@@ -22,7 +25,7 @@ const mapFill: Record<FillStyle, ButtonFill> = {
     none: 'none',
 };
 
-export type ButtonProps = Omit<UuiButtonProps, 'color' | 'fill'> & ButtonMods;
+export type ButtonProps = ButtonCoreProps & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
@@ -31,9 +34,8 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<Omit<UuiButtonProps, 'color' | 'fill'>, ButtonMods>(
+export const Button = createSkinComponent<ButtonCoreProps, ButtonProps>(
     uuiButton,
-    applyButtonMods,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
@@ -47,7 +49,8 @@ export const Button = withMods<Omit<UuiButtonProps, 'color' | 'fill'>, ButtonMod
         return {
             dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
             clearIcon: systemIcons[props.size || defaultSize].clear,
-            fill: mapFill[props.fill] || mapFill.solid,
+            fill: mapFill[props.fill] || mapFill.solid as any,
         };
     },
+    applyButtonMods,
 );

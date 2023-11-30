@@ -1,20 +1,25 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TagDoc extends BaseDocsBlock {
     title = 'Tag';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:TagProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/widgets/tag.props.ts',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/tag.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/widgets/tag.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Tag',
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:TagProps', component: uui.Tag },
+            [TSkin.Promo]: { type: '@epam/promo:TagProps', component: promo.Tag },
+            [TSkin.Loveship]: { type: '@epam/loveship:TagProps', component: loveship.Tag },
+        },
+        doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps>) => {
+            doc.merge('iconPosition', { defaultValue: 'left' });
+        },
+    };
 
     renderContent() {
         return (
@@ -23,6 +28,7 @@ export class TagDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/tag/Basic.example.tsx" />
                 <DocExample title="Size" path="./_examples/tag/Size.example.tsx" />
+                <DocExample title="Color variants" path="./_examples/tag/Colors.example.tsx" />
             </>
         );
     }

@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasRawProps, IDropdownToggler,
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IEditable, IHasForwardedRef, IHasRawProps, IDropdownToggler,
 } from '../../props';
 import * as React from 'react';
 import { CX } from '../../objects';
@@ -26,12 +26,19 @@ export type RangeDatePickerPresets = {
 };
 
 export type RangeDatePickerPresetValue = {
+    /** Range from value */
     from: string;
+    /** Range to value */
     to: string;
+    /** Preset order in presets list */
     order?: number;
 };
 
-export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
+export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>,
+    IDisableable,
+    ICanBeReadonly,
+    IAnalyticableOnChange<RangeDatePickerValue>,
+    IHasForwardedRef<HTMLElement> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 
@@ -53,10 +60,16 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
      */
     presets?: RangeDatePickerPresets;
 
-    /** Disables clearing component (with the cross icon) */
+    /**
+     * Disables clearing component (with the cross icon)
+     * @default false
+     */
     disableClear?: boolean;
 
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    /**
+     * Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)
+     * @default 'bottom-start'
+     */
     placement?: Placement;
 
     /** If this function returns true, the day will be highlighted as holiday */

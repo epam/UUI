@@ -3,7 +3,7 @@ import path from 'path';
 import { uuiRoot } from '../constants';
 
 export function makeRelativeToUuiRoot(fullPath: string) {
-    return path.relative(uuiRoot, fullPath).replace(/\\/g, '/');
+    return removeTrailingDots(path.relative(uuiRoot, fullPath).replace(/\\/g, '/'));
 }
 
 export function saveContentToFile(fullPath: string, contentToSave: object | string) {
@@ -24,6 +24,24 @@ export function resolveModuleName(absolutePath: string) {
     const pkg = path.resolve(uuiRoot, `${firstDir}/package.json`);
     if (fs.existsSync(pkg)) {
         return JSON.parse(fs.readFileSync(pkg).toString()).name;
+    }
+    return mapModuleName(rel);
+}
+function removeTrailingDots(rel: string) {
+    /**
+     * Converts this: '../../../../node_modules/typescript/lib/lib.es5.d.ts'
+     * To this: 'node_modules/typescript/lib/lib.es5.d.ts'
+     */
+    return rel.replace(/^((..[/])+)(.*)$/g, '$3');
+}
+function mapModuleName(rel: string): string {
+    const map: Record<string, string> = {
+        'node_modules/@types/react/index.d.ts': '@types/react',
+    };
+    const prefix = Object.keys(map).find((key) => rel.startsWith(key));
+    if (prefix) {
+        const suffix = rel.substring(prefix.length);
+        return `${map[prefix]}${suffix}`;
     }
     return rel;
 }

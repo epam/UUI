@@ -2,7 +2,7 @@ import * as React from 'react';
 import Measure from 'react-measure';
 import {
     FlexRow, FlexSpacer, LinkButton, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { ReleasesCell } from './ReleasesCell';
 import { svc } from '../services';
 import css from './ReleasesBlock.module.scss';
@@ -47,7 +47,7 @@ export class ReleasesBlock extends React.Component<{}, LandingReleasesState> {
                             <FlexRow cx={ css.releases }>
                                 <div className={ css.wrapper }>
                                     <FlexRow size="36" cx={ css.headerWrapper }>
-                                        <Text font="museo-sans" cx={ css.header }>
+                                        <Text cx={ css.header }>
                                             Release Notes
                                         </Text>
                                         {containerWidth > 768 && (

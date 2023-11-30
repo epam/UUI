@@ -120,11 +120,14 @@ export interface PickerState {
 export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {
     /**
      * Number of default items to show initially, when nothing is selected.
-     * Default it 10 items
+     * @default 10
      */
     maxDefaultItems?: number;
 
-    /** Maximum total number of items to show, including selected */
+    /**
+     * Maximum total number of items to show, including selected
+     * @default 50
+     */
     maxTotalItems?: number;
 
     /**
@@ -170,6 +173,9 @@ export interface PickerModalState<TItem, TId> extends PickerState {
 export interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
     renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;
+    /**
+     * @default false
+     */
     disallowClickOutside?: boolean;
 }
 

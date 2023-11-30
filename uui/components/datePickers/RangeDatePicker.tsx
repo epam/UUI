@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-    IDropdownToggler, uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger,
+    IDropdownToggler, uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger, withMods,
 } from '@epam/uui-core';
 import { RangeDatePickerValue } from '@epam/uui-core';
 import { BaseRangeDatePicker } from '@epam/uui-components';
@@ -21,7 +21,7 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
 export type InputType = 'from' | 'to';
 const defaultValue: RangeDatePickerValue = { from: null, to: null };
 
-export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
+class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return (
             <DropdownContainer { ...props } cx={ cx(css.dropdownContainer) } focusLock={ false }>
@@ -105,3 +105,5 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
         );
     };
 }
+
+export const RangeDatePicker = withMods(RangeDatePickerComponent);

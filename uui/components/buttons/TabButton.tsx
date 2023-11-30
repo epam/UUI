@@ -7,6 +7,9 @@ import { systemIcons } from '../../icons/icons';
 import css from './TabButton.module.scss';
 
 export interface TabButtonMods {
+    /**
+     * @default '48'
+     */
     size?: '36' | '48' | '60';
     withNotify?: boolean;
 }
@@ -27,7 +30,7 @@ export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabBu
     dropdownIcon: systemIcons['36'].foldingArrow,
     clearIcon: systemIcons['36'].clear,
     ...props,
-    rawProps: { role: 'tab', ...props.rawProps },
+    rawProps: { role: 'tab', ...(props.rawProps as any) },
     countIndicator: (countIndicatorProps) => (
         <CountIndicator
             { ...countIndicatorProps }

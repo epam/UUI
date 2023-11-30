@@ -1,20 +1,22 @@
 import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class IconContainerDoc extends BaseDocsBlock {
     title = 'Icon Container';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui-components:ControlIconProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/layout/iconContainer.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/iconContainer.props.tsx',
-            [UUI]: './app/src/docs/_props/uui/components/layout/iconContainer.props.tsx',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'IconContainer',
+        contexts: [TDocContext.Default, TDocContext.Form],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui-components:ControlIconProps', component: uui.IconContainer },
+            [TSkin.Loveship]: { type: '@epam/loveship:IconContainerProps', component: loveship.IconContainer },
+            [TSkin.Promo]: { type: '@epam/promo:IconContainerProps', component: promo.IconContainer },
+        },
+    };
 
     renderContent() {
         return (

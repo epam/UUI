@@ -4,7 +4,7 @@ import css from './DelayExample.module.scss';
 
 export default function TriggerConfigurationWithDelayExample() {
     return (
-        <Panel background="surface" shadow cx={ css.container }>
+        <Panel background="surface-main" shadow cx={ css.container }>
             <Text fontSize="14" fontWeight="600" cx={ css.caption }>
                 Project Team
             </Text>

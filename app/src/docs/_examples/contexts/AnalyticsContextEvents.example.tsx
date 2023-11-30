@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Switch } from '@epam/promo';
+import { Button, Switch } from '@epam/uui';
 import { AnalyticsEvent, useUuiContext } from '@epam/uui-core';
 
 export default function AnalyticsContextEvents() {

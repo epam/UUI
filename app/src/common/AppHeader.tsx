@@ -1,17 +1,19 @@
 import React from 'react';
-import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, MainMenuDropdown } from '@epam/promo';
-import { Anchor, MainMenuLogo } from '@epam/uui-components';
-import { UUI } from './docs';
+import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuBody, Dropdown, DropdownMenuButton, Button } from '@epam/uui';
+import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { useTheme } from '../helpers/useTheme';
+import { TMode } from './docs';
+import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
+import { ReactComponent as LogoIcon } from '../icons/logo.svg';
+import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import css from './AppHeader.module.scss';
 
 export type Theme = 'uui-theme-promo' | 'uui-theme-loveship' | 'uui-theme-loveship_dark' | 'uui-theme-electric' | 'uui-theme-vanilla_thunder';
-const themeName: Record<Theme, 'Promo' | 'Loveship' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {
+const themeName: Record<Theme, 'Promo' | 'Loveship Light' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {
     'uui-theme-promo': 'Promo',
-    'uui-theme-loveship': 'Loveship',
+    'uui-theme-loveship': 'Loveship Light',
     'uui-theme-loveship_dark': 'Loveship Dark',
     'uui-theme-electric': 'Electric',
     'uui-theme-vanilla_thunder': 'Vanilla Thunder',
@@ -49,7 +51,7 @@ export function AppHeader() {
                     link={ {
                         pathname: '/documents',
                         query: {
-                            id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
+                            category: 'components', id: 'accordion', mode: TMode.doc,
                         },
                     } }
                     isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -61,22 +63,22 @@ export function AppHeader() {
     };
 
     const renderThemeSwitcher = () => {
-        const bodyItems = [
-            <MainMenuButton caption="Promo" isLinkActive={ theme === 'uui-theme-promo' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-promo') } />,
-            <MainMenuButton caption="Loveship" isLinkActive={ theme === 'uui-theme-loveship' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship') } />,
-            <MainMenuButton caption="Loveship Dark" isLinkActive={ theme === 'uui-theme-loveship_dark' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship_dark') } />,
-            <MainMenuButton caption="Electric" isLinkActive={ theme === 'uui-theme-electric' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-electric') } />,
-        ];
-        if (!window.location.host.includes('uui.epam.com')) {
-            bodyItems.push(
-                <MainMenuButton caption="Vanilla Thunder" isLinkActive={ theme === 'uui-theme-vanilla_thunder' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-vanilla_thunder') } />,
-            );
-        }
-
         return (
-            <MainMenuDropdown key="theme-switcher" caption={ `Theme: ${themeName[theme as Theme]}` }>
-                { bodyItems }
-            </MainMenuDropdown>
+            <Dropdown
+                renderBody={ (props) => (
+                    <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
+                        <DropdownMenuButton caption="Promo" icon={ theme === 'uui-theme-promo' && DoneIcon } isActive={ theme === 'uui-theme-promo' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-promo') } />
+                        <DropdownMenuButton caption="Loveship Light" icon={ theme === 'uui-theme-loveship' && DoneIcon } isActive={ theme === 'uui-theme-loveship' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship') } />
+                        <DropdownMenuButton caption="Loveship Dark" icon={ theme === 'uui-theme-loveship_dark' && DoneIcon } isActive={ theme === 'uui-theme-loveship_dark' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-loveship_dark') } />
+                        <DropdownMenuButton caption="Electric" icon={ theme === 'uui-theme-electric' && DoneIcon } isActive={ theme === 'uui-theme-electric' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-electric') } />
+                        <DropdownMenuButton caption="Vanilla Thunder" icon={ theme === 'uui-theme-vanilla_thunder' && DoneIcon } isActive={ theme === 'uui-theme-vanilla_thunder' } iconPosition="right" onClick={ () => toggleTheme('uui-theme-vanilla_thunder') } />
+                    </DropdownMenuBody>
+                ) }
+                renderTarget={ (props) => (
+                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themeName[theme as Theme] } fill="none" size="36" isDropdown={ true } />
+                ) }
+                placement="bottom-end"
+            />
         );
     };
 
@@ -94,7 +96,13 @@ export function AppHeader() {
             {
                 id: 'logo',
                 priority: 100499,
-                render: () => <MainMenuLogo link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') } logoUrl="/static/logo.svg" key="logo" />,
+                render: () => (
+                    <MainMenuCustomElement key="logo">
+                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent('Welcome') } key="logo">
+                            <IconContainer icon={ LogoIcon } cx={ css.logoIcon } />
+                        </Anchor>
+                    </MainMenuCustomElement>
+                ),
             },
             {
                 id: 'documents',
@@ -133,7 +141,7 @@ export function AppHeader() {
                         link={ {
                             pathname: '/documents',
                             query: {
-                                id: 'accordion', mode: 'doc', skin: UUI, category: 'components',
+                                category: 'components', id: 'accordion', mode: 'doc',
                             },
                         } }
                         isLinkActive={ pathName === '/documents' && category === 'components' }
@@ -163,6 +171,17 @@ export function AppHeader() {
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
+            {
+                id: 'themeCaption',
+                priority: 2,
+                render: () => (
+                    <MainMenuButton
+                        caption="Theme:"
+                        showInBurgerMenu
+                        key="themeCaption"
+                    />
+                ),
+            },
             { id: 'theme', priority: 3, render: renderThemeSwitcher },
             {
                 id: 'git',
@@ -170,7 +189,7 @@ export function AppHeader() {
                 render: () => (
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
                         <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
-                        <Text font="sans-semibold" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
+                        <Text fontWeight="600" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
                             Open Git
                         </Text>
                     </Anchor>

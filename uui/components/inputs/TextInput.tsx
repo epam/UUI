@@ -9,6 +9,9 @@ const defaultSize = '36';
 const defaultMode = EditMode.FORM;
 
 export interface TextInputMods extends IHasEditMode {
+    /**
+     * @default '36'
+     */
     size?: ControlSize;
 }
 

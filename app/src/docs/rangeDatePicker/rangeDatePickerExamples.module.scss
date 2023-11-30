@@ -1,0 +1,19 @@
+.container {
+    position: relative;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--uui-control-border);
+    background-color: var(--white);
+}
+
+.dot {
+    background-color: #FCAA00;
+    height: 4px;
+    width: 4px;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    border-radius: 50%;
+}

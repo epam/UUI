@@ -25,7 +25,7 @@ function initTestProject() {
     return new tsMorph.Project({
         compilerOptions,
         skipAddingFilesFromTsConfig: true,
-        useInMemoryFileSystem: true,
+        // Note: "useInMemoryFileSystem: true" isn't used here, because it doesn't resolve any "@types/*" from the node_modules.
     });
 }
 

@@ -1,20 +1,22 @@
 import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI, TDocsGenType,
-} from '../common';
+import * as uui from '@epam/uui';
+import * as loveship from '@epam/loveship';
+import * as promo from '@epam/promo';
+import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';
 
-    override getDocsGenType = (): TDocsGenType => ('@epam/uui:CheckboxProps');
-
-    getPropsDocPath() {
-        return {
-            [UUI3]: './app/src/docs/_props/loveship/components/inputs/checkbox.props.tsx',
-            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/checkbox.props.ts',
-            [UUI]: './app/src/docs/_props/uui/components/inputs/checkbox.props.ts',
-        };
-    }
+    override config: TDocConfig = {
+        name: 'Checkbox',
+        contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Table],
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:CheckboxProps', component: uui.Checkbox },
+            [TSkin.Loveship]: { type: '@epam/uui:CheckboxProps', component: loveship.Checkbox },
+            [TSkin.Promo]: { type: '@epam/uui:CheckboxProps', component: promo.Checkbox },
+        },
+    };
 
     renderContent() {
         return (

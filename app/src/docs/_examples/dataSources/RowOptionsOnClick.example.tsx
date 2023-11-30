@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SuccessNotification, Text } from '@epam/promo';
+import { SuccessNotification, Text } from '@epam/uui';
 import { DataSourceState, INotification, useArrayDataSource, useUuiContext } from '@epam/uui-core';
 import { DataSourceTableViewer, dataSourceTextColumns } from '@epam/uui-docs';
 
@@ -26,7 +26,7 @@ export default function RowOptionsOnClickExample() {
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" font="sans" fontSize="14">
+                        <Text size="36" fontSize="14">
                             {`${name} was clicked`}
                         </Text>
                     </SuccessNotification>

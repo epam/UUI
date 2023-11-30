@@ -5,6 +5,7 @@ import { Union } from '../converters/union';
 import { Converter } from '../converters/converter';
 import { DocGenStats } from './docGenStats';
 import {
+    TPropEditor,
     TTypeDetails, TTypeSummary,
     TTypeValue,
 } from '../types/sharedTypes';
@@ -47,6 +48,11 @@ export class ConverterContext implements IConverterContext {
         return summary;
     }
 
+    convertPropEditor(params: { convertable: TConvertable }): TPropEditor | undefined {
+        const instance = this.findSuitableConverter(params.convertable);
+        return instance.convertPropEditor(params);
+    }
+
     convert(params: { convertable: TConvertable, exported?: boolean }): TTypeConverted {
         const { convertable, exported } = params;
         const instance = this.findSuitableConverter(convertable);
@@ -56,7 +62,10 @@ export class ConverterContext implements IConverterContext {
         if (isSeen || isExternal) {
             const summary = NodeUtils.getTypeSummary(node);
             const kind = node.getKind();
-            const typeValue = NodeUtils.getTypeValueFromNode(node, !isSeen);
+            const typeValue = NodeUtils.getTypeValueFromNode({
+                typeNode: node,
+                print: !isSeen,
+            });
             const details: TTypeDetails = {
                 kind,
                 typeValue,
