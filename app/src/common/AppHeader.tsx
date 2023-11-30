@@ -176,7 +176,7 @@ export function AppHeader() {
                 priority: 2,
                 render: () => (
                     <MainMenuButton
-                        caption="Theme:"
+                        caption="Theme"
                         showInBurgerMenu
                         key="themeCaption"
                     />

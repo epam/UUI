@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 582,
-   "amountTypes": 189
+   "amountProps": 617,
+   "amountTypes": 213
   },
   "value": [
    {
@@ -61,16 +61,6 @@
     "value": [
      "gaCode",
      "history"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataColumnProps",
-    "value": [
-     "groupBy",
-     "groupCaptionCX",
-     "headerFontSize",
-     "onGroupClick",
-     "onHeaderClick"
     ]
    },
    {
@@ -424,6 +414,7 @@
     "value": [
      "from",
      "renderRating",
+     "step",
      "to"
     ]
    },
@@ -663,6 +654,7 @@
    {
     "typeRef": "@epam/uui-components:PickerModalOptions",
     "value": [
+     "disallowClickOutside",
      "renderFilter",
      "renderFooter"
     ]
@@ -850,7 +842,7 @@
    {
     "typeRef": "@epam/uui:BadgeCoreProps",
     "value": [
-     "size"
+     "indicator"
     ]
    },
    {
@@ -858,7 +850,6 @@
     "value": [
      "color",
      "fill",
-     "indicator",
      "size"
     ]
    },
@@ -917,7 +908,8 @@
    {
     "typeRef": "@epam/uui:CountIndicatorProps",
     "value": [
-     "color"
+     "color",
+     "size"
     ]
    },
    {
@@ -1068,6 +1060,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:IDropdownMenuItemProps",
     "value": [
      "indent",
@@ -1095,6 +1093,13 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:LinkButtonMods",
+    "value": [
+     "color",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:MainMenuAvatarProps",
     "value": [
      "avatarUrl",
@@ -1117,6 +1122,7 @@
    {
     "typeRef": "@epam/uui:MultiSwitchProps",
     "value": [
+     "color",
      "items"
     ]
    },
@@ -1178,6 +1184,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:RadioInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:RangeDatePickerBodyProps",
     "value": [
      "focusPart",
@@ -1197,6 +1209,12 @@
     "value": [
      "from",
      "to"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:RichTextViewMods",
+    "value": [
+     "size"
     ]
    },
    {
@@ -1221,8 +1239,15 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:SwitchMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TabButtonMods",
     "value": [
+     "size",
      "withNotify"
     ]
    },
@@ -1246,6 +1271,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:TextInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TextMods",
     "value": [
      "color",
@@ -1259,6 +1290,13 @@
     "value": [
      "fontSize",
      "lineHeight"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:TimePickerProps",
+    "value": [
+     "format",
+     "minutesStep"
     ]
    },
    {
@@ -1310,10 +1348,28 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:LinkButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:ModalWindowMods",
     "value": [
      "height",
      "width"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:MultiSwitchMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -1331,6 +1387,18 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:RatingMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:RowMods",
+    "value": [
+     "background"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:RowSizeMod",
     "value": [
      "size"
@@ -1343,9 +1411,42 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:TagMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:TextMods",
+    "value": [
+     "color",
+     "font"
+    ]
+   },
+   {
+    "typeRef": "@epam/electric:BadgeMods",
+    "value": [
+     "color",
+     "fill",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/electric:PromoButtonMods",
     "value": [
      "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/electric:StatusIndicatorMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/electric:TagMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -1405,6 +1506,18 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:LinkButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:MakeMeItemProps",
     "value": [
      "api"
@@ -1428,6 +1541,12 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:MultiSwitchMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:NotificationCardMods",
     "value": [
      "color"
@@ -1442,9 +1561,23 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:RadioInputMods",
+    "value": [
+     "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:RatingMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:RowMods",
     "value": [
-     "spacing"
+     "background",
+     "spacing",
+     "type"
     ]
    },
    {
@@ -1462,10 +1595,13 @@
    {
     "typeRef": "@epam/loveship:SliderRatingProps",
     "value": [
+     "from",
      "getHandlerIcon",
      "getScaleIcon",
      "renderTooltip",
-     "tooltipColor"
+     "size",
+     "tooltipColor",
+     "withoutNa"
     ]
    },
    {
@@ -1484,6 +1620,25 @@
     "typeRef": "@epam/loveship:TabButtonMods",
     "value": [
      "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TagMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TextInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TextMods",
+    "value": [
+     "color",
+     "font"
     ]
    },
    {
@@ -1536,7 +1691,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 475
+   "amountTypes": 483
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1860,6 +2015,8 @@
    "@epam/uui:SliderProps",
    "@epam/uui:SpinnerProps",
    "@epam/uui:StatusIndicatorColors",
+   "@epam/uui:StatusIndicatorCoreProps",
+   "@epam/uui:StatusIndicatorMods",
    "@epam/uui:StatusIndicatorProps",
    "@epam/uui:SwitchMods",
    "@epam/uui:SwitchProps",
@@ -1940,9 +2097,15 @@
    "@epam/promo:TextSize",
    "@epam/promo:TooltipMods",
    "@epam/promo:TooltipProps",
+   "@epam/electric:BadgeMods",
+   "@epam/electric:BadgeProps",
    "@epam/electric:PromoButtonMods",
    "@epam/electric:PromoButtonProps",
    "@epam/electric:PromoButtonSize",
+   "@epam/electric:StatusIndicatorMods",
+   "@epam/electric:StatusIndicatorProps",
+   "@epam/electric:TagMods",
+   "@epam/electric:TagProps",
    "@epam/loveship:AlertMods",
    "@epam/loveship:AlertProps",
    "@epam/loveship:BadgeMods",
@@ -2018,13 +2181,13 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 810,
+   "allExports": 813,
    "byModule": {
     "@epam/uui-core": 130,
     "@epam/uui-components": 105,
-    "@epam/uui": 142,
+    "@epam/uui": 144,
     "@epam/promo": 128,
-    "@epam/electric": 105,
+    "@epam/electric": 106,
     "@epam/loveship": 137,
     "@epam/uui-editor": 63
    }
@@ -2308,6 +2471,8 @@
      "DataTableHeaderRow",
      "DataTableRow",
      "DatePicker",
+     "defaultBadgeFill",
+     "defaultBadgeSize",
      "defaultPredicates",
      "Dropdown",
      "DropdownContainer",
@@ -2636,6 +2801,7 @@
      "RichTextView",
      "ScrollBars",
      "Spinner",
+     "StatusIndicator",
      "SuccessNotification",
      "SvgCircleProgress",
      "Switch",
@@ -2904,13 +3070,13 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 556,
+   "allExports": 564,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
-    "@epam/uui": 134,
+    "@epam/uui": 136,
     "@epam/promo": 55,
-    "@epam/electric": 3,
+    "@epam/electric": 9,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
    }
@@ -3286,7 +3452,6 @@
      "SizeMod",
      "SliderMods",
      "SliderProps",
-     "StatusIndicatorProps",
      "SwitchMods",
      "TabButtonMods",
      "TextAreaMods",
@@ -3336,6 +3501,9 @@
      "RowMods",
      "SpinnerProps",
      "StatusIndicatorColors",
+     "StatusIndicatorCoreProps",
+     "StatusIndicatorMods",
+     "StatusIndicatorProps",
      "SwitchProps",
      "TabButtonProps",
      "TagColor",
@@ -3419,12 +3587,18 @@
     ]
    },
    "@epam/electric": {
+    "TypeAliasDeclaration": [
+     "BadgeMods",
+     "BadgeProps",
+     "PromoButtonProps",
+     "PromoButtonSize",
+     "StatusIndicatorMods",
+     "StatusIndicatorProps",
+     "TagMods",
+     "TagProps"
+    ],
     "InterfaceDeclaration": [
      "PromoButtonMods"
-    ],
-    "TypeAliasDeclaration": [
-     "PromoButtonProps",
-     "PromoButtonSize"
     ]
    },
    "@epam/loveship": {
