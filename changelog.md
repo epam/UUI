@@ -3,7 +3,7 @@
 **What's New**
 * [uui.epam.com](https://uui.epam.com/) site now fully support theming. You can choose preferred theme in app main menu.
 * [Tag]: 
-  * rework according to the new design. Added new `colors` and new `solid` & `outline` mods;
+  * rework according to the new design. Added new colors and new `solid` & `outline` mods;
   * [Breaking change]: for loveship package, changed default `size` from `18px` to `36px`.
 * Upload new icons pack
     * [Breaking changes]:
