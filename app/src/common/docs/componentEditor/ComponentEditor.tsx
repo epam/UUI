@@ -4,7 +4,7 @@ import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin, TDocsGenExport
 import { ComponentEditorView } from './view/ComponentEditorView';
 import { getExamplesList, getInputValuesFromInputData, getSkin, isPropValueEmpty } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
-import { TUUITheme } from '../docsConstants';
+import { TTheme } from '../docsConstants';
 import { loadDocsGenType } from '../../apiReference/dataHooks';
 
 export function ComponentEditorWrapper(props: {
