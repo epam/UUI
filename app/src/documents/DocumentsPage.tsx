@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { TreeListItem } from '@epam/uui-components';
 import { FlexRow } from '@epam/uui';
-import { AppHeader, Page, Sidebar, TMode, TUUITheme, TypeRefPage } from '../common';
+import { AppHeader, Page, Sidebar, TMode, TTheme, TypeRefPage } from '../common';
 import { svc } from '../services';
 import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
@@ -12,7 +12,7 @@ type DocsQuery = {
     id: string;
     mode?: TMode;
     isSkin?: boolean;
-    theme?: TUUITheme;
+    theme?: TTheme;
     category?: string;
 };
 

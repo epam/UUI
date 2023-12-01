@@ -5,10 +5,10 @@ import { ComponentEditorView } from './view/ComponentEditorView';
 import { useDocBuilderGen } from '../docBuilderGen/hooks/useDocBuilderGen';
 import { getExamplesList, getInputValuesFromInputData, getSkin, isPropValueEmpty } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
-import { TUUITheme } from '../BaseDocsBlock';
+import { TTheme } from '../BaseDocsBlock';
 
 export function ComponentEditorWrapper(props: {
-    theme: TUUITheme,
+    theme: TTheme,
     title: string;
     isSkin: boolean;
     config: TDocConfig;
