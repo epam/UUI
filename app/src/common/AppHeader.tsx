@@ -100,7 +100,7 @@ export function AppHeader() {
                 priority: 100499,
                 render: () => (
                     <MainMenuCustomElement key="logo">
-                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent('Welcome') } key="logo">
+                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') } key="logo">
                             <IconContainer icon={ LogoIcon } cx={ css.logoIcon } />
                         </Anchor>
                     </MainMenuCustomElement>
@@ -178,7 +178,8 @@ export function AppHeader() {
                 priority: 2,
                 render: () => (
                     <MainMenuButton
-                        caption="Theme:"
+                        captionCX={ css.themeCaption }
+                        caption="Theme"
                         showInBurgerMenu
                         key="themeCaption"
                     />
