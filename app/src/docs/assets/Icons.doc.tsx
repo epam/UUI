@@ -21,13 +21,14 @@ import {
 import {
     ArrayDataSource, cx, DataRowProps, DataSourceState, Icon,
 } from '@epam/uui-core';
-import { getGroupedIcons, getIconList, IconList } from '../../documents/iconListHelpers';
+import { getGroupedIcons, getIconList } from '../../documents/iconListHelpers';
 import { ReactComponent as LockedIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as UnlockedIcon } from '@epam/assets/icons/common/action-lock_open-fill-18.svg';
 import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-error-fill-24.svg';
+import { IconList } from '@epam/uui-docs';
 
 const sizeList = [
     '24', '30', '36', '42', '48',
