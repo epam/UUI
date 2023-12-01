@@ -25,7 +25,9 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                     size={ additionalItemSize }
                     value={ row.isChecked }
                     indeterminate={ !row.isChecked && row.isChildrenChecked }
-                    onValueChange={ () => row.onCheck?.(row) }
+                    // Checkbox check/uncheck should happen after blur.
+                    // Otherwise, in "show only selected" mode click event will be handled as interacted outside.
+                    onValueChange={ () => setTimeout(() => row.onCheck?.(row), 0) }
                     isDisabled={ row.checkbox.isDisabled }
                     isInvalid={ row.checkbox.isInvalid }
                 />
