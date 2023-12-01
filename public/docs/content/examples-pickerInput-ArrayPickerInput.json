@@ -4,25 +4,9 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Below, you can see b",
+        "text": "Below, you can see basic PickerInput usage with ",
         "font-size": "12pt",
         "font-family": null,
-        "color": "#303240",
-        "background-color": null,
-        "font-weight": "400",
-        "font-style": null,
-        "font-variant": "normal",
-        "text-decoration": "none",
-        "vertical-align": "baseline",
-        "white-space": "pre-wrap",
-        "": null,
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "asic PickerInput usage with ",
-        "font-size": "12pt",
-        "font-family": null,
-        "color": "#303240",
         "background-color": null,
         "font-weight": "400",
         "font-style": null,

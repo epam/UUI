@@ -6,7 +6,7 @@ import css from './BasicExample.module.scss';
 function MyListItem(props: { index: number }) {
     return (
         <div className={ css.itemContainer } role="row">
-            <Panel cx={ css.item } shadow background="surface">
+            <Panel cx={ css.item } shadow background="surface-main">
                 <FlexRow cx={ css.header }>
                     <Text>
                         Row #

@@ -40,7 +40,7 @@ export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
             color: props.color || 'sky',
             size: props.size || defaultSize,
             fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
-        } as BadgeProps;
+        };
     },
     applyBadgeMods,
 );

@@ -2,7 +2,7 @@
 
 .layout {
     margin: 0 auto;
-    background: #FFFFFF;
+    background: var(--uui-surface-main);
 
     .info {
         display: flex;
@@ -43,8 +43,8 @@
                 right: 90px;
                 box-sizing: border-box;
                 border-radius: 50%;
-                background-color: $red;
-                box-shadow: 0 0 0 5px #FADED9;
+                background-color: var(--uui-critical-50);
+                box-shadow: 0 0 0 5px var(--uui-critical-5);
                 animation: pulse 2s infinite linear;
             }
         }

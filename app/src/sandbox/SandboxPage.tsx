@@ -12,7 +12,7 @@ import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
-import { ThemeDemo as ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
+import { ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
 import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
 import { TreeListItem } from '@epam/uui-components';

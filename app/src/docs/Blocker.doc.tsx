@@ -13,8 +13,8 @@ export class BlockerDoc extends BaseDocsBlock {
         contexts: [TDocContext.RelativePanel],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:BlockerProps', component: uui.Blocker },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:BlockerProps', component: loveship.Blocker },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-components:BlockerProps', component: promo.Blocker },
+            [TSkin.Loveship]: { type: '@epam/uui-components:BlockerProps', component: loveship.Blocker },
+            [TSkin.Promo]: { type: '@epam/uui-components:BlockerProps', component: promo.Blocker },
         },
     };
 

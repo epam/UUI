@@ -3,7 +3,7 @@ import Measure from 'react-measure';
 
 import {
     FlexRow, IconContainer, LinkButton, Text, Anchor,
-} from '@epam/promo';
+} from '@epam/uui';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './ContactsBlock.module.scss';
 import { ReactComponent as MailIcon } from '../icons/outlook-90.svg';
@@ -25,7 +25,7 @@ export class ContactsBlock extends React.Component {
                         <div className={ css.layout } ref={ measureRef }>
                             <div className={ css.contacts }>
                                 <div className={ css.wrapper }>
-                                    <Text font="museo-sans" cx={ css.header }>
+                                    <Text cx={ css.header }>
                                         Contact Us
                                     </Text>
                                 </div>
@@ -35,7 +35,7 @@ export class ContactsBlock extends React.Component {
                                             <>
                                                 <IconContainer icon={ GitIcon } cx={ css.cardIcon } />
                                                 <div className={ css.cardTextContent }>
-                                                    <Text font="sans" fontSize="16" lineHeight="24">
+                                                    <Text fontSize="16" lineHeight="24">
                                                         Missing a feature or have an issue?
                                                     </Text>
                                                     <LinkButton
@@ -59,7 +59,7 @@ export class ContactsBlock extends React.Component {
                                             <>
                                                 <IconContainer icon={ MailIcon } cx={ css.cardIcon } />
                                                 <div className={ css.cardTextContent }>
-                                                    <Text font="sans" fontSize="16" lineHeight="24">
+                                                    <Text fontSize="16" lineHeight="24">
                                                         You can also email your questions to submit a support ticket
                                                     </Text>
                                                     <LinkButton

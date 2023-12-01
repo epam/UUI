@@ -12,8 +12,8 @@ export class RatingDoc extends BaseDocsBlock {
         name: 'Rating',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:RatingProps', component: loveship.Rating },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:RatingProps', component: promo.Rating },
+            [TSkin.Loveship]: { type: '@epam/loveship:RatingProps', component: loveship.Rating },
+            [TSkin.Promo]: { type: '@epam/promo:RatingProps', component: promo.Rating },
         },
         doc: (doc: DocBuilder<promo.RatingProps | loveship.RatingProps>) => {
             doc.merge('Tooltip', { examples: [{ value: uui.Tooltip, name: 'Tooltip' }] });
