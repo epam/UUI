@@ -2,21 +2,13 @@ import * as React from 'react';
 import { useImperativeHandle, useState } from 'react';
 import { renderWithContextAsync, type CustomWrapperType } from './renderingWithContextUtils';
 import { act } from '@testing-library/react';
+import { testRunner } from '../internal/testRunnerUtils';
 
 function isMockFunctionGeneric(fn: () => void) {
-    // @ts-ignore
-    if (typeof jest !== 'undefined' && typeof jest.isMockFunction === 'function') {
-        // This is for Jest
-        // @ts-ignore
-        return jest.isMockFunction(fn);
+    if (testRunner) {
+        return testRunner.isMockFunction(fn);
     }
-    // @ts-ignore
-    if (typeof vi !== 'undefined' && typeof vi.isMockFunction === 'function') {
-        // This is for Vitest
-        // @ts-ignore
-        return vi.isMockFunction(fn);
-    }
-    throw new Error('Neither jest.isMockFunction nor vi.isMockFunction was found in global scope. If another test runner is used, '
+    throw new Error('Only Jest & Vitest are currently supported. If another test runner is used, '
             + 'then please pass your custom "isMockFunction" to the setupComponentForTest '
             + 'e.g.: setupComponentForTest(propsInitializer, componentRenderer, { isMockFunction: vi.isMockFunction })');
 }

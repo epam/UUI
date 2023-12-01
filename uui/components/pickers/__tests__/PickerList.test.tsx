@@ -6,28 +6,6 @@ import { Modals } from '@epam/uui-components';
 import { PickerList, PickerListProps } from '../PickerList';
 import { TestItemType, mockDataSource, mockDataSourceAsync, mockEmptyDataSource } from './mocks';
 
-jest.mock('react-popper', () => ({
-    ...jest.requireActual('react-popper'),
-    Popper: function PopperMock({ children }: any) {
-        return children({
-            ref: jest.fn,
-            update: jest.fn(),
-            style: {},
-            arrowProps: { ref: jest.fn },
-            placement: 'bottom-start',
-            isReferenceHidden: false,
-        });
-    },
-}));
-jest.mock('react-focus-lock', () => ({
-    ...jest.requireActual('react-focus-lock'),
-    __esModule: true,
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    default: ({ children }) => (<>{ children }</>),
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    FreeFocusInside: ({ children }) => (<>{ children }</>),
-}));
-
 async function setupPickerListForTest<TItem = TestItemType, TId = number>(params: Partial<PickerListProps<TItem, TId>>) {
     const { result, mocks, setProps } = await setupComponentForTest<PickerListProps<TItem, TId>>(
         (context): PickerListProps<TItem, TId> => {

@@ -21,29 +21,6 @@ type TestItemType = {
     exitDate: number;
 };
 
-jest.mock('react-popper', () => ({
-    ...jest.requireActual('react-popper'),
-    Popper: function PopperMock({ children }: any) {
-        return children({
-            ref: jest.fn,
-            update: jest.fn(),
-            style: {},
-            arrowProps: { ref: jest.fn },
-            placement: 'bottom-start',
-            isReferenceHidden: false,
-        });
-    },
-}));
-
-jest.mock('react-focus-lock', () => ({
-    ...jest.requireActual('react-focus-lock'),
-    __esModule: true,
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    default: ({ children }) => (<>{ children }</>),
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    FreeFocusInside: ({ children }) => (<>{ children }</>),
-}));
-
 const filtersConfigWithoutPredicatesAll: TableFiltersConfig<TestItemType>[] = [
     {
         field: 'status',
