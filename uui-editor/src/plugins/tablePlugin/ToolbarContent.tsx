@@ -23,7 +23,6 @@ export function TableToolbarContent({ canUnmerge }:{ canUnmerge:boolean }) {
 
     const { cell, row } = getTableEntries(editor) || {};
     const cellPath = useMemo(() => cell && cell[1], [cell]);
-    // console.log('cellPath', cellPath);
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
 
     return (

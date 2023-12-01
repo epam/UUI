@@ -49,11 +49,6 @@ export const imagePlugin = () => {
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
-
-                // // focus caption from image
-                // if (isHotkey('down', event)) {
-                //     captionGlobalStore.set.focusEndCaptionPath(imageEntry[1]);
-                // }
             },
         },
         plugins: [
