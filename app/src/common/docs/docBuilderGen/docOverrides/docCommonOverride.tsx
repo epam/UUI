@@ -1,5 +1,4 @@
-import * as uuiDocs from '../../../../docs/_props/uui/docs';
-import { DocBuilder, TDocContext } from '@epam/uui-docs';
+import { DocBuilder, TDocContext, uuiDocContextsMap } from '@epam/uui-docs';
 
 /**
  * This override is applied to each skin individually
@@ -7,7 +6,7 @@ import { DocBuilder, TDocContext } from '@epam/uui-docs';
 export const docCommonOverride = (params: { docs: DocBuilder<any>, contexts?: TDocContext[] }) => {
     const contexts = params.contexts?.length > 0 ? params.contexts : [TDocContext.Default];
     contexts.forEach((c) => {
-        const ctx = uuiDocs.uuiDocContextsMap[c];
+        const ctx = uuiDocContextsMap[c];
         if (ctx) {
             params.docs.withContexts(ctx);
         } else {

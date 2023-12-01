@@ -7,6 +7,7 @@ import { svc } from '../services';
 import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
+import { TMode, TUUITheme } from '../common/docs/docsConstants';
 
 type DocsQuery = {
     id: string;
