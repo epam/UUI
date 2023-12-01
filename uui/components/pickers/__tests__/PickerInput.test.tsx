@@ -406,7 +406,8 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickOptionCheckbox('Child 2.2');
             // Test if checkboxes are checked/unchecked
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
+            await waitFor(() =>
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']));
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });
@@ -436,7 +437,8 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickOptionCheckbox('Child 2.2');
             // Test if checkboxes are checked/unchecked
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
+            await waitFor(() =>
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']));
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });

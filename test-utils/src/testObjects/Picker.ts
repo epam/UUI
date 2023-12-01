@@ -76,7 +76,8 @@ export class PickerTestObject {
 
     static async clickOptionCheckbox(optionText: string, config?: OptionConfig) {
         const opt = await this.findOption(optionText, config);
-        fireEvent.click(within(opt).getByRole('checkbox'));
+
+        await waitFor(() => fireEvent.click(within(opt).getByRole('checkbox')));
     }
 
     static async clickOptionUnfold(optionText: string, config?: OptionConfig) {
