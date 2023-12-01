@@ -76,7 +76,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                     isLoading: !prevState.isLoading,
                 }));
                 this.scrollToView();
-            });
+            }).catch(() => {});
     }
 
     componentWillUnmount(): void {
