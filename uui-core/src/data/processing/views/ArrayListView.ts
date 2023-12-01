@@ -52,6 +52,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.props = newProps;
         this.visibleTree = Tree.blank(newProps);
         this.update(editable, props);
+        if (this.isSelectAllEnabled()) {
+            this.selectAll = {
+                value: false,
+                onValueChange: this.handleSelectAll,
+            };
+        }
     }
 
     public update({ value, onValueChange }: IEditable<DataSourceState<TFilter, TId>>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
