@@ -7,11 +7,11 @@ import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import { useTheme } from '../helpers/useTheme';
-import { TMode, TTheme } from './docs';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import css from './AppHeader.module.scss';
+import { TMode, TTheme } from './docs/docsConstants';
 
 const themeName: Record<TTheme, 'Promo' | 'Loveship Light' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {
     [TTheme.promo]: 'Promo',
@@ -100,7 +100,7 @@ export function AppHeader() {
                 priority: 100499,
                 render: () => (
                     <MainMenuCustomElement key="logo">
-                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent('Welcome') } key="logo">
+                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') } key="logo">
                             <IconContainer icon={ LogoIcon } cx={ css.logoIcon } />
                         </Anchor>
                     </MainMenuCustomElement>
@@ -178,7 +178,8 @@ export function AppHeader() {
                 priority: 2,
                 render: () => (
                     <MainMenuButton
-                        caption="Theme:"
+                        captionCX={ css.themeCaption }
+                        caption="Theme"
                         showInBurgerMenu
                         key="themeCaption"
                     />
