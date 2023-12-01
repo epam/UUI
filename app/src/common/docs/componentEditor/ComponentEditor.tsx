@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { IHasCX } from '@epam/uui-core';
-import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin, TDocsGenExportedType } from '@epam/uui-docs';
+import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin, TDocsGenExportedType, useDocBuilderGen } from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { useDocBuilderGen } from '../docBuilderGen/hooks/useDocBuilderGen';
 import { getExamplesList, getInputValuesFromInputData, getSkin, isPropValueEmpty } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
 import { TUUITheme } from '../docsConstants';
+import { loadDocsGenType } from '../../apiReference/dataHooks';
 
 export function ComponentEditorWrapper(props: {
     theme: TTheme,
@@ -22,10 +22,7 @@ export function ComponentEditorWrapper(props: {
         onRedirectBackToDocs,
     } = props;
     const skin = getSkin(theme, isSkin);
-    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({
-        config,
-        skin: skin,
-    });
+    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, loadDocsGenType });
 
     React.useEffect(() => {
         if (!config) {
