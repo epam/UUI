@@ -1,5 +1,5 @@
 import { IPropSamplesCreationContext, PropDoc, PropExampleObject, TSkin } from '@epam/uui-docs';
-import { TTheme, TUUITheme } from '../docsConstants';
+import { TTheme } from '../docsConstants';
 
 export function isPropValueEmpty(propValue: any): boolean {
     return propValue === undefined;

@@ -10,7 +10,7 @@ import { TypeRefSection } from '../apiReference/TypeRefSection';
 import { ComponentEditorWrapper } from './componentEditor/ComponentEditor';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import css from './BaseDocsBlock.module.scss';
-import { DEFAULT_MODE, DEFAULT_THEME, TMode, TUUITheme } from './docsConstants';
+import { DEFAULT_MODE, TMode, TTheme } from './docsConstants';
 
 const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific package will be used, according to the selected theme (for example, "@epam/loveship"). If unchecked, it will use a component from the "@epam/uui" package, only with semantic props.';
 
