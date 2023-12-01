@@ -17,14 +17,10 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     state: DragGhostState = {
         isDragging: false,
     };
-
-    constructor(props: DragGhostProps) {
-        super(props);
-    }
-
+    
     onPointerMove = (e: PointerEvent) => {
         if (this.state.isDragging) {
-            this.setState({ ...this.state, pointerX: e.clientX, pointerY: e.clientY });
+            this.setState((state) => ({ ...state, pointerX: e.clientX, pointerY: e.clientY }));
         }
     };
 
