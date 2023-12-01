@@ -1,7 +1,8 @@
 @import '~@epam/promo/assets/styles/index';
 
 .title {
-    font-family: $font-museo-sans;
+    font-family: var(--uui-font);
+    font-weight: 600;
     margin: 24px 0;
     font-size: 36px;
     line-height: 48px;
@@ -32,7 +33,7 @@
     }
 
     .contribute-card {
-        border: 1px solid $blue;
+        border: 1px solid var(--uui-info-50);
         box-sizing: border-box;
         margin-top: 24px;
         min-width: 222px;
@@ -40,7 +41,7 @@
         .icon-container {
             min-height: 220px;
             align-items: center;
-            border-bottom: 1px solid $blue;
+            border-bottom: 1px solid var(--uui-info-50);
         }
 
         .link {

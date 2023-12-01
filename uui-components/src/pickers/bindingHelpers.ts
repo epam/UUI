@@ -13,7 +13,7 @@ export type ArrayPickerProps<TId, TItem> =
     | ({ selectionMode: 'multi'; valueType: 'id'; emptyValue?: [] | null } & IEditable<TId[]>)
     | ({ selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null } & IEditable<TItem[]>);
 
-export interface PickerBindingHelper<TItem, TId> {
+interface PickerBindingHelper<TItem, TId> {
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): any;
     applyValueToDataSourceState(
         dsState: DataSourceState<any, TId>,

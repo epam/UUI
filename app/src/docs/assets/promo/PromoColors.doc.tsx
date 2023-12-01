@@ -2,7 +2,7 @@ import * as React from 'react';
 import css from './PromoColorsDoc.module.scss';
 import {
     FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip,
-} from '@epam/promo';
+} from '@epam/uui';
 import { cx, arrayToMatrix, INotification } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { svc } from '../../../services';
@@ -117,8 +117,8 @@ export class PromoColorsDoc extends React.Component {
     showNotification() {
         svc.uuiNotifications.show(
             (props: INotification) => (
-                <NotificationCard { ...props } icon={ NotificationIcon } color="gray60" onClose={ null }>
-                    <Text size="36" font="sans">
+                <NotificationCard { ...props } icon={ NotificationIcon } color="info" onClose={ null }>
+                    <Text size="36">
                         HEX code was copied to the clipboard
                     </Text>
                 </NotificationCard>
@@ -153,17 +153,17 @@ export class PromoColorsDoc extends React.Component {
                     })}
                     <FlexCell minWidth={ 100 } alignSelf="flex-end">
                         <div className={ cx(css.box, css.captionColorBox) }>
-                            <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
+                            <Text color="secondary" fontStyle="italic" fontSize="12" lineHeight="18">
                                 Rested
                             </Text>
                         </div>
                         <div className={ cx(css.box, css.captionColorBox) }>
-                            <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
+                            <Text color="secondary" fontStyle="italic" fontSize="12" lineHeight="18">
                                 Hovered
                             </Text>
                         </div>
                         <div className={ cx(css.box, css.captionColorBox) }>
-                            <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
+                            <Text color="secondary" fontStyle="italic" fontSize="12" lineHeight="18">
                                 Pressed
                             </Text>
                         </div>

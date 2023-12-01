@@ -13,8 +13,8 @@ export class SearchInputDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable, TDocContext.Table],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:SearchInputProps', component: uui.SearchInput },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:SearchInputProps', component: loveship.SearchInput },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:SearchInputProps', component: promo.SearchInput },
+            [TSkin.Loveship]: { type: '@epam/loveship:SearchInputProps', component: loveship.SearchInput },
+            [TSkin.Promo]: { type: '@epam/uui:SearchInputProps', component: promo.SearchInput },
         },
         doc: (doc: DocBuilder<uui.SearchInputProps | loveship.SearchInputProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });

@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "RichTextView is used to display HTML markup according to a design typography specification. ",
-            "marks": []
-          }
-        ]
+        "text": "RichTextView is used to display HTML markup according to a design typography specification. "
       }
     ]
   }
-}
+]

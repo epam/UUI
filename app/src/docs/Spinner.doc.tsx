@@ -13,8 +13,8 @@ export class SpinnerDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:SpinnerProps', component: uui.Spinner },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:SpinnerProps', component: loveship.Spinner },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:SpinnerProps', component: promo.Spinner },
+            [TSkin.Loveship]: { type: '@epam/uui:SpinnerProps', component: loveship.Spinner },
+            [TSkin.Promo]: { type: '@epam/uui:SpinnerProps', component: promo.Spinner },
         },
     };
 

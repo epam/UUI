@@ -45,7 +45,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
         };
 
         return (
-            <Panel shadow cx={ css.panel } background="surface" margin="24">
+            <Panel shadow cx={ css.panel } background="surface-main" margin="24">
                 <FlexRow borderBottom padding="24" size="48">
                     <FlexCell grow={ 1 } width="auto">
                         <LabeledInput label="Form size:" labelPosition="left" size="36">

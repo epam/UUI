@@ -14,8 +14,8 @@ export class PickerInputDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:CompletePickerInputProps', component: uui.PickerInput },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:CompletePickerInputProps', component: loveship.PickerInput },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:CompletePickerInputProps', component: promo.PickerInput },
+            [TSkin.Loveship]: { type: '@epam/uui:CompletePickerInputProps', component: loveship.PickerInput },
+            [TSkin.Promo]: { type: '@epam/uui:CompletePickerInputProps', component: promo.PickerInput },
         },
         doc: (doc: DocBuilder<uui.CompletePickerInputProps<any, any>>) => {
             doc.merge('renderToggler', { examples: renderTogglerExamples });

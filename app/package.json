@@ -1,6 +1,6 @@
 {
   "name": "@epam/app",
-  "version": "5.3.0-rc.1",
+  "version": "5.4.1",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
@@ -15,9 +15,9 @@
   "cracoConfig": "./build-config/craco.config.js",
   "dependencies": {
     "@elastic/apm-rum": "^5.14.0",
-    "@epam/assets": "5.3.0-rc.1",
-    "@epam/draft-rte": "5.3.0-rc.1",
-    "@epam/electric": "5.3.0-rc.1",
+    "@epam/assets": "5.4.1",
+    "@epam/draft-rte": "5.4.1",
+    "@epam/electric": "5.4.1",
     "@epam/internal": "0.0.1",
     "@epam/loveship": "5.3.0-rc.1",
     "@epam/promo": "5.3.0-rc.1",

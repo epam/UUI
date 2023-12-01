@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Measure from 'react-measure';
 import { cx } from '@epam/uui-core';
-import { FlexRow, Text } from '@epam/promo';
+import { FlexRow, Text } from '@epam/uui';
 import css from './HeroBlock.module.scss';
 
 export interface HeroBlockProps {}
@@ -99,13 +99,13 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                         <div className={ css.layout } ref={ measureRef }>
                             <FlexRow cx={ css.hero }>
                                 <div className={ css.heroText }>
-                                    <Text rawProps={ { role: 'heading', 'aria-level': 1 } } font="museo-slab" cx={ css.heroHeader }>
+                                    <Text rawProps={ { role: 'heading', 'aria-level': 1 } } cx={ css.heroHeader }>
                                         EPAM UUI
                                     </Text>
-                                    <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
+                                    <Text fontSize="24" cx={ css.heroSecondary }>
                                         UI development accelerator for business applications
                                     </Text>
-                                    <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
+                                    <Text fontSize="24" cx={ css.heroSecondary }>
                                         Complete set of components,
                                         guidelines, blueprints, examples, to build your apps on top of React, Figma, TypeScript
                                     </Text>

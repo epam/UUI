@@ -1,5 +1,4 @@
 import * as React from 'react';
-import cx from 'classnames';
 import css from './Sidebar.module.scss';
 import { ScrollBars, SearchInput } from '@epam/promo';
 import { Tree, TreeListItem } from '@epam/uui-components';
@@ -51,7 +50,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
     }, [uuiAnalytics]);
 
     return (
-        <aside className={ cx(css.root, css.uuiThemePromo) }>
+        <aside className={ css.root }>
             <SearchInput
                 cx={ css.search }
                 value={ value.search }

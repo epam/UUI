@@ -196,7 +196,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     ]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
-    
+
     const handleWrapperFocus = () => {
         inputRef.current?.focus();
     };

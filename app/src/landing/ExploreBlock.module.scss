@@ -7,7 +7,7 @@
 
 .layout {
     margin: 0 auto;
-    background-color: $gray10;
+    background-color: var(--uui-surface-lower);
 
     .explore {
         max-width: 1200px;
@@ -17,6 +17,7 @@
     }
 
     .header {
+        font-weight: 600;
         font-size: 30px;
         line-height: 36px;
         padding: 0;

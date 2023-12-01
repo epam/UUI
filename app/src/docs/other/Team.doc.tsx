@@ -2,7 +2,7 @@ import * as React from 'react';
 import css from './TeamDoc.module.scss';
 import {
     Button, FlexRow, IconContainer, LinkButton, RichTextView, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-24.svg';
 import { ContentSection } from '../../common';
 
@@ -166,7 +166,7 @@ export class TeamDoc extends React.Component {
                             <div key={ index } className={ css.card }>
                                 <img alt={ name } src={ src } width="222" height="222" />
                                 <LinkButton size="24" caption={ name } target="_blank" href={ link } />
-                                <Text font="sans" lineHeight="24" fontSize="16" size="none">
+                                <Text lineHeight="24" fontSize="16" size="none">
                                     {position}
                                 </Text>
                             </div>
@@ -184,7 +184,7 @@ export class TeamDoc extends React.Component {
                             <div key={ index } className={ css.card }>
                                 <img alt={ name } src={ src } width="222" height="222" />
                                 <LinkButton size="24" caption={ name } target="_blank" href={ link } />
-                                <Text font="sans" lineHeight="24" fontSize="16" size="none">
+                                <Text lineHeight="24" fontSize="16" size="none">
                                     {position}
                                 </Text>
                             </div>
@@ -192,7 +192,7 @@ export class TeamDoc extends React.Component {
                     })}
                     <div className={ css.contributeCard }>
                         <IconContainer cx={ [css.iconContainer, css.iconBlue] } icon={ AddIcon } size={ 48 } />
-                        <Button cx={ css.link } size="48" fill="light" caption="Contribute" target="_blank" href="https://github.com/epam/UUI/blob/main/CONTRIBUTING.md" />
+                        <Button cx={ css.link } size="48" fill="ghost" caption="Contribute" target="_blank" href="https://github.com/epam/UUI/blob/main/CONTRIBUTING.md" />
                     </div>
                 </FlexRow>
             </ContentSection>
