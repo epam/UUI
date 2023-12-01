@@ -30,14 +30,6 @@ function TableRenderer(props: any) {
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
     const hasEntries = !!cellEntries?.length;
     const showToolbar = !isReadonly && isSelected && isFocused && hasEntries;
-
-    const { enableMerging } = getPluginOptions<TablePlugin>(
-        editor,
-        ELEMENT_TABLE,
-    );
-
-    console.log('enableMerging', enableMerging);
-
     const { canMerge, canUnmerge } = useTableMergeState();
 
     return (

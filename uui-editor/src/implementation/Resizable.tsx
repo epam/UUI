@@ -10,8 +10,6 @@ interface ResizeHandleProps extends ComponentProps<typeof ResizeHandlePrimitive>
 }
 
 export function ResizeHandle({ className, ...props }: ResizeHandleProps) {
-    // console.log('props.options.direction', props.options.direction, className);
-
     const variantClass = {
         right: css.rightHandle,
         left: css.leftHandle,
@@ -43,8 +41,6 @@ export function Resizable({ className, align, ...props }: ResizableProps) {
     ];
     return (
         <ResizablePrimitive
-            // ref={ ref }
-            // className={ cn(resizableVariants({ align }), className) }
             className={ cx(...aligns, className) }
             { ...props }
         />

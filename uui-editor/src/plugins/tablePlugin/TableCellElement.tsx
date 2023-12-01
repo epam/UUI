@@ -1,32 +1,19 @@
 import React from 'react';
 import cx from 'classnames';
-import { useReadOnly } from 'slate-react';
-import { PlateElement, PlateElementProps, TElement, useElement, useEditorRef, Value } from '@udecode/plate-common';
+import { PlateElement, PlateElementProps, Value } from '@udecode/plate-common';
 import {
-    ELEMENT_TABLE, ELEMENT_TR, TTableCellElement, TTableElement, TTableRowElement, getTableCellBorders,
-    getTableRowIndex, useIsCellSelected, useTableCellElement, useTableCellElementResizable, useTableCellElementResizableState, useTableCellElementState, useTableStore,
+    TTableCellElement,
+    useTableCellElement, useTableCellElementResizable, useTableCellElementResizableState, useTableCellElementState,
 } from '@udecode/plate-table';
-import { ExtendedTTableCellElement } from './types';
 
 import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
-
-// export interface TableCellElementProps extends PlateElementProps {
-//     hideBorder?: boolean;
-//     isHeader?: boolean;
-// }
 
 export interface TableCellElementProps
     extends PlateElementProps<Value, TTableCellElement> {
     hideBorder?: boolean;
     isHeader?: boolean;
 }
-
-const checkIsFirstCell = (colIndex: number, cellNode: TElement) => {
-    const cellColSpan = (cellNode.colSpan as number);
-    const isFirstMergedCell = colIndex + 1 === cellColSpan;
-    return colIndex === 0 || isFirstMergedCell;
-};
 
 const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
@@ -53,9 +40,6 @@ TableCellElementProps
         colSpan,
     });
     const { rightProps, bottomProps, leftProps, hiddenLeft } = useTableCellElementResizable(resizableState);
-
-    console.log('cell', props.element.children.map((item) => (item.children as any)[0].text), 'indices', rowIndex, colIndex);
-    // console.log('rightProps', rightProps);
     const Cell = isHeader ? 'th' : 'td';
 
     return (
@@ -82,7 +66,6 @@ TableCellElementProps
             }
             { ...props }
             { ...cellProps }
-            // { ...rootProps }
             style={
                 {
                     '--cellBackground': element.background,
@@ -104,38 +87,26 @@ TableCellElementProps
                             <>
                                 <ResizeHandle
                                     { ...rightProps }
-                                    // visible={ hovered }
-                                    // className="-top-3 right-[-5px] w-[10px]"
                                     className={ css.resizeHolderRight }
                                 />
                                 <ResizeHandle
                                     { ...bottomProps }
-                                    // className="bottom-[-5px] h-[10px]"
                                     className={ css.resizeHolderBottom }
                                 />
                                 {!hiddenLeft && (
                                     <ResizeHandle
                                         { ...leftProps }
-                                        // className="-top-3 left-[-5px] w-[10px]"
                                         className={ css.resizeHolderLeft }
                                     />
                                 )}
 
                                 {hovered && (
                                     <div
-                                        // className={ cn(
-                                        //     'absolute -top-3 z-30 h-[calc(100%_+_12px)] w-1 bg-ring',
-                                        //     'right-[-1.5px]',
-                                        // ) }
                                         className={ cx(css.resizeHandleRight) }
                                     />
                                 )}
                                 {hoveredLeft && (
                                     <div
-                                        // className={ cn(
-                                        //     'absolute -top-3 z-30 h-[calc(100%_+_12px)] w-1 bg-ring',
-                                        //     'left-[-1.5px]',
-                                        // ) }
                                         className={ cx(css.resizeHandleLeft) }
                                     />
                                 )}
