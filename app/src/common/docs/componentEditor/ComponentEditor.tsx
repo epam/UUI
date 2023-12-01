@@ -5,7 +5,7 @@ import { ComponentEditorView } from './view/ComponentEditorView';
 import { useDocBuilderGen } from '../docBuilderGen/hooks/useDocBuilderGen';
 import { getExamplesList, getInputValuesFromInputData, getSkin, isPropValueEmpty } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
-import { TTheme } from '../BaseDocsBlock';
+import { TUUITheme } from '../docsConstants';
 
 export function ComponentEditorWrapper(props: {
     theme: TTheme,

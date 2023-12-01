@@ -1,4 +1,4 @@
-import { TDocContext } from '@epam/uui-docs';
+import { TDocContext } from '../types';
 
 import { DefaultContext } from './DefaultContext';
 import { TabButtonContext } from './TabButtonContext';
@@ -9,8 +9,6 @@ import { ResizableContext } from './ResizableContext';
 import { RelativePanelContext } from './RelativePanelContext';
 import { TableContext } from './TableContext';
 import { PagePanelContext } from './PagePanelContext';
-
-export { DefaultContext, TabButtonContext, FlexRowContext };
 
 export const uuiDocContextsMap: Record<TDocContext, React.ComponentType<any> | undefined> = {
     [TDocContext.Default]: DefaultContext,

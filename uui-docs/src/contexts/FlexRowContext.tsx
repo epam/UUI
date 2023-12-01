@@ -1,7 +1,7 @@
 import * as React from 'react';
-import css from './FlexRowContext.module.scss';
-import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexRow, FlexCell, TextInput } from '@epam/uui';
+import css from './FlexRowContext.module.scss';
+import { DemoComponentProps } from '../types';
 
 function FlexRowContext({ DemoComponent, props }: DemoComponentProps) {
     return (

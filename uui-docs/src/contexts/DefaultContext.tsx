@@ -1,7 +1,7 @@
 import * as React from 'react';
-import css from './DefaultContext.module.scss';
-import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexCell } from '@epam/uui';
+import { DemoComponentProps } from '../types';
+import css from './DefaultContext.module.scss';
 
 export class DefaultContext extends React.Component<DemoComponentProps, any> {
     public static displayName = 'Default';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DemoComponentProps } from '@epam/uui-docs';
+import { DemoComponentProps } from '../types';
 import {
     Panel, FlexRow, Text, FlexCell,
 } from '@epam/uui';

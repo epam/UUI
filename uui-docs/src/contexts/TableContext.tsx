@@ -1,5 +1,6 @@
 import React from 'react';
-import { DemoComponentProps, demoData } from '@epam/uui-docs';
+import { demoData } from '../demoData';
+import { DemoComponentProps } from '../types';
 import { ArrayDataSource, DataColumnProps, Metadata } from '@epam/uui-core';
 import {
     Panel, DataTable, DataTableCell, useForm, FlexRow, Button, FlexSpacer, FlexCell, Text,
