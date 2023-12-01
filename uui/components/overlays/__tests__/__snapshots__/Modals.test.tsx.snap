@@ -15,71 +15,35 @@ exports[`Modals should be rendered correctly 1`] = `
     onClick={[Function]}
   />
   <div
-    data-focus-guard={true}
+    aria-modal={true}
+    className="uui-modal-window root modal container"
+    role="dialog"
     style={
       Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
+        "height": "auto",
+        "width": "420px",
       }
     }
-    tabIndex={0}
-  />
-  <div
-    data-focus-lock-disabled={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
   >
     <div
-      aria-modal={true}
-      className="uui-modal-window root modal container"
-      role="dialog"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
       style={
         Object {
-          "height": "auto",
-          "width": "420px",
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
       }
-    >
-      <div
-        className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
+    />
+    <div
+      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
-      />
-      <div
-        className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
-      />
-    </div>
+      }
+    />
   </div>
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={0}
-  />
 </div>
 `;
 
@@ -98,109 +62,73 @@ exports[`Modals should be rendered correctly 2`] = `
     onClick={[Function]}
   />
   <div
-    data-focus-guard={true}
+    aria-modal={true}
+    className="uui-modal-window root modal container"
+    role="dialog"
     style={
       Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
+        "height": "300px",
+        "width": "300px",
       }
     }
-    tabIndex={0}
-  />
-  <div
-    data-focus-lock-disabled={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
   >
     <div
-      aria-modal={true}
-      className="uui-modal-window root modal container"
-      role="dialog"
+      className="uui-flex-row root size-36 padding-6 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
       style={
         Object {
-          "height": "300px",
-          "width": "300px",
+          "columnGap": undefined,
+          "rowGap": undefined,
         }
       }
     >
       <div
-        className="uui-flex-row root size-36 padding-6 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
+        className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
+      >
+        Test header
+      </div>
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
         style={
           Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
+            "alignSelf": undefined,
+            "flexBasis": "auto",
+            "flexGrow": undefined,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
           }
         }
       >
-        <div
-          className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
+        <button
+          aria-label="Close modal"
+          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
         >
-          Test header
-        </div>
-        <div
-          className="flexSpacer"
-        />
-        <div
-          className="flexCell"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "auto",
-              "flexGrow": undefined,
-              "flexShrink": 0,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
-          }
-        >
-          <button
-            aria-label="Close modal"
-            className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
           >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-          </button>
-        </div>
+            <svg
+              className=""
+            />
+          </div>
+        </button>
       </div>
-      <div
-        className="uui-flex-row root size-36 padding-18 vPadding-24 spacing-12 root modalFooter container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
-      />
     </div>
-  </div>
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
+    <div
+      className="uui-flex-row root size-36 padding-18 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
       }
-    }
-    tabIndex={0}
-  />
+    />
+  </div>
 </div>
 `;

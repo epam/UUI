@@ -1,63 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
-Array [
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
+<div
+  className="uui-dropdown-body -lock-focus root container"
+  style={
+    Object {
+      "maxWidth": undefined,
+      "minHeight": undefined,
+      "minWidth": undefined,
     }
-    tabIndex={0}
-  />,
-  <div
-    data-focus-lock-disabled={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-  >
-    <div
-      className="uui-dropdown-body -lock-focus root container"
-      style={
-        Object {
-          "maxWidth": undefined,
-          "minHeight": undefined,
-          "minWidth": undefined,
-        }
-      }
-      tabIndex={-1}
-    >
-      <button
-        className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary uui-size-36"
-        onClick={[Function]}
-        tabIndex={-1}
-        type="button"
-      />
-    </div>
-  </div>,
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={0}
-  />,
-]
+  }
+  tabIndex={-1}
+>
+  <button
+    className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary uui-size-36"
+    onClick={[Function]}
+    tabIndex={-1}
+    type="button"
+  />
+</div>
 `;
 
 exports[`DropdownContainer should be rendered correctly 2`] = `

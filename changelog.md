@@ -1,11 +1,12 @@
-# 5.4.1 - ??.??.2023
+# 5.4.1 - 30.11.2023
 
 **What's New**
-* [Site]: rework for theming support
-* [Tag]: remade Tag by new design. It has new `colors` and new fill mods `solid & outline`;
-* [Breaking change]: Tag in loveship changed default `size` to `36px`. It was 18px;
+* [uui.epam.com](https://uui.epam.com/) site now fully support theming. You can choose preferred theme in app main menu.
+* [Tag]: 
+  * rework according to the new design. Added new colors and new `solid` & `outline` mods;
+  * [Breaking change]: for loveship package, changed default `size` from `18px` to `36px`.
 * Upload new icons pack
-    * Breaking changes:
+    * [Breaking changes]:
         * 'action-update' icon was removed use 'navigation-refresh' instead
         * 'content-plus' icon was removed use 'action-add' instead
         * 'action-map_pin' icon was removed use 'communication-geo_tag' instead
@@ -15,27 +16,28 @@
         * 'copy-content' icon was removed use 'action-copy_content' instead
 
 **What's Fixed**
-* [Calendar]: fixed disabled text `color`
-* [TextPlaceholder]: changed animation
-* [Text]: fixed default font
-* [Panel]: fixed "background" property, in default state it transparent
-* fixed variables for "theme-vanilla-thunder"
+* [Calendar]: fixed disabled days text color
+* [Text]: 
+  * fixed font-weight prop in skins.
+  * fixed color values for semantic colors(info, warning, error, success) and for skin colors
+* [TextPlaceholder]: improved animation
+* [Panel]: fixed "background" property. Return `transparent` value by default.
+* [MainMenu]: fixed colors for 'electric' theme
 
 # 5.4.0 - 21.11.2023
 
 **What's New**
 * This release introduced stable Theming approach and theme css variables:
   * Theme css variable now assumed as a stable API, you can use them into your application styles.
-  * Set of theme variables align with figma library. You can copy CSS code variables from Figma Dev Mode directly into your code.
   * A lot of components styles tweaks according to the design changes.
-  * You can read more about Theming here - https://uui.epam.com/documents?id=themes
+  * You can read more about Themes here - https://uui.epam.com/documents?id=themes
 
 * New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need: 
     * Add `@epam/electric` package to your project
     * Add `import '@epam/electric/styles.css'` to the root of your application
     * Add `import '@epam/assets/css/theme/theme_electric.css'` to the root of your application
     * Add `uui-theme-electric` class to the html body node
-    * Import all necessary components from `@epam/electic` package.
+    * Import all necessary components from `@epam/electric` package.
 * Added Dark theme for Loveship. To start using Dark Loveship theme you need to:
   * Add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application 
   * Add `uui-theme-loveship_dark` class to the html body node.

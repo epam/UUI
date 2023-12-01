@@ -4,20 +4,6 @@ import {
     renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within,
 } from '@epam/uui-test-utils';
 
-jest.mock('react-popper', () => ({
-    ...jest.requireActual('react-popper'),
-    Popper: function PopperMock({ children }: any) {
-        return children({
-            ref: jest.fn,
-            update: jest.fn(),
-            style: {},
-            arrowProps: { ref: jest.fn },
-            placement: 'bottom-start',
-            isReferenceHidden: false,
-        });
-    },
-}));
-
 async function setupRangeDatePicker(params: { value: { from: string; to: string } | null; format?: string }) {
     const { value, format } = params;
 
