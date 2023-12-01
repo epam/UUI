@@ -6,7 +6,6 @@
   },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "generate-components-api-deprecated": "ts-node ./getComponentsPropsSet.ts",
     "generate-components-api": "ts-node docsGen/main.ts",
     "generate-tokens": "ts-node scripts/figmaTokensGen.ts",
     "prepublish": "yarn build",
