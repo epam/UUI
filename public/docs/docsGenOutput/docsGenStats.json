@@ -1,7 +1,7 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 617,
+   "amountProps": 618,
    "amountTypes": 213
   },
   "value": [
@@ -1318,7 +1318,8 @@
     "typeRef": "@epam/promo:BadgeMods",
     "value": [
      "color",
-     "fill"
+     "fill",
+     "size"
     ]
    },
    {
@@ -2181,12 +2182,12 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 813,
+   "allExports": 812,
    "byModule": {
     "@epam/uui-core": 130,
     "@epam/uui-components": 105,
     "@epam/uui": 144,
-    "@epam/promo": 128,
+    "@epam/promo": 127,
     "@epam/electric": 106,
     "@epam/loveship": 137,
     "@epam/uui-editor": 63
@@ -2610,7 +2611,6 @@
      "allEpamPrimaryColors",
      "allFillStyles",
      "allFontStyles",
-     "allIconColors",
      "allIconContainerColors",
      "allRowSizes",
      "allSizes",
@@ -3529,7 +3529,6 @@
     "InterfaceDeclaration": [
      "AlertMods",
      "AlertProps",
-     "BadgeMods",
      "ButtonMods",
      "ColorMod",
      "CountIndicatorMods",
@@ -3549,12 +3548,12 @@
      "RowMods",
      "RowSizeMod",
      "SizeMod",
-     "StatusIndicatorMods",
      "TextInputProps",
      "TextMods",
      "TooltipMods"
     ],
     "TypeAliasDeclaration": [
+     "BadgeMods",
      "BadgeProps",
      "ButtonColor",
      "ButtonProps",
@@ -3578,6 +3577,7 @@
      "MultiSwitchProps",
      "NotificationCardProps",
      "RowSize",
+     "StatusIndicatorMods",
      "StatusIndicatorProps",
      "TagMods",
      "TagProps",
@@ -3605,7 +3605,6 @@
     "InterfaceDeclaration": [
      "AlertMods",
      "AlertProps",
-     "BadgeMods",
      "ButtonMods",
      "ColorMod",
      "CountIndicatorMods",
@@ -3633,12 +3632,12 @@
      "SizeMod",
      "SliderRatingProps",
      "SnackbarCardProps",
-     "StatusIndicatorMods",
      "TextInputMods",
      "TextMods",
      "TooltipMods"
     ],
     "TypeAliasDeclaration": [
+     "BadgeMods",
      "BadgeProps",
      "ButtonColorType",
      "ButtonProps",
@@ -3661,6 +3660,7 @@
      "NotificationCardProps",
      "RowSize",
      "SearchInputProps",
+     "StatusIndicatorMods",
      "StatusIndicatorProps",
      "TabButtonMods",
      "TabButtonProps",
