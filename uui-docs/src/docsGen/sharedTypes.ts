@@ -1,6 +1,6 @@
 /**
  * NOTE: Types in this file are shared with front-end and must be copied as-is:
- * From: uui-build/docsGen/types/sharedTypes.ts --> To: uui-docs/src/sharedTypes.ts
+ * From: uui-build/docsGen/types/sharedTypes.ts --> To: uui-docs/src/docsGen/sharedTypes.ts
  */
 //
 
