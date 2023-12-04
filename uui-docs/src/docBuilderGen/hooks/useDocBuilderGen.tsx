@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { TSkin, TDocsGenExportedType, TTypeRef, TType } from '../../types';
+import { TSkin, TDocsGenExportedType } from '../../types';
 import { docBuilderGen } from '../docBuilderGen';
 import { DocBuilder } from '../../DocBuilder';
-import { TDocConfig } from '../../typesDocConfig';
+import { TDocConfig } from '../docBuilderGenTypes';
+import { TType, TTypeRef } from '../../docsGen/sharedTypes';
 
 interface IUseDocBuilderGenParams {
     config?: TDocConfig;

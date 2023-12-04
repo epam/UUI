@@ -1,7 +1,8 @@
-import { TPropEditorType } from '../../sharedTypes';
+import { TPropEditorType } from '../../docsGen/sharedTypes';
 import { getColorDocBySkin } from '../../commonDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 import { getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
+import { IPropSamplesCreationContext } from '../../types';
 
 const COLOR_PROP_NAMES = ['color'];
 const SIMPLE_STRING_EDITOR_PROP_NAMES = ['key', 'id', 'settingsKey', 'htmlFor'];
@@ -23,7 +24,17 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
     [TPropEditorType.component]: (params) => {
         const { prop } = params;
         if (ICON_PROP_NAMES.indexOf(prop.name) !== -1) {
-            return { examples: [], editorType: 'IconEditor' };
+            return {
+                editorType: 'IconEditor',
+                examples: (ctx: IPropSamplesCreationContext) => {
+                    return ctx.getIconList().map((value) => {
+                        return {
+                            id: value.id,
+                            value,
+                        };
+                    });
+                },
+            };
         }
         return { examples: getComponentExamples() };
     },
