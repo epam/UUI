@@ -1,10 +1,10 @@
-import { TSkin, TType, TTypeRef } from '../types';
+import { TSkin } from '../types';
 import { DocBuilder } from '../DocBuilder';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
-import { TTypeProp } from '../sharedTypes';
+import { TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
-import { TDocConfig } from '../typesDocConfig';
+import { TDocConfig } from './docBuilderGenTypes';
 
 interface IDocBuilderGenParams {
     config: TDocConfig,

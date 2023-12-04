@@ -1,6 +1,6 @@
 import { TSkin } from '../../types';
 
-export const colorMapBySkin: { [skin in TSkin]?: Record<string, string> } = {
+export const COLOR_MAP_BY_SKIN: { [skin in TSkin]?: Record<string, string> } = {
     [TSkin.Promo]: {
         blue: '#007BBD',
         green: '#65A300',
