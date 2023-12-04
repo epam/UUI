@@ -1,17 +1,15 @@
-import { withMods } from '@epam/uui-core';
-import { StatusIndicator as UuiStatusIndicator, StatusIndicatorProps as UuiStatusIndicatorProps } from '@epam/uui';
+import { createSkinComponent } from '@epam/uui-core';
+import { StatusIndicator as UuiStatusIndicator, StatusIndicatorCoreProps } from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
-export interface StatusIndicatorMods extends Omit<UuiStatusIndicatorProps, 'color'> {
+export type StatusIndicatorMods = {
+    /** @default 'gray' */
     color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
-}
+};
 
-export type StatusIndicatorProps = Omit<UuiStatusIndicatorProps, 'color'> & StatusIndicatorMods;
+export type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;
 
-export const StatusIndicator = withMods<Omit<UuiStatusIndicatorProps, 'color'>, StatusIndicatorMods>(
+export const StatusIndicator = createSkinComponent<StatusIndicatorCoreProps, StatusIndicatorProps>(
     UuiStatusIndicator,
-    () => [],
-    (props) => ({
-        color: props.color || 'gray',
-    } as StatusIndicatorProps),
+    (props) => ({ color: props.color || 'gray' }),
 );

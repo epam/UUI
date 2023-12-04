@@ -11,4 +11,7 @@ export type TagMods = {
 
 export type TagProps = UuiTagCoreProps & TagMods;
 
-export const Tag = createSkinComponent<UuiTagCoreProps, TagMods>(UuiTag);
+export const Tag = createSkinComponent<UuiTagCoreProps, TagProps>(
+    UuiTag,
+    (props) => ({ color: props.color || 'gray30' }),
+);

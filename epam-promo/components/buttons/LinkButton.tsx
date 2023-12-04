@@ -1,5 +1,5 @@
 import { createSkinComponent, devLogger } from '@epam/uui-core';
-import { LinkButtonCoreProps, LinkButton as UuiLinkButton, LinkButtonProps as UuiLinkButtonProps } from '@epam/uui';
+import { LinkButtonCoreProps, LinkButton as UuiLinkButton } from '@epam/uui';
 
 export interface LinkButtonMods {
     /**
@@ -10,7 +10,7 @@ export interface LinkButtonMods {
 
 export type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;
 
-export const LinkButton = createSkinComponent<UuiLinkButtonProps, LinkButtonProps>(
+export const LinkButton = createSkinComponent<LinkButtonCoreProps, LinkButtonProps>(
     UuiLinkButton,
     (props) => {
         if (__DEV__) {
@@ -23,7 +23,6 @@ export const LinkButton = createSkinComponent<UuiLinkButtonProps, LinkButtonProp
         }
         return {
             color: props.color ?? 'blue',
-        } as LinkButtonProps;
+        };
     },
-    () => [],
 );
