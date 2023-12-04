@@ -79,7 +79,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 forwardedRef={ !focusLock && ref as React.ForwardedRef<HTMLDivElement> }
                 cx={ cx(uuiElement.dropdownBody, uuiMarkers.lockFocus, props.cx) }
                 style={ {
-                    ...props.style, minWidth: props.width, minHeight: props.height, maxWidth: props.maxWidth, width: props.width,
+                    ...props.style, minWidth: props.width, minHeight: props.height, maxWidth: props.maxWidth ?? props.width,
                 } }
                 rawProps={ { tabIndex: -1, ...props.rawProps } }
             >
