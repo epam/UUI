@@ -2,7 +2,6 @@ import * as React from 'react';
 import { PropDoc, SharedPropEditorsMap, IPropDocEditor, TPropDocEditorType, PropExampleObject } from '@epam/uui-docs';
 import { IconButton, Tooltip, FlexRow, FlexCell, FlexSpacer } from '@epam/uui';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-fill-18.svg';
-import { getIconList } from '../../../../documents/iconListHelpers';
 
 interface IPropEditorCell<TProp> {
     prop: PropDoc<any, any>;
@@ -37,19 +36,9 @@ export function PropEditorCell<TProp = any>(props: IPropEditorCell<TProp>): Reac
             onExampleIdChange: onPropExampleIdChange,
         };
         const Component = typeof PE === 'string' ? SharedPropEditorsMap[PE] : PE;
-        let iconsListHack;
-        if (PE === 'IconEditor') {
-            /**
-             * It's a temporary hack, because currently we don't support collecting all icons in the "uui-docs" module like in "app".
-             * The "app" uses webpack-specific API for this. And "uui-docs" is built using Rollup.
-             */
-            iconsListHack = {
-                getIconList: () => getIconList(true),
-            };
-        }
         return (
             <FlexRow size="24" spacing="6" rawProps={ { style: { marginTop: '6px', marginBottom: '6px', flexWrap: 'wrap' } } }>
-                <Component { ...peProps } { ...iconsListHack } />
+                <Component { ...peProps } />
                 <FlexSpacer />
                 { descriptionNode }
             </FlexRow>
