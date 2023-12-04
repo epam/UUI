@@ -4238,10 +4238,10 @@
     "@udecode/plate-table" "26.0.5"
     validator "^13.9.0"
 
-"@udecode/plate-serializer-html@26.0.0":
-  version "26.0.0"
-  resolved "https://registry.yarnpkg.com/@udecode/plate-serializer-html/-/plate-serializer-html-26.0.0.tgz#3985ededbfe0c3015d3f2c3ba65a225b16eaba06"
-  integrity sha512-j2R9ATJaGa66/v+pNWvfWVpBpx32B4AYlWHcMnAWyMohPY/5jPF9wwib2RiEQm7X513BhGUgESxZGq0bB6qmvA==
+"@udecode/plate-serializer-html@25.0.1":
+  version "25.0.1"
+  resolved "https://registry.yarnpkg.com/@udecode/plate-serializer-html/-/plate-serializer-html-25.0.1.tgz#c7b72c7c431eb446a22890dcb8ca2b7e225c7721"
+  integrity sha512-G5dg+r1dNLIUcDzxb9jnCkrIBZQRz5DE+a8xjBNjdJlFQIolLyr5JRqGOU7uU+nQS0KJ8lE7Yu1z2sOgfT03pg==
   dependencies:
     "@udecode/plate-common" "25.0.1"
     html-entities "^2.4.0"
