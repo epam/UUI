@@ -110,13 +110,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onUpdate: () => this._forceUpdate(),
             });
         }
-        this.update(editable, this.props);
         if (this.isSelectAllEnabled()) {
             this.selectAll = {
                 value: false,
                 onValueChange: this.handleSelectAll,
             };
         }
+        this.update(editable, this.props);
     }
 
     private defaultGetId = (i: any) => i.id;
