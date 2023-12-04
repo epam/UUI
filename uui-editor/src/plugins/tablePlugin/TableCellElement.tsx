@@ -18,7 +18,7 @@ export interface TableCellElementProps
 const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 TableCellElementProps
->(({ children, className, style, hideBorder, isHeader, ...props }, ref) => {
+>(({ children, className, style, hideBorder, ...props }, ref) => {
     const { element } = props;
 
     const {
@@ -40,6 +40,7 @@ TableCellElementProps
         colSpan,
     });
     const { rightProps, bottomProps, leftProps, hiddenLeft } = useTableCellElementResizable(resizableState);
+    const isHeader = element.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
 
     return (

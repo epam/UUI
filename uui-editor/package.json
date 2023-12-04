@@ -31,7 +31,7 @@
     "@udecode/plate-paragraph": "25.0.1",
     "@udecode/plate-reset-node": "25.0.1",
     "@udecode/plate-serializer-docx": "26.0.5",
-    "@udecode/plate-serializer-html": "26.0.0",
+    "@udecode/plate-serializer-html": "25.0.1",
     "@udecode/plate-table": "26.0.5",
     "@udecode/plate-resizable": "26.0.5",
     "classnames": "2.2.6",
