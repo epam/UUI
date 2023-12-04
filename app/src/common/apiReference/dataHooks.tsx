@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { svc } from '../../services';
-import { TType, TTypeRef } from './sharedTypes';
+import { TType, TTypeRef } from '@epam/uui-docs';
 import { TDocsGenTypeSummary } from './types';
 
 const cache: Map<TTypeRef, Promise<{ content: TType }>> = new Map();

@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useUuiContext } from '@epam/uui-core';
-import { TUUITheme } from '../common/docs/BaseDocsBlock';
+import { getCurrentTheme } from './';
+import { TTheme } from '../common/docs/docsConstants';
 
 export const useTheme = () => {
     const { uuiRouter } = useUuiContext();
-    const [theme, setTheme] = useState<TUUITheme>(
-        uuiRouter.getCurrentLink().query['theme'] || (localStorage.getItem('app-theme') as TUUITheme) || 'uui-theme-loveship',
-    );
+    const [theme, setTheme] = useState<TTheme>(getCurrentTheme());
 
-    const toggleTheme = (newTheme: TUUITheme) => {
+    const toggleTheme = (newTheme: TTheme) => {
         setTheme(newTheme);
         localStorage.setItem('app-theme', newTheme);
     };
@@ -17,7 +16,7 @@ export const useTheme = () => {
     useEffect(() => {
         const { pathname, query } = uuiRouter.getCurrentLink();
         const currentTheme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[0];
-        document.body.classList.replace(currentTheme, theme);
+        document.body.classList.replace(currentTheme, `uui-theme-${theme}`);
         uuiRouter.redirect({ pathname: pathname, query: { ...query, theme: theme } });
     }, [theme]);
 

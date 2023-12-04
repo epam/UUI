@@ -2,32 +2,15 @@ import * as React from 'react';
 import cx from 'classnames';
 import { TDocConfig, TSkin } from '@epam/uui-docs';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
-import { Checkbox, FlexRow, FlexSpacer, RichTextView, ScrollBars, TabButton, Tooltip, IconContainer } from '@epam/uui';
+import { Checkbox, FlexRow, FlexSpacer, IconContainer, RichTextView, ScrollBars, TabButton, Tooltip } from '@epam/uui';
 import { svc } from '../../services';
-import { getQuery } from '../../helpers';
+import { getQuery, getCurrentTheme } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import { TypeRefSection } from '../apiReference/TypeRefSection';
 import { ComponentEditorWrapper } from './componentEditor/ComponentEditor';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import css from './BaseDocsBlock.module.scss';
-
-export enum TMode {
-    doc = 'doc',
-    propsEditor = 'propsEditor'
-}
-
-export enum TTheme {
-    electric = 'electric',
-    loveship = 'loveship',
-    loveship_dark = 'loveship_dark',
-    promo = 'promo',
-    vanilla_thunder = 'vanilla_thunder'
-}
-
-export type TUUITheme = `uui-theme-${TTheme}`;
-
-const DEFAULT_MODE = TMode.doc;
-const DEFAULT_THEME: TUUITheme = 'uui-theme-loveship';
+import { DEFAULT_MODE, TMode, TTheme } from './docsConstants';
 
 const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific package will be used, according to the selected theme (for example, "@epam/loveship"). If unchecked, it will use a component from the "@epam/uui" package, only with semantic props.';
 
@@ -52,12 +35,12 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return getQuery('mode') || DEFAULT_MODE;
     }
 
-    private getTheme(): TUUITheme {
-        return getQuery('theme') ?? (localStorage.getItem('app-theme') as TUUITheme) ?? DEFAULT_THEME;
+    private getTheme(): TTheme {
+        return getCurrentTheme();
     }
 
     private hasSkin(): boolean {
-        return ['electric', 'loveship', 'loveship_dark', 'promo'].includes(this.getTheme().split('-').pop());
+        return ['electric', 'loveship', 'loveship_dark', 'promo'].includes(this.getTheme());
     }
 
     abstract title: string;
@@ -196,10 +179,10 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         this.handleNav({ mode });
     }
 
-    private handleNav = (params: { mode?: TMode, isSkin?: boolean, theme?: TUUITheme }) => {
+    private handleNav = (params: { mode?: TMode, isSkin?: boolean, theme?: TTheme }) => {
         const mode: TMode = params.mode ? params.mode : this.getMode();
         const isSkin: boolean = params.isSkin ?? this.isSkin();
-        const theme: TUUITheme = params.theme ? params.theme : this.getTheme();
+        const theme: TTheme = params.theme ? params.theme : this.getTheme();
 
         svc.uuiRouter.redirect({
             pathname: '/documents',
