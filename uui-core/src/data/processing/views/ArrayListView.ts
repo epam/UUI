@@ -51,12 +51,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         super(editable, newProps);
         this.props = newProps;
         this.visibleTree = Tree.blank(newProps);
-        if (this.isSelectAllEnabled()) {
-            this.selectAll = {
-                value: false,
-                onValueChange: this.handleSelectAll,
-            };
-        }
         this.update(editable, props);
     }
 
