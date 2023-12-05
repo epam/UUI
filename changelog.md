@@ -1,3 +1,8 @@
+# 5.4.2 - ...
+
+* [NumericInput]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
+
+
 # 5.4.1 - 30.11.2023
 
 **What's New**

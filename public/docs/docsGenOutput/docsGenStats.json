@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 613,
-   "amountTypes": 210
+   "amountProps": 614,
+   "amountTypes": 211
   },
   "value": [
    {
@@ -1132,6 +1132,12 @@
     "value": [
      "color",
      "icon"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:NumericInputMods",
+    "value": [
+     "size"
     ]
    },
    {
@@ -3406,7 +3412,6 @@
      "ModalWindowMods",
      "MultiSwitchProps",
      "NotificationCardProps",
-     "NumericInputMods",
      "PanelMods",
      "PickerItemProps",
      "PickerListItemProps",
@@ -3461,6 +3466,7 @@
      "MainMenuIconProps",
      "MainMenuProps",
      "ModalWindowProps",
+     "NumericInputMods",
      "NumericInputProps",
      "PanelProps",
      "PickerInputProps",
