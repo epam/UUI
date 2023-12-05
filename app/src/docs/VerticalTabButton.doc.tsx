@@ -13,8 +13,8 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
         contexts: [TDocContext.VerticalTabButton],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:VerticalTabButtonProps', component: uui.VerticalTabButton },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:VerticalTabButtonProps', component: loveship.VerticalTabButton },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:VerticalTabButtonProps', component: promo.VerticalTabButton },
+            [TSkin.Loveship]: { type: '@epam/uui:VerticalTabButtonProps', component: loveship.VerticalTabButton },
+            [TSkin.Promo]: { type: '@epam/uui:VerticalTabButtonProps', component: promo.VerticalTabButton },
         },
         doc: (doc: DocBuilder<uui.VerticalTabButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });

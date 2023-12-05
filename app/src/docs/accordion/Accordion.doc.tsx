@@ -13,8 +13,8 @@ export class AccordionDoc extends BaseDocsBlock {
         name: 'Accordion',
         contexts: [TDocContext.Resizable],
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:AccordionProps', component: loveship.Accordion },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:AccordionProps', component: promo.Accordion },
+            [TSkin.Loveship]: { type: '@epam/uui:AccordionProps', component: loveship.Accordion },
+            [TSkin.Promo]: { type: '@epam/uui:AccordionProps', component: promo.Accordion },
             [TSkin.UUI]: { type: '@epam/uui:AccordionProps', component: uui.Accordion },
         },
         doc: (doc: DocBuilder<uui.AccordionProps>) => {

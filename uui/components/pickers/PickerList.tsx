@@ -1,8 +1,8 @@
 import React from 'react';
 import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder } from '@epam/uui-core';
 import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
-import { IHasEditMode, SizeMod, TextSize } from '../types';
-import { Text } from '../typography';
+import { IHasEditMode, SizeMod } from '../types';
+import { Text, TextSize } from '../typography';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';

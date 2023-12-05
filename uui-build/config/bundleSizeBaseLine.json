@@ -1,20 +1,20 @@
 {
-  "version": "5.3.0-rc.1",
-  "timestamp": "2023-11-21",
+  "version": "5.4.1",
+  "timestamp": "2023-12-01",
   "sizes": {
-    "templateApp": 1053423,
-    "@epam/app": 7337552,
-    "@epam/draft-rte": 58090,
-    "@epam/electric": 25620,
-    "@epam/promo": 76750,
+    "templateApp": 1068078,
+    "@epam/app": 8545178,
+    "@epam/draft-rte": 58093,
+    "@epam/electric": 25657,
+    "@epam/promo": 81033,
     "@epam/uui-extra": 219,
-    "@epam/loveship": 153019,
-    "@epam/uui-components": 282798,
-    "@epam/uui-core": 279507,
+    "@epam/loveship": 155866,
+    "@epam/uui-components": 285128,
+    "@epam/uui-core": 281989,
     "@epam/uui-db": 45539,
-    "@epam/uui-docs": 119571,
-    "@epam/uui-editor": 179695,
-    "@epam/uui-timeline": 50292,
-    "@epam/uui": 569198
+    "@epam/uui-docs": 180221,
+    "@epam/uui-editor": 179721,
+    "@epam/uui-timeline": 50296,
+    "@epam/uui": 570198
   }
 }

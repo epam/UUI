@@ -14,8 +14,8 @@ export class PanelDoc extends BaseDocsBlock {
         contexts: [TDocContext.Resizable, TDocContext.Default],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:PanelProps', component: uui.Panel },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:PanelProps', component: loveship.Panel },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:PanelProps', component: promo.Panel },
+            [TSkin.Loveship]: { type: '@epam/loveship:PanelProps', component: loveship.Panel },
+            [TSkin.Promo]: { type: '@epam/promo:PanelProps', component: promo.Panel },
         },
         doc: (doc: DocBuilder<promo.PanelProps | loveship.PanelProps | uui.PanelProps>) => {
             doc.merge('children', { examples: childrenExamples });

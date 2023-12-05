@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import {
-    DataTable, Panel, FlexRow, Text, PresetsPanel, BadgeColor, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
-    ModalHeader, FlexSpacer,
+    DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
+    ModalHeader, FlexSpacer, BadgeColor,
 } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 
@@ -133,7 +133,7 @@ export default function PresetsPanelExample() {
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     return (
-        <Panel background="surface" shadow style={ { height: '400px' } }>
+        <Panel background="surface-main" shadow style={ { height: '400px' } }>
             <FlexRow>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>

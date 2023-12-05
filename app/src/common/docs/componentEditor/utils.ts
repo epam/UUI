@@ -1,4 +1,5 @@
 import { IPropSamplesCreationContext, PropDoc, PropExampleObject, TSkin } from '@epam/uui-docs';
+import { TTheme } from '../docsConstants';
 
 export function isPropValueEmpty(propValue: any): boolean {
     return propValue === undefined;
@@ -13,16 +14,19 @@ export function getExamplesList(examples: PropDoc<any, any>['examples'], ctx: IP
     return [];
 }
 
-export function getTheme(skin: TSkin) {
-    switch (skin) {
-        case TSkin.UUI:
-            return '';
-        case TSkin.UUI4_promo:
-            return 'uui-theme-promo';
-        case TSkin.UUI3_loveship:
-            return 'uui-theme-loveship';
+export function getSkin(theme: TTheme, isSkin: boolean): TSkin {
+    if (!isSkin) return TSkin.UUI;
+
+    switch (theme) {
+        case TTheme.electric:
+            return TSkin.Electric;
+        case TTheme.loveship:
+        case TTheme.loveship_dark:
+            return TSkin.Loveship;
+        case TTheme.promo:
+            return TSkin.Promo;
         default:
-            return '';
+            return TSkin.UUI;
     }
 }
 

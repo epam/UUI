@@ -72,7 +72,7 @@ export default function PagedTable() {
     const listProps = view.getListProps();
 
     return (
-        <Panel background="surface" shadow cx={ css.container }>
+        <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
                 { ...listProps }
                 getRows={ view.getVisibleRows }

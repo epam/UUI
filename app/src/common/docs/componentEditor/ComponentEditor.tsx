@@ -1,27 +1,28 @@
 import * as React from 'react';
 import { IHasCX } from '@epam/uui-core';
-import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin, TDocsGenExportedType } from '@epam/uui-docs';
+import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin, TDocsGenExportedType, useDocBuilderGen } from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { useDocBuilderGen } from '../docBuilderGen/hooks/useDocBuilderGen';
-import { getExamplesList, getInputValuesFromInputData, getTheme, isPropValueEmpty } from './utils';
+import { getExamplesList, getInputValuesFromInputData, getSkin, isPropValueEmpty } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
+import { TTheme } from '../docsConstants';
+import { loadDocsGenType } from '../../apiReference/dataHooks';
 
 export function ComponentEditorWrapper(props: {
+    theme: TTheme,
     title: string;
-    skin: TSkin;
+    isSkin: boolean;
     config: TDocConfig;
     onRedirectBackToDocs: () => void;
 }) {
     const {
+        theme,
         title,
-        skin,
+        isSkin,
         config,
         onRedirectBackToDocs,
     } = props;
-    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({
-        config,
-        skin,
-    });
+    const skin = getSkin(theme, isSkin);
+    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, loadDocsGenType });
 
     React.useEffect(() => {
         if (!config) {
@@ -262,9 +263,8 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
     });
 
     render() {
-        const { title, skin, docs, isLoaded, onRedirectBackToDocs, generatedFromType } = this.props;
+        const { title, docs, isLoaded, onRedirectBackToDocs, generatedFromType } = this.props;
         const { showCode, inputData, selectedContext, isInited, componentKey } = this.state;
-        const currentTheme = getTheme(skin);
         const { component: DemoComponent, name: tagName, contexts, props } = docs || {};
         const selectedCtxName = selectedContext || (contexts?.length > 0 ? contexts[0].name : undefined);
         const isDocUnsupportedForSkin = isLoaded && !docs;
@@ -272,7 +272,6 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         return (
             <ComponentEditorView
                 contexts={ contexts }
-                currentTheme={ currentTheme }
                 componentKey={ componentKey }
                 DemoComponent={ DemoComponent }
                 generatedFromType={ generatedFromType }

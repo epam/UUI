@@ -18,7 +18,7 @@ export default function ButtonAsToggler() {
         <FlexRow spacing="12">
             <Dropdown
                 renderBody={ (props) => (
-                    <Panel background="surface" { ...props }>
+                    <Panel background="surface-main" { ...props }>
                         some dropdown content
                     </Panel>
                 ) }

@@ -13,7 +13,7 @@ export class SliderRatingDoc extends BaseDocsBlock {
         name: 'SliderRating',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
-            [TSkin.UUI3_loveship]: {
+            [TSkin.Loveship]: {
                 type: '@epam/loveship:SliderRatingProps',
                 component: loveship.SliderRating,
                 doc: (doc: DocBuilder<loveship.SliderRatingProps<any>>) => {
@@ -37,7 +37,7 @@ export class SliderRatingDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <span className={ cx(css.wrapper, css.uuiThemePromo) }>
+            <span className={ cx(css.wrapper) }>
                 <EditableDocContent fileName="sliderRating-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/sliderRating/Basic.example.tsx" />

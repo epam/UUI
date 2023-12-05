@@ -12,14 +12,14 @@ export class DropdownContainerDoc extends BaseDocsBlock {
     override config: TDocConfig = {
         name: 'DropdownContainer',
         bySkin: {
-            [TSkin.UUI3_loveship]: {
+            [TSkin.Loveship]: {
                 type: '@epam/loveship:DropdownContainerProps',
                 component: loveship.DropdownContainer,
                 doc: (doc: DocBuilder<loveship.DropdownContainerProps>) => {
                     doc.merge('children', { examples: childrenLoveshipOrPromo });
                 },
             },
-            [TSkin.UUI4_promo]: {
+            [TSkin.Promo]: {
                 type: '@epam/promo:DropdownContainerProps',
                 component: promo.DropdownContainer,
                 doc: (doc: DocBuilder<promo.DropdownContainerProps>) => {

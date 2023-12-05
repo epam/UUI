@@ -5,7 +5,7 @@ import {
     NotificationContextDoc, DropdownDoc, MainMenuDoc, ModalsDoc, BadgeDoc, FiltersPanelDoc, TagDoc,
     PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc, DatePickerDoc, RangeDatePickerDoc,
     TimePickerDoc, ControlGroupDoc, NotificationCardDoc, TooltipDoc, LabeledInputDoc,
-    AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc,
+    AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc,
     FlexRowDoc, FlexCellDoc, FlexSpacerDoc, PanelDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc,
     LockContextDoc, AvatarDoc, InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc,
     AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc,
@@ -122,7 +122,7 @@ export const items: DocItem[] = [
 
     { id: 'assets', name: 'Assets' },
     { id: 'icons', name: 'Icons', component: IconsDoc, parentId: 'assets' },
-    { id: 'promoColors', name: 'Colors', component: ColorsPageDoc, parentId: 'assets' },
+    // { id: 'promoColors', name: 'Colors', component: ColorsPageDoc, parentId: 'assets' },
     { id: 'downloads', name: 'Downloads', component: DownloadsDoc, parentId: 'assets' },
 
     { id: 'dataSources', name: 'DataSources' },

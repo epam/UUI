@@ -4,19 +4,13 @@
 
 .root {
     width: 240px;
-    background-color: #FFFFFF;
+    background-color: var(--uui-surface-sunken);
     display: flex;
     flex-direction: column;
 
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
-
     .tree {
         overflow: auto;
-        border: 1px solid $gray40;
+        border: 1px solid var(--uui-divider);
         border-top: 0;
         border-bottom: 0;
         flex-grow: 1;
@@ -26,5 +20,6 @@
 }
 
 .search {
+    --uui-text_input-border-radius: 0;
     padding: 0 12px;
 }

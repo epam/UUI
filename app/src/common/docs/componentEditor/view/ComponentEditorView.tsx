@@ -1,24 +1,17 @@
 import * as React from 'react';
 import {
-    FlexCell,
-    FlexSpacer,
-    IconButton,
-    Spinner,
-    FlexRow, LinkButton, MultiSwitch, ScrollBars, Text, Tooltip,
+    FlexCell, FlexSpacer, IconButton, Spinner, FlexRow, LinkButton, MultiSwitch, ScrollBars, Text, Tooltip,
 } from '@epam/uui';
-import { cx } from '@epam/uui-core';
 import { PropDoc, IPropSamplesCreationContext, DemoContext, TDocsGenExportedType } from '@epam/uui-docs';
 import { PropEditorRow } from './PropEditorRow';
-//
-import { ReactComponent as ResetIcon } from '../../../../icons/reset-icon.svg';
-import css from './ComponentEditorView.module.scss';
 import { DemoCode } from './DemoCode';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { getInputValuesFromInputData } from '../utils';
+import { ReactComponent as ResetIcon } from '../../../../icons/reset-icon.svg';
+import css from './ComponentEditorView.module.scss';
 
 interface IComponentEditorViewProps {
     contexts: DemoContext[],
-    currentTheme: string;
     componentKey?: string;
     DemoComponent: React.ComponentType<any>;
     generatedFromType?: TDocsGenExportedType;
@@ -89,7 +82,7 @@ export function ComponentEditorView(props: IComponentEditorViewProps) {
 
     return (
         <div className={ css.root }>
-            <div className={ cx(css.container, css.uuiThemePromo) }>
+            <div className={ css.container }>
                 <Toolbar title={ props.title } onReset={ props.onReset } generatedFromType={ props.generatedFromType } />
                 <Header />
                 <div className={ css.rowProps }>
@@ -106,7 +99,7 @@ export function ComponentEditorView(props: IComponentEditorViewProps) {
             </div>
             <div className={ css.demoContext }>
                 <ContextSwitcher contexts={ props.contexts } selectedCtxName={ props.selectedCtxName } onChangeSelectedCtx={ props.onChangeSelectedCtx } />
-                <div className={ cx(css.demoContainer, css[props.currentTheme]) }>
+                <div className={ css.demoContainer }>
                     <ScrollBars>
                         <DemoErrorBoundary>
                             <SelectedDemoContext DemoComponent={ props.DemoComponent } props={ inputValues } />
@@ -127,9 +120,9 @@ const ContextSwitcher = React.memo(
                 size="36"
                 padding="12"
                 spacing="6"
-                background="surface"
+                background="surface-main"
                 borderBottom
-                cx={ cx(css.contextSettingRow, css.uuiThemePromo) }
+                cx={ css.contextSettingRow }
             >
                 <MultiSwitch
                     key="multi-switch"
@@ -165,7 +158,7 @@ const Toolbar = React.memo(
 );
 const Header = React.memo(function HeaderComponent() {
     return (
-        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface">
+        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface-main">
             <FlexCell key="name" width={ 130 }>
                 <Text size="24" fontWeight="600">
                     NAME
@@ -187,7 +180,7 @@ const Header = React.memo(function HeaderComponent() {
 
 function NotSupportedForSkin(props: { onRedirectBackToDocs: () => void }) {
     return (
-        <div className={ cx(css.notSupport, css.themePromo) }>
+        <div className={ css.notSupport }>
             <Text fontSize="16" lineHeight="24">
                 This component does not support property explorer
             </Text>
