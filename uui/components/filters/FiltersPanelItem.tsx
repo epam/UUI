@@ -231,13 +231,19 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         }
     };
 
+    const getTogglerWidth = () => {
+        if (props.togglerWidth) return props.togglerWidth;
+
+        return props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : 300;
+    };
+
     const renderTarget = (dropdownProps: IDropdownToggler) => (
         <FilterPanelItemToggler
             { ...dropdownProps }
             { ...getTogglerValue() }
             title={ props.title }
             predicateName={ props.value ? predicateName : null }
-            maxWidth={ props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : '300' }
+            maxWidth={ getTogglerWidth() }
             size={ props.size }
         />
     );
