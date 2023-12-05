@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-12-01",
+ "timestamp": "2023-12-05",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -81590,37 +81590,19 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NumericInputMods",
      "print": [
-      "interface NumericInputMods extends types.SizeMod, IHasEditMode {",
-      "}"
+      "type NumericInputMods = IHasEditMode & {",
+      "    /** @default '36', but size '48' is deprecated and will be removed in future release */",
+      "    size?: ControlSize;",
+      "};"
      ]
     },
     "props": [
      {
       "uid": 1,
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": 2,
       "name": "mode",
       "comment": {
        "raw": [
@@ -81642,6 +81624,30 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36', but size '48' is deprecated and will be removed in future release"
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
       "required": false
      }
     ],
@@ -82126,26 +82132,6 @@
      },
      {
       "uid": 28,
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": 29,
       "name": "mode",
       "comment": {
        "raw": [
@@ -82167,6 +82153,31 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": 29,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36', but size '48' is deprecated and will be removed in future release"
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:NumericInputMods",
       "required": false
      }
     ],
