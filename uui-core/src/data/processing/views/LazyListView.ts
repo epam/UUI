@@ -513,10 +513,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public getConfig() {
         return {
-            complexIds: this.props.complexIds,
-            cascadeSelection: this.props.cascadeSelection,
-            selectAll: this.props.selectAll,
-            backgroundReload: this.props.backgroundReload,
+            ...super.getConfig(),
             flattenSearchResults: this.props.flattenSearchResults,
         };
     }

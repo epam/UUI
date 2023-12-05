@@ -181,13 +181,4 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         if (actualCount < lastIndex) return actualCount;
         return lastIndex;
     };
-
-    public getProps() {
-        return {
-            complexIds: this.props.complexIds,
-            cascadeSelection: this.props.cascadeSelection,
-            selectAll: this.props.selectAll,
-            backgroundReload: this.props.backgroundReload,
-        };
-    }
 }
