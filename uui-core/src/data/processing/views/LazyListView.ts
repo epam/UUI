@@ -430,7 +430,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             // We need to add more loading rows in such case.
 
             const lastRow = this.rows[this.rows.length - 1];
-
+            console.log('listProps.rowsCount', listProps.rowsCount);
             while (visibleRows.length < count && from + visibleRows.length < listProps.rowsCount) {
                 const index = from + visibleRows.length;
                 const row = this.getLoadingRow('_loading_' + index, index);
@@ -447,11 +447,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public getListProps = (): DataSourceListProps => {
         if (this.props.legacyLoadDataBehavior) {
             this.loadData();
-        }
-        // if data is reloading, to prevent twitching the UI (of pagination, for example)
-        // it is required to return previous listProps.
-        if (this.isReloading && this.listProps) {
-            return this.listProps;
         }
 
         let rowsCount: number;
@@ -478,12 +473,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             rowsCount = Math.max(this.rows.length, lastVisibleIndex + rowsToAddBelowLastKnown);
         }
+        const exactTotalCount = rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount() ?? 0;
+        const totalCount = this.isReloading ? this.listProps?.totalCount ?? exactTotalCount : exactTotalCount;
 
         this.listProps = {
             rowsCount,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount() ?? 0,
+            totalCount,
             selectAll: this.selectAll,
             isReloading: this.isReloading,
         };
