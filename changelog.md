@@ -14,6 +14,8 @@
         * 'action-chat' icon was removed use 'communication-chat' instead
         * 'not-recommended' icon was removed use 'blacklist' instead
         * 'copy-content' icon was removed use 'action-copy_content' instead
+        * 'action-clock' icon was removed use 'action-schedule' instead
+        * 'notification-close_popup' icon was removed use 'navigation-close' instead
 
 **What's Fixed**
 * [Calendar]: fixed disabled days text color
