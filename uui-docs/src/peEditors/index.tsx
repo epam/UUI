@@ -11,7 +11,7 @@ import { SingleUnknownEditor } from './singleUnknownEditor';
 import { CantResolve } from './cantResolve';
 import { IconEditor } from './iconEditor';
 
-export const SharedPropEditorsMap: Record<TSharedPropEditorType, React.FC<IPropDocEditor>> = {
+export const SharedPropEditorsMap: Record<TSharedPropEditorType, React.FC<IPropDocEditor<any>>> = {
     CssClassEditor,
     JsonEditor,
     JsonView,
