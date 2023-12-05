@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 613,
-   "amountTypes": 210
+   "amountProps": 612,
+   "amountTypes": 209
   },
   "value": [
    {
@@ -1610,12 +1610,6 @@
     ]
    },
    {
-    "typeRef": "@epam/loveship:TextInputMods",
-    "value": [
-     "size"
-    ]
-   },
-   {
     "typeRef": "@epam/loveship:TextMods",
     "value": [
      "color",
@@ -1672,7 +1666,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 475
+   "amountTypes": 473
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -2126,7 +2120,6 @@
    "@epam/loveship:RatingProps",
    "@epam/loveship:RowSize",
    "@epam/loveship:RowSizeMod",
-   "@epam/loveship:SearchInputProps",
    "@epam/loveship:SizeMod",
    "@epam/loveship:SliderRatingProps",
    "@epam/loveship:SnackbarCardProps",
@@ -2136,7 +2129,6 @@
    "@epam/loveship:TabButtonProps",
    "@epam/loveship:TagMods",
    "@epam/loveship:TagProps",
-   "@epam/loveship:TextInputProps",
    "@epam/loveship:TextMods",
    "@epam/loveship:TextProps",
    "@epam/loveship:TextSize",
@@ -2160,8 +2152,8 @@
     "@epam/uui-components": 105,
     "@epam/uui": 142,
     "@epam/promo": 128,
-    "@epam/electric": 105,
-    "@epam/loveship": 137,
+    "@epam/electric": 106,
+    "@epam/loveship": 136,
     "@epam/uui-editor": 63
    }
   },
@@ -2771,6 +2763,7 @@
      "RangeDatePicker",
      "RichTextView",
      "ScrollBars",
+     "SearchInput",
      "Spinner",
      "SuccessNotification",
      "SvgCircleProgress",
@@ -2926,7 +2919,6 @@
      "applyButtonMods",
      "applyIconContainerMods",
      "applyRangeSliderMods",
-     "applyTextInputMods",
      "ColumnsConfigurationModal",
      "DataTable",
      "DataTableCell",
@@ -3040,14 +3032,14 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 556,
+   "allExports": 552,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
     "@epam/uui": 134,
-    "@epam/promo": 55,
+    "@epam/promo": 54,
     "@epam/electric": 3,
-    "@epam/loveship": 65,
+    "@epam/loveship": 62,
     "@epam/uui-editor": 10
    }
   },
@@ -3518,7 +3510,6 @@
      "RowSizeMod",
      "SizeMod",
      "StatusIndicatorMods",
-     "TextInputProps",
      "TextMods",
      "TooltipMods"
     ],
@@ -3596,7 +3587,6 @@
      "SliderRatingProps",
      "SnackbarCardProps",
      "StatusIndicatorMods",
-     "TextInputMods",
      "TextMods",
      "TooltipMods"
     ],
@@ -3622,13 +3612,11 @@
      "MultiSwitchProps",
      "NotificationCardProps",
      "RowSize",
-     "SearchInputProps",
      "StatusIndicatorProps",
      "TabButtonMods",
      "TabButtonProps",
      "TagMods",
      "TagProps",
-     "TextInputProps",
      "TextProps",
      "TextSize",
      "TooltipProps"
