@@ -98,10 +98,17 @@ export class PagePanelContext extends React.Component<DemoComponentProps, DemoCo
     render() {
         const { DemoComponent, props } = this.props;
 
+        /**
+         * It looks odd, but the "PagePanelContext" context is only used
+         * for the "Paginator" component at the moment.
+         * And the assumption here is that the value is always a number.
+         */
+        const index = Number(props.value) - 1;
+
         return (
             <Panel cx={ css.container } margin="24">
                 <Panel background="surface-main" cx={ css.demo }>
-                    {this.renderTable(items[props.value - 1])}
+                    {this.renderTable(items[index])}
                     <FlexRow padding="12" vPadding="12" size="36">
                         <DemoComponent { ...props } totalPages={ this.state.totalPages } />
                     </FlexRow>
