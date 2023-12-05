@@ -3,12 +3,12 @@ import { Button, MultiSwitch, Tooltip } from '@epam/uui';
 import { isPropValueEmpty, stringifyUnknown } from '../utils/propEditorUtils';
 import { IPropDocEditor } from '../../types';
 
-export function MultiUnknownExamples(props: IPropDocEditor) {
-    return <MultiUnknownExamplesBase propDeProps={ props } isValueNodeVisible={ true } />;
+export function MultiUnknownExamples<TProp>(props: IPropDocEditor<TProp>) {
+    return <MultiUnknownExamplesBase<TProp> propDeProps={ props } isValueNodeVisible={ true } />;
 }
-export function getMultiUnknownExamplesComponent(params: IMultiUnknownExamplesCustomization) {
-    return function WithMultiUnknownExamplesComponent(props: IPropDocEditor) {
-        return <MultiUnknownExamplesBase propDeProps={ props } { ...params } />;
+export function getMultiUnknownExamplesComponent<TProp>(params: IMultiUnknownExamplesCustomization) {
+    return function WithMultiUnknownExamplesComponent(props: IPropDocEditor<TProp>) {
+        return <MultiUnknownExamplesBase<TProp> propDeProps={ props } { ...params } />;
     };
 }
 
@@ -16,7 +16,7 @@ interface IMultiUnknownExamplesCustomization {
     isValueNodeVisible: boolean,
 }
 
-function MultiUnknownExamplesBase(props: { propDeProps: IPropDocEditor } & IMultiUnknownExamplesCustomization) {
+function MultiUnknownExamplesBase<TProp>(props: { propDeProps: IPropDocEditor<TProp> } & IMultiUnknownExamplesCustomization) {
     const { value, examples, exampleId, onExampleIdChange } = props.propDeProps;
     const items = examples.map((example) => ({
         caption: example.name,

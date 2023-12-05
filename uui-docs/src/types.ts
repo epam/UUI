@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IDemoApi } from './demoApi';
 import { Icon } from '@epam/uui-core';
 
-export interface DemoComponentProps<TProps = any> {
+export interface DemoComponentProps<TProps = PropDocPropsUnknown> {
     DemoComponent: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
     props: TProps;
 }
@@ -11,17 +11,17 @@ export interface IComponentDocs<TProps> {
     name: string;
     component?: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
     props?: PropDoc<TProps, keyof TProps>[];
-    contexts?: DemoContext[];
+    contexts?: DemoContext<TProps>[];
 }
 
-export interface DemoContext {
-    context: React.ComponentType<DemoComponentProps>;
+export interface DemoContext<TProps> {
+    context: React.ComponentType<TProps>;
     name: string;
 }
 
-export interface IPropSamplesCreationContext<TProps = {}> {
+export interface IPropSamplesCreationContext<TProps = PropDocPropsUnknown> {
     getCallback(name: string): () => void;
-    getChangeHandler(name: string): (newValue: any) => void;
+    getChangeHandler(name: string): (newValue: unknown) => void;
     getSelectedProps(): TProps;
     demoApi: IDemoApi;
     forceUpdate: () => void;
@@ -43,14 +43,15 @@ export type PropExampleObject<TProp> = {
 
 export type PropExample<TProp> = PropExampleObject<TProp> | TProp;
 
-export interface IPropDocEditor<TProp = any> {
+export interface IPropDocEditor<TProp> {
     name: string;
     value: TProp;
-    exampleId: string;
+    exampleId: string | undefined;
     examples: PropExampleObject<TProp>[];
     onValueChange(newValue: TProp): void;
-    onExampleIdChange(newExampleId: string): void;
+    onExampleIdChange(newExampleId: string | undefined): void;
 }
+
 export type TSharedPropEditorType =
     'CssClassEditor' |
     'JsonEditor' |
@@ -65,7 +66,7 @@ export type TSharedPropEditorType =
     'CantResolve'
     ;
 
-export type TPropDocEditorType = React.FC<IPropDocEditor> | TSharedPropEditorType;
+export type TPropDocEditorType = React.FC<IPropDocEditor<any>> | TSharedPropEditorType;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {
     name: Extract<keyof TProps, string>;
@@ -76,6 +77,9 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     editorType?: TPropDocEditorType;
     remountOnChange?: boolean;
 }
+
+export type PropDocPropsUnknown = Record<string, unknown>;
+export type PropDocUnknown = PropDoc<PropDocPropsUnknown, string>;
 
 export enum TSkin {
     UUI = 'uui',
