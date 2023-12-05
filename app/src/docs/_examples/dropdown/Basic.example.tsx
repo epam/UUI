@@ -7,7 +7,7 @@ import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { ReactComponent as aimIcon } from '@epam/assets/icons/common/action-target-18.svg';
 import { ReactComponent as telescopeIcon } from '@epam/assets/icons/common/communication-telescope-18.svg';
-import { ReactComponent as chatIcon } from '@epam/assets/icons/common/action-chat-18.svg';
+import { ReactComponent as chatIcon } from '@epam/assets/icons/common/communication-chat-18.svg';
 import { ReactComponent as githubIcon } from '@epam/assets/icons/common/social-network-github-18.svg';
 import { ReactComponent as skypeIcon } from '@epam/assets/icons/common/communication-skype-18.svg';
 import { ReactComponent as instaIcon } from '@epam/assets/icons/common/social-network-instagram-18.svg';
@@ -15,7 +15,7 @@ import { ReactComponent as shareIcon } from '@epam/assets/icons/common/social-sh
 import { ReactComponent as phoneIcon } from '@epam/assets/icons/common/communication-phone-18.svg';
 import { ReactComponent as mailIcon } from '@epam/assets/icons/common/communication-mail-18.svg';
 import { ReactComponent as inIcon } from '@epam/assets/icons/common/social-network-linkedin-18.svg';
-import { ReactComponent as geoIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
+import { ReactComponent as geoIcon } from '@epam/assets/icons/common/communication-geo_tag-18.svg';
 import { ReactComponent as rightArrIcon } from '@epam/assets/icons/common/navigation-chevron-right-12.svg';
 
 export default function BasicDropdownExample() {
@@ -23,7 +23,7 @@ export default function BasicDropdownExample() {
         return (
             <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
                 <FlexRow alignItems="top" padding="12" vPadding="24">
-                    <Panel background="surface" style={ { width: '100%' } }>
+                    <Panel background="surface-main" style={ { width: '100%' } }>
                         <FlexRow cx={ css.containerItem } padding="6">
                             <Avatar size="48" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
@@ -45,7 +45,7 @@ export default function BasicDropdownExample() {
                         </FlexRow>
 
                         <FlexRow padding="6">
-                            <Panel background="surface">
+                            <Panel background="surface-main">
                                 <FlexRow alignItems="center" spacing="6">
                                     <Badge cx={ css.badge } color="success" size="18" icon={ notificationIcon } caption="Available" />
                                     <Badge cx={ css.badge } color="warning" size="18" caption="Bench" />
@@ -62,7 +62,7 @@ export default function BasicDropdownExample() {
                 <div className={ css.divider }></div>
 
                 <FlexRow padding="12" vPadding="24">
-                    <Panel background="surface">
+                    <Panel background="surface-main">
                         <FlexRow alignItems="center" spacing="12" padding="6">
                             <IconButton icon={ telescopeIcon } color="info" onClick={ () => null } />
                             <IconButton icon={ chatIcon } color="info" onClick={ () => null } />
@@ -131,7 +131,7 @@ export default function BasicDropdownExample() {
                 <div className={ css.divider }></div>
 
                 <FlexRow padding="18" vPadding="24">
-                    <Panel background="surface">
+                    <Panel background="surface-main">
                         <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
                             Reporting to
                         </Text>

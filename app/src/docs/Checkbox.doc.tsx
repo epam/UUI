@@ -13,8 +13,8 @@ export class CheckboxDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Table],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:CheckboxProps', component: uui.Checkbox },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:CheckboxProps', component: loveship.Checkbox },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:CheckboxProps', component: promo.Checkbox },
+            [TSkin.Loveship]: { type: '@epam/uui:CheckboxProps', component: loveship.Checkbox },
+            [TSkin.Promo]: { type: '@epam/uui:CheckboxProps', component: promo.Checkbox },
         },
     };
 

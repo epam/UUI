@@ -14,8 +14,8 @@ export class StatusIndicatorDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:StatusIndicatorProps', component: uui.StatusIndicator },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:StatusIndicatorProps', component: loveship.StatusIndicator },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:StatusIndicatorProps', component: promo.StatusIndicator },
+            [TSkin.Loveship]: { type: '@epam/loveship:StatusIndicatorProps', component: loveship.StatusIndicator },
+            [TSkin.Promo]: { type: '@epam/promo:StatusIndicatorProps', component: promo.StatusIndicator },
         },
     };
 

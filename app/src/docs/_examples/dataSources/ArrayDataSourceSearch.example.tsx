@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-import { FlexRow, Panel, TextInput } from '@epam/promo';
+import { FlexRow, Panel, TextInput } from '@epam/uui';
 import { DataSourceViewer } from '@epam/uui-docs';
 
 const items = Array(100).fill(0).map((_, index) => ({

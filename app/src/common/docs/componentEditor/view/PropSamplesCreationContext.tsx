@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { FlexRow, Panel } from '@epam/uui';
+import { Icon } from '@epam/uui-core';
 import { IPropSamplesCreationContext } from '@epam/uui-docs';
 import { svc } from '../../../../services';
+import { getIconList } from '../../../../documents/iconListHelpers';
 
 export class PropSamplesCreationContext implements IPropSamplesCreationContext<any> {
     constructor(
@@ -13,12 +15,16 @@ export class PropSamplesCreationContext implements IPropSamplesCreationContext<a
     ) {
     }
 
+    getIconList = () => {
+        return getIconList<Icon>(true);
+    };
+
     getCallback = (name: string) => {
         function callbackFn(...args: any[]) {
             svc.uuiNotifications
                 .show(
                     () => (
-                        <Panel shadow={ true } background="surface">
+                        <Panel shadow={ true } background="surface-main">
                             <FlexRow padding="24" vPadding="12" borderBottom={ true }>
                                 <pre>
                                     {name}

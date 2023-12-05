@@ -14,8 +14,8 @@ export class TooltipDoc extends BaseDocsBlock {
         name: 'Tooltip',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TooltipProps', component: uui.Tooltip },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:TooltipProps', component: loveship.Tooltip },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:TooltipProps', component: promo.Tooltip },
+            [TSkin.Loveship]: { type: '@epam/loveship:TooltipProps', component: loveship.Tooltip },
+            [TSkin.Promo]: { type: '@epam/promo:TooltipProps', component: promo.Tooltip },
         },
         doc: (doc: DocBuilder<uui.TooltipProps | loveship.TooltipProps | promo.TooltipProps>) => {
             doc.merge('closeDelay', { examples: [0, 500, 1000] });

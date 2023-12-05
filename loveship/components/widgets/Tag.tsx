@@ -1,22 +1,14 @@
 import { createSkinComponent } from '@epam/uui-core';
-import * as uui from '@epam/uui';
-import * as types from '../../components/types';
-import css from './Tag.module.scss';
+import { Tag as UuiTag, TagCoreProps as UuiTagCoreProps } from '@epam/uui';
+import { EpamPrimaryColor } from '../types';
 
-const defaultSize = '18';
-
-export type TagMods = uui.TagMods & {
+export type TagMods = {
     /**
-     * @default 'solid'
+     * @default 'night300'
      */
-    fill?: types.FillStyle;
+    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';
 };
 
-export function applyTagMods(mods: TagMods) {
-    return [css.root, css['fill-' + (mods.fill || 'solid')]];
-}
-export type TagProps = uui.TagProps & TagMods;
+export type TagProps = UuiTagCoreProps & TagMods;
 
-export const Tag = createSkinComponent<TagProps, TagMods>(uui.Tag, (props) => ({
-    size: props.size || defaultSize,
-}), applyTagMods);
+export const Tag = createSkinComponent<UuiTagCoreProps, TagMods>(UuiTag);

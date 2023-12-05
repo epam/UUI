@@ -8,7 +8,7 @@ import { IconButton } from '../../buttons';
 import { Text } from '../../typography';
 import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { FlexRow, Panel } from '../../layout';
-import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/common/action-update-18.svg';
+import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/common/navigation-refresh-18.svg';
 import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/common/save-outline-18.svg';
 import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as CopyIcon } from '@epam/assets/icons/common/action-copy_content-18.svg';
@@ -85,7 +85,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const renderBody = () => {
         const isReadonlyPreset = props.preset.isReadonly;
         return (
-            <Panel background="surface" shadow={ true } cx={ css.presetDropdownPanel }>
+            <Panel background="surface-main" shadow={ true } cx={ css.presetDropdownPanel }>
                 {props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) && (
                     <>
                         {!isReadonlyPreset && (

@@ -13,8 +13,8 @@ export class RichTextViewDoc extends BaseDocsBlock {
         name: 'RichTextView',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:RichTextViewProps', component: uui.RichTextView },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:RichTextViewProps', component: loveship.RichTextView },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:RichTextViewProps', component: promo.RichTextView },
+            [TSkin.Loveship]: { type: '@epam/uui:RichTextViewProps', component: loveship.RichTextView },
+            [TSkin.Promo]: { type: '@epam/uui:RichTextViewProps', component: promo.RichTextView },
         },
         doc: (doc: DocBuilder<uui.RichTextViewProps>) => {
             doc.merge('htmlContent', { examples: htmlContent });

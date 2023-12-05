@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
-import { DataTable, Panel, FlexRow, Text, BadgeColor, Badge } from '@epam/uui';
+import { DataTable, Panel, FlexRow, Text, Badge, BadgeColor } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
@@ -115,7 +115,7 @@ export default function FiltersPanelExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel background="surface" shadow style={ { height: '400px' } }>
+        <Panel background="surface-main" shadow style={ { height: '400px' } }>
             <DataTable
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }

@@ -5,7 +5,7 @@ import { TsComment } from './components/TsComment';
 import { Layout } from './components/Layout';
 import { useSearchParams } from 'react-router-dom';
 import { TDocsGenExportedType } from '@epam/uui-docs';
-import { TTypeRef } from './sharedTypes';
+import { TTypeRef } from '@epam/uui-docs';
 import { TypeRefSection } from './TypeRefSection';
 
 export function TypeRefPage() {

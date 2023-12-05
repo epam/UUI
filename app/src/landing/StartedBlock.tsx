@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     Button, FlexRow, IconContainer, RichTextView, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import css from './StartedBlock.module.scss';
 import { ReactComponent as CrystalIcon } from '../icons/crystal.svg';
 import { ReactComponent as ReactIcon } from '../icons/react_small.svg';
@@ -31,9 +31,9 @@ export class StartedBlock extends React.Component {
                                     <Button
                                         rawProps={ { 'aria-label': 'For Developers' } }
                                         caption="FOR DEVELOPERS"
-                                        fill="white"
+                                        fill="outline"
                                         size="48"
-                                        color="blue"
+                                        color="primary"
                                         clickAnalyticsEvent={ this.forDevelopersEvent }
                                         link={ { pathname: 'documents', query: { id: 'gettingStarted' } } }
                                     />
@@ -53,16 +53,16 @@ export class StartedBlock extends React.Component {
                                     <Button
                                         rawProps={ { 'aria-label': 'For Designers' } }
                                         caption="FOR DESIGNERS"
-                                        fill="white"
+                                        fill="outline"
                                         size="48"
-                                        color="blue"
+                                        color="primary"
                                         link={ {
                                             pathname: 'documents',
                                             query: {
                                                 id: 'gettingStartedForDesigners',
                                                 category: 'forDesigners',
                                                 mode: 'doc',
-                                                skin: TSkin.UUI4_promo,
+                                                skin: TSkin.Promo,
                                             },
                                         } }
                                         clickAnalyticsEvent={ this.forDesignersEvent }

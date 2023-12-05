@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 import { UuiReactMarkdown } from '../documents/uuiReactMarkdown';
 import { cx } from '@epam/uui-core';
-import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
+import { FlexRow, LinkButton, RichTextView } from '@epam/uui';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './ReleasesCell.module.scss';
 

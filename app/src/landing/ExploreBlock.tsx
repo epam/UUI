@@ -2,7 +2,7 @@ import * as React from 'react';
 import css from './ExploreBlock.module.scss';
 import {
     Anchor, FlexRow, IconContainer, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { ReactComponent as DownloadIcon } from '../icons/download.svg';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
@@ -18,7 +18,7 @@ export class ExploreBlock extends React.Component {
             <div className={ css.layout }>
                 <FlexRow cx={ css.explore } borderBottom>
                     <div className={ css.wrapper }>
-                        <Text font="museo-sans" cx={ css.header }>
+                        <Text cx={ css.header }>
                             Explore
                         </Text>
                         <div className={ css.content }>
@@ -27,20 +27,20 @@ export class ExploreBlock extends React.Component {
                                 link={ {
                                     pathname: '/documents',
                                     query: {
-                                        id: 'accordion', mode: 'doc', skin: TSkin.UUI4_promo, category: 'components',
+                                        id: 'accordion', mode: 'doc', skin: TSkin.Promo, category: 'components',
                                     },
                                 } }
                                 onClick={ () => this.sendEvent('Components') }
                             >
                                 <div tabIndex={ 0 } className={ css.components }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                    <Text fontWeight="600" lineHeight="30" fontSize="24" cx={ css.caption }>
                                         Components
                                     </Text>
                                 </div>
                             </Anchor>
                             <Anchor rawProps={ { tabIndex: -1 } } link={ { pathname: '/demo' } } onClick={ () => this.sendEvent('Demo') }>
                                 <div tabIndex={ 0 } className={ css.demo }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                    <Text fontWeight="600" lineHeight="30" fontSize="24" cx={ css.caption }>
                                         Demos
                                     </Text>
                                 </div>
@@ -51,7 +51,7 @@ export class ExploreBlock extends React.Component {
                                 onClick={ () => this.sendEvent('Color palette') }
                             >
                                 <div tabIndex={ 0 } className={ css.colorPalette }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                    <Text fontWeight="600" lineHeight="30" fontSize="24" cx={ css.caption }>
                                         Color Palette
                                     </Text>
                                 </div>
@@ -61,27 +61,27 @@ export class ExploreBlock extends React.Component {
                                 link={ {
                                     pathname: '/documents',
                                     query: {
-                                        id: 'richTextView', mode: 'doc', skin: TSkin.UUI4_promo, category: 'components',
+                                        id: 'richTextView', mode: 'doc', skin: TSkin.Promo, category: 'components',
                                     },
                                 } }
                                 onClick={ () => this.sendEvent('Typography') }
                             >
                                 <div tabIndex={ 0 } className={ css.typography }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                    <Text fontWeight="600" lineHeight="30" fontSize="24" cx={ css.caption }>
                                         Typography
                                     </Text>
-                                    <Text font="museo-sans" cx={ css.typographyIcon }>
+                                    <Text cx={ css.typographyIcon }>
                                         Aa
                                     </Text>
                                 </div>
                             </Anchor>
                             <Anchor
                                 rawProps={ { tabIndex: -1 } }
-                                link={ { pathname: '/documents', query: { id: 'downloads', category: 'assets', skin: TSkin.UUI4_promo } } }
+                                link={ { pathname: '/documents', query: { id: 'downloads', category: 'assets', skin: TSkin.Promo } } }
                                 onClick={ () => this.sendEvent('Downloads') }
                             >
                                 <div tabIndex={ 0 } className={ css.download }>
-                                    <Text font="sans-semibold" lineHeight="30" fontSize="24" cx={ css.caption }>
+                                    <Text fontWeight="600" lineHeight="30" fontSize="24" cx={ css.caption }>
                                         Download Assets
                                     </Text>
                                     <IconContainer rawProps={ { tabIndex: -1 } } icon={ DownloadIcon } cx={ css.downloadIcon } />
