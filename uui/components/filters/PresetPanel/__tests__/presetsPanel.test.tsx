@@ -13,20 +13,6 @@ import {
     ColumnsConfig, DataTableState, FiltersConfig, ITablePreset,
 } from '@epam/uui-core';
 
-jest.mock('react-popper', () => ({
-    ...jest.requireActual('react-popper'),
-    Popper: function PopperMock({ children }: any) {
-        return children({
-            ref: jest.fn,
-            update: jest.fn(),
-            style: {},
-            arrowProps: { ref: jest.fn },
-            placement: 'bottom-start',
-            isReferenceHidden: false,
-        });
-    },
-}));
-
 async function openTabMenuAndClickOption(tab: HTMLElement, optionToClick: string) {
     const btn = within(tab).getByRole('button');
     fireEvent.click(btn);

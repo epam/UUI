@@ -8,7 +8,7 @@ import { isApiRefPropGroup, TDocsGenTypeSummary, TApiRefPropsItem, TTypeGroup } 
 import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
 import { Ref } from './components/Ref';
-import { TType } from './sharedTypes';
+import { TType } from '@epam/uui-docs';
 import css from './TypeRefTable.module.scss';
 
 interface TypeRefTableProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
