@@ -184,4 +184,16 @@
         @include control-vertical-layout(48px, 1px);
         min-width: 48px;
     }
+
+    &.size-60 {
+        @include control-vertical-layout(60px, 1px);
+        min-width: 60px;
+        padding-left: 11px;
+        padding-right: 11px;
+
+        :global(.uui-input) {
+            padding-left: 6px;
+            padding-right: 0;
+        }
+    }
 }
