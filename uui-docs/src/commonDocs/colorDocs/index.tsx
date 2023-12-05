@@ -25,7 +25,7 @@ type TColorMap = {
     [colorName: string]: string
 };
 function getColorPickerComponent(colorMap?: TColorMap) {
-    return function UuiColorPicker(props: IPropDocEditor) {
+    return function UuiColorPicker(props: IPropDocEditor<string>) {
         const { value, onValueChange } = props;
         const examples = props.examples?.map((ex) => {
             const res: { value: string; hex?: string; } = { value: ex.value };
