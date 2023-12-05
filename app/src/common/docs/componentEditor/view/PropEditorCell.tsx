@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PropDoc, SharedPropEditorsMap, IPropDocEditor, TPropDocEditorType, PropExampleObject } from '@epam/uui-docs';
 import { IconButton, Tooltip, FlexRow, FlexCell, FlexSpacer } from '@epam/uui';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-fill-18.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 
 interface IPropEditorCell<TProp> {
     prop: PropDoc<any, any>;
