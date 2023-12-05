@@ -6,7 +6,7 @@ import {
     TPropDocEditorType,
 } from '@epam/uui-docs';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, Tooltip } from '@epam/uui';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-fill-18.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 
 interface IPeTableCellProps<TProps> extends IPropDocEditor<TProps[keyof TProps]> {
     prop: PropDoc<TProps, keyof TProps>;
