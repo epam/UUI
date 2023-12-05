@@ -1,4 +1,4 @@
-export function isPropValueEmpty(propValue: any): boolean {
+export function isPropValueEmpty(propValue: unknown): boolean {
     return propValue === undefined;
 }
 
