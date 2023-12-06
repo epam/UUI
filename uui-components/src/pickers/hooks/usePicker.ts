@@ -101,7 +101,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     };
 
     const clearSelection = () => {
-        view.clearAllSelected();
+        view.clearAllChecked();
 
         handleDataSourceValueChange({
             ...dataSourceState,
