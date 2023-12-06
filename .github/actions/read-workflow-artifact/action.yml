@@ -1,0 +1,59 @@
+name: 'Read workflow artifact'
+description: 'It downloads & unzips artifact from the given workflow'
+inputs:
+  name:
+    description: 'Artifact name'
+    required: true
+  workflow_run_id:
+    description: 'Workflow run id'
+    required: true
+outputs:
+  result:
+    description: "Artifact content"
+    value: ${{ steps.readArtifactContent.outputs.result }}
+runs:
+  using: "composite"
+  steps:
+    - name: 'Download the artifact'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          var artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             run_id: ${{ inputs.workflow_run_id }},
+          });
+          async function downloadArt(artName) {
+            var fs = require('fs');
+            var matchArtifact = artifacts.data.artifacts.find((artifact) => {
+                return artName === artifact.name; 
+            });
+            if (matchArtifact) {
+                var download = await github.rest.actions.downloadArtifact({
+                     owner: context.repo.owner,
+                     repo: context.repo.repo,
+                     artifact_id: matchArtifact.id,
+                     archive_format: 'zip',
+                });
+                fs.writeFileSync('${{github.workspace}}/' + artName + '.zip', Buffer.from(download.data));
+                return true;
+            } else {
+                return false;
+            }
+          }
+          const artifactName = '${{ inputs.name }}';
+          const found = downloadArt(artifactName);
+          if (!found) {
+            core.setFailed('Unable to find artifact: ' + artifactName);
+          }
+
+    - name: 'Unzip file'
+      shell: bash
+      run: unzip ${{ inputs.name }}.zip
+
+    - name: 'Read unzipped file'
+      uses: actions/github-script@v7
+      id: readArtifactContent
+      with:
+        script: |
+          return require('fs').readFileSync('${{ inputs.name }}');

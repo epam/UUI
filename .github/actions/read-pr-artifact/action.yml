@@ -1,0 +1,31 @@
+name: 'Read PR artifact'
+description: 'It reads the artifacts created by "./github/actions/write-pr-artifact" GitHub action'
+inputs:
+  name:
+    description: 'Base name'
+    required: true
+  workflow_run_id:
+    description: 'Workflow run id'
+    required: true
+outputs:
+  content:
+    description: "Content"
+    value: ${{ steps.readContent.outputs.result }}
+  pr_number:
+    description: "PR number"
+    value: ${{ steps.readPrNumber.outputs.result }}
+runs:
+  using: "composite"
+  steps:
+    - name: 'Read content'
+      id: 'readContent'
+      uses: './.github/actions/read-workflow-artifact'
+      with:
+        name: ${{ inputs.name }}_file # It must follow the same pattern as in "./github/actions/write-pr-artifact" GitHub action
+        workflow_run_id: ${{ inputs.workflow_run_id }}
+    - name: 'Read PR number'
+      id: 'readPrNumber'
+      uses: './.github/actions/read-workflow-artifact'
+      with:
+        name: ${{ inputs.name }}_pr # It must follow the same pattern as in "./github/actions/write-pr-artifact" GitHub action
+        workflow_run_id: ${{ inputs.workflow_run_id }}

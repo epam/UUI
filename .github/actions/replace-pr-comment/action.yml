@@ -1,0 +1,32 @@
+name: 'Replace PR comment'
+description: 'It replaces a Pull Request comment using given criteria'
+inputs:
+  pr_number:
+    description: 'Artifact name which contains Pull Request number'
+    required: true
+  comment_content:
+    description: 'Artifact name which contains comment content'
+    required: true
+  comment_author_equals:
+    description: 'Author of the comment'
+    required: true
+  comment_body_includes:
+    description: 'A text the comment body must include'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: 'Find Prev. Comment'
+      uses: peter-evans/find-comment@v2
+      id: findPrevComment
+      with:
+        issue-number: ${{ inputs.pr_number }}
+        comment-author: ${{ inputs.comment_author_equals }}
+        body-includes: ${{ inputs.comment_body_includes }}
+    - name: 'Replace comment'
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        comment-id: ${{ steps.findPrevComment.outputs.comment-id }}
+        issue-number: ${{ inputs.pr_number }}
+        body: ${{ inputs.comment_content }}
+        edit-mode: replace

@@ -1,3 +1,7 @@
+#
+# We split our workflow onto two parts: non-privileged and privileged.
+# Here is the explanation why: https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
 name: track_bundle_size
 on:
     pull_request:
@@ -12,19 +16,12 @@ concurrency:
 jobs:
     track-bundle-size:
         runs-on: ubuntu-latest
-        container: node:16
+        container: node:20
         steps:
+            # By default, it checks out the "merge-commit" for "pull_request" events (https://github.com/actions/checkout).
+            # I.e. the result of merging source branch to the target branch will be checked out.
             - uses: actions/checkout@v3
-              with:
-                  ref: ${{ github.event.pull_request.head.ref }}
-                  repository: ${{ github.event.pull_request.head.repo.full_name }}
-                  path: source-branch
-
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: '16.x'
-
-            - uses: actions/cache@v2
+            - uses: actions/cache@v3
               with:
                   path: |
                       node_modules
@@ -32,34 +29,22 @@ jobs:
                   key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: v1-npm-deps-
 
-            - name: track-bundle-size-source
-              working-directory: source-branch
+            - name: track-bundle-size-merge-commit
               run: |
                   yarn
                   yarn track-bundle-size
 
-            - name: 'Upload trackBundleSize.md'
-              uses: actions/upload-artifact@v3
+            - uses: './.github/actions/write-pr-artifact'
               with:
-                  name: trackBundleSize.md
-                  path: ./source-branch/.reports/trackBundleSize.md
-                  retention-days: 1 # set minimum retention
+                  name: 'trackBundleSize.md'
+                  path: './.reports/trackBundleSize.md'
+                  pr_number: ${{ github.event.pull_request.number }}
 
-            - name: 'Create prNumber.txt'
-              run: |
-                  echo ${{ github.event.pull_request.number }} > ./prNumber.txt
-
-            - name: 'Upload prNumber.txt'
-              uses: actions/upload-artifact@v3
-              with:
-                  name: prNumber.txt
-                  path: ./prNumber.txt
-                  retention-days: 1 # set minimum retention
             - name: 'Mark as failed if any package size exceeds threshold'
-              uses: actions/github-script@v6
+              uses: actions/github-script@v7
               with:
                   script: |
-                      const mdContent = require('fs').readFileSync('./source-branch/.reports/trackBundleSize.md').toString();
+                      const mdContent = require('fs').readFileSync('./.reports/trackBundleSize.md').toString();
                       if (mdContent.indexOf('Exceeds Limits: yes') !== -1) {
                           core.setFailed('Size of some package exceeds threshold')
                       }

@@ -1,0 +1,31 @@
+name: 'Write PR artifact'
+description: 'It creates the artifacts which can be read by "./github/actions/read-pr-artifact" GitHub action'
+inputs:
+  name:
+    description: 'Base name'
+    required: true
+  path:
+    description: 'Path to the file'
+    required: true
+  pr_number:
+    description: "PR number"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: 'Prepare artifact (pr number)'
+      shell: bash
+      run: |
+        echo ${{ inputs.pr_number }} > ./${{ inputs.name }}_pr
+    - name: 'Upload artifact (pr number)'
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.name }}_pr
+        path: ./${{ inputs.name }}_pr
+        retention-days: 1 # minimum retention
+    - name: 'Upload artifact (file content)'
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.name }}_file
+        path: ${{ inputs.path }}
+        retention-days: 1 # minimum retention
