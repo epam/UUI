@@ -1,13 +1,13 @@
 import type { ComponentType } from 'react';
 import type {
-    IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc,
+    IComponentDocs, DemoContext, PropExample, PropDoc,
 } from './types';
 import { PropExampleObject } from './types';
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
     props?: PropDoc<TProps, keyof TProps>[];
-    contexts?: DemoContext[];
+    contexts?: DemoContext<TProps>[];
     component: IComponentDocs<TProps>['component'];
     constructor(docs: IComponentDocs<TProps>) {
         this.name = docs.name;
@@ -112,18 +112,18 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this;
     }
 
-    public withContexts(...contexts: ComponentType<DemoComponentProps>[]) {
+    public withContexts(...contexts: ComponentType<TProps>[]) {
         contexts.forEach((context) => this.contexts.push({ context, name: context.displayName }));
         return this;
     }
 
-    public withContextsReplace(...contexts: ComponentType<DemoComponentProps>[]) {
+    public withContextsReplace(...contexts: ComponentType<TProps>[]) {
         this.contexts = [];
         contexts.forEach((context) => this.contexts.push({ context, name: context.displayName }));
         return this;
     }
 
-    private normalizeExamples(examples?: PropExample<any>[]) {
+    private normalizeExamples(examples?: PropExample<any>[]): PropExampleObject<any>[] {
         return examples?.map((example, index) => {
             if (example == null || typeof example === 'number' || typeof example === 'string' || typeof example === 'boolean' || typeof example === 'function') {
                 example = {
