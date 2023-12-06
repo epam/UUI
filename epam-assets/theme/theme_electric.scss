@@ -341,7 +341,6 @@
     }
 
     .uui-color-neutral,
-    .uui-color-night600,
     .uui-color-gray,
     .uui-color-secondary {
         --uui-color-5: var(--uui-secondary-5);
@@ -476,8 +475,7 @@
         --uui-badge-caption-hover: var(--uui-neutral-80);
     }
 
-    .uui-badge.uui-color-neutral,
-    .uui-badge.uui-color-night300 {
+    .uui-badge.uui-color-neutral {
         --uui-badge-bg: var(--uui-neutral-30);
         --uui-badge-bg-hover: var(--uui-neutral-40);
         --uui-badge-border: var(--uui-neutral-30);
@@ -685,7 +683,7 @@
             }
         }
 
-        &.uui-color-neutral, &.uui-color-night300 {
+        &.uui-color-neutral {
             &.uui-fill-solid {
                 --uui-tag-bg: var(--uui-neutral-30);
                 --uui-tag-bg-hover: var(--uui-neutral-40);
