@@ -171,7 +171,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 this.visibleTree = this.fullTree;
             }
             completeReset = true;
-            this.isForceReloading = false;
         }
 
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
@@ -180,7 +179,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.updateCheckedLookup(this.value.checked);
         }
 
-        const shouldShowPlacehodlers = !shouldReloadData || (shouldReloadData && !this.props.backgroundReload);
+        const shouldShowPlacehodlers = !shouldReloadData
+            || (shouldReloadData && !this.props.backgroundReload)
+            || this.isForceReloading;
 
         if (
             // on filters change skeleton should not appear
@@ -199,6 +200,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
+            this.isForceReloading = false;
+
             this.loadMissing(completeReset)
                 .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
