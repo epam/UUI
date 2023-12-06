@@ -289,6 +289,8 @@ type FilterConfigBase<TFilter> = {
     predicates?: IFilterPredicate[];
     /** Count of words to show in the Filter toggler. By default, 2 item will be shown. */
     maxCount?: number;
+    /** Defines maxWidth of the filter toggler */
+    togglerWidth?: number;
 };
 
 export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & {
