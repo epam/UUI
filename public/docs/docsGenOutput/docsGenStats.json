@@ -1,7 +1,7 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 618,
+   "amountProps": 617,
    "amountTypes": 212
   },
   "value": [
@@ -902,7 +902,6 @@
    {
     "typeRef": "@epam/uui:CountIndicatorProps",
     "value": [
-     "color",
      "size"
     ]
    },

@@ -4122,7 +4122,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; }",
      "print": [
       "type ButtonComponentProps = ICanRedirect & (HrefButtonRawProps | LinkButtonRawProps | ButtonRawProps | AnchorRawProps);"
      ]
@@ -4502,7 +4502,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -4539,7 +4539,7 @@
       "uid": 46,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -4548,7 +4548,7 @@
       "uid": 69,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -4557,7 +4557,7 @@
       "uid": 92,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -16628,7 +16628,24 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 107,
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": 8,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -16642,7 +16659,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "getName",
       "comment": {
        "raw": [
@@ -16660,7 +16677,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -16677,7 +16694,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "type",
       "comment": {
        "raw": [
@@ -16698,7 +16715,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "showSearch",
       "comment": {
        "raw": [
@@ -16716,7 +16733,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 111,
       "name": "value",
       "comment": {
        "raw": [
@@ -16730,7 +16747,7 @@
       "required": true
      },
      {
-      "uid": 111,
+      "uid": 112,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -16747,7 +16764,7 @@
       "required": true
      },
      {
-      "uid": 112,
+      "uid": 113,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -16764,7 +16781,7 @@
       "required": false
      },
      {
-      "uid": 113,
+      "uid": 114,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -16779,7 +16796,7 @@
       "required": false
      },
      {
-      "uid": 114,
+      "uid": 115,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -16793,7 +16810,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 116,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -16810,7 +16827,7 @@
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 117,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -16827,7 +16844,7 @@
       "required": false
      },
      {
-      "uid": 117,
+      "uid": 118,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -16844,7 +16861,7 @@
       "required": false
      },
      {
-      "uid": 118,
+      "uid": 119,
       "name": "onClose",
       "comment": {
        "raw": [
@@ -16856,23 +16873,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": 119,
-      "name": "togglerWidth",
-      "comment": {
-       "raw": [
-        "The width of the toggler, which can be used to adjust the body width to it"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
       },
       "from": "@epam/uui-core:IDropdownBodyProps",
       "required": false
@@ -16993,7 +16993,7 @@
       "required": false
      },
      {
-      "uid": 82,
+      "uid": 83,
       "name": "filter",
       "comment": {
        "raw": [
@@ -17010,7 +17010,7 @@
       "required": false
      },
      {
-      "uid": 83,
+      "uid": 84,
       "name": "format",
       "comment": {
        "raw": [
@@ -17027,7 +17027,7 @@
       "required": false
      },
      {
-      "uid": 36,
+      "uid": 37,
       "name": "type",
       "comment": {
        "raw": [
@@ -17047,7 +17047,7 @@
       "required": true
      },
      {
-      "uid": 59,
+      "uid": 60,
       "name": "type",
       "comment": {
        "raw": [
@@ -17067,7 +17067,7 @@
       "required": true
      },
      {
-      "uid": 84,
+      "uid": 85,
       "name": "type",
       "comment": {
        "raw": [
@@ -17087,7 +17087,7 @@
       "required": true
      },
      {
-      "uid": 107,
+      "uid": 108,
       "name": "type",
       "comment": {
        "raw": [
@@ -17107,7 +17107,7 @@
       "required": true
      },
      {
-      "uid": 108,
+      "uid": 109,
       "name": "render",
       "comment": {
        "raw": [
@@ -17124,7 +17124,7 @@
       "required": true
      },
      {
-      "uid": 109,
+      "uid": 110,
       "name": "getTogglerValue",
       "comment": {
        "raw": [
@@ -29193,6 +29193,23 @@
      },
      {
       "uid": 7,
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": 8,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -29206,7 +29223,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "getName",
       "comment": {
        "raw": [
@@ -29224,7 +29241,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -29241,7 +29258,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "type",
       "comment": {
        "raw": [
@@ -29261,7 +29278,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "showSearch",
       "comment": {
        "raw": [
@@ -30625,7 +30642,7 @@
     },
     "props": [
      {
-      "uid": 37,
+      "uid": 41,
       "name": "title",
       "comment": {
        "raw": [
@@ -30642,7 +30659,7 @@
       "required": true
      },
      {
-      "uid": 38,
+      "uid": 42,
       "name": "field",
       "comment": {
        "raw": [
@@ -30656,7 +30673,7 @@
       "required": true
      },
      {
-      "uid": 39,
+      "uid": 43,
       "name": "columnKey",
       "comment": {
        "raw": [
@@ -30674,7 +30691,7 @@
       "required": false
      },
      {
-      "uid": 40,
+      "uid": 44,
       "name": "isAlwaysVisible",
       "comment": {
        "raw": [
@@ -30691,7 +30708,7 @@
       "required": false
      },
      {
-      "uid": 41,
+      "uid": 45,
       "name": "predicates",
       "comment": {
        "raw": [
@@ -30705,7 +30722,7 @@
       "required": false
      },
      {
-      "uid": 42,
+      "uid": 46,
       "name": "maxCount",
       "comment": {
        "raw": [
@@ -30722,7 +30739,24 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 47,
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": 8,
       "name": "dataSource",
       "comment": {
        "raw": [
@@ -30736,7 +30770,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "getName",
       "comment": {
        "raw": [
@@ -30754,7 +30788,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "renderRow",
       "comment": {
        "raw": [
@@ -30771,7 +30805,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "type",
       "comment": {
        "raw": [
@@ -30792,7 +30826,7 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "showSearch",
       "comment": {
        "raw": [
@@ -30810,7 +30844,7 @@
       "required": false
      },
      {
-      "uid": 34,
+      "uid": 38,
       "name": "filter",
       "comment": {
        "raw": [
@@ -30827,7 +30861,7 @@
       "required": false
      },
      {
-      "uid": 35,
+      "uid": 39,
       "name": "format",
       "comment": {
        "raw": [
@@ -30844,7 +30878,7 @@
       "required": false
      },
      {
-      "uid": 20,
+      "uid": 22,
       "name": "type",
       "comment": {
        "raw": [
@@ -30864,7 +30898,7 @@
       "required": true
      },
      {
-      "uid": 27,
+      "uid": 30,
       "name": "type",
       "comment": {
        "raw": [
@@ -30884,7 +30918,7 @@
       "required": true
      },
      {
-      "uid": 36,
+      "uid": 40,
       "name": "type",
       "comment": {
        "raw": [
@@ -30904,7 +30938,7 @@
       "required": true
      },
      {
-      "uid": 43,
+      "uid": 48,
       "name": "type",
       "comment": {
        "raw": [
@@ -30924,7 +30958,7 @@
       "required": true
      },
      {
-      "uid": 44,
+      "uid": 49,
       "name": "render",
       "comment": {
        "raw": [
@@ -30941,7 +30975,7 @@
       "required": true
      },
      {
-      "uid": 45,
+      "uid": 50,
       "name": "getTogglerValue",
       "comment": {
        "raw": [
@@ -34138,7 +34172,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement>",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement>",
      "print": [
       "type AnchorProps = ButtonComponentProps & IHasChildren & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & {};"
      ]
@@ -34518,7 +34552,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -34584,7 +34618,7 @@
       "uid": 48,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -34593,7 +34627,7 @@
       "uid": 73,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -34602,7 +34636,7 @@
       "uid": 98,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -36007,7 +36041,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement>",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement>",
      "print": [
       "type ButtonBaseProps = ButtonComponentProps & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & {};"
      ]
@@ -36387,7 +36421,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -36438,7 +36472,7 @@
       "uid": 47,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -36447,7 +36481,7 @@
       "uid": 71,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -36456,7 +36490,7 @@
       "uid": 95,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -36478,7 +36512,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; }",
      "print": [
       "type ButtonProps = ButtonComponentProps & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & {",
       "    /** Icon for clear value button (usually cross) */",
@@ -36865,7 +36899,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -36959,7 +36993,7 @@
       "uid": 50,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -36968,7 +37002,7 @@
       "uid": 77,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -36977,7 +37011,7 @@
       "uid": 104,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -40600,7 +40634,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement>",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement>",
      "print": [
       "type IconButtonBaseProps = ButtonBaseProps & {};"
      ]
@@ -40980,7 +41014,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -41031,7 +41065,7 @@
       "uid": 47,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -41040,7 +41074,7 @@
       "uid": 71,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -41049,7 +41083,7 @@
       "uid": 95,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -64791,7 +64825,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; }",
      "print": [
       "type BadgeCoreProps = ButtonProps & {",
       "    indicator?: boolean;",
@@ -65173,7 +65207,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -65281,7 +65315,7 @@
       "uid": 51,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -65290,7 +65324,7 @@
       "uid": 79,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -65299,7 +65333,7 @@
       "uid": 107,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -65438,7 +65472,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
       "type BadgeProps = BadgeCoreProps & BadgeMods;"
      ]
@@ -65818,7 +65852,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -65998,7 +66032,7 @@
       "uid": 54,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -66007,7 +66041,7 @@
       "uid": 85,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -66016,7 +66050,7 @@
       "uid": 116,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -67309,6 +67343,15 @@
      },
      {
       "uid": 4,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:HrefButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 5,
       "name": "tabIndex",
       "comment": {
        "raw": [
@@ -67325,7 +67368,7 @@
       "required": false
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "link",
       "comment": {
        "raw": [
@@ -67339,7 +67382,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "href",
       "comment": {
        "raw": [
@@ -67356,7 +67399,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -67373,7 +67416,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "target",
       "comment": {
        "raw": [
@@ -67393,7 +67436,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "dropdownIcon",
       "comment": {
        "raw": [
@@ -67410,7 +67453,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "dropdownIconPosition",
       "comment": {
        "raw": [
@@ -67431,7 +67474,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "cx",
       "comment": {
        "raw": [
@@ -67445,7 +67488,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -67462,7 +67505,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 14,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -67479,7 +67522,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "icon",
       "comment": {
        "raw": [
@@ -67496,7 +67539,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -67517,7 +67560,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -67534,7 +67577,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
@@ -67549,7 +67592,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "caption",
       "comment": {
        "raw": [
@@ -67563,7 +67606,7 @@
       "required": false
      },
      {
-      "uid": 19,
+      "uid": 20,
       "name": "onClear",
       "comment": {
        "raw": [
@@ -67580,7 +67623,7 @@
       "required": false
      },
      {
-      "uid": 20,
+      "uid": 21,
       "name": "isOpen",
       "comment": {
        "raw": [
@@ -67597,7 +67640,7 @@
       "required": false
      },
      {
-      "uid": 21,
+      "uid": 22,
       "name": "isDropdown",
       "comment": {
        "raw": [
@@ -67614,7 +67657,7 @@
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 23,
       "name": "toggleDropdownOpening",
       "comment": {
        "raw": [
@@ -67631,7 +67674,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 24,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -67648,7 +67691,7 @@
       "required": false
      },
      {
-      "uid": 24,
+      "uid": 25,
       "name": "ref",
       "comment": {
        "raw": [
@@ -67659,15 +67702,6 @@
        "raw": "null | (instance: any) => void | React.RefObject<any>"
       },
       "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 25,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
      },
      {
@@ -69700,6 +69734,7 @@
       "     * @default '24'",
       "     */",
       "    size?: '24' | '18' | '12';",
+      "    /** Property is required */",
       "    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;",
       "}"
      ]
@@ -69732,6 +69767,11 @@
      {
       "uid": 2,
       "name": "color",
+      "comment": {
+       "raw": [
+        "Property is required"
+       ]
+      },
       "typeValue": {
        "raw": "null | 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
       },
@@ -74559,6 +74599,20 @@
     "props": [
      {
       "uid": 1,
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": 2,
       "name": "cx",
       "comment": {
        "raw": [
@@ -74572,7 +74626,7 @@
       "required": false
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -74586,20 +74640,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -74838,7 +74878,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement>",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement>",
      "print": [
       "type IconButtonCoreProps = IconButtonBaseProps & {};"
      ]
@@ -75218,7 +75258,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -75269,7 +75309,7 @@
       "uid": 47,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -75278,7 +75318,7 @@
       "uid": 71,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -75287,7 +75327,7 @@
       "uid": 95,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -75364,7 +75404,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
       "type IconButtonProps = IconButtonBaseProps & IconButtonMods;"
      ]
@@ -75744,7 +75784,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -75823,7 +75863,7 @@
       "uid": 48,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -75832,7 +75872,7 @@
       "uid": 73,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -75841,7 +75881,7 @@
       "uid": 98,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -76862,7 +76902,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; }",
      "print": [
       "type LinkButtonCoreProps = ButtonProps & {",
       "    size?: types.ControlSize | '42';",
@@ -77244,7 +77284,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -77360,7 +77400,7 @@
       "uid": 51,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -77369,7 +77409,7 @@
       "uid": 79,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -77378,7 +77418,7 @@
       "uid": 107,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -77483,7 +77523,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
       "type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;"
      ]
@@ -77863,7 +77903,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -78005,7 +78045,7 @@
       "uid": 52,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -78014,7 +78054,7 @@
       "uid": 81,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -78023,7 +78063,7 @@
       "uid": 110,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -78338,7 +78378,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & IAdaptiveItem & { icon: Icon; }",
      "print": [
       "type MainMenuIconProps = ButtonProps & IAdaptiveItem & {",
       "    icon: Icon;",
@@ -78720,7 +78760,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -78877,7 +78917,7 @@
       "uid": 55,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -78886,7 +78926,7 @@
       "uid": 87,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -78895,7 +78935,7 @@
       "uid": 119,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -88932,7 +88972,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; }",
+     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; }",
      "print": [
       "type TabButtonProps = TabButtonMods & ButtonProps;"
      ]
@@ -89349,7 +89389,7 @@
       "uid": 25,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -89446,7 +89486,7 @@
       "uid": 54,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -89455,7 +89495,7 @@
       "uid": 83,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -89464,7 +89504,7 @@
       "uid": 112,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -89506,7 +89546,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; }",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; }",
      "print": [
       "type TagCoreProps = ButtonProps & {",
       "    /** @default '36' */",
@@ -89891,7 +89931,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -90038,7 +90078,7 @@
       "uid": 52,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -90047,7 +90087,7 @@
       "uid": 81,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -90056,7 +90096,7 @@
       "uid": 110,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -90150,7 +90190,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
       "type TagProps = TagCoreProps & TagMods;"
      ]
@@ -90530,7 +90570,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -90706,7 +90746,7 @@
       "uid": 53,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -90715,7 +90755,7 @@
       "uid": 83,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -90724,7 +90764,7 @@
       "uid": 113,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -93606,7 +93646,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods",
      "print": [
       "type VerticalTabButtonProps = ButtonProps & TabButtonMods;"
      ]
@@ -93986,7 +94026,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -94120,7 +94160,7 @@
       "uid": 52,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -94129,7 +94169,7 @@
       "uid": 81,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -94138,7 +94178,7 @@
       "uid": 110,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -94867,7 +94907,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
@@ -95247,7 +95287,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -95447,7 +95487,7 @@
       "uid": 54,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -95456,7 +95496,7 @@
       "uid": 85,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -95465,7 +95505,7 @@
       "uid": 116,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -95657,7 +95697,7 @@
       "uid": 3,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -97496,7 +97536,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
       "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
      ]
@@ -97876,7 +97916,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -97956,7 +97996,7 @@
       "uid": 48,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -97965,7 +98005,7 @@
       "uid": 73,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -97974,7 +98014,7 @@
       "uid": 98,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -98397,7 +98437,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
@@ -98777,7 +98817,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -98922,7 +98962,7 @@
       "uid": 52,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -98931,7 +98971,7 @@
       "uid": 81,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -98940,7 +98980,7 @@
       "uid": 110,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -100732,7 +100772,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
       "type TagProps = uui.TagCoreProps & TagMods;"
      ]
@@ -101112,7 +101152,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -101291,7 +101331,7 @@
       "uid": 53,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -101300,7 +101340,7 @@
       "uid": 83,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -101309,7 +101349,7 @@
       "uid": 113,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -102350,7 +102390,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
@@ -102730,7 +102770,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -102926,7 +102966,7 @@
       "uid": 54,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -102935,7 +102975,7 @@
       "uid": 85,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -102944,7 +102984,7 @@
       "uid": 116,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -103023,6 +103063,15 @@
     "props": [
      {
       "uid": 1,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:HrefButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 2,
       "name": "tabIndex",
       "comment": {
        "raw": [
@@ -103039,7 +103088,7 @@
       "required": false
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "link",
       "comment": {
        "raw": [
@@ -103053,7 +103102,7 @@
       "required": false
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "href",
       "comment": {
        "raw": [
@@ -103070,7 +103119,7 @@
       "required": false
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -103087,7 +103136,7 @@
       "required": false
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "target",
       "comment": {
        "raw": [
@@ -103107,7 +103156,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "cx",
       "comment": {
        "raw": [
@@ -103121,7 +103170,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -103138,7 +103187,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -103155,7 +103204,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "icon",
       "comment": {
        "raw": [
@@ -103172,7 +103221,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -103193,7 +103242,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -103210,7 +103259,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
@@ -103225,7 +103274,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 14,
       "name": "caption",
       "comment": {
        "raw": [
@@ -103239,7 +103288,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -103256,7 +103305,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "ref",
       "comment": {
        "raw": [
@@ -103267,15 +103316,6 @@
        "raw": "null | (instance: any) => void | React.RefObject<any>"
       },
       "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 16,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
      },
      {
@@ -103627,7 +103667,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
       "type TagProps = uui.TagCoreProps & TagMods;"
      ]
@@ -104007,7 +104047,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -104186,7 +104226,7 @@
       "uid": 53,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -104195,7 +104235,7 @@
       "uid": 83,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -104204,7 +104244,7 @@
       "uid": 113,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -104586,7 +104626,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
@@ -104966,7 +105006,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -105191,7 +105231,7 @@
       "uid": 55,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -105200,7 +105240,7 @@
       "uid": 87,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -105209,7 +105249,7 @@
       "uid": 119,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -105426,7 +105466,7 @@
       "uid": 3,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -107373,7 +107413,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
       "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
      ]
@@ -107753,7 +107793,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -107839,7 +107879,7 @@
       "uid": 48,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -107848,7 +107888,7 @@
       "uid": 73,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -107857,7 +107897,7 @@
       "uid": 98,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -108252,7 +108292,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
@@ -108632,7 +108672,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -108789,7 +108829,7 @@
       "uid": 52,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -108798,7 +108838,7 @@
       "uid": 81,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -108807,7 +108847,7 @@
       "uid": 110,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -112432,7 +112472,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; }",
+     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; }",
      "print": [
       "type TabButtonMods = uui.TabButtonProps & {",
       "    theme?: 'light' | 'dark';",
@@ -112851,7 +112891,7 @@
       "uid": 25,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -112963,7 +113003,7 @@
       "uid": 55,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -112972,7 +113012,7 @@
       "uid": 85,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -112981,7 +113021,7 @@
       "uid": 115,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -113003,7 +113043,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | never | never | never | never | never | never | never | never | never | never | never | never",
+     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | never | never | never | never | never | never | never | never | never | never | never | never",
      "print": [
       "type TabButtonProps = uui.TabButtonProps & TabButtonMods;"
      ]
@@ -113420,7 +113460,7 @@
       "uid": 25,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -113533,7 +113573,7 @@
       "uid": 55,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -113542,7 +113582,7 @@
       "uid": 85,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -113551,7 +113591,7 @@
       "uid": 115,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
@@ -113628,7 +113668,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
+     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
       "type TagProps = uui.TagCoreProps & TagMods;"
      ]
@@ -114008,7 +114048,7 @@
       "uid": 23,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:HrefButtonRawProps",
       "required": false
@@ -114187,7 +114227,7 @@
       "uid": 53,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:LinkButtonRawProps",
       "required": false
@@ -114196,7 +114236,7 @@
       "uid": 83,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:ButtonRawProps",
       "required": false
@@ -114205,7 +114245,7 @@
       "uid": 113,
       "name": "rawProps",
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:AnchorRawProps",
       "required": false
