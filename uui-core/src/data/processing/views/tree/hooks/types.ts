@@ -1,4 +1,4 @@
-import { PlainTreeStrategyProps } from './strategies/types';
+import { PlainTreeStrategyProps } from './strategies';
 
-export type UseTreeStrategyProps<TItem, TId> = (PlainTreeStrategyProps<TItem, TId>);
-export type UseTreeProps<TItem, TId, TFIlter = any> = {} & UseTreeStrategyProps<TItem, TId>;
+export type UseTreeStrategyProps<TItem, TId, TFIlter = any> = (PlainTreeStrategyProps<TItem, TId, TFIlter>);
+export type UseTreeProps<TItem, TId, TFIlter = any> = {} & UseTreeStrategyProps<TItem, TId, TFIlter>;

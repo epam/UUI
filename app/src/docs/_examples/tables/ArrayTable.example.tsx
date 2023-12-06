@@ -1,11 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { DataColumnProps, useArrayDataSource } from '@epam/uui-core';
+import { DataColumnProps, useArrayDataSource, useTree } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
 export default function ArrayDataTableExample() {
     const [value, onValueChange] = useState({});
+    
+    const tree = useTree({
+        type: 'plain',
+        items: demoData.featureClasses,
+        getId: (item) => item.id,
+        dataSourceState: value,
+    }, []);
 
     const dataSource = useArrayDataSource<FeatureClass, number, unknown>(
         {
