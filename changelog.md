@@ -1,13 +1,17 @@
-# 5.4.2 - ...
-
+# 5.4.2 - xx.xx.2023
+**What's New**
+* [FiltersPanel]: added `togglerWidth` prop, which configure maxWidth of filter toggler.
 * [NumericInput]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
 
+**What's Fixed**
+* [Button]: fixed `rawProps` typings for `data-*` attributes
+* [LazyDataSource]: fixed showing placeholders on `clearCache`.
 
 # 5.4.1 - 30.11.2023
 
 **What's New**
 * [uui.epam.com](https://uui.epam.com/) site now fully support theming. You can choose preferred theme in app main menu.
-* [Tag]: 
+* [Tag]:
   * rework according to the new design. Added new colors and new `solid` & `outline` mods;
   * [Breaking change]: for loveship package, changed default `size` from `18px` to `36px`.
 * Upload new icons pack
@@ -22,7 +26,7 @@
 
 **What's Fixed**
 * [Calendar]: fixed disabled days text color
-* [Text]: 
+* [Text]:
   * fixed font-weight prop in skins.
   * fixed color values for semantic colors(info, warning, error, success) and for skin colors
 * [TextPlaceholder]: improved animation
@@ -37,29 +41,29 @@
   * A lot of components styles tweaks according to the design changes.
   * You can read more about Themes here - https://uui.epam.com/documents?id=themes
 
-* New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need: 
+* New EPAM brand 'Electric' Theme and `@epam/electric` package. To start using Electric theme you need:
     * Add `@epam/electric` package to your project
     * Add `import '@epam/electric/styles.css'` to the root of your application
     * Add `import '@epam/assets/css/theme/theme_electric.css'` to the root of your application
     * Add `uui-theme-electric` class to the html body node
     * Import all necessary components from `@epam/electric` package.
 * Added Dark theme for Loveship. To start using Dark Loveship theme you need to:
-  * Add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application 
+  * Add `import '@epam/assets/css/theme/theme_loveship_dark.css';` to the root of your application
   * Add `uui-theme-loveship_dark` class to the html body node.
-* [Fonts]: Added `Source Sans Pro` font, which properly works with css `font-weight` and `font-style` rules. 
+* [Fonts]: Added `Source Sans Pro` font, which properly works with css `font-weight` and `font-style` rules.
     You can replace usages `Sans Semibold` font with `Source Sans Pro` and `font-weight: 600`, `Sans Italic`  with `Source Sans Pro` and `font-style: italic` etc.
     We also keep old font-faces and variables for backward compatibility. It's recommended to move to the new approach, since old one will be deprecated in feature.
 * [skinContext]: removed skinContext from `UuiContexts`, it's not needed to provide it to the uui services, just remove its usage.
 * [Typography]: removed typography mixins. Now typography applies via css classes. If you use mixins, replace it by adding `.uui-typography` class on the same node.
 * [StatusIndicator]: added new `StatusIndicator` component.
 * [CountIndicator]: added new `CountIndicator` component.
-* [Badge] : 
+* [Badge] :
   * [Breaking change]: removed fill "white" and "none" modes, use `fill="outline"` + color instead them.
   * [Breaking change]:removed fill "transparent", use `StatusIndicator` component instead.
   * [Badge]: deprecated fill "semitransparent", it will be removed in future releases. Use `fill="outline'` instead.
 * [LabeledInput]:
   * added `sidenote` and `footnote` props
-  * added `maxLength` and `charCounter` props. You can use them for cases when you need to show a counter which indicates the limit of symbols in input.  
+  * added `maxLength` and `charCounter` props. You can use them for cases when you need to show a counter which indicates the limit of symbols in input.
   * added possibility to provide `validationMessage` as react node
 * [TextArea][Breaking Change]: removed `maxLength` prop, use LabeledInput with `maxLength` and `charCounter={ true }` props instead.
 * [CheckBox, PickerList, RichTextView, Switch, TabButton, VerticalTabButton, ScrollBars]: removed `theme` prop. Use Theming approach instead.
@@ -72,7 +76,7 @@
 * [PickerInput]: set `overflow: hidden;` on open for mobile
 * [DataTable]: fix columns reorder when there are hidden columns
 * [TextArea and TextInput]: fix `maxLength` for Android
-* [DataTable]: fixed column order after pin action 
+* [DataTable]: fixed column order after pin action
 * [PickerInput]: Disable select all button if list are empty, and it has no selection
 * [DataTable]: added `role=table`
 * [SlateEditor]: fixed image caption appearance after upload

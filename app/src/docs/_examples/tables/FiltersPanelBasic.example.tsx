@@ -101,7 +101,7 @@ export default function FiltersPanelExample() {
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
-                maxCount: 1,
+                togglerWidth: 400,
                 dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
             },
             {
