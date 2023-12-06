@@ -4,6 +4,7 @@
 
 **What's Fixed**
 * [Button]: fixed `rawProps` typings for `data-*` attributes
+* [Paginator]: fixed `rawProps` typings
 
 # 5.4.1 - 30.11.2023
 
