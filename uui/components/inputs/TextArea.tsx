@@ -7,7 +7,10 @@ const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
 
 export interface TextAreaMods extends types.IHasEditMode {
-    /** @default '36', but size '48' is deprecated, and will be removed in future release */
+    /**
+     * @default '36'.
+     * Size '48' is deprecated, and will be removed in future release
+     * */
     size?: types.ControlSize;
 }
 
