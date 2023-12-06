@@ -610,7 +610,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return count;
     };
 
-    public clearAllSelected = () => {
+    public clearAllChecked = () => {
         this.handleSelectAll(false);
     };
 

@@ -38,7 +38,7 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
     };
     const clearAll = useCallback(
         () => {
-            view.clearAllSelected();
+            view.clearAllChecked();
         },
         [view],
     );
