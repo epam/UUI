@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IClickable, ICanRedirect, IDisableable, IHasCaption, IHasCX, IHasIcon, IAnalyticableClick,
-    IHasTabIndex, IDropdownToggler,
+    IHasTabIndex, IDropdownToggler, IHasRawProps,
 } from '../props';
 import { IBasicPickerToggler } from '../pickers';
 import { Icon, Link } from '../objects';
@@ -20,25 +20,25 @@ export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasi
 }
 
 type HrefButtonRawProps = ButtonCoreProps & {
-    rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
     href: string | never;
     link?: never;
 };
 
 type LinkButtonRawProps = ButtonCoreProps & {
-    rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
     link: Link;
     href?: never;
 };
 
 type ButtonRawProps = ButtonCoreProps & {
-    rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+    rawProps?: IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>['rawProps'];
     href?: never;
     link?: never;
 };
 
 type AnchorRawProps = ButtonCoreProps & {
-    rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
     href: string;
     link: Link;
 };
