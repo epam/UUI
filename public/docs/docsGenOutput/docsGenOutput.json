@@ -69714,34 +69714,61 @@
     }
    }
   },
-  "@epam/uui:CountIndicatorProps": {
+  "@epam/uui:CountIndicatorCoreProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "CountIndicatorProps",
-     "nameFull": "CountIndicatorProps"
+     "name": "CountIndicatorCoreProps",
+     "nameFull": "CountIndicatorCoreProps"
     },
     "src": "uui/components/widgets/CountIndicator.tsx",
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
-     "raw": "CountIndicatorProps",
+     "raw": "CountIndicatorCoreProps",
      "print": [
-      "interface CountIndicatorProps extends IHasCaption, IHasCX {",
+      "type CountIndicatorCoreProps = IHasCaption & IHasCX & {",
       "    /**",
       "     * @default '24'",
       "     */",
       "    size?: '24' | '18' | '12';",
-      "    /** Property is required */",
-      "    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;",
-      "}"
+      "};"
      ]
     },
     "props": [
      {
       "uid": 1,
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
       "name": "size",
       "comment": {
        "raw": [
@@ -69763,9 +69790,35 @@
        ]
       },
       "required": false
-     },
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:CountIndicatorMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CountIndicatorMods",
+     "nameFull": "CountIndicatorMods"
+    },
+    "src": "uui/components/widgets/CountIndicator.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "CountIndicatorMods",
+     "print": [
+      "type CountIndicatorMods = {",
+      "    /** Property is required */",
+      "    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;",
+      "};"
+     ]
+    },
+    "props": [
      {
-      "uid": 2,
+      "uid": 1,
       "name": "color",
       "comment": {
        "raw": [
@@ -69788,9 +69841,32 @@
        ]
       },
       "required": false
-     },
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:CountIndicatorProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CountIndicatorProps",
+     "nameFull": "CountIndicatorProps"
+    },
+    "src": "uui/components/widgets/CountIndicator.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "CountIndicatorProps",
+     "print": [
+      "type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;"
+     ]
+    },
+    "props": [
      {
-      "uid": 3,
+      "uid": 1,
       "name": "caption",
       "comment": {
        "raw": [
@@ -69804,7 +69880,7 @@
       "required": false
      },
      {
-      "uid": 4,
+      "uid": 2,
       "name": "cx",
       "comment": {
        "raw": [
@@ -69816,6 +69892,57 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '18' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:CountIndicatorCoreProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Property is required"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "info",
+        "success",
+        "warning",
+        "critical",
+        "neutral",
+        "white",
+        null
+       ]
+      },
+      "from": "@epam/uui:CountIndicatorMods",
       "required": false
      }
     ],
@@ -96290,6 +96417,7 @@
      "raw": "CountIndicatorMods",
      "print": [
       "interface CountIndicatorMods {",
+      "    /** Property is required */",
       "    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red' | null;",
       "}"
      ]
@@ -96298,6 +96426,11 @@
      {
       "uid": 1,
       "name": "color",
+      "comment": {
+       "raw": [
+        "Property is required"
+       ]
+      },
       "typeValue": {
        "raw": "null | 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
       },
@@ -96334,12 +96467,41 @@
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
-      "type CountIndicatorProps = Omit<UuiCountIndicatorProps, 'color'> & CountIndicatorMods;"
+      "type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;"
      ]
     },
     "props": [
      {
       "uid": 1,
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
       "name": "size",
       "comment": {
        "raw": [
@@ -96360,40 +96522,17 @@
         "24"
        ]
       },
-      "from": "@epam/uui:CountIndicatorProps",
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "caption",
-      "comment": {
-       "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasCaption",
+      "from": "@epam/uui:CountIndicatorCoreProps",
       "required": false
      },
      {
       "uid": 4,
       "name": "color",
+      "comment": {
+       "raw": [
+        "Property is required"
+       ]
+      },
       "typeValue": {
        "raw": "null | 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
       },
@@ -106082,6 +106221,7 @@
      "raw": "CountIndicatorMods",
      "print": [
       "interface CountIndicatorMods {",
+      "    /** Property is required */",
       "    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire' | null;",
       "}"
      ]
@@ -106090,6 +106230,11 @@
      {
       "uid": 1,
       "name": "color",
+      "comment": {
+       "raw": [
+        "Property is required"
+       ]
+      },
       "typeValue": {
        "raw": "null | 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
       },
@@ -106126,12 +106271,41 @@
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
-      "type CountIndicatorProps = Omit<UuiCountIndicatorProps, 'color'> & CountIndicatorMods;"
+      "type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;"
      ]
     },
     "props": [
      {
       "uid": 1,
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
       "name": "size",
       "comment": {
        "raw": [
@@ -106152,40 +106326,17 @@
         "24"
        ]
       },
-      "from": "@epam/uui:CountIndicatorProps",
-      "required": false
-     },
-     {
-      "uid": 2,
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": 3,
-      "name": "caption",
-      "comment": {
-       "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasCaption",
+      "from": "@epam/uui:CountIndicatorCoreProps",
       "required": false
      },
      {
       "uid": 4,
       "name": "color",
+      "comment": {
+       "raw": [
+        "Property is required"
+       ]
+      },
       "typeValue": {
        "raw": "null | 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
       },
