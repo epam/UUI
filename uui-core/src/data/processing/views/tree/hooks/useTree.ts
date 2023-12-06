@@ -1,11 +1,8 @@
-import { useMemo } from 'react';
-import { Tree } from '../Tree';
+import { useTreeStrategy } from './useTreeStrategy';
+import { UseTreeProps } from './types';
 
-export function useTree<TItem, TId, TFilter = any>({ items, ...params }: any, deps: any[]) {
-    const tree = useMemo(
-        () => Tree.create<TItem, TId>(items, params),
-        deps,
-    );
+export function useTree<TItem, TId, TFilter = any>(params: UseTreeProps<TItem, TId, TFilter>, deps: any[]) {
+    const tree = useTreeStrategy(params, deps);
 
     return tree;
 }
