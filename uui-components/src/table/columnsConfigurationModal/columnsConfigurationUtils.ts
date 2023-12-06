@@ -65,6 +65,7 @@ export function groupAndFilterSortedColumns<TItem, TId, TFilter>(props: IGroupAn
         displayedPinned: [],
         displayedUnpinned: [],
         hidden: [],
+        displayedPinnedRight: [],
     } as GroupedColumnsType;
 
     return props.sortedColumns.reduce((acc, i) => {
