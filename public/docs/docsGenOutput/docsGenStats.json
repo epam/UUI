@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 617,
-   "amountTypes": 212
+   "amountProps": 615,
+   "amountTypes": 210
   },
   "value": [
    {
@@ -900,7 +900,7 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:CountIndicatorProps",
+    "typeRef": "@epam/uui:CountIndicatorCoreProps",
     "value": [
      "size"
     ]
@@ -1324,12 +1324,6 @@
     ]
    },
    {
-    "typeRef": "@epam/promo:CountIndicatorMods",
-    "value": [
-     "color"
-    ]
-   },
-   {
     "typeRef": "@epam/promo:DropdownContainerMods",
     "value": [
      "color"
@@ -1466,12 +1460,6 @@
      "fill",
      "shape",
      "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:CountIndicatorMods",
-    "value": [
-     "color"
     ]
    },
    {
@@ -1686,7 +1674,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 482
+   "amountTypes": 484
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1932,6 +1920,8 @@
    "@epam/uui:CompletePickerInputProps",
    "@epam/uui:ConfirmationModalWindowProps",
    "@epam/uui:ControlSize",
+   "@epam/uui:CountIndicatorCoreProps",
+   "@epam/uui:CountIndicatorMods",
    "@epam/uui:CountIndicatorProps",
    "@epam/uui:DataPickerBodyProps",
    "@epam/uui:DataPickerRowProps",
@@ -3063,11 +3053,11 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 564,
+   "allExports": 566,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
-    "@epam/uui": 136,
+    "@epam/uui": 138,
     "@epam/promo": 55,
     "@epam/electric": 9,
     "@epam/loveship": 65,
@@ -3389,7 +3379,6 @@
      "CheckboxMods",
      "ColumnsConfigurationModalProps",
      "ConfirmationModalWindowProps",
-     "CountIndicatorProps",
      "DataPickerBodyProps",
      "DataPickerRowProps",
      "DataRowsContainerProps",
@@ -3470,6 +3459,9 @@
      "CheckboxProps",
      "CompletePickerInputProps",
      "ControlSize",
+     "CountIndicatorCoreProps",
+     "CountIndicatorMods",
+     "CountIndicatorProps",
      "FlexCellMods",
      "FlexCellProps",
      "IconButtonCoreProps",
