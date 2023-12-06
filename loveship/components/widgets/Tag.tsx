@@ -1,5 +1,5 @@
 import { createSkinComponent } from '@epam/uui-core';
-import { Tag as UuiTag, TagCoreProps as UuiTagCoreProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
 export type TagMods = {
@@ -7,9 +7,9 @@ export type TagMods = {
     color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';
 };
 
-export type TagProps = UuiTagCoreProps & TagMods;
+export type TagProps = uui.TagCoreProps & TagMods;
 
-export const Tag = createSkinComponent<UuiTagCoreProps, TagProps>(
-    UuiTag,
+export const Tag = createSkinComponent<uui.TagProps, TagProps>(
+    uui.Tag,
     (props) => ({ color: props.color || 'night300' }),
 );

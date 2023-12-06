@@ -2,7 +2,7 @@
  "missingPropComment": {
   "totals": {
    "amountProps": 618,
-   "amountTypes": 213
+   "amountTypes": 212
   },
   "value": [
    {
@@ -867,12 +867,6 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:ButtonCoreProps",
-    "value": [
-     "size"
-    ]
-   },
-   {
     "typeRef": "@epam/uui:ButtonMods",
     "value": [
      "color",
@@ -1326,7 +1320,8 @@
     "typeRef": "@epam/promo:ButtonMods",
     "value": [
      "color",
-     "fill"
+     "fill",
+     "size"
     ]
    },
    {
@@ -1692,7 +1687,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 483
+   "amountTypes": 482
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1929,7 +1924,6 @@
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
    "@epam/uui:ButtonColor",
-   "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",

@@ -1,15 +1,15 @@
 import { createSkinComponent } from '@epam/uui-core';
-import { Badge as UuiBadge, BadgeFill as UuiBadgeFill, BadgeSize as UuiBadgeSize, BadgeColor as UuiBadgeColor, BadgeCoreProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 
 export type BadgeMods = {
     /** @default 'neutral' */
-    color?: UuiBadgeColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';
+    color?: uui.BadgeColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';
     /** @default 'solid' */
-    fill?: UuiBadgeFill;
+    fill?: uui.BadgeFill;
     /** @default '36' */
-    size?: UuiBadgeSize;
+    size?: uui.BadgeSize;
 };
 
-export type BadgeProps = BadgeCoreProps & BadgeMods;
+export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
-export const Badge = createSkinComponent<BadgeCoreProps, BadgeProps>(UuiBadge);
+export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(uui.Badge);

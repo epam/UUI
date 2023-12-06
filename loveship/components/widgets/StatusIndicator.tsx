@@ -1,5 +1,5 @@
 import { createSkinComponent } from '@epam/uui-core';
-import { StatusIndicator as UuiStatusIndicator, StatusIndicatorCoreProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
 export type StatusIndicatorMods = {
@@ -7,9 +7,9 @@ export type StatusIndicatorMods = {
     color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
 };
 
-export type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;
+export type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;
 
-export const StatusIndicator = createSkinComponent<StatusIndicatorCoreProps, StatusIndicatorProps>(
-    UuiStatusIndicator,
+export const StatusIndicator = createSkinComponent<uui.StatusIndicatorProps, StatusIndicatorProps>(
+    uui.StatusIndicator,
     (props) => ({ color: props.color || 'gray' }),
 );

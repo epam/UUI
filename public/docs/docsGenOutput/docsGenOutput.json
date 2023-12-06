@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-12-04",
+ "timestamp": "2023-12-06",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -67062,7 +67062,7 @@
     "module": "@epam/uui",
     "typeName": {
      "name": "ButtonCoreProps",
-     "nameFull": "ButtonCoreProps"
+     "nameFull": "ButtonCoreProps<ButtonProps, 'count'>"
     },
     "src": "uui/components/buttons/Button.tsx",
     "exported": true
@@ -67070,530 +67070,11 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; }",
+     "raw": "Omit<ButtonProps, 'count'>",
      "print": [
-      "type ButtonCoreProps = uuiButtonProps & {",
-      "    size?: ControlSize | '18';",
-      "};"
+      "type ButtonCoreProps = Omit<uuiButtonProps, 'count'> & {};"
      ]
-    },
-    "props": [
-     {
-      "uid": 57,
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 86,
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 87,
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 88,
-      "name": "target",
-      "comment": {
-       "raw": [
-        "Controls where the link should be opened"
-       ]
-      },
-      "typeValue": {
-       "raw": "'_blank'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "_blank"
-       ]
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 89,
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 90,
-      "name": "dropdownIconPosition",
-      "comment": {
-       "raw": [
-        "Position of the dropdown icon ('left' of 'right')"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 91,
-      "name": "count",
-      "comment": {
-       "raw": [
-        "Count value to be placed in component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 92,
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": 93,
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Called when component is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": 94,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 95,
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": 96,
-      "name": "iconPosition",
-      "comment": {
-       "raw": [
-        "Position of the icon (left of right)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": 97,
-      "name": "onIconClick",
-      "comment": {
-       "raw": [
-        "Click handler for the icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": 98,
-      "name": "clickAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | { [key: string]: any; name: string; }"
-      },
-      "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
-     {
-      "uid": 99,
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": 100,
-      "name": "caption",
-      "comment": {
-       "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasCaption",
-      "required": false
-     },
-     {
-      "uid": 101,
-      "name": "onClear",
-      "comment": {
-       "raw": [
-        "Call to clear toggler value"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IBasicPickerToggler",
-      "required": false
-     },
-     {
-      "uid": 102,
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 103,
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 104,
-      "name": "toggleDropdownOpening",
-      "comment": {
-       "raw": [
-        "Called when associated dropdown should open or close"
-       ]
-      },
-      "typeValue": {
-       "raw": "(value: boolean) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 105,
-      "name": "isInteractedOutside",
-      "comment": {
-       "raw": [
-        "Called when component is interacted outside, to close the dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(event: Event) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 106,
-      "name": "ref",
-      "comment": {
-       "raw": [
-        "Component's ref"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: any) => void | React.RefObject<any>"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": 23,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 108,
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLButtonElement | HTMLAnchorElement | null) => void | React.MutableRefObject<HTMLButtonElement | HTMLAnchorElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": 109,
-      "name": "clearIcon",
-      "comment": {
-       "raw": [
-        "Icon for clear value button (usually cross)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": 110,
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": 111,
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": 112,
-      "name": "size",
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": 85,
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 58,
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 51,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 79,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
-      },
-      "from": "@epam/uui-core:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 107,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:AnchorRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": true
+    }
    }
   },
   "@epam/uui:ButtonFill": {
@@ -67632,8 +67113,11 @@
      "raw": "ButtonMods",
      "print": [
       "interface ButtonMods {",
+      "    /** @default '36' */",
       "    size?: ControlSize | '18';",
+      "    /** @default 'solid' */",
       "    fill?: ButtonFill;",
+      "    /** @default 'primary' */",
       "    color?: ButtonColor;",
       "}"
      ]
@@ -67642,6 +67126,14 @@
      {
       "uid": 1,
       "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
        "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -67662,6 +67154,14 @@
      {
       "uid": 2,
       "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
       "typeValue": {
        "raw": "'solid' | 'outline' | 'none' | 'ghost'"
       },
@@ -67679,6 +67179,14 @@
      {
       "uid": 3,
       "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'primary'"
+       ],
+       "tags": {
+        "@default": "primary"
+       }
+      },
       "typeValue": {
        "raw": "'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'"
       },
@@ -67713,13 +67221,21 @@
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
-      "type ButtonProps = ButtonMods & Omit<uuiButtonProps, 'count' | 'indicator'>;"
+      "type ButtonProps = ButtonMods & ButtonCoreProps;"
      ]
     },
     "props": [
      {
       "uid": 1,
       "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
        "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -67741,6 +67257,14 @@
      {
       "uid": 2,
       "name": "fill",
+      "comment": {
+       "raw": [
+        "@default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
       "typeValue": {
        "raw": "'solid' | 'outline' | 'none' | 'ghost'"
       },
@@ -67759,6 +67283,14 @@
      {
       "uid": 3,
       "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'primary'"
+       ],
+       "tags": {
+        "@default": "primary"
+       }
+      },
       "typeValue": {
        "raw": "'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'"
       },
@@ -95223,9 +94755,9 @@
       "    /** @default 'blue' */",
       "    color?: EpamPrimaryColor | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10' | 'gray30' | 'gray60';",
       "    /** @default 'solid' */",
-      "    fill?: UuiBadgeMods['fill'] | 'semitransparent';",
+      "    fill?: uui.BadgeMods['fill'] | 'semitransparent';",
       "    /** @default '36' */",
-      "    size?: UuiBadgeMods['size'];",
+      "    size?: uui.BadgeMods['size'];",
       "};"
      ]
     },
@@ -95337,7 +94869,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
-      "type BadgeProps = BadgeCoreProps & BadgeMods;"
+      "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
     },
     "props": [
@@ -95980,7 +95512,10 @@
       "interface ButtonMods {",
       "    /** @default 'solid' */",
       "    fill?: FillStyle;",
+      "    /** @default 'blue' */",
       "    color?: ButtonColor;",
+      "    /** @default '36' */",
+      "    size?: uui.ButtonMods['size'];",
       "}"
      ]
     },
@@ -96013,6 +95548,14 @@
      {
       "uid": 2,
       "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'blue'"
+       ],
+       "tags": {
+        "@default": "blue"
+       }
+      },
       "typeValue": {
        "raw": "'blue' | 'green' | 'red' | 'gray50' | 'gray'"
       },
@@ -96024,6 +95567,34 @@
         "red",
         "gray50",
         "gray"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
        ]
       },
       "required": false
@@ -96045,14 +95616,71 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods",
+     "raw": "ButtonProps",
      "print": [
       "type ButtonProps = uui.ButtonCoreProps & ButtonMods;"
      ]
     },
     "props": [
      {
-      "uid": 61,
+      "uid": 1,
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>"
+      },
+      "from": "@epam/uui-core:HrefButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": 5,
       "name": "link",
       "comment": {
        "raw": [
@@ -96060,13 +95688,13 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
-      "uid": 92,
+      "uid": 6,
       "name": "href",
       "comment": {
        "raw": [
@@ -96083,7 +95711,7 @@
       "required": false
      },
      {
-      "uid": 93,
+      "uid": 7,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -96100,7 +95728,7 @@
       "required": false
      },
      {
-      "uid": 94,
+      "uid": 8,
       "name": "target",
       "comment": {
        "raw": [
@@ -96120,7 +95748,7 @@
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 9,
       "name": "dropdownIcon",
       "comment": {
        "raw": [
@@ -96137,7 +95765,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 10,
       "name": "dropdownIconPosition",
       "comment": {
        "raw": [
@@ -96158,37 +95786,7 @@
       "required": false
      },
      {
-      "uid": 97,
-      "name": "count",
-      "comment": {
-       "raw": [
-        "Count value to be placed in component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 98,
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": 99,
+      "uid": 11,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -96205,7 +95803,7 @@
       "required": false
      },
      {
-      "uid": 100,
+      "uid": 12,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -96222,24 +95820,7 @@
       "required": false
      },
      {
-      "uid": 101,
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": 102,
+      "uid": 13,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -96260,7 +95841,7 @@
       "required": false
      },
      {
-      "uid": 103,
+      "uid": 14,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -96277,7 +95858,7 @@
       "required": false
      },
      {
-      "uid": 104,
+      "uid": 15,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
@@ -96292,24 +95873,7 @@
       "required": false
      },
      {
-      "uid": 105,
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": 106,
+      "uid": 16,
       "name": "caption",
       "comment": {
        "raw": [
@@ -96323,7 +95887,7 @@
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 17,
       "name": "onClear",
       "comment": {
        "raw": [
@@ -96340,7 +95904,7 @@
       "required": false
      },
      {
-      "uid": 108,
+      "uid": 18,
       "name": "isOpen",
       "comment": {
        "raw": [
@@ -96357,7 +95921,7 @@
       "required": false
      },
      {
-      "uid": 109,
+      "uid": 19,
       "name": "isDropdown",
       "comment": {
        "raw": [
@@ -96374,7 +95938,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 20,
       "name": "toggleDropdownOpening",
       "comment": {
        "raw": [
@@ -96391,7 +95955,7 @@
       "required": false
      },
      {
-      "uid": 111,
+      "uid": 21,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -96408,7 +95972,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 22,
       "name": "ref",
       "comment": {
        "raw": [
@@ -96423,15 +95987,6 @@
      },
      {
       "uid": 23,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 114,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -96445,7 +96000,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 24,
       "name": "clearIcon",
       "comment": {
        "raw": [
@@ -96462,7 +96017,7 @@
       "required": false
      },
      {
-      "uid": 116,
+      "uid": 25,
       "name": "captionCX",
       "comment": {
        "raw": [
@@ -96472,12 +96027,11 @@
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-components:ButtonProps",
       "required": false
      },
      {
-      "uid": 117,
+      "uid": 26,
       "name": "countIndicator",
       "comment": {
        "raw": [
@@ -96491,28 +96045,7 @@
       "required": false
      },
      {
-      "uid": 118,
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 119,
+      "uid": 27,
       "name": "fill",
       "comment": {
        "raw": [
@@ -96538,8 +96071,16 @@
       "required": false
      },
      {
-      "uid": 120,
+      "uid": 28,
       "name": "color",
+      "comment": {
+       "raw": [
+        "@default 'blue'"
+       ],
+       "tags": {
+        "@default": "blue"
+       }
+      },
       "typeValue": {
        "raw": "'blue' | 'green' | 'red' | 'gray50' | 'gray'"
       },
@@ -96557,62 +96098,36 @@
       "required": false
      },
      {
-      "uid": 91,
-      "name": "link",
+      "uid": 29,
+      "name": "size",
       "comment": {
        "raw": [
-        "Link object to redirect to for SPA-redirects"
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
        ]
       },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 62,
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 53,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 83,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
-      },
-      "from": "@epam/uui-core:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 113,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:AnchorRawProps",
+      "from": "@epam/promo:ButtonMods",
       "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/promo:ColorMod": {
@@ -97983,7 +97498,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
-      "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
+      "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
      ]
     },
     "props": [
@@ -98884,7 +98399,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
-      "type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;"
+      "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
     },
     "props": [
@@ -99603,6 +99118,23 @@
      },
      {
       "uid": 3,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 4,
       "name": "items",
       "typeValue": {
        "raw": "MultiSwitchItem<TValue>[]"
@@ -99611,7 +99143,7 @@
       "required": true
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "value",
       "comment": {
        "raw": [
@@ -99625,7 +99157,7 @@
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -99642,7 +99174,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -99659,7 +99191,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -99673,7 +99205,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -99684,23 +99216,6 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -101020,7 +100535,7 @@
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
-      "type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;"
+      "type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;"
      ]
     },
     "props": [
@@ -101219,7 +100734,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
-      "type TagProps = UuiTagCoreProps & TagMods;"
+      "type TagProps = uui.TagCoreProps & TagMods;"
      ]
     },
     "props": [
@@ -102314,6 +101829,23 @@
      },
      {
       "uid": 5,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 6,
       "name": "value",
       "comment": {
        "raw": [
@@ -102330,7 +101862,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -102347,7 +101879,7 @@
       "required": true
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -102364,7 +101896,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -102378,7 +101910,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -102389,23 +101921,6 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -102725,11 +102240,11 @@
      "print": [
       "type BadgeMods = {",
       "    /** @default 'neutral' */",
-      "    color?: UuiBadgeColor | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';",
+      "    color?: uui.BadgeColor | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';",
       "    /** @default 'solid' */",
-      "    fill?: UuiBadgeFill;",
+      "    fill?: uui.BadgeFill;",
       "    /** @default '36' */",
-      "    size?: UuiBadgeSize;",
+      "    size?: uui.BadgeSize;",
       "};"
      ]
     },
@@ -102837,7 +102352,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
-      "type BadgeProps = BadgeCoreProps & BadgeMods;"
+      "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
     },
     "props": [
@@ -103454,6 +102969,7 @@
      "raw": "PromoButtonMods",
      "print": [
       "interface PromoButtonMods {",
+      "    /** @default '36' */",
       "    size?: PromoButtonSize;",
       "}"
      ]
@@ -103462,6 +102978,14 @@
      {
       "uid": 1,
       "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
        "raw": "'36' | '42'"
       },
@@ -103785,6 +103309,14 @@
      {
       "uid": 19,
       "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
        "raw": "'36' | '42'"
       },
@@ -103795,7 +103327,7 @@
         "42"
        ]
       },
-      "from": "@epam/uui:ButtonCoreProps",
+      "from": "@epam/electric:PromoButtonMods",
       "required": false
      }
     ],
@@ -103839,7 +103371,7 @@
      "print": [
       "type StatusIndicatorMods = {",
       "    /** @default 'gray' */",
-      "    color?: StatusIndicatorColors | 'white' | 'gray' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';",
+      "    color?: uui.StatusIndicatorColors | 'white' | 'gray' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';",
       "};"
      ]
     },
@@ -103899,7 +103431,7 @@
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
-      "type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;"
+      "type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;"
      ]
     },
     "props": [
@@ -104044,7 +103576,7 @@
      "print": [
       "type TagMods = {",
       "    /** @default 'neutral' */",
-      "    color?: UuiTagColor | 'white' | 'night100' | 'night700';",
+      "    color?: uui.TagColor | 'white' | 'night100' | 'night700';",
       "};"
      ]
     },
@@ -104097,7 +103629,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
-      "type TagProps = UuiTagCoreProps & TagMods;"
+      "type TagProps = uui.TagCoreProps & TagMods;"
      ]
     },
     "props": [
@@ -104918,9 +104450,9 @@
       "    /** @default 'square' */",
       "    shape?: types.ControlShape;",
       "    /** @default 'solid' */",
-      "    fill?: UuiBadgeMods['fill'] | 'semitransparent';",
+      "    fill?: uui.BadgeMods['fill'] | 'semitransparent';",
       "    /** @default '18' */",
-      "    size?: UuiBadgeMods['size'] | '12';",
+      "    size?: uui.BadgeMods['size'] | '12';",
       "};"
      ]
     },
@@ -105056,7 +104588,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
-      "type BadgeProps = BadgeCoreProps & BadgeMods;"
+      "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
     },
     "props": [
@@ -105722,9 +105254,10 @@
      "raw": "ButtonMods",
      "print": [
       "interface ButtonMods {",
+      "    /** @default \"sky\"  */",
       "    color?: ButtonColorType;",
       "    /** @default '36' */",
-      "    size?: ControlSize | '18';",
+      "    size?: uui.ControlSize | '18';",
       "    /** @default 'square' */",
       "    shape?: ControlShape;",
       "    /** @default 'solid' */",
@@ -105736,6 +105269,11 @@
      {
       "uid": 1,
       "name": "color",
+      "comment": {
+       "raw": [
+        "@default \"sky\""
+       ]
+      },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
       },
@@ -105847,14 +105385,71 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: '18' | ControlSize | undefined; } & ButtonMods",
+     "raw": "ButtonProps",
      "print": [
-      "type ButtonProps = ButtonCoreProps & ButtonMods;"
+      "type ButtonProps = uui.ButtonCoreProps & ButtonMods;"
      ]
     },
     "props": [
      {
-      "uid": 63,
+      "uid": 1,
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "rawProps",
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>"
+      },
+      "from": "@epam/uui-core:HrefButtonRawProps",
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": 5,
       "name": "link",
       "comment": {
        "raw": [
@@ -105862,13 +105457,13 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
-      "uid": 95,
+      "uid": 6,
       "name": "href",
       "comment": {
        "raw": [
@@ -105885,7 +105480,7 @@
       "required": false
      },
      {
-      "uid": 96,
+      "uid": 7,
       "name": "isLinkActive",
       "comment": {
        "raw": [
@@ -105902,7 +105497,7 @@
       "required": false
      },
      {
-      "uid": 97,
+      "uid": 8,
       "name": "target",
       "comment": {
        "raw": [
@@ -105922,7 +105517,7 @@
       "required": false
      },
      {
-      "uid": 98,
+      "uid": 9,
       "name": "dropdownIcon",
       "comment": {
        "raw": [
@@ -105939,7 +105534,7 @@
       "required": false
      },
      {
-      "uid": 99,
+      "uid": 10,
       "name": "dropdownIconPosition",
       "comment": {
        "raw": [
@@ -105960,37 +105555,7 @@
       "required": false
      },
      {
-      "uid": 100,
-      "name": "count",
-      "comment": {
-       "raw": [
-        "Count value to be placed in component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 101,
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": 102,
+      "uid": 11,
       "name": "onClick",
       "comment": {
        "raw": [
@@ -106007,7 +105572,7 @@
       "required": false
      },
      {
-      "uid": 103,
+      "uid": 12,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -106024,24 +105589,7 @@
       "required": false
      },
      {
-      "uid": 104,
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": 105,
+      "uid": 13,
       "name": "iconPosition",
       "comment": {
        "raw": [
@@ -106062,7 +105610,7 @@
       "required": false
      },
      {
-      "uid": 106,
+      "uid": 14,
       "name": "onIconClick",
       "comment": {
        "raw": [
@@ -106079,7 +105627,7 @@
       "required": false
      },
      {
-      "uid": 107,
+      "uid": 15,
       "name": "clickAnalyticsEvent",
       "comment": {
        "raw": [
@@ -106094,24 +105642,7 @@
       "required": false
      },
      {
-      "uid": 108,
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": 109,
+      "uid": 16,
       "name": "caption",
       "comment": {
        "raw": [
@@ -106125,7 +105656,7 @@
       "required": false
      },
      {
-      "uid": 110,
+      "uid": 17,
       "name": "onClear",
       "comment": {
        "raw": [
@@ -106142,7 +105673,7 @@
       "required": false
      },
      {
-      "uid": 111,
+      "uid": 18,
       "name": "isOpen",
       "comment": {
        "raw": [
@@ -106159,7 +105690,7 @@
       "required": false
      },
      {
-      "uid": 112,
+      "uid": 19,
       "name": "isDropdown",
       "comment": {
        "raw": [
@@ -106176,7 +105707,7 @@
       "required": false
      },
      {
-      "uid": 113,
+      "uid": 20,
       "name": "toggleDropdownOpening",
       "comment": {
        "raw": [
@@ -106193,7 +105724,7 @@
       "required": false
      },
      {
-      "uid": 114,
+      "uid": 21,
       "name": "isInteractedOutside",
       "comment": {
        "raw": [
@@ -106210,7 +105741,7 @@
       "required": false
      },
      {
-      "uid": 115,
+      "uid": 22,
       "name": "ref",
       "comment": {
        "raw": [
@@ -106225,15 +105756,6 @@
      },
      {
       "uid": 23,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 117,
       "name": "forwardedRef",
       "comment": {
        "raw": [
@@ -106247,7 +105769,7 @@
       "required": false
      },
      {
-      "uid": 118,
+      "uid": 24,
       "name": "clearIcon",
       "comment": {
        "raw": [
@@ -106264,7 +105786,7 @@
       "required": false
      },
      {
-      "uid": 119,
+      "uid": 25,
       "name": "captionCX",
       "comment": {
        "raw": [
@@ -106274,12 +105796,11 @@
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-components:ButtonProps",
       "required": false
      },
      {
-      "uid": 120,
+      "uid": 26,
       "name": "countIndicator",
       "comment": {
        "raw": [
@@ -106293,29 +105814,13 @@
       "required": false
      },
      {
-      "uid": 121,
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
+      "uid": 27,
+      "name": "color",
+      "comment": {
+       "raw": [
+        "@default \"sky\""
        ]
       },
-      "from": "@epam/uui:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": 122,
-      "name": "color",
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
       },
@@ -106336,7 +105841,36 @@
       "required": false
      },
      {
-      "uid": 123,
+      "uid": 28,
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/loveship:ButtonMods",
+      "required": false
+     },
+     {
+      "uid": 29,
       "name": "shape",
       "comment": {
        "raw": [
@@ -106360,7 +105894,7 @@
       "required": false
      },
      {
-      "uid": 124,
+      "uid": 30,
       "name": "fill",
       "comment": {
        "raw": [
@@ -106384,64 +105918,9 @@
       },
       "from": "@epam/loveship:ButtonMods",
       "required": false
-     },
-     {
-      "uid": 94,
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 64,
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": 54,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 85,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement>"
-      },
-      "from": "@epam/uui-core:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": 116,
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement>"
-      },
-      "from": "@epam/uui-core:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/loveship:ColorMod": {
@@ -107896,7 +107375,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
-      "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
+      "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
      ]
     },
     "props": [
@@ -108775,7 +108254,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
-      "type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;"
+      "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
     },
     "props": [
@@ -109624,6 +109103,23 @@
      },
      {
       "uid": 3,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 4,
       "name": "items",
       "typeValue": {
        "raw": "MultiSwitchItem<TValue>[]"
@@ -109632,7 +109128,7 @@
       "required": true
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "value",
       "comment": {
        "raw": [
@@ -109646,7 +109142,7 @@
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -109663,7 +109159,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -109680,7 +109176,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -109694,7 +109190,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -109705,23 +109201,6 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -112813,7 +112292,7 @@
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
-      "type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;"
+      "type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;"
      ]
     },
     "props": [
@@ -114151,7 +113630,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
-      "type TagProps = UuiTagCoreProps & TagMods;"
+      "type TagProps = uui.TagCoreProps & TagMods;"
      ]
     },
     "props": [
@@ -116082,6 +115561,23 @@
      },
      {
       "uid": 5,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 6,
       "name": "value",
       "comment": {
        "raw": [
@@ -116098,7 +115594,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -116115,7 +115611,7 @@
       "required": true
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -116132,7 +115628,7 @@
       "required": false
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -116146,7 +115642,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -116157,23 +115653,6 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
