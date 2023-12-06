@@ -4,15 +4,17 @@
 
 **What's New**
 * [LazyDataSource]: enabled `flattenSearchResults` by default
+* [PickerInput]: Added subtitle for flatten search results as default behavior of `PickerInput`s.
 
 **What's Fixed**
 * [Button]: fixed `rawProps` typings for `data-*` attributes
+* [LazyDataSource]: fixed cascade selection with not flatten search.
 
 # 5.4.1 - 30.11.2023
 
 **What's New**
 * [uui.epam.com](https://uui.epam.com/) site now fully support theming. You can choose preferred theme in app main menu.
-* [Tag]: 
+* [Tag]:
   * rework according to the new design. Added new colors and new `solid` & `outline` mods;
   * [Breaking change]: for loveship package, changed default `size` from `18px` to `36px`.
 * Upload new icons pack
@@ -27,7 +29,7 @@
 
 **What's Fixed**
 * [Calendar]: fixed disabled days text color
-* [Text]: 
+* [Text]:
   * fixed font-weight prop in skins.
   * fixed color values for semantic colors(info, warning, error, success) and for skin colors
 * [TextPlaceholder]: improved animation
