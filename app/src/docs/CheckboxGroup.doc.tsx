@@ -14,8 +14,8 @@ export class CheckboxGroupDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:CheckboxGroupProps', component: uui.CheckboxGroup },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:CheckboxGroupProps', component: loveship.CheckboxGroup },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-components:CheckboxGroupProps', component: promo.CheckboxGroup },
+            [TSkin.Loveship]: { type: '@epam/uui-components:CheckboxGroupProps', component: loveship.CheckboxGroup },
+            [TSkin.Promo]: { type: '@epam/uui-components:CheckboxGroupProps', component: promo.CheckboxGroup },
         },
         doc: (doc: DocBuilder<uuiComponents.CheckboxGroupProps<any>>) => {
             doc.merge('CheckboxInput', {

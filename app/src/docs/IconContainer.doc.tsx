@@ -13,8 +13,8 @@ export class IconContainerDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:ControlIconProps', component: uui.IconContainer },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:IconContainerProps', component: loveship.IconContainer },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:IconContainerProps', component: promo.IconContainer },
+            [TSkin.Loveship]: { type: '@epam/loveship:IconContainerProps', component: loveship.IconContainer },
+            [TSkin.Promo]: { type: '@epam/promo:IconContainerProps', component: promo.IconContainer },
         },
     };
 

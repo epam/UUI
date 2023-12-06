@@ -8,7 +8,7 @@ export default function FlexSpacerExample() {
     const [value, onValueChange] = useState(null);
 
     return (
-        <Panel background="surface" shadow cx={ css.root }>
+        <Panel background="surface-main" shadow cx={ css.root }>
             <FlexRow padding="12" vPadding="18">
                 <Text fontWeight="600" size="48">
                     User settings

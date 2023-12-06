@@ -13,26 +13,37 @@ export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdapt
 }
 
 export interface MainMenuProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    /** Array of menu items to be rendered */
     items?: AdaptiveItemProps[];
+    /** @deprecated
+     * Use 'items' prop to define menu content */
     children?: any;
-    externalGap?: number;
+    /** Path to the logo source */
     appLogoUrl?: string;
-    appLogoBgColor?: string;
+    /** SPA link to navigate on logo click */
+    logoLink?: Link;
+    /** Href to navigate on logo click */
+    logoHref?: string;
+    /** Called when logo is clicked */
+    onLogoClick?: (e: MouseEvent) => any;
+    /** Path to the customer logo source */
     customerLogoUrl?: string;
+    /** SPA link to navigate on customer logo click */
+    customerLogoLink?: Link;
+    /** Href to navigate on customer logo click */
+    customerLogoHref?: string;
     customerLogoBgColor?: string;
-    customerLogoWidth?: number;
     isTransparent?: boolean;
+    /** Render callback for burger menu content.
+     * Burger will appear, which some items don't fit the menu width.
+     * */
     renderBurger?: (props: { onClose: () => void }) => React.ReactNode;
+    /** If true, Burger button will be always visible */
     alwaysShowBurger?: boolean;
     serverBadge?: string;
-    tooltipTechInfo?: React.ReactNode;
-    logoLink?: Link;
-    logoHref?: string;
-    logoWidth?: number;
-    onLogoClick?: (e: MouseEvent) => any;
-    customerLogoLink?: Link;
-    customerLogoHref?: string;
+    /** Internal prop to define component for MainMenuDropdown */
     MainMenuDropdown?: React.ComponentType<MainMenuDropdownProps>;
+    /** Internal prop to define component for Burger */
     Burger?: React.ComponentType<BurgerProps>;
 }
 

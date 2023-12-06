@@ -5,4 +5,7 @@ export * from './demoApi';
 export * from './demoData';
 export * from './models';
 export * from './commonDocs';
-export * from './editors';
+export * from './peEditors';
+export * from './peContexts';
+export * from './docBuilderGen';
+export * from './docsGen/sharedTypes';

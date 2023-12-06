@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as uui from '@epam/uui';
+import * as electric from '@epam/electric';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
@@ -12,9 +13,10 @@ export class AlertDoc extends BaseDocsBlock {
         name: 'Alert',
         contexts: [TDocContext.Resizable],
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:AlertProps', component: loveship.Alert },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:AlertProps', component: promo.Alert },
             [TSkin.UUI]: { type: '@epam/uui:AlertProps', component: uui.Alert },
+            [TSkin.Electric]: { type: '@epam/uui:AlertProps', component: electric.Alert },
+            [TSkin.Loveship]: { type: '@epam/loveship:AlertProps', component: loveship.Alert },
+            [TSkin.Promo]: { type: '@epam/promo:AlertProps', component: promo.Alert },
         },
         doc: (doc: DocBuilder<loveship.AlertProps | promo.AlertProps>) => {
             doc.setDefaultPropExample('color', (_, index) => index === 0);

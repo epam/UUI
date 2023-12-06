@@ -3,7 +3,7 @@ import css from './ReleaseNotesDoc.module.scss';
 import { svc } from '../../services';
 import {
     FlexCell, FlexRow, RichTextView, Spinner, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { UuiReactMarkdown } from '../../documents/uuiReactMarkdown';
 import dayjs from 'dayjs';
 import { ContentSection } from '../../common';
@@ -60,10 +60,10 @@ export class ReleaseNotesDoc extends React.Component {
         return (
             <FlexRow key={ index } cx={ css.releaseRow } rawProps={ { id: header.split('#')[1] } }>
                 <FlexCell minWidth={ 246 } alignSelf="start">
-                    <Text font="museo-sans" fontSize="24" lineHeight="30" cx={ css.releaseHeader }>
+                    <Text fontSize="24" lineHeight="30" cx={ css.releaseHeader }>
                         {header}
                     </Text>
-                    <Text color="gray60" fontSize="16" lineHeight="24" cx={ css.releaseDate }>
+                    <Text color="secondary" fontSize="16" lineHeight="24" cx={ css.releaseDate }>
                         {dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}
                     </Text>
                 </FlexCell>

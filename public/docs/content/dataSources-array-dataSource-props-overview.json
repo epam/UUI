@@ -4,8 +4,11 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Below, you can review the ",
-        "color": "rgb(55, 65, 81)"
+        "text": "Below, you can review the"
+      },
+      {
+        "color": "rgb(55, 65, 81)",
+        "text": " "
       },
       {
         "text": "ArrayDataSourceProps",
@@ -14,7 +17,14 @@
       },
       {
         "color": "rgb(55, 65, 81)",
-        "text": " interface accepted by "
+        "text": " "
+      },
+      {
+        "text": "interface accepted by"
+      },
+      {
+        "color": "rgb(55, 65, 81)",
+        "text": " "
       },
       {
         "color": "rgb(55, 65, 81)",

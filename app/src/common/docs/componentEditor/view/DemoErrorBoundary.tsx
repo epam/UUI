@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, FlexRow, Text } from '@epam/uui';
-import { ReactComponent as UpdateIcon } from '@epam/assets/icons/common/action-update-18.svg';
+import { ReactComponent as UpdateIcon } from '@epam/assets/icons/common/navigation-refresh-12.svg';
 
 type TDemoErrorBoundaryState = {
     isRenderBlocked: boolean;

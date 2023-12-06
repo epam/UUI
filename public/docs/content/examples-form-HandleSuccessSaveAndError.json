@@ -39,11 +39,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " callback. "
-      },
-      {
-        "text": "This is because when the API promise resolves, it doesn't necessarily mean that the form has completed the save actions and transitioned to the 'saved' mode.",
-        "color": "rgb(55, 65, 81)"
+        "text": " callback. This is because when the API promise resolves, it doesn't necessarily mean that the form has completed the save actions and transitioned to the 'saved' mode."
       }
     ]
   }

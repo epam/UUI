@@ -12,8 +12,8 @@ export class FlexCellDoc extends BaseDocsBlock {
         name: 'FlexCell',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:FlexCellProps', component: uui.FlexCell },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:FlexCellProps', component: loveship.FlexCell },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:FlexCellProps', component: promo.FlexCell },
+            [TSkin.Loveship]: { type: '@epam/uui:FlexCellProps', component: loveship.FlexCell },
+            [TSkin.Promo]: { type: '@epam/uui:FlexCellProps', component: promo.FlexCell },
         },
         doc: (doc: DocBuilder<uui.FlexCellProps>) => {
             doc.merge('alignSelf', { editorType: 'MultiUnknownEditor', examples: ['flex-start', 'center', 'flex-end'] });

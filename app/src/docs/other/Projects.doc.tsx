@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Icon } from '@epam/uui-core';
 import {
     FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { ContentSection } from '../../common';
 import css from './ProjectsDoc.module.scss';
 
@@ -127,11 +127,11 @@ export class ProjectsDoc extends React.Component {
                                             cx={ css.projectLink }
                                         />
                                     ) : (
-                                        <Text font="museo-sans" fontSize="24" lineHeight="30" cx={ css.projectName }>
+                                        <Text fontSize="24" lineHeight="30" cx={ css.projectName }>
                                             {project.projectName}
                                         </Text>
                                     )}
-                                    <Text color="gray60" cx={ css.projectCode }>
+                                    <Text color="secondary" cx={ css.projectCode }>
                                         {project.projectCode}
                                     </Text>
                                 </FlexCell>

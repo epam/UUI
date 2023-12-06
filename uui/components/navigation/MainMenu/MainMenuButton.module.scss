@@ -52,6 +52,8 @@
     &:global(.uui-active) {
         background-color: var(--uui-main_menu-hover);
         border-bottom: 3px solid var(--uui-main_menu-border-active);
+        border-image: var(--uui-main_menu-border-active-gradient, none);
+        border-image-slice: 3;
         color: var(--uui-main_menu-text-active);
         fill: var(--uui-main_menu-icon-active);
     }

@@ -13,8 +13,8 @@ export class LabeledInputDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:LabeledInputProps', component: uui.LabeledInput },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:LabeledInputProps', component: loveship.LabeledInput },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:LabeledInputProps', component: promo.LabeledInput },
+            [TSkin.Loveship]: { type: '@epam/uui:LabeledInputProps', component: loveship.LabeledInput },
+            [TSkin.Promo]: { type: '@epam/uui:LabeledInputProps', component: promo.LabeledInput },
         },
         doc: (doc: DocBuilder<uui.LabeledInputProps>) => {
             doc.merge('value', { examples: ['Some simple text'] });
