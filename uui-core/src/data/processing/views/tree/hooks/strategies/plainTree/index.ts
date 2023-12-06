@@ -1,0 +1,1 @@
+export { usePlainTreeStrategy } from './usePlainTreeStrategy';
