@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { TDocConfig, TSkin } from '@epam/uui-docs';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
-import { Checkbox, FlexRow, FlexSpacer, RichTextView, ScrollBars, TabButton, Tooltip, IconContainer } from '@epam/uui';
+import { Checkbox, FlexRow, FlexSpacer, IconContainer, RichTextView, ScrollBars, TabButton, Tooltip } from '@epam/uui';
 import { svc } from '../../services';
 import { getQuery, getCurrentTheme } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
@@ -10,21 +10,7 @@ import { TypeRefSection } from '../apiReference/TypeRefSection';
 import { ComponentEditorWrapper } from './componentEditor/ComponentEditor';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import css from './BaseDocsBlock.module.scss';
-
-export enum TMode {
-    doc = 'doc',
-    propsEditor = 'propsEditor'
-}
-
-export enum TTheme {
-    electric = 'electric',
-    loveship = 'loveship',
-    loveship_dark = 'loveship_dark',
-    promo = 'promo',
-    vanilla_thunder = 'vanilla_thunder'
-}
-
-const DEFAULT_MODE = TMode.doc;
+import { DEFAULT_MODE, TMode, TTheme } from './docsConstants';
 
 const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific package will be used, according to the selected theme (for example, "@epam/loveship"). If unchecked, it will use a component from the "@epam/uui" package, only with semantic props.';
 

@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 582,
-   "amountTypes": 189
+   "amountProps": 613,
+   "amountTypes": 210
   },
   "value": [
    {
@@ -61,16 +61,6 @@
     "value": [
      "gaCode",
      "history"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui-core:DataColumnProps",
-    "value": [
-     "groupBy",
-     "groupCaptionCX",
-     "headerFontSize",
-     "onGroupClick",
-     "onHeaderClick"
     ]
    },
    {
@@ -424,6 +414,7 @@
     "value": [
      "from",
      "renderRating",
+     "step",
      "to"
     ]
    },
@@ -663,6 +654,7 @@
    {
     "typeRef": "@epam/uui-components:PickerModalOptions",
     "value": [
+     "disallowClickOutside",
      "renderFilter",
      "renderFooter"
     ]
@@ -917,7 +909,8 @@
    {
     "typeRef": "@epam/uui:CountIndicatorProps",
     "value": [
-     "color"
+     "color",
+     "size"
     ]
    },
    {
@@ -1068,6 +1061,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:IDropdownMenuItemProps",
     "value": [
      "indent",
@@ -1095,6 +1094,13 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:LinkButtonMods",
+    "value": [
+     "color",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:MainMenuAvatarProps",
     "value": [
      "avatarUrl",
@@ -1117,6 +1123,7 @@
    {
     "typeRef": "@epam/uui:MultiSwitchProps",
     "value": [
+     "color",
      "items"
     ]
    },
@@ -1178,6 +1185,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:RadioInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:RangeDatePickerBodyProps",
     "value": [
      "focusPart",
@@ -1197,6 +1210,12 @@
     "value": [
      "from",
      "to"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:RichTextViewMods",
+    "value": [
+     "size"
     ]
    },
    {
@@ -1221,8 +1240,15 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:SwitchMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TabButtonMods",
     "value": [
+     "size",
      "withNotify"
     ]
    },
@@ -1246,6 +1272,12 @@
     ]
    },
    {
+    "typeRef": "@epam/uui:TextInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/uui:TextMods",
     "value": [
      "color",
@@ -1259,6 +1291,13 @@
     "value": [
      "fontSize",
      "lineHeight"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:TimePickerProps",
+    "value": [
+     "format",
+     "minutesStep"
     ]
    },
    {
@@ -1310,10 +1349,28 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:LinkButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:ModalWindowMods",
     "value": [
      "height",
      "width"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:MultiSwitchMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -1331,6 +1388,18 @@
     ]
    },
    {
+    "typeRef": "@epam/promo:RatingMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:RowMods",
+    "value": [
+     "background"
+    ]
+   },
+   {
     "typeRef": "@epam/promo:RowSizeMod",
     "value": [
      "size"
@@ -1340,6 +1409,19 @@
     "typeRef": "@epam/promo:StatusIndicatorMods",
     "value": [
      "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:TagMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/promo:TextMods",
+    "value": [
+     "color",
+     "font"
     ]
    },
    {
@@ -1405,6 +1487,18 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:IconButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:LinkButtonMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:MakeMeItemProps",
     "value": [
      "api"
@@ -1428,6 +1522,12 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:MultiSwitchMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:NotificationCardMods",
     "value": [
      "color"
@@ -1442,9 +1542,23 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:RadioInputMods",
+    "value": [
+     "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:RatingMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:RowMods",
     "value": [
-     "spacing"
+     "background",
+     "spacing",
+     "type"
     ]
    },
    {
@@ -1462,10 +1576,13 @@
    {
     "typeRef": "@epam/loveship:SliderRatingProps",
     "value": [
+     "from",
      "getHandlerIcon",
      "getScaleIcon",
      "renderTooltip",
-     "tooltipColor"
+     "size",
+     "tooltipColor",
+     "withoutNa"
     ]
    },
    {
@@ -1484,6 +1601,25 @@
     "typeRef": "@epam/loveship:TabButtonMods",
     "value": [
      "theme"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TagMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TextInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/loveship:TextMods",
+    "value": [
+     "color",
+     "font"
     ]
    },
    {

@@ -3,7 +3,7 @@ import css from './CodeExpandable.module.scss';
 import { FlexRow, LinkButton, Switch } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 import { Code } from '../../docs/Code';
-import { TType } from '../sharedTypes';
+import { TType } from '@epam/uui-docs';
 
 function buildGitURL(relativePath?: string) {
     if (relativePath) {
