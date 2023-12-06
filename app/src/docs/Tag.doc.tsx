@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
@@ -15,8 +16,9 @@ export class TagDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:TagProps', component: uui.Tag },
             [TSkin.Promo]: { type: '@epam/promo:TagProps', component: promo.Tag },
             [TSkin.Loveship]: { type: '@epam/loveship:TagProps', component: loveship.Tag },
+            [TSkin.Electric]: { type: '@epam/electric:TagProps', component: electric.Tag },
         },
-        doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps>) => {
+        doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps >) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };

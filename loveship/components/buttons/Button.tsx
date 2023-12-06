@@ -1,5 +1,5 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
-import { Button as uuiButton, ButtonFill, ControlSize, ButtonCoreProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.module.scss';
@@ -9,23 +9,24 @@ const defaultSize = '36';
 export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
 
 export interface ButtonMods {
+    /** @default "sky"  */
     color?: ButtonColorType;
     /** @default '36' */
-    size?: ControlSize | '18';
+    size?: uui.ControlSize | '18';
     /** @default 'square' */
     shape?: ControlShape;
     /** @default 'solid' */
     fill?: FillStyle;
 }
 
-const mapFill: Record<FillStyle, ButtonFill> = {
+const mapFill: Record<FillStyle, uui.ButtonFill> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
     none: 'none',
 };
 
-export type ButtonProps = ButtonCoreProps & ButtonMods;
+export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
@@ -34,8 +35,8 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = createSkinComponent<ButtonCoreProps, ButtonProps>(
-    uuiButton,
+export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
+    uui.Button as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
