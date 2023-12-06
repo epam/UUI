@@ -9,7 +9,10 @@ const defaultSize = '36';
 const defaultMode = EditMode.FORM;
 
 export type NumericInputMods = IHasEditMode & {
-    /** @default '36', but size '48' is deprecated and will be removed in future release */
+    /**
+     * @default '36'.
+     * Size '48' is deprecated and will be removed in future release
+     * */
     size?: ControlSize;
 };
 
