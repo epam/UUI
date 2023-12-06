@@ -52,6 +52,7 @@
         .color-palette {
             background: url('/static/images/Palette.png') no-repeat center;
             background-size: 100%;
+            transition: 300ms ease;
 
             &:hover, &:focus-visible {
                 background-size: 150%;
@@ -61,6 +62,7 @@
         .typography {
             background: url('/static/images/Typo.png') no-repeat center;
             background-size: 100%;
+            transition: 300ms ease;
 
             &:hover, &:focus-visible {
                 background-size: 150%;
@@ -81,6 +83,7 @@
         .download {
             background: url('/static/images/Assets.png') no-repeat center;
             background-size: 100%;
+            transition: 300ms ease;
 
             &:hover, &:focus-visible {
                 background-size: 150%;
@@ -107,11 +110,13 @@
         .components {
             background: url('/static/images/Components.png') no-repeat center;
             background-size: 100%;
+            transition: 300ms ease;
         }
 
         .demo {
             background: url('/static/images/Demo.png') no-repeat center;
             background-size: 100%;
+            transition: 300ms ease;
         }
     }
 

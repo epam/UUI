@@ -4,7 +4,7 @@ import { getUseInputValueHook } from './utils/hooks';
 import { IPropDocEditor } from '../types';
 import { getMultiUnknownExamplesComponent } from './examples/multiUnknownExamples';
 
-const JSonEditorExamples = getMultiUnknownExamplesComponent({ isValueNodeVisible: false });
+const JSonEditorExamples = getMultiUnknownExamplesComponent<object>({ isValueNodeVisible: false });
 const valueToInput = (v: object) => (v ? JSON.stringify(v, undefined, 1) : '');
 const inputToValue = (i: string) => jsonParse(i);
 const validateInput = (i: string) => {
