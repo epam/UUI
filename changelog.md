@@ -1,3 +1,10 @@
+# 5.4.2 - xx.xx.2023
+**What's New**
+* [FiltersPanel]: added `togglerWidth` prop, which configure maxWidth of filter toggler
+
+**What's Fixed**
+* [Button]: fixed `rawProps` typings for `data-*` attributes
+
 # 5.4.1 - 30.11.2023
 
 **What's New**
