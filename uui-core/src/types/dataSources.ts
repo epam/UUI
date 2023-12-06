@@ -207,6 +207,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     reload(): void;
     destroy(): void;
     loadData(): void;
+    clearAllChecked(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
 };
