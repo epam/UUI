@@ -2,7 +2,7 @@ import { FiltersPanel, FiltersPanelProps } from '../FiltersPanel';
 import { ArrayDataSource, TableFiltersConfig } from '@epam/uui-core';
 import { defaultPredicates } from '../defaultPredicates';
 import {
-    setupComponentForTest, screen, within, userEvent,
+    setupComponentForTest, screen, within, userEvent, renderSnapshotWithContextAsync,
 } from '@epam/uui-test-utils';
 import React from 'react';
 import dayjs from 'dayjs';
@@ -32,6 +32,7 @@ const filtersConfigWithoutPredicatesAll: TableFiltersConfig<TestItemType>[] = [
                 { id: 1, name: 'Green' }, { id: 2, name: 'Red' }, { id: 3, name: 'White' },
             ],
         }),
+        maxCount: 3,
     }, {
         field: 'position',
         columnKey: 'position',
@@ -42,6 +43,7 @@ const filtersConfigWithoutPredicatesAll: TableFiltersConfig<TestItemType>[] = [
                 { id: 1, name: 'Designer' }, { id: 2, name: 'QA' }, { id: 3, name: 'Dev' },
             ],
         }),
+        togglerWidth: 400,
     }, {
         field: 'age',
         columnKey: 'age',
@@ -115,6 +117,30 @@ function notExpectDialog() {
 }
 
 describe('FiltersPanel', () => {
+    describe('snapshot', () => {
+        it('should be rendered correctly', async () => {
+            const tree = await renderSnapshotWithContextAsync(
+                <FiltersPanel
+                    filters={ filtersConfigWithoutPredicatesAll }
+                    tableState={ {
+                        filtersConfig: {
+                            status: { isVisible: true, order: 'a' },
+                            position: { isVisible: true, order: 'b' },
+                            age: { isVisible: true, order: 'c' },
+                            hireDate: { isVisible: true, order: 'd' },
+                            exitDate: { isVisible: true, order: 'e' },
+                        },
+                        filter: {
+                            status: [1, 2, 3],
+                        },
+                    } }
+                    setTableState={ () => {} }
+                />,
+            );
+            expect(tree).toMatchSnapshot();
+        });
+    });
+
     describe('filter type: singlePicker', () => {
         it('should add / view / clear / remove (without predicate)', async () => {
             const user = userEvent.setup();
