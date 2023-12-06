@@ -2,11 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { TreeListItem } from '@epam/uui-components';
 import { FlexRow } from '@epam/uui';
-import { AppHeader, Page, Sidebar, TMode, TTheme, TypeRefPage } from '../common';
+import { AppHeader, Page, Sidebar, TypeRefPage } from '../common';
 import { svc } from '../services';
 import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
+import { TMode, TTheme } from '../common/docs/docsConstants';
 
 type DocsQuery = {
     id: string;
