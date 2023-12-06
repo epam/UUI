@@ -171,7 +171,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 this.visibleTree = this.fullTree;
             }
             completeReset = true;
-            this.isForceReloading = false;
         }
 
         const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
@@ -180,7 +179,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.updateCheckedLookup(this.value.checked);
         }
 
-        const shouldShowPlacehodlers = !shouldReloadData || (shouldReloadData && !this.props.backgroundReload);
+        const shouldShowPlacehodlers = !shouldReloadData
+            || (shouldReloadData && !this.props.backgroundReload)
+            || this.isForceReloading;
 
         if (
             // on filters change skeleton should not appear
@@ -199,6 +200,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
+            this.isForceReloading = false;
+
             this.loadMissing(completeReset)
                 .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
@@ -376,6 +379,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (this.props.cascadeSelection || isRoot) {
             const loadNestedLayersChildren = !isImplicitMode;
             const parents = this.fullTree.getParentIdsRecursive(checkedId);
+
             const result = await this.loadMissing(
                 false,
                 {
@@ -383,6 +387,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
                     // Otherwise, should be loaded only checked element and all its nested children.
                     loadAllChildren: (id) => {
+                        if (!this.props.cascadeSelection) {
+                            return isChecked && isRoot;
+                        }
+
                         if (isImplicitMode) {
                             return id === ROOT_ID || parents.some((parent) => isEqual(parent, id));
                         }
@@ -402,7 +410,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         checked = tree.cascadeSelection(checked, checkedId, isChecked, {
-            cascade: isImplicitMode ? this.props.cascadeSelection : isRoot || this.props.cascadeSelection,
+            cascade: isImplicitMode ? this.props.cascadeSelection : (isRoot && isChecked) || this.props.cascadeSelection,
             isSelectable: (item: TItem) => {
                 const { isCheckable } = this.getRowProps(item, null);
                 return isCheckable;

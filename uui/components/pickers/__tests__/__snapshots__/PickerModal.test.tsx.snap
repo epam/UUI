@@ -131,6 +131,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         Object {
           "columnGap": undefined,
           "maxHeight": undefined,
+          "maxWidth": undefined,
           "rowGap": undefined,
         }
       }
@@ -524,6 +525,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         Object {
           "columnGap": undefined,
           "maxHeight": undefined,
+          "maxWidth": undefined,
           "rowGap": undefined,
         }
       }

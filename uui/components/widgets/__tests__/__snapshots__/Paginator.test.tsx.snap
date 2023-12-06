@@ -3,6 +3,8 @@
 exports[`Paginator should be rendered correctly 1`] = `
 <nav
   className="root uui-paginator"
+  data-my_attr="value"
+  id="123"
   role="navigation"
 >
   <button
