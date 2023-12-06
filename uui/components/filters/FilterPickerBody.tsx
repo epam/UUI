@@ -51,6 +51,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((props) => renderRow(props));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
+        const maxWidth = isMobile() ? undefined : 360;
 
         return (
             <>
@@ -59,6 +60,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
                     selectionMode={ props.selectionMode }
                     rows={ renderedDataRows }
                     maxHeight={ maxHeight }
+                    maxWidth={ maxWidth }
                     searchSize="36"
                     editMode="dropdown"
                 />

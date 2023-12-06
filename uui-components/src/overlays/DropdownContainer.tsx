@@ -16,8 +16,8 @@ export interface DropdownContainerProps
     IDropdownBodyProps {
     /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */
     width?: number | 'auto';
-    /** Defines maximum width in 'px'. */
-    maxWidth?: number;
+    /** Defines maximum width in 'px'. If 'auto' provided, will be used width of the content. */
+    maxWidth?: number | 'auto';
     /** Defines height in 'px'. */
     height?: number;
     /** If true, arrow tip will be shown
