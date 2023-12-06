@@ -389,7 +389,8 @@
     }
 
     .uui-text-placeholder {
-        --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--chromatic-200) 0, var(--chromatic-100) 150px, var(--chromatic-200) 300px);
+        // --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--chromatic-200) 0, var(--chromatic-100) 150px, var(--chromatic-200) 300px);
+        --uui-text_placeholder-gradient: linear-gradient(90deg, var(--chromatic-200) 0%, var(--chromatic-100) 50%, var(--chromatic-200) 100%);
     }
 
     /* Tag */
