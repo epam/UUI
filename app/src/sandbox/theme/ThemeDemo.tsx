@@ -6,7 +6,7 @@ import {
 } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
-import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
+import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/communication-geo_tag-18.svg';
 import { Country } from '@epam/uui-docs';
 
 interface Person {
@@ -34,7 +34,7 @@ export function ThemeDemo() {
                 <ModalWindow width={ 360 }>
                     <ModalHeader borderBottom title="Simple modal example " onClose={ () => props.abort() } />
                     <ScrollBars>
-                        <Panel background="surface" margin="24">
+                        <Panel background="surface-main" margin="24">
                             <Text color="primary" fontSize="16">
                                 Changes will be undone!
                             </Text>
@@ -233,7 +233,7 @@ export function ThemeDemo() {
 
     return (
         <div style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex' } }>
-            <Panel background="surface" shadow rawProps={ { style: { margin: '24px auto' } } }>
+            <Panel background="surface-main" shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>{renderDemoForm()}</ScrollBars>
             </Panel>
         </div>

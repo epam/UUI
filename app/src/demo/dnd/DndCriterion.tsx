@@ -63,7 +63,7 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                                         onPointerDown: props.eventHandlers.onPointerDown,
                                     } }
                                 />
-                                <FlexRow background="surface" vPadding="12" padding="18" cx={ css.row }>
+                                <FlexRow background="surface-main" vPadding="12" padding="18" cx={ css.row }>
                                     <Checkbox
                                         value={ item.isChecked }
                                         onValueChange={ (newValue) => this.props.onValueChange({ ...item, isChecked: newValue }) }

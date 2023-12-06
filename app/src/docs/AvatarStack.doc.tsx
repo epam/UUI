@@ -13,8 +13,8 @@ export class AvatarStackDoc extends BaseDocsBlock {
     override config: TDocConfig = {
         name: 'AvatarStack',
         bySkin: {
-            [TSkin.UUI3_loveship]: { type: '@epam/uui-components:AvatarStackProps', component: loveship.AvatarStack },
-            [TSkin.UUI4_promo]: { type: '@epam/uui-components:AvatarStackProps', component: promo.AvatarStack },
+            [TSkin.Loveship]: { type: '@epam/uui-components:AvatarStackProps', component: loveship.AvatarStack },
+            [TSkin.Promo]: { type: '@epam/uui-components:AvatarStackProps', component: promo.AvatarStack },
             [TSkin.UUI]: { type: '@epam/uui-components:AvatarStackProps', component: uui.AvatarStack },
         },
         doc: (doc: DocBuilder<AvatarStackProps>) => {

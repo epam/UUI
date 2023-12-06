@@ -2,7 +2,7 @@
 
 .layout {
     margin: 0 auto;
-    background-color: $gray10;
+    background-color: var(--uui-surface-lower);
 
     .technologies {
         max-width: 1200px;

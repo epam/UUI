@@ -13,8 +13,8 @@ export class TextInputDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form, TDocContext.Table],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TextInputProps', component: uui.TextInput },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:TextInputProps', component: loveship.TextInput },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:TextInputProps', component: promo.TextInput },
+            [TSkin.Loveship]: { type: '@epam/loveship:TextInputProps', component: loveship.TextInput },
+            [TSkin.Promo]: { type: '@epam/uui:TextInputProps', component: promo.TextInput },
         },
         doc: (doc: DocBuilder<uui.TextInputProps | loveship.TextInputProps>) => {
             doc.merge('type', { defaultValue: 'text' });

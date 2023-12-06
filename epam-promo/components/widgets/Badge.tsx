@@ -34,7 +34,7 @@ export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
         return {
             color: props.color || 'blue',
             fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
-        } as BadgeProps;
+        };
     },
     applyBadgeMods,
 );

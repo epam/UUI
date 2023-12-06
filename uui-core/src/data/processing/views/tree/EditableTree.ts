@@ -144,10 +144,22 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         if (selectedId !== ROOT_ID) {
             selectedIdsMap.delete(selectedId);
         } else {
-            return this.newMap<TId, boolean>();
+            for (const [selectedItemId, isItemSelected] of selectedIdsMap) {
+                if (isItemSelected) {
+                    this.actForSelectable((id) => selectedIdsMap.delete(id), isSelectable, selectedItemId);
+                }
+            }
+            return selectedIdsMap;
         }
 
         return selectedIdsMap;
+    }
+
+    private actForSelectable(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, id: TId) {
+        const item = this.getById(id);
+        if (item !== NOT_FOUND_RECORD && isSelectable(item)) {
+            action(id);
+        }
     }
 
     private explicitCascadeSelection(

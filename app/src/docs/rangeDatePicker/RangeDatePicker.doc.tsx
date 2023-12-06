@@ -20,8 +20,8 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:RangeDatePickerProps', component: uui.RangeDatePicker },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:RangeDatePickerProps', component: loveship.RangeDatePicker },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:RangeDatePickerProps', component: promo.RangeDatePicker },
+            [TSkin.Loveship]: { type: '@epam/uui:RangeDatePickerProps', component: loveship.RangeDatePicker },
+            [TSkin.Promo]: { type: '@epam/uui:RangeDatePickerProps', component: promo.RangeDatePicker },
         },
         doc: (doc: DocBuilder<uui.RangeDatePickerProps>) => {
             doc.merge('value', {

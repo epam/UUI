@@ -13,8 +13,8 @@ export class RadioInputDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:RadioInputProps', component: uui.RadioInput },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:RadioInputProps', component: loveship.RadioInput },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:RadioInputProps', component: promo.RadioInput },
+            [TSkin.Loveship]: { type: '@epam/loveship:RadioInputProps', component: loveship.RadioInput },
+            [TSkin.Promo]: { type: '@epam/uui:RadioInputProps', component: promo.RadioInput },
         },
         doc: (doc: DocBuilder<loveship.RadioInputProps| uui.RadioInputProps>) => {
             doc.merge('value', { examples: [true, { value: false, isDefault: true }] });

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, useLazyDataSource, useUuiContext, TableFiltersConfig, LazyDataSource, useTableState, DataTableState, getSeparatedValue } from '@epam/uui-core';
-import { Text, DataTable, Panel, FlexRow, BadgeColor, Badge } from '@epam/uui';
+import { Text, DataTable, Panel, FlexRow, Badge, BadgeColor } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
@@ -116,7 +116,7 @@ export default function ColumnsConfigurationDataTableExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel background="surface" shadow cx={ css.container }>
+        <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }

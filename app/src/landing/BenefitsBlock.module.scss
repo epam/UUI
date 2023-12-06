@@ -1,14 +1,11 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-@use '~@epam/promo/assets/styles/fonts' as *;
-
 @mixin control-focus($width: 2px, $offset: 2px) {
-    outline: $blue auto $width;
+    outline: var(--uui-info-50) auto $width;
     outline-offset: $offset;
 }
 
 .layout {
     margin: 0 auto;
-    background-color: #F5F6FA;
+    background-color: var(--uui-surface-low);
 
     .benefits {
         display: flex;
@@ -57,8 +54,8 @@
                         }
 
                         &-active {
-                            border-left: 6px solid $blue;
-                            background-color: white;
+                            border-left: 6px solid var(--uui-info-50);
+                            background-color: var(--uui-surface-main);
                         }
 
                         & div {
@@ -88,7 +85,7 @@
                         border-radius: 50%;
                         top: 14px;
                         left: 0;
-                        background-color: $blue;
+                        background-color: var(--uui-info-50);
                     }
 
                     &:last-child {
@@ -118,7 +115,7 @@
                         .actions-container {
                             display: flex;
                             flex-direction: row;
-                            border-bottom: 1px solid #CED0DB;
+                            border-bottom: 1px solid var(--uui-divider);
                             justify-content: space-between;
                         }
 
@@ -133,17 +130,17 @@
                             .reason-caption {
                                 font-size: 14px;
                                 line-height: 24px;
-                                font-family: $font-sans-semibold;
-                                color: $gray80;
+                                font-family: var(--font-semibold);
+                                color: var(--uui-text-primary);
                             }
 
                             &-active {
                                 border-left: 0;
-                                border-bottom: 3px solid $blue;
+                                border-bottom: 3px solid var(--uui-info-50);
                                 background-color: transparent;
 
                                 .reason-caption {
-                                    color: $blue;
+                                    color: var(--uui-info-50);
                                 }
                             }
                         }
@@ -191,7 +188,7 @@
                             min-width: 664px;
                             display: flex;
                             flex-direction: row;
-                            border-bottom: 1px solid #CED0DB;
+                            border-bottom: 1px solid var(--uui-divider);
                             justify-content: space-between;
                         }
 
@@ -206,17 +203,17 @@
                             .reason-caption {
                                 font-size: 14px;
                                 line-height: 24px;
-                                font-family: $font-sans-semibold;
-                                color: $gray80;
+                                font-family: var(--font-semibold);
+                                color: var(--uui-text-primary);
                             }
 
                             &-active {
                                 border-left: 0;
-                                border-bottom: 3px solid $blue;
+                                border-bottom: 3px solid var(--uui-info-50);
                                 background-color: transparent;
 
                                 .reason-caption {
-                                    color: $blue;
+                                    color: var(--uui-info-50);
                                 }
                             }
                         }

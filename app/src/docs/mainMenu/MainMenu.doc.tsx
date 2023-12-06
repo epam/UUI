@@ -16,12 +16,11 @@ export class MainMenuDoc extends BaseDocsBlock {
         contexts: [TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:MainMenuProps', component: uui.MainMenu },
-            [TSkin.UUI3_loveship]: { type: '@epam/uui:MainMenuProps', component: loveship.MainMenu },
-            [TSkin.UUI4_promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
+            [TSkin.Loveship]: { type: '@epam/uui:MainMenuProps', component: loveship.MainMenu },
+            [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps>) => {
             doc.merge('children', { examples: childrenExamples });
-            doc.merge('appLogoBgColor', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });

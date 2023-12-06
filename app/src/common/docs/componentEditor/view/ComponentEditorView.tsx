@@ -1,53 +1,51 @@
 import * as React from 'react';
 import {
-    FlexCell,
-    FlexSpacer,
-    IconButton,
-    Spinner,
-    FlexRow, LinkButton, MultiSwitch, ScrollBars, Text, Tooltip,
+    Spinner, FlexRow, LinkButton, MultiSwitch, ScrollBars, Text,
 } from '@epam/uui';
-import { cx } from '@epam/uui-core';
-import { PropDoc, IPropSamplesCreationContext, DemoContext, TDocsGenExportedType } from '@epam/uui-docs';
-import { PropEditorRow } from './PropEditorRow';
-//
-import { ReactComponent as ResetIcon } from '../../../../icons/reset-icon.svg';
-import css from './ComponentEditorView.module.scss';
+import {
+    IPropSamplesCreationContext,
+    DemoContext,
+    TDocsGenExportedType,
+    PropDocPropsUnknown,
+    PropDoc,
+} from '@epam/uui-docs';
 import { DemoCode } from './DemoCode';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
-import { getInputValuesFromInputData } from '../utils';
+import css from './ComponentEditorView.module.scss';
+import { PeTable } from './peTable/PeTable';
+import { buildNormalizedInputValuesMap } from '../propDocUtils';
 
-interface IComponentEditorViewProps {
-    contexts: DemoContext[],
-    currentTheme: string;
+type TInputData<TProps> = {
+    [name in keyof TProps]: {
+        value?: TProps[keyof TProps] | undefined;
+        exampleId?: string | undefined;
+    }
+};
+
+interface IComponentEditorViewProps<TProps> {
+    contexts: DemoContext<PropDocPropsUnknown>[],
     componentKey?: string;
-    DemoComponent: React.ComponentType<any>;
+    DemoComponent: React.ComponentType<PropDocPropsUnknown>;
     generatedFromType?: TDocsGenExportedType;
     isDocUnsupportedForSkin: boolean;
     isInited: boolean;
-    propContext: IPropSamplesCreationContext,
-    propDoc: PropDoc<any, string | number | symbol>[]
+    propContext: IPropSamplesCreationContext<TProps>,
+    propDoc: PropDoc<TProps, keyof TProps>[]
     selectedCtxName: string,
-    showCode: boolean;
     tagName: string;
     title: string;
-    inputData: {
-        [name: string]: {
-            value?: any;
-            exampleId?: string;
-        }
-    };
-    onGetInputValues: () => { [p: string]: any }
+    inputData: TInputData<TProps>;
+    onGetInputValues: () => PropDocPropsUnknown
     onChangeSelectedCtx: (name: string) => void;
-    onPropExampleIdChange: (params: { prop: PropDoc<any, any>, newPropExampleId: string }) => void;
-    onPropValueChange: (params: { prop: PropDoc<any, any>, newPropValue: any }) => void;
     onRedirectBackToDocs: () => void;
-    onReset: () => void;
-    onResetProp: (name: string) => void;
-    onToggleShowCode: () => void;
+    onResetAllProps: () => void;
+    onClearProp: (name: keyof TProps) => void;
+    onPropValueChange: (params: { prop: PropDoc<TProps, keyof TProps>, newValue: TProps[keyof TProps] }) => void;
+    onPropExampleIdChange: (params: { prop: PropDoc<TProps, keyof TProps>, newExampleId: string | undefined }) => void;
 }
-export function ComponentEditorView(props: IComponentEditorViewProps) {
-    const inputValues = React.useMemo(() => {
-        const map = getInputValuesFromInputData(props.inputData);
+export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: IComponentEditorViewProps<TProps>) {
+    const demoComponentProps = React.useMemo(() => {
+        const map = buildNormalizedInputValuesMap(props.inputData);
         if (props.componentKey) {
             return {
                 ...map,
@@ -69,47 +67,30 @@ export function ComponentEditorView(props: IComponentEditorViewProps) {
         ? props.contexts.find((ctx) => ctx.name === props.selectedCtxName).context
         : props.contexts[0].context;
 
-    const rows = props.propDoc.map((p, index: number) => {
-        const key = `${p.name}_${index}`;
-        const propValue = props.inputData[p.name].value;
-        const propExampleId = props.inputData[p.name].exampleId;
-        return (
-            <PropEditorRow
-                key={ key }
-                prop={ p }
-                propValue = { propValue }
-                propExampleId = { propExampleId }
-                onResetProp = { props.onResetProp }
-                propContext={ props.propContext }
-                onPropValueChange={ props.onPropValueChange }
-                onPropExampleIdChange={ props.onPropExampleIdChange }
-            />
-        );
-    });
-
     return (
         <div className={ css.root }>
-            <div className={ cx(css.container, css.uuiThemePromo) }>
-                <Toolbar title={ props.title } onReset={ props.onReset } generatedFromType={ props.generatedFromType } />
-                <Header />
-                <div className={ css.rowProps }>
-                    <ScrollBars cx={ css.lastBorder }>
-                        { rows }
-                    </ScrollBars>
-                </div>
+            <PeTable<TProps>
+                inputData={ props.inputData }
+                onExampleIdChange={ props.onPropExampleIdChange }
+                onResetAllProps={ props.onResetAllProps }
+                onClearProp={ props.onClearProp }
+                onValueChange={ props.onPropValueChange }
+                propContext={ props.propContext }
+                propDoc={ props.propDoc }
+                title={ props.title }
+                titleTooltip={ props.generatedFromType }
+            >
                 <DemoCode
-                    demoComponentProps={ inputValues }
-                    onToggleShowCode={ props.onToggleShowCode }
+                    demoComponentProps={ demoComponentProps }
                     tagName={ props.tagName }
-                    showCode={ props.showCode }
                 />
-            </div>
+            </PeTable>
             <div className={ css.demoContext }>
                 <ContextSwitcher contexts={ props.contexts } selectedCtxName={ props.selectedCtxName } onChangeSelectedCtx={ props.onChangeSelectedCtx } />
-                <div className={ cx(css.demoContainer, css[props.currentTheme]) }>
+                <div className={ css.demoContainer }>
                     <ScrollBars>
                         <DemoErrorBoundary>
-                            <SelectedDemoContext DemoComponent={ props.DemoComponent } props={ inputValues } />
+                            <SelectedDemoContext DemoComponent={ props.DemoComponent } props={ demoComponentProps } />
                         </DemoErrorBoundary>
                     </ScrollBars>
                 </div>
@@ -119,7 +100,7 @@ export function ComponentEditorView(props: IComponentEditorViewProps) {
 }
 
 const ContextSwitcher = React.memo(
-    ({ contexts, selectedCtxName, onChangeSelectedCtx }: Pick<IComponentEditorViewProps, 'contexts' | 'selectedCtxName' | 'onChangeSelectedCtx'>) => {
+    ({ contexts, selectedCtxName, onChangeSelectedCtx }: Pick<IComponentEditorViewProps<PropDocPropsUnknown>, 'contexts' | 'selectedCtxName' | 'onChangeSelectedCtx'>) => {
         const availableCtxNames = contexts?.map((i) => i.name) || [];
         return (
             <FlexRow
@@ -127,9 +108,9 @@ const ContextSwitcher = React.memo(
                 size="36"
                 padding="12"
                 spacing="6"
-                background="surface"
+                background="surface-main"
                 borderBottom
-                cx={ cx(css.contextSettingRow, css.uuiThemePromo) }
+                cx={ css.contextSettingRow }
             >
                 <MultiSwitch
                     key="multi-switch"
@@ -142,52 +123,10 @@ const ContextSwitcher = React.memo(
         );
     },
 );
-const Toolbar = React.memo(
-    ({ generatedFromType, title, onReset }: Pick<IComponentEditorViewProps, 'generatedFromType' | 'title' | 'onReset'>) => {
-        return (
-            <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
-                <Tooltip content={ generatedFromType }>
-                    <Text fontSize="16" lineHeight="24" cx={ css.vPadding } fontWeight="600">
-                        {title}
-                    </Text>
-                </Tooltip>
-                <FlexSpacer />
-                <Tooltip placement="auto" content="Reset setting">
-                    <IconButton
-                        icon={ ResetIcon }
-                        onClick={ onReset }
-                        color="info"
-                    />
-                </Tooltip>
-            </FlexRow>
-        );
-    },
-);
-const Header = React.memo(function HeaderComponent() {
-    return (
-        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface">
-            <FlexCell key="name" width={ 130 }>
-                <Text size="24" fontWeight="600">
-                    NAME
-                </Text>
-            </FlexCell>
-            <FlexCell key="default" width={ 100 }>
-                <Text size="24" fontWeight="600">
-                    DEFAULT
-                </Text>
-            </FlexCell>
-            <FlexCell key="examples" grow={ 1 }>
-                <Text size="24" fontWeight="600">
-                    PRESET
-                </Text>
-            </FlexCell>
-        </FlexRow>
-    );
-});
 
 function NotSupportedForSkin(props: { onRedirectBackToDocs: () => void }) {
     return (
-        <div className={ cx(css.notSupport, css.themePromo) }>
+        <div className={ css.notSupport }>
             <Text fontSize="16" lineHeight="24">
                 This component does not support property explorer
             </Text>

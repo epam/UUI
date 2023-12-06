@@ -3,8 +3,11 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "To access UUI services in your app, use the ",
-        "color": "rgb(55, 65, 81)"
+        "text": "To access UUI services in your app, use the"
+      },
+      {
+        "color": "rgb(55, 65, 81)",
+        "text": " "
       },
       {
         "text": "useUuiContext",
@@ -12,8 +15,11 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " hook, which returns an object containing all UUI services.",
+        "text": " ",
         "color": "rgb(55, 65, 81)"
+      },
+      {
+        "text": "hook, which returns an object containing all UUI services."
       }
     ]
   }

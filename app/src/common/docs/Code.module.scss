@@ -1,15 +1,15 @@
 @use '~@epam/promo/assets/styles/index' as *;
 
 .code {
+    --code-bg: var(--uui-surface-sunken);
     font-size: 14px;
     line-height: 18px;
     padding: 24px;
     margin: 0;
-    border-top: 1px solid $gray40;
-    background-color: white;
+    background-color: var(--code-bg);
     font-family: monospace;
     white-space: pre-wrap;
-    word-wrap: normal;
+    word-wrap: break-word;
     overflow: auto;
 
     &.compact {
@@ -18,21 +18,35 @@
     }
 
     /* Highly opinionated - make comments stand out and more readable // YakovZh */
-    :global(.token):global(.comment) {
-        color: $gray60;
-        font-family: $font-sans;
-        font-size: 14px;
-        position: relative;
+    :global {
+        .token {
+            &.comment {
+                color: var(--uui-text-secondary);
+                font-family: var(--uui-font);
+                font-size: 14px;
+                position: relative;
 
-        &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 18px;
-            width: 12px;
-            background: white;
-            opacity: 0.7;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 18px;
+                    width: 12px;
+                    background: var(--code-bg);
+                    opacity: 0.7;
+                }
+            }
+
+            &.operator {
+                color: var(--uui-warning-70);
+                background: var(--code-bg);
+            }
+
+            &.punctuation {
+                color: var(--uui-text-tertiary);
+            }
         }
     }
+
 }
