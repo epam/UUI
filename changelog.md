@@ -6,6 +6,7 @@
 * [Button]: fixed `rawProps` typings for `data-*` attributes
 * [PickerInput]: Fixed picker input body responsiveness.
     * `DropdownContainer` `width` property affects `maxWidth` if `maxWidth` is not provided.
+* [LazyDataSource]: fixed showing placeholders on `clearCache`.
 
 # 5.4.1 - 30.11.2023
 
