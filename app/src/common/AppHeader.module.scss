@@ -28,5 +28,9 @@
     .theme-switcher-button:hover {
         background-color: color-mix(in srgb, var(--white) 5%, transparent);
     }
+
+    .theme-caption {
+        font-size: 14px;
+    }
 }
 

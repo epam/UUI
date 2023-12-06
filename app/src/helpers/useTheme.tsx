@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUuiContext } from '@epam/uui-core';
-import { TTheme } from '../common/docs';
 import { getCurrentTheme } from './';
+import { TTheme } from '../common/docs/docsConstants';
 
 export const useTheme = () => {
     const { uuiRouter } = useUuiContext();

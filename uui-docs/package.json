@@ -12,6 +12,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
+    "@epam/assets": "5.4.1",
     "@epam/promo": "5.4.1",
     "@epam/uui": "5.4.1",
     "@epam/uui-components": "5.4.1",

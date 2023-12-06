@@ -23,6 +23,10 @@ describe('Button', () => {
                 onClear={ jest.fn }
                 isOpen
                 clearIcon={ SvgMock }
+                rawProps={ {
+                    id: '123',
+                    'data-my_attr': 'value',
+                } }
             />,
         );
         expect(tree).toMatchSnapshot();
