@@ -189,7 +189,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.shouldRebuildRows(prevValue, this.value)
             || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
-            || this.props.getRowOptions !== prevProps?.getRowOptions
             || moreRowsNeeded
         ) {
             this.rebuildRows();
@@ -456,9 +455,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (this.props.legacyLoadDataBehavior) {
             this.loadData();
         }
+
         // if data is reloading, to prevent twitching the UI (of pagination, for example)
         // it is required to return previous listProps.
         if (this.isReloading && this.listProps) {
+            this.listProps = { ...this.listProps, isReloading: this.isReloading };
             return this.listProps;
         }
 
