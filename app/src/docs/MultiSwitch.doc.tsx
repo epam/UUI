@@ -18,7 +18,7 @@ export class MultiSwitchDoc extends BaseDocsBlock {
             [TSkin.Promo]: { type: '@epam/promo:MultiSwitchProps', component: promo.MultiSwitch },
             [TSkin.Electric]: { type: '@epam/uui:MultiSwitchProps', component: electric.MultiSwitch },
         },
-        doc: (doc: DocBuilder<uui.MultiSwitchCoreProps<any>>) => {
+        doc: (doc: DocBuilder<uui.MultiSwitchProps<any>>) => {
             doc.merge('size', { defaultValue: '36' });
             doc.merge('value', { editorType: 'JsonView', examples: [] });
 
