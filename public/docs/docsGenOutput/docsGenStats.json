@@ -1,7 +1,7 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 615,
+   "amountProps": 617,
    "amountTypes": 210
   },
   "value": [
@@ -174,6 +174,7 @@
     "typeRef": "@epam/uui-core:IDataSourceView",
     "value": [
      "_forceUpdate",
+     "clearAllChecked",
      "destroy",
      "getById",
      "getListProps",
@@ -910,6 +911,7 @@
     "value": [
      "editMode",
      "maxHeight",
+     "maxWidth",
      "searchSize",
      "selectionMode"
     ]

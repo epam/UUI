@@ -8,6 +8,7 @@ import {
 } from './constants';
 import { generateDTS } from './dts';
 import { ConverterContext } from './converterContext/converterContext';
+import { compareToPrevStats } from './utils/compareResultsUtils';
 
 main();
 
@@ -18,5 +19,9 @@ function main() {
     const dts = generateDTS(formatted);
     saveContentToFile(OUTPUT_FILE_FULL_PATH, formatted);
     saveContentToFile(OUTPUT_DTS_FILE_FULL_PATH, dts);
-    saveContentToFile(OUTPUT_STATS_FILE_FULL_PATH, context.stats.getResults());
+    const nextStats = context.stats.getResults();
+    saveContentToFile(OUTPUT_STATS_FILE_FULL_PATH, nextStats);
+
+    // Prev stats is optional and can be passed via CLI: generate-components-api --prev-stats=../docsGenStats.json
+    compareToPrevStats(nextStats);
 }
