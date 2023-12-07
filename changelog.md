@@ -21,6 +21,7 @@
     * Added `clearAllChecked()` method to `IDataSourceView` interface to support unchecking all without enabled `selectAll` flag.
     * Reduced amount of loaded data while clearing all checked elements in `cascadeSelection: false` mode.
 * [LazyDataSource]: fixed showing placeholders on `clearCache`.
+* [TextPlaceholder]: fixed animation performance issues
 
 # 5.4.1 - 30.11.2023
 
