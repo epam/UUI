@@ -5,7 +5,7 @@ import css from './CountIndicator.module.scss';
 
 export type CountIndicatorMods = {
     /** Property is required */
-    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;
+    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical';
 };
 
 export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
