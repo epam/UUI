@@ -1,7 +1,7 @@
 # 5.4.2 - xx.xx.2023
 **What's New**
 * [FiltersPanel]: added `togglerWidth` prop, which configure maxWidth of filter toggler
-* [Tag]: added new property `color`. 
+* [Tag]: added new property `color`.
   * It has all semantic colors in `UUI`: 'info' | 'success' | 'warning' | 'critical' | 'neutral'.
   * Loveship (light & dark): "sky" | "grass" | "sun" | "fire" | 'white' | 'night100' | 'night300' | 'night700'.
   * Promo: "blue" | "green" | "amber" | "red" | 'white' | 'night100' | 'night300' | 'night700'.
@@ -22,6 +22,9 @@
     * Reduced amount of loaded data while clearing all checked elements in `cascadeSelection: false` mode.
 * [LazyDataSource]: fixed showing placeholders on `clearCache`.
 * [TextPlaceholder]: fixed animation performance issues
+* [LazyListView]: fixed backgroundReload functionality.
+    * Fixed showing blocker when filter/sorting changed.
+    * Fixed showing placeholders while backgroundReload=true and placeholders should not appear.
 
 # 5.4.1 - 30.11.2023
 
