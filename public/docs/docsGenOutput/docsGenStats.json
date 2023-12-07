@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 615,
-   "amountTypes": 210
+   "amountProps": 617,
+   "amountTypes": 211
   },
   "value": [
    {
@@ -174,6 +174,7 @@
     "typeRef": "@epam/uui-core:IDataSourceView",
     "value": [
      "_forceUpdate",
+     "clearAllChecked",
      "destroy",
      "getById",
      "getListProps",
@@ -910,6 +911,7 @@
     "value": [
      "editMode",
      "maxHeight",
+     "maxWidth",
      "searchSize",
      "selectionMode"
     ]
@@ -1113,10 +1115,15 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:MultiSwitchProps",
+    "typeRef": "@epam/uui:MultiSwitchCoreProps",
     "value": [
-     "color",
      "items"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui:MultiSwitchMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -1674,7 +1681,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 484
+   "amountTypes": 486
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1972,6 +1979,9 @@
    "@epam/uui:ModalHeaderProps",
    "@epam/uui:ModalWindowMods",
    "@epam/uui:ModalWindowProps",
+   "@epam/uui:MultiSwitchColor",
+   "@epam/uui:MultiSwitchCoreProps",
+   "@epam/uui:MultiSwitchMods",
    "@epam/uui:MultiSwitchProps",
    "@epam/uui:NotificationCardProps",
    "@epam/uui:NumericInputMods",
@@ -2025,7 +2035,6 @@
    "@epam/uui:TimePickerProps",
    "@epam/uui:TooltipMods",
    "@epam/uui:TooltipProps",
-   "@epam/uui:UuiMultiSwitchColor",
    "@epam/uui:VerticalTabButtonProps",
    "@epam/uui:VirtualListProps",
    "@epam/promo:AlertMods",
@@ -2165,12 +2174,12 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 812,
+   "allExports": 811,
    "byModule": {
     "@epam/uui-core": 130,
     "@epam/uui-components": 105,
     "@epam/uui": 144,
-    "@epam/promo": 127,
+    "@epam/promo": 126,
     "@epam/electric": 106,
     "@epam/loveship": 137,
     "@epam/uui-editor": 63
@@ -2594,7 +2603,6 @@
      "allEpamPrimaryColors",
      "allFillStyles",
      "allFontStyles",
-     "allIconContainerColors",
      "allRowSizes",
      "allSizes",
      "allTextSizes",
@@ -3053,12 +3061,12 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 566,
+   "allExports": 567,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
-    "@epam/uui": 138,
-    "@epam/promo": 55,
+    "@epam/uui": 140,
+    "@epam/promo": 54,
     "@epam/electric": 9,
     "@epam/loveship": 65,
     "@epam/uui-editor": 10
@@ -3416,7 +3424,6 @@
      "ModalFooterProps",
      "ModalHeaderProps",
      "ModalWindowMods",
-     "MultiSwitchProps",
      "NotificationCardProps",
      "NumericInputMods",
      "PanelMods",
@@ -3475,6 +3482,10 @@
      "MainMenuIconProps",
      "MainMenuProps",
      "ModalWindowProps",
+     "MultiSwitchColor",
+     "MultiSwitchCoreProps",
+     "MultiSwitchMods",
+     "MultiSwitchProps",
      "NumericInputProps",
      "PanelProps",
      "PickerInputProps",
@@ -3505,7 +3516,6 @@
      "TextProps",
      "TextSize",
      "TooltipProps",
-     "UuiMultiSwitchColor",
      "VerticalTabButtonProps",
      "VirtualListProps"
     ]
@@ -3533,7 +3543,6 @@
      "RowMods",
      "RowSizeMod",
      "SizeMod",
-     "TextInputProps",
      "TextMods",
      "TooltipMods"
     ],
