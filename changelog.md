@@ -1,4 +1,4 @@
-# 5.4.2 - xx.xx.2023
+# 5.4.2 - 07.12.2023
 
 **What's New**
 * [FiltersPanel]: added `togglerWidth` prop, which configure `maxWidth` of filter toggler
