@@ -3,7 +3,7 @@ import { FlexCell, NumericInput } from '@epam/uui';
 import { IPropDocEditor } from '../types';
 import { getMultiUnknownExamplesComponent } from './examples/multiUnknownExamples';
 
-const NumEditorExamples = getMultiUnknownExamplesComponent({ isValueNodeVisible: false });
+const NumEditorExamples = getMultiUnknownExamplesComponent<number>({ isValueNodeVisible: false });
 
 export function NumEditor(props: IPropDocEditor<number>) {
     const input = (

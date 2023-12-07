@@ -21,24 +21,11 @@
             "uui-richTextEditor-span-mark": true
           },
           {
-            "text": "yarn add @epam/uui-core @epam/uui-components",
+            "text": "yarn add @epam/uui-core @epam/uui-components @epam/uui",
             "uui-richTextEditor-code": true
           },
           {
             "text": " "
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "paragraph",
-        "children": [
-          {
-            "text": "And themable package "
-          },
-          {
-            "text": "yarn add @epam/uui",
-            "uui-richTextEditor-code": true
           }
         ]
       },
@@ -143,7 +130,7 @@
             "uui-richTextEditor-span-mark": true
           },
           {
-            "text": "tag according to the skin you are using."
+            "text": "tag according to the theme you are using."
           }
         ]
       },
@@ -152,221 +139,22 @@
         "type": "paragraph",
         "children": [
           {
-            "text": "4.  if you want to use "
+            "text": "4. Connect UUI Contexts, read more "
           },
           {
-            "data": {
-              "url": "/documents?category=contexts&id=notificationContextDoc&mode=doc&skin=UUI4_promo"
-            },
             "type": "link",
-            "url": "/documents?category=contexts&id=notificationContextDoc&mode=doc&skin=UUI4_promo",
+            "url": "/documents?id=contextProvider",
+            "target": "_blank",
             "children": [
               {
-                "text": "notification"
+                "text": "here"
               }
             ]
           },
           {
-            "text": ", "
-          },
-          {
-            "data": {
-              "url": "/documents?category=contexts&id=modalContext&mode=doc&skin=UUI4_promo"
-            },
-            "type": "link",
-            "url": "/documents?category=contexts&id=modalContext&mode=doc&skin=UUI4_promo",
-            "children": [
-              {
-                "text": "modal "
-              }
-            ]
-          },
-          {
-            "text": "and "
-          },
-          {
-            "data": {
-              "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-            },
-            "type": "link",
-            "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
-            "children": [
-              {
-                "text": "other contexts"
-              }
-            ]
-          },
-          {
-            "text": ", you need to:"
+            "text": "."
           }
         ]
-      },
-      {
-        "data": {},
-        "type": "unordered-list",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item",
-            "children": [
-              {
-                "data": {},
-                "type": "list-item-child",
-                "children": [
-                  {
-                    "text": "create file services.ts with the next code:"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "note-quote",
-        "children": [
-          {
-            "text": "import { CommonContexts } from '@epam/uui-core';",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "\n\n",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "export const svc: ",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "CommonContexts<any, any>",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": " = {} ;",
-            "uui-richTextEditor-span-mark": true
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "unordered-list",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item",
-            "children": [
-              {
-                "data": {},
-                "type": "list-item-child",
-                "children": [
-                  {
-                    "text": "in main index.tsx file wrap your "
-                  },
-                  {
-                    "text": "<App/>",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " component into "
-                  },
-                  {
-                    "data": {
-                      "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-                    },
-                    "type": "link",
-                    "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
-                    "children": [
-                      {
-                        "text": "<ContextProvider>",
-                        "uui-richTextEditor-code": true
-                      }
-                    ]
-                  },
-                  {
-                    "text": ", and add "
-                  },
-                  {
-                    "text": "<Snackbar />",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " and "
-                  },
-                  {
-                    "text": "<Modals/>",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " after "
-                  },
-                  {
-                    "text": "<App />",
-                    "uui-richTextEditor-code": true
-                  },
-                  {
-                    "text": " ",
-                    "uui-richTextEditor-span-mark": true
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "note-quote",
-    "children": [
-      {
-        "text": "import { svc } from './services'\nimport { createBrowserHistory } from 'history';"
-      },
-      {
-        "text": "\n",
-        "color": "#cc7832",
-        "uui-richTextEditor-span-mark": true
-      },
-      {
-        "text": "\nconst history = createBrowserHistory();\n\nexport class UuiEnhancedApp extends React.Component {\n    render() {\n        return (\n            <ContextProvider\n                onInitCompleted={ (context) => { Object.assign(svc, context); } }\n                history={ history }\n            >\n                    <App />\n                    <Snackbar />\n                    <Modals />\n            </ContextProvider>\n        );\n    }\n}\n\nReactDOM.render(<Router history={ history } ><UuiEnhancedApp /></Router>, document.getElementById('root'));"
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "unordered-list",
-    "children": [
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "then, when you import "
-              },
-              {
-                "text": "svc",
-                "uui-richTextEditor-code": true
-              },
-              {
-                "text": " from 'services' you get access to contexts:"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "note-quote",
-    "children": [
-      {
-        "text": "svc.uuiNotifications.show((props) => ...)\nsvc.uuiModals.show ((props) => ...)"
       }
     ]
   }

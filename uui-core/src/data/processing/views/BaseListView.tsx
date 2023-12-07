@@ -610,6 +610,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return count;
     };
 
+    public clearAllChecked = () => {
+        this.handleSelectAll(false);
+    };
+
     private mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
         ...parentStats,
         isSomeCheckable: parentStats.isSomeCheckable || childStats.isSomeCheckable,
