@@ -222,9 +222,47 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        Elementary
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              Elementary
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -274,9 +312,47 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        Elementary+
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              Elementary+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -631,9 +707,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        C2
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              C2
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -698,9 +812,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        C1+
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              C1+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -765,9 +917,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        C1
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              C1
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -832,9 +1022,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        B2+
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              B2+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -899,9 +1127,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        B2
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              B2
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -966,9 +1232,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        B1+
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              B1+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -1033,9 +1337,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        B1
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              B1
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -1100,9 +1442,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        A2+
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              A2+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -1167,9 +1547,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        A2
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              A2
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -1234,9 +1652,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        A1+
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              A1+
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -1301,9 +1757,47 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                        className="flexCell root uui-typography"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
                       >
-                        A1
+                        <div
+                          className="uui-flex-row root size-36 spacing-12 container align-items-center"
+                          style={
+                            Object {
+                              "columnGap": undefined,
+                              "rowGap": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="flexCell"
+                            style={
+                              Object {
+                                "alignSelf": undefined,
+                                "flexBasis": "auto",
+                                "flexGrow": undefined,
+                                "flexShrink": undefined,
+                                "minWidth": 0,
+                                "textAlign": undefined,
+                              }
+                            }
+                          >
+                            <div
+                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                            >
+                              A1
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div
                         className="flexSpacer"
@@ -1529,9 +2023,23 @@ exports[`PickerModal should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Elementary
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Elementary
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -1558,9 +2066,23 @@ exports[`PickerModal should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Elementary+
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Elementary+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"

@@ -330,6 +330,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     return {
+        view,
         context,
         dataSourceState,
         getPlaceholder,

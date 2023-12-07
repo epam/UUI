@@ -366,7 +366,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             row.isChildrenChecked = row.isChildrenChecked || childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
                             stats = this.mergeStats(stats, childStats);
-                        } else if (!row.isFolded && appendRows) {
+                            // while searching and no children in visible tree, no need to append placeholders.
+                        } else if (!this.value.search && !row.isFolded && appendRows) {
                             // children are not loaded
                             const parentsWithRow = [...row.path, this.visibleTree.getPathItem(item)];
                             for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
@@ -666,4 +667,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isPartialLoad = () => false;
     public loadData() {}
     public abstract reload(): void;
+
+    public getConfig() {
+        return {
+            complexIds: this.props.complexIds,
+            cascadeSelection: this.props.cascadeSelection,
+            selectAll: this.props.selectAll,
+            backgroundReload: this.props.backgroundReload,
+        };
+    }
 }
