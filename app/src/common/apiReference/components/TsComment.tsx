@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { RichTextView } from '@epam/promo';
 import css from './TsComment.module.scss';
-import { TComment } from '../sharedTypes';
+import { TComment } from '@epam/uui-docs';
 
 function formatComment(commentInput: string) {
     // Playground to modify and debug https://regex101.com/r/dd4hyi/1

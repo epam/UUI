@@ -197,8 +197,17 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     backgroundReload?: boolean;
 }
 
+export type IDataSourceViewConfig = {
+    complexIds?: boolean;
+    cascadeSelection?: CascadeSelection;
+    selectAll?: true | false;
+    backgroundReload?: boolean;
+    flattenSearchResults?: boolean;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type IDataSourceView<TItem, TId, TFilter> = {
+    getConfig(): IDataSourceViewConfig;
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
@@ -207,6 +216,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     reload(): void;
     destroy(): void;
     loadData(): void;
+    clearAllChecked(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
 };

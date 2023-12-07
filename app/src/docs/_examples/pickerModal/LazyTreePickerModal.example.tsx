@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { DataPickerRow, PickerItem, PickerModal, FlexRow, FlexCell, Button } from '@epam/uui';
-import { DataQueryFilter, DataRowProps, UuiContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { PickerModal, FlexRow, FlexCell, Button } from '@epam/uui';
+import { DataQueryFilter, UuiContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePickerModal() {
@@ -25,19 +25,6 @@ export default function LazyTreePickerModal() {
         [],
     );
 
-    const renderRow = (rowProps: DataRowProps<Location, string>) => (
-        <DataPickerRow
-            { ...rowProps }
-            key={ rowProps.rowKey }
-            borderBottom="none"
-            size="36"
-            padding="24"
-            renderItem={ (item: Location, pickerItemProps: DataRowProps<Location, string>) => (
-                <PickerItem title={ item.name } size="36" { ...pickerItemProps } />
-            ) }
-        />
-    );
-
     const handleModalOpening = useCallback(() => {
         context.uuiModals
             .show((props) => (
@@ -46,7 +33,6 @@ export default function LazyTreePickerModal() {
                     dataSource={ dataSource }
                     selectionMode="multi"
                     valueType="id"
-                    renderRow={ renderRow }
                     { ...props }
                 />
             ))

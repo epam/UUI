@@ -1,4 +1,4 @@
-import { TTypeProp, TTypeRef, TTypeSummary } from './sharedTypes';
+import { TTypeProp, TTypeRef, TTypeSummary } from '@epam/uui-docs';
 
 export type TDocsGenTypeSummary = Record<TTypeRef, TTypeSummary>;
 
