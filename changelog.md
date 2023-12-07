@@ -25,6 +25,7 @@
 * [LazyListView]: fixed backgroundReload functionality.
     * Fixed showing blocker when filter/sorting changed.
     * Fixed showing placeholders while backgroundReload=true and placeholders should not appear.
+* [icons]: Returned filled version for the following icons: communication-chat, flag, communication-mail, action-eye, action-eye-off, action-job_function, action-deleteforever, action-schedule.
 
 # 5.4.1 - 30.11.2023
 
