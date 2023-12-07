@@ -3,13 +3,19 @@ import cx from 'classnames';
 import { IHasCaption, IHasCX } from '@epam/uui-core';
 import css from './CountIndicator.module.scss';
 
-export interface CountIndicatorProps extends IHasCaption, IHasCX {
+export type CountIndicatorMods = {
+    /** Property is required */
+    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;
+};
+
+export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
     /**
      * @default '24'
      */
     size?: '24' | '18' | '12';
-    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;
-}
+};
+
+export type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;
 
 export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((props, ref) => {
     return (
