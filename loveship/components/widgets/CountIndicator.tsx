@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 
 export interface CountIndicatorMods {
     /** Property is required */
-    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire' | null;
+    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire';
 }
 
 export type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;
