@@ -1,6 +1,6 @@
-import { GroupedDataColumnProps } from '../types';
+import { ColumnsConfigurationRowProps, GroupedDataColumnProps } from '../types';
 import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
-import { isColumnFilteredOut, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
+import { groupAndFilterSortedColumns, isColumnFilteredOut, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
 function getTestDataSet1() {
     const A: DataColumnProps = {
@@ -37,6 +37,82 @@ function getTestDataSet1() {
         prevConfig, A, B, C, D, E, F,
     };
 }
+
+const unpinnedFields : ColumnsConfigurationRowProps[] = [
+    {
+        groupKey: 'displayedUnpinned',
+        key: 'Column 1',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 1',
+    },
+    {
+        groupKey: 'displayedUnpinned',
+        key: 'Column 2',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 2',
+    },
+    {
+        groupKey: 'displayedUnpinned',
+        key: 'Column 3',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 3',
+    },
+];
+
+const pinnedFields : ColumnsConfigurationRowProps[] = [
+    {
+        groupKey: 'displayedPinned',
+        key: 'Column 4',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 4',
+    },
+    {
+        groupKey: 'displayedPinned',
+        key: 'Column 5',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 5',
+    },
+];
 
 describe('columnsConfigurationUtils', () => {
     describe('sortColumnsAndAddGroupKey', () => {
@@ -77,5 +153,30 @@ describe('columnsConfigurationUtils', () => {
         //     const result = isColumnFilteredOut(A, 'NAME');
         //     expect(result).toBe(true);
         // });
+    });
+
+    describe('groupAndFilterSortedColumns', () => {
+        it.only('should group and filter sorted columns correctly', () => {
+            const sortedColumns: ColumnsConfigurationRowProps[] = [
+                ...unpinnedFields,
+                ...pinnedFields,
+            ];
+            const getSearchFields = jest.fn().mockReturnValue([]);
+            const searchValue = '';
+
+            const result = groupAndFilterSortedColumns({ sortedColumns, searchValue, getSearchFields });
+
+            expect(JSON.stringify(result)).toEqual(JSON.stringify({
+                displayedPinned: [
+                    ...pinnedFields,
+                ],
+                displayedUnpinned: [
+                    ...unpinnedFields,
+                ],
+                hidden: [],
+                displayedPinnedRight: [],
+            }));
+            expect(getSearchFields).toHaveBeenCalledTimes(15);
+        });
     });
 });
