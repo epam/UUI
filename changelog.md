@@ -1,3 +1,12 @@
+# 5.xx.xx - xx.xx.2023
+
+**What's New**
+[Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
+
+**What's Fixed**
+* [LazyDataSource]: fixed cascade selection with not flatten search.
+
+
 # 5.4.2 - 07.12.2023
 
 **What's New**
@@ -8,6 +17,10 @@
   * Promo: 'cyan' | 'mint'.
   * Electric: 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600'.
 * [DropdownContainer]: `width` property now used as a default for `maxWidth`, if `maxWidth` is not provided.
+
+**What's New**
+* [LazyDataSource]: enabled `flattenSearchResults` by default
+* [PickerInput]: Added subtitle for flatten search results as default behavior of `PickerInput`s.
 
 **What's Fixed**
 * [Tag]: fixed typings
