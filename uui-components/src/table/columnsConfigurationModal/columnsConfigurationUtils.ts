@@ -68,9 +68,9 @@ export function groupAndFilterSortedColumns<TItem, TId, TFilter>(props: IGroupAn
         displayedPinnedRight: [],
     } as GroupedColumnsType;
 
-    return props.sortedColumns.reduce((acc, i) => {
-        if (!isColumnFilteredOut(i, props.getSearchFields(i), props.searchValue)) {
-            acc[i.groupKey].push(i);
+    return props.sortedColumns.reduce((acc, cur) => {
+        if (!isColumnFilteredOut(cur, props.getSearchFields(cur), props.searchValue)) {
+            acc[cur.groupKey].push(cur);
         }
         return acc;
     }, accUnsorted);

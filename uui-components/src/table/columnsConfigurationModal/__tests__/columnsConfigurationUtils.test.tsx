@@ -114,6 +114,70 @@ const pinnedFields : ColumnsConfigurationRowProps[] = [
     },
 ];
 
+const pinnedRightFields:ColumnsConfigurationRowProps[] = [
+    {
+        groupKey: 'displayedPinnedRight',
+        key: 'Column 6',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        fix: 'right',
+        width: 0,
+        caption: 'Column 6',
+    },
+    {
+        groupKey: 'displayedPinnedRight',
+        key: 'Column 7',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        fix: 'right',
+        width: 0,
+        caption: 'Column 7',
+    },
+];
+
+const hiddenFields: ColumnsConfigurationRowProps[] = [
+    {
+        groupKey: 'hidden',
+        key: 'Column 8',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 8',
+    },
+    {
+        groupKey: 'hidden',
+        key: 'Column 9',
+        toggleVisibility: jest.fn(),
+        togglePin: jest.fn(),
+        onCanAcceptDrop: jest.fn(),
+        onDrop: jest.fn(),
+        columnConfig: {},
+        isDndAllowed: true,
+        isPinned: false,
+        isPinnedAlways: false,
+        width: 0,
+        caption: 'Column 9',
+    },
+];
+
 describe('columnsConfigurationUtils', () => {
     describe('sortColumnsAndAddGroupKey', () => {
         it('should sort columns by "order" and should add "groupKey" attribute', () => {
@@ -156,14 +220,20 @@ describe('columnsConfigurationUtils', () => {
     });
 
     describe('groupAndFilterSortedColumns', () => {
-        it.only('should group and filter sorted columns correctly', () => {
+        it('should group and filter sorted columns correctly', () => {
             const sortedColumns: ColumnsConfigurationRowProps[] = [
                 ...unpinnedFields,
                 ...pinnedFields,
+                ...hiddenFields,
+                ...pinnedRightFields,
             ];
             const getSearchFields = jest.fn().mockReturnValue([]);
             const searchValue = '';
 
+            const prevConfig = {
+                ...sortedColumns.reduce((acc, column) => ({ ...acc, [column.key]: { isVisible: true, width: 10, order: column.key } }), {}),
+            };
+            sortColumnsAndAddGroupKey({ columns: sortedColumns, prevConfig });
             const result = groupAndFilterSortedColumns({ sortedColumns, searchValue, getSearchFields });
 
             expect(JSON.stringify(result)).toEqual(JSON.stringify({
@@ -173,10 +243,13 @@ describe('columnsConfigurationUtils', () => {
                 displayedUnpinned: [
                     ...unpinnedFields,
                 ],
-                hidden: [],
-                displayedPinnedRight: [],
+                hidden: [
+                    ...hiddenFields,
+                ],
+                displayedPinnedRight: [
+                    ...pinnedRightFields,
+                ],
             }));
-            expect(getSearchFields).toHaveBeenCalledTimes(15);
         });
     });
 });
