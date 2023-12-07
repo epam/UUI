@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" fill-rule="evenodd" d="M3 3.75h1.5v4.5h3v-4.5H9v10.5H7.5v-4.5h-3v4.5H3V3.75Zm8.25 10.5v-1.5h1.5V5.482l-1.875 1.08V4.83l1.875-1.08h1.5v9h1.5v1.5h-4.5Z" clip-rule="evenodd"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/editor-headline_h1">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M3 3.75H4.5V8.25H7.5V3.75H9V14.25H7.5V9.75H4.5V14.25H3V3.75ZM11.25 14.25V12.75H12.75V5.4825L10.875 6.5625V4.83L12.75 3.75H14.25V12.75H15.75V14.25H11.25Z" fill="#6C6F80"/>
+</g>
 </svg>

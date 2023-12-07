@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" fill-rule="evenodd" d="M8.182 11.517h-1.66l1.27-2.201 1.271-2.201 1.271 2.2 1.271 2.202H9.757c.322 2.615 2.886 3.321 4.758 3.483H16.5l-3.75-6.495L9 2.01 5.25 8.505 1.5 15h1.99c1.846-.162 4.375-.868 4.692-3.483Z" clip-rule="evenodd"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/internal-logo/level_up">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M8.18207 11.517H6.52184L7.79264 9.31589L9.06345 7.11476L10.3342 9.31589L11.6051 11.517H9.75702C10.0788 14.1321 12.6433 14.838 14.5148 15H16.5L12.75 8.50474L9 2.00952L5.25 8.50474L1.5 15H1.53276H3.49036C5.33604 14.838 7.86484 14.1321 8.18207 11.517Z" fill="#6C6F80"/>
+</g>
 </svg>
