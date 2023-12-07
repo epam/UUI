@@ -11,16 +11,17 @@ export type ButtonColor = 'accent' | 'primary' | 'critical' | 'secondary' | 'neu
 export type ButtonFill = 'solid' | 'outline' | 'ghost' | 'none';
 
 export interface ButtonMods {
+    /** @default '36' */
     size?: ControlSize | '18';
+    /** @default 'solid' */
     fill?: ButtonFill;
+    /** @default 'primary' */
     color?: ButtonColor;
 }
 
-export type ButtonCoreProps = uuiButtonProps & {
-    size?: ControlSize | '18';
-};
+export type ButtonCoreProps = Omit<uuiButtonProps, 'count'> & {};
 
-export type ButtonProps = ButtonMods & Omit<uuiButtonProps, 'count' | 'indicator'>;
+export type ButtonProps = ButtonMods & ButtonCoreProps;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { TSkin, TDocsGenExportedType, TTypeRef, TType } from '../../types';
+import { TSkin, TDocsGenExportedType, PropDocPropsUnknown } from '../../types';
 import { docBuilderGen } from '../docBuilderGen';
 import { DocBuilder } from '../../DocBuilder';
-import { TDocConfig } from '../../typesDocConfig';
+import { TDocConfig } from '../docBuilderGenTypes';
+import { TType, TTypeRef } from '../../docsGen/sharedTypes';
 
 interface IUseDocBuilderGenParams {
     config?: TDocConfig;
@@ -10,7 +11,7 @@ interface IUseDocBuilderGenParams {
     loadDocsGenType: (typeRef: TTypeRef) => Promise<{ content: TType }>
 }
 interface IUseDocBuilderGenReturn {
-    docs?: DocBuilder<any>,
+    docs?: DocBuilder<PropDocPropsUnknown>,
     isLoaded: boolean
     isGenerated?: boolean;
     generatedFromType?: TDocsGenExportedType;

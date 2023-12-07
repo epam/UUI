@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="m10.75 13.5 4.5-4.5-4.5-4.5L9.7 5.55 13.131 9 9.7 12.45l1.05 1.05Zm-4.95 0L10.3 9 5.8 4.5 4.75 5.55 8.181 9 4.75 12.45 5.8 13.5Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/navigation-chevron-right_right">
+<path id="icon" d="M10.75 13.5L15.25 9L10.75 4.5L9.7 5.55L13.1313 9L9.7 12.45L10.75 13.5ZM5.8 13.5L10.3 9L5.8 4.5L4.75 5.55L8.18125 9L4.75 12.45L5.8 13.5Z" fill="#6C6F80"/>
+</g>
 </svg>

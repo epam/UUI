@@ -277,7 +277,6 @@
         --uui-color-contrast: var(--uui-secondary-contrast);
     }
 
-
     .uui-button {
         --uui-border-radius: 8px;
         --uui-btn-font: var(--font-museo-sans);
@@ -435,6 +434,23 @@
                     --uui-count_indicator-border: var(--uui-neutral-30);
                 }
             }
+        }
+    }
+
+    /* CountIndicator */
+
+    .uui-count_indicator {
+        &.uui-color-white {
+            --uui-color-5: var(--chromatic-0);
+            --uui-color-10: var(--blue-50);
+            --uui-color-20: var(--uui-primary-10);
+            --uui-color-50: var(--white);
+            --uui-color-60: var(--blue-50);
+            --uui-color-70: var(--blue-100);
+        }
+
+        &:is(.uui-color-gray, .uui-color-neutral, .uui-color-white, .uui-color-amber, .uui-color-warning) {
+            --uui-count_indicator-caption: var(--uui-neutral-70);
         }
     }
 
