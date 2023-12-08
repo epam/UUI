@@ -5,7 +5,7 @@ export function createSkinComponent<SourceProps, SkinProps = {}>(
     Component: React.ComponentType<SourceProps>,
     getProps?: (props: Readonly<SkinProps>) => Partial<SkinProps>,
     getCx?: (props: Readonly<SkinProps>) => CX,
-) : (props: SkinProps & React.RefAttributes<SkinProps>) => React.ReactElement | null {
+) : (props: SkinProps & React.RefAttributes<any>) => React.ReactElement | null {
     if (!getProps && !getCx) {
         return Component as any;
     }

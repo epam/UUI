@@ -25,26 +25,10 @@ const solidExamples: CountIndicatorProps[] = [
 ];
 
 export default function BasicCountIndicatorExample() {
-    const getCountIndicator = (item: CountIndicatorProps) => {
-        if (item.color === 'white') {
-            return (
-                <div style={ { backgroundColor: 'var(--uui-neutral-70)', display: 'flex', justifyItems: 'center' } }>
-                    <CountIndicator caption={ item.caption } color={ item.color } size={ item.size } />
-                </div>
-            );
-        }
-        return <CountIndicator caption={ item.caption } color={ item.color } size={ item.size } />;
-    };
-
     return (
-        <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: '1fr 2fr 2fr 2fr', gap: '6px 12px', textAlign: 'center' } }>
+        <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(4, 40px)', gap: '6px 12px', textAlign: 'center' } }>
             { exampleNames.map((name) => <Text fontWeight="600">{ name }</Text>)}
-            { solidExamples.map((example) => (
-                <>
-                    { getCountIndicator(example) }
-                </>
-            )) }
+            { solidExamples.map((item) => <CountIndicator caption={ item.caption } color={ item.color } size={ item.size } />) }
         </div>
-
     );
 }

@@ -39,9 +39,9 @@ Array [
       className="uui-dropdown-body -lock-focus root container container"
       style={
         Object {
-          "maxWidth": undefined,
+          "maxWidth": "auto",
           "minHeight": undefined,
-          "minWidth": 280,
+          "minWidth": 360,
         }
       }
       tabIndex={-1}

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
@@ -15,8 +16,9 @@ export class BadgeDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:BadgeProps', component: uui.Badge },
             [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
             [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
+            [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
-        doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps>) => {
+        doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };
@@ -33,7 +35,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Attributes" path="./_examples/badge/Attributes.example.tsx" />
                 <DocExample title="Dropdown" path="./_examples/badge/Dropdown.example.tsx" />
-                <DocExample title="Badge width status indicator" path="./_examples/badge/StatusIndicator.example.tsx" />
+                <DocExample title="Badge with status indicator" path="./_examples/badge/StatusIndicator.example.tsx" />
             </>
         );
     }
