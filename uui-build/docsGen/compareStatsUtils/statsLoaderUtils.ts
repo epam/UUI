@@ -29,7 +29,7 @@ export function getStatsFromFile(relPath: string): TDocGenStatsResult | undefine
 }
 
 export function saveComparisonReportMd(reportMd: string) {
-    const targetDir = path.dirname(reportMd);
+    const targetDir = path.dirname(OUTPUT_FILE_COMPARISON_REPORT_MD);
     !fs.existsSync(targetDir) && fs.mkdirSync(targetDir, { recursive: true });
     saveContentToFile(OUTPUT_FILE_COMPARISON_REPORT_MD, reportMd);
 }
