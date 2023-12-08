@@ -158,6 +158,7 @@ describe('FiltersPanel', () => {
             await user.click(screen.getByRoleAndText({ role: 'button', text: 'Status:Red' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Red' })).toHaveAttribute('aria-selected', 'true');
+            
             await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR' }));
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Red' })).toHaveAttribute('aria-selected', 'false');
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });

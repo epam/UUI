@@ -53,6 +53,7 @@ Array [
       Object {
         "columnGap": undefined,
         "maxHeight": 800,
+        "maxWidth": undefined,
         "rowGap": undefined,
       }
     }
@@ -154,6 +155,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
     Object {
       "columnGap": undefined,
       "maxHeight": undefined,
+      "maxWidth": undefined,
       "rowGap": undefined,
     }
   }
@@ -187,6 +189,7 @@ exports[`DataPickerBody should be rendered without rows 1`] = `
     Object {
       "columnGap": undefined,
       "maxHeight": undefined,
+      "maxWidth": undefined,
       "rowGap": undefined,
     }
   }

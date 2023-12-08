@@ -248,9 +248,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Elementary
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Elementary
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -277,9 +291,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Elementary+
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Elementary+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -306,9 +334,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Pre-Intermediate
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Pre-Intermediate
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -335,9 +377,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Pre-Intermediate+
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Pre-Intermediate+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -364,9 +420,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Intermediate
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Intermediate
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -393,9 +463,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Intermediate+
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Intermediate+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -422,9 +506,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Upper-Intermediate
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Upper-Intermediate
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -451,9 +549,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Upper-Intermediate+
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Upper-Intermediate+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -480,9 +592,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Advanced
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Advanced
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -509,9 +635,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Advanced+
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Advanced+
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"
@@ -538,9 +678,23 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 container"
+                            class="flexCell root uui-typography"
+                            style="min-width: 0; flex-basis: auto;"
                           >
-                            Proficiency
+                            <div
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
+                            >
+                              <div
+                                class="flexCell"
+                                style="min-width: 0; flex-basis: auto;"
+                              >
+                                <div
+                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                >
+                                  Proficiency
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div
                             class="flexSpacer"

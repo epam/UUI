@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" fill-rule="evenodd" d="m5.206 14.643 7.946-3.79-.013-5.332L4.7 13.96l4.94-5.777V1.5l-7.485 15 13.688-2.08-.017-4.073" clip-rule="evenodd"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/internal-logo/crm">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M5.20632 14.6431L13.1516 10.8536L13.1394 5.5206L4.69834 13.9596L9.64136 8.18321V1.5L2.15625 16.5L15.8438 14.4208L15.8271 10.3469" fill="#6C6F80"/>
+</g>
 </svg>

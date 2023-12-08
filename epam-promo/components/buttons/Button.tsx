@@ -8,7 +8,10 @@ export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
 export interface ButtonMods {
     /** @default 'solid' */
     fill?: FillStyle;
+    /** @default 'blue' */
     color?: ButtonColor;
+    /** @default '36' */
+    size?: uui.ButtonMods['size'];
 }
 
 const mapFill: Record<FillStyle, uui.ButtonFill> = {
@@ -20,8 +23,8 @@ const mapFill: Record<FillStyle, uui.ButtonFill> = {
 
 export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
-export const Button = createSkinComponent<uui.ButtonCoreProps, ButtonProps>(
-    uui.Button,
+export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
+    uui.Button as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
