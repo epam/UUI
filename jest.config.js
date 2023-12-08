@@ -1,3 +1,4 @@
+// 123
 const BASE_CONFIG = {
     testPathIgnorePatterns: ['node_modules'],
     modulePathIgnorePatterns: ['/build/'],
