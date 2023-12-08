@@ -15115,6 +15115,7 @@
      "print": [
       "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
       "type IDataSourceView<TItem, TId, TFilter> = {",
+      "    getConfig(): IDataSourceViewConfig;",
       "    getById(id: TId, index: number): DataRowProps<TItem, TId>;",
       "    getListProps(): DataSourceListProps;",
       "    getVisibleRows(): DataRowProps<TItem, TId>[];",
@@ -15132,6 +15133,17 @@
     "props": [
      {
       "uid": 1,
+      "name": "getConfig",
+      "typeValue": {
+       "raw": "() => IDataSourceViewConfig"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": 2,
       "name": "getById",
       "typeValue": {
        "raw": "(id: TId, index: number) => DataRowProps<TItem, TId>"
@@ -15142,7 +15154,7 @@
       "required": true
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "getListProps",
       "typeValue": {
        "raw": "() => DataSourceListProps"
@@ -15153,7 +15165,7 @@
       "required": true
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "getVisibleRows",
       "typeValue": {
        "raw": "() => DataRowProps<TItem, TId>[]"
@@ -15164,7 +15176,7 @@
       "required": true
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "getSelectedRows",
       "typeValue": {
        "raw": "(range?: VirtualListRange | undefined) => DataRowProps<TItem, TId>[]"
@@ -15175,7 +15187,7 @@
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "getSelectedRowsCount",
       "typeValue": {
        "raw": "() => number"
@@ -15186,7 +15198,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "reload",
       "typeValue": {
        "raw": "() => void"
@@ -15197,7 +15209,7 @@
       "required": true
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "destroy",
       "typeValue": {
        "raw": "() => void"
@@ -15208,7 +15220,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "loadData",
       "typeValue": {
        "raw": "() => void"
@@ -15219,7 +15231,7 @@
       "required": true
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "clearAllChecked",
       "typeValue": {
        "raw": "() => void"
@@ -15230,7 +15242,7 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "_forceUpdate",
       "typeValue": {
        "raw": "() => void"
@@ -15241,10 +15253,100 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:IDataSourceViewConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IDataSourceViewConfig",
+     "nameFull": "IDataSourceViewConfig"
+    },
+    "src": "uui-core/src/types/dataSources.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IDataSourceViewConfig",
+     "print": [
+      "type IDataSourceViewConfig = {",
+      "    complexIds?: boolean;",
+      "    cascadeSelection?: CascadeSelection;",
+      "    selectAll?: true | false;",
+      "    backgroundReload?: boolean;",
+      "    flattenSearchResults?: boolean;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "complexIds",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cascadeSelection",
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "selectAll",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "backgroundReload",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "flattenSearchResults",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }

@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 617,
-   "amountTypes": 210
+   "amountProps": 623,
+   "amountTypes": 211
   },
   "value": [
    {
@@ -177,12 +177,23 @@
      "clearAllChecked",
      "destroy",
      "getById",
+     "getConfig",
      "getListProps",
      "getSelectedRows",
      "getSelectedRowsCount",
      "getVisibleRows",
      "loadData",
      "reload",
+     "selectAll"
+    ]
+   },
+   {
+    "typeRef": "@epam/uui-core:IDataSourceViewConfig",
+    "value": [
+     "backgroundReload",
+     "cascadeSelection",
+     "complexIds",
+     "flattenSearchResults",
      "selectAll"
     ]
    },
@@ -1676,7 +1687,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 484
+   "amountTypes": 485
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1748,6 +1759,7 @@
    "@epam/uui-core:IContextProviderSsrProps",
    "@epam/uui-core:IDataSource",
    "@epam/uui-core:IDataSourceView",
+   "@epam/uui-core:IDataSourceViewConfig",
    "@epam/uui-core:IDndContext",
    "@epam/uui-core:IErrorContext",
    "@epam/uui-core:IFilterConfig",
@@ -3055,9 +3067,9 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 566,
+   "allExports": 567,
    "byModule": {
-    "@epam/uui-core": 201,
+    "@epam/uui-core": 202,
     "@epam/uui-components": 88,
     "@epam/uui": 138,
     "@epam/promo": 55,
@@ -3242,6 +3254,7 @@
      "IColumnConfig",
      "Icon",
      "IDataSourceView",
+     "IDataSourceViewConfig",
      "IFilterConfig",
      "IFilterItemBodyProps",
      "IFilterPredicate",
