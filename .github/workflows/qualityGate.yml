@@ -103,9 +103,13 @@ jobs:
                       const fs = require('fs');
                       const errors = [];
                       Object.keys(REPORTS_MAP).forEach((key) => {
-                        const reportContent = fs.readFileSync(key).toString();
-                        if (reportContent.indexOf('${{env.ERROR_STATUS_TAG}}') !== -1) {
-                            errors.push(REPORTS_MAP[key]);
+                        if (fs.existsSync(key)) {
+                            const reportContent = fs.readFileSync(key).toString();
+                            if (reportContent.indexOf('${{env.ERROR_STATUS_TAG}}') !== -1) {
+                                errors.push(REPORTS_MAP[key]);
+                            }
+                        } else {
+                            errors.push(`Unable to find report at location: ${key}.`);
                         }
                       });
                       if (errors.length > 0) {
