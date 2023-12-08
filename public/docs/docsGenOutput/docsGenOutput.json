@@ -105567,7 +105567,10 @@
       "comment": {
        "raw": [
         "@default \"sky\""
-       ]
+       ],
+       "tags": {
+        "@default": "sky"
+       }
       },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
@@ -106114,7 +106117,10 @@
       "comment": {
        "raw": [
         "@default \"sky\""
-       ]
+       ],
+       "tags": {
+        "@default": "sky"
+       }
       },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
