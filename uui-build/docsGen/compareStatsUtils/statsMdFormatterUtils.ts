@@ -51,7 +51,7 @@ export function formatResultsToMd(result: TCompareStatsResult) {
             let typesAmountSign = '';
             let emodji = ':ok:';
             if (typesAmountDiff < 0) {
-                typesAmountSign = '-';
+                typesAmountSign = '';
             } else if (typesAmountDiff > 0) {
                 typesAmountSign = '+';
                 emodji = ':no_entry:';
