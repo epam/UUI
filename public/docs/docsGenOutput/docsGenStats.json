@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 623,
-   "amountTypes": 211
+   "amountProps": 622,
+   "amountTypes": 210
   },
   "value": [
    {
@@ -1268,12 +1268,6 @@
     "typeRef": "@epam/uui:TagMods",
     "value": [
      "color"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:TextAreaMods",
-    "value": [
-     "size"
     ]
    },
    {
