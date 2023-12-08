@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="M16.5 2.25v3H9v-3h7.5ZM9 10.5v-3h7.5v3H9Zm0 2.25v3h7.5v-3H9Zm-6 1.5 1.5.75v-2.25H3v1.5Z"/>
-  <path fill="#6C6F80" d="M3 15.75v-1.5h3v1.5H3Zm1.5-12v1.5H3v-3h3v1.5H4.5Zm-1.501 3h1.5v1.5h1.5v1.5h-1.5v1.5h-1.5v-1.5h-1.5v-1.5h1.5v-1.5Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/table-group_by">
+<g id="icon">
+<path d="M16.4994 2.25004V5.25004H8.99936V2.25004H16.4994Z" fill="#6C6F80"/>
+<path d="M8.99936 10.5V7.50004H16.4994V10.5H8.99936Z" fill="#6C6F80"/>
+<path d="M8.99936 12.75V15.75H16.4994V12.75H8.99936Z" fill="#6C6F80"/>
+<path d="M2.99936 14.25L4.49936 15V12.75H2.99936V13V14.25Z" fill="#6C6F80"/>
+<path d="M2.99936 15.75V14.25H5.99936V15.75H2.99936Z" fill="#6C6F80"/>
+<path d="M4.49936 3.75V5.25H2.99936V2.25L5.99936 2.25V3.75H4.49936Z" fill="#6C6F80"/>
+<path d="M2.99854 6.75H4.49854V8.25H5.99854V9.75L4.49854 9.74999V11.25H2.99854L2.99853 9.74998L1.49854 9.75L1.49854 8.25002L2.99853 8.25L2.99854 6.75Z" fill="#6C6F80"/>
+</g>
+</g>
 </svg>

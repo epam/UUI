@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="M4.8 14.25 3.75 13.2 7.95 9l-4.2-4.2L4.8 3.75 9 7.95l4.2-4.2 1.05 1.05-4.2 4.2 4.2 4.2-1.05 1.05-4.2-4.2-4.2 4.2Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/navigation-close">
+<path id="icon" d="M4.8 14.25L3.75 13.2L7.95 9L3.75 4.8L4.8 3.75L9 7.95L13.2 3.75L14.25 4.8L10.05 9L14.25 13.2L13.2 14.25L9 10.05L4.8 14.25Z" fill="#6C6F80"/>
+</g>
 </svg>
