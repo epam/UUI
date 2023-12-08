@@ -91,3 +91,20 @@
 .header-cell {
     background-color: var(--uui-surface-sunken);
 }
+
+.resize-holder-right {
+    top: -0.75rem;
+    right: -5px;
+    width: 10px;
+}
+
+.resize-holder-bottom {
+    bottom: -5px;
+    height: 10px;
+}
+
+.resize-holder-left {
+    top: -0.75rem;
+    left: -5px;
+    width: 10px;
+}

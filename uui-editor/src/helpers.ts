@@ -1,5 +1,5 @@
 import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState } from '@udecode/plate-common';
+import { getPlugins, useEditorState } from '@udecode/plate-common';
 import { EditorValue } from './types';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
@@ -43,7 +43,7 @@ export function isImageSelected(editor: any) {
 }
 
 export function isPluginActive(key: string): boolean {
-    const editor = usePlateEditorState();
+    const editor = useEditorState();
     const plugins = getPlugins(editor);
     return plugins.some((plugin) => plugin.key === key);
 }
