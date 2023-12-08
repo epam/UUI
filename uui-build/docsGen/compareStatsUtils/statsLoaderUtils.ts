@@ -5,7 +5,7 @@ import { TDocGenStatsResult } from '../types/types';
 import { uuiRoot } from '../constants';
 import { saveContentToFile } from '../utils/fileUtils';
 
-const OUTPUT_FILE_COMPARISON_REPORT_MD = path.resolve(uuiRoot, './.reports/generateComponentsApi.md');
+const OUTPUT_FILE_COMPARISON_REPORT_MD = path.resolve(uuiRoot, './.reports/generateComponentsApiStats.md');
 
 export function getPrevStatsFromCliArg(): string | undefined {
     const arg = process.argv[2];
