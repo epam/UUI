@@ -86,7 +86,7 @@ jobs:
         - name: Concatenate reports
           run: |
               cat ./${{ env.REPORT_1_ARTIFACT }} >> ./${{ env.REPORT_CONCATENATED }}
-              echo -e "\n---" >> ./${{ env.REPORT_CONCATENATED }}
+              echo -e "\n\n---" >> ./${{ env.REPORT_CONCATENATED }}
               cat ./${{ env.REPORT_2_ARTIFACT }} >> ./${{ env.REPORT_CONCATENATED }}
               echo -e "\n${{ env.COMMENT_TAG }}" >> ./${{ env.REPORT_CONCATENATED }}
         #
