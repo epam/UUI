@@ -7,6 +7,8 @@
         @return (9px - $border-width);
     } @else if ($size == 48px) {
         @return (12px - $border-width);
+    } @else if ($size == 60px) {
+        @return (15px - $border-width);
     }
 
     @return (null);
@@ -31,6 +33,9 @@
     } @else if ($size == 48px) {
         line-height: 24px;
         font-size: 16px;
+    } @else if ($size == 60px) {
+        line-height: 24px;
+        font-size: 20px;
     }
     padding-top: vpadding($size, $border-width);
     padding-bottom: vpadding($size, $border-width);

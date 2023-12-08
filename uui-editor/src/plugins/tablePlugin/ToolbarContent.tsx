@@ -11,43 +11,19 @@ import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24
 
 import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { deleteColumn } from './deleteColumn';
-import { createCell } from './utils';
-import { usePlateEditorState, insertElements, TElementEntry, removeNodes } from '@udecode/plate-common';
-import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable } from '@udecode/plate-table';
+import { useEditorState } from '@udecode/plate-common';
+import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable, unmergeTableCells, deleteColumn } from '@udecode/plate-table';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;
 }
 
-export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntry[] }) {
-    const editor = usePlateEditorState();
+export function TableToolbarContent({ canUnmerge }:{ canUnmerge:boolean }) {
+    const editor = useEditorState();
 
     const { cell, row } = getTableEntries(editor) || {};
     const cellPath = useMemo(() => cell && cell[1], [cell]);
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
-
-    const unmergeCells = () => {
-        const [item]: any[] = cellEntries;
-        const [mergedCellElem] = item;
-        const textContent = cellEntries
-            .map(([data]: any) => data?.children[0]?.children[0]?.text)
-            .join(' ');
-        const mergedCell = createCell({ type: mergedCellElem.type, textContent });
-        const emptyCell = createCell({ type: mergedCellElem.type });
-
-        removeNodes(editor, { at: item[1] });
-        for (let i = 1; i < item[0].data.colSpan; i++) {
-            insertElements(editor, emptyCell, { at: item[1] });
-        }
-        for (let i = 1; i < item[0].data.rowSpan; i++) {
-            insertElements(editor, emptyCell, {
-                // plus one row, when is vertical align
-                at: item[1].map((itemRow: number, index: number) => index === 2 ? itemRow + 1 : itemRow),
-            });
-        }
-        insertElements(editor, mergedCell, { at: item[1] });
-    };
 
     return (
         <Fragment>
@@ -63,7 +39,6 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
             />
             <ToolbarButton
                 key="remove-column"
-                // TODO: improve column removal when we have merged cells in this column
                 onClick={ () => deleteColumn(editor) }
                 icon={ RemoveColumn }
             />
@@ -94,11 +69,7 @@ export function TableToolbarContent({ cellEntries }: { cellEntries: TElementEntr
                 icon={ StyledRemoveTable }
                 cx={ css.removeTableButton }
             />
-            { cellEntries
-                && cellEntries.length === 1
-                && ((cellEntries[0][0]?.data as any)?.colSpan > 1
-                    || (cellEntries[0][0]?.data as any)?.rowSpan > 1)
-                && (<ToolbarButton key="unmerge-cells" onClick={ unmergeCells } icon={ UnmergeCellsIcon } />) }
+            { canUnmerge && (<ToolbarButton key="unmerge-cells" onClick={ () => unmergeTableCells(editor) } icon={ UnmergeCellsIcon } />) }
         </Fragment>
     );
 }
