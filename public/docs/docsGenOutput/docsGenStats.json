@@ -1,8 +1,8 @@
 {
  "missingPropComment": {
   "totals": {
-   "amountProps": 612,
-   "amountTypes": 209
+   "amountProps": 615,
+   "amountTypes": 210
   },
   "value": [
    {
@@ -842,7 +842,7 @@
    {
     "typeRef": "@epam/uui:BadgeCoreProps",
     "value": [
-     "size"
+     "indicator"
     ]
    },
    {
@@ -850,7 +850,6 @@
     "value": [
      "color",
      "fill",
-     "indicator",
      "size"
     ]
    },
@@ -865,12 +864,6 @@
     "typeRef": "@epam/uui:BurgerGroupHeaderProps",
     "value": [
      "caption"
-    ]
-   },
-   {
-    "typeRef": "@epam/uui:ButtonCoreProps",
-    "value": [
-     "size"
     ]
    },
    {
@@ -907,9 +900,8 @@
     ]
    },
    {
-    "typeRef": "@epam/uui:CountIndicatorProps",
+    "typeRef": "@epam/uui:CountIndicatorCoreProps",
     "value": [
-     "color",
      "size"
     ]
    },
@@ -1319,20 +1311,16 @@
     "typeRef": "@epam/promo:BadgeMods",
     "value": [
      "color",
-     "fill"
+     "fill",
+     "size"
     ]
    },
    {
     "typeRef": "@epam/promo:ButtonMods",
     "value": [
      "color",
-     "fill"
-    ]
-   },
-   {
-    "typeRef": "@epam/promo:CountIndicatorMods",
-    "value": [
-     "color"
+     "fill",
+     "size"
     ]
    },
    {
@@ -1425,9 +1413,29 @@
     ]
    },
    {
+    "typeRef": "@epam/electric:BadgeMods",
+    "value": [
+     "color",
+     "fill",
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/electric:PromoButtonMods",
     "value": [
      "size"
+    ]
+   },
+   {
+    "typeRef": "@epam/electric:StatusIndicatorMods",
+    "value": [
+     "color"
+    ]
+   },
+   {
+    "typeRef": "@epam/electric:TagMods",
+    "value": [
+     "color"
     ]
    },
    {
@@ -1452,12 +1460,6 @@
      "fill",
      "shape",
      "size"
-    ]
-   },
-   {
-    "typeRef": "@epam/loveship:CountIndicatorMods",
-    "value": [
-     "color"
     ]
    },
    {
@@ -1610,6 +1612,12 @@
     ]
    },
    {
+    "typeRef": "@epam/loveship:TextInputMods",
+    "value": [
+     "size"
+    ]
+   },
+   {
     "typeRef": "@epam/loveship:TextMods",
     "value": [
      "color",
@@ -1666,7 +1674,7 @@
  },
  "missingTypeComment": {
   "totals": {
-   "amountTypes": 473
+   "amountTypes": 484
   },
   "value": [
    "@epam/uui-core:AcceptDropParams",
@@ -1903,7 +1911,6 @@
    "@epam/uui:BurgerMods",
    "@epam/uui:BurgerSearchProps",
    "@epam/uui:ButtonColor",
-   "@epam/uui:ButtonCoreProps",
    "@epam/uui:ButtonFill",
    "@epam/uui:ButtonMods",
    "@epam/uui:ButtonProps",
@@ -1913,6 +1920,8 @@
    "@epam/uui:CompletePickerInputProps",
    "@epam/uui:ConfirmationModalWindowProps",
    "@epam/uui:ControlSize",
+   "@epam/uui:CountIndicatorCoreProps",
+   "@epam/uui:CountIndicatorMods",
    "@epam/uui:CountIndicatorProps",
    "@epam/uui:DataPickerBodyProps",
    "@epam/uui:DataPickerRowProps",
@@ -1990,6 +1999,8 @@
    "@epam/uui:SliderProps",
    "@epam/uui:SpinnerProps",
    "@epam/uui:StatusIndicatorColors",
+   "@epam/uui:StatusIndicatorCoreProps",
+   "@epam/uui:StatusIndicatorMods",
    "@epam/uui:StatusIndicatorProps",
    "@epam/uui:SwitchMods",
    "@epam/uui:SwitchProps",
@@ -2070,9 +2081,15 @@
    "@epam/promo:TextSize",
    "@epam/promo:TooltipMods",
    "@epam/promo:TooltipProps",
+   "@epam/electric:BadgeMods",
+   "@epam/electric:BadgeProps",
    "@epam/electric:PromoButtonMods",
    "@epam/electric:PromoButtonProps",
    "@epam/electric:PromoButtonSize",
+   "@epam/electric:StatusIndicatorMods",
+   "@epam/electric:StatusIndicatorProps",
+   "@epam/electric:TagMods",
+   "@epam/electric:TagProps",
    "@epam/loveship:AlertMods",
    "@epam/loveship:AlertProps",
    "@epam/loveship:BadgeMods",
@@ -2120,6 +2137,7 @@
    "@epam/loveship:RatingProps",
    "@epam/loveship:RowSize",
    "@epam/loveship:RowSizeMod",
+   "@epam/loveship:SearchInputProps",
    "@epam/loveship:SizeMod",
    "@epam/loveship:SliderRatingProps",
    "@epam/loveship:SnackbarCardProps",
@@ -2129,6 +2147,7 @@
    "@epam/loveship:TabButtonProps",
    "@epam/loveship:TagMods",
    "@epam/loveship:TagProps",
+   "@epam/loveship:TextInputProps",
    "@epam/loveship:TextMods",
    "@epam/loveship:TextProps",
    "@epam/loveship:TextSize",
@@ -2146,14 +2165,14 @@
  },
  "ignoredExports": {
   "totals": {
-   "allExports": 810,
+   "allExports": 812,
    "byModule": {
     "@epam/uui-core": 130,
     "@epam/uui-components": 105,
-    "@epam/uui": 142,
-    "@epam/promo": 128,
+    "@epam/uui": 144,
+    "@epam/promo": 127,
     "@epam/electric": 106,
-    "@epam/loveship": 136,
+    "@epam/loveship": 137,
     "@epam/uui-editor": 63
    }
   },
@@ -2436,6 +2455,8 @@
      "DataTableHeaderRow",
      "DataTableRow",
      "DatePicker",
+     "defaultBadgeFill",
+     "defaultBadgeSize",
      "defaultPredicates",
      "Dropdown",
      "DropdownContainer",
@@ -2573,7 +2594,6 @@
      "allEpamPrimaryColors",
      "allFillStyles",
      "allFontStyles",
-     "allIconColors",
      "allIconContainerColors",
      "allRowSizes",
      "allSizes",
@@ -2763,8 +2783,8 @@
      "RangeDatePicker",
      "RichTextView",
      "ScrollBars",
-     "SearchInput",
      "Spinner",
+     "StatusIndicator",
      "SuccessNotification",
      "SvgCircleProgress",
      "Switch",
@@ -2919,6 +2939,7 @@
      "applyButtonMods",
      "applyIconContainerMods",
      "applyRangeSliderMods",
+     "applyTextInputMods",
      "ColumnsConfigurationModal",
      "DataTable",
      "DataTableCell",
@@ -3032,14 +3053,14 @@
  },
  "includedExports": {
   "totals": {
-   "allExports": 552,
+   "allExports": 566,
    "byModule": {
     "@epam/uui-core": 201,
     "@epam/uui-components": 88,
-    "@epam/uui": 134,
-    "@epam/promo": 54,
-    "@epam/electric": 3,
-    "@epam/loveship": 62,
+    "@epam/uui": 138,
+    "@epam/promo": 55,
+    "@epam/electric": 9,
+    "@epam/loveship": 65,
     "@epam/uui-editor": 10
    }
   },
@@ -3358,7 +3379,6 @@
      "CheckboxMods",
      "ColumnsConfigurationModalProps",
      "ConfirmationModalWindowProps",
-     "CountIndicatorProps",
      "DataPickerBodyProps",
      "DataPickerRowProps",
      "DataRowsContainerProps",
@@ -3414,7 +3434,6 @@
      "SizeMod",
      "SliderMods",
      "SliderProps",
-     "StatusIndicatorProps",
      "SwitchMods",
      "TabButtonMods",
      "TextAreaMods",
@@ -3440,6 +3459,9 @@
      "CheckboxProps",
      "CompletePickerInputProps",
      "ControlSize",
+     "CountIndicatorCoreProps",
+     "CountIndicatorMods",
+     "CountIndicatorProps",
      "FlexCellMods",
      "FlexCellProps",
      "IconButtonCoreProps",
@@ -3464,6 +3486,9 @@
      "RowMods",
      "SpinnerProps",
      "StatusIndicatorColors",
+     "StatusIndicatorCoreProps",
+     "StatusIndicatorMods",
+     "StatusIndicatorProps",
      "SwitchProps",
      "TabButtonProps",
      "TagColor",
@@ -3489,7 +3514,6 @@
     "InterfaceDeclaration": [
      "AlertMods",
      "AlertProps",
-     "BadgeMods",
      "ButtonMods",
      "ColorMod",
      "CountIndicatorMods",
@@ -3509,11 +3533,12 @@
      "RowMods",
      "RowSizeMod",
      "SizeMod",
-     "StatusIndicatorMods",
+     "TextInputProps",
      "TextMods",
      "TooltipMods"
     ],
     "TypeAliasDeclaration": [
+     "BadgeMods",
      "BadgeProps",
      "ButtonColor",
      "ButtonProps",
@@ -3537,6 +3562,7 @@
      "MultiSwitchProps",
      "NotificationCardProps",
      "RowSize",
+     "StatusIndicatorMods",
      "StatusIndicatorProps",
      "TagMods",
      "TagProps",
@@ -3546,19 +3572,24 @@
     ]
    },
    "@epam/electric": {
+    "TypeAliasDeclaration": [
+     "BadgeMods",
+     "BadgeProps",
+     "PromoButtonProps",
+     "PromoButtonSize",
+     "StatusIndicatorMods",
+     "StatusIndicatorProps",
+     "TagMods",
+     "TagProps"
+    ],
     "InterfaceDeclaration": [
      "PromoButtonMods"
-    ],
-    "TypeAliasDeclaration": [
-     "PromoButtonProps",
-     "PromoButtonSize"
     ]
    },
    "@epam/loveship": {
     "InterfaceDeclaration": [
      "AlertMods",
      "AlertProps",
-     "BadgeMods",
      "ButtonMods",
      "ColorMod",
      "CountIndicatorMods",
@@ -3586,11 +3617,12 @@
      "SizeMod",
      "SliderRatingProps",
      "SnackbarCardProps",
-     "StatusIndicatorMods",
+     "TextInputMods",
      "TextMods",
      "TooltipMods"
     ],
     "TypeAliasDeclaration": [
+     "BadgeMods",
      "BadgeProps",
      "ButtonColorType",
      "ButtonProps",
@@ -3612,11 +3644,14 @@
      "MultiSwitchProps",
      "NotificationCardProps",
      "RowSize",
+     "SearchInputProps",
+     "StatusIndicatorMods",
      "StatusIndicatorProps",
      "TabButtonMods",
      "TabButtonProps",
      "TagMods",
      "TagProps",
+     "TextInputProps",
      "TextProps",
      "TextSize",
      "TooltipProps"
