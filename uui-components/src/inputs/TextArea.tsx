@@ -55,7 +55,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     getParentOverflows(el: Element) {
         const arr = [];
-    
         while (el && el.parentNode && el.parentNode instanceof Element) {
             if (el.parentNode.scrollTop) {
                 arr.push({
@@ -65,7 +64,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             }
             el = el.parentNode;
         }
-    
         return arr;
     }
 
