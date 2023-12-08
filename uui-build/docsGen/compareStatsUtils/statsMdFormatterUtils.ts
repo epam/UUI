@@ -26,7 +26,7 @@ export function formatResultsToMd(result: TCompareStatsResult) {
     return [
         [
             `${mdGeneratedBy}<br>`,
-            `${ciStatus}<br>`,
+            `${ciStatus}<br>\n`,
             '**Types/Props without comments**<br>',
         ].join(''),
         '',
