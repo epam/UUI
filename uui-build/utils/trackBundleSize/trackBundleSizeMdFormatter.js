@@ -45,7 +45,6 @@ function comparisonResultToMd({ comparisonResult, currentBaseLine, newBaseLine }
         generatedBy,
         `Generated at: ${new Date().toUTCString()}`,
         ciStatus,
-        '\n',
     ].join('<br>');
 
     const newBaseLineMd = formatNewBaseLine(newBaseLine);
