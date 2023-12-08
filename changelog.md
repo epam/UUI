@@ -1,22 +1,32 @@
-# 5.4.2 - xx.xx.2023
+# 5.xx.xx - xx.xx.2023
+
 **What's New**
-* [FiltersPanel]: added `togglerWidth` prop, which configure maxWidth of filter toggler
-* [Tag]: added new property `color`.
-  * It has all semantic colors in `UUI`: 'info' | 'success' | 'warning' | 'critical' | 'neutral'.
-  * Loveship (light & dark): "sky" | "grass" | "sun" | "fire" | 'white' | 'night100' | 'night300' | 'night700'.
-  * Promo: "blue" | "green" | "amber" | "red" | 'white' | 'night100' | 'night300' | 'night700'.
-  * Electric: "info" | "success" | "warning" | "critical" | "neutral" | 'white' | 'night100' | 'night700.
+[Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
+
+**What's Fixed**
+* [LazyDataSource]: fixed cascade selection with not flatten search.
+
+
+# 5.4.2 - 07.12.2023
+
+**What's New**
+* [FiltersPanel]: added `togglerWidth` prop, which configure `maxWidth` of filter toggler
+* [Tag]: added additional colors in skins
 * [Badge]: added new colors in skins:
   * Loveship: 'cyan' | 'mint'.
   * Promo: 'cyan' | 'mint'.
-  * Electric: "info" | "success" | "warning" | "critical" | "neutral" | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600'.
+  * Electric: 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600'.
+* [DropdownContainer]: `width` property now used as a default for `maxWidth`, if `maxWidth` is not provided.
+
+**What's New**
+* [LazyDataSource]: enabled `flattenSearchResults` by default
+* [PickerInput]: Added subtitle for flatten search results as default behavior of `PickerInput`s.
 
 **What's Fixed**
-* [Tag]: fixed type errors.
+* [Tag]: fixed typings
 * [Button]: fixed `rawProps` typings for `data-*` attributes
 * [Paginator]: fixed `rawProps` typings
-* [PickerInput]: Fixed picker input body responsiveness.
-    * `DropdownContainer` `width` property affects `maxWidth` if `maxWidth` is not provided.
+* [PickerInput]: added default `maxWidth={ 360 }` value for picker body
 * [PickerInput]: Fixed clear checked before opening a picker body and if selectAll: false is provided.
     * Added `clearAllChecked()` method to `IDataSourceView` interface to support unchecking all without enabled `selectAll` flag.
     * Reduced amount of loaded data while clearing all checked elements in `cascadeSelection: false` mode.
@@ -25,6 +35,7 @@
 * [LazyListView]: fixed backgroundReload functionality.
     * Fixed showing blocker when filter/sorting changed.
     * Fixed showing placeholders while backgroundReload=true and placeholders should not appear.
+* [icons]: Returned filled version for the following icons: communication-chat, flag, communication-mail, action-eye, action-eye-off, action-job_function, action-deleteforever, action-schedule.
 
 # 5.4.1 - 30.11.2023
 
@@ -42,6 +53,8 @@
         * 'action-chat' icon was removed use 'communication-chat' instead
         * 'not-recommended' icon was removed use 'blacklist' instead
         * 'copy-content' icon was removed use 'action-copy_content' instead
+        * 'action-clock' icon was removed use 'action-schedule' instead
+        * 'notification-close_popup' icon was removed use 'navigation-close' instead
 
 **What's Fixed**
 * [Calendar]: fixed disabled days text color

@@ -1,3 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="M14.25 1.5h1.5v15h-1.5v-15Zm-3 3h1.5v12h-1.5v-12Zm-3 3h1.5v9h-1.5v-9Zm-3 3h1.5v6h-1.5v-6Zm-3 3h1.5v3h-1.5v-3Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/action-level">
+<g id="icon">
+<path d="M14.25 1.5H15.75V16.5H14.25V1.5Z" fill="#6C6F80"/>
+<path d="M11.25 4.5H12.75V16.5H11.25V4.5Z" fill="#6C6F80"/>
+<path d="M8.25 7.5H9.75V16.5H8.25V7.5Z" fill="#6C6F80"/>
+<path d="M5.25 10.5H6.75V16.5H5.25V10.5Z" fill="#6C6F80"/>
+<path d="M2.25 13.5H3.75V16.5H2.25V13.5Z" fill="#6C6F80"/>
+</g>
+</g>
 </svg>

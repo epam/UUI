@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" fill-rule="evenodd" d="M9.75 6.75h4.125L9.75 2.625V6.75ZM4.5 1.5h6L15 6v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 3 15V3c0-.833.667-1.5 1.5-1.5ZM5.25 15h1.5v-4.5h-1.5V15Zm3 0h1.5V9h-1.5v6Zm3 0h1.5v-3h-1.5v3Z" clip-rule="evenodd"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/file-file_chart">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M9.75 6.75H13.875L9.75 2.625V6.75ZM4.5 1.5H10.5L15 6V15C15 15.8284 14.3284 16.5 13.5 16.5H4.5C3.6675 16.5 3 15.825 3 15V3C3 2.1675 3.6675 1.5 4.5 1.5ZM5.25 15H6.75V10.5H5.25V15ZM8.25 15H9.75V9H8.25V15ZM11.25 15H12.75V12H11.25V15Z" fill="#6C6F80"/>
+</g>
 </svg>
