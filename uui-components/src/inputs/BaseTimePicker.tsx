@@ -74,7 +74,6 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     };
 
     handleInputChange = (newValue: string) => {
-        console.log('handle input change');
         if (this.getFormat() === 'hh:mm A' && newValue.length < 8) {
             this.setState((state) => ({ ...state, value: newValue }));
         } else if (dayjs(newValue, this.getFormat(), true).isValid()) {
@@ -106,7 +105,6 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     };
 
     render() {
-        console.log('renderInput');
         return (
             <Dropdown
                 renderTarget={ (props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props)) }
