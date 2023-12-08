@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="M3.75 15V2.25h6.75l.3 1.5H15v7.5H9.75l-.3-1.5h-4.2V15h-1.5Zm7.238-5.25H13.5v-4.5H9.562l-.3-1.5H5.25v4.5h5.438l.3 1.5Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/flag-outline">
+<path id="icon" d="M3.75 15V2.25H10.5L10.8 3.75H15V11.25H9.75L9.45 9.75H5.25V15H3.75ZM10.9875 9.75H13.5V5.25H9.5625L9.2625 3.75H5.25V8.25H10.6875L10.9875 9.75Z" fill="#6C6F80"/>
+</g>
 </svg>
