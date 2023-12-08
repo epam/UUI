@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
+import { useCheckingService } from './useCheckingService';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
@@ -9,12 +11,12 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     deps: any[],
 ) {
     const props = { ...restProps, sortSearchByRelevance };
-    const tree = useCreateTree(props, deps);
+    const fullTree = useCreateTree(props, deps);
 
-    const { dataSourceState, getFilter, getSearchFields, sortBy } = props;
+    const { dataSourceState, getFilter, getSearchFields, sortBy, cascadeSelection, getParentId } = props;
 
     const filteredTree = useFilterTree(
-        { tree, getFilter, dataSourceState },
+        { tree: fullTree, getFilter, dataSourceState },
         deps,
     );
 
@@ -23,10 +25,17 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         deps,
     );
 
-    const sortedTree = useSortTree(
+    const tree = useSortTree(
         { tree: searchTree, sortBy, dataSourceState },
         deps,
     );
 
-    return sortedTree;
+    const checkingService = useCheckingService({
+        tree, checked: dataSourceState.checked, cascadeSelection, getParentId,
+    });
+
+    return useMemo(
+        () => ({ tree, ...checkingService }),
+        [tree, checkingService],
+    );
 }

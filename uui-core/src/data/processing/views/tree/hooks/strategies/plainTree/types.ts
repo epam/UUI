@@ -1,4 +1,4 @@
-import { SortingOption } from '../../../../../../../types';
+import { CascadeSelection, SortingOption } from '../../../../../../../types';
 import { ITree } from '../../../ITree';
 import { STRATEGIES } from '../constants';
 import { TreeStrategyProps } from '../types';
@@ -11,4 +11,5 @@ export type PlainTreeStrategyProps<TItem, TId, TFilter> = TreeStrategyProps<TIte
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
     sortSearchByRelevance?: boolean;
+    cascadeSelection?: CascadeSelection;
 };
