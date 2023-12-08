@@ -17,10 +17,13 @@ env:
     REPORT_1_ARTIFACT: qualityGateReports_file1
     REPORT_2_ARTIFACT: qualityGateReports_file2
     PR_NUM_ARTIFACT: qualityGateReports_pr
-    REPORT_1_PATH: ./.reports/trackBundleSize.md
-    REPORT_2_PATH: ./.reports/generateComponentsApiStats.md
     ERROR_STATUS_TAG: 'CI Status: error'
-    PREV_DOCS_GEN_STATS_REPORT_PATH: ./target-branch/public/docs/docsGenOutput/docsGenStats.json
+    #
+    TARGET_BRANCH_DIR: ./target-branch
+    MERGE_COMMIT_BRANCH_DIR: ./merge-commit-branch
+    PREV_DOCS_GEN_STATS_REPORT_PATH: ../target-branch/public/docs/docsGenOutput/docsGenStats.json # Pay attention it should be relative to the "merge commit branch" dir.
+    REPORT_1_PATH: ./merge-commit-branch/.reports/trackBundleSize.md
+    REPORT_2_PATH: ./merge-commit-branch/.reports/generateComponentsApiStats.md
 
 jobs:
     quality_gate:
@@ -31,16 +34,16 @@ jobs:
             # I.e. the result of merging source branch to the target branch will be checked out.
             - name: 'Checkout the "merge commit" branch'
               uses: actions/checkout@v4
+              with:
+                path: ${{ env.MERGE_COMMIT_BRANCH_DIR }}
 
-            # Checkout the TARGET branch. We only need to check out the folder where the report is located
-            - name: 'Checkout "public/docs/docsGenOutput" folder from the "target" branch'
+            # Checkout the TARGET branch.
+            - name: 'Checkout "target" branch'
               uses: actions/checkout@v4
               with:
                   ref: ${{ github.event.pull_request.base.ref }}
                   repository: ${{ github.event.pull_request.base.repo.full_name }}
-                  path: target-branch
-                  sparse-checkout: |
-                      public/docs/docsGenOutput
+                  path: ${{ env.TARGET_BRANCH_DIR }}
 
             - uses: actions/cache@v3
               with:
@@ -50,14 +53,19 @@ jobs:
                   key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: v1-npm-deps-
 
-            - name: 'Install dependencies'
+            - name: 'Install dependencies & Run "generate-components-api" (target branch)'
+              working-directory: ${{ env.TARGET_BRANCH_DIR }}
               run: |
                   yarn
+                  yarn generate-components-api
 
-            - name: 'Run quality checks'
+            - name: 'Install dependencies & Run quality checks (merge commit branch)'
+              working-directory: ${{ env.MERGE_COMMIT_BRANCH_DIR }}
               run: |
+                  yarn
                   yarn track-bundle-size
                   yarn generate-components-api --prev-stats=${{env.PREV_DOCS_GEN_STATS_REPORT_PATH}}
+
             #
             #
             #
