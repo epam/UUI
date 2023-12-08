@@ -91056,7 +91056,10 @@
      "raw": "TextAreaMods",
      "print": [
       "interface TextAreaMods extends types.IHasEditMode {",
-      "    /** @default '36' */",
+      "    /**",
+      "     * @default '36'.",
+      "     * Size '48' is deprecated, and will be removed in future release",
+      "     * */",
       "    size?: types.ControlSize;",
       "}"
      ]
@@ -91067,11 +91070,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "@default '36'.",
+        " Size '48' is deprecated, and will be removed in future release"
+       ]
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -91476,11 +91477,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "@default '36'.",
+        " Size '48' is deprecated, and will be removed in future release"
+       ]
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
