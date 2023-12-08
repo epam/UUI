@@ -9,13 +9,12 @@ import { Image, toPlateAlign } from './ImageBlock';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
-import { TImageElement, captionGlobalStore } from '@udecode/plate-media';
-import isHotkey from 'is-hotkey';
+import { TImageElement } from '@udecode/plate-media';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 import { IMAGE_PLUGIN_TYPE, IMAGE_PLUGIN_KEY, IImageElement } from '../../types';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory<IHasToolbarButton>({
@@ -49,11 +48,6 @@ export const imagePlugin = () => {
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
-                }
-
-                // focus caption from image
-                if (isHotkey('down', event)) {
-                    captionGlobalStore.set.focusEndCaptionPath(imageEntry[1]);
                 }
             },
         },
