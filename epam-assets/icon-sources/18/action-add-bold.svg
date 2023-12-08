@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="M10.313 3.75H7.687v3.938H3.75v2.625h3.938v3.937h2.625v-3.938h3.937V7.688h-3.938V3.75Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/action-add-bold">
+<path id="icon" d="M10.3125 2.25H7.6875V7.6875H2.25V10.3125H7.6875V15.75H10.3125V10.3125H15.75V7.6875H10.3125V2.25Z" fill="#6C6F80"/>
+</g>
 </svg>

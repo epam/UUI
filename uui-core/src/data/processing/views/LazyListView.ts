@@ -115,14 +115,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private defaultGetId = (i: any) => i.id;
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
-        if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
+        const newProps = {
+            ...props,
+            getId: props.getId ?? this.defaultGetId,
+            flattenSearchResults: props.flattenSearchResults ?? true,
+        };
+
+        if (newProps.getChildCount && (newProps.cascadeSelection || newProps.flattenSearchResults) && !newProps.getParentId) {
             console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
         }
 
-        return {
-            ...props,
-            getId: props.getId ?? this.defaultGetId,
-        };
+        return newProps;
     }
 
     public update(
@@ -143,6 +146,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.props = {
             ...props,
             legacyLoadDataBehavior: props.legacyLoadDataBehavior ?? this.props.legacyLoadDataBehavior,
+            flattenSearchResults: this.props.flattenSearchResults ?? props.flattenSearchResults ?? true,
         };
 
         this.updateRowOptions();
@@ -189,7 +193,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.shouldRebuildRows(prevValue, this.value)
             || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
-            || this.props.getRowOptions !== prevProps?.getRowOptions
             || moreRowsNeeded
         ) {
             this.rebuildRows();
@@ -456,9 +459,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (this.props.legacyLoadDataBehavior) {
             this.loadData();
         }
+
         // if data is reloading, to prevent twitching the UI (of pagination, for example)
         // it is required to return previous listProps.
         if (this.isReloading && this.listProps) {
+            this.listProps = { ...this.listProps, isReloading: this.isReloading };
             return this.listProps;
         }
 
@@ -491,7 +496,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             rowsCount,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount() ?? 0,
+            totalCount: rootInfo.totalCount ?? this.visibleTree.getTotalRecursiveCount(),
             selectAll: this.selectAll,
             isReloading: this.isReloading,
         };
@@ -514,4 +519,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         return isFetchPositionAndAmountChanged && lastIndex > this.rows.length;
     };
+
+    public getConfig() {
+        return {
+            ...super.getConfig(),
+            flattenSearchResults: this.props.flattenSearchResults,
+        };
+    }
 }
