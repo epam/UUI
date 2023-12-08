@@ -1,75 +1,48 @@
 import React from 'react';
 import cx from 'classnames';
-import { useReadOnly } from 'slate-react';
-import { PlateElement, PlateElementProps, TElement, useElement, usePlateEditorRef } from '@udecode/plate-common';
+import { PlateElement, PlateElementProps, Value } from '@udecode/plate-common';
 import {
-    ELEMENT_TABLE, ELEMENT_TR, TTableElement, TTableRowElement, TableCellElementResizable, getTableCellBorders,
-    getTableRowIndex, useIsCellSelected, useTableStore,
+    TTableCellElement,
+    useTableCellElement, useTableCellElementResizable, useTableCellElementResizableState, useTableCellElementState,
 } from '@udecode/plate-table';
-import { ExtendedTTableCellElement } from './types';
 
 import css from './TableCell.module.scss';
+import { ResizeHandle } from '../../implementation/Resizable';
 
-export interface TableCellElementProps extends PlateElementProps {
+export interface TableCellElementProps
+    extends PlateElementProps<Value, TTableCellElement> {
     hideBorder?: boolean;
     isHeader?: boolean;
 }
 
-const checkIsFirstCell = (colIndex: number, cellNode: TElement) => {
-    const cellColSpan = (cellNode.colSpan as number);
-    const isFirstMergedCell = colIndex + 1 === cellColSpan;
-    return colIndex === 0 || isFirstMergedCell;
-};
-
 const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 TableCellElementProps
->(({ className, ...props }, ref) => {
-    const { children, hideBorder, ...rootProps } = props;
-    const editor = usePlateEditorRef();
-    const cellElement = useElement<ExtendedTTableCellElement>();
+>(({ children, className, style, hideBorder, ...props }, ref) => {
+    const { element } = props;
 
-    /**
-     * Apply valid spans to element
-     */
-    const attrColSpan = isNaN(cellElement.attributes?.colspan) ? 1 : Number(cellElement.attributes?.colspan);
-    const attrRowSpan = isNaN(cellElement.attributes?.rowspan) ? 1 : Number(cellElement.attributes?.rowspan);
-    const appliedSpans = {
-        colSpan: cellElement?.data?.colSpan ?? attrColSpan,
-        rowSpan: cellElement?.data?.rowSpan ?? attrRowSpan,
-    };
-    cellElement.colSpan = appliedSpans.colSpan;
-    cellElement.rowSpan = appliedSpans.rowSpan;
-
-    // TODO: move to plate
-    const colIndex = cellElement.colIndex;
-    // const colIndex = getTableColumnIndex(editor, cellElement);
-    const rowIndex = getTableRowIndex(editor, cellElement);
-
-    const readOnly = useReadOnly();
-
-    const isCellSelected = useIsCellSelected(cellElement);
-    const hoveredColIndex = useTableStore().get.hoveredColIndex();
-
-    const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
-    const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
-    const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
-    const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
-
-    // const isFirstCell = colIndex === 0;
-    const isFirstRow = tableElement.children?.[0] === rowElement;
-
-    const borders = getTableCellBorders(cellElement, {
-        isFirstCell: checkIsFirstCell(colIndex, cellElement),
-        isFirstRow,
+    const {
+        colIndex,
+        rowIndex,
+        readOnly,
+        selected,
+        hovered,
+        hoveredLeft,
+        rowSize,
+        borders,
+        isSelectingCell,
+        colSpan,
+    } = useTableCellElementState();
+    const { props: cellProps } = useTableCellElement({ element: props.element });
+    const resizableState = useTableCellElementResizableState({
+        colIndex,
+        rowIndex,
+        colSpan,
     });
-
-    const selected = isCellSelected;
-    const hovered = hoveredColIndex === colIndex;
-    const hoveredLeft = checkIsFirstCell(colIndex, cellElement) && hoveredColIndex === -1;
-
-    const isHeader = cellElement.type === 'table_header_cell';
+    const { rightProps, bottomProps, leftProps, hiddenLeft } = useTableCellElementResizable(resizableState);
+    const isHeader = element.type === 'table_header_cell';
     const Cell = isHeader ? 'th' : 'td';
+
     return (
         <PlateElement
             asChild
@@ -92,31 +65,56 @@ TableCellElementProps
                     className,
                 )
             }
-            { ...rootProps }
+            { ...props }
+            { ...cellProps }
+            style={
+                {
+                    '--cellBackground': element.background,
+                    ...style,
+                } as React.CSSProperties
+            }
         >
-            <Cell colSpan={ cellElement.colSpan } rowSpan={ cellElement.rowSpan }>
+            <Cell>
                 <div className={ css.cell } style={ { minHeight: rowSize } }>
                     { children }
                 </div>
 
-                <div
-                    className={ css.resizableWrapper }
-                    contentEditable={ false }
-                >
-                    <TableCellElementResizable
-                        colIndex={ colIndex }
-                        rowIndex={ rowIndex }
-                        readOnly={ readOnly }
-                    />
+                {!isSelectingCell && (
+                    <div
+                        className={ css.resizableWrapper }
+                        contentEditable={ false }
+                    >
+                        {!readOnly && (
+                            <>
+                                <ResizeHandle
+                                    { ...rightProps }
+                                    className={ css.resizeHolderRight }
+                                />
+                                <ResizeHandle
+                                    { ...bottomProps }
+                                    className={ css.resizeHolderBottom }
+                                />
+                                {!hiddenLeft && (
+                                    <ResizeHandle
+                                        { ...leftProps }
+                                        className={ css.resizeHolderLeft }
+                                    />
+                                )}
 
-                    { !readOnly && hovered && (
-                        <div className={ cx(css.resizeHandleRight) } />
-                    ) }
-
-                    { !readOnly && hoveredLeft && (
-                        <div className={ cx(css.resizeHandleLeft) } />
-                    ) }
-                </div>
+                                {hovered && (
+                                    <div
+                                        className={ cx(css.resizeHandleRight) }
+                                    />
+                                )}
+                                {hoveredLeft && (
+                                    <div
+                                        className={ cx(css.resizeHandleLeft) }
+                                    />
+                                )}
+                            </>
+                        )}
+                    </div>
+                ) }
             </Cell>
         </PlateElement>
     );
