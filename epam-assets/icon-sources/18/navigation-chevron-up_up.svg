@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" d="M13.5 7.25 9 2.75l-4.5 4.5L5.55 8.3 9 4.869 12.45 8.3l1.05-1.05Z"/>
-  <path fill="#6C6F80" d="M13.5 12.2 9 7.7l-4.5 4.5 1.05 1.05L9 9.819l3.45 3.431 1.05-1.05Z"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/navigation-chevron-up_up">
+<g id="icon">
+<path d="M13.5 7.25L9 2.75L4.5 7.25L5.55 8.3L9 4.86875L12.45 8.3L13.5 7.25Z" fill="#6C6F80"/>
+<path d="M13.5 12.2L9 7.7L4.5 12.2L5.55 13.25L9 9.81875L12.45 13.25L13.5 12.2Z" fill="#6C6F80"/>
+</g>
+</g>
 </svg>

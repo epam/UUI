@@ -4,7 +4,7 @@ import {
     IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts,
 } from '@epam/uui-core';
 
-export interface PaginatorParams extends IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
+export interface PaginatorParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     size: '24' | '30';
     pages: PaginatorItem[];
     goToNext(): void;
@@ -20,7 +20,7 @@ interface PaginatorItem {
     onClick?(): void;
 }
 
-export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
+export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     /** Component size */
     size: '24' | '30';
 

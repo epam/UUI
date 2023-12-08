@@ -42,7 +42,7 @@ exports[`PickerInput should open body 1`] = `
   >
     <div
       class="uui-dropdown-body -lock-focus root container container"
-      style="min-width: 360px;"
+      style="min-width: 360px; max-width: 360px;"
       tabindex="-1"
     >
       <div
