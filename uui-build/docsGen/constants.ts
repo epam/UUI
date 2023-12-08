@@ -6,7 +6,6 @@ import { SyntaxKind } from 'ts-morph';
 export { uuiRoot };
 
 const OUT_DIR_REL = 'public/docs/docsGenOutput';
-export const OUTPUT_FILE_COMPARISON_REPORT_MD = path.resolve(uuiRoot, './.reports/generateComponentsApi.md');
 export const OUTPUT_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.json`);
 export const OUTPUT_DTS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenOutput.d.ts`);
 export const OUTPUT_STATS_FILE_FULL_PATH = path.resolve(uuiRoot, `${OUT_DIR_REL}/docsGenStats.json`);

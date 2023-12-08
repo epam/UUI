@@ -8,7 +8,7 @@ import {
 } from './constants';
 import { generateDTS } from './dts';
 import { ConverterContext } from './converterContext/converterContext';
-import { compareToPrevStats } from './utils/compareResultsUtils';
+import { compareToPrevStats } from './compareStatsUtils/statsComparatorUtils';
 
 main();
 
