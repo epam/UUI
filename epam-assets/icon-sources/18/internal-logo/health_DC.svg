@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 18 18">
-  <path fill="#6C6F80" fill-rule="evenodd" d="M1.5 3.75A1.5 1.5 0 0 1 3 2.25h12a1.5 1.5 0 0 1 1.5 1.5v4.5h-15v-4.5ZM1.5 9h9v6.75H3a1.5 1.5 0 0 1-1.5-1.5V9Zm9.75 0h5.25v3h-5.25V9Zm0 3.75h5.25v1.5a1.5 1.5 0 0 1-1.5 1.5h-3.75v-3Z" clip-rule="evenodd"/>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/internal-logo/health_DC">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M1.5 3.75C1.5 2.92157 2.17157 2.25 3 2.25H15C15.8285 2.25 16.5 2.92157 16.5 3.75V8.25H1.5V3.75ZM1.5 9H10.5V15.75H3C2.17157 15.75 1.5 15.0785 1.5 14.25V9ZM11.25 9H16.5V12H11.25V9ZM11.25 12.75H16.5V14.25C16.5 15.0785 15.8285 15.75 15 15.75H11.25V12.75Z" fill="#6C6F80"/>
+</g>
 </svg>
