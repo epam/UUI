@@ -1,0 +1,83 @@
+.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.align-left {
+    margin-right: auto;
+}
+
+.align-right {
+    margin-left: auto;
+}
+
+.resize-handle {
+    position: absolute;
+    z-index: 40;
+}
+
+@mixin resize-handle {
+    display: flex;
+    width: 1.5rem;
+    -webkit-user-select: none;
+    user-select: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-handle {
+    @include resize-handle();
+    top: 0;
+    height: 100%;
+    cursor: col-resize;
+
+    // for left (used only in image element)
+    margin-left: -0.75rem;
+    left: -0.75rem;
+    padding-left: 0.75rem;
+}
+
+.right-handle {
+    @include resize-handle();
+    top: 0;
+    height: 100%;
+    cursor: col-resize;
+
+    // only for right (used only in image element)
+    align-items: flex-end;
+    right: -0.75rem;
+    margin-right: -0.75rem;
+    padding-right: 0.75rem;
+}
+
+// used only in table element
+.top-handle {
+    @include resize-handle();
+    width: 100%;
+    cursor: row-resize;
+}
+
+// used only in table element
+.bottom-handle {
+    @include resize-handle();
+    width: 100%;
+    cursor: row-resize;
+}
+
+@mixin resize-handle-content {
+    content: ' ';
+    display: flex;
+    height: 4rem;
+    width: 3px;
+    border-radius: 6px;
+    background-color: var(--uui-neutral-50);
+    opacity: 0;
+}
+
+.left-handle::after {
+    @include resize-handle-content();
+}
+
+.right-handle::after {
+    @include resize-handle-content();
+}

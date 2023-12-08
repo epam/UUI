@@ -1,4 +1,4 @@
-import { isBlock, usePlateEditorState } from '@udecode/plate-common';
+import { isBlock, useEditorState } from '@udecode/plate-common';
 
 import cx from 'classnames';
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
@@ -13,7 +13,7 @@ interface SidebarProps {
 
 // eslint-disable-next-line react/function-component-definition
 export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) => {
-    const editor = usePlateEditorState();
+    const editor = useEditorState();
     const isBlockSelected = isBlock(editor, editor.value);
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);

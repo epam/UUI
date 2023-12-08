@@ -9,7 +9,7 @@ import { HeaderBar } from '../../implementation/HeaderBar';
 import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6, createHeadingPlugin } from '@udecode/plate-heading';
 import { PlateEditor } from '@udecode/plate-common';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 const KEY = 'heading';
 

@@ -28,7 +28,7 @@
     "@epam/uui-docs": "5.4.2",
     "@epam/uui-editor": "5.4.2",
     "@epam/uui-timeline": "5.4.2",
-    "@udecode/plate-common": "24.5.2",
+    "@udecode/plate-common": "25.0.1",
     "amplitude-js": "8.9.1",
     "classnames": "2.2.6",
     "codesandbox": "2.2.3",

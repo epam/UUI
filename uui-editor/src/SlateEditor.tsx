@@ -2,7 +2,7 @@ import React, { Fragment, useMemo, useRef, useState } from 'react';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui';
 
-import { Plate, PlateEditor, PlateProvider, Value, createPlugins, useEventEditorSelectors, usePlateEditorState } from '@udecode/plate-common';
+import { Plate, PlateContent, PlateEditor, Value, createPlugins, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
 
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
@@ -13,6 +13,7 @@ import { defaultPlugins } from './defaultPlugins';
 import { isEditorValueEmpty } from './helpers';
 
 import css from './SlateEditor.module.scss';
+import { RenderPlaceholderProps } from 'slate-react';
 
 const basePlugins: any = [
     baseMarksPlugin(),
@@ -37,36 +38,31 @@ interface PlateEditorProps extends SlateEditorProps {
 }
 
 function Editor(props: PlateEditorProps) {
-    const editor = usePlateEditorState();
+    const editor = useEditorState();
 
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
 
     const renderEditor = () => (
         <Fragment>
-            <Plate
+            <PlateContent
                 id={ props.id }
-                editableProps={ {
-                    autoFocus: props.autoFocus,
-                    readOnly: props.isReadonly,
-                    placeholder: props.placeholder,
-                    className: css.editor,
-                    renderPlaceholder: ({ attributes }) => {
-                        return isEditorValueEmpty(editor.children) && (
-                            <div
-                                { ...attributes }
-                                style={ { pointerEvents: 'none' } }
-                                className={ css.placeholder }
-                            >
-                                { props.placeholder }
-                            </div>
-                        );
-                    },
-                    style: { padding: '0 24px', minHeight: props.minHeight },
+                autoFocus={ props.autoFocus }
+                readOnly={ props.isReadonly }
+                placeholder={ props.placeholder }
+                className={ css.editor }
+                renderPlaceholder={ ({ attributes }: RenderPlaceholderProps) => {
+                    return isEditorValueEmpty(editor.children) && (
+                        <div
+                            { ...attributes }
+                            style={ { pointerEvents: 'none' } }
+                            className={ css.placeholder }
+                        >
+                            { props.placeholder }
+                        </div>
+                    );
                 } }
-                // we override plate core insertData plugin
-                // so, we need to disable default implementation
-                disableCorePlugins={ { insertData: true } }
+                style={ { padding: '0 24px', minHeight: props.minHeight } }
             />
             <MainToolbar />
             <MarksToolbar />
@@ -126,18 +122,21 @@ function SlateEditor(props: SlateEditorProps) {
     }
 
     return (
-        <PlateProvider
+        <Plate
             id={ currentId.current }
             initialValue={ value }
             plugins={ plugins }
             onChange={ onChange }
             editorRef={ setEditor }
+            // we override plate core insertData plugin
+            // so, we need to disable default implementation
+            disableCorePlugins={ { insertData: true } }
         >
             <Editor
                 id={ currentId.current }
                 { ...props }
             />
-        </PlateProvider>
+        </Plate>
     );
 }
 

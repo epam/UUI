@@ -39,7 +39,7 @@ const migrateTable = (oldTable: any) => {
 const migrateElementNode = (node: any) => {
     const mediaTypes = ['image', 'iframe'];
 
-    if (node.type === 'paragraph' && node.nodes?.[0].type === 'table') {
+    if (node.type === 'paragraph' && node.nodes?.[0]?.type === 'table') {
         const tableNode = node.nodes[0];
         node = migrateTable(tableNode);
     }
@@ -62,5 +62,16 @@ export const migrateNode = (oldNode: any) => {
 };
 
 export const migrateSchema = (oldSchema: any) => {
-    return oldSchema?.document?.nodes.map(migrateNode) || oldSchema;
+    let migratedSchema;
+    try {
+        migratedSchema = oldSchema?.document?.nodes.map(migrateNode);
+    } catch (e) {
+        console.error("Can't migrate schema", e);
+    }
+
+    if (migratedSchema) {
+        return migratedSchema;
+    }
+
+    return oldSchema;
 };

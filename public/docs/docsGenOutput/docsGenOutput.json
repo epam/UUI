@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-12-06",
+ "timestamp": "2023-12-08",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -15115,6 +15115,7 @@
      "print": [
       "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
       "type IDataSourceView<TItem, TId, TFilter> = {",
+      "    getConfig(): IDataSourceViewConfig;",
       "    getById(id: TId, index: number): DataRowProps<TItem, TId>;",
       "    getListProps(): DataSourceListProps;",
       "    getVisibleRows(): DataRowProps<TItem, TId>[];",
@@ -15123,6 +15124,7 @@
       "    reload(): void;",
       "    destroy(): void;",
       "    loadData(): void;",
+      "    clearAllChecked(): void;",
       "    _forceUpdate(): void;",
       "    selectAll?: ICheckable;",
       "};"
@@ -15131,6 +15133,17 @@
     "props": [
      {
       "uid": 1,
+      "name": "getConfig",
+      "typeValue": {
+       "raw": "() => IDataSourceViewConfig"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": 2,
       "name": "getById",
       "typeValue": {
        "raw": "(id: TId, index: number) => DataRowProps<TItem, TId>"
@@ -15141,7 +15154,7 @@
       "required": true
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "getListProps",
       "typeValue": {
        "raw": "() => DataSourceListProps"
@@ -15152,7 +15165,7 @@
       "required": true
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "getVisibleRows",
       "typeValue": {
        "raw": "() => DataRowProps<TItem, TId>[]"
@@ -15163,7 +15176,7 @@
       "required": true
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "getSelectedRows",
       "typeValue": {
        "raw": "(range?: VirtualListRange | undefined) => DataRowProps<TItem, TId>[]"
@@ -15174,7 +15187,7 @@
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "getSelectedRowsCount",
       "typeValue": {
        "raw": "() => number"
@@ -15185,7 +15198,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "reload",
       "typeValue": {
        "raw": "() => void"
@@ -15196,7 +15209,7 @@
       "required": true
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "destroy",
       "typeValue": {
        "raw": "() => void"
@@ -15207,7 +15220,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "loadData",
       "typeValue": {
        "raw": "() => void"
@@ -15218,7 +15231,18 @@
       "required": true
      },
      {
-      "uid": 9,
+      "uid": 10,
+      "name": "clearAllChecked",
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": 11,
       "name": "_forceUpdate",
       "typeValue": {
        "raw": "() => void"
@@ -15229,10 +15253,100 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 12,
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:IDataSourceViewConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IDataSourceViewConfig",
+     "nameFull": "IDataSourceViewConfig"
+    },
+    "src": "uui-core/src/types/dataSources.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IDataSourceViewConfig",
+     "print": [
+      "type IDataSourceViewConfig = {",
+      "    complexIds?: boolean;",
+      "    cascadeSelection?: CascadeSelection;",
+      "    selectAll?: true | false;",
+      "    backgroundReload?: boolean;",
+      "    flattenSearchResults?: boolean;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "complexIds",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cascadeSelection",
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "selectAll",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "backgroundReload",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "flattenSearchResults",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -39760,8 +39874,8 @@
       "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {",
       "    /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */",
       "    width?: number | 'auto';",
-      "    /** Defines maximum width in 'px'. */",
-      "    maxWidth?: number;",
+      "    /** Defines maximum width in 'px'. If 'auto' provided, will be used width of the content. */",
+      "    maxWidth?: number | 'auto';",
       "    /** Defines height in 'px'. */",
       "    height?: number;",
       "    /** If true, arrow tip will be shown",
@@ -39829,14 +39943,11 @@
       "name": "maxWidth",
       "comment": {
        "raw": [
-        "Defines maximum width in 'px'."
+        "Defines maximum width in 'px'. If 'auto' provided, will be used width of the content."
        ]
       },
       "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
+       "raw": "number | 'auto'"
       },
       "required": false
      },
@@ -47061,7 +47172,7 @@
     "typeValue": {
      "raw": "PaginatorParams",
      "print": [
-      "interface PaginatorParams extends IHasRawProps<React.ReactHTMLElement<HTMLElement>> {",
+      "interface PaginatorParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    size: '24' | '30';",
       "    pages: PaginatorItem[];",
       "    goToNext(): void;",
@@ -47148,7 +47259,7 @@
        ]
       },
       "typeValue": {
-       "raw": "React.ReactHTMLElement<HTMLElement> & Record<`data-${string}`, string>"
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
@@ -47172,7 +47283,7 @@
     "typeValue": {
      "raw": "PaginatorProps",
      "print": [
-      "interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLElement>> {",
+      "interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    /** Component size */",
       "    size: '24' | '30';",
       "    /** Total number of pages */",
@@ -47393,7 +47504,7 @@
        ]
       },
       "typeValue": {
-       "raw": "React.ReactHTMLElement<HTMLElement> & Record<`data-${string}`, string>"
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
@@ -69969,6 +70080,7 @@
       "    editMode?: 'dropdown' | 'modal';",
       "    searchSize?: ControlSize;",
       "    selectionMode?: 'single' | 'multi';",
+      "    maxWidth?: number;",
       "}"
      ]
     },
@@ -70035,6 +70147,17 @@
      },
      {
       "uid": 5,
+      "name": "maxWidth",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": 6,
       "name": "onKeyDown",
       "typeValue": {
        "raw": "(e: React.KeyboardEvent<HTMLElement>) => void"
@@ -70046,7 +70169,7 @@
       "required": false
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "renderNotFound",
       "typeValue": {
        "raw": "() => React.ReactNode"
@@ -70058,7 +70181,7 @@
       "required": false
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "rows",
       "typeValue": {
        "raw": "React.ReactNode[]"
@@ -70067,7 +70190,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "scheduleUpdate",
       "typeValue": {
        "raw": "() => void"
@@ -70079,7 +70202,7 @@
       "required": false
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "search",
       "typeValue": {
        "raw": "IEditable<string>"
@@ -70088,7 +70211,7 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "showSearch",
       "typeValue": {
        "raw": "boolean | 'auto'"
@@ -70105,7 +70228,7 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "fixedBodyPosition",
       "typeValue": {
        "raw": "boolean"
@@ -70117,7 +70240,7 @@
       "required": false
      },
      {
-      "uid": 12,
+      "uid": 13,
       "name": "searchDebounceDelay",
       "typeValue": {
        "raw": "number"
@@ -70129,7 +70252,7 @@
       "required": false
      },
      {
-      "uid": 13,
+      "uid": 14,
       "name": "selectAll",
       "comment": {
        "raw": [
@@ -70144,7 +70267,7 @@
       "required": false
      },
      {
-      "uid": 14,
+      "uid": 15,
       "name": "isReloading",
       "comment": {
        "raw": [
@@ -70161,7 +70284,7 @@
       "required": false
      },
      {
-      "uid": 15,
+      "uid": 16,
       "name": "rowsCount",
       "comment": {
        "raw": [
@@ -70179,7 +70302,7 @@
       "required": false
      },
      {
-      "uid": 16,
+      "uid": 17,
       "name": "exactRowsCount",
       "comment": {
        "raw": [
@@ -70196,7 +70319,7 @@
       "required": false
      },
      {
-      "uid": 17,
+      "uid": 18,
       "name": "knownRowsCount",
       "comment": {
        "raw": [
@@ -70215,7 +70338,7 @@
       "required": false
      },
      {
-      "uid": 18,
+      "uid": 19,
       "name": "totalCount",
       "comment": {
        "raw": [
@@ -70232,7 +70355,7 @@
       "required": false
      },
      {
-      "uid": 19,
+      "uid": 20,
       "name": "value",
       "comment": {
        "raw": [
@@ -70246,7 +70369,7 @@
       "required": true
      },
      {
-      "uid": 20,
+      "uid": 21,
       "name": "onValueChange",
       "comment": {
        "raw": [
@@ -70263,7 +70386,7 @@
       "required": true
      },
      {
-      "uid": 21,
+      "uid": 22,
       "name": "isInvalid",
       "comment": {
        "raw": [
@@ -70280,7 +70403,7 @@
       "required": false
      },
      {
-      "uid": 22,
+      "uid": 23,
       "name": "validationMessage",
       "comment": {
        "raw": [
@@ -70295,7 +70418,7 @@
       "required": false
      },
      {
-      "uid": 23,
+      "uid": 24,
       "name": "validationProps",
       "comment": {
        "raw": [
@@ -70309,7 +70432,7 @@
       "required": false
      },
      {
-      "uid": 24,
+      "uid": 25,
       "name": "isDisabled",
       "comment": {
        "raw": [
@@ -70326,7 +70449,7 @@
       "required": false
      },
      {
-      "uid": 25,
+      "uid": 26,
       "name": "isReadonly",
       "comment": {
        "raw": [
@@ -70343,7 +70466,7 @@
       "required": false
      },
      {
-      "uid": 26,
+      "uid": 27,
       "name": "isRequired",
       "comment": {
        "raw": [
@@ -70360,7 +70483,7 @@
       "required": false
      },
      {
-      "uid": 27,
+      "uid": 28,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -73013,14 +73136,11 @@
       "name": "maxWidth",
       "comment": {
        "raw": [
-        "Defines maximum width in 'px'."
+        "Defines maximum width in 'px'. If 'auto' provided, will be used width of the content."
        ]
       },
       "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
+       "raw": "number | 'auto'"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -90936,7 +91056,10 @@
      "raw": "TextAreaMods",
      "print": [
       "interface TextAreaMods extends types.IHasEditMode {",
-      "    /** @default '36' */",
+      "    /**",
+      "     * @default '36'.",
+      "     * Size '48' is deprecated, and will be removed in future release",
+      "     * */",
       "    size?: types.ControlSize;",
       "}"
      ]
@@ -90947,11 +91070,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "@default '36'.",
+        " Size '48' is deprecated, and will be removed in future release"
+       ]
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -91356,11 +91477,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "@default '36'.",
+        " Size '48' is deprecated, and will be removed in future release"
+       ]
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -96633,14 +96752,11 @@
       "name": "maxWidth",
       "comment": {
        "raw": [
-        "Defines maximum width in 'px'."
+        "Defines maximum width in 'px'. If 'auto' provided, will be used width of the content."
        ]
       },
       "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
+       "raw": "number | 'auto'"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -105451,7 +105567,10 @@
       "comment": {
        "raw": [
         "@default \"sky\""
-       ]
+       ],
+       "tags": {
+        "@default": "sky"
+       }
       },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
@@ -105998,7 +106117,10 @@
       "comment": {
        "raw": [
         "@default \"sky\""
-       ]
+       ],
+       "tags": {
+        "@default": "sky"
+       }
       },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
@@ -106437,14 +106559,11 @@
       "name": "maxWidth",
       "comment": {
        "raw": [
-        "Defines maximum width in 'px'."
+        "Defines maximum width in 'px'. If 'auto' provided, will be used width of the content."
        ]
       },
       "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
+       "raw": "number | 'auto'"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
