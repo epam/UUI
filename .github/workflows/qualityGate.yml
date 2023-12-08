@@ -1,0 +1,111 @@
+#
+# We split our workflow onto two parts: non-privileged (this one) and privileged (another one).
+# Here is the explanation why: https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+name: quality_gate
+on:
+    pull_request:
+        branches:
+            - develop
+            - main
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
+    cancel-in-progress: true
+
+env:
+    REPORT_1_ARTIFACT: qualityGateReports_file1
+    REPORT_2_ARTIFACT: qualityGateReports_file2
+    PR_NUM_ARTIFACT: qualityGateReports_pr
+    REPORT_1_PATH: ./.reports/trackBundleSize.md
+    REPORT_2_PATH: ./.reports/generateComponentsApiStats.md
+    ERROR_STATUS_TAG: 'CI Status: error'
+    PREV_DOCS_GEN_STATS_REPORT_PATH: ./target-branch/public/docs/docsGenOutput/docsGenStats.json
+
+jobs:
+    quality_gate:
+        runs-on: ubuntu-latest
+        container: node:20
+        steps:
+            # By default, it checks out the "merge-commit" for "pull_request" events (https://github.com/actions/checkout)
+            # I.e. the result of merging source branch to the target branch will be checked out.
+            - uses: actions/checkout@v4
+
+            # Checkout the TARGET branch. We only need to check out the folder where the report is located
+            - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.pull_request.base.ref }}
+                  repository: ${{ github.event.pull_request.base.repo.full_name }}
+                  path: target-branch
+                  sparse-checkout: |
+                      public/docs/docsGenOutput
+
+            - uses: actions/cache@v3
+              with:
+                  path: |
+                      node_modules
+                      ./*/node_modules
+                  key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: v1-npm-deps-
+
+            - name: 'Install dependencies'
+              run: |
+                  yarn
+
+            - name: 'Run quality checks'
+              run: |
+                  yarn track-bundle-size
+                  yarn generate-components-api --prev-stats=${{env.PREV_DOCS_GEN_STATS_REPORT_PATH}}
+            #
+            #
+            #
+            # Prepare & upload reports
+            #
+            #
+            #
+            - name: 'Prepare artifact (pr number)'
+              shell: bash
+              run: |
+                  echo ${{ github.event.pull_request.number }} > ./${{ env.PR_NUM_ARTIFACT }}
+            - name: 'Upload artifact (pr number)'
+              uses: actions/upload-artifact@v3
+              with:
+                  name: ${{ env.PR_NUM_ARTIFACT }}
+                  path: ./${{ env.PR_NUM_ARTIFACT }}
+                  retention-days: 1 # minimum retention
+            - name: 'Upload artifact (report 1 content)'
+              uses: actions/upload-artifact@v3
+              with:
+                  name: ${{ env.REPORT_1_ARTIFACT }}
+                  path: ${{ env.REPORT_1_PATH }}
+                  retention-days: 1 # minimum retention
+            -   name: 'Upload artifact (report 2 content)'
+                uses: actions/upload-artifact@v3
+                with:
+                    name: ${{ env.REPORT_2_ARTIFACT }}
+                    path: ${{ env.REPORT_2_PATH }}
+                    retention-days: 1 # minimum retention
+            #
+            #
+            #
+            #
+            #
+            - name: 'Mark as failed if any quality check is unsuccessful'
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const REPORTS_MAP = {
+                        '${{env.REPORT_1_PATH}}': 'Size of some package exceeds threshold',
+                        '${{env.REPORT_2_PATH}}': 'The amount of props/type without comments is increased'
+                      };
+                      const fs = require('fs');
+                      const errors = [];
+                      Object.keys(REPORTS_MAP).forEach((key) => {
+                        const reportContent = fs.readFileSync(key).toString();
+                        if (reportContent.indexOf(${{env.ERROR_STATUS_TAG}}) !== -1) {
+                            errors.push(REPORTS_MAP[key]);
+                        }
+                      });
+                      if (errors.length > 0) {
+                         core.setFailed(errors.join('; '));
+                      }
