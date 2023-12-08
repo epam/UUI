@@ -21,7 +21,7 @@ env:
     #
     TARGET_BRANCH_DIR: ./target-branch
     MERGE_COMMIT_BRANCH_DIR: ./merge-commit-branch
-    PREV_DOCS_GEN_STATS_REPORT_PATH: ./target-branch/public/docs/docsGenOutput/docsGenStats.json
+    PREV_DOCS_GEN_STATS_REPORT_PATH: ../target-branch/public/docs/docsGenOutput/docsGenStats.json # Pay attention it should be relative to the "merge commit branch" dir.
     REPORT_1_PATH: ./merge-commit-branch/.reports/trackBundleSize.md
     REPORT_2_PATH: ./merge-commit-branch/.reports/generateComponentsApiStats.md
 
