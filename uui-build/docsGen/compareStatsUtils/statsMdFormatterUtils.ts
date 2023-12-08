@@ -48,7 +48,7 @@ export function formatResultsToMd(result: TCompareStatsResult) {
         let mdTypesAmountChange = '(no baseline :warning:)';
         if (prev !== undefined) {
             const typesAmountDiff = next - prev;
-            let typesAmountSign = '';
+            let typesAmountSign = '+';
             let emodji = ':ok:';
             if (typesAmountDiff < 0) {
                 typesAmountSign = '';
