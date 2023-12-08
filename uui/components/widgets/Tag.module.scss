@@ -1,13 +1,12 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
 .root {
     --uui-tag-bg: var(--uui-color-50);
     --uui-tag-bg-hover: var(--uui-color-60);
     --uui-tag-border: var(--uui-color-50);
     --uui-tag-border-hover: var(--uui-color-60);
-    --uui-tag-caption: var(--uui-neutral-0);
-    --uui-tag-fill: var(--uui-neutral-0);
-    --uui-tag-fill-hover: var(--uui-tag-fill);
+    --uui-tag-caption: var(--uui-color-contrast);
+    --uui-tag-fill: var(--uui-color-contrast);
 
     --uui-tag-border-radius: var(--uui-border-radius);
 
@@ -27,9 +26,8 @@
         &:global(.-clickable) {
             &:hover, &:active {
                 background-color: var(--uui-tag-bg-hover);
-                fill: var(--uui-tag-fill-hover);
-                cursor: pointer;
                 border-color: var(--uui-tag-border-hover);
+                cursor: pointer;
             }
 
             &:focus-visible {
@@ -38,7 +36,6 @@
         }
 
         :global(.uui-caption) {
-            text-transform: none;
             font-family: var(--uui-tag-font);
             font-weight: var(--uui-tag-font-weight);
             color: var(--uui-tag-caption);
