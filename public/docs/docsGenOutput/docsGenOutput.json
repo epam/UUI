@@ -1,5 +1,5 @@
 {
- "timestamp": "2023-12-07",
+ "timestamp": "2023-12-08",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -15115,6 +15115,7 @@
      "print": [
       "// eslint-disable-next-line @typescript-eslint/no-unused-vars",
       "type IDataSourceView<TItem, TId, TFilter> = {",
+      "    getConfig(): IDataSourceViewConfig;",
       "    getById(id: TId, index: number): DataRowProps<TItem, TId>;",
       "    getListProps(): DataSourceListProps;",
       "    getVisibleRows(): DataRowProps<TItem, TId>[];",
@@ -15132,6 +15133,17 @@
     "props": [
      {
       "uid": 1,
+      "name": "getConfig",
+      "typeValue": {
+       "raw": "() => IDataSourceViewConfig"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": 2,
       "name": "getById",
       "typeValue": {
        "raw": "(id: TId, index: number) => DataRowProps<TItem, TId>"
@@ -15142,7 +15154,7 @@
       "required": true
      },
      {
-      "uid": 2,
+      "uid": 3,
       "name": "getListProps",
       "typeValue": {
        "raw": "() => DataSourceListProps"
@@ -15153,7 +15165,7 @@
       "required": true
      },
      {
-      "uid": 3,
+      "uid": 4,
       "name": "getVisibleRows",
       "typeValue": {
        "raw": "() => DataRowProps<TItem, TId>[]"
@@ -15164,7 +15176,7 @@
       "required": true
      },
      {
-      "uid": 4,
+      "uid": 5,
       "name": "getSelectedRows",
       "typeValue": {
        "raw": "(range?: VirtualListRange | undefined) => DataRowProps<TItem, TId>[]"
@@ -15175,7 +15187,7 @@
       "required": true
      },
      {
-      "uid": 5,
+      "uid": 6,
       "name": "getSelectedRowsCount",
       "typeValue": {
        "raw": "() => number"
@@ -15186,7 +15198,7 @@
       "required": true
      },
      {
-      "uid": 6,
+      "uid": 7,
       "name": "reload",
       "typeValue": {
        "raw": "() => void"
@@ -15197,7 +15209,7 @@
       "required": true
      },
      {
-      "uid": 7,
+      "uid": 8,
       "name": "destroy",
       "typeValue": {
        "raw": "() => void"
@@ -15208,7 +15220,7 @@
       "required": true
      },
      {
-      "uid": 8,
+      "uid": 9,
       "name": "loadData",
       "typeValue": {
        "raw": "() => void"
@@ -15219,7 +15231,7 @@
       "required": true
      },
      {
-      "uid": 9,
+      "uid": 10,
       "name": "clearAllChecked",
       "typeValue": {
        "raw": "() => void"
@@ -15230,7 +15242,7 @@
       "required": true
      },
      {
-      "uid": 10,
+      "uid": 11,
       "name": "_forceUpdate",
       "typeValue": {
        "raw": "() => void"
@@ -15241,10 +15253,100 @@
       "required": true
      },
      {
-      "uid": 11,
+      "uid": 12,
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:IDataSourceViewConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IDataSourceViewConfig",
+     "nameFull": "IDataSourceViewConfig"
+    },
+    "src": "uui-core/src/types/dataSources.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IDataSourceViewConfig",
+     "print": [
+      "type IDataSourceViewConfig = {",
+      "    complexIds?: boolean;",
+      "    cascadeSelection?: CascadeSelection;",
+      "    selectAll?: true | false;",
+      "    backgroundReload?: boolean;",
+      "    flattenSearchResults?: boolean;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": 1,
+      "name": "complexIds",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 2,
+      "name": "cascadeSelection",
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "selectAll",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 4,
+      "name": "backgroundReload",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": 5,
+      "name": "flattenSearchResults",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -69821,7 +69923,7 @@
      "print": [
       "type CountIndicatorMods = {",
       "    /** Property is required */",
-      "    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical';",
+      "    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;",
       "};"
      ]
     },
@@ -69835,7 +69937,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
+       "raw": "null | 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
       },
       "editor": {
        "type": "oneOf",
@@ -69845,10 +69947,11 @@
         "warning",
         "critical",
         "neutral",
-        "white"
+        "white",
+        null
        ]
       },
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -69936,7 +70039,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
+       "raw": "null | 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
       },
       "editor": {
        "type": "oneOf",
@@ -69946,11 +70049,12 @@
         "warning",
         "critical",
         "neutral",
-        "white"
+        "white",
+        null
        ]
       },
       "from": "@epam/uui:CountIndicatorMods",
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -80851,272 +80955,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "uui/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'primary' | 'secondary'",
-     "print": [
-      "type MultiSwitchColor = 'primary' | 'secondary';"
-     ]
-    }
-   }
-  },
-  "@epam/uui:MultiSwitchCoreProps": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "MultiSwitchCoreProps",
-     "nameFull": "MultiSwitchCoreProps<TValue>"
-    },
-    "src": "uui/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "MultiSwitchCoreProps<TValue>",
-     "print": [
-      "type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {",
-      "    items: MultiSwitchItem<TValue>[];",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TValue) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 11,
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "uui/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "type MultiSwitchMods = {",
-      "    /**",
-      "     * @default 'primary'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": 1,
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'primary' | 'secondary'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "primary",
-        "secondary"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:MultiSwitchProps": {
    "summary": {
     "module": "@epam/uui",
@@ -81128,187 +80966,30 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+      "interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    items: MultiSwitchItem<TValue>[];",
+      "    /**",
+      "     * @default 'primary'",
+      "     */",
+      "    color?: UuiMultiSwitchColor;",
+      "}"
      ]
     },
     "props": [
      {
       "uid": 1,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TValue) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 9,
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": 10,
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": 11,
       "name": "items",
       "typeValue": {
        "raw": "MultiSwitchItem<TValue>[]"
       },
-      "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
      },
      {
-      "uid": 12,
+      "uid": 2,
       "name": "color",
       "comment": {
        "raw": [
@@ -81328,7 +81009,168 @@
         "secondary"
        ]
       },
-      "from": "@epam/uui:MultiSwitchMods",
+      "required": false
+     },
+     {
+      "uid": 3,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 4,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 5,
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 6,
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 7,
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "size",
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": 12,
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      }
     ],
@@ -91214,7 +91056,10 @@
      "raw": "TextAreaMods",
      "print": [
       "interface TextAreaMods extends types.IHasEditMode {",
-      "    /** @default '36' */",
+      "    /**",
+      "     * @default '36'.",
+      "     * Size '48' is deprecated, and will be removed in future release",
+      "     * */",
       "    size?: types.ControlSize;",
       "}"
      ]
@@ -91225,11 +91070,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "@default '36'.",
+        " Size '48' is deprecated, and will be removed in future release"
+       ]
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -91634,11 +91477,9 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
+        "@default '36'.",
+        " Size '48' is deprecated, and will be removed in future release"
+       ]
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -94016,6 +93857,26 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui:UuiMultiSwitchColor": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "UuiMultiSwitchColor",
+     "nameFull": "UuiMultiSwitchColor"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "'primary' | 'secondary'",
+     "print": [
+      "type UuiMultiSwitchColor = 'primary' | 'secondary';"
+     ]
+    }
    }
   },
   "@epam/uui:VerticalTabButtonProps": {
@@ -96676,7 +96537,7 @@
      "print": [
       "interface CountIndicatorMods {",
       "    /** Property is required */",
-      "    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red';",
+      "    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red' | null;",
       "}"
      ]
     },
@@ -96690,7 +96551,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
+       "raw": "null | 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -96700,10 +96561,11 @@
         "amber",
         "red",
         "white",
-        "gray"
+        "gray",
+        null
        ]
       },
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -96791,7 +96653,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
+       "raw": "null | 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -96801,11 +96663,12 @@
         "amber",
         "red",
         "white",
-        "gray"
+        "gray",
+        null
        ]
       },
       "from": "@epam/promo:CountIndicatorMods",
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -98542,7 +98405,7 @@
     "typeValue": {
      "raw": "IconContainerProps",
      "print": [
-      "type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;"
+      "type IconContainerProps = ControlIconProps & IconContainerMods;"
      ]
     },
     "props": [
@@ -99510,140 +99373,12 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
      ]
     },
     "props": [
      {
       "uid": 1,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TValue) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 9,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -99663,7 +99398,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 2,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -99677,13 +99412,140 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 3,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 4,
       "name": "items",
       "typeValue": {
        "raw": "MultiSwitchItem<TValue>[]"
       },
-      "from": "@epam/uui:MultiSwitchCoreProps",
+      "from": "@epam/uui:MultiSwitchProps",
       "required": true
+     },
+     {
+      "uid": 5,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 6,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 7,
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
      },
      {
       "uid": 12,
@@ -105705,7 +105567,10 @@
       "comment": {
        "raw": [
         "@default \"sky\""
-       ]
+       ],
+       "tags": {
+        "@default": "sky"
+       }
       },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
@@ -106252,7 +106117,10 @@
       "comment": {
        "raw": [
         "@default \"sky\""
-       ]
+       ],
+       "tags": {
+        "@default": "sky"
+       }
       },
       "typeValue": {
        "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
@@ -106476,7 +106344,7 @@
      "print": [
       "interface CountIndicatorMods {",
       "    /** Property is required */",
-      "    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire';",
+      "    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire' | null;",
       "}"
      ]
     },
@@ -106490,7 +106358,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
+       "raw": "null | 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -106500,10 +106368,11 @@
         "sun",
         "fire",
         "white",
-        "gray"
+        "gray",
+        null
        ]
       },
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -106591,7 +106460,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
+       "raw": "null | 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -106601,11 +106470,12 @@
         "sun",
         "fire",
         "white",
-        "gray"
+        "gray",
+        null
        ]
       },
       "from": "@epam/loveship:CountIndicatorMods",
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -109503,140 +109373,12 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
      ]
     },
     "props": [
      {
       "uid": 1,
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 2,
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TValue) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": 3,
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 4,
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 5,
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": 6,
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": 7,
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": 8,
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": 9,
       "name": "size",
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
@@ -109656,7 +109398,7 @@
       "required": false
      },
      {
-      "uid": 10,
+      "uid": 2,
       "name": "rawProps",
       "comment": {
        "raw": [
@@ -109670,13 +109412,140 @@
       "required": false
      },
      {
-      "uid": 11,
+      "uid": 3,
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": 4,
       "name": "items",
       "typeValue": {
        "raw": "MultiSwitchItem<TValue>[]"
       },
-      "from": "@epam/uui:MultiSwitchCoreProps",
+      "from": "@epam/uui:MultiSwitchProps",
       "required": true
+     },
+     {
+      "uid": 5,
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 6,
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": 7,
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 8,
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 9,
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": 10,
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": 11,
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
      },
      {
       "uid": 12,
