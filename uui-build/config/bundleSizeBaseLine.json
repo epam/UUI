@@ -2,19 +2,19 @@
   "version": "5.4.2",
   "timestamp": "2023-12-11",
   "sizes": {
-    "templateApp": 1069225,
-    "@epam/app": 7685578,
+    "templateApp": 1069319,
+    "@epam/app": 7686110,
     "@epam/draft-rte": 58094,
     "@epam/electric": 26464,
     "@epam/promo": 81124,
     "@epam/uui-extra": 219,
-    "@epam/loveship": 154765,
+    "@epam/loveship": 154757,
     "@epam/uui-components": 285191,
-    "@epam/uui-core": 283450,
+    "@epam/uui-core": 283846,
     "@epam/uui-db": 45539,
     "@epam/uui-docs": 180671,
     "@epam/uui-editor": 167572,
     "@epam/uui-timeline": 50298,
-    "@epam/uui": 571959
+    "@epam/uui": 571961
   }
 }
