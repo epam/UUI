@@ -13,6 +13,7 @@ import isEqual from 'lodash.isequal';
 import { FormProps, FormSaveResponse, IFormApi } from './Form';
 import { useLock } from './useLock';
 import { shouldCreateUndoCheckpoint } from './shouldCreateUndoCheckpoint';
+import { flushSync } from 'react-dom';
 
 interface FormState<T> {
     form: T;
@@ -255,13 +256,15 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             serverValidationState: (response && response.validation) || formState.current.serverValidationState,
             lastSentForm: response && response.validation?.isInvalid ? response.form || formState.current.form : formState.current.lastSentForm,
         };
-
         if (response && response.validation) {
-            updateFormState(() => newState);
+            flushSync(() => {
+                updateFormState(() => newState);
+            });
             return;
         }
-
-        resetForm(newState);
+        flushSync(() => {
+            resetForm(newState);
+        });
         removeUnsavedChanges();
 
         if (propsRef.current.onSuccess && response) {
