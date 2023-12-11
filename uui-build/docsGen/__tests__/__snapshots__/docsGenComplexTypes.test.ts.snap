@@ -24,7 +24,7 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "value",
       "name": "value",
       "typeValue": {
        "raw": "string"
@@ -36,7 +36,7 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "onValueChange",
       "name": "onValueChange",
       "typeValue": {
        "raw": "(newValue: string) => void"
@@ -106,7 +106,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "aProp",
       "name": "aProp",
       "typeValue": {
        "raw": "'black' | 'white'"
@@ -121,7 +121,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "propExternalTypeTest",
       "name": "propExternalTypeTest",
       "typeValue": {
        "raw": "HTMLElement"
@@ -129,7 +129,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 3,
+      "uid": "propSignatureTest",
       "name": "propSignatureTest",
       "comment": {
        "raw": [
@@ -142,7 +142,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "methodSignatureTest",
       "name": "methodSignatureTest",
       "comment": {
        "raw": [
@@ -158,7 +158,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 5,
+      "uid": "methodDeclarationTest",
       "name": "methodDeclarationTest",
       "comment": {
        "raw": [
@@ -174,7 +174,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 6,
+      "uid": "get someBool",
       "name": "get someBool",
       "comment": {
        "raw": [
@@ -190,7 +190,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 7,
+      "uid": "a",
       "name": "a",
       "typeValue": {
        "raw": "number"
@@ -202,7 +202,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 8,
+      "uid": "b",
       "name": "b",
       "comment": {
        "raw": [
@@ -246,7 +246,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "a",
       "name": "a",
       "typeValue": {
        "raw": "number"
@@ -257,7 +257,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "b",
       "name": "b",
       "comment": {
        "raw": [
@@ -310,7 +310,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "srcData",
       "name": "srcData",
       "typeValue": {
        "raw": "TSrcData"
@@ -318,7 +318,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "dstData",
       "name": "dstData",
       "typeValue": {
        "raw": "TDstData"
@@ -326,7 +326,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "required": false
      },
      {
-      "uid": 3,
+      "uid": "offsetLeft",
       "name": "offsetLeft",
       "typeValue": {
        "raw": "number"
@@ -337,7 +337,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "offsetTop",
       "name": "offsetTop",
       "typeValue": {
        "raw": "number"
@@ -348,7 +348,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "required": true
      },
      {
-      "uid": 5,
+      "uid": "targetWidth",
       "name": "targetWidth",
       "typeValue": {
        "raw": "number"
@@ -359,7 +359,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
       "required": true
      },
      {
-      "uid": 6,
+      "uid": "targetHeight",
       "name": "targetHeight",
       "typeValue": {
        "raw": "number"
@@ -432,7 +432,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "pBool",
       "name": "pBool",
       "typeValue": {
        "raw": "boolean"
@@ -443,7 +443,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "pNumber",
       "name": "pNumber",
       "typeValue": {
        "raw": "number"
@@ -454,7 +454,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 3,
+      "uid": "pString",
       "name": "pString",
       "typeValue": {
        "raw": "string"
@@ -465,7 +465,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "pAny",
       "name": "pAny",
       "typeValue": {
        "raw": "any"
@@ -473,7 +473,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 5,
+      "uid": "pUnknown",
       "name": "pUnknown",
       "typeValue": {
        "raw": "unknown"
@@ -481,7 +481,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 6,
+      "uid": "pNever",
       "name": "pNever",
       "typeValue": {
        "raw": "never"
@@ -489,7 +489,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 7,
+      "uid": "pVoid",
       "name": "pVoid",
       "typeValue": {
        "raw": "void"
@@ -497,7 +497,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 8,
+      "uid": "pNull",
       "name": "pNull",
       "typeValue": {
        "raw": "null"
@@ -505,7 +505,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 9,
+      "uid": "pUndefined",
       "name": "pUndefined",
       "typeValue": {
        "raw": "undefined"
@@ -513,7 +513,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 10,
+      "uid": "pArray",
       "name": "pArray",
       "typeValue": {
        "raw": "string[]"
@@ -521,7 +521,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 11,
+      "uid": "pObject",
       "name": "pObject",
       "typeValue": {
        "raw": "object"
@@ -529,7 +529,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 12,
+      "uid": "pBigint",
       "name": "pBigint",
       "typeValue": {
        "raw": "bigint"
@@ -537,7 +537,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 13,
+      "uid": "pSymbol",
       "name": "pSymbol",
       "typeValue": {
        "raw": "symbol"
@@ -545,7 +545,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 14,
+      "uid": "pLiteral",
       "name": "pLiteral",
       "typeValue": {
        "raw": "'test'"
@@ -559,7 +559,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 15,
+      "uid": "pTuple",
       "name": "pTuple",
       "typeValue": {
        "raw": "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']"
@@ -567,7 +567,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
       "required": true
      },
      {
-      "uid": 16,
+      "uid": "pUnion",
       "name": "pUnion",
       "typeValue": {
        "raw": "null | string | number | bigint | boolean | symbol | void | object | string[]"
@@ -605,7 +605,7 @@ exports[`docsGen:complexTypes should expand props if internal type is wrapped in
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "p2",
       "name": "p2",
       "typeValue": {
        "raw": "string"
@@ -660,7 +660,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "p1",
       "name": "p1",
       "typeValue": {
        "raw": "Record<string, T>"
@@ -694,7 +694,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "p1",
       "name": "p1",
       "typeValue": {
        "raw": "Record<string, S>"
