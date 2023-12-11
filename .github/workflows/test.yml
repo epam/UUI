@@ -42,8 +42,8 @@ jobs:
       - name: build
         run: |
           yarn
-          yarn build
           yarn generate-components-api
+          yarn build
           cd server && yarn
       - name: test
         run: yarn test

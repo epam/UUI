@@ -107,8 +107,9 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         }
         const name = NodeUtils.getPropertyNodeName(propertyNode);
         const required = NodeUtils.isPropertyNodeRequired(propertyNode);
-        const uid = idGen.getNextId();
+        const uid = idGen.getNextId(name);
         prop = {
+            // "uid" property is needed because we may have unions where there are props with same name but different type
             uid,
             name,
             comment,
@@ -142,13 +143,16 @@ class PropsSet {
 
     add(p: TTypeProp) {
         const id = PropsSet.buildId(p);
-        this._propsMap.set(id, p);
+        if (!this._propsMap.has(id)) {
+            // we want to keep the first unique type rather than the last one,
+            // because "uid" in unions are less likely contain index in such case - as a result the output JSON is cleaner.
+            this._propsMap.set(id, p);
+        }
     }
 
     addAll(pa: TTypeProp[]) {
         pa.forEach((p) => {
-            const id = PropsSet.buildId(p);
-            this._propsMap.set(id, p);
+            this.add(p);
         });
     }
 
@@ -184,9 +188,15 @@ class PropsSet {
 }
 
 class SimpleIdGen {
-    private _id = 0;
+    private _usedIds = new Map<string, number>();
 
-    getNextId = () => {
-        return ++this._id;
+    getNextId = (name: string) => {
+        const prevIndex = this._usedIds.get(name);
+        if (prevIndex === undefined) {
+            this._usedIds.set(name, 1);
+            return name;
+        }
+        this._usedIds.set(name, prevIndex + 1);
+        return `${name}_${prevIndex + 1}`;
     };
 }

@@ -5,6 +5,9 @@ import {
 } from '../types/sharedTypes';
 import { INCLUDED_PACKAGES } from '../constants';
 import { TApiReferenceJson, TTypeConverted, TTypeRefMap } from '../types/types';
+import { getUuiVersion } from '../utils/fileUtils';
+
+const uuiVersion = getUuiVersion();
 
 export class ResultObjectModel {
     private typeSummaryMap: Record<TTypeRef, TTypeSummary> = {};
@@ -65,9 +68,8 @@ export class ResultObjectModel {
             }
             docsGenTypes[typeRef] = result;
         });
-        const timestamp = new Date().toISOString().split('T')[0];
         const out: TApiReferenceJson = {
-            timestamp,
+            version: uuiVersion,
             docsGenTypes,
         };
         return JSON.parse(JSON.stringify(out)) as TApiReferenceJson; // remove any undefined props

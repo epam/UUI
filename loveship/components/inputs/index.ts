@@ -1,4 +1,3 @@
-export * from './TextInput';
 export * from './Slider';
 export * from './Rating';
 export * from './RadioInput';
