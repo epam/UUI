@@ -1,22 +1,21 @@
 import * as React from 'react';
+import { EpamPrimaryColor } from '../types';
 import * as uui from '@epam/uui';
-import { withMods } from '@epam/uui-core';
+import { createSkinComponent } from '@epam/uui-core';
 import { ReactComponent as SuccessIcon } from './../icons/notification-check-fill-24.svg';
 import { ReactComponent as WarningIcon } from './../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from './../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from './../icons/notification-help-fill-24.svg';
-import { EpamPrimaryColor } from '../types';
 
-export interface AlertMods {
+interface AlertMods {
     /** @default 'sky' */
     color?: EpamPrimaryColor;
 }
 
-export interface AlertProps extends Omit<uui.AlertProps, 'color'>, AlertMods {}
+export type AlertProps = uui.AlertCoreProps & AlertMods;
 
-export const Alert = withMods<Omit<uui.AlertProps, 'color'>, AlertMods>(
-    uui.Alert as any, // TODO: need to fix original component
-    () => [],
+export const Alert = createSkinComponent<uui.AlertProps, AlertProps>(
+    uui.Alert,
     (props) => ({
         ...props,
         color: props.color ?? 'sky',

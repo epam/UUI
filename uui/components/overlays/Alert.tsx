@@ -15,11 +15,14 @@ type notificationAction = {
     action: () => void;
 };
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    /** List of actions to display in the alert. Each action has name and 'action' callback */
-    actions?: notificationAction[];
+export type AlertMods = {
     /** Alert color */
     color: 'info' | 'success' | 'warning' | 'error';
+};
+
+export type AlertCoreProps = IHasChildren & IHasCX & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
+    /** List of actions to display in the alert. Each action has name and 'action' callback */
+    actions?: notificationAction[];
     /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
@@ -29,7 +32,9 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
      * @default '48'
      */
     size?: '36' | '48';
-}
+};
+
+export type AlertProps = AlertCoreProps & AlertMods;
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
     <div

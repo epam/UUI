@@ -10,11 +10,15 @@ import css from './Modals.module.scss';
 export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
 
 export interface ModalWindowMods {
+    /** @default 420px */
     width?: number;
+    /** @default 'auto */
     height?: number;
 }
 
-export type ModalWindowProps = UuiModalWindowProps & ModalWindowMods;
+export type ModalWindowCoreProps = UuiModalWindowProps;
+
+export type ModalWindowProps = ModalWindowCoreProps & ModalWindowMods;
 
 export const ModalWindow = withMods<UuiModalWindowProps, ModalWindowMods>(
     uuiModalWindow,

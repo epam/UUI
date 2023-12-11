@@ -1,21 +1,19 @@
-import { withMods, devLogger } from '@epam/uui-core';
-import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uui';
+import { devLogger, createSkinComponent } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 
-export interface TooltipMods {
+export type TooltipMods = {
     /**
      * Tooltip color.
      * 'night900' is deprecated and will be removed in future release, use 'gray' instead.
-     *
      * @default 'gray'
      */
     color?: 'white' | 'fire' | 'gray' | 'night900';
-}
+};
 
-export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
+export type TooltipProps = uui.TooltipCoreProps & TooltipMods;
 
-export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
-    uuiTooltip,
-    () => [],
+export const Tooltip = createSkinComponent<uui.TooltipProps, TooltipProps>(
+    uui.Tooltip,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<TooltipProps, 'color'>({
