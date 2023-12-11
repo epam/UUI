@@ -143,13 +143,16 @@ class PropsSet {
 
     add(p: TTypeProp) {
         const id = PropsSet.buildId(p);
-        this._propsMap.set(id, p);
+        if (!this._propsMap.has(id)) {
+            // we want to keep the first unique type rather than the last one,
+            // because "uid" in unions are less likely contain index in such case - as a result the output JSON is cleaner.
+            this._propsMap.set(id, p);
+        }
     }
 
     addAll(pa: TTypeProp[]) {
         pa.forEach((p) => {
-            const id = PropsSet.buildId(p);
-            this._propsMap.set(id, p);
+            this.add(p);
         });
     }
 
@@ -185,15 +188,15 @@ class PropsSet {
 }
 
 class SimpleIdGen {
-    private _usedIds = new Set<string>();
-    private _id = 0;
+    private _usedIds = new Map<string, number>();
 
     getNextId = (name: string) => {
-        let res = name;
-        if (this._usedIds.has(res)) {
-            res = `${res}_${++this._id}`;
+        const prevIndex = this._usedIds.get(name);
+        if (prevIndex === undefined) {
+            this._usedIds.set(name, 1);
+            return name;
         }
-        this._usedIds.add(res);
-        return res;
+        this._usedIds.set(name, prevIndex + 1);
+        return `${name}_${prevIndex + 1}`;
     };
 }
