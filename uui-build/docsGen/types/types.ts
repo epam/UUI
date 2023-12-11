@@ -84,7 +84,7 @@ export type TTypePropsConverted = {
     propsFromUnion: boolean
 };
 export type TApiReferenceJson = {
-    timestamp: string,
+    version: string,
     /**
      * Map which contains references to both "exported" and "private" types.
      * */

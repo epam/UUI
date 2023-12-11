@@ -107,8 +107,9 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         }
         const name = NodeUtils.getPropertyNodeName(propertyNode);
         const required = NodeUtils.isPropertyNodeRequired(propertyNode);
-        const uid = idGen.getNextId();
+        const uid = idGen.getNextId(name);
         prop = {
+            // "uid" property is needed because we may have unions where there are props with same name but different type
             uid,
             name,
             comment,
@@ -184,9 +185,15 @@ class PropsSet {
 }
 
 class SimpleIdGen {
+    private _usedIds = new Set<string>();
     private _id = 0;
 
-    getNextId = () => {
-        return ++this._id;
+    getNextId = (name: string) => {
+        let res = name;
+        if (this._usedIds.has(res)) {
+            res = `${res}_${++this._id}`;
+        }
+        this._usedIds.add(res);
+        return res;
     };
 }

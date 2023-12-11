@@ -56,7 +56,7 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
     },
     "props": [
      {
-      "uid": 3,
+      "uid": "sameProp_1",
       "name": "sameProp",
       "typeValue": {
        "raw": "string"
@@ -67,7 +67,7 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "n1Prop",
       "name": "n1Prop",
       "typeValue": {
        "raw": "string"
@@ -78,7 +78,7 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "n2Prop",
       "name": "n2Prop",
       "typeValue": {
        "raw": "string"
@@ -119,7 +119,7 @@ exports[`docsGen:union should convert union of two object types 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "sameProp",
       "name": "sameProp",
       "typeValue": {
        "raw": "string"
@@ -131,7 +131,7 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "n1Prop",
       "name": "n1Prop",
       "typeValue": {
        "raw": "string"
@@ -143,7 +143,7 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "required": true
      },
      {
-      "uid": 3,
+      "uid": "sameProp_1",
       "name": "sameProp",
       "typeValue": {
        "raw": "string"
@@ -155,7 +155,7 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "n2Prop",
       "name": "n2Prop",
       "typeValue": {
        "raw": "string"
@@ -221,7 +221,7 @@ exports[`docsGen:union should not expand ReactNode type of property 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "testProp",
       "name": "testProp",
       "typeValue": {
        "raw": "React.ReactNode"
@@ -255,7 +255,7 @@ exports[`docsGen:union should not expand ReactNode type of property 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "testProp",
       "name": "testProp",
       "typeValue": {
        "raw": "React.ReactNode"
