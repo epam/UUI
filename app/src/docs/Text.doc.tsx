@@ -13,8 +13,8 @@ export class TextDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TextProps', component: uui.Text },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:TextProps', component: loveship.Text },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:TextProps', component: promo.Text },
+            [TSkin.Loveship]: { type: '@epam/loveship:TextProps', component: loveship.Text },
+            [TSkin.Promo]: { type: '@epam/promo:TextProps', component: promo.Text },
         },
         doc: (doc: DocBuilder<promo.TextProps | loveship.TextProps | uui.TextProps>) => {
             doc.merge('children', {

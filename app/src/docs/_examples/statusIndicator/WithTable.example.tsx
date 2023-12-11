@@ -70,7 +70,7 @@ export default function WithTableExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel background="surface" style={ { height: '400px' } }>
+        <Panel background="surface-main" style={ { height: '400px' } }>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
         </Panel>
     );

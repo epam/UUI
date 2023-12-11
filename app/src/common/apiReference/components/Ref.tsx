@@ -1,7 +1,7 @@
 import React from 'react';
 import { Anchor, Text, Tooltip } from '@epam/uui';
 import css from './Ref.module.scss';
-import { TTypeSummary } from '../sharedTypes';
+import { TTypeSummary } from '@epam/uui-docs';
 
 export function Ref(props: { typeSummary?: TTypeSummary }) {
     const { typeSummary } = props;

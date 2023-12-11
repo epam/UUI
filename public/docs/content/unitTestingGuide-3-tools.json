@@ -1044,7 +1044,50 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "It's possible to pass extra options to this method in order to add global mocks for 3rd party dependencies. E.g.:"
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "setupJsDom",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": "global",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(102, 14, 122)"
+                  },
+                  {
+                    "text": ", { ",
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": "mockCommon3rdPartyDeps",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(102, 14, 122)"
+                  },
+                  {
+                    "text": ": ",
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": "true ",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(0, 0, 128)"
+                  },
+                  {
+                    "text": "});",
+                    "color": "rgb(0, 0, 0)"
                   }
                 ]
               }
@@ -1054,13 +1097,14 @@
             "colSpan": 1,
             "rowSpan": 1
           }
-        ]
+        ],
+        "size": 100
       }
     ],
     "colSizes": [
-      174.59994506835938,
-      406.3999328613281,
-      354.2000732421875
+      171,
+      399,
+      358
     ]
   },
   {

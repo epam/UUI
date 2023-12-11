@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
-import { FlexCell, FlexRow, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
+import { FlexCell, FlexRow, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/uui';
 import { BaseDocsBlock } from '../../common/docs';
 import css from './DownloadsDoc.module.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
@@ -85,7 +85,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                 icon={ ContentLinkIcon }
                             />
                         )}
-                        <Text size="18" fontSize="12" lineHeight="18" color="gray60">
+                        <Text size="18" fontSize="12" lineHeight="18" color="secondary">
                             {additionalInfo}
                         </Text>
                     </FlexCell>
@@ -96,7 +96,7 @@ export class DownloadsDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <span className={ css.themePromo }>
+            <>
                 <FlexRow alignItems="top" cx={ css.headerRow }>
                     <FlexCell width="100%" cx={ css.contentBlock }>
                         <RichTextView size="16">
@@ -120,7 +120,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <IconContainer icon={ FontIcon } />
                                 </div>
                                 <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" font="museo-sans">
+                                    <Text size="24" fontSize="16" fontWeight="600">
                                         Font Pack
                                     </Text>
                                     <Tooltip content="For internal use only" offset={ [0, 10] }>
@@ -142,7 +142,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <IconContainer icon={ LogotypeIcon } />
                                 </div>
                                 <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" font="museo-sans">
+                                    <Text size="24" fontSize="16" fontWeight="600">
                                         Logotypes
                                     </Text>
                                     <LinkButton
@@ -160,7 +160,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <IconContainer icon={ DownloadIcon } />
                                 </div>
                                 <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" font="museo-sans">
+                                    <Text size="24" fontSize="16" fontWeight="600">
                                         Icon Set
                                     </Text>
                                     <LinkButton
@@ -180,7 +180,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <IconContainer icon={ IllustrationsIcon } />
                                 </div>
                                 <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" font="museo-sans">
+                                    <Text size="24" fontSize="16" fontWeight="600">
                                         UUI Illustrations (SVG pack & Guidelines)
                                     </Text>
                                     <FlexRow>
@@ -200,7 +200,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                         </FlexCell>
                     </FlexRow>
                 </FlexCell>
-            </span>
+            </>
         );
     }
 }

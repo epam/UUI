@@ -1,7 +1,8 @@
 @import '~@epam/promo/assets/styles/index';
 
 .title {
-    font-family: $font-museo-sans;
+    font-family: var(--uui-font);
+    font-weight: 600;
     margin: 24px 0;
     font-size: 36px;
     line-height: 48px;
@@ -9,8 +10,8 @@
 
 .layout {
     .project-container {
-        background: $white;
-        border: 1px solid $gray40;
+        background: var(--uui-surface-main);
+        border: 1px solid var(--uui-divider);
         max-width: 960px;
         margin-bottom: -1px;
 

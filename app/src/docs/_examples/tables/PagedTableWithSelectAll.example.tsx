@@ -75,7 +75,7 @@ export default function PagedTableWithSelectAll() {
     }), [selectAll, state.checked?.length, listProps.totalCount]);
 
     return (
-        <Panel background="surface" shadow cx={ css.container }>
+        <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
                 { ...listProps }
                 getRows={ view.getVisibleRows }

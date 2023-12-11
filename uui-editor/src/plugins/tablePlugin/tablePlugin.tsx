@@ -9,20 +9,19 @@ import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, PlatePlugin, Value, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
-import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove } from '@udecode/plate-table';
+import { PlateEditor, getPluginOptions, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
+import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove, useTableMergeState } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
-import { createInitialTable, selectFirstCell, updateTableStructure } from './utils';
+import { createInitialTable, selectFirstCell } from './utils';
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 const noop = () => {};
 
 function TableRenderer(props: any) {
-    const { element: tableElem } = props;
     const editor = useEditorRef();
     const isReadonly = useReadOnly();
     const isFocused = useFocused();
@@ -31,14 +30,7 @@ function TableRenderer(props: any) {
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
     const hasEntries = !!cellEntries?.length;
     const showToolbar = !isReadonly && isSelected && isFocused && hasEntries;
-
-    /**
-     * Assigns valid colIndexes in case of merged cells.
-     * TODO: make less function invocations,
-     * ideally once on migration and pasting from documents
-     * Mutates table element object.
-     */
-    updateTableStructure(tableElem);
+    const { canMerge, canUnmerge } = useTableMergeState();
 
     return (
         <Dropdown
@@ -51,9 +43,9 @@ function TableRenderer(props: any) {
                 <PositionedToolbar
                     placement="bottom"
                     children={
-                        cellEntries.length > 1
-                            ? <MergeToolbarContent cellEntries={ cellEntries } />
-                            : <TableToolbarContent cellEntries={ cellEntries } />
+                        canMerge
+                            ? <MergeToolbarContent />
+                            : <TableToolbarContent canUnmerge={ canUnmerge } />
                     }
                     editor={ editor }
                     isTable
@@ -66,8 +58,7 @@ function TableRenderer(props: any) {
     );
 }
 
-
-export const tablePlugin = () => createTablePlugin<IHasToolbarButton>({
+export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlugin>({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
@@ -87,6 +78,7 @@ export const tablePlugin = () => createTablePlugin<IHasToolbarButton>({
         },
     },
     options: {
+        enableMerging: true,
         bottomBarButton: TableButton,
     },
 });

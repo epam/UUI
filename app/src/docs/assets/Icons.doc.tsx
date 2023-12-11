@@ -17,17 +17,18 @@ import {
     ScrollBars,
     SearchInput,
     TextInput,
-} from '@epam/promo';
+} from '@epam/uui';
 import {
     ArrayDataSource, cx, DataRowProps, DataSourceState, Icon,
 } from '@epam/uui-core';
-import { getGroupedIcons, getIconList, IconList } from '../../documents/iconListHelpers';
+import { getGroupedIcons, getIconList } from '../../documents/iconListHelpers';
 import { ReactComponent as LockedIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as UnlockedIcon } from '@epam/assets/icons/common/action-lock_open-fill-18.svg';
 import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-error-fill-24.svg';
+import { IconList } from '@epam/uui-docs';
 
 const sizeList = [
     '24', '30', '36', '42', '48',
@@ -69,8 +70,8 @@ export class IconsDoc extends React.Component {
     showNotification() {
         svc.uuiNotifications.show(
             (props) => (
-                <NotificationCard { ...props } icon={ NotificationIcon } color="gray60" onClose={ null }>
-                    <Text size="36" font="sans">
+                <NotificationCard { ...props } icon={ NotificationIcon } color="info" onClose={ null }>
+                    <Text size="36">
                         Import was copied to the clipboard
                     </Text>
                 </NotificationCard>
@@ -91,7 +92,7 @@ export class IconsDoc extends React.Component {
                 <FlexRow padding="24" vPadding="48" borderBottom cx={ css.iconCardDemo }>
                     {this.renderDemo()}
                 </FlexRow>
-                <FlexRow vPadding="24" padding="24" background="gray5" cx={ css.iconCardImport }>
+                <FlexRow vPadding="24" padding="24" cx={ css.iconCardImport }>
                     {this.renderImport()}
                 </FlexRow>
             </Panel>
@@ -106,14 +107,14 @@ export class IconsDoc extends React.Component {
         return (
             <FlexCell width="100%" cx={ css.infoBox }>
                 <FlexRow>
-                    <Text font="museo-sans" fontSize="24" lineHeight="30" cx={ css.iconCardTitle }>
+                    <Text fontSize="24" lineHeight="30" cx={ css.iconCardTitle }>
                         {item.name}
                     </Text>
                     <FlexSpacer />
                     <Button
-                        color="gray"
+                        color="secondary"
                         size="30"
-                        fill="light"
+                        fill="ghost"
                         icon={ this.state.isLocked ? LockedIcon : UnlockedIcon }
                         onClick={ () => this.setState({ isLocked: !this.state.isLocked }) }
                         cx={ css.lockButton }
@@ -196,19 +197,19 @@ export class IconsDoc extends React.Component {
 
         return (
             isRecommendedSizeAvailable && (
-                <FlexRow cx={ css.recommendedSize } padding="24" vPadding="48" background="white" borderBottom>
+                <FlexRow cx={ css.recommendedSize } padding="24" vPadding="48" borderBottom>
                     <FlexCell width="100%" cx={ css.recommendedSizeIcon }>
-                        <Text size="18" fontSize="14" font="sans-semibold" cx={ css.recommendedCaption }>
+                        <Text size="18" fontSize="14" fontWeight="600" cx={ css.recommendedCaption }>
                             Use the recommended icon sizes:
                         </Text>
                         <FlexRow padding={ null } vPadding={ null } margin={ null } cx={ css.recommendedSizeIconRow }>
                             <FlexCell minWidth={ 227 }>
                                 <FlexRow vPadding={ null } padding={ null }>
                                     <FlexCell minWidth={ 42 } cx={ css.sizesCaptions }>
-                                        <Text size="30" fontSize="12" color="gray60">
+                                        <Text size="30" fontSize="12" color="secondary">
                                             Control:
                                         </Text>
-                                        <Text size="30" fontSize="12" color="gray60">
+                                        <Text size="30" fontSize="12" color="secondary">
                                             Icon:
                                         </Text>
                                     </FlexCell>
@@ -225,7 +226,7 @@ export class IconsDoc extends React.Component {
                                                         control === this.state.controlSize && size === this.state.selectedIcon.size.toString() && css.selectedSizes,
                                                     ) }
                                                 >
-                                                    <Text size="30" font="sans-semibold" cx={ css.sizesText }>
+                                                    <Text size="30" fontWeight="600" cx={ css.sizesText }>
                                                         {control}
                                                     </Text>
                                                     <Text size="30" cx={ css.sizesText }>
@@ -281,7 +282,7 @@ export class IconsDoc extends React.Component {
             >
                 <FlexRow padding="24" vPadding="24" spacing="12" size="24" borderBottom cx={ css.controlSizeContent }>
                     <FlexCell width="auto">
-                        <Text font="sans-semibold" size="24" fontSize="14">
+                        <Text fontWeight="600" size="24" fontSize="14">
                             Control size:
                         </Text>
                     </FlexCell>
@@ -312,7 +313,7 @@ export class IconsDoc extends React.Component {
                     }) }
             >
                 <IconContainer cx={ css.itemIcon } icon={ item.icon } />
-                <Text size="18" color="gray60" cx={ css.itemName }>
+                <Text size="18" color="secondary" cx={ css.itemName }>
                     {item.name}
                 </Text>
             </div>
@@ -335,7 +336,7 @@ export class IconsDoc extends React.Component {
                     <FlexRow>
                         <Button
                             caption="Request an Icon"
-                            color="green"
+                            color="accent"
                             href="https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-(Components)?node-id=14983%3A274834"
                         />
                     </FlexRow>

@@ -12,7 +12,7 @@ export interface TextInputMods extends IHasEditMode {
     /**
      * @default '36'
      */
-    size?: ControlSize;
+    size?: ControlSize | '60';
 }
 
 export function applyTextInputMods(mods: TextInputMods) {

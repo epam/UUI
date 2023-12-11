@@ -1,0 +1,10 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="18/editor-chart-tree">
+<g id="icon">
+<path d="M3 2.25C2.17157 2.25 1.5 2.92157 1.5 3.75V8.25H16.5V3.75C16.5 2.92157 15.8284 2.25 15 2.25H3Z" fill="#6C6F80"/>
+<path d="M10.5 9H1.5V14.25C1.5 15.0784 2.17157 15.75 3 15.75H10.5V9Z" fill="#6C6F80"/>
+<path d="M11.25 9H16.5V12H11.25V9Z" fill="#6C6F80"/>
+<path d="M16.5 12.75H11.25V15.75H15C15.8284 15.75 16.5 15.0784 16.5 14.25V12.75Z" fill="#6C6F80"/>
+</g>
+</g>
+</svg>

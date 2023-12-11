@@ -12,7 +12,7 @@ import { Dropdown, DropdownContainer, DropdownMenuButton } from '../../overlays'
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
-import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
+import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { UUI_PRESETS_PANEL_ADD_BUTTON, UUI_PRESETS_PANEL_MORE_BUTTON } from './constants';
 
 export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {

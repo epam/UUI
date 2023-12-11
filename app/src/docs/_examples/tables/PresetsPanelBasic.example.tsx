@@ -133,7 +133,7 @@ export default function PresetsPanelExample() {
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     return (
-        <Panel background="surface" shadow style={ { height: '400px' } }>
+        <Panel background="surface-main" shadow style={ { height: '400px' } }>
             <FlexRow>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>

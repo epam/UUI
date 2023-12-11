@@ -1,27 +1,43 @@
 import * as React from 'react';
-import { IHasCX } from '@epam/uui-core';
-import { IComponentDocs, PropDoc, PropExample, TDocConfig, TSkin, TDocsGenExportedType } from '@epam/uui-docs';
+import {
+    IComponentDocs,
+    TDocConfig,
+    TSkin,
+    TDocsGenExportedType,
+    useDocBuilderGen,
+    PropDocPropsUnknown,
+    PropDocUnknown,
+} from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { useDocBuilderGen } from '../docBuilderGen/hooks/useDocBuilderGen';
-import { getExamplesList, getInputValuesFromInputData, getTheme, isPropValueEmpty } from './utils';
+import { getSkin } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
+import { TTheme } from '../docsConstants';
+import { loadDocsGenType } from '../../apiReference/dataHooks';
+import {
+    buildExamplesAndFindById,
+    buildExamplesAndFindByValue,
+    buildPropInputDataAll,
+    buildNormalizedInputValuesMap,
+    rebuildInputDataExamples,
+    updatePropInputData,
+} from './propDocUtils';
 
 export function ComponentEditorWrapper(props: {
+    theme: TTheme,
     title: string;
-    skin: TSkin;
+    isSkin: boolean;
     config: TDocConfig;
     onRedirectBackToDocs: () => void;
 }) {
     const {
+        theme,
         title,
-        skin,
+        isSkin,
         config,
         onRedirectBackToDocs,
     } = props;
-    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({
-        config,
-        skin,
-    });
+    const skin = getSkin(theme, isSkin);
+    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, loadDocsGenType });
 
     React.useEffect(() => {
         if (!config) {
@@ -42,8 +58,8 @@ export function ComponentEditorWrapper(props: {
     );
 }
 
-interface ComponentEditorProps extends IHasCX {
-    docs?: IComponentDocs<any>;
+interface ComponentEditorProps {
+    docs?: IComponentDocs<PropDocPropsUnknown>;
     skin: TSkin;
     title: string;
     isLoaded: boolean;
@@ -52,24 +68,30 @@ interface ComponentEditorProps extends IHasCX {
 }
 
 interface ComponentEditorState {
-    showCode: boolean;
     isInited: boolean;
     selectedContext?: string;
-    inputData: {
-        [name: string]: { value?: any; exampleId?: string }
-    };
+    inputData: TPropInputDataAll;
     componentKey?: string;
 }
+type TPropInputDataAll = { [name in keyof PropDocPropsUnknown]?: { value?: unknown | undefined, exampleId?: string | undefined } };
 
 const getInitialState = (): ComponentEditorState => ({
-    showCode: false,
     inputData: {},
     componentKey: undefined,
     isInited: false,
 });
 
 export class ComponentEditor extends React.Component<ComponentEditorProps, ComponentEditorState> {
-    propSamplesCreationContext = new PropSamplesCreationContext(this);
+    private propExamplesCtx = new PropSamplesCreationContext({
+        forceUpdate: () => this.forceUpdate(),
+        getInputValues: () => this.getInputValues(),
+        handleChangeValueOfPropertyValue: (newValue) => this.handleChangeValueOfPropertyValue(newValue),
+    });
+
+    private getCtx = () => {
+        return this.propExamplesCtx;
+    };
+
     state = getInitialState();
 
     componentDidMount() {
@@ -95,133 +117,88 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         this.handleResetDocs(() => {
             const { docs, isLoaded } = this.props;
             if (docs && isLoaded) {
-                const inputData: ComponentEditorState['inputData'] = {};
-                docs.props.forEach((prop) => {
-                    inputData[prop.name] = { value: undefined };
-                    const defaultExample = this.getDefaultPropExample(prop);
-                    if (defaultExample) {
-                        inputData[prop.name].exampleId = defaultExample.id;
-                        inputData[prop.name].value = defaultExample.value;
-                    }
-                });
+                const inputData = buildPropInputDataAll({ docs, ctx: this.getCtx() });
                 this.setState({ inputData, isInited: true });
             }
         });
     }
 
-    getPropExamples = (prop: PropDoc<any, any>) => {
-        const { examples } = prop;
-        return getExamplesList(examples, this.propSamplesCreationContext);
+    getInputValues = () => {
+        return buildNormalizedInputValuesMap(this.state.inputData);
     };
 
-    getDefaultPropExample = (prop: PropDoc<any, any>): PropExample<any> => {
-        const propExamples = this.getPropExamples(prop);
-        let exampleResolved = propExamples.find((i) => i.isDefault);
-        if (!exampleResolved && prop.isRequired) {
-            exampleResolved = propExamples[0];
-        }
-        return exampleResolved;
-    };
-
-    /**
-     * Used by PropSamplesCreationContext
-     */
-    public getInputValues = () => {
-        return getInputValuesFromInputData(this.state.inputData);
-    };
-
-    /**
-     * Used by PropSamplesCreationContext
-     * @param newValue
-     */
-    public handleChangeValueOfPropertyValue = (newValue: any) => {
+    handleChangeValueOfPropertyValue = (newValue: unknown) => {
         const propertyName = 'value';
         const prop = this.getPropByName(propertyName);
-        this.handlePropValueChange({ prop, newPropValue: newValue });
+        this.handlePropValueChange({ prop, newValue: newValue });
     };
 
     getPropByName = (propName: string) => {
         return this.props.docs.props.find((p) => p.name === propName);
     };
 
-    handleResetProp = (propertyName: string) => {
+    handleClearProp = (propertyName: string) => {
         const prop = this.getPropByName(propertyName);
         this.setPropExampleAndValue({
             prop,
-            newPropValue: undefined,
-            newPropExampleId: undefined,
+            newValue: undefined,
+            newExampleId: undefined,
         });
     };
 
-    handleReset = () => {
-        this.initProps();
+    handleResetAllPropsToDefault = () => {
+        const { docs } = this.props;
+        const inputData = buildPropInputDataAll({ docs, ctx: this.getCtx() });
+        this.setState({ inputData });
     };
 
-    handlePropValueChange = (params: { prop: PropDoc<any, any>, newPropValue: any }) => {
-        const { prop, newPropValue } = params;
-        const newPropExampleId = this.getPropExamples(prop).find((ex) => ex.value === newPropValue)?.id;
+    handlePropValueChange = (params: { prop: PropDocUnknown, newValue: unknown }) => {
+        const { prop, newValue } = params;
+        const newExampleId = buildExamplesAndFindByValue({ prop, ctx: this.getCtx(), value: newValue })?.id;
         this.setPropExampleAndValue({
             prop,
-            newPropValue,
-            newPropExampleId,
+            newValue,
+            newExampleId,
         });
     };
 
-    handlePropExampleIdChange = (params: { prop: PropDoc<any, any>, newPropExampleId: string }) => {
-        const { prop, newPropExampleId } = params;
-        const propExamplesList = this.getPropExamples(prop);
-        const newExample = propExamplesList.find((ex) => ex.id === newPropExampleId);
+    handlePropExampleIdChange = (params: { prop: PropDocUnknown, newExampleId: string }) => {
+        const { prop, newExampleId } = params;
+        const newExample = buildExamplesAndFindById({ prop, ctx: this.getCtx(), id: newExampleId });
         if (newExample) {
             this.setPropExampleAndValue({
                 prop,
-                newPropValue: newExample.value,
-                newPropExampleId,
+                newValue: newExample.value,
+                newExampleId,
             });
         } else {
-            console.error(`Unknown example id=${newPropExampleId}`, prop, propExamplesList);
+            console.error(`Unknown example id=${newExampleId}`, prop);
             this.setPropExampleAndValue({
                 prop,
-                newPropValue: undefined,
-                newPropExampleId: undefined,
+                newValue: undefined,
+                newExampleId: undefined,
             });
         }
     };
 
-    private setPropExampleAndValue = (params: { prop: PropDoc<any, any>, newPropExampleId: string | undefined, newPropValue: any }) => {
+    private setPropExampleAndValue = (params: { prop: PropDocUnknown, newExampleId: string | undefined, newValue: unknown | undefined }) => {
         const {
-            prop: {
-                name,
-                remountOnChange,
-            },
-            newPropExampleId,
-            newPropValue,
+            prop,
+            newExampleId,
+            newValue,
         } = params;
 
         this.setState((prevState) => {
-            const propInputData = { ...prevState.inputData[name] };
-            if (newPropExampleId === undefined) {
-                delete propInputData.exampleId;
-            } else {
-                propInputData.exampleId = newPropExampleId;
-            }
-            if (newPropValue === undefined) {
-                delete propInputData.value;
-            } else {
-                propInputData.value = newPropValue;
-            }
-            const newState: Partial<ComponentEditorState> = {
-                inputData: {
-                    ...prevState.inputData,
-                    [name]: propInputData,
-                },
+            const newPropData = { value: newValue, exampleId: newExampleId };
+            const newInputData = updatePropInputData({ prop, prevInputData: prevState.inputData, newPropData });
+            const newState = {
+                ...prevState,
+                inputData: newInputData,
             };
-            if (remountOnChange) {
+            if (prop.remountOnChange) {
                 newState.componentKey = new Date().getTime().toString();
             }
-            return {
-                ...prevState,
-                ...newState,
-            };
+            return newState;
         }, this.handleAdjustDynamicExamples);
     };
 
@@ -232,23 +209,11 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         this.setState((prevState) => {
             return {
                 ...prevState,
-                inputData: Object.keys(prevState.inputData).reduce<ComponentEditorState['inputData']>((acc, propName) => {
-                    const prev = prevState.inputData[propName];
-                    if (prev.exampleId !== undefined) {
-                        const prop = this.getPropByName(propName);
-                        const eList = this.getPropExamples(prop);
-                        const example = eList.find(({ id }) => id === prev.exampleId);
-                        acc[propName] = {
-                            exampleId: example.id,
-                        };
-                        if (!isPropValueEmpty(example.value)) {
-                            acc[propName].value = example.value;
-                        }
-                    } else {
-                        acc[propName] = prev;
-                    }
-                    return acc;
-                }, {}),
+                ...rebuildInputDataExamples({
+                    prevInputData: prevState.inputData,
+                    docs: this.props.docs,
+                    ctx: this.getCtx(),
+                }),
             };
         });
     };
@@ -257,14 +222,9 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         this.setState({ selectedContext });
     };
 
-    handleToggleShowCode = () => this.setState((prev) => {
-        return { showCode: !prev.showCode };
-    });
-
     render() {
-        const { title, skin, docs, isLoaded, onRedirectBackToDocs, generatedFromType } = this.props;
-        const { showCode, inputData, selectedContext, isInited, componentKey } = this.state;
-        const currentTheme = getTheme(skin);
+        const { title, docs, isLoaded, onRedirectBackToDocs, generatedFromType } = this.props;
+        const { inputData, selectedContext, isInited, componentKey } = this.state;
         const { component: DemoComponent, name: tagName, contexts, props } = docs || {};
         const selectedCtxName = selectedContext || (contexts?.length > 0 ? contexts[0].name : undefined);
         const isDocUnsupportedForSkin = isLoaded && !docs;
@@ -272,7 +232,6 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         return (
             <ComponentEditorView
                 contexts={ contexts }
-                currentTheme={ currentTheme }
                 componentKey={ componentKey }
                 DemoComponent={ DemoComponent }
                 generatedFromType={ generatedFromType }
@@ -280,19 +239,17 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 onGetInputValues={ this.getInputValues }
                 isDocUnsupportedForSkin={ isDocUnsupportedForSkin }
                 isInited={ isLoaded && isInited }
-                propContext={ this.propSamplesCreationContext }
+                propContext={ this.getCtx() }
                 propDoc={ props }
                 selectedCtxName={ selectedCtxName }
-                showCode={ showCode }
                 tagName={ tagName }
                 title={ title }
                 onChangeSelectedCtx={ this.handleChangeContext }
                 onPropExampleIdChange={ this.handlePropExampleIdChange }
                 onPropValueChange={ this.handlePropValueChange }
                 onRedirectBackToDocs={ onRedirectBackToDocs }
-                onReset={ this.handleReset }
-                onResetProp={ this.handleResetProp }
-                onToggleShowCode={ this.handleToggleShowCode }
+                onResetAllProps={ this.handleResetAllPropsToDefault }
+                onClearProp={ this.handleClearProp }
             />
         );
     }

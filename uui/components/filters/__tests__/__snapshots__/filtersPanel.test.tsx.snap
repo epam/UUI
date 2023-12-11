@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
+Array [
+  <div
+    className=""
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "auto",
+        "flexGrow": undefined,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxWidth": "300px",
+          "rowGap": undefined,
+        }
+      }
+      tabIndex={0}
+    >
+      <div
+        className="uui-flex-row titleWrapper container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 title container"
+        >
+          Status:
+        </div>
+        <div
+          className="textWrapper"
+        >
+          <div
+            className="root uui-text uui-color-brand uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 selection container"
+          >
+            Unknown
+          </div>
+        </div>
+      </div>
+      <div
+        className="container uui-icon uui-enabled uui-icon-dropdown"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </div>
+  </div>,
+  <div
+    className=""
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "auto",
+        "flexGrow": undefined,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxWidth": "400px",
+          "rowGap": undefined,
+        }
+      }
+      tabIndex={0}
+    >
+      <div
+        className="uui-flex-row titleWrapper container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 title container"
+        >
+          Position
+        </div>
+      </div>
+      <div
+        className="container uui-icon uui-enabled uui-icon-dropdown"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </div>
+  </div>,
+  <div
+    className=""
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "auto",
+        "flexGrow": undefined,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxWidth": "300px",
+          "rowGap": undefined,
+        }
+      }
+      tabIndex={0}
+    >
+      <div
+        className="uui-flex-row titleWrapper container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 title container"
+        >
+          Age
+        </div>
+      </div>
+      <div
+        className="container uui-icon uui-enabled uui-icon-dropdown"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </div>
+  </div>,
+  <div
+    className=""
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "auto",
+        "flexGrow": undefined,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxWidth": "auto",
+          "rowGap": undefined,
+        }
+      }
+      tabIndex={0}
+    >
+      <div
+        className="uui-flex-row titleWrapper container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 title container"
+        >
+          Hire Date
+        </div>
+      </div>
+      <div
+        className="container uui-icon uui-enabled uui-icon-dropdown"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </div>
+  </div>,
+  <div
+    className=""
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "auto",
+        "flexGrow": undefined,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "columnGap": undefined,
+          "maxWidth": "auto",
+          "rowGap": undefined,
+        }
+      }
+      tabIndex={0}
+    >
+      <div
+        className="uui-flex-row titleWrapper container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 title container"
+        >
+          Exit Date
+        </div>
+      </div>
+      <div
+        className="container uui-icon uui-enabled uui-icon-dropdown"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </div>
+  </div>,
+  <button
+    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-filters-panel-add-button"
+    onClick={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+    <div
+      className="uui-caption"
+    >
+      Add filter
+    </div>
+  </button>,
+]
+`;

@@ -5,17 +5,20 @@ import css from './StatusIndicator.module.scss';
 
 export type StatusIndicatorColors = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
 
-export interface StatusIndicatorProps extends IHasCX {
-    /**
-     * Component size. If omitted, 24 size will be used.
-     * @default '24'
-     */
-    size?: '24' | '18' | '12';
+export type StatusIndicatorMods = {
     /**
      * Component color.
      * @default 'neutral'
      */
     color?: StatusIndicatorColors;
+};
+
+export type StatusIndicatorCoreProps = IHasCX & {
+    /**
+     * Component size. If omitted, 24 size will be used.
+     * @default '24'
+     */
+    size?: '24' | '18' | '12';
     /**
      * Fill mode, solid is used by default
      * @default 'solid'
@@ -23,7 +26,9 @@ export interface StatusIndicatorProps extends IHasCX {
     fill?: 'solid' | 'outline';
     /** Component caption. */
     caption: string;
-}
+};
+
+export type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;
 
 export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
     return (

@@ -1,14 +1,14 @@
-import css from './Code.module.scss';
 import React from 'react';
+import { IHasCX } from '@epam/uui-core';
+import cx from 'classnames';
+import css from './Code.module.scss';
 
-type TCode = {
+type TCode = IHasCX & {
     codeAsHtml: string;
     isCompact?: boolean;
 };
 export function Code(props: TCode) {
-    const className = [css.code];
-    if (props.isCompact) {
-        className.push(css.compact);
-    }
-    return <pre className={ className.join(' ') } dangerouslySetInnerHTML={ { __html: props.codeAsHtml } } />;
+    const classNames = cx(css.code, props.isCompact && css.compact, props.cx);
+
+    return <pre className={ classNames } dangerouslySetInnerHTML={ { __html: props.codeAsHtml } } />;
 }

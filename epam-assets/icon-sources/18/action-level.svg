@@ -1,7 +1,11 @@
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14 2H16V16H14V2Z" fill="#6C6F80"/>
-<path d="M11 5H13V16H11V5Z" fill="#6C6F80"/>
-<path d="M8 8H10V16H8V8Z" fill="#6C6F80"/>
-<path d="M5 11H7V16H5V11Z" fill="#6C6F80"/>
-<path d="M2 14H4V16H2V14Z" fill="#6C6F80"/>
+<g id="18/action-level">
+<g id="icon">
+<path d="M14.25 1.5H15.75V16.5H14.25V1.5Z" fill="#6C6F80"/>
+<path d="M11.25 4.5H12.75V16.5H11.25V4.5Z" fill="#6C6F80"/>
+<path d="M8.25 7.5H9.75V16.5H8.25V7.5Z" fill="#6C6F80"/>
+<path d="M5.25 10.5H6.75V16.5H5.25V10.5Z" fill="#6C6F80"/>
+<path d="M2.25 13.5H3.75V16.5H2.25V13.5Z" fill="#6C6F80"/>
+</g>
+</g>
 </svg>

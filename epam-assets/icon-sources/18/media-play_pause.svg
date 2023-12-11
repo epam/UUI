@@ -1,3 +1,9 @@
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M2.25 3.75V14.25L8.25 9M9.75 14.25H12V3.75H9.75M13.5 3.75V14.25H15.75V3.75" fill="#6C6F80"/>
+<g id="18/media-play_pause">
+<g id="icon">
+<path d="M9 9L2.25 13.5V4.5L9 9Z" fill="#6C6F80"/>
+<path d="M12.375 12.75H10.5V5.25H12.375V12.75Z" fill="#6C6F80"/>
+<path d="M15.75 12.75H13.875V5.25H15.75V12.75Z" fill="#6C6F80"/>
+</g>
+</g>
 </svg>

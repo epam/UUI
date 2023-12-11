@@ -1,24 +1,30 @@
 import * as React from 'react';
 import { FlexRow, Panel } from '@epam/uui';
-import { IPropSamplesCreationContext } from '@epam/uui-docs';
+import { Icon } from '@epam/uui-core';
+import { IPropSamplesCreationContext, PropDocPropsUnknown } from '@epam/uui-docs';
 import { svc } from '../../../../services';
+import { getIconList } from '../../../../documents/iconListHelpers';
 
-export class PropSamplesCreationContext implements IPropSamplesCreationContext<any> {
+export class PropSamplesCreationContext implements IPropSamplesCreationContext {
     constructor(
-        private reactClassComponent: {
+        private ctxInterface: {
             forceUpdate: () => void;
-            getInputValues: () => { [p: string]: any },
-            handleChangeValueOfPropertyValue: (newValue: string) => void
+            getInputValues: () => PropDocPropsUnknown,
+            handleChangeValueOfPropertyValue: (newValue: unknown) => void
         },
     ) {
     }
 
+    getIconList = () => {
+        return getIconList<Icon>(true);
+    };
+
     getCallback = (name: string) => {
-        function callbackFn(...args: any[]) {
+        function callbackFn(...args: unknown[]) {
             svc.uuiNotifications
                 .show(
                     () => (
-                        <Panel shadow={ true } background="surface">
+                        <Panel shadow={ true } background="surface-main">
                             <FlexRow padding="24" vPadding="12" borderBottom={ true }>
                                 <pre>
                                     {name}
@@ -42,17 +48,17 @@ export class PropSamplesCreationContext implements IPropSamplesCreationContext<a
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getChangeHandler = (_propName: string) => {
-        const fn = (newValue: string) => {
-            this.reactClassComponent.handleChangeValueOfPropertyValue(newValue);
+        const fn = (newValue: unknown) => {
+            this.ctxInterface.handleChangeValueOfPropertyValue(newValue);
         };
         fn.displayName = '(newValue) => { ... }';
-        return fn;
+        return fn as (newValue: unknown) => void;
     };
 
-    getSelectedProps = () => this.reactClassComponent.getInputValues();
+    getSelectedProps = () => this.ctxInterface.getInputValues();
 
     forceUpdate = () => {
-        this.reactClassComponent.forceUpdate();
+        this.ctxInterface.forceUpdate();
     };
 
     demoApi = svc.api.demo;
