@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, setupComponentForTest, screen } from '@epam/uui-test-utils';
+import { fireEvent, setupComponentForTest, screen, userEvent } from '@epam/uui-test-utils';
 import { Switch, SwitchProps } from '../Switch';
 
 async function setupSwitch(params: Partial<SwitchProps>) {
@@ -29,11 +29,20 @@ describe('Switch', () => {
         expect(switchElement).toBeInTheDocument();
     });
 
-    it('should toggle the switch when clicked', async () => {
+    it('should toggle switch when clicked', async () => {
         await setupSwitch({ label: 'Test Switch' });
         const switchElement: HTMLInputElement = screen.getByLabelText('Test Switch');
 
         fireEvent.click(switchElement);
+
+        expect(switchElement.checked).toBe(true);
+    });
+
+    it('should toggle switch on keyboard click', async () => {
+        await setupSwitch({ label: 'Test Switch' });
+        const switchElement: HTMLInputElement = screen.getByLabelText('Test Switch');
+
+        await userEvent.type(switchElement, '{space}');
 
         expect(switchElement.checked).toBe(true);
     });
@@ -58,5 +67,39 @@ describe('Switch', () => {
         fireEvent.click(switchElement);
 
         expect(getValueChangeAnalyticsEvent).toHaveBeenCalled();
+    });
+
+    it('should handle focus event', async () => {
+        const onFocus = jest.fn();
+        await setupSwitch({ label: 'Test Switch', onFocus });
+        const switchElement = screen.getByLabelText('Test Switch');
+
+        switchElement.focus();
+
+        expect(onFocus).toHaveBeenCalled();
+        expect(switchElement).toHaveFocus();
+    });
+
+    it('should handle blur event', async () => {
+        const onBlur = jest.fn();
+        await setupSwitch({ label: 'Test Switch', onBlur });
+        const switchElement = screen.getByLabelText('Test Switch');
+
+        switchElement.focus();
+        switchElement.blur();
+
+        expect(onBlur).toHaveBeenCalled();
+        expect(switchElement).not.toHaveFocus();
+    });
+
+    it('should handle label click', async () => {
+        const handleChange = jest.fn();
+        await setupSwitch({ label: 'Test Switch', onValueChange: handleChange });
+        const label = screen.getByText('Test Switch');
+
+        label.click();
+
+        expect(handleChange).toHaveBeenCalledTimes(1);
+        expect(handleChange).toHaveBeenCalledWith(true);
     });
 });
