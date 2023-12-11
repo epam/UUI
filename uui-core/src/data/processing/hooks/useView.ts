@@ -21,10 +21,10 @@ export function useView<TItem, TId, TFilter, Props extends ListViewProps<TItem, 
     update(current);
 
     useEffect(() => {
-        current && current.init();
+        current && current.activate();
         // Value here is memoized in closure at the time of its creation.
         // So we are not destroying the value we just created above.
-        return () => current && current.destroy();
+        return () => current && current.deactivate();
     }, deps);
 
     return viewRef.current;
