@@ -12,4 +12,5 @@ export type PlainTreeStrategyProps<TItem, TId, TFilter> = TreeStrategyProps<TIte
     getFilter?(filter: TFilter): (item: TItem) => boolean;
     sortSearchByRelevance?: boolean;
     cascadeSelection?: CascadeSelection;
+    isFoldedByDefault?(item: TItem): boolean;
 };
