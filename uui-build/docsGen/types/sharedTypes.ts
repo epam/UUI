@@ -39,7 +39,7 @@ export type TComment = {
     } | undefined,
 };
 export type TTypeProp = {
-    uid: number;
+    uid: string;
     name: string;
     typeValue: TTypeValue;
     typeValueRef?: TTypeRef;

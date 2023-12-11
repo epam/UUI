@@ -5,8 +5,7 @@ import {
 } from '../types/sharedTypes';
 import { INCLUDED_PACKAGES } from '../constants';
 import { TApiReferenceJson, TTypeConverted, TTypeRefMap } from '../types/types';
-// @ts-ignore
-import { getUuiVersion } from '../../utils/monorepoUtils';
+import { getUuiVersion } from '../utils/fileUtils';
 
 const uuiVersion = getUuiVersion();
 

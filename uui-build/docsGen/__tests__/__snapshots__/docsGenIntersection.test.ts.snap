@@ -23,7 +23,7 @@ exports[`docsGen:intersection should convert intersection 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "a1",
       "name": "a1",
       "typeValue": {
        "raw": "number"
@@ -35,7 +35,7 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "a2",
       "name": "a2",
       "typeValue": {
        "raw": "string"
@@ -47,7 +47,7 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "required": true
      },
      {
-      "uid": 3,
+      "uid": "b1",
       "name": "b1",
       "typeValue": {
        "raw": "number"
@@ -59,7 +59,7 @@ exports[`docsGen:intersection should convert intersection 1`] = `
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "b2",
       "name": "b2",
       "typeValue": {
        "raw": "string"
@@ -123,7 +123,7 @@ exports[`docsGen:intersection should convert top level type with Omit 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "f1",
       "name": "f1",
       "typeValue": {
        "raw": "number"
@@ -176,7 +176,7 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "f1",
       "name": "f1",
       "typeValue": {
        "raw": "number"
@@ -188,7 +188,7 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "f3",
       "name": "f3",
       "typeValue": {
        "raw": "number"
@@ -200,7 +200,7 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "required": true
      },
      {
-      "uid": 3,
+      "uid": "f4",
       "name": "f4",
       "typeValue": {
        "raw": "number"
@@ -212,7 +212,7 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "s1",
       "name": "s1",
       "typeValue": {
        "raw": "number"
@@ -224,7 +224,7 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
       "required": true
      },
      {
-      "uid": 5,
+      "uid": "s2",
       "name": "s2",
       "typeValue": {
        "raw": "number"
