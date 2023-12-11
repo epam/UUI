@@ -1,20 +1,13 @@
 import { useCallback, useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
-import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowPathItem, DataRowProps, DataSourceListProps, DataSourceState, ScrollToConfig, VirtualListRange } from '../../../../types';
+import { CascadeSelection, DataRowOptions, DataRowPathItem, DataRowProps, DataSourceListProps, DataSourceState, VirtualListRange } from '../../../../types';
+import { idToKey } from '../helpers';
+import { FoldingService, CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
+import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 
-interface NodeStats {
-    isSomeCheckable: boolean;
-    isSomeChecked: boolean;
-    isAllChecked: boolean;
-    isSomeSelected: boolean;
-    hasMoreRows: boolean;
-    isSomeCheckboxEnabled: boolean;
-}
-
-export interface UseDataRowsProps<TItem, TId, TFilter = any> {
+export interface UseDataRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId>, CheckingService<TItem, TId>, FocusService, SelectingService<TItem, TId> {
     tree: ITree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState?: (dataSourceState: DataSourceState<TFilter, TId>) => void;
     flattenSearchResults?: boolean;
     isPartialLoad?: boolean;
     rowOptions?: DataRowOptions<TItem, TId>;
@@ -25,33 +18,12 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> {
     getId: (item: TItem) => TId;
     cascadeSelection?: CascadeSelection;
     handleOnCheck: (rowProps: DataRowProps<TItem, TId>) => void;
-    isFoldedByDefault?(item: TItem): boolean;
     selectAll?: boolean;
     handleSelectAll: (isChecked: boolean) => void;
+    getEstimatedChildrenCount: (id: TId) => number;
+    getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
+    lastRowIndex: number;
 }
-
-const getDefaultNodeStats = () => ({
-    isSomeCheckable: false,
-    isSomeChecked: false,
-    isAllChecked: true,
-    isSomeSelected: false,
-    hasMoreRows: false,
-    isSomeCheckboxEnabled: false,
-});
-
-const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
-    ...parentStats,
-    isSomeCheckable: parentStats.isSomeCheckable || childStats.isSomeCheckable,
-    isSomeChecked: parentStats.isSomeChecked || childStats.isSomeChecked,
-    isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
-    isSomeCheckboxEnabled: parentStats.isSomeCheckboxEnabled || childStats.isSomeCheckboxEnabled,
-    hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
-});
-
-const idToKey = <TId, >(id: TId) => typeof id === 'object' ? JSON.stringify(id) : `${id}`;
-const setObjectFlag = (object: any, key: string, value: boolean) => {
-    return { ...object, [key]: value };
-};
 
 export function useDataRows<TItem, TId, TFilter = any>(
     props: UseDataRowsProps<TItem, TId, TFilter>,
@@ -60,126 +32,28 @@ export function useDataRows<TItem, TId, TFilter = any>(
         tree,
         getId,
         dataSourceState,
-        setDataSourceState,
         flattenSearchResults,
         isPartialLoad,
         getRowOptions,
         rowOptions,
+
+        getEstimatedChildrenCount,
+        getMissingRecordsCount,
+        cascadeSelection,
+        lastRowIndex,
+
+        isFolded,
         isRowChecked,
         isRowChildrenChecked,
-        handleOnCheck,
-        getChildCount,
-        cascadeSelection,
-        isFoldedByDefault,
+
+        handleOnFold,
         handleSelectAll,
+        handleOnCheck,
+        handleOnFocus,
+        handleOnSelect,
     } = props;
 
-    const lastIndex = useMemo(
-        () => {
-            const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
-            const actualCount = tree.getTotalRecursiveCount() ?? 0;
-
-            if (actualCount < currentLastIndex) return actualCount;
-            return currentLastIndex;
-        },
-        [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
-    );
-
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
-
-    const isFolded = (item: TItem) => {
-        const searchIsApplied = !!dataSourceState?.search;
-        if (searchIsApplied) {
-            return false;
-        }
-
-        const folded = dataSourceState.folded || {};
-        const key = idToKey(getId(item));
-        if (folded[key] != null) {
-            return folded[key];
-        }
-
-        if (isFoldedByDefault) {
-            return isFoldedByDefault(item);
-        }
-
-        return true;
-    };
-
-    const getEstimatedChildrenCount = (id: TId) => {
-        if (id === undefined) return undefined;
-
-        const item = tree.getById(id);
-        if (item === NOT_FOUND_RECORD) return undefined;
-
-        const childCount = getChildCount?.(item) ?? undefined;
-        if (childCount === undefined) return undefined;
-
-        const nodeInfo = tree.getNodeInfo(id);
-        if (nodeInfo?.count !== undefined) {
-            // nodes are already loaded, and we know the actual count
-            return nodeInfo.count;
-        }
-
-        return childCount;
-    };
-
-    const getMissingRecordsCount = (id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
-        const nodeInfo = tree.getNodeInfo(id);
-
-        const estimatedChildCount = getEstimatedChildrenCount(id);
-
-        // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
-        if (nodeInfo.count !== undefined) {
-            // Exact count known
-            return nodeInfo.count - loadedChildrenCount;
-        }
-
-        // estimatedChildCount = undefined for top-level rows only.
-        if (id === undefined && totalRowsCount < lastIndex) {
-            return lastIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
-        }
-
-        if (estimatedChildCount > loadedChildrenCount) {
-            // According to getChildCount (put into estimatedChildCount), there are more rows on this level
-            return estimatedChildCount - loadedChildrenCount;
-        }
-
-        // We have a bad estimate - it even less that actual items we have
-        // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
-        // let's guess we have at least 1 item more than loaded
-        return 1;
-    };
-
-    const handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {
-        setDataSourceState?.({
-            ...dataSourceState,
-            selectedId: rowProps.id,
-        });
-    };
-
-    const handleOnFocus = (focusIndex: number) => {
-        setDataSourceState({
-            ...dataSourceState,
-            focusedIndex: focusIndex,
-        });
-    };
-
-    const handleOnFold = (rowProps: DataRowProps<TItem, TId>) => {
-        if (setDataSourceState) {
-            const fold = !rowProps.isFolded;
-            const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
-            const scrollTo: ScrollToConfig = fold && rowProps.isPinned
-                ? { index: indexToScroll, align: 'nearest' }
-                : dataSourceState.scrollTo;
-
-            setDataSourceState({
-                ...dataSourceState,
-                scrollTo,
-                folded: setObjectFlag(dataSourceState && dataSourceState.folded, rowProps.rowKey, fold),
-            });
-        }
-    };
 
     const applyRowOptions = (row: DataRowProps<TItem, TId>) => {
         const externalRowOptions = (getRowOptions && !row.isLoading)
@@ -191,7 +65,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         const estimatedChildrenCount = getEstimatedChildrenCount(row.id);
 
         row.isFoldable = false;
-        if (!isFlattenSearch && estimatedChildrenCount !== undefined && estimatedChildrenCount > 0) {
+        if (!isFlattenSearch && estimatedChildrenCount > 0) {
             row.isFoldable = true;
         }
 
@@ -207,7 +81,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         row.isSelected = dataSourceState.selectedId === row.id;
         row.isCheckable = isCheckable;
         row.onCheck = isCheckable && handleOnCheck;
-        row.onSelect = fullRowOptions && fullRowOptions.isSelectable && handleOnSelect;
+        row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
         row.isChildrenChecked = isRowChildrenChecked(row);
     };
@@ -233,38 +107,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         return rowProps;
     };
 
-    const getRowStats = (row: DataRowProps<TItem, TId>, actualStats: NodeStats): NodeStats => {
-        let {
-            isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
-        } = actualStats;
-
-        if (row.checkbox) {
-            isSomeCheckable = true;
-            if (row.isChecked || row.isChildrenChecked) {
-                isSomeChecked = true;
-            }
-            if (!row.checkbox.isDisabled || isSomeCheckboxEnabled) {
-                isSomeCheckboxEnabled = true;
-            }
-
-            const isImplicitCascadeSelection = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
-            if (
-                (!row.isChecked && !row.checkbox.isDisabled && !isImplicitCascadeSelection)
-                || (row.parentId === undefined && !row.isChecked && isImplicitCascadeSelection)
-            ) {
-                isAllChecked = false;
-            }
-        }
-
-        if (row.isSelected) {
-            isSomeSelected = true;
-        }
-
-        return {
-            ...actualStats, isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
-        };
-    };
-
     const getEmptyRowProps = (id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
         const checked = dataSourceState?.checked ?? [];
         const isChecked = checked.includes(id);
@@ -280,7 +122,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         };
     };
 
-    const getLoadingRow = (id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
+    const getLoadingRowProps = (id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
         const rowProps = getEmptyRowProps(id, index, path);
         return {
             ...rowProps,
@@ -314,13 +156,13 @@ export function useDataRows<TItem, TId, TFilter = any>(
                 }
 
                 const row = getRowProps(item, rows.length);
-                if (appendRows && (!isPartialLoad || (isPartialLoad && rows.length < lastIndex))) {
+                if (appendRows && (!isPartialLoad || (isPartialLoad && rows.length < lastRowIndex))) {
                     rows.push(row);
                     layerRows.push(row);
                     currentLevelRows++;
                 }
 
-                stats = getRowStats(row, stats);
+                stats = getRowStats(row, stats, cascadeSelection);
                 row.isLastChild = n === ids.length - 1 && nodeInfo.count === ids.length;
                 row.indent = isFlattenSearch ? 0 : row.path.length + 1;
                 const estimatedChildrenCount = getEstimatedChildrenCount(id);
@@ -341,8 +183,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
                         } else if (!dataSourceState.search && !row.isFolded && appendRows) {
                         // children are not loaded
                             const parentsWithRow = [...row.path, tree.getPathItem(item)];
-                            for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
-                                const loadingRow = getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
+                            for (let m = 0; m < estimatedChildrenCount && rows.length < lastRowIndex; m++) {
+                                const loadingRow = getLoadingRowProps('_loading_' + rows.length, rows.length, parentsWithRow);
                                 loadingRow.indent = parentsWithRow.length + 1;
                                 loadingRow.isLastChild = m === estimatedChildrenCount - 1;
                                 rows.push(loadingRow);
@@ -372,9 +214,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
                     stats.hasMoreRows = true;
                 }
 
-                // Append loading rows, stop at lastIndex (last row visible)
-                while (rows.length < lastIndex && missingCount > 0) {
-                    const row = getLoadingRow('_loading_' + rows.length, rows.length, path);
+                // Append loading rows, stop at lastRowIndex (last row visible)
+                while (rows.length < lastRowIndex && missingCount > 0) {
+                    const row = getLoadingRowProps('_loading_' + rows.length, rows.length, path);
                     rows.push(row);
                     layerRows.push(row);
                     currentLevelRows++;
@@ -504,7 +346,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     };
 
     const getVisibleRows = () => {
-        const visibleRows = rows.slice(dataSourceState.topIndex, lastIndex);
+        const visibleRows = rows.slice(dataSourceState.topIndex, lastRowIndex);
         return getRowsWithPinned(visibleRows);
     };
 

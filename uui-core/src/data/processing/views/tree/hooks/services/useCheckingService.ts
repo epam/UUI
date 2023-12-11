@@ -1,7 +1,24 @@
 import { useCallback, useMemo } from 'react';
-import { CascadeSelectionTypes, DataRowProps } from '../../../../../../../types';
-import { ITree, NOT_FOUND_RECORD } from '../../..';
-import { CheckingService, UseCheckingServiceProps } from '../types';
+import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps } from '../../../../../../types';
+import { ITree, NOT_FOUND_RECORD } from '../..';
+
+export interface UseCheckingServiceProps<TItem, TId> {
+    tree: ITree<TItem, TId>;
+    checked?: TId[];
+    setChecked: (checked: TId[]) => void;
+    getParentId?: (item: TItem) => TId;
+    cascadeSelection?: CascadeSelection;
+    rowOptions?: DataRowOptions<TItem, TId>;
+    getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
+}
+
+export interface CheckingService<TItem, TId> {
+    isRowChecked: (row: DataRowProps<TItem, TId>) => boolean;
+    isRowChildrenChecked: (row: DataRowProps<TItem, TId>) => boolean;
+    handleOnCheck: (rowProps: DataRowProps<TItem, TId>) => void;
+    handleSelectAll: (isChecked: boolean) => void;
+    clearAllChecked: () => void;
+}
 
 const idToKey = <TId, >(id: TId) => typeof id === 'object' ? JSON.stringify(id) : `${id}`;
 
@@ -36,7 +53,7 @@ const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: ITree<TItem, TId
     return { checkedByKey, someChildCheckedByKey };
 };
 
-export function useCheckingService<TItem, TId, TFilter = any>(
+export function useCheckingService<TItem, TId>(
     {
         tree,
         getParentId,
@@ -45,8 +62,8 @@ export function useCheckingService<TItem, TId, TFilter = any>(
         cascadeSelection,
         getRowOptions,
         rowOptions,
-    }: UseCheckingServiceProps<TItem, TId, TFilter>,
-): CheckingService {
+    }: UseCheckingServiceProps<TItem, TId>,
+): CheckingService<TItem, TId> {
     const checkingInfoById = useMemo(
         () => getCheckingInfo(checked, tree, getParentId),
         [tree, checked],
