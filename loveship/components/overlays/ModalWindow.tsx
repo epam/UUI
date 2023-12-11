@@ -1,14 +1,17 @@
-import { withMods } from '@epam/uui-core';
-import { ModalWindow as UuiModalWindow, ModalWindowProps as UuiModalWindowProps } from '@epam/uui';
+import { createSkinComponent } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 
 export interface ModalWindowMods {
+    /** ModalWindow width */
     width?: '300' | '420' | '480' | '600' | '900' | number;
+    /** ModalWindow height */
     height?: '300' | '700' | 'auto' | number;
 }
 
-export const ModalWindow = withMods<Omit<UuiModalWindowProps, 'width' | 'height'>, ModalWindowMods>(
-    UuiModalWindow,
-    () => [],
+export type ModalWindowProps = uui.ModalWindowCoreProps & ModalWindowMods;
+
+export const ModalWindow = createSkinComponent<uui.ModalWindowProps, ModalWindowProps>(
+    uui.ModalWindow,
     (props) => ({
         ...props,
         width: props.width && Number(props.width),

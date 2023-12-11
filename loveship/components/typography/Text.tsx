@@ -1,8 +1,8 @@
-import { devLogger, withMods } from '@epam/uui-core';
-import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 import * as types from '../types';
 
-export interface TextMods {
+export type TextMods = {
     /**
      * @default 'night700'
      */
@@ -11,13 +11,12 @@ export interface TextMods {
      * @default 'sans'
      */
     font?: types.FontStyle;
-}
+};
 
-export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
+export type TextProps = uui.TextCoreProps & TextMods;
 
-export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
-    UuiText,
-    (props) => [props.font && `uui-font-${props.font}`],
+export const Text = createSkinComponent<uui.TextProps, TextProps>(
+    uui.Text,
     (props) => {
         if (__DEV__) {
             if (props.font) {
@@ -26,7 +25,7 @@ export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
         }
         return ({
             color: props.color ?? 'night700',
-        } as TextProps);
+        });
     },
-
+    (props) => [props.font && `uui-font-${props.font}`],
 );
