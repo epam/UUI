@@ -30,7 +30,7 @@ export function formatResultsToMd(result: TCompareStatsResult) {
         [
             `${GENERATED_BY_MD}<br>`,
             `${ciStatus}<br>\n\n`,
-            '**Total amount of types/props without JSDoc comments**<br>',
+            '**Total amount of exported types/props without JSDoc comments**<br>',
         ].join(''),
         '',
         '|         | Amount                    |',
