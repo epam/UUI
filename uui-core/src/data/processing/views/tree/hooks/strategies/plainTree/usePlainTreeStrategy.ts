@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
 import { useCheckingService } from './useCheckingService';
 import { useCreateTree } from './useCreateTree';
@@ -13,7 +13,17 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     const props = { ...restProps, sortSearchByRelevance };
     const fullTree = useCreateTree(props, deps);
 
-    const { dataSourceState, getFilter, getSearchFields, sortBy, cascadeSelection, getParentId } = props;
+    const {
+        dataSourceState,
+        setDataSourceState,
+        getFilter,
+        getSearchFields,
+        sortBy,
+        cascadeSelection,
+        getParentId,
+        rowOptions,
+        getRowOptions,
+    } = props;
 
     const filteredTree = useFilterTree(
         { tree: fullTree, getFilter, dataSourceState },
@@ -30,12 +40,22 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         deps,
     );
 
+    const { checked } = dataSourceState;
+    const setChecked = useCallback(
+        (newChecked: TId[]) => setDataSourceState({ ...dataSourceState, checked: newChecked }),
+        [setDataSourceState, dataSourceState],
+    );
+
     const checkingService = useCheckingService({
-        tree, checked: dataSourceState.checked, cascadeSelection, getParentId,
+        tree,
+        checked,
+        setChecked,
+        cascadeSelection,
+        getParentId,
     });
 
     return useMemo(
-        () => ({ tree, ...checkingService }),
+        () => ({ tree, ...checkingService, rowOptions, getRowOptions }),
         [tree, checkingService],
     );
 }
