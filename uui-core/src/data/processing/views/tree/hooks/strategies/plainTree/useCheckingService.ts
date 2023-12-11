@@ -95,18 +95,25 @@ export function useCheckingService<TItem, TId, TFilter = any>(
         handleCheck(false);
     }, [handleCheck]);
 
+    const handleOnCheck = useCallback((rowProps: DataRowProps<TItem, TId>) => {
+        const id = rowProps.id;
+        const isChecked = !rowProps.isChecked;
+
+        handleCheck(isChecked, id);
+    }, []);
+
     return useMemo(
         () => ({
             isRowChecked,
             isRowChildrenChecked,
-            handleCheck,
+            handleOnCheck,
             handleSelectAll,
             clearAllChecked,
         }),
         [
             isRowChecked,
             isRowChildrenChecked,
-            handleCheck,
+            handleOnCheck,
             handleSelectAll,
             clearAllChecked,
         ],
