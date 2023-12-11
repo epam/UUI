@@ -4,6 +4,7 @@ import { CascadeSelection, DataRowOptions, DataRowPathItem, DataRowProps, DataSo
 import { idToKey } from '../helpers';
 import { FoldingService, CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
+import { useDataRowProps } from './useDataRowProps';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId>, CheckingService<TItem, TId>, FocusService, SelectingService<TItem, TId> {
     tree: ITree<TItem, TId>;
@@ -12,14 +13,13 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> extends FoldingServ
     isPartialLoad?: boolean;
     rowOptions?: DataRowOptions<TItem, TId>;
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
-    isRowChildrenChecked: (row: DataRowProps<TItem, TId>) => boolean;
-    isRowChecked: (row: DataRowProps<TItem, TId>) => boolean;
+
     getChildCount?(item: TItem): number;
     getId: (item: TItem) => TId;
     cascadeSelection?: CascadeSelection;
-    handleOnCheck: (rowProps: DataRowProps<TItem, TId>) => void;
+
     selectAll?: boolean;
-    handleSelectAll: (isChecked: boolean) => void;
+
     getEstimatedChildrenCount: (id: TId) => number;
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
     lastRowIndex: number;
@@ -55,81 +55,23 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
 
-    const applyRowOptions = (row: DataRowProps<TItem, TId>) => {
-        const externalRowOptions = (getRowOptions && !row.isLoading)
-            ? getRowOptions(row.value, row.index)
-            : {};
-
-        const fullRowOptions = { ...rowOptions, ...externalRowOptions };
-
-        const estimatedChildrenCount = getEstimatedChildrenCount(row.id);
-
-        row.isFoldable = false;
-        if (!isFlattenSearch && estimatedChildrenCount > 0) {
-            row.isFoldable = true;
-        }
-
-        const isCheckable = fullRowOptions && fullRowOptions.checkbox && fullRowOptions.checkbox.isVisible && !fullRowOptions.checkbox.isDisabled;
-        const isSelectable = fullRowOptions && fullRowOptions.isSelectable;
-        if (fullRowOptions != null) {
-            const rowValue = row.value;
-            Object.assign(row, fullRowOptions);
-            row.value = fullRowOptions.value ?? rowValue;
-        }
-        row.isFocused = dataSourceState.focusedIndex === row.index;
-        row.isChecked = isRowChecked(row);
-        row.isSelected = dataSourceState.selectedId === row.id;
-        row.isCheckable = isCheckable;
-        row.onCheck = isCheckable && handleOnCheck;
-        row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
-        row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
-        row.isChildrenChecked = isRowChildrenChecked(row);
-    };
-
-    const getRowProps = (item: TItem, index: number): DataRowProps<TItem, TId> => {
-        const id = getId(item);
-        const key = idToKey(id);
-        const path = tree.getPathById(id);
-        const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
-        const rowProps = {
-            id,
-            parentId,
-            key,
-            rowKey: key,
-            index,
-            value: item,
-            depth: path.length,
-            path,
-        } as DataRowProps<TItem, TId>;
-
-        applyRowOptions(rowProps);
-
-        return rowProps;
-    };
-
-    const getEmptyRowProps = (id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
-        const checked = dataSourceState?.checked ?? [];
-        const isChecked = checked.includes(id);
-        return {
-            id,
-            rowKey: idToKey(id),
-            value: undefined,
-            index,
-            depth: path ? path.length : 0,
-            path: path ?? [],
-            checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
-            isChecked,
-        };
-    };
-
-    const getLoadingRowProps = (id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
-        const rowProps = getEmptyRowProps(id, index, path);
-        return {
-            ...rowProps,
-            checkbox: { ...rowProps.checkbox, isDisabled: true },
-            isLoading: true,
-        };
-    };
+    const { getRowProps, getLoadingRowProps, getEmptyRowProps } = useDataRowProps<TItem, TId, TFilter>({
+        tree,
+        getId,
+        dataSourceState,
+        getRowOptions,
+        rowOptions,
+        handleOnCheck,
+        handleOnSelect,
+        handleOnFocus,
+        handleSelectAll,
+        handleOnFold,
+        isRowChecked,
+        isRowChildrenChecked,
+        isFlattenSearch,
+        getEstimatedChildrenCount,
+        isFolded,
+    });
 
     const rebuildRows = () => {
         const rows: DataRowProps<TItem, TId>[] = [];
