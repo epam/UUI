@@ -6,9 +6,6 @@ import {
     ReactElement, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 
-/**
- * IEditableDebouncer component options.
- */
 export interface IEditableDebouncerOptions {
     /** Pass true to disable debouncing */
     disableDebounce?: boolean;
@@ -16,9 +13,6 @@ export interface IEditableDebouncerOptions {
     debounceDelay?: number;
 }
 
-/**
- * IEditableDebouncer component props.
- */
 export interface IEditableDebouncerProps<T> extends IEditable<T>, IEditableDebouncerOptions, IAnalyticableOnChange<T> {
     /**
      * Render wrapped component.
