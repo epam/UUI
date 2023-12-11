@@ -1,11 +1,10 @@
+import { useCallback, useMemo } from 'react';
 import { DataRowOptions, DataRowPathItem, DataRowProps, DataSourceState } from '../../../../types';
-import { CheckingService, FocusService, FoldingService, SelectingService } from '../tree/hooks/services';
+import { CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
 import { ITree } from '../tree';
 import { idToKey } from '../helpers';
-import { useCallback, useMemo } from 'react';
 
-export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId>,
-    Omit<CheckingService<TItem, TId>, 'clearAllChecked'>,
+export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
     SelectingService<TItem, TId> {
 
@@ -121,8 +120,21 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         };
     }, [getEmptyRowProps]);
 
+    const getUnknownRowProps = useCallback((id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
+        const emptyRowProps = getEmptyRowProps(id, index, path);
+        const checkbox = (rowOptions?.checkbox?.isVisible || emptyRowProps.isChecked)
+            ? { isVisible: true, isDisabled: false }
+            : undefined;
+
+        return {
+            ...emptyRowProps,
+            checkbox,
+            isUnknown: true,
+        };
+    }, [getEmptyRowProps, rowOptions]);
+
     return useMemo(
-        () => ({ getRowProps, getEmptyRowProps, getLoadingRowProps }),
-        [getRowProps, getEmptyRowProps, getLoadingRowProps],
+        () => ({ getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps }),
+        [getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps],
     );
 }
