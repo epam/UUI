@@ -56,7 +56,7 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
     },
     "props": [
      {
-      "uid": "sameProp_1",
+      "uid": "sameProp_2",
       "name": "sameProp",
       "typeValue": {
        "raw": "string"
@@ -143,7 +143,7 @@ exports[`docsGen:union should convert union of two object types 1`] = `
       "required": true
      },
      {
-      "uid": "sameProp_1",
+      "uid": "sameProp_2",
       "name": "sameProp",
       "typeValue": {
        "raw": "string"
