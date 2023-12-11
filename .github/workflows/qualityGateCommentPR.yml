@@ -82,13 +82,23 @@ jobs:
           with:
               script: |
                   return Number(require('fs').readFileSync('./${{ env.PR_NUM_ARTIFACT }}').toString());
-
+        #
+        #
+        #
         - name: Concatenate reports
-          run: |
-              cat ./${{ env.REPORT_1_ARTIFACT }} >> ./${{ env.REPORT_CONCATENATED }}
-              echo -e "\n\n---" >> ./${{ env.REPORT_CONCATENATED }}
-              cat ./${{ env.REPORT_2_ARTIFACT }} >> ./${{ env.REPORT_CONCATENATED }}
-              echo -e "\n${{ env.COMMENT_TAG }}" >> ./${{ env.REPORT_CONCATENATED }}
+          uses: actions/github-script@v7
+          with:
+              script: |
+                const fs = require('fs');
+                const SEPARATOR = "\n\n---";  
+                const contentArr = [
+                      fs.readFileSync('./${{ env.REPORT_1_ARTIFACT }}'),
+                      fs.readFileSync('./${{ env.REPORT_2_ARTIFACT }}'),
+                ];
+                const concatenated = contentArr.join(SEPARATOR);
+                const commentContent = concatenated + '\n' + '${{ env.COMMENT_TAG }}';
+                fs.writeFileSync('./${{ env.REPORT_CONCATENATED }}', commentContent);
+
         #
         # Update comment: track-bundle-size
         #
