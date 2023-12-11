@@ -90,7 +90,7 @@ jobs:
           with:
               script: |
                 const fs = require('fs');
-                const SEPARATOR = "\n\n---";  
+                const SEPARATOR = "\n\n---\n";  
                 const contentArr = [
                       fs.readFileSync('./${{ env.REPORT_1_ARTIFACT }}'),
                       fs.readFileSync('./${{ env.REPORT_2_ARTIFACT }}'),
