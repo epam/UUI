@@ -185,15 +185,15 @@ class PropsSet {
 }
 
 class SimpleIdGen {
-    private _usedIds = new Set<string>();
-    private _id = 0;
+    private _usedIds = new Map<string, number>();
 
     getNextId = (name: string) => {
-        let res = name;
-        if (this._usedIds.has(res)) {
-            res = `${res}_${++this._id}`;
+        const prevIndex = this._usedIds.get(name);
+        if (prevIndex === undefined) {
+            this._usedIds.set(name, 1);
+            return name;
         }
-        this._usedIds.add(res);
-        return res;
+        this._usedIds.set(name, prevIndex + 1);
+        return `${name}_${prevIndex + 1}`;
     };
 }
