@@ -5,9 +5,9 @@
     position: relative;
 
     .container {
-        @include theme-promo();
         margin: 0 -24px;
         width: 986px;
+        color: var(--uui-text-primary);
     }
 }
 
@@ -16,8 +16,9 @@
     margin-top: 24px;
 
     .title {
-        font-family: $font-museo-sans;
-        color: $gray80;
+        font-family: var(--uui-font);
+        font-weight: 600;
+        color: var(--uui-text-primary);
         font-size: 24px;
         margin-bottom: 6px;
     }
@@ -32,7 +33,7 @@
 
     &:hover {
         .anchor {
-            fill: $blue;
+            fill: var(--uui-link);
         }
     }
 }

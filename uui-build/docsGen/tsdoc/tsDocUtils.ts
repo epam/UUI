@@ -80,6 +80,7 @@ const CUSTOM_TAGS = {
             const valueParts = db.getChildNodes()[1]; // DocSection
             const firstValuePart = valueParts.getChildNodes()[0]; // DocParagraph
             const txt = firstValuePart.getChildNodes()[0]; // DocPlainText
+            const isInQuotes = (t: string) => ["'", '"'].indexOf(t[0]) !== -1 && ["'", '"'].indexOf(t[t.length - 1]) !== -1;
             if (txt instanceof DocPlainText) {
                 const txtValue = txt?.text?.trim();
                 if (typeof txtValue !== 'undefined') {
@@ -98,7 +99,7 @@ const CUSTOM_TAGS = {
                         default: {
                             if (!isNaN(+txtValue)) {
                                 value = +txtValue;
-                            } else if (txtValue[0] === '\'' && txtValue[txtValue.length - 1] === '\'') {
+                            } else if (isInQuotes(txtValue)) {
                                 value = txtValue.substring(1, txtValue.length - 1);
                             } else {
                                 return;

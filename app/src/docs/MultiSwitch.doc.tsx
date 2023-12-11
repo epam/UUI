@@ -13,8 +13,8 @@ export class MultiSwitchDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:MultiSwitchProps', component: uui.MultiSwitch },
-            [TSkin.UUI3_loveship]: { type: '@epam/loveship:MultiSwitchProps', component: loveship.MultiSwitch },
-            [TSkin.UUI4_promo]: { type: '@epam/promo:MultiSwitchProps', component: promo.MultiSwitch },
+            [TSkin.Loveship]: { type: '@epam/loveship:MultiSwitchProps', component: loveship.MultiSwitch },
+            [TSkin.Promo]: { type: '@epam/promo:MultiSwitchProps', component: promo.MultiSwitch },
         },
         doc: (doc: DocBuilder<uui.MultiSwitchProps<any>>) => {
             doc.merge('size', { defaultValue: '36' });

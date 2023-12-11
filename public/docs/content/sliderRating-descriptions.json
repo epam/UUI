@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "SliderRating is a user interface element used to evaluate something.",
-            "marks": []
-          }
-        ]
+        "text": "SliderRating is a user interface element used to evaluate something."
       }
     ]
   }
-}
+]

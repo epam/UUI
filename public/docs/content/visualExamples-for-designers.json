@@ -1,117 +1,89 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "data": {
+      "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/Cover.png",
+      "imageSize": {
+        "width": 934,
+        "height": 664.1777777777778
+      }
+    },
+    "type": "image",
+    "url": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/Cover.png",
+    "children": [
+      {
+        "text": ""
+      }
+    ],
+    "width": 934
+  },
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/Cover.png",
-          "imageSize": {
-            "width": 934,
-            "height": 664.1777777777778
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
+        "text": "Here you can find examples of UUI4 design concepts:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "ordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Here you can find examples of UUI4 design concepts:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "ordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://display.lab.epam.com/share/dUTdjxio8"
+                },
+                "type": "link",
+                "url": "https://display.lab.epam.com/share/dUTdjxio8",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://display.lab.epam.com/share/dUTdjxio8"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "English Platform",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": "English Platform"
                   }
                 ]
+              },
+              {
+                "text": ""
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                "text": ""
+              },
+              {
+                "data": {
+                  "url": "https://display.lab.epam.com/share/5z7q_Slks"
+                },
+                "type": "link",
+                "url": "https://display.lab.epam.com/share/5z7q_Slks",
+                "children": [
                   {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://display.lab.epam.com/share/5z7q_Slks"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "EPAM Plus",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
+                    "text": "EPAM Plus"
                   }
                 ]
+              },
+              {
+                "text": ""
               }
             ]
           }
@@ -119,4 +91,4 @@
       }
     ]
   }
-}
+]

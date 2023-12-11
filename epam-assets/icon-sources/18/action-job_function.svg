@@ -1,3 +1,5 @@
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M11 2C12.1046 2 13 2.89543 13 4V6H15C16.1046 6 17 6.89543 17 8V14C17 15.1046 16.1046 16 15 16H3C1.89 16 1 15.1 1 14V8C1 6.89 1.89 6 3 6H5V4C5 2.89 5.89 2 7 2H11ZM11 6V4H7V6H11Z" fill="#6C6F80"/>
+<g id="18/action-job_function">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M7.5 2.25H10.5C11.3284 2.25 12 2.92157 12 3.75V5.25H15C15.8284 5.25 16.5 5.92157 16.5 6.75V15C16.5 15.8284 15.8284 16.5 15 16.5H3C2.1675 16.5 1.5 15.825 1.5 15V6.75C1.5 5.9175 2.1675 5.25 3 5.25H6V3.75C6 2.9175 6.6675 2.25 7.5 2.25ZM10.5 5.25V3.75H7.5V5.25H10.5Z" fill="#6C6F80"/>
+</g>
 </svg>

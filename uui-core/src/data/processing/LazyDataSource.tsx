@@ -11,12 +11,19 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     cache: ListApiCache<TItem, TId, TFilter> = null;
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
         super(props);
-        this.props = props;
+        this.props = {
+            ...props,
+            flattenSearchResults: props.flattenSearchResults ?? true,
+        };
         this.initCache();
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
-        this.props = props;
+        this.props = {
+            ...this.props,
+            ...props,
+            flattenSearchResults: props.flattenSearchResults ?? true,
+        };
     }
 
     public getById = (id: TId): TItem | void => {

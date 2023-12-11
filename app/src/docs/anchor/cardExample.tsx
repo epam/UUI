@@ -5,7 +5,7 @@ import css from './cardExample.module.scss';
 import { ReactComponent as gitIcon } from '@epam/assets/icons/common/social-network-github-18.svg';
 import { ReactComponent as PinterestIcon } from '@epam/assets/icons/common/social-network-pinterest-18.svg';
 import { ReactComponent as InstagramIcon } from '@epam/assets/icons/common/social-network-instagram-18.svg';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/table-info-outline-18.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-12.svg';
 
 export function CardExample() {

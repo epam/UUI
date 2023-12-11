@@ -1,3 +1,8 @@
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M6 1L2 5H5V12H7V5H10L6 1ZM13 13V6H11V13H8L12 17L16 13H13Z" fill="#6C6F80"/>
+<g id="18/table-swap">
+<g id="icon">
+<path d="M5.25 5.11875V15H6.75V5.11875L7.95 6.3L9 5.25L6 2.25L3 5.25L4.05 6.3L5.25 5.11875Z" fill="#6C6F80"/>
+<path d="M12.75 12.8812L12.75 3L11.25 3L11.25 12.8812L10.05 11.7L9 12.75L12 15.75L15 12.75L13.95 11.7L12.75 12.8812Z" fill="#6C6F80"/>
+</g>
+</g>
 </svg>

@@ -1,281 +1,158 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Slider is",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "a",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "UI element that",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "enables users",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "to choose some (principally numeric) value or",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "a",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "range of values using",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "a",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "simple drag action.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          }
-        ]
+        "text": "Slider is",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "a",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "UI element that",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "enables users",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "to choose some (principally numeric) value or",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "a",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "range of values using",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "a",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "simple drag action.",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
       }
     ]
   }
-}
+]

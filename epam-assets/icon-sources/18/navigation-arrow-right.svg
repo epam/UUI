@@ -1,3 +1,5 @@
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 5L11 9L7 13V5Z" fill="#6C6F80"/>
+<g id="18/navigation-arrow-right">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M7.5 12.75L11.25 9L7.5 5.25V12.75Z" fill="#6C6F80"/>
+</g>
 </svg>

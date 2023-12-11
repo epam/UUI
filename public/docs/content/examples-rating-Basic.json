@@ -1,1 +1,11 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"Basic Rating usage","marks":[]}]}]}}
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Basic Rating usage"
+      }
+    ]
+  }
+]

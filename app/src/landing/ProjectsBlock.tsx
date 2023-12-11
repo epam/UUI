@@ -2,7 +2,7 @@ import * as React from 'react';
 import Measure from 'react-measure';
 import {
     Anchor, FlexRow, IconContainer, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import { projectsList } from '../docs/other/Projects.doc';
@@ -25,7 +25,7 @@ export class ProjectsBlock extends React.Component {
                         <div className={ css.layout } ref={ measureRef }>
                             <FlexRow cx={ css.projects } borderBottom>
                                 <div className={ css.wrapper }>
-                                    <Text font="museo-sans" cx={ css.header }>
+                                    <Text cx={ css.header }>
                                         Trusted by
                                     </Text>
                                     <div className={ css.content }>
@@ -51,11 +51,11 @@ export class ProjectsBlock extends React.Component {
                                             onClick={ () => this.sendEvent('All') }
                                         >
                                             <div className={ css.iconWrapper }>
-                                                <Text font="museo-sans" cx={ css.overflowProjects }>
+                                                <Text cx={ css.overflowProjects }>
                                                     {projectsList.length}
                                                 </Text>
                                             </div>
-                                            <Text cx={ css.projectCaptionAll } font="sans-semibold">
+                                            <Text cx={ css.projectCaptionAll } fontWeight="600">
                                                 View All
                                             </Text>
                                         </Anchor>

@@ -8,20 +8,20 @@ import { svc } from '../../../../services';
 import css from './DemoCode.module.scss';
 import { ReactComponent as CopyIcon } from '../../../../icons/icon-copy.svg';
 import { ReactComponent as NotificationIcon } from '../../../../icons/notification-check-fill-24.svg';
+import { PropDocPropsUnknown } from '@epam/uui-docs';
 
 interface IDemoCode {
-    showCode: boolean;
-    onToggleShowCode: () => void;
     tagName: string;
-    demoComponentProps: { [p: string]: any }
+    demoComponentProps: PropDocPropsUnknown
 }
 
 export function DemoCode(props: IDemoCode) {
-    const { showCode, onToggleShowCode, tagName, demoComponentProps } = props;
+    const [showCode, setShowCode] = React.useState(false);
+    const { tagName, demoComponentProps } = props;
     return (
         <>
             <FlexRow key="code-head" size="36" padding="12" spacing="6" borderBottom={ showCode }>
-                <Switch label="View Code" value={ showCode } onValueChange={ onToggleShowCode } />
+                <Switch label="View Code" value={ showCode } onValueChange={ () => setShowCode((prev) => !prev) } />
                 <FlexSpacer />
                 <Tooltip content="Copy code" placement="top">
                     <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(renderCode({ demoComponentProps, tagName }), showNotification) } />
@@ -53,7 +53,7 @@ function showNotification() {
  * It never throws error
  * @param o
  */
-function safeJsonStringify(o: any) {
+function safeJsonStringify(o: object) {
     let res = '...';
     try {
         res = JSON.stringify(o);
@@ -61,7 +61,7 @@ function safeJsonStringify(o: any) {
     return res;
 }
 
-function renderCode(params: { demoComponentProps: { [p: string]: any }, tagName: string }) {
+function renderCode(params: { demoComponentProps: PropDocPropsUnknown, tagName: string }) {
     const {
         demoComponentProps,
         tagName,
@@ -69,7 +69,7 @@ function renderCode(params: { demoComponentProps: { [p: string]: any }, tagName:
     const props: string[] = [];
     let children: string = null;
     Object.keys(demoComponentProps).forEach((name) => {
-        const val = demoComponentProps[name];
+        const val = demoComponentProps[name] as any;
         if (val === undefined) {
             props.push(`${name}={undefined}`);
         } else if (name === 'children') {

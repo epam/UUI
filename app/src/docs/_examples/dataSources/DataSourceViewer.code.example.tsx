@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/promo';
+import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/uui';
 import { FlexRow, PickerItem } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
 
@@ -36,9 +36,9 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
     };
     const clearAll = useCallback(
         () => {
-            onValueChange({ ...value, checked: [] });
+            view.clearAllChecked();
         },
-        [onValueChange, value],
+        [view],
     );
     
     const selectAll = useCallback(

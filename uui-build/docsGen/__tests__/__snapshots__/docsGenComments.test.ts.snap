@@ -36,7 +36,7 @@ exports[`docsGen:comments should convert comments 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "a",
       "name": "a",
       "typeValue": {
        "raw": "number"
@@ -47,7 +47,7 @@ exports[`docsGen:comments should convert comments 1`] = `
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "b",
       "name": "b",
       "comment": {
        "raw": [
@@ -114,7 +114,7 @@ exports[`docsGen:comments should convert property-level tags 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "a",
       "name": "a",
       "comment": {
        "raw": [
@@ -134,7 +134,7 @@ exports[`docsGen:comments should convert property-level tags 1`] = `
       "required": true
      },
      {
-      "uid": 2,
+      "uid": "b",
       "name": "b",
       "comment": {
        "raw": [
@@ -154,7 +154,7 @@ exports[`docsGen:comments should convert property-level tags 1`] = `
       "required": true
      },
      {
-      "uid": 3,
+      "uid": "c",
       "name": "c",
       "comment": {
        "raw": [
@@ -174,7 +174,7 @@ exports[`docsGen:comments should convert property-level tags 1`] = `
       "required": true
      },
      {
-      "uid": 4,
+      "uid": "d",
       "name": "d",
       "comment": {
        "raw": [

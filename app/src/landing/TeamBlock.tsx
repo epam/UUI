@@ -2,7 +2,7 @@ import * as React from 'react';
 import Measure from 'react-measure';
 import {
     FlexCell, FlexRow, FlexSpacer, LinkButton, Text,
-} from '@epam/promo';
+} from '@epam/uui';
 import { team } from '../docs';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './TeamBlock.module.scss';
@@ -19,7 +19,7 @@ export class TeamBlock extends React.Component {
                         <div className={ css.layout } ref={ measureRef }>
                             <FlexCell cx={ css.teams } width="100%">
                                 <FlexRow size="36" cx={ css.headerWrapper }>
-                                    <Text font="museo-sans" cx={ css.header }>
+                                    <Text cx={ css.header }>
                                         Team
                                     </Text>
                                     <FlexSpacer />
@@ -46,7 +46,7 @@ export class TeamBlock extends React.Component {
                                                     href={ link }
                                                     clickAnalyticsEvent={ analyticsEvents.welcome.team(name) }
                                                 />
-                                                <Text font="sans" lineHeight="24" fontSize="16" size="none">
+                                                <Text lineHeight="24" fontSize="16" size="none">
                                                     {position}
                                                 </Text>
                                             </div>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useEventPlateId, usePlateEditorRef, usePlateEditorState, isEditorFocused, PlateEditor } from '@udecode/plate-common';
+import { useEventPlateId, useEditorRef, useEditorState, isEditorFocused, PlateEditor } from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
 import { PositionedToolbar } from './PositionedToolbar';
-import { WithPlatePlugin } from "@udecode/plate-core";
+import { WithPlatePlugin } from '@udecode/plate-core';
 
 interface ToolbarButtonProps {
     editor: PlateEditor;
@@ -12,7 +12,7 @@ export interface IHasToolbarButton {
     bottomBarButton?: React.ComponentType<ToolbarButtonProps>
 }
 export function MarksToolbar() {
-    const editorRef = usePlateEditorRef();
+    const editorRef = useEditorRef();
 
     return (
         <PositionedToolbar isImage={ false } editor={ editorRef } plugins={ [] }>
@@ -25,7 +25,7 @@ export function MarksToolbar() {
 }
 
 export function MainToolbar() {
-    const editor = usePlateEditorState(useEventPlateId());
+    const editor = useEditorState(useEventPlateId());
     const isActive = isEditorFocused(editor);
 
     if (!isActive) {

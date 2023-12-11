@@ -1,3 +1,6 @@
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M5.5575 13.9425L6.6225 15L9 12.6225L11.3775 15L12.435 13.9425L9 10.5L5.5575 13.9425ZM12.4425 4.0575L11.3775 3L9 5.3775L6.6225 3L5.5575 4.0575L9 7.5L12.4425 4.0575Z" fill="#6C6F80"/>
+<g id="18/navigation-unfold-less">
+<path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M5.5575 13.9425L6.6225 15L9 12.6225L11.3775 15L12.435 13.9425L9 10.5L5.5575 13.9425ZM12.4425 4.0575L11.3775 3L9 5.3775L6.6225 3L5.5575 4.0575L9 7.5L12.4425 4.0575Z" fill="#6C6F80"/>
+<path id="icon_2" d="M6.675 15L5.625 13.95L9 10.575L12.375 13.95L11.325 15L9 12.675L6.675 15ZM9 7.425L5.625 4.05L6.675 3L9 5.325L11.325 3L12.375 4.05L9 7.425Z" fill="#6C6F80"/>
+</g>
 </svg>

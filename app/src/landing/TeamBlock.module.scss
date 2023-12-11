@@ -2,7 +2,7 @@
 
 .layout {
     margin: 0 auto;
-    background-color: $gray10;
+    background-color: var(--uui-surface-lower);
 
     .teams {
         display: flex;
@@ -12,7 +12,7 @@
         width: 100%;
         margin: 0 auto;
         padding: 54px 0 60px;
-        border-bottom: 1px solid $gray40;
+        border-bottom: 1px solid var(--uui-divider);
     }
 
     .header-wrapper {
