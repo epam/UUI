@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { CascadeSelectionTypes, DataRowProps } from '../../../../../../../types';
 import { ITree, NOT_FOUND_RECORD } from '../../..';
 import { CheckingService, UseCheckingServiceProps } from '../types';
@@ -37,7 +37,15 @@ const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: ITree<TItem, TId
 };
 
 export function useCheckingService<TItem, TId, TFilter = any>(
-    { tree, getParentId, checked = [], cascadeSelection}: UseCheckingServiceProps<TItem, TId, TFilter>,
+    {
+        tree,
+        getParentId,
+        checked = [],
+        setChecked,
+        cascadeSelection,
+        getRowOptions,
+        rowOptions,
+    }: UseCheckingServiceProps<TItem, TId, TFilter>,
 ): CheckingService {
     const checkingInfoById = useMemo(
         () => getCheckingInfo(checked, tree, getParentId),
@@ -46,7 +54,7 @@ export function useCheckingService<TItem, TId, TFilter = any>(
 
     const { checkedByKey, someChildCheckedByKey } = checkingInfoById;
 
-    const isRowChecked = (row: DataRowProps<TItem, TId>) => {
+    const isRowChecked = useCallback((row: DataRowProps<TItem, TId>) => {
         const exactCheck = !!checkedByKey[row.rowKey];
         if (exactCheck || cascadeSelection !== CascadeSelectionTypes.IMPLICIT) {
             return exactCheck;
@@ -54,7 +62,53 @@ export function useCheckingService<TItem, TId, TFilter = any>(
 
         const { path } = row;
         return path.some(({ id }) => !!checkedByKey[idToKey(id)]);
-    };
+    }, [checkedByKey]);
 
-    return useMemo(() => ({ isRowChecked }), [checkingInfoById, isRowChecked]);
+    const isRowChildrenChecked = useCallback((row: DataRowProps<TItem, TId>) => {
+        return someChildCheckedByKey[row.rowKey] ?? false;
+    }, [someChildCheckedByKey]);
+
+    const getRowProps = useCallback((item: TItem) => {
+        const externalRowOptions = getRowOptions ? getRowOptions(item) : {};
+        return { ...rowOptions, ...externalRowOptions };
+    }, [rowOptions, getRowOptions]);
+
+    const isItemCheckable = useCallback((item: TItem) => {
+        const rowProps = getRowProps(item);
+        return rowProps?.checkbox?.isVisible && !rowProps?.checkbox?.isDisabled;
+    }, [getRowProps]);
+
+    const handleCheck = useCallback((isChecked: boolean, checkedId?: TId) => {
+        const updatedChecked = tree.cascadeSelection(checked, checkedId, isChecked, {
+            cascade: cascadeSelection,
+            isSelectable: (item: TItem) => isItemCheckable(item),
+        });
+
+        setChecked(updatedChecked);
+    }, [tree, checked, setChecked, isItemCheckable, cascadeSelection]);
+
+    const handleSelectAll = useCallback((isChecked: boolean) => {
+        handleCheck(isChecked);
+    }, [handleCheck]);
+
+    const clearAllChecked = useCallback(() => {
+        handleCheck(false);
+    }, [handleCheck]);
+
+    return useMemo(
+        () => ({
+            isRowChecked,
+            isRowChildrenChecked,
+            handleCheck,
+            handleSelectAll,
+            clearAllChecked,
+        }),
+        [
+            isRowChecked,
+            isRowChildrenChecked,
+            handleCheck,
+            handleSelectAll,
+            clearAllChecked,
+        ],
+    );
 }
