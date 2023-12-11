@@ -31,6 +31,7 @@
     * Added `clearAllChecked()` method to `IDataSourceView` interface to support unchecking all without enabled `selectAll` flag.
     * Reduced amount of loaded data while clearing all checked elements in `cascadeSelection: false` mode.
 * [LazyDataSource]: fixed showing placeholders on `clearCache`.
+* [TextArea]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead. 
 * [TextPlaceholder]: fixed animation performance issues
 * [LazyListView]: fixed backgroundReload functionality.
     * Fixed showing blocker when filter/sorting changed.

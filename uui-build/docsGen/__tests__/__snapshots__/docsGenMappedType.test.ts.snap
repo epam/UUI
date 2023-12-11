@@ -25,7 +25,7 @@ exports[`docsGen:mappedType should convert mapped type 1`] = `
     },
     "props": [
      {
-      "uid": 1,
+      "uid": "[key: number]",
       "name": "[key: number]",
       "typeValue": {
        "raw": "string"
