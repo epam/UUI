@@ -49,11 +49,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
     };
 
-    public destroy() {
+    public deactivate() {
         this.isDestroyed = true;
     }
 
-    public init() {
+    public activate() {
         this.isDestroyed = false;
     }
 
