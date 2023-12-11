@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
-import { CascadeSelection, DataRowOptions, DataRowPathItem, DataRowProps, DataSourceListProps, DataSourceState, VirtualListRange } from '../../../../types';
+import { CascadeSelection, DataRowOptions, DataRowProps, DataSourceListProps, DataSourceState, VirtualListRange } from '../../../../types';
 import { idToKey } from '../helpers';
 import { FoldingService, CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
-import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { useDataRowProps } from './useDataRowProps';
+import { useBuildRows } from './useBuildRows';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId>, CheckingService<TItem, TId>, FocusService, SelectingService<TItem, TId> {
     tree: ITree<TItem, TId>;
@@ -55,7 +55,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
 
-    const { getRowProps, getLoadingRowProps, getEmptyRowProps } = useDataRowProps<TItem, TId, TFilter>({
+    const { getRowProps, getUnknownRowProps, getLoadingRowProps } = useDataRowProps<TItem, TId, TFilter>({
         tree,
         getId,
         dataSourceState,
@@ -64,129 +64,26 @@ export function useDataRows<TItem, TId, TFilter = any>(
         handleOnCheck,
         handleOnSelect,
         handleOnFocus,
-        handleSelectAll,
-        handleOnFold,
         isRowChecked,
         isRowChildrenChecked,
         isFlattenSearch,
         getEstimatedChildrenCount,
-        isFolded,
     });
 
-    const rebuildRows = () => {
-        const rows: DataRowProps<TItem, TId>[] = [];
-        const pinned: Record<string, number> = {};
-        const pinnedByParentId: Record<string, number[]> = {};
-
-        const iterateNode = (
-            parentId: TId,
-            appendRows: boolean, // Will be false, if we are iterating folded nodes.
-        ): NodeStats => {
-            let currentLevelRows = 0;
-            let stats = getDefaultNodeStats();
-
-            const layerRows: DataRowProps<TItem, TId>[] = [];
-            const nodeInfo = tree.getNodeInfo(parentId);
-
-            const ids = tree.getChildrenIdsByParentId(parentId);
-
-            for (let n = 0; n < ids.length; n++) {
-                const id = ids[n];
-                const item = tree.getById(id);
-                if (item === NOT_FOUND_RECORD) {
-                    continue;
-                }
-
-                const row = getRowProps(item, rows.length);
-                if (appendRows && (!isPartialLoad || (isPartialLoad && rows.length < lastRowIndex))) {
-                    rows.push(row);
-                    layerRows.push(row);
-                    currentLevelRows++;
-                }
-
-                stats = getRowStats(row, stats, cascadeSelection);
-                row.isLastChild = n === ids.length - 1 && nodeInfo.count === ids.length;
-                row.indent = isFlattenSearch ? 0 : row.path.length + 1;
-                const estimatedChildrenCount = getEstimatedChildrenCount(id);
-                if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
-                    const childrenIds = tree.getChildrenIdsByParentId(id);
-
-                    if (estimatedChildrenCount > 0) {
-                        row.isFolded = isFolded(item);
-                        row.onFold = row.isFoldable && handleOnFold;
-
-                        if (childrenIds.length > 0) {
-                        // some children are loaded
-                            const childStats = iterateNode(id, appendRows && !row.isFolded);
-                            row.isChildrenChecked = row.isChildrenChecked || childStats.isSomeChecked;
-                            row.isChildrenSelected = childStats.isSomeSelected;
-                            stats = mergeStats(stats, childStats);
-                        // while searching and no children in visible tree, no need to append placeholders.
-                        } else if (!dataSourceState.search && !row.isFolded && appendRows) {
-                        // children are not loaded
-                            const parentsWithRow = [...row.path, tree.getPathItem(item)];
-                            for (let m = 0; m < estimatedChildrenCount && rows.length < lastRowIndex; m++) {
-                                const loadingRow = getLoadingRowProps('_loading_' + rows.length, rows.length, parentsWithRow);
-                                loadingRow.indent = parentsWithRow.length + 1;
-                                loadingRow.isLastChild = m === estimatedChildrenCount - 1;
-                                rows.push(loadingRow);
-                                currentLevelRows++;
-                            }
-                        }
-                    }
-                }
-
-                row.isPinned = row.pin?.(row) ?? false;
-                if (row.isPinned) {
-                    pinned[idToKey(row.id)] = row.index;
-                    if (!pinnedByParentId[idToKey(row.parentId)]) {
-                        pinnedByParentId[idToKey(row.parentId)] = [];
-                    }
-                    pinnedByParentId[idToKey(row.parentId)]?.push(row.index);
-                }
-            }
-
-            const pathToParent = tree.getPathById(parentId);
-            const parent = tree.getById(parentId);
-            const parentPathItem = parent !== NOT_FOUND_RECORD ? [tree.getPathItem(parent)] : [];
-            const path = parentId ? [...pathToParent, ...parentPathItem] : pathToParent;
-            if (appendRows) {
-                let missingCount = getMissingRecordsCount(parentId, rows.length, currentLevelRows);
-                if (missingCount > 0) {
-                    stats.hasMoreRows = true;
-                }
-
-                // Append loading rows, stop at lastRowIndex (last row visible)
-                while (rows.length < lastRowIndex && missingCount > 0) {
-                    const row = getLoadingRowProps('_loading_' + rows.length, rows.length, path);
-                    rows.push(row);
-                    layerRows.push(row);
-                    currentLevelRows++;
-                    missingCount--;
-                }
-            }
-
-            const isListFlat = path.length === 0 && !layerRows.some((r) => r.isFoldable);
-            if (isListFlat || isFlattenSearch) {
-                layerRows.forEach((r) => {
-                    r.indent = 0;
-                });
-            }
-
-            return stats;
-        };
-
-        const rootStats = iterateNode(undefined, true);
-
-        return {
-            rows,
-            pinned,
-            pinnedByParentId,
-            stats: rootStats,
-        };
-    };
-
-    const { rows, pinned, pinnedByParentId, stats } = useMemo(() => rebuildRows(), []);
+    const { rows, pinned, pinnedByParentId, stats } = useBuildRows({
+        tree,
+        dataSourceState,
+        cascadeSelection,
+        isPartialLoad,
+        isFlattenSearch,
+        lastRowIndex,
+        getEstimatedChildrenCount,
+        getMissingRecordsCount,
+        isFolded,
+        handleOnFold,
+        getRowProps,
+        getLoadingRowProps,
+    });
 
     const isSelectAllEnabled = useMemo(() => props.selectAll === undefined ? true : props.selectAll, [props.selectAll]);
 
@@ -292,24 +189,11 @@ export function useDataRows<TItem, TId, TFilter = any>(
         return getRowsWithPinned(visibleRows);
     };
 
-    const getUnknownRow = (id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
-        const emptyRowProps = getEmptyRowProps(id, index, path);
-        const checkbox = (rowOptions?.checkbox?.isVisible || emptyRowProps.isChecked)
-            ? { isVisible: true, isDisabled: false }
-            : undefined;
-
-        return {
-            ...emptyRowProps,
-            checkbox,
-            isUnknown: true,
-        };
-    };
-
     const getById = (id: TId, index: number) => {
         // if originalTree is not created, but blank tree is defined, get item from it
         const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) {
-            return getUnknownRow(id, index, []);
+            return getUnknownRowProps(id, index, []);
         }
 
         return getRowProps(item, index);
