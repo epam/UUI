@@ -6,7 +6,6 @@ import { FoldingService } from '../tree/hooks/services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId> {
-
     tree: ITree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
     isPartialLoad?: boolean;
@@ -37,7 +36,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     getRowProps,
     getLoadingRowProps,
 }: UseBuildRowsProps<TItem, TId, TFilter>) {
-    const rebuildRows = () => {
+    const buildRows = () => {
         const rows: DataRowProps<TItem, TId>[] = [];
         const pinned: Record<string, number> = {};
         const pinnedByParentId: Record<string, number[]> = {};
@@ -150,5 +149,5 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => rebuildRows(), [tree]);
+    return useMemo(() => buildRows(), [tree]);
 }

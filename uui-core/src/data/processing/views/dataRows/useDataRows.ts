@@ -5,6 +5,7 @@ import { idToKey } from '../helpers';
 import { FoldingService, CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
+import { useSelectAll } from './useSelectAll';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId>, CheckingService<TItem, TId>, FocusService, SelectingService<TItem, TId> {
     tree: ITree<TItem, TId>;
@@ -85,26 +86,13 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getLoadingRowProps,
     });
 
-    const isSelectAllEnabled = useMemo(() => props.selectAll === undefined ? true : props.selectAll, [props.selectAll]);
-
-    const selectAll = useMemo(() => {
-        if (stats.isSomeCheckable && isSelectAllEnabled) {
-            return {
-                value: stats.isSomeCheckboxEnabled ? stats.isAllChecked : false,
-                onValueChange: handleSelectAll,
-                indeterminate: dataSourceState.checked && dataSourceState.checked.length > 0 && !stats.isAllChecked,
-            };
-        } else if (tree.getRootIds().length === 0 && rowOptions?.checkbox?.isVisible && isSelectAllEnabled) {
-            // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
-            return {
-                value: false,
-                onValueChange: () => {},
-                isDisabled: true,
-                indeterminate: dataSourceState.checked?.length > 0,
-            };
-        }
-        return null;
-    }, [tree, rowOptions, dataSourceState.checked, stats, isSelectAllEnabled, handleSelectAll]);
+    const selectAll = useSelectAll({
+        tree,
+        checked: dataSourceState.checked,
+        stats,
+        areCheckboxesVisible: rowOptions?.checkbox?.isVisible,
+        handleSelectAll,
+    });
 
     const getListProps = useCallback((): DataSourceListProps => {
         return {
