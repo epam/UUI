@@ -81,7 +81,7 @@ export interface IHasCaption {
 
 /** Component has label. E.g. User Name */
 export interface IHasLabel {
-    /** Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions. */
+    /** Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label. */
     label?: any;
 }
 
