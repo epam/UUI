@@ -45,7 +45,7 @@ export function formatResultsToMd(result: TCompareStatsResult) {
             const mdList = items.map((line) => `- ${line}`).join('\n');
             return `${label}:\n${mdList}`;
         }
-        return '<empty>';
+        return `${label}:\n<empty>`;
     }
     function formatAmountWithDiff(prev: number | undefined, next: number) {
         let mdTypesAmountChange = '(no baseline :warning:)';

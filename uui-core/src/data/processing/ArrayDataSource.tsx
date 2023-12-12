@@ -96,20 +96,18 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
-         
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
             () => new ArrayListView({ value, onValueChange }, viewProps),
             [...deps, this], // every time, datasource is updated, view should be recreated
         );
-         
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.subscribe(view);
-            return () => {
-                unsubscribe();
-            };
-        }, [view]);
+            return () => { unsubscribe(); };
+        }, [...deps, this]);
 
         view.update({ value, onValueChange }, viewProps);
         return view;
