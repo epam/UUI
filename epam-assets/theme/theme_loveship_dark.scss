@@ -457,7 +457,7 @@
 
     /* isInvalid color */
 
-    .uui-invalid:is(.uui-input-box, .uui-radio-input, .uui-checkbox-container) {
+    .uui-invalid:is(.uui-input-box, .uui-radio-input-container, .uui-checkbox-container) {
         --uui-error-50: var(--uui-error-60);
     }
 

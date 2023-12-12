@@ -16,7 +16,7 @@ function applyRadioInputMods(mods: RadioInputProps) {
     return [
         css.root,
         css['size-' + (mods.size || '18')],
-        'uui-radio-input',
+        'uui-radio-input-container',
         'uui-color-primary',
     ];
 }
