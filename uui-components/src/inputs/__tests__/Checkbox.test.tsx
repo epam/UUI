@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, CheckboxProps } from '../Checkbox';
-import { render, screen, fireEvent, setupComponentForTest } from '@epam/uui-test-utils';
+import { render, screen, fireEvent, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
 
 async function setupCheckbox(params: Partial<CheckboxProps>) {
     const { mocks, setProps } = await setupComponentForTest<CheckboxProps>(
@@ -38,6 +38,39 @@ describe('Checkbox', () => {
         expect(getValueChangeAnalyticsEvent).toHaveBeenCalled();
     });
 
+    it('should handle keyboard click', async () => {
+        const onValueChange = jest.fn();
+        const getValueChangeAnalyticsEvent = jest.fn();
+        await setupCheckbox({
+            value: false,
+            onValueChange,
+            getValueChangeAnalyticsEvent,
+        });
+        const input = screen.getByRole('checkbox');
+
+        await userEvent.type(input, '{space}');
+
+        expect(onValueChange).toHaveBeenCalledWith(true);
+        expect(getValueChangeAnalyticsEvent).toHaveBeenCalled();
+    });
+
+    it('should handle label click', async () => {
+        const onValueChange = jest.fn();
+        const getValueChangeAnalyticsEvent = jest.fn();
+        await setupCheckbox({
+            value: false,
+            onValueChange,
+            getValueChangeAnalyticsEvent,
+            label: 'Label',
+        });
+        const label = screen.getByText('Label');
+
+        label.click();
+
+        expect(onValueChange).toHaveBeenCalledWith(true);
+        expect(getValueChangeAnalyticsEvent).toHaveBeenCalled();
+    });
+
     it('should not handle change event when readonly', () => {
         const onValueChange = jest.fn();
         render(<Checkbox value={ false } onValueChange={ onValueChange } isReadonly />);
@@ -55,6 +88,7 @@ describe('Checkbox', () => {
         input.focus();
 
         expect(onFocus).toHaveBeenCalled();
+        expect(input).toHaveFocus();
     });
 
     it('should handle blur event', () => {
@@ -63,8 +97,10 @@ describe('Checkbox', () => {
         const input = screen.getByRole('checkbox');
 
         input.focus();
+        expect(input).toHaveFocus();
         input.blur();
 
         expect(onBlur).toHaveBeenCalled();
+        expect(input).not.toHaveFocus();
     });
 });
