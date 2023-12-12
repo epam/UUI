@@ -22,6 +22,9 @@ type MultiSwitchMods = {
 
 /** Represents the 'Core properties' for the MultiSwitch component. */
 export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
+    /**
+     * Defines an array of MultiSwitchItems.
+     */
     items: MultiSwitchItem<TValue>[];
 };
 
