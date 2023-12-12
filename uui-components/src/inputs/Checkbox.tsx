@@ -7,12 +7,23 @@ import {
 import { IconContainer } from '../layout/IconContainer';
 
 export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
-    /** Check icon */
-    icon?: Icon;
-    /** Indeterminate state icon */
-    indeterminateIcon?: Icon;
+    /** Render callback for checkbox label.
+     * If omitted, 'label' prop value will be rendered.
+     */
     renderLabel?(): React.ReactNode;
+
+    /** ID provided to the 'input' node */
     id?: string;
+
+    /** Check icon.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
+     */
+
+    icon?: Icon;
+    /** Indeterminate state icon.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
+     *  */
+    indeterminateIcon?: Icon;
 }
 
 export class Checkbox extends React.Component<CheckboxProps> {

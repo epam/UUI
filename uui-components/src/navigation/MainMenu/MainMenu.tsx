@@ -9,6 +9,9 @@ import { i18n } from '../../i18n';
 import css from './MainMenu.module.scss';
 
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    /** Render callback for the MainMenuDropdown body.
+     * If omitted, component children will be rendered.
+     */
     renderBody?: (props: DropdownBodyProps) => React.ReactNode;
 }
 

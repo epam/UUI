@@ -1,7 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { usePickerState } from './usePickerState';
-import { PickerListState, UsePickerListStateProps } from './types';
+import { PickerState, UsePickerStateProps } from './types';
 import isEqual from 'lodash.isequal';
+
+interface PickerListState<TId> extends PickerState {
+    visibleIds: TId[];
+    setVisibleIds: Dispatch<SetStateAction<TId[]>>;
+}
+
+interface UsePickerListStateProps<TId> extends UsePickerStateProps {
+    visibleIds?: TId[];
+}
 
 export function usePickerListState<TId>(props: UsePickerListStateProps<TId>): PickerListState<TId> {
     const pickerState = usePickerState(props);
