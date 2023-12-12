@@ -5,7 +5,7 @@ import { idToKey, setObjectFlag } from '../../helpers';
 export interface UseFoldingServiceProps<TItem, TId, TFilter = any> {
     getId: (item: TItem) => TId;
     dataSourceState: DataSourceState<TFilter, TId>,
-    setDataSourceState?: (dataSourceState: DataSourceState<TFilter, TId>) => void;
+    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
     isFoldedByDefault?(item: TItem): boolean;
 }
 
@@ -41,19 +41,21 @@ export function useFoldingService<TItem, TId, TFilter = any>({
 
     const handleOnFold = useCallback((rowProps: DataRowProps<TItem, TId>) => {
         if (setDataSourceState) {
-            const fold = !rowProps.isFolded;
-            const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
-            const scrollTo: ScrollToConfig = fold && rowProps.isPinned
-                ? { index: indexToScroll, align: 'nearest' }
-                : dataSourceState.scrollTo;
+            setDataSourceState((dsState) => {
+                const fold = !rowProps.isFolded;
+                const indexToScroll = rowProps.index - (rowProps.path?.length ?? 0);
+                const scrollTo: ScrollToConfig = fold && rowProps.isPinned
+                    ? { index: indexToScroll, align: 'nearest' }
+                    : dsState.scrollTo;
 
-            setDataSourceState({
-                ...dataSourceState,
-                scrollTo,
-                folded: setObjectFlag(dataSourceState && dataSourceState.folded, rowProps.rowKey, fold),
+                return {
+                    ...dsState,
+                    scrollTo,
+                    folded: setObjectFlag(dsState && dsState.folded, rowProps.rowKey, fold),
+                };
             });
         }
-    }, [setDataSourceState, dataSourceState]);
+    }, [setDataSourceState]);
 
     return useMemo(
         () => ({ handleOnFold, isFolded }),

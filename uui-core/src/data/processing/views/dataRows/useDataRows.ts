@@ -10,7 +10,7 @@ import { usePinnedRows } from './usePinnedRows';
 export interface UseDataRowsProps<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState: (dataSourceState: DataSourceState<TFilter, TId>) => void;
+    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 
     flattenSearchResults?: boolean;
     isPartialLoad?: boolean;
@@ -68,13 +68,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
         dataSourceState, setDataSourceState, isFoldedByDefault, getId,
     });
 
-    const focusService = useFocusService({
-        dataSourceState, setDataSourceState,
-    });
+    const focusService = useFocusService({ setDataSourceState });
 
-    const selectingService = useSelectingService({
-        dataSourceState, setDataSourceState,
-    });
+    const selectingService = useSelectingService({ setDataSourceState });
 
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
 
