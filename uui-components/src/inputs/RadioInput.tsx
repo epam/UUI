@@ -1,40 +1,15 @@
 import * as React from 'react';
-import {
-    IHasRawProps,
-    cx,
-    IHasCX,
-    IDisableable,
-    IEditable,
-    IHasLabel,
-    Icon,
-    uuiMod,
-    uuiElement,
-    ICanBeReadonly,
-    IAnalyticableOnChange,
-    UuiContexts,
-    uuiMarkers,
-    UuiContext,
-    IHasForwardedRef,
-    ICanFocus,
-} from '@epam/uui-core';
-import { IconContainer } from '../layout/IconContainer';
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, uuiMarkers, UuiContext, IHasForwardedRef, ICanFocus } from '@epam/uui-core';
+import { IconContainer } from '../layout';
 import css from './RadioInput.module.scss';
 
-export interface RadioInputProps
-    extends IHasCX,
-    IDisableable,
-    IEditable<boolean>,
-    IHasLabel,
-    ICanBeReadonly,
-    IAnalyticableOnChange<boolean>,
-    IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
-    IHasForwardedRef<HTMLLabelElement>,
-    ICanFocus<HTMLInputElement> {
+export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean>
+& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;
     id?: string;
-}
+};
 
 export class RadioInput extends React.Component<RadioInputProps> {
     static contextType = UuiContext;
