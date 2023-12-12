@@ -3,11 +3,15 @@ import * as uui from '@epam/uui';
 
 export interface LinkButtonMods {
     /**
+     * The color variable represents the color of an element.
      * @default 'blue'
      */
     color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
 }
 
+/**
+ * Represents the properties for the LinkButton component.
+ */
 export type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;
 
 export const LinkButton = createSkinComponent<uui.LinkButtonProps, LinkButtonProps>(

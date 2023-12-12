@@ -2,11 +2,20 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
 export type BadgeMods = {
-    /** @default 'neutral' */
+    /**
+     * The color of the badge.
+     * @default 'neutral'
+     */
     color?: uui.BadgeColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';
-    /** @default 'solid' */
+    /**
+     * The fill value for the badge.
+     * @default 'solid'
+     */
     fill?: uui.BadgeFill;
-    /** @default '36' */
+    /**
+     * The size of the badge.
+     * @default '36'
+     */
     size?: uui.BadgeSize;
 };
 

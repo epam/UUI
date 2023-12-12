@@ -1,6 +1,12 @@
+/**
+ * This type defines the size of a control.
+ */
 export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
 
 export interface SizeMod {
+    /**
+     * Represents the size of a control.
+     */
     size?: ControlSize;
 }
 
@@ -15,6 +21,9 @@ export interface IHasEditMode {
     mode?: 'form' | 'cell' | 'inline';
 }
 
+/**
+ * Represents the different edit modes available for editing data.
+ */
 export enum EditMode {
     FORM = 'form',
     CELL = 'cell',

@@ -2,7 +2,9 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
 export type StatusIndicatorMods = {
-    /** @default 'gray' */
+    /** Represents the color of a status indicator.
+     * @default 'gray'
+     */
     color?: uui.StatusIndicatorColors | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
 };
 

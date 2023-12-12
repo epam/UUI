@@ -5,11 +5,18 @@ import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './TextInput.module.scss';
 
+/**
+ * Represents the default size for a specific feature.
+ */
 const defaultSize = '36';
+/**
+ * Represents the default mode for editing a form.
+ */
 const defaultMode = EditMode.FORM;
 
 export interface TextInputMods extends IHasEditMode {
     /**
+     * Specifies the size of the control.
      * @default '36'
      */
     size?: ControlSize | '60';
@@ -23,7 +30,13 @@ export function applyTextInputMods(mods: TextInputMods) {
     ];
 }
 
+/**
+ * Represents the properties for a text input component.
+ */
 export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
+/**
+ * Represents the properties for the SearchInput component.
+ */
 export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
 export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, (props) => ({

@@ -4,11 +4,15 @@ import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
 export interface IconButtonMods {
     /**
+     * The color variable represents the color of an element.
      * @default 'night600'
      */
     color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
 }
 
+/**
+ * Props for IconButton component.
+ */
 export type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;
 
 export const IconButton = createSkinComponent<uui.IconButtonProps, IconButtonProps>(

@@ -3,11 +3,15 @@ import * as uui from '@epam/uui';
 
 export interface LinkButtonMods {
     /**
+     * The LinkButton color variable.
      * @default 'sky'
      */
     color?: 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 }
 
+/**
+ * The LinkButtonProps interface represents the properties of a LinkButton component.
+ */
 export type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;
 
 export const LinkButton = createSkinComponent<uui.LinkButtonProps, LinkButtonProps>(

@@ -2,8 +2,10 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
 export interface CountIndicatorMods {
-    /** Property is required */
-    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red' | null;
+    /**
+     * The color options available for a specific element. Property is required
+     */
+    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red';
 }
 
 export type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;
