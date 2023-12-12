@@ -592,6 +592,7 @@
     .uui-tag {
         &.uui-fill-outline {
             --uui-tag-fill: var(--uui-neutral-95);
+            --uui-tag-caption: var(--uui-text-primary);
         }
 
         &.uui-color-white {
@@ -608,7 +609,6 @@
                 --uui-tag-border: var(--uui-neutral-30);
                 --uui-tag-border-hover: var(--uui-neutral-30);
                 --uui-tag-bg-hover: var(--uui-neutral-10);
-                --uui-tag-caption: var(--uui-text-primary);
 
                 .uui-count_indicator {
                     --uui-count_indicator-bg: var(--uui-neutral-30);
@@ -630,7 +630,6 @@
 
             &.uui-fill-outline {
                 --uui-tag-bg: var(--uui-neutral-5);
-                --uui-tag-caption: var(--uui-text-primary);
                 --uui-tag-bg-hover: var(--uui-neutral-10);
                 --uui-tag-border: var(--uui-neutral-30);
                 --uui-tag-border-hover: var(--uui-neutral-30);
@@ -651,7 +650,6 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-caption: var(--uui-text-primary);
                 --uui-tag-bg: var(--uui-neutral-20);
                 --uui-tag-bg-hover: var(--uui-neutral-30);
                 --uui-tag-border: var(--uui-neutral-50);
@@ -659,7 +657,8 @@
             }
         }
 
-        &.uui-color-warning, &.uui-color-sun {
+        &.uui-color-warning,
+        &.uui-color-sun {
             --uui-tag-fill: var(--uui-neutral-100);
 
             &.uui-fill-solid {
@@ -700,7 +699,6 @@
 
             &.uui-fill-outline {
                 --uui-tag-fill: var(--uui-neutral-95);
-                --uui-tag-caption: var(--uui-text-primary);
 
                 .uui-count_indicator {
                     --uui-count_indicator-bg: var(--uui-neutral-30);
