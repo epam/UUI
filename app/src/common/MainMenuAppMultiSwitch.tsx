@@ -1,19 +1,22 @@
 import React from 'react';
 import css from './MainMenuAppMultiSwitch.module.scss';
 import { IAnalyticableOnChange, IEditable } from '@epam/uui-core';
-import { ButtonProps } from '@epam/uui-components';
-import {
-    Button, ControlGroup, ButtonMods, ButtonColor, SizeMod,
-} from '@epam/promo';
+import { Button, ControlGroup, ButtonProps, SizeMod } from '@epam/promo';
 import { svc } from '../services';
 
-type MainMenuAppMultiSwitchPropsItem<TValue> = ButtonProps & ButtonMods & {
+type MainMenuAppMultiSwitchPropsItem<TValue> = ButtonProps & {
     id: TValue;
 };
 
 export interface MainMenuAppMultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IAnalyticableOnChange<TValue> {
+    /**
+     * Defines an array of items for the MainMenuAppMultiSwitch component.
+     */
     items: MainMenuAppMultiSwitchPropsItem<TValue>[];
-    color?: ButtonColor;
+    /**
+     * Defines a component color.
+     */
+    color?: 'blue' | 'green' | 'red' | 'gray50' | 'gray';
 }
 
 export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppMultiSwitchProps<TValue>> {

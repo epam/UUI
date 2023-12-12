@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
@@ -15,6 +16,7 @@ export class NumericInputDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:NumericInputProps', component: uui.NumericInput },
             [TSkin.Loveship]: { type: '@epam/uui:NumericInputProps', component: loveship.NumericInput },
             [TSkin.Promo]: { type: '@epam/uui:NumericInputProps', component: promo.NumericInput },
+            [TSkin.Electric]: { type: '@epam/uui:NumericInputProps', component: electric.NumericInput },
         },
         doc: (doc: DocBuilder<uui.NumericInputProps>) => {
             doc.merge('value', { examples: [{ value: 0, isDefault: true }, 123, 123.99] });
