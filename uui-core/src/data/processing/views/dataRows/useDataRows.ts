@@ -1,29 +1,37 @@
 import { useCallback, useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
 import { CascadeSelection, DataRowOptions, DataRowProps, DataSourceListProps, DataSourceState, VirtualListRange } from '../../../../types';
-import { FoldingService, CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
+import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 
-export interface UseDataRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId>, CheckingService<TItem, TId>, FocusService, SelectingService<TItem, TId> {
+export interface UseDataRowsProps<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
+    setDataSourceState: (dataSourceState: DataSourceState<TFilter, TId>) => void;
+
     flattenSearchResults?: boolean;
     isPartialLoad?: boolean;
+
     rowOptions?: DataRowOptions<TItem, TId>;
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
 
-    getChildCount?(item: TItem): number;
-    getId: (item: TItem) => TId;
-    cascadeSelection?: CascadeSelection;
+    isFoldedByDefault?(item: TItem): boolean;
 
-    selectAll?: boolean;
+    getChildCount?(item: TItem): number;
+
+    getId: (item: TItem) => TId;
+    getParentId?(item: TItem): TId | undefined;
+
+    cascadeSelection?: CascadeSelection;
 
     getEstimatedChildrenCount: (id: TId) => number;
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
     lastRowIndex: number;
+
+    selectAll?: boolean;
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
@@ -32,7 +40,10 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const {
         tree,
         getId,
+        getParentId,
         dataSourceState,
+        setDataSourceState,
+
         flattenSearchResults,
         isPartialLoad,
         getRowOptions,
@@ -41,34 +52,49 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getEstimatedChildrenCount,
         getMissingRecordsCount,
         cascadeSelection,
+        isFoldedByDefault,
         lastRowIndex,
-
-        isFolded,
-        isRowChecked,
-        isRowChildrenChecked,
-
-        handleOnFold,
-        handleSelectAll,
-        handleOnCheck,
-        handleOnFocus,
-        handleOnSelect,
     } = props;
+
+    const checkingService = useCheckingService({
+        tree,
+        dataSourceState,
+        setDataSourceState,
+        cascadeSelection,
+        getParentId,
+    });
+
+    const foldingService = useFoldingService({
+        dataSourceState, setDataSourceState, isFoldedByDefault, getId,
+    });
+
+    const focusService = useFocusService({
+        dataSourceState, setDataSourceState,
+    });
+
+    const selectingService = useSelectingService({
+        dataSourceState, setDataSourceState,
+    });
 
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
 
     const { getRowProps, getUnknownRowProps, getLoadingRowProps } = useDataRowProps<TItem, TId, TFilter>({
         tree,
         getId,
-        dataSourceState,
-        getRowOptions,
-        rowOptions,
-        handleOnCheck,
-        handleOnSelect,
-        handleOnFocus,
-        isRowChecked,
-        isRowChildrenChecked,
+
         isFlattenSearch,
+        dataSourceState,
+
+        rowOptions,
+        getRowOptions,
+
         getEstimatedChildrenCount,
+
+        handleOnCheck: checkingService.handleOnCheck,
+        handleOnSelect: selectingService.handleOnSelect,
+        handleOnFocus: focusService.handleOnFocus,
+        isRowChecked: checkingService.isRowChecked,
+        isRowChildrenChecked: checkingService.isRowChildrenChecked,
     });
 
     const { rows, pinned, pinnedByParentId, stats } = useBuildRows({
@@ -80,10 +106,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
         lastRowIndex,
         getEstimatedChildrenCount,
         getMissingRecordsCount,
-        isFolded,
-        handleOnFold,
         getRowProps,
         getLoadingRowProps,
+        ...foldingService,
     });
 
     const withPinnedRows = usePinnedRows({
@@ -97,7 +122,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         checked: dataSourceState.checked,
         stats,
         areCheckboxesVisible: rowOptions?.checkbox?.isVisible,
-        handleSelectAll,
+        handleSelectAll: checkingService.handleSelectAll,
     });
 
     const getById = (id: TId, index: number) => {

@@ -1,15 +1,16 @@
 import { useCallback, useMemo } from 'react';
-import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps } from '../../../../../../types';
-import { ITree, NOT_FOUND_RECORD } from '../..';
+import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps, DataSourceState } from '../../../../../types';
+import { ITree, NOT_FOUND_RECORD } from '../../tree';
 
-export interface UseCheckingServiceProps<TItem, TId> {
+export interface UseCheckingServiceProps<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
-    checked?: TId[];
-    setChecked: (checked: TId[]) => void;
     getParentId?: (item: TItem) => TId;
     cascadeSelection?: CascadeSelection;
     rowOptions?: DataRowOptions<TItem, TId>;
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
+
+    dataSourceState: DataSourceState<TFilter, TId>,
+    setDataSourceState?: (dataSourceState: DataSourceState<TFilter, TId>) => void;
 }
 
 export interface CheckingService<TItem, TId> {
@@ -57,13 +58,15 @@ export function useCheckingService<TItem, TId>(
     {
         tree,
         getParentId,
-        checked = [],
-        setChecked,
+        dataSourceState,
+        setDataSourceState,
         cascadeSelection,
         getRowOptions,
         rowOptions,
     }: UseCheckingServiceProps<TItem, TId>,
 ): CheckingService<TItem, TId> {
+    const checked = dataSourceState.checked ?? [];
+
     const checkingInfoById = useMemo(
         () => getCheckingInfo(checked, tree, getParentId),
         [tree, checked],
@@ -101,8 +104,8 @@ export function useCheckingService<TItem, TId>(
             isSelectable: (item: TItem) => isItemCheckable(item),
         });
 
-        setChecked(updatedChecked);
-    }, [tree, checked, setChecked, isItemCheckable, cascadeSelection]);
+        setDataSourceState({ ...dataSourceState, checked: updatedChecked });
+    }, [tree, checked, dataSourceState, setDataSourceState, isItemCheckable, cascadeSelection]);
 
     const handleSelectAll = useCallback((isChecked: boolean) => {
         handleCheck(isChecked);

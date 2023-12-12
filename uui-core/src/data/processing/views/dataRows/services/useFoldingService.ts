@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../../types';
-import { idToKey, setObjectFlag } from '../../../helpers';
+import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../types';
+import { idToKey, setObjectFlag } from '../../helpers';
 
 export interface UseFoldingServiceProps<TItem, TId, TFilter = any> {
     getId: (item: TItem) => TId;
