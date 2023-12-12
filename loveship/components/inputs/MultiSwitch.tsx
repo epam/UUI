@@ -1,15 +1,15 @@
 import { devLogger, createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export type MultiSwitchColor = 'sky' | 'night600' | 'gray';
-
-export interface MultiSwitchMods {
+type MultiSwitchMods = {
     /**
+     * Defines component color.
      * @default 'sky'
      */
-    color?: MultiSwitchColor;
-}
+    color?: 'sky' | 'night600' | 'gray';
+};
 
+/** Represents the properties for the MultiSwitch component. */
 export type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;
 
 export const MultiSwitch = createSkinComponent<uui.MultiSwitchProps<any>, MultiSwitchProps<any>>(
