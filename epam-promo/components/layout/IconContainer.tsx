@@ -1,10 +1,9 @@
 import * as uui from '@epam/uui';
-import { ControlIconProps } from '@epam/uui-components';
-import { devLogger, withMods } from '@epam/uui-core';
+import * as uuiComponents from '@epam/uui-components';
+import { devLogger, createSkinComponent } from '@epam/uui-core';
 import css from './IconContainer.module.scss';
 
 export type IconContainerColors = 'blue' | 'green' | 'amber' | 'red' | 'cyan' | 'orange' | 'purple' | 'violet' | 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';
-export const allIconContainerColors: IconContainerColors[] = ['blue', 'green', 'amber', 'red', 'cyan', 'orange', 'purple', 'violet', 'white', 'gray5', 'gray10', 'gray20', 'gray30', 'gray40', 'gray50', 'gray60', 'gray70', 'gray80', 'gray90'];
 
 export interface IconContainerMods {
     /**
@@ -22,11 +21,10 @@ export function applyIconContainerMods(mods: IconContainerMods) {
     ];
 }
 
-export type IconContainerProps = ControlIconProps & IconContainerMods;
+export type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;
 
-export const IconContainer = withMods<ControlIconProps, IconContainerMods>(
+export const IconContainer = createSkinComponent<uuiComponents.ControlIconProps, IconContainerProps>(
     uui.IconContainer,
-    applyIconContainerMods,
     (props) => {
         if (__DEV__) {
             if (props.color) {
@@ -35,4 +33,5 @@ export const IconContainer = withMods<ControlIconProps, IconContainerMods>(
         }
         return null;
     },
+    applyIconContainerMods,
 );
