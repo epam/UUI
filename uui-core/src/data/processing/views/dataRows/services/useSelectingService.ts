@@ -2,8 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { DataRowProps, DataSourceState } from '../../../../../types';
 
 export interface UseSelectingServiceProps<TId, TFilter = any> {
-    dataSourceState: DataSourceState<TFilter, TId>,
-    setDataSourceState?: (dataSourceState: DataSourceState<TFilter, TId>) => void;
+    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 }
 
 export interface SelectingService<TItem, TId> {
@@ -11,15 +10,14 @@ export interface SelectingService<TItem, TId> {
 }
 
 export function useSelectingService<TItem, TId, TFilter = any>({
-    dataSourceState,
     setDataSourceState,
 }: UseSelectingServiceProps<TId, TFilter>): SelectingService<TItem, TId> {
     const handleOnSelect = useCallback((rowProps: DataRowProps<TItem, TId>) => {
-        setDataSourceState?.({
-            ...dataSourceState,
+        setDataSourceState((dsState) => ({
+            ...dsState,
             selectedId: rowProps.id,
-        });
-    }, [dataSourceState, setDataSourceState]);
+        }));
+    }, [setDataSourceState]);
 
     return useMemo(
         () => ({ handleOnSelect }),

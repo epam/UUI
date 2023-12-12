@@ -10,7 +10,7 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> {
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
 
     dataSourceState: DataSourceState<TFilter, TId>,
-    setDataSourceState?: (dataSourceState: DataSourceState<TFilter, TId>) => void;
+    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 }
 
 export interface CheckingService<TItem, TId> {
@@ -104,8 +104,8 @@ export function useCheckingService<TItem, TId>(
             isSelectable: (item: TItem) => isItemCheckable(item),
         });
 
-        setDataSourceState({ ...dataSourceState, checked: updatedChecked });
-    }, [tree, checked, dataSourceState, setDataSourceState, isItemCheckable, cascadeSelection]);
+        setDataSourceState((dsState) => ({ ...dsState, checked: updatedChecked }));
+    }, [tree, checked, setDataSourceState, isItemCheckable, cascadeSelection]);
 
     const handleSelectAll = useCallback((isChecked: boolean) => {
         handleCheck(isChecked);
