@@ -7,42 +7,29 @@ import { CountIndicator } from '../widgets';
 import css from './Button.module.scss';
 
 const defaultSize = '36';
-/**
- * Represents the color of a button.
- */
-export type ButtonColor = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
-/**
- * Represents the fill type for a button.
- */
-export type ButtonFill = 'solid' | 'outline' | 'ghost' | 'none';
 
-export interface ButtonMods {
+export type ButtonMods = {
     /**
-     * The size of the control.
+     * Defines component size.
      * @default '36'
      */
     size?: ControlSize | '18';
     /**
-     * The fill option for a button.
+     * Defines component fill style.
      * @default 'solid'
      */
-    fill?: ButtonFill;
+    fill?: 'solid' | 'outline' | 'ghost' | 'none';
     /**
-     * The color of a button.
+     * Defines component color.
      * @default 'primary'
      */
-    color?: ButtonColor;
-}
+    color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
+};
 
-/**
- * Represents the properties for the ButtonCore component.
- * This type extends the uuiButtonProps type from the UUI library and omits the 'count' property.
- */
+/** Represents the 'Core properties' for the Button component, omitting the 'count' property. */
 export type ButtonCoreProps = Omit<uuiButtonProps, 'count'> & {};
 
-/**
- * Represents the props for a Button component.
- */
+/** Represents the props for a Button component. */
 export type ButtonProps = ButtonMods & ButtonCoreProps;
 
 export function applyButtonMods(mods: ButtonProps) {

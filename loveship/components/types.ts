@@ -1,15 +1,15 @@
-/** Represents a control shape that can be used in an application. */
+/** Defines a control shape. */
 export type ControlShape = 'square' | 'round';
 export const allBorderStyles: ControlShape[] = ['square', 'round'];
 
-/** Represents the fill style of a shape. */
+/** Defines component fill style. */
 export type FillStyle = 'solid' | 'white' | 'light' | 'none';
 export const allFillStyles: FillStyle[] = [
     'solid', 'white', 'light', 'none',
 ];
 
 /**
- * Represents the control size options.
+ * Defines the control size.
  */
 export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
 export const allSizes: ControlSize[] = [
@@ -17,7 +17,7 @@ export const allSizes: ControlSize[] = [
 ];
 
 /**
- * Represents the size of a text.
+ * Defines the size of a text.
  */
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
 export const allTextSizes: TextSize[] = [
@@ -25,7 +25,7 @@ export const allTextSizes: TextSize[] = [
 ];
 
 /**
- * Represents the size of a row in a grid layout.
+ * Defines the size of a row.
  */
 export type RowSize = '24' | '30' | '36' | '42' | '48';
 export const allRowSizes: RowSize[] = [
@@ -33,7 +33,7 @@ export const allRowSizes: RowSize[] = [
 ];
 
 /**
- * Represents a primary color used in the loveship Epam design system.
+ * Defines a primary colors.
  */
 export type EpamPrimaryColor = 'sky' | 'grass' | 'sun' | 'fire';
 export const allEpamPrimaryColors: EpamPrimaryColor[] = [
@@ -41,7 +41,7 @@ export const allEpamPrimaryColors: EpamPrimaryColor[] = [
 ];
 
 /**
- * Represents an additional color used in the loveship Epam system.
+ * Defines an additional colors.
  */
 export type EpamAdditionalColor = 'cobalt' | 'violet' | 'fuchsia';
 export const allEpamAdditionalColors: EpamAdditionalColor[] = [
@@ -49,7 +49,7 @@ export const allEpamAdditionalColors: EpamAdditionalColor[] = [
 ];
 
 /**
- * Represents a grayscale color from the loveship Epam color palette.
+ * Defines a grayscale colors.
  */
 export type EpamGrayscaleColor = 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 export const allEpamGrayscaleColors: EpamGrayscaleColor[] = [
@@ -57,7 +57,7 @@ export const allEpamGrayscaleColors: EpamGrayscaleColor[] = [
 ];
 
 /**
- * Represents a color value in the loveship Epam color palette.
+ * Defines all types of colors: primary & additional & grayscale.
  */
 export type EpamColor = EpamPrimaryColor | EpamAdditionalColor | EpamGrayscaleColor;
 export const commonControlColors: EpamColor[] = [
@@ -65,7 +65,7 @@ export const commonControlColors: EpamColor[] = [
 ];
 
 /**
- * Represents the font styles available for text rendering.
+ * Defines the font styles.
  */
 export type FontStyle = 'sans' | 'sans-semibold' | 'sans-light';
 export const allFontStyles: FontStyle[] = [
@@ -73,19 +73,20 @@ export const allFontStyles: FontStyle[] = [
 ];
 
 /**
- * Represents the color modifiers of a component.
+ * Defines the color modifiers of a component.
  */
 export interface ColorMod {
     /**
-     * Represents the color of a component.
+     * Defines component color.
      */
     color?: EpamColor;
 }
 
 /**
- * Represents a size modifier for a control.
+ * Represents a size modifier.
  */
 export interface SizeMod {
+    /** Defines component size. */
     size?: ControlSize;
 }
 
@@ -93,12 +94,14 @@ export interface SizeMod {
  * Represents a font customization for a text element.
  */
 export interface FontMod {
+    /** Defines component font. */
     font?: FontStyle;
 }
 
 /**
- * Defines a row size modification object.
+ * Defines component row size modifier.
  */
 export interface RowSizeMod {
+    /** Defines component row size. */
     size?: RowSize;
 }

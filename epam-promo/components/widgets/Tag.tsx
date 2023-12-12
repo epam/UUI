@@ -2,9 +2,9 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
-export type TagMods = {
+type TagMods = {
     /**
-     * The color variable represents the primary color of an element.
+     * Defines component color.
      * @default 'gray30'
      */
     color?: EpamPrimaryColor | 'white' | 'gray10' | 'gray30' | 'gray70';

@@ -6,21 +6,24 @@ import css from './TextArea.module.scss';
 const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
 
-export interface TextAreaMods extends types.IHasEditMode {
+type TextAreaMods = types.IHasEditMode & {
     /**
-     * The size of the control.
+     * Defines component size.
      * @default '36'
      * Size '48' is deprecated, and will be removed in future release
      */
     size?: types.ControlSize;
-}
+};
 
-export function applyTextAreaMods(mods: TextAreaMods) {
+function applyTextAreaMods(mods: TextAreaMods) {
     return [
-        css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)],
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
+/** Represents the properties of a TextArea component. */
 export type TextAreaProps = UuiTextAreaProps & TextAreaMods;
 
 export const TextArea = withMods<UuiTextAreaProps, TextAreaMods>(
