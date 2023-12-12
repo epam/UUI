@@ -1,37 +1,33 @@
-import { devLogger, withMods } from '@epam/uui-core';
-import { MultiSwitch as UuiMultiSwitch, UuiMultiSwitchColor, MultiSwitchProps as UuiMultiSwitchProps } from '@epam/uui';
+import { devLogger, createSkinComponent } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 
-export type MultiSwitchColor = 'sky' | 'night600' | 'gray';
-
-export interface MultiSwitchMods {
+type MultiSwitchMods = {
     /**
+     * Defines component color.
      * @default 'sky'
      */
-    color?: MultiSwitchColor;
-}
-
-const colorToMod: Record<MultiSwitchColor, UuiMultiSwitchColor> = {
-    sky: 'primary',
-    night600: 'secondary',
-    gray: 'secondary',
+    color?: 'sky' | 'night600' | 'gray';
 };
 
-export type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;
+/** Represents the properties for the MultiSwitch component. */
+export type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;
 
-export const MultiSwitch = withMods<UuiMultiSwitchProps<any>, MultiSwitchMods>(
-    UuiMultiSwitch,
-    () => [],
+export const MultiSwitch = createSkinComponent<uui.MultiSwitchProps<any>, MultiSwitchProps<any>>(
+    uui.MultiSwitch,
     (props) => {
-        devLogger.warnAboutDeprecatedPropValue<MultiSwitchProps<any>, 'color'>({
-            component: 'MultiSwitch',
-            propName: 'color',
-            propValue: props.color,
-            propValueUseInstead: 'gray',
-            condition: () => ['night600'].indexOf(props.color) !== -1,
-        });
+        const validColor = props.color === 'night600' ? 'gray' : props.color;
 
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<MultiSwitchProps<any>, 'color'>({
+                component: 'MultiSwitch',
+                propName: 'color',
+                propValue: props.color,
+                propValueUseInstead: 'gray',
+                condition: () => ['night600'].indexOf(props.color) !== -1,
+            });
+        }
         return {
-            color: colorToMod[props.color ?? 'sky'],
+            color: validColor || 'sky',
         };
     },
-) as <TValue>(props: MultiSwitchProps<TValue>) => JSX.Element;
+);
