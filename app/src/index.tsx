@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import { init as initApm } from '@elastic/apm-rum';
@@ -70,11 +70,11 @@ function UuiEnhancedApp() {
 }
 
 function initApp() {
-    render(
+    const root = createRoot(document.getElementById('root'));
+    root.render(
         <React.StrictMode>
             <UuiEnhancedApp />
         </React.StrictMode>,
-        document.getElementById('root'),
     );
 }
 
