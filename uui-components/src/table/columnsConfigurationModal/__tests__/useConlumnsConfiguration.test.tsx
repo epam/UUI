@@ -1,5 +1,6 @@
 import { renderHook } from '@epam/uui-test-utils';
-import { UseColumnsConfigurationProps, useColumnsConfiguration } from '../hooks/useColumnsConfiguration';
+import { useColumnsConfiguration } from '../hooks/useColumnsConfiguration';
+import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
 
 const initialColumnsConfig = {
     name: {
@@ -109,10 +110,10 @@ const columns = [
 describe('useColumnsConfiguration', () => {
     it('should render hook', () => {
         const { result } = renderHook(() => useColumnsConfiguration({
-            initialColumnsConfig,
-            defaultConfig,
-            columns,
-        } as UseColumnsConfigurationProps<any, any, any>));
+            initialColumnsConfig: initialColumnsConfig as ColumnsConfig,
+            defaultConfig: defaultConfig as ColumnsConfig,
+            columns: columns as DataColumnProps<any, any, any>[],
+        }));
 
         expect(result.current.columnsConfig).toEqual(initialColumnsConfig);
 
