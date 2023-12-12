@@ -34,9 +34,9 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     }
 
     public destroy() {
-        this.views.forEach((view) => view.destroy());
+        this.views.forEach((view) => view.deactivate());
         this.views.clear();
-        this.subscriptions.forEach((_, view) => view.destroy());
+        this.subscriptions.forEach((_, view) => view.deactivate());
         this.subscriptions.clear();
     }
 
@@ -53,10 +53,11 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     };
     
     protected subscribe(view: IDataSourceView<TItem, TId, TFilter>) {
+        view.activate();
         this.subscriptions.set(view, view._forceUpdate);
         return () => {
             this.subscriptions.delete(view);
-            view.destroy();
+            view.deactivate();
         };
     }
     
