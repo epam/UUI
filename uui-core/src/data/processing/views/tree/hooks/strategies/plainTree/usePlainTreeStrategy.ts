@@ -1,11 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
-import { useCheckingService, useFocusService, useSelectingService } from '../../services';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
-import { useFoldingService } from '../../services/useFoldingService';
 import { NOT_FOUND_RECORD } from '../../../ITree';
 
 export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
@@ -18,15 +16,11 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     const {
         getId,
         dataSourceState,
-        setDataSourceState,
         getFilter,
         getSearchFields,
         sortBy,
-        cascadeSelection,
-        getParentId,
         rowOptions,
         getRowOptions,
-        isFoldedByDefault,
         getChildCount,
     } = props;
 
@@ -44,32 +38,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         { tree: searchTree, sortBy, dataSourceState },
         deps,
     );
-
-    const { checked } = dataSourceState;
-    const setChecked = useCallback(
-        (newChecked: TId[]) => setDataSourceState({ ...dataSourceState, checked: newChecked }),
-        [setDataSourceState, dataSourceState],
-    );
-
-    const checkingService = useCheckingService({
-        tree,
-        checked,
-        setChecked,
-        cascadeSelection,
-        getParentId,
-    });
-
-    const foldingService = useFoldingService({
-        dataSourceState, setDataSourceState, isFoldedByDefault, getId,
-    });
-
-    const focusService = useFocusService({
-        dataSourceState, setDataSourceState,
-    });
-
-    const selectingService = useSelectingService({
-        dataSourceState, setDataSourceState,
-    });
 
     const getEstimatedChildrenCount = useCallback((id: TId) => {
         if (id === undefined) return undefined;
@@ -130,10 +98,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     return useMemo(
         () => ({
             tree,
-            ...checkingService,
-            ...foldingService,
-            ...focusService,
-            ...selectingService,
             rowOptions,
             getRowOptions,
             getEstimatedChildrenCount,
@@ -144,8 +108,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         }),
         [
             tree,
-            checkingService,
-            foldingService,
             rowOptions,
             getRowOptions,
             getEstimatedChildrenCount,

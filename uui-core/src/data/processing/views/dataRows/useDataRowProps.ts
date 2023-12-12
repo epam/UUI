@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { DataRowOptions, DataRowPathItem, DataRowProps, DataSourceState } from '../../../../types';
-import { CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
+import { CheckingService, FocusService, SelectingService } from './services';
 import { ITree } from '../tree';
 import { idToKey } from '../helpers';
 
