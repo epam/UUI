@@ -84,7 +84,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
-         
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const view = useMemo(
             () => new AsyncListView({ value, onValueChange }, viewProps),
@@ -94,10 +94,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.subscribe(view);
-            return () => {
-                unsubscribe();
-            };
-        }, [view]);
+            return () => { unsubscribe(); };
+        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
 
         view.update({ value, onValueChange }, viewProps);
         this.loadViewData(view);

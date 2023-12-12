@@ -23,6 +23,7 @@ interface EditableDocContentState {
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
     titleRef: RefObject<HTMLDivElement> = createRef();
+    abortController: AbortController;
 
     state: EditableDocContentState = {
         content: null,
@@ -62,14 +63,26 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
     }
 
     componentDidMount() {
-        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
+        this.abortController = new AbortController();
+        svc.uuiApi.processRequest(
+            '/api/get-doc-content',
+            'POST',
+            { name: this.props.fileName },
+            { fetchOptions: { signal: this.abortController.signal } },
+        )
             .then((res) => {
                 this.setState((prevState) => ({
                     content: res.content,
                     isLoading: !prevState.isLoading,
                 }));
                 this.scrollToView();
-            });
+            }).catch(() => {});
+    }
+
+    componentWillUnmount(): void {
+        if (!this.abortController.signal.aborted) {
+            this.abortController.abort();
+        }
     }
 
     saveDocContent = (content: any) => {
@@ -82,7 +95,6 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
 
     render() {
         const { isLoading } = this.state;
-
         return (
             <div className={ css.wrapper }>
                 {this.props.title && (
