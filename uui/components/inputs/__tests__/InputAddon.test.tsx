@@ -8,10 +8,5 @@ describe('InputAddon', () => {
             const tree = renderer.create(<InputAddon content="Test Content" cx="custom-class" />).toJSON();
             expect(tree).toMatchSnapshot();
         });
-
-        it('should be rendered correctly', () => {
-            const tree = renderer.create(<InputAddon content="Test Content" cx="custom-class" />).toJSON();
-            expect(tree).toMatchSnapshot();
-        });
     });
 });
