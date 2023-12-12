@@ -3,13 +3,16 @@ import cx from 'classnames';
 import { IHasCaption, IHasCX } from '@epam/uui-core';
 import css from './CountIndicator.module.scss';
 
-export type CountIndicatorMods = {
-    /** Property is required */
+type CountIndicatorMods = {
+    /**
+     * Defines component color.
+     */
     color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical';
 };
 
 export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
     /**
+     * Defines component size.
      * @default '24'
      */
     size?: '24' | '18' | '12';
