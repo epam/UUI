@@ -7,7 +7,7 @@ import { canAcceptDrop, isColumnAlwaysPinned } from '../columnsConfigurationUtil
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
-export interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
+interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
     initialColumnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
