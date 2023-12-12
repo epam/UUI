@@ -5,6 +5,7 @@ import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
 
+/** Object representing a map size. */
 const mapSize = {
     48: '48',
     42: '48',
@@ -17,22 +18,32 @@ const mapSize = {
 export const defaultBadgeSize = '36';
 export const defaultBadgeFill = 'solid';
 
+/** Represents the types of badge fills available. */
 export type BadgeFill = 'solid' | 'outline';
+/** Represents the size options for a badge. */
 export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
+/** Represents the color of a badge. */
 export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 export interface BadgeMods {
+    /** Represents the color of a badge. */
     color?: BadgeColor;
-    /** @default 'solid' */
+    /** The fill option for a badge.
+     * @default 'solid'
+     */
     fill?: BadgeFill;
-    /** @default '36' */
+    /** The size of the badge.
+     * @default '36'
+     */
     size?: BadgeSize;
 }
 
 export type BadgeCoreProps = ButtonProps & {
+    /** Represents a boolean flag for indicator. */
     indicator?: boolean;
 };
 
+/** Represents the properties of a badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeProps) {

@@ -4,12 +4,15 @@ import { IHasCaption, IHasCX } from '@epam/uui-core';
 import css from './CountIndicator.module.scss';
 
 export type CountIndicatorMods = {
-    /** Property is required */
-    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;
+    /**
+     * The color options available for a specific element. Property is required
+     */
+    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical';
 };
 
 export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
     /**
+     * The size of the CountIndicator.
      * @default '24'
      */
     size?: '24' | '18' | '12';

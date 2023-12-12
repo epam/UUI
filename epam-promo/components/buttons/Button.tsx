@@ -3,14 +3,24 @@ import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { FillStyle } from '../types';
 import css from './Button.module.scss';
 
+/** Represents a button color. */
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
 
 export interface ButtonMods {
-    /** @default 'solid' */
+    /**
+     * The fill style of an element.
+     * @default 'solid'
+     */
     fill?: FillStyle;
-    /** @default 'blue' */
+    /**
+     * The color of the button.
+     * @default 'blue'
+     */
     color?: ButtonColor;
-    /** @default '36' */
+    /**
+     * The size of the button
+     * @default '36'
+     */
     size?: uui.ButtonMods['size'];
 }
 
@@ -21,6 +31,9 @@ const mapFill: Record<FillStyle, uui.ButtonFill> = {
     none: 'none',
 };
 
+/**
+ * Represents the properties for a Button component.
+ */
 export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
 export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(

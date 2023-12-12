@@ -5,6 +5,7 @@ import { ReactComponent as RadioPoint } from '../../icons/radio-point.svg';
 
 export interface RadioInputMods {
     /**
+     * Represents the size of an element.
      * @default '18'
      */
     size?: '12' | '18';

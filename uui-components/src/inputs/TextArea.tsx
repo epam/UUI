@@ -1,18 +1,5 @@
 import * as React from 'react';
-import {
-    IHasCX,
-    IDisableable,
-    IEditable,
-    IHasPlaceholder,
-    uuiMod,
-    uuiElement,
-    uuiMarkers,
-    ICanBeReadonly,
-    IHasRawProps,
-    CX,
-    cx,
-    ICanFocus,
-} from '@epam/uui-core';
+import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, CX, cx, ICanFocus } from '@epam/uui-core';
 import css from './TextArea.module.scss';
 
 export interface TextAreaProps
@@ -39,11 +26,12 @@ export interface TextAreaProps
     maxLength?: number;
     /** HTML id attribute to put on the HTML Input element */
     id?: string;
-
+    /** A forwarded ref for an HTML input element. */
     forwardedRef?: React.ForwardedRef<HTMLInputElement>;
 }
 
 interface TextAreaState {
+    /** Represents whether the element is in focus or not. */
     inFocus?: boolean;
 }
 

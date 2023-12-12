@@ -6,16 +6,31 @@ import css from './Button.module.scss';
 
 const defaultSize = '36';
 
+/**
+ * Represents the possible color types for a button.
+ */
 export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
 
 export interface ButtonMods {
-    /** @default "sky"  */
+    /**
+     * The color of the button.
+     * @default "sky"
+     */
     color?: ButtonColorType;
-    /** @default '36' */
+    /**
+     * The size of the control.
+     * @default '36'
+     */
     size?: uui.ControlSize | '18';
-    /** @default 'square' */
+    /**
+     * Control shape variable.
+     * @default 'square'
+     */
     shape?: ControlShape;
-    /** @default 'solid' */
+    /**
+     * The fill style of a shape.
+     * @default 'solid'
+     */
     fill?: FillStyle;
 }
 
@@ -26,6 +41,7 @@ const mapFill: Record<FillStyle, uui.ButtonFill> = {
     none: 'none',
 };
 
+/** Represents the properties that can be passed to the Button component. */
 export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
