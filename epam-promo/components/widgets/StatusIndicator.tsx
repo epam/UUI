@@ -2,9 +2,9 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
-export type StatusIndicatorMods = {
+type StatusIndicatorMods = {
     /**
-     * The color variable of an element.
+     * Defines component color.
      * @default 'gray'
      */
     color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';

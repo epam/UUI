@@ -8,16 +8,16 @@ import css from './NumericInput.module.scss';
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;
 
-export type NumericInputMods = IHasEditMode & {
+type NumericInputMods = IHasEditMode & {
     /**
-     * Represents the size of a control.
+     * Defines component size.
      * @default '36'.
      * Size '48' is deprecated and will be removed in future release
      */
     size?: ControlSize;
 };
 
-export function applyNumericInputMods(mods: NumericInputMods) {
+function applyNumericInputMods(mods: NumericInputMods) {
     return [
         textInputCss.root,
         css.root,
@@ -27,6 +27,7 @@ export function applyNumericInputMods(mods: NumericInputMods) {
     ];
 }
 
+/** Represents the properties of a NumericInput component. */
 export type NumericInputProps = uuiNumericInputProps & NumericInputMods;
 
 export const NumericInput = withMods<uuiNumericInputProps, NumericInputMods>(

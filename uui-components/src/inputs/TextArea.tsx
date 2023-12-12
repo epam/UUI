@@ -31,7 +31,7 @@ export interface TextAreaProps
 }
 
 interface TextAreaState {
-    /** Represents whether the element is in focus or not. */
+    /** Defines boolean state of element focus. */
     inFocus?: boolean;
 }
 

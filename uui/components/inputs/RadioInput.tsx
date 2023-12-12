@@ -3,14 +3,15 @@ import { RadioInput as uuiRadioInput, RadioInputProps as UuiRadioInputProps } fr
 import css from './RadioInput.module.scss';
 import { ReactComponent as RadioPoint } from '../../icons/radio-point.svg';
 
-export interface RadioInputMods {
+type RadioInputMods = {
     /**
-     * Represents the size of an element.
+     * Defines component size.
      * @default '18'
      */
     size?: '12' | '18';
-}
+};
 
+/** Represents the properties of a RadioInput component. */
 export type RadioInputProps = RadioInputMods & UuiRadioInputProps;
 
 function applyRadioInputMods(mods: RadioInputProps) {

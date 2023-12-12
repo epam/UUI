@@ -3,19 +3,19 @@ import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
-export type BadgeMods = {
+type BadgeMods = {
     /**
-     * The color of an element.
+     * Defines component color.
      * @default 'blue'
      */
     color?: EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10'| 'gray30'| 'gray60';
     /**
-     * The fill property of the Badge component.
+     * Defines component fill style.
      * @default 'solid'
      */
     fill?: uui.BadgeMods['fill'] | 'semitransparent';
     /**
-     * Represents the size of a badge.
+     * Defines component size.
      * @default 36
      */
     size?: uui.BadgeMods['size'];
@@ -28,9 +28,7 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-/**
- * Represents the properties of a badge component.
- */
+/** Represents the properties of a badge component. */
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
 export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(

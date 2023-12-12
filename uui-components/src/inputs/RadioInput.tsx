@@ -5,13 +5,9 @@ import css from './RadioInput.module.scss';
 
 export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean>
 & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & {
-    /** Represents an icon. */
     icon?: Icon;
-    /** Renders the label for the component. */
     renderLabel?(): React.ReactNode;
-    /** Represents the tab index of an HTML element. */
     tabIndex?: number;
-    /** Represents an identifier. */
     id?: string;
 };
 

@@ -5,7 +5,6 @@ import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
 
-/** Object representing a map size. */
 const mapSize = {
     48: '48',
     42: '48',
@@ -18,32 +17,27 @@ const mapSize = {
 export const defaultBadgeSize = '36';
 export const defaultBadgeFill = 'solid';
 
-/** Represents the types of badge fills available. */
-export type BadgeFill = 'solid' | 'outline';
-/** Represents the size options for a badge. */
-export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
-/** Represents the color of a badge. */
-export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
-
-export interface BadgeMods {
-    /** Represents the color of a badge. */
-    color?: BadgeColor;
-    /** The fill option for a badge.
+export type BadgeMods = {
+    /** Defines component color. */
+    color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+    /**
+     * Defines component fill style.
      * @default 'solid'
      */
-    fill?: BadgeFill;
-    /** The size of the badge.
+    fill?: 'solid' | 'outline';
+    /**
+     * Defines component size.
      * @default '36'
      */
-    size?: BadgeSize;
-}
+    size?: '18' | '24' | '30' | '36' | '42' | '48';
+};
 
 export type BadgeCoreProps = ButtonProps & {
-    /** Represents a boolean flag for indicator. */
+    /** Defines a boolean flag to display an indicator. */
     indicator?: boolean;
 };
 
-/** Represents the properties of a badge component. */
+/** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeProps) {
@@ -57,7 +51,7 @@ export function applyBadgeMods(mods: BadgeProps) {
     ];
 }
 
-const mapCountIndicatorSizes: Record<BadgeSize, CountIndicatorProps['size']> = {
+const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['size']> = {
     18: '12',
     24: '18',
     30: '18',

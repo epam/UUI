@@ -3,6 +3,7 @@
 **What's New**
 * [NumericInput]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
 * [Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
+* [RadioInput]: in Loveship skin removed property 'theme'.
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
