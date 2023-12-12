@@ -4,7 +4,7 @@ import { FlexRow, Button, Panel } from '@epam/uui';
 export default function StyledButtonsExample() {
     return (
         <div>
-            <Panel style={ { background: 'var(--uui-surface-higher)' } }>
+            <Panel>
                 <FlexRow padding="6" vPadding="12" spacing="12">
                     <Button color="primary" caption="Caption" onClick={ () => null } />
                     <Button color="critical" caption="Caption" onClick={ () => null } />
