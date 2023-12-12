@@ -9,16 +9,28 @@ export type TextFontStyle = 'normal' | 'italic';
 export type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 
 export type TextMods = TextSettings & {
-    /** @default primary */
+    /**
+     * Represents the color of a text.
+     * @default primary.
+     */
     color?: TextColor;
 };
 
 export type TextCoreProps = UuiComponents.TextProps & TextSettings & {
-    /** @default 400 */
+    /**
+     * Defines text font weight value
+     * @default 400
+     */
     fontWeight?: TextFontWeight;
-    /** @default normal */
+    /**
+     * Determines the style of the text font.
+     * @default normal
+     */
     fontStyle?: TextFontStyle;
-    /** @default 36 */
+    /**
+     * Represents the size of a text.
+     * @default 36
+     */
     size?: TextSize;
 };
 
