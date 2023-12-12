@@ -22,9 +22,13 @@ export function applyCheckboxMods(mods: CheckboxMods) {
     ];
 }
 
-const applyUUICheckboxProps = (props: CheckboxMods) => ({
-    icon: props.size === '12' ? Check_12 : Check_18,
-    indeterminateIcon: props.size === '12' ? PartlySelect_12 : PartlySelect_18,
-});
+const applyUUICheckboxProps = (props: CheckboxProps) => {
+    const defaultIcon = props.size === '12' ? Check_12 : Check_18;
+    const defaultIndeterminateIcon = props.size === '12' ? PartlySelect_12 : PartlySelect_18;
+    return {
+        icon: props.icon ? props.icon : defaultIcon,
+        indeterminateIcon: props.indeterminateIcon ? props.indeterminateIcon : defaultIndeterminateIcon,
+    };
+};
 
 export const Checkbox = withMods<uuiComponents.CheckboxProps, CheckboxMods>(uuiComponents.Checkbox, applyCheckboxMods, applyUUICheckboxProps);
