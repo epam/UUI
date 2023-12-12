@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, BadgeColor, ScrollBars } from '@epam/uui';
+import { Badge, BadgeMods, ScrollBars } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { InfoRow } from './InfoRow';
 
@@ -11,7 +11,7 @@ export function PersonInfo({ data }: PersonInfoProps) {
     return (
         <ScrollBars>
             <InfoRow title="Name" value={ data.name } />
-            <InfoRow title="Status" value={ <Badge size="24" fill="outline" indicator caption={ data.profileStatus } color={ data.profileStatus.toLowerCase() as BadgeColor } /> } />
+            <InfoRow title="Status" value={ <Badge size="24" fill="outline" indicator caption={ data.profileStatus } color={ data.profileStatus.toLowerCase() as BadgeMods['color'] } /> } />
             <InfoRow title="Job Title" value={ data.jobTitle } />
             <InfoRow title="Title Level" value={ data.titleLevel } />
             <InfoRow title="Office" value={ data.officeAddress } />
