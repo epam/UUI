@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { DataColumnProps, useArrayDataSource, useTree } from '@epam/uui-core';
+import { DataColumnProps, useDataRows, useTree } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -12,16 +12,10 @@ export default function ArrayDataTableExample() {
         items: demoData.featureClasses,
         getId: (item) => item.id,
         dataSourceState: value,
+        setDataSourceState: onValueChange,
     }, []);
 
-    const dataSource = useArrayDataSource<FeatureClass, number, unknown>(
-        {
-            items: demoData.featureClasses,
-        },
-        [],
-    );
-
-    const view = dataSource.useView(value, onValueChange, {});
+    const { getListProps, getVisibleRows } = useDataRows(tree);
 
     const productColumns: DataColumnProps<FeatureClass>[] = useMemo(
         () => [
@@ -52,8 +46,8 @@ export default function ArrayDataTableExample() {
     return (
         <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
-                { ...view.getListProps() }
-                getRows={ view.getVisibleRows }
+                { ...getListProps() }
+                getRows={ getVisibleRows }
                 value={ value }
                 onValueChange={ onValueChange }
                 columns={ productColumns }

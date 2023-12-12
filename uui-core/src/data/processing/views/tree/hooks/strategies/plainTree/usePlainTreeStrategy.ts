@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
-import { useCheckingService, useFocusService } from '../../services';
+import { useCheckingService, useFocusService, useSelectingService } from '../../services';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
@@ -67,6 +67,10 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         dataSourceState, setDataSourceState,
     });
 
+    const selectingService = useSelectingService({
+        dataSourceState, setDataSourceState,
+    });
+
     const getEstimatedChildrenCount = useCallback((id: TId) => {
         if (id === undefined) return undefined;
 
@@ -129,11 +133,14 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             ...checkingService,
             ...foldingService,
             ...focusService,
+            ...selectingService,
             rowOptions,
             getRowOptions,
             getEstimatedChildrenCount,
             getMissingRecordsCount,
             lastRowIndex,
+            getId,
+            dataSourceState,
         }),
         [
             tree,
@@ -144,6 +151,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getEstimatedChildrenCount,
             getMissingRecordsCount,
             lastRowIndex,
+            dataSourceState,
         ],
     );
 }
