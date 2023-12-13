@@ -17,22 +17,27 @@ const mapSize = {
 export const defaultBadgeSize = '36';
 export const defaultBadgeFill = 'solid';
 
-export type BadgeFill = 'solid' | 'outline';
-export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
-export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
-
-export interface BadgeMods {
-    color?: BadgeColor;
-    /** @default 'solid' */
-    fill?: BadgeFill;
-    /** @default '36' */
-    size?: BadgeSize;
-}
+export type BadgeMods = {
+    /** Defines component color. */
+    color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
+    fill?: 'solid' | 'outline';
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: '18' | '24' | '30' | '36' | '42' | '48';
+};
 
 export type BadgeCoreProps = ButtonProps & {
+    /** Defines a boolean flag to display an indicator. */
     indicator?: boolean;
 };
 
+/** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeProps) {
@@ -46,7 +51,7 @@ export function applyBadgeMods(mods: BadgeProps) {
     ];
 }
 
-const mapCountIndicatorSizes: Record<BadgeSize, CountIndicatorProps['size']> = {
+const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['size']> = {
     18: '12',
     24: '18',
     30: '18',

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
@@ -15,6 +16,7 @@ export class MultiSwitchDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:MultiSwitchProps', component: uui.MultiSwitch },
             [TSkin.Loveship]: { type: '@epam/loveship:MultiSwitchProps', component: loveship.MultiSwitch },
             [TSkin.Promo]: { type: '@epam/promo:MultiSwitchProps', component: promo.MultiSwitch },
+            [TSkin.Electric]: { type: '@epam/uui:MultiSwitchProps', component: electric.MultiSwitch },
         },
         doc: (doc: DocBuilder<uui.MultiSwitchProps<any>>) => {
             doc.merge('size', { defaultValue: '36' });

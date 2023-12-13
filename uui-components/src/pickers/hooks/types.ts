@@ -144,36 +144,17 @@ export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId
 
 export type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};
 
-export interface LastUsedRec<TId> {
-    id: TId;
-    /* For possible future uses */
-    sessionStartTime: number;
-    selectionTime: number;
-}
-
-export interface UsePickerListStateProps<TId> extends UsePickerStateProps {
-    visibleIds?: TId[];
-}
-
-export interface PickerListState<TId> extends PickerState {
-    visibleIds: TId[];
-    setVisibleIds: Dispatch<SetStateAction<TId[]>>;
-}
-
-export interface UsePickerModalStateProps<TItem, TId> extends UsePickerStateProps {
-    selection: TItem | TId | TId[] | TItem[];
-    selectionMode: 'single' | 'multi';
-}
-
-export interface PickerModalState<TItem, TId> extends PickerState {
-    selection: TItem | TId | TId[] | TItem[];
-    setSelection: Dispatch<SetStateAction<TItem | TId | TId[] | TItem[]>>;
-}
-
 export interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /** Render callback for custom filters block. This block will be rendered befor the items list.
+     If omitted, nothing will be rendered.
+     */
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
+    /** Render callback for modal footer.
+     If omitted, default footer will be rendered.
+     */
     renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;
     /**
+     * If true, prevent modal window closing by click outside modal
      * @default false
      */
     disallowClickOutside?: boolean;

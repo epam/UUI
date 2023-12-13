@@ -6,7 +6,7 @@ import {
 import { PickerTogglerProps } from '../PickerToggler';
 import { PickerBodyBaseProps } from '../PickerBodyBase';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
-import { handleDataSourceKeyboard, DataSourceKeyboardParams } from '../KeyboardUtils';
+import { handleDataSourceKeyboard } from '../KeyboardUtils';
 import { i18n } from '../../i18n';
 import { getMaxItems } from '../helpers';
 import { usePicker } from './usePicker';
@@ -141,7 +141,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
     const handlePickerInputKeyboard = (
-        rows: DataSourceKeyboardParams['rows'],
+        rows: DataRowProps<TItem, TId>[],
         e: React.KeyboardEvent<HTMLElement>,
         actualSearch?: string,
     ) => {

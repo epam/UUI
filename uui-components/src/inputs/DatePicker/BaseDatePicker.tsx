@@ -14,7 +14,7 @@ import { Dropdown } from '../../overlays';
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
-export interface DatePickerState extends PickerBodyValue<string> {
+interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
     inputValue: string | null;
 }
