@@ -9,7 +9,7 @@ import {
     FlexRow,
     Text,
     Switch,
-    Badge, BadgeColor,
+    Badge, BadgeMods,
 } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
@@ -29,7 +29,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeColor } caption={ p.profileStatus } />
+                    <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeMods['color'] } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
@@ -101,7 +101,7 @@ export default function FiltersPanelExample() {
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
-                maxCount: 1,
+                togglerWidth: 400,
                 dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
             },
             {

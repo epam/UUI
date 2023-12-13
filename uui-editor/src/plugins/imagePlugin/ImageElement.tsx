@@ -1,28 +1,26 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 import {
-    Box,
     PlateElement,
     PlateElementProps,
     Value,
 } from '@udecode/plate-common';
 import {
-    Caption,
-    CaptionTextarea,
     Image,
-    Resizable,
     useMediaState,
-    useResizableStore,
 } from '@udecode/plate-media';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import cx from 'classnames';
 import css from './ImageElement.module.scss';
+import { Resizable, ResizeHandle } from '../../implementation/Resizable';
 import { IImageElement, PlateImgAlign } from '../../types';
+import { useResizableStore } from '@udecode/plate-resizable';
+import { Caption, CaptionTextarea } from '@udecode/plate-caption';
 
 interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
     align: PlateImgAlign;
 }
 
-const MAX_IMG_WIDTH = 12;
+const MIN_IMG_WIDTH = 12;
 const MIN_CAPTION_WIDTH = 92;
 
 export function ImageElement({
@@ -35,17 +33,6 @@ export function ImageElement({
     const focused = useFocused();
     const selected = useSelected();
     const readOnly = useReadOnly();
-
-    const aligns = [
-        align === 'center' && css.alignImageCenter,
-        align === 'left' && css.alignImageLeft,
-        align === 'right' && css.alignImageRight,
-    ];
-
-    const resizeHandleClasses = [
-        css.resizeHandleOpacity,
-        focused && selected && css.resizeHandleVisible, // for mobile
-    ];
 
     useMediaState();
 
@@ -60,45 +47,47 @@ export function ImageElement({
         setWidth(imageRef.current.width);
     };
 
+    const aligns = [
+        align === 'center' && css.alignCenter,
+        align === 'left' && css.alignLeft,
+        align === 'right' && css.alignRight,
+    ];
+
+    const visible = focused && selected;
+
+    const resizeHandleClasses = [
+        css.resizeHandleOpacity,
+        visible && css.resizeHandleVisible, // for mobile
+    ];
+
     return (
         <PlateElement className={ cx(className) } { ...props }>
             <figure className={ cx(css.group) } contentEditable={ false }>
                 <Resizable
-                    className={ cx(...aligns) }
+                    align={ align }
                     options={ {
-                        renderHandleLeft: (htmlProps) => (
-                            <Box
-                                { ...htmlProps }
-                                className={ cx(
-                                    css.leftHandle,
-                                    ...resizeHandleClasses,
-                                ) }
-                            />
-                        ),
-                        renderHandleRight: (htmlProps) => (
-                            <Box
-                                { ...htmlProps }
-                                className={ cx(
-                                    css.rightHandle,
-                                    ...resizeHandleClasses,
-                                ) }
-                            />
-                        ),
                         align,
                         readOnly,
-                        minWidth: MAX_IMG_WIDTH,
+                        minWidth: MIN_IMG_WIDTH,
                     } }
                 >
-                    {}
+                    <ResizeHandle
+                        options={ { direction: 'left' } }
+                        className={ cx(resizeHandleClasses) }
+                    />
                     <Image
                         { ...nodeProps }
                         className={ cx(
                             css.image,
-                            focused && selected && css.selectedImage, // for mobile
+                            visible && css.selectedImage, // for mobile
                             nodeProps?.className,
                         ) }
                         ref={ imageRef }
                         onLoad={ imageUpdated }
+                    />
+                    <ResizeHandle
+                        options={ { direction: 'right' } }
+                        className={ cx(resizeHandleClasses) }
                     />
                 </Resizable>
 

@@ -1,41 +1,56 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
-import { Button as uuiButton, ButtonFill, ControlSize, ButtonCoreProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.module.scss';
 
 const defaultSize = '36';
 
-export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
+/** Defines component color. */
+type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
 
-export interface ButtonMods {
+type ButtonMods = {
+    /**
+     * Defines component color.
+     * @default "sky"
+     */
     color?: ButtonColorType;
-    /** @default '36' */
-    size?: ControlSize | '18';
-    /** @default 'square' */
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: uui.ControlSize | '18';
+    /**
+     * Defines component shape.
+     * @default 'square'
+     */
     shape?: ControlShape;
-    /** @default 'solid' */
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
     fill?: FillStyle;
-}
+};
 
-const mapFill: Record<FillStyle, ButtonFill> = {
+const mapFill: Record<FillStyle, uui.ButtonMods['fill']> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
     none: 'none',
 };
 
-export type ButtonProps = ButtonCoreProps & ButtonMods;
+/** Represents the properties of a Button component. */
+export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
-export function applyButtonMods(mods: ButtonProps) {
+function applyButtonMods(mods: ButtonProps) {
     return [
         `uui-size-${mods.size || defaultSize}`,
         css['style-' + (mods.shape || 'square')],
     ];
 }
 
-export const Button = createSkinComponent<ButtonCoreProps, ButtonProps>(
-    uuiButton,
+export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
+    uui.Button as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({

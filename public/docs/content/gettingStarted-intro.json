@@ -17,7 +17,20 @@
         ]
       },
       {
-        "text": " or higher."
+        "text": " or higher; "
+      },
+      {
+        "type": "link",
+        "url": "https://react.dev/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "React"
+          }
+        ]
+      },
+      {
+        "text": " 16 or higher."
       }
     ]
   }

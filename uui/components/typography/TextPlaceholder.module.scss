@@ -1,35 +1,46 @@
 @keyframes skeleton_loading {
-    0% { background-position: -300px 0; }
-    100% { background-position: 0 0; }
+    0% { transform: translateX(-300px); }
+    100% { transform: translateX(0); }
 }
 
 .root {
     --uui-text_placeholder: var(--uui-skeleton);
-    --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--uui-neutral-40) 0, var(--uui-neutral-10) 150px, var(--uui-neutral-40) 300px);
+    --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--uui-neutral-40) 0, var(--uui-neutral-30) 50%, var(--uui-neutral-40) 100%);
     //
     display: flex;
     flex-wrap: wrap;
 }
 
 .loading-word {
+    position: relative;
+    overflow: hidden;
     user-select: none;
     font-family: 'Redacted', cursive; // https://fonts.google.com/specimen/Redacted
     letter-spacing: -1px;
     margin: 0 3px 3px 0;
     color: var(--uui-text_placeholder);
     vertical-align: 1px; // to fix vertical over-sizing of line
+
     &:last-child {
         margin-right: 0;
     }
 
     &.animated-loading {
         color: transparent;
-        background: var(--uui-text_placeholder-gradient);
-        background-size: 200% 100%;
         background-clip: border-box;
         -webkit-background-clip: text;
-        background-repeat: repeat;
-        background-attachment: fixed;
-        animation: skeleton_loading 1.3s ease infinite;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: var(--uui-text_placeholder-gradient);
+            background-repeat: repeat;
+            background-attachment: fixed;
+            animation: skeleton_loading 2s ease infinite;
+        }
     }
 }

@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { uuiRoot } from '../constants';
 
+export function getUuiVersion() {
+    const str = fs.readFileSync(path.resolve(uuiRoot, 'lerna.json')).toString();
+    return JSON.parse(str).version;
+}
+
 export function makeRelativeToUuiRoot(fullPath: string) {
     return removeTrailingDots(path.relative(uuiRoot, fullPath).replace(/\\/g, '/'));
 }

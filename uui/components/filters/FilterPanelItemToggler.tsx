@@ -13,7 +13,7 @@ export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
     selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;
-    maxWidth?: string;
+    maxWidth?: number;
     size?: '24' | '30' | '36' | '42' | '48';
     cx?: IHasCX;
     predicateName: string | null;

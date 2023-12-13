@@ -3,7 +3,7 @@ import { Text } from '@epam/uui';
 import { IPropDocEditor } from '../types';
 import { stringifyUnknown } from './utils/propEditorUtils';
 
-export function JsonView(props: IPropDocEditor) {
+export function JsonView(props: IPropDocEditor<object>) {
     const { value } = props;
     if (value != null) {
         return (<Text>{ stringifyUnknown(value) }</Text>);

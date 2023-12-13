@@ -1,5 +1,5 @@
 import { Portal } from '@epam/uui-components';
-import { findNode, isEditorFocused, toDOMNode, usePlateEditorState } from '@udecode/plate-common';
+import { findNode, isEditorFocused, toDOMNode, useEditorState } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from 'classnames';
 import React, { useRef } from 'react';
@@ -21,7 +21,7 @@ interface ToolbarProps {
 
 export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
-    const editor = usePlateEditorState();
+    const editor = useEditorState();
     const inFocus = isEditorFocused(editor);
     const zIndex = useLayer()?.zIndex;
 

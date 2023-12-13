@@ -15,6 +15,16 @@ describe('TsDocUtils', () => {
             TsDocUtils.isCommentEmpty(TsDocUtils.parseComment(ONLY_TAGS_2)),
         ).toBeTruthy();
     });
+    it('Should resolve @default tag with string value in double/single quotes', () => {
+        const ONLY_TAGS_1 = '/** @default "hi" */';
+        const ONLY_TAGS_2 = '/** @default \'hi\' */';
+        expect(
+            TsDocUtils.parseComment(ONLY_TAGS_1).tags['@default'] === 'hi',
+        ).toBeTruthy();
+        expect(
+            TsDocUtils.parseComment(ONLY_TAGS_2).tags['@default'] === 'hi',
+        ).toBeTruthy();
+    });
     it('Should treat comment as non-empty if there is some text not related to tags.', () => {
         const NON_EMPTY_1 = '/** Hello, World! */'.trim();
         const NON_EMPTY_2 = `

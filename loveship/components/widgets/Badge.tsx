@@ -1,19 +1,35 @@
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as types from '../../components/types';
-import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
-import css from './Badge.module.scss';
+import * as uui from '@epam/uui';
 import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
+import css from './Badge.module.scss';
 
 const defaultSize = '18';
 
-export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> {
+type BadgeMods = {
+    /**
+     * TDefines component color.
+     * @default 'sky'
+     */
     color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600';
+    /**
+     * Defines component shape.
+     * @default 'square'
+     */
     shape?: types.ControlShape;
-    fill?: UuiBadgeMods['fill'] | 'semitransparent';
-    size?: UuiBadgeMods['size'] | '12';
-}
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
+    fill?: uui.BadgeMods['fill'] | 'semitransparent';
+    /**
+     * Defines component size.
+     * @default '18'
+     */
+    size?: uui.BadgeMods['size'] | '12';
+};
 
-export function applyBadgeMods(mods: BadgeMods) {
+function applyBadgeMods(mods: BadgeMods) {
     return [
         css['style-' + (mods.shape || 'square')],
         css[`fill-${mods.fill === 'semitransparent' ? 'outline' : (mods.fill || 'solid')}`],
@@ -22,10 +38,11 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> & BadgeMods;
+/** Represents the properties of a Badge component. */
+export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
-export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
-    UuiBadge,
+export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
+    uui.Badge,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'fill'>({

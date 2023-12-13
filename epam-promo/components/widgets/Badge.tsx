@@ -1,14 +1,25 @@
-import { ButtonCoreProps, createSkinComponent, devLogger } from '@epam/uui-core';
-import { BadgeProps as UuiBadgeProps, Badge as UuiBadge, BadgeMods as UuiBadgeMods } from '@epam/uui';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
-export interface BadgeMods extends Omit<UuiBadgeProps, 'color' | 'fill'> {
-    /** @default 'blue' */
+type BadgeMods = {
+    /**
+     * Defines component color.
+     * @default 'blue'
+     */
     color?: EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10'| 'gray30'| 'gray60';
-    /** @default 'solid' */
-    fill?: UuiBadgeMods['fill'] | 'semitransparent';
-}
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
+    fill?: uui.BadgeMods['fill'] | 'semitransparent';
+    /**
+     * Defines component size.
+     * @default 36
+     */
+    size?: uui.BadgeMods['size'];
+};
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
@@ -17,10 +28,11 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-export type BadgeProps = ButtonCoreProps & BadgeMods;
+/** Represents the properties of a badge component. */
+export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
-export const Badge = createSkinComponent<UuiBadgeProps, BadgeProps>(
-    UuiBadge,
+export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
+    uui.Badge,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'fill'>({

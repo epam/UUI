@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from '@epam/uui-core';
+import { cx, DataColumnProps, DndActor, DndActorRenderParams } from '@epam/uui-core';
 import { FlexRow } from '../../layout';
 import { Checkbox } from '../../inputs';
 import { DropMarker } from '../../dnd';
 import { DragHandle, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import styles from './ColumnRow.module.scss';
-
-type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 
 export interface ColumnRowProps<TItem, TId, TFilter> {
     column: ColumnsConfigurationRowProps;
@@ -56,7 +54,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
     };
 
     return (
-        <DndActor<DndDataType, DndDataType>
+        <DndActor
             key={ column.key }
             srcData={ data }
             dstData={ data }

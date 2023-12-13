@@ -3,25 +3,39 @@ import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { FillStyle } from '../types';
 import css from './Button.module.scss';
 
-export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
+/** Defines component color. */
+type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
 
-export interface ButtonMods {
-    /** @default 'solid' */
+type ButtonMods = {
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
     fill?: FillStyle;
+    /**
+     * Defines component color.
+     * @default 'blue'
+     */
     color?: ButtonColor;
-}
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: uui.ButtonMods['size'];
+};
 
-const mapFill: Record<FillStyle, uui.ButtonFill> = {
+const mapFill: Record<FillStyle, uui.ButtonMods['fill']> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
     none: 'none',
 };
 
+/** Represents the properties of a Button component. */
 export type ButtonProps = uui.ButtonCoreProps & ButtonMods;
 
-export const Button = createSkinComponent<uui.ButtonCoreProps, ButtonProps>(
-    uui.Button,
+export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
+    uui.Button as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({

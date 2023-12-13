@@ -4,31 +4,44 @@ import {
     IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts,
 } from '@epam/uui-core';
 
-export interface PaginatorParams extends IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
+export interface PaginatorRenderParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    /** Defines component size */
     size: '24' | '30';
+    /** Array of pages that should be rendered */
     pages: PaginatorItem[];
+    /** Call to go to the next page */
     goToNext(): void;
+    /** Call to go to the previous page */
     goToPrev(): void;
+    /** True, if current page is last */
     isLast: boolean;
+    /** True, if current page is first */
     isFirst: boolean;
 }
 
 interface PaginatorItem {
+    /** Type of item.
+     * Page - usual page item
+     * Spacer - item to indicate skipped pages between current page set and start or end of the page list. Usually rendered as '...'
+     * */
     type: 'page' | 'spacer';
+    /** Number of the page */
     pageNumber?: number;
+    /** True, if this page is currently selected */
     isActive?: boolean;
+    /** Called when page is clicked */
     onClick?(): void;
 }
 
-export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
-    /** Component size */
+export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    /** Defines component size */
     size: '24' | '30';
 
     /** Total number of pages */
     totalPages: number;
 
     /** Override default rendering, keeping the component behavior */
-    render?(params: PaginatorParams): any;
+    render?(params: PaginatorRenderParams): any;
 }
 
 const FIRST_PAGE = 1;
@@ -40,7 +53,6 @@ export class Paginator extends React.Component<PaginatorProps> {
 
     private getCurrentPage = () => this.props.value ?? 1;
 
-    // size = this.props.size || '36';
     isFirst = () => {
         return this.getCurrentPage() === FIRST_PAGE;
     };

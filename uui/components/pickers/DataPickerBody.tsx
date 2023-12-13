@@ -15,6 +15,7 @@ export interface DataPickerBodyProps extends PickerBodyBaseProps {
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
     selectionMode?: 'single' | 'multi';
+    maxWidth?: number;
 }
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
@@ -51,7 +52,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         </FlexCell>
                     </div>
                 )}
-                <FlexRow key="body" cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight } } }>
+                <FlexRow key="body" cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
                     { this.props.rowsCount > 0 ? (
                         <VirtualList 
                             { ...this.lens.toProps() }

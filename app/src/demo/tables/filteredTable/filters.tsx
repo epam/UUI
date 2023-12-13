@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableFiltersConfig, LazyDataSource, ArrayDataSource } from '@epam/uui-core';
 import { Country, demoData, Person } from '@epam/uui-docs';
-import { Badge, DataPickerRow, PickerItem, defaultPredicates, FlexRow, BadgeColor } from '@epam/uui';
+import { Badge, DataPickerRow, PickerItem, defaultPredicates, FlexRow, BadgeMods } from '@epam/uui';
 import { svc } from '../../../services';
 
 export const getFilters = (): TableFiltersConfig<Person>[] => {
@@ -20,7 +20,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
                     size="36"
                     alignItems="center"
                     key={ props.rowKey }
-                    renderItem={ (item: any) => <FlexRow size="36"><Badge size="24" fill="outline" indicator color={ item.name.toLowerCase() as BadgeColor } caption={ item.name } /></FlexRow> }
+                    renderItem={ (item: any) => <FlexRow size="36"><Badge size="24" fill="outline" indicator color={ item.name.toLowerCase() as BadgeMods['color'] } caption={ item.name } /></FlexRow> }
                 />
             ),
             predicates: defaultPredicates.multiPicker,
