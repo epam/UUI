@@ -1,11 +1,21 @@
 import React from 'react';
 import { uuiElement, uuiMarkers } from '@epam/uui-core';
-import { DragHandle } from '@epam/uui-components';
-import { DataRowAddonsProps } from './types';
+import { IconContainer, DragHandle } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { IconContainer } from '../layout';
 import css from './DataRowAddons.module.scss';
+
+import { DataRowProps } from '@epam/uui-core';
+import { ControlSize } from '../types';
+
+export interface DataCellMods {
+    size?: ControlSize | '60';
+}
+
+export interface DataRowAddonsProps<TItem, TId> extends DataCellMods {
+    rowProps: DataRowProps<TItem, TId>;
+    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+}
 
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataTableCellProps } from '@epam/uui-core';
 import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
-import { DataRowAddons } from '../addons';
+import { DataRowAddons } from '../widgets';
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Tooltip } from '../overlays';
