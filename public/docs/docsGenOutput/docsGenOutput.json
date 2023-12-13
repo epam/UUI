@@ -80698,62 +80698,36 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:MultiSwitchProps": {
+  "@epam/uui:MultiSwitchCoreProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "MultiSwitchProps",
-     "nameFull": "MultiSwitchProps<TValue>"
+     "name": "MultiSwitchCoreProps",
+     "nameFull": "MultiSwitchCoreProps<TValue>"
     },
     "src": "uui/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the 'Core properties' for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
-     "raw": "MultiSwitchProps<TValue>",
+     "raw": "MultiSwitchCoreProps<TValue>",
      "print": [
-      "interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    items: MultiSwitchItem<TValue>[];",
+      "/** Represents the 'Core properties' for the MultiSwitch component. */",
+      "type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {",
       "    /**",
-      "     * @default 'primary'",
+      "     * Defines an array of MultiSwitchItems.",
       "     */",
-      "    color?: UuiMultiSwitchColor;",
-      "}"
+      "    items: MultiSwitchItem<TValue>[];",
+      "};"
      ]
     },
     "props": [
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'primary' | 'secondary'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "primary",
-        "secondary"
-       ]
-      },
-      "required": false
-     },
      {
       "uid": "value",
       "name": "value",
@@ -80919,6 +80893,254 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:MultiSwitchProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchProps",
+     "nameFull": "MultiSwitchProps<TValue>"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MultiSwitchProps<TValue>",
+     "print": [
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color.",
+        " @default 'primary'"
+       ],
+       "tags": {
+        "@default": "primary"
+       }
+      },
+      "typeValue": {
+       "raw": "'primary' | 'secondary'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "primary",
+        "secondary"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchMods",
       "required": false
      }
     ],
@@ -93441,26 +93663,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:UuiMultiSwitchColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "UuiMultiSwitchColor",
-     "nameFull": "UuiMultiSwitchColor"
-    },
-    "src": "uui/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'primary' | 'secondary'",
-     "print": [
-      "type UuiMultiSwitchColor = 'primary' | 'secondary';"
-     ]
-    }
-   }
-  },
   "@epam/uui:VerticalTabButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -94374,6 +94576,17 @@
      "nameFull": "CountIndicatorMods"
     },
     "src": "uui/components/widgets/CountIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
     "exported": false
    }
   },
@@ -97768,7 +97981,7 @@
     "typeValue": {
      "raw": "IconContainerProps",
      "print": [
-      "type IconContainerProps = ControlIconProps & IconContainerMods;"
+      "type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;"
      ]
     },
     "props": [
@@ -98601,78 +98814,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'gray50' | 'gray'",
-     "print": [
-      "type MultiSwitchColor = 'blue' | 'gray50' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "interface MultiSwitchMods {",
-      "    /**",
-      "     * @default 'blue'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'gray50' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "gray50",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:MultiSwitchProps": {
    "summary": {
     "module": "@epam/promo",
@@ -98681,6 +98822,11 @@
      "nameFull": "MultiSwitchProps<TValue>"
     },
     "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -98688,75 +98834,11 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "from": "@epam/uui:MultiSwitchProps",
-      "required": true
-     },
      {
       "uid": "value",
       "name": "value",
@@ -98816,6 +98898,7 @@
       "typeValue": {
        "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
      },
@@ -98831,6 +98914,23 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -98868,11 +98968,65 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
@@ -101808,6 +101962,17 @@
      "nameFull": "LinkButtonMods"
     },
     "src": "epam-promo/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
     "exported": false
    }
   },
@@ -108126,78 +108291,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "loveship/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sky' | 'night600' | 'gray'",
-     "print": [
-      "type MultiSwitchColor = 'sky' | 'night600' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "loveship/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "interface MultiSwitchMods {",
-      "    /**",
-      "     * @default 'sky'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'sky'"
-       ],
-       "tags": {
-        "@default": "sky"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'night600' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "night600",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:MultiSwitchProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -108206,6 +108299,11 @@
      "nameFull": "MultiSwitchProps<TValue>"
     },
     "src": "loveship/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -108213,75 +108311,11 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "from": "@epam/uui:MultiSwitchProps",
-      "required": true
-     },
      {
       "uid": "value",
       "name": "value",
@@ -108341,6 +108375,7 @@
       "typeValue": {
        "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
      },
@@ -108356,6 +108391,23 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -108393,11 +108445,65 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'sky'"
+        "Defines component color.",
+        " @default 'sky'"
        ],
        "tags": {
         "@default": "sky"
@@ -113053,6 +113159,17 @@
      "nameFull": "LinkButtonMods"
     },
     "src": "loveship/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "loveship/components/inputs/MultiSwitch.tsx",
     "exported": false
    }
   },
