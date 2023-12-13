@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataSourceState } from '../../../../../types';
+import { DataSourceState } from '../../../../../../types';
 
 export interface UseFocusServiceProps<TId, TFilter = any> {
     setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;

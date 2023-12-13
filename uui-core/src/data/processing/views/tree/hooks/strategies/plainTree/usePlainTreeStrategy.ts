@@ -4,7 +4,7 @@ import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
-import { NOT_FOUND_RECORD } from '../../../ITree';
+import { useCheckingService, useFocusService, useFoldingService, useSelectingService } from '../../services';
 
 export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, ...restProps }: PlainTreeStrategyProps<TItem, TId, TFilter>,
@@ -15,47 +15,48 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
 
     const {
         getId,
+        getParentId,
         dataSourceState,
+        setDataSourceState,
         getFilter,
         getSearchFields,
         sortBy,
         rowOptions,
         getRowOptions,
         getChildCount,
+        cascadeSelection,
     } = props;
 
     const filteredTree = useFilterTree(
         { tree: fullTree, getFilter, dataSourceState },
-        deps,
+        [fullTree],
     );
 
     const searchTree = useSearchTree(
         { tree: filteredTree, getSearchFields, sortSearchByRelevance, dataSourceState },
-        deps,
+        [filteredTree],
     );
 
     const tree = useSortTree(
         { tree: searchTree, sortBy, dataSourceState },
-        deps,
+        [searchTree],
     );
 
-    const getEstimatedChildrenCount = useCallback((id: TId) => {
-        if (id === undefined) return undefined;
+    const checkingService = useCheckingService({
+        tree,
+        dataSourceState,
+        setDataSourceState,
+        cascadeSelection,
+        getParentId,
+    });
 
-        const item = tree.getById(id);
-        if (item === NOT_FOUND_RECORD) return undefined;
+    const foldingService = useFoldingService({
+        dataSourceState, setDataSourceState, isFoldedByDefault: restProps.isFoldedByDefault, getId,
+    });
 
-        const childCount = getChildCount?.(item) ?? undefined;
-        if (childCount === undefined) return undefined;
+    const focusService = useFocusService({ setDataSourceState });
 
-        const nodeInfo = tree.getNodeInfo(id);
-        if (nodeInfo?.count !== undefined) {
-            // nodes are already loaded, and we know the actual count
-            return nodeInfo.count;
-        }
-
-        return childCount;
-    }, [getChildCount, tree]);
+    const selectingService = useSelectingService({ setDataSourceState });
 
     const lastRowIndex = useMemo(
         () => {
@@ -67,33 +68,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         },
         [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
     );
-
-    const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
-        const nodeInfo = tree.getNodeInfo(id);
-
-        const estimatedChildCount = getEstimatedChildrenCount(id);
-
-        // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
-        if (nodeInfo.count !== undefined) {
-            // Exact count known
-            return nodeInfo.count - loadedChildrenCount;
-        }
-
-        // estimatedChildCount = undefined for top-level rows only.
-        if (id === undefined && totalRowsCount < lastRowIndex) {
-            return lastRowIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
-        }
-
-        if (estimatedChildCount > loadedChildrenCount) {
-            // According to getChildCount (put into estimatedChildCount), there are more rows on this level
-            return estimatedChildCount - loadedChildrenCount;
-        }
-
-        // We have a bad estimate - it even less that actual items we have
-        // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
-        // let's guess we have at least 1 item more than loaded
-        return 1;
-    }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
     const getTreeRowsStats = useCallback(() => {
         const rootInfo = tree.getNodeInfo(undefined);
@@ -116,22 +90,26 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             tree,
             rowOptions,
             getRowOptions,
-            getEstimatedChildrenCount,
-            getMissingRecordsCount,
             lastRowIndex,
             getId,
             dataSourceState,
             getTreeRowsStats,
+            ...checkingService,
+            ...selectingService,
+            ...focusService,
+            ...foldingService,
         }),
         [
             tree,
             rowOptions,
             getRowOptions,
-            getEstimatedChildrenCount,
-            getMissingRecordsCount,
             lastRowIndex,
             dataSourceState,
             getTreeRowsStats,
+            checkingService,
+            selectingService,
+            focusService,
+            foldingService,
         ],
     );
 }
