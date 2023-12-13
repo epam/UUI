@@ -95,6 +95,22 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         return 1;
     }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
+    const getTreeRowsStats = useCallback(() => {
+        const rootInfo = tree.getNodeInfo(undefined);
+        /* TODO: For lazy list...
+
+        const rootCount = rootInfo.count;
+        if (!getChildCount && rootCount != null) {
+            completeFlatListRowsCount = rootCount;
+        }
+
+         */
+        return {
+            completeFlatListRowsCount: undefined,
+            totalCount: rootInfo.totalCount ?? tree.getTotalRecursiveCount() ?? 0,
+        };
+    }, [getChildCount, tree]);
+
     return useMemo(
         () => ({
             tree,
@@ -105,6 +121,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             lastRowIndex,
             getId,
             dataSourceState,
+            getTreeRowsStats,
         }),
         [
             tree,
@@ -114,6 +131,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getMissingRecordsCount,
             lastRowIndex,
             dataSourceState,
+            getTreeRowsStats,
         ],
     );
 }

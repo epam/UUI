@@ -32,6 +32,11 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> {
     lastRowIndex: number;
 
     selectAll?: boolean;
+    // TODO: add solid type
+    getTreeRowsStats: () => {
+        completeFlatListRowsCount: any;
+        totalCount: number;
+    }
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
@@ -54,6 +59,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         cascadeSelection,
         isFoldedByDefault,
         lastRowIndex,
+        getTreeRowsStats,
     } = props;
 
     const checkingService = useCheckingService({
@@ -132,19 +138,72 @@ export function useDataRows<TItem, TId, TFilter = any>(
     };
 
     const getListProps = useCallback((): DataSourceListProps => {
+        const { completeFlatListRowsCount, totalCount } = getTreeRowsStats();
+
+        let rowsCount;
+        if (completeFlatListRowsCount !== undefined) {
+            // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
+            rowsCount = completeFlatListRowsCount;
+        } else if (!stats.hasMoreRows) {
+            // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
+            rowsCount = rows.length;
+        } else {
+            // We definitely have more rows to show below the last visible row.
+            // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
+            // We have to balance this number.
+            // To big - would make scrollbar size to shrink when we hit bottom
+            // To small - and VirtualList will re-request rows until it will fill it's last block.
+            // So, it should be at least greater than VirtualList block size (default is 20)
+            // Probably, we'll move this const to props later if needed;
+            const rowsToAddBelowLastKnown = 20;
+
+            rowsCount = Math.max(rows.length, lastRowIndex + rowsToAddBelowLastKnown);
+        }
+
         return {
-            rowsCount: rows.length,
+            rowsCount,
             knownRowsCount: rows.length,
             exactRowsCount: rows.length,
-            totalCount: tree?.getTotalRecursiveCount() ?? 0, // TODO: totalCount should be taken from fullTree (?).
+            totalCount,
             selectAll,
+            isReloading: false,
         };
-    }, [rows.length, tree, selectAll]);
+    }, [rows.length, selectAll, getTreeRowsStats, stats.hasMoreRows, lastRowIndex]);
 
-    const getVisibleRows = () => {
-        const visibleRows = rows.slice(dataSourceState.topIndex, lastRowIndex);
-        return withPinnedRows(visibleRows);
-    };
+    const getVisibleRows = useCallback(
+        () => {
+            const from = dataSourceState.topIndex;
+            const count = dataSourceState.visibleCount;
+            const visibleRows = withPinnedRows(rows.slice(from, from + count));
+
+            if (stats.hasMoreRows) {
+                const listProps = getListProps();
+                // We don't run rebuild rows on scrolling. We rather wait for the next load to happen.
+                // So there can be a case when we haven't updated rows (to add more loading rows), and view is scrolled down
+                // We need to add more loading rows in such case.
+                const lastRow = rows[rows.length - 1];
+
+                while (visibleRows.length < count && from + visibleRows.length < listProps.rowsCount) {
+                    const index = from + visibleRows.length;
+                    const row = getLoadingRowProps('_loading_' + index, index);
+                    row.indent = lastRow.indent;
+                    row.path = lastRow.path;
+                    row.depth = lastRow.depth;
+                    visibleRows.push(row);
+                }
+            }
+
+            return visibleRows;
+        },
+        [
+            rows,
+            dataSourceState.topIndex,
+            dataSourceState.visibleCount,
+            withPinnedRows,
+            getListProps,
+            getLoadingRowProps,
+        ],
+    );
 
     const getSelectedRows = ({ topIndex = 0, visibleCount }: VirtualListRange = {}) => {
         let checked: TId[] = [];
