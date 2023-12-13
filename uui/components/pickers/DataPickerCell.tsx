@@ -3,7 +3,7 @@ import { DataPickerCellProps } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { PickerCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
-import { DataRowAddons } from '../addons';
+import { DataRowAddons } from '../widgets';
 import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';
