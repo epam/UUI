@@ -5,8 +5,6 @@ import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
 
-const defaultSize = '36';
-
 const mapSize = {
     48: '48',
     42: '48',
@@ -16,37 +14,44 @@ const mapSize = {
     18: '18',
 };
 
-export type BadgeFill = 'solid' | 'outline';
-export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
-export type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+export const defaultBadgeSize = '36';
+export const defaultBadgeFill = 'solid';
 
-export interface BadgeMods {
-    color?: BadgeColor;
-    /** @default 'solid' */
-    fill?: BadgeFill;
-    /** @default '36' */
-    size?: BadgeSize;
-    indicator?: boolean;
-}
-
-export type BadgeCoreProps = ButtonProps & {
-    size?: BadgeSize;
+export type BadgeMods = {
+    /** Defines component color. */
+    color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
+    fill?: 'solid' | 'outline';
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: '18' | '24' | '30' | '36' | '42' | '48';
 };
 
+export type BadgeCoreProps = ButtonProps & {
+    /** Defines a boolean flag to display an indicator. */
+    indicator?: boolean;
+};
+
+/** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeProps) {
     return [
         'uui-badge',
         css.root,
-        css['size-' + (mods.size || defaultSize)],
-        `uui-fill-${mods.fill || 'solid'}`,
+        css['size-' + (mods.size || defaultBadgeSize)],
+        `uui-fill-${mods.fill || defaultBadgeFill}`,
         mods.color && `uui-color-${mods.color}`,
         mods.indicator && 'uui-indicator',
     ];
 }
 
-const mapCountIndicatorSizes: Record<BadgeSize, CountIndicatorProps['size']> = {
+const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['size']> = {
     18: '12',
     24: '18',
     30: '18',
@@ -55,7 +60,7 @@ const mapCountIndicatorSizes: Record<BadgeSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-export const Badge = withMods<BadgeProps, BadgeMods>(Button, applyBadgeMods, (props) => {
+export const Badge = withMods<BadgeCoreProps, BadgeMods>(Button, applyBadgeMods, (props) => {
     if (__DEV__) {
         devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
             component: 'Badge',
@@ -66,14 +71,14 @@ export const Badge = withMods<BadgeProps, BadgeMods>(Button, applyBadgeMods, (pr
         });
     }
     return {
-        dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || defaultSize].foldingArrow,
-        clearIcon: systemIcons[(props.size && mapSize[props.size]) || defaultSize].clear,
+        dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || defaultBadgeSize].foldingArrow,
+        clearIcon: systemIcons[(props.size && mapSize[props.size]) || defaultBadgeSize].clear,
         countPosition: 'left',
         countIndicator: (countIndicatorProps) => (
             <CountIndicator
                 { ...countIndicatorProps }
                 color={ null }
-                size={ mapCountIndicatorSizes[props.size || defaultSize] }
+                size={ mapCountIndicatorSizes[props.size || defaultBadgeSize] }
             />
         ),
         indicator: props.indicator || false,

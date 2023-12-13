@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { i18n } from '../../i18n';
 import { DatePickerCoreProps, IDropdownBodyProps } from '@epam/uui-core';
-import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
+import { BaseDatePicker } from '@epam/uui-components';
 import { FlexSpacer, FlexRow, FlexCell } from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
@@ -11,12 +11,6 @@ import { DatePickerBody } from '../datePickers';
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
 export class FilterDatePickerBody extends BaseDatePicker<DatePickerProps> {
-    state: DatePickerState = {
-        ...super.getValue(),
-        isOpen: false,
-        inputValue: null,
-    };
-
     renderInput = (): any => {
         return null;
     };

@@ -1,18 +1,5 @@
 import * as React from 'react';
-import {
-    IHasCX,
-    IDisableable,
-    IEditable,
-    IHasPlaceholder,
-    uuiMod,
-    uuiElement,
-    uuiMarkers,
-    ICanBeReadonly,
-    IHasRawProps,
-    CX,
-    cx,
-    ICanFocus,
-} from '@epam/uui-core';
+import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, CX, cx, ICanFocus } from '@epam/uui-core';
 import css from './TextArea.module.scss';
 
 export interface TextAreaProps
@@ -39,11 +26,12 @@ export interface TextAreaProps
     maxLength?: number;
     /** HTML id attribute to put on the HTML Input element */
     id?: string;
-
+    /** A forwarded ref for an HTML input element. */
     forwardedRef?: React.ForwardedRef<HTMLInputElement>;
 }
 
 interface TextAreaState {
+    /** Defines boolean state of element focus. */
     inFocus?: boolean;
 }
 
@@ -55,7 +43,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     getParentOverflows(el: Element) {
         const arr = [];
-    
         while (el && el.parentNode && el.parentNode instanceof Element) {
             if (el.parentNode.scrollTop) {
                 arr.push({
@@ -65,7 +52,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             }
             el = el.parentNode;
         }
-    
         return arr;
     }
 

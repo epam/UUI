@@ -1,0 +1,28 @@
+.container {
+    background-color: var(--uui-surface-main);
+    display: flex;
+    flex-direction: column;
+    min-width: 480px;
+    max-width: 726px;
+    border-right: 1px solid var(--uui-divider);
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+
+    .box-sizing {
+        box-sizing: border-box;
+    }
+
+    .v-padding {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .row-props {
+        overflow: auto;
+        border-bottom: 1px solid var(--uui-divider);
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0;
+    }
+}

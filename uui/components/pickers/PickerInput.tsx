@@ -40,6 +40,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const {
+        view,
         context,
         popperModifiers,
         getName,
@@ -97,13 +98,25 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         return props.editMode === 'modal' ? '36' : props.size;
     };
 
+    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
+        if (!search) return;
+
+        return path
+            .map(({ value }) => getName(value))
+            .filter(Boolean)
+            .join(' / ');
+    };
+
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
+        const { flattenSearchResults } = view.getConfig();
+
         return (
             <PickerItem
                 title={ getName(item) }
                 size={ getRowSize() }
                 dataSourceState={ dsState }
                 highlightSearchMatches={ highlightSearchMatches }
+                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dataSourceState) } : {}) }
                 { ...rowProps }
             />
         );

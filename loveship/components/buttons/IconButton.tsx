@@ -1,18 +1,20 @@
-import { IconButtonCoreProps, IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
-export interface IconButtonMods {
+type IconButtonMods = {
     /**
+     * Defines component color.
      * @default 'night600'
      */
     color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
-}
+};
 
-export type IconButtonProps = IconButtonCoreProps & IconButtonMods;
+/** Represents the properties of a IconButton component. */
+export type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;
 
-export const IconButton = createSkinComponent<UuiIconButtonProps, IconButtonProps>(
-    uuiIconButton,
+export const IconButton = createSkinComponent<uui.IconButtonProps, IconButtonProps>(
+    uui.IconButton,
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<IconButtonProps, 'color'>({
@@ -24,7 +26,6 @@ export const IconButton = createSkinComponent<UuiIconButtonProps, IconButtonProp
         }
         return {
             color: props.color ?? 'night600',
-        } as IconButtonProps;
+        };
     },
-    () => [],
 );

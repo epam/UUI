@@ -1,16 +1,12 @@
-import { withMods } from '@epam/uui-core';
-import { CountIndicatorProps as UuiCountIndicatorProps, CountIndicator as UuiCountIndicator } from '@epam/uui';
+import { createSkinComponent } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 
-export interface CountIndicatorMods {
-    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire' | null;
-}
+type CountIndicatorMods = {
+    /** Defines component color. */
+    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire';
+};
 
-export type CountIndicatorProps = Omit<UuiCountIndicatorProps, 'color'> & CountIndicatorMods;
+/** Represents the properties of a CountIndicator component. */
+export type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;
 
-export const CountIndicator = withMods<Omit<UuiCountIndicatorProps, 'color'>, CountIndicatorMods>(
-    UuiCountIndicator as any, // TODO: rework after new withMods implementation.
-    () => [],
-    (props): CountIndicatorProps => ({
-        color: props.color,
-    }),
-);
+export const CountIndicator = createSkinComponent<uui.CountIndicatorProps, CountIndicatorProps>(uui.CountIndicator);
