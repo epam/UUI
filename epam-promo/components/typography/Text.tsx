@@ -1,22 +1,22 @@
 import { devLogger, withMods } from '@epam/uui-core';
-import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import * as types from '../types';
 
-export interface TextMods {
+interface TextMods {
     /**
      * @default 'gray80'
      */
-    color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';
+    color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90' | uui.TextProps['color'];
     /**
      * @default 'sans'
      */
     font?: types.FontStyle;
 }
 
-export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
+export type TextProps = Omit<uui.TextProps, 'color' | 'font'> & TextMods;
 
-export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
-    UuiText,
+export const Text = withMods<Omit<uui.TextProps, 'color' | 'font'>, TextMods>(
+    uui.Text,
     (props) => [props.font && `uui-font-${props.font}`],
     (props) => {
         if (__DEV__) {

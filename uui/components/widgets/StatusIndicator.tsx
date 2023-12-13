@@ -3,14 +3,14 @@ import cx from 'classnames';
 import { IHasCX } from '@epam/uui-core';
 import css from './StatusIndicator.module.scss';
 
-export type StatusIndicatorColors = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
+type StatusIndicatorColor = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
 
-export type StatusIndicatorMods = {
+type StatusIndicatorMods = {
     /**
      * Component color.
      * @default 'neutral'
      */
-    color?: StatusIndicatorColors;
+    color?: StatusIndicatorColor;
 };
 
 export type StatusIndicatorCoreProps = IHasCX & {

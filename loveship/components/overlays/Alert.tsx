@@ -9,7 +9,7 @@ import { EpamPrimaryColor } from '../types';
 
 export interface AlertMods {
     /** @default 'sky' */
-    color?: EpamPrimaryColor;
+    color?: EpamPrimaryColor | uui.AlertProps['color'];
 }
 
 export interface AlertProps extends Omit<uui.AlertProps, 'color'>, AlertMods {}

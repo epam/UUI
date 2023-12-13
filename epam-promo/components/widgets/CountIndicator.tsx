@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 
 type CountIndicatorMods = {
     /** Defines component color. */
-    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red';
+    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red' | uui.CountIndicatorProps['color'];
 };
 
 /** Represents the properties of a CountIndicator component. */

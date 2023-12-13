@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
+import cx from 'classnames';
 import { BaseRating, IconContainer } from '@epam/uui-components';
 import { Icon, IEditable, IHasRawProps } from '@epam/uui-core';
-import css from './SliderRating.module.scss';
 import { ReactComponent as LineGrayIcon } from '../icons/slider-rating/line_gray_icon.svg';
 import { ReactComponent as LineRedIcon } from '../icons/slider-rating/line_red_icon.svg';
 import { ReactComponent as LineYellowIcon } from '../icons/slider-rating/line_yellow_icon.svg';
@@ -15,8 +15,8 @@ import { ReactComponent as ActiveMarkVioletIcon } from '../icons/slider-rating/a
 import { ReactComponent as NaIcon } from '../icons/slider-rating/na_icon.svg';
 import { ReactComponent as NaActiveIcon } from '../icons/slider-rating/na_active_icon.svg';
 import { Tooltip } from '../overlays';
-import cx from 'classnames';
 import { i18n } from '../../i18n';
+import css from './SliderRating.module.scss';
 
 const defaultSize = '18';
 

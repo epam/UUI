@@ -15,9 +15,9 @@ export type RowMods = {
     background?: 'surface-main';
 };
 
-export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
+export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods {}
 
-export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
+export const FlexRow = withMods<Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods>(uuiFlexRow, (props) => {
     return [
         css.root,
         props.size !== null && css['size-' + (props.size || '36')],

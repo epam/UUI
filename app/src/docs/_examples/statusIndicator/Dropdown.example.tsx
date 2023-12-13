@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, DropdownContainer, DropdownMenuButton, FlexRow, StatusIndicator, StatusIndicatorColors, LinkButton } from '@epam/uui';
+import { Dropdown, DropdownContainer, DropdownMenuButton, FlexRow, StatusIndicator, StatusIndicatorProps, LinkButton } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 
 const dropdownMenuItems = [
@@ -18,7 +18,7 @@ export default function TypesExample() {
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
-                        caption={ <StatusIndicator caption={ item.caption } color={ item.color as StatusIndicatorColors } /> }
+                        caption={ <StatusIndicator caption={ item.caption } color={ item.color as StatusIndicatorProps['color'] } /> }
                         onClick={ () => {
                             handleDropdown(item.id);
                             props.onClose();
@@ -35,7 +35,7 @@ export default function TypesExample() {
                 renderBody={ renderDropdownBody }
                 renderTarget={ (props) => (
                     <LinkButton
-                        caption={ <StatusIndicator caption={ selectedItem.caption } color={ selectedItem.color as StatusIndicatorColors } /> }
+                        caption={ <StatusIndicator caption={ selectedItem.caption } color={ selectedItem.color as StatusIndicatorProps['color'] } /> }
                         size="36"
                         { ...props }
                     />

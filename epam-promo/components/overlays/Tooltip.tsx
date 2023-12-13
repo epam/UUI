@@ -1,19 +1,19 @@
 import { devLogger, withMods } from '@epam/uui-core';
-import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 
-export interface TooltipMods {
+interface TooltipMods {
     /**
      * Tooltip color.
      * 'gray90' is deprecated and will be removed in future release, use 'gray' instead.
      * @default 'gray'
      */
-    color?: 'white' | 'gray90' | 'gray' | 'red';
+    color?: 'white' | 'gray90' | 'gray' | 'red' | uui.TooltipProps['color'];
 }
 
-export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
+export type TooltipProps = Omit<uui.TooltipProps, 'color'> & TooltipMods;
 
-export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
-    uuiTooltip,
+export const Tooltip = withMods<Omit<uui.TooltipProps, 'color'>, TooltipMods>(
+    uui.Tooltip,
     () => [],
     (props) => {
         if (__DEV__) {

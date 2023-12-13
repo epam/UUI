@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { ModalWindow as UuiModalWindow, ModalWindowProps as UuiModalWindowProps } from '@epam/uui';
 
-export interface ModalWindowMods {
+interface ModalWindowMods {
     width?: '300' | '420' | '600' | '900' | number;
     height?: '300' | '700' | 'auto' | number;
 }
