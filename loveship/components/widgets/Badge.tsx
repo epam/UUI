@@ -6,18 +6,30 @@ import css from './Badge.module.scss';
 
 const defaultSize = '18';
 
-export type BadgeMods = {
-    /** @default 'sky' */
+type BadgeMods = {
+    /**
+     * TDefines component color.
+     * @default 'sky'
+     */
     color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600';
-    /** @default 'square' */
+    /**
+     * Defines component shape.
+     * @default 'square'
+     */
     shape?: types.ControlShape;
-    /** @default 'solid' */
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
     fill?: uui.BadgeMods['fill'] | 'semitransparent';
-    /** @default '18' */
+    /**
+     * Defines component size.
+     * @default '18'
+     */
     size?: uui.BadgeMods['size'] | '12';
 };
 
-export function applyBadgeMods(mods: BadgeMods) {
+function applyBadgeMods(mods: BadgeMods) {
     return [
         css['style-' + (mods.shape || 'square')],
         css[`fill-${mods.fill === 'semitransparent' ? 'outline' : (mods.fill || 'solid')}`],
@@ -26,6 +38,7 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
+/** Represents the properties of a Badge component. */
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
 export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(

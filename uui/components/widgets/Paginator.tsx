@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Paginator as UuiPaginator, PaginatorParams, PaginatorProps } from '@epam/uui-components';
+import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps } from '@epam/uui-components';
 import { Button } from '../buttons';
 import css from './Paginator.module.scss';
 import { ReactComponent as ArrowLeftIcon_24 } from '@epam/assets/icons/common/navigation-chevron-left-12.svg';
@@ -9,7 +9,7 @@ import { ReactComponent as ArrowLeftIcon_30 } from '@epam/assets/icons/common/na
 import { ReactComponent as ArrowRightIcon_30 } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 
 export function Paginator(props: PaginatorProps) {
-    const renderPaginator = (params: PaginatorParams) => (
+    const renderPaginator = (params: PaginatorRenderParams) => (
         <nav role="navigation" className={ cx(css.root, 'uui-paginator') } { ...params.rawProps }>
             <Button
                 cx={ css[`navigation-size-${params.size ?? '30'}`] }

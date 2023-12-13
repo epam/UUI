@@ -15,6 +15,6 @@ export { FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, 
     SuccessNotification, HintNotification, ErrorNotification, ClearNotification, FlexSpacer, FlexCell, Spinner, DataPickerBody, PickerModal, DataPickerFooter,
     ModalBlocker, ModalHeader, ModalFooter, LabeledInput, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuHeader,
     DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, ProgressBar, IndicatorBar, Slider,
-    RichTextView, ScrollBars, VirtualList, Checkbox, TextInput, SearchInput,
+    RichTextView, ScrollBars, VirtualList, Checkbox, TextInput, SearchInput, RadioInput,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';

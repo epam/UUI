@@ -3,7 +3,7 @@ import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from '@epam/
 import { DataTableSelectionContext } from './DataTableSelectionContext';
 import { useSelectionManager } from './hooks';
 
-export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends React.PropsWithChildren {
+interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends React.PropsWithChildren {
     rows: DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
