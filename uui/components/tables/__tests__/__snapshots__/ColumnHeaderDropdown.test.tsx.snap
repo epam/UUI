@@ -41,7 +41,7 @@ Array [
         Object {
           "maxWidth": "auto",
           "minHeight": undefined,
-          "minWidth": 360,
+          "minWidth": 280,
         }
       }
       tabIndex={-1}

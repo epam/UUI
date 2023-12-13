@@ -5178,7 +5178,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -15122,7 +15122,16 @@
       "    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];",
       "    getSelectedRowsCount(): number;",
       "    reload(): void;",
-      "    destroy(): void;",
+      "    /**",
+      "     * Activates IDataSourceView.",
+      "     * After view activation, it becomes able to listen to updates.",
+      "     */",
+      "    activate(): void;",
+      "    /**",
+      "     * Deactivates IDataSourceView.",
+      "     * After view deactivation, it becomes impossible to listen to updates.",
+      "     */",
+      "    deactivate(): void;",
       "    loadData(): void;",
       "    clearAllChecked(): void;",
       "    _forceUpdate(): void;",
@@ -15209,8 +15218,31 @@
       "required": true
      },
      {
-      "uid": "destroy",
-      "name": "destroy",
+      "uid": "activate",
+      "name": "activate",
+      "comment": {
+       "raw": [
+        "Activates IDataSourceView.",
+        " After view activation, it becomes able to listen to updates."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "deactivate",
+      "name": "deactivate",
+      "comment": {
+       "raw": [
+        "Deactivates IDataSourceView.",
+        " After view deactivation, it becomes impossible to listen to updates."
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -18140,7 +18172,7 @@
      "print": [
       "/** Component has label. E.g. User Name */",
       "interface IHasLabel {",
-      "    /** Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions. */",
+      "    /** Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label. */",
       "    label?: any;",
       "}"
      ]
@@ -18151,7 +18183,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -21374,7 +21406,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -37790,22 +37822,64 @@
      "raw": "CheckboxProps",
      "print": [
       "interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {",
-      "    /** Check icon */",
-      "    icon?: Icon;",
-      "    /** Indeterminate state icon */",
-      "    indeterminateIcon?: Icon;",
+      "    /** Render callback for checkbox label.",
+      "     * If omitted, 'label' prop value will be rendered.",
+      "     */",
       "    renderLabel?(): React.ReactNode;",
+      "    /** ID provided to the 'input' node */",
       "    id?: string;",
+      "    /** Check icon.",
+      "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
+      "     */",
+      "    icon?: Icon;",
+      "    /** Indeterminate state icon.",
+      "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
+      "     *  */",
+      "    indeterminateIcon?: Icon;",
       "}"
      ]
     },
     "props": [
      {
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'label' prop value will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "ID provided to the 'input' node"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
        "raw": [
-        "Check icon"
+        "Check icon.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
        ]
       },
       "typeValue": {
@@ -37821,7 +37895,8 @@
       "name": "indeterminateIcon",
       "comment": {
        "raw": [
-        "Indeterminate state icon"
+        "Indeterminate state icon.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
        ]
       },
       "typeValue": {
@@ -37829,28 +37904,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderLabel",
-      "name": "renderLabel",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
       },
       "required": false
      },
@@ -38056,7 +38109,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -38949,259 +39002,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:DataSourceKeyboardParams": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "DataSourceKeyboardParams",
-     "nameFull": "DataSourceKeyboardParams"
-    },
-    "src": "uui-components/src/pickers/KeyboardUtils.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DataSourceKeyboardParams",
-     "print": [
-      "interface DataSourceKeyboardParams extends IEditable<DataSourceState> {",
-      "    listView: IDataSourceView<any, any, any>;",
-      "    rows: DataRowProps<any, any>[];",
-      "    searchPosition: PickerInputSearchPosition;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "listView",
-      "name": "listView",
-      "typeValue": {
-       "raw": "IDataSourceView<any, any, any>"
-      },
-      "typeValueRef": "@epam/uui-core:IDataSourceView",
-      "required": true
-     },
-     {
-      "uid": "rows",
-      "name": "rows",
-      "typeValue": {
-       "raw": "DataRowProps<any, any>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "searchPosition",
-      "name": "searchPosition",
-      "typeValue": {
-       "raw": "'input' | 'body' | 'none'"
-      },
-      "typeValueRef": "@epam/uui-components:PickerInputSearchPosition",
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "input",
-        "body",
-        "none"
-       ]
-      },
-      "required": true
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "DataSourceState<Record<string, any>, any>"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: DataSourceState<Record<string, any>, any>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationMessage",
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationProps",
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:DataTableSelectionProviderProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "DataTableSelectionProviderProps",
-     "nameFull": "DataTableSelectionProviderProps<TItem, TId, TFilter>"
-    },
-    "src": "uui-components/src/table/tableCellsSelection/DataTableSelectionProvider.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DataTableSelectionProviderProps<TItem, TId, TFilter>",
-     "print": [
-      "interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends React.PropsWithChildren {",
-      "    rows: DataRowProps<TItem, TId>[];",
-      "    columns: DataColumnProps<TItem, TId>[];",
-      "    onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rows",
-      "name": "rows",
-      "typeValue": {
-       "raw": "DataRowProps<TItem, TId>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "columns",
-      "name": "columns",
-      "typeValue": {
-       "raw": "DataColumnProps<TItem, TId, any>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "onCopy",
-      "name": "onCopy",
-      "typeValue": {
-       "raw": "(copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@types/react:PropsWithChildren",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:DatePickerBodyBaseOptions": {
    "summary": {
     "module": "@epam/uui-components",
@@ -39454,93 +39254,6 @@
       },
       "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:DatePickerState": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "DatePickerState",
-     "nameFull": "DatePickerState"
-    },
-    "src": "uui-components/src/inputs/DatePicker/BaseDatePicker.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DatePickerState",
-     "print": [
-      "interface DatePickerState extends PickerBodyValue<string> {",
-      "    isOpen: boolean;",
-      "    inputValue: string | null;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
-     },
-     {
-      "uid": "inputValue",
-      "name": "inputValue",
-      "typeValue": {
-       "raw": "null | string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "selectedDate",
-      "name": "selectedDate",
-      "typeValue": {
-       "raw": "null | string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:PickerBodyValue",
-      "required": false
-     },
-     {
-      "uid": "displayedDate",
-      "name": "displayedDate",
-      "typeValue": {
-       "raw": "Dayjs"
-      },
-      "from": "@epam/uui-components:PickerBodyValue",
-      "required": true
-     },
-     {
-      "uid": "view",
-      "name": "view",
-      "typeValue": {
-       "raw": "'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION'"
-      },
-      "typeValueRef": "@epam/uui-components:ViewType",
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "DAY_SELECTION",
-        "MONTH_SELECTION",
-        "YEAR_SELECTION"
-       ]
-      },
-      "from": "@epam/uui-components:PickerBodyValue",
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -42059,7 +41772,7 @@
       "uid": "role",
       "name": "role",
       "typeValue": {
-       "raw": "string & {} | 'none' | 'search' | 'button' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+       "raw": "string & {} | 'search' | 'button' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
       },
       "from": "@types/react:HTMLAttributes",
       "required": false
@@ -42315,17 +42028,17 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'search' | 'email' | 'tel' | 'text' | 'url' | 'numeric' | 'decimal'"
+       "raw": "'search' | 'email' | 'tel' | 'text' | 'url' | 'none' | 'numeric' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "search",
         "email",
         "tel",
         "text",
         "url",
+        "none",
         "numeric",
         "decimal"
        ]
@@ -42401,13 +42114,13 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'list' | 'inline' | 'both'"
+       "raw": "'list' | 'none' | 'inline' | 'both'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "list",
+        "none",
         "inline",
         "both"
        ]
@@ -42633,13 +42346,13 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'link' | 'copy' | 'execute' | 'move' | 'popup'"
+       "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "link",
+        "none",
         "copy",
         "execute",
         "move",
@@ -45701,7 +45414,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -45889,6 +45602,9 @@
      "raw": "MainMenuDropdownProps",
      "print": [
       "interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "    /** Render callback for the MainMenuDropdown body.",
+      "     * If omitted, component children will be rendered.",
+      "     */",
       "    renderBody?: (props: DropdownBodyProps) => React.ReactNode;",
       "}"
      ]
@@ -45897,6 +45613,12 @@
      {
       "uid": "renderBody",
       "name": "renderBody",
+      "comment": {
+       "raw": [
+        "Render callback for the MainMenuDropdown body.",
+        " If omitted, component children will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: DropdownBodyProps) => React.ReactNode"
       },
@@ -47157,117 +46879,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:PaginatorParams": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "PaginatorParams",
-     "nameFull": "PaginatorParams"
-    },
-    "src": "uui-components/src/widgets/Paginator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "PaginatorParams",
-     "print": [
-      "interface PaginatorParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
-      "    size: '24' | '30';",
-      "    pages: PaginatorItem[];",
-      "    goToNext(): void;",
-      "    goToPrev(): void;",
-      "    isLast: boolean;",
-      "    isFirst: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "'24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30"
-       ]
-      },
-      "required": true
-     },
-     {
-      "uid": "pages",
-      "name": "pages",
-      "typeValue": {
-       "raw": "PaginatorItem[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "goToNext",
-      "name": "goToNext",
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     },
-     {
-      "uid": "goToPrev",
-      "name": "goToPrev",
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     },
-     {
-      "uid": "isLast",
-      "name": "isLast",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
-     },
-     {
-      "uid": "isFirst",
-      "name": "isFirst",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:PaginatorProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -47284,12 +46895,12 @@
      "raw": "PaginatorProps",
      "print": [
       "interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
-      "    /** Component size */",
+      "    /** Defines component size */",
       "    size: '24' | '30';",
       "    /** Total number of pages */",
       "    totalPages: number;",
       "    /** Override default rendering, keeping the component behavior */",
-      "    render?(params: PaginatorParams): any;",
+      "    render?(params: PaginatorRenderParams): any;",
       "}"
      ]
     },
@@ -47299,7 +46910,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Component size"
+        "Defines component size"
        ]
       },
       "typeValue": {
@@ -47339,7 +46950,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(params: PaginatorParams) => any"
+       "raw": "(params: PaginatorRenderParams) => any"
       },
       "editor": {
        "type": "func"
@@ -47494,6 +47105,153 @@
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
       "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-components:PaginatorRenderParams": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "PaginatorRenderParams",
+     "nameFull": "PaginatorRenderParams"
+    },
+    "src": "uui-components/src/widgets/Paginator.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "PaginatorRenderParams",
+     "print": [
+      "interface PaginatorRenderParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "    /** Defines component size */",
+      "    size: '24' | '30';",
+      "    /** Array of pages that should be rendered */",
+      "    pages: PaginatorItem[];",
+      "    /** Call to go to the next page */",
+      "    goToNext(): void;",
+      "    /** Call to go to the previous page */",
+      "    goToPrev(): void;",
+      "    /** True, if current page is last */",
+      "    isLast: boolean;",
+      "    /** True, if current page is first */",
+      "    isFirst: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "pages",
+      "name": "pages",
+      "comment": {
+       "raw": [
+        "Array of pages that should be rendered"
+       ]
+      },
+      "typeValue": {
+       "raw": "PaginatorItem[]"
+      },
+      "required": true
+     },
+     {
+      "uid": "goToNext",
+      "name": "goToNext",
+      "comment": {
+       "raw": [
+        "Call to go to the next page"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "goToPrev",
+      "name": "goToPrev",
+      "comment": {
+       "raw": [
+        "Call to go to the previous page"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLast",
+      "name": "isLast",
+      "comment": {
+       "raw": [
+        "True, if current page is last"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "isFirst",
+      "name": "isFirst",
+      "comment": {
+       "raw": [
+        "True, if current page is first"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
      },
      {
       "uid": "rawProps",
@@ -49044,14 +48802,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'input' | 'body' | 'none'"
+       "raw": "'none' | 'input' | 'body'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "none",
         "input",
-        "body",
-        "none"
+        "body"
        ]
       },
       "required": false
@@ -50372,9 +50130,16 @@
      "raw": "PickerModalOptions<TItem, TId>",
      "print": [
       "interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    /** Render callback for custom filters block. This block will be rendered befor the items list.",
+      "     If omitted, nothing will be rendered.",
+      "     */",
       "    renderFilter?(editableFilter: IEditable<any>): React.ReactNode;",
+      "    /** Render callback for modal footer.",
+      "     If omitted, default footer will be rendered.",
+      "     */",
       "    renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;",
       "    /**",
+      "     * If true, prevent modal window closing by click outside modal",
       "     * @default false",
       "     */",
       "    disallowClickOutside?: boolean;",
@@ -50385,6 +50150,12 @@
      {
       "uid": "renderFilter",
       "name": "renderFilter",
+      "comment": {
+       "raw": [
+        "Render callback for custom filters block. This block will be rendered befor the items list.",
+        "     If omitted, nothing will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
       },
@@ -50396,6 +50167,12 @@
      {
       "uid": "renderFooter",
       "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for modal footer.",
+        "     If omitted, default footer will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
@@ -50409,7 +50186,8 @@
       "name": "disallowClickOutside",
       "comment": {
        "raw": [
-        "@default false"
+        "If true, prevent modal window closing by click outside modal",
+        " @default false"
        ],
        "tags": {
         "@default": false
@@ -50805,14 +50583,14 @@
       "uid": "searchPosition",
       "name": "searchPosition",
       "typeValue": {
-       "raw": "'input' | 'body' | 'none'"
+       "raw": "'none' | 'input' | 'body'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "none",
         "input",
-        "body",
-        "none"
+        "body"
        ]
       },
       "required": true
@@ -51613,7 +51391,7 @@
       "uid": "radioInputProps",
       "name": "radioInputProps",
       "typeValue": {
-       "raw": "RadioInputProps & { key: React.Key; }"
+       "raw": "IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & { icon?: Icon | undefined; renderLabel?(): React.ReactNode; tabIndex?: number | undefined; id?: string | undefined; } & { key: React.Key; }"
       },
       "required": false
      },
@@ -51858,63 +51636,19 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
-      "interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, ICanFocus<HTMLInputElement> {",
+      "type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & {",
       "    icon?: Icon;",
       "    renderLabel?(): React.ReactNode;",
       "    tabIndex?: number;",
       "    id?: string;",
-      "}"
+      "};"
      ]
     },
     "props": [
-     {
-      "uid": "icon",
-      "name": "icon",
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderLabel",
-      "name": "renderLabel",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
      {
       "uid": "cx",
       "name": "cx",
@@ -52066,7 +51800,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -52153,6 +51887,50 @@
        "type": "func"
       },
       "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
       "required": false
      }
     ],
@@ -54482,7 +54260,7 @@
       "uid": "role",
       "name": "role",
       "typeValue": {
-       "raw": "string & {} | 'none' | 'search' | 'button' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+       "raw": "string & {} | 'search' | 'button' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
       },
       "from": "@types/react:HTMLAttributes",
       "required": false
@@ -54726,17 +54504,17 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'search' | 'email' | 'tel' | 'text' | 'url' | 'numeric' | 'decimal'"
+       "raw": "'search' | 'email' | 'tel' | 'text' | 'url' | 'none' | 'numeric' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "search",
         "email",
         "tel",
         "text",
         "url",
+        "none",
         "numeric",
         "decimal"
        ]
@@ -54812,13 +54590,13 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'list' | 'inline' | 'both'"
+       "raw": "'list' | 'none' | 'inline' | 'both'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "list",
+        "none",
         "inline",
         "both"
        ]
@@ -55044,13 +54822,13 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'link' | 'copy' | 'execute' | 'move' | 'popup'"
+       "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "link",
+        "none",
         "copy",
         "execute",
         "move",
@@ -59287,7 +59065,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -59429,6 +59207,7 @@
       "    maxLength?: number;",
       "    /** HTML id attribute to put on the HTML Input element */",
       "    id?: string;",
+      "    /** A forwarded ref for an HTML input element. */",
       "    forwardedRef?: React.ForwardedRef<HTMLInputElement>;",
       "}"
      ]
@@ -59547,6 +59326,11 @@
      {
       "uid": "forwardedRef",
       "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "A forwarded ref for an HTML input element."
+       ]
+      },
       "typeValue": {
        "raw": "null | (instance: HTMLInputElement | null) => void | React.MutableRefObject<HTMLInputElement | null>"
       },
@@ -60017,17 +59801,17 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'search' | 'email' | 'tel' | 'text' | 'url' | 'numeric' | 'decimal'"
+       "raw": "'search' | 'email' | 'tel' | 'text' | 'url' | 'none' | 'numeric' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
         "search",
         "email",
         "tel",
         "text",
         "url",
+        "none",
         "numeric",
         "decimal"
        ]
@@ -62318,14 +62102,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'input' | 'body' | 'none'"
+       "raw": "'none' | 'input' | 'body'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "none",
         "input",
-        "body",
-        "none"
+        "body"
        ]
       },
       "from": "@epam/uui-components:PickerInputBaseProps",
@@ -63869,6 +63653,12 @@
      {
       "uid": "renderFilter",
       "name": "renderFilter",
+      "comment": {
+       "raw": [
+        "Render callback for custom filters block. This block will be rendered befor the items list.",
+        "     If omitted, nothing will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
       },
@@ -63881,6 +63671,12 @@
      {
       "uid": "renderFooter",
       "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for modal footer.",
+        "     If omitted, default footer will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
@@ -63895,7 +63691,8 @@
       "name": "disallowClickOutside",
       "comment": {
        "raw": [
-        "@default false"
+        "If true, prevent modal window closing by click outside modal",
+        " @default false"
        ],
        "tags": {
         "@default": false
@@ -64320,17 +64117,6 @@
      "nameFull": "GroupedDataColumnProps"
     },
     "src": "uui-components/src/table/columnsConfigurationModal/types.ts",
-    "exported": false
-   }
-  },
-  "@epam/uui-components:PickerInputSearchPosition": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "PickerInputSearchPosition",
-     "nameFull": "PickerInputSearchPosition"
-    },
-    "src": "uui-components/src/pickers/hooks/types.ts",
     "exported": false
    }
   },
@@ -64903,26 +64689,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:BadgeColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "BadgeColor",
-     "nameFull": "BadgeColor"
-    },
-    "src": "uui/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
-     "print": [
-      "type BadgeColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
-     ]
-    }
-   }
-  },
   "@epam/uui:BadgeCoreProps": {
    "summary": {
     "module": "@epam/uui",
@@ -64939,6 +64705,7 @@
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; }",
      "print": [
       "type BadgeCoreProps = ButtonProps & {",
+      "    /** Defines a boolean flag to display an indicator. */",
       "    indicator?: boolean;",
       "};"
      ]
@@ -65386,6 +65153,11 @@
      {
       "uid": "indicator",
       "name": "indicator",
+      "comment": {
+       "raw": [
+        "Defines a boolean flag to display an indicator."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -65453,26 +65225,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:BadgeFill": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "BadgeFill",
-     "nameFull": "BadgeFill"
-    },
-    "src": "uui/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'solid' | 'outline'",
-     "print": [
-      "type BadgeFill = 'solid' | 'outline';"
-     ]
-    }
-   }
-  },
   "@epam/uui:BadgeMods": {
    "summary": {
     "module": "@epam/uui",
@@ -65484,23 +65236,35 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BadgeMods",
      "print": [
-      "interface BadgeMods {",
-      "    color?: BadgeColor;",
-      "    /** @default 'solid' */",
-      "    fill?: BadgeFill;",
-      "    /** @default '36' */",
-      "    size?: BadgeSize;",
-      "}"
+      "type BadgeMods = {",
+      "    /** Defines component color. */",
+      "    color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';",
+      "    /**",
+      "     * Defines component fill style.",
+      "     * @default 'solid'",
+      "     */",
+      "    fill?: 'solid' | 'outline';",
+      "    /**",
+      "     * Defines component size.",
+      "     * @default '36'",
+      "     */",
+      "    size?: '18' | '24' | '30' | '36' | '42' | '48';",
+      "};"
      ]
     },
     "props": [
      {
       "uid": "color",
       "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color."
+       ]
+      },
       "typeValue": {
        "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
       },
@@ -65521,7 +65285,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -65544,7 +65309,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -65578,6 +65344,11 @@
      "nameFull": "BadgeProps"
     },
     "src": "uui/components/widgets/Badge.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Badge component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -65585,6 +65356,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
+      "/** Represents the properties of a Badge component. */",
       "type BadgeProps = BadgeCoreProps & BadgeMods;"
      ]
     },
@@ -66031,6 +65803,11 @@
      {
       "uid": "indicator",
       "name": "indicator",
+      "comment": {
+       "raw": [
+        "Defines a boolean flag to display an indicator."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -66043,6 +65820,11 @@
      {
       "uid": "color",
       "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color."
+       ]
+      },
       "typeValue": {
        "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
       },
@@ -66064,7 +65846,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -66088,7 +65871,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -66168,26 +65952,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/uui:BadgeSize": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "BadgeSize",
-     "nameFull": "BadgeSize"
-    },
-    "src": "uui/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'18' | '36' | '48' | '24' | '30' | '42'",
-     "print": [
-      "type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
    }
   },
   "@epam/uui:BurgerButtonMods": {
@@ -67182,26 +66946,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:ButtonColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "ButtonColor",
-     "nameFull": "ButtonColor"
-    },
-    "src": "uui/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'",
-     "print": [
-      "type ButtonColor = 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';"
-     ]
-    }
-   }
-  },
   "@epam/uui:ButtonCoreProps": {
    "summary": {
     "module": "@epam/uui",
@@ -67210,6 +66954,11 @@
      "nameFull": "ButtonCoreProps<ButtonProps, 'count'>"
     },
     "src": "uui/components/buttons/Button.tsx",
+    "comment": {
+     "raw": [
+      "Represents the 'Core properties' for the Button component, omitting the 'count' property."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -67217,27 +66966,8 @@
     "typeValue": {
      "raw": "Omit<ButtonProps, 'count'>",
      "print": [
+      "/** Represents the 'Core properties' for the Button component, omitting the 'count' property. */",
       "type ButtonCoreProps = Omit<uuiButtonProps, 'count'> & {};"
-     ]
-    }
-   }
-  },
-  "@epam/uui:ButtonFill": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "ButtonFill",
-     "nameFull": "ButtonFill"
-    },
-    "src": "uui/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'solid' | 'outline' | 'none' | 'ghost'",
-     "print": [
-      "type ButtonFill = 'solid' | 'outline' | 'ghost' | 'none';"
      ]
     }
    }
@@ -67253,18 +66983,27 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ButtonMods",
      "print": [
-      "interface ButtonMods {",
-      "    /** @default '36' */",
+      "type ButtonMods = {",
+      "    /**",
+      "     * Defines component size.",
+      "     * @default '36'",
+      "     */",
       "    size?: ControlSize | '18';",
-      "    /** @default 'solid' */",
-      "    fill?: ButtonFill;",
-      "    /** @default 'primary' */",
-      "    color?: ButtonColor;",
-      "}"
+      "    /**",
+      "     * Defines component fill style.",
+      "     * @default 'solid'",
+      "     */",
+      "    fill?: 'solid' | 'outline' | 'ghost' | 'none';",
+      "    /**",
+      "     * Defines component color.",
+      "     * @default 'primary'",
+      "     */",
+      "    color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';",
+      "};"
      ]
     },
     "props": [
@@ -67273,7 +67012,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -67301,7 +67041,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -67326,7 +67067,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'primary'"
+        "Defines component color.",
+        " @default 'primary'"
        ],
        "tags": {
         "@default": "primary"
@@ -67359,6 +67101,11 @@
      "nameFull": "ButtonProps"
     },
     "src": "uui/components/buttons/Button.tsx",
+    "comment": {
+     "raw": [
+      "Represents the props for a Button component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -67366,6 +67113,7 @@
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
+      "/** Represents the props for a Button component. */",
       "type ButtonProps = ButtonMods & ButtonCoreProps;"
      ]
     },
@@ -67375,7 +67123,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -67404,7 +67153,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -67430,7 +67180,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'primary'"
+        "Defines component color.",
+        " @default 'primary'"
        ],
        "tags": {
         "@default": "primary"
@@ -67986,11 +67737,47 @@
       "required": false
      },
      {
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'label' prop value will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:CheckboxProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "ID provided to the 'input' node"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:CheckboxProps",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
       "comment": {
        "raw": [
-        "Check icon"
+        "Check icon.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
        ]
       },
       "typeValue": {
@@ -68007,7 +67794,8 @@
       "name": "indeterminateIcon",
       "comment": {
        "raw": [
-        "Indeterminate state icon"
+        "Indeterminate state icon.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
        ]
       },
       "typeValue": {
@@ -68015,30 +67803,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "from": "@epam/uui-components:CheckboxProps",
-      "required": false
-     },
-     {
-      "uid": "renderLabel",
-      "name": "renderLabel",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:CheckboxProps",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
       },
       "from": "@epam/uui-components:CheckboxProps",
       "required": false
@@ -68245,7 +68009,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -68535,6 +68299,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -69813,6 +69582,11 @@
      "nameFull": "ControlSize"
     },
     "src": "uui/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the size of a control."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -69820,6 +69594,9 @@
     "typeValue": {
      "raw": "'36' | '48' | '24' | '30' | '42' | 'none'",
      "print": [
+      "/**",
+      " * Defines the size of a control.",
+      " */",
       "type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';"
      ]
     }
@@ -69842,6 +69619,7 @@
      "print": [
       "type CountIndicatorCoreProps = IHasCaption & IHasCX & {",
       "    /**",
+      "     * Defines component size.",
       "     * @default '24'",
       "     */",
       "    size?: '24' | '18' | '12';",
@@ -69883,7 +69661,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '24'"
+        "Defines component size.",
+        " @default '24'"
        ],
        "tags": {
         "@default": "24"
@@ -69898,57 +69677,6 @@
         "12",
         "18",
         "24"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:CountIndicatorMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "CountIndicatorMods",
-     "nameFull": "CountIndicatorMods"
-    },
-    "src": "uui/components/widgets/CountIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "CountIndicatorMods",
-     "print": [
-      "type CountIndicatorMods = {",
-      "    /** Property is required */",
-      "    color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical' | null;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Property is required"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "critical",
-        "neutral",
-        "white",
-        null
        ]
       },
       "required": false
@@ -70010,7 +69738,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '24'"
+        "Defines component size.",
+        " @default '24'"
        ],
        "tags": {
         "@default": "24"
@@ -70035,11 +69764,11 @@
       "name": "color",
       "comment": {
        "raw": [
-        "Property is required"
+        "Defines component color."
        ]
       },
       "typeValue": {
-       "raw": "null | 'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'white'"
       },
       "editor": {
        "type": "oneOf",
@@ -70049,12 +69778,11 @@
         "warning",
         "critical",
         "neutral",
-        "white",
-        null
+        "white"
        ]
       },
       "from": "@epam/uui:CountIndicatorMods",
-      "required": false
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -72809,6 +72537,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -76737,6 +76470,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -77023,7 +76761,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -77095,6 +76833,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -81142,6 +80885,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -81386,75 +81134,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:NumericInputMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "NumericInputMods",
-     "nameFull": "NumericInputMods"
-    },
-    "src": "uui/components/inputs/NumericInput.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "NumericInputMods",
-     "print": [
-      "interface NumericInputMods extends types.SizeMod, IHasEditMode {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:NumericInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -81463,6 +81142,11 @@
      "nameFull": "NumericInputProps"
     },
     "src": "uui/components/inputs/NumericInput.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a NumericInput component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -81470,6 +81154,7 @@
     "typeValue": {
      "raw": "NumericInputProps",
      "print": [
+      "/** Represents the properties of a NumericInput component. */",
       "type NumericInputProps = uuiNumericInputProps & NumericInputMods;"
      ]
     },
@@ -81932,26 +81617,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
       "uid": "mode",
       "name": "mode",
       "comment": {
@@ -81974,6 +81639,36 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'",
+        " Size '48' is deprecated and will be removed in future release"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:NumericInputMods",
       "required": false
      }
     ],
@@ -82237,6 +81932,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -83101,6 +82801,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -83896,6 +83601,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -83930,6 +83640,12 @@
      {
       "uid": "renderFilter",
       "name": "renderFilter",
+      "comment": {
+       "raw": [
+        "Render callback for custom filters block. This block will be rendered befor the items list.",
+        "     If omitted, nothing will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
       },
@@ -83942,6 +83658,12 @@
      {
       "uid": "renderFooter",
       "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for modal footer.",
+        "     If omitted, default footer will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
@@ -83956,7 +83678,8 @@
       "name": "disallowClickOutside",
       "comment": {
        "raw": [
-        "@default false"
+        "If true, prevent modal window closing by click outside modal",
+        " @default false"
        ],
        "tags": {
         "@default": false
@@ -85158,6 +84881,12 @@
      {
       "uid": "renderFilter",
       "name": "renderFilter",
+      "comment": {
+       "raw": [
+        "Render callback for custom filters block. This block will be rendered befor the items list.",
+        "     If omitted, nothing will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(editableFilter: IEditable<any>) => React.ReactNode"
       },
@@ -85170,6 +84899,12 @@
      {
       "uid": "renderFooter",
       "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for modal footer.",
+        "     If omitted, default footer will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
       },
@@ -85184,7 +84919,8 @@
       "name": "disallowClickOutside",
       "comment": {
        "raw": [
-        "@default false"
+        "If true, prevent modal window closing by click outside modal",
+        " @default false"
        ],
        "tags": {
         "@default": false
@@ -85693,57 +85429,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:RadioInputMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RadioInputMods",
-     "nameFull": "RadioInputMods"
-    },
-    "src": "uui/components/inputs/RadioInput.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RadioInputMods",
-     "print": [
-      "interface RadioInputMods {",
-      "    /**",
-      "     * @default '18'",
-      "     */",
-      "    size?: '12' | '18';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:RadioInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -85752,6 +85437,11 @@
      "nameFull": "RadioInputProps"
     },
     "src": "uui/components/inputs/RadioInput.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a RadioInput component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -85759,6 +85449,7 @@
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
+      "/** Represents the properties of a RadioInput component. */",
       "type RadioInputProps = RadioInputMods & UuiRadioInputProps;"
      ]
     },
@@ -85768,7 +85459,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '18'"
+        "Defines component size.",
+        " @default '18'"
        ],
        "tags": {
         "@default": "18"
@@ -85785,54 +85477,6 @@
        ]
       },
       "from": "@epam/uui:RadioInputMods",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "renderLabel",
-      "name": "renderLabel",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
       "required": false
      },
      {
@@ -85986,7 +85630,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -86073,6 +85717,54 @@
        "type": "func"
       },
       "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     },
+     {
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
       "required": false
      }
     ],
@@ -86838,6 +86530,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -87239,6 +86936,11 @@
      "nameFull": "SearchInputProps"
     },
     "src": "uui/components/inputs/TextInput.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for a SearchInput component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -87246,6 +86948,7 @@
     "typeValue": {
      "raw": "SearchInputProps",
      "print": [
+      "/** Represents the properties for a SearchInput component. */",
       "interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {",
       "}"
      ]
@@ -87926,35 +87629,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:TextInputMods",
-      "required": false
-     },
-     {
       "uid": "mode",
       "name": "mode",
       "comment": {
@@ -87977,6 +87651,36 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:TextInputMods",
       "required": false
      },
      {
@@ -88033,6 +87737,9 @@
      "raw": "SizeMod",
      "print": [
       "interface SizeMod {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
       "    size?: ControlSize;",
       "}"
      ]
@@ -88041,6 +87748,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -89008,7 +88720,7 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
        ]
       },
       "typeValue": {
@@ -91041,88 +90753,6 @@
     }
    }
   },
-  "@epam/uui:TextAreaMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextAreaMods",
-     "nameFull": "TextAreaMods"
-    },
-    "src": "uui/components/inputs/TextArea.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TextAreaMods",
-     "print": [
-      "interface TextAreaMods extends types.IHasEditMode {",
-      "    /**",
-      "     * @default '36'",
-      "     * Size '48' is deprecated, and will be removed in future release",
-      "     * */",
-      "    size?: types.ControlSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'",
-        " Size '48' is deprecated, and will be removed in future release"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:TextAreaProps": {
    "summary": {
     "module": "@epam/uui",
@@ -91131,6 +90761,11 @@
      "nameFull": "TextAreaProps"
     },
     "src": "uui/components/inputs/TextArea.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a TextArea component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -91138,6 +90773,7 @@
     "typeValue": {
      "raw": "TextAreaProps",
      "print": [
+      "/** Represents the properties of a TextArea component. */",
       "type TextAreaProps = UuiTextAreaProps & TextAreaMods;"
      ]
     },
@@ -91262,6 +90898,11 @@
      {
       "uid": "forwardedRef",
       "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "A forwarded ref for an HTML input element."
+       ]
+      },
       "typeValue": {
        "raw": "null | (instance: HTMLInputElement | null) => void | React.MutableRefObject<HTMLInputElement | null>"
       },
@@ -91477,35 +91118,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'",
-        " Size '48' is deprecated, and will be removed in future release"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:TextAreaMods",
-      "required": false
-     },
-     {
       "uid": "mode",
       "name": "mode",
       "comment": {
@@ -91528,6 +91140,36 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'",
+        " Size '48' is deprecated, and will be removed in future release"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:TextAreaMods",
       "required": false
      }
     ],
@@ -91594,87 +91236,6 @@
     }
    }
   },
-  "@epam/uui:TextInputMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextInputMods",
-     "nameFull": "TextInputMods"
-    },
-    "src": "uui/components/inputs/TextInput.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TextInputMods",
-     "print": [
-      "interface TextInputMods extends IHasEditMode {",
-      "    /**",
-      "     * @default '36'",
-      "     */",
-      "    size?: ControlSize | '60';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:TextInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -91683,6 +91244,11 @@
      "nameFull": "TextInputProps"
     },
     "src": "uui/components/inputs/TextInput.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for a TextInput component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -91690,6 +91256,7 @@
     "typeValue": {
      "raw": "TextInputProps",
      "print": [
+      "/** Represents the properties for a TextInput component. */",
       "interface TextInputProps extends CoreTextInputProps, TextInputMods {",
       "}"
      ]
@@ -92370,35 +91937,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:TextInputMods",
-      "required": false
-     },
-     {
       "uid": "mode",
       "name": "mode",
       "comment": {
@@ -92421,6 +91959,36 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:TextInputMods",
       "required": false
      }
     ],
@@ -93294,6 +92862,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -94793,6 +94366,39 @@
     "exported": false
    }
   },
+  "@epam/uui:CountIndicatorMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CountIndicatorMods",
+     "nameFull": "CountIndicatorMods"
+    },
+    "src": "uui/components/widgets/CountIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:NumericInputMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "NumericInputMods",
+     "nameFull": "NumericInputMods"
+    },
+    "src": "uui/components/inputs/NumericInput.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:RadioInputMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RadioInputMods",
+     "nameFull": "RadioInputMods"
+    },
+    "src": "uui/components/inputs/RadioInput.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:TableSizesAndPositionMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94801,6 +94407,28 @@
      "nameFull": "TableSizesAndPositionMods"
     },
     "src": "uui/components/tables/types.ts",
+    "exported": false
+   }
+  },
+  "@epam/uui:TextAreaMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextAreaMods",
+     "nameFull": "TextAreaMods"
+    },
+    "src": "uui/components/inputs/TextArea.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:TextInputMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextInputMods",
+     "nameFull": "TextInputMods"
+    },
+    "src": "uui/components/inputs/TextInput.tsx",
     "exported": false
    }
   },
@@ -95031,124 +94659,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:BadgeMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "BadgeMods",
-     "nameFull": "BadgeMods"
-    },
-    "src": "epam-promo/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "BadgeMods",
-     "print": [
-      "type BadgeMods = {",
-      "    /** @default 'blue' */",
-      "    color?: EpamPrimaryColor | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10' | 'gray30' | 'gray60';",
-      "    /** @default 'solid' */",
-      "    fill?: uui.BadgeMods['fill'] | 'semitransparent';",
-      "    /** @default '36' */",
-      "    size?: uui.BadgeMods['size'];",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10' | 'gray30' | 'gray60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "yellow",
-        "orange",
-        "fuchsia",
-        "purple",
-        "violet",
-        "cobalt",
-        "cyan",
-        "mint",
-        "white",
-        "gray10",
-        "gray30",
-        "gray60"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "@default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'solid' | 'outline' | 'semitransparent'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "solid",
-        "outline",
-        "semitransparent"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:BadgeProps": {
    "summary": {
     "module": "@epam/promo",
@@ -95157,6 +94667,11 @@
      "nameFull": "BadgeProps"
     },
     "src": "epam-promo/components/widgets/Badge.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a badge component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -95164,6 +94679,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
+      "/** Represents the properties of a badge component. */",
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
     },
@@ -95610,6 +95126,11 @@
      {
       "uid": "indicator",
       "name": "indicator",
+      "comment": {
+       "raw": [
+        "Defines a boolean flag to display an indicator."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -95624,7 +95145,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
@@ -95662,7 +95184,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -95687,10 +95210,11 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default 36"
        ],
        "tags": {
-        "@default": "36"
+        "@default": 36
        }
       },
       "typeValue": {
@@ -95769,135 +95293,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/promo:ButtonColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ButtonColor",
-     "nameFull": "ButtonColor"
-    },
-    "src": "epam-promo/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'green' | 'red' | 'gray50' | 'gray'",
-     "print": [
-      "type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:ButtonMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ButtonMods",
-     "nameFull": "ButtonMods"
-    },
-    "src": "epam-promo/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ButtonMods",
-     "print": [
-      "interface ButtonMods {",
-      "    /** @default 'solid' */",
-      "    fill?: FillStyle;",
-      "    /** @default 'blue' */",
-      "    color?: ButtonColor;",
-      "    /** @default '36' */",
-      "    size?: uui.ButtonMods['size'];",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "@default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'white' | 'solid' | 'light' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "solid",
-        "light",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'red' | 'gray50' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "red",
-        "gray50",
-        "gray"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:ButtonProps": {
    "summary": {
     "module": "@epam/promo",
@@ -95906,6 +95301,11 @@
      "nameFull": "ButtonProps"
     },
     "src": "epam-promo/components/buttons/Button.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Button component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -95913,6 +95313,7 @@
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
+      "/** Represents the properties of a Button component. */",
       "type ButtonProps = uui.ButtonCoreProps & ButtonMods;"
      ]
     },
@@ -96344,7 +95745,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -96370,7 +95772,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
@@ -96397,7 +95800,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -96497,6 +95901,11 @@
      "nameFull": "ControlShape"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a control shape."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -96504,6 +95913,9 @@
     "typeValue": {
      "raw": "'square' | 'round'",
      "print": [
+      "/**",
+      " * Defines a control shape.",
+      " */",
       "type ControlShape = 'square' | 'round';"
      ]
     }
@@ -96517,6 +95929,11 @@
      "nameFull": "ControlSize"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the size of a control."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -96524,60 +95941,12 @@
     "typeValue": {
      "raw": "'36' | '48' | '24' | '30' | '42' | 'none'",
      "print": [
+      "/**",
+      " * Defines the size of a control.",
+      " */",
       "type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';"
      ]
     }
-   }
-  },
-  "@epam/promo:CountIndicatorMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "CountIndicatorMods",
-     "nameFull": "CountIndicatorMods"
-    },
-    "src": "epam-promo/components/widgets/CountIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "CountIndicatorMods",
-     "print": [
-      "interface CountIndicatorMods {",
-      "    /** Property is required */",
-      "    color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red' | null;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Property is required"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "white",
-        "gray",
-        null
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/promo:CountIndicatorProps": {
@@ -96588,6 +95957,11 @@
      "nameFull": "CountIndicatorProps"
     },
     "src": "epam-promo/components/widgets/CountIndicator.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a CountIndicator component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -96595,6 +95969,7 @@
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
+      "/** Represents the properties of a CountIndicator component. */",
       "type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;"
      ]
     },
@@ -96633,7 +96008,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '24'"
+        "Defines component size.",
+        " @default '24'"
        ],
        "tags": {
         "@default": "24"
@@ -96658,11 +96034,11 @@
       "name": "color",
       "comment": {
        "raw": [
-        "Property is required"
+        "Defines component color."
        ]
       },
       "typeValue": {
-       "raw": "null | 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -96672,12 +96048,11 @@
         "amber",
         "red",
         "white",
-        "gray",
-        null
+        "gray"
        ]
       },
       "from": "@epam/promo:CountIndicatorMods",
-      "required": false
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -97221,6 +96596,11 @@
      "nameFull": "EpamAdditionalColor"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines an additional colors."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97228,6 +96608,9 @@
     "typeValue": {
      "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan'",
      "print": [
+      "/**",
+      " * Defines an additional colors.",
+      " */",
       "type EpamAdditionalColor = EpamPrimaryColor | 'cyan' | 'orange' | 'purple' | 'violet';"
      ]
     }
@@ -97241,6 +96624,11 @@
      "nameFull": "EpamColor"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines all type of colors: primary & grayscale & additional."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97248,6 +96636,9 @@
     "typeValue": {
      "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'",
      "print": [
+      "/**",
+      " * Defines all type of colors: primary & grayscale & additional.",
+      " */",
       "type EpamColor = EpamPrimaryColor | EpamGrayscaleColor | EpamAdditionalColor;"
      ]
     }
@@ -97261,6 +96652,11 @@
      "nameFull": "EpamGrayscaleColor"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a grayscale colors."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97268,6 +96664,9 @@
     "typeValue": {
      "raw": "'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'",
      "print": [
+      "/**",
+      " * Defines a grayscale colors.",
+      " */",
       "type EpamGrayscaleColor = 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';"
      ]
     }
@@ -97281,6 +96680,11 @@
      "nameFull": "EpamPrimaryColor"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the primary colors."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97288,6 +96692,9 @@
     "typeValue": {
      "raw": "'blue' | 'green' | 'amber' | 'red'",
      "print": [
+      "/**",
+      " * Defines the primary colors.",
+      " */",
       "type EpamPrimaryColor = 'blue' | 'green' | 'amber' | 'red';"
      ]
     }
@@ -97379,6 +96786,11 @@
      "nameFull": "FillStyle"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines component fill style."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97386,6 +96798,9 @@
     "typeValue": {
      "raw": "'white' | 'solid' | 'light' | 'none'",
      "print": [
+      "/**",
+      " * Defines component fill style.",
+      " */",
       "type FillStyle = 'solid' | 'white' | 'light' | 'none';"
      ]
     }
@@ -97719,6 +97134,11 @@
      "nameFull": "FontStyle"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a font style."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97726,65 +97146,12 @@
     "typeValue": {
      "raw": "'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab'",
      "print": [
+      "/**",
+      " * Defines a font style.",
+      " */",
       "type FontStyle = 'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab';"
      ]
     }
-   }
-  },
-  "@epam/promo:IconButtonMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "IconButtonMods",
-     "nameFull": "IconButtonMods"
-    },
-    "src": "epam-promo/components/buttons/IconButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IconButtonMods",
-     "print": [
-      "interface IconButtonMods {",
-      "    /**",
-      "     * @default 'gray60'",
-      "     */",
-      "    color?: IconColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'gray60'"
-       ],
-       "tags": {
-        "@default": "gray60"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray30' | 'gray60' | 'gray50'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "gray30",
-        "gray60",
-        "gray50"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/promo:IconButtonProps": {
@@ -97795,6 +97162,11 @@
      "nameFull": "IconButtonProps"
     },
     "src": "epam-promo/components/buttons/IconButton.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the IconButton component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -97802,6 +97174,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
+      "/** Represents the properties for the IconButton component. */",
       "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
      ]
     },
@@ -98204,7 +97577,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray60'"
+        "Defines component color.",
+        " @default 'gray60'"
        ],
        "tags": {
         "@default": "gray60"
@@ -98285,26 +97659,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/promo:IconColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "IconColor",
-     "nameFull": "IconColor"
-    },
-    "src": "epam-promo/components/buttons/IconButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray30' | 'gray60' | 'gray50'",
-     "print": [
-      "type IconColor = EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60';"
-     ]
-    }
    }
   },
   "@epam/promo:IconContainerColors": {
@@ -98633,61 +97987,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:LinkButtonMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "LinkButtonMods",
-     "nameFull": "LinkButtonMods"
-    },
-    "src": "epam-promo/components/buttons/LinkButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "LinkButtonMods",
-     "print": [
-      "interface LinkButtonMods {",
-      "    /**",
-      "     * @default 'blue'",
-      "     */",
-      "    color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray10' | 'gray60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "gray10",
-        "gray60"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:LinkButtonProps": {
    "summary": {
     "module": "@epam/promo",
@@ -98696,6 +97995,11 @@
      "nameFull": "LinkButtonProps"
     },
     "src": "epam-promo/components/buttons/LinkButton.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the LinkButton component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -98703,6 +98007,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
+      "/** Represents the properties for the LinkButton component. */",
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
     },
@@ -99171,7 +98476,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
@@ -99389,6 +98695,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -100657,6 +99968,11 @@
      "nameFull": "RowSize"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the size of a row."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -100664,6 +99980,9 @@
     "typeValue": {
      "raw": "null | '36' | '48' | '24' | '30' | '42'",
      "print": [
+      "/**",
+      " * Defines the size of a row.",
+      " */",
       "type RowSize = null | '24' | '30' | '36' | '42' | '48';"
      ]
     }
@@ -100685,6 +100004,7 @@
      "raw": "RowSizeMod",
      "print": [
       "interface RowSizeMod {",
+      "    /** Defines the size of a row. */",
       "    size?: RowSize;",
       "}"
      ]
@@ -100693,6 +100013,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines the size of a row."
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -100763,67 +100088,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:StatusIndicatorMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "StatusIndicatorMods",
-     "nameFull": "StatusIndicatorMods"
-    },
-    "src": "epam-promo/components/widgets/StatusIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "StatusIndicatorMods",
-     "print": [
-      "type StatusIndicatorMods = {",
-      "    /** @default 'gray' */",
-      "    color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'gray'"
-       ],
-       "tags": {
-        "@default": "gray"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "yellow",
-        "orange",
-        "fuchsia",
-        "purple",
-        "violet",
-        "cobalt",
-        "cyan",
-        "mint",
-        "white",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:StatusIndicatorProps": {
    "summary": {
     "module": "@epam/promo",
@@ -100832,6 +100096,11 @@
      "nameFull": "StatusIndicatorProps"
     },
     "src": "epam-promo/components/widgets/StatusIndicator.tsx",
+    "comment": {
+     "raw": [
+      "Represents the props for the StatusIndicator component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -100839,6 +100108,7 @@
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
+      "/** Represents the props for the StatusIndicator component. */",
       "type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;"
      ]
     },
@@ -100931,7 +100201,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray'"
+        "Defines component color.",
+        " @default 'gray'"
        ],
        "tags": {
         "@default": "gray"
@@ -100966,63 +100237,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:TagMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "TagMods",
-     "nameFull": "TagMods"
-    },
-    "src": "epam-promo/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TagMods",
-     "print": [
-      "type TagMods = {",
-      "    /**",
-      "     * @default 'gray30'",
-      "     */",
-      "    color?: EpamPrimaryColor | 'white' | 'gray10' | 'gray30' | 'gray70';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'gray30'"
-       ],
-       "tags": {
-        "@default": "gray30"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray10' | 'gray30' | 'gray70'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "white",
-        "gray10",
-        "gray30",
-        "gray70"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:TagProps": {
    "summary": {
     "module": "@epam/promo",
@@ -101031,6 +100245,11 @@
      "nameFull": "TagProps"
     },
     "src": "epam-promo/components/widgets/Tag.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the Tag component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -101038,6 +100257,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
+      "/** Represents the properties for the Tag component. */",
       "type TagProps = uui.TagCoreProps & TagMods;"
      ]
     },
@@ -101538,7 +100758,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray30'"
+        "Defines component color.",
+        " @default 'gray30'"
        ],
        "tags": {
         "@default": "gray30"
@@ -101984,6 +101205,11 @@
      "nameFull": "TextSize"
     },
     "src": "epam-promo/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a text size."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -101991,6 +101217,9 @@
     "typeValue": {
      "raw": "'36' | '48' | '18' | '24' | '30' | 'none'",
      "print": [
+      "/**",
+      " * Defines a text size.",
+      " */",
       "type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';"
      ]
     }
@@ -102527,118 +101756,81 @@
     "propsFromUnion": false
    }
   },
-  "@epam/electric:BadgeMods": {
+  "@epam/promo:BadgeMods": {
    "summary": {
-    "module": "@epam/electric",
+    "module": "@epam/promo",
     "typeName": {
      "name": "BadgeMods",
      "nameFull": "BadgeMods"
     },
-    "src": "epam-electric/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "BadgeMods",
-     "print": [
-      "type BadgeMods = {",
-      "    /** @default 'neutral' */",
-      "    color?: uui.BadgeColor | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';",
-      "    /** @default 'solid' */",
-      "    fill?: uui.BadgeFill;",
-      "    /** @default '36' */",
-      "    size?: uui.BadgeSize;",
-      "};"
-     ]
+    "src": "epam-promo/components/widgets/Badge.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:ButtonMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "ButtonMods",
+     "nameFull": "ButtonMods"
     },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'neutral'"
-       ],
-       "tags": {
-        "@default": "neutral"
-       }
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "critical",
-        "neutral",
-        "yellow",
-        "orange",
-        "purple",
-        "cyan",
-        "mint",
-        "white",
-        "night100",
-        "night600"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "@default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'solid' | 'outline'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "solid",
-        "outline"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '30' | '36' | '42' | '48'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
+    "src": "epam-promo/components/buttons/Button.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:CountIndicatorMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "CountIndicatorMods",
+     "nameFull": "CountIndicatorMods"
+    },
+    "src": "epam-promo/components/widgets/CountIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:IconButtonMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "IconButtonMods",
+     "nameFull": "IconButtonMods"
+    },
+    "src": "epam-promo/components/buttons/IconButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:LinkButtonMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "LinkButtonMods",
+     "nameFull": "LinkButtonMods"
+    },
+    "src": "epam-promo/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:StatusIndicatorMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "StatusIndicatorMods",
+     "nameFull": "StatusIndicatorMods"
+    },
+    "src": "epam-promo/components/widgets/StatusIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:TagMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "TagMods",
+     "nameFull": "TagMods"
+    },
+    "src": "epam-promo/components/widgets/Tag.tsx",
+    "exported": false
    }
   },
   "@epam/electric:BadgeProps": {
@@ -102649,6 +101841,11 @@
      "nameFull": "BadgeProps"
     },
     "src": "epam-electric/components/widgets/Badge.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Badge component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -102656,6 +101853,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
+      "/** Represents the properties of a Badge component. */",
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
     },
@@ -103102,6 +102300,11 @@
      {
       "uid": "indicator",
       "name": "indicator",
+      "comment": {
+       "raw": [
+        "Defines a boolean flag to display an indicator."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -103116,7 +102319,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'neutral'"
+        "Defines component color.",
+        " @default 'neutral'"
        ],
        "tags": {
         "@default": "neutral"
@@ -103151,7 +102355,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -103175,7 +102380,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -103658,68 +102864,6 @@
     }
    }
   },
-  "@epam/electric:StatusIndicatorMods": {
-   "summary": {
-    "module": "@epam/electric",
-    "typeName": {
-     "name": "StatusIndicatorMods",
-     "nameFull": "StatusIndicatorMods"
-    },
-    "src": "epam-electric/components/widgets/StatusIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "StatusIndicatorMods",
-     "print": [
-      "type StatusIndicatorMods = {",
-      "    /** @default 'gray' */",
-      "    color?: uui.StatusIndicatorColors | 'white' | 'gray' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'gray'"
-       ],
-       "tags": {
-        "@default": "gray"
-       }
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'gray' | 'fuchsia' | 'violet' | 'cobalt'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "critical",
-        "neutral",
-        "yellow",
-        "orange",
-        "purple",
-        "cyan",
-        "mint",
-        "white",
-        "gray",
-        "fuchsia",
-        "violet",
-        "cobalt"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/electric:StatusIndicatorProps": {
    "summary": {
     "module": "@epam/electric",
@@ -103728,6 +102872,11 @@
      "nameFull": "StatusIndicatorProps"
     },
     "src": "epam-electric/components/widgets/StatusIndicator.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a StatusIndicator component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -103735,6 +102884,7 @@
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
+      "/** Represents the properties of a StatusIndicator component. */",
       "type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;"
      ]
     },
@@ -103827,7 +102977,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray'"
+        "Defines component color.",
+        " @default 'gray'"
        ],
        "tags": {
         "@default": "gray"
@@ -103879,7 +103030,10 @@
      "raw": "TagMods",
      "print": [
       "type TagMods = {",
-      "    /** @default 'neutral' */",
+      "    /**",
+      "     * Defines component color.",
+      "     * @default 'neutral'",
+      "     */",
       "    color?: uui.TagColor | 'white' | 'night100' | 'night700';",
       "};"
      ]
@@ -103890,7 +103044,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'neutral'"
+        "Defines component color.",
+        " @default 'neutral'"
        ],
        "tags": {
         "@default": "neutral"
@@ -103926,6 +103081,11 @@
      "nameFull": "TagProps"
     },
     "src": "epam-electric/components/widgets/Tag.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Tag component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -103933,6 +103093,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
+      "/** Represents the properties of a Tag component. */",
       "type TagProps = uui.TagCoreProps & TagMods;"
      ]
     },
@@ -104433,7 +103594,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'neutral'"
+        "Defines component color.",
+        " @default 'neutral'"
        ],
        "tags": {
         "@default": "neutral"
@@ -104515,6 +103677,28 @@
      }
     ],
     "propsFromUnion": true
+   }
+  },
+  "@epam/electric:BadgeMods": {
+   "summary": {
+    "module": "@epam/electric",
+    "typeName": {
+     "name": "BadgeMods",
+     "nameFull": "BadgeMods"
+    },
+    "src": "epam-electric/components/widgets/Badge.tsx",
+    "exported": false
+   }
+  },
+  "@epam/electric:StatusIndicatorMods": {
+   "summary": {
+    "module": "@epam/electric",
+    "typeName": {
+     "name": "StatusIndicatorMods",
+     "nameFull": "StatusIndicatorMods"
+    },
+    "src": "epam-electric/components/widgets/StatusIndicator.tsx",
+    "exported": false
    }
   },
   "@epam/loveship:AlertMods": {
@@ -104733,150 +103917,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:BadgeMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "BadgeMods",
-     "nameFull": "BadgeMods"
-    },
-    "src": "loveship/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "BadgeMods",
-     "print": [
-      "type BadgeMods = {",
-      "    /** @default 'sky' */",
-      "    color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600';",
-      "    /** @default 'square' */",
-      "    shape?: types.ControlShape;",
-      "    /** @default 'solid' */",
-      "    fill?: uui.BadgeMods['fill'] | 'semitransparent';",
-      "    /** @default '18' */",
-      "    size?: uui.BadgeMods['size'] | '12';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'sky'"
-       ],
-       "tags": {
-        "@default": "sky"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "yellow",
-        "orange",
-        "purple",
-        "cyan",
-        "mint",
-        "white",
-        "night100",
-        "night300",
-        "night600"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "shape",
-      "name": "shape",
-      "comment": {
-       "raw": [
-        "@default 'square'"
-       ],
-       "tags": {
-        "@default": "square"
-       }
-      },
-      "typeValue": {
-       "raw": "'square' | 'round'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "square",
-        "round"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "@default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'solid' | 'outline' | 'semitransparent'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "solid",
-        "outline",
-        "semitransparent"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:BadgeProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -104885,6 +103925,11 @@
      "nameFull": "BadgeProps"
     },
     "src": "loveship/components/widgets/Badge.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Badge component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -104892,6 +103937,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { indicator?: boolean | undefined; } & BadgeMods",
      "print": [
+      "/** Represents the properties of a Badge component. */",
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
      ]
     },
@@ -105338,6 +104384,11 @@
      {
       "uid": "indicator",
       "name": "indicator",
+      "comment": {
+       "raw": [
+        "Defines a boolean flag to display an indicator."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -105352,7 +104403,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'sky'"
+        "TDefines component color.",
+        " @default 'sky'"
        ],
        "tags": {
         "@default": "sky"
@@ -105390,7 +104442,8 @@
       "name": "shape",
       "comment": {
        "raw": [
-        "@default 'square'"
+        "Defines component shape.",
+        " @default 'square'"
        ],
        "tags": {
         "@default": "square"
@@ -105414,7 +104467,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -105439,7 +104493,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '18'"
+        "Defines component size.",
+        " @default '18'"
        ],
        "tags": {
         "@default": "18"
@@ -105522,163 +104577,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/loveship:ButtonColorType": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ButtonColorType",
-     "nameFull": "ButtonColorType"
-    },
-    "src": "loveship/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'",
-     "print": [
-      "type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:ButtonMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ButtonMods",
-     "nameFull": "ButtonMods"
-    },
-    "src": "loveship/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ButtonMods",
-     "print": [
-      "interface ButtonMods {",
-      "    /** @default \"sky\"  */",
-      "    color?: ButtonColorType;",
-      "    /** @default '36' */",
-      "    size?: uui.ControlSize | '18';",
-      "    /** @default 'square' */",
-      "    shape?: ControlShape;",
-      "    /** @default 'solid' */",
-      "    fill?: FillStyle;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default \"sky\""
-       ],
-       "tags": {
-        "@default": "sky"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "white",
-        "night600",
-        "night500",
-        "gray"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "shape",
-      "name": "shape",
-      "comment": {
-       "raw": [
-        "@default 'square'"
-       ],
-       "tags": {
-        "@default": "square"
-       }
-      },
-      "typeValue": {
-       "raw": "'square' | 'round'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "square",
-        "round"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "@default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'white' | 'solid' | 'none' | 'light'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "solid",
-        "none",
-        "light"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:ButtonProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -105687,6 +104585,11 @@
      "nameFull": "ButtonProps"
     },
     "src": "loveship/components/buttons/Button.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Button component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -105694,6 +104597,7 @@
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
+      "/** Represents the properties of a Button component. */",
       "type ButtonProps = uui.ButtonCoreProps & ButtonMods;"
      ]
     },
@@ -106125,7 +105029,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default \"sky\""
+        "Defines component color.",
+        " @default \"sky\""
        ],
        "tags": {
         "@default": "sky"
@@ -106155,7 +105060,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '36'"
+        "Defines component size.",
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -106184,7 +105090,8 @@
       "name": "shape",
       "comment": {
        "raw": [
-        "@default 'square'"
+        "Defines component shape.",
+        " @default 'square'"
        ],
        "tags": {
         "@default": "square"
@@ -106208,7 +105115,8 @@
       "name": "fill",
       "comment": {
        "raw": [
-        "@default 'solid'"
+        "Defines component fill style.",
+        " @default 'solid'"
        ],
        "tags": {
         "@default": "solid"
@@ -106241,6 +105149,11 @@
      "nameFull": "ColorMod"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the color modifiers of a component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -106248,9 +105161,13 @@
     "typeValue": {
      "raw": "ColorMod",
      "print": [
-      "// Mod interfaces",
+      "/**",
+      " * Defines the color modifiers of a component.",
+      " */",
       "interface ColorMod {",
-      "    /** Component color */",
+      "    /**",
+      "     * Defines component color.",
+      "     */",
       "    color?: EpamColor;",
       "}"
      ]
@@ -106261,7 +105178,7 @@
       "name": "color",
       "comment": {
        "raw": [
-        "Component color"
+        "Defines component color."
        ]
       },
       "typeValue": {
@@ -106304,6 +105221,11 @@
      "nameFull": "ControlShape"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a control shape."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -106311,6 +105233,7 @@
     "typeValue": {
      "raw": "'square' | 'round'",
      "print": [
+      "/** Defines a control shape. */",
       "type ControlShape = 'square' | 'round';"
      ]
     }
@@ -106324,6 +105247,11 @@
      "nameFull": "ControlSize"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the control size."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -106331,60 +105259,12 @@
     "typeValue": {
      "raw": "'36' | '48' | '24' | '30' | '42' | 'none'",
      "print": [
+      "/**",
+      " * Defines the control size.",
+      " */",
       "type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';"
      ]
     }
-   }
-  },
-  "@epam/loveship:CountIndicatorMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "CountIndicatorMods",
-     "nameFull": "CountIndicatorMods"
-    },
-    "src": "loveship/components/widgets/CountIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "CountIndicatorMods",
-     "print": [
-      "interface CountIndicatorMods {",
-      "    /** Property is required */",
-      "    color: 'gray' | 'white' | 'sky' | 'grass' | 'sun' | 'fire' | null;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Property is required"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "white",
-        "gray",
-        null
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/loveship:CountIndicatorProps": {
@@ -106395,6 +105275,11 @@
      "nameFull": "CountIndicatorProps"
     },
     "src": "loveship/components/widgets/CountIndicator.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a CountIndicator component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -106402,6 +105287,7 @@
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
+      "/** Represents the properties of a CountIndicator component. */",
       "type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;"
      ]
     },
@@ -106440,7 +105326,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '24'"
+        "Defines component size.",
+        " @default '24'"
        ],
        "tags": {
         "@default": "24"
@@ -106465,11 +105352,11 @@
       "name": "color",
       "comment": {
        "raw": [
-        "Property is required"
+        "Defines component color."
        ]
       },
       "typeValue": {
-       "raw": "null | 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -106479,12 +105366,11 @@
         "sun",
         "fire",
         "white",
-        "gray",
-        null
+        "gray"
        ]
       },
       "from": "@epam/loveship:CountIndicatorMods",
-      "required": false
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -107028,6 +105914,11 @@
      "nameFull": "EpamAdditionalColor"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines an additional colors."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107035,6 +105926,9 @@
     "typeValue": {
      "raw": "'cobalt' | 'violet' | 'fuchsia'",
      "print": [
+      "/**",
+      " * Defines an additional colors.",
+      " */",
       "type EpamAdditionalColor = 'cobalt' | 'violet' | 'fuchsia';"
      ]
     }
@@ -107048,6 +105942,11 @@
      "nameFull": "EpamColor"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines all types of colors: primary & additional & grayscale."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107055,6 +105954,9 @@
     "typeValue": {
      "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'",
      "print": [
+      "/**",
+      " * Defines all types of colors: primary & additional & grayscale.",
+      " */",
       "type EpamColor = EpamPrimaryColor | EpamAdditionalColor | EpamGrayscaleColor;"
      ]
     }
@@ -107068,6 +105970,11 @@
      "nameFull": "EpamGrayscaleColor"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a grayscale colors."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107075,6 +105982,9 @@
     "typeValue": {
      "raw": "'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'",
      "print": [
+      "/**",
+      " * Defines a grayscale colors.",
+      " */",
       "type EpamGrayscaleColor = 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';"
      ]
     }
@@ -107088,6 +105998,11 @@
      "nameFull": "EpamPrimaryColor"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines a primary colors."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107095,6 +106010,9 @@
     "typeValue": {
      "raw": "'sky' | 'grass' | 'sun' | 'fire'",
      "print": [
+      "/**",
+      " * Defines a primary colors.",
+      " */",
       "type EpamPrimaryColor = 'sky' | 'grass' | 'sun' | 'fire';"
      ]
     }
@@ -107235,6 +106153,11 @@
      "nameFull": "FillStyle"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines component fill style."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107242,6 +106165,7 @@
     "typeValue": {
      "raw": "'white' | 'solid' | 'none' | 'light'",
      "print": [
+      "/** Defines component fill style. */",
       "type FillStyle = 'solid' | 'white' | 'light' | 'none';"
      ]
     }
@@ -107564,6 +106488,11 @@
      "nameFull": "FontMod"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Represents a font customization for a text element."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107571,7 +106500,11 @@
     "typeValue": {
      "raw": "FontMod",
      "print": [
+      "/**",
+      " * Represents a font customization for a text element.",
+      " */",
       "interface FontMod {",
+      "    /** Defines component font. */",
       "    font?: FontStyle;",
       "}"
      ]
@@ -107580,6 +106513,11 @@
      {
       "uid": "font",
       "name": "font",
+      "comment": {
+       "raw": [
+        "Defines component font."
+       ]
+      },
       "typeValue": {
        "raw": "'sans' | 'sans-semibold' | 'sans-light'"
       },
@@ -107605,6 +106543,11 @@
      "nameFull": "FontStyle"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the font styles."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107612,71 +106555,12 @@
     "typeValue": {
      "raw": "'sans' | 'sans-semibold' | 'sans-light'",
      "print": [
+      "/**",
+      " * Defines the font styles.",
+      " */",
       "type FontStyle = 'sans' | 'sans-semibold' | 'sans-light';"
      ]
     }
-   }
-  },
-  "@epam/loveship:IconButtonMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "IconButtonMods",
-     "nameFull": "IconButtonMods"
-    },
-    "src": "loveship/components/buttons/IconButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IconButtonMods",
-     "print": [
-      "interface IconButtonMods {",
-      "    /**",
-      "     * @default 'night600'",
-      "     */",
-      "    color?: EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'night600'"
-       ],
-       "tags": {
-        "@default": "night600"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night300' | 'night600' | 'night500' | 'night200' | 'night400'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "white",
-        "night300",
-        "night600",
-        "night500",
-        "night200",
-        "night400"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/loveship:IconButtonProps": {
@@ -107687,6 +106571,11 @@
      "nameFull": "IconButtonProps"
     },
     "src": "loveship/components/buttons/IconButton.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a IconButton component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -107694,6 +106583,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
+      "/** Represents the properties of a IconButton component. */",
       "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
      ]
     },
@@ -108096,7 +106986,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'night600'"
+        "Defines component color.",
+        " @default 'night600'"
        ],
        "tags": {
         "@default": "night600"
@@ -108491,73 +107382,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:LinkButtonMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "LinkButtonMods",
-     "nameFull": "LinkButtonMods"
-    },
-    "src": "loveship/components/buttons/LinkButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "LinkButtonMods",
-     "print": [
-      "interface LinkButtonMods {",
-      "    /**",
-      "     * @default 'sky'",
-      "     */",
-      "    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'sky'"
-       ],
-       "tags": {
-        "@default": "sky"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "white",
-        "night100",
-        "night300",
-        "night600",
-        "night500",
-        "night50",
-        "night200",
-        "night400",
-        "night700",
-        "night800",
-        "night900"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:LinkButtonProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -108566,6 +107390,11 @@
      "nameFull": "LinkButtonProps"
     },
     "src": "loveship/components/buttons/LinkButton.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a LinkButton component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -108573,6 +107402,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: ControlSize | undefined; } & LinkButtonMods",
      "print": [
+      "/** Represents the properties of a LinkButton component. */",
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
     },
@@ -109041,7 +107871,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'sky'"
+        "Defines component color.",
+        " @default 'sky'"
        ],
        "tags": {
         "@default": "sky"
@@ -109389,6 +108220,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -110073,441 +108909,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:RadioInputMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "RadioInputMods",
-     "nameFull": "RadioInputMods"
-    },
-    "src": "loveship/components/inputs/RadioInput.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RadioInputMods",
-     "print": [
-      "interface RadioInputMods extends UuiRadioInputMods {",
-      "    /**",
-      "     * @default 'light'",
-      "     */",
-      "    theme?: 'light' | 'dark';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "theme",
-      "name": "theme",
-      "comment": {
-       "raw": [
-        "@default 'light'"
-       ],
-       "tags": {
-        "@default": "light"
-       }
-      },
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui:RadioInputMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:RadioInputProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "RadioInputProps",
-     "nameFull": "RadioInputProps"
-    },
-    "src": "loveship/components/inputs/RadioInput.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RadioInputProps",
-     "print": [
-      "interface RadioInputProps extends RadioInputMods, UuiRadioInputProps {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "theme",
-      "name": "theme",
-      "comment": {
-       "raw": [
-        "@default 'light'"
-       ],
-       "tags": {
-        "@default": "light"
-       }
-      },
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "from": "@epam/loveship:RadioInputMods",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui:RadioInputMods",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "renderLabel",
-      "name": "renderLabel",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: boolean) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationMessage",
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationProps",
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": "label",
-      "name": "label",
-      "comment": {
-       "raw": [
-        "Label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasLabel",
-      "required": false
-     },
-     {
-      "uid": "getValueChangeAnalyticsEvent",
-      "name": "getValueChangeAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "Given a value, returns an analytics event to send when component is edited.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: boolean | null, oldValue: boolean | null) => AnalyticsEvent"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:RangeSliderMods": {
    "summary": {
     "module": "@epam/loveship",
@@ -110533,7 +108934,7 @@
       "name": "color",
       "comment": {
        "raw": [
-        "Component color"
+        "Defines component color."
        ]
       },
       "typeValue": {
@@ -111182,6 +109583,11 @@
      "nameFull": "RowSize"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the size of a row."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -111189,6 +109595,9 @@
     "typeValue": {
      "raw": "'36' | '48' | '24' | '30' | '42'",
      "print": [
+      "/**",
+      " * Defines the size of a row.",
+      " */",
       "type RowSize = '24' | '30' | '36' | '42' | '48';"
      ]
     }
@@ -111202,6 +109611,11 @@
      "nameFull": "RowSizeMod"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines component row size modifier."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -111209,7 +109623,11 @@
     "typeValue": {
      "raw": "RowSizeMod",
      "print": [
+      "/**",
+      " * Defines component row size modifier.",
+      " */",
       "interface RowSizeMod {",
+      "    /** Defines component row size. */",
       "    size?: RowSize;",
       "}"
      ]
@@ -111218,6 +109636,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component row size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
       },
@@ -111245,6 +109668,11 @@
      "nameFull": "SizeMod"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Represents a size modifier."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -111252,7 +109680,11 @@
     "typeValue": {
      "raw": "SizeMod",
      "print": [
+      "/**",
+      " * Represents a size modifier.",
+      " */",
       "interface SizeMod {",
+      "    /** Defines component size. */",
       "    size?: ControlSize;",
       "}"
      ]
@@ -111261,6 +109693,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
       },
@@ -111750,67 +110187,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:StatusIndicatorMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "StatusIndicatorMods",
-     "nameFull": "StatusIndicatorMods"
-    },
-    "src": "loveship/components/widgets/StatusIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "StatusIndicatorMods",
-     "print": [
-      "type StatusIndicatorMods = {",
-      "    /** @default 'gray' */",
-      "    color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'gray'"
-       ],
-       "tags": {
-        "@default": "gray"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "yellow",
-        "orange",
-        "purple",
-        "cyan",
-        "mint",
-        "white",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:StatusIndicatorProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -111819,6 +110195,11 @@
      "nameFull": "StatusIndicatorProps"
     },
     "src": "loveship/components/widgets/StatusIndicator.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a StatusIndicator component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -111826,6 +110207,7 @@
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
+      "/** Represents the properties of a StatusIndicator component. */",
       "type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;"
      ]
     },
@@ -111918,7 +110300,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'gray'"
+        "Defines component color.",
+        " @default 'gray'"
        ],
        "tags": {
         "@default": "gray"
@@ -113094,61 +111477,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/loveship:TagMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "TagMods",
-     "nameFull": "TagMods"
-    },
-    "src": "loveship/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TagMods",
-     "print": [
-      "type TagMods = {",
-      "    /** @default 'night300' */",
-      "    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'night300'"
-       ],
-       "tags": {
-        "@default": "night300"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night100' | 'night300' | 'night700'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "white",
-        "night100",
-        "night300",
-        "night700"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:TagProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -113157,6 +111485,11 @@
      "nameFull": "TagProps"
     },
     "src": "loveship/components/widgets/Tag.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a Tag component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -113164,6 +111497,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { size?: TagSize | undefined; fill?: TagFill | undefined; } & TagMods",
      "print": [
+      "/** Represents the properties of a Tag component. */",
       "type TagProps = uui.TagCoreProps & TagMods;"
      ]
     },
@@ -113664,7 +111998,8 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'night300'"
+        "Defines component color.",
+        " @default 'night300'"
        ],
        "tags": {
         "@default": "night300"
@@ -114112,6 +112447,11 @@
      "nameFull": "TextSize"
     },
     "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the size of a text."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -114119,6 +112459,9 @@
     "typeValue": {
      "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'",
      "print": [
+      "/**",
+      " * Defines the size of a text.",
+      " */",
       "type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';"
      ]
     }
@@ -114656,6 +112999,83 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/loveship:BadgeMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "BadgeMods",
+     "nameFull": "BadgeMods"
+    },
+    "src": "loveship/components/widgets/Badge.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:ButtonMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "ButtonMods",
+     "nameFull": "ButtonMods"
+    },
+    "src": "loveship/components/buttons/Button.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:CountIndicatorMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "CountIndicatorMods",
+     "nameFull": "CountIndicatorMods"
+    },
+    "src": "loveship/components/widgets/CountIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:IconButtonMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "IconButtonMods",
+     "nameFull": "IconButtonMods"
+    },
+    "src": "loveship/components/buttons/IconButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:LinkButtonMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "LinkButtonMods",
+     "nameFull": "LinkButtonMods"
+    },
+    "src": "loveship/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:StatusIndicatorMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "StatusIndicatorMods",
+     "nameFull": "StatusIndicatorMods"
+    },
+    "src": "loveship/components/widgets/StatusIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:TagMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "TagMods",
+     "nameFull": "TagMods"
+    },
+    "src": "loveship/components/widgets/Tag.tsx",
+    "exported": false
    }
   },
   "@epam/uui-editor:EditorValue": {
