@@ -49,9 +49,7 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
-    const dataTableFocusManager = useDataTableFocusManager<Task['id']>({
-        enableMovementShortcuts: true,
-    }, []);
+    const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {

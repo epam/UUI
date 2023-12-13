@@ -1,4 +1,4 @@
-import { CellProps, DataTableFocusManagerProps, RowInfo, RowsRegistry } from './types';
+import { CellProps, RowInfo, RowsRegistry } from './types';
 
 export class DataTableFocusManager<TId> {
     private rowsRegistry: RowsRegistry<TId> = null;
@@ -9,8 +9,7 @@ export class DataTableFocusManager<TId> {
     private focusedCell?: number;
     private lastRowIndex?: number;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    constructor(props: DataTableFocusManagerProps) {
+    constructor() {
         this.rowsRegistry = new Map();
         this.rowsIndexToIds = new Map();
     }
@@ -96,8 +95,8 @@ export class DataTableFocusManager<TId> {
         }
 
         const indexes = [...this.rowsIndexToIds.keys()];
-
-        const prevIndexes = indexes.slice(0, startingFromIndex).reverse();
+        const fromIndex = startingFromIndex === -1 ? undefined : startingFromIndex;
+        const prevIndexes = indexes.slice(0, fromIndex).reverse();
         const focused = this.focusToNextFocusableRow(prevIndexes);
 
         if (!focused) {

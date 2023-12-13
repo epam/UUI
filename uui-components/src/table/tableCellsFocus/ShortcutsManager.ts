@@ -1,10 +1,14 @@
-type IsExactShortcut = (event: KeyboardEvent) => boolean;
-type ShortcutAction = (event: KeyboardEvent) => void;
+export type IsMatchingShortcut = (event: KeyboardEvent) => boolean;
+export type ShortcutAction = (event: KeyboardEvent) => void;
+export interface Shortcut {
+    isMatchingShortcut: IsMatchingShortcut;
+    action: ShortcutAction;
+}
 
 export class ShortcutsManager {
-    public registerShortcut(isExactShortcut: IsExactShortcut, action: ShortcutAction) {
+    public registerShortcut(isMatchingShortcut: IsMatchingShortcut, action: ShortcutAction) {
         const keydownHandler = (event: KeyboardEvent) => {
-            if (!isExactShortcut(event)) return;
+            if (!isMatchingShortcut(event)) return;
 
             action(event);
         };
@@ -13,8 +17,9 @@ export class ShortcutsManager {
         return () => document.removeEventListener('keydown', keydownHandler);
     }
 
-    public registerShortcuts(shortcuts: Array<[IsExactShortcut, ShortcutAction]>) {
-        const unsubs = shortcuts.map((shortcutConfig) => this.registerShortcut(...shortcutConfig));
+    public registerShortcuts(shortcuts: Shortcut[]) {
+        const unsubs = shortcuts.map(({ isMatchingShortcut, action }) =>
+            this.registerShortcut(isMatchingShortcut, action));
 
         return () => unsubs.forEach((removeShortcut) => removeShortcut());
     }

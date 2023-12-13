@@ -1,37 +1,37 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { DataTableFocusManager } from '../DataTableFocusManager';
-import { useShortcutsManager } from './useShortcutsManager';
+import { useShortcuts } from './useShortcuts';
 
 export interface UseMovementShortcutsProps<TId> {
     enableMovementShortcuts?: boolean;
     dataTableFocusManager?: DataTableFocusManager<TId>;
 }
 
-const focusNextRowShortcut = (event: KeyboardEvent) => event.altKey && event.key === 'ArrowDown';
-const focusPrevRowShortcut = (event: KeyboardEvent) => event.altKey && event.key === 'ArrowUp';
+const isFocusNextRowShortcut = (event: KeyboardEvent) => event.altKey && event.key === 'ArrowDown';
+const isFocusPrevRowShortcut = (event: KeyboardEvent) => event.altKey && event.key === 'ArrowUp';
 
-export function useMovementShortcuts<TId>(props: UseMovementShortcutsProps<TId>) {
-    const shortcutsManager = useShortcutsManager(
-        { enableShortcuts: props.enableMovementShortcuts },
-        [props.dataTableFocusManager],
-    );
-
+export function useMovementShortcuts<TId>({
+    enableMovementShortcuts = true,
+    dataTableFocusManager,
+}: UseMovementShortcutsProps<TId>) {
     const focusNextRow = useCallback((e: KeyboardEvent) => {
         e.preventDefault();
-        props.dataTableFocusManager?.focusNextRow();
-    }, [props.dataTableFocusManager]);
+        dataTableFocusManager?.focusNextRow();
+    }, [dataTableFocusManager]);
 
     const focusPreviousRow = useCallback((e: KeyboardEvent) => {
         e.preventDefault();
-        props.dataTableFocusManager?.focusPrevRow();
-    }, [props.dataTableFocusManager]);
-
-    useEffect(() => {
-        const removeShortcuts = shortcutsManager?.registerShortcuts([
-            [focusNextRowShortcut, focusNextRow],
-            [focusPrevRowShortcut, focusPreviousRow],
-        ]);
-        
-        return () => removeShortcuts();
-    }, [shortcutsManager, focusNextRow]);
+        dataTableFocusManager?.focusPrevRow();
+    }, [dataTableFocusManager]);
+    
+    useShortcuts(
+        {
+            enableShortcuts: enableMovementShortcuts,
+            shortcuts: [
+                { isMatchingShortcut: isFocusNextRowShortcut, action: focusNextRow },
+                { isMatchingShortcut: isFocusPrevRowShortcut, action: focusPreviousRow },
+            ],
+        },
+        [dataTableFocusManager],
+    );
 }

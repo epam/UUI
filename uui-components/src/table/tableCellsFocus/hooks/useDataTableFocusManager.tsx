@@ -1,16 +1,22 @@
 import { useMemo } from 'react';
 import { DataTableFocusManager } from '../DataTableFocusManager';
-import { DataTableFocusManagerProps } from '../types';
 import { useMovementShortcuts } from './useMovementShortcuts';
 
-export function useDataTableFocusManager<TId>(props: DataTableFocusManagerProps = {}, deps: unknown[]): DataTableFocusManager<TId> {
+export interface UseDataTableFocusManagerProps {
+    enableMovementShortcuts?: boolean;
+}
+
+export function useDataTableFocusManager<TId>(
+    { enableMovementShortcuts = true }: UseDataTableFocusManagerProps = {},
+    deps: unknown[],
+): DataTableFocusManager<TId> {
     const focusManager = useMemo(
-        () => new DataTableFocusManager<TId>(props),
-        deps,
+        () => new DataTableFocusManager<TId>(),
+        [...deps, enableMovementShortcuts],
     );
 
     useMovementShortcuts({ 
-        enableMovementShortcuts: props.enableMovementShortcuts,
+        enableMovementShortcuts,
         dataTableFocusManager: focusManager,
     });
 
