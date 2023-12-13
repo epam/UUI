@@ -5,11 +5,9 @@ import css from './LinkButton.module.scss';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 
-const defaultSize = '36';
-export type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';
-export const allLinkButtonColors: LinkButtonColorType[] = ['primary', 'secondary', 'contrast'];
+const DEFAULT_SIZE = '36';
 
-export interface LinkButtonMods {
+interface LinkButtonMods {
     /**
      * @default '36'
      */
@@ -17,7 +15,7 @@ export interface LinkButtonMods {
     /**
      * @default 'primary'
      */
-    color?: LinkButtonColorType;
+    color?: 'primary' | 'secondary' | 'contrast';
 }
 
 export type LinkButtonCoreProps = ButtonProps & {
@@ -29,13 +27,13 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
         'uui-link_button',
         css.root,
-        `uui-size-${mods.size || defaultSize}`,
+        `uui-size-${mods.size || DEFAULT_SIZE}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || 'primary'}`,
     ];
 }
 
 export const LinkButton = withMods<LinkButtonCoreProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
+    dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+    clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
 }));

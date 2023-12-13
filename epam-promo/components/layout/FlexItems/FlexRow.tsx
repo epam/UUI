@@ -2,14 +2,14 @@ import * as types from '../../types';
 import { withMods } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export interface RowMods extends Omit<uui.RowMods, 'background'>, types.RowSizeMod {
+interface FlexRowMods extends types.RowSizeMod {
     /**
      * @default 'none'
      */
-    background?: 'white' | 'gray5' | 'none';
+    background?: 'white' | 'gray5' | 'none' | uui.FlexRowProps['background'];
 }
-export type FlexRowProps = uui.FlexRowProps & RowMods;
+export type FlexRowProps = Omit<uui.FlexRowProps, 'background'> & FlexRowMods;
 
-export const FlexRow = withMods<uui.FlexRowProps, RowMods>(uui.FlexRow, (props) => {
+export const FlexRow = withMods<Omit<uui.FlexRowProps, 'background'>, FlexRowMods>(uui.FlexRow, (props) => {
     return [`uui-color-${props.background || 'none'}`];
 });

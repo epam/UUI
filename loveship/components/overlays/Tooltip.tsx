@@ -1,5 +1,5 @@
 import { withMods, devLogger } from '@epam/uui-core';
-import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 
 export interface TooltipMods {
     /**
@@ -8,13 +8,13 @@ export interface TooltipMods {
      *
      * @default 'gray'
      */
-    color?: 'white' | 'fire' | 'gray' | 'night900';
+    color?: 'white' | 'fire' | 'gray' | 'night900' | uui.TooltipProps['color'];
 }
 
-export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
+export type TooltipProps = Omit<uui.TooltipProps, 'color'> & TooltipMods;
 
-export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
-    uuiTooltip,
+export const Tooltip = withMods<Omit<uui.TooltipProps, 'color'>, TooltipMods>(
+    uui.Tooltip,
     () => [],
     (props) => {
         if (__DEV__) {

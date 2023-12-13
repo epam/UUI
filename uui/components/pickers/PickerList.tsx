@@ -2,7 +2,7 @@ import React from 'react';
 import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder } from '@epam/uui-core';
 import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
 import { IHasEditMode, SizeMod } from '../types';
-import { Text, TextSize } from '../typography';
+import { Text } from '../typography';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
@@ -64,7 +64,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
         <div>
             {!rows.length
                 && (props.noOptionsMessage || (
-                    <Text color="secondary" size={ props.size as TextSize }>
+                    <Text color="secondary" size={ props.size }>
                         No options available
                     </Text>
                 ))}
