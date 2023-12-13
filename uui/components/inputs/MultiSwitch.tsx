@@ -6,18 +6,30 @@ import { Button, ButtonMods } from '../buttons';
 import { SizeMod } from '../types';
 
 type MultiSwitchItem<TValue> = ButtonProps & ButtonMods & {
+    /**
+     * Defines the id of MultiSwitchItem.
+     */
     id: TValue;
 };
 
-export type UuiMultiSwitchColor = 'primary' | 'secondary';
-
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    items: MultiSwitchItem<TValue>[];
+type MultiSwitchMods = {
     /**
+     * Defines component color.
      * @default 'primary'
      */
-    color?: UuiMultiSwitchColor;
-}
+    color?: 'primary' | 'secondary';
+};
+
+/** Represents the 'Core properties' for the MultiSwitch component. */
+export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
+    /**
+     * Defines an array of MultiSwitchItems.
+     */
+    items: MultiSwitchItem<TValue>[];
+};
+
+/** Represents the properties for the MultiSwitch component. */
+export type MultiSwitchProps<TValue> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (

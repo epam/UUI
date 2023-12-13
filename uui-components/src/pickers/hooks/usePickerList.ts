@@ -3,7 +3,14 @@ import { DataRowProps, UuiContext } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { usePicker } from './usePicker';
 import { usePickerListState } from './usePickerListState';
-import { LastUsedRec, UsePickerListProps } from './types';
+import { UsePickerListProps } from './types';
+
+interface LastUsedRec<TId> {
+    id: TId;
+    /* For possible future uses */
+    sessionStartTime: number;
+    selectionTime: number;
+}
 
 export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TItem, TId, TProps>) {
     const context = useContext(UuiContext);
