@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps, DataSourceState } from '../../../../../types';
-import { ITree, NOT_FOUND_RECORD } from '../../tree';
+import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps, DataSourceState } from '../../../../../../types';
+import { ITree, NOT_FOUND_RECORD } from '../..';
 
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;

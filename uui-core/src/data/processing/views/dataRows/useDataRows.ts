@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
 import { CascadeSelection, DataRowOptions, DataRowProps, DataSourceListProps, DataSourceState, VirtualListRange } from '../../../../types';
-import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
+import { SelectingService, FoldingService, FocusService, CheckingService } from '../tree/hooks/services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 
-export interface UseDataRowsProps<TItem, TId, TFilter = any> {
+export interface UseDataRowsProps<TItem, TId, TFilter = any> extends CheckingService<TItem, TId>, SelectingService<TItem, TId>, FoldingService<TItem, TId>, FocusService {
     tree: ITree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
     setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
@@ -18,17 +18,12 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> {
     rowOptions?: DataRowOptions<TItem, TId>;
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
 
-    isFoldedByDefault?(item: TItem): boolean;
-
     getChildCount?(item: TItem): number;
 
     getId: (item: TItem) => TId;
     getParentId?(item: TItem): TId | undefined;
 
     cascadeSelection?: CascadeSelection;
-
-    getEstimatedChildrenCount: (id: TId) => number;
-    getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
     lastRowIndex: number;
 
     selectAll?: boolean;
@@ -45,40 +40,64 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const {
         tree,
         getId,
-        getParentId,
         dataSourceState,
-        setDataSourceState,
 
         flattenSearchResults,
         isPartialLoad,
         getRowOptions,
         rowOptions,
 
-        getEstimatedChildrenCount,
-        getMissingRecordsCount,
         cascadeSelection,
-        isFoldedByDefault,
         lastRowIndex,
         getTreeRowsStats,
     } = props;
 
-    const checkingService = useCheckingService({
-        tree,
-        dataSourceState,
-        setDataSourceState,
-        cascadeSelection,
-        getParentId,
-    });
-
-    const foldingService = useFoldingService({
-        dataSourceState, setDataSourceState, isFoldedByDefault, getId,
-    });
-
-    const focusService = useFocusService({ setDataSourceState });
-
-    const selectingService = useSelectingService({ setDataSourceState });
-
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
+
+    const getEstimatedChildrenCount = useCallback((id: TId) => {
+        if (id === undefined) return undefined;
+
+        const item = tree.getById(id);
+        if (item === NOT_FOUND_RECORD) return undefined;
+
+        const childCount = props.getChildCount?.(item) ?? undefined;
+        if (childCount === undefined) return undefined;
+
+        const nodeInfo = tree.getNodeInfo(id);
+        if (nodeInfo?.count !== undefined) {
+            // nodes are already loaded, and we know the actual count
+            return nodeInfo.count;
+        }
+
+        return childCount;
+    }, [props.getChildCount, tree]);
+
+    const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
+        const nodeInfo = tree.getNodeInfo(id);
+
+        const estimatedChildCount = getEstimatedChildrenCount(id);
+
+        // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
+        if (nodeInfo.count !== undefined) {
+            // Exact count known
+            return nodeInfo.count - loadedChildrenCount;
+        }
+
+        // estimatedChildCount = undefined for top-level rows only.
+        if (id === undefined && totalRowsCount < lastRowIndex) {
+            return lastRowIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
+        }
+
+        if (estimatedChildCount > loadedChildrenCount) {
+            // According to getChildCount (put into estimatedChildCount), there are more rows on this level
+            return estimatedChildCount - loadedChildrenCount;
+        }
+
+        // We have a bad estimate - it even less that actual items we have
+        // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
+        // let's guess we have at least 1 item more than loaded
+        return 1;
+    }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
     const { getRowProps, getUnknownRowProps, getLoadingRowProps } = useDataRowProps<TItem, TId, TFilter>({
         tree,
@@ -92,11 +111,11 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
         getEstimatedChildrenCount,
 
-        handleOnCheck: checkingService.handleOnCheck,
-        handleOnSelect: selectingService.handleOnSelect,
-        handleOnFocus: focusService.handleOnFocus,
-        isRowChecked: checkingService.isRowChecked,
-        isRowChildrenChecked: checkingService.isRowChildrenChecked,
+        handleOnCheck: props.handleOnCheck,
+        handleOnSelect: props.handleOnSelect,
+        handleOnFocus: props.handleOnFocus,
+        isRowChecked: props.isRowChecked,
+        isRowChildrenChecked: props.isRowChildrenChecked,
     });
 
     const { rows, pinned, pinnedByParentId, stats } = useBuildRows({
@@ -110,7 +129,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getMissingRecordsCount,
         getRowProps,
         getLoadingRowProps,
-        ...foldingService,
+        isFolded: props.isFolded,
+        handleOnFold: props.handleOnFold,
     });
 
     const withPinnedRows = usePinnedRows({
@@ -124,7 +144,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         checked: dataSourceState.checked,
         stats,
         areCheckboxesVisible: rowOptions?.checkbox?.isVisible,
-        handleSelectAll: checkingService.handleSelectAll,
+        handleSelectAll: props.handleSelectAll,
     });
 
     const getById = (id: TId, index: number) => {

@@ -7,17 +7,16 @@ import css from './TablesExamples.module.scss';
 export default function ArrayDataTableExample() {
     const [dataSourceState, setDataSourceState] = useState({});
 
-    const { tree, ...restProps } = useTree({
-        type: 'plain',
-        items: demoData.featureClasses,
+    const { tree, ...dataRowProps } = useTree({
         getId: (item) => item.id,
         dataSourceState,
+        setDataSourceState,
+        items: demoData.featureClasses,
     }, []);
 
     const { getListProps, getVisibleRows } = useDataRows({
         tree,
-        setDataSourceState,
-        ...restProps,
+        ...dataRowProps,
     });
 
     const productColumns: DataColumnProps<FeatureClass>[] = useMemo(

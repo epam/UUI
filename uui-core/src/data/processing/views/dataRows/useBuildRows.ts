@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
 import { CascadeSelection, DataRowOptions, DataRowPathItem, DataRowProps, DataSourceState } from '../../../../types';
 import { idToKey } from '../helpers';
-import { FoldingService } from './services';
+import { FoldingService } from '../tree/hooks/services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId> {

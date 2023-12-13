@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceState } from '../../../../../types';
+import { DataRowProps, DataSourceState } from '../../../../../../types';
 
 export interface UseSelectingServiceProps<TId, TFilter = any> {
     setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
