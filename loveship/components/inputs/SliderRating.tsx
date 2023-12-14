@@ -21,21 +21,36 @@ import { i18n } from '../../i18n';
 const defaultSize = '18';
 
 export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /**
+     * Enables to pass your custom Tooltip component instead of default.
+     */
     renderTooltip?: (value: TValue) => React.ReactNode;
     /**
-     * @default 1
+     * Defines start point of component.
+     * @default '1'
      */
     from?: 1 | 2;
     /**
+     * Defines is NotAvailable showing.
      * @default false
      */
     withoutNa?: boolean;
     /**
+     * Defines component size.
      * @default '18'
      */
     size?: '18' | '24';
+    /**
+     * Enables to pass your ScaleIcon component instead of default.
+     */
     getScaleIcon?: (value: number) => Icon;
+    /**
+     * Icon click handler.
+     */
     getHandlerIcon?: (value: number) => Icon;
+    /*
+    * Defines Tooltip color.
+    */
     tooltipColor?: 'white' | 'fire' | 'gray';
 }
 

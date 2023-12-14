@@ -4,16 +4,16 @@ import * as uui from '@epam/uui';
 import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
-const defaultSize = '18';
+const DEFAULT_SIZE = '18';
 
 type BadgeMods = {
     /**
-     * TDefines component color.
+     * Defines component color.
      * @default 'sky'
      */
     color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600';
     /**
-     * Defines component shape.
+     * Defines component shape style.
      * @default 'square'
      */
     shape?: types.ControlShape;
@@ -33,7 +33,7 @@ function applyBadgeMods(mods: BadgeMods) {
     return [
         css['style-' + (mods.shape || 'square')],
         css[`fill-${mods.fill === 'semitransparent' ? 'outline' : (mods.fill || 'solid')}`],
-        css['size-' + (mods.size || defaultSize)],
+        css['size-' + (mods.size || DEFAULT_SIZE)],
         css.root,
     ];
 }
@@ -55,7 +55,7 @@ export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
         }
         return {
             color: props.color || 'sky',
-            size: props.size || defaultSize,
+            size: props.size || DEFAULT_SIZE,
             fill: props.fill === 'semitransparent' ? 'outline' : (props.fill || 'solid'),
         };
     },

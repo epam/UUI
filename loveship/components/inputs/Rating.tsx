@@ -7,10 +7,13 @@ import { Tooltip } from '../overlays';
 
 export interface RatingMods {
     /**
+     * Defines component size.
      * @default '18'
      */
     size?: 18 | 24 | 30;
 }
+
+/** Represents the properties for the MultiSwitch component. */
 export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
 
 function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {

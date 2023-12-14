@@ -7,6 +7,7 @@ function applyVerticalTabButtonMods() {
     return [css.root];
 }
 
+/** Represents the properties of a VerticalTabButton component. */
 export type VerticalTabButtonProps = ButtonProps & TabButtonMods;
 
 export const VerticalTabButton = withMods<VerticalTabButtonProps>(TabButton, applyVerticalTabButtonMods);

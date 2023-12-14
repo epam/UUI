@@ -21,7 +21,7 @@ type BadgeMods = {
     size?: uui.BadgeMods['size'];
 };
 
-export function applyBadgeMods(mods: BadgeMods) {
+function applyBadgeMods(mods: BadgeMods) {
     return [
         css[`fill-${mods.fill === 'semitransparent' ? 'outline' : (mods.fill || 'solid')}`],
         css.root,

@@ -11,7 +11,7 @@ export type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 export type TextMods = TextSettings & {
     /**
      * Represents the color of a text.
-     * @default primary.
+     * @default 'primary'.
      */
     color?: TextColor;
 };
@@ -19,17 +19,17 @@ export type TextMods = TextSettings & {
 export type TextCoreProps = UuiComponents.TextProps & TextSettings & {
     /**
      * Defines text font weight value
-     * @default 400
+     * @default '400'
      */
     fontWeight?: TextFontWeight;
     /**
      * Determines the style of the text font.
-     * @default normal
+     * @default 'normal'
      */
     fontStyle?: TextFontStyle;
     /**
      * Represents the size of a text.
-     * @default 36
+     * @default '36'
      */
     size?: TextSize;
 };

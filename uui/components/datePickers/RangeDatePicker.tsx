@@ -15,6 +15,10 @@ import { i18n } from '../../i18n';
 import css from './RangeDatePicker.module.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
+    /**
+     * This callback returns a placeholder depending on the parameters passed.
+     * @param  { from | to }  type
+     */
     getPlaceholder?(type: InputType): string;
 }
 

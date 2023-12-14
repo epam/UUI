@@ -2,17 +2,20 @@ import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import * as types from '../types';
 
-export type TextMods = {
+type TextMods = {
     /**
+     * Defines component color.
      * @default 'gray80'
      */
     color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';
     /**
+     * Defines component font.
      * @default 'sans'
      */
     font?: types.FontStyle;
 };
 
+/** Represents the properties of a Text component. */
 export type TextProps = uui.TextCoreProps & TextMods;
 
 export const Text = createSkinComponent<uui.TextProps, TextProps>(
