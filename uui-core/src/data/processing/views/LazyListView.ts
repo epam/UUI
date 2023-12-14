@@ -177,8 +177,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             completeReset = true;
         }
 
-        const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
-        const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
         if (completeReset || this.shouldRebuildRows(prevValue, this.value)) {
             this.updateCheckedLookup(this.value.checked);
         }
@@ -187,6 +185,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || (shouldReloadData && !this.props.backgroundReload)
             || this.isForceReloading;
 
+        const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
+        const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
         if (
             // on filters change skeleton should not appear
             (completeReset && shouldShowPlacehodlers)
