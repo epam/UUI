@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { DemoComponentProps } from '../types';
 import { ButtonProps } from '@epam/uui-components';
-import { Panel, FlexCell, FlexRow, TabButtonMods } from '@epam/uui';
+import { Panel, FlexCell, FlexRow, TabButtonProps } from '@epam/uui';
 
 interface DemoComponentState {
     activeTab: 'Main' | 'demoTab' | 'Tools' | 'Options';
 }
 
-export class VerticalTabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, DemoComponentState> {
+export class VerticalTabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonProps>, DemoComponentState> {
     public static displayName = 'VerticalTabButtonContext';
     state: DemoComponentState = {
         activeTab: 'Main',

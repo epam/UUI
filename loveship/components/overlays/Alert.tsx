@@ -12,7 +12,7 @@ interface AlertMods {
      * Defines component color.
      * @default 'sky'
      */
-    color?: EpamPrimaryColor;
+    color?: EpamPrimaryColor | uui.AlertProps['color'];
 }
 
 /** Represents the properties of the Alert component. */

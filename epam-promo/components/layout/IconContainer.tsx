@@ -5,14 +5,14 @@ import css from './IconContainer.module.scss';
 
 type IconContainerColors = 'blue' | 'green' | 'amber' | 'red' | 'cyan' | 'orange' | 'purple' | 'violet' | 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';
 
-type IconContainerMods = {
+interface IconContainerMods {
     /**
      *  Defines component size.
      *  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.
      *  @default 'gray60'
      */
     color?: IconContainerColors;
-};
+}
 
 function applyIconContainerMods(mods: IconContainerMods) {
     return [

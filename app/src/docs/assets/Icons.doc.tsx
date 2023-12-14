@@ -2,7 +2,6 @@ import * as React from 'react';
 import css from './IconsPage.module.scss';
 import {
     FlexCell,
-    ControlSize,
     Panel,
     FlexRow,
     Text,
@@ -41,6 +40,8 @@ const recommendedSizes: { [key: string]: string[] } = {
     ],
     24: ['48'],
 };
+
+type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
 
 interface IconsPageState extends DataSourceState {
     currentIcon: IconList<Icon>;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as uui from '@epam/uui';
 import { createSkinComponent } from '@epam/uui-core';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
@@ -7,13 +7,13 @@ import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { EpamPrimaryColor } from '../types';
 
-type AlertMods = {
+interface AlertMods {
     /**
      * Defines component color.
      * @default 'blue'
-     * */
-    color?: EpamPrimaryColor;
-};
+     */
+    color?: EpamPrimaryColor | uui.AlertProps['color'];
+}
 
 /** Represents the properties of an Alert component. */
 export type AlertProps = uui.AlertCoreProps & AlertMods;

@@ -6,7 +6,7 @@ interface NotificationCardMods {
     /**
      * Defines component color.
      */
-    color?: EpamPrimaryColor | 'night600';
+    color?: EpamPrimaryColor | 'night600' | uui.NotificationCardProps['color'];
 }
 
 /** Represents the properties of the NotificationCard component. */

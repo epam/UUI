@@ -1,13 +1,13 @@
 import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-type DropdownContainerMods = {
+interface DropdownContainerMods {
     /**
      * Defines component color.
      * @default 'white'
-     * */
+     */
     color?: 'white' | 'gray70';
-};
+}
 
 /** Represents the properties of a DropdownContainer component. */
 export type DropdownContainerProps = uui.DropdownContainerProps & DropdownContainerMods;

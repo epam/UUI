@@ -6,17 +6,20 @@ import css from './Button.module.scss';
 
 const defaultSize = '36';
 
+/** Defines component color. */
+type ButtonColor = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray' | uui.ButtonProps['color'];
+
 type ButtonMods = {
     /**
      * Defines component color.
      * @default "sky"
      */
-    color?: EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
+    color?: ButtonColor;
     /**
      * Defines component size.
      * @default '36'
      */
-    size?: uui.ControlSize | '18';
+    size?: uui.ButtonProps['size'] | '18';
     /**
      * Defines component shape.
      * @default 'square'
