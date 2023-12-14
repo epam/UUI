@@ -11,6 +11,7 @@ exports[`TextArea should be rendered correctly 1`] = `
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
+    tabIndex={0}
     value=""
   />
 </div>
@@ -30,6 +31,7 @@ exports[`TextArea should be rendered correctly 2`] = `
     onFocus={[Function]}
     placeholder="Type here"
     rows={4}
+    tabIndex={0}
     value=""
   />
 </div>
