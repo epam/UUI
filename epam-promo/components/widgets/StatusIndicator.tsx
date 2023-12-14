@@ -2,12 +2,15 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
+type StatusIndicatorColor = EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet'
+| 'cobalt' | 'cyan' | 'mint' | uui.StatusIndicatorProps['color'];
+
 type StatusIndicatorMods = {
     /**
      * Defines component color.
      * @default 'gray'
      */
-    color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
+    color?: StatusIndicatorColor;
 };
 
 /** Represents the props for the StatusIndicator component. */

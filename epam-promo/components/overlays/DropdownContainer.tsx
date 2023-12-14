@@ -1,7 +1,11 @@
 import { withMods } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export interface DropdownContainerMods {
+interface DropdownContainerMods {
+    /**
+     * Defines component color.
+     * @default 'white'
+     */
     color?: 'white' | 'gray70';
 }
 
