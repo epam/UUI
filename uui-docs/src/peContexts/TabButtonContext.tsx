@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { DemoComponentProps } from '../types';
-import { ButtonProps } from '@epam/uui-components';
 import { Panel, FlexRow, TabButtonProps } from '@epam/uui';
 
 interface DemoComponentState {
     activeTab: 'Main' | 'demoTab' | 'Tools' | 'Options';
 }
 
-export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonProps>, DemoComponentState> {
+export class TabButtonContext extends React.Component<DemoComponentProps<TabButtonProps>, DemoComponentState> {
     public static displayName = 'TabButtonContext';
     state: DemoComponentState = {
         activeTab: 'Main',
