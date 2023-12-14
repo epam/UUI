@@ -6,14 +6,22 @@ import { ReactComponent as PartlySelect_12 } from '../../icons/partly-select-12.
 import { ReactComponent as PartlySelect_18 } from '../../icons/partly-select-18.svg';
 import css from './Checkbox.module.scss';
 
-export interface CheckboxMods {
+interface CheckboxMods {
+    /**
+     * Defines component size.
+     * @default '18'
+     */
     size?: '12' | '18';
+    /**
+     * Defines the different edit modes.
+     * @default 'form'
+     */
     mode?: 'form' | 'cell';
 }
 
 export type CheckboxProps = CheckboxMods & uuiComponents.CheckboxProps;
 
-export function applyCheckboxMods(mods: CheckboxMods) {
+function applyCheckboxMods(mods: CheckboxMods) {
     return [
         css.root,
         css['size-' + (mods.size || '18')],

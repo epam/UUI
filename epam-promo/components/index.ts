@@ -3,7 +3,6 @@ export * from './buttons';
 export * from './overlays';
 export * from './inputs';
 export * from './layout';
-export * from './types';
 export * from './typography';
 export * from './errors';
 export {
