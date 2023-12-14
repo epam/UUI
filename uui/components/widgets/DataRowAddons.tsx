@@ -8,13 +8,18 @@ import css from './DataRowAddons.module.scss';
 import { DataRowProps } from '@epam/uui-core';
 import { ControlSize } from '../types';
 
-export interface DataCellMods {
-    size?: ControlSize | '60';
-}
-
-export interface DataRowAddonsProps<TItem, TId> extends DataCellMods {
+/**
+ * Props of DataRowAddons.
+ */
+export interface DataRowAddonsProps<TItem, TId> {
+    /** DataRowProps object for the row where an addon is placed. */
     rowProps: DataRowProps<TItem, TId>;
+    
+    /** HTML tabIndex attribute to set on the cell. */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+    
+    /** Controls size. */
+    size?: ControlSize | '60';
 }
 
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
