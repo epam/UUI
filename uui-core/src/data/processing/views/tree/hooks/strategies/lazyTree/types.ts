@@ -9,4 +9,6 @@ export type LazyTreeStrategyProps<TItem, TId, TFilter> = TreeStrategyProps<TItem
     fetchStrategy?: 'sequential' | 'parallel';
     flattenSearchResults?: boolean;
     legacyLoadDataBehavior?: boolean;
+
+    backgroundReload?: boolean;
 };

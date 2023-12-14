@@ -18,7 +18,9 @@ export interface CheckingService<TItem, TId> {
     isRowChildrenChecked: (row: DataRowProps<TItem, TId>) => boolean;
     handleOnCheck: (rowProps: DataRowProps<TItem, TId>) => void;
     handleSelectAll: (isChecked: boolean) => void;
+
     clearAllChecked: () => void;
+    isItemCheckable: (item: TItem) => boolean;
 }
 
 const idToKey = <TId, >(id: TId) => typeof id === 'object' ? JSON.stringify(id) : `${id}`;
@@ -129,6 +131,7 @@ export function useCheckingService<TItem, TId>(
             handleOnCheck,
             handleSelectAll,
             clearAllChecked,
+            isItemCheckable,
         }),
         [
             isRowChecked,
@@ -136,6 +139,7 @@ export function useCheckingService<TItem, TId>(
             handleOnCheck,
             handleSelectAll,
             clearAllChecked,
+            isItemCheckable,
         ],
     );
 }
