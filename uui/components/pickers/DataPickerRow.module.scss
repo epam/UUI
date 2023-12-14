@@ -1,16 +1,5 @@
 @use  '../../assets/styles/index' as *;
 
-.render-item {
-    display: flex;
-    flex: auto;
-}
-
-.icon-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .picker-row {
     &:global(.uui-focus) {
         background-color: var(--uui-surface-higher);
@@ -19,12 +8,4 @@
     &:global(.-clickable) {
         cursor: pointer;
     }
-}
-
-.icon-default {
-    fill: var(--uui-icon);
-}
-
-.icon-primary {
-    fill: var(--uui-primary-50);
 }

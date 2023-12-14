@@ -1,8 +1,9 @@
 .cell {
-    &.wrapper {
-        display: flex;
-        align-items: flex-start;
-    }
+    position: relative;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    display: flex;
+    align-items: flex-start;
 
     &.align-widgets-top {
         &.size-24, &.size-30 {
@@ -46,20 +47,47 @@
     &.padding-left-12 { padding-left: 12px; }
     &.padding-left-24 { padding-left: 24px; }
 
-    &.padding-right-24 { padding-right: 24px; }
+    &:first-child {
+        border-left-color: transparent;
+    }
 
-    &:global(.uui-invalid) {
-        background-color: var(--uui-dt-cell-bg-invalid);
+    &:last-child {
+        border-right-color: transparent;
     }
 }
 
-:global(.uui-dt-vertical-cell-border) {
-    border-left-color: var(--uui-dt-border);
-    border-right-color: var(--uui-dt-border);
+.icon-container {
+    fill: var(--uui-icon);
 }
 
 .loading-cell {
     div[aria-busy='true'] > span {
         margin: 0 3px 0 0;
     }
+}
+
+.content-wrapper {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+}
+
+
+.render-item {
+    display: flex;
+    flex: auto;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-default {
+    fill: var(--uui-icon);
+}
+
+.icon-primary {
+    fill: var(--uui-primary-50);
 }

@@ -9,3 +9,4 @@ export * from './IndicatorBar';
 export * from './ProgressBar';
 export * from './CountIndicator';
 export * from './StatusIndicator';
+export * from './DataRowAddons';
