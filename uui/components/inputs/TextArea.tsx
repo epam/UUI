@@ -3,8 +3,8 @@ import { TextArea as uuiTextArea, TextAreaProps as UuiTextAreaProps } from '@epa
 import * as types from '../types';
 import css from './TextArea.module.scss';
 
-const defaultSize = '36';
-const defaultMode = types.EditMode.FORM;
+const DEFAULT_SIZE = '36';
+const DEFAULT_MODE = types.EditMode.FORM;
 
 type TextAreaMods = types.IHasEditMode & {
     /**
@@ -18,8 +18,8 @@ type TextAreaMods = types.IHasEditMode & {
 function applyTextAreaMods(mods: TextAreaMods) {
     return [
         css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
+        css['size-' + (mods.size || DEFAULT_SIZE)],
+        css['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }
 

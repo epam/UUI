@@ -5,7 +5,7 @@ import { ReactComponent as CancelIcon } from '../../../../icons/menu_input_cance
 import css from './BurgerSearch.module.scss';
 import cx from 'classnames';
 
-export interface BurgerSearchProps extends TextInputProps {}
+interface BurgerSearchProps extends TextInputProps {}
 
 export function BurgerSearch(props: BurgerSearchProps) {
     return (

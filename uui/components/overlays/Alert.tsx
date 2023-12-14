@@ -11,11 +11,17 @@ import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg
 import css from './Alert.module.scss';
 
 type notificationAction = {
+    /*
+    * Defines notification name.
+    */
     name: string;
+    /*
+    * Callback to processing of the notification action.
+    */
     action: () => void;
 };
 
-export type AlertMods = {
+type AlertMods = {
     /** Alert color */
     color: 'info' | 'success' | 'warning' | 'error';
 };
@@ -34,6 +40,7 @@ export type AlertCoreProps = IHasChildren & IHasCX & IHasRawProps<React.HTMLAttr
     size?: '36' | '48';
 };
 
+/** Represents the properties of the Alert component. */
 export type AlertProps = AlertCoreProps & AlertMods;
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (

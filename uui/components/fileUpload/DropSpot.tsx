@@ -9,10 +9,25 @@ import { i18n } from '../../i18n';
 import css from './DropSpot.module.scss';
 
 export interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /*
+    * CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details
+    */
     cx?: string;
+    /*
+    * Defines the infoText.
+    */
     infoText?: string;
+    /*
+    * Callback to processing upload files
+    */
     onUploadFiles(files: File[]): any;
+    /*
+    * Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details
+    */
     accept?: string;
+    /*
+    * Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details
+    */
     single?: boolean;
 }
 

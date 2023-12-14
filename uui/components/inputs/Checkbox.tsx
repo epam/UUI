@@ -19,6 +19,7 @@ interface CheckboxMods {
     mode?: 'form' | 'cell';
 }
 
+/** Represents the properties of the Checkbox component. */
 export type CheckboxProps = CheckboxMods & uuiComponents.CheckboxProps;
 
 function applyCheckboxMods(mods: CheckboxMods) {

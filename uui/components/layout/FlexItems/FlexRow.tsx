@@ -3,18 +3,49 @@ import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import css from './FlexRow.module.scss';
 
 export type RowMods = {
+    /*
+    * Defines row size.
+    */
     size?: null | '24' | '30' | '36' | '42' | '48';
+    /*
+    * Defines row border bottom.
+    */
     borderBottom?: boolean;
+    /*
+    * Defines row column gap.
+    */
     columnGap?: number | '6' | '12' | '18' | '24' | '36';
+    /*
+    * Defines row margin.
+    */
     margin?: '12' | '24';
+    /*
+    * Defines horizontal row padding.
+    */
     padding?: '6' | '12' | '18' | '24';
+    /*
+    * Defines row gap.
+    */
     rowGap?: number | '6' | '12' | '18' | '24' | '36';
+    /*
+    * Defines row spacing.
+    */
     spacing?: '6' | '12' | '18';
+    /*
+    * Defines is a top shadow showing.
+    */
     topShadow?: boolean;
+    /*
+    * Defines vertical row padding.
+    */
     vPadding?: '12' | '18' | '24' | '36' | '48';
+    /*
+    * Defines row background.
+    */
     background?: 'surface-main';
 };
 
+/** Represents the properties of the FlexRow component. */
 export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods {}
 
 export const FlexRow = withMods<Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods>(uuiFlexRow, (props) => {
