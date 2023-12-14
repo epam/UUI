@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder, IHasCX, IHasRawProps } from './props';
+import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder, IHasCX } from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
@@ -141,42 +141,14 @@ export interface IBasicPickerToggler extends IDropdownToggler {
     onClear?(e?: any): void;
 }
 
+/** Props for cells in pickers. */
 export interface DataPickerCellProps<TItem = any, TId = any> extends IHasCX {
-    /** Key to use as component's key */
+    /** Key to use as component's key. */
     key: string;
 
-    /** DataPickerRowProps object for the table row the cell is at */
-    rowProps: DataPickerRowProps<TItem, TId>;
-
-    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
-}
-
-export interface DataPickerRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
-    /** Array of visible columns */
-    columns?: DataPickerColumnProps<TItem, TId>[];
-    /**
-     * Render callback for each cell at row.
-     * If omitted, default cell renderer will be used.
-     * */
-    renderCell?: (props: DataPickerCellProps<TItem, TId>) => ReactNode;
-}
-
-export interface DataPickerColumnProps<TItem = any, TId = any> extends IHasCX, IHasRawProps<HTMLDivElement> {
-    /**
-     * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
-     * Also, used as React key for cells, header cells, and other components inside tables.
-     */
-    key: string;
-
-    /**
-     * The width of the column. Usually, columns has exact this width.
-     * When all columns fit, and there's spare horizontal space, you can use 'grow' prop to use this space for certain columns.
-     */
-    width: number;
-
-    /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
-    grow?: number;
+    /** DataRowProps object for the picker row where a cell is placed. */
+    rowProps: DataRowProps<TItem, TId>;
 
     /** Render the cell content. The item props is the value of the whole row (TItem). */
-    render?(item: TItem, props: DataRowProps<TItem, TId>): any;
+    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
 }
