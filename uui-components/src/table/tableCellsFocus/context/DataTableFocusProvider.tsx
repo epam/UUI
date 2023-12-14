@@ -2,7 +2,13 @@ import React, { useMemo } from 'react';
 import { DataTableFocusContext } from './DataTableFocusContext';
 import { DataTableFocusManager } from '../DataTableFocusManager';
 
+/**
+ * Provider of a DataTableFocusContext.
+ */
 export interface DataTableFocusProviderProps<TId> extends React.PropsWithChildren {
+    /**
+     * Focus manipulation manager in tables.
+     */
     dataTableFocusManager?: DataTableFocusManager<TId>;
 }
 
