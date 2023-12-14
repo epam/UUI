@@ -148,6 +148,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                     onBlur={ this.handleBlur }
                     ref={ this.textAreaRef }
                     onKeyDown={ this.props.onKeyDown }
+                    tabIndex={ (this.state.inFocus || this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                 />
             </div>
         );

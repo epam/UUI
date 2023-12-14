@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -48,6 +49,7 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
+    const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
@@ -83,7 +85,9 @@ export function ProjectTableDemo() {
                 selectedId: task.id,
             };
         });
-    }, [setValue, setTableState]);
+        
+        dataTableFocusManager?.focusRow(task.id);
+    }, [setValue, setTableState, dataTableFocusManager]);
 
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => ({
@@ -250,6 +254,7 @@ export function ProjectTableDemo() {
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }
+                dataTableFocusManager={ dataTableFocusManager }
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
