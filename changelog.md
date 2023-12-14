@@ -4,7 +4,7 @@
 * [NumericInput]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
 * [Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
 * [RadioInput]: in Loveship skin removed property 'theme'.
-* [DataTable]: [DataTable]: Focus manager.
+* [DataTable]: Focus manager.
   * Added ability to change focus on different cells using a keyboard in editable tables.
   * See the example [here](https://uui.epam.com/demo?id=editableTable).
 
