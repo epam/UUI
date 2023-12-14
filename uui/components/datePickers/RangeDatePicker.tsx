@@ -22,6 +22,9 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
     getPlaceholder?(type: InputType): string;
 }
 
+/*
+* Defines input type.
+*/
 export type InputType = 'from' | 'to';
 const defaultValue: RangeDatePickerValue = { from: null, to: null };
 
