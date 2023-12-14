@@ -1,10 +1,13 @@
-import { withMods } from '@epam/uui-core';
-import { VerticalTabButtonProps } from '@epam/uui';
-import { TabButton, TabButtonMods } from './TabButton';
+import { createSkinComponent } from '@epam/uui-core';
+import * as uui from '@epam/uui';
 import css from './VerticalTabButton.module.scss';
 
 function applyVerticalTabButtonMods() {
     return [css.root];
 }
 
-export const VerticalTabButton = withMods<VerticalTabButtonProps, TabButtonMods>(TabButton, applyVerticalTabButtonMods);
+export const VerticalTabButton = createSkinComponent<uui.VerticalTabButtonProps, uui.TabButtonProps>(
+    uui.TabButton,
+    () => null,
+    applyVerticalTabButtonMods,
+);

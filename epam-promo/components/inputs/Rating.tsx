@@ -5,18 +5,20 @@ import { ReactComponent as FilledStarIcon } from '@epam/assets/icons/common/fav-
 import { ReactComponent as EmptyStarIcon } from '@epam/assets/icons/common/fav-rates-star-24.svg';
 import { Tooltip } from '../overlays';
 
-export interface RatingMods {
+type RatingMods = {
     /**
+     * Defines component size.
      * @default '18'
      */
     size?: 18 | 24 | 30;
-}
+};
 
 function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
     return [css.root, css['size-' + (mods.size || '18')]];
 }
 
-export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
+/** Represents the properties of a Rating component. */
+export type RatingProps = uuiComponents.RatingProps & RatingMods;
 
 export const Rating = createSkinComponent<uuiComponents.RatingProps, RatingProps>(
     uuiComponents.Rating, 

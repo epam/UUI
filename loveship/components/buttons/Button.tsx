@@ -6,15 +6,12 @@ import css from './Button.module.scss';
 
 const defaultSize = '36';
 
-/** Defines component color. */
-type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
-
 type ButtonMods = {
     /**
      * Defines component color.
      * @default "sky"
      */
-    color?: ButtonColorType;
+    color?: EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
     /**
      * Defines component size.
      * @default '36'
@@ -32,7 +29,7 @@ type ButtonMods = {
     fill?: FillStyle;
 };
 
-const mapFill: Record<FillStyle, uui.ButtonMods['fill']> = {
+const mapFill: Record<FillStyle, uui.ButtonProps['fill']> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',

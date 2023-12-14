@@ -7,11 +7,15 @@ import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { EpamPrimaryColor } from '../types';
 
-export interface AlertMods {
-    /** @default 'blue' */
+type AlertMods = {
+    /**
+     * Defines component color.
+     * @default 'blue'
+     * */
     color?: EpamPrimaryColor;
-}
+};
 
+/** Represents the properties of an Alert component. */
 export type AlertProps = uui.AlertCoreProps & AlertMods;
 
 export const Alert = createSkinComponent<uui.AlertProps, AlertProps>(

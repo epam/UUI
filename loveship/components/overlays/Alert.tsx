@@ -8,10 +8,14 @@ import { ReactComponent as ErrorIcon } from './../icons/notification-error-fill-
 import { ReactComponent as HintIcon } from './../icons/notification-help-fill-24.svg';
 
 interface AlertMods {
-    /** @default 'sky' */
+    /**
+     * Defines component color.
+     * @default 'sky'
+     */
     color?: EpamPrimaryColor;
 }
 
+/** Represents the properties of the Alert component. */
 export type AlertProps = uui.AlertCoreProps & AlertMods;
 
 export const Alert = createSkinComponent<uui.AlertProps, AlertProps>(

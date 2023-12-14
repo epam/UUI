@@ -1,15 +1,16 @@
 import { devLogger, createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export type TooltipMods = {
+type TooltipMods = {
     /**
-     * Tooltip color.
+     * Defines component color.
      * 'night900' is deprecated and will be removed in future release, use 'gray' instead.
      * @default 'gray'
      */
     color?: 'white' | 'fire' | 'gray' | 'night900';
 };
 
+/** Represents the properties of the Tooltip component. */
 export type TooltipProps = uui.TooltipCoreProps & TooltipMods;
 
 export const Tooltip = createSkinComponent<uui.TooltipProps, TooltipProps>(

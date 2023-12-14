@@ -2,7 +2,8 @@ import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
 type StatusIndicatorMods = {
-    /** Defines component color.
+    /**
+     * Defines component color.
      * @default 'gray'
      */
     color?: uui.StatusIndicatorColors | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';

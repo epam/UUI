@@ -6,7 +6,7 @@ import { systemIcons } from '../../icons/icons';
 import { CountIndicator } from '../widgets';
 import css from './Button.module.scss';
 
-const defaultSize = '36';
+const DEFAULT_SIZE = '36';
 
 export type ButtonMods = {
     /**
@@ -38,7 +38,7 @@ export function applyButtonMods(mods: ButtonProps) {
         'uui-button',
         `uui-fill-${mods.fill || 'solid'}`,
         `uui-color-${mods.color || 'primary'}`,
-        `uui-size-${mods.size || defaultSize}`,
+        `uui-size-${mods.size || DEFAULT_SIZE}`,
     ];
 }
 
@@ -46,8 +46,8 @@ export const Button = withMods<uuiButtonProps, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size || defaultSize].clear,
+        dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+        clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
         countIndicator: (countIndicatorProps) => <CountIndicator { ...countIndicatorProps } color="white" />,
     }),
 );
