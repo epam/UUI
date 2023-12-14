@@ -1,13 +1,23 @@
 import * as React from 'react';
-import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, uuiMarkers, UuiContext, IHasForwardedRef, ICanFocus } from '@epam/uui-core';
-import { IconContainer } from '../layout';
+import {
+    IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly,
+    IAnalyticableOnChange, UuiContexts, uuiMarkers, UuiContext, IHasForwardedRef, ICanFocus, IHasTabIndex,
+} from '@epam/uui-core';
+import { IconContainer } from '../layout/IconContainer';
 import css from './RadioInput.module.scss';
 
 export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean>
-& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & {
+& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & IHasTabIndex & {
+    /** Icon for radio input selected state.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
+     */
     icon?: Icon;
+    /** Render callback for checkbox label.
+     * If omitted, 'label' prop value will be rendered.
+     */
     renderLabel?(): React.ReactNode;
-    tabIndex?: number;
+
+    /** ID to put on 'input' node */
     id?: string;
 };
 

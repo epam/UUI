@@ -1,26 +1,7 @@
 import * as React from 'react';
-import {
-    IHasRawProps,
-    cx,
-    getCalculatedValue,
-    IHasCX,
-    IClickable,
-    IDisableable,
-    IEditable,
-    IHasPlaceholder,
-    Icon,
-    uuiMod,
-    uuiElement,
-    CX,
-    ICanBeReadonly,
-    IAnalyticableOnChange,
-    ICanFocus,
-    uuiMarkers,
-    getMinMaxValidatedValue,
-    getSeparatedValue,
-    useUuiContext,
-    i18n,
-    preventDefaultIfTargetFocused,
+import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon,
+    uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, ICanFocus, uuiMarkers, getMinMaxValidatedValue,
+    getSeparatedValue, useUuiContext, i18n, preventDefaultIfTargetFocused,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './NumericInput.module.scss';

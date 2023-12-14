@@ -4390,12 +4390,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -4783,12 +4784,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -5178,12 +5180,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -8972,12 +8975,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -14113,12 +14117,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -15953,12 +15958,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -17844,8 +17850,8 @@
      "print": [
       "/** Component has a caption. E.g. Button */",
       "interface IHasCaption {",
-      "    /** Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions. */",
-      "    caption?: any;",
+      "    /** Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions. */",
+      "    caption?: ReactNode;",
       "}"
      ]
     },
@@ -17855,12 +17861,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      }
     ],
@@ -18172,8 +18179,8 @@
      "print": [
       "/** Component has label. E.g. User Name */",
       "interface IHasLabel {",
-      "    /** Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label. */",
-      "    label?: any;",
+      "    /** Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels. */",
+      "    label?: ReactNode;",
       "}"
      ]
     },
@@ -18183,12 +18190,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      }
     ],
@@ -19668,12 +19676,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -21406,12 +21415,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -31670,12 +31680,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -34586,12 +34597,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -35602,12 +35614,26 @@
      "raw": "BaseTimePickerProps",
      "print": [
       "interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder, ICanFocus<HTMLElement>, IHasForwardedRef<HTMLElement> {",
+      "    /** Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys",
+      "     * @default 5",
+      "     */",
       "    minutesStep?: number;",
+      "    /**",
+      "     * Time format, 12 hours with AM/PM or 24 hours",
+      "     * @default 12",
+      "     */",
       "    format?: 12 | 24;",
+      "    /** ID to put on time picker toggler 'input' node */",
       "    id?: string;",
+      "    /** Render callback for time picker toggler.",
+      "     * If omitted, default TextInput component will be rendered.",
+      "     */",
       "    renderTarget?(props: IDropdownToggler): React.ReactNode;",
+      "    /** HTML attributes to put directly to TimePicker parts */",
       "    rawProps?: {",
+      "        /** HTML attributes to put directly to the input element */",
       "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /** HTML attributes to put directly to the body root element */",
       "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
       "    };",
       "    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */",
@@ -35621,6 +35647,15 @@
      {
       "uid": "minutesStep",
       "name": "minutesStep",
+      "comment": {
+       "raw": [
+        "Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys",
+        " @default 5"
+       ],
+       "tags": {
+        "@default": 5
+       }
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -35632,6 +35667,15 @@
      {
       "uid": "format",
       "name": "format",
+      "comment": {
+       "raw": [
+        "Time format, 12 hours with AM/PM or 24 hours",
+        " @default 12"
+       ],
+       "tags": {
+        "@default": 12
+       }
+      },
       "typeValue": {
        "raw": "12 | 24"
       },
@@ -35647,6 +35691,11 @@
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID to put on time picker toggler 'input' node"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -35658,6 +35707,12 @@
      {
       "uid": "renderTarget",
       "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Render callback for time picker toggler.",
+        " If omitted, default TextInput component will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: IDropdownToggler) => React.ReactNode"
       },
@@ -35669,6 +35724,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "HTML attributes to put directly to TimePicker parts"
+       ]
+      },
       "typeValue": {
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
@@ -36455,12 +36515,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -36933,12 +36994,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -37578,7 +37640,7 @@
       "interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {",
       "    /** Overrides the component to render a single checkbox  */",
       "    CheckboxInput?: React.ComponentType<CheckboxProps>;",
-      "    /** Each item defines: name: string, id: TValue (which item to put into array when item is checked), renderName() - an alternative to passing name  */",
+      "    /** Array of checkbox items to be rendered in group */",
       "    items: CheckboxGroupItem<TValue>[];",
       "}"
      ]
@@ -37602,7 +37664,7 @@
       "name": "items",
       "comment": {
        "raw": [
-        "Each item defines: name: string, id: TValue (which item to put into array when item is checked), renderName() - an alternative to passing name"
+        "Array of checkbox items to be rendered in group"
        ]
       },
       "typeValue": {
@@ -37826,7 +37888,7 @@
       "     * If omitted, 'label' prop value will be rendered.",
       "     */",
       "    renderLabel?(): React.ReactNode;",
-      "    /** ID provided to the 'input' node */",
+      "    /** ID to put on 'input' node */",
       "    id?: string;",
       "    /** Check icon.",
       "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
@@ -37834,7 +37896,7 @@
       "    icon?: Icon;",
       "    /** Indeterminate state icon.",
       "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
-      "     *  */",
+      "     */",
       "    indeterminateIcon?: Icon;",
       "}"
      ]
@@ -37862,7 +37924,7 @@
       "name": "id",
       "comment": {
        "raw": [
-        "ID provided to the 'input' node"
+        "ID to put on 'input' node"
        ]
       },
       "typeValue": {
@@ -38109,12 +38171,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -40726,12 +40789,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -45414,12 +45478,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -45647,12 +45712,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -48108,15 +48174,21 @@
       "    dropdownHeight?: number;",
       "    /** Sets focus to component when it's mounted */",
       "    autoFocus?: boolean;",
-      "    /** HTML attributes to put directly to the input and body elements */",
+      "    /** HTML attributes to put directly to the PickerInput parts */",
       "    rawProps?: {",
+      "        /** HTML attributes to put directly to the input element */",
       "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /** HTML attributes to put directly to the body root element */",
       "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
       "    };",
       "    /** Adds custom footer to the dropdown body */",
       "    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;",
       "    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */",
       "    fixedBodyPosition?: boolean;",
+      "    /**",
+      "     * Node of portal target, where to render the dropdown body.",
+      "     * By default, will be used global portal node.",
+      "     */",
       "    portalTarget?: HTMLElement;",
       "    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */",
       "    inputCx?: CX;",
@@ -48886,7 +48958,7 @@
       "name": "rawProps",
       "comment": {
        "raw": [
-        "HTML attributes to put directly to the input and body elements"
+        "HTML attributes to put directly to the PickerInput parts"
        ]
       },
       "typeValue": {
@@ -48929,6 +49001,12 @@
      {
       "uid": "portalTarget",
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -50802,12 +50880,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -51288,8 +51367,13 @@
      "raw": "RadioGroupItem<TValue>",
      "print": [
       "interface RadioGroupItem<TValue> extends IDisableable {",
+      "    /** RadioInput label. Can be a string, or React.Element. */",
       "    name?: string;",
+      "    /** Render callback for checkbox label.",
+      "     * If omitted, 'name' prop value will be rendered.",
+      "     */",
       "    renderName?: () => React.ReactNode;",
+      "    /** Item ID to put into selection */",
       "    id: TValue;",
       "}"
      ]
@@ -51298,6 +51382,11 @@
      {
       "uid": "name",
       "name": "name",
+      "comment": {
+       "raw": [
+        "RadioInput label. Can be a string, or React.Element."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -51309,6 +51398,12 @@
      {
       "uid": "renderName",
       "name": "renderName",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'name' prop value will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "() => React.ReactNode"
       },
@@ -51320,6 +51415,11 @@
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "Item ID to put into selection"
+       ]
+      },
       "typeValue": {
        "raw": "TValue"
       },
@@ -51362,8 +51462,11 @@
      "raw": "RadioGroupProps<TValue>",
      "print": [
       "interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement>, ICanFocus<HTMLFieldSetElement> {",
+      "    /** Overrides the component to render a single radio Input  */",
       "    RadioInput?: React.ComponentType<RadioInputProps>;",
+      "    /** Array of checkbox items to be rendered in group */",
       "    items: RadioGroupItem<TValue>[];",
+      "    /** RadioInput prop to put on each radio input in group */",
       "    radioInputProps?: RadioInputProps & {",
       "        key: React.Key;",
       "    };",
@@ -51374,6 +51477,11 @@
      {
       "uid": "RadioInput",
       "name": "RadioInput",
+      "comment": {
+       "raw": [
+        "Overrides the component to render a single radio Input"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentClass<RadioInputProps, any> | React.FunctionComponent<RadioInputProps>"
       },
@@ -51382,6 +51490,11 @@
      {
       "uid": "items",
       "name": "items",
+      "comment": {
+       "raw": [
+        "Array of checkbox items to be rendered in group"
+       ]
+      },
       "typeValue": {
        "raw": "RadioGroupItem<TValue>[]"
       },
@@ -51390,8 +51503,13 @@
      {
       "uid": "radioInputProps",
       "name": "radioInputProps",
+      "comment": {
+       "raw": [
+        "RadioInput prop to put on each radio input in group"
+       ]
+      },
       "typeValue": {
-       "raw": "IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & { icon?: Icon | undefined; renderLabel?(): React.ReactNode; tabIndex?: number | undefined; id?: string | undefined; } & { key: React.Key; }"
+       "raw": "IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & IHasTabIndex & { icon?: Icon | undefined; renderLabel?(): React.ReactNode; id?: string | undefined; } & { key: React.Key; }"
       },
       "required": false
      },
@@ -51640,10 +51758,16 @@
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
-      "type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & {",
+      "type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & IHasTabIndex & {",
+      "    /** Icon for radio input selected state.",
+      "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
+      "     */",
       "    icon?: Icon;",
+      "    /** Render callback for checkbox label.",
+      "     * If omitted, 'label' prop value will be rendered.",
+      "     */",
       "    renderLabel?(): React.ReactNode;",
-      "    tabIndex?: number;",
+      "    /** ID to put on 'input' node */",
       "    id?: string;",
       "};"
      ]
@@ -51800,12 +51924,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -51890,8 +52015,31 @@
       "required": false
      },
      {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon for radio input selected state.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
+       ]
+      },
       "typeValue": {
        "raw": "Icon"
       },
@@ -51903,6 +52051,12 @@
      {
       "uid": "renderLabel",
       "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'label' prop value will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "() => React.ReactNode"
       },
@@ -51912,19 +52066,13 @@
       "required": false
      },
      {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID to put on 'input' node"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -51937,12 +52085,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:RangeSliderState": {
+  "@epam/uui-components:RangeSliderProps": {
    "summary": {
     "module": "@epam/uui-components",
     "typeName": {
-     "name": "RangeSliderState",
-     "nameFull": "RangeSliderState"
+     "name": "RangeSliderProps",
+     "nameFull": "RangeSliderProps"
     },
     "src": "uui-components/src/inputs/Slider/RangeSlider.tsx",
     "exported": true
@@ -51950,96 +52098,285 @@
    "details": {
     "kind": 263,
     "typeValue": {
-     "raw": "RangeSliderState",
+     "raw": "RangeSliderProps",
      "print": [
-      "interface RangeSliderState extends SliderBaseState {",
-      "    activeHandle: string | null;",
+      "interface RangeSliderProps extends SliderBaseProps<RangeSliderValue> {",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "activeHandle",
-      "name": "activeHandle",
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Min value (when slider is at leftmost position)"
+       ]
+      },
       "typeValue": {
-       "raw": "null | string"
+       "raw": "number"
       },
       "editor": {
-       "type": "string"
+       "type": "number"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": true
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Max value (when slider is at rightmost position)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": true
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Value change step"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": true
+     },
+     {
+      "uid": "splitAt",
+      "name": "splitAt",
+      "comment": {
+       "raw": [
+        "Slider renders a label at each splitAt position"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": false
      },
      {
-      "uid": "isActive",
-      "name": "isActive",
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Overrides rendering of values labels"
+       ]
+      },
+      "typeValue": {
+       "raw": "(value: number) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": false
+     },
+     {
+      "uid": "showTooltip",
+      "name": "showTooltip",
+      "comment": {
+       "raw": [
+        "Toggles rendering of tooltip with current value"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:SliderBaseState",
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeSliderValue"
+      },
+      "from": "@epam/uui-core:IEditable",
       "required": true
      },
      {
-      "uid": "valueWidth",
-      "name": "valueWidth",
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
       "typeValue": {
-       "raw": "number"
+       "raw": "(newValue: RangeSliderValue) => void"
       },
       "editor": {
-       "type": "number"
+       "type": "func"
       },
-      "from": "@epam/uui-components:SliderBaseState",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:RangeSliderValue": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "RangeSliderValue",
-     "nameFull": "RangeSliderValue"
-    },
-    "src": "uui-components/src/inputs/Slider/RangeSlider.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RangeSliderValue",
-     "print": [
-      "interface RangeSliderValue {",
-      "    from: number;",
-      "    to: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "from",
-      "name": "from",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
+      "from": "@epam/uui-core:IEditable",
       "required": true
      },
      {
-      "uid": "to",
-      "name": "to",
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
       "typeValue": {
-       "raw": "number"
+       "raw": "boolean"
       },
       "editor": {
-       "type": "number"
+       "type": "bool"
       },
-      "required": true
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -52453,8 +52790,14 @@
      "raw": "ScrollbarProps",
      "print": [
       "interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {",
+      "    /** If true, shadow will be added to the top of container, in case when scroll isn't in top position */",
       "    hasTopShadow?: boolean;",
+      "    /** If true, shadow will be added to the bottom of container, in case when scroll isn't in bottom position */",
       "    hasBottomShadow?: boolean;",
+      "    /** Render callback for the scroll container.",
+      "     *",
+      "     * If omitted, default uui implementation with flex container will be rendered.",
+      "     */",
       "    renderView?: (props: any) => React.ReactElement;",
       "}"
      ]
@@ -52463,6 +52806,11 @@
      {
       "uid": "hasTopShadow",
       "name": "hasTopShadow",
+      "comment": {
+       "raw": [
+        "If true, shadow will be added to the top of container, in case when scroll isn't in top position"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -52474,6 +52822,11 @@
      {
       "uid": "hasBottomShadow",
       "name": "hasBottomShadow",
+      "comment": {
+       "raw": [
+        "If true, shadow will be added to the bottom of container, in case when scroll isn't in bottom position"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -52485,6 +52838,13 @@
      {
       "uid": "renderView",
       "name": "renderView",
+      "comment": {
+       "raw": [
+        "Render callback for the scroll container.",
+        "",
+        " If omitted, default uui implementation with flex container will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: any) => React.ReactElement<any, string | React.JSXElementConstructor<any>>"
       },
@@ -58376,34 +58736,22 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui-components:SliderBaseProps": {
+  "@epam/uui-components:SliderProps": {
    "summary": {
     "module": "@epam/uui-components",
     "typeName": {
-     "name": "SliderBaseProps",
-     "nameFull": "SliderBaseProps<TSelection>"
+     "name": "SliderProps",
+     "nameFull": "SliderProps"
     },
-    "src": "uui-components/src/inputs/Slider/SliderBase.tsx",
+    "src": "uui-components/src/inputs/Slider/Slider.tsx",
     "exported": true
    },
    "details": {
     "kind": 263,
     "typeValue": {
-     "raw": "SliderBaseProps<TSelection>",
+     "raw": "SliderProps",
      "print": [
-      "interface SliderBaseProps<TSelection> extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
-      "    /** Min value (when slider is at leftmost position) */",
-      "    min: number;",
-      "    /** Max value (when slider is at rightmost position) */",
-      "    max: number;",
-      "    /** Value change step */",
-      "    step: number;",
-      "    /** Slider renders a label at each splitAt position */",
-      "    splitAt?: number;",
-      "    /** Overrides rendering of values labels */",
-      "    renderLabel?: (value: number) => string;",
-      "    /** Toggles rendering of tooltip with current value */",
-      "    showTooltip?: boolean;",
+      "interface SliderProps extends SliderBaseProps<number> {",
       "}"
      ]
     },
@@ -58422,6 +58770,7 @@
       "editor": {
        "type": "number"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": true
      },
      {
@@ -58438,6 +58787,7 @@
       "editor": {
        "type": "number"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": true
      },
      {
@@ -58454,6 +58804,7 @@
       "editor": {
        "type": "number"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": true
      },
      {
@@ -58470,6 +58821,7 @@
       "editor": {
        "type": "number"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": false
      },
      {
@@ -58486,6 +58838,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": false
      },
      {
@@ -58502,6 +58855,7 @@
       "editor": {
        "type": "bool"
       },
+      "from": "@epam/uui-components:SliderBaseProps",
       "required": false
      },
      {
@@ -58528,7 +58882,10 @@
        ]
       },
       "typeValue": {
-       "raw": "TSelection"
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "@epam/uui-core:IEditable",
       "required": true
@@ -58542,7 +58899,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(newValue: TSelection) => void"
+       "raw": "(newValue: number) => void"
       },
       "editor": {
        "type": "func"
@@ -58674,54 +59031,6 @@
       },
       "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:SliderBaseState": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "SliderBaseState",
-     "nameFull": "SliderBaseState"
-    },
-    "src": "uui-components/src/inputs/Slider/SliderBase.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SliderBaseState",
-     "print": [
-      "interface SliderBaseState {",
-      "    isActive: boolean;",
-      "    valueWidth: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "isActive",
-      "name": "isActive",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
-     },
-     {
-      "uid": "valueWidth",
-      "name": "valueWidth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -58898,6 +59207,7 @@
      "raw": "SwitchProps",
      "print": [
       "interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex, ICanFocus<HTMLInputElement> {",
+      "    /** ID to put on 'input' node */",
       "    id?: string;",
       "}"
      ]
@@ -58906,6 +59216,11 @@
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID to put on 'input' node"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -59065,12 +59380,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -60155,12 +60471,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -60379,29 +60696,28 @@
     "typeValue": {
      "raw": "TimePickerBodyProps",
      "print": [
-      "interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
-      "    minutesStep?: number;",
+      "interface TimePickerBodyProps extends Pick<BaseTimePickerProps, 'minutesStep' | 'format'>, IHasCX, IEditable<TimePickerValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "    /** Icon for the add action.",
+      "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
+      "     */",
       "    addIcon?: Icon;",
+      "    /** Icon for the subtract action.",
+      "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
+      "     */",
       "    subtractIcon?: Icon;",
-      "    format?: 12 | 24;",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "minutesStep",
-      "name": "minutesStep",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
       "uid": "addIcon",
       "name": "addIcon",
+      "comment": {
+       "raw": [
+        "Icon for the add action.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
+       ]
+      },
       "typeValue": {
        "raw": "Icon"
       },
@@ -60413,6 +60729,12 @@
      {
       "uid": "subtractIcon",
       "name": "subtractIcon",
+      "comment": {
+       "raw": [
+        "Icon for the subtract action.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
+       ]
+      },
       "typeValue": {
        "raw": "Icon"
       },
@@ -60422,8 +60744,38 @@
       "required": false
      },
      {
+      "uid": "minutesStep",
+      "name": "minutesStep",
+      "comment": {
+       "raw": [
+        "Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys",
+        " @default 5"
+       ],
+       "tags": {
+        "@default": 5
+       }
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:BaseTimePickerProps",
+      "required": false
+     },
+     {
       "uid": "format",
       "name": "format",
+      "comment": {
+       "raw": [
+        "Time format, 12 hours with AM/PM or 24 hours",
+        " @default 12"
+       ],
+       "tags": {
+        "@default": 12
+       }
+      },
       "typeValue": {
        "raw": "12 | 24"
       },
@@ -60434,6 +60786,7 @@
         24
        ]
       },
+      "from": "@epam/uui-components:BaseTimePickerProps",
       "required": false
      },
      {
@@ -60627,7 +60980,9 @@
      "raw": "TimePickerValue",
      "print": [
       "interface TimePickerValue {",
+      "    /** Selected hours value */",
       "    hours: number;",
+      "    /** Selected minutes value */",
       "    minutes: number;",
       "}"
      ]
@@ -60636,6 +60991,11 @@
      {
       "uid": "hours",
       "name": "hours",
+      "comment": {
+       "raw": [
+        "Selected hours value"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -60647,6 +61007,11 @@
      {
       "uid": "minutes",
       "name": "minutes",
+      "comment": {
+       "raw": [
+        "Selected minutes value"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -62191,7 +62556,7 @@
       "name": "rawProps",
       "comment": {
        "raw": [
-        "HTML attributes to put directly to the input and body elements"
+        "HTML attributes to put directly to the PickerInput parts"
        ]
       },
       "typeValue": {
@@ -62237,6 +62602,12 @@
      {
       "uid": "portalTarget",
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -63486,12 +63857,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -64128,6 +64500,17 @@
      "nameFull": "SelectionManager<TItem, TId, TFilter>"
     },
     "src": "uui-components/src/table/tableCellsSelection/types.ts",
+    "exported": false
+   }
+  },
+  "@epam/uui-components:SliderBaseProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "SliderBaseProps",
+     "nameFull": "SliderBaseProps<TSelection>"
+    },
+    "src": "uui-components/src/inputs/Slider/SliderBase.tsx",
     "exported": false
    }
   },
@@ -64973,12 +65356,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -65623,12 +66007,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -66161,12 +66546,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -66850,12 +67236,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -67458,11 +67845,11 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasCaption",
       "required": false
@@ -67759,7 +68146,7 @@
       "name": "id",
       "comment": {
        "raw": [
-        "ID provided to the 'input' node"
+        "ID to put on 'input' node"
        ]
       },
       "typeValue": {
@@ -68009,12 +68396,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -69111,7 +69499,7 @@
       "name": "rawProps",
       "comment": {
        "raw": [
-        "HTML attributes to put directly to the input and body elements"
+        "HTML attributes to put directly to the PickerInput parts"
        ]
       },
       "typeValue": {
@@ -69157,6 +69545,12 @@
      {
       "uid": "portalTarget",
       "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
       "typeValue": {
        "raw": "HTMLElement"
       },
@@ -69632,12 +70026,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -69709,12 +70104,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -75126,12 +75522,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -75652,12 +76049,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -76203,12 +76601,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -76761,12 +77160,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -77162,12 +77562,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -77781,12 +78182,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -78270,12 +78672,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -78638,12 +79041,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -79864,12 +80268,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -80698,62 +81103,36 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:MultiSwitchProps": {
+  "@epam/uui:MultiSwitchCoreProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "MultiSwitchProps",
-     "nameFull": "MultiSwitchProps<TValue>"
+     "name": "MultiSwitchCoreProps",
+     "nameFull": "MultiSwitchCoreProps<TValue>"
     },
     "src": "uui/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the 'Core properties' for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
-     "raw": "MultiSwitchProps<TValue>",
+     "raw": "MultiSwitchCoreProps<TValue>",
      "print": [
-      "interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    items: MultiSwitchItem<TValue>[];",
+      "/** Represents the 'Core properties' for the MultiSwitch component. */",
+      "type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {",
       "    /**",
-      "     * @default 'primary'",
+      "     * Defines an array of MultiSwitchItems.",
       "     */",
-      "    color?: UuiMultiSwitchColor;",
-      "}"
+      "    items: MultiSwitchItem<TValue>[];",
+      "};"
      ]
     },
     "props": [
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'primary' | 'secondary'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "primary",
-        "secondary"
-       ]
-      },
-      "required": false
-     },
      {
       "uid": "value",
       "name": "value",
@@ -80919,6 +81298,254 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:MultiSwitchProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchProps",
+     "nameFull": "MultiSwitchProps<TValue>"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MultiSwitchProps<TValue>",
+     "print": [
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color.",
+        " @default 'primary'"
+       ],
+       "tags": {
+        "@default": "primary"
+       }
+      },
+      "typeValue": {
+       "raw": "'primary' | 'secondary'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "primary",
+        "secondary"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchMods",
       "required": false
      }
     ],
@@ -84714,12 +85341,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -85630,12 +86258,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -85720,8 +86349,31 @@
       "required": false
      },
      {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
       "uid": "icon",
       "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon for radio input selected state.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
+       ]
+      },
       "typeValue": {
        "raw": "Icon"
       },
@@ -85734,6 +86386,12 @@
      {
       "uid": "renderLabel",
       "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'label' prop value will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "() => React.ReactNode"
       },
@@ -85744,20 +86402,13 @@
       "required": false
      },
      {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID to put on 'input' node"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -87536,12 +88187,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -87809,7 +88461,7 @@
     "typeValue": {
      "raw": "SliderProps",
      "print": [
-      "interface SliderProps extends SliderBaseProps<number>, SliderMods {",
+      "interface SliderProps extends uuiSliderProps, SliderMods {",
       "}"
      ]
     },
@@ -88560,6 +89212,11 @@
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID to put on 'input' node"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -88720,12 +89377,13 @@
       "name": "label",
       "comment": {
        "raw": [
-        "Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label."
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
@@ -89237,12 +89895,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -89779,12 +90438,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -90418,12 +91078,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -91844,12 +92505,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -92552,14 +93214,6 @@
      "raw": "TimePickerProps",
      "print": [
       "interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditMode {",
-      "    /**",
-      "     * @default 5",
-      "     */",
-      "    minutesStep?: number;",
-      "    /**",
-      "     * @default 12",
-      "     */",
-      "    format?: 12 | 24;",
       "}"
      ]
     },
@@ -92569,7 +93223,8 @@
       "name": "minutesStep",
       "comment": {
        "raw": [
-        "@default 5"
+        "Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys",
+        " @default 5"
        ],
        "tags": {
         "@default": 5
@@ -92581,6 +93236,7 @@
       "editor": {
        "type": "number"
       },
+      "from": "@epam/uui-components:BaseTimePickerProps",
       "required": false
      },
      {
@@ -92588,7 +93244,8 @@
       "name": "format",
       "comment": {
        "raw": [
-        "@default 12"
+        "Time format, 12 hours with AM/PM or 24 hours",
+        " @default 12"
        ],
        "tags": {
         "@default": 12
@@ -92604,11 +93261,17 @@
         24
        ]
       },
+      "from": "@epam/uui-components:BaseTimePickerProps",
       "required": false
      },
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID to put on time picker toggler 'input' node"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -92621,6 +93284,12 @@
      {
       "uid": "renderTarget",
       "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Render callback for time picker toggler.",
+        " If omitted, default TextInput component will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "(props: IDropdownToggler) => React.ReactNode"
       },
@@ -92633,6 +93302,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "HTML attributes to put directly to TimePicker parts"
+       ]
+      },
       "typeValue": {
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
@@ -93441,26 +94115,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:UuiMultiSwitchColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "UuiMultiSwitchColor",
-     "nameFull": "UuiMultiSwitchColor"
-    },
-    "src": "uui/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'primary' | 'secondary'",
-     "print": [
-      "type UuiMultiSwitchColor = 'primary' | 'secondary';"
-     ]
-    }
-   }
-  },
   "@epam/uui:VerticalTabButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -93742,12 +94396,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -94377,6 +95032,17 @@
     "exported": false
    }
   },
+  "@epam/uui:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:NumericInputMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94946,12 +95612,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -95573,11 +96240,11 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasCaption",
       "required": false
@@ -95979,12 +96646,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -97441,12 +98109,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -97768,7 +98437,7 @@
     "typeValue": {
      "raw": "IconContainerProps",
      "print": [
-      "type IconContainerProps = ControlIconProps & IconContainerMods;"
+      "type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;"
      ]
     },
     "props": [
@@ -98274,12 +98943,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -98601,78 +99271,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'gray50' | 'gray'",
-     "print": [
-      "type MultiSwitchColor = 'blue' | 'gray50' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "interface MultiSwitchMods {",
-      "    /**",
-      "     * @default 'blue'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'gray50' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "gray50",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:MultiSwitchProps": {
    "summary": {
     "module": "@epam/promo",
@@ -98681,6 +99279,11 @@
      "nameFull": "MultiSwitchProps<TValue>"
     },
     "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -98688,75 +99291,11 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "from": "@epam/uui:MultiSwitchProps",
-      "required": true
-     },
      {
       "uid": "value",
       "name": "value",
@@ -98816,6 +99355,7 @@
       "typeValue": {
        "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
      },
@@ -98831,6 +99371,23 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -98868,11 +99425,65 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
@@ -100524,12 +101135,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -101811,6 +102423,17 @@
     "exported": false
    }
   },
+  "@epam/promo:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+    "exported": false
+   }
+  },
   "@epam/promo:StatusIndicatorMods": {
    "summary": {
     "module": "@epam/promo",
@@ -102120,12 +102743,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -102748,11 +103372,11 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasCaption",
       "required": false
@@ -103360,12 +103984,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -104204,12 +104829,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -104857,11 +105483,11 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasCaption",
       "required": false
@@ -105297,12 +105923,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -106850,12 +107477,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -107669,12 +108297,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -108126,78 +108755,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "loveship/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sky' | 'night600' | 'gray'",
-     "print": [
-      "type MultiSwitchColor = 'sky' | 'night600' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "loveship/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "interface MultiSwitchMods {",
-      "    /**",
-      "     * @default 'sky'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'sky'"
-       ],
-       "tags": {
-        "@default": "sky"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'night600' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "night600",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:MultiSwitchProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -108206,6 +108763,11 @@
      "nameFull": "MultiSwitchProps<TValue>"
     },
     "src": "loveship/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -108213,75 +108775,11 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "from": "@epam/uui:MultiSwitchProps",
-      "required": true
-     },
      {
       "uid": "value",
       "name": "value",
@@ -108341,6 +108839,7 @@
       "typeValue": {
        "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
      },
@@ -108356,6 +108855,23 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -108393,11 +108909,65 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'sky'"
+        "Defines component color.",
+        " @default 'sky'"
        ],
        "tags": {
         "@default": "sky"
@@ -108964,6 +109534,303 @@
        ]
       },
       "from": "@epam/loveship:ColorMod",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/loveship:RangeSliderProps": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "RangeSliderProps",
+     "nameFull": "RangeSliderProps"
+    },
+    "src": "loveship/components/inputs/Slider/RangeSlider.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "RangeSliderProps",
+     "print": [
+      "interface RangeSliderProps extends uuiRangeSliderProps {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "min",
+      "name": "min",
+      "comment": {
+       "raw": [
+        "Min value (when slider is at leftmost position)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": true
+     },
+     {
+      "uid": "max",
+      "name": "max",
+      "comment": {
+       "raw": [
+        "Max value (when slider is at rightmost position)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": true
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "Value change step"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": true
+     },
+     {
+      "uid": "splitAt",
+      "name": "splitAt",
+      "comment": {
+       "raw": [
+        "Slider renders a label at each splitAt position"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Overrides rendering of values labels"
+       ]
+      },
+      "typeValue": {
+       "raw": "(value: number) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": false
+     },
+     {
+      "uid": "showTooltip",
+      "name": "showTooltip",
+      "comment": {
+       "raw": [
+        "Toggles rendering of tooltip with current value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:SliderBaseProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeSliderValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeSliderValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -110656,12 +111523,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -111225,12 +112093,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -111764,12 +112633,13 @@
       "name": "caption",
       "comment": {
        "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
        ]
       },
       "typeValue": {
-       "raw": "any"
+       "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
       "required": false
      },
@@ -113056,6 +113926,17 @@
     "exported": false
    }
   },
+  "@epam/loveship:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "loveship/components/inputs/MultiSwitch.tsx",
+    "exported": false
+   }
+  },
   "@epam/loveship:StatusIndicatorMods": {
    "summary": {
     "module": "@epam/loveship",
@@ -113466,133 +114347,6 @@
       },
       "typeValueRef": "@epam/uui-editor:SlateImageData",
       "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:ToolbarButtonProps": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "ToolbarButtonProps",
-     "nameFull": "ToolbarButtonProps"
-    },
-    "src": "uui-editor/src/implementation/ToolbarButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ToolbarButtonProps",
-     "print": [
-      "interface ToolbarButtonProps extends IHasCX {",
-      "    isActive?: boolean;",
-      "    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;",
-      "    icon?: Icon;",
-      "    iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';",
-      "    editor?: Editor;",
-      "    isDisabled?: boolean;",
-      "    caption?: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "isActive",
-      "name": "isActive",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "typeValue": {
-       "raw": "(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "iconColor",
-      "name": "iconColor",
-      "typeValue": {
-       "raw": "'red' | 'green' | 'amber' | 'blue' | 'gray60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "red",
-        "green",
-        "amber",
-        "blue",
-        "gray60"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "editor",
-      "name": "editor",
-      "typeValue": {
-       "raw": "BaseEditor"
-      },
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "caption",
-      "name": "caption",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
      }
     ],
     "propsFromUnion": false
