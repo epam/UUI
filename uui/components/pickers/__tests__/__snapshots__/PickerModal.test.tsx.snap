@@ -195,7 +195,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -210,13 +210,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -285,7 +278,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -300,13 +293,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -665,7 +651,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -688,20 +674,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -770,7 +749,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -793,20 +772,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -875,7 +847,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -898,20 +870,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -980,7 +945,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1003,20 +968,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1085,7 +1043,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1108,20 +1066,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1190,7 +1141,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1213,20 +1164,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1295,7 +1239,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1318,20 +1262,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1400,7 +1337,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1423,20 +1360,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1505,7 +1435,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1528,20 +1458,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1610,7 +1533,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1633,20 +1556,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -1715,7 +1631,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1738,20 +1654,13 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={-1}
+                        tabIndex={0}
                         type="checkbox"
                       />
                     </div>
                   </label>
                   <div
                     className="contentWrapper"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "justifyContent": undefined,
-                        "textAlign": undefined,
-                      }
-                    }
                   >
                     <div
                       className="renderItem"
@@ -2012,7 +1921,7 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -2055,7 +1964,7 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >

@@ -622,7 +622,7 @@
 
     .uui-tooltip-container.uui-color-white,
     .uui-tooltip-container.uui-color-neutral {
-        --uui-tooltip-bg: var(--white);
+        --uui-tooltip-bg: var(--uui-neutral-0);
         --uui-tooltip-text: var(--uui-neutral-80);
     }
 
@@ -634,7 +634,7 @@
     .uui-tooltip-container.uui-color-gray,
     .uui-tooltip-container.uui-color-inverted {
         --uui-tooltip-bg: var(--uui-neutral-80);
-        --uui-tooltip-text: var(--white);
+        --uui-tooltip-text: var(--uui-neutral-5);
     }
 
     /* CountIndicator */
