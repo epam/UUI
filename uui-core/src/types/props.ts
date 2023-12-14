@@ -75,14 +75,14 @@ export interface ICanFocus<T> {
 
 /** Component has a caption. E.g. Button */
 export interface IHasCaption {
-    /** Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions. */
-    caption?: any;
+    /** Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions. */
+    caption?: ReactNode;
 }
 
 /** Component has label. E.g. User Name */
 export interface IHasLabel {
-    /** Component label. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in label. */
-    label?: any;
+    /** Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels. */
+    label?: ReactNode;
 }
 
 /** Component has direction of child components. */

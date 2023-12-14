@@ -60,9 +60,11 @@ IHasIcon & {
     /** Sets focus to component when it's mounted */
     autoFocus?: boolean;
 
-    /** HTML attributes to put directly to the input and body elements */
+    /** HTML attributes to put directly to the PickerInput parts */
     rawProps?: {
+        /** HTML attributes to put directly to the input element */
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** HTML attributes to put directly to the body root element */
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 
@@ -72,6 +74,10 @@ IHasIcon & {
     /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
     fixedBodyPosition?: boolean;
 
+    /**
+     * Node of portal target, where to render the dropdown body.
+     * By default, will be used global portal node.
+     */
     portalTarget?: HTMLElement;
 
     /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
