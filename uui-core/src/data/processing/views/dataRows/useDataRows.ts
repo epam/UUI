@@ -116,6 +116,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         handleOnFocus: props.handleOnFocus,
         isRowChecked: props.isRowChecked,
         isRowChildrenChecked: props.isRowChildrenChecked,
+        isItemCheckable: props.isItemCheckable,
     });
 
     const { rows, pinned, pinnedByParentId, stats } = useBuildRows({

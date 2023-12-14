@@ -71,14 +71,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
 
     const getTreeRowsStats = useCallback(() => {
         const rootInfo = tree.getNodeInfo(undefined);
-        /* TODO: For lazy list...
 
-        const rootCount = rootInfo.count;
-        if (!getChildCount && rootCount != null) {
-            completeFlatListRowsCount = rootCount;
-        }
-
-         */
         return {
             completeFlatListRowsCount: undefined,
             totalCount: rootInfo.totalCount ?? tree.getTotalRecursiveCount() ?? 0,

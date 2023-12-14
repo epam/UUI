@@ -11,6 +11,10 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> {
 
     dataSourceState: DataSourceState<TFilter, TId>,
     setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
+
+    loadMissingRecords?: (
+        tree: ITree<TItem, TId>, id: TId | undefined, isChecked: boolean, isRoot: boolean,
+    ) => Promise<ITree<TItem, TId>>;
 }
 
 export interface CheckingService<TItem, TId> {
@@ -65,6 +69,7 @@ export function useCheckingService<TItem, TId>(
         cascadeSelection,
         getRowOptions,
         rowOptions,
+        loadMissingRecords = async () => tree,
     }: UseCheckingServiceProps<TItem, TId>,
 ): CheckingService<TItem, TId> {
     const checked = dataSourceState.checked ?? [];
@@ -100,8 +105,10 @@ export function useCheckingService<TItem, TId>(
         return rowProps?.checkbox?.isVisible && !rowProps?.checkbox?.isDisabled;
     }, [getRowProps]);
 
-    const handleCheck = useCallback((isChecked: boolean, checkedId?: TId) => {
-        const updatedChecked = tree.cascadeSelection(checked, checkedId, isChecked, {
+    const handleCheck = useCallback(async (isChecked: boolean, checkedId?: TId, isRoot?: boolean) => {
+        const fullTree = await loadMissingRecords(tree, checkedId, isChecked, isRoot);
+
+        const updatedChecked = fullTree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: cascadeSelection,
             isSelectable: (item: TItem) => isItemCheckable(item),
         });
@@ -110,11 +117,11 @@ export function useCheckingService<TItem, TId>(
     }, [tree, checked, setDataSourceState, isItemCheckable, cascadeSelection]);
 
     const handleSelectAll = useCallback((isChecked: boolean) => {
-        handleCheck(isChecked);
+        handleCheck(isChecked, undefined, true);
     }, [handleCheck]);
 
     const clearAllChecked = useCallback(() => {
-        handleCheck(false);
+        handleCheck(false, undefined, true);
     }, [handleCheck]);
 
     const handleOnCheck = useCallback((rowProps: DataRowProps<TItem, TId>) => {
