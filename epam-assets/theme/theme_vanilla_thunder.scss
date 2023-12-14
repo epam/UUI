@@ -391,6 +391,22 @@
         --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--chromatic-200) 0, var(--chromatic-100) 150px, var(--chromatic-200) 300px);
     }
 
+    /* Tooltip */
+
+    .uui-tooltip-container.uui-color-neutral {
+        --uui-tooltip-bg: var(--uui-neutral-0);
+        --uui-tooltip-text: var(--uui-text-primary);
+    }
+
+    .uui-tooltip-container.uui-color-critical {
+        --uui-tooltip-bg: var(--uui-critical-60);
+    }
+
+    .uui-tooltip-container.uui-color-inverted {
+        --uui-tooltip-bg: var(--uui-neutral-80);
+        --uui-tooltip-text: var(--uui-neutral-5);
+    }
+
     /* Tag */
 
     .uui-tag {
