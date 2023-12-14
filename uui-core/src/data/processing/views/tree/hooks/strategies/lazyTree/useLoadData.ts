@@ -46,6 +46,8 @@ const onlySearchWasUnset = <TFilter, TId>(prevValue: DataSourceState<TFilter, TI
         || newValue?.page !== prevValue?.page
         || newValue?.pageSize !== prevValue?.pageSize);
 
+const generateFingerprint = () => new Date().toISOString();
+
 export function useLoadData<TItem, TId, TFilter = any>(
     props: UseLoadDataProps<TItem, TId, TFilter>,
 ) {
@@ -132,7 +134,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             || (shouldReloadData && !backgroundReload);
 
         if ((completeReset && shouldShowPlacehodlers) || isFoldingChanged) {
-            fingerprintRef.current = new Date().toISOString();
+            fingerprintRef.current = generateFingerprint();
         }
 
         const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
@@ -142,7 +144,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     if (isUpdated && !isOutdated) {
                         setTreeWithData(newTree);
                         isReloadingRef.current = false;
-                        fingerprintRef.current = new Date().toISOString();
+                        fingerprintRef.current = generateFingerprint();
                     }
                 }).finally(() => {
                     isReloadingRef.current = false;
