@@ -2,7 +2,7 @@ import { withMods, VPanelProps } from '@epam/uui-core';
 import { VPanel } from '@epam/uui-components';
 import css from './Panel.module.scss';
 
-export interface PanelMods {
+interface PanelMods {
     shadow?: boolean;
     margin?: '24';
     background?: 'surface-main';

@@ -3,22 +3,25 @@ import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 import css from './Badge.module.scss';
 
+type BadgeColor = EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint'
+| 'white' | 'gray10'| 'gray30'| 'gray60' | uui.BadgeProps['color'];
+
 type BadgeMods = {
     /**
      * Defines component color.
      * @default 'blue'
      */
-    color?: EpamPrimaryColor | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10'| 'gray30'| 'gray60';
+    color?: BadgeColor
     /**
      * Defines component fill style.
      * @default 'solid'
      */
-    fill?: uui.BadgeMods['fill'] | 'semitransparent';
+    fill?: uui.BadgeProps['fill'] | 'semitransparent';
     /**
      * Defines component size.
      * @default 36
      */
-    size?: uui.BadgeMods['size'];
+    size?: uui.BadgeProps['size'];
 };
 
 function applyBadgeMods(mods: BadgeMods) {

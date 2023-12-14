@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, Badge, FlexRow, LinkButton, BadgeMods } from '@epam/uui';
+import { Text, Badge, FlexRow, LinkButton, BadgeProps } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './FilteredTable.module.scss';
@@ -20,7 +20,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge size="24" indicator fill="outline" color={ p.profileStatus.toLowerCase() as BadgeMods['color'] } caption={ p.profileStatus } />
+                    <Badge size="24" indicator fill="outline" color={ p.profileStatus.toLowerCase() as BadgeProps['color'] } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         grow: 0,

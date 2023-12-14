@@ -1,8 +1,9 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 
-export interface RichTextViewMods {
+interface RichTextViewMods {
     /**
+     * Defines component size.
      * @default '14'
      */
     size?: '12' | '14' | '16';

@@ -1,13 +1,13 @@
 import { devLogger, createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-type TooltipMods = {
+interface TooltipMods {
     /**
      * Defines component color.
      * @default 'gray'
      */
-    color?: 'white' | 'gray90' | 'gray' | 'red';
-};
+    color?: 'white' | 'gray90' | 'gray' | 'red' | uui.TooltipProps['color'];
+}
 
 /** Represents the properties of a Tooltip component. */
 export type TooltipProps = uui.TooltipCoreProps & TooltipMods;

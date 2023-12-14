@@ -2,15 +2,12 @@ import { createSkinComponent } from '@epam/uui-core';
 import { EpamPrimaryColor } from '../types';
 import * as uui from '@epam/uui';
 
-/** Defines component color. */
-type IconColor = EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60';
-
 interface IconButtonMods {
     /**
      * Defines component color.
      * @default 'gray60'
      */
-    color?: IconColor;
+    color?: EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60' | uui.IconButtonProps['color'];
 }
 
 /** Represents the properties for the IconButton component. */

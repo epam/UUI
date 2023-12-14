@@ -7,7 +7,7 @@ type TextMods = {
      * Defines component color.
      * @default 'night700'
      */
-    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
+    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900' | uui.TextProps['color'];
     /**
      * Defines component font.
      * @default 'sans'

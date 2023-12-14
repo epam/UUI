@@ -2,12 +2,12 @@ import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
-type NotificationCardMods = {
+interface NotificationCardMods {
     /**
      * Defines component color
      */
-    color?: EpamPrimaryColor | 'gray60';
-};
+    color?: EpamPrimaryColor | 'gray60' | uui.NotificationCardProps['color'];
+}
 
 /** Represents the properties of a NotificationCard component. */
 export type NotificationCardProps = uui.NotificationCardCoreProps & NotificationCardMods;

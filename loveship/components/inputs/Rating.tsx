@@ -1,9 +1,9 @@
 import { createSkinComponent } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import css from './Rating.module.scss';
 import { ReactComponent as FilledStarIcon } from '../icons/star-filled.svg';
 import { ReactComponent as EmptyStarIcon } from '../icons/star-empty.svg';
 import { Tooltip } from '../overlays';
+import css from './Rating.module.scss';
 
 export interface RatingMods {
     /**

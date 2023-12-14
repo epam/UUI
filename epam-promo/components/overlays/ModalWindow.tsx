@@ -1,7 +1,7 @@
 import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-type ModalWindowMods = {
+interface ModalWindowMods {
     /**
      * Defines component width
      */
@@ -10,7 +10,7 @@ type ModalWindowMods = {
      * Defines component height
      */
     height?: '300' | '700' | 'auto' | number;
-};
+}
 
 /** Represents the properties of a ModalWindow component. */
 export type ModalWindowProps = uui.ModalWindowCoreProps & ModalWindowMods;

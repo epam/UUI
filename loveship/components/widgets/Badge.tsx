@@ -6,12 +6,15 @@ import css from './Badge.module.scss';
 
 const DEFAULT_SIZE = '18';
 
+type BadgeColor = EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white'
+| 'night100' | 'night300' | 'night600' | uui.BadgeProps['color'];
+
 type BadgeMods = {
     /**
      * Defines component color.
      * @default 'sky'
      */
-    color?: EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600';
+    color?: BadgeColor
     /**
      * Defines component shape style.
      * @default 'square'
@@ -21,12 +24,12 @@ type BadgeMods = {
      * Defines component fill style.
      * @default 'solid'
      */
-    fill?: uui.BadgeMods['fill'] | 'semitransparent';
+    fill?: uui.BadgeProps['fill'] | 'semitransparent';
     /**
      * Defines component size.
      * @default '18'
      */
-    size?: uui.BadgeMods['size'] | '12';
+    size?: uui.BadgeProps['size'] | '12';
 };
 
 function applyBadgeMods(mods: BadgeMods) {

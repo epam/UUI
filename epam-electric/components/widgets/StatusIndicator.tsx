@@ -6,7 +6,7 @@ type StatusIndicatorMods = {
      * Defines component color.
      * @default 'gray'
      */
-    color?: uui.StatusIndicatorColors | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
+    color?: uui.StatusIndicatorProps['color'] | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
 };
 
 /** Represents the properties of a StatusIndicator component. */

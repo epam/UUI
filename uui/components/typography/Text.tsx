@@ -3,18 +3,18 @@ import { getTextClasses, TextSettings } from '../../helpers';
 import * as UuiComponents from '@epam/uui-components';
 import css from './Text.module.scss';
 
-export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
-export type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
-export type TextFontStyle = 'normal' | 'italic';
-export type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
+type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
+type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
+type TextFontStyle = 'normal' | 'italic';
+type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 
-export type TextMods = TextSettings & {
+interface TextMods {
     /**
      * Represents the color of a text.
      * @default 'primary'.
      */
     color?: TextColor;
-};
+}
 
 export type TextCoreProps = UuiComponents.TextProps & TextSettings & {
     /**

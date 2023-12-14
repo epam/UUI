@@ -7,7 +7,7 @@ type TooltipMods = {
      * 'night900' is deprecated and will be removed in future release, use 'gray' instead.
      * @default 'gray'
      */
-    color?: 'white' | 'fire' | 'gray' | 'night900';
+    color?: 'white' | 'fire' | 'gray' | 'night900' | uui.TooltipProps['color'];
 };
 
 /** Represents the properties of the Tooltip component. */
