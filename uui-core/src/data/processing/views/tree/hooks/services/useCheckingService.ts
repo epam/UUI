@@ -73,7 +73,6 @@ export function useCheckingService<TItem, TId>(
     }: UseCheckingServiceProps<TItem, TId>,
 ): CheckingService<TItem, TId> {
     const checked = dataSourceState.checked ?? [];
-
     const checkingInfoById = useMemo(
         () => getCheckingInfo(checked, tree, getParentId),
         [tree, checked],
@@ -129,7 +128,7 @@ export function useCheckingService<TItem, TId>(
         const isChecked = !rowProps.isChecked;
 
         handleCheck(isChecked, id);
-    }, []);
+    }, [handleCheck]);
 
     return useMemo(
         () => ({

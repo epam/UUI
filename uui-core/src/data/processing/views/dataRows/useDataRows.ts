@@ -210,7 +210,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
             const from = dataSourceState.topIndex;
             const count = dataSourceState.visibleCount;
             const visibleRows = withPinnedRows(rows.slice(from, from + count));
-
             if (stats.hasMoreRows) {
                 const listProps = getListProps();
                 // We don't run rebuild rows on scrolling. We rather wait for the next load to happen.

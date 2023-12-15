@@ -55,6 +55,8 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         setDataSourceState,
         cascadeSelection,
         getParentId,
+        rowOptions,
+        getRowOptions,
     });
 
     const foldingService = useFoldingService({
@@ -79,6 +81,8 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             tree,
             rowOptions,
             getRowOptions,
+            getChildCount,
+            getParentId,
             getId,
             dataSourceState,
             getTreeRowsStats,
@@ -93,6 +97,9 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getRowOptions,
             dataSourceState,
             getTreeRowsStats,
+            getChildCount,
+            getParentId,
+            getId,
             checkingService,
             selectingService,
             focusService,
