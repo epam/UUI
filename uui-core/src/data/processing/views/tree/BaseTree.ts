@@ -148,12 +148,15 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public getTotalRecursiveCount() {
-        let count = 0;
+        let count = undefined;
         for (const [, info] of this.nodeInfoById) {
             if (info.count == null) {
                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 return null;
             } else {
+                if (count === undefined) {
+                    count = 0;
+                }
                 count += info.count;
             }
         }

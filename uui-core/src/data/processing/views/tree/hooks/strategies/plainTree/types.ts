@@ -1,10 +1,10 @@
 import { SortingOption } from '../../../../../../../types';
 import { ITree } from '../../../ITree';
 import { STRATEGIES } from '../constants';
-import { TreeStrategyProps } from '../types';
+import { CommonTreeStrategyProps } from '../types';
 
-export type PlainTreeStrategyProps<TItem, TId, TFilter> = TreeStrategyProps<TItem, TId, TFilter> & {
-    type?: typeof STRATEGIES.plain,
+export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonTreeStrategyProps<TItem, TId, TFilter> & {
+    type: typeof STRATEGIES.plain,
     items: TItem[],
     tree?: ITree<TItem, TId>,
 

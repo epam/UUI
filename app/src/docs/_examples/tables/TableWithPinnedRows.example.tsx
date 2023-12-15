@@ -1,12 +1,15 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
+import React, { useMemo, useState } from 'react';
+import { DataSourceState, DataColumnProps, useUuiContext, useTree, useDataRows } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
 export default function TableWithPinnedRows() {
     const svc = useUuiContext();
-    const [tableState, setTableState] = useState<DataSourceState>({});
+    const [tableState, setTableState] = useState<DataSourceState>({
+        topIndex: 0,
+        visibleCount: 20,
+    });
     const locationsColumns: DataColumnProps<Location>[] = useMemo(
         () => [
             {
@@ -51,35 +54,56 @@ export default function TableWithPinnedRows() {
         [],
     );
 
-    const locationsDS = useLazyDataSource<Location, string, unknown>({
+    // const locationsDS = useLazyDataSource<Location, string, unknown>({
+    //     api: (request, ctx) => {
+    //         const filter = { parentId: ctx?.parentId };
+    //         return svc.api.demo.locations({ ...request, filter });
+    //     },
+    //     getParentId: ({ parentId }) => parentId,
+    //     getChildCount: (l) => l.childCount,
+    //     backgroundReload: true,
+    // }, []);
+
+    // useEffect(() => {
+    //     return () => locationsDS.unsubscribeView(setTableState);
+    // }, [locationsDS]);
+
+    // const view = locationsDS.useView(tableState, setTableState, {
+    //     rowOptions: {
+    //         // To make some row `pinned`, it is required to define `pin` function.
+    //         // Parents and elements of the same level can be pinned.
+    //         pin: (location) => location.value.type !== 'city',
+    //     }, 
+    // });
+
+    const { tree, ...restProps } = useTree<Location, string, unknown>({
+        type: 'lazy',
         api: (request, ctx) => {
             const filter = { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, filter });
         },
+        getId: ({ id }) => id,
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
-        backgroundReload: true,
-    }, []);
-
-    useEffect(() => {
-        return () => locationsDS.unsubscribeView(setTableState);
-    }, [locationsDS]);
-
-    const view = locationsDS.useView(tableState, setTableState, {
+        backgroundReload: false,
+        dataSourceState: tableState,
+        setDataSourceState: setTableState,
         rowOptions: {
             // To make some row `pinned`, it is required to define `pin` function.
             // Parents and elements of the same level can be pinned.
             pin: (location) => location.value.type !== 'city',
-        }, 
-    });
+        },
+    }, []);
+
+    const { getVisibleRows, getListProps } = useDataRows({ tree, ...restProps });
 
     return (
         <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
-                { ...view.getListProps() }
-                getRows={ view.getVisibleRows }
+                { ...getListProps() }
+                getRows={ getVisibleRows }
                 headerTextCase="upper"
                 columns={ locationsColumns }
             />

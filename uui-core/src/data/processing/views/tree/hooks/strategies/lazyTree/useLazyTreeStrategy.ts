@@ -1,19 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Tree } from '../../../Tree';
 import { LazyTreeStrategyProps } from './types';
 import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 
 import isEqual from 'lodash.isequal';
-import { generateFingerprint, onlySearchWasUnset, shouldRebuildTree } from './helpers';
+import { onlySearchWasUnset, shouldRebuildTree } from './helpers';
 import { useFocusService, useFoldingService, useSelectingService } from '../../services';
 import { useLoadData } from './useLoadData';
 import { useLazyCheckingService } from './useLazyCheckingService';
+import { UseTreeResult } from '../../types';
 
 export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
     deps: any[],
-) {
+): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };
     const {
         api, filter, dataSourceState, backgroundReload,
@@ -28,12 +29,19 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const prevFilter = usePrevious(filter);
     const prevDataSourceState = usePrevious(dataSourceState);
-    const isReloadingRef = useRef(false);
-    const fingerprintRef = useRef<string>();
+
+    const [isFetching, setIsFetching] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const actualRowsCount = useMemo(() => treeWithData.getTotalRecursiveCount() ?? 0, [treeWithData]);
 
-    const lastRecordIndex = useMemo(
+    useEffect(() => {
+        if (dataSourceState.topIndex === undefined || dataSourceState.visibleCount === undefined) {
+            setDataSourceState({ topIndex: dataSourceState.topIndex ?? 0, visibleCount: dataSourceState?.visibleCount ?? 20 });
+        }
+    }, [dataSourceState]);
+
+    const lastRowIndex = useMemo(
         () => dataSourceState.topIndex + dataSourceState.visibleCount,
         [dataSourceState.topIndex, dataSourceState.visibleCount],
     );
@@ -42,12 +50,20 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex
             || prevValue?.visibleCount !== newValue?.visibleCount;
 
-        return isFetchPositionAndAmountChanged && lastRecordIndex > actualRowsCount;
-    }, [lastRecordIndex, actualRowsCount]);
+        return isFetchPositionAndAmountChanged && lastRowIndex > actualRowsCount;
+    }, [lastRowIndex, actualRowsCount]);
 
     const foldingService = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
 
-    const { loadMissing } = useLoadData({ api, filter, dataSourceState, isFolded: foldingService.isFolded });
+    const { loadMissing } = useLoadData({
+        api,
+        filter,
+        dataSourceState,
+        isFolded: foldingService.isFolded,
+        fetchStrategy: props.fetchStrategy,
+        flattenSearchResults: props.flattenSearchResults,
+        getChildCount: props.getChildCount,
+    });
 
     useEffect(() => {
         let completeReset = false;
@@ -56,7 +72,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
         let currentTree = treeWithData;
         if (prevDataSourceState == null || shouldReloadData) {
-            isReloadingRef.current = true;
+            setIsFetching(true);
             currentTree = treeWithData.clearStructure();
             if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
                 currentTree = fullTree;
@@ -67,11 +83,14 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         const shouldShowPlacehodlers = !shouldReloadData
             || (shouldReloadData && !backgroundReload);
 
-        if ((completeReset && shouldShowPlacehodlers) || isFoldingChanged) {
-            fingerprintRef.current = generateFingerprint();
+        const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
+        if ((completeReset && shouldShowPlacehodlers) || isFoldingChanged || moreRowsNeeded) {
+            if (currentTree !== treeWithData) {
+                setTreeWithData(currentTree);
+            }
+            setIsLoading(true);
         }
 
-        const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
             loadMissing(currentTree, completeReset)
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
@@ -79,18 +98,14 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
                         setTreeWithData(newTree);
                         const newFullTree = dataSourceState.search ? fullTree.mergeItems(newTree) : newTree;
                         setFullTree(newFullTree);
-
-                        isReloadingRef.current = false;
-                        fingerprintRef.current = generateFingerprint();
                     }
                 }).finally(() => {
-                    isReloadingRef.current = false;
+                    setIsFetching(false);
+                    setIsLoading(false);
                 });
         }
     }, [
-        prevDataSourceState,
         dataSourceState,
-        prevFilter,
         filter,
         treeWithData,
         setTreeWithData,
@@ -112,7 +127,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     });
 
     const focusService = useFocusService({ setDataSourceState });
-    const selectingService = useSelectingService({ setDataSourceState });
+    const selectingService = useSelectingService<TItem, TId, TFilter>({ setDataSourceState });
 
     const getTreeRowsStats = useCallback(() => {
         const rootInfo = tree.getNodeInfo(undefined);
@@ -130,11 +145,20 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     return {
         tree: treeWithData,
-        fingerprint: fingerprintRef.current,
+        dataSourceState,
+        isFoldedByDefault,
+        getId,
+        cascadeSelection,
+        getRowOptions,
+        rowOptions,
+        getChildCount,
         ...checkingService,
         ...foldingService,
         ...focusService,
         ...selectingService,
         getTreeRowsStats,
+
+        isFetching,
+        isLoading,
     };
 }

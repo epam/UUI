@@ -20,6 +20,7 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends FoldingSer
     isFlattenSearch?: boolean;
     getRowProps: (item: TItem, index: number) => DataRowProps<TItem, TId>;
     getLoadingRowProps: (id: any, index?: number, path?: DataRowPathItem<TId, TItem>[]) => DataRowProps<TItem, TId>;
+    isLoading?: boolean;
 }
 
 export function useBuildRows<TItem, TId, TFilter = any>({
@@ -35,6 +36,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     isFlattenSearch,
     getRowProps,
     getLoadingRowProps,
+    isLoading = false,
 }: UseBuildRowsProps<TItem, TId, TFilter>) {
     const buildRows = () => {
         const rows: DataRowProps<TItem, TId>[] = [];
@@ -118,7 +120,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 if (missingCount > 0) {
                     stats.hasMoreRows = true;
                 }
-
                 // Append loading rows, stop at lastRowIndex (last row visible)
                 while (rows.length < lastRowIndex && missingCount > 0) {
                     const row = getLoadingRowProps('_loading_' + rows.length, rows.length, path);
@@ -149,5 +150,5 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => buildRows(), [tree]);
+    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading]);
 }

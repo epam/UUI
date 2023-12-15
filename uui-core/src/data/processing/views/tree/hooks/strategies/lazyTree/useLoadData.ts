@@ -7,6 +7,9 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     filter?: TFilter;
     dataSourceState: DataSourceState<TFilter, TId>;
     isFolded: (item: TItem) => boolean;
+    fetchStrategy?: 'sequential' | 'parallel';
+    flattenSearchResults?: boolean;
+    getChildCount?(item: TItem): number;
 }
 
 export interface LoadResult<TItem, TId> {
@@ -59,7 +62,10 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 {
                     ...props,
                     ...options,
-                    isFolded,
+                    isFolded: (item) => {
+                        console.log('item', item, isFolded(item));
+                        return isFolded(item);
+                    },
                     api,
                     filter: { ...filter },
                 },
