@@ -1,0 +1,57 @@
+.checkbox {
+    padding-right: 12px;
+}
+
+.drag-handle {
+    position: absolute;
+    left: 2px;
+    width: 6px;
+    top: 3px;
+    bottom: 2px;
+    align-self: stretch;
+    visibility: hidden;
+
+    :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover & {
+        visibility: visible;
+    }
+}
+
+.indent {
+    display: flex;
+    justify-content: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 12px;
+    padding-right: 12px;
+    box-sizing: content-box; // to fix reset css like *, *::before, *::after { box-sizing: border-box; }
+}
+
+:global(.uui-folding-arrow) {
+    margin: auto 0;
+
+    &:global(.uui-icon) {
+        position: relative;
+    }
+}
+
+.folding-arrow-12 {
+    &:global(.uui-icon) {
+        left: -2px;
+        flex: 0 0 12px;
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.folding-arrow-18 {
+    &:global(.uui-icon) {
+        left: -4px;
+        flex: 0 0 18px;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.icon-container {
+    fill: var(--uui-icon);
+}

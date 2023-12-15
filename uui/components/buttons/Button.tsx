@@ -3,7 +3,7 @@ import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-co
 import { withMods } from '@epam/uui-core';
 import { ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
-import { CountIndicator } from '../widgets';
+import { CountIndicator } from '../widgets/CountIndicator';
 import css from './Button.module.scss';
 
 const DEFAULT_SIZE = '36';
