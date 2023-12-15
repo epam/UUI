@@ -10,9 +10,7 @@ import { generateDTS } from './dts';
 import { ConverterContext } from './converterContext/converterContext';
 import { compareToPrevStats } from './compareStatsUtils/statsComparatorUtils';
 
-main();
-
-function main() {
+export function main() {
     const context = new ConverterContext();
     const extracted = extractExports(context);
     const formatted = formatExports(extracted, context);
