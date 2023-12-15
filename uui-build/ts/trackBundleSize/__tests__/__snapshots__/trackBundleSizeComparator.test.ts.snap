@@ -7,7 +7,7 @@ Object {
       "css": 0.03,
       "js": 0.07,
     },
-    "diffLabel": "-0.02; (js: 0.01; css: 0.01)",
+    "diffLabel": "+0.02<br />\`\`\` js:+0.01\`\`\`<br />\`\`\`css:+0.01 \`\`\`",
     "size": Object {
       "css": 0.04,
       "js": 0.08,
@@ -20,7 +20,7 @@ Object {
       "css": 0.1,
       "js": 0.1,
     },
-    "diffLabel": "-0.01; (js: 0; css: 0.01)",
+    "diffLabel": "+0.01<br />\`\`\` js:0\`\`\`<br />\`\`\`css:+0.01 \`\`\`",
     "size": Object {
       "css": 0.11,
       "js": 0.1,

@@ -33,5 +33,3 @@ export const CLI = {
         ],
     },
 };
-
-export const BASELINE_JSON_FORMAT = 'v1';
