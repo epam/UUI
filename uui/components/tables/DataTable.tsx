@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PositionValues, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
+import { PositionValues, IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
@@ -27,6 +27,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     filters?: TableFiltersConfig<any>[];
     onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
+    dataTableFocusManager?: DataTableFocusManager<TId>;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -129,21 +130,23 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     return (
         <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
-            <VirtualList
-                value={ props.value }
-                onValueChange={ props.onValueChange }
-                onScroll={ props.onScroll }
-                rowsCount={ props.rowsCount }
-                renderRows={ renderRowsContainer }
-                cx={ cx(css.table, 'uui-dt-vars') }
-                isLoading={ props.isReloading }
-                rowsSelector="[role=row]"
-                rawProps={ {
-                    role: 'table',
-                    'aria-colcount': columns.length,
-                    'aria-rowcount': props.rowsCount,
-                } }
-            />
+            <DataTableFocusProvider dataTableFocusManager={ props.dataTableFocusManager }>
+                <VirtualList
+                    value={ props.value }
+                    onValueChange={ props.onValueChange }
+                    onScroll={ props.onScroll }
+                    rowsCount={ props.rowsCount }
+                    renderRows={ renderRowsContainer }
+                    cx={ cx(css.table, 'uui-dt-vars') }
+                    isLoading={ props.isReloading }
+                    rowsSelector="[role=row]"
+                    rawProps={ {
+                        role: 'table',
+                        'aria-colcount': columns.length,
+                        'aria-rowcount': props.rowsCount,
+                    } }
+                />
+            </DataTableFocusProvider>
         </DataTableSelectionProvider>
     );
 }

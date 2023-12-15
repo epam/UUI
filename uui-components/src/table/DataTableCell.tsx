@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
     DataTableCellProps, RenderEditorProps, uuiMod,
 } from '@epam/uui-core';
 import css from './DataTableCell.module.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
+import { DataTableFocusContext, DataTableFocusContextState } from './tableCellsFocus';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -19,13 +20,43 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
     const editorRef = React.useRef<HTMLElement>();
-
-    let content: React.ReactNode;
     const isEditable = !!props.onValueChange;
 
+    const tableFocusContext = useContext<DataTableFocusContextState<TId>>(DataTableFocusContext);
+
+    useEffect(() => {
+        if (isEditable) {
+            tableFocusContext?.dataTableFocusManager
+                ?.registerCell({ id: row.id, index: row.index }, {
+                    index: props.index,
+                    isDisabled: props.isDisabled,
+                    isReadonly: props.isReadonly,
+                    key: props.key,
+                    focus: () => editorRef.current?.focus(),
+                });
+        }
+
+        return () => {
+            if (isEditable) {
+                tableFocusContext?.dataTableFocusManager
+                    ?.unregisterCell(row.id, props.index);
+            }
+        };
+    }, [
+        tableFocusContext?.dataTableFocusManager,
+        row.index,
+        props.index,
+        props.isDisabled,
+        props.isReadonly,
+        isEditable,
+    ]);
+
+    let content: React.ReactNode;
+
     const handleEditableCellClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
-        props.rowProps.onSelect?.(props.rowProps);
-        if (editorRef.current === e.target || editorRef.current.parentNode === e.target) {
+        if (!props.isReadonly && !props.isDisabled
+            && (editorRef.current === e.target || editorRef.current.parentNode === e.target)
+        ) {
             editorRef.current?.focus();
         }
     }, []);
@@ -35,6 +66,13 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     } else if (props.rowProps.isUnknown) {
         content = props.renderUnknown(props);
     } else if (isEditable) {
+        const onFocus = () => {
+            props.rowProps.onSelect?.(props.rowProps);
+            setState((currentState) => ({ ...currentState, inFocus: true }));
+            tableFocusContext?.dataTableFocusManager
+                ?.setNewFocusCoordinates(row.id, props.index);
+        };
+
         // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props
         // We don't use any helpers and/or deconstruction syntax, as this is performance-sensitive part of code
         const editorProps: RenderEditorProps<TItem, TId, any> = {
@@ -46,7 +84,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             isRequired: props.isRequired ?? props.rowProps.isRequired,
             validationMessage: props.validationMessage ?? props.rowProps.validationMessage,
             validationProps: props.validationProps ?? props.rowProps.validationProps,
-            onFocus: () => setState({ ...state, inFocus: true }),
+            onFocus,
             onBlur: () => setState({ ...state, inFocus: false }),
             rowProps: props.rowProps,
             mode: 'cell',

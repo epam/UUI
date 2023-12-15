@@ -2,7 +2,7 @@ import React from 'react';
 import * as UuiComponents from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { getIconClass } from './helper';
-import { CountIndicator } from '../widgets';
+import { CountIndicator } from '../widgets/CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './TabButton.module.scss';
 

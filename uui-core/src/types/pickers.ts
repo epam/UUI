@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder } from './props';
+import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder, IHasCX } from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
@@ -139,4 +139,16 @@ export interface IPickerToggler<TItem = any, TId = any>
 export interface IBasicPickerToggler extends IDropdownToggler {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
+}
+
+/** Props for cells in pickers. */
+export interface DataPickerCellProps<TItem = any, TId = any> extends IHasCX {
+    /** Key to use as component's key. */
+    key: string;
+
+    /** DataRowProps object for the picker row where a cell is placed. */
+    rowProps: DataRowProps<TItem, TId>;
+
+    /** Render the cell content. The item props is the value of the whole row (TItem). */
+    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
 }
