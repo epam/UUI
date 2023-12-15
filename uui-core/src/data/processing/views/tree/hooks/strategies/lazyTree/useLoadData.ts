@@ -62,10 +62,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 {
                     ...props,
                     ...options,
-                    isFolded: (item) => {
-                        console.log('item', item, isFolded(item));
-                        return isFolded(item);
-                    },
+                    isFolded,
                     api,
                     filter: { ...filter },
                 },
