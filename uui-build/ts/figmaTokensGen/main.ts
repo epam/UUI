@@ -3,8 +3,18 @@ import { FileUtils } from './utils/fileUtils';
 import { IGNORED_VAR_PLACEHOLDER } from './constants';
 import { FigmaScriptsContext } from './context/context';
 import { CONFIG } from './config';
+import { logger } from '../jsBridge';
 
-export function genFigmaTokens() {
+export function main() {
+    try {
+        generateTokens();
+    } catch (err) {
+        logger.error(err);
+        throw err;
+    }
+}
+
+function generateTokens() {
     const ctx = new FigmaScriptsContext();
     const source = FileUtils.readFigmaVarCollection();
     const variables = source.variables.map((figmaVar) => {

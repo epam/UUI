@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-module.exports = { getIndexFileRelativePath };
+module.exports = { getIndexFileRelativePath, isRollupModule };
 
 const indexFileNames = ['index.ts', 'index.tsx'];
 /**
@@ -18,4 +18,14 @@ function getIndexFileRelativePath(moduleRootDir) {
         }
         return acc;
     }, null);
+}
+
+/**
+ * @param {string} moduleRootDir
+ *
+ * @returns {Promise<boolean>}
+ */
+function isRollupModule(moduleRootDir) {
+    const moduleIndexFile = getIndexFileRelativePath(moduleRootDir);
+    return !!moduleIndexFile;
 }

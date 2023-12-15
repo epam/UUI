@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { IFigmaVarCollection } from '../types';
-import { logger, uuiRoot, PATH } from '../constants';
+import { PATH } from '../constants';
 import { FigmaScriptsContext } from '../context/context';
+import { logger, uuiRoot } from '../../jsBridge';
 
 export class FileUtils {
     static writeResults(params: { result: IFigmaVarCollection, ctx: FigmaScriptsContext }) {
