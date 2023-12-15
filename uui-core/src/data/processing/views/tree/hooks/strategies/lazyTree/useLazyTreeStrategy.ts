@@ -2,13 +2,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Tree } from '../../../Tree';
 import { LazyTreeStrategyProps } from './types';
 import { usePrevious } from '../../../../../../../hooks';
-import { CascadeSelectionTypes, DataSourceState } from '../../../../../../../types';
+import { DataSourceState } from '../../../../../../../types';
 
 import isEqual from 'lodash.isequal';
 import { generateFingerprint, onlySearchWasUnset, shouldRebuildTree } from './helpers';
-import { useCheckingService, useFocusService, useFoldingService, useSelectingService } from '../../services';
+import { useFocusService, useFoldingService, useSelectingService } from '../../services';
 import { useLoadData } from './useLoadData';
-import { ITree, ROOT_ID } from '../../..';
+import { useLazyCheckingService } from './useLazyCheckingService';
 
 export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
@@ -97,55 +97,18 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         areMoreRowsNeeded,
     ]);
 
-    const loadMissingRecords = async (currentTree: ITree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
-        const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
-
-        if (!cascadeSelection && !isRoot) {
-            return currentTree;
-        }
-
-        const loadNestedLayersChildren = !isImplicitMode;
-        const parents = currentTree.getParentIdsRecursive(id);
-        const { tree: treeWithMissingRecords } = await loadMissing(
-            currentTree,
-            false,
-            {
-                // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
-                // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
-                // Otherwise, should be loaded only checked element and all its nested children.
-                loadAllChildren: (itemId) => {
-                    if (!cascadeSelection) {
-                        return isChecked && isRoot;
-                    }
-
-                    if (isImplicitMode) {
-                        return itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId));
-                    }
-
-                    // `isEqual` is used, because complex ids can be recreated after fetching of parents.
-                    // So, they should be compared not by reference, but by value.
-                    return isRoot || isEqual(itemId, id) || (dataSourceState.search && parents.some((parent) => isEqual(parent, itemId)));
-                },
-                isLoadStrict: true,
-            },
-            { search: null },
-            loadNestedLayersChildren,
-        );
-
-        setFullTree(treeWithMissingRecords);
-        setTreeWithData(treeWithData.mergeItems(treeWithMissingRecords));
-
-        return treeWithMissingRecords;
-    };
-
-    const checkingService = useCheckingService({
+    const checkingService = useLazyCheckingService({
         tree: fullTree,
+        onTreeUpdate: (newTree) => {
+            setFullTree(newTree);
+            setTreeWithData(treeWithData.mergeItems(newTree));
+        },
         dataSourceState,
         setDataSourceState,
         cascadeSelection,
         getRowOptions,
         rowOptions,
-        loadMissingRecords,
+        loadMissingRecords: loadMissing,
     });
 
     const focusService = useFocusService({ setDataSourceState });
