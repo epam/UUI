@@ -11,7 +11,7 @@ import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-2
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
 import css from './NotificationCard.module.scss';
 
-interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
+export interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     /** NotificationAction name */
     name: string;
     /** Notification action */
