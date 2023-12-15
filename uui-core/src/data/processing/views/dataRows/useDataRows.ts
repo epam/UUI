@@ -64,8 +64,10 @@ export function useDataRows<TItem, TId, TFilter = any>(
         },
         [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
     );
-
-    const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
+    const isFlattenSearch = useMemo(
+        () => dataSourceState.search && flattenSearchResults,
+        [dataSourceState.search, flattenSearchResults],
+    );
 
     const getEstimatedChildrenCount = useCallback((id: TId) => {
         if (id === undefined) return undefined;

@@ -33,6 +33,7 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     getChildCount?(item: TItem): number;
 
     cascadeSelection?: CascadeSelection;
+    flattenSearchResults?: boolean;
 
     isFetching?: boolean;
     isLoading?: boolean;
