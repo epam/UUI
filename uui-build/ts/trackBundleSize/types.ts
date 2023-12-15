@@ -1,7 +1,6 @@
 export type TBundleSizeBaseLine = {
     version: string,
     timestamp: string,
-    format: string,
     sizes: TBundleSizeMap
 };
 

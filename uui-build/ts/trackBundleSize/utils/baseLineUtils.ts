@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { BASE_LINE_PATH, BASELINE_JSON_FORMAT, TRACK_BUNDLE_SIZE_REPORT_MD } from '../constants';
+import { BASE_LINE_PATH, TRACK_BUNDLE_SIZE_REPORT_MD } from '../constants';
 import { createFileSync, getUuiVersion, logger, readJsonFileSync, uuiRoot } from '../../jsBridge';
 import { TBundleSizeBaseLine, TBundleSizeMap } from '../types';
 
@@ -11,7 +11,6 @@ export function createBaseLine(sizes: TBundleSizeMap): TBundleSizeBaseLine {
     const uuiVersion = getUuiVersion();
     return {
         version: uuiVersion,
-        format: BASELINE_JSON_FORMAT,
         timestamp,
         sizes,
     };
@@ -33,10 +32,7 @@ export function overrideBaseLineFileSync(baselineStr: string) {
 export function getCurrentBaseLineSync() {
     if (fs.existsSync(pathToBaselineResolved)) {
         const data = readJsonFileSync(pathToBaselineResolved);
-        const isFormatSupported = data.format === BASELINE_JSON_FORMAT;
-        if (isFormatSupported) {
-            return data as TBundleSizeBaseLine;
-        }
+        return data as TBundleSizeBaseLine;
     }
 }
 
