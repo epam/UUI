@@ -65,6 +65,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
     }, [
         getRowOptions,
         rowOptions,
+        isFlattenSearch,
         getEstimatedChildrenCount,
         dataSourceState.focusedIndex,
         dataSourceState.selectedId,

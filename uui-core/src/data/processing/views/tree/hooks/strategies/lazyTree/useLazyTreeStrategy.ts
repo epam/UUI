@@ -152,6 +152,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         getRowOptions,
         rowOptions,
         getChildCount,
+        flattenSearchResults,
         ...checkingService,
         ...foldingService,
         ...focusService,
