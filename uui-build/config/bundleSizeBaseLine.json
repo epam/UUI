@@ -1,15 +1,14 @@
 {
   "version": "5.4.2",
-  "format": "v1",
   "timestamp": "2023-12-15",
   "sizes": {
     "templateApp": {
-      "css": 264425,
-      "js": 804882
+      "css": 265600,
+      "js": 807884
     },
     "@epam/app": {
-      "css": 1607679,
-      "js": 6078807
+      "css": 1609443,
+      "js": 6083253
     },
     "@epam/draft-rte": {
       "css": 9761,
@@ -20,24 +19,24 @@
       "js": 2208
     },
     "@epam/promo": {
-      "css": 41841,
-      "js": 27473
+      "css": 41857,
+      "js": 26321
     },
     "@epam/uui-extra": {
       "css": 0,
       "js": 213
     },
     "@epam/loveship": {
-      "css": 52117,
-      "js": 86919
+      "css": 50870,
+      "js": 85450
     },
     "@epam/uui-components": {
       "css": 21742,
-      "js": 251762
+      "js": 262888
     },
     "@epam/uui-core": {
       "css": 0,
-      "js": 277046
+      "js": 277085
     },
     "@epam/uui-db": {
       "css": 0,
@@ -56,8 +55,8 @@
       "js": 46076
     },
     "@epam/uui": {
-      "css": 247445,
-      "js": 308872
+      "css": 248767,
+      "js": 310371
     }
   }
 }
