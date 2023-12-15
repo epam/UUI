@@ -1,8 +1,3 @@
-// @ts-ignore
-export { logger } from '../utils/loggerUtils';
-// @ts-ignore
-export { uuiRoot } from '../utils/constants';
-
 export const IGNORED_VAR_PLACEHOLDER = '/* UUI internal variable */';
 
 export const PATH = {
