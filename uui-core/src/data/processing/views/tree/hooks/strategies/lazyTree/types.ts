@@ -1,8 +1,8 @@
 import { LazyDataSourceApi } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
-import { TreeStrategyProps } from '../types';
+import { CommonTreeStrategyProps } from '../types';
 
-export type LazyTreeStrategyProps<TItem, TId, TFilter> = TreeStrategyProps<TItem, TId, TFilter> & {
+export type LazyTreeStrategyProps<TItem, TId, TFilter> = CommonTreeStrategyProps<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.lazy,
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     filter?: TFilter;

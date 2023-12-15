@@ -24,7 +24,6 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> extends CheckingSer
     getParentId?(item: TItem): TId | undefined;
 
     cascadeSelection?: CascadeSelection;
-    lastRowIndex: number;
 
     selectAll?: boolean;
     // TODO: add solid type
@@ -32,6 +31,9 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> extends CheckingSer
         completeFlatListRowsCount: any;
         totalCount: number;
     }
+
+    isFetching?: boolean;
+    isLoading?: boolean;
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
@@ -48,9 +50,20 @@ export function useDataRows<TItem, TId, TFilter = any>(
         rowOptions,
 
         cascadeSelection,
-        lastRowIndex,
         getTreeRowsStats,
+        isLoading,
+        isFetching,
     } = props;
+
+    const lastRowIndex = useMemo(
+        () => {
+            const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
+            const actualCount = tree.getTotalRecursiveCount();
+            if (actualCount != null && actualCount < currentLastIndex) return actualCount;
+            return currentLastIndex;
+        },
+        [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
+    );
 
     const isFlattenSearch = useMemo(() => dataSourceState.search && flattenSearchResults, []);
 
@@ -132,6 +145,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getLoadingRowProps,
         isFolded: props.isFolded,
         handleOnFold: props.handleOnFold,
+        isLoading,
     });
 
     const withPinnedRows = usePinnedRows({
@@ -187,9 +201,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
             exactRowsCount: rows.length,
             totalCount,
             selectAll,
-            isReloading: false,
+            isReloading: isFetching,
         };
-    }, [rows.length, selectAll, getTreeRowsStats, stats.hasMoreRows, lastRowIndex]);
+    }, [rows.length, selectAll, getTreeRowsStats, stats.hasMoreRows, lastRowIndex, isFetching]);
 
     const getVisibleRows = useCallback(
         () => {

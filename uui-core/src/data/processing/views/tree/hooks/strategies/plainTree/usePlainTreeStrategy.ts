@@ -1,15 +1,16 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
 import { useCheckingService, useFocusService, useFoldingService, useSelectingService } from '../../services';
+import { UseTreeResult } from '../../types';
 
 export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, ...restProps }: PlainTreeStrategyProps<TItem, TId, TFilter>,
     deps: any[],
-) {
+): UseTreeResult<TItem, TId, TFilter> {
     const props = { ...restProps, sortSearchByRelevance };
     const fullTree = useCreateTree(props, deps);
 
@@ -26,6 +27,12 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         getChildCount,
         cascadeSelection,
     } = props;
+
+    useEffect(() => {
+        if (dataSourceState.topIndex === undefined || dataSourceState.visibleCount === undefined) {
+            setDataSourceState({ topIndex: dataSourceState.topIndex ?? 0, visibleCount: dataSourceState?.visibleCount ?? 20 });
+        }
+    }, [dataSourceState]);
 
     const filteredTree = useFilterTree(
         { tree: fullTree, getFilter, dataSourceState },
@@ -58,17 +65,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
 
     const selectingService = useSelectingService({ setDataSourceState });
 
-    const lastRowIndex = useMemo(
-        () => {
-            const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
-            const actualCount = tree.getTotalRecursiveCount() ?? 0;
-
-            if (actualCount < currentLastIndex) return actualCount;
-            return currentLastIndex;
-        },
-        [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
-    );
-
     const getTreeRowsStats = useCallback(() => {
         const rootInfo = tree.getNodeInfo(undefined);
 
@@ -83,7 +79,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             tree,
             rowOptions,
             getRowOptions,
-            lastRowIndex,
             getId,
             dataSourceState,
             getTreeRowsStats,
@@ -96,7 +91,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             tree,
             rowOptions,
             getRowOptions,
-            lastRowIndex,
             dataSourceState,
             getTreeRowsStats,
             checkingService,

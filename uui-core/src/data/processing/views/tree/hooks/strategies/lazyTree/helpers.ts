@@ -27,5 +27,3 @@ export const onlySearchWasUnset = <TFilter, TId>(prevValue: DataSourceState<TFil
         || filterWasChanged(prevValue, newValue)
         || newValue?.page !== prevValue?.page
         || newValue?.pageSize !== prevValue?.pageSize);
-
-export const generateFingerprint = () => new Date().toISOString();
