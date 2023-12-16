@@ -1,7 +1,7 @@
 import path from 'path';
-// @ts-ignore
-import { uuiRoot } from '../utils/constants';
+
 import { SyntaxKind } from 'ts-morph';
+import { uuiRoot } from '../jsBridge';
 
 export { uuiRoot };
 

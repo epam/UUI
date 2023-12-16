@@ -8,13 +8,13 @@ const { visualizer } = require('rollup-plugin-visualizer');
 
 const postCssDynamicImport = import('rollup-plugin-postcss-modules');
 //
-const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils.js');
-const { getTsConfigFile } = require('./utils/moduleTsConfigUtils.js');
-const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform.js');
-const { onwarn } = require('./utils/rollupLoggerUtils.js');
-const { getSourceMapTransform } = require('./utils/moduleSourceMapsUtils.js');
-const { beforeRollupBuild } = require('./utils/beforeRollupBuild.js');
-const { readPackageJsonContentSync } = require('../utils/packageJsonUtils.js');
+const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils');
+const { getTsConfigFile } = require('./utils/moduleTsConfigUtils');
+const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform');
+const { onwarn } = require('./utils/rollupLoggerUtils');
+const { getSourceMapTransform } = require('./utils/moduleSourceMapsUtils');
+const { beforeRollupBuild } = require('./utils/beforeRollupBuild');
+const { readPackageJsonContentSync } = require('../utils/packageJsonUtils');
 
 const EXTRACTED_CSS_FILE_NAME = 'styles.css';
 const BUILD_OUTPUT_DIR = 'build';

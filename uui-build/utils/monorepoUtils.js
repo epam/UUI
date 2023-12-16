@@ -2,10 +2,10 @@ const Project = require('@lerna/project');
 const { PackageGraph } = require('@lerna/package-graph');
 const fs = require('fs');
 const path = require('path');
-const { readPackageJsonContentSync } = require('./packageJsonUtils.js');
-const { isRollupModule } = require('./moduleBuildUtils.js');
-const { readJsonFileSync } = require('./fileUtils.js');
-const { uuiRoot } = require('./constants.js');
+const { readPackageJsonContentSync } = require('./packageJsonUtils');
+const { isRollupModule } = require('./indexFileUtils');
+const { readJsonFileSync } = require('./fileUtils');
+const { uuiRoot } = require('./constants');
 
 module.exports = {
     getUuiVersion,
