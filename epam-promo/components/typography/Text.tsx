@@ -16,7 +16,7 @@ interface TextMods {
 }
 
 /** Represents the properties of a Text component. */
-export type TextProps = uui.TextCoreProps & TextMods;
+export interface TextProps extends uui.TextCoreProps, TextMods {}
 
 export const Text = createSkinComponent<uui.TextProps, TextProps>(
     uui.Text,

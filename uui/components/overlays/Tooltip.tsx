@@ -1,18 +1,18 @@
 import { withMods } from '@epam/uui-core';
-import * as UuiComponents from '@epam/uui-components';
+import * as uuiComponents from '@epam/uui-components';
 import css from './Tooltip.module.scss';
 
-export type TooltipMods = {
+interface TooltipMods {
     /**
      * Tooltip color
      * @default 'inverted'
      */
     color?: 'neutral' | 'inverted' | 'critical';
-};
+}
 
-export type TooltipCoreProps = UuiComponents.TooltipProps;
+export interface TooltipCoreProps extends uuiComponents.TooltipProps {}
 
-export type TooltipProps = TooltipCoreProps & TooltipMods;
+export interface TooltipProps extends TooltipCoreProps, TooltipMods {}
 
 function applyTooltipMods(mods: TooltipMods) {
     return [
@@ -21,4 +21,4 @@ function applyTooltipMods(mods: TooltipMods) {
     ];
 }
 
-export const Tooltip = withMods<TooltipProps, TooltipMods>(UuiComponents.Tooltip, applyTooltipMods);
+export const Tooltip = withMods<TooltipProps, TooltipMods>(uuiComponents.Tooltip, applyTooltipMods);

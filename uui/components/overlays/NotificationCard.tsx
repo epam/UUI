@@ -11,26 +11,26 @@ import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-2
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
 import css from './NotificationCard.module.scss';
 
-export interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
-    /** NotificationAction name */
+interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
+    /** Defines NotificationAction name. */
     name: string;
-    /** Notification action */
+    /** Called when action is clicked */
     action: () => void;
 }
 
-export type NotificationCardCoreProps = INotification & IHasChildren & IHasCX & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
-    /** Array of Notification actions */
+export interface NotificationCardCoreProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /** Array of Notification actions. If provided will be displayed as LinkButtons in the end of notification. */
     actions?: NotificationAction[];
     /** NotificationCard icon */
     icon?: Icon;
-};
+}
 
-export type NotificationMods = {
+interface NotificationMods {
     /** NotificationCard color */
     color?: 'info' | 'success' | 'warning' | 'error';
-};
+}
 
-export type NotificationCardProps = NotificationCardCoreProps & NotificationMods;
+export interface NotificationCardProps extends NotificationCardCoreProps, NotificationMods {}
 
 export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
     const notificationCardNode = React.useRef(null);

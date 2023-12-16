@@ -25,13 +25,13 @@ const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['
     48: '24',
 };
 
-type TagMods = {
+interface TagMods {
     /**
      * Defines component color.
      * @default 'neutral'
      */
     color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
-};
+}
 
 /** Represents the Core properties of the Tag component. */
 export type TagCoreProps = ButtonProps & {

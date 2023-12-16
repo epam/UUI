@@ -4,13 +4,13 @@ import { EpamPrimaryColor } from '../types';
 
 interface NotificationCardMods {
     /**
-     * Defines component color
+     * Defines component color.
      */
     color?: EpamPrimaryColor | 'gray60' | uui.NotificationCardProps['color'];
 }
 
 /** Represents the properties of a NotificationCard component. */
-export type NotificationCardProps = uui.NotificationCardCoreProps & NotificationCardMods;
+export interface NotificationCardProps extends uui.NotificationCardCoreProps, NotificationCardMods {}
 
 export const NotificationCard = createSkinComponent<uui.NotificationCardProps, NotificationCardProps>(
     uui.NotificationCard,

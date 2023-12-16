@@ -15,7 +15,7 @@ interface PromoButtonMods {
 type ButtonPropsWithOmit = Omit<ButtonProps, 'count' | 'indicator' | 'dropdownIcon' | 'dropdownIconPosition' | 'isDropdown' | 'isOpen' | 'clearIcon' | 'countIndicator' | 'onClear' | 'toggleDropdownOpening'>;
 
 /** Represents the properties of the PromoButton component. */
-export type PromoButtonProps = ButtonPropsWithOmit & PromoButtonMods;
+export interface PromoButtonProps extends ButtonPropsWithOmit, PromoButtonMods {}
 
 export function applyButtonMods(mods: PromoButtonProps) {
     return [

@@ -10,7 +10,7 @@ interface DropdownContainerMods {
 }
 
 /** Represents the properties of a DropdownContainer component. */
-export type DropdownContainerProps = uui.DropdownContainerProps & DropdownContainerMods;
+export interface DropdownContainerProps extends uui.DropdownContainerProps, DropdownContainerMods {}
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [`uui-color-${mods.color || 'white'}`];
