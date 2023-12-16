@@ -1,5 +1,5 @@
 import React from 'react';
-import * as UuiComponents from '@epam/uui-components';
+import * as uuiComponents from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { getIconClass } from './helper';
 import { CountIndicator } from '../widgets/CountIndicator';
@@ -19,7 +19,7 @@ interface TabButtonMods {
 }
 
 /** Represents the properties of a TabButton component. */
-export type TabButtonProps = TabButtonMods & UuiComponents.ButtonProps;
+export type TabButtonProps = TabButtonMods & uuiComponents.ButtonProps;
 
 function applyTabButtonMods(mods: TabButtonProps) {
     return [
@@ -31,8 +31,8 @@ function applyTabButtonMods(mods: TabButtonProps) {
     ];
 }
 
-export const TabButton = withMods<UuiComponents.ButtonProps, TabButtonMods>(
-    UuiComponents.Button,
+export const TabButton = withMods<uuiComponents.ButtonProps, TabButtonMods>(
+    uuiComponents.Button,
     applyTabButtonMods,
     (props) => ({
         dropdownIcon: systemIcons['36'].foldingArrow,

@@ -32,7 +32,7 @@ export type RowMods = {
     */
     spacing?: '6' | '12' | '18';
     /*
-    * Defines is a top shadow showing.
+    * Pass true to show a top shadow.
     */
     topShadow?: boolean;
     /*

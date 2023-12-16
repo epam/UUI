@@ -7,7 +7,7 @@ type IconContainerColors = 'blue' | 'green' | 'amber' | 'red' | 'cyan' | 'orange
 
 interface IconContainerMods {
     /**
-     *  Defines component size.
+     *  Defines component color.
      *  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.
      *  @default 'gray60'
      */
@@ -22,7 +22,7 @@ function applyIconContainerMods(mods: IconContainerMods) {
 }
 
 /** Represents the properties of a IconContainer component. */
-export type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;
+export interface IconContainerProps extends uuiComponents.ControlIconProps, IconContainerMods {}
 
 export const IconContainer = createSkinComponent<uuiComponents.ControlIconProps, IconContainerProps>(
     uui.IconContainer,

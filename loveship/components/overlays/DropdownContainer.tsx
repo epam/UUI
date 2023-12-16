@@ -13,7 +13,7 @@ function applyDropdownContainerMods(mods: DropdownContainerMods) {
 }
 
 /** Represents the properties of the DropdownContainer component. */
-export type DropdownContainerProps = uui.DropdownContainerProps & DropdownContainerMods;
+export interface DropdownContainerProps extends uui.DropdownContainerProps, DropdownContainerMods {}
 
 export const DropdownContainer = createSkinComponent<uui.DropdownContainerProps, DropdownContainerProps>(
     uui.DropdownContainer,

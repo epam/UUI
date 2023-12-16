@@ -5,12 +5,12 @@ import css from './Accordion.module.scss';
 
 interface AccordionMods {
     /**
-     * Defines component positioning mode.
+     * Defines component displaying mode.
      * @default 'block'
      */
     mode?: 'block' | 'inline';
     /*
-    * Defines component padding.
+    * Defines component horizontal padding.
     */
     padding?: '0' | '6' | '12' | '18';
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withMods, ModalFooterCoreProps, ModalWindowProps as UuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
+import { withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout/FlexItems';
 import { IconButton } from '../buttons';
@@ -9,7 +9,7 @@ import css from './Modals.module.scss';
 
 export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
 
-export interface ModalWindowMods {
+interface ModalWindowMods {
     /**
      * Defines component width.
      * @default '420px'
@@ -22,11 +22,11 @@ export interface ModalWindowMods {
     height?: number;
 }
 
-export type ModalWindowCoreProps = UuiModalWindowProps;
+export interface ModalWindowCoreProps extends uuiModalWindowProps {}
 
-export type ModalWindowProps = ModalWindowCoreProps & ModalWindowMods;
+export interface ModalWindowProps extends ModalWindowCoreProps, ModalWindowMods {}
 
-export const ModalWindow = withMods<UuiModalWindowProps, ModalWindowMods>(
+export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowMods>(
     uuiModalWindow,
     () => [css.root, css.modal],
     (props) => ({

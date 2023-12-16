@@ -1,4 +1,4 @@
-import { createSkinComponent } from '@epam/uui-core';
+import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import css from './Rating.module.scss';
 import { ReactComponent as FilledStarIcon } from '@epam/assets/icons/common/fav-rates-star-24.svg';
@@ -18,15 +18,15 @@ function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
 }
 
 /** Represents the properties of a Rating component. */
-export type RatingProps = uuiComponents.RatingProps & RatingMods;
+export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
 
-export const Rating = createSkinComponent<uuiComponents.RatingProps, RatingProps>(
-    uuiComponents.Rating, 
+export const Rating = withMods<uuiComponents.RatingProps, RatingMods>(
+    uuiComponents.Rating,
+    applyRatingMods,
     (props) => ({
         filledStarIcon: FilledStarIcon,
         emptyStarIcon: EmptyStarIcon,
         Tooltip,
         rawProps: { ...props.rawProps, tabIndex: 0 },
     }),
-    applyRatingMods,
 );

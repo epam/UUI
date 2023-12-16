@@ -5,7 +5,7 @@ import { ReactComponent as SvgTriangle } from '../../../icons/chevron-down-24.sv
 
 interface MainMenuButtonMods {
     /*
-    * Defines component type.
+    * Defines component type. The primary button leads to the main pages of the site, and the secondary to the others.
     */
     type?: 'primary' | 'secondary';
 }

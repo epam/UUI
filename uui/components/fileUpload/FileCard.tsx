@@ -14,7 +14,7 @@ import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill
 
 export interface FileCardItem extends Partial<File & FileUploadResponse> {
     /*
-    * Defines upload progress.
+    * Defines upload progress. It should be number value in range from 0 to 100', where 100 means that file fully loaded.
     */
     progress?: number;
     /*

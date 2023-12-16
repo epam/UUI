@@ -9,7 +9,7 @@ const DEFAULT_SIZE = '18';
 type BadgeColor = EpamPrimaryColor | EpamAdditionalColor | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white'
 | 'night100' | 'night300' | 'night600' | uui.BadgeProps['color'];
 
-type BadgeMods = {
+interface BadgeMods {
     /**
      * Defines component color.
      * @default 'sky'
@@ -30,7 +30,7 @@ type BadgeMods = {
      * @default '18'
      */
     size?: uui.BadgeProps['size'] | '12';
-};
+}
 
 function applyBadgeMods(mods: BadgeMods) {
     return [

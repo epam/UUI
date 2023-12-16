@@ -1,6 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { getTextClasses, TextSettings } from '../../helpers';
-import * as UuiComponents from '@epam/uui-components';
+import * as uuiComponents from '@epam/uui-components';
 import css from './Text.module.scss';
 
 type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
@@ -10,13 +10,13 @@ type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 
 interface TextMods {
     /**
-     * Represents the color of a text.
+     * Defines text color.
      * @default 'primary'.
      */
     color?: TextColor;
 }
 
-export type TextCoreProps = UuiComponents.TextProps & TextSettings & {
+export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
     /**
      * Defines text font weight value
      * @default '400'
@@ -28,13 +28,13 @@ export type TextCoreProps = UuiComponents.TextProps & TextSettings & {
      */
     fontStyle?: TextFontStyle;
     /**
-     * Represents the size of a text.
+     * Defines text size.
      * @default '36'
      */
     size?: TextSize;
-};
+}
 
-export type TextProps = TextCoreProps & TextMods;
+export interface TextProps extends TextCoreProps, TextMods {}
 
 function applyTextMods(mods: TextProps) {
     const textClasses = getTextClasses(
@@ -56,4 +56,4 @@ function applyTextMods(mods: TextProps) {
     ].concat(textClasses);
 }
 
-export const Text = withMods<UuiComponents.TextProps, TextProps>(UuiComponents.Text, applyTextMods);
+export const Text = withMods<uuiComponents.TextProps, TextProps>(uuiComponents.Text, applyTextMods);

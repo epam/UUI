@@ -22,7 +22,7 @@ function applyIconContainerMods(mods: IconContainerMods) {
 }
 
 /** Represents the properties of the IconContainer component. */
-export type IconContainerProps = ControlIconProps & IconContainerMods;
+export interface IconContainerProps extends ControlIconProps, IconContainerMods {}
 
 export const IconContainer = createSkinComponent<ControlIconProps, IconContainerProps>(
     uui.IconContainer,

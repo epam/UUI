@@ -1,5 +1,5 @@
 import { withMods } from '@epam/uui-core';
-import { InputAddon as uuiInputAddon, InputAddonProps as UuiInputAddonProps } from '@epam/uui-components';
+import { InputAddon as uuiInputAddon, InputAddonProps as uuiInputAddonProps } from '@epam/uui-components';
 import css from './InputAddon.module.scss';
 
 function applyInputAddonMods() {
@@ -8,4 +8,4 @@ function applyInputAddonMods() {
     ];
 }
 
-export const InputAddon = withMods<UuiInputAddonProps>(uuiInputAddon, applyInputAddonMods);
+export const InputAddon = withMods<uuiInputAddonProps>(uuiInputAddon, applyInputAddonMods);

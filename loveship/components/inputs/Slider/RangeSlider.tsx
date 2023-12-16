@@ -11,7 +11,7 @@ interface RangeSliderMods {
 }
 
 /** Represents the properties of a RangeSlider component. */
-export type RangeSliderProps = SliderBaseProps<RangeSliderValue> & RangeSliderMods;
+export interface RangeSliderProps extends SliderBaseProps<RangeSliderValue>, RangeSliderMods {}
 
 export function applyRangeSliderMods() {
     return [

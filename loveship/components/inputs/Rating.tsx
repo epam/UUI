@@ -5,7 +5,7 @@ import { ReactComponent as EmptyStarIcon } from '../icons/star-empty.svg';
 import { Tooltip } from '../overlays';
 import css from './Rating.module.scss';
 
-export interface RatingMods {
+interface RatingMods {
     /**
      * Defines component size.
      * @default '18'

@@ -1,5 +1,5 @@
 import { devLogger, withMods } from '@epam/uui-core';
-import { TextArea as uuiTextArea, TextAreaProps as UuiTextAreaProps } from '@epam/uui-components';
+import { TextArea as uuiTextArea, TextAreaProps as uuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
 import css from './TextArea.module.scss';
 
@@ -24,9 +24,9 @@ function applyTextAreaMods(mods: TextAreaMods) {
 }
 
 /** Represents the properties of a TextArea component. */
-export type TextAreaProps = UuiTextAreaProps & TextAreaMods;
+export type TextAreaProps = uuiTextAreaProps & TextAreaMods;
 
-export const TextArea = withMods<UuiTextAreaProps, TextAreaMods>(
+export const TextArea = withMods<uuiTextAreaProps, TextAreaMods>(
     uuiTextArea,
     applyTextAreaMods,
     (props) => {

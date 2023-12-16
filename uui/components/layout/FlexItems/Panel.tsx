@@ -4,7 +4,7 @@ import css from './Panel.module.scss';
 
 interface PanelMods {
     /*
-    * Defines is a shadow showing.
+    * Pass true to show a shadow.
     */
     shadow?: boolean;
     /*
