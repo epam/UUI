@@ -97,9 +97,14 @@ export function DatePickerHeader(props: DatePickerHeaderProps) {
         });
     };
 
-    const title = React.useMemo(() => `${
-        props.value?.view !== 'MONTH_SELECTION' ? dayjs.months()[props.value?.displayedDate.month()] : ''
-    } ${props.value?.displayedDate.year()}`, [props.value?.view, props.value?.displayedDate]);
+    const title = React.useMemo(
+        () => `${
+            props.value?.view !== 'MONTH_SELECTION'
+                ? dayjs.months()[props.value?.displayedDate.month()]
+                : ''
+        } ${props.value?.displayedDate.year()}`,
+        [props.value?.view, props.value?.displayedDate],
+    );
 
     return (
         <div className={ cx(css.container, uuiHeader.container, props.cx) }>

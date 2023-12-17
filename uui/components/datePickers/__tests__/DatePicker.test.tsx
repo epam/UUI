@@ -4,7 +4,7 @@ import {
 } from '@epam/uui-test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
-async function setupDatePicker(params: Partial<DatePickerProps>) {
+async function setupDatePicker(params: Pick<DatePickerProps, 'value' | 'format' | 'filter'>) {
     const { format, value } = params;
 
     const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
@@ -12,16 +12,15 @@ async function setupDatePicker(params: Partial<DatePickerProps>) {
             value,
             format,
             onValueChange: jest.fn().mockImplementation((newValue) => {
-                context.current.setProperty('value', newValue);
+                context.current?.setProperty('value', newValue);
             }),
             size: '48',
         }),
         (props) => <DatePicker { ...props } />,
     );
 
-    const input = screen.queryByRole('textbox') as HTMLInputElement;
-    const clear = screen.queryByRole('button');
-    const dom = { input, clear };
+    const input = screen.getByRole<HTMLInputElement>('textbox');
+    const dom = { input };
 
     return {
         setProps,
@@ -79,8 +78,9 @@ describe('DatePicker', () => {
 
     it('should clear input when clear button is clicked', async () => {
         const { dom, mocks } = await setupDatePicker({ value: '2017-01-22', format: DATE_FORMAT_DEFAULT });
+        const clear = screen.getByRole<HTMLButtonElement>('button');
         expect(dom.input.value).toEqual('Jan 22, 2017');
-        fireEvent.click(dom.clear);
+        fireEvent.click(clear);
         expect(dom.input.value).toEqual('');
         expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
