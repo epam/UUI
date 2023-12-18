@@ -530,6 +530,12 @@
         --uui-badge-caption: var(--uui-neutral-80);
         --uui-badge-caption-hover: var(--uui-neutral-80);
 
+        .uui-count_indicator {
+            --uui-count_indicator-bg: var(--uui-neutral-0);
+            --uui-count_indicator-border: var(--uui-neutral-0);
+            --uui-count_indicator-caption: var(--uui-neutral-70);
+        }
+
         &.uui-fill-outline {
             --uui-badge-bg: var(--uui-neutral-20);
             --uui-badge-bg-hover: var(--uui-neutral-30);
