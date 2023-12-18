@@ -11,12 +11,12 @@ dayjs.extend(updateLocale);
 
 export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
     /*
-    * Array of classes for styling the Day.
+    * A pure function that gets array of classes for styling a day for each day.
     */
     getDayCX?(day: Dayjs): string[];
-    /*
-    * Boolean flag that showing is this Day a Holiday.
-    */
+    /**
+     * A pure function that gets whether day is holiday for each day.
+     */
     isHoliday?: (day: Dayjs) => boolean;
 }
 
