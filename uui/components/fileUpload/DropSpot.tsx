@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, IHasRawProps } from '@epam/uui-core';
+import { cx, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
 import { FlexRow, IconContainer } from '../layout';
 import { Anchor } from '../navigation';
@@ -8,11 +8,22 @@ import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
 import { i18n } from '../../i18n';
 import css from './DropSpot.module.scss';
 
-export interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    cx?: string;
+export interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {
+    /*
+    * Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea.
+    */
     infoText?: string;
+    /*
+    * Called when uploading files.
+    */
     onUploadFiles(files: File[]): any;
+    /*
+    * Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details
+    */
     accept?: string;
+    /*
+    * Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details
+    */
     single?: boolean;
 }
 

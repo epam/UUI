@@ -2,10 +2,10 @@ import * as React from 'react';
 import { IEditable, IHasRawProps } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
 import { ControlGroup } from '../layout/ControlGroup';
-import { Button, ButtonProps as UuiButtonProps } from '../buttons';
+import { Button, ButtonProps as uuiButtonProps } from '../buttons';
 import { SizeMod } from '../types';
 
-type MultiSwitchItem<TValue> = ButtonProps & UuiButtonProps & {
+type MultiSwitchItem<TValue> = ButtonProps & uuiButtonProps & {
     /**
      * Defines the id of MultiSwitchItem.
      */

@@ -11,6 +11,7 @@
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
+* [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * removed redundant exports
 
 
