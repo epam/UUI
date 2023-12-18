@@ -95,15 +95,15 @@ export default function TableWithPinnedRows() {
         },
     }, []);
 
-    const { getVisibleRows, getListProps } = useDataRows({ tree, ...restProps });
+    const { visibleRows, listProps } = useDataRows({ tree, ...restProps });
 
     return (
         <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
-                { ...getListProps() }
-                getRows={ getVisibleRows }
+                { ...listProps }
+                getRows={ () => visibleRows }
                 headerTextCase="upper"
                 columns={ locationsColumns }
             />

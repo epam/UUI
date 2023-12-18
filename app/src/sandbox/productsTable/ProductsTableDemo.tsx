@@ -46,10 +46,7 @@ export function ProductsTableDemo() {
         getMetadata: () => metadata,
     });
 
-    const [tableState, setTableState] = React.useState<DataSourceState>({
-        topIndex: 0,
-        visibleCount: 60,
-    });
+    const [tableState, setTableState] = React.useState<DataSourceState>({});
 
     const insertTask = useCallback(() => {
         const product: Product = { ProductID: lastId-- } as Product;
@@ -74,7 +71,7 @@ export function ProductsTableDemo() {
         additionalRows: Object.values(updatedRows.items),
     });
 
-    const { getVisibleRows, getListProps } = useDataRows({ tree: patchedTree, ...restProps });
+    const { visibleRows, listProps } = useDataRows({ tree: patchedTree, ...restProps });
 
     return (
         <Panel cx={ [css.container, css.uuiThemeLoveship] }>
@@ -85,14 +82,14 @@ export function ProductsTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ getVisibleRows }
+                getRows={ () => visibleRows }
                 columns={ productColumns }
-                value={ tableState }
+                value={ restProps.dataSourceState }
                 onValueChange={ setTableState }
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
-                { ...getListProps() }
+                { ...listProps }
 
             />
             {isChanged && (
