@@ -21,12 +21,14 @@ export const uuiHeader = {
 
 export interface DatePickerHeaderProps extends IEditable<PickerBodyValue<string>>, IHasCX {
     /*
-    * Represents a navigation icon on the left side.
-    */
+     * Navigation icon for the left navigation icon in header.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon.
+     */
     navIconLeft?: Icon;
     /*
-    * Represents a navigation icon on the right side.
-    */
+     * Navigation icon for the right navigation icon in header.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon.
+     */
     navIconRight?: Icon;
 }
 

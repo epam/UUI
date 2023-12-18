@@ -5,8 +5,7 @@ import css from './DropMarker.module.scss';
 
 interface DropMarkerProps extends DndActorRenderParams, IHasCX {
     /**
-     * Pass 'true' to enable Blocker
-     * If false, nothing will be rendered
+     * Pass 'true' to enable Blocker.
      */
     enableBlocker?: boolean;
 }
