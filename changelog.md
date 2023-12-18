@@ -1,3 +1,9 @@
+# 5.4.3 - 19.12.2023
+
+**What's Fixed**
+* [RTE]: fixed `onBlur` and `onKeyDown` props 
+* [Button]: fixed 'white' color on loveship
+
 # 5.4.2 - 07.12.2023
 
 **What's New**

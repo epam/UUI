@@ -27,8 +27,8 @@ interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     placeholder?: string;
     mode?: 'form' | 'inline';
     fontSize?: '14' | '16';
-    onKeyDown?: (event: KeyboardEvent, value: any | null) => void;
-    onBlur?: (event: FocusEvent, value: any | null) => void;
+    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+    onBlur?: React.FocusEventHandler<HTMLDivElement>;
     scrollbars?: boolean;
 }
 
@@ -51,6 +51,8 @@ function Editor(props: PlateEditorProps) {
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
                     className: css.editor,
+                    onBlur: props.onBlur,
+                    onKeyDown: props.onKeyDown,
                     renderPlaceholder: ({ attributes }) => {
                         return isEditorValueEmpty(editor.children) && (
                             <div
