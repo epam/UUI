@@ -1,23 +1,25 @@
-import { devLogger, withMods } from '@epam/uui-core';
+import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 import * as types from '../types';
 
 interface TextMods {
     /**
+     * Defines component color.
      * @default 'gray80'
      */
     color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90' | uui.TextProps['color'];
     /**
+     * Defines component font.
      * @default 'sans'
      */
     font?: types.FontStyle;
 }
 
-export type TextProps = Omit<uui.TextProps, 'color' | 'font'> & TextMods;
+/** Represents the properties of a Text component. */
+export interface TextProps extends uui.TextCoreProps, TextMods {}
 
-export const Text = withMods<Omit<uui.TextProps, 'color' | 'font'>, TextMods>(
+export const Text = createSkinComponent<uui.TextProps, TextProps>(
     uui.Text,
-    (props) => [props.font && `uui-font-${props.font}`],
     (props) => {
         if (__DEV__) {
             if (props.font) {
@@ -26,6 +28,7 @@ export const Text = withMods<Omit<uui.TextProps, 'color' | 'font'>, TextMods>(
         }
         return ({
             color: props.color ?? 'gray80',
-        } as TextProps);
+        });
     },
+    (props) => [props.font && `uui-font-${props.font}`],
 );
