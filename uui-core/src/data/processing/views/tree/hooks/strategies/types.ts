@@ -20,6 +20,7 @@ export type CommonTreeStrategyProps<TItem, TId, TFilter = any> = {
     getChildCount?(item: TItem): number;
 
     cascadeSelection?: CascadeSelection;
+    selectAll?: boolean;
 };
 
 export type TreeStrategyProps<TItem, TId, TFilter = any> = (

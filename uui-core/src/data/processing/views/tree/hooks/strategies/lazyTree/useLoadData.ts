@@ -64,7 +64,11 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     ...options,
                     isFolded,
                     api,
-                    filter: { ...filter },
+                    filter: {
+                        ...filter,
+                        ...props.dataSourceState?.filter,
+                        ...dataSourceState?.filter,
+                    },
                 },
                 { ...props.dataSourceState, ...dataSourceState },
                 withNestedChildren,
