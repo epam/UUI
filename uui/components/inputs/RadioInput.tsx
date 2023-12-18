@@ -1,5 +1,5 @@
 import { withMods } from '@epam/uui-core';
-import { RadioInput as uuiRadioInput, RadioInputProps as UuiRadioInputProps } from '@epam/uui-components';
+import { RadioInput as uuiRadioInput, RadioInputProps as uuiRadioInputProps } from '@epam/uui-components';
 import css from './RadioInput.module.scss';
 import { ReactComponent as RadioPoint } from '../../icons/radio-point.svg';
 
@@ -12,7 +12,7 @@ type RadioInputMods = {
 };
 
 /** Represents the properties of a RadioInput component. */
-export type RadioInputProps = RadioInputMods & UuiRadioInputProps;
+export type RadioInputProps = RadioInputMods & uuiRadioInputProps;
 
 function applyRadioInputMods(mods: RadioInputProps) {
     return [
@@ -23,7 +23,7 @@ function applyRadioInputMods(mods: RadioInputProps) {
     ];
 }
 
-export const RadioInput = withMods<UuiRadioInputProps, RadioInputMods>(
+export const RadioInput = withMods<uuiRadioInputProps, RadioInputMods>(
     uuiRadioInput,
     applyRadioInputMods,
     (props) => ({ icon: props.icon ? props.icon : RadioPoint }),

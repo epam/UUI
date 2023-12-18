@@ -1,12 +1,16 @@
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
+type LinkButtonColor = 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night50'
+| 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900'
+| uui.LinkButtonProps['color'];
+
 type LinkButtonMods = {
     /**
      * Defines component color.
      * @default 'sky'
      */
-    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
+    color?: LinkButtonColor;
 };
 
 /** Represents the properties of a LinkButton component. */

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps } from '@epam/uui-components';
-import { Button } from '../buttons';
+import { Button } from '../buttons/Button';
 import css from './Paginator.module.scss';
 import { ReactComponent as ArrowLeftIcon_24 } from '@epam/assets/icons/common/navigation-chevron-left-12.svg';
 import { ReactComponent as ArrowRightIcon_24 } from '@epam/assets/icons/common/navigation-chevron-right-12.svg';

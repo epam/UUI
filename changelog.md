@@ -1,12 +1,18 @@
-# 5.xx.xx - xx.xx.2023
+# 5.x.x - xx.xx.xxxx
 
 **What's New**
+* Added semantic values to color props 'Loveship' & 'Promo' skins
 * [NumericInput]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
 * [Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
 * [RadioInput]: in Loveship skin removed property 'theme'.
+* [DataTable]: Focus manager.
+  * Added ability to change focus on different cells using a keyboard in editable tables.
+  * See the example [here](https://uui.epam.com/demo?id=editableTable).
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
+* [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
+* removed redundant exports
 
 
 # 5.4.2 - 07.12.2023
@@ -33,7 +39,7 @@
     * Added `clearAllChecked()` method to `IDataSourceView` interface to support unchecking all without enabled `selectAll` flag.
     * Reduced amount of loaded data while clearing all checked elements in `cascadeSelection: false` mode.
 * [LazyDataSource]: fixed showing placeholders on `clearCache`.
-* [TextArea]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead. 
+* [TextArea]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
 * [TextPlaceholder]: fixed animation performance issues
 * [LazyListView]: fixed backgroundReload functionality.
     * Fixed showing blocker when filter/sorting changed.

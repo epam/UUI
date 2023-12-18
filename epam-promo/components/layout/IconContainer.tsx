@@ -3,25 +3,26 @@ import * as uuiComponents from '@epam/uui-components';
 import { devLogger, createSkinComponent } from '@epam/uui-core';
 import css from './IconContainer.module.scss';
 
-export type IconContainerColors = 'blue' | 'green' | 'amber' | 'red' | 'cyan' | 'orange' | 'purple' | 'violet' | 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';
+type IconContainerColors = 'blue' | 'green' | 'amber' | 'red' | 'cyan' | 'orange' | 'purple' | 'violet' | 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';
 
-export interface IconContainerMods {
+interface IconContainerMods {
     /**
-     *  IconContainer color.
+     *  Defines component color.
      *  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.
      *  @default 'gray60'
      */
     color?: IconContainerColors;
 }
 
-export function applyIconContainerMods(mods: IconContainerMods) {
+function applyIconContainerMods(mods: IconContainerMods) {
     return [
         css.root,
         css[`icon-container-${mods.color || 'gray60'}`],
     ];
 }
 
-export type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;
+/** Represents the properties of a IconContainer component. */
+export interface IconContainerProps extends uuiComponents.ControlIconProps, IconContainerMods {}
 
 export const IconContainer = createSkinComponent<uuiComponents.ControlIconProps, IconContainerProps>(
     uui.IconContainer,

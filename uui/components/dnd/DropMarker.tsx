@@ -3,7 +3,10 @@ import cx from 'classnames';
 import { DndActorRenderParams, IHasCX } from '@epam/uui-core';
 import css from './DropMarker.module.scss';
 
-export interface DropMarkerProps extends DndActorRenderParams, IHasCX {
+interface DropMarkerProps extends DndActorRenderParams, IHasCX {
+    /**
+     * Pass 'true' to enable Blocker.
+     */
     enableBlocker?: boolean;
 }
 

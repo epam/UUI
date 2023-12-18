@@ -67,7 +67,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom="none"
                 padding="24"
                 size="36"
                 renderItem={ (item, itemProps) => renderItem(item, itemProps, dataSourceState) }

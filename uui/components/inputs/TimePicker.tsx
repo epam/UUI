@@ -11,8 +11,18 @@ import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 dayjs.extend(customParseFormat);
 
-const defaultMode = EditMode.FORM;
-export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditMode {}
+const DEFAULT_MODE = EditMode.FORM;
+
+export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditMode {
+    /**
+     * @default 5
+     */
+    minutesStep?: number;
+    /**
+     * @default 12
+     */
+    format?: 12 | 24;
+}
 
 class TimePickerComponent extends BaseTimePicker<TimePickerProps> {
     renderInput = (props: IDropdownToggler) => {
@@ -43,7 +53,7 @@ class TimePickerComponent extends BaseTimePicker<TimePickerProps> {
                 onBlur={ this.handleBlur }
                 isDropdown={ false }
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
-                mode={ this.props.mode || defaultMode }
+                mode={ this.props.mode || DEFAULT_MODE }
                 rawProps={ this.props.rawProps?.input }
             />
         );

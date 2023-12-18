@@ -143,11 +143,12 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     };
 
     const handleArrowKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'ArrowUp') {
+        const otherKeysArePressed = e.altKey || e.ctrlKey || e.metaKey || e.shiftKey;
+        if (e.key === 'ArrowUp' && !otherKeysArePressed) {
             e.preventDefault();
             handleIncreaseValue();
         }
-        if (e.key === 'ArrowDown') {
+        if (e.key === 'ArrowDown' && !otherKeysArePressed) {
             e.preventDefault();
             handleDecreaseValue();
         }

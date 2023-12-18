@@ -2,11 +2,18 @@ import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import css from './DropdownContainer.module.scss';
 
-export interface DropdownContainerMods {
+interface DropdownContainerMods {
+    /**
+     * Defines vertical padding.
+     */
     vPadding?: '6' | '12' | '18' | '24' | '30' | '48';
+    /**
+     * Defines horizontal padding.
+     */
     padding?: '6' | '12' | '18' | '24' | '30';
 }
 
+/** Represents the properties of a DropdownContainer component. */
 export interface DropdownContainerProps extends uuiComponents.DropdownContainerProps, DropdownContainerMods {}
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {

@@ -4,7 +4,7 @@ import { FillStyle } from '../types';
 import css from './Button.module.scss';
 
 /** Defines component color. */
-type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
+type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray' | uui.ButtonProps['color'];
 
 type ButtonMods = {
     /**
@@ -21,10 +21,10 @@ type ButtonMods = {
      * Defines component size.
      * @default '36'
      */
-    size?: uui.ButtonMods['size'];
+    size?: uui.ButtonProps['size'];
 };
 
-const mapFill: Record<FillStyle, uui.ButtonMods['fill']> = {
+const mapFill: Record<FillStyle, uui.ButtonProps['fill']> = {
     solid: 'solid',
     white: 'outline',
     light: 'ghost',
