@@ -6,6 +6,7 @@ import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
+import { useUpdateRowOptions } from './useUpdateRowProps';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends CheckingService<TItem, TId>, SelectingService<TItem, TId>, FoldingService<TItem, TId>, FocusService {
     tree: ITree<TItem, TId>;
@@ -114,7 +115,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         return 1;
     }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
-    const { getRowProps, getUnknownRowProps, getLoadingRowProps } = useDataRowProps<TItem, TId, TFilter>({
+    const { getRowProps, getUnknownRowProps, getLoadingRowProps, updateRowOptions } = useDataRowProps<TItem, TId, TFilter>({
         tree,
         getId,
 
@@ -150,8 +151,10 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isLoading,
     });
 
+    const updatedRows = useUpdateRowOptions({ rows, updateRowOptions, getRowOptions });
+
     const withPinnedRows = usePinnedRows({
-        rows,
+        rows: updatedRows,
         pinned,
         pinnedByParentId,
     });
