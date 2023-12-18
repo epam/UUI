@@ -28,12 +28,12 @@ const uuiRangeDatePickerBody = {
     separator: 'uui-range-datepicker-separator',
 };
 
-export type pickerPart = 'from' | 'to';
+export type PickerPart = 'from' | 'to' | null;
 
 export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
         name: 'Today',
-        getRange: () => ({ from: dayjs().toString(), to: undefined, order: 1 }),
+        getRange: () => ({ from: dayjs().toString(), to: '', order: 1 }),
     },
     thisWeek: {
         name: 'This Week',
@@ -71,7 +71,7 @@ export interface RangeDatePickerValue {
 }
 
 interface RangeDatePickerBodyState {
-    activePart: pickerPart;
+    activePart: PickerPart;
 }
 
 type InputType = 'from' | 'to';
@@ -88,29 +88,30 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         activePart: null,
     };
 
-    getDayCX = (day: Dayjs) => {
+    getDayCX = (day: Dayjs): string[] => {
         const dayValue = day.valueOf();
-        const fromValue = this.props.value?.selectedDate.from ? dayjs(this.props.value.selectedDate.from).valueOf() : null;
-        const toValue = this.props.value?.selectedDate.to ? dayjs(this.props.value.selectedDate.to).valueOf() : null;
+        const fromValue = this.props.value.selectedDate?.from ? dayjs(this.props.value.selectedDate.from).valueOf() : null;
+        const toValue = this.props.value.selectedDate?.to ? dayjs(this.props.value.selectedDate.to).valueOf() : null;
 
-        const inRange = dayValue >= fromValue && dayValue <= toValue && fromValue !== toValue && fromValue && toValue;
+        const inRange = fromValue && toValue && dayValue >= fromValue && dayValue <= toValue && fromValue !== toValue;
         const isFirst = dayValue === fromValue;
         const isLast = dayValue === toValue;
 
-        return [
+        return [cx(
             inRange && uuiRangeDatePickerBody.inRange,
             isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
             !inRange && isFirst && uuiRangeDatePickerBody.lastDayInRangeWrapper,
             isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
             !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
             (dayValue === fromValue || dayValue === toValue) && uuiDaySelection.selectedDay,
-        ];
+        )];
     };
 
     getRange(selectedDate: string) {
         const newRange: RangeDatePickerValue = { from: null, to: null };
         const currentRange = this.props.value.selectedDate;
-        if (!this.props.filter || this.props.filter(dayjs(selectedDate))) {
+
+        if (currentRange && (!this.props.filter || this.props.filter(dayjs(selectedDate)))) {
             if (this.props.focusPart === 'from') {
                 if (dayjs(selectedDate).valueOf() <= dayjs(currentRange.to).valueOf()) {
                     newRange.from = selectedDate;
@@ -146,11 +147,11 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         });
 
         if (range.from && range.to && this.props.focusPart === 'to') {
-            this.props.changeIsOpen(false);
+            this.props.changeIsOpen?.(false);
         }
     }
 
-    setDisplayedDateAndView(displayedDate: Dayjs, view: ViewType, part: pickerPart) {
+    setDisplayedDateAndView(displayedDate: Dayjs, view: ViewType, part: PickerPart) {
         this.setState({ activePart: part });
 
         this.props.onValueChange({
@@ -164,21 +165,21 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         return {
             ...this.props.value,
             view: this.state.activePart === 'from' ? this.props.value.view : 'DAY_SELECTION',
-            selectedDate: this.props.value?.selectedDate.from,
+            selectedDate: this.props.value.selectedDate?.from || null,
         };
     };
 
     getToValue = (): PickerBodyValue<string> => {
-        if (!this.props.value) return;
+        // if (!this.props.value) return;
         return {
-            ...this.props.value,
+            // ...this.props.value,
             view: this.state.activePart === 'to' ? this.props.value.view : 'DAY_SELECTION',
             displayedDate: this.props.value.displayedDate.add(1, 'month'),
-            selectedDate: this.props.value.selectedDate.to,
+            selectedDate: this.props.value.selectedDate?.from || null,
         };
     };
 
-    renderPresets = () => {
+    renderPresets = (presets: RangeDatePickerPresets) => {
         return (
             <>
                 <div className={ uuiRangeDatePickerBody.separator } />
@@ -190,9 +191,9 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
                             selectedDate: { from: dayjs(presetVal.from).format(valueFormat), to: dayjs(presetVal.to).format(valueFormat) },
                             displayedDate: dayjs(presetVal.from),
                         });
-                        this.props.changeIsOpen(false);
+                        this.props.changeIsOpen?.(false);
                     } }
-                    presets={ this.props.presets }
+                    presets={ presets }
                 />
             </>
         );
@@ -200,7 +201,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     renderDatePicker = () => {
         return (
-            <FlexRow cx={ [this.props.value?.view === 'DAY_SELECTION' && css.daySelection, css.container] } alignItems="top">
+            <FlexRow cx={ [this.props.value.view === 'DAY_SELECTION' && css.daySelection, css.container] } alignItems="top">
                 <FlexCell width="auto">
                     <FlexRow>
                         <FlexRow cx={ css.bodesWrapper } alignItems="top">
@@ -224,17 +225,17 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
                                 renderDay={ this.props.renderDay }
                                 isHoliday={ this.props.isHoliday }
                             />
-                            {this.props.value?.view !== 'DAY_SELECTION' && (
+                            {this.props.value.view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
-                                        left: this.state.activePart === 'from' && '50%',
-                                        right: this.state.activePart === 'to' && '50%',
+                                        left: this.state.activePart === 'from' ? '50%' : undefined,
+                                        right: this.state.activePart === 'to' ? '50%' : undefined,
                                     } }
                                     className={ css.blocker }
                                 />
                             )}
                         </FlexRow>
-                        {this.props.presets && this.renderPresets()}
+                        {this.props.presets && this.renderPresets(this.props.presets)}
                     </FlexRow>
                     {this.props.renderFooter && this.props.renderFooter()}
                 </FlexCell>

@@ -4,7 +4,12 @@ import type { ViewType } from '@epam/uui-components';
 import { RangeDatePickerBody, RangeDatePickerBodyProps, RangeDatePickerValue } from '../RangeDatePickerBody';
 import { fireEvent, renderer, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
 
-async function setupRangePickerBody(params: { selectedDate: { from: string; to: string }; focusPart: any }) {
+type RangePickerSetupProps = {
+    selectedDate: RangeDatePickerBodyProps<RangeDatePickerValue>['value']['selectedDate'];
+    focusPart: RangeDatePickerBodyProps<RangeDatePickerValue>['focusPart'];
+};
+
+async function setupRangePickerBody(params: RangePickerSetupProps) {
     const { selectedDate, focusPart } = params;
 
     const { result, mocks } = await setupComponentForTest<RangeDatePickerBodyProps<any>>(
@@ -17,7 +22,7 @@ async function setupRangePickerBody(params: { selectedDate: { from: string; to: 
                 },
                 focusPart,
                 changeIsOpen: jest.fn(),
-                onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+                onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
             };
         },
         (props) => (<RangeDatePickerBody { ...props } />),
@@ -146,19 +151,23 @@ describe('RangeDatePickerBody', () => {
             focusPart: 'from',
             selectedDate: { from: '2019-10-12', to: '2019-10-17' },
         });
-        expect(dom.title.children[0].innerHTML).toEqual('October 2019');
+        expect(dom.title.textContent).toEqual('October 2019');
+
         fireEvent.click(dom.title);
         expect(screen.getByText('2019')).toBeInTheDocument();
         expect(screen.getByText('Oct').classList.contains('uui-monthselection-current-month')).toBeTruthy();
+        expect(dom.title.textContent).toEqual(' 2019');
+
         fireEvent.click(dom.title);
         expect(screen.getByText('October 2019')).toBeTruthy();
         expect(screen.getByText('2019').classList.contains('uui-yearselection-current-year')).toBeTruthy();
+        expect(dom.title.textContent).toEqual('October 2019');
     });
 
     it('should have special class names for selected days', async () => {
         const useCase1 = await setupRangePickerBody({
             focusPart: 'from',
-            selectedDate: { from: null, to: null },
+            selectedDate: null,
         });
         expect(useCase1.result.container.querySelectorAll('.uui-calendar-selected-day').length).toBe(0);
         useCase1.result.unmount();
