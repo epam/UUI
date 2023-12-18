@@ -28,7 +28,6 @@ env:
 jobs:
     quality_gate:
         runs-on: ubuntu-latest
-        container: node:20
         steps:
             # By default, it checks out the "merge-commit" for "pull_request" events (https://github.com/actions/checkout)
             # I.e. the result of merging source branch to the target branch will be checked out.
@@ -45,13 +44,13 @@ jobs:
                   repository: ${{ github.event.pull_request.base.repo.full_name }}
                   path: ${{ env.TARGET_BRANCH_DIR }}
 
-            - uses: actions/cache@v3
+            - uses: actions/setup-node@v3
               with:
-                  path: |
-                      node_modules
-                      ./*/node_modules
-                  key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: v1-npm-deps-
+                  node-version: '20.x'
+                  cache: 'yarn'
+                  cache-dependency-path: |
+                      ${{ env.TARGET_BRANCH_DIR }}/yarn.lock
+                      ${{ env.MERGE_COMMIT_BRANCH_DIR }}/yarn.lock
 
             - name: 'Install dependencies & Run "generate-components-api" (target branch)'
               working-directory: ${{ env.TARGET_BRANCH_DIR }}
