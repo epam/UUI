@@ -13,10 +13,10 @@ export class TabButtonDoc extends BaseDocsBlock {
         contexts: [TDocContext.TabButton],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TabButtonProps', component: uui.TabButton },
-            [TSkin.Loveship]: { type: '@epam/loveship:TabButtonProps', component: loveship.TabButton },
+            [TSkin.Loveship]: { type: '@epam/uui:TabButtonProps', component: loveship.TabButton },
             [TSkin.Promo]: { type: '@epam/uui:TabButtonProps', component: promo.TabButton },
         },
-        doc: (doc: DocBuilder<uui.TabButtonProps | loveship.TabButtonProps>) => {
+        doc: (doc: DocBuilder<uui.TabButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
         },
     };

@@ -1,11 +1,11 @@
-import { Spinner as uuiSpinner, SpinnerProps as UuiSpinnerProps } from '@epam/uui-components';
+import { Spinner as uuiSpinner, SpinnerProps as uuiSpinnerProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import css from './Spinner.module.scss';
 
-export type SpinnerProps = UuiSpinnerProps;
+export type SpinnerProps = uuiSpinnerProps;
 
-export function applySpinnerMods() {
+function applySpinnerMods() {
     return [css.root, 'uui-spinner'];
 }
 
-export const Spinner = withMods<UuiSpinnerProps>(uuiSpinner, applySpinnerMods);
+export const Spinner = withMods<uuiSpinnerProps>(uuiSpinner, applySpinnerMods);

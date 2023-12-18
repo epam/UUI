@@ -96,7 +96,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
-        tabIndex: props.tabIndex || inFocus || props.isReadonly || props.isDisabled ? -1 : 0,
+        tabIndex: (props.tabIndex || inFocus || props.isReadonly || props.isDisabled) ? -1 : 0,
         id: props.id,
         required: props.isRequired,
         'aria-invalid': props.isInvalid,

@@ -13,12 +13,25 @@ import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigati
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-10.svg';
 
 export interface FileCardItem extends Partial<File & FileUploadResponse> {
+    /*
+    * Defines upload progress. It should be number value in range from 0 to 100', where 100 means that file fully loaded.
+    */
     progress?: number;
+    /*
+    * Callback to handle aborted event which fired when a request has been aborted.
+    * See {@link https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort_event} for details
+    */
     abortXHR?: () => void;
 }
 
 export interface FileCardProps extends IClickable, IHasCX {
+    /*
+    * Defines file card item
+    */
     file: FileCardItem;
+    /*
+    * Defines component width.
+    */
     width?: number;
 }
 

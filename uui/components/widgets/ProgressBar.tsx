@@ -2,15 +2,24 @@ import { ProgressBar as uuiProgressBar, IProgressBarProps } from '@epam/uui-comp
 import { withMods } from '@epam/uui-core';
 import css from './ProgressBar.module.scss';
 
-const defaultSize = '12';
+const DEFAULT_SIZE = '12';
 
-export interface ProgressBarMods {
+interface ProgressBarMods {
+    /**
+     * Defines component size.
+     * @default '12'
+     */
     size?: '12' | '18' | '24';
+    /**
+     * To show ProgressBar with striped animation. The striped progress bar has no label.
+     */
     striped?: boolean;
 }
 
-export function applyProgressBarMods(mods: ProgressBarMods) {
-    const size = mods.size || defaultSize;
+export type ProgressBarProps = IProgressBarProps & ProgressBarMods;
+
+function applyProgressBarMods(mods: ProgressBarMods) {
+    const size = mods.size || DEFAULT_SIZE;
 
     return [
         css.root,

@@ -1,0 +1,93 @@
+.cell {
+    position: relative;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    display: flex;
+    align-items: flex-start;
+
+    &.align-widgets-top {
+        &.size-24, &.size-30 {
+            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+                margin-top: 6px;
+            }
+        }
+
+        &.size-36 {
+            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+                margin-top: 9px;
+            }
+        }
+
+        &.size-42 {
+            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+                margin-top: 12px;
+            }
+        }
+
+        &.size-48 {
+            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+                margin-top: 15px;
+            }
+        }
+
+        &.size-60 {
+            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+                margin-top: 21px;
+            }
+        }
+    }
+
+    &.align-widgets-center :global(.uui-checkbox-container) {
+        align-self: center;
+    }
+
+    &.padding-12 { padding: 0 12px; }
+    &.padding-24 { padding: 0 24px; }
+
+    &.padding-left-12 { padding-left: 12px; }
+    &.padding-left-24 { padding-left: 24px; }
+
+    &:first-child {
+        border-left-color: transparent;
+    }
+
+    &:last-child {
+        border-right-color: transparent;
+    }
+}
+
+.icon-container {
+    fill: var(--uui-icon);
+}
+
+.loading-cell {
+    div[aria-busy='true'] > span {
+        margin: 0 3px 0 0;
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+}
+
+
+.render-item {
+    display: flex;
+    flex: auto;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-default {
+    fill: var(--uui-icon);
+}
+
+.icon-primary {
+    fill: var(--uui-primary-50);
+}
