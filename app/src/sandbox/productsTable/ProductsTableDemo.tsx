@@ -1,12 +1,14 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
-import React from 'react';
-import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
+import React, { useCallback } from 'react';
+import { DataSourceState, Metadata, useDataRows, useTree, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
+import { ReactComponent as add } from '@epam/assets/icons/common/action-add-12.svg';
 import css from './ProductsTableDemo.module.scss';
+import { usePatchTree } from './usePatchTree';
 
 interface FormState {
     items: Record<number, Product>;
@@ -28,12 +30,13 @@ const metadata: Metadata<FormState> = {
 };
 
 let savedValue: FormState = { items: {} };
+let lastId = -1;
 
 export function ProductsTableDemo() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const {
-        lens, save, isChanged, revert, undo, canUndo, redo, canRedo,
+        lens, save, isChanged, revert, undo, canUndo, redo, canRedo, value: updatedRows, setValue,
     } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
@@ -43,33 +46,54 @@ export function ProductsTableDemo() {
         getMetadata: () => metadata,
     });
 
-    const [tableState, setTableState] = React.useState({});
+    const [tableState, setTableState] = React.useState<DataSourceState>({
+        topIndex: 0,
+        visibleCount: 60,
+    });
 
-    const { rows, listProps } = useList(
-        {
-            type: 'lazy',
-            api: svc.api.demo.products,
-            getId: (i) => i.ProductID,
-            getRowOptions: (product) => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
-            listState: tableState,
-            setListState: setTableState,
-            backgroundReload: true,
-        },
-        [],
-    );
+    const insertTask = useCallback(() => {
+        const product: Product = { ProductID: lastId-- } as Product;
+
+        setValue((currentValue) => {
+            return { ...currentValue, items: { [product.ProductID]: product, ...currentValue.items } };
+        });
+    }, [setValue]);
+
+    const { tree, ...restProps } = useTree({ 
+        type: 'lazy',
+        api: svc.api.demo.products,
+        getId: (i) => i.ProductID,
+        getRowOptions: (product) => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
+        dataSourceState: tableState,
+        setDataSourceState: setTableState,
+        backgroundReload: true,
+    }, []);
+
+    const patchedTree = usePatchTree({ 
+        tree,
+        additionalRows: Object.values(updatedRows.items),
+    });
+
+    const { getVisibleRows, getListProps } = useDataRows({ tree: patchedTree, ...restProps });
 
     return (
         <Panel cx={ [css.container, css.uuiThemeLoveship] }>
+            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true }>
+                <FlexCell width="auto">
+                    <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask() } />
+                </FlexCell>
+            </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ () => rows }
+                getRows={ getVisibleRows }
                 columns={ productColumns }
                 value={ tableState }
                 onValueChange={ setTableState }
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
-                { ...listProps }
+                { ...getListProps() }
+
             />
             {isChanged && (
                 <FlexRow spacing="12" margin="12">

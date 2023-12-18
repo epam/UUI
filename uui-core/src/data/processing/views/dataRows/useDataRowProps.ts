@@ -33,7 +33,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         getEstimatedChildrenCount,
     }: UseDataRowPropsProps<TItem, TId, TFilter>,
 ) {
-    const applyRowOptions = useCallback((row: DataRowProps<TItem, TId>) => {
+    const updateRowOptions = useCallback((row: DataRowProps<TItem, TId>) => {
         const externalRowOptions = (getRowOptions && !row.isLoading)
             ? getRowOptions(row.value, row.index)
             : {};
@@ -62,6 +62,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
         row.isChildrenChecked = isRowChildrenChecked(row);
+        return row;
     }, [
         getRowOptions,
         rowOptions,
@@ -92,10 +93,8 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
             path,
         } as DataRowProps<TItem, TId>;
 
-        applyRowOptions(rowProps);
-
-        return rowProps;
-    }, [getId, tree, applyRowOptions]);
+        return updateRowOptions(rowProps);
+    }, [getId, tree, updateRowOptions]);
 
     const getEmptyRowProps = useCallback((id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
         const checked = dataSourceState?.checked ?? [];
@@ -135,7 +134,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
     }, [getEmptyRowProps, rowOptions]);
 
     return useMemo(
-        () => ({ getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps }),
-        [getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps],
+        () => ({ getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps, updateRowOptions }),
+        [getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps, updateRowOptions],
     );
 }
