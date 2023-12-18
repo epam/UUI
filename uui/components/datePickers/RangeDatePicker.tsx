@@ -16,7 +16,7 @@ import css from './RangeDatePicker.module.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     /**
-     * A pure function that gets placeholder 'from' or 'to' depends on props.
+     * A pure function that gets placeholder for 'from' or 'to' input.
      */
     getPlaceholder?(type: InputType): string;
 }
