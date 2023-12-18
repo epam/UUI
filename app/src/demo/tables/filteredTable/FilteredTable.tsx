@@ -7,8 +7,10 @@ import {
 } from '@epam/uui';
 import { getFilters } from './filters';
 import {
-    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
+    useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
     DataQueryFilter,
+    useTree,
+    useDataRows,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -60,22 +62,24 @@ export function FilteredTable() {
         return result;
     }, [svc.api.demo]);
 
-    const dataSource = useLazyDataSource<Person, number, Person>(
-        {
-            api: api,
-            selectAll: false,
-            backgroundReload: true,
-        },
-        [],
-    );
-
-    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
+    const { tree, ...restProps } = useTree<Person, number>({ 
+        type: 'lazy',
+        api: api,
+        getId: (item) => item.id,
+        selectAll: false,
+        backgroundReload: true,
+        dataSourceState: tableStateApi.tableState,
+        setDataSourceState: tableStateApi.setTableState,
         rowOptions: {
             isSelectable: true,
             onClick: (rowProps) => {
                 rowProps.onSelect(rowProps);
             },
         },
+    }, []);
+
+    const { visibleRows, listProps } = useDataRows({ 
+        tree, ...restProps,
     });
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({
@@ -105,14 +109,14 @@ export function FilteredTable() {
             </FlexRow>
             <DataTable
                 headerTextCase={ 'upper' as 'upper' | 'normal' }
-                getRows={ view.getVisibleRows }
+                getRows={ () => visibleRows }
                 columns={ personColumns }
                 value={ tableStateApi.tableState }
                 onValueChange={ tableStateApi.setTableState }
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
-                { ...view.getListProps() }
+                { ...listProps }
             />
             <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ totalCount } />
         </div>
