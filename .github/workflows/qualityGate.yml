@@ -34,7 +34,7 @@ jobs:
             - name: 'Checkout the "merge commit" branch'
               uses: actions/checkout@v4
               with:
-                path: ${{ env.MERGE_COMMIT_BRANCH_DIR }}
+                  path: ${{ env.MERGE_COMMIT_BRANCH_DIR }}
 
             # Checkout the TARGET branch.
             - name: 'Checkout "target" branch'
@@ -50,7 +50,9 @@ jobs:
                   cache: 'yarn'
                   cache-dependency-path: |
                       ${{ env.TARGET_BRANCH_DIR }}/yarn.lock
+                      ${{ env.TARGET_BRANCH_DIR }}/*/yarn.lock
                       ${{ env.MERGE_COMMIT_BRANCH_DIR }}/yarn.lock
+                      ${{ env.MERGE_COMMIT_BRANCH_DIR }}/*/yarn.lock
 
             - name: 'Install dependencies & Run "generate-components-api" (target branch)'
               working-directory: ${{ env.TARGET_BRANCH_DIR }}
