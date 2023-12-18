@@ -16,9 +16,9 @@ const mapSize = {
     18: '18',
 };
 
-export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
-export type TagFill = 'solid' | 'outline';
-export type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
+type TagFill = 'solid' | 'outline';
+type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
 
 const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     18: '12',
@@ -29,7 +29,7 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-export type TagMods = {
+type TagMods = {
     /** @default 'neutral' */
     color?: TagColor;
 };
@@ -43,7 +43,7 @@ export type TagCoreProps = ButtonProps & {
 
 export type TagProps = TagCoreProps & TagMods;
 
-export function applyTagMods(props: TagProps) {
+function applyTagMods(props: TagProps) {
     return [
         css['size-' + (props.size || defaultSize)],
         css.root,

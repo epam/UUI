@@ -1,12 +1,12 @@
 const fs = require('fs-extra');
 const path = require('path');
-const { getIndexFileRelativePath } = require('./../utils/indexFileUtils.js');
-const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils.js');
-const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils.js');
+const { isRollupModule } = require('./../utils/indexFileUtils');
+const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils');
+const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils');
 
 const BUILD_FOLDER = 'build';
 
-module.exports = { buildUuiModule, isRollupModule };
+module.exports = { buildUuiModule };
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -108,14 +108,4 @@ function copyAllModuleFilesToOutputSync(moduleRootDir) {
             fs.copySync(from, to);
         }
     }
-}
-
-/**
- * @param {string} moduleRootDir
- *
- * @returns {Promise<boolean>}
- */
-function isRollupModule(moduleRootDir) {
-    const moduleIndexFile = getIndexFileRelativePath(moduleRootDir);
-    return !!moduleIndexFile;
 }

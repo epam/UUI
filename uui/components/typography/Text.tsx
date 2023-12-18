@@ -3,12 +3,12 @@ import { getTextClasses, TextSettings } from '../../helpers';
 import { Text as uuiText, TextProps as UuiTextProps } from '@epam/uui-components';
 import css from './Text.module.scss';
 
-export type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
-export type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
-export type TextFontStyle = 'normal' | 'italic';
-export type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
+type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
+type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
+type TextFontStyle = 'normal' | 'italic';
+type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 
-export interface TextMods extends TextSettings {
+interface TextMods extends TextSettings {
     color?: TextColor;
     fontWeight?: TextFontWeight;
     fontStyle?: TextFontStyle;

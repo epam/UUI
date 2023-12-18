@@ -1,15 +1,18 @@
 import { withMods } from '@epam/uui-core';
-import { NotificationCard as uuiNotificationCard, NotificationCardProps as uuiNotificationCardProps } from '@epam/uui';
+import * as uui from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
 
-export interface NotificationCardMods {
-    color?: EpamPrimaryColor | 'gray60';
+interface NotificationCardMods {
+    /**
+     * Defines component color.
+     */
+    color?: EpamPrimaryColor | 'gray60' | uui.NotificationCardProps['color'];
 }
 
-export type NotificationCardProps = Omit<uuiNotificationCardProps, 'color'> & NotificationCardMods;
+export type NotificationCardProps = Omit<uui.NotificationCardProps, 'color'> & NotificationCardMods;
 
-export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color'>, NotificationCardMods>(
-    uuiNotificationCard,
+export const NotificationCard = withMods<Omit<uui.NotificationCardProps, 'color'>, NotificationCardMods>(
+    uui.NotificationCard,
     () => [],
     (props) => ({
         ...props,
