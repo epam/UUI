@@ -6111,6 +6111,103 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:DataPickerCellProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataPickerCellProps",
+     "nameFull": "DataPickerCellProps<TItem, TId>"
+    },
+    "src": "uui-core/src/types/pickers.ts",
+    "comment": {
+     "raw": [
+      "Props for cells in pickers."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "DataPickerCellProps<TItem, TId>",
+     "print": [
+      "/** Props for cells in pickers. */",
+      "interface DataPickerCellProps<TItem = any, TId = any> extends IHasCX {",
+      "    /** Key to use as component's key. */",
+      "    key: string;",
+      "    /** DataRowProps object for the picker row where a cell is placed. */",
+      "    rowProps: DataRowProps<TItem, TId>;",
+      "    /** Render the cell content. The item props is the value of the whole row (TItem). */",
+      "    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "key",
+      "name": "key",
+      "comment": {
+       "raw": [
+        "Key to use as component's key."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "rowProps",
+      "name": "rowProps",
+      "comment": {
+       "raw": [
+        "DataRowProps object for the picker row where a cell is placed."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataRowProps<TItem, TId>"
+      },
+      "typeValueRef": "@epam/uui-core:DataRowProps",
+      "required": true
+     },
+     {
+      "uid": "renderItem",
+      "name": "renderItem",
+      "comment": {
+       "raw": [
+        "Render the cell content. The item props is the value of the whole row (TItem)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, rowProps: DataRowProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DataQuery": {
    "summary": {
     "module": "@epam/uui-core",
@@ -39002,6 +39099,114 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-components:DataTableFocusContextState": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "DataTableFocusContextState",
+     "nameFull": "DataTableFocusContextState<TId>"
+    },
+    "src": "uui-components/src/table/tableCellsFocus/context/DataTableFocusContext.ts",
+    "comment": {
+     "raw": [
+      "State of a DataTableFocusContext."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "DataTableFocusContextState<TId>",
+     "print": [
+      "/**",
+      " * State of a DataTableFocusContext.",
+      " */",
+      "interface DataTableFocusContextState<TId> {",
+      "    /**",
+      "     * Focus manipulation manager in tables.",
+      "     */",
+      "    dataTableFocusManager: DataTableFocusManager<TId>;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "dataTableFocusManager",
+      "name": "dataTableFocusManager",
+      "comment": {
+       "raw": [
+        "Focus manipulation manager in tables."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataTableFocusManager<TId>"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-components:DataTableFocusProviderProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "DataTableFocusProviderProps",
+     "nameFull": "DataTableFocusProviderProps<TId>"
+    },
+    "src": "uui-components/src/table/tableCellsFocus/context/DataTableFocusProvider.tsx",
+    "comment": {
+     "raw": [
+      "Provider of a DataTableFocusContext."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "DataTableFocusProviderProps<TId>",
+     "print": [
+      "/**",
+      " * Provider of a DataTableFocusContext.",
+      " */",
+      "interface DataTableFocusProviderProps<TId> extends React.PropsWithChildren {",
+      "    /**",
+      "     * Focus manipulation manager in tables.",
+      "     */",
+      "    dataTableFocusManager?: DataTableFocusManager<TId>;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "dataTableFocusManager",
+      "name": "dataTableFocusManager",
+      "comment": {
+       "raw": [
+        "Focus manipulation manager in tables."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataTableFocusManager<TId>"
+      },
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@types/react:PropsWithChildren",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-components:DatePickerBodyBaseOptions": {
    "summary": {
     "module": "@epam/uui-components",
@@ -65225,117 +65430,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:BadgeMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "BadgeMods",
-     "nameFull": "BadgeMods"
-    },
-    "src": "uui/components/widgets/Badge.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "BadgeMods",
-     "print": [
-      "type BadgeMods = {",
-      "    /** Defines component color. */",
-      "    color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';",
-      "    /**",
-      "     * Defines component fill style.",
-      "     * @default 'solid'",
-      "     */",
-      "    fill?: 'solid' | 'outline';",
-      "    /**",
-      "     * Defines component size.",
-      "     * @default '36'",
-      "     */",
-      "    size?: '18' | '24' | '30' | '36' | '42' | '48';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color."
-       ]
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "critical",
-        "neutral"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "Defines component fill style.",
-        " @default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'solid' | 'outline'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "solid",
-        "outline"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:BadgeProps": {
    "summary": {
     "module": "@epam/uui",
@@ -66972,127 +67066,6 @@
     }
    }
   },
-  "@epam/uui:ButtonMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "ButtonMods",
-     "nameFull": "ButtonMods"
-    },
-    "src": "uui/components/buttons/Button.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ButtonMods",
-     "print": [
-      "type ButtonMods = {",
-      "    /**",
-      "     * Defines component size.",
-      "     * @default '36'",
-      "     */",
-      "    size?: ControlSize | '18';",
-      "    /**",
-      "     * Defines component fill style.",
-      "     * @default 'solid'",
-      "     */",
-      "    fill?: 'solid' | 'outline' | 'ghost' | 'none';",
-      "    /**",
-      "     * Defines component color.",
-      "     * @default 'primary'",
-      "     */",
-      "    color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "Defines component fill style.",
-        " @default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'solid' | 'outline' | 'none' | 'ghost'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "solid",
-        "outline",
-        "none",
-        "ghost"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color.",
-        " @default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "critical",
-        "neutral",
-        "primary",
-        "secondary",
-        "accent"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:ButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -67629,62 +67602,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:CheckboxMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "CheckboxMods",
-     "nameFull": "CheckboxMods"
-    },
-    "src": "uui/components/inputs/Checkbox.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "CheckboxMods",
-     "print": [
-      "interface CheckboxMods {",
-      "    size?: '12' | '18';",
-      "    mode?: 'form' | 'cell';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "'12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "mode",
-      "name": "mode",
-      "typeValue": {
-       "raw": "'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "form",
-        "cell"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:CheckboxProps": {
    "summary": {
     "module": "@epam/uui",
@@ -67707,6 +67624,15 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '18'"
+       ],
+       "tags": {
+        "@default": "18"
+       }
+      },
       "typeValue": {
        "raw": "'12' | '18'"
       },
@@ -67723,6 +67649,15 @@
      {
       "uid": "mode",
       "name": "mode",
+      "comment": {
+       "raw": [
+        "Defines the different edit modes.",
+        " @default 'form'"
+       ],
+       "tags": {
+        "@default": "form"
+       }
+      },
       "typeValue": {
        "raw": "'form' | 'cell'"
       },
@@ -69574,34 +69509,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:ControlSize": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "ControlSize",
-     "nameFull": "ControlSize"
-    },
-    "src": "uui/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the size of a control."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'36' | '48' | '24' | '30' | '42' | 'none'",
-     "print": [
-      "/**",
-      " * Defines the size of a control.",
-      " */",
-      "type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
   "@epam/uui:CountIndicatorCoreProps": {
    "summary": {
     "module": "@epam/uui",
@@ -70247,7 +70154,6 @@
       "    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;",
       "    padding?: '12' | '24';",
       "    size?: 'none' | '24' | '30' | '36' | '42' | '48' | '60';",
-      "    borderBottom?: 'none' | 'gray20';",
       "    alignActions?: 'top' | 'center';",
       "}"
      ]
@@ -70295,21 +70201,6 @@
         "48",
         "60",
         "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "borderBottom",
-      "name": "borderBottom",
-      "typeValue": {
-       "raw": "'none' | 'gray20'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "none",
-        "gray20"
        ]
       },
       "required": false
@@ -71046,6 +70937,99 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:DataRowAddonsProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataRowAddonsProps",
+     "nameFull": "DataRowAddonsProps<TItem, TId>"
+    },
+    "src": "uui/components/widgets/DataRowAddons.tsx",
+    "comment": {
+     "raw": [
+      "Props of DataRowAddons."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "DataRowAddonsProps<TItem, TId>",
+     "print": [
+      "/**",
+      " * Props of DataRowAddons.",
+      " */",
+      "interface DataRowAddonsProps<TItem, TId> {",
+      "    /** DataRowProps object for the row where an addon is placed. */",
+      "    rowProps: DataRowProps<TItem, TId>;",
+      "    /** HTML tabIndex attribute to set on the cell. */",
+      "    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];",
+      "    /** Controls size. */",
+      "    size?: ControlSize | '60';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "rowProps",
+      "name": "rowProps",
+      "comment": {
+       "raw": [
+        "DataRowProps object for the row where an addon is placed."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataRowProps<TItem, TId>"
+      },
+      "typeValueRef": "@epam/uui-core:DataRowProps",
+      "required": true
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "HTML tabIndex attribute to set on the cell."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Controls size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60",
+        "none"
+       ]
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:DataRowsContainerProps": {
    "summary": {
     "module": "@epam/uui",
@@ -71451,6 +71435,7 @@
       "    filters?: TableFiltersConfig<any>[];",
       "    onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;",
       "    renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;",
+      "    dataTableFocusManager?: DataTableFocusManager<TId>;",
       "}"
      ]
     },
@@ -71545,6 +71530,14 @@
       },
       "editor": {
        "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "dataTableFocusManager",
+      "name": "dataTableFocusManager",
+      "typeValue": {
+       "raw": "DataTableFocusManager<TId>"
       },
       "required": false
      },
@@ -74572,7 +74565,7 @@
     "typeValue": {
      "raw": "FlexRowProps",
      "print": [
-      "interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {",
+      "interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods {",
       "}"
      ]
     },
@@ -74666,6 +74659,153 @@
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "null | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        null
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "borderBottom",
+      "name": "borderBottom",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "columnGap",
+      "name": "columnGap",
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "margin",
+      "name": "margin",
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "padding",
+      "name": "padding",
+      "typeValue": {
+       "raw": "'6' | '12' | '18' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "spacing",
+      "name": "spacing",
+      "typeValue": {
+       "raw": "'6' | '12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "topShadow",
+      "name": "topShadow",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "vPadding",
+      "name": "vPadding",
+      "typeValue": {
+       "raw": "'12' | '18' | '36' | '48' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "36",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "background",
+      "name": "background",
+      "typeValue": {
+       "raw": "'surface-main'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "surface-main"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
       "required": false
      }
     ],
@@ -75316,61 +75456,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:IconButtonMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "IconButtonMods",
-     "nameFull": "IconButtonMods"
-    },
-    "src": "uui/components/buttons/IconButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IconButtonMods",
-     "print": [
-      "interface IconButtonMods {",
-      "    /**",
-      "     * @default 'default'",
-      "     */",
-      "    color?: IconColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'default'"
-       ],
-       "tags": {
-        "@default": "default"
-       }
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'error' | 'neutral' | 'secondary'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "error",
-        "neutral",
-        "secondary"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:IconButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -75386,7 +75471,7 @@
     "typeValue": {
      "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & IconButtonMods",
      "print": [
-      "type IconButtonProps = IconButtonBaseProps & IconButtonMods;"
+      "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
      ]
     },
     "props": [
@@ -75870,26 +75955,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:IconColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "IconColor",
-     "nameFull": "IconColor"
-    },
-    "src": "uui/components/buttons/IconButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'error' | 'neutral' | 'secondary'",
-     "print": [
-      "type IconColor = 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'neutral';"
-     ]
-    }
-   }
-  },
   "@epam/uui:IDropdownMenuItemProps": {
    "summary": {
     "module": "@epam/uui",
@@ -76227,67 +76292,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:IHasEditMode": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "IHasEditMode",
-     "nameFull": "IHasEditMode"
-    },
-    "src": "uui/components/types.ts",
-    "comment": {
-     "raw": [
-      "Component can adjust visuals for different contexts: forms, tables cells, on in WYSIWYG UX"
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IHasEditMode",
-     "print": [
-      "/** Component can adjust visuals for different contexts: forms, tables cells, on in WYSIWYG UX */",
-      "interface IHasEditMode {",
-      "    /**",
-      "     * Visual mode for component:",
-      "     * - form: default visuals, to use in forms.",
-      "     * - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-      "     * - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover.",
-      "     */",
-      "    mode?: 'form' | 'cell' | 'inline';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
       "required": false
      }
     ],
@@ -76859,26 +76863,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:LinkButtonColorType": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "LinkButtonColorType",
-     "nameFull": "LinkButtonColorType"
-    },
-    "src": "uui/components/buttons/LinkButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'primary' | 'secondary' | 'contrast'",
-     "print": [
-      "type LinkButtonColorType = 'primary' | 'secondary' | 'contrast';"
-     ]
-    }
-   }
-  },
   "@epam/uui:LinkButtonCoreProps": {
    "summary": {
     "module": "@epam/uui",
@@ -77415,89 +77399,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/uui:LinkButtonMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "LinkButtonMods",
-     "nameFull": "LinkButtonMods"
-    },
-    "src": "uui/components/buttons/LinkButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "LinkButtonMods",
-     "print": [
-      "interface LinkButtonMods {",
-      "    /**",
-      "     * @default '36'",
-      "     */",
-      "    size?: types.ControlSize | '42';",
-      "    /**",
-      "     * @default 'primary'",
-      "     */",
-      "    color?: LinkButtonColorType;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'primary' | 'secondary' | 'contrast'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "primary",
-        "secondary",
-        "contrast"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/uui:LinkButtonProps": {
@@ -80698,62 +80599,36 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:MultiSwitchProps": {
+  "@epam/uui:MultiSwitchCoreProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "MultiSwitchProps",
-     "nameFull": "MultiSwitchProps<TValue>"
+     "name": "MultiSwitchCoreProps",
+     "nameFull": "MultiSwitchCoreProps<TValue>"
     },
     "src": "uui/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the 'Core properties' for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
-     "raw": "MultiSwitchProps<TValue>",
+     "raw": "MultiSwitchCoreProps<TValue>",
      "print": [
-      "interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    items: MultiSwitchItem<TValue>[];",
+      "/** Represents the 'Core properties' for the MultiSwitch component. */",
+      "type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {",
       "    /**",
-      "     * @default 'primary'",
+      "     * Defines an array of MultiSwitchItems.",
       "     */",
-      "    color?: UuiMultiSwitchColor;",
-      "}"
+      "    items: MultiSwitchItem<TValue>[];",
+      "};"
      ]
     },
     "props": [
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'primary' | 'secondary'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "primary",
-        "secondary"
-       ]
-      },
-      "required": false
-     },
      {
       "uid": "value",
       "name": "value",
@@ -80919,6 +80794,254 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:MultiSwitchProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchProps",
+     "nameFull": "MultiSwitchProps<TValue>"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MultiSwitchProps<TValue>",
+     "print": [
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color.",
+        " @default 'primary'"
+       ],
+       "tags": {
+        "@default": "primary"
+       }
+      },
+      "typeValue": {
+       "raw": "'primary' | 'secondary'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "primary",
+        "secondary"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchMods",
       "required": false
      }
     ],
@@ -81669,72 +81792,6 @@
        ]
       },
       "from": "@epam/uui:NumericInputMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:PanelMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "PanelMods",
-     "nameFull": "PanelMods"
-    },
-    "src": "uui/components/layout/FlexItems/Panel.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "PanelMods",
-     "print": [
-      "interface PanelMods {",
-      "    shadow?: boolean;",
-      "    margin?: '24';",
-      "    background?: 'surface-main';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "shadow",
-      "name": "shadow",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "margin",
-      "name": "margin",
-      "typeValue": {
-       "raw": "'24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "background",
-      "name": "background",
-      "typeValue": {
-       "raw": "'surface-main'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "surface-main"
-       ]
-      },
       "required": false
      }
     ],
@@ -85376,31 +85433,102 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:ProgressBarMods": {
+  "@epam/uui:ProgressBarProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "ProgressBarMods",
-     "nameFull": "ProgressBarMods"
+     "name": "ProgressBarProps",
+     "nameFull": "ProgressBarProps"
     },
     "src": "uui/components/widgets/ProgressBar.tsx",
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
-     "raw": "ProgressBarMods",
+     "raw": "ProgressBarProps",
      "print": [
-      "interface ProgressBarMods {",
-      "    size?: '12' | '18' | '24';",
-      "    striped?: boolean;",
-      "}"
+      "type ProgressBarProps = IProgressBarProps & ProgressBarMods;"
      ]
     },
     "props": [
      {
+      "uid": "progress",
+      "name": "progress",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:IProgressBarProps",
+      "required": true
+     },
+     {
+      "uid": "label",
+      "name": "label",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:IProgressBarProps",
+      "required": false
+     },
+     {
+      "uid": "hideLabel",
+      "name": "hideLabel",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IProgressBarProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '12'"
+       ],
+       "tags": {
+        "@default": "12"
+       }
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24'"
       },
@@ -85412,17 +85540,24 @@
         "24"
        ]
       },
+      "from": "@epam/uui:ProgressBarMods",
       "required": false
      },
      {
       "uid": "striped",
       "name": "striped",
+      "comment": {
+       "raw": [
+        "To show ProgressBar with striped animation. The striped progress bar has no label."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
       "editor": {
        "type": "bool"
       },
+      "from": "@epam/uui:ProgressBarMods",
       "required": false
      }
     ],
@@ -86604,58 +86739,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:RichTextViewMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RichTextViewMods",
-     "nameFull": "RichTextViewMods"
-    },
-    "src": "uui/components/typography/RichTextView.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RichTextViewMods",
-     "print": [
-      "interface RichTextViewMods {",
-      "    /**",
-      "     * @default '14'",
-      "     */",
-      "    size?: '12' | '14' | '16';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '14'"
-       ],
-       "tags": {
-        "@default": "14"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '14' | '16'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "14",
-        "16"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:RichTextViewProps": {
    "summary": {
     "module": "@epam/uui",
@@ -86733,7 +86816,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '14'"
+        "Defines component size.",
+        " @default '14'"
        ],
        "tags": {
         "@default": "14"
@@ -87721,79 +87805,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:SizeMod": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "SizeMod",
-     "nameFull": "SizeMod"
-    },
-    "src": "uui/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SizeMod",
-     "print": [
-      "interface SizeMod {",
-      "    /**",
-      "     * Defines component size.",
-      "     */",
-      "    size?: ControlSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:SliderMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "SliderMods",
-     "nameFull": "SliderMods"
-    },
-    "src": "uui/components/inputs/Slider.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SliderMods",
-     "print": [
-      "interface SliderMods {",
-      "}"
-     ]
-    }
-   }
-  },
   "@epam/uui:SliderProps": {
    "summary": {
     "module": "@epam/uui",
@@ -88160,26 +88171,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:StatusIndicatorColors": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "StatusIndicatorColors",
-     "nameFull": "StatusIndicatorColors"
-    },
-    "src": "uui/components/widgets/StatusIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
-     "print": [
-      "type StatusIndicatorColors = 'neutral' | 'info' | 'success' | 'warning' | 'critical';"
-     ]
-    }
-   }
-  },
   "@epam/uui:StatusIndicatorCoreProps": {
    "summary": {
     "module": "@epam/uui",
@@ -88291,62 +88282,6 @@
        "type": "string"
       },
       "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:StatusIndicatorMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "StatusIndicatorMods",
-     "nameFull": "StatusIndicatorMods"
-    },
-    "src": "uui/components/widgets/StatusIndicator.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "StatusIndicatorMods",
-     "print": [
-      "type StatusIndicatorMods = {",
-      "    /**",
-      "     * Component color.",
-      "     * @default 'neutral'",
-      "     */",
-      "    color?: StatusIndicatorColors;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Component color.",
-        " @default 'neutral'"
-       ],
-       "tags": {
-        "@default": "neutral"
-       }
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "critical",
-        "neutral"
-       ]
-      },
-      "required": false
      }
     ],
     "propsFromUnion": false
@@ -88480,58 +88415,6 @@
        ]
       },
       "from": "@epam/uui:StatusIndicatorMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:SwitchMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "SwitchMods",
-     "nameFull": "SwitchMods"
-    },
-    "src": "uui/components/inputs/Switch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SwitchMods",
-     "print": [
-      "interface SwitchMods {",
-      "    /**",
-      "     * @default '18'",
-      "     */",
-      "    size?: '12' | '18' | '24';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24"
-       ]
-      },
       "required": false
      }
     ],
@@ -88831,7 +88714,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "@default '18'"
+        "Defines component size.",
+        " @default '18'"
        ],
        "tags": {
         "@default": "18"
@@ -88849,70 +88733,6 @@
        ]
       },
       "from": "@epam/uui:SwitchMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:TabButtonMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TabButtonMods",
-     "nameFull": "TabButtonMods"
-    },
-    "src": "uui/components/buttons/TabButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TabButtonMods",
-     "print": [
-      "interface TabButtonMods {",
-      "    /**",
-      "     * @default '48'",
-      "     */",
-      "    size?: '36' | '48' | '60';",
-      "    withNotify?: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '48'"
-       ],
-       "tags": {
-        "@default": "48"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "36",
-        "48",
-        "60"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "withNotify",
-      "name": "withNotify",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
       "required": false
      }
     ],
@@ -89471,26 +89291,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/uui:TagColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TagColor",
-     "nameFull": "TagColor"
-    },
-    "src": "uui/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'",
-     "print": [
-      "type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';"
-     ]
-    }
    }
   },
   "@epam/uui:TagCoreProps": {
@@ -90063,78 +89863,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/uui:TagFill": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TagFill",
-     "nameFull": "TagFill"
-    },
-    "src": "uui/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'solid' | 'outline'",
-     "print": [
-      "type TagFill = 'solid' | 'outline';"
-     ]
-    }
-   }
-  },
-  "@epam/uui:TagMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TagMods",
-     "nameFull": "TagMods"
-    },
-    "src": "uui/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TagMods",
-     "print": [
-      "type TagMods = {",
-      "    /** @default 'neutral' */",
-      "    color?: TagColor;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'neutral'"
-       ],
-       "tags": {
-        "@default": "neutral"
-       }
-      },
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "critical",
-        "neutral"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/uui:TagProps": {
@@ -90733,26 +90461,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:TagSize": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TagSize",
-     "nameFull": "TagSize"
-    },
-    "src": "uui/components/widgets/Tag.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'18' | '36' | '48' | '24' | '30' | '42'",
-     "print": [
-      "type TagSize = '18' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
   "@epam/uui:TextAreaProps": {
    "summary": {
     "module": "@epam/uui",
@@ -91174,66 +90882,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui:TextColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextColor",
-     "nameFull": "TextColor"
-    },
-    "src": "uui/components/typography/Text.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'info' | 'success' | 'warning' | 'error' | 'primary' | 'secondary' | 'white' | 'brand' | 'disabled'",
-     "print": [
-      "type TextColor = 'info' | 'warning' | 'error' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';"
-     ]
-    }
-   }
-  },
-  "@epam/uui:TextFontStyle": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextFontStyle",
-     "nameFull": "TextFontStyle"
-    },
-    "src": "uui/components/typography/Text.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'normal' | 'italic'",
-     "print": [
-      "type TextFontStyle = 'normal' | 'italic';"
-     ]
-    }
-   }
-  },
-  "@epam/uui:TextFontWeight": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextFontWeight",
-     "nameFull": "TextFontWeight"
-    },
-    "src": "uui/components/typography/Text.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'200' | '300' | '400' | '600' | '700' | '900'",
-     "print": [
-      "type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';"
-     ]
-    }
    }
   },
   "@epam/uui:TextInputProps": {
@@ -91995,148 +91643,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:TextMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextMods",
-     "nameFull": "TextMods"
-    },
-    "src": "uui/components/typography/Text.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TextMods",
-     "print": [
-      "interface TextMods extends TextSettings {",
-      "    color?: TextColor;",
-      "    fontWeight?: TextFontWeight;",
-      "    fontStyle?: TextFontStyle;",
-      "    size?: TextSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'error' | 'primary' | 'secondary' | 'white' | 'brand' | 'disabled'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "error",
-        "primary",
-        "secondary",
-        "white",
-        "brand",
-        "disabled"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fontWeight",
-      "name": "fontWeight",
-      "typeValue": {
-       "raw": "'200' | '300' | '400' | '600' | '700' | '900'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "200",
-        "300",
-        "400",
-        "600",
-        "700",
-        "900"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fontStyle",
-      "name": "fontStyle",
-      "typeValue": {
-       "raw": "'normal' | 'italic'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "normal",
-        "italic"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "lineHeight",
-      "name": "lineHeight",
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     },
-     {
-      "uid": "fontSize",
-      "name": "fontSize",
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui:TextPlaceholderProps": {
    "summary": {
     "module": "@epam/uui",
@@ -92514,26 +92020,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui:TextSize": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextSize",
-     "nameFull": "TextSize"
-    },
-    "src": "uui/components/typography/Text.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'",
-     "print": [
-      "type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
    }
   },
   "@epam/uui:TimePickerProps": {
@@ -93441,26 +92927,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:UuiMultiSwitchColor": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "UuiMultiSwitchColor",
-     "nameFull": "UuiMultiSwitchColor"
-    },
-    "src": "uui/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'primary' | 'secondary'",
-     "print": [
-      "type UuiMultiSwitchColor = 'primary' | 'secondary';"
-     ]
-    }
-   }
-  },
   "@epam/uui:VerticalTabButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -93474,12 +92940,49 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods | ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & TabButtonMods",
+     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; }",
      "print": [
-      "type VerticalTabButtonProps = ButtonProps & TabButtonMods;"
+      "type VerticalTabButtonProps = TabButtonProps;"
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "@default '48'"
+       ],
+       "tags": {
+        "@default": "48"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "36",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/uui:TabButtonMods",
+      "required": false
+     },
+     {
+      "uid": "withNotify",
+      "name": "withNotify",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:TabButtonMods",
+      "required": false
+     },
      {
       "uid": "link",
       "name": "link",
@@ -93920,43 +93423,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '48'"
-       ],
-       "tags": {
-        "@default": "48"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "36",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "withNotify",
-      "name": "withNotify",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
       "uid": "link_2",
       "name": "link",
       "comment": {
@@ -94344,6 +93810,17 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:BadgeMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "BadgeMods",
+     "nameFull": "BadgeMods"
+    },
+    "src": "uui/components/widgets/Badge.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:BaseRowMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94366,6 +93843,28 @@
     "exported": false
    }
   },
+  "@epam/uui:ButtonMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "ButtonMods",
+     "nameFull": "ButtonMods"
+    },
+    "src": "uui/components/buttons/Button.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:CheckboxMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CheckboxMods",
+     "nameFull": "CheckboxMods"
+    },
+    "src": "uui/components/inputs/Checkbox.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:CountIndicatorMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94374,6 +93873,55 @@
      "nameFull": "CountIndicatorMods"
     },
     "src": "uui/components/widgets/CountIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:IconButtonMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "IconButtonMods",
+     "nameFull": "IconButtonMods"
+    },
+    "src": "uui/components/buttons/IconButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:IHasEditMode": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "IHasEditMode",
+     "nameFull": "IHasEditMode"
+    },
+    "src": "uui/components/types.ts",
+    "comment": {
+     "raw": [
+      "Component can adjust visuals for different contexts: forms, tables cells, on in WYSIWYG UX"
+     ]
+    },
+    "exported": false
+   }
+  },
+  "@epam/uui:LinkButtonMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "LinkButtonMods",
+     "nameFull": "LinkButtonMods"
+    },
+    "src": "uui/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
     "exported": false
    }
   },
@@ -94388,6 +93936,28 @@
     "exported": false
    }
   },
+  "@epam/uui:PanelMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PanelMods",
+     "nameFull": "PanelMods"
+    },
+    "src": "uui/components/layout/FlexItems/Panel.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:ProgressBarMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "ProgressBarMods",
+     "nameFull": "ProgressBarMods"
+    },
+    "src": "uui/components/widgets/ProgressBar.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:RadioInputMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94399,6 +93969,61 @@
     "exported": false
    }
   },
+  "@epam/uui:RichTextViewMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RichTextViewMods",
+     "nameFull": "RichTextViewMods"
+    },
+    "src": "uui/components/typography/RichTextView.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:SizeMod": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "SizeMod",
+     "nameFull": "SizeMod"
+    },
+    "src": "uui/components/types.ts",
+    "exported": false
+   }
+  },
+  "@epam/uui:StatusIndicatorMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "StatusIndicatorMods",
+     "nameFull": "StatusIndicatorMods"
+    },
+    "src": "uui/components/widgets/StatusIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:SwitchMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "SwitchMods",
+     "nameFull": "SwitchMods"
+    },
+    "src": "uui/components/inputs/Switch.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:TabButtonMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TabButtonMods",
+     "nameFull": "TabButtonMods"
+    },
+    "src": "uui/components/buttons/TabButton.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:TableSizesAndPositionMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94407,6 +94032,17 @@
      "nameFull": "TableSizesAndPositionMods"
     },
     "src": "uui/components/tables/types.ts",
+    "exported": false
+   }
+  },
+  "@epam/uui:TagMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagMods",
+     "nameFull": "TagMods"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
     "exported": false
    }
   },
@@ -94432,6 +94068,17 @@
     "exported": false
    }
   },
+  "@epam/uui:TextMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextMods",
+     "nameFull": "TextMods"
+    },
+    "src": "uui/components/typography/Text.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:VirtualListRenderRows": {
    "summary": {
     "module": "@epam/uui",
@@ -94441,57 +94088,6 @@
     },
     "src": "uui/components/layout/VirtualList.tsx",
     "exported": false
-   }
-  },
-  "@epam/promo:AlertMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "AlertMods",
-     "nameFull": "AlertMods"
-    },
-    "src": "epam-promo/components/overlays/Alert.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "AlertMods",
-     "print": [
-      "interface AlertMods {",
-      "    /** @default 'blue' */",
-      "    color?: EpamPrimaryColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/promo:AlertProps": {
@@ -94634,14 +94230,15 @@
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error'"
       },
       "editor": {
        "type": "oneOf",
@@ -94649,7 +94246,11 @@
         "blue",
         "green",
         "amber",
-        "red"
+        "red",
+        "info",
+        "success",
+        "warning",
+        "error"
        ]
       },
       "from": "@epam/promo:AlertMods",
@@ -95153,8 +94754,9 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10' | 'gray30' | 'gray60'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'critical' | 'neutral'"
       },
+      "typeValueRef": "@epam/promo:BadgeColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -95162,6 +94764,9 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
         "yellow",
         "orange",
         "fuchsia",
@@ -95173,7 +94778,9 @@
         "white",
         "gray10",
         "gray30",
-        "gray60"
+        "gray60",
+        "critical",
+        "neutral"
        ]
       },
       "from": "@epam/promo:BadgeMods",
@@ -95780,16 +95387,22 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'red' | 'gray50' | 'gray'"
+       "raw": "'blue' | 'green' | 'red' | 'critical' | 'neutral' | 'gray50' | 'gray' | 'accent' | 'primary' | 'secondary'"
       },
+      "typeValueRef": "@epam/promo:ButtonColor",
       "editor": {
        "type": "oneOf",
        "options": [
         "blue",
         "green",
         "red",
+        "critical",
+        "neutral",
         "gray50",
-        "gray"
+        "gray",
+        "accent",
+        "primary",
+        "secondary"
        ]
       },
       "from": "@epam/promo:ButtonMods",
@@ -95827,126 +95440,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/promo:ColorMod": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ColorMod",
-     "nameFull": "ColorMod"
-    },
-    "src": "epam-promo/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ColorMod",
-     "print": [
-      "// Mod interfaces",
-      "interface ColorMod {",
-      "    /** Component's base color */",
-      "    color?: EpamColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Component's base color"
-       ]
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "orange",
-        "purple",
-        "violet",
-        "cyan",
-        "white",
-        "gray10",
-        "gray30",
-        "gray60",
-        "gray50",
-        "gray5",
-        "gray20",
-        "gray40",
-        "gray70",
-        "gray80",
-        "gray90"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:ControlShape": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ControlShape",
-     "nameFull": "ControlShape"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a control shape."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'square' | 'round'",
-     "print": [
-      "/**",
-      " * Defines a control shape.",
-      " */",
-      "type ControlShape = 'square' | 'round';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:ControlSize": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ControlSize",
-     "nameFull": "ControlSize"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the size of a control."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'36' | '48' | '24' | '30' | '42' | 'none'",
-     "print": [
-      "/**",
-      " * Defines the size of a control.",
-      " */",
-      "type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
    }
   },
   "@epam/promo:CountIndicatorProps": {
@@ -96038,7 +95531,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'critical' | 'neutral' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -96047,52 +95540,17 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
         "white",
+        "critical",
+        "neutral",
         "gray"
        ]
       },
       "from": "@epam/promo:CountIndicatorMods",
       "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:DropdownContainerMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "DropdownContainerMods",
-     "nameFull": "DropdownContainerMods"
-    },
-    "src": "epam-promo/components/overlays/DropdownContainer.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DropdownContainerMods",
-     "print": [
-      "interface DropdownContainerMods {",
-      "    color?: 'white' | 'gray70';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "typeValue": {
-       "raw": "'white' | 'gray70'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "gray70"
-       ]
-      },
-      "required": false
      }
     ],
     "propsFromUnion": false
@@ -96571,6 +96029,15 @@
      {
       "uid": "color",
       "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color.",
+        " @default 'white'"
+       ],
+       "tags": {
+        "@default": "white"
+       }
+      },
       "typeValue": {
        "raw": "'white' | 'gray70'"
       },
@@ -96586,118 +96053,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/promo:EpamAdditionalColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "EpamAdditionalColor",
-     "nameFull": "EpamAdditionalColor"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines an additional colors."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan'",
-     "print": [
-      "/**",
-      " * Defines an additional colors.",
-      " */",
-      "type EpamAdditionalColor = EpamPrimaryColor | 'cyan' | 'orange' | 'purple' | 'violet';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:EpamColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "EpamColor",
-     "nameFull": "EpamColor"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines all type of colors: primary & grayscale & additional."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'",
-     "print": [
-      "/**",
-      " * Defines all type of colors: primary & grayscale & additional.",
-      " */",
-      "type EpamColor = EpamPrimaryColor | EpamGrayscaleColor | EpamAdditionalColor;"
-     ]
-    }
-   }
-  },
-  "@epam/promo:EpamGrayscaleColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "EpamGrayscaleColor",
-     "nameFull": "EpamGrayscaleColor"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a grayscale colors."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'",
-     "print": [
-      "/**",
-      " * Defines a grayscale colors.",
-      " */",
-      "type EpamGrayscaleColor = 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:EpamPrimaryColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "EpamPrimaryColor",
-     "nameFull": "EpamPrimaryColor"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the primary colors."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'green' | 'amber' | 'red'",
-     "print": [
-      "/**",
-      " * Defines the primary colors.",
-      " */",
-      "type EpamPrimaryColor = 'blue' | 'green' | 'amber' | 'red';"
-     ]
-    }
    }
   },
   "@epam/promo:ErrorHandlerProps": {
@@ -96778,34 +96133,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:FillStyle": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "FillStyle",
-     "nameFull": "FillStyle"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines component fill style."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'white' | 'solid' | 'light' | 'none'",
-     "print": [
-      "/**",
-      " * Defines component fill style.",
-      " */",
-      "type FillStyle = 'solid' | 'white' | 'light' | 'none';"
-     ]
-    }
-   }
-  },
   "@epam/promo:FlexRowProps": {
    "summary": {
     "module": "@epam/promo",
@@ -96821,10 +96148,30 @@
     "typeValue": {
      "raw": "FlexRowProps",
      "print": [
-      "type FlexRowProps = uui.FlexRowProps & RowMods;"
+      "type FlexRowProps = Omit<uui.FlexRowProps, 'background'> & FlexRowMods;"
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "null | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        null
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
      {
       "uid": "children",
       "name": "children",
@@ -96885,6 +96232,24 @@
       "required": false
      },
      {
+      "uid": "columnGap",
+      "name": "columnGap",
+      "typeValue": {
+       "raw": "number | '36' | '18' | '24' | '12' | '6'"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "typeValue": {
+       "raw": "number | '36' | '18' | '24' | '12' | '6'"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
       "uid": "key",
       "name": "key",
       "typeValue": {
@@ -96914,69 +96279,6 @@
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
-      "uid": "background",
-      "name": "background",
-      "comment": {
-       "raw": [
-        "@default 'none'"
-       ],
-       "tags": {
-        "@default": "none"
-       }
-      },
-      "typeValue": {
-       "raw": "'white' | 'none' | 'gray5'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "none",
-        "gray5"
-       ]
-      },
-      "from": "@epam/promo:RowMods",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
-       ]
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "columnGap",
-      "name": "columnGap",
-      "typeValue": {
-       "raw": "number | '36' | '18' | '24' | '12' | '6'"
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "rowGap",
-      "name": "rowGap",
-      "typeValue": {
-       "raw": "number | '36' | '18' | '24' | '12' | '6'"
-      },
-      "from": "@epam/uui:RowMods",
       "required": false
      },
      {
@@ -97072,86 +96374,35 @@
       },
       "from": "@epam/uui:RowMods",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:FontMod": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "FontMod",
-     "nameFull": "FontMod"
-    },
-    "src": "epam-promo/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "FontMod",
-     "print": [
-      "interface FontMod {",
-      "    /** Font to use for text */",
-      "    font?: FontStyle;",
-      "}"
-     ]
-    },
-    "props": [
+     },
      {
-      "uid": "font",
-      "name": "font",
+      "uid": "background",
+      "name": "background",
       "comment": {
        "raw": [
-        "Font to use for text"
-       ]
+        "@default 'none'"
+       ],
+       "tags": {
+        "@default": "none"
+       }
       },
       "typeValue": {
-       "raw": "'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab'"
+       "raw": "'white' | 'none' | 'gray5' | 'surface-main'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "sans",
-        "sans-semibold",
-        "sans-italic",
-        "museo-sans",
-        "museo-slab"
+        "white",
+        "none",
+        "gray5",
+        "surface-main"
        ]
       },
+      "from": "@epam/promo:FlexRowMods",
       "required": false
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/promo:FontStyle": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "FontStyle",
-     "nameFull": "FontStyle"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a font style."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab'",
-     "print": [
-      "/**",
-      " * Defines a font style.",
-      " */",
-      "type FontStyle = 'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab';"
-     ]
-    }
    }
   },
   "@epam/promo:IconButtonProps": {
@@ -97585,7 +96836,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray30' | 'gray60' | 'gray50'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray30' | 'gray60' | 'neutral' | 'gray50' | 'secondary'"
       },
       "editor": {
        "type": "oneOf",
@@ -97594,9 +96845,15 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
+        "error",
         "gray30",
         "gray60",
-        "gray50"
+        "neutral",
+        "gray50",
+        "secondary"
        ]
       },
       "from": "@epam/promo:IconButtonMods",
@@ -97661,98 +96918,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/promo:IconContainerColors": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "IconContainerColors",
-     "nameFull": "IconContainerColors"
-    },
-    "src": "epam-promo/components/layout/IconContainer.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'",
-     "print": [
-      "type IconContainerColors = 'blue' | 'green' | 'amber' | 'red' | 'cyan' | 'orange' | 'purple' | 'violet' | 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:IconContainerMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "IconContainerMods",
-     "nameFull": "IconContainerMods"
-    },
-    "src": "epam-promo/components/layout/IconContainer.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IconContainerMods",
-     "print": [
-      "interface IconContainerMods {",
-      "    /**",
-      "     *  IconContainer color.",
-      "     *  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.",
-      "     *  @default 'gray60'",
-      "     */",
-      "    color?: IconContainerColors;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "IconContainer color.",
-        "  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.",
-        "  @default 'gray60'"
-       ],
-       "tags": {
-        "@default": "gray60"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "orange",
-        "purple",
-        "violet",
-        "cyan",
-        "white",
-        "gray10",
-        "gray30",
-        "gray60",
-        "gray50",
-        "gray5",
-        "gray20",
-        "gray40",
-        "gray70",
-        "gray80",
-        "gray90"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:IconContainerProps": {
    "summary": {
     "module": "@epam/promo",
@@ -97768,7 +96933,7 @@
     "typeValue": {
      "raw": "IconContainerProps",
      "print": [
-      "type IconContainerProps = ControlIconProps & IconContainerMods;"
+      "type IconContainerProps = uuiComponents.ControlIconProps & IconContainerMods;"
      ]
     },
     "props": [
@@ -97954,7 +97119,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray5' | 'gray20' | 'gray40' | 'gray70' | 'gray80' | 'gray90'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray70' | 'gray5' | 'gray20' | 'gray40' | 'gray80' | 'gray90'"
       },
       "editor": {
        "type": "oneOf",
@@ -97972,10 +97137,10 @@
         "gray30",
         "gray60",
         "gray50",
+        "gray70",
         "gray5",
         "gray20",
         "gray40",
-        "gray70",
         "gray80",
         "gray90"
        ]
@@ -98484,7 +97649,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray10' | 'gray60'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray10' | 'gray60' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
@@ -98494,7 +97659,10 @@
         "amber",
         "red",
         "gray10",
-        "gray60"
+        "gray60",
+        "primary",
+        "secondary",
+        "contrast"
        ]
       },
       "from": "@epam/promo:LinkButtonMods",
@@ -98559,120 +97727,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/promo:ModalWindowMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ModalWindowMods",
-     "nameFull": "ModalWindowMods"
-    },
-    "src": "epam-promo/components/overlays/ModalWindow.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ModalWindowMods",
-     "print": [
-      "interface ModalWindowMods {",
-      "    width?: '300' | '420' | '600' | '900' | number;",
-      "    height?: '300' | '700' | 'auto' | number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number | '300' | '420' | '600' | '900'"
-      },
-      "required": false
-     },
-     {
-      "uid": "height",
-      "name": "height",
-      "typeValue": {
-       "raw": "number | 'auto' | '300' | '700'"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'blue' | 'gray50' | 'gray'",
-     "print": [
-      "type MultiSwitchColor = 'blue' | 'gray50' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "interface MultiSwitchMods {",
-      "    /**",
-      "     * @default 'blue'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'blue'"
-       ],
-       "tags": {
-        "@default": "blue"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'gray50' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "gray50",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:MultiSwitchProps": {
    "summary": {
     "module": "@epam/promo",
@@ -98681,6 +97735,11 @@
      "nameFull": "MultiSwitchProps<TValue>"
     },
     "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -98688,75 +97747,11 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "from": "@epam/uui:MultiSwitchProps",
-      "required": true
-     },
      {
       "uid": "value",
       "name": "value",
@@ -98816,6 +97811,7 @@
       "typeValue": {
        "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
      },
@@ -98831,6 +97827,23 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -98868,71 +97881,84 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'blue'"
+        "Defines component color.",
+        " @default 'blue'"
        ],
        "tags": {
         "@default": "blue"
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'gray50' | 'gray'"
+       "raw": "'blue' | 'gray50' | 'gray' | 'primary' | 'secondary'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "blue",
         "gray50",
-        "gray"
+        "gray",
+        "primary",
+        "secondary"
        ]
       },
       "from": "@epam/promo:MultiSwitchMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:NotificationCardMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "NotificationCardMods",
-     "nameFull": "NotificationCardMods"
-    },
-    "src": "epam-promo/components/overlays/NotificationCard.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "NotificationCardMods",
-     "print": [
-      "interface NotificationCardMods {",
-      "    color?: EpamPrimaryColor | 'gray60';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "gray60"
-       ]
-      },
       "required": false
      }
     ],
@@ -98954,7 +97980,7 @@
     "typeValue": {
      "raw": "NotificationCardProps",
      "print": [
-      "type NotificationCardProps = Omit<uuiNotificationCardProps, 'color'> & NotificationCardMods;"
+      "type NotificationCardProps = Omit<uui.NotificationCardProps, 'color'> & NotificationCardMods;"
      ]
     },
     "props": [
@@ -99126,8 +98152,13 @@
      {
       "uid": "color",
       "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color."
+       ]
+      },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray60'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray60'"
       },
       "editor": {
        "type": "oneOf",
@@ -99136,6 +98167,10 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
+        "error",
         "gray60"
        ]
       },
@@ -99164,7 +98199,7 @@
       "interface PanelMods {",
       "    shadow?: boolean;",
       "    margin?: '24';",
-      "    background?: 'white' | 'gray90';",
+      "    background?: 'white' | 'gray90' | uui.PanelProps['background'];",
       "}"
      ]
     },
@@ -99198,12 +98233,13 @@
       "uid": "background",
       "name": "background",
       "typeValue": {
-       "raw": "'white' | 'gray90'"
+       "raw": "'white' | 'surface-main' | 'gray90'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "white",
+        "surface-main",
         "gray90"
        ]
       },
@@ -99368,68 +98404,17 @@
       "uid": "background",
       "name": "background",
       "typeValue": {
-       "raw": "'white' | 'gray90'"
+       "raw": "'white' | 'surface-main' | 'gray90'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "white",
+        "surface-main",
         "gray90"
        ]
       },
       "from": "@epam/promo:PanelMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:RatingMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "RatingMods",
-     "nameFull": "RatingMods"
-    },
-    "src": "epam-promo/components/inputs/Rating.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RatingMods",
-     "print": [
-      "interface RatingMods {",
-      "    /**",
-      "     * @default '18'",
-      "     */",
-      "    size?: 18 | 24 | 30;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "18 | 24 | 30"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        18,
-        24,
-        30
-       ]
-      },
       "required": false
      }
     ],
@@ -99776,318 +98761,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:RowMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "RowMods",
-     "nameFull": "RowMods"
-    },
-    "src": "epam-promo/components/layout/FlexItems/FlexRow.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RowMods",
-     "print": [
-      "interface RowMods extends Omit<uui.RowMods, 'background'>, types.RowSizeMod {",
-      "    /**",
-      "     * @default 'none'",
-      "     */",
-      "    background?: 'white' | 'gray5' | 'none';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "background",
-      "name": "background",
-      "comment": {
-       "raw": [
-        "@default 'none'"
-       ],
-       "tags": {
-        "@default": "none"
-       }
-      },
-      "typeValue": {
-       "raw": "'white' | 'none' | 'gray5'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "none",
-        "gray5"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
-       ]
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "columnGap",
-      "name": "columnGap",
-      "typeValue": {
-       "raw": "number | '36' | '18' | '24' | '12' | '6'"
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "rowGap",
-      "name": "rowGap",
-      "typeValue": {
-       "raw": "number | '36' | '18' | '24' | '12' | '6'"
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "borderBottom",
-      "name": "borderBottom",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "margin",
-      "name": "margin",
-      "typeValue": {
-       "raw": "'24' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "padding",
-      "name": "padding",
-      "typeValue": {
-       "raw": "'18' | '24' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "spacing",
-      "name": "spacing",
-      "typeValue": {
-       "raw": "'18' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "topShadow",
-      "name": "topShadow",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     },
-     {
-      "uid": "vPadding",
-      "name": "vPadding",
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "36",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:RowMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:RowSize": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "RowSize",
-     "nameFull": "RowSize"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the size of a row."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "null | '36' | '48' | '24' | '30' | '42'",
-     "print": [
-      "/**",
-      " * Defines the size of a row.",
-      " */",
-      "type RowSize = null | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:RowSizeMod": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "RowSizeMod",
-     "nameFull": "RowSizeMod"
-    },
-    "src": "epam-promo/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RowSizeMod",
-     "print": [
-      "interface RowSizeMod {",
-      "    /** Defines the size of a row. */",
-      "    size?: RowSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines the size of a row."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        null
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:SizeMod": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "SizeMod",
-     "nameFull": "SizeMod"
-    },
-    "src": "epam-promo/components/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SizeMod",
-     "print": [
-      "interface SizeMod {",
-      "    /** Component's size in px. This is 'logical' size, defined in how many pixels components occupies vertically. */",
-      "    size?: ControlSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Component's size in px. This is 'logical' size, defined in how many pixels components occupies vertically."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:StatusIndicatorProps": {
    "summary": {
     "module": "@epam/promo",
@@ -100209,8 +98882,9 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'gray'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'yellow' | 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | 'white' | 'critical' | 'neutral' | 'gray'"
       },
+      "typeValueRef": "@epam/promo:StatusIndicatorColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -100218,6 +98892,9 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
         "yellow",
         "orange",
         "fuchsia",
@@ -100227,6 +98904,8 @@
         "cyan",
         "mint",
         "white",
+        "critical",
+        "neutral",
         "gray"
        ]
       },
@@ -100766,7 +99445,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray10' | 'gray30' | 'gray70'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray10' | 'gray30' | 'critical' | 'neutral' | 'gray70'"
       },
       "editor": {
        "type": "oneOf",
@@ -100775,9 +99454,14 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
         "white",
         "gray10",
         "gray30",
+        "critical",
+        "neutral",
         "gray70"
        ]
       },
@@ -100843,95 +99527,6 @@
     "propsFromUnion": true
    }
   },
-  "@epam/promo:TextMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "TextMods",
-     "nameFull": "TextMods"
-    },
-    "src": "epam-promo/components/typography/Text.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TextMods",
-     "print": [
-      "interface TextMods {",
-      "    /**",
-      "     * @default 'gray80'",
-      "     */",
-      "    color?: 'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray5' | 'gray50' | 'gray60' | 'gray80' | 'gray90';",
-      "    /**",
-      "     * @default 'sans'",
-      "     */",
-      "    font?: types.FontStyle;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'gray80'"
-       ],
-       "tags": {
-        "@default": "gray80"
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray60' | 'gray50' | 'gray5' | 'gray80' | 'gray90'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "white",
-        "gray60",
-        "gray50",
-        "gray5",
-        "gray80",
-        "gray90"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "font",
-      "name": "font",
-      "comment": {
-       "raw": [
-        "@default 'sans'"
-       ],
-       "tags": {
-        "@default": "sans"
-       }
-      },
-      "typeValue": {
-       "raw": "'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sans",
-        "sans-semibold",
-        "sans-italic",
-        "museo-sans",
-        "museo-slab"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:TextProps": {
    "summary": {
     "module": "@epam/promo",
@@ -100947,7 +99542,7 @@
     "typeValue": {
      "raw": "TextProps",
      "print": [
-      "type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;"
+      "type TextProps = Omit<uui.TextProps, 'color' | 'font'> & TextMods;"
      ]
     },
     "props": [
@@ -101064,7 +99659,7 @@
       "uid": "fontWeight",
       "name": "fontWeight",
       "typeValue": {
-       "raw": "'300' | '600' | '900' | '700' | '200' | '400'"
+       "raw": "'200' | '300' | '400' | '600' | '700' | '900'"
       },
       "editor": {
        "type": "oneOf",
@@ -101146,7 +99741,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'white' | 'gray60' | 'gray50' | 'gray5' | 'gray80' | 'gray90'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'white' | 'gray60' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -101155,12 +99750,20 @@
         "green",
         "amber",
         "red",
+        "info",
+        "success",
+        "warning",
+        "error",
         "white",
         "gray60",
         "gray50",
+        "primary",
+        "secondary",
         "gray5",
         "gray80",
-        "gray90"
+        "gray90",
+        "brand",
+        "disabled"
        ]
       },
       "from": "@epam/promo:TextMods",
@@ -101197,91 +99800,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:TextSize": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "TextSize",
-     "nameFull": "TextSize"
-    },
-    "src": "epam-promo/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a text size."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'36' | '48' | '18' | '24' | '30' | 'none'",
-     "print": [
-      "/**",
-      " * Defines a text size.",
-      " */",
-      "type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';"
-     ]
-    }
-   }
-  },
-  "@epam/promo:TooltipMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "TooltipMods",
-     "nameFull": "TooltipMods"
-    },
-    "src": "epam-promo/components/overlays/Tooltip.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "TooltipMods",
-     "print": [
-      "interface TooltipMods {",
-      "    /**",
-      "     * Tooltip color.",
-      "     * 'gray90' is deprecated and will be removed in future release, use 'gray' instead.",
-      "     * @default 'gray'",
-      "     */",
-      "    color?: 'white' | 'gray90' | 'gray' | 'red';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Tooltip color.",
-        " 'gray90' is deprecated and will be removed in future release, use 'gray' instead.",
-        " @default 'gray'"
-       ],
-       "tags": {
-        "@default": "gray"
-       }
-      },
-      "typeValue": {
-       "raw": "'red' | 'white' | 'gray' | 'gray90'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "red",
-        "white",
-        "gray",
-        "gray90"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:TooltipProps": {
    "summary": {
     "module": "@epam/promo",
@@ -101297,7 +99815,7 @@
     "typeValue": {
      "raw": "TooltipProps",
      "print": [
-      "type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;"
+      "type TooltipProps = Omit<uui.TooltipProps, 'color'> & TooltipMods;"
      ]
     },
     "props": [
@@ -101738,15 +100256,18 @@
        }
       },
       "typeValue": {
-       "raw": "'red' | 'white' | 'gray' | 'gray90'"
+       "raw": "'red' | 'white' | 'critical' | 'neutral' | 'gray' | 'gray90' | 'inverted'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "red",
         "white",
+        "critical",
+        "neutral",
         "gray",
-        "gray90"
+        "gray90",
+        "inverted"
        ]
       },
       "from": "@epam/promo:TooltipMods",
@@ -101754,6 +100275,28 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/promo:AlertMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "AlertMods",
+     "nameFull": "AlertMods"
+    },
+    "src": "epam-promo/components/overlays/Alert.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:BadgeColor": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "BadgeColor",
+     "nameFull": "BadgeColor"
+    },
+    "src": "epam-promo/components/widgets/Badge.tsx",
+    "exported": false
    }
   },
   "@epam/promo:BadgeMods": {
@@ -101764,6 +100307,22 @@
      "nameFull": "BadgeMods"
     },
     "src": "epam-promo/components/widgets/Badge.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:ButtonColor": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "ButtonColor",
+     "nameFull": "ButtonColor"
+    },
+    "src": "epam-promo/components/buttons/Button.tsx",
+    "comment": {
+     "raw": [
+      "Defines component color."
+     ]
+    },
     "exported": false
    }
   },
@@ -101789,6 +100348,28 @@
     "exported": false
    }
   },
+  "@epam/promo:DropdownContainerMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "DropdownContainerMods",
+     "nameFull": "DropdownContainerMods"
+    },
+    "src": "epam-promo/components/overlays/DropdownContainer.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:FlexRowMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "FlexRowMods",
+     "nameFull": "FlexRowMods"
+    },
+    "src": "epam-promo/components/layout/FlexItems/FlexRow.tsx",
+    "exported": false
+   }
+  },
   "@epam/promo:IconButtonMods": {
    "summary": {
     "module": "@epam/promo",
@@ -101800,6 +100381,17 @@
     "exported": false
    }
   },
+  "@epam/promo:IconContainerMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "IconContainerMods",
+     "nameFull": "IconContainerMods"
+    },
+    "src": "epam-promo/components/layout/IconContainer.tsx",
+    "exported": false
+   }
+  },
   "@epam/promo:LinkButtonMods": {
    "summary": {
     "module": "@epam/promo",
@@ -101808,6 +100400,50 @@
      "nameFull": "LinkButtonMods"
     },
     "src": "epam-promo/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "epam-promo/components/inputs/MultiSwitch.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:NotificationCardMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "NotificationCardMods",
+     "nameFull": "NotificationCardMods"
+    },
+    "src": "epam-promo/components/overlays/NotificationCard.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:RatingMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "RatingMods",
+     "nameFull": "RatingMods"
+    },
+    "src": "epam-promo/components/inputs/Rating.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:StatusIndicatorColor": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "StatusIndicatorColor",
+     "nameFull": "StatusIndicatorColor"
+    },
+    "src": "epam-promo/components/widgets/StatusIndicator.tsx",
     "exported": false
    }
   },
@@ -101830,6 +100466,28 @@
      "nameFull": "TagMods"
     },
     "src": "epam-promo/components/widgets/Tag.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:TextMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "TextMods",
+     "nameFull": "TextMods"
+    },
+    "src": "epam-promo/components/typography/Text.tsx",
+    "exported": false
+   }
+  },
+  "@epam/promo:TooltipMods": {
+   "summary": {
+    "module": "@epam/promo",
+    "typeName": {
+     "name": "TooltipMods",
+     "nameFull": "TooltipMods"
+    },
+    "src": "epam-promo/components/overlays/Tooltip.tsx",
     "exported": false
    }
   },
@@ -103034,7 +101692,7 @@
       "     * Defines component color.",
       "     * @default 'neutral'",
       "     */",
-      "    color?: uui.TagColor | 'white' | 'night100' | 'night700';",
+      "    color?: uui.TagProps['color'] | 'white' | 'night100' | 'night700';",
       "};"
      ]
     },
@@ -103718,7 +102376,7 @@
      "print": [
       "interface AlertMods {",
       "    /** @default 'sky' */",
-      "    color?: EpamPrimaryColor;",
+      "    color?: EpamPrimaryColor | uui.AlertProps['color'];",
       "}"
      ]
     },
@@ -103735,7 +102393,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error'"
       },
       "editor": {
        "type": "oneOf",
@@ -103743,7 +102401,11 @@
         "sky",
         "grass",
         "sun",
-        "fire"
+        "fire",
+        "info",
+        "success",
+        "warning",
+        "error"
        ]
       },
       "required": false
@@ -103899,7 +102561,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error'"
       },
       "editor": {
        "type": "oneOf",
@@ -103907,7 +102569,11 @@
         "sky",
         "grass",
         "sun",
-        "fire"
+        "fire",
+        "info",
+        "success",
+        "warning",
+        "error"
        ]
       },
       "from": "@epam/loveship:AlertMods",
@@ -104411,8 +103077,9 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'cobalt' | 'violet' | 'fuchsia' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night300' | 'night600' | 'critical' | 'neutral'"
       },
+      "typeValueRef": "@epam/loveship:BadgeColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -104420,6 +103087,9 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
         "cobalt",
         "violet",
         "fuchsia",
@@ -104431,7 +103101,9 @@
         "white",
         "night100",
         "night300",
-        "night600"
+        "night600",
+        "critical",
+        "neutral"
        ]
       },
       "from": "@epam/loveship:BadgeMods",
@@ -105037,8 +103709,9 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'night500' | 'gray'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'critical' | 'neutral' | 'night500' | 'gray' | 'accent' | 'primary' | 'secondary'"
       },
+      "typeValueRef": "@epam/loveship:ButtonColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -105048,8 +103721,13 @@
         "fire",
         "white",
         "night600",
+        "critical",
+        "neutral",
         "night500",
-        "gray"
+        "gray",
+        "accent",
+        "primary",
+        "secondary"
        ]
       },
       "from": "@epam/loveship:ButtonMods",
@@ -105141,132 +103819,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:ColorMod": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ColorMod",
-     "nameFull": "ColorMod"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the color modifiers of a component."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "ColorMod",
-     "print": [
-      "/**",
-      " * Defines the color modifiers of a component.",
-      " */",
-      "interface ColorMod {",
-      "    /**",
-      "     * Defines component color.",
-      "     */",
-      "    color?: EpamColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color."
-       ]
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "white",
-        "night100",
-        "night300",
-        "night600",
-        "night500",
-        "night50",
-        "night200",
-        "night400",
-        "night700",
-        "night800",
-        "night900"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:ControlShape": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ControlShape",
-     "nameFull": "ControlShape"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a control shape."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'square' | 'round'",
-     "print": [
-      "/** Defines a control shape. */",
-      "type ControlShape = 'square' | 'round';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:ControlSize": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ControlSize",
-     "nameFull": "ControlSize"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the control size."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'36' | '48' | '24' | '30' | '42' | 'none'",
-     "print": [
-      "/**",
-      " * Defines the control size.",
-      " */",
-      "type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
   "@epam/loveship:CountIndicatorProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -105356,7 +103908,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'gray'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'critical' | 'neutral' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -105365,7 +103917,12 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
         "white",
+        "critical",
+        "neutral",
         "gray"
        ]
       },
@@ -105906,118 +104463,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:EpamAdditionalColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "EpamAdditionalColor",
-     "nameFull": "EpamAdditionalColor"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines an additional colors."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'cobalt' | 'violet' | 'fuchsia'",
-     "print": [
-      "/**",
-      " * Defines an additional colors.",
-      " */",
-      "type EpamAdditionalColor = 'cobalt' | 'violet' | 'fuchsia';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:EpamColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "EpamColor",
-     "nameFull": "EpamColor"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines all types of colors: primary & additional & grayscale."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'",
-     "print": [
-      "/**",
-      " * Defines all types of colors: primary & additional & grayscale.",
-      " */",
-      "type EpamColor = EpamPrimaryColor | EpamAdditionalColor | EpamGrayscaleColor;"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:EpamGrayscaleColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "EpamGrayscaleColor",
-     "nameFull": "EpamGrayscaleColor"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a grayscale colors."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'",
-     "print": [
-      "/**",
-      " * Defines a grayscale colors.",
-      " */",
-      "type EpamGrayscaleColor = 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:EpamPrimaryColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "EpamPrimaryColor",
-     "nameFull": "EpamPrimaryColor"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines a primary colors."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sky' | 'grass' | 'sun' | 'fire'",
-     "print": [
-      "/**",
-      " * Defines a primary colors.",
-      " */",
-      "type EpamPrimaryColor = 'sky' | 'grass' | 'sun' | 'fire';"
-     ]
-    }
-   }
-  },
   "@epam/loveship:ErrorConfig": {
    "summary": {
     "module": "@epam/loveship",
@@ -106143,32 +104588,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:FillStyle": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "FillStyle",
-     "nameFull": "FillStyle"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines component fill style."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'white' | 'solid' | 'none' | 'light'",
-     "print": [
-      "/** Defines component fill style. */",
-      "type FillStyle = 'solid' | 'white' | 'light' | 'none';"
-     ]
-    }
    }
   },
   "@epam/loveship:FlexRowProps": {
@@ -106478,89 +104897,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:FontMod": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "FontMod",
-     "nameFull": "FontMod"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Represents a font customization for a text element."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "FontMod",
-     "print": [
-      "/**",
-      " * Represents a font customization for a text element.",
-      " */",
-      "interface FontMod {",
-      "    /** Defines component font. */",
-      "    font?: FontStyle;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "font",
-      "name": "font",
-      "comment": {
-       "raw": [
-        "Defines component font."
-       ]
-      },
-      "typeValue": {
-       "raw": "'sans' | 'sans-semibold' | 'sans-light'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sans",
-        "sans-semibold",
-        "sans-light"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:FontStyle": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "FontStyle",
-     "nameFull": "FontStyle"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the font styles."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sans' | 'sans-semibold' | 'sans-light'",
-     "print": [
-      "/**",
-      " * Defines the font styles.",
-      " */",
-      "type FontStyle = 'sans' | 'sans-semibold' | 'sans-light';"
-     ]
-    }
    }
   },
   "@epam/loveship:IconButtonProps": {
@@ -106994,8 +105330,9 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night300' | 'night600' | 'night500' | 'night200' | 'night400'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night300' | 'night600' | 'neutral' | 'night500' | 'secondary' | 'night200' | 'night400'"
       },
+      "typeValueRef": "@epam/loveship:IconButtonColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -107003,13 +105340,19 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
+        "error",
         "cobalt",
         "violet",
         "fuchsia",
         "white",
         "night300",
         "night600",
+        "neutral",
         "night500",
+        "secondary",
         "night200",
         "night400"
        ]
@@ -107116,7 +105459,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900' | 'carbon' | 'lavanda'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night700' | 'night50' | 'night200' | 'night400' | 'carbon' | 'lavanda' | 'night800' | 'night900'"
       },
       "editor": {
        "type": "oneOf",
@@ -107132,14 +105475,14 @@
         "night300",
         "night600",
         "night500",
+        "night700",
         "night50",
         "night200",
         "night400",
-        "night700",
-        "night800",
-        "night900",
         "carbon",
-        "lavanda"
+        "lavanda",
+        "night800",
+        "night900"
        ]
       },
       "required": false
@@ -107349,7 +105692,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900' | 'carbon' | 'lavanda'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night700' | 'night50' | 'night200' | 'night400' | 'carbon' | 'lavanda' | 'night800' | 'night900'"
       },
       "editor": {
        "type": "oneOf",
@@ -107365,14 +105708,14 @@
         "night300",
         "night600",
         "night500",
+        "night700",
         "night50",
         "night200",
         "night400",
-        "night700",
-        "night800",
-        "night900",
         "carbon",
-        "lavanda"
+        "lavanda",
+        "night800",
+        "night900"
        ]
       },
       "from": "@epam/loveship:IconContainerMods",
@@ -107879,8 +106222,9 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night200' | 'night400' | 'night800' | 'night900' | 'contrast'"
       },
+      "typeValueRef": "@epam/loveship:LinkButtonColor",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -107896,12 +106240,15 @@
         "night300",
         "night600",
         "night500",
+        "primary",
+        "secondary",
+        "night700",
         "night50",
         "night200",
         "night400",
-        "night700",
         "night800",
-        "night900"
+        "night900",
+        "contrast"
        ]
       },
       "from": "@epam/loveship:LinkButtonMods",
@@ -108126,78 +106473,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:MultiSwitchColor": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MultiSwitchColor",
-     "nameFull": "MultiSwitchColor"
-    },
-    "src": "loveship/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'sky' | 'night600' | 'gray'",
-     "print": [
-      "type MultiSwitchColor = 'sky' | 'night600' | 'gray';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:MultiSwitchMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MultiSwitchMods",
-     "nameFull": "MultiSwitchMods"
-    },
-    "src": "loveship/components/inputs/MultiSwitch.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MultiSwitchMods",
-     "print": [
-      "interface MultiSwitchMods {",
-      "    /**",
-      "     * @default 'sky'",
-      "     */",
-      "    color?: MultiSwitchColor;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "@default 'sky'"
-       ],
-       "tags": {
-        "@default": "sky"
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'night600' | 'gray'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "night600",
-        "gray"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:MultiSwitchProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -108206,6 +106481,11 @@
      "nameFull": "MultiSwitchProps<TValue>"
     },
     "src": "loveship/components/inputs/MultiSwitch.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the MultiSwitch component."
+     ]
+    },
     "exported": true
    },
    "details": {
@@ -108213,75 +106493,11 @@
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
-      "type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;"
+      "/** Represents the properties for the MultiSwitch component. */",
+      "type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "MultiSwitchItem<TValue>[]"
-      },
-      "from": "@epam/uui:MultiSwitchProps",
-      "required": true
-     },
      {
       "uid": "value",
       "name": "value",
@@ -108341,6 +106557,7 @@
       "typeValue": {
        "raw": "React.ReactNode"
       },
+      "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:ICanBeInvalid",
       "required": false
      },
@@ -108356,6 +106573,23 @@
        "raw": "{ [key: string]: ICanBeInvalid; }"
       },
       "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -108393,25 +106627,81 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Defines an array of MultiSwitchItems."
+       ]
+      },
+      "typeValue": {
+       "raw": "MultiSwitchItem<TValue>[]"
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": true
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
        "raw": [
-        "@default 'sky'"
+        "Defines component color.",
+        " @default 'sky'"
        ],
        "tags": {
         "@default": "sky"
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'night600' | 'gray'"
+       "raw": "'sky' | 'night600' | 'gray' | 'primary' | 'secondary'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "sky",
         "night600",
-        "gray"
+        "gray",
+        "primary",
+        "secondary"
        ]
       },
       "from": "@epam/loveship:MultiSwitchMods",
@@ -108437,7 +106727,7 @@
      "raw": "NotificationCardMods",
      "print": [
       "interface NotificationCardMods {",
-      "    color: EpamPrimaryColor | 'night600';",
+      "    color: EpamPrimaryColor | 'night600' | uui.NotificationCardProps['color'];",
       "}"
      ]
     },
@@ -108446,7 +106736,7 @@
       "uid": "color",
       "name": "color",
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'night600'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'night600'"
       },
       "editor": {
        "type": "oneOf",
@@ -108455,10 +106745,14 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
+        "error",
         "night600"
        ]
       },
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -108479,7 +106773,7 @@
     "typeValue": {
      "raw": "NotificationCardProps",
      "print": [
-      "type NotificationCardProps = Omit<uuiNotificationCardProps, 'color'> & NotificationCardMods;"
+      "type NotificationCardProps = Omit<uui.NotificationCardProps, 'color'> & NotificationCardMods;"
      ]
     },
     "props": [
@@ -108652,7 +106946,7 @@
       "uid": "color",
       "name": "color",
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'night600'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'night600'"
       },
       "editor": {
        "type": "oneOf",
@@ -108661,11 +106955,15 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
+        "error",
         "night600"
        ]
       },
       "from": "@epam/loveship:NotificationCardMods",
-      "required": true
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -108938,7 +107236,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night50' | 'night200' | 'night400' | 'night700' | 'night800' | 'night900'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night700' | 'night50' | 'night200' | 'night400' | 'night800' | 'night900'"
       },
       "editor": {
        "type": "oneOf",
@@ -108955,10 +107253,10 @@
         "night300",
         "night600",
         "night500",
+        "night700",
         "night50",
         "night200",
         "night400",
-        "night700",
         "night800",
         "night900"
        ]
@@ -109575,149 +107873,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:RowSize": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "RowSize",
-     "nameFull": "RowSize"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the size of a row."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'36' | '48' | '24' | '30' | '42'",
-     "print": [
-      "/**",
-      " * Defines the size of a row.",
-      " */",
-      "type RowSize = '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
-  "@epam/loveship:RowSizeMod": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "RowSizeMod",
-     "nameFull": "RowSizeMod"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines component row size modifier."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RowSizeMod",
-     "print": [
-      "/**",
-      " * Defines component row size modifier.",
-      " */",
-      "interface RowSizeMod {",
-      "    /** Defines component row size. */",
-      "    size?: RowSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component row size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:SizeMod": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "SizeMod",
-     "nameFull": "SizeMod"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Represents a size modifier."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SizeMod",
-     "print": [
-      "/**",
-      " * Represents a size modifier.",
-      " */",
-      "interface SizeMod {",
-      "    /** Defines component size. */",
-      "    size?: ControlSize;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:SliderRatingProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -110039,14 +108194,14 @@
       "uid": "snackType",
       "name": "snackType",
       "typeValue": {
-       "raw": "'success' | 'warning' | 'info' | 'danger'"
+       "raw": "'info' | 'success' | 'warning' | 'danger'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "info",
         "success",
         "warning",
-        "info",
         "danger"
        ]
       },
@@ -110308,7 +108463,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'gray'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'cobalt' | 'violet' | 'fuchsia' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'critical' | 'neutral' | 'gray'"
       },
       "editor": {
        "type": "oneOf",
@@ -110317,6 +108472,9 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
         "cobalt",
         "violet",
         "fuchsia",
@@ -110326,6 +108484,8 @@
         "cyan",
         "mint",
         "white",
+        "critical",
+        "neutral",
         "gray"
        ]
       },
@@ -110334,1147 +108494,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:TabButtonMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "TabButtonMods",
-     "nameFull": "TabButtonMods"
-    },
-    "src": "loveship/components/buttons/TabButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; }",
-     "print": [
-      "type TabButtonMods = uui.TabButtonProps & {",
-      "    theme?: 'light' | 'dark';",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '48'"
-       ],
-       "tags": {
-        "@default": "48"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "36",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "withNotify",
-      "name": "withNotify",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "target",
-      "name": "target",
-      "comment": {
-       "raw": [
-        "Controls where the link should be opened"
-       ]
-      },
-      "typeValue": {
-       "raw": "'_blank'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "_blank"
-       ]
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIconPosition",
-      "name": "dropdownIconPosition",
-      "comment": {
-       "raw": [
-        "Position of the dropdown icon ('left' of 'right')"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "count",
-      "name": "count",
-      "comment": {
-       "raw": [
-        "Count value to be placed in component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Called when component is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "iconPosition",
-      "name": "iconPosition",
-      "comment": {
-       "raw": [
-        "Position of the icon (left of right)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "onIconClick",
-      "name": "onIconClick",
-      "comment": {
-       "raw": [
-        "Click handler for the icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "clickAnalyticsEvent",
-      "name": "clickAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | { [key: string]: any; name: string; }"
-      },
-      "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "caption",
-      "name": "caption",
-      "comment": {
-       "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasCaption",
-      "required": false
-     },
-     {
-      "uid": "onClear",
-      "name": "onClear",
-      "comment": {
-       "raw": [
-        "Call to clear toggler value"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IBasicPickerToggler",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "toggleDropdownOpening",
-      "name": "toggleDropdownOpening",
-      "comment": {
-       "raw": [
-        "Called when associated dropdown should open or close"
-       ]
-      },
-      "typeValue": {
-       "raw": "(value: boolean) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isInteractedOutside",
-      "name": "isInteractedOutside",
-      "comment": {
-       "raw": [
-        "Called when component is interacted outside, to close the dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(event: Event) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "ref",
-      "name": "ref",
-      "comment": {
-       "raw": [
-        "Component's ref"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: any) => void | React.RefObject<any>"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLButtonElement | HTMLAnchorElement | null) => void | React.MutableRefObject<HTMLButtonElement | HTMLAnchorElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "clearIcon",
-      "name": "clearIcon",
-      "comment": {
-       "raw": [
-        "Icon for clear value button (usually cross)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": "theme",
-      "name": "theme",
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:AnchorRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": true
-   }
-  },
-  "@epam/loveship:TabButtonProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "TabButtonProps",
-     "nameFull": "TabButtonProps"
-    },
-    "src": "loveship/components/buttons/TabButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; link: Link; href?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>) | undefined; href?: undefined; link?: undefined; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | TabButtonMods & ICanRedirect & ButtonCoreProps & { rawProps?: (React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>) | undefined; href: string; link: Link; } & IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> & { clearIcon?: Icon | undefined; captionCX?: ClassValue; countIndicator?: React.ComponentType<IHasCaption> | undefined; } & { theme?: 'light' | 'dark' | undefined; } | never | never | never | never | never | never | never | never | never | never | never | never",
-     "print": [
-      "type TabButtonProps = uui.TabButtonProps & TabButtonMods;"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "@default '48'"
-       ],
-       "tags": {
-        "@default": "48"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "36",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "withNotify",
-      "name": "withNotify",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "target",
-      "name": "target",
-      "comment": {
-       "raw": [
-        "Controls where the link should be opened"
-       ]
-      },
-      "typeValue": {
-       "raw": "'_blank'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "_blank"
-       ]
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIconPosition",
-      "name": "dropdownIconPosition",
-      "comment": {
-       "raw": [
-        "Position of the dropdown icon ('left' of 'right')"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "count",
-      "name": "count",
-      "comment": {
-       "raw": [
-        "Count value to be placed in component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Called when component is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "iconPosition",
-      "name": "iconPosition",
-      "comment": {
-       "raw": [
-        "Position of the icon (left of right)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "onIconClick",
-      "name": "onIconClick",
-      "comment": {
-       "raw": [
-        "Click handler for the icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "clickAnalyticsEvent",
-      "name": "clickAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | { [key: string]: any; name: string; }"
-      },
-      "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "caption",
-      "name": "caption",
-      "comment": {
-       "raw": [
-        "Caption. Can be a string, or React.Elements. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasCaption",
-      "required": false
-     },
-     {
-      "uid": "onClear",
-      "name": "onClear",
-      "comment": {
-       "raw": [
-        "Call to clear toggler value"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IBasicPickerToggler",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "toggleDropdownOpening",
-      "name": "toggleDropdownOpening",
-      "comment": {
-       "raw": [
-        "Called when associated dropdown should open or close"
-       ]
-      },
-      "typeValue": {
-       "raw": "(value: boolean) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isInteractedOutside",
-      "name": "isInteractedOutside",
-      "comment": {
-       "raw": [
-        "Called when component is interacted outside, to close the dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(event: Event) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "ref",
-      "name": "ref",
-      "comment": {
-       "raw": [
-        "Component's ref"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: any) => void | React.RefObject<any>"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:HrefButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLButtonElement | HTMLAnchorElement | null) => void | React.MutableRefObject<HTMLButtonElement | HTMLAnchorElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "clearIcon",
-      "name": "clearIcon",
-      "comment": {
-       "raw": [
-        "Icon for clear value button (usually cross)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
-      "uid": "theme",
-      "name": "theme",
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "from": "@epam/loveship:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:AnchorRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": true
    }
   },
   "@epam/loveship:TagProps": {
@@ -112006,7 +109025,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night100' | 'night300' | 'night700'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night100' | 'night300' | 'critical' | 'neutral' | 'night700'"
       },
       "editor": {
        "type": "oneOf",
@@ -112015,9 +109034,14 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
         "white",
         "night100",
         "night300",
+        "critical",
+        "neutral",
         "night700"
        ]
       },
@@ -112102,7 +109126,7 @@
       "    /**",
       "     * @default 'night700'",
       "     */",
-      "    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';",
+      "    color?: 'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900' | uui.TextProps['color'];",
       "    /**",
       "     * @default 'sans'",
       "     */",
@@ -112123,7 +109147,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night300' | 'night600' | 'night500' | 'night50' | 'night400' | 'night700' | 'night800' | 'night900'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'white' | 'night300' | 'night600' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -112132,15 +109156,23 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
+        "error",
         "white",
         "night300",
         "night600",
         "night500",
+        "primary",
+        "secondary",
+        "night700",
         "night50",
         "night400",
-        "night700",
         "night800",
-        "night900"
+        "night900",
+        "brand",
+        "disabled"
        ]
       },
       "required": false
@@ -112188,7 +109220,7 @@
     "typeValue": {
      "raw": "TextProps",
      "print": [
-      "type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;"
+      "type TextProps = Omit<uui.TextProps, 'color' | 'font'> & TextMods;"
      ]
     },
     "props": [
@@ -112387,7 +109419,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night300' | 'night600' | 'night500' | 'night50' | 'night400' | 'night700' | 'night800' | 'night900'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'white' | 'night300' | 'night600' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -112396,15 +109428,23 @@
         "grass",
         "sun",
         "fire",
+        "info",
+        "success",
+        "warning",
+        "error",
         "white",
         "night300",
         "night600",
         "night500",
+        "primary",
+        "secondary",
+        "night700",
         "night50",
         "night400",
-        "night700",
         "night800",
-        "night900"
+        "night900",
+        "brand",
+        "disabled"
        ]
       },
       "from": "@epam/loveship:TextMods",
@@ -112439,34 +109479,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:TextSize": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "TextSize",
-     "nameFull": "TextSize"
-    },
-    "src": "loveship/components/types.ts",
-    "comment": {
-     "raw": [
-      "Defines the size of a text."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'",
-     "print": [
-      "/**",
-      " * Defines the size of a text.",
-      " */",
-      "type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';"
-     ]
-    }
-   }
-  },
   "@epam/loveship:TooltipMods": {
    "summary": {
     "module": "@epam/loveship",
@@ -112489,7 +109501,7 @@
       "     *",
       "     * @default 'gray'",
       "     */",
-      "    color?: 'white' | 'fire' | 'gray' | 'night900';",
+      "    color?: 'white' | 'fire' | 'gray' | 'night900' | uui.TooltipProps['color'];",
       "}"
      ]
     },
@@ -112509,15 +109521,18 @@
        }
       },
       "typeValue": {
-       "raw": "'fire' | 'white' | 'gray' | 'night900'"
+       "raw": "'fire' | 'white' | 'critical' | 'neutral' | 'gray' | 'night900' | 'inverted'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "fire",
         "white",
+        "critical",
+        "neutral",
         "gray",
-        "night900"
+        "night900",
+        "inverted"
        ]
       },
       "required": false
@@ -112541,7 +109556,7 @@
     "typeValue": {
      "raw": "TooltipProps",
      "print": [
-      "type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;"
+      "type TooltipProps = Omit<uui.TooltipProps, 'color'> & TooltipMods;"
      ]
     },
     "props": [
@@ -112983,15 +109998,18 @@
        }
       },
       "typeValue": {
-       "raw": "'fire' | 'white' | 'gray' | 'night900'"
+       "raw": "'fire' | 'white' | 'critical' | 'neutral' | 'gray' | 'night900' | 'inverted'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "fire",
         "white",
+        "critical",
+        "neutral",
         "gray",
-        "night900"
+        "night900",
+        "inverted"
        ]
       },
       "from": "@epam/loveship:TooltipMods",
@@ -112999,6 +110017,17 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/loveship:BadgeColor": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "BadgeColor",
+     "nameFull": "BadgeColor"
+    },
+    "src": "loveship/components/widgets/Badge.tsx",
+    "exported": false
    }
   },
   "@epam/loveship:BadgeMods": {
@@ -113009,6 +110038,22 @@
      "nameFull": "BadgeMods"
     },
     "src": "loveship/components/widgets/Badge.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:ButtonColor": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "ButtonColor",
+     "nameFull": "ButtonColor"
+    },
+    "src": "loveship/components/buttons/Button.tsx",
+    "comment": {
+     "raw": [
+      "Defines component color."
+     ]
+    },
     "exported": false
    }
   },
@@ -113023,6 +110068,22 @@
     "exported": false
    }
   },
+  "@epam/loveship:ColorMod": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "ColorMod",
+     "nameFull": "ColorMod"
+    },
+    "src": "loveship/components/types.ts",
+    "comment": {
+     "raw": [
+      "Defines the color modifiers of a component."
+     ]
+    },
+    "exported": false
+   }
+  },
   "@epam/loveship:CountIndicatorMods": {
    "summary": {
     "module": "@epam/loveship",
@@ -113031,6 +110092,17 @@
      "nameFull": "CountIndicatorMods"
     },
     "src": "loveship/components/widgets/CountIndicator.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:IconButtonColor": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "IconButtonColor",
+     "nameFull": "IconButtonColor"
+    },
+    "src": "loveship/components/buttons/IconButton.tsx",
     "exported": false
    }
   },
@@ -113045,6 +110117,17 @@
     "exported": false
    }
   },
+  "@epam/loveship:LinkButtonColor": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "LinkButtonColor",
+     "nameFull": "LinkButtonColor"
+    },
+    "src": "loveship/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
   "@epam/loveship:LinkButtonMods": {
    "summary": {
     "module": "@epam/loveship",
@@ -113053,6 +110136,17 @@
      "nameFull": "LinkButtonMods"
     },
     "src": "loveship/components/buttons/LinkButton.tsx",
+    "exported": false
+   }
+  },
+  "@epam/loveship:MultiSwitchMods": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "MultiSwitchMods",
+     "nameFull": "MultiSwitchMods"
+    },
+    "src": "loveship/components/inputs/MultiSwitch.tsx",
     "exported": false
    }
   },

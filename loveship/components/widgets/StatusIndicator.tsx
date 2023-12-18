@@ -7,7 +7,7 @@ type StatusIndicatorMods = {
      * Defines component color.
      * @default 'gray'
      */
-    color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
+    color?: EpamPrimaryColor | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint' | uui.StatusIndicatorProps['color'];
 };
 
 /** Represents the properties of a StatusIndicator component. */

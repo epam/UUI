@@ -6,7 +6,7 @@ export type TagMods = {
      * Defines component color.
      * @default 'neutral'
      */
-    color?: uui.TagColor | 'white' | 'night100' | 'night700';
+    color?: uui.TagProps['color'] | 'white' | 'night100' | 'night700';
 };
 
 /** Represents the properties of a Tag component. */

@@ -14,10 +14,10 @@ const mapSize = {
     18: '18',
 };
 
-export const defaultBadgeSize = '36';
-export const defaultBadgeFill = 'solid';
+const DEFAULT_SIZE = '36';
+const DEFAULT_FILL = 'solid';
 
-export type BadgeMods = {
+type BadgeMods = {
     /** Defines component color. */
     color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
     /**
@@ -40,12 +40,12 @@ export type BadgeCoreProps = ButtonProps & {
 /** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
 
-export function applyBadgeMods(mods: BadgeProps) {
+function applyBadgeMods(mods: BadgeProps) {
     return [
         'uui-badge',
         css.root,
-        css['size-' + (mods.size || defaultBadgeSize)],
-        `uui-fill-${mods.fill || defaultBadgeFill}`,
+        css['size-' + (mods.size || DEFAULT_SIZE)],
+        `uui-fill-${mods.fill || DEFAULT_FILL}`,
         mods.color && `uui-color-${mods.color}`,
         mods.indicator && 'uui-indicator',
     ];
@@ -71,14 +71,14 @@ export const Badge = withMods<BadgeCoreProps, BadgeMods>(Button, applyBadgeMods,
         });
     }
     return {
-        dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || defaultBadgeSize].foldingArrow,
-        clearIcon: systemIcons[(props.size && mapSize[props.size]) || defaultBadgeSize].clear,
+        dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].foldingArrow,
+        clearIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].clear,
         countPosition: 'left',
         countIndicator: (countIndicatorProps) => (
             <CountIndicator
                 { ...countIndicatorProps }
                 color={ null }
-                size={ mapCountIndicatorSizes[props.size || defaultBadgeSize] }
+                size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
             />
         ),
         indicator: props.indicator || false,

@@ -7,7 +7,7 @@ type TagMods = {
      * Defines component color.
      * @default 'night300'
      */
-    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700';
+    color?: EpamPrimaryColor | 'white' | 'night100' | 'night300' | 'night700' | uui.TagProps['color'];
 };
 
 /** Represents the properties of a Tag component. */

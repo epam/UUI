@@ -6,7 +6,7 @@ import { CountIndicator } from '../widgets/CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './TabButton.module.scss';
 
-export interface TabButtonMods {
+interface TabButtonMods {
     /**
      * @default '48'
      */

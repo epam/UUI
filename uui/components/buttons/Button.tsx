@@ -8,7 +8,7 @@ import css from './Button.module.scss';
 
 const defaultSize = '36';
 
-export type ButtonMods = {
+type ButtonMods = {
     /**
      * Defines component size.
      * @default '36'
@@ -32,7 +32,7 @@ export type ButtonCoreProps = Omit<uuiButtonProps, 'count'> & {};
 /** Represents the props for a Button component. */
 export type ButtonProps = ButtonMods & ButtonCoreProps;
 
-export function applyButtonMods(mods: ButtonProps) {
+function applyButtonMods(mods: ButtonProps) {
     return [
         css.root,
         'uui-button',

@@ -6,7 +6,7 @@ type MultiSwitchMods = {
      * Defines component color.
      * @default 'blue'
      */
-    color?: 'blue' | 'gray50' | 'gray';
+    color?: 'blue' | 'gray50' | 'gray' | uui.MultiSwitchProps['color'];
 };
 
 /** Represents the properties for the MultiSwitch component. */

@@ -5,7 +5,7 @@ import { ReactComponent as FilledStarIcon } from '@epam/assets/icons/common/fav-
 import { ReactComponent as EmptyStarIcon } from '@epam/assets/icons/common/fav-rates-star-24.svg';
 import { Tooltip } from '../overlays';
 
-export interface RatingMods {
+interface RatingMods {
     /**
      * @default '18'
      */
