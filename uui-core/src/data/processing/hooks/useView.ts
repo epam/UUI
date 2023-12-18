@@ -10,7 +10,7 @@ export function useView<TItem, TId, TFilter, Props extends ListViewProps<TItem, 
     const viewRef = useRef<IView<TItem, TId, TFilter, Props>>(null);
     const prevDeps = usePrevious(deps);
 
-    const isDepsChanged = prevDeps.length !== deps.length || prevDeps.some((devVal, index) => devVal !== deps[index]);
+    const isDepsChanged = prevDeps?.length !== deps.length || prevDeps?.some((devVal, index) => devVal !== deps[index]);
 
     if (viewRef.current === null || isDepsChanged) {
         viewRef.current = create();
