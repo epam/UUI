@@ -14,7 +14,7 @@ export default function ArrayDataTableExample() {
         items: demoData.featureClasses,
     }, []);
 
-    const { getListProps, getVisibleRows } = useDataRows({
+    const { listProps, visibleRows } = useDataRows({
         tree,
         ...dataRowProps,
     });
@@ -48,8 +48,8 @@ export default function ArrayDataTableExample() {
     return (
         <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
-                { ...getListProps() }
-                getRows={ getVisibleRows }
+                { ...listProps }
+                getRows={ () => visibleRows }
                 value={ dataSourceState }
                 onValueChange={ setDataSourceState }
                 columns={ productColumns }

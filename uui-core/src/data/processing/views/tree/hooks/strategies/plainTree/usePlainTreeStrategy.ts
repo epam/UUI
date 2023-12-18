@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
@@ -6,6 +6,7 @@ import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
 import { useCheckingService, useFocusService, useFoldingService, useSelectingService } from '../../services';
 import { UseTreeResult } from '../../types';
+import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 
 export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, ...restProps }: PlainTreeStrategyProps<TItem, TId, TFilter>,
@@ -17,7 +18,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     const {
         getId,
         getParentId,
-        dataSourceState,
         setDataSourceState,
         getFilter,
         getSearchFields,
@@ -28,11 +28,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         cascadeSelection,
     } = props;
 
-    useEffect(() => {
-        if (dataSourceState.topIndex === undefined || dataSourceState.visibleCount === undefined) {
-            setDataSourceState({ topIndex: dataSourceState.topIndex ?? 0, visibleCount: dataSourceState?.visibleCount ?? 20 });
-        }
-    }, [dataSourceState]);
+    const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
     const filteredTree = useFilterTree(
         { tree: fullTree, getFilter, dataSourceState },

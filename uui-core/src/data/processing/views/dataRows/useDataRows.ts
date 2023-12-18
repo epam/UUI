@@ -58,8 +58,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const lastRowIndex = useMemo(
         () => {
-            const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
             const actualCount = tree.getTotalRecursiveCount();
+            const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
             if (actualCount != null && actualCount < currentLastIndex) return actualCount;
             return currentLastIndex;
         },
@@ -177,7 +177,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         return getRowProps(item, index);
     };
 
-    const getListProps = useCallback((): DataSourceListProps => {
+    const listProps = useMemo((): DataSourceListProps => {
         const { completeFlatListRowsCount, totalCount } = getTreeRowsStats();
 
         let rowsCount;
@@ -210,36 +210,35 @@ export function useDataRows<TItem, TId, TFilter = any>(
         };
     }, [rows.length, selectAll, getTreeRowsStats, stats.hasMoreRows, lastRowIndex, isFetching]);
 
-    const getVisibleRows = useCallback(
+    const visibleRows = useMemo(
         () => {
             const from = dataSourceState.topIndex;
             const count = dataSourceState.visibleCount;
-            const visibleRows = withPinnedRows(rows.slice(from, from + count));
+            const visibleRowsWithPins = withPinnedRows(rows.slice(from, from + count));
             if (stats.hasMoreRows) {
-                const listProps = getListProps();
                 // We don't run rebuild rows on scrolling. We rather wait for the next load to happen.
                 // So there can be a case when we haven't updated rows (to add more loading rows), and view is scrolled down
                 // We need to add more loading rows in such case.
                 const lastRow = rows[rows.length - 1];
 
-                while (visibleRows.length < count && from + visibleRows.length < listProps.rowsCount) {
-                    const index = from + visibleRows.length;
+                while (visibleRowsWithPins.length < count && from + visibleRowsWithPins.length < listProps.rowsCount) {
+                    const index = from + visibleRowsWithPins.length;
                     const row = getLoadingRowProps('_loading_' + index, index);
                     row.indent = lastRow.indent;
                     row.path = lastRow.path;
                     row.depth = lastRow.depth;
-                    visibleRows.push(row);
+                    visibleRowsWithPins.push(row);
                 }
             }
 
-            return visibleRows;
+            return visibleRowsWithPins;
         },
         [
             rows,
             dataSourceState.topIndex,
             dataSourceState.visibleCount,
             withPinnedRows,
-            getListProps,
+            listProps,
             getLoadingRowProps,
         ],
     );
@@ -282,8 +281,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
     };
 
     return {
-        getListProps,
-        getVisibleRows,
+        listProps,
+        visibleRows,
         getSelectedRows,
         getSelectedRowsCount,
 

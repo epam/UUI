@@ -10,6 +10,7 @@ import { useFocusService, useFoldingService, useSelectingService } from '../../s
 import { useLoadData } from './useLoadData';
 import { useLazyCheckingService } from './useLazyCheckingService';
 import { UseTreeResult } from '../../types';
+import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 
 export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
@@ -17,11 +18,13 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };
     const {
-        api, filter, dataSourceState, backgroundReload,
+        api, filter, backgroundReload,
         isFoldedByDefault, getId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions,
         getChildCount,
     } = props;
+
+    const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
     const tree = useMemo(() => Tree.blank(props), [deps]);
     const [treeWithData, setTreeWithData] = useState(tree);
@@ -35,16 +38,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const actualRowsCount = useMemo(() => treeWithData.getTotalRecursiveCount() ?? 0, [treeWithData]);
 
-    useEffect(() => {
-        if (dataSourceState.topIndex === undefined || dataSourceState.visibleCount === undefined) {
-            setDataSourceState({ topIndex: dataSourceState.topIndex ?? 0, visibleCount: dataSourceState?.visibleCount ?? 20 });
-        }
-    }, [dataSourceState]);
-
-    const lastRowIndex = useMemo(
-        () => dataSourceState.topIndex + dataSourceState.visibleCount,
-        [dataSourceState.topIndex, dataSourceState.visibleCount],
-    );
+    const lastRowIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
 
     const areMoreRowsNeeded = useCallback((prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
         const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex

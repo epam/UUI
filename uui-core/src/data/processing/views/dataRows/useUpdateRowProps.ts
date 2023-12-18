@@ -13,5 +13,10 @@ export function useUpdateRowOptions<TItem, TId>({
         return rows;
     }
 
-    return rows.map(updateRowOptions);
+    return rows.map((row) => {
+        if (!row.isLoading) {
+            return updateRowOptions(row);
+        }
+        return row;
+    });
 }
