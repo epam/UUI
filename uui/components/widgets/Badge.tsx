@@ -1,6 +1,6 @@
 import React from 'react';
 import { devLogger, withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
+import * as uuiComponents from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
@@ -30,12 +30,11 @@ type BadgeMods = {
      * @default '36'
      */
     size?: '18' | '24' | '30' | '36' | '42' | '48';
-};
-
-export type BadgeCoreProps = ButtonProps & {
-    /** Defines a boolean flag to display an indicator. */
+    /** Pass true to display an indicator. It shows only if fill = 'outline'. */
     indicator?: boolean;
 };
+
+export type BadgeCoreProps = Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon'> & {};
 
 /** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
@@ -47,7 +46,7 @@ function applyBadgeMods(mods: BadgeProps) {
         css['size-' + (mods.size || DEFAULT_SIZE)],
         `uui-fill-${mods.fill || DEFAULT_FILL}`,
         mods.color && `uui-color-${mods.color}`,
-        mods.indicator && 'uui-indicator',
+        mods.indicator && mods.fill === 'outline' && 'uui-indicator',
     ];
 }
 
@@ -60,27 +59,31 @@ const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['siz
     48: '24',
 };
 
-export const Badge = withMods<BadgeCoreProps, BadgeMods>(Button, applyBadgeMods, (props) => {
-    if (__DEV__) {
-        devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
-            component: 'Badge',
-            propName: 'size',
-            propValue: props.size,
-            propValueUseInstead: '42',
-            condition: () => ['48'].indexOf(props.size) !== -1,
-        });
-    }
-    return {
-        dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].foldingArrow,
-        clearIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].clear,
-        countPosition: 'left',
-        countIndicator: (countIndicatorProps) => (
-            <CountIndicator
-                { ...countIndicatorProps }
-                color={ null }
-                size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
-            />
-        ),
-        indicator: props.indicator || false,
-    };
-});
+export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon'>, BadgeProps>(
+    uuiComponents.Button as any,
+    applyBadgeMods,
+    (props) => {
+        if (__DEV__) {
+            devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
+                component: 'Badge',
+                propName: 'size',
+                propValue: props.size,
+                propValueUseInstead: '42',
+                condition: () => ['48'].indexOf(props.size) !== -1,
+            });
+        }
+        return {
+            dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].foldingArrow,
+            clearIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].clear,
+            countPosition: 'left',
+            countIndicator: (countIndicatorProps) => (
+                <CountIndicator
+                    { ...countIndicatorProps }
+                    color={ null }
+                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                />
+            ),
+            indicator: props.indicator || false,
+        };
+    },
+);
