@@ -5,6 +5,7 @@ import { IconContainer } from '@epam/uui-components';
 import { ReactComponent as GlobalMenuIcon } from '../../../icons/global_menu.svg';
 import css from './GlobalMenu.module.scss';
 
+/** Represents the properties of the GlobalMenu component. */
 export interface GlobalMenuProps extends IAdaptiveItem, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLButtonElement>> {}
 
 export const GlobalMenu = React.forwardRef<HTMLButtonElement, GlobalMenuProps>((props, ref) => (

@@ -2,9 +2,7 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import { cx } from '@epam/uui-core';
-import {
-    MonthSelection, YearSelection, DatePickerBodyBase, DatePickerBodyBaseProps, valueFormat, i18n,
-} from '@epam/uui-components';
+import { MonthSelection, YearSelection, DatePickerBodyBase, DatePickerBodyBaseProps, valueFormat, i18n } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
@@ -12,7 +10,13 @@ import css from './DatePickerBody.module.scss';
 dayjs.extend(updateLocale);
 
 export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
+    /*
+    * A pure function that gets array of classes for styling a day for each day.
+    */
     getDayCX?(day: Dayjs): string[];
+    /**
+     * A pure function that gets whether day is holiday for each day.
+     */
     isHoliday?: (day: Dayjs) => boolean;
 }
 

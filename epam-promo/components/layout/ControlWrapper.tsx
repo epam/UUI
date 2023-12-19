@@ -5,6 +5,7 @@ import * as types from '../types';
 import css from './ControlWrapper.module.scss';
 
 interface ControlWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasChildren {
+    /** Defines component size. */
     size: types.ControlSize;
 }
 

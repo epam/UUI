@@ -66,14 +66,26 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
 };
 
 export interface RangeDatePickerValue {
+    /*
+    * Defines DatePicker value 'from'.
+    */
     from: string | null;
+    /*
+    * Defines DatePicker value 'to'.
+    */
     to: string | null;
 }
 
 interface RangeDatePickerBodyState {
+    /*
+    * Defines which part is active, 'from' or 'to'.
+    */
     activePart: pickerPart;
 }
 
+/*
+* Defines DatePicker input type, 'from' or 'to'.
+*/
 type InputType = 'from' | 'to';
 
 export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, IEditable<PickerBodyValue<T>> {

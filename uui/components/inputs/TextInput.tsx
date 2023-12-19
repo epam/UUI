@@ -5,8 +5,8 @@ import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './TextInput.module.scss';
 
-const defaultSize = '36';
-const defaultMode = EditMode.FORM;
+const DEFAULT_SIZE = '36';
+const DEFAULT_MODE = EditMode.FORM;
 
 type TextInputMods = IHasEditMode & {
     /**
@@ -19,8 +19,8 @@ type TextInputMods = IHasEditMode & {
 function applyTextInputMods(mods: TextInputMods) {
     return [
         css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
+        css['size-' + (mods.size || DEFAULT_SIZE)],
+        css['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }
 
@@ -31,9 +31,9 @@ export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
 export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
 export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, (props) => ({
-    acceptIcon: systemIcons[props.size || defaultSize].accept,
-    cancelIcon: systemIcons[props.size || defaultSize].clear,
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+    acceptIcon: systemIcons[props.size || DEFAULT_SIZE].accept,
+    cancelIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
+    dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
 }));
 
 export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
@@ -46,7 +46,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             { ...props }
             render={ (iEditable) => (
                 <TextInput
-                    icon={ systemIcons[props.size || defaultSize].search }
+                    icon={ systemIcons[props.size || DEFAULT_SIZE].search }
                     onCancel={ !!props.value
                         // In a lot of places, it is required to check if a clicked element is a part of some other element.
                         // Usually, those are global click event handlers. To allow that logic to work correctly, it is necessary

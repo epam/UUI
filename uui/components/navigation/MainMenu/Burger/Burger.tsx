@@ -5,7 +5,7 @@ import css from './Burger.module.scss';
 import { ReactComponent as BurgerIcon } from '../../../../icons/burger.svg';
 import { ReactComponent as CrossIcon } from '../../../../icons/burger-close.svg';
 
-export interface BurgerMods {}
+interface BurgerMods {}
 
 function applyBurgerMods() {
     return [cx(css.root, 'uui-burger')];
