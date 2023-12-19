@@ -191,7 +191,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             // on filters change skeleton should not appear
             (completeReset && shouldShowPlacehodlers)
             || this.shouldRebuildRows(prevValue, this.value)
-            || !isEqual(this.props.rowOptions, prevProps?.rowOptions)
             || isFoldingChanged
             || moreRowsNeeded
         ) {
