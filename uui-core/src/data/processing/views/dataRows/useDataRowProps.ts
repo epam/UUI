@@ -41,7 +41,6 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         const fullRowOptions = { ...rowOptions, ...externalRowOptions };
 
         const estimatedChildrenCount = getEstimatedChildrenCount(row.id);
-
         row.isFoldable = false;
         if (!isFlattenSearch && estimatedChildrenCount > 0) {
             row.isFoldable = true;

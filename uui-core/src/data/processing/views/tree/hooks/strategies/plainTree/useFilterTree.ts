@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 import { ITree } from '../../..';
-import isEqual from 'lodash.isequal';
 
 export type UseFilterTreeProps<TItem, TId, TFilter = any> = {
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;
@@ -16,14 +15,14 @@ export function useFilterTree<TItem, TId, TFilter = any>(
 ) {
     const prevTree = usePrevious(tree);
     const prevFilter = usePrevious(filter);
+    const prevDeps = usePrevious(deps);
 
-    const [filteredTree, setFilteredTree] = useState<ITree<TItem, TId>>(tree.filter({ filter, getFilter }));
+    const filteredTreeRef = useRef(null);
 
-    useEffect(() => {
-        if (prevTree !== tree || !isEqual(filter, prevFilter)) {
-            setFilteredTree(tree.filter({ filter, getFilter }));
+    return useMemo(() => {
+        if (filteredTreeRef.current === null || prevTree !== tree || filter !== prevFilter || prevDeps !== deps) {
+            filteredTreeRef.current = tree.filter({ filter, getFilter });
         }
+        return filteredTreeRef.current;
     }, [tree, filter, ...deps]);
-
-    return filteredTree;
 }

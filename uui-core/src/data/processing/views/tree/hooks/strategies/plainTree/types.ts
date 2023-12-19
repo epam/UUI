@@ -5,7 +5,7 @@ import { CommonTreeStrategyProps } from '../types';
 
 export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonTreeStrategyProps<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.plain,
-    items: TItem[],
+    items: TItem[] | Record<string | number | symbol, TItem>,
     tree?: ITree<TItem, TId>,
 
     getSearchFields?(item: TItem): string[];
