@@ -124,7 +124,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     const selectingService = useSelectingService<TItem, TId, TFilter>({ setDataSourceState });
 
     const getTreeRowsStats = useCallback(() => {
-        const rootInfo = tree.getNodeInfo(undefined);
+        const rootInfo = treeWithData.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
         let completeFlatListRowsCount = undefined;
         if (!getChildCount && rootCount != null) {
@@ -133,9 +133,9 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
         return {
             completeFlatListRowsCount,
-            totalCount: rootInfo.totalCount ?? tree.getTotalRecursiveCount() ?? 0,
+            totalCount: rootInfo.totalCount ?? treeWithData.getTotalRecursiveCount() ?? 0,
         };
-    }, [getChildCount, tree]);
+    }, [getChildCount, treeWithData]);
 
     return {
         tree: treeWithData,
