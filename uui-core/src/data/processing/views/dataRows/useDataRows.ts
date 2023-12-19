@@ -168,10 +168,13 @@ export function useDataRows<TItem, TId, TFilter = any>(
     });
 
     const getById = (id: TId, index: number) => {
-        // if originalTree is not created, but blank tree is defined, get item from it
         const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) {
             return getUnknownRowProps(id, index, []);
+        }
+
+        if (item === null) {
+            return getLoadingRowProps(id, index, []);
         }
 
         return getRowProps(item, index);
@@ -285,6 +288,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         visibleRows,
         getSelectedRows,
         getSelectedRowsCount,
+        getById,
 
         selectAll,
     };

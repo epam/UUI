@@ -2,15 +2,18 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cx from 'classnames';
 import { Person } from '@epam/uui-docs';
 import { FlexCell } from '@epam/uui-components';
-import { DataRowOptions, LazyDataSourceApi, useTableState, useList } from '@epam/uui-core';
+import { DataRowOptions, LazyDataSourceApi, useTableState, useTree, useDataRows } from '@epam/uui-core';
 import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/promo';
 import { svc } from '../../services';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import css from './DemoTablePaged.module.scss';
+import { InfoSidebarPanel } from './InfoSidebarPanel';
 
 export function DemoTablePaged() {
     const filters = useMemo(getFilters, []);
+    const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
+    const closeInfoPanel = useCallback(() => setIsInfoPanelOpened(false), []);
 
     const { tableState, setTableState } = useTableState<Person>({
         columns: personColumns,
@@ -20,15 +23,13 @@ export function DemoTablePaged() {
         setTableState({ ...tableState, page: 1, pageSize: 100 });
     }, []);
 
-    const [totalCount, setTotalCount] = useState(0);
-
     const api: LazyDataSourceApi<Person, number, Person> = useCallback(async (request) => {
         const result = await svc.api.demo.personsPaged({
             filter: request.filter,
             page: request.page,
             pageSize: request.pageSize,
         });
-        setTotalCount(result.totalCount);
+
         result.count = result.items.length;
         result.totalCount = result.items.length;
         result.from = 0;
@@ -36,63 +37,77 @@ export function DemoTablePaged() {
     }, []);
 
     const applyFilter = useCallback(() => {
-        setTableState({ ...tableState, scrollTo: { index: 0 } });
-    }, [tableState]);
+        setTableState((state) => ({ ...state, scrollTo: { index: 0 } }));
+    }, [setTableState]);
 
     // applying filter after parsing initial filter data from url
     useEffect(() => {
         applyFilter();
-    }, []);
+    }, [applyFilter]);
 
     const rowOptions: DataRowOptions<Person, number> = {
         checkbox: { isVisible: true },
         isSelectable: true,
         onClick(rowProps) {
             rowProps.onSelect(rowProps);
+            setIsInfoPanelOpened(true);
         },
     };
 
-    const { rows, listProps } = useList(
+    const { tree, reload, ...restProps } = useTree(
         {
             type: 'lazy',
-            listState: tableState,
-            setListState: setTableState,
+            dataSourceState: tableState,
+            setDataSourceState: setTableState,
             api,
             rowOptions,
             getId: ({ id }) => id,
             isFoldedByDefault: () => true,
             backgroundReload: true,
         },
-        [api],
+        [],
     );
+
+    const { visibleRows, listProps, getById } = useDataRows({
+        tree, ...restProps,
+    });
+
+    const panelInfo = tableState.selectedId && (getById(tableState.selectedId, 0).value);
 
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>
-            <DataTable
-                headerTextCase="upper"
-                getRows={ () => rows }
-                columns={ personColumns }
-                filters={ filters }
-                showColumnsConfig
-                value={ tableState }
-                onValueChange={ setTableState }
-                allowColumnsResizing
-                { ...listProps }
-            />
-
-            <FlexRow size="36" padding="12" background="gray5">
-                <FlexCell width="auto">
-                    <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply } />
-                </FlexCell>
-                <FlexSpacer />
-                <Paginator
-                    value={ tableState.page }
-                    onValueChange={ (page: number) => setTableState({ ...tableState, page, scrollTo: { index: 0 } }) }
-                    totalPages={ Math.ceil(totalCount / tableState.pageSize) }
-                    size="30"
+            <div className={ cx(css.wrapper) }>
+                <DataTable
+                    headerTextCase="upper"
+                    getRows={ () => visibleRows }
+                    columns={ personColumns }
+                    filters={ filters }
+                    showColumnsConfig
+                    value={ tableState }
+                    onValueChange={ setTableState }
+                    allowColumnsResizing
+                    { ...listProps }
                 />
-                <FlexSpacer />
-            </FlexRow>
+                <FlexRow size="36" padding="12" background="gray5">
+                    <FlexCell width="auto">
+                        <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply } />
+                    </FlexCell>
+                    <FlexSpacer />
+                    <Paginator
+                        value={ tableState.page }
+                        onValueChange={ (page: number) => setTableState({ ...tableState, page, scrollTo: { index: 0 } }) }
+                        totalPages={ Math.ceil(listProps.totalCount / tableState.pageSize) }
+                        size="30"
+                    />
+                    <FlexSpacer />
+                </FlexRow>
+            </div>
+            <InfoSidebarPanel
+                data={ panelInfo }
+                isVisible={ isInfoPanelOpened }
+                onClose={ closeInfoPanel }
+                onSave={ async () => { reload(); } }
+            />
         </div>
     );
 }
