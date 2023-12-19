@@ -21,7 +21,7 @@ export function weekCount(displayedDate: Dayjs) {
     return arrayToMatrix(days, 7).length;
 }
 
-const uuiRangeDatePickerBody = {
+export const uuiRangeDatePickerBody = {
     inRange: 'uui-range-datepicker-in-range',
     firstDayInRangeWrapper: 'uui-range-datepicker-first-day-in-range-wrapper',
     lastDayInRangeWrapper: 'uui-range-datepicker-last-day-in-range-wrapper',
@@ -33,7 +33,7 @@ export type PickerPart = 'from' | 'to' | null;
 export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
         name: 'Today',
-        getRange: () => ({ from: dayjs().toString(), to: '', order: 1 }),
+        getRange: () => ({ from: dayjs().toString(), to: undefined, order: 1 }),
     },
     thisWeek: {
         name: 'This Week',
@@ -109,9 +109,9 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     getRange(selectedDate: string) {
         const newRange: RangeDatePickerValue = { from: null, to: null };
-        const currentRange = this.props.value.selectedDate;
+        const currentRange = this.props.value.selectedDate || { from: null, to: null };
 
-        if (currentRange && (!this.props.filter || this.props.filter(dayjs(selectedDate)))) {
+        if (!this.props.filter || this.props.filter(dayjs(selectedDate))) {
             if (this.props.focusPart === 'from') {
                 if (dayjs(selectedDate).valueOf() <= dayjs(currentRange.to).valueOf()) {
                     newRange.from = selectedDate;
@@ -170,9 +170,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
     };
 
     getToValue = (): PickerBodyValue<string> => {
-        // if (!this.props.value) return;
         return {
-            // ...this.props.value,
             view: this.state.activePart === 'to' ? this.props.value.view : 'DAY_SELECTION',
             displayedDate: this.props.value.displayedDate.add(1, 'month'),
             selectedDate: this.props.value.selectedDate?.from || null,
