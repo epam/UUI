@@ -606,9 +606,9 @@
             }
 
             &.uui-fill-ghost {
-                --uui-btn-border: transparent;
-                --uui-btn-border-hover: color-mix(in srgb, var(--uui-neutral-0) 20%, transparent);
-                --uui-btn-border-active: color-mix(in srgb, var(--uui-neutral-0) 30%, transparent);
+                --uui-btn-border: var(--uui-btn-bg);
+                --uui-btn-border-hover: var(--uui-btn-bg);
+                --uui-btn-border-active: var(--uui-btn-bg);
             }
 
             &.uui-fill-outline, &.uui-fill-solid {
