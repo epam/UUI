@@ -24,7 +24,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         sortBy,
         rowOptions,
         getRowOptions,
-        getChildCount,
         cascadeSelection,
     } = props;
 
@@ -70,7 +69,14 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             completeFlatListRowsCount: undefined,
             totalCount: rootInfo.totalCount ?? tree.getTotalRecursiveCount() ?? 0,
         };
-    }, [getChildCount, tree]);
+    }, [tree]);
+
+    const getChildCount = useCallback((item: TItem): number | undefined => {
+        if (props.getChildCount) {
+            return props.getChildCount(item) ?? tree.getChildrenByParentId(getId(item)).length;
+        }
+        return tree.getChildrenByParentId(getId(item)).length;
+    }, [tree, getId, props.getChildCount]);
 
     return useMemo(
         () => ({

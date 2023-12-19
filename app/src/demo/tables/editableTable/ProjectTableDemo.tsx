@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -116,17 +116,17 @@ export function ProjectTableDemo() {
         [],
     );
 
-    const { rows, listProps } = useList(
+    const { tree, ...restProps } = useTree(
         {
-            type: 'array',
-            listState: tableState,
-            setListState: setTableState,
-            items: Object.values(value.items),
+            type: 'plain',
+            dataSourceState: tableState,
+            setDataSourceState: setTableState,
+            items: value.items,
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
-                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {
@@ -137,8 +137,12 @@ export function ProjectTableDemo() {
                 },
             }),
         },
-        [],
+        [value.items],
     );
+    
+    const { visibleRows, listProps } = useDataRows({
+        tree, ...restProps,
+    });
 
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
@@ -153,7 +157,7 @@ export function ProjectTableDemo() {
     }, [tableState.selectedId, value.items]);
 
     const deleteSelectedItem = useCallback(() => {
-        const prevRows = [...rows];
+        const prevRows = [...visibleRows];
         deleteTask(selectedItem);
         if (selectedItem !== undefined) {
             const index = prevRows.findIndex((task) => task.id === selectedItem.id);
@@ -166,7 +170,7 @@ export function ProjectTableDemo() {
                 selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
             }));
         }
-    }, [deleteTask, rows, selectedItem, setTableState]);
+    }, [deleteTask, visibleRows, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
         if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'Enter') {
@@ -250,7 +254,7 @@ export function ProjectTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ () => rows }
+                getRows={ () => visibleRows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }

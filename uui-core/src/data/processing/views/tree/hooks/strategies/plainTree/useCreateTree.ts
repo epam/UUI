@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
-import { ITree, Tree } from '../../..';
+import { Tree } from '../../..';
 
 export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeStrategyProps<TItem, TId, TFilter>, deps: any[]) {
-    const [tree, setTree] = useState<ITree<TItem, TId>>(Tree.blank(props));
+    const { items } = props;
 
-    useEffect(() => {
-        if (props.items) {
-            setTree(Tree.create(props, props.items));
-        }
-    }, [props.items, ...deps]);
-
-    return tree;
+    return useMemo(() => {
+        return Tree.create(props, Array.isArray(items) ? items : Object.values(items));
+    }, [items, ...deps]);
 }

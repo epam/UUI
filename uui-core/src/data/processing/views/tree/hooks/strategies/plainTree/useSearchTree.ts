@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 import { ITree } from '../../..';
-import isEqual from 'lodash.isequal';
 
 export type UseSearchTreeProps<TItem, TId, TFilter = any> = {
     getSearchFields?: (item: TItem) => string[];
@@ -22,16 +21,13 @@ export function useSearchTree<TItem, TId, TFilter = any>(
 ) {
     const prevTree = usePrevious(tree);
     const prevSearch = usePrevious(search);
+    const prevDeps = usePrevious(deps);
+    const searchTreeRef = useRef(null);
 
-    const [searchTree, setSearchTree] = useState<ITree<TItem, TId>>(
-        tree.search({ search, getSearchFields, sortSearchByRelevance }),
-    );
-
-    useEffect(() => {
-        if (!isEqual(search, prevSearch) || prevTree !== tree) {
-            setSearchTree(tree.search({ search, getSearchFields, sortSearchByRelevance }));
+    return useMemo(() => {
+        if (searchTreeRef.current === null || prevTree !== tree || search !== prevSearch || prevDeps !== deps) {
+            searchTreeRef.current = tree.search({ search, getSearchFields, sortSearchByRelevance });
         }
+        return searchTreeRef.current;
     }, [tree, search, ...deps]);
-
-    return searchTree;
 }
