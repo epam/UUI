@@ -82,7 +82,7 @@ class UuiLogger {
         if (shouldWarn) {
             const comp = component ? `(${component}) ` : '';
             const instead = propValueUseInstead ? `Please use ${propValueUseInstead} value instead.` : '';
-            this.warn(`${comp}The ${propValue} value of ${String(propName)} is deprecated and will be removed in future versions. ${instead}`);
+            this.warn(`${comp}The ${propValue || 'default'} value of ${String(propName)} is deprecated and will be removed in future versions. ${instead}`);
         }
     };
 }
