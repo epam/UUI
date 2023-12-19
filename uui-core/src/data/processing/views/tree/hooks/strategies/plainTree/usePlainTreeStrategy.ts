@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { PlainTreeStrategyProps } from './types';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
@@ -13,7 +13,13 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { ...restProps, sortSearchByRelevance };
-    const fullTree = useCreateTree(props, deps);
+    const [trigger, setTrigger] = useState(false);
+
+    const resetTree = useCallback(() => {
+        setTrigger((currentTrigger) => !currentTrigger);
+    }, [setTrigger]);
+
+    const fullTree = useCreateTree(props, [...deps, trigger]);
 
     const {
         getId,
@@ -78,6 +84,10 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         return tree.getChildrenByParentId(getId(item)).length;
     }, [tree, getId, props.getChildCount]);
 
+    const reload = useCallback(() => {
+        resetTree();
+    }, [resetTree]);
+
     return useMemo(
         () => ({
             tree,
@@ -88,6 +98,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getId,
             dataSourceState,
             getTreeRowsStats,
+            reload,
             ...checkingService,
             ...selectingService,
             ...focusService,

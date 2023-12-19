@@ -26,7 +26,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
-    const tree = useMemo(() => Tree.blank(props), [deps]);
+    const tree = useMemo(() => Tree.blank(props), [...deps]);
     const [treeWithData, setTreeWithData] = useState(tree);
     const [fullTree, setFullTree] = useState(treeWithData);
 
@@ -35,6 +35,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const [isFetching, setIsFetching] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isForceReload, setIsForceReload] = useState(false);
 
     const actualRowsCount = useMemo(() => treeWithData.getTotalRecursiveCount() ?? 0, [treeWithData]);
 
@@ -49,6 +50,10 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const foldingService = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
 
+    useEffect(() => {
+        setTreeWithData(tree);
+    }, [tree]);
+
     const { loadMissing } = useLoadData({
         api,
         filter,
@@ -62,7 +67,8 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     useEffect(() => {
         let completeReset = false;
         const shouldReloadData = !isEqual(prevFilter, filter)
-            || shouldRebuildTree(prevDataSourceState, dataSourceState);
+            || shouldRebuildTree(prevDataSourceState, dataSourceState)
+            || isForceReload;
 
         let currentTree = treeWithData;
         if (prevDataSourceState == null || shouldReloadData) {
@@ -74,8 +80,8 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
             completeReset = true;
         }
         const isFoldingChanged = !prevDataSourceState || dataSourceState.folded !== prevDataSourceState.folded;
-        const shouldShowPlacehodlers = !shouldReloadData
-            || (shouldReloadData && !backgroundReload);
+        const shouldShowPlacehodlers = (!shouldReloadData
+            || (shouldReloadData && !backgroundReload)) && !isForceReload;
 
         const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
         if ((completeReset && shouldShowPlacehodlers) || isFoldingChanged || moreRowsNeeded) {
@@ -96,9 +102,13 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
                 }).finally(() => {
                     setIsFetching(false);
                     setIsLoading(false);
+                    if (isForceReload === true) {
+                        setIsForceReload(false);
+                    }
                 });
         }
     }, [
+        isForceReload,
         dataSourceState,
         filter,
         treeWithData,
@@ -137,6 +147,10 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         };
     }, [getChildCount, treeWithData]);
 
+    const reload = useCallback(() => {
+        setIsForceReload(true);
+    }, [props, setTreeWithData]);
+
     return {
         tree: treeWithData,
         dataSourceState,
@@ -146,6 +160,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         getRowOptions,
         rowOptions,
         getChildCount,
+        reload,
         flattenSearchResults,
         ...checkingService,
         ...foldingService,

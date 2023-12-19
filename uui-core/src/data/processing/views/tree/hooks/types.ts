@@ -37,4 +37,6 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
 
     isFetching?: boolean;
     isLoading?: boolean;
+
+    reload(): void;
 }
