@@ -3,8 +3,14 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as SvgTriangle } from '../../../../icons/triangle.svg';
 import css from './BurgerButton.module.scss';
 
-export interface BurgerButtonMods extends IHasIcon, IDropdownToggler {
+interface BurgerButtonMods extends IHasIcon, IDropdownToggler {
+    /*
+    * Defines component type.
+    */
     type?: 'primary' | 'secondary';
+    /*
+    * Defines components' indent.
+    */
     indentLevel?: number;
 }
 

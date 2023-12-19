@@ -1,4 +1,4 @@
-import { Slider as UuiSlider, SliderBaseProps } from '@epam/uui-components';
+import { Slider as uuiSlider, SliderBaseProps } from '@epam/uui-components';
 import css from './Slider.module.scss';
 import { withMods } from '@epam/uui-core';
 
@@ -9,4 +9,4 @@ function applySliderMods() {
     return [css.root, 'uui-color-neutral'];
 }
 
-export const Slider = withMods<SliderBaseProps<number>, SliderMods>(UuiSlider, applySliderMods);
+export const Slider = withMods<SliderBaseProps<number>, SliderMods>(uuiSlider, applySliderMods);
