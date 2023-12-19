@@ -218,8 +218,8 @@
         --uui-badge-caption-hover: var(--uui-color-contrast);
 
         :global(.uui-count_indicator) {
-            --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
-            --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+            --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 10%, transparent);
+            --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 50%, transparent);
         }
     }
 
