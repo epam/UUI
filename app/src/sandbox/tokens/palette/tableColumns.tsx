@@ -1,33 +1,46 @@
-import { DataColumnProps } from '@epam/uui-core';
-import { IThemeVar } from './types/sharedTypes';
+import { DataColumnProps, SortingOption } from '@epam/uui-core';
 import { Text } from '@epam/uui';
 import { ThemeVarExample } from './components/themeVarExample/themeVarExample';
 import React from 'react';
 import { TruncText } from './components/truncText/truncText';
+import { IThemeVarUI } from './types/types';
+import { ThemeVarInfo } from './components/themeVarInfo/themeVarInfo';
+
+enum COL_NAMES {
+    path = 'path',
+    cssVar = 'cssVar',
+    description = 'description',
+    useCases = 'useCases',
+    actualValue = 'actualValue',
+    expectedValue = 'expectedValue',
+    status = 'status'
+}
 
 const WIDTH = {
-    path: 200, // E.g: core/surfaces/surface-main
-    cssVar: 200, // E.g.: --uui-surface-main
-    description: 100, // Some text
-    useCases: 100, // Some text
+    [COL_NAMES.path]: 200, // E.g: core/surfaces/surface-main
+    [COL_NAMES.cssVar]: 200, // E.g.: --uui-surface-main
+    [COL_NAMES.description]: 100, // Some text
+    [COL_NAMES.useCases]: 120, // Some text
     //
-    /**
-     * Actual:
-     *  1) rectangle (background-color: var(--uui-surface-main))
-     *  2) calculated value (e.g.: #AF0890)
-     * Expected:
-     *  1) rectangle (background-color: #AF0890)
-     *  2) expected value (e.g.: #AF0890)
-     *  3) cssVar if it exists (e.g.: --uui-neutral-0)
-     *  4) Warning icon if actual !== expected
-     */
-    example: 200,
+    [COL_NAMES.actualValue]: 95,
+    [COL_NAMES.expectedValue]: 95,
+    [COL_NAMES.status]: 100,
 };
 
-export function getColumns(): DataColumnProps<IThemeVar>[] {
+export function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
+    const key = sorting.field as COL_NAMES;
+    if (key === COL_NAMES.status) {
+        const hasErrors = item.valueCurrent.errors.length > 0;
+        return String(hasErrors);
+    }
+
+    return item[key as keyof IThemeVarUI];
+}
+
+export function getColumns(): DataColumnProps<IThemeVarUI>[] {
     return [
         {
-            key: 'path',
+            key: COL_NAMES.path,
             caption: 'Path',
             render: (item) => {
                 return (
@@ -38,7 +51,7 @@ export function getColumns(): DataColumnProps<IThemeVar>[] {
             isSortable: true,
         },
         {
-            key: 'cssVar',
+            key: COL_NAMES.cssVar,
             caption: 'Name',
             render: (item) => {
                 return (
@@ -49,18 +62,38 @@ export function getColumns(): DataColumnProps<IThemeVar>[] {
             isSortable: true,
         },
         {
-            key: 'example',
-            caption: 'Example (actual/expected)',
+            key: COL_NAMES.actualValue,
+            caption: 'Actual',
             render: (item) => {
                 return (
-                    <ThemeVarExample themeVar={ item } />
+                    <ThemeVarExample themeVar={ item } mode="showActual" />
                 );
             },
-            width: WIDTH.example,
-            grow: 1,
+            width: WIDTH.actualValue,
         },
         {
-            key: 'description',
+            key: COL_NAMES.expectedValue,
+            caption: 'Expected',
+            render: (item) => {
+                return (
+                    <ThemeVarExample themeVar={ item } mode="showExpected" />
+                );
+            },
+            width: WIDTH.expectedValue,
+        },
+        {
+            key: COL_NAMES.status,
+            caption: 'Status',
+            render: (item) => {
+                return (
+                    <ThemeVarInfo themeVar={ item } />
+                );
+            },
+            width: WIDTH.status,
+            isSortable: true,
+        },
+        {
+            key: COL_NAMES.description,
             caption: 'Description',
             render: (item) => {
                 return (
@@ -73,7 +106,7 @@ export function getColumns(): DataColumnProps<IThemeVar>[] {
             grow: 1,
         },
         {
-            key: 'useCases',
+            key: COL_NAMES.useCases,
             caption: 'Use Cases',
             render: (item) => {
                 return (
@@ -83,7 +116,6 @@ export function getColumns(): DataColumnProps<IThemeVar>[] {
                 );
             },
             width: WIDTH.useCases,
-            grow: 1,
         },
     ];
 }
