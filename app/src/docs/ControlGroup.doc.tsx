@@ -3,8 +3,10 @@ import * as uuiComponents from '@epam/uui-components';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
@@ -16,18 +18,30 @@ export class ControlGroupDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui-components:ControlGroupProps', component: uui.ControlGroup },
             [TSkin.Loveship]: { type: '@epam/uui-components:ControlGroupProps', component: loveship.ControlGroup },
             [TSkin.Promo]: { type: '@epam/uui-components:ControlGroupProps', component: promo.ControlGroup },
+            [TSkin.Electric]: { type: '@epam/uui-components:ControlGroupProps', component: electric.ControlGroup },
         },
         doc: (doc: DocBuilder<uuiComponents.ControlGroupProps>) => {
             doc.merge('children', {
                 examples: [
                     {
-                        name: '<Button/>, <Button/>, <Button/>',
+                        name: 'Preset',
                         value: (
-                            <React.Fragment>
-                                <uui.Button color="accent" fill="solid" caption="Submit" onClick={ () => {} } />
-                                <uui.Button caption="Help" onClick={ () => {} } />
-                                <uui.Button fill="none" color="secondary" caption="Cancel" onClick={ () => {} } />
-                            </React.Fragment>
+                            <uui.ControlGroup>
+                                <uui.Button size="36" caption="Preset" fill="none" onClick={ () => {} } />
+                                <uui.Dropdown
+                                    renderBody={ () => {
+                                        return (
+                                            <uui.Panel background="surface-main" shadow={ true }>
+                                                <uui.DropdownMenuButton caption="Duplicate" onClick={ () => {} } />
+                                                <uui.DropdownMenuButton caption="Rename" onClick={ () => {} } />
+                                                <uui.DropdownMenuButton caption="Delete" onClick={ () => {} } />
+                                            </uui.Panel>
+                                        );
+                                    } }
+                                    renderTarget={ (props) => <uui.Button { ...props } fill="none" icon={ menuIcon } size="36" isDropdown={ false } /> }
+                                    placement="bottom-end"
+                                />
+                            </uui.ControlGroup>
                         ),
                         isDefault: true,
                     }, {

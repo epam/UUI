@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import {
     EditableDocContent, DocExample, BaseDocsBlock,
@@ -14,6 +15,7 @@ export class TooltipDoc extends BaseDocsBlock {
         name: 'Tooltip',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TooltipProps', component: uui.Tooltip },
+            [TSkin.Electric]: { type: '@epam/uui:TooltipProps', component: electric.Tooltip },
             [TSkin.Loveship]: { type: '@epam/loveship:TooltipProps', component: loveship.Tooltip },
             [TSkin.Promo]: { type: '@epam/promo:TooltipProps', component: promo.Tooltip },
         },

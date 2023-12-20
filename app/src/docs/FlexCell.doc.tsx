@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
 
@@ -12,6 +13,7 @@ export class FlexCellDoc extends BaseDocsBlock {
         name: 'FlexCell',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:FlexCellProps', component: uui.FlexCell },
+            [TSkin.Electric]: { type: '@epam/uui:FlexCellProps', component: electric.FlexCell },
             [TSkin.Loveship]: { type: '@epam/uui:FlexCellProps', component: loveship.FlexCell },
             [TSkin.Promo]: { type: '@epam/uui:FlexCellProps', component: promo.FlexCell },
         },
