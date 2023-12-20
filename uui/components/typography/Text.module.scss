@@ -38,7 +38,7 @@
         @include text-color('disabled');
         @include text-color('info');
         @include text-color('warning');
-        @include text-color('error');
+        @include text-color('critical');
         @include text-color('success');
 
         @include font-weight(200);

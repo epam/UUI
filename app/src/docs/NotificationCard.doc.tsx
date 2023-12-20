@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
@@ -12,6 +13,7 @@ export class NotificationCardDoc extends BaseDocsBlock {
         name: 'NotificationCard',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:NotificationCardProps', component: uui.NotificationCard },
+            [TSkin.Electric]: { type: '@epam/uui:NotificationCardProps', component: electric.NotificationCard },
             [TSkin.Loveship]: { type: '@epam/loveship:NotificationCardProps', component: loveship.NotificationCard },
             [TSkin.Promo]: { type: '@epam/promo:NotificationCardProps', component: promo.NotificationCard },
         },
@@ -32,6 +34,7 @@ export class NotificationCardDoc extends BaseDocsBlock {
                     { value: [getAction('ACTION 1'), getAction('ACTION 2')], name: '2 actions' },
                 ],
             });
+            doc.setDefaultPropExample('color', ({ value }) => value === 'info');
         },
     };
 
