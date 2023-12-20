@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, CX, cx, ICanFocus } from '@epam/uui-core';
+import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps,
+    CX, cx, ICanFocus,
+} from '@epam/uui-core';
 import css from './TextArea.module.scss';
 
 export interface TextAreaProps
