@@ -5,6 +5,8 @@ import React from 'react';
 import { TruncText } from './components/truncText/truncText';
 import { IThemeVarUI } from './types/types';
 import { ThemeVarInfo } from './components/themeVarInfo/themeVarInfo';
+import { TFigmaThemeName } from './types/sharedTypes';
+import { getExpectedValue } from './utils/themeVarUtils';
 
 enum COL_NAMES {
     path = 'path',
@@ -22,8 +24,8 @@ const WIDTH = {
     [COL_NAMES.description]: 100, // Some text
     [COL_NAMES.useCases]: 120, // Some text
     //
-    [COL_NAMES.actualValue]: 95,
-    [COL_NAMES.expectedValue]: 95,
+    [COL_NAMES.actualValue]: 105,
+    [COL_NAMES.expectedValue]: 105,
     [COL_NAMES.status]: 100,
 };
 
@@ -32,13 +34,18 @@ export function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
     if (key === COL_NAMES.status) {
         const hasErrors = item.valueCurrent.errors.length > 0;
         return String(hasErrors);
+    } else if (key === COL_NAMES.actualValue) {
+        return String(item.valueCurrent.value);
+    } else if (key === COL_NAMES.expectedValue) {
+        const expected = getExpectedValue({ themeVar: item });
+        return String(expected.value);
     }
 
     return item[key as keyof IThemeVarUI];
 }
 
-export function getColumns(): DataColumnProps<IThemeVarUI>[] {
-    return [
+export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnProps<IThemeVarUI>[] {
+    const arr: DataColumnProps<IThemeVarUI>[] = [
         {
             key: COL_NAMES.path,
             caption: 'Path',
@@ -70,16 +77,21 @@ export function getColumns(): DataColumnProps<IThemeVarUI>[] {
                 );
             },
             width: WIDTH.actualValue,
+            isSortable: true,
         },
-        {
+        Boolean(figmaTheme) && {
             key: COL_NAMES.expectedValue,
             caption: 'Expected',
             render: (item) => {
-                return (
-                    <ThemeVarExample themeVar={ item } mode="showExpected" />
-                );
+                if (figmaTheme) {
+                    return (
+                        <ThemeVarExample themeVar={ item } mode="showExpected" />
+                    );
+                }
+                return <Text>N/A</Text>;
             },
             width: WIDTH.expectedValue,
+            isSortable: true,
         },
         {
             key: COL_NAMES.status,
@@ -118,4 +130,8 @@ export function getColumns(): DataColumnProps<IThemeVarUI>[] {
             width: WIDTH.useCases,
         },
     ];
+
+    return arr.filter((c) => {
+        return typeof c === 'object';
+    });
 }

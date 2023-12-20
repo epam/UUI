@@ -32,12 +32,12 @@ export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
                     const expected = getExpectedValueByTheme({ theme, themeVar: token });
                     if (value === '') {
                         errors.push({
-                            type: TThemeVarUiErr.VAR_IS_ABSENT,
+                            type: TThemeVarUiErr.VAR_ABSENT,
                             message: `CSS variable ${token.cssVar} is not defined`,
                         });
-                    } else if (expected.value !== value) {
+                    } else if (expected !== undefined && expected.value !== value) {
                         errors.push({
-                            type: TThemeVarUiErr.DIFF_ACTUAL_AND_EXPECTED,
+                            type: TThemeVarUiErr.VALUE_MISMATCHED,
                             message: 'Actual value doesn\'t match expected value',
                         });
                     }

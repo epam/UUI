@@ -2,8 +2,8 @@ import { IThemeVar } from './sharedTypes';
 import { TTheme } from '../../../../common/docs/docsConstants';
 
 export enum TThemeVarUiErr {
-    VAR_IS_ABSENT= 'VAR_IS_ABSENT',
-    DIFF_ACTUAL_AND_EXPECTED = 'DIFF_ACTUAL_AND_EXPECTED'
+    VAR_ABSENT= 'VAR_ABSENT',
+    VALUE_MISMATCHED = 'VALUE_MISMATCHED'
 }
 export type IThemeVarUI = IThemeVar & {
     /**
