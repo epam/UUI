@@ -5,7 +5,7 @@ import { Icon, cx, IHasCX, IEditable, IHasRawProps, IHasForwardedRef } from '@ep
 import { NumericInput } from './NumericInput';
 import { TextInput } from './TextInput';
 import { IconContainer } from '../layout/IconContainer';
-import { TimePickerValue } from './BaseTimePicker';
+import { BaseTimePickerProps, TimePickerValue } from './BaseTimePicker';
 
 dayjs.extend(objectSupport);
 
@@ -21,11 +21,15 @@ const MIN_MINUTES: number = 0;
 const MAX_MINUTES: number = 59;
 const FORMAT_12H: number = 12;
 
-export interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
-    minutesStep?: number;
+export interface TimePickerBodyProps extends Pick<BaseTimePickerProps, 'minutesStep' | 'format'>, IHasCX, IEditable<TimePickerValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    /** Icon for the add action.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
+     */
     addIcon?: Icon;
+    /** Icon for the subtract action.
+     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
+     */
     subtractIcon?: Icon;
-    format?: 12 | 24;
 }
 
 export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePickerValue> {
