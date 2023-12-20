@@ -13,7 +13,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
             value: value ?? { from: null, to: null },
             format,
             onValueChange: jest.fn().mockImplementation((newValue) => {
-                context.current.setProperty('value', newValue);
+                context.current?.setProperty('value', newValue);
             }),
             onOpenChange: jest.fn(),
             size: '48',
@@ -21,13 +21,12 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
         (props) => <RangeDatePicker { ...props } />,
     );
 
-    const from = within(screen.getByTestId('from')).getByRole('textbox') as HTMLInputElement;
-    const to = within(screen.getByTestId('to')).getByRole('textbox') as HTMLInputElement;
-    const clear = result.container.querySelector('.uui-icon-cancel');
+    const from = within(screen.getByTestId('from')).getByRole<HTMLInputElement>('textbox');
+    const to = within(screen.getByTestId('to')).getByRole<HTMLInputElement>('textbox');
 
     return {
         result,
-        dom: { from, to, clear },
+        dom: { from, to },
         mocks: { onValueChange: mocks.onValueChange, onOpenChange: mocks.onOpenChange },
     };
 }
@@ -69,8 +68,9 @@ describe('RangeDataPicker', () => {
 
     it('should change state on picker clear', async () => {
         const value = { from: '2017-01-22', to: '2017-01-28' };
-        const { dom, mocks } = await setupRangeDatePicker({ value });
-        fireEvent.click(dom.clear);
+        const { mocks } = await setupRangeDatePicker({ value });
+        const clear = screen.getByRole('button');
+        fireEvent.click(clear);
         expect(mocks.onValueChange).toBeCalledWith({ from: null, to: null });
     });
 
@@ -119,7 +119,7 @@ describe('RangeDataPicker', () => {
         const { dom, mocks } = await setupRangeDatePicker({ value });
 
         fireEvent.focus(dom.from);
-        const dialog = screen.queryByRole('dialog');
+        const dialog = screen.getByRole('dialog');
         const [sept11] = await within(dialog).findAllByText('11');
         fireEvent.click(sept11);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
