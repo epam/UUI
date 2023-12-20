@@ -12,17 +12,17 @@ export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
      */
     renderLabel?(): React.ReactNode;
 
-    /** ID provided to the 'input' node */
+    /** ID to put on 'input' node */
     id?: string;
 
     /** Check icon.
      * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
      */
-
     icon?: Icon;
+
     /** Indeterminate state icon.
      * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
-     *  */
+     */
     indeterminateIcon?: Icon;
 }
 

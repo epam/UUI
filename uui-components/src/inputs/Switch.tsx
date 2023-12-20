@@ -1,20 +1,6 @@
 import * as React from 'react';
-import {
-    cx,
-    IHasRawProps,
-    uuiMod,
-    uuiElement,
-    IHasCX,
-    IDisableable,
-    IEditable,
-    IHasLabel,
-    uuiMarkers,
-    IAnalyticableOnChange,
-    UuiContexts,
-    UuiContext,
-    IHasForwardedRef,
-    IHasTabIndex,
-    ICanFocus,
+import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers,
+    IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, IHasTabIndex, ICanFocus,
 } from '@epam/uui-core';
 import css from './Switch.module.scss';
 
@@ -28,6 +14,7 @@ export interface SwitchProps
     IHasForwardedRef<HTMLLabelElement>,
     IHasTabIndex,
     ICanFocus<HTMLInputElement> {
+    /** ID to put on 'input' node */
     id?: string;
 }
 

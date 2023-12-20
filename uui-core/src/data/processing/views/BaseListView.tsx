@@ -657,7 +657,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected checkedWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
         (prevValue?.checked?.length ?? 0) !== (newValue?.checked?.length ?? 0)
-        || !isEqual(newValue?.checked, prevValue?.checked);
+        || (prevValue.checked && newValue.checked && !isEqual(newValue?.checked, prevValue?.checked));
     
     protected sortingWasChanged = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => 
         !isEqual(newValue?.sorting, prevValue?.sorting);
