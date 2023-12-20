@@ -1,23 +1,18 @@
-import { isBlock, useEditorState } from '@udecode/plate-common';
+import { WithPlatePlugin, isBlock, useEditorState } from '@udecode/plate-common';
 
 import cx from 'classnames';
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
 import css from './Sidebar.module.scss';
 import { useLayer } from '@epam/uui-core';
+import { WithButtonPlugin } from '../types';
 
-interface SidebarProps {
-    isReadonly: boolean;
-    children: any;
-}
-
-// eslint-disable-next-line react/function-component-definition
-export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) => {
+export function StickyToolbar() {
     const editor = useEditorState();
     const isBlockSelected = isBlock(editor, editor.value);
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
-    const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>(null);
+    const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
     const zIndex = useLayer()?.zIndex;
 
     useEffect(() => {
@@ -42,20 +37,17 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
         event.stopPropagation();
     };
 
-    if (isReadonly || !isVisible) return null;
-
     return (
-        <div style={ {
-            position: 'sticky',
-            bottom: 12,
-            display: 'flex',
-            minHeight: 0,
-            zIndex,
-        } }
+        <div
+            style={ { zIndex } }
+            className={ cx('slate-prevent-blur', css.sidebar) }
+            ref={ sidebarRef }
+            onMouseDown={ onMouseDown }
         >
-            <div onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) } ref={ sidebarRef }>
-                { children }
-            </div>
+            { editor.plugins.map((p: WithPlatePlugin<WithButtonPlugin>) => {
+                const Button = p.options?.bottomBarButton;
+                return Button && <Button editor={ editor } />;
+            }) }
         </div>
     );
-};
+}

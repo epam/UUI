@@ -9,7 +9,7 @@ import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, getPluginOptions, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
+import { PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove, useTableMergeState } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
@@ -17,7 +17,7 @@ import { createInitialTable, selectFirstCell } from './utils';
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithButtonPlugin } from '../../types';
 
 const noop = () => {};
 
@@ -47,7 +47,6 @@ function TableRenderer(props: any) {
                             ? <MergeToolbarContent />
                             : <TableToolbarContent canUnmerge={ canUnmerge } />
                     }
-                    editor={ editor }
                     isTable
                 />
             ) }
@@ -58,7 +57,7 @@ function TableRenderer(props: any) {
     );
 }
 
-export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlugin>({
+export const tablePlugin = () => createTablePlugin<WithButtonPlugin & TablePlugin>({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',

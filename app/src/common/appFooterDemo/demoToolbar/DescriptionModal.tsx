@@ -67,6 +67,7 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
                         minHeight={ 400 }
                         fontSize="14"
                         value={ valueLocal }
+                        toolbarOnFocus={ true }
                         onValueChange={ setValueLocal }
                     />
                 </ScrollBars>

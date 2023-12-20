@@ -14,10 +14,10 @@ import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 import { IMAGE_PLUGIN_TYPE, IMAGE_PLUGIN_KEY, IImageElement } from '../../types';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithButtonPlugin } from '../../types';
 
 export const imagePlugin = () => {
-    const createImagePlugin = createPluginFactory<IHasToolbarButton>({
+    const createImagePlugin = createPluginFactory<WithButtonPlugin>({
         key: IMAGE_PLUGIN_KEY,
         type: IMAGE_PLUGIN_TYPE,
         isElement: true,

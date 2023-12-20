@@ -11,10 +11,10 @@ import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
 import { IFRAME_PLUGIN_KEY, IFRAME_PLUGIN_TYPE } from '../../types';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { WithButtonPlugin } from '../../types';
 
 export const iframePlugin = () => {
-    const createIframePlugin = createPluginFactory<IHasToolbarButton>({
+    const createIframePlugin = createPluginFactory<WithButtonPlugin>({
         key: IFRAME_PLUGIN_KEY,
         type: IFRAME_PLUGIN_TYPE,
         isElement: true,
