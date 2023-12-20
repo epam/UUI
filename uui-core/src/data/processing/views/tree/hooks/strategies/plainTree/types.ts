@@ -1,9 +1,9 @@
 import { SortingOption } from '../../../../../../../types';
 import { ITree } from '../../../ITree';
 import { STRATEGIES } from '../constants';
-import { CommonTreeStrategyProps } from '../types';
+import { CommonDataSourceConfig } from '../types/common';
 
-export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonTreeStrategyProps<TItem, TId, TFilter> & {
+export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.plain,
     items: TItem[] | Record<string | number | symbol, TItem>,
     tree?: ITree<TItem, TId>,

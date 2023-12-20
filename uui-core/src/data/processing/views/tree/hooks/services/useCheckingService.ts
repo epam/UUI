@@ -1,10 +1,15 @@
 import { useCallback, useMemo } from 'react';
 import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps, DataSourceState } from '../../../../../../types';
-import { ITree, NOT_FOUND_RECORD } from '../..';
+import { ITree, NOT_FOUND_RECORD } from '../../ITree';
+import { CommonDataSourceConfig } from '../strategies/types/common';
 
-export interface UseCheckingServiceProps<TItem, TId, TFilter = any> {
+export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
+    Pick<
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    'getParentId' | 'dataSourceState' | 'setDataSourceState'
+    | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
+    > {
     tree: ITree<TItem, TId>;
-    getParentId?: (item: TItem) => TId;
     cascadeSelection?: CascadeSelection;
     rowOptions?: DataRowOptions<TItem, TId>;
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;

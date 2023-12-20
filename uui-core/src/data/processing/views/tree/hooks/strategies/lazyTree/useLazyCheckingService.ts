@@ -1,20 +1,19 @@
 import { useMemo } from 'react';
-import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataSourceState } from '../../../../../../../types';
-import { ITree, ROOT_ID } from '../../../';
+import { CascadeSelectionTypes, DataSourceState } from '../../../../../../../types';
+import { ITree, ROOT_ID } from '../../../../tree';
 import { CheckingService, useCheckingService } from '../../services';
 import { LoadResult } from './useLoadData';
 import isEqual from 'lodash.isequal';
+import { CommonDataSourceConfig } from '../types/common';
 
-export interface UseLazyCheckingServiceProps<TItem, TId, TFilter = any> {
+export interface UseLazyCheckingServiceProps<TItem, TId, TFilter = any> extends
+    Pick<
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    'dataSourceState' | 'setDataSourceState' | 'rowOptions'
+    | 'getRowOptions' | 'getParentId' | 'cascadeSelection'
+    > {
     tree: ITree<TItem, TId>;
     onTreeUpdate: (tree: ITree<TItem, TId>) => void;
-    getParentId?: (item: TItem) => TId;
-    cascadeSelection?: CascadeSelection;
-    rowOptions?: DataRowOptions<TItem, TId>;
-    getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
-
-    dataSourceState: DataSourceState<TFilter, TId>,
-    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 
     loadMissingRecords?: (
         sourceTree: ITree<TItem, TId>,

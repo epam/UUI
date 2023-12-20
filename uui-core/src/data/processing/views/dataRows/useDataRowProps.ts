@@ -1,18 +1,20 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowOptions, DataRowPathItem, DataRowProps, DataSourceState } from '../../../../types';
+import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { CheckingService, FocusService, SelectingService } from '../tree/hooks/services';
 import { ITree } from '../tree';
 import { idToKey } from '../helpers';
+import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
 
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
-    SelectingService<TItem, TId> {
+    SelectingService<TItem, TId>,
+    Pick<
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
+    > {
 
-    getId: (item: TItem) => TId;
     tree: ITree<TItem, TId>;
-    dataSourceState: DataSourceState<TFilter, TId>;
-    rowOptions?: DataRowOptions<TItem, TId>;
-    getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
+
     isFlattenSearch: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
 }

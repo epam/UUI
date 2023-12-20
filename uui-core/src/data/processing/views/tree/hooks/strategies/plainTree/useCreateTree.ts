@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
-import { Tree } from '../../..';
+import { Tree } from '../../../../tree';
 
 export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeStrategyProps<TItem, TId, TFilter>, deps: any[]) {
     const { items } = props;

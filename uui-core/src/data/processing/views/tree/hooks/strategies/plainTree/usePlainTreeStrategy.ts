@@ -68,7 +68,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
 
     const selectingService = useSelectingService({ setDataSourceState });
 
-    const getTreeRowsStats = useCallback(() => {
+    const treeRowsStats = useMemo(() => {
         const rootInfo = tree.getNodeInfo(undefined);
 
         return {
@@ -97,8 +97,8 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getParentId,
             getId,
             dataSourceState,
-            getTreeRowsStats,
             reload,
+            ...treeRowsStats,
             ...checkingService,
             ...selectingService,
             ...focusService,
@@ -109,7 +109,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             rowOptions,
             getRowOptions,
             dataSourceState,
-            getTreeRowsStats,
+            treeRowsStats,
             getChildCount,
             getParentId,
             getId,

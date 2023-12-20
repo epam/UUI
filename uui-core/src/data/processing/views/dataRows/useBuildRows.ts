@@ -1,25 +1,30 @@
 import { useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
-import { CascadeSelection, DataRowOptions, DataRowPathItem, DataRowProps, DataSourceState } from '../../../../types';
+import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
 import { FoldingService } from '../tree/hooks/services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
+import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
 
-export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends FoldingService<TItem, TId> {
+export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
+    FoldingService<TItem, TId>,
+    Pick<
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
+    > {
+
     tree: ITree<TItem, TId>;
-    dataSourceState: DataSourceState<TFilter, TId>;
+
     isPartialLoad?: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
-    cascadeSelection?: CascadeSelection;
     lastRowIndex: number;
 
-    rowOptions?: DataRowOptions<TItem, TId>;
-    getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
-
     isFlattenSearch?: boolean;
+
     getRowProps: (item: TItem, index: number) => DataRowProps<TItem, TId>;
     getLoadingRowProps: (id: any, index?: number, path?: DataRowPathItem<TId, TItem>[]) => DataRowProps<TItem, TId>;
+
     isLoading?: boolean;
 }
 
