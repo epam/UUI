@@ -7,7 +7,7 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { WithButtonPlugin } from '../../types';
 
 export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
@@ -22,7 +22,7 @@ const Quote: PlatePluginComponent = function (props) {
     );
 };
 
-export const quotePlugin = () => createBlockquotePlugin<IHasToolbarButton>({
+export const quotePlugin = () => createBlockquotePlugin<WithButtonPlugin>({
     overrideByKey: {
         [ELEMENT_BLOCKQUOTE]: {
             key: QUOTE_PLUGIN_KEY,

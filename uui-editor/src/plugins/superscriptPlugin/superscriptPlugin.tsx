@@ -5,14 +5,14 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as SuperScriptIcon } from '../../icons/super-script.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { WithButtonPlugin } from '../../types';
 
 const SUPERSCRIPT_TYPE = 'uui-richTextEditor-superscript';
 
-export const superscriptPlugin = () => createSuperscriptPlugin<IHasToolbarButton>({
+export const superscriptPlugin = () => createSuperscriptPlugin<WithButtonPlugin>({
     type: SUPERSCRIPT_TYPE,
     options: {
-        floatingBarButton: SuperscriptButton
+        floatingBarButton: SuperscriptButton,
     },
 });
 

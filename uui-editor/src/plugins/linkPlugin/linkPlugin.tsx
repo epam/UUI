@@ -9,7 +9,7 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { isUrl } from './isUrl';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { WithButtonPlugin } from '../../types';
 
 export interface LinkElement extends TElement {
     href: string;
@@ -50,7 +50,7 @@ const withOurLink = <
 
 const LINK_ELEMENT = 'link';
 
-export const linkPlugin = () => createLinkPlugin<IHasToolbarButton & LinkPlugin>({
+export const linkPlugin = () => createLinkPlugin<WithButtonPlugin & LinkPlugin>({
     type: LINK_ELEMENT,
     withOverrides: withOurLink,
     then: () => ({ options: { isUrl } }),

@@ -1,6 +1,7 @@
-import { Value } from '@udecode/plate-common';
+import { PlateEditor, Value } from '@udecode/plate-common';
 import { TElement } from '@udecode/plate-common';
 import { FileUploadResponse } from '@epam/uui-core';
+import { ToolbarButtonProps } from './implementation/ToolbarButton';
 
 export type EditorValue = Value | null;
 
@@ -30,3 +31,12 @@ export interface PlateProps {
 }
 
 export interface IImageElement extends TElement, PlateProps, SlateProps {}
+
+export interface IToolbarButton {
+    editor: PlateEditor;
+}
+
+export interface WithButtonPlugin {
+    floatingBarButton?: ({ editor }: IToolbarButton) => JSX.Element | null,
+    bottomBarButton?: ({ editor }: IToolbarButton) => JSX.Element | null,
+}

@@ -117,6 +117,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                             isReadonly={ !window.location.host.includes('localhost') }
                             minHeight={ 36 }
                             fontSize="16"
+                            toolbarOnFocus={ true }
                             { ...props }
                         />
                     ) }

@@ -2,7 +2,7 @@ import { Portal } from '@epam/uui-components';
 import { findNode, isEditorFocused, toDOMNode, useEditorState } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from 'classnames';
-import React, { useRef } from 'react';
+import React, { useRef, PropsWithChildren } from 'react';
 import { Popper } from 'react-popper';
 import { Range } from 'slate';
 
@@ -10,10 +10,7 @@ import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.module.scss';
 import { useLayer } from '@epam/uui-core';
 
-interface ToolbarProps {
-    editor: any;
-    plugins?: any;
-    children: any;
+interface ToolbarProps extends PropsWithChildren {
     isImage?: boolean;
     isTable?: boolean;
     placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
@@ -25,6 +22,7 @@ export function PositionedToolbar(props: ToolbarProps): any {
     const inFocus = isEditorFocused(editor);
     const zIndex = useLayer()?.zIndex;
 
+    // TODO: rewrite this
     const virtualReferenceElement = (): any => ({
         getBoundingClientRect(): DOMRect {
             if (props.isTable) {

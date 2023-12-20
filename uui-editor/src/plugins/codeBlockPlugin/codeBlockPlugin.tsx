@@ -6,7 +6,7 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as CodeIcon } from '../../icons/editor-code.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { WithButtonPlugin } from '../../types';
 
 const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
 
@@ -17,7 +17,7 @@ const Code: PlatePluginComponent = (props) => {
     );
 };
 
-export const codeBlockPlugin = () => createCodePlugin<IHasToolbarButton>({
+export const codeBlockPlugin = () => createCodePlugin<WithButtonPlugin>({
     key: CODE_BLOCK_KEY,
     type: CODE_BLOCK_KEY,
     component: Code,
