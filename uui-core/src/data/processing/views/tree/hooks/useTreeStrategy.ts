@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { ExtractTreeStrategyProps, TreeStrategyHook, strategies } from './strategies';
-import { UseTreeStrategyProps } from './types';
+import { strategies } from './strategies';
+import { ExtractTreeStrategyProps, TreeStrategyHook, UseTreeStrategyProps } from './strategies/types';
 
 export function useTreeStrategy<TItem, TId>(props: UseTreeStrategyProps<TItem, TId>, deps: any[]) {
     const { type = 'plain' } = props;

@@ -133,7 +133,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     const focusService = useFocusService({ setDataSourceState });
     const selectingService = useSelectingService<TItem, TId, TFilter>({ setDataSourceState });
 
-    const getTreeRowsStats = useCallback(() => {
+    const treeRowsStats = useMemo(() => {
         const rootInfo = treeWithData.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
         let completeFlatListRowsCount = undefined;
@@ -162,11 +162,11 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         getChildCount,
         reload,
         flattenSearchResults,
+        ...treeRowsStats,
         ...checkingService,
         ...foldingService,
         ...focusService,
         ...selectingService,
-        getTreeRowsStats,
 
         isFetching,
         isLoading,

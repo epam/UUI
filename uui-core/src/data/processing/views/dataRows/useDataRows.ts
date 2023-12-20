@@ -1,40 +1,25 @@
 import { useCallback, useMemo } from 'react';
-import { ITree, NOT_FOUND_RECORD } from '../tree';
-import { CascadeSelection, DataRowOptions, DataRowProps, DataSourceListProps, DataSourceState, VirtualListRange } from '../../../../types';
+import { DataRowProps, DataSourceListProps, VirtualListRange } from '../../../../types';
 import { SelectingService, FoldingService, FocusService, CheckingService } from '../tree/hooks/services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
+import { CommonDataSourceConfig, TreeLoadingState, TreeRowsStats } from '../tree/hooks/strategies/types/common';
+import { ITree, NOT_FOUND_RECORD } from '../tree';
 
-export interface UseDataRowsProps<TItem, TId, TFilter = any> extends CheckingService<TItem, TId>, SelectingService<TItem, TId>, FoldingService<TItem, TId>, FocusService {
+export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
+    CheckingService<TItem, TId>,
+    SelectingService<TItem, TId>,
+    FoldingService<TItem, TId>,
+    FocusService,
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    TreeLoadingState,
+    TreeRowsStats {
+
     tree: ITree<TItem, TId>;
-    dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
-
-    flattenSearchResults?: boolean;
     isPartialLoad?: boolean;
-
-    rowOptions?: DataRowOptions<TItem, TId>;
-    getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
-
-    getChildCount?(item: TItem): number;
-
-    getId: (item: TItem) => TId;
-    getParentId?(item: TItem): TId | undefined;
-
-    cascadeSelection?: CascadeSelection;
-
-    selectAll?: boolean;
-    // TODO: add solid type
-    getTreeRowsStats: () => {
-        completeFlatListRowsCount: any;
-        totalCount: number;
-    }
-
-    isFetching?: boolean;
-    isLoading?: boolean;
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
@@ -51,9 +36,10 @@ export function useDataRows<TItem, TId, TFilter = any>(
         rowOptions,
 
         cascadeSelection,
-        getTreeRowsStats,
         isLoading,
         isFetching,
+        completeFlatListRowsCount,
+        totalCount,
     } = props;
 
     const lastRowIndex = useMemo(
@@ -181,8 +167,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
     };
 
     const listProps = useMemo((): DataSourceListProps => {
-        const { completeFlatListRowsCount, totalCount } = getTreeRowsStats();
-
         let rowsCount;
         if (completeFlatListRowsCount !== undefined) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
@@ -211,7 +195,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             selectAll,
             isReloading: isFetching,
         };
-    }, [rows.length, selectAll, getTreeRowsStats, stats.hasMoreRows, lastRowIndex, isFetching]);
+    }, [rows.length, selectAll, completeFlatListRowsCount, totalCount, stats.hasMoreRows, lastRowIndex, isFetching]);
 
     const visibleRows = useMemo(
         () => {

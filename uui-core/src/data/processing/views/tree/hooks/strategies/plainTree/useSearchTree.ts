@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
-import { ITree } from '../../..';
+import { ITree } from '../../../../tree';
 
 export type UseSearchTreeProps<TItem, TId, TFilter = any> = {
     getSearchFields?: (item: TItem) => string[];

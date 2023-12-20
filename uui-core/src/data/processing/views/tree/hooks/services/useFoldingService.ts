@@ -1,13 +1,12 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../../types';
+import { DataRowProps, ScrollToConfig } from '../../../../../../types';
 import { idToKey, setObjectFlag } from '../../../helpers';
+import { CommonDataSourceConfig } from '../strategies/types/common';
 
-export interface UseFoldingServiceProps<TItem, TId, TFilter = any> {
-    getId: (item: TItem) => TId;
-    dataSourceState: DataSourceState<TFilter, TId>,
-    setDataSourceState: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
-    isFoldedByDefault?(item: TItem): boolean;
-}
+export type UseFoldingServiceProps<TItem, TId, TFilter = any> = Pick<
+CommonDataSourceConfig<TItem, TId, TFilter>,
+'getId' | 'dataSourceState' | 'setDataSourceState' | 'isFoldedByDefault'
+>;
 
 export interface FoldingService<TItem, TId> {
     handleOnFold: (rowProps: DataRowProps<TItem, TId>) => void;
