@@ -6,13 +6,19 @@
 * [Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
 * [RadioInput]: in Loveship skin removed property 'theme'.
 * [DataTable]: Focus manager.
-  * Added ability to change focus on different cells using a keyboard in editable tables.
-  * See the example [here](https://uui.epam.com/demo?id=editableTable).
+    * Added ability to change focus on different cells using a keyboard in editable tables.
+    * See the example [here](https://uui.epam.com/demo?id=editableTable).
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
 * [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * removed redundant exports
+
+# 5.4.3 - 19.12.2023
+
+**What's Fixed**
+* [RTE]: fixed `onBlur` and `onKeyDown` props 
+* [Button]: fixed 'white' color on loveship
 
 
 # 5.4.2 - 07.12.2023
