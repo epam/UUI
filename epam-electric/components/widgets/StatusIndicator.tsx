@@ -4,9 +4,9 @@ import * as uui from '@epam/uui';
 interface StatusIndicatorMods {
     /**
      * Defines component color.
-     * @default 'gray'
+     * @default 'neutral'
      */
-    color?: uui.StatusIndicatorProps['color'] | 'white' | 'gray' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
+    color?: uui.StatusIndicatorProps['color'] | 'white' | 'yellow'| 'orange' | 'fuchsia' | 'purple' | 'violet' | 'cobalt' | 'cyan' | 'mint';
 }
 
 /** Represents the properties of a StatusIndicator component. */
@@ -14,5 +14,5 @@ export interface StatusIndicatorProps extends uui.StatusIndicatorCoreProps, Stat
 
 export const StatusIndicator = createSkinComponent<uui.StatusIndicatorProps, StatusIndicatorProps>(
     uui.StatusIndicator,
-    (props) => ({ color: props.color || 'gray' }),
+    (props) => ({ color: props.color || 'neutral' }),
 );

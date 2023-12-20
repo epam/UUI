@@ -71449,12 +71449,12 @@
      "print": [
       "interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {",
       "    /*",
-      "    * Array of classes for styling the Day.",
+      "    * A pure function that gets array of classes for styling a day for each day.",
       "    */",
       "    getDayCX?(day: Dayjs): string[];",
-      "    /*",
-      "    * Boolean flag that showing is this Day a Holiday.",
-      "    */",
+      "    /**",
+      "     * A pure function that gets whether day is holiday for each day.",
+      "     */",
       "    isHoliday?: (day: Dayjs) => boolean;",
       "}"
      ]
@@ -71474,6 +71474,11 @@
      {
       "uid": "isHoliday",
       "name": "isHoliday",
+      "comment": {
+       "raw": [
+        "A pure function that gets whether day is holiday for each day."
+       ]
+      },
       "typeValue": {
        "raw": "(day: Dayjs) => boolean"
       },
@@ -85595,8 +85600,7 @@
      "print": [
       "interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {",
       "    /**",
-      "     * This callback returns a placeholder depending on the parameters passed.",
-      "     * @param  { from | to }  type",
+      "     * A pure function that gets placeholder for 'from' or 'to' input.",
       "     */",
       "    getPlaceholder?(type: InputType): string;",
       "}"
@@ -85608,8 +85612,7 @@
       "name": "getPlaceholder",
       "comment": {
        "raw": [
-        "This callback returns a placeholder depending on the parameters passed.",
-        " @param  { from | to }  type"
+        "A pure function that gets placeholder for 'from' or 'to' input."
        ]
       },
       "typeValue": {
@@ -91685,7 +91688,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'error' | 'primary' | 'secondary' | 'white' | 'brand' | 'disabled'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'brand' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -91693,7 +91696,7 @@
         "info",
         "success",
         "warning",
-        "error",
+        "critical",
         "primary",
         "secondary",
         "white",
@@ -100222,7 +100225,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'white' | 'gray60' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'disabled'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -100234,9 +100237,9 @@
         "info",
         "success",
         "warning",
-        "error",
         "white",
         "gray60",
+        "critical",
         "gray50",
         "primary",
         "secondary",
@@ -101479,10 +101482,10 @@
       "comment": {
        "raw": [
         "Defines component color.",
-        " @default 'neutral'"
+        " @default 'info'"
        ],
        "tags": {
-        "@default": "neutral"
+        "@default": "info"
        }
       },
       "typeValue": {
@@ -102077,14 +102080,14 @@
       "comment": {
        "raw": [
         "Defines component color.",
-        " @default 'gray'"
+        " @default 'neutral'"
        ],
        "tags": {
-        "@default": "gray"
+        "@default": "neutral"
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'gray' | 'fuchsia' | 'violet' | 'cobalt'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'fuchsia' | 'violet' | 'cobalt'"
       },
       "editor": {
        "type": "oneOf",
@@ -102100,7 +102103,6 @@
         "cyan",
         "mint",
         "white",
-        "gray",
         "fuchsia",
         "violet",
         "cobalt"
@@ -110052,7 +110054,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'white' | 'night300' | 'night600' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'disabled'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'disabled'"
       },
       "typeValueRef": "@epam/loveship:TextColors",
       "editor": {
@@ -110065,10 +110067,10 @@
         "info",
         "success",
         "warning",
-        "error",
         "white",
         "night300",
         "night600",
+        "critical",
         "night500",
         "primary",
         "secondary",

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DropdownProps } from '@epam/uui-core';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
@@ -15,6 +16,7 @@ export class DropdownDoc extends BaseDocsBlock {
             [TSkin.Loveship]: { type: '@epam/uui-core:DropdownProps', component: loveship.Dropdown },
             [TSkin.Promo]: { type: '@epam/uui-core:DropdownProps', component: promo.Dropdown },
             [TSkin.UUI]: { type: '@epam/uui-core:DropdownProps', component: uui.Dropdown },
+            [TSkin.Electric]: { type: '@epam/uui-core:DropdownProps', component: electric.Dropdown },
         },
         doc: (doc: DocBuilder<DropdownProps>) => {
             doc.merge('openOnClick', { remountOnChange: true });

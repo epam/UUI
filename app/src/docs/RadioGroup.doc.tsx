@@ -3,6 +3,7 @@ import * as uui from '@epam/uui';
 import * as uuiComponents from '@epam/uui-components';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
@@ -14,6 +15,7 @@ export class RadioGroupDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:RadioGroupProps', component: uui.RadioGroup },
+            [TSkin.Electric]: { type: '@epam/uui-components:RadioGroupProps', component: electric.RadioGroup },
             [TSkin.Loveship]: { type: '@epam/uui-components:RadioGroupProps', component: loveship.RadioGroup },
             [TSkin.Promo]: { type: '@epam/uui-components:RadioGroupProps', component: promo.RadioGroup },
         },

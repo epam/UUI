@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { renderCustomDayExample, renderFooter } from './datePickerExamples';
@@ -17,6 +18,7 @@ export class DatePickerDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:DatePickerProps', component: uui.DatePicker },
             [TSkin.Loveship]: { type: '@epam/uui:DatePickerProps', component: loveship.DatePicker },
             [TSkin.Promo]: { type: '@epam/uui:DatePickerProps', component: promo.DatePicker },
+            [TSkin.Electric]: { type: '@epam/uui:DatePickerProps', component: electric.DatePicker },
         },
         doc: (doc: DocBuilder<uui.DatePickerProps>) => {
             doc.merge('size', { defaultValue: '36' });
