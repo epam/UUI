@@ -20,6 +20,7 @@ export class BadgeDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.merge('color', { defaultValue: 'info' });
         },
     };
 

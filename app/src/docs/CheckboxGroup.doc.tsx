@@ -3,6 +3,7 @@ import * as uuiComponents from '@epam/uui-components';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
@@ -16,6 +17,7 @@ export class CheckboxGroupDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui-components:CheckboxGroupProps', component: uui.CheckboxGroup },
             [TSkin.Loveship]: { type: '@epam/uui-components:CheckboxGroupProps', component: loveship.CheckboxGroup },
             [TSkin.Promo]: { type: '@epam/uui-components:CheckboxGroupProps', component: promo.CheckboxGroup },
+            [TSkin.Electric]: { type: '@epam/uui-components:CheckboxGroupProps', component: electric.CheckboxGroup },
         },
         doc: (doc: DocBuilder<uuiComponents.CheckboxGroupProps<any>>) => {
             doc.merge('CheckboxInput', {

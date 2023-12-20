@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import * as uuiComponents from '@epam/uui-components';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
@@ -16,6 +17,7 @@ export class PaginatorDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui-components:PaginatorProps', component: uui.Paginator },
             [TSkin.Loveship]: { type: '@epam/uui-components:PaginatorProps', component: loveship.Paginator },
             [TSkin.Promo]: { type: '@epam/uui-components:PaginatorProps', component: promo.Paginator },
+            [TSkin.Electric]: { type: '@epam/uui-components:PaginatorProps', component: electric.Paginator },
         },
         doc: (doc: DocBuilder<uuiComponents.PaginatorProps>) => {
             doc.merge('totalPages', { examples: [5, 8, { value: 10, isDefault: true }, 100, 1000] });

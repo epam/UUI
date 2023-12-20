@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { childrenExamples, itemsExamples, renderBurgerExamples } from './mainMenuExamples';
@@ -16,6 +17,7 @@ export class MainMenuDoc extends BaseDocsBlock {
         contexts: [TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:MainMenuProps', component: uui.MainMenu },
+            [TSkin.Electric]: { type: '@epam/uui:MainMenuProps', component: electric.MainMenu },
             [TSkin.Loveship]: { type: '@epam/uui:MainMenuProps', component: loveship.MainMenu },
             [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
