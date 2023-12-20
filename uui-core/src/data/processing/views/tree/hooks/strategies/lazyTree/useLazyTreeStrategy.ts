@@ -6,11 +6,11 @@ import { DataSourceState } from '../../../../../../../types';
 
 import isEqual from 'lodash.isequal';
 import { onlySearchWasUnset, shouldRebuildTree } from './helpers';
-import { useFocusService, useFoldingService, useSelectingService } from '../../services';
+import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
-import { useLazyCheckingService } from './useLazyCheckingService';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
+import { ITree } from '../../../ITree';
 
 export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
@@ -54,7 +54,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         setTreeWithData(tree);
     }, [tree]);
 
-    const { loadMissing } = useLoadData({
+    const { loadMissing, loadMissingOnCheck } = useLoadData({
         api,
         filter,
         dataSourceState,
@@ -62,7 +62,17 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         fetchStrategy: props.fetchStrategy,
         flattenSearchResults: props.flattenSearchResults,
         getChildCount: props.getChildCount,
+        cascadeSelection,
     });
+
+    const loadMissingRecords = useCallback(async (currentTree: ITree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+        const newTree = await loadMissingOnCheck(currentTree, id, isChecked, isRoot);
+        if (currentTree !== newTree) {
+            setFullTree(newTree);
+            setTreeWithData(treeWithData.mergeItems(newTree));
+        }
+        return newTree;
+    }, [loadMissingOnCheck, setFullTree, setTreeWithData, treeWithData]);
 
     useEffect(() => {
         let completeReset = false;
@@ -116,23 +126,6 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         areMoreRowsNeeded,
     ]);
 
-    const checkingService = useLazyCheckingService({
-        tree: fullTree,
-        onTreeUpdate: (newTree) => {
-            setFullTree(newTree);
-            setTreeWithData(treeWithData.mergeItems(newTree));
-        },
-        dataSourceState,
-        setDataSourceState,
-        cascadeSelection,
-        getRowOptions,
-        rowOptions,
-        loadMissingRecords: loadMissing,
-    });
-
-    const focusService = useFocusService({ setDataSourceState });
-    const selectingService = useSelectingService<TItem, TId, TFilter>({ setDataSourceState });
-
     const treeRowsStats = useMemo(() => {
         const rootInfo = treeWithData.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
@@ -154,6 +147,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     return {
         tree: treeWithData,
         dataSourceState,
+        setDataSourceState,
         isFoldedByDefault,
         getId,
         cascadeSelection,
@@ -162,13 +156,9 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         getChildCount,
         reload,
         flattenSearchResults,
-        ...treeRowsStats,
-        ...checkingService,
-        ...foldingService,
-        ...focusService,
-        ...selectingService,
-
         isFetching,
         isLoading,
+        loadMissingRecords,
+        ...treeRowsStats,
     };
 }

@@ -2,6 +2,7 @@ import { UseTreeResult } from '../../types';
 import { STRATEGIES } from '../constants';
 import { LazyTreeStrategyProps } from '../lazyTree/types';
 import { PlainTreeStrategyProps } from '../../strategies/plainTree/types';
+import { ITree } from '../../..';
 
 type PlainTreeStrategyPropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeStrategyProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
 
@@ -22,3 +23,7 @@ export type TreeStrategyProps<TItem, TId, TFilter = any> = (
     PlainTreeStrategyProps<TItem, TId, TFilter>
     | LazyTreeStrategyProps<TItem, TId, TFilter>
 );
+
+export interface LoadMissingRecords<TItem, TId> {
+    loadMissingRecords?: (currentTree: ITree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>;
+}

@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, ScrollToConfig } from '../../../../../../types';
-import { idToKey, setObjectFlag } from '../../../helpers';
-import { CommonDataSourceConfig } from '../strategies/types/common';
+import { DataRowProps, ScrollToConfig } from '../../../../../types';
+import { idToKey, setObjectFlag } from '../../helpers';
+import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
 
 export type UseFoldingServiceProps<TItem, TId, TFilter = any> = Pick<
 CommonDataSourceConfig<TItem, TId, TFilter>,

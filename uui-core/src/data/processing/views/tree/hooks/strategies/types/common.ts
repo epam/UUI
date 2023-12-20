@@ -2,7 +2,7 @@ import { CascadeSelection, DataRowOptions, DataSourceState } from '../../../../.
 
 export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
     dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
+    setDataSourceState: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 
     getId(item: TItem): TId;
     getParentId?(item: TItem): TId | undefined;

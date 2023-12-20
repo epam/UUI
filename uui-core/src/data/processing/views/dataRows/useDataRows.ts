@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { DataRowProps, DataSourceListProps, VirtualListRange } from '../../../../types';
-import { SelectingService, FoldingService, FocusService, CheckingService } from '../tree/hooks/services';
+import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
@@ -8,15 +8,13 @@ import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState, TreeRowsStats } from '../tree/hooks/strategies/types/common';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
+import { LoadMissingRecords } from '../tree/hooks/strategies/types';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
-    CheckingService<TItem, TId>,
-    SelectingService<TItem, TId>,
-    FoldingService<TItem, TId>,
-    FocusService,
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
-    TreeRowsStats {
+    TreeRowsStats,
+    LoadMissingRecords<TItem, TId> {
 
     tree: ITree<TItem, TId>;
     isPartialLoad?: boolean;
@@ -28,6 +26,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const {
         tree,
         getId,
+        getParentId,
         dataSourceState,
 
         flattenSearchResults,
@@ -40,6 +39,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isFetching,
         completeFlatListRowsCount,
         totalCount,
+        setDataSourceState,
+        isFoldedByDefault,
+        loadMissingRecords,
     } = props;
 
     const lastRowIndex = useMemo(
@@ -101,6 +103,25 @@ export function useDataRows<TItem, TId, TFilter = any>(
         return 1;
     }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
+    const { handleOnCheck, isRowChecked, isRowChildrenChecked, isItemCheckable, handleSelectAll } = useCheckingService({
+        tree,
+        dataSourceState,
+        setDataSourceState,
+        cascadeSelection,
+        getParentId,
+        rowOptions,
+        getRowOptions,
+        loadMissingRecords,
+    });
+
+    const foldingService = useFoldingService({
+        dataSourceState, setDataSourceState, isFoldedByDefault, getId,
+    });
+
+    const focusService = useFocusService({ setDataSourceState });
+
+    const selectingService = useSelectingService({ setDataSourceState });
+
     const { getRowProps, getUnknownRowProps, getLoadingRowProps, updateRowOptions } = useDataRowProps<TItem, TId, TFilter>({
         tree,
         getId,
@@ -113,12 +134,12 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
         getEstimatedChildrenCount,
 
-        handleOnCheck: props.handleOnCheck,
-        handleOnSelect: props.handleOnSelect,
-        handleOnFocus: props.handleOnFocus,
-        isRowChecked: props.isRowChecked,
-        isRowChildrenChecked: props.isRowChildrenChecked,
-        isItemCheckable: props.isItemCheckable,
+        handleOnCheck,
+        isRowChecked,
+        isRowChildrenChecked,
+        isItemCheckable,
+        ...selectingService,
+        ...focusService,
     });
 
     const { rows, pinned, pinnedByParentId, stats } = useBuildRows({
@@ -132,9 +153,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getMissingRecordsCount,
         getRowProps,
         getLoadingRowProps,
-        isFolded: props.isFolded,
-        handleOnFold: props.handleOnFold,
         isLoading,
+        ...foldingService,
     });
 
     const updatedRows = useUpdateRowOptions({ rows, updateRowOptions, getRowOptions });
@@ -150,7 +170,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         checked: dataSourceState.checked,
         stats,
         areCheckboxesVisible: rowOptions?.checkbox?.isVisible,
-        handleSelectAll: props.handleSelectAll,
+        handleSelectAll,
     });
 
     const getById = (id: TId, index: number) => {
