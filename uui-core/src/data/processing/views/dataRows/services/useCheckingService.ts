@@ -1,25 +1,16 @@
 import { useCallback, useMemo } from 'react';
-import { CascadeSelection, CascadeSelectionTypes, DataRowOptions, DataRowProps, DataSourceState } from '../../../../../../types';
-import { ITree, NOT_FOUND_RECORD } from '../../ITree';
-import { CommonDataSourceConfig } from '../strategies/types/common';
+import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
+import { ITree, NOT_FOUND_RECORD } from '../../tree';
+import { CommonDataSourceConfig, LoadMissingRecords } from '../../tree/hooks/strategies/types';
 
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
     'getParentId' | 'dataSourceState' | 'setDataSourceState'
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
-    > {
+    >,
+    LoadMissingRecords<TItem, TId> {
     tree: ITree<TItem, TId>;
-    cascadeSelection?: CascadeSelection;
-    rowOptions?: DataRowOptions<TItem, TId>;
-    getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
-
-    dataSourceState: DataSourceState<TFilter, TId>,
-    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
-
-    loadMissingRecords?: (
-        tree: ITree<TItem, TId>, id: TId | undefined, isChecked: boolean, isRoot: boolean,
-    ) => Promise<ITree<TItem, TId>>;
 }
 
 export interface CheckingService<TItem, TId> {

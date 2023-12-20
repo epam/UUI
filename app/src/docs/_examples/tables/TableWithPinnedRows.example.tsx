@@ -85,10 +85,12 @@ export default function TableWithPinnedRows() {
         getId: ({ id }) => id,
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
-        backgroundReload: false,
+        backgroundReload: true,
+        cascadeSelection: 'implicit',
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         rowOptions: {
+            checkbox: { isVisible: true },
             // To make some row `pinned`, it is required to define `pin` function.
             // Parents and elements of the same level can be pinned.
             pin: (location) => location.value.type !== 'city',

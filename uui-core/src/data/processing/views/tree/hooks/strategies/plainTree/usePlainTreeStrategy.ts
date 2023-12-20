@@ -4,7 +4,6 @@ import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
-import { useCheckingService, useFocusService, useFoldingService, useSelectingService } from '../../services';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 
@@ -24,13 +23,12 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     const {
         getId,
         getParentId,
-        setDataSourceState,
         getFilter,
         getSearchFields,
         sortBy,
         rowOptions,
         getRowOptions,
-        cascadeSelection,
+        setDataSourceState,
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
@@ -49,24 +47,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         { tree: searchTree, sortBy, dataSourceState },
         [searchTree],
     );
-
-    const checkingService = useCheckingService({
-        tree,
-        dataSourceState,
-        setDataSourceState,
-        cascadeSelection,
-        getParentId,
-        rowOptions,
-        getRowOptions,
-    });
-
-    const foldingService = useFoldingService({
-        dataSourceState, setDataSourceState, isFoldedByDefault: restProps.isFoldedByDefault, getId,
-    });
-
-    const focusService = useFocusService({ setDataSourceState });
-
-    const selectingService = useSelectingService({ setDataSourceState });
 
     const treeRowsStats = useMemo(() => {
         const rootInfo = tree.getNodeInfo(undefined);
@@ -97,15 +77,14 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getParentId,
             getId,
             dataSourceState,
+            setDataSourceState,
             reload,
             ...treeRowsStats,
-            ...checkingService,
-            ...selectingService,
-            ...focusService,
-            ...foldingService,
         }),
         [
             tree,
+            dataSourceState,
+            setDataSourceState,
             rowOptions,
             getRowOptions,
             dataSourceState,
@@ -113,10 +92,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
             getChildCount,
             getParentId,
             getId,
-            checkingService,
-            selectingService,
-            focusService,
-            foldingService,
         ],
     );
 }

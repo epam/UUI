@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD } from '../tree';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
-import { FoldingService } from '../tree/hooks/services';
+import { FoldingService } from './services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
 
@@ -155,5 +155,5 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading, isFlattenSearch]);
+    return useMemo(() => buildRows(), [tree, dataSourceState.folded, dataSourceState.checked, isLoading, isFlattenSearch]);
 }
