@@ -13,10 +13,6 @@
         max-width: 960px;
     }
 
-    .tableWrapper {
-
-    }
-
 }
 
 .sticky-header {
@@ -24,4 +20,12 @@
     top: 0;
     isolation: isolate;
     z-index: 5;
+}
+
+.radioGroupFilter {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 12px;
 }
