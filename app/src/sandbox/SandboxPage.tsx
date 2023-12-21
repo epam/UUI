@@ -22,7 +22,7 @@ import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
-import { TokensPaletteTable } from './tokens/palette/tokensPaletteTable';
+import { PaletteTable } from './tokens/palette/paletteTable';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -45,7 +45,7 @@ export function SandboxPage() {
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
             { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },
             { id: 'tokens', name: 'Tokens' },
-            { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: TokensPaletteTable },
+            { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PaletteTable },
         ],
         [],
     );

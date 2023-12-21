@@ -1,12 +1,14 @@
-import { DataColumnProps, SortingOption } from '@epam/uui-core';
-import { Text } from '@epam/uui';
+import { DataColumnProps, SortingOption, TableFiltersConfig } from '@epam/uui-core';
+import { FlexCell, RadioGroup, Text } from '@epam/uui';
 import { ThemeVarExample } from './components/themeVarExample/themeVarExample';
 import React from 'react';
 import { TruncText } from './components/truncText/truncText';
-import { IThemeVarUI } from './types/types';
+import { IThemeVarUI, TThemeVarUiErr } from './types/types';
 import { ThemeVarInfo } from './components/themeVarInfo/themeVarInfo';
 import { TFigmaThemeName } from './types/sharedTypes';
 import { getExpectedValue } from './utils/themeVarUtils';
+//
+import css from './paletteTable.module.scss';
 
 enum COL_NAMES {
     path = 'path',
@@ -17,6 +19,16 @@ enum COL_NAMES {
     expectedValue = 'expectedValue',
     status = 'status'
 }
+export enum STATUS_FILTER {
+    all= 'All',
+    ok= 'OK',
+    absent = 'Absent',
+    mismatched = 'Mismatched'
+}
+
+export type TTokensFilter = {
+    status: STATUS_FILTER | undefined,
+};
 
 const WIDTH = {
     [COL_NAMES.path]: 200, // E.g: core/surfaces/surface-main
@@ -26,7 +38,7 @@ const WIDTH = {
     //
     [COL_NAMES.actualValue]: 105,
     [COL_NAMES.expectedValue]: 105,
-    [COL_NAMES.status]: 100,
+    [COL_NAMES.status]: 120,
 };
 
 export function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
@@ -45,7 +57,7 @@ export function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
 }
 
 export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnProps<IThemeVarUI>[] {
-    const arr: DataColumnProps<IThemeVarUI>[] = [
+    const arr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [
         {
             key: COL_NAMES.path,
             caption: 'Path',
@@ -78,6 +90,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
             },
             width: WIDTH.actualValue,
             isSortable: true,
+            textAlign: 'center',
         },
         Boolean(figmaTheme) && {
             key: COL_NAMES.expectedValue,
@@ -92,6 +105,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
             },
             width: WIDTH.expectedValue,
             isSortable: true,
+            textAlign: 'center',
         },
         {
             key: COL_NAMES.status,
@@ -103,6 +117,9 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
             },
             width: WIDTH.status,
             isSortable: true,
+            isAlwaysVisible: true,
+            textAlign: 'center',
+            isFilterActive: (f) => !!f.status && f.status !== STATUS_FILTER.all,
         },
         {
             key: COL_NAMES.description,
@@ -134,4 +151,64 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
     return arr.filter((c) => {
         return typeof c === 'object';
     });
+}
+
+export function getFilter(filter: TTokensFilter) {
+    return (item: IThemeVarUI) => {
+        if (filter) {
+            switch (filter.status) {
+                case STATUS_FILTER.absent: {
+                    return !!item.valueCurrent.errors.find(({ type }) => type === TThemeVarUiErr.VAR_ABSENT);
+                }
+                case STATUS_FILTER.mismatched: {
+                    return !!item.valueCurrent.errors.find(({ type }) => type === TThemeVarUiErr.VALUE_MISMATCHED);
+                }
+                case STATUS_FILTER.ok: {
+                    return !item.valueCurrent.errors.length;
+                }
+                default: {
+                    return true;
+                }
+            }
+        }
+        return true;
+    };
+}
+
+export type TTotals = Record<STATUS_FILTER, number>;
+export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFilter>[] {
+    return [
+        {
+            field: COL_NAMES.status,
+            columnKey: COL_NAMES.status,
+            title: 'Status',
+            type: 'custom',
+            isAlwaysVisible: true,
+            render: (props) => {
+                const items = Object.values(STATUS_FILTER).map((keyStr: string) => {
+                    const id = keyStr as STATUS_FILTER;
+                    return {
+                        id,
+                        name: `${id} (${totals[id]})`,
+                    };
+                });
+
+                return (
+                    <FlexCell cx={ css.radioGroupFilter } width="auto">
+                        <RadioGroup
+                            items={ items }
+                            value={ props.value || STATUS_FILTER.all }
+                            onValueChange={ props.onValueChange }
+                            direction="vertical"
+                        />
+                    </FlexCell>
+                );
+            },
+            getTogglerValue: (props) => {
+                if (props.value) {
+                    return props.value || STATUS_FILTER.all;
+                }
+            },
+        },
+    ];
 }

@@ -12,12 +12,12 @@ export function ThemeVarExample(props: { themeVar: IThemeVarUI, mode: 'showActua
             if (mode === 'showActual') {
                 const actual = `var(${themeVar.cssVar})`;
                 return (
-                    <ColorRectangle color={ actual } label={ `${themeVar.valueCurrent.value || '<empty>'}` } />
+                    <ColorRectangle color={ actual } hex={ `${themeVar.valueCurrent.value}` } />
                 );
             }
             const expected = getExpectedValue({ themeVar });
             return (
-                <ColorRectangle color={ expected.value as string } label={ `${expected.value}` } />
+                <ColorRectangle color={ expected.value as string } hex={ `${expected.value}` } />
             );
         }
         case TVarType.FLOAT: {
