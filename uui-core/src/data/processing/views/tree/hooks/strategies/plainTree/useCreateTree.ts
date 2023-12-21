@@ -6,6 +6,6 @@ export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeStrateg
     const { items } = props;
 
     return useMemo(() => {
-        return Tree.create(props, Array.isArray(items) ? items : Object.values(items));
+        return Tree.create(props, Array.isArray(items) ? items : items instanceof Tree ? items : Object.values(items));
     }, [items, ...deps]);
 }

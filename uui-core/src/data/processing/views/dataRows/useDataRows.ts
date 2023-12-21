@@ -287,12 +287,14 @@ export function useDataRows<TItem, TId, TFilter = any>(
         return count;
     };
 
+    const clearAllChecked = useCallback(() => handleSelectAll(false), [handleSelectAll]);
     return {
         listProps,
         visibleRows,
         getSelectedRows,
         getSelectedRowsCount,
         getById,
+        clearAllChecked,
 
         selectAll,
     };

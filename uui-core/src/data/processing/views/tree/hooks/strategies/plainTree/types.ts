@@ -5,7 +5,7 @@ import { CommonDataSourceConfig } from '../types/common';
 
 export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.plain,
-    items: TItem[] | Record<string | number | symbol, TItem>,
+    items: TItem[] | Record<string | number | symbol, TItem> | ITree<TItem, TId>,
     tree?: ITree<TItem, TId>,
 
     getSearchFields?(item: TItem): string[];

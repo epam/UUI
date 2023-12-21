@@ -13,6 +13,7 @@ export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChild
     renderRow(row: DataRowProps<TItem, string>): void;
     getSearchFields?(item: TItem): string[];
     search?: string;
+    onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TItem['id']>>>;
 }
 
 export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {

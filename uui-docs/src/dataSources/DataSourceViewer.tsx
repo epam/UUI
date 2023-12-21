@@ -9,6 +9,7 @@ interface Props<TItem, TId> extends IEditable<DataSourceState> {
     selectAll?: boolean;
     getName?: (item: TItem) => string;
     dataSource: IDataSource<TItem, TId, any>;
+    onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>;
 }
 
 export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {

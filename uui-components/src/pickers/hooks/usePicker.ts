@@ -27,17 +27,24 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         cascadeSelection,
     } = props;
 
-    const handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
-        if (showSelected && !newDataSourceState.checked?.length) {
+    const handleDataSourceValueChange = (newDataSourceState: React.SetStateAction<DataSourceState<any, TId>>) => {
+        let dsState: DataSourceState;
+        if (typeof newDataSourceState === 'function') {
+            dsState = newDataSourceState(dataSourceState);
+        } else {
+            dsState = newDataSourceState;
+        }
+
+        if (showSelected && !dsState.checked?.length) {
             setShowSelected(false);
         }
 
-        if (newDataSourceState.search !== dataSourceState.search) {
-            newDataSourceState.focusedIndex = 0;
+        if (dsState.search !== dataSourceState.search) {
+            dsState.focusedIndex = 0;
         }
 
-        setDataSourceState(newDataSourceState);
-        const newValue = dataSourceStateToValue(props, newDataSourceState, dataSource);
+        setDataSourceState(dsState);
+        const newValue = dataSourceStateToValue(props, dsState, dataSource);
         if (!isEqual(value, newValue)) {
             handleSelectionValueChange(newValue);
         }
@@ -105,7 +112,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
         handleDataSourceValueChange({
             ...dataSourceState,
-            selectedId: emptyValue,
+            selectedId: emptyValue as undefined,
         });
     };
 
