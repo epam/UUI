@@ -1,0 +1,14 @@
+.root {
+    margin: 3px;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    & > .label {
+        margin: 2px;
+        text-align: center;
+        user-select: text;
+    }
+}
