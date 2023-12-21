@@ -31,7 +31,6 @@ function isEqualValue(params: { actual: string, token: IThemeVar, theme: TTheme 
         if (token.type === TVarType.COLOR) {
             const expectedNorm = normalizeHex(expected.value as string);
             const actualNorm = normalizeHex(actual);
-            console.log(normalizeHex('#abc'));
             return expectedNorm.localeCompare(actualNorm) === 0;
         }
         return String(expected.value) === actual;
