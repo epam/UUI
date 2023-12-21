@@ -326,10 +326,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#E1E3EB",
+          "value": "#6C6F80",
           "ref": {
-            "id": "core/neutral/neutral-30",
-            "cssVar": "--uui-neutral-30",
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
             "supported": true
           }
         },
@@ -367,10 +367,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#E1E3EB",
+          "value": "#6C6F80",
           "ref": {
-            "id": "core/neutral/neutral-30",
-            "cssVar": "--uui-neutral-30",
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
             "supported": true
           }
         },
@@ -408,10 +408,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#E1E3EB",
+          "value": "#6C6F80",
           "ref": {
-            "id": "core/neutral/neutral-30",
-            "cssVar": "--uui-neutral-30",
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
             "supported": true
           }
         },
@@ -449,10 +449,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#ACAFBF",
+          "value": "#CED0DB",
           "ref": {
-            "id": "core/neutral/neutral-50",
-            "cssVar": "--uui-neutral-50",
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
             "supported": true
           }
         },
@@ -613,10 +613,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#ACAFBF",
+          "value": "#CED0DB",
           "ref": {
-            "id": "core/neutral/neutral-50",
-            "cssVar": "--uui-neutral-50",
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
             "supported": true
           }
         },
@@ -695,10 +695,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#ACAFBF",
+          "value": "#CED0DB",
           "ref": {
-            "id": "core/neutral/neutral-50",
-            "cssVar": "--uui-neutral-50",
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
             "supported": true
           }
         },
@@ -738,9 +738,9 @@
         "Loveship-Dark": {
           "value": "#FFFFFF",
           "ref": {
-            "id": "palette/white",
-            "cssVar": "--uui-white",
-            "supported": false
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
           }
         },
         "Promo": {
@@ -818,10 +818,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#6C6F80",
+          "value": "#E1E3EB",
           "ref": {
-            "id": "core/neutral/neutral-60",
-            "cssVar": "--uui-neutral-60",
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
             "supported": true
           }
         },
@@ -859,10 +859,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#6C6F80",
+          "value": "#E1E3EB",
           "ref": {
-            "id": "core/neutral/neutral-60",
-            "cssVar": "--uui-neutral-60",
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
             "supported": true
           }
         },
@@ -1023,10 +1023,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#6C6F80",
+          "value": "#ACAFBF",
           "ref": {
-            "id": "core/neutral/neutral-60",
-            "cssVar": "--uui-neutral-60",
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
             "supported": true
           }
         },
@@ -1105,10 +1105,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#ACAFBF",
+          "value": "#CED0DB",
           "ref": {
-            "id": "core/neutral/neutral-50",
-            "cssVar": "--uui-neutral-50",
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
             "supported": true
           }
         },
@@ -1146,10 +1146,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#E1E3EB",
+          "value": "#6C6F80",
           "ref": {
-            "id": "core/neutral/neutral-30",
-            "cssVar": "--uui-neutral-30",
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
             "supported": true
           }
         },
@@ -1228,10 +1228,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#474A59",
+          "value": "#EBEDF5",
           "ref": {
-            "id": "core/neutral/neutral-70",
-            "cssVar": "--uui-neutral-70",
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
             "supported": true
           }
         },
@@ -1310,10 +1310,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#303240",
+          "value": "#F5F6FA",
           "ref": {
-            "id": "core/neutral/neutral-80",
-            "cssVar": "--uui-neutral-80",
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
             "supported": true
           }
         },
@@ -1351,10 +1351,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#1D1E26",
+          "value": "#FAFAFC",
           "ref": {
-            "id": "core/neutral/neutral-90",
-            "cssVar": "--uui-neutral-90",
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
             "supported": true
           }
         },
@@ -1392,10 +1392,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#6C6F80",
+          "value": "#E1E3EB",
           "ref": {
-            "id": "core/neutral/neutral-60",
-            "cssVar": "--uui-neutral-60",
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
             "supported": true
           }
         },
@@ -1433,10 +1433,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#1D1E26",
+          "value": "#FAFAFC",
           "ref": {
-            "id": "core/neutral/neutral-90",
-            "cssVar": "--uui-neutral-90",
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
             "supported": true
           }
         },
@@ -1618,10 +1618,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#000000",
+          "value": "#FFFFFF",
           "ref": {
-            "id": "palette/black",
-            "cssVar": "--uui-black",
+            "id": "palette/white",
+            "cssVar": "--uui-white",
             "supported": false
           }
         },
@@ -1700,10 +1700,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#FFFFFF",
+          "value": "#000000",
           "ref": {
-            "id": "palette/white",
-            "cssVar": "--uui-white",
+            "id": "palette/black",
+            "cssVar": "--uui-black",
             "supported": false
           }
         },
@@ -2651,6 +2651,47 @@
       }
     },
     {
+      "id": "core/semantic/accent-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/critical-10",
       "type": "COLOR",
       "description": "",
@@ -2892,6 +2933,47 @@
             "id": "palette/fire/fire-70",
             "cssVar": "--uui-fire-70",
             "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
           }
         }
       }
@@ -3143,6 +3225,47 @@
       }
     },
     {
+      "id": "core/semantic/error-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/info-10",
       "type": "COLOR",
       "description": "",
@@ -3389,6 +3512,47 @@
       }
     },
     {
+      "id": "core/semantic/info-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/primary-10",
       "type": "COLOR",
       "description": "",
@@ -3473,7 +3637,7 @@
     {
       "id": "core/semantic/primary-5",
       "type": "COLOR",
-      "description": "Uses for primary actions and component states.  It's primary theme color.",
+      "description": "",
       "useCases": "",
       "cssVar": "--uui-primary-5",
       "value": {
@@ -3630,6 +3794,47 @@
             "id": "palette/electric/electric-70",
             "cssVar": "--uui-electric-70",
             "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-primary-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
           }
         }
       }
@@ -3881,6 +4086,47 @@
       }
     },
     {
+      "id": "core/semantic/secondary-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/success-10",
       "type": "COLOR",
       "description": "",
@@ -4122,6 +4368,47 @@
             "id": "palette/emerald/emerald-70",
             "cssVar": "--uui-emerald-70",
             "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
           }
         }
       }
@@ -4373,6 +4660,47 @@
       }
     },
     {
+      "id": "core/semantic/warning-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
       "id": "core/surfaces/app-bg",
       "type": "COLOR",
       "description": "",
@@ -4388,10 +4716,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#FAFAFC",
+          "value": "#1D1E26",
           "ref": {
-            "id": "core/neutral/neutral-5",
-            "cssVar": "--uui-neutral-5",
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
             "supported": true
           }
         },
@@ -4414,6 +4742,27 @@
       }
     },
     {
+      "id": "core/surfaces/blocker",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-blocker",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFFB2"
+        },
+        "Loveship-Dark": {
+          "value": "#303240CC"
+        },
+        "Promo": {
+          "value": "#FFFFFFB2"
+        },
+        "EPAM": {
+          "value": "#FFFFFFB2"
+        }
+      }
+    },
+    {
       "id": "core/surfaces/divider",
       "type": "COLOR",
       "description": "",
@@ -4429,10 +4778,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#ACAFBF",
+          "value": "#CED0DB",
           "ref": {
-            "id": "core/neutral/neutral-50",
-            "cssVar": "--uui-neutral-50",
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
             "supported": true
           }
         },
@@ -4470,10 +4819,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#CED0DB",
+          "value": "#ACAFBF",
           "ref": {
-            "id": "core/neutral/neutral-40",
-            "cssVar": "--uui-neutral-40",
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
             "supported": true
           }
         },
@@ -4492,6 +4841,27 @@
             "cssVar": "--uui-neutral-30",
             "supported": true
           }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/overlay",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-overlay",
+      "value": {
+        "Loveship-Light": {
+          "value": "#1D1E26CC"
+        },
+        "Loveship-Dark": {
+          "value": "#1D1E26CC"
+        },
+        "Promo": {
+          "value": "#1D1E26CC"
+        },
+        "EPAM": {
+          "value": "#1D1E26CC"
         }
       }
     },
@@ -4634,10 +5004,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#E1E3EB",
+          "value": "#6C6F80",
           "ref": {
-            "id": "core/neutral/neutral-30",
-            "cssVar": "--uui-neutral-30",
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
             "supported": true
           }
         },
@@ -4675,10 +5045,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#CED0DB",
+          "value": "#ACAFBF",
           "ref": {
-            "id": "core/neutral/neutral-40",
-            "cssVar": "--uui-neutral-40",
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
             "supported": true
           }
         },
@@ -4757,10 +5127,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#EBEDF5",
+          "value": "#474A59",
           "ref": {
-            "id": "core/neutral/neutral-20",
-            "cssVar": "--uui-neutral-20",
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
             "supported": true
           }
         },
@@ -4779,27 +5149,6 @@
             "cssVar": "--uui-neutral-0",
             "supported": true
           }
-        }
-      }
-    },
-    {
-      "id": "core/surfaces/surface-overlay",
-      "type": "COLOR",
-      "description": "",
-      "useCases": "",
-      "cssVar": "--uui-surface-overlay",
-      "value": {
-        "Loveship-Light": {
-          "value": "#1D1E26CC"
-        },
-        "Loveship-Dark": {
-          "value": "#1D1E26CC"
-        },
-        "Promo": {
-          "value": "#1D1E26CC"
-        },
-        "EPAM": {
-          "value": "#1D1E26CC"
         }
       }
     },
@@ -4819,10 +5168,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#F5F6FA",
+          "value": "#303240",
           "ref": {
-            "id": "core/neutral/neutral-10",
-            "cssVar": "--uui-neutral-10",
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
             "supported": true
           }
         },
@@ -4983,10 +5332,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#6C6F80",
+          "value": "#E1E3EB",
           "ref": {
-            "id": "core/neutral/neutral-60",
-            "cssVar": "--uui-neutral-60",
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
             "supported": true
           }
         },
@@ -5065,10 +5414,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#1D1E26",
+          "value": "#FAFAFC",
           "ref": {
-            "id": "core/neutral/neutral-90",
-            "cssVar": "--uui-neutral-90",
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
             "supported": true
           }
         },
@@ -5106,10 +5455,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#303240",
+          "value": "#F5F6FA",
           "ref": {
-            "id": "core/neutral/neutral-80",
-            "cssVar": "--uui-neutral-80",
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
             "supported": true
           }
         },
@@ -5188,10 +5537,10 @@
           }
         },
         "Loveship-Dark": {
-          "value": "#474A59",
+          "value": "#EBEDF5",
           "ref": {
-            "id": "core/neutral/neutral-70",
-            "cssVar": "--uui-neutral-70",
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
             "supported": true
           }
         },

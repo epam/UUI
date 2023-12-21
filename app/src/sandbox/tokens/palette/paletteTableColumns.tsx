@@ -205,9 +205,7 @@ export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFil
                 );
             },
             getTogglerValue: (props) => {
-                if (props.value) {
-                    return props.value || STATUS_FILTER.all;
-                }
+                return props.value || STATUS_FILTER.all;
             },
         },
     ];
