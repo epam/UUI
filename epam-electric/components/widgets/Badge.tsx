@@ -23,7 +23,7 @@ type BadgeMods = {
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
 export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
-    uui.Badge as any, // TODO: remove it when BaseButton inheritance will be reworked
+    uui.Badge,
     (props) => ({
         color: props.color || 'info',
     }),
