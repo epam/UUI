@@ -129,32 +129,16 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             deactivate: () => {},
             loadData: () => {},
             _forceUpdate: () => {},
-        }), [visibleRows, listProps, selectAll, restProps, reload, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked]);
-
-        // const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
-        //     ...this.props,
-        //     items: this.tree,
-        //     ...options,
-
-        //     // These defaults are added for compatibility reasons.
-        //     // We'll require getId and getParentId callbacks in other APIs, including the views.
-        //     getId: this.getId,
-        //     getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
-        // };
-
-        // // eslint-disable-next-line react-hooks/rules-of-hooks
-        // const view = useMemo(
-        //     () => new ArrayListView({ value, onValueChange }, viewProps),
-        //     [...deps, this], // every time, datasource is updated, view should be recreated
-        // );
-
-        // // eslint-disable-next-line react-hooks/rules-of-hooks
-        // useEffect(() => {
-        //     const unsubscribe = this.subscribe(view);
-        //     return () => { unsubscribe(); };
-        // }, [...deps, this]);
-
-        // view.update({ value, onValueChange }, viewProps);
-        // return view;
+        }), [
+            visibleRows,
+            listProps,
+            selectAll,
+            restProps,
+            reload,
+            getById,
+            getSelectedRows,
+            getSelectedRowsCount,
+            clearAllChecked,
+        ]);
     }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD } from './views';
+import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD, useDataRows, useTree } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState } from '../../types';
@@ -75,29 +75,61 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
-        onValueChange: (val: TState) => void,
+        onValueChange: React.Dispatch<React.SetStateAction<TState>>,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
-    ): LazyListView<TItem, TId, TFilter> {
-        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
+    ) {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { tree, reload, ...restProps } = useTree({
+            type: 'lazy',
             ...this.props,
+            dataSourceState: value,
+            setDataSourceState: onValueChange as React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>,
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
             ...props,
-        };
-
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const view = useMemo(
-            () => new LazyListView({ value, onValueChange }, viewProps, this.cache),
-            [...deps, this], // every time, datasource is updated, view should be recreated
-        );
+        }, [...deps, this]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => { unsubscribe(); };
-        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
+            this.trees.set(tree, reload);
+            return () => { 
+                this.trees.delete(tree);
+            };
+        }, [tree, reload]);
 
-        view.update({ value, onValueChange }, viewProps);
-        return view;
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { visibleRows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
+            tree,
+            ...restProps,
+        });
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        return useMemo(() => ({
+            getVisibleRows: () => visibleRows,
+            getListProps: () => listProps,
+            selectAll,
+            getConfig: () => restProps,
+            reload,
+            getById,
+            getSelectedRows,
+            getSelectedRowsCount,
+            clearAllChecked,
+            activate: () => {},
+            deactivate: () => {},
+            loadData: () => {},
+            _forceUpdate: () => {},
+        }), [
+            visibleRows,
+            listProps,
+            selectAll,
+            restProps,
+            reload,
+            getById,
+            getSelectedRows,
+            getSelectedRowsCount,
+            clearAllChecked,
+        ]);
     }
 }
