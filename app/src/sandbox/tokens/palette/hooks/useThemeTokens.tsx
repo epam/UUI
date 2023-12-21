@@ -35,7 +35,7 @@ export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
                             type: TThemeVarUiErr.VAR_ABSENT,
                             message: `CSS variable ${token.cssVar} is not defined`,
                         });
-                    } else if (expected !== undefined && expected.value !== value) {
+                    } else if (expected !== undefined && String(expected.value) !== value) {
                         errors.push({
                             type: TThemeVarUiErr.VALUE_MISMATCHED,
                             message: 'Actual value doesn\'t match expected value',
