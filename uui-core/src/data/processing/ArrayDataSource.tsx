@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
-import { ArrayListView, ArrayListViewProps } from './views';
-import { ITree, NOT_FOUND_RECORD, Tree } from './views/tree';
+import { ArrayListView, ArrayListViewProps, useDataRows } from './views';
+import { ITree, NOT_FOUND_RECORD, Tree, useTree } from './views/tree';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
@@ -83,33 +83,78 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     useView(
         value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { tree, reload, ...restProps } = useTree({ 
             ...this.props,
             items: this.tree,
             ...options,
+            dataSourceState: value,
+            setDataSourceState: onValueChange,
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
-        };
-
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const view = useMemo(
-            () => new ArrayListView({ value, onValueChange }, viewProps),
-            [...deps, this], // every time, datasource is updated, view should be recreated
-        );
+        }, [...deps, this]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => { unsubscribe(); };
-        }, [...deps, this]);
+            this.trees.set(tree, reload);
+            return () => { 
+                this.trees.delete(tree);
+            };
+        }, [tree, reload]);
 
-        view.update({ value, onValueChange }, viewProps);
-        return view;
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { visibleRows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
+            tree,
+            ...restProps,
+        });
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        return useMemo(() => ({
+            getVisibleRows: () => visibleRows,
+            getListProps: () => listProps,
+            selectAll,
+            getConfig: () => restProps,
+            reload,
+            getById,
+            getSelectedRows,
+            getSelectedRowsCount,
+            clearAllChecked,
+            activate: () => {},
+            deactivate: () => {},
+            loadData: () => {},
+            _forceUpdate: () => {},
+        }), [visibleRows, listProps, selectAll, restProps, reload, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked]);
+
+        // const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
+        //     ...this.props,
+        //     items: this.tree,
+        //     ...options,
+
+        //     // These defaults are added for compatibility reasons.
+        //     // We'll require getId and getParentId callbacks in other APIs, including the views.
+        //     getId: this.getId,
+        //     getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
+        // };
+
+        // // eslint-disable-next-line react-hooks/rules-of-hooks
+        // const view = useMemo(
+        //     () => new ArrayListView({ value, onValueChange }, viewProps),
+        //     [...deps, this], // every time, datasource is updated, view should be recreated
+        // );
+
+        // // eslint-disable-next-line react-hooks/rules-of-hooks
+        // useEffect(() => {
+        //     const unsubscribe = this.subscribe(view);
+        //     return () => { unsubscribe(); };
+        // }, [...deps, this]);
+
+        // view.update({ value, onValueChange }, viewProps);
+        // return view;
     }
 }

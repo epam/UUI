@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { usePrevious } from '../../../../../../../hooks';
+import { useSimplePrevious, usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 import { ITree } from '../../../../tree';
 
@@ -13,14 +13,15 @@ export function useFilterTree<TItem, TId, TFilter = any>(
     { tree, dataSourceState: { filter }, getFilter }: UseFilterTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const prevTree = usePrevious(tree);
-    const prevFilter = usePrevious(filter);
+    const prevTree = useSimplePrevious(tree);
+    const prevFilter = useSimplePrevious(filter);
     const prevDeps = usePrevious(deps);
 
     const filteredTreeRef = useRef(null);
 
     return useMemo(() => {
-        if (filteredTreeRef.current === null || prevTree !== tree || filter !== prevFilter || prevDeps !== deps) {
+        const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
+        if (filteredTreeRef.current === null || prevTree !== tree || filter !== prevFilter || isDepsChanged) {
             filteredTreeRef.current = tree.filter({ filter, getFilter });
         }
         return filteredTreeRef.current;

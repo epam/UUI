@@ -1,10 +1,12 @@
 import {
     BaseListViewProps, DataSourceState, IDataSource, IDataSourceView,
 } from '../../types/dataSources';
+import { ITree } from './views';
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
     private subscriptions = new Map<IDataSourceView<TItem, TId, TFilter>, () => void>();
+    protected trees = new Map<ITree<TItem, TId>, () => void>();
 
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
 
@@ -18,7 +20,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     abstract useView(
         value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
         options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
         deps?: any[],
     ): IDataSourceView<TItem, TId, TFilter>;
@@ -61,8 +63,9 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         };
     }
     
-    protected reload() {
+    protected reload() { 
         this.views.forEach((view) => view.reload());
         this.subscriptions.forEach((_, view) => view.reload());
+        this.trees.forEach((reload) => reload());
     }
 }

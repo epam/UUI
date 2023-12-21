@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DataColumnProps, DataTableState, IDataSource, IEditable,
+    DataColumnProps, DataSourceState, DataTableState, IDataSource, IEditable,
 } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/promo';
 import css from './DataSourceTableViewer.module.scss';
@@ -11,6 +11,7 @@ interface Props<TItem, TId> extends IEditable<DataTableState> {
     getName?: (item: TItem) => string;
     columns: DataColumnProps<TItem>[];
     dataSource: IDataSource<TItem, TId, any>;
+    onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>;
 }
 
 export function DataSourceTableViewer<TItem, TId>(props: Props<TItem, TId>) {

@@ -12,3 +12,13 @@ export function usePrevious<T>(value: T): T | null {
 
     return previousValueRef.current;
 }
+
+export function useSimplePrevious<T>(value: T): T | null {
+    const previousValueRef = useRef<T>(null);
+
+    useEffect(() => {
+        previousValueRef.current = value;
+    }, [value]);
+
+    return previousValueRef.current;
+}

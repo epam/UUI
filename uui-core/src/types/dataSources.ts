@@ -70,7 +70,12 @@ export interface IDataSource<TItem, TId, TFilter> {
     getById(id: TId): TItem | void;
     setItem(item: TItem): void;
     getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
-    useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any, deps?: any[]): IDataSourceView<TItem, TId, TFilter>;
+    useView(
+        value: DataSourceState<any, TId>,
+        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
+        options?: any,
+        deps?: any[],
+    ): IDataSourceView<TItem, TId, TFilter>;
     unsubscribeView(onValueChange: (val: DataSourceState<any, TId>) => any): void;
 }
 
