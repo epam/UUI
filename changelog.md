@@ -15,6 +15,12 @@
 * [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * removed redundant exports
 
+# 5.4.3 - 19.12.2023
+
+**What's Fixed**
+* [RTE]: fixed `onBlur` and `onKeyDown` props 
+* [Button]: fixed 'white' color on loveship
+
 
 # 5.4.2 - 07.12.2023
 

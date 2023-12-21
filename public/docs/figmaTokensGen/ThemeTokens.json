@@ -1,0 +1,5258 @@
+{
+  "supportedTokens": [
+    {
+      "id": "core/border-radius",
+      "type": "FLOAT",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-border-radius",
+      "value": {
+        "Loveship-Light": {
+          "value": 3
+        },
+        "Loveship-Dark": {
+          "value": 3
+        },
+        "Promo": {
+          "value": 0
+        },
+        "EPAM": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "id": "core/border-radius-0",
+      "type": "FLOAT",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-border-radius-0",
+      "value": {
+        "Loveship-Light": {
+          "value": 0
+        },
+        "Loveship-Dark": {
+          "value": 0
+        },
+        "Promo": {
+          "value": 0
+        },
+        "EPAM": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": "core/border-radius-x2",
+      "type": "FLOAT",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-border-radius-x2",
+      "value": {
+        "Loveship-Light": {
+          "value": 6
+        },
+        "Loveship-Dark": {
+          "value": 6
+        },
+        "Promo": {
+          "value": 0
+        },
+        "EPAM": {
+          "value": 6
+        }
+      }
+    },
+    {
+      "id": "core/border-radius-x3",
+      "type": "FLOAT",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-border-radius-x3",
+      "value": {
+        "Loveship-Light": {
+          "value": 9
+        },
+        "Loveship-Dark": {
+          "value": 9
+        },
+        "Promo": {
+          "value": 0
+        },
+        "EPAM": {
+          "value": 9
+        }
+      }
+    },
+    {
+      "id": "core/border-radius-x4",
+      "type": "FLOAT",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-border-radius-x4",
+      "value": {
+        "Loveship-Light": {
+          "value": 12
+        },
+        "Loveship-Dark": {
+          "value": 12
+        },
+        "Promo": {
+          "value": 0
+        },
+        "EPAM": {
+          "value": 12
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-active",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-active",
+      "value": {
+        "Loveship-Light": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/primary-70",
+            "cssVar": "--uui-primary-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/primary-70",
+            "cssVar": "--uui-primary-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/primary-70",
+            "cssVar": "--uui-primary-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/primary-70",
+            "cssVar": "--uui-primary-70",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/surfaces/surface-main",
+            "cssVar": "--uui-surface-main",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/surfaces/surface-main",
+            "cssVar": "--uui-surface-main",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/surfaces/surface-main",
+            "cssVar": "--uui-surface-main",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/surfaces/surface-main",
+            "cssVar": "--uui-surface-main",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg-checked",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg-checked",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg-checked-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg-checked-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg-checked-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg-checked-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-bg-readonly",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-bg-readonly",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border-checked",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border-checked",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border-checked-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border-checked-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "core/semantic/primary-20",
+            "cssVar": "--uui-primary-20",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border-checked-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border-checked-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-border-readonly",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-border-readonly",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-checkbox-icon",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-checkbox-icon",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/white",
+            "cssVar": "--uui-white",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/white",
+            "cssVar": "--uui-white",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-icon",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-icon",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-icon-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-icon-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-label",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-label",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/text/text-primary",
+            "cssVar": "--uui-text-primary",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/text/text-primary",
+            "cssVar": "--uui-text-primary",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-95",
+            "cssVar": "--uui-neutral-95",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-label-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-label-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-placeholder",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-placeholder",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/text/text-tertiary",
+            "cssVar": "--uui-text-tertiary",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-placeholder-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-placeholder-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-rest",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-rest",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-switch-bg",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-switch-bg",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-switch-border-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-switch-border-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-text",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-text",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/text/text-primary",
+            "cssVar": "--uui-text-primary",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/text/text-primary",
+            "cssVar": "--uui-text-primary",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-95",
+            "cssVar": "--uui-neutral-95",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-text_input-border-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-text_input-border-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/controls/control-text-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-control-text-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/icons/icon",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-icon",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-95",
+            "cssVar": "--uui-neutral-95",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/icons/icon-active",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-icon-active",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/icons/icon-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-icon-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/icons/icon-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-icon-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/links/link",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-link",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-60",
+            "cssVar": "--uui-blue-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "core/semantic/primary-50",
+            "cssVar": "--uui-primary-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/links/link-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-link-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/text/text-disabled",
+            "cssVar": "--uui-text-disabled",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/links/link-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-link-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-70",
+            "cssVar": "--uui-blue-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "core/semantic/primary-60",
+            "cssVar": "--uui-primary-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/links/link-visited",
+      "type": "COLOR",
+      "description": "Color for visited text links",
+      "useCases": "",
+      "cssVar": "--uui-link-visited",
+      "value": {
+        "Loveship-Light": {
+          "value": "#8018A0"
+        },
+        "Loveship-Dark": {
+          "value": "#9062EC"
+        },
+        "Promo": {
+          "value": "#8018A0"
+        },
+        "EPAM": {
+          "value": "#8018A0"
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-0",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-0",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/white",
+            "cssVar": "--uui-white",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "palette/black",
+            "cssVar": "--uui-black",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/white",
+            "cssVar": "--uui-white",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/white",
+            "cssVar": "--uui-white",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "palette/night/night100",
+            "cssVar": "--uui-night100",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "palette/night/night100",
+            "cssVar": "--uui-night100",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray10",
+            "cssVar": "--uui-gray10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "palette/night/night100",
+            "cssVar": "--uui-night100",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-100",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-100",
+      "value": {
+        "Loveship-Light": {
+          "value": "#000000",
+          "ref": {
+            "id": "palette/black",
+            "cssVar": "--uui-black",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/white",
+            "cssVar": "--uui-white",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#000000",
+          "ref": {
+            "id": "palette/black",
+            "cssVar": "--uui-black",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#000000",
+          "ref": {
+            "id": "palette/black",
+            "cssVar": "--uui-black",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "palette/night/night200",
+            "cssVar": "--uui-night200",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "palette/night/night200",
+            "cssVar": "--uui-night200",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray20",
+            "cssVar": "--uui-gray20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "palette/night/night200",
+            "cssVar": "--uui-night200",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-30",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-30",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "palette/night/night300",
+            "cssVar": "--uui-night300",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "palette/night/night300",
+            "cssVar": "--uui-night300",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray30",
+            "cssVar": "--uui-gray30",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "palette/night/night300",
+            "cssVar": "--uui-night300",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-40",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-40",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray40",
+            "cssVar": "--uui-gray40",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "palette/night/night50",
+            "cssVar": "--uui-night50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "palette/night/night50",
+            "cssVar": "--uui-night50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray5",
+            "cssVar": "--uui-gray5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "palette/night/night50",
+            "cssVar": "--uui-night50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "palette/night/night500",
+            "cssVar": "--uui-night500",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "palette/night/night500",
+            "cssVar": "--uui-night500",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray50",
+            "cssVar": "--uui-gray50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "palette/night/night500",
+            "cssVar": "--uui-night500",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "palette/night/night600",
+            "cssVar": "--uui-night600",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "palette/night/night600",
+            "cssVar": "--uui-night600",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray60",
+            "cssVar": "--uui-gray60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "palette/night/night600",
+            "cssVar": "--uui-night600",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#474A59",
+          "ref": {
+            "id": "palette/night/night700",
+            "cssVar": "--uui-night700",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#474A59",
+          "ref": {
+            "id": "palette/night/night700",
+            "cssVar": "--uui-night700",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray70",
+            "cssVar": "--uui-gray70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#474A59",
+          "ref": {
+            "id": "palette/night/night700",
+            "cssVar": "--uui-night700",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-80",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-80",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "palette/night/night800",
+            "cssVar": "--uui-night800",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#303240",
+          "ref": {
+            "id": "palette/night/night800",
+            "cssVar": "--uui-night800",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray80",
+            "cssVar": "--uui-gray80",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#303240",
+          "ref": {
+            "id": "palette/night/night800",
+            "cssVar": "--uui-night800",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-90",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-90",
+      "value": {
+        "Loveship-Light": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "palette/night/night900",
+            "cssVar": "--uui-night900",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "palette/night/night900",
+            "cssVar": "--uui-night900",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/gray/gray90",
+            "cssVar": "--uui-gray90",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "palette/night/night900",
+            "cssVar": "--uui-night900",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/neutral/neutral-95",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-neutral-95",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF"
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF"
+        },
+        "Promo": {
+          "value": "#FFFFFF"
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/night/night950",
+            "cssVar": "--uui-night950",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/other/outline-focus",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-outline-focus",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC7F"
+        },
+        "Loveship-Dark": {
+          "value": "#008ACE7F"
+        },
+        "Promo": {
+          "value": "#007BBD7F"
+        },
+        "EPAM": {
+          "value": "#0A68F17F"
+        }
+      }
+    },
+    {
+      "id": "core/other/scroll",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-scroll",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF"
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF"
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "id": "core/other/search_result-bg-highlight",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-search_result-bg-highlight",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FCAA007F"
+        },
+        "Loveship-Dark": {
+          "value": "#F1A1057F"
+        },
+        "Promo": {
+          "value": "#FFC0007F"
+        },
+        "EPAM": {
+          "value": "#FCAA007F"
+        }
+      }
+    },
+    {
+      "id": "core/other/skeleton",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-skeleton",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/other/tag",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-tag",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "palette/night/night300",
+            "cssVar": "--uui-night300",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/other/tag-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-tag-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/scroll_bar/scroll_bar-bg",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-scroll_bar-bg",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF"
+        },
+        "Promo": {
+          "value": "#FFFFFF"
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/scroll_bar/scroll_bar-bg-active",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-scroll_bar-bg-active",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF"
+        },
+        "Promo": {
+          "value": "#FFFFFF"
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "palette/night/night600",
+            "cssVar": "--uui-night600",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/scroll_bar/scroll_bar-bg-hover",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-scroll_bar-bg-hover",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF"
+        },
+        "Promo": {
+          "value": "#FFFFFF"
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "palette/night/night500",
+            "cssVar": "--uui-night500",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/accent-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#EBF3D8",
+          "ref": {
+            "id": "palette/green/green-10",
+            "cssVar": "--uui-green-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#EBF3D8",
+          "ref": {
+            "id": "palette/green/green-10",
+            "cssVar": "--uui-green-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#EBF3D8",
+          "ref": {
+            "id": "palette/green/green-10",
+            "cssVar": "--uui-green-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-10",
+            "cssVar": "--uui-electric-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/accent-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#C1E288",
+          "ref": {
+            "id": "palette/green/green-20",
+            "cssVar": "--uui-green-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#C1E288",
+          "ref": {
+            "id": "palette/green/green-20",
+            "cssVar": "--uui-green-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#C1E288",
+          "ref": {
+            "id": "palette/green/green-20",
+            "cssVar": "--uui-green-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-20",
+            "cssVar": "--uui-electric-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/accent-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FCFFF5",
+          "ref": {
+            "id": "palette/green/green-5",
+            "cssVar": "--uui-green-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FCFFF5",
+          "ref": {
+            "id": "palette/green/green-5",
+            "cssVar": "--uui-green-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FCFFF5",
+          "ref": {
+            "id": "palette/green/green-5",
+            "cssVar": "--uui-green-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-5",
+            "cssVar": "--uui-electric-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/accent-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#67A300",
+          "ref": {
+            "id": "palette/green/green-50",
+            "cssVar": "--uui-green-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#67A300",
+          "ref": {
+            "id": "palette/green/green-50",
+            "cssVar": "--uui-green-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#67A300",
+          "ref": {
+            "id": "palette/green/green-50",
+            "cssVar": "--uui-green-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-50",
+            "cssVar": "--uui-electric-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/accent-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#528500",
+          "ref": {
+            "id": "palette/green/green-60",
+            "cssVar": "--uui-green-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#528500",
+          "ref": {
+            "id": "palette/green/green-60",
+            "cssVar": "--uui-green-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#528500",
+          "ref": {
+            "id": "palette/green/green-60",
+            "cssVar": "--uui-green-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-60",
+            "cssVar": "--uui-electric-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/accent-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "palette/green/green-70",
+            "cssVar": "--uui-green-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "palette/green/green-70",
+            "cssVar": "--uui-green-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "palette/green/green-70",
+            "cssVar": "--uui-green-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-70",
+            "cssVar": "--uui-electric-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "palette/fire/fire-10",
+            "cssVar": "--uui-fire-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-10",
+            "cssVar": "--uui-red-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-10",
+            "cssVar": "--uui-red-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "palette/fire/fire-10",
+            "cssVar": "--uui-fire-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FBB6B6",
+          "ref": {
+            "id": "palette/fire/fire-20",
+            "cssVar": "--uui-fire-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-20",
+            "cssVar": "--uui-red-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-20",
+            "cssVar": "--uui-red-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FBB6B6",
+          "ref": {
+            "id": "palette/fire/fire-20",
+            "cssVar": "--uui-fire-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FEF6F6",
+          "ref": {
+            "id": "palette/fire/fire-5",
+            "cssVar": "--uui-fire-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-5",
+            "cssVar": "--uui-red-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-5",
+            "cssVar": "--uui-red-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FEF6F6",
+          "ref": {
+            "id": "palette/fire/fire-5",
+            "cssVar": "--uui-fire-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FF4242",
+          "ref": {
+            "id": "palette/fire/fire-50",
+            "cssVar": "--uui-fire-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-50",
+            "cssVar": "--uui-red-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-50",
+            "cssVar": "--uui-red-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FF4242",
+          "ref": {
+            "id": "palette/fire/fire-50",
+            "cssVar": "--uui-fire-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E22A2A",
+          "ref": {
+            "id": "palette/fire/fire-60",
+            "cssVar": "--uui-fire-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-60",
+            "cssVar": "--uui-red-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-60",
+            "cssVar": "--uui-red-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#E22A2A",
+          "ref": {
+            "id": "palette/fire/fire-60",
+            "cssVar": "--uui-fire-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "palette/fire/fire-70",
+            "cssVar": "--uui-fire-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-70",
+            "cssVar": "--uui-red-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-70",
+            "cssVar": "--uui-red-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "palette/fire/fire-70",
+            "cssVar": "--uui-fire-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/error-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "palette/fire/fire-10",
+            "cssVar": "--uui-fire-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-10",
+            "cssVar": "--uui-red-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-10",
+            "cssVar": "--uui-red-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "palette/fire/fire-10",
+            "cssVar": "--uui-fire-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/error-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FBB6B6",
+          "ref": {
+            "id": "palette/fire/fire-20",
+            "cssVar": "--uui-fire-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-20",
+            "cssVar": "--uui-red-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-20",
+            "cssVar": "--uui-red-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FBB6B6",
+          "ref": {
+            "id": "palette/fire/fire-20",
+            "cssVar": "--uui-fire-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/error-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FEF6F6",
+          "ref": {
+            "id": "palette/fire/fire-5",
+            "cssVar": "--uui-fire-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-5",
+            "cssVar": "--uui-red-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-5",
+            "cssVar": "--uui-red-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FEF6F6",
+          "ref": {
+            "id": "palette/fire/fire-5",
+            "cssVar": "--uui-fire-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/error-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FF4242",
+          "ref": {
+            "id": "palette/fire/fire-50",
+            "cssVar": "--uui-fire-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-50",
+            "cssVar": "--uui-red-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-50",
+            "cssVar": "--uui-red-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FF4242",
+          "ref": {
+            "id": "palette/fire/fire-50",
+            "cssVar": "--uui-fire-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/error-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E22A2A",
+          "ref": {
+            "id": "palette/fire/fire-60",
+            "cssVar": "--uui-fire-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-60",
+            "cssVar": "--uui-red-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-60",
+            "cssVar": "--uui-red-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#E22A2A",
+          "ref": {
+            "id": "palette/fire/fire-60",
+            "cssVar": "--uui-fire-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/error-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "palette/fire/fire-70",
+            "cssVar": "--uui-fire-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-70",
+            "cssVar": "--uui-red-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-70",
+            "cssVar": "--uui-red-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "palette/fire/fire-70",
+            "cssVar": "--uui-fire-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1F4FA",
+          "ref": {
+            "id": "palette/sky/sky-10",
+            "cssVar": "--uui-sky-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-10",
+            "cssVar": "--uui-blue-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-10",
+            "cssVar": "--uui-blue-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-10",
+            "cssVar": "--uui-electric-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "palette/sky/sky-20",
+            "cssVar": "--uui-sky-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-20",
+            "cssVar": "--uui-blue-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-20",
+            "cssVar": "--uui-blue-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-20",
+            "cssVar": "--uui-electric-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#F5FDFF",
+          "ref": {
+            "id": "palette/sky/sky-5",
+            "cssVar": "--uui-sky-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-5",
+            "cssVar": "--uui-blue-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-5",
+            "cssVar": "--uui-blue-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-5",
+            "cssVar": "--uui-electric-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "palette/sky/sky-50",
+            "cssVar": "--uui-sky-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-50",
+            "cssVar": "--uui-blue-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-50",
+            "cssVar": "--uui-blue-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-50",
+            "cssVar": "--uui-electric-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "palette/sky/sky-60",
+            "cssVar": "--uui-sky-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-60",
+            "cssVar": "--uui-blue-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-60",
+            "cssVar": "--uui-blue-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-60",
+            "cssVar": "--uui-electric-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "palette/sky/sky-70",
+            "cssVar": "--uui-sky-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-70",
+            "cssVar": "--uui-blue-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-70",
+            "cssVar": "--uui-blue-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-70",
+            "cssVar": "--uui-electric-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-primary-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1F4FA",
+          "ref": {
+            "id": "palette/sky/sky-10",
+            "cssVar": "--uui-sky-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-10",
+            "cssVar": "--uui-blue-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-10",
+            "cssVar": "--uui-blue-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-10",
+            "cssVar": "--uui-electric-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-primary-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#A0DDEE",
+          "ref": {
+            "id": "palette/sky/sky-20",
+            "cssVar": "--uui-sky-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-20",
+            "cssVar": "--uui-blue-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-20",
+            "cssVar": "--uui-blue-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-20",
+            "cssVar": "--uui-electric-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-5",
+      "type": "COLOR",
+      "description": "Uses for primary actions and component states.  It's primary theme color.",
+      "useCases": "",
+      "cssVar": "--uui-primary-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#F5FDFF",
+          "ref": {
+            "id": "palette/sky/sky-5",
+            "cssVar": "--uui-sky-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-5",
+            "cssVar": "--uui-blue-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-5",
+            "cssVar": "--uui-blue-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-5",
+            "cssVar": "--uui-electric-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-50",
+      "type": "COLOR",
+      "description": "Primary color for theme",
+      "useCases": "",
+      "cssVar": "--uui-primary-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#009ECC",
+          "ref": {
+            "id": "palette/sky/sky-50",
+            "cssVar": "--uui-sky-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-50",
+            "cssVar": "--uui-blue-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-50",
+            "cssVar": "--uui-blue-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-50",
+            "cssVar": "--uui-electric-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-primary-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#0086AD",
+          "ref": {
+            "id": "palette/sky/sky-60",
+            "cssVar": "--uui-sky-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-60",
+            "cssVar": "--uui-blue-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-60",
+            "cssVar": "--uui-blue-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-60",
+            "cssVar": "--uui-electric-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/primary-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-primary-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "palette/sky/sky-70",
+            "cssVar": "--uui-sky-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-70",
+            "cssVar": "--uui-blue-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-70",
+            "cssVar": "--uui-blue-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/electric/electric-70",
+            "cssVar": "--uui-electric-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "palette/night/night300",
+            "cssVar": "--uui-night300",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "palette/night/night400",
+            "cssVar": "--uui-night400",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "palette/night/night200",
+            "cssVar": "--uui-night200",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "palette/night/night600",
+            "cssVar": "--uui-night600",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#474A59",
+          "ref": {
+            "id": "palette/night/night700",
+            "cssVar": "--uui-night700",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#303240",
+          "ref": {
+            "id": "palette/night/night800",
+            "cssVar": "--uui-night800",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#EBF3D8",
+          "ref": {
+            "id": "palette/green/green-10",
+            "cssVar": "--uui-green-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#EBF3D8",
+          "ref": {
+            "id": "palette/green/green-10",
+            "cssVar": "--uui-green-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#EBF3D8",
+          "ref": {
+            "id": "palette/green/green-10",
+            "cssVar": "--uui-green-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/emerald/emerald-10",
+            "cssVar": "--uui-emerald-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#C1E288",
+          "ref": {
+            "id": "palette/green/green-20",
+            "cssVar": "--uui-green-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#C1E288",
+          "ref": {
+            "id": "palette/green/green-20",
+            "cssVar": "--uui-green-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#C1E288",
+          "ref": {
+            "id": "palette/green/green-20",
+            "cssVar": "--uui-green-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/emerald/emerald-20",
+            "cssVar": "--uui-emerald-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FCFFF5",
+          "ref": {
+            "id": "palette/green/green-5",
+            "cssVar": "--uui-green-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FCFFF5",
+          "ref": {
+            "id": "palette/green/green-5",
+            "cssVar": "--uui-green-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FCFFF5",
+          "ref": {
+            "id": "palette/green/green-5",
+            "cssVar": "--uui-green-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/emerald/emerald-5",
+            "cssVar": "--uui-emerald-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#67A300",
+          "ref": {
+            "id": "palette/green/green-50",
+            "cssVar": "--uui-green-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#67A300",
+          "ref": {
+            "id": "palette/green/green-50",
+            "cssVar": "--uui-green-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#67A300",
+          "ref": {
+            "id": "palette/green/green-50",
+            "cssVar": "--uui-green-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/emerald/emerald-50",
+            "cssVar": "--uui-emerald-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#528500",
+          "ref": {
+            "id": "palette/green/green-60",
+            "cssVar": "--uui-green-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#528500",
+          "ref": {
+            "id": "palette/green/green-60",
+            "cssVar": "--uui-green-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#528500",
+          "ref": {
+            "id": "palette/green/green-60",
+            "cssVar": "--uui-green-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/emerald/emerald-60",
+            "cssVar": "--uui-emerald-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/success-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "palette/green/green-70",
+            "cssVar": "--uui-green-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "palette/green/green-70",
+            "cssVar": "--uui-green-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "palette/green/green-70",
+            "cssVar": "--uui-green-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/emerald/emerald-70",
+            "cssVar": "--uui-emerald-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-10",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFEDC9",
+          "ref": {
+            "id": "palette/sun/sun-10",
+            "cssVar": "--uui-sun-10",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-10",
+            "cssVar": "--uui-amber-10",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-10",
+            "cssVar": "--uui-amber-10",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFEDC9",
+          "ref": {
+            "id": "palette/sun/sun-10",
+            "cssVar": "--uui-sun-10",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-20",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFD785",
+          "ref": {
+            "id": "palette/sun/sun-20",
+            "cssVar": "--uui-sun-20",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-20",
+            "cssVar": "--uui-amber-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-20",
+            "cssVar": "--uui-amber-20",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFD785",
+          "ref": {
+            "id": "palette/sun/sun-20",
+            "cssVar": "--uui-sun-20",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-5",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFCF5",
+          "ref": {
+            "id": "palette/sun/sun-5",
+            "cssVar": "--uui-sun-5",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-5",
+            "cssVar": "--uui-amber-5",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-5",
+            "cssVar": "--uui-amber-5",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FFFCF5",
+          "ref": {
+            "id": "palette/sun/sun-5",
+            "cssVar": "--uui-sun-5",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-50",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FCAA00",
+          "ref": {
+            "id": "palette/sun/sun-50",
+            "cssVar": "--uui-sun-50",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-50",
+            "cssVar": "--uui-amber-50",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-50",
+            "cssVar": "--uui-amber-50",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FCAA00",
+          "ref": {
+            "id": "palette/sun/sun-50",
+            "cssVar": "--uui-sun-50",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-60",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FF9000",
+          "ref": {
+            "id": "palette/sun/sun-60",
+            "cssVar": "--uui-sun-60",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-60",
+            "cssVar": "--uui-amber-60",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-60",
+            "cssVar": "--uui-amber-60",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#FF9000",
+          "ref": {
+            "id": "palette/sun/sun-60",
+            "cssVar": "--uui-sun-60",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-70",
+      "value": {
+        "Loveship-Light": {
+          "value": "#BD5800",
+          "ref": {
+            "id": "palette/sun/sun-70",
+            "cssVar": "--uui-sun-70",
+            "supported": false
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-70",
+            "cssVar": "--uui-amber-70",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-70",
+            "cssVar": "--uui-amber-70",
+            "supported": false
+          }
+        },
+        "EPAM": {
+          "value": "#BD5800",
+          "ref": {
+            "id": "palette/sun/sun-70",
+            "cssVar": "--uui-sun-70",
+            "supported": false
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/app-bg",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-app-bg",
+      "value": {
+        "Loveship-Light": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FAFAFC",
+          "ref": {
+            "id": "core/neutral/neutral-5",
+            "cssVar": "--uui-neutral-5",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/divider",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-divider",
+      "value": {
+        "Loveship-Light": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/divider-light",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-divider-light",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-contrast",
+      "type": "COLOR",
+      "description": "For contrast bg",
+      "useCases": "",
+      "cssVar": "--uui-surface-contrast",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-contrast-higher",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-contrast-higher",
+      "value": {
+        "Loveship-Light": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-critical",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-critical",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "core/semantic/critical-10",
+            "cssVar": "--uui-critical-10",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/red/red-20",
+            "cssVar": "--uui-red-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "core/semantic/critical-10",
+            "cssVar": "--uui-critical-10",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FDE1E1",
+          "ref": {
+            "id": "core/semantic/critical-10",
+            "cssVar": "--uui-critical-10",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-higher",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-higher",
+      "value": {
+        "Loveship-Light": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#E1E3EB",
+          "ref": {
+            "id": "core/neutral/neutral-30",
+            "cssVar": "--uui-neutral-30",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-highest",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-highest",
+      "value": {
+        "Loveship-Light": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#CED0DB",
+          "ref": {
+            "id": "core/neutral/neutral-40",
+            "cssVar": "--uui-neutral-40",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-info",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-info",
+      "value": {
+        "Loveship-Light": {
+          "value": "#E1F4FA",
+          "ref": {
+            "id": "core/semantic/info-10",
+            "cssVar": "--uui-info-10",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/blue/blue-20",
+            "cssVar": "--uui-blue-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#E1F4FA",
+          "ref": {
+            "id": "core/semantic/info-10",
+            "cssVar": "--uui-info-10",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#E1F4FA",
+          "ref": {
+            "id": "core/semantic/info-10",
+            "cssVar": "--uui-info-10",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-main",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-main",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-0",
+            "cssVar": "--uui-neutral-0",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-overlay",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-overlay",
+      "value": {
+        "Loveship-Light": {
+          "value": "#1D1E26CC"
+        },
+        "Loveship-Dark": {
+          "value": "#1D1E26CC"
+        },
+        "Promo": {
+          "value": "#1D1E26CC"
+        },
+        "EPAM": {
+          "value": "#1D1E26CC"
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-sunken",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-sunken",
+      "value": {
+        "Loveship-Light": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#F5F6FA",
+          "ref": {
+            "id": "core/neutral/neutral-10",
+            "cssVar": "--uui-neutral-10",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#EBEDF5",
+          "ref": {
+            "id": "core/neutral/neutral-20",
+            "cssVar": "--uui-neutral-20",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/surfaces/surface-warning",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-surface-warning",
+      "value": {
+        "Loveship-Light": {
+          "value": "#FFEDC9",
+          "ref": {
+            "id": "core/semantic/warning-10",
+            "cssVar": "--uui-warning-10",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "palette/amber/amber-20",
+            "cssVar": "--uui-amber-20",
+            "supported": false
+          }
+        },
+        "Promo": {
+          "value": "#FFEDC9",
+          "ref": {
+            "id": "core/semantic/warning-10",
+            "cssVar": "--uui-warning-10",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFEDC9",
+          "ref": {
+            "id": "core/semantic/warning-10",
+            "cssVar": "--uui-warning-10",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-brand",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-brand",
+      "value": {
+        "Loveship-Light": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#000000",
+          "ref": {
+            "id": "core/neutral/neutral-100",
+            "cssVar": "--uui-neutral-100",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-critical",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-critical",
+      "value": {
+        "Loveship-Light": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "core/semantic/critical-70",
+            "cssVar": "--uui-critical-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "core/semantic/critical-70",
+            "cssVar": "--uui-critical-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "core/semantic/critical-70",
+            "cssVar": "--uui-critical-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#AD0000",
+          "ref": {
+            "id": "core/semantic/critical-70",
+            "cssVar": "--uui-critical-70",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-disabled",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-disabled",
+      "value": {
+        "Loveship-Light": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#ACAFBF",
+          "ref": {
+            "id": "core/neutral/neutral-50",
+            "cssVar": "--uui-neutral-50",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-info",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-info",
+      "value": {
+        "Loveship-Light": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/info-70",
+            "cssVar": "--uui-info-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/info-70",
+            "cssVar": "--uui-info-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/info-70",
+            "cssVar": "--uui-info-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#006B8A",
+          "ref": {
+            "id": "core/semantic/info-70",
+            "cssVar": "--uui-info-70",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-primary",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-primary",
+      "value": {
+        "Loveship-Light": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#1D1E26",
+          "ref": {
+            "id": "core/neutral/neutral-90",
+            "cssVar": "--uui-neutral-90",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#FFFFFF",
+          "ref": {
+            "id": "core/neutral/neutral-95",
+            "cssVar": "--uui-neutral-95",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-secondary",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-secondary",
+      "value": {
+        "Loveship-Light": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#303240",
+          "ref": {
+            "id": "core/neutral/neutral-80",
+            "cssVar": "--uui-neutral-80",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-success",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-success",
+      "value": {
+        "Loveship-Light": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "core/semantic/success-70",
+            "cssVar": "--uui-success-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "core/semantic/success-70",
+            "cssVar": "--uui-success-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "core/semantic/success-70",
+            "cssVar": "--uui-success-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#396F1F",
+          "ref": {
+            "id": "core/semantic/success-70",
+            "cssVar": "--uui-success-70",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-tertiary",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-tertiary",
+      "value": {
+        "Loveship-Light": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#474A59",
+          "ref": {
+            "id": "core/neutral/neutral-70",
+            "cssVar": "--uui-neutral-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#6C6F80",
+          "ref": {
+            "id": "core/neutral/neutral-60",
+            "cssVar": "--uui-neutral-60",
+            "supported": true
+          }
+        }
+      }
+    },
+    {
+      "id": "core/text/text-warning",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-text-warning",
+      "value": {
+        "Loveship-Light": {
+          "value": "#BD5800",
+          "ref": {
+            "id": "core/semantic/warning-70",
+            "cssVar": "--uui-warning-70",
+            "supported": true
+          }
+        },
+        "Loveship-Dark": {
+          "value": "#BD5800",
+          "ref": {
+            "id": "core/semantic/warning-70",
+            "cssVar": "--uui-warning-70",
+            "supported": true
+          }
+        },
+        "Promo": {
+          "value": "#BD5800",
+          "ref": {
+            "id": "core/semantic/warning-70",
+            "cssVar": "--uui-warning-70",
+            "supported": true
+          }
+        },
+        "EPAM": {
+          "value": "#BD5800",
+          "ref": {
+            "id": "core/semantic/warning-70",
+            "cssVar": "--uui-warning-70",
+            "supported": true
+          }
+        }
+      }
+    }
+  ]
+}

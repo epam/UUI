@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
@@ -13,6 +14,7 @@ export class IconButtonDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:IconButtonProps', component: uui.IconButton },
+            [TSkin.Electric]: { type: '@epam/uui:IconButtonProps', component: electric.IconButton },
             [TSkin.Loveship]: { type: '@epam/loveship:IconButtonProps', component: loveship.IconButton },
             [TSkin.Promo]: { type: '@epam/promo:IconButtonProps', component: promo.IconButton },
         },

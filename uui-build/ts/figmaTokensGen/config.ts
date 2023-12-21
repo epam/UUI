@@ -1,9 +1,9 @@
-import { ITokensConfig } from './types';
+import { ITokensConfig } from './types/configTypes';
 
 export const CONFIG: ITokensConfig = {
     tokens: {
-        '--uui-text-contrast': { isSupportedByUUiApp: false },
-        '--uui-text-white': { isSupportedByUUiApp: false },
-        '--uui-text-black': { isSupportedByUUiApp: false },
+        '--uui-text-contrast': { supported: false },
+        '--uui-text-white': { supported: false },
+        '--uui-text-black': { supported: false },
     },
 };

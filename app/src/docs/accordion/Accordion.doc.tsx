@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { accordionExamples } from './accordionExamples';
@@ -16,6 +17,7 @@ export class AccordionDoc extends BaseDocsBlock {
             [TSkin.Loveship]: { type: '@epam/uui:AccordionProps', component: loveship.Accordion },
             [TSkin.Promo]: { type: '@epam/uui:AccordionProps', component: promo.Accordion },
             [TSkin.UUI]: { type: '@epam/uui:AccordionProps', component: uui.Accordion },
+            [TSkin.Electric]: { type: '@epam/uui:AccordionProps', component: electric.Accordion },
         },
         doc: (doc: DocBuilder<uui.AccordionProps>) => {
             doc.merge('children', { examples: accordionExamples });

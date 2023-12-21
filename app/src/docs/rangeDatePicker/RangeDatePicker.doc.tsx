@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import {
@@ -20,6 +21,7 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:RangeDatePickerProps', component: uui.RangeDatePicker },
+            [TSkin.Electric]: { type: '@epam/uui:RangeDatePickerProps', component: electric.RangeDatePicker },
             [TSkin.Loveship]: { type: '@epam/uui:RangeDatePickerProps', component: loveship.RangeDatePicker },
             [TSkin.Promo]: { type: '@epam/uui:RangeDatePickerProps', component: promo.RangeDatePicker },
         },
