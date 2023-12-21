@@ -64,7 +64,7 @@ function Editor(props: PlateEditorProps) {
                         </div>
                     );
                 } }
-                style={ { padding: '0 24px', minHeight: props.minHeight } }
+                style={ { height: '100%', padding: '0 24px', minHeight: props.minHeight } }
             />
             <MainToolbar />
             <MarksToolbar />
