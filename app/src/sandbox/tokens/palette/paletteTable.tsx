@@ -65,13 +65,13 @@ function TokensPaletteTableInner(props: { uuiTheme: TTheme }) {
         <div className={ css.layoutRoot }>
             <ScrollBars>
                 <div className={ css.blockWrapper }>
-                    <Panel background="surface-main" shadow style={ { maxHeight: '600px' } }>
+                    <Panel background="surface-main" shadow>
                         <FlexRow padding="12" vPadding="24" rawProps={ { style: { flexWrap: 'nowrap', gap: '3px', paddingBottom: 0 } } }>
                             <FiltersPanel<TTokensFilter> filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
                             <TokensSummary uuiTheme={ uuiTheme } />
                         </FlexRow>
-                        <ScrollBars>
-                            <div className={ css.tableWrapper }>
+                        <ScrollBars style={ { height: 'calc(100vh - 125px)', marginBottom: '5px' } }>
+                            <div>
                                 <div className={ css.stickyHeader }>
                                     <DataTableHeaderRow
                                         columns={ columns }
