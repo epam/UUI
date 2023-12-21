@@ -1,6 +1,7 @@
-import { IThemeVarUI } from '../types/types';
+import { IThemeVarUI, TThemeVarUiErr } from '../types/types';
 import { TTheme } from '../../../../common/docs/docsConstants';
-import { IThemeVar, TFigmaThemeName, TResolvedValueNorm } from '../types/sharedTypes';
+import { IThemeVar, TFigmaThemeName, TResolvedValueNorm, TVarType } from '../types/sharedTypes';
+import { normalizeHex } from './colorUtils';
 
 export const THEME_MAP: Record<TTheme, TFigmaThemeName | undefined> = {
     [TTheme.electric]: TFigmaThemeName.EPAM,
@@ -20,4 +21,39 @@ export function getExpectedValueByTheme(params: { themeVar: IThemeVar, theme: TT
     if (figmaTheme) {
         return params.themeVar.value[figmaTheme];
     }
+}
+
+function isEqualValue(params: { actual: string, token: IThemeVar, theme: TTheme }) {
+    const { actual, theme, token } = params;
+    const expected = getExpectedValueByTheme({ theme, themeVar: token });
+
+    if (expected !== undefined) {
+        if (token.type === TVarType.COLOR) {
+            const expectedNorm = normalizeHex(expected.value as string);
+            const actualNorm = normalizeHex(actual);
+            return expectedNorm.localeCompare(actualNorm) === 0;
+        }
+        return String(expected.value) === actual;
+    }
+    return true;
+}
+
+export function validateActualTokenValue(
+    params: { actual: string, theme: TTheme, token: IThemeVar },
+): IThemeVarUI['valueCurrent']['errors'] {
+    //
+    const { actual, theme, token } = params;
+    const errors: IThemeVarUI['valueCurrent']['errors'] = [];
+    if (actual === '') {
+        errors.push({
+            type: TThemeVarUiErr.VAR_ABSENT,
+            message: `CSS variable ${token.cssVar} is not defined`,
+        });
+    } else if (!isEqualValue({ token, actual, theme })) {
+        errors.push({
+            type: TThemeVarUiErr.VALUE_MISMATCHED,
+            message: 'Actual value doesn\'t match expected value',
+        });
+    }
+    return errors;
 }
