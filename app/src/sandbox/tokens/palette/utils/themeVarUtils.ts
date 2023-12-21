@@ -1,6 +1,7 @@
 import { IThemeVarUI, TThemeVarUiErr } from '../types/types';
 import { TTheme } from '../../../../common/docs/docsConstants';
 import { IThemeVar, TFigmaThemeName, TResolvedValueNorm, TVarType } from '../types/sharedTypes';
+import { normalizeHex } from './colorUtils';
 
 export const THEME_MAP: Record<TTheme, TFigmaThemeName | undefined> = {
     [TTheme.electric]: TFigmaThemeName.EPAM,
@@ -28,7 +29,10 @@ function isEqualValue(params: { actual: string, token: IThemeVar, theme: TTheme 
 
     if (expected !== undefined) {
         if (token.type === TVarType.COLOR) {
-            return String(expected.value).toUpperCase().localeCompare(actual.toUpperCase()) === 0;
+            const expectedNorm = normalizeHex(expected.value as string);
+            const actualNorm = normalizeHex(actual);
+            console.log(normalizeHex('#abc'));
+            return expectedNorm.localeCompare(actualNorm) === 0;
         }
         return String(expected.value) === actual;
     }
@@ -46,7 +50,7 @@ export function validateActualTokenValue(
             type: TThemeVarUiErr.VAR_ABSENT,
             message: `CSS variable ${token.cssVar} is not defined`,
         });
-    } else if (isEqualValue({ token, actual, theme })) {
+    } else if (!isEqualValue({ token, actual, theme })) {
         errors.push({
             type: TThemeVarUiErr.VALUE_MISMATCHED,
             message: 'Actual value doesn\'t match expected value',

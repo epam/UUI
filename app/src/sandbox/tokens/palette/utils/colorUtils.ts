@@ -52,3 +52,14 @@ export function hexToRgb(hex: string | undefined, percents: boolean = false) {
     }
     return '';
 }
+
+export function normalizeHex(hex: string) {
+    if (hex.indexOf('#') === 0) {
+        let hex1 = hex.substring(1);
+        if (hex1.length === 3) {
+            hex1 = [...hex1].reduce((acc, part) => (acc + part + part), '');
+        }
+        return `#${hex1}`.toUpperCase();
+    }
+    return hex;
+}
