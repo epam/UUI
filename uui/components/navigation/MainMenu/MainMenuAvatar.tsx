@@ -8,6 +8,7 @@ import { IconContainer } from '@epam/uui-components';
 import { ReactComponent as FoldingArrow } from '../../../icons/folding-arrow-18.svg';
 import { Avatar } from '@epam/uui-components';
 
+/** Represents the properties of the MainMenuAvatar component. */
 export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IHasCX {
     avatarUrl?: string;
     icon?: Icon;

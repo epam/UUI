@@ -2,6 +2,7 @@ import React from 'react';
 import * as uui from '@epam/uui';
 import * as promo from '@epam/promo';
 import * as loveship from '@epam/loveship';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { childrenLoveshipOrPromo, childrenUui } from './dropdownContainerExamples';
@@ -29,6 +30,13 @@ export class DropdownContainerDoc extends BaseDocsBlock {
             [TSkin.UUI]: {
                 type: '@epam/uui:DropdownContainerProps',
                 component: uui.DropdownContainer,
+                doc: (doc: DocBuilder<uui.DropdownContainerProps>) => {
+                    doc.merge('children', { examples: childrenUui });
+                },
+            },
+            [TSkin.Electric]: {
+                type: '@epam/uui:DropdownContainerProps',
+                component: electric.DropdownContainer,
                 doc: (doc: DocBuilder<uui.DropdownContainerProps>) => {
                     doc.merge('children', { examples: childrenUui });
                 },

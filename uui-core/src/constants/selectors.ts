@@ -8,6 +8,7 @@ export const uuiElement = {
     valueInPlaceholder: 'uui-value-in-placeholder',
     checkbox: 'uui-checkbox',
     checkboxContainer: 'uui-checkbox-container',
+    foldingArrow: 'uui-folding-arrow',
     radioInput: 'uui-radioinput',
     icon: 'uui-icon',
     iconPrimary: 'uui-icon-primary',

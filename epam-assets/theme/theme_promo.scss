@@ -110,14 +110,6 @@
 
     /* brand colors */
 
-    --uui-accent-5: var(--green-5);
-    --uui-accent-10: var(--green-10);
-    --uui-accent-20: var(--green-20);
-    --uui-accent-50: var(--green-50);
-    --uui-accent-60: var(--green-60);
-    --uui-accent-70: var(--green-70);
-    --uui-accent-contrast: var(--white);
-
     --uui-primary-5: var(--blue-5);
     --uui-primary-10: var(--blue-10);
     --uui-primary-20: var(--blue-20);
@@ -125,6 +117,14 @@
     --uui-primary-60: var(--blue-60);
     --uui-primary-70: var(--blue-70);
     --uui-primary-contrast: var(--white);
+
+    --uui-accent-5: var(--green-5);
+    --uui-accent-10: var(--green-10);
+    --uui-accent-20: var(--green-20);
+    --uui-accent-50: var(--green-50);
+    --uui-accent-60: var(--green-60);
+    --uui-accent-70: var(--green-70);
+    --uui-accent-contrast: var(--white);
 
     --uui-secondary-5: var(--gray10);
     --uui-secondary-10: var(--gray20);
@@ -593,23 +593,20 @@
         --uui-icon_btn-active: var(--uui-neutral-70);
     }
 
-    /* TooltipContainer */
+    /* Tooltip */
 
-    .uui-tooltip-container.uui-color-white,
-    .uui-tooltip-container.uui-color-neutral {
-        --uui-tooltip-bg: var(--white);
+    .uui-tooltip-container.uui-color-white {
+        --uui-tooltip-bg: var(--uui-neutral-0);
         --uui-tooltip-text: var(--uui-neutral-80);
     }
 
-    .uui-tooltip-container.uui-color-red,
-    .uui-tooltip-container.uui-color-critical {
+    .uui-tooltip-container.uui-color-red {
         --uui-tooltip-bg: var(--uui-critical-60);
     }
 
-    .uui-tooltip-container.uui-color-gray,
-    .uui-tooltip-container.uui-color-inverted {
+    .uui-tooltip-container.uui-color-gray {
         --uui-tooltip-bg: var(--uui-neutral-80);
-        --uui-tooltip-text: var(--white);
+        --uui-tooltip-text: var(--uui-neutral-5);
     }
 
     /* CountIndicator */

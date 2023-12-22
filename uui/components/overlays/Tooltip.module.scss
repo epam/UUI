@@ -71,4 +71,20 @@
             border-right: 1px solid var(--uui-tooltip-border);
         }
     }
+
+    &:global {
+        &.uui-color-neutral {
+            --uui-tooltip-bg: var(--uui-surface-main);
+            --uui-tooltip-text: var(--uui-text-primary);
+        }
+
+        &.uui-color-critical {
+            --uui-tooltip-bg: var(--uui-error-60);
+        }
+
+        &.uui-color-inverted {
+            --uui-tooltip-bg: var(--uui-neutral-80);
+            --uui-tooltip-text: var(--uui-neutral-5);
+        }
+    }
 }
