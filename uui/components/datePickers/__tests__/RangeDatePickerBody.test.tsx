@@ -9,6 +9,7 @@ type RangePickerSetupProps = {
     focusPart: RangeDatePickerBodyProps<RangeDatePickerValue>['focusPart'];
     presets?: RangeDatePickerBodyProps<RangeDatePickerValue>['presets'];
     filter?: RangeDatePickerBodyProps<RangeDatePickerValue>['filter'];
+    isHoliday?: RangeDatePickerBodyProps<RangeDatePickerValue>['isHoliday'];
 };
 
 function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
@@ -18,7 +19,7 @@ function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
 }
 
 async function setupRangePickerBody(params: RangePickerSetupProps) {
-    const { selectedDate, focusPart, presets, filter } = params;
+    const { selectedDate, ...props } = params;
 
     const { result, mocks } = await setupComponentForTest<RangeDatePickerBodyProps<any>>(
         (context) => {
@@ -28,9 +29,7 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
                     selectedDate,
                     displayedDate: dayjs('2019-10-12').startOf('day'),
                 },
-                focusPart,
-                presets,
-                filter,
+                ...props,
                 changeIsOpen: jest.fn(),
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
             };
@@ -212,8 +211,8 @@ describe('RangeDatePickerBody', () => {
 
         const [selectedDay] = screen.queryAllByText(dayjs().date());
         expect(parentElemContainsClasses(selectedDay, [
-            uuiRangeDatePickerBody.firstDayInRangeWrapper,
-            uuiRangeDatePickerBody.lastDayInRangeWrapper,
+            'uui-range-datepicker-first-day-in-range-wrapper',
+            'uui-range-datepicker-last-day-in-range-wrapper',
             uuiDaySelection.selectedDay,
         ])).toBeTruthy();
     });
@@ -267,5 +266,19 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct25);
 
         expect(mocks.onValueChange).not.toHaveBeenCalled();
+    });
+
+    it('should mark holidays', async () => {
+        await setupRangePickerBody({
+            focusPart: 'to',
+            selectedDate: { from: '2019-10-12', to: '2019-10-14' },
+            isHoliday: (day?: Dayjs) => {
+                return day?.date() === 12;
+            },
+        });
+
+        const [oct12] = screen.getAllByText('12');
+
+        expect(parentElemContainsClasses(oct12, ['uui-calendar-day-holiday'])).toBeTruthy();
     });
 });

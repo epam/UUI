@@ -88,7 +88,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         activePart: null,
     };
 
-    getDayCX = (day: Dayjs): string[] => {
+    getDayCX = (day: Dayjs) => {
         const dayValue = day.valueOf();
         const fromValue = this.props.value.selectedDate?.from ? dayjs(this.props.value.selectedDate.from).valueOf() : null;
         const toValue = this.props.value.selectedDate?.to ? dayjs(this.props.value.selectedDate.to).valueOf() : null;
@@ -97,14 +97,14 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         const isFirst = dayValue === fromValue;
         const isLast = dayValue === toValue;
 
-        return [cx(
+        return cx(
             inRange && uuiRangeDatePickerBody.inRange,
             isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
             !inRange && isFirst && uuiRangeDatePickerBody.lastDayInRangeWrapper,
             isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
             !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
             (dayValue === fromValue || dayValue === toValue) && uuiDaySelection.selectedDay,
-        )];
+        );
     };
 
     getRange(selectedDate: string) {
