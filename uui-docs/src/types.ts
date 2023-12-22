@@ -20,7 +20,6 @@ export interface DemoContext<TProps> {
 }
 
 export interface IPropSamplesCreationContext<TProps = PropDocPropsUnknown> {
-    getCallback(name: string): () => void;
     getChangeHandler(name: string): (newValue: unknown) => void;
     getSelectedProps(): TProps;
     demoApi: IDemoApi;

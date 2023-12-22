@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { FlexRow, Panel } from '@epam/uui';
 import { Icon } from '@epam/uui-core';
 import { IPropSamplesCreationContext, PropDocPropsUnknown } from '@epam/uui-docs';
 import { svc } from '../../../../services';
@@ -17,33 +15,6 @@ export class PropSamplesCreationContext implements IPropSamplesCreationContext {
 
     getIconList = () => {
         return getIconList<Icon>(true);
-    };
-
-    getCallback = (name: string) => {
-        function callbackFn(...args: unknown[]) {
-            svc.uuiNotifications
-                .show(
-                    () => (
-                        <Panel shadow={ true } background="surface-main">
-                            <FlexRow padding="24" vPadding="12" borderBottom={ true }>
-                                <pre>
-                                    {name}
-                                    (
-                                    {args.length}
-                                    {' '}
-                                    args)
-                                </pre>
-                            </FlexRow>
-                        </Panel>
-                    ),
-                    { position: 'bot-right' },
-                )
-                .catch(() => null);
-            // eslint-disable-next-line no-console
-            console.log(`${name} (`, args, ')');
-        }
-        Object.defineProperty(callbackFn, 'name', { value: 'callback' });
-        return callbackFn;
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
