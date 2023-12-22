@@ -1,6 +1,6 @@
 import { THexaValue } from '../types/sharedTypes';
 
-export function colorToHex(color: string): THexaValue {
+function rgbToHex(color: string): THexaValue {
     const isRgba = color.startsWith('rgb');
     if (isRgba) {
         const commaSeparated = color.replace(/(rgb[a]?\()([0-9\s,.]+)(\))/g, '$2');
@@ -10,7 +10,7 @@ export function colorToHex(color: string): THexaValue {
         };
         const arr3 = [h(r), h(g), h(b)];
         if (a !== undefined) {
-            arr3.push(h(a));
+            arr3.push(h(a * 255));
         }
         return `#${arr3.join('')}`;
     }
@@ -51,4 +51,20 @@ export function hexToRgb(hex: string | undefined, percents: boolean = false) {
         return `${rgb.join(', ')}`;
     }
     return '';
+}
+
+export function normalizeColor(color: string) {
+    if (color) {
+        let colorNorm = color;
+        const isHex = colorNorm.indexOf('#') === 0;
+        if (!isHex) {
+            colorNorm = rgbToHex(colorNorm);
+        }
+        let hex1 = colorNorm.substring(1);
+        if (hex1.length === 3) {
+            hex1 = [...hex1].reduce((acc, part) => (acc + part + part), '');
+        }
+        return `#${hex1}`.toUpperCase();
+    }
+    return color;
 }

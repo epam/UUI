@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { IThemeVar } from '../types/sharedTypes';
 import { svc } from '../../../../services';
-import { IThemeVarUI, TThemeVarUiErr } from '../types/types';
-import { getExpectedValueByTheme } from '../utils/themeVarUtils';
+import { IThemeVarUI, TExpectedValueType } from '../types/types';
+import { validateActualTokenValue } from '../utils/themeVarUtils';
 import { TTheme } from '../../../../common/docs/docsConstants';
 
 const cache: { content: IThemeVar[] | undefined } = { content: undefined };
@@ -17,7 +17,7 @@ async function loadThemeTokens(): Promise<IThemeVar[]> {
     return cache.content;
 }
 
-export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
+export function useThemeTokens(theme: TTheme | undefined, expectedValueType: TExpectedValueType): IThemeVarUI[] {
     const [tokens, setTokens] = useState<IThemeVarUI[]>([]);
 
     useEffect(() => {
@@ -28,19 +28,12 @@ export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
             loadThemeTokens().then((res) => {
                 active && setTokens(res.map((token) => {
                     const value = compStyle.getPropertyValue(token.cssVar);
-                    const errors: IThemeVarUI['valueCurrent']['errors'] = [];
-                    const expected = getExpectedValueByTheme({ theme, themeVar: token });
-                    if (value === '') {
-                        errors.push({
-                            type: TThemeVarUiErr.VAR_ABSENT,
-                            message: `CSS variable ${token.cssVar} is not defined`,
-                        });
-                    } else if (expected !== undefined && String(expected.value) !== value) {
-                        errors.push({
-                            type: TThemeVarUiErr.VALUE_MISMATCHED,
-                            message: 'Actual value doesn\'t match expected value',
-                        });
-                    }
+                    const errors = validateActualTokenValue({
+                        actual: value,
+                        theme,
+                        token,
+                        expectedValueType,
+                    });
                     return {
                         ...token,
                         valueCurrent: { value, theme, errors },
@@ -49,6 +42,6 @@ export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
             });
         }
         return () => { active = false; };
-    }, [theme]);
+    }, [theme, expectedValueType]);
     return tokens;
 }
