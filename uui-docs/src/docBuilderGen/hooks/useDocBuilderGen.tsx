@@ -4,6 +4,7 @@ import { docBuilderGen } from '../docBuilderGen';
 import { DocBuilder } from '../../DocBuilder';
 import { TDocConfig } from '../docBuilderGenTypes';
 import { TType, TTypeRef } from '../../docsGen/sharedTypes';
+import { useUuiContext } from '@epam/uui-core';
 
 interface IUseDocBuilderGenParams {
     config?: TDocConfig;
@@ -24,6 +25,8 @@ export function useDocBuilderGen(params: IUseDocBuilderGenParams): IUseDocBuilde
         loadDocsGenType,
     } = params;
 
+    const uuiCtx = useUuiContext();
+
     const [res, setRes] = React.useState<{
         isLoaded: boolean;
         isGenerated?: boolean;
@@ -34,7 +37,7 @@ export function useDocBuilderGen(params: IUseDocBuilderGenParams): IUseDocBuilde
         setRes({ isLoaded: false });
         if (config) {
             const generatedFromType = config.bySkin[skin]?.type;
-            docBuilderGen({ config, skin, loadDocsGenType }).then((docs) => {
+            docBuilderGen({ config, skin, loadDocsGenType, uuiCtx: { uuiNotifications: uuiCtx.uuiNotifications } }).then((docs) => {
                 setRes({
                     isLoaded: true,
                     isGenerated: true,
@@ -48,7 +51,7 @@ export function useDocBuilderGen(params: IUseDocBuilderGenParams): IUseDocBuilde
                 docs: undefined,
             });
         }
-    }, [config, skin]);
+    }, [config, skin, uuiCtx.uuiNotifications]);
 
     return {
         ...res,

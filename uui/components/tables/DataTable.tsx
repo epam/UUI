@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PositionValues, IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
+import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
@@ -9,7 +9,7 @@ import { DataTableHeaderRow } from './DataTableHeaderRow';
 import { DataTableRow } from './DataTableRow';
 import { DataTableMods, DataTableRowMods } from './types';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
-import { VirtualList, VirtualListRenderRowsParams } from '../layout';
+import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
 import { DataRowsContainer } from './DataRowsContainer';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
@@ -17,15 +17,35 @@ import css from './DataTable.module.scss';
 import './variables.scss';
 import { i18n } from '../../i18n';
 
-export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
+    /** Callback to get rows that will be rendered in table */
     getRows(): DataRowProps<TItem, TId>[];
+    /** Array of all possible columns for the table */
     columns: DataColumnProps<TItem, TId>[];
+    /** Render callback for the table row.
+     * If omitted, default DataTableRow implementation will be rendered.
+     * */
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
+    /** Render callback for the 'No results' block. Will be rendered when table doesn't have rows for displaying, e.g. after search applying.
+     * If omitted, default implementation will be rendered.
+     * */
     renderNoResultsBlock?(): React.ReactNode;
-    onScroll?(value: PositionValues): void;
+    /** Pass true to enable the column configuration button in the last column header. On this button click will show the columns configuration modal.
+     * Note that you need to have at least one column fixed to the right for proper display
+     * */
     showColumnsConfig?: boolean;
+    /** Array of filters to be added to the column header.
+     * For each filter, you need to specify the `columnKey` of the column where it will be attached.
+     * */
     filters?: TableFiltersConfig<any>[];
+    /** Called when cell content is copied to other cells via the DataTable cell copying mechanism.
+     * This callback is typically used to update the state according to the changes.
+     * To enable cell copying, provide the canCopy prop for the column.
+     * */
     onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
+    /** Render callback for column configuration modal.
+     * If omitted, default `ColumnsConfigurationModal` implementation will be rendered.
+     */
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
     dataTableFocusManager?: DataTableFocusManager<TId>;
 }
