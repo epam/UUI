@@ -2,10 +2,10 @@ import { PropDoc, TDocContext, TDocsGenExportedType, TSkin } from '../types';
 import { DocBuilder } from '../DocBuilder';
 import { TTypeProp } from '../docsGen/sharedTypes';
 import * as React from 'react';
+import { UuiContexts } from '@epam/uui-core';
 
-export type TPropDocBuilder =
-    (params: { docs: DocBuilder<any>, prop: TTypeProp, skin: TSkin })
-    => (Partial<PropDoc<any, any>> | undefined);
+export type TPropDocBuilderParams = { docs: DocBuilder<any>, prop: TTypeProp, skin: TSkin, uuiCtx: Pick<UuiContexts, 'uuiNotifications'> };
+export type TPropDocBuilder = (params: TPropDocBuilderParams) => (Partial<PropDoc<any, any>> | undefined);
 
 export type TDocConfig = {
     /**

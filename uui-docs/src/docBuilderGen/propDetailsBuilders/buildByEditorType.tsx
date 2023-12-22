@@ -1,7 +1,7 @@
 import { TPropEditorType } from '../../docsGen/sharedTypes';
 import { getColorDocBySkin } from '../../commonDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
-import { getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
+import { getCallbackExample, getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
 import { IPropSamplesCreationContext } from '../../types';
 
 const COLOR_PROP_NAMES = ['color'];
@@ -42,8 +42,8 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
         return { editorType: 'NumEditor', examples: [] };
     },
     [TPropEditorType.func]: (params) => {
-        const { prop } = params;
-        return { examples: (ctx: any) => [ctx.getCallback(prop.name)] };
+        const { prop, uuiCtx } = params;
+        return { examples: getCallbackExample({ uuiCtx, name: prop.name }) };
     },
     [TPropEditorType.bool]: () => {
         return { examples: [{ value: true }, { value: false }] };
@@ -83,12 +83,12 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
  * See "public/docs/docsGenOutput/docsGenOutput.json" for details.
  */
 export const buildByEditorType: TPropDocBuilder = (params) => {
-    const { prop, docs, skin } = params;
+    const { prop, docs, skin, uuiCtx } = params;
     const peType = prop.editor?.type;
     if (peType) {
         const builder = BY_EDITOR_TYPE[peType];
         if (builder) {
-            return builder({ prop, docs, skin });
+            return builder({ prop, docs, skin, uuiCtx });
         }
         throw new Error(`Unsupported prop editor type: ${peType}`);
     }
