@@ -80,7 +80,7 @@ interface RangeDatePickerBodyState {
     /*
     * Defines which part is active, 'from' or 'to'.
     */
-    activePart: pickerPart;
+    activePart: PickerPart;
 }
 
 /*
