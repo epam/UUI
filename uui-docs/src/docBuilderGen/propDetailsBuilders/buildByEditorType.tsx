@@ -1,8 +1,9 @@
-import { TPropEditorType } from '../../docsGen/sharedTypes';
+import { TOneOfItemType, TPropEditorType } from '../../docsGen/sharedTypes';
 import { getColorDocBySkin } from '../../commonDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
-import { getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
+import { getCallbackExample, getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
 import { IPropSamplesCreationContext } from '../../types';
+import { COLOR_MAP } from '../../commonDocs';
 
 const COLOR_PROP_NAMES = ['color'];
 const SIMPLE_STRING_EDITOR_PROP_NAMES = ['key', 'id', 'settingsKey', 'htmlFor'];
@@ -42,8 +43,8 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
         return { editorType: 'NumEditor', examples: [] };
     },
     [TPropEditorType.func]: (params) => {
-        const { prop } = params;
-        return { examples: (ctx: any) => [ctx.getCallback(prop.name)] };
+        const { prop, uuiCtx } = params;
+        return { examples: getCallbackExample({ uuiCtx, name: prop.name }) };
     },
     [TPropEditorType.bool]: () => {
         return { examples: [{ value: true }, { value: false }] };
@@ -69,7 +70,9 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
                 const { examples, ...rest } = getColorDocBySkin(skin).getPropDetails('color');
                 return {
                     ...rest,
-                    examples: editor.options,
+                    examples: (Object.keys(COLOR_MAP).filter((key) => {
+                        return editor.options.indexOf(key) !== -1;
+                    }) as TOneOfItemType[]).concat(editor.options.filter((example) => !COLOR_MAP[`${example}`])),
                 };
             } else {
                 return { examples: editor.options };
@@ -83,12 +86,12 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
  * See "public/docs/docsGenOutput/docsGenOutput.json" for details.
  */
 export const buildByEditorType: TPropDocBuilder = (params) => {
-    const { prop, docs, skin } = params;
+    const { prop, docs, skin, uuiCtx } = params;
     const peType = prop.editor?.type;
     if (peType) {
         const builder = BY_EDITOR_TYPE[peType];
         if (builder) {
-            return builder({ prop, docs, skin });
+            return builder({ prop, docs, skin, uuiCtx });
         }
         throw new Error(`Unsupported prop editor type: ${peType}`);
     }

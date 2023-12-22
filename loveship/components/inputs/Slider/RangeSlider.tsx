@@ -1,9 +1,19 @@
-import { RangeSlider as uuiRangeSlider, SliderBaseProps, RangeSliderValue } from '@epam/uui-components';
+import {
+    RangeSlider as uuiRangeSlider, RangeSliderProps as uuiRangeSliderProps,
+} from '@epam/uui-components';
 import css from './RangeSlider.module.scss';
-import { withMods } from '@epam/uui-core';
-import * as types from '../../types';
+import { createSkinComponent } from '@epam/uui-core';
+import { EpamColor } from '../../types';
 
-export interface RangeSliderMods extends types.ColorMod {}
+interface RangeSliderMods {
+    /**
+     * Defines component color.
+     */
+    color?: EpamColor;
+}
+
+/** Represents the properties of a RangeSlider component. */
+export interface RangeSliderProps extends uuiRangeSliderProps, RangeSliderMods {}
 
 export function applyRangeSliderMods() {
     return [
@@ -11,4 +21,8 @@ export function applyRangeSliderMods() {
     ];
 }
 
-export const RangeSlider = withMods<SliderBaseProps<RangeSliderValue>, RangeSliderMods>(uuiRangeSlider, applyRangeSliderMods);
+export const RangeSlider = createSkinComponent<uuiRangeSliderProps, RangeSliderProps>(
+    uuiRangeSlider,
+    () => null,
+    applyRangeSliderMods,
+);

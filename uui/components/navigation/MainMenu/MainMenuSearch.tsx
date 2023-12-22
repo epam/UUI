@@ -5,6 +5,7 @@ import { ReactComponent as CancelIcon } from '../../../icons/menu_input_cancel.s
 import { cx, IAdaptiveItem, IEditableDebouncer } from '@epam/uui-core';
 import css from './MainMenuSearch.module.scss';
 
+/** Represents the properties of the MainMenuSearch component. */
 export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {}
 
 export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props, ref) => (

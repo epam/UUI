@@ -1,15 +1,15 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.4.2",
+  "version": "5.4.3",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "generate-components-api": "ts-node docsGen/main.ts",
-    "generate-tokens": "ts-node scripts/figmaTokensGen.ts",
+    "generate-components-api": "ts-node scripts/ts/docsGen.ts",
+    "generate-tokens": "ts-node scripts/ts/figmaTokensGen.ts",
     "prepublish": "yarn build",
-    "track-bundle-size": "node scripts/trackBundleSize.js",
+    "track-bundle-size": "ts-node scripts/ts/trackBundleSize.ts",
     "lint": "node ../uui-build/scripts/lint",
     "transform-tokens": "npx ts-node -O {\\\"noImplicitAny\\\":false} ./tokens-converter/index.ts"
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataTable, Panel, FlexRow, Text, StatusIndicator, StatusIndicatorColors } from '@epam/uui';
+import { DataTable, Panel, FlexRow, Text, StatusIndicator, StatusIndicatorProps } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
@@ -18,7 +18,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <StatusIndicator size="18" caption={ p.profileStatus } color={ p.profileStatus.toLowerCase() as StatusIndicatorColors } />
+                    <StatusIndicator size="18" caption={ p.profileStatus } color={ p.profileStatus.toLowerCase() as StatusIndicatorProps['color'] } />
                 </FlexRow>
             ),
         width: 140,

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { IEditable, IHasRawProps } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
 import { ControlGroup } from '../layout/ControlGroup';
-import { Button, ButtonMods } from '../buttons';
+import { Button, ButtonProps as uuiButtonProps } from '../buttons';
 import { SizeMod } from '../types';
 
-type MultiSwitchItem<TValue> = ButtonProps & ButtonMods & {
+type MultiSwitchItem<TValue> = ButtonProps & uuiButtonProps & {
     /**
      * Defines the id of MultiSwitchItem.
      */
@@ -29,7 +29,7 @@ export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRaw
 };
 
 /** Represents the properties for the MultiSwitch component. */
-export type MultiSwitchProps<TValue> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;
+export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (

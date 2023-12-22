@@ -3,12 +3,19 @@ import * as uuiComponents from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import css from './Accordion.module.scss';
 
-export interface AccordionMods {
-    /** @default 'block' */
+interface AccordionMods {
+    /**
+     * Defines component displaying mode.
+     * @default 'block'
+     */
     mode?: 'block' | 'inline';
+    /*
+    * Defines component horizontal padding.
+    */
     padding?: '0' | '6' | '12' | '18';
 }
 
+/** Represents the properties of the Accordion component. */
 export type AccordionProps = AccordionMods & uuiComponents.AccordionProps;
 
 const getMode = (mode: AccordionMods['mode']) => {

@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo, useRef, useState } from 'react';
+import React, { FocusEventHandler, Fragment, KeyboardEventHandler, useMemo, useRef, useState } from 'react';
 import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui';
 
@@ -28,8 +28,8 @@ interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     placeholder?: string;
     mode?: 'form' | 'inline';
     fontSize?: '14' | '16';
-    onKeyDown?: (event: KeyboardEvent, value: any | null) => void;
-    onBlur?: (event: FocusEvent, value: any | null) => void;
+    onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+    onBlur?: FocusEventHandler<HTMLDivElement>;
     scrollbars?: boolean;
 }
 
@@ -51,6 +51,8 @@ function Editor(props: PlateEditorProps) {
                 readOnly={ props.isReadonly }
                 placeholder={ props.placeholder }
                 className={ css.editor }
+                onKeyDown={ props.onKeyDown }
+                onBlur={ props.onBlur }
                 renderPlaceholder={ ({ attributes }: RenderPlaceholderProps) => {
                     return isEditorValueEmpty(editor.children) && (
                         <div
@@ -62,7 +64,7 @@ function Editor(props: PlateEditorProps) {
                         </div>
                     );
                 } }
-                style={ { padding: '0 24px', minHeight: props.minHeight } }
+                style={ { height: '100%', padding: '0 24px', minHeight: props.minHeight } }
             />
             <MainToolbar />
             <MarksToolbar />

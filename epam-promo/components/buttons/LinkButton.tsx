@@ -6,7 +6,7 @@ type LinkButtonMods = {
      * Defines component color.
      * @default 'blue'
      */
-    color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10';
+    color?: 'blue' | 'green' | 'amber' | 'red' | 'gray60' | 'gray10' | uui.LinkButtonProps['color'];
 };
 
 /** Represents the properties for the LinkButton component. */

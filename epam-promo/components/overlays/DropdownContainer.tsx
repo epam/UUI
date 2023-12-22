@@ -1,13 +1,23 @@
-import { withMods } from '@epam/uui-core';
+import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export interface DropdownContainerMods {
+interface DropdownContainerMods {
+    /**
+     * Defines component color.
+     * @default 'white'
+     */
     color?: 'white' | 'gray70';
 }
 
-export type DropdownContainerProps = uui.DropdownContainerProps & DropdownContainerMods;
+/** Represents the properties of a DropdownContainer component. */
+export interface DropdownContainerProps extends uui.DropdownContainerProps, DropdownContainerMods {}
 
-export function applyDropdownContainerMods(mods: DropdownContainerMods) {
+function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [`uui-color-${mods.color || 'white'}`];
 }
-export const DropdownContainer = withMods<uui.DropdownContainerProps, DropdownContainerMods>(uui.DropdownContainer, applyDropdownContainerMods);
+
+export const DropdownContainer = createSkinComponent<uui.DropdownContainerProps, DropdownContainerProps>(
+    uui.DropdownContainer,
+    () => null,
+    applyDropdownContainerMods,
+);

@@ -2,7 +2,10 @@ import * as React from 'react';
 import cx from 'classnames';
 import css from './BurgerGroupHeader.module.scss';
 
-export interface BurgerGroupHeaderProps {
+interface BurgerGroupHeaderProps {
+    /*
+    * Defines component caption.
+    */
     caption: string;
 }
 

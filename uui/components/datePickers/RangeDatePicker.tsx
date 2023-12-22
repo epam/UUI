@@ -15,9 +15,15 @@ import { i18n } from '../../i18n';
 import css from './RangeDatePicker.module.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
+    /**
+     * A pure function that gets placeholder for 'from' or 'to' input.
+     */
     getPlaceholder?(type: InputType): string;
 }
 
+/*
+* Defines input type.
+*/
 export type InputType = 'from' | 'to';
 const defaultValue: RangeDatePickerValue = { from: null, to: null };
 

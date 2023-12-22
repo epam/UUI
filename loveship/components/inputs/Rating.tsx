@@ -1,16 +1,19 @@
 import { createSkinComponent } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import css from './Rating.module.scss';
 import { ReactComponent as FilledStarIcon } from '../icons/star-filled.svg';
 import { ReactComponent as EmptyStarIcon } from '../icons/star-empty.svg';
 import { Tooltip } from '../overlays';
+import css from './Rating.module.scss';
 
-export interface RatingMods {
+interface RatingMods {
     /**
+     * Defines component size.
      * @default '18'
      */
     size?: 18 | 24 | 30;
 }
+
+/** Represents the properties for the MultiSwitch component. */
 export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
 
 function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
