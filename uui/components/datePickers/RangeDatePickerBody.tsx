@@ -21,7 +21,7 @@ export function weekCount(displayedDate: Dayjs) {
     return arrayToMatrix(days, 7).length;
 }
 
-export const uuiRangeDatePickerBody = {
+const uuiRangeDatePickerBody = {
     inRange: 'uui-range-datepicker-in-range',
     firstDayInRangeWrapper: 'uui-range-datepicker-first-day-in-range-wrapper',
     lastDayInRangeWrapper: 'uui-range-datepicker-last-day-in-range-wrapper',
