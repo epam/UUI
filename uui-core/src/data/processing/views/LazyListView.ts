@@ -152,7 +152,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public loadData(): void {
-        if (!this.isUpdatePending) {
+        if (!this.isUpdatePending || !this.isActivated()) {
             return;
         }
 
