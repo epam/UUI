@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    TSkin,
     TDocsGenExportedType,
 } from '../../types';
 import {
@@ -15,7 +14,7 @@ import {
     IHasForwardedRef,
     IHasPlaceholder,
     IHasRawProps,
-    TextInputCoreProps,
+    TextInputCoreProps, UuiContexts,
 } from '@epam/uui-core';
 import { pickerBaseOptionsDoc } from '../../commonDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
@@ -27,7 +26,7 @@ import {
 } from './shared/reusableExamples';
 import { iCanRedirectDoc, iEditable, iHasLabelDoc } from '../../commonDocs';
 
-const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => DocBuilder<any> } = {
+const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx: Pick<UuiContexts, 'uuiNotifications'> }) => DocBuilder<any> } = {
     '@epam/uui-core:ButtonCoreProps': () => {
         return new DocBuilder<any>({ name: '' }).prop('count', {
             examples: [0,
@@ -47,11 +46,11 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => 
             editorType: 'MultiUnknownEditor',
         });
     },
-    '@epam/uui-core:IDropdownToggler': () => new DocBuilder<IDropdownToggler>({ name: '' }).prop('ref', {
-        examples: getReactRefExamples('ref'),
+    '@epam/uui-core:IDropdownToggler': (params) => new DocBuilder<IDropdownToggler>({ name: '' }).prop('ref', {
+        examples: getReactRefExamples({ name: 'ref', uuiCtx: params.uuiCtx }),
     }),
-    '@epam/uui-core:IHasForwardedRef': () => new DocBuilder<IHasForwardedRef<any>>({ name: '' }).prop('forwardedRef', {
-        examples: getReactRefExamples('ref'),
+    '@epam/uui-core:IHasForwardedRef': (params) => new DocBuilder<IHasForwardedRef<any>>({ name: '' }).prop('forwardedRef', {
+        examples: getReactRefExamples({ name: 'ref', uuiCtx: params.uuiCtx }),
     }),
     '@epam/uui-core:IHasLabel': () => iHasLabelDoc,
     '@epam/uui-core:IHasCX': () => new DocBuilder<IHasCX>({ name: '' }).prop('cx', {
@@ -162,8 +161,8 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (skin?: TSkin) => 
  * See "public/docs/docsGenOutput/docsGenOutput.json" for details.
  */
 export const buildByPropFromRef: TPropDocBuilder = (params) => {
-    const { prop, skin } = params;
-    const db: DocBuilder<any> = BY_PROP_FROM_REF[prop.from as TDocsGenExportedType]?.(skin);
+    const { prop, uuiCtx } = params;
+    const db: DocBuilder<any> = BY_PROP_FROM_REF[prop.from as TDocsGenExportedType]?.({ uuiCtx });
     if (db) {
         const found = db.props.find((p) => p.name === prop.name);
         if (found) {
