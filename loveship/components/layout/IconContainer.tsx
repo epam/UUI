@@ -3,7 +3,7 @@ import { ControlIconProps } from '@epam/uui-components';
 import { createSkinComponent, devLogger } from '@epam/uui-core';
 import css from './IconContainer.module.scss';
 
-type IconContainerColors = 'sky' | 'grass' | 'sun' | 'fire' | 'carbon' | 'cobalt' | 'lavanda' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
+type IconContainerColors = 'sky' | 'grass' | 'sun' | 'fire' | 'carbon' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 
 interface IconContainerMods {
     /**

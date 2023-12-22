@@ -47,7 +47,7 @@ export function ComponentEditorWrapper(props: {
 
     return (
         <ComponentEditor
-            key={ skin }
+            key={ `${skin}-${theme}` }
             isLoaded={ isLoaded }
             onRedirectBackToDocs={ onRedirectBackToDocs }
             docs={ docs }
