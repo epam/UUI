@@ -15,13 +15,15 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     private isloading: boolean = false;
     private isloaded: boolean = false;
     constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, protected props: AsyncListViewProps<TItem, TId, TFilter>) {
-        super(editable, props);
-        this.props = props;
-        this.update(editable, props);
+        const { activate = true, ...restProps } = props;
+        const propsWithDefaults = { activate, ...restProps };
+        super(editable, propsWithDefaults);
+        this.props = propsWithDefaults;
+        this.update(editable, propsWithDefaults);
     }
 
     public async loadData() {
-        if (this.isLoaded || this.isLoading) {
+        if (!this.isActive() || this.isLoaded || this.isLoading) {
             return;
         }
 

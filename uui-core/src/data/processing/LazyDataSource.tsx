@@ -56,15 +56,21 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         onValueChange: (value: TState) => void,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> => {
+        const { activate = true, ...restProps } = props;
+
         const view = this.views.get(onValueChange) as LazyListView<TItem, TId, TFilter>;
         const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             getId: this.getId,
-            ...props,
+            ...restProps,
+            activate,
         };
 
         if (view) {
             view.update({ value, onValueChange }, viewProps);
+            if (activate) {
+                view.loadData();
+            }
             return view;
         } else {
             const newView = new LazyListView({ value, onValueChange }, viewProps, this.cache);
@@ -76,13 +82,16 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
         onValueChange: (val: TState) => void,
-        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
+        props: Partial<LazyListViewProps<TItem, TId, TFilter>> = {},
         deps: any[] = [],
     ): LazyListView<TItem, TId, TFilter> {
+        const { activate = true } = { ...this.props, ...props };
+    
         const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             getId: this.getId,
             ...props,
+            activate,
         };
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -93,11 +102,16 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => { unsubscribe(); };
-        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
+            const unsubscribe = activate ? this.subscribe(view) : undefined;
+            return () => { unsubscribe?.(); };
+        }, [...deps, activate, this]); // every time, datasource is updated, view should be resubscribed
 
         view.update({ value, onValueChange }, viewProps);
+        
+        if (activate) {
+            view.loadData();
+        }
+
         return view;
     }
 }

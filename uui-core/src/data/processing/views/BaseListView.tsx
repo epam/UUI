@@ -683,4 +683,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             backgroundReload: this.props.backgroundReload,
         };
     }
+    
+    public isActive = () => {
+        return !this.isDestroyed;
+    };
 }

@@ -26,14 +26,3 @@ export const createView = <TItem, TId, TFilter, Props extends ListViewProps<TIte
     const { type, ...viewProps } = props;
     return new ArrayListView(editable, viewProps);
 };
-
-export const mergePropsWithDefaults = <TItem, TId, TFilter>(props: ListViewProps<TItem, TId, TFilter>): ListViewProps<TItem, TId, TFilter> => {
-    if (isLazyListViewProps(props)) {
-        return {
-            ...props,
-            legacyLoadDataBehavior: props.legacyLoadDataBehavior ?? false,
-        };
-    }
-
-    return props;
-};

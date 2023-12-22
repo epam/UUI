@@ -195,6 +195,8 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * If reloading is started, `view.getListProps` returns `isReloading` flag, set to `true`.
      */
     backgroundReload?: boolean;
+
+    activate?: boolean;
 }
 
 export type IDataSourceViewConfig = {
@@ -228,6 +230,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     clearAllChecked(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
+    isActive: () => boolean;
 };
 
 export type DataSourceListCounts = {
