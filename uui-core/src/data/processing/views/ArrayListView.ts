@@ -60,7 +60,18 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.onValueChange = onValueChange;
         const prevItems = this.props.items;
         const newItems = newProps.items || this.props.items;
-        this.props = { ...newProps, items: newItems, sortSearchByRelevance: newProps.sortSearchByRelevance ?? true };
+        this.props = {
+            ...newProps,
+            items: newItems,
+            sortSearchByRelevance: newProps.sortSearchByRelevance ?? true,
+            activate: newProps.activate ?? this.props.activate ?? true,
+        };
+
+        if (this.props.activate) {
+            this.activate();
+        } else if (this.isActive()) {
+            this.deactivate();
+        }
 
         const prevTree = this.visibleTree;
         if (this.props.items) {

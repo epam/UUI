@@ -46,10 +46,12 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as AsyncListView<TItem, TId, TFilter>;
-        const { items, ...props } = this.props;
+        const { items, ...restProps } = this.props;
+        const { activate = true } = { ...this.props, ...options };
         const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
-            ...props,
+            ...restProps,
             ...options,
+            activate,
             api: this.api,
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
@@ -59,7 +61,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
         if (view) {
             view.update({ value, onValueChange }, viewProps);
-            this.loadViewData(view);
+            if (view.isActive()) {
+                this.loadViewData(view);
+            }
 
             return view;
         } else {
@@ -72,13 +76,16 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
+        options: Partial<AsyncListViewProps<TItem, TId, TFilter>> = {},
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
+        const { activate = true, ...restProps } = options;
+
         const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             api: this.api,
-            ...options,
+            ...restProps,
+            activate,
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
@@ -93,12 +100,14 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => { unsubscribe(); };
-        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
+            const unsubscribe = activate ? this.subscribe(view) : undefined;
+            return () => { unsubscribe?.(); };
+        }, [...deps, activate, this]); // every time, datasource is updated, view should be resubscribed
 
         view.update({ value, onValueChange }, viewProps);
-        this.loadViewData(view);
+        if (view.isActive()) {
+            this.loadViewData(view);
+        }
 
         return view;
     }

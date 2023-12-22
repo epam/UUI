@@ -60,11 +60,13 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
+        const { activate = true } = { ...this.props, ...options };
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             items: this.tree,
             ...options,
+            activate,
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
@@ -87,10 +89,13 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
+        const { activate = true } = { ...this.props, ...options };
+
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
             ...this.props,
             items: this.tree,
             ...options,
+            activate,
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
@@ -105,9 +110,9 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => { unsubscribe(); };
-        }, [...deps, this]);
+            const unsubscribe = activate ? this.subscribe(view) : undefined;
+            return () => { unsubscribe?.(); };
+        }, [...deps, activate, this]);
 
         view.update({ value, onValueChange }, viewProps);
         return view;

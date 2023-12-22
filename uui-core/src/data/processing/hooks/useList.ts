@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import { useView } from './useView';
 import { ListViewProps, UnboxListProps, UseListOptionsProps, UseListProps } from './types';
-import { createView, mergePropsWithDefaults } from './helpers';
+import { createView } from './helpers';
 
 function useListOptions<TItem, TId, TFilter, TProps extends ListViewProps<TItem, TId, TFilter>>({
     view, listState, props,
@@ -19,26 +19,19 @@ function useListOptions<TItem, TId, TFilter, TProps extends ListViewProps<TItem,
 }
 
 export function useList<TItem, TId, TFilter>(
-    { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
+    { listState, setListState, activate = true, ...props }: UseListProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const prevLoadDataRef = useRef(false);
-
-    useEffect(() => {
-        prevLoadDataRef.current = loadData;
-    });
-
-    const viewProps = mergePropsWithDefaults(props);
-
+    const viewProps = { ...props, activate };
     const view = useView<TItem, TId, TFilter, UnboxListProps<typeof props>>(
         () => createView({ value: listState, onValueChange: setListState }, viewProps),
         (current) => {
-            current.update({ value: listState, onValueChange: setListState }, props);
+            current.update({ value: listState, onValueChange: setListState }, viewProps);
         },
         deps,
     );
 
-    if (loadData) {
+    if (view.isActive()) {
         view.loadData();
     }
 
