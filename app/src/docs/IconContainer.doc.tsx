@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class IconContainerDoc extends BaseDocsBlock {
@@ -17,6 +17,14 @@ export class IconContainerDoc extends BaseDocsBlock {
             [TSkin.Electric]: { type: '@epam/uui-components:ControlIconProps', component: electric.IconContainer },
             [TSkin.Loveship]: { type: '@epam/loveship:IconContainerProps', component: loveship.IconContainer },
             [TSkin.Promo]: { type: '@epam/promo:IconContainerProps', component: promo.IconContainer },
+        },
+        doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    carbon: '#3D404D',
+                }),
+            });
         },
     };
 

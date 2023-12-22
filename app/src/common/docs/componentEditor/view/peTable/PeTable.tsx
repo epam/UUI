@@ -8,8 +8,8 @@ import css from './peTable.module.scss';
 export function PeTable<TProps>(props: IPeTableProps<TProps>) {
     const rows = props.propDoc.map((p, index: number) => {
         const key = `${p.name}_${index}`;
-        const value = props.inputData[p.name].value;
-        const exampleId = props.inputData[p.name].exampleId;
+        const value = props.inputData[p.name]?.value;
+        const exampleId = props.inputData[p.name]?.exampleId;
         return (
             <PeTableRow<TProps>
                 key={ key }
