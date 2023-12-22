@@ -1,13 +1,13 @@
 import React from 'react';
 import css from './colorRectangle.module.scss';
 import { LabeledInput, Panel, Tag, Text, Tooltip } from '@epam/uui';
-import { hexToRgb, normalizeHex } from '../../utils/colorUtils';
+import { hexToRgb, normalizeColor } from '../../utils/colorUtils';
 
 export function ColorRectangle(props: { color: string, hex: string }) {
     const style = {
         backgroundColor: `${props.color}`,
     };
-    const hexNorm = normalizeHex(props.hex);
+    const hexNorm = normalizeColor(props.hex);
 
     const rgb = hexToRgb(hexNorm) || 'n/a';
     const rgbPc = hexToRgb(hexNorm, true) || 'n/a';
