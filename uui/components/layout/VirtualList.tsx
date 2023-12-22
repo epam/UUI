@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
-    IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers, IHasChildren,
+    IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers, IHasChildren, UseVirtualListProps,
 } from '@epam/uui-core';
-import { PositionValues, ScrollbarsApi } from '@epam/uui-components';
+import { ScrollbarsApi } from '@epam/uui-components';
 import { ScrollBars } from './ScrollBars';
 import css from './VirtualList.module.scss';
 import { Blocker } from './Blocker';
@@ -30,11 +30,10 @@ type VirtualListRenderRows<List extends HTMLElement = any> = {
 interface BaseVirtualListProps
     extends IHasCX,
     IEditable<VirtualListState>,
-    IHasRawProps<HTMLAttributes<HTMLDivElement>> {
-    rowsCount?: number;
+    IHasRawProps<HTMLAttributes<HTMLDivElement>>, Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'> {
+    /** HTML role attribute to place on list container */
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
-    onScroll?(value: PositionValues): void;
-    rowsSelector?: string;
+    /** Pass true, to enable Blocker while list loading */
     isLoading?: boolean;
 }
 
