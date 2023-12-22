@@ -1,6 +1,7 @@
 import { PropExample } from '../../../types';
 import React from 'react';
-import { Button } from '@epam/uui';
+import { Button, FlexRow, Panel } from '@epam/uui';
+import { UuiContexts } from '@epam/uui-core';
 
 const TEXT_EXAMPLES = {
     SHORT_TEXT: 'Hello, World!',
@@ -8,21 +9,23 @@ const TEXT_EXAMPLES = {
     LONG_WORD: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 };
 
-export function getReactRefExamples(name: string): PropExample<any> {
-    return (ctx: any) => {
-        return [
-            {
-                name: 'React.createRef<any>()',
-                value: {
-                    set current(p: any) {
-                        const cb = ctx.getCallback(`${name}.current = `);
-                        cb(p);
-                    },
+export function getReactRefExamples(params: { uuiCtx: Pick<UuiContexts, 'uuiNotifications'>, name: string }): PropExample<any>[] {
+    const { uuiCtx, name } = params;
+    return [
+        {
+            name: 'React.createRef<any>()',
+            value: {
+                set current(p: unknown) {
+                    const [cb] = getCallbackExample({
+                        name: `${name}.current = `,
+                        uuiCtx,
+                    });
+                    cb(p);
                 },
             },
-            ctx.getCallback(name),
-        ];
-    };
+        },
+        getCallbackExample({ uuiCtx, name })[0],
+    ];
 }
 
 export function getRawPropsExamples(): PropExample<any>[] {
@@ -67,4 +70,35 @@ export function getComponentExamples(): PropExample<any>[] {
             value: () => (<Button caption={ TEXT_EXAMPLES.SHORT_TEXT } onClick={ () => {} } />),
         },
     ];
+}
+
+export function getCallbackExample(params: { uuiCtx: Pick<UuiContexts, 'uuiNotifications'>, name: string }): ((...args: unknown[]) => void)[] {
+    const { uuiCtx, name } = params;
+    function callbackFn(...args: unknown[]) {
+        uuiCtx.uuiNotifications.show(
+            () => (<CallbackExampleNotification name={ name } args={ args } />),
+            { position: 'bot-right' },
+        ).catch(() => null);
+        // eslint-disable-next-line no-console
+        console.log(`[PropertyEditor] ${name} (`, args, ')');
+    }
+    Object.defineProperty(callbackFn, 'name', { value: 'callback' });
+    return [callbackFn];
+}
+
+function CallbackExampleNotification(props: { name: string, args: unknown[] }) {
+    const { name, args } = props;
+    return (
+        <Panel shadow={ true } background="surface-main">
+            <FlexRow padding="24" vPadding="12" borderBottom={ true }>
+                <pre>
+                    {name}
+                    (
+                    {args.length}
+                    {' '}
+                    args)
+                </pre>
+            </FlexRow>
+        </Panel>
+    );
 }

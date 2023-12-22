@@ -1,10 +1,5 @@
 import type { IEditable, ScrollToConfig, VirtualListState } from '../../types';
 
-export interface UuiScrollPositionValues {
-    scrollTop: number;
-    clientHeight: number;
-}
-
 export interface UseVirtualListApi<List, ScrollContainer> {
     offsetY: number;
     listOffset: number;
@@ -16,7 +11,8 @@ export interface UseVirtualListApi<List, ScrollContainer> {
 }
 
 export interface UseVirtualListProps extends IEditable<VirtualListState> {
-    rowsCount: number | undefined;
+    /** Count of list items */
+    rowsCount?: number | undefined;
 
     /**
      * Virtual list will align topIndex and visibleCount to the block size.
@@ -34,10 +30,11 @@ export interface UseVirtualListProps extends IEditable<VirtualListState> {
      */
     overdrawRows?: number;
 
-    onScroll?(value: Partial<UuiScrollPositionValues>): void;
+    /** Called when list was scrolled */
+    onScroll?(value: HTMLElement): void;
 
     /**
-     * Selector of `VirtualList` rows.
+     * Selector to get rows container node.
      */
     rowsSelector?: string;
 }
