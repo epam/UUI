@@ -8,11 +8,13 @@
 * [DataTable]: Focus manager.
     * Added ability to change focus on different cells using a keyboard in editable tables.
     * See the example [here](https://uui.epam.com/demo?id=editableTable).
+* [Dropdown]: improve close on click outside dropdown logic
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
 * [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * [VirtualList]: fixed `onScroll` prop typing
+* [PickerInput]: fixed closing picker body by checking some item in 'Show only selected' mode
 
 # 5.4.3 - 19.12.2023
 
