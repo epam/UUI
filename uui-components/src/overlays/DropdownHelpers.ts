@@ -3,7 +3,7 @@ import { closestTargetParentByCondition } from '@epam/uui-core';
 export const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
     const [bodyNode] = stopNodes;
 
-    if (stopNodes.some((node) => node && closestTargetParentByCondition(e, node))) {
+    if (stopNodes.some((node) => e.composedPath().includes(node))) {
         // Interacted inside any of the stop nodes
         return false;
     }
