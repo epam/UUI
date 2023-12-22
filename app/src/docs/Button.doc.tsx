@@ -3,8 +3,9 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { getCurrentTheme } from '../helpers';
 
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
@@ -20,6 +21,14 @@ export class ButtonDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.ButtonProps | promo.ButtonProps | loveship.ButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    gray50: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-40' : 'neutral-60'})`,
+                    gray: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-50' : 'neutral-60'})`,
+                    neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-50' : 'neutral-60'})`,
+                }),
+            });
         },
     };
 
