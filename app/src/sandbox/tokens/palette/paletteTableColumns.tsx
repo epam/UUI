@@ -72,7 +72,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             expectedValueColumnsArr.push({
                 key: COL_NAMES.expectedValueChain,
                 caption: 'Expected',
-                info: 'The value is taken directly from chain of aliases (valuesByMode)',
+                info: 'The value is taken from the chain of aliases (valuesByMode)',
                 render: (item) => {
                     if (figmaTheme) {
                         return (

@@ -22,17 +22,50 @@ export function ThemeVarInfo(props: { themeVar: IThemeVarUI, expectedValueType: 
         );
     }, [hasErrors]);
 
+    const renderExpected = () => {
+        if (expected) {
+            let chain = null;
+            let aliasChainNotes = '';
+            if (expected.alias.length) {
+                if (expected.alias.length > 1) {
+                    aliasChainNotes = ' (the value is taken from the last alias in the list below)';
+                }
+                chain = expected.alias.map(({ id, cssVar, supported }, index) => {
+                    return (
+                        <React.Fragment key={ id }>
+                            <div style={ { whiteSpace: 'nowrap', clear: 'both' } }>
+                                {`${index + 1}) `}
+                                {id}
+                                { supported && (`${cssVar}`)}
+                            </div>
+                        </React.Fragment>
+                    );
+                });
+                chain = (
+                    <>
+                        <Text>{'Alias' + aliasChainNotes + ':'}</Text>
+                        {chain}
+                    </>
+                );
+            }
+
+            return (
+                <LabeledInput label="Expected:" labelPosition="left">
+                    {expected.value}
+                    {chain && <Alert color="info">{chain}</Alert>}
+                </LabeledInput>
+            );
+        }
+        return null;
+    };
+
     const getTooltipContent = () => {
         return (
             <Text color="primary">
                 <LabeledInput label="Actual:" labelPosition="left">
                     {actual.value !== '' ? actual.value : '<empty>'}
                 </LabeledInput>
-                { expected && (
-                    <LabeledInput label="Expected:" labelPosition="left">
-                        {expected.value}
-                    </LabeledInput>
-                )}
+                { renderExpected() }
                 {
                     hasErrors && (
                         <>
@@ -47,7 +80,7 @@ export function ThemeVarInfo(props: { themeVar: IThemeVarUI, expectedValueType: 
     };
 
     return (
-        <Tooltip content={ getTooltipContent() } color="neutral">
+        <Tooltip content={ getTooltipContent() } color="neutral" maxWidth={ 400 } closeOnMouseLeave="boundary">
             {iconNode}
         </Tooltip>
     );
