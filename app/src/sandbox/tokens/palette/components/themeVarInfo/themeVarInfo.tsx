@@ -36,7 +36,7 @@ export function ThemeVarInfo(props: { themeVar: IThemeVarUI, expectedValueType: 
                             <div style={ { whiteSpace: 'nowrap', clear: 'both' } }>
                                 {`${index + 1}) `}
                                 {id}
-                                { supported && (`${cssVar}`)}
+                                { supported && ` (css: ${cssVar})`}
                             </div>
                         </React.Fragment>
                     );
