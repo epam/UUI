@@ -1,7 +1,7 @@
 import { IThemeVarUI, TExpectedValueType, TThemeVarUiErr } from '../types/types';
 import { TTheme } from '../../../../common/docs/docsConstants';
 import { IThemeVar, TFigmaThemeName, TResolvedValueNorm, TVarType } from '../types/sharedTypes';
-import { normalizeHex } from './colorUtils';
+import { normalizeColor } from './colorUtils';
 
 export const THEME_MAP: Record<TTheme, TFigmaThemeName | undefined> = {
     [TTheme.electric]: TFigmaThemeName.EPAM,
@@ -30,8 +30,8 @@ function isEqualValue(params: { actual: string, token: IThemeVar, theme: TTheme,
 
     if (expected !== undefined) {
         if (token.type === TVarType.COLOR) {
-            const expectedNorm = normalizeHex(expected.value as string);
-            const actualNorm = normalizeHex(actual);
+            const expectedNorm = normalizeColor(expected.value as string);
+            const actualNorm = normalizeColor(actual);
             return expectedNorm.localeCompare(actualNorm) === 0;
         }
         return String(expected.value) === actual;

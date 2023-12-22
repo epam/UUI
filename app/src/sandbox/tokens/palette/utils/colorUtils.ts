@@ -1,3 +1,22 @@
+import { THexaValue } from '../types/sharedTypes';
+
+function rgbToHex(color: string): THexaValue {
+    const isRgba = color.startsWith('rgb');
+    if (isRgba) {
+        const commaSeparated = color.replace(/(rgb[a]?\()([0-9\s,.]+)(\))/g, '$2');
+        const [r, g, b, a] = commaSeparated.split(',').map((s) => Number(s.trim()));
+        const h = (n: number) => {
+            return (n | (1 << 8)).toString(16).slice(1).toUpperCase();
+        };
+        const arr3 = [h(r), h(g), h(b)];
+        if (a !== undefined) {
+            arr3.push(h(a * 255));
+        }
+        return `#${arr3.join('')}`;
+    }
+    return color as THexaValue;
+}
+
 export function hexToRgb(hex: string | undefined, percents: boolean = false) {
     if (hex) {
         const hex1 = hex.substring(1);
@@ -34,13 +53,18 @@ export function hexToRgb(hex: string | undefined, percents: boolean = false) {
     return '';
 }
 
-export function normalizeHex(hex: string) {
-    if (hex && hex.indexOf('#') === 0) {
-        let hex1 = hex.substring(1);
+export function normalizeColor(color: string) {
+    if (color) {
+        let colorNorm = color;
+        const isHex = colorNorm.indexOf('#') === 0;
+        if (!isHex) {
+            colorNorm = rgbToHex(colorNorm);
+        }
+        let hex1 = colorNorm.substring(1);
         if (hex1.length === 3) {
             hex1 = [...hex1].reduce((acc, part) => (acc + part + part), '');
         }
         return `#${hex1}`.toUpperCase();
     }
-    return hex;
+    return color;
 }
