@@ -4,13 +4,12 @@ import {
 } from '@epam/uui-test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
-async function setupDatePicker(params: Pick<DatePickerProps, 'value' | 'format' | 'filter'>) {
-    const { format, value } = params;
+type TestParams = Pick<DatePickerProps, 'value' | 'format' | 'isHoliday'>;
 
+async function setupDatePicker(params: TestParams) {
     const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
         (context) => ({
-            value,
-            format,
+            ...params,
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current?.setProperty('value', newValue);
             }),
@@ -102,5 +101,35 @@ describe('DatePicker', () => {
         fireEvent.change(dom.input, { target: { value: '31-01-2017' } });
         expect(mocks.onValueChange).toHaveBeenCalledWith('2017-01-31');
         expect(dom.input.value).toEqual('31-01-2017');
+    });
+
+    it('should support entering date from keyboard in default format', async () => {
+        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '2017-01-22' } });
+        fireEvent.blur(dom.input);
+        expect(mocks.onValueChange).toHaveBeenCalledWith('2017-01-22');
+        expect(dom.input.value).toEqual('Jan 22, 2017');
+    });
+
+    it('should support entering date from keyboard in custom format', async () => {
+        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_CUSTOM });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '2017-01-22' } });
+        fireEvent.blur(dom.input);
+        expect(mocks.onValueChange).toHaveBeenCalledWith('2017-01-22');
+        expect(
+            dom.input.value,
+        ).toEqual('22-01-2017');
+    });
+
+    it('should render with isHoliday prop', async () => {
+        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT, isHoliday: () => true });
+        expect(dom.input).toHaveAttribute('isHoliday', 'true');
+    });
+
+    it('should render without isHoliday prop', async () => {
+        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT, isHoliday: () => false });
+        expect(dom.input).not.toHaveAttribute('isHoliday');
     });
 });
