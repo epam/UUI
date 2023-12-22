@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IThemeVar } from '../types/sharedTypes';
 import { svc } from '../../../../services';
-import { IThemeVarUI } from '../types/types';
+import { IThemeVarUI, TExpectedValueType } from '../types/types';
 import { validateActualTokenValue } from '../utils/themeVarUtils';
 import { TTheme } from '../../../../common/docs/docsConstants';
 
@@ -17,7 +17,7 @@ async function loadThemeTokens(): Promise<IThemeVar[]> {
     return cache.content;
 }
 
-export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
+export function useThemeTokens(theme: TTheme | undefined, expectedValueType: TExpectedValueType): IThemeVarUI[] {
     const [tokens, setTokens] = useState<IThemeVarUI[]>([]);
 
     useEffect(() => {
@@ -32,6 +32,7 @@ export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
                         actual: value,
                         theme,
                         token,
+                        expectedValueType,
                     });
                     return {
                         ...token,
@@ -41,6 +42,6 @@ export function useThemeTokens(theme: TTheme | undefined): IThemeVarUI[] {
             });
         }
         return () => { active = false; };
-    }, [theme]);
+    }, [theme, expectedValueType]);
     return tokens;
 }

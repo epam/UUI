@@ -14,6 +14,7 @@ export type TRgbaValue = { r: number, g: number, b: number, a: number };
 ///
 
 type TVarScope = string | 'ALL_SCOPES' | 'STROKE_COLOR' | 'ALL_FILLS';
+export type TFigmaVariableAlias = { type: 'VARIABLE_ALIAS', id: string };
 
 interface IFigmaVarTemplate<TType, TValue> {
     id: string
@@ -25,7 +26,7 @@ interface IFigmaVarTemplate<TType, TValue> {
     description: string
     type: TType
     valuesByMode: {
-        [themeId: string]: { type: 'VARIABLE_ALIAS', id: string } | TValue
+        [themeId: string]: TFigmaVariableAlias | TValue
     }
     resolvedValuesByMode: {
         [themeId: string]: { resolvedValue: TValue, alias: null } | { resolvedValue: TValue, alias: string, aliasName: string }
