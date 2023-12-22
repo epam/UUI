@@ -7,9 +7,9 @@ import { buildByRawType } from './buildByRawType';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 
 export const buildPropDetails: TPropDocBuilder = (params) => {
-    const { prop, docs, skin } = params;
-    const common = buildCommonDetails({ docs, prop, skin });
-    const singlePropDetails = buildSinglePropDetails({ docs, prop, skin });
+    const { prop, docs, skin, uuiCtx } = params;
+    const common = buildCommonDetails({ docs, prop, skin, uuiCtx });
+    const singlePropDetails = buildSinglePropDetails({ docs, prop, skin, uuiCtx });
     if (singlePropDetails) {
         return {
             ...common,
@@ -19,10 +19,10 @@ export const buildPropDetails: TPropDocBuilder = (params) => {
 };
 
 export const buildPropFallbackDetails: TPropDocBuilder = (params) => {
-    const { prop, docs, skin } = params;
+    const { prop, docs, skin, uuiCtx } = params;
 
     return {
-        ...buildCommonDetails({ docs, prop, skin }),
+        ...buildCommonDetails({ docs, prop, skin, uuiCtx }),
         examples: [],
     };
 };

@@ -26,8 +26,8 @@ export type TCssVarRef = {
     supported: boolean,
 };
 export type TResolvedValueNorm = {
-    value: THexaValue | TFloatValue,
-    ref?: TCssVarRef
+    value: THexaValue | TFloatValue
+    alias: TCssVarRef[],
 };
 export interface IThemeVar {
     /** Figma path which can be used as a unique ID */
@@ -38,9 +38,12 @@ export interface IThemeVar {
     /** cssVarName has value only if it's "resolved" */
     cssVar: TUuiCssVarName | undefined,
     /** resolvedValue in this map is taken from Figma. It can be used to compare with actual rendered value in browser */
-    value: {
-        [themeName in TFigmaThemeName]?: TResolvedValueNorm
-    }
+    valueByTheme: {
+        [themeName in TFigmaThemeName]?: {
+            valueChain: TResolvedValueNorm,
+            valueDirect: TResolvedValueNorm,
+        }
+    },
 }
 export interface IUuiTokensCollection {
     supportedTokens: IThemeVar[]
