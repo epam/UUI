@@ -138,14 +138,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         this.props = {
             ...props,
-            activate: props.activate ?? this.props.activate,
+            activate: props.activate ?? this.props.activate ?? true,
             flattenSearchResults: this.props.flattenSearchResults ?? props.flattenSearchResults ?? true,
         };
 
         if (this.props.activate) {
-            this.activate();
-        } else if (this.isActive()) {
-            this.deactivate();
+            !this.isActivated() && this.activate();
+        } else {
+            this.isActivated() && this.deactivate();
         }
 
         this.updateRowOptions();

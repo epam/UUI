@@ -96,6 +96,8 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field. */
     getSearchFields?(item: TItem): string[];
 
+    activateView?: boolean;
+
     ref?: React.Ref<HTMLElement>;
 };
 

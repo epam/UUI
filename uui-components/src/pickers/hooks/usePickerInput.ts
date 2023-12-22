@@ -29,6 +29,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged,
         dataSourceState, setDataSourceState, showSelected, setShowSelected,
+        setActivateView,
     } = pickerInputState;
 
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
@@ -99,6 +100,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         if (props.editMode === 'modal') {
             props.toggleModalOpening?.(newOpened);
         } else {
+            setActivateView(true);
             toggleDropdownOpening(newOpened);
         }
     };

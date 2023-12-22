@@ -61,7 +61,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
         if (view) {
             view.update({ value, onValueChange }, viewProps);
-            if (view.isActive()) {
+            if (view.isActivated()) {
                 this.loadViewData(view);
             }
 
@@ -100,12 +100,12 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = activate ? this.subscribe(view) : undefined;
-            return () => { unsubscribe?.(); };
+            const unsubscribe = this.subscribe(view);
+            return () => { unsubscribe(); };
         }, [...deps, activate, this]); // every time, datasource is updated, view should be resubscribed
 
         view.update({ value, onValueChange }, viewProps);
-        if (view.isActive()) {
+        if (view.isActivated()) {
             this.loadViewData(view);
         }
 

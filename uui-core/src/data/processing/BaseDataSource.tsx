@@ -34,9 +34,15 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     }
 
     public destroy() {
-        this.views.forEach((view) => view.deactivate());
+        this.views.forEach((view) => {
+            view.deactivate();
+            view.stopListening();
+        });
         this.views.clear();
-        this.subscriptions.forEach((_, view) => view.deactivate());
+        this.subscriptions.forEach((_, view) => {
+            view.deactivate();
+            view.stopListening();
+        });
         this.subscriptions.clear();
     }
 
@@ -53,11 +59,11 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     };
     
     protected subscribe(view: IDataSourceView<TItem, TId, TFilter>) {
-        view.activate();
+        view.startListening();
         this.subscriptions.set(view, view._forceUpdate);
         return () => {
+            view.stopListening();
             this.subscriptions.delete(view);
-            view.deactivate();
         };
     }
     

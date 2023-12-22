@@ -68,9 +68,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         };
 
         if (this.props.activate) {
-            this.activate();
-        } else if (this.isActive()) {
-            this.deactivate();
+            !this.isActivated() && this.activate();
+        } else {
+            this.isActivated() && this.deactivate();
         }
 
         const prevTree = this.visibleTree;

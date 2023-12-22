@@ -226,11 +226,13 @@ export type IDataSourceView<TItem, TId, TFilter> = {
      * After view deactivation, it becomes impossible to listen to updates.
      */
     deactivate(): void;
+    startListening(): void;
+    stopListening(): void;
     loadData(): void;
     clearAllChecked(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
-    isActive: () => boolean;
+    isActivated: () => boolean;
 };
 
 export type DataSourceListCounts = {

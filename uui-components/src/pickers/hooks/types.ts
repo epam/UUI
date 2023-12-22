@@ -110,6 +110,8 @@ export interface PickerInputState extends PickerState {
     setOpened: Dispatch<SetStateAction<boolean>>;
     isSearchChanged: boolean;
     setIsSearchChanged: Dispatch<SetStateAction<boolean>>;
+    activateView: boolean;
+    setActivateView: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface UsePickerStateProps {
@@ -121,6 +123,7 @@ export interface PickerState {
     setDataSourceState: Dispatch<SetStateAction<DataSourceState>>;
     showSelected: boolean;
     setShowSelected: Dispatch<SetStateAction<boolean>>;
+    activateView?: boolean;
 }
 
 export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {

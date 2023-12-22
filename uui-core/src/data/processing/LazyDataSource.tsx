@@ -102,16 +102,18 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = activate ? this.subscribe(view) : undefined;
-            return () => { unsubscribe?.(); };
-        }, [...deps, activate, this]); // every time, datasource is updated, view should be resubscribed
+            const unsubscribe = this.subscribe(view);
+            return () => {
+                unsubscribe?.();
+            };
+        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
 
-        view.update({ value, onValueChange }, viewProps);
-        
-        if (activate) {
+        if (view.isActivated()) {
             view.loadData();
         }
 
+        view.update({ value, onValueChange }, viewProps);
+        
         return view;
     }
 }

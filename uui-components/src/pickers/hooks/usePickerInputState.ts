@@ -6,11 +6,14 @@ export function usePickerInputState(props: UsePickerInputStateProps): PickerInpu
     const pickerState = usePickerState(props);
     const [opened, setOpened] = useState<boolean>(false);
     const [isSearchChanged, setIsSearchChanged] = useState<boolean>(false);
+    const [activateView, setActivateView] = useState(false);
     return {
         ...pickerState,
         opened,
         setOpened,
         isSearchChanged,
         setIsSearchChanged,
+        activateView,
+        setActivateView,
     };
 }
