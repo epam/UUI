@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin, COLOR_MAP } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TextDoc extends BaseDocsBlock {
@@ -27,6 +27,13 @@ export class TextDoc extends BaseDocsBlock {
                     },
                 ],
                 editorType: 'StringWithExamplesEditor',
+            });
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    brand: 'var(--uui-text-brand)',
+                    disabled: 'var(--uui-text-disabled)',
+                }),
             });
         },
     };

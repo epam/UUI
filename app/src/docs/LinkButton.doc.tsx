@@ -3,8 +3,9 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { getCurrentTheme } from '../helpers';
 
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';
@@ -20,6 +21,12 @@ export class LinkButtonDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<promo.LinkButtonProps | loveship.LinkButtonProps | uui.LinkButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    contrast: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-0' : 'neutral-10'})`,
+                }),
+            });
         },
     };
 
