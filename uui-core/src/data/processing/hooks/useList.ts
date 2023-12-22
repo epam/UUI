@@ -31,7 +31,7 @@ export function useList<TItem, TId, TFilter>(
         deps,
     );
 
-    if (view.isActive()) {
+    if (view.isActivated()) {
         view.loadData();
     }
 

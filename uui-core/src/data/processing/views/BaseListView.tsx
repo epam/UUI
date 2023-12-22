@@ -35,7 +35,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected pinned: Record<string, number> = {};
     protected pinnedByParentId: Record<string, number[]> = {};
     public selectAll?: ICheckable;
-    protected isDestroyed = false;
+    protected _isActivated = false;
+    protected _isListeningToUpdates = false;
     protected hasMoreRows = false;
     protected isReloading: boolean = false;
     protected isForceReloading: boolean = false;
@@ -44,17 +45,25 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
     _forceUpdate = () => {
-        if (!this.isDestroyed) {
+        if (this._isListeningToUpdates) {
             flushSync(() => { this.onValueChange({ ...this.value }); });
         }
     };
 
+    public startListening() {
+        this._isListeningToUpdates = true;
+    }
+
+    public stopListening() {
+        this._isListeningToUpdates = false;
+    }
+
     public deactivate() {
-        this.isDestroyed = true;
+        this._isActivated = false;
     }
 
     public activate() {
-        this.isDestroyed = false;
+        this._isActivated = true;
     }
 
     protected constructor(editable: IEditable<DataSourceState<TFilter, TId>>, protected props: BaseListViewProps<TItem, TId, TFilter>) {
@@ -684,7 +693,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         };
     }
     
-    public isActive = () => {
-        return !this.isDestroyed;
-    };
+    public isActivated() {
+        return this._isActivated;
+    }
 }

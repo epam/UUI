@@ -23,7 +23,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     }
 
     public async loadData() {
-        if (!this.isActive() || this.isLoaded || this.isLoading) {
+        if (!this.isActivated() || this.isLoaded || this.isLoading) {
             return;
         }
 
