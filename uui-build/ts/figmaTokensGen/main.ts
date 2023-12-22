@@ -8,6 +8,7 @@ import {
     getNormalizedResolvedValueMap,
 } from './utils/cssVarUtils';
 import { IThemeVar } from './types/sharedTypes';
+import { IFigmaVar } from './types/sourceTypes';
 
 export function main() {
     try {
@@ -22,6 +23,12 @@ function generateTokens() {
     const ctx = new FigmaScriptsContext();
     const source = FileUtils.readFigmaVarCollection();
     const supportedTokens: IThemeVar[] = [];
+
+    const figmaVarById = source.variables.reduce<Record<string, IFigmaVar>>((acc, figmaVar) => {
+        acc[figmaVar.id] = figmaVar;
+        return acc;
+    }, {});
+
     const variables = source.variables.map((figmaVar) => {
         const cssVar = getCssVarFromFigmaVar(figmaVar.name);
         const supported = isCssVarSupportedByUui(figmaVar.name);
@@ -32,7 +39,7 @@ function generateTokens() {
                 description: figmaVar.description,
                 useCases: '',
                 cssVar,
-                value: getNormalizedResolvedValueMap({ figmaVar, modes: source.modes }),
+                valueByTheme: getNormalizedResolvedValueMap({ figmaVar, figmaVarById, modes: source.modes }),
             });
         }
         return {

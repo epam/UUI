@@ -15,3 +15,8 @@ export type IThemeVarUI = IThemeVar & {
         errors: { type: TThemeVarUiErr, message: string }[],
     }
 };
+
+export enum TExpectedValueType {
+    direct= 'direct',
+    chain= 'chain'
+}

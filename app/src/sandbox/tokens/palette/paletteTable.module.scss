@@ -10,7 +10,7 @@
     box-sizing: border-box;
 
     .blockWrapper {
-        max-width: 100%;
+        max-width: calc(100% - 5px);
     }
 
 }

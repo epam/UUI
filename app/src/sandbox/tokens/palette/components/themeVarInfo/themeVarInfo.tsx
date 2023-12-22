@@ -1,13 +1,13 @@
-import { IThemeVarUI } from '../../types/types';
+import { IThemeVarUI, TExpectedValueType } from '../../types/types';
 import { getExpectedValue } from '../../utils/themeVarUtils';
 import { Alert, IconContainer, LabeledInput, Text, Tooltip } from '@epam/uui';
 import { ReactComponent as ErrIcon } from '@epam/assets/icons/common/notification-error-fill-24.svg';
 import { ReactComponent as OkIcon } from '@epam/assets/icons/common/notification-check-fill-24.svg';
 import React, { useMemo } from 'react';
 
-export function ThemeVarInfo(props: { themeVar: IThemeVarUI }) {
-    const { themeVar } = props;
-    const expected = getExpectedValue({ themeVar });
+export function ThemeVarInfo(props: { themeVar: IThemeVarUI, expectedValueType: TExpectedValueType }) {
+    const { themeVar, expectedValueType } = props;
+    const expected = getExpectedValue({ themeVar, expectedValueType });
     const actual = themeVar.valueCurrent;
     const hasErrors = actual.errors.length > 0;
 

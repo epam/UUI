@@ -3,7 +3,7 @@ import { FlexCell, RadioGroup, Text } from '@epam/uui';
 import { ThemeVarExample } from './components/themeVarExample/themeVarExample';
 import React from 'react';
 import { TruncText } from './components/truncText/truncText';
-import { IThemeVarUI, TThemeVarUiErr } from './types/types';
+import { IThemeVarUI, TExpectedValueType, TThemeVarUiErr } from './types/types';
 import { ThemeVarInfo } from './components/themeVarInfo/themeVarInfo';
 import { TFigmaThemeName } from './types/sharedTypes';
 import { getExpectedValue } from './utils/themeVarUtils';
@@ -17,7 +17,9 @@ enum COL_NAMES {
     useCases = 'useCases',
     actualValue = 'actualValue',
     expectedValue = 'expectedValue',
-    status = 'status'
+    expectedValueChain = 'expectedValueChain',
+    status = 'status',
+    index = 'index'
 }
 export enum STATUS_FILTER {
     all= 'All',
@@ -36,28 +38,92 @@ const WIDTH = {
     [COL_NAMES.description]: 100, // Some text
     [COL_NAMES.useCases]: 120, // Some text
     //
-    [COL_NAMES.actualValue]: 105,
-    [COL_NAMES.expectedValue]: 105,
+    [COL_NAMES.actualValue]: 125,
+    [COL_NAMES.expectedValue]: 125,
     [COL_NAMES.status]: 120,
+    [COL_NAMES.index]: 60,
 };
 
-export function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
-    const key = sorting.field as COL_NAMES;
-    if (key === COL_NAMES.status) {
-        const hasErrors = item.valueCurrent.errors.length > 0;
-        return String(hasErrors);
-    } else if (key === COL_NAMES.actualValue) {
-        return String(item.valueCurrent.value);
-    } else if (key === COL_NAMES.expectedValue) {
-        const expected = getExpectedValue({ themeVar: item });
-        return String(expected.value);
+export const getSortBy = () => {
+    return function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
+        const key = sorting.field as COL_NAMES;
+        if (key === COL_NAMES.status) {
+            const hasErrors = item.valueCurrent.errors.length > 0;
+            return String(hasErrors);
+        } else if (key === COL_NAMES.actualValue) {
+            return String(item.valueCurrent.value);
+        } else if (key === COL_NAMES.expectedValue) {
+            const expected = getExpectedValue({ themeVar: item, expectedValueType: TExpectedValueType.direct });
+            return String(expected.value);
+        } else if (key === COL_NAMES.expectedValueChain) {
+            const expected = getExpectedValue({ themeVar: item, expectedValueType: TExpectedValueType.chain });
+            return String(expected.value);
+        }
+
+        return item[key as keyof IThemeVarUI];
+    };
+};
+
+export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValueType: TExpectedValueType): DataColumnProps<IThemeVarUI>[] {
+    const expectedValueColumnsArr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [];
+
+    if (figmaTheme) {
+        if (expectedValueType === TExpectedValueType.chain) {
+            expectedValueColumnsArr.push({
+                key: COL_NAMES.expectedValueChain,
+                caption: 'Expected',
+                info: 'The value is taken directly from chain of aliases (valuesByMode)',
+                render: (item) => {
+                    if (figmaTheme) {
+                        return (
+                            <ThemeVarExample themeVar={ item } mode="showExpected" expectedValueType={ TExpectedValueType.chain } />
+                        );
+                    }
+                    return <Text>N/A</Text>;
+                },
+                width: WIDTH.expectedValue,
+                isSortable: true,
+                textAlign: 'center',
+                alignSelf: 'center',
+            });
+        }
+        if (expectedValueType === TExpectedValueType.direct) {
+            expectedValueColumnsArr.push({
+                key: COL_NAMES.expectedValue,
+                caption: 'Expected',
+                info: 'The value is taken directly from resolvedValuesByMode',
+                render: (item) => {
+                    if (figmaTheme) {
+                        return (
+                            <ThemeVarExample themeVar={ item } mode="showExpected" expectedValueType={ TExpectedValueType.direct } />
+                        );
+                    }
+                    return <Text>N/A</Text>;
+                },
+                width: WIDTH.expectedValue,
+                isSortable: true,
+                textAlign: 'center',
+                alignSelf: 'center',
+            });
+        }
     }
 
-    return item[key as keyof IThemeVarUI];
-}
-
-export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnProps<IThemeVarUI>[] {
     const arr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [
+        {
+            key: COL_NAMES.index,
+            caption: '',
+            render: (_, props) => {
+                return (
+                    <Text>
+                        {props.index + 1}
+                    </Text>
+                );
+            },
+            width: WIDTH.index,
+            isSortable: false,
+            textAlign: 'center',
+            alignSelf: 'center',
+        },
         {
             key: COL_NAMES.path,
             caption: 'Path',
@@ -68,6 +134,8 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
             },
             width: WIDTH.path,
             isSortable: true,
+            textAlign: 'center',
+            alignSelf: 'center',
         },
         {
             key: COL_NAMES.cssVar,
@@ -79,10 +147,13 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
             },
             width: WIDTH.cssVar,
             isSortable: true,
+            textAlign: 'center',
+            alignSelf: 'center',
         },
         {
             key: COL_NAMES.actualValue,
             caption: 'Actual',
+            info: 'Show the variable value rendered in the browser (for the currently selected theme)',
             render: (item) => {
                 return (
                     <ThemeVarExample themeVar={ item } mode="showActual" />
@@ -91,28 +162,15 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined): DataColumnP
             width: WIDTH.actualValue,
             isSortable: true,
             textAlign: 'center',
+            alignSelf: 'center',
         },
-        Boolean(figmaTheme) && {
-            key: COL_NAMES.expectedValue,
-            caption: 'Expected',
-            render: (item) => {
-                if (figmaTheme) {
-                    return (
-                        <ThemeVarExample themeVar={ item } mode="showExpected" />
-                    );
-                }
-                return <Text>N/A</Text>;
-            },
-            width: WIDTH.expectedValue,
-            isSortable: true,
-            textAlign: 'center',
-        },
+        ...expectedValueColumnsArr,
         {
             key: COL_NAMES.status,
             caption: 'Status',
             render: (item) => {
                 return (
-                    <ThemeVarInfo themeVar={ item } />
+                    <ThemeVarInfo themeVar={ item } expectedValueType={ expectedValueType } />
                 );
             },
             width: WIDTH.status,
