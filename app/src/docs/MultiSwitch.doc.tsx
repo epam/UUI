@@ -3,8 +3,9 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { getCurrentTheme } from '../helpers';
 
 export class MultiSwitchDoc extends BaseDocsBlock {
     title = 'MultiSwitch';
@@ -29,6 +30,13 @@ export class MultiSwitchDoc extends BaseDocsBlock {
                     { name: JSON.stringify(contextSwitch), value: contextSwitch, isDefault: true },
                     { name: JSON.stringify(toggleSwitch), value: toggleSwitch },
                 ],
+            });
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    gray: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-50' : 'neutral-60'})`,
+                    gray50: 'var(--uui-neutral-60)',
+                }),
             });
         },
     };

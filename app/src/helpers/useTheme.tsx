@@ -20,6 +20,10 @@ export const useTheme = () => {
         uuiRouter.redirect({ pathname: pathname, query: { ...query, theme: theme } });
     }, [theme]);
 
+    useEffect(() => {
+        localStorage.setItem('app-theme', theme);
+    }, []);
+
     return {
         theme,
         toggleTheme,

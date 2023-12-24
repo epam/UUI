@@ -1,14 +1,14 @@
 import { IPropDocEditor, TSkin } from '../../types';
-import { COLOR_MAP_BY_SKIN } from './colorMaps';
+import { COLOR_MAP } from './colorMap';
 import * as React from 'react';
 import { DocBuilder } from '../../DocBuilder';
 import { ColorPicker } from '../../components/colorPicker/ColorPicker';
 
 const COLOR_DOC_BY_SKIN = {
-    [TSkin.UUI]: getColorDoc(),
-    [TSkin.Electric]: getColorDoc(),
-    [TSkin.Loveship]: getColorDoc(COLOR_MAP_BY_SKIN[TSkin.Loveship]),
-    [TSkin.Promo]: getColorDoc(COLOR_MAP_BY_SKIN[TSkin.Promo]),
+    [TSkin.UUI]: getColorDoc(COLOR_MAP),
+    [TSkin.Electric]: getColorDoc(COLOR_MAP),
+    [TSkin.Loveship]: getColorDoc(COLOR_MAP),
+    [TSkin.Promo]: getColorDoc(COLOR_MAP),
 };
 
 export function getColorDocBySkin(skin: TSkin) {
@@ -24,7 +24,7 @@ function getColorDoc(colorMap?: TColorMap) {
 type TColorMap = {
     [colorName: string]: string
 };
-function getColorPickerComponent(colorMap?: TColorMap) {
+export function getColorPickerComponent(colorMap?: TColorMap) {
     return function UuiColorPicker(props: IPropDocEditor<string>) {
         const { value, onValueChange } = props;
         const examples = props.examples?.map((ex) => {
