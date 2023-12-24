@@ -3,10 +3,9 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock,
-} from '../common';
+import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TSkin } from '@epam/uui-docs';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { getCurrentTheme } from '../helpers';
 
 export class TooltipDoc extends BaseDocsBlock {
     title = 'Tooltip';
@@ -25,7 +24,6 @@ export class TooltipDoc extends BaseDocsBlock {
             doc.merge('children', {
                 examples: [{ value: <uui.Button fill="solid" size="36" caption="Button" />, name: 'Solid button', isDefault: true }],
             });
-            doc.merge('color', { editorType: 'MultiUnknownEditor' });
             doc.merge('renderContent', {
                 examples: [
                     { name: '() => <i>ReactNode example</i>', value: () => <i>ReactNode example</i> },
@@ -45,6 +43,14 @@ export class TooltipDoc extends BaseDocsBlock {
                 ],
             });
             doc.merge('modifiers', { editorType: 'JsonEditor' });
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    night900: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-50' : 'neutral-80'})`,
+                    neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-70' : 'neutral-0'})`,
+                    inverted: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-10' : 'neutral-80'})`,
+                }),
+            });
         },
     };
 

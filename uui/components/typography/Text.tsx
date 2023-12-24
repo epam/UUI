@@ -11,7 +11,7 @@ type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 interface TextMods {
     /**
      * Defines text color.
-     * @default 'primary'.
+     * @default 'primary'
      */
     color?: TextColor;
 }

@@ -118,14 +118,6 @@
 
     /* brand colors */
 
-    --uui-accent-5: var(--emerald-5);
-    --uui-accent-10: var(--emerald-10);
-    --uui-accent-20: var(--emerald-20);
-    --uui-accent-50: var(--emerald-50);
-    --uui-accent-60: var(--emerald-60);
-    --uui-accent-70: var(--emerald-70);
-    --uui-accent-contrast: var(--white);
-
     --uui-primary-5: var(--electric-5);
     --uui-primary-10: var(--electric-10);
     --uui-primary-20: var(--electric-20);
@@ -133,6 +125,14 @@
     --uui-primary-60: var(--electric-60);
     --uui-primary-70: var(--electric-70);
     --uui-primary-contrast: var(--white);
+
+    --uui-accent-5: var(--electric-5);
+    --uui-accent-10: var(--electric-10);
+    --uui-accent-20: var(--electric-20);
+    --uui-accent-50: var(--electric-50);
+    --uui-accent-60: var(--electric-60);
+    --uui-accent-70: var(--electric-70);
+    --uui-accent-contrast: var(--white);
 
     --uui-secondary-5: var(--night200);
     --uui-secondary-10: var(--night300);
@@ -273,21 +273,7 @@
 
     /* begin color classes */
 
-    .uui-color-accent,
-    .uui-color-emerald,
-    .uui-color-success {
-        --uui-color-5: var(--uui-accent-5);
-        --uui-color-10: var(--uui-accent-10);
-        --uui-color-20: var(--uui-accent-20);
-        --uui-color-50: var(--uui-accent-50);
-        --uui-color-60: var(--uui-accent-60);
-        --uui-color-70: var(--uui-accent-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-button.uui-color-accent,
     .uui-color-primary,
-    .uui-color-electric,
     .uui-color-info {
         --uui-color-5: var(--uui-primary-5);
         --uui-color-10: var(--uui-primary-10);
@@ -295,6 +281,16 @@
         --uui-color-50: var(--uui-primary-50);
         --uui-color-60: var(--uui-primary-60);
         --uui-color-70: var(--uui-primary-70);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-accent {
+        --uui-color-5: var(--uui-accent-5);
+        --uui-color-10: var(--uui-accent-10);
+        --uui-color-20: var(--uui-accent-20);
+        --uui-color-50: var(--uui-accent-50);
+        --uui-color-60: var(--uui-accent-60);
+        --uui-color-70: var(--uui-accent-70);
         --uui-color-contrast: var(--white);
     }
 
@@ -359,6 +355,16 @@
         --uui-color-50: var(--night700);
         --uui-color-60: var(--night800);
         --uui-color-70: var(--night900);
+        --uui-color-contrast: var(--white);
+    }
+
+    .uui-color-success {
+        --uui-color-5: var(--uui-success-5);
+        --uui-color-10: var(--uui-success-10);
+        --uui-color-20: var(--uui-success-20);
+        --uui-color-50: var(--uui-success-50);
+        --uui-color-60: var(--uui-success-60);
+        --uui-color-70: var(--uui-success-70);
         --uui-color-contrast: var(--white);
     }
 
@@ -540,23 +546,15 @@
         --uui-color-contrast: var(--white);
     }
 
-    /* Tooltip */
+    /* LinkButton */
 
-    .uui-tooltip-container.uui-color-neutral {
-        --uui-tooltip-bg: var(--uui-neutral-0);
-        --uui-tooltip-text: var(--uui-text-primary);
+    .uui-link_button.uui-color-contrast {
+        --uui-link_btn-text: var(--uui-neutral-5);
+        --uui-link_btn-text-hover: var(--uui-neutral-10);
+        --uui-link_btn-text-active: var(--uui-neutral-20);
     }
 
-    .uui-tooltip-container.uui-color-critical {
-        --uui-tooltip-bg: var(--uui-critical-60);
-    }
-
-    .uui-tooltip-container.uui-color-inverted {
-        --uui-tooltip-bg: var(--uui-neutral-80);
-        --uui-tooltip-text: var(--uui-neutral-5);
-    }
-
-    /* CuntIndicator */
+    /* CountIndicator */
 
     .uui-count_indicator.uui-color-neutral {
         --uui-count_indicator-bg: var(--uui-neutral-30);
