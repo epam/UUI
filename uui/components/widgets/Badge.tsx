@@ -30,11 +30,17 @@ type BadgeMods = {
      * @default '36'
      */
     size?: '18' | '24' | '30' | '36' | '42' | '48';
-    /** Pass true to display an indicator. It shows only if fill = 'outline'. */
-    indicator?: boolean;
 };
 
-export type BadgeCoreProps = Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon'> & {};
+export type BadgeCoreProps = Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon' | 'iconPosition'> & {
+    /** Pass true to display an indicator. It shows only if fill = 'outline'. */
+    indicator?: boolean;
+    /**
+     * Position of the icon (left of right)
+     * @default 'left'
+     */
+    iconPosition?: 'left' | 'right';
+};
 
 /** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & BadgeMods;
@@ -59,7 +65,7 @@ const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['siz
     48: '24',
 };
 
-export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon'>, BadgeProps>(
+export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon' | 'iconPosition'>, BadgeProps>(
     uuiComponents.Button as any,
     applyBadgeMods,
     (props) => {
@@ -84,6 +90,7 @@ export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clear
                 />
             ),
             indicator: props.indicator || false,
+            iconPosition: props.iconPosition || 'left',
         };
     },
 );
