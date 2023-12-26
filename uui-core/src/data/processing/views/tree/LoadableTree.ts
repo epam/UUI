@@ -3,7 +3,8 @@ import {
     DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange,
 } from '../../../../types';
 import { EditableTree } from './EditableTree';
-import { ITree, LoadTreeOptions, TreeNodeInfo } from './ITree';
+import { ITree, LoadAllTreeOptions, LoadTreeOptions, TreeNodeInfo } from './ITree';
+import { Tree } from './Tree';
 
 export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> {
     public async load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren: boolean = true) {
@@ -258,5 +259,19 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             nodeInfo,
             loadedItems,
         };
+    }
+
+    public async loadAll<TFilter>(options: LoadAllTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>) {
+        const response = await options.api(
+            {
+                sorting: value.sorting,
+                search: value.search,
+                filter: options.filter,
+                page: value.page,
+                pageSize: value.pageSize,
+            },
+        );
+
+        return Tree.create(this.params, response.items);
     }
 }

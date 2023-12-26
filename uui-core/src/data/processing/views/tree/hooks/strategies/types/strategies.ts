@@ -3,6 +3,7 @@ import { STRATEGIES } from '../constants';
 import { LazyTreeStrategyProps } from '../lazyTree/types';
 import { PlainTreeStrategyProps } from '../../strategies/plainTree/types';
 import { ITree } from '../../..';
+import { AsyncTreeStrategyProps } from '../asyncTree/types';
 
 type PlainTreeStrategyPropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeStrategyProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
 
@@ -21,6 +22,7 @@ export type TreeStrategyHook<T extends Strategies> =
 
 export type TreeStrategyProps<TItem, TId, TFilter = any> = (
     PlainTreeStrategyProps<TItem, TId, TFilter>
+    | AsyncTreeStrategyProps<TItem, TId, TFilter>
     | LazyTreeStrategyProps<TItem, TId, TFilter>
 );
 
