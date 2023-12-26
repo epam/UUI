@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { uuiDaySelection, type ViewType } from '@epam/uui-components';
-import { RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets, RangeDatePickerValue, uuiRangeDatePickerBody } from '../RangeDatePickerBody';
+import { RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets, RangeDatePickerValue } from '../RangeDatePickerBody';
 import { act, fireEvent, renderer, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
 
 type RangePickerSetupProps = {
@@ -191,9 +191,9 @@ describe('RangeDatePickerBody', () => {
         const [oct13] = useCase2.result.queryAllByText('13');
         const [oct14] = useCase2.result.queryAllByText('14');
 
-        expect(parentElemContainsClasses(oct12, [uuiRangeDatePickerBody.firstDayInRangeWrapper, uuiDaySelection.selectedDay])).toBeTruthy();
-        expect(parentElemContainsClasses(oct13, [uuiRangeDatePickerBody.inRange])).toBeTruthy();
-        expect(parentElemContainsClasses(oct14, [uuiRangeDatePickerBody.lastDayInRangeWrapper, uuiDaySelection.selectedDay])).toBeTruthy();
+        expect(parentElemContainsClasses(oct12, ['uui-range-datepicker-first-day-in-range-wrapper', uuiDaySelection.selectedDay])).toBeTruthy();
+        expect(parentElemContainsClasses(oct13, ['uui-range-datepicker-in-range'])).toBeTruthy();
+        expect(parentElemContainsClasses(oct14, ['uui-range-datepicker-last-day-in-range-wrapper', uuiDaySelection.selectedDay])).toBeTruthy();
     });
 
     it('should work with presets', async () => {
