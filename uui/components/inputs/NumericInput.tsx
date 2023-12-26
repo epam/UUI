@@ -5,8 +5,8 @@ import { systemIcons } from '../../icons/icons';
 import textInputCss from './TextInput.module.scss';
 import css from './NumericInput.module.scss';
 
-const defaultSize = '36';
-const defaultMode = EditMode.FORM;
+const DEFAULT_SIZE = '36';
+const DEFAULT_MODE = EditMode.FORM;
 
 type NumericInputMods = IHasEditMode & {
     /**
@@ -21,9 +21,9 @@ function applyNumericInputMods(mods: NumericInputMods) {
     return [
         textInputCss.root,
         css.root,
-        css['size-' + (mods.size || defaultSize)],
-        textInputCss['size-' + (mods.size || defaultSize)],
-        textInputCss['mode-' + (mods.mode || defaultMode)],
+        css['size-' + (mods.size || DEFAULT_SIZE)],
+        textInputCss['size-' + (mods.size || DEFAULT_SIZE)],
+        textInputCss['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }
 
@@ -44,8 +44,8 @@ export const NumericInput = withMods<uuiNumericInputProps, NumericInputMods>(
             });
         }
         return {
-            upIcon: systemIcons[props.size || defaultSize].foldingArrow,
-            downIcon: systemIcons[props.size || defaultSize].foldingArrow,
+            upIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+            downIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
             align: props.align ?? (props.mode === 'cell' ? 'right' : 'left'),
             disableArrows: props.disableArrows ?? props.mode === 'cell',
         };

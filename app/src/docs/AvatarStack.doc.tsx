@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { AvatarStackProps } from '@epam/uui-components';
 import { uuiMarkers } from '@epam/uui-core';
@@ -16,6 +17,7 @@ export class AvatarStackDoc extends BaseDocsBlock {
             [TSkin.Loveship]: { type: '@epam/uui-components:AvatarStackProps', component: loveship.AvatarStack },
             [TSkin.Promo]: { type: '@epam/uui-components:AvatarStackProps', component: promo.AvatarStack },
             [TSkin.UUI]: { type: '@epam/uui-components:AvatarStackProps', component: uui.AvatarStack },
+            [TSkin.Electric]: { type: '@epam/uui-components:AvatarStackProps', component: electric.AvatarStack },
         },
         doc: (doc: DocBuilder<AvatarStackProps>) => {
             doc.setDefaultPropExample('avatarSize', ({ value }) => value === '48');

@@ -4,12 +4,16 @@ import css from './IconButton.module.scss';
 
 interface IconButtonMods {
     /**
-     * @default 'default'
+     * Defines component color.
+     * @default 'neutral'
      */
     color?: 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'neutral';
 }
 
-export type IconButtonCoreProps = IconButtonBaseProps & {};
+/** Represents the Core properties of the IconButton component. */
+export type IconButtonCoreProps = IconButtonBaseProps;
+
+/** Represents the properties of the IconButton component. */
 export type IconButtonProps = IconButtonCoreProps & IconButtonMods;
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {

@@ -7,7 +7,7 @@ const getCiStatusMd = (isErr: boolean) => `CI Status: ${isErr ? 'error' : 'ok'}`
 const EMODJI = {
     OK: ':ok:',
     ERR: ':no_entry:',
-    WARN: ':warning:',
+    WARN: ':warning::ok:',
 };
 
 export function formatResultsToMd(result: TCompareStatsResult) {

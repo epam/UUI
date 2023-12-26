@@ -34,7 +34,7 @@ export class DemoErrorBoundary extends React.Component<{ children: React.ReactNo
             return (
                 <div>
                     <FlexRow spacing="12" padding="12">
-                        <Text color="error">
+                        <Text color="critical">
                             An error has occured. Please check the browser console for details.
                             You might need to set different props values and try again.
                             <Button

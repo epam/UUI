@@ -6,9 +6,9 @@ import { systemIcons } from '../../icons/icons';
 import { CountIndicator } from '../widgets/CountIndicator';
 import css from './Button.module.scss';
 
-const defaultSize = '36';
+const DEFAULT_SIZE = '36';
 
-type ButtonMods = {
+interface ButtonMods {
     /**
      * Defines component size.
      * @default '36'
@@ -24,13 +24,13 @@ type ButtonMods = {
      * @default 'primary'
      */
     color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
-};
+}
 
 /** Represents the 'Core properties' for the Button component, omitting the 'count' property. */
-export type ButtonCoreProps = Omit<uuiButtonProps, 'count'> & {};
+export interface ButtonCoreProps extends Omit<uuiButtonProps, 'count'> {}
 
 /** Represents the props for a Button component. */
-export type ButtonProps = ButtonMods & ButtonCoreProps;
+export interface ButtonProps extends ButtonMods, ButtonCoreProps {}
 
 function applyButtonMods(mods: ButtonProps) {
     return [
@@ -38,7 +38,7 @@ function applyButtonMods(mods: ButtonProps) {
         'uui-button',
         `uui-fill-${mods.fill || 'solid'}`,
         `uui-color-${mods.color || 'primary'}`,
-        `uui-size-${mods.size || defaultSize}`,
+        `uui-size-${mods.size || DEFAULT_SIZE}`,
     ];
 }
 
@@ -46,8 +46,8 @@ export const Button = withMods<uuiButtonProps, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size || defaultSize].clear,
+        dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+        clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
         countIndicator: (countIndicatorProps) => <CountIndicator { ...countIndicatorProps } color="white" />,
     }),
 );

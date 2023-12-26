@@ -2,7 +2,8 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import * as electric from '@epam/electric';
+import { DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin, COLOR_MAP } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TextDoc extends BaseDocsBlock {
@@ -13,6 +14,7 @@ export class TextDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TextProps', component: uui.Text },
+            [TSkin.Electric]: { type: '@epam/uui:TextProps', component: electric.Text },
             [TSkin.Loveship]: { type: '@epam/loveship:TextProps', component: loveship.Text },
             [TSkin.Promo]: { type: '@epam/promo:TextProps', component: promo.Text },
         },
@@ -25,6 +27,13 @@ export class TextDoc extends BaseDocsBlock {
                     },
                 ],
                 editorType: 'StringWithExamplesEditor',
+            });
+            doc.merge('color', {
+                editorType: getColorPickerComponent({
+                    ...COLOR_MAP,
+                    brand: 'var(--uui-text-brand)',
+                    disabled: 'var(--uui-text-disabled)',
+                }),
             });
         },
     };

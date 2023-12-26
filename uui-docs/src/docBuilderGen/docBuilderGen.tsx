@@ -5,10 +5,12 @@ import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilder
 import { TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
 import { TDocConfig } from './docBuilderGenTypes';
+import { UuiContexts } from '@epam/uui-core';
 
 interface IDocBuilderGenParams {
     config: TDocConfig,
     skin: TSkin,
+    uuiCtx: Pick<UuiContexts, 'uuiNotifications'>,
     loadDocsGenType: (typeRef: TTypeRef) => Promise<{ content: TType }>
 }
 /**
@@ -16,7 +18,7 @@ interface IDocBuilderGenParams {
  * @param params
  */
 export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBuilder<any> | undefined> {
-    const { config, loadDocsGenType } = params;
+    const { config, loadDocsGenType, uuiCtx } = params;
     const {
         name,
         contexts,
@@ -32,10 +34,10 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
         const props = type.details?.props;
         const unresolvedProps: TTypeProp[] = [];
         props?.forEach((prop) => {
-            let nextProp = buildPropDetails({ prop, docs, skin: params.skin });
+            let nextProp = buildPropDetails({ prop, docs, skin: params.skin, uuiCtx });
             const isResolved = !!nextProp;
             if (!isResolved) {
-                nextProp = buildPropFallbackDetails({ prop, docs, skin: params.skin });
+                nextProp = buildPropFallbackDetails({ prop, docs, skin: params.skin, uuiCtx });
                 unresolvedProps.push(prop);
             }
             const prevProp = docs.getPropDetails(prop.name);

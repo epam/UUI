@@ -1,9 +1,14 @@
-import { IFigmaVar, TUuiCssToken } from './types';
 import { FileUtils } from './utils/fileUtils';
 import { IGNORED_VAR_PLACEHOLDER } from './constants';
 import { FigmaScriptsContext } from './context/context';
-import { CONFIG } from './config';
 import { logger } from '../jsBridge';
+import {
+    getCssVarFromFigmaVar,
+    isCssVarSupportedByUui,
+    getNormalizedResolvedValueMap,
+} from './utils/cssVarUtils';
+import { IThemeVar } from './types/sharedTypes';
+import { IFigmaVar } from './types/sourceTypes';
 
 export function main() {
     try {
@@ -17,45 +22,43 @@ export function main() {
 function generateTokens() {
     const ctx = new FigmaScriptsContext();
     const source = FileUtils.readFigmaVarCollection();
+    const supportedTokens: IThemeVar[] = [];
+
+    const figmaVarById = source.variables.reduce<Record<string, IFigmaVar>>((acc, figmaVar) => {
+        acc[figmaVar.id] = figmaVar;
+        return acc;
+    }, {});
+
     const variables = source.variables.map((figmaVar) => {
-        const { isSupported, cssVar, cssToken } = extractCssTokenFromVar({ figmaVar });
-        if (isSupported) {
-            ctx.log.logSupported(cssToken);
-        } else {
-            ctx.log.logUnsupported(cssToken);
+        const cssVar = getCssVarFromFigmaVar(figmaVar.name);
+        const supported = isCssVarSupportedByUui(figmaVar.name);
+        if (supported) {
+            supportedTokens.push({
+                id: figmaVar.name,
+                type: figmaVar.type,
+                description: figmaVar.description,
+                useCases: '',
+                cssVar,
+                valueByTheme: getNormalizedResolvedValueMap({ figmaVar, figmaVarById, modes: source.modes }),
+            });
         }
         return {
             ...figmaVar,
             codeSyntax: {
                 ...figmaVar.codeSyntax,
-                WEB: isSupported ? cssVar : IGNORED_VAR_PLACEHOLDER,
+                WEB: supported ? `var(${cssVar})` : IGNORED_VAR_PLACEHOLDER,
             },
         };
     });
 
+    // It will mutate the original arr.
+    supportedTokens.sort((t1, t2) => {
+        return t1.id.localeCompare(t2.id);
+    });
+
     FileUtils.writeResults({
-        result: {
-            ...source,
-            variables,
-        },
+        newFigmaVarCollection: { ...source, variables },
+        uuiTokensCollection: { supportedTokens },
         ctx,
     });
-}
-
-function isSupportedByUuiApp(params: { figmaVar: IFigmaVar, cssToken: TUuiCssToken }) {
-    const { figmaVar, cssToken } = params;
-    const isIgnoredByConvention = figmaVar.name.indexOf('core/') !== 0;
-    const isIgnoredByConfig = CONFIG.tokens[cssToken]?.isSupportedByUUiApp === false;
-    return !isIgnoredByConvention && !isIgnoredByConfig;
-}
-
-function extractCssTokenFromVar(params: { figmaVar: IFigmaVar }) {
-    const { figmaVar } = params;
-    const { name } = figmaVar;
-    const tokens = name.split('/');
-    const lastToken = tokens[tokens.length - 1];
-    const cssToken: TUuiCssToken = `--uui-${lastToken}`;
-    const cssVar = `var(${cssToken})`;
-    const isSupported = isSupportedByUuiApp({ figmaVar, cssToken });
-    return { cssVar, isSupported, cssToken };
 }

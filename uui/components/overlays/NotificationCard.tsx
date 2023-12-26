@@ -12,18 +12,25 @@ import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
 import css from './NotificationCard.module.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
+    /** Defines NotificationAction name. */
     name: string;
+    /** Called when action is clicked */
     action: () => void;
 }
 
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface NotificationCardCoreProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /** Array of Notification actions. If provided will be displayed as LinkButtons in the end of notification. */
     actions?: NotificationAction[];
+    /** NotificationCard icon */
+    icon?: Icon;
 }
 
-export interface NotificationCardProps extends DefaultNotificationProps {
-    icon?: Icon;
+interface NotificationMods {
+    /** NotificationCard color */
     color?: 'info' | 'success' | 'warning' | 'error';
 }
+
+export interface NotificationCardProps extends NotificationCardCoreProps, NotificationMods {}
 
 export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
     const notificationCardNode = React.useRef(null);
@@ -67,19 +74,19 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     );
 });
 
-export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+export const WarningNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ WarningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+export const SuccessNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ SuccessIcon } color="success" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+export const HintNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ HintIcon } color="info" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
 ));
 

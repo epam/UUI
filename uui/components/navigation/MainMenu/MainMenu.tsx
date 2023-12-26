@@ -4,8 +4,9 @@ import * as uuiComponents from '@epam/uui-components';
 import { Burger } from './Burger';
 import { MainMenuDropdown } from './MainMenuDropdown';
 
-export interface MainMenuMods {}
+interface MainMenuMods {}
 
+/** Represents the properties of the MainMenu component. */
 export type MainMenuProps = uuiComponents.MainMenuProps & MainMenuMods;
 
 function applyMainMenuMods() {

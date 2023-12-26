@@ -7,8 +7,14 @@ import css from './ScrollBars.module.scss';
 import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
 
 export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
+    /** If true, shadow will be added to the top of container, in case when scroll isn't in top position */
     hasTopShadow?: boolean;
+    /** If true, shadow will be added to the bottom of container, in case when scroll isn't in bottom position */
     hasBottomShadow?: boolean;
+    /** Render callback for the scroll container.
+     *
+     * If omitted, default uui implementation with flex container will be rendered.
+     */
     renderView?: (props: any) => React.ReactElement;
 }
 

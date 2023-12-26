@@ -6,8 +6,13 @@ import { CheckboxProps } from '../inputs/Checkbox';
 import css from './CheckboxGroup.module.scss';
 
 interface CheckboxGroupItem<TValue> {
-    name: string;
+    /** Checkbox label. Can be a string, or React.Element. */
+    name: React.ReactNode;
+    /** Item ID to put into selection */
     id: TValue;
+    /** Render callback for checkbox label.
+     * If omitted, 'name' prop value will be rendered.
+     */
     renderName?: () => React.ReactNode;
 }
 
@@ -22,8 +27,7 @@ export interface CheckboxGroupProps<TValue>
     IHasForwardedRef<HTMLFieldSetElement> {
     /** Overrides the component to render a single checkbox  */
     CheckboxInput?: React.ComponentType<CheckboxProps>;
-
-    /** Each item defines: name: string, id: TValue (which item to put into array when item is checked), renderName() - an alternative to passing name  */
+    /** Array of checkbox items to be rendered in group */
     items: CheckboxGroupItem<TValue>[];
 }
 

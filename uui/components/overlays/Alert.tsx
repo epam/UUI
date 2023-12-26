@@ -10,16 +10,25 @@ import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-2
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
 import css from './Alert.module.scss';
 
-type notificationAction = {
+interface AlertNotificationAction {
+    /*
+    * Defines notification action name.
+    */
     name: string;
+    /*
+    * Called when action is clicked
+    */
     action: () => void;
-};
+}
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    /** List of actions to display in the alert. Each action has name and 'action' callback */
-    actions?: notificationAction[];
+interface AlertMods {
     /** Alert color */
     color: 'info' | 'success' | 'warning' | 'error';
+}
+
+export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /** List of actions to display in the alert. Each action has name and 'action' callback */
+    actions?: AlertNotificationAction[];
     /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */
     onClose?(): void;
     /** An optional icon to show on the left of the alert */
@@ -30,6 +39,9 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
      */
     size?: '36' | '48';
 }
+
+/** Represents the properties of the Alert component. */
+export interface AlertProps extends AlertCoreProps, AlertMods {}
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
     <div

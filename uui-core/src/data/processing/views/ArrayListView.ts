@@ -121,17 +121,17 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             this.refreshCache = false;
         }
 
-        let searchTreeIsUpdated = false;
-        if (this.searchWasChanged(prevValue, newValue) || !this.searchTree || filterTreeIsUpdated) {
-            this.searchTree = this.filteredTree.search({ search, getSearchFields, sortSearchByRelevance });
-            searchTreeIsUpdated = true;
+        let sortingTreeIsUpdated = false;
+        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || filterTreeIsUpdated) {
+            this.sortedTree = this.filteredTree.sort({ sorting, sortBy });
+            sortingTreeIsUpdated = true;
         }
 
-        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || searchTreeIsUpdated) {
-            this.sortedTree = this.searchTree.sort({ sorting, sortBy });
+        if (this.searchWasChanged(prevValue, newValue) || !this.searchTree || sortingTreeIsUpdated) {
+            this.searchTree = this.sortedTree.search({ search, getSearchFields, sortSearchByRelevance });
         }
 
-        this.visibleTree = this.sortedTree;
+        this.visibleTree = this.searchTree;
     }
 
     public getVisibleRows = () => {
@@ -159,7 +159,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     private checkItems(isChecked: boolean, checkedId?: TId) {
         const checked = (this.value && this.value.checked) ?? [];
-        const updatedChecked = this.visibleTree.cascadeSelection(checked, checkedId, isChecked, {
+        const updatedChecked = this.sortedTree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: this.props.cascadeSelection,
             isSelectable: (item: TItem) => {
                 const { isCheckable } = this.getRowProps(item, null);
