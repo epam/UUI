@@ -5,11 +5,9 @@ import { useCurrentTheme } from './hooks/useCurrentTheme';
 import { TExpectedValueType } from './types/types';
 import { useThemeTokens } from './hooks/useThemeTokens';
 import { Spinner } from '@epam/uui';
-import { getFigmaTheme } from './utils/themeVarUtils';
 
 export function PalettePage() {
     const uuiThemeRequested = useCurrentTheme();
-    const figmaTheme = getFigmaTheme(uuiThemeRequested);
     const [expectedValueType, setExpectedValueType] = useState<TExpectedValueType>(TExpectedValueType.chain);
     const result = useThemeTokens({ uuiThemeRequested, expectedValueType });
     if (!result) {
@@ -27,7 +25,7 @@ export function PalettePage() {
     };
     return (
         <Layout>
-            <PaletteTable { ...settings } key={ String(!!figmaTheme) } />
+            <PaletteTable { ...settings } />
         </Layout>
     );
 }
