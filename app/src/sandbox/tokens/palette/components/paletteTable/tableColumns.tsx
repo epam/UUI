@@ -1,36 +1,21 @@
 import { DataColumnProps, SortingOption, TableFiltersConfig } from '@epam/uui-core';
 import { FlexCell, RadioGroup, Text } from '@epam/uui';
-import { ThemeVarExample } from './components/themeVarExample/themeVarExample';
+import { TokenExample } from '../tokenExample/tokenExample';
 import React from 'react';
-import { TruncText } from './components/truncText/truncText';
-import { IThemeVarUI, TExpectedValueType, TThemeVarUiErr } from './types/types';
-import { ThemeVarInfo } from './components/themeVarInfo/themeVarInfo';
-import { TFigmaThemeName } from './types/sharedTypes';
-import { getExpectedValue } from './utils/themeVarUtils';
+import { TruncText } from '../truncText/truncText';
+import {
+    COL_NAMES,
+    IThemeVarUI,
+    STATUS_FILTER,
+    TExpectedValueType,
+    TThemeVarUiErr,
+    TTokensFilter,
+    TTotals,
+} from '../../types/types';
+import { TokenInfo } from '../tokenInfo/tokenInfo';
+import { TFigmaThemeName } from '../../types/sharedTypes';
 //
 import css from './paletteTable.module.scss';
-
-enum COL_NAMES {
-    path = 'path',
-    cssVar = 'cssVar',
-    description = 'description',
-    useCases = 'useCases',
-    actualValue = 'actualValue',
-    expectedValue = 'expectedValue',
-    expectedValueChain = 'expectedValueChain',
-    status = 'status',
-    index = 'index'
-}
-export enum STATUS_FILTER {
-    all= 'All',
-    ok= 'OK',
-    absent = 'Absent',
-    mismatched = 'Mismatched'
-}
-
-export type TTokensFilter = {
-    status: STATUS_FILTER | undefined,
-};
 
 const WIDTH = {
     [COL_NAMES.path]: 200, // E.g: core/surfaces/surface-main
@@ -48,18 +33,14 @@ export const getSortBy = () => {
     return function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
         const key = sorting.field as COL_NAMES;
         if (key === COL_NAMES.status) {
-            const hasErrors = item.valueCurrent.errors.length > 0;
+            const hasErrors = item.value.errors.length > 0;
             return String(hasErrors);
         } else if (key === COL_NAMES.actualValue) {
-            return String(item.valueCurrent.value);
-        } else if (key === COL_NAMES.expectedValue) {
-            const expected = getExpectedValue({ themeVar: item, expectedValueType: TExpectedValueType.direct });
-            return String(expected.value);
-        } else if (key === COL_NAMES.expectedValueChain) {
-            const expected = getExpectedValue({ themeVar: item, expectedValueType: TExpectedValueType.chain });
-            return String(expected.value);
+            return String(item.value);
+        } else if (key === COL_NAMES.expectedValue || key === COL_NAMES.expectedValueChain) {
+            const expected = item.value.expected;
+            return String(expected);
         }
-
         return item[key as keyof IThemeVarUI];
     };
 };
@@ -72,11 +53,11 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             expectedValueColumnsArr.push({
                 key: COL_NAMES.expectedValueChain,
                 caption: 'Expected',
-                info: 'The value is taken from the chain of aliases (valuesByMode)',
+                info: 'This is what Figma expects. The value is taken from the chain of aliases (valuesByMode)',
                 render: (item) => {
                     if (figmaTheme) {
                         return (
-                            <ThemeVarExample themeVar={ item } mode="showExpected" expectedValueType={ TExpectedValueType.chain } />
+                            <TokenExample token={ item } mode="showExpected" />
                         );
                     }
                     return <Text>N/A</Text>;
@@ -91,11 +72,11 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             expectedValueColumnsArr.push({
                 key: COL_NAMES.expectedValue,
                 caption: 'Expected',
-                info: 'The value is taken directly from resolvedValuesByMode',
+                info: 'This is what Figma expects. The value is taken directly from resolvedValuesByMode',
                 render: (item) => {
                     if (figmaTheme) {
                         return (
-                            <ThemeVarExample themeVar={ item } mode="showExpected" expectedValueType={ TExpectedValueType.direct } />
+                            <TokenExample token={ item } mode="showExpected" />
                         );
                     }
                     return <Text>N/A</Text>;
@@ -153,10 +134,10 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
         {
             key: COL_NAMES.actualValue,
             caption: 'Actual',
-            info: 'Show the variable value rendered in the browser (for the currently selected theme)',
+            info: 'Displays actual value (it depends on current theme)',
             render: (item) => {
                 return (
-                    <ThemeVarExample themeVar={ item } mode="showActual" />
+                    <TokenExample token={ item } mode="showActual" />
                 );
             },
             width: WIDTH.actualValue,
@@ -170,7 +151,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             caption: 'Status',
             render: (item) => {
                 return (
-                    <ThemeVarInfo themeVar={ item } expectedValueType={ expectedValueType } />
+                    <TokenInfo token={ item } />
                 );
             },
             width: WIDTH.status,
@@ -216,13 +197,13 @@ export function getFilter(filter: TTokensFilter) {
         if (filter) {
             switch (filter.status) {
                 case STATUS_FILTER.absent: {
-                    return !!item.valueCurrent.errors.find(({ type }) => type === TThemeVarUiErr.VAR_ABSENT);
+                    return !!item.value.errors.find(({ type }) => type === TThemeVarUiErr.VAR_ABSENT);
                 }
                 case STATUS_FILTER.mismatched: {
-                    return !!item.valueCurrent.errors.find(({ type }) => type === TThemeVarUiErr.VALUE_MISMATCHED);
+                    return !!item.value.errors.find(({ type }) => type === TThemeVarUiErr.VALUE_MISMATCHED);
                 }
                 case STATUS_FILTER.ok: {
-                    return !item.valueCurrent.errors.length;
+                    return !item.value.errors.length;
                 }
                 default: {
                     return true;
@@ -233,7 +214,6 @@ export function getFilter(filter: TTokensFilter) {
     };
 }
 
-export type TTotals = Record<STATUS_FILTER, number>;
 export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFilter>[] {
     return [
         {
