@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import { PlateElement, PlateElementProps, Value } from '@udecode/plate-common';
+import { PlateElement, PlateElementProps, Value, getPluginType, useEditorRef } from '@udecode/plate-common';
 import {
+    ELEMENT_TH,
     TTableCellElement,
     useTableCellElement, useTableCellElementResizable, useTableCellElementResizableState, useTableCellElementState,
 } from '@udecode/plate-table';
@@ -20,6 +21,7 @@ const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 TableCellElementProps
 >(({ children, className, style, hideBorder, ...props }, ref) => {
+    const editor = useEditorRef();
     const { element } = props;
 
     const el = element as ExtendedTTableCellElement;
@@ -45,7 +47,7 @@ TableCellElementProps
         colSpan,
     });
     const { rightProps, bottomProps, leftProps, hiddenLeft } = useTableCellElementResizable(resizableState);
-    const isHeader = element.type === 'table_header_cell';
+    const isHeader = element.type === getPluginType(editor, ELEMENT_TH);
     const Cell = isHeader ? 'th' : 'td';
 
     return (

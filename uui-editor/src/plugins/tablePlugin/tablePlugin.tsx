@@ -9,7 +9,7 @@ import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, getPluginOptions, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
+import { PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove, useTableMergeState } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
