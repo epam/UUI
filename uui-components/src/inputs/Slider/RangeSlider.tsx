@@ -1,18 +1,20 @@
 import * as React from 'react';
 import { uuiMod, cx } from '@epam/uui-core';
-import { SliderBase, uuiSlider, SliderBaseState } from './SliderBase';
+import { SliderBase, uuiSlider, SliderBaseState, SliderBaseProps } from './SliderBase';
 import css from './SliderBase.module.scss';
 import { SliderHandle } from './SliderHandle';
 import { RangeSliderScale } from './RangeSliderScale';
 
-export interface RangeSliderValue {
+interface RangeSliderValue {
     from: number;
     to: number;
 }
 
-export interface RangeSliderState extends SliderBaseState {
+interface RangeSliderState extends SliderBaseState {
     activeHandle: string | null;
 }
+
+export interface RangeSliderProps extends SliderBaseProps<RangeSliderValue> {}
 
 export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> {
     state = {

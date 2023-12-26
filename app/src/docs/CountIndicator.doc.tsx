@@ -18,7 +18,14 @@ export class CountIndicatorDoc extends BaseDocsBlock {
             [TSkin.Electric]: { type: '@epam/uui:CountIndicatorProps', component: electric.CountIndicator },
         },
         doc: (doc: DocBuilder<uui.CountIndicatorProps | promo.CountIndicatorProps | loveship.CountIndicatorProps>) => {
-            doc.setDefaultPropExample('color', (_, index) => index === 0);
+            doc.setDefaultPropExample('color', ({ value }) => value === 'neutral');
+            doc.merge('caption', {
+                examples: [
+                    { name: 'Number 99', value: '99', isDefault: true },
+                    { name: 'Number 1', value: '1' },
+                    { name: 'Number 999', value: '999+' },
+                ],
+            });
         },
     };
 

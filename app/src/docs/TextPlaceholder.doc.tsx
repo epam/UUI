@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
+import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
@@ -13,6 +14,7 @@ export class TextPlaceholderDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TextPlaceholderProps', component: uui.TextPlaceholder },
+            [TSkin.Electric]: { type: '@epam/uui:TextPlaceholderProps', component: electric.TextPlaceholder },
             [TSkin.Loveship]: { type: '@epam/uui:TextPlaceholderProps', component: loveship.TextPlaceholder },
             [TSkin.Promo]: { type: '@epam/uui:TextPlaceholderProps', component: promo.TextPlaceholder },
         },

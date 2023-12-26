@@ -10,6 +10,7 @@ interface SwitchMods {
     size?: '12' | '18' | '24';
 }
 
+/** Represents the properties of the Switch component. */
 export type SwitchProps = uuiComponents.SwitchProps & SwitchMods;
 
 function applySwitchMods(mods: SwitchProps) {

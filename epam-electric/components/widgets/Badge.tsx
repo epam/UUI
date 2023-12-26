@@ -4,7 +4,7 @@ import * as uui from '@epam/uui';
 type BadgeMods = {
     /**
      * Defines component color.
-     * @default 'neutral'
+     * @default 'info'
      */
     color?: uui.BadgeProps['color'] | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';
     /**
@@ -22,4 +22,9 @@ type BadgeMods = {
 /** Represents the properties of a Badge component. */
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
-export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(uui.Badge);
+export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
+    uui.Badge,
+    (props) => ({
+        color: props.color || 'info',
+    }),
+);

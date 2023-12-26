@@ -8,6 +8,7 @@ import { LinkButton } from '../buttons';
 import { Text } from '../typography';
 import { DatePickerBody } from '../datePickers';
 
+/** Represents the properties of the DatePicker. */
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
 export class FilterDatePickerBody extends BaseDatePicker<DatePickerProps> {

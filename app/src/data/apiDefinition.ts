@@ -4,6 +4,7 @@ import type {
 } from '@epam/uui-core';
 import { TType, TTypeRef } from '@epam/uui-docs';
 import { TDocsGenTypeSummary } from '../common/apiReference/types';
+import { IUuiTokensCollection } from '../sandbox/tokens/palette/types/sharedTypes';
 
 export const delay = (ms: number = 1): Promise<void> =>
     new Promise((resolve) => {
@@ -58,6 +59,9 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         },
         getDocsGenExports(): Promise<{ content: Record<string, string[]> }> {
             return processRequest(origin.concat('/api/docs-gen/exports'), 'GET');
+        },
+        getThemeTokens(): Promise<{ content: IUuiTokensCollection['supportedTokens'] }> {
+            return processRequest(origin.concat('/api/theme-tokens'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {

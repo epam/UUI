@@ -3,6 +3,7 @@
 .container {
     display: flex;
     flex-wrap: wrap;
+    row-gap: 6px;
 
     .color-item {
         width: 12px;

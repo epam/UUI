@@ -5,7 +5,7 @@ import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Tag.module.scss';
 
-const defaultSize = '36';
+const DEFAULT_SIZE = '36';
 
 const mapSize = {
     48: '48',
@@ -16,11 +16,7 @@ const mapSize = {
     18: '18',
 };
 
-type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
-type TagFill = 'solid' | 'outline';
-type TagColor = 'info' | 'success' | 'warning' | 'critical' | 'neutral';
-
-const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
+const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['size']> = {
     18: '12',
     24: '18',
     30: '18',
@@ -29,23 +25,34 @@ const mapCountIndicatorSizes: Record<TagSize, CountIndicatorProps['size']> = {
     48: '24',
 };
 
-type TagMods = {
-    /** @default 'neutral' */
-    color?: TagColor;
-};
+interface TagMods {
+    /**
+     * Defines component color.
+     * @default 'neutral'
+     */
+    color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+}
 
+/** Represents the Core properties of the Tag component. */
 export type TagCoreProps = ButtonProps & {
-    /** @default '36' */
-    size?: TagSize;
-    /** @default 'solid' */
-    fill?: TagFill;
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: '18' | '24' | '30' | '36' | '42' | '48';
+    /**
+     * Defines component fill style.
+     * @default 'solid'
+     */
+    fill?: 'solid' | 'outline';
 };
 
+/** Represents the properties of the Tag component. */
 export type TagProps = TagCoreProps & TagMods;
 
 function applyTagMods(props: TagProps) {
     return [
-        css['size-' + (props.size || defaultSize)],
+        css['size-' + (props.size || DEFAULT_SIZE)],
         css.root,
         `uui-color-${props.color || 'neutral'}`,
         `uui-fill-${props.fill || 'solid'}`,
@@ -54,13 +61,13 @@ function applyTagMods(props: TagProps) {
 }
 
 export const Tag = withMods<TagCoreProps, TagMods>(Button, applyTagMods, (props) => ({
-    dropdownIcon: systemIcons[mapSize[props.size] || defaultSize].foldingArrow,
-    clearIcon: systemIcons[mapSize[props.size] || defaultSize].clear,
+    dropdownIcon: systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow,
+    clearIcon: systemIcons[mapSize[props.size] || DEFAULT_SIZE].clear,
     countIndicator: (countIndicatorProps) => (
         <CountIndicator
             { ...countIndicatorProps }
             color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
-            size={ mapCountIndicatorSizes[props.size || defaultSize] }
+            size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
         />
     ),
 }));

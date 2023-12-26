@@ -6,8 +6,13 @@ import { RadioInputProps } from '../inputs/RadioInput';
 import css from './RadioGroup.module.scss';
 
 export interface RadioGroupItem<TValue> extends IDisableable {
+    /** RadioInput label. Can be a string, or React.Element. */
     name?: string;
+    /** Render callback for checkbox label.
+     * If omitted, 'name' prop value will be rendered.
+     */
     renderName?: () => React.ReactNode;
+    /** Item ID to put into selection */
     id: TValue;
 }
 
@@ -20,8 +25,11 @@ export interface RadioGroupProps<TValue>
     IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>,
     IHasForwardedRef<HTMLFieldSetElement>,
     ICanFocus<HTMLFieldSetElement> {
+    /** Overrides the component to render a single radio Input  */
     RadioInput?: React.ComponentType<RadioInputProps>;
+    /** Array of checkbox items to be rendered in group */
     items: RadioGroupItem<TValue>[];
+    /** RadioInput prop to put on each radio input in group */
     radioInputProps?: RadioInputProps & { key: React.Key };
 }
 

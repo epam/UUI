@@ -11,15 +11,7 @@ import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import css from './AppHeader.module.scss';
-import { TMode, TTheme } from './docs/docsConstants';
-
-const themeName: Record<TTheme, 'Promo' | 'Loveship Light' | 'Loveship Dark' | 'Electric' | 'Vanilla Thunder'> = {
-    [TTheme.promo]: 'Promo',
-    [TTheme.loveship]: 'Loveship Light',
-    [TTheme.loveship_dark]: 'Loveship Dark',
-    [TTheme.electric]: 'Electric',
-    [TTheme.vanilla_thunder]: 'Vanilla Thunder',
-};
+import { themeName, TMode, TTheme } from './docs/docsConstants';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
