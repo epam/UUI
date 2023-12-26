@@ -3,8 +3,15 @@ import {
     renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen,
 } from '@epam/uui-test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
+import dayjs from 'dayjs';
 
 type TestParams = Pick<DatePickerProps, 'value' | 'format' | 'isHoliday'>;
+
+function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
+    // @ts-ignore
+    const actualList = [...elem.parentElement.classList];
+    return classesArr.every((c: string) => actualList.indexOf(c) !== -1);
+}
 
 async function setupDatePicker(params: TestParams) {
     const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
@@ -124,12 +131,20 @@ describe('DatePicker', () => {
     });
 
     it('should render with isHoliday prop', async () => {
-        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT, isHoliday: () => true });
-        expect(dom.input).toHaveAttribute('isHoliday', 'true');
-    });
+        const { dom } = await setupDatePicker({
+            value: '2019-10-12',
+            format: DATE_FORMAT_DEFAULT,
+            isHoliday: (day) => {
+                return day?.valueOf() === dayjs('2019-10-20').valueOf();
+            },
+        });
 
-    it('should render without isHoliday prop', async () => {
-        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT, isHoliday: () => false });
-        expect(dom.input).not.toHaveAttribute('isHoliday');
+        fireEvent.focus(dom.input);
+
+        const holidayDay = screen.getByText('20');
+        const regularDay = screen.getByText('21');
+
+        expect(parentElemContainsClasses(holidayDay, ['uui-calendar-day-holiday'])).toBeTruthy();
+        expect(parentElemContainsClasses(regularDay, ['uui-calendar-day-holiday'])).toBeFalsy();
     });
 });
