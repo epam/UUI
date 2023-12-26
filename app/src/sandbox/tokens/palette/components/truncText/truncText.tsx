@@ -3,14 +3,15 @@ import React from 'react';
 import css from './truncText.module.scss';
 import cx from 'classnames';
 
-export function TruncText(props: { text: string }) {
+export function TruncText(props: { text: string | undefined }) {
+    const { text = '' } = props;
     return (
         <span
             className={ cx(css.root) }
-            title={ props.text }
+            title={ text }
         >
             <Text color="primary">
-                {props.text}
+                {text}
             </Text>
         </span>
     );
