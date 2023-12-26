@@ -1,7 +1,7 @@
 import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
 import {
-    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo,
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadAllTreeOptions, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo,
 } from './ITree';
 import { TreeParams } from './ITree';
 
@@ -283,6 +283,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     ): TId[];
 
     abstract load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
+    abstract loadAll<TFilter>(options: LoadAllTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
     abstract loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
     abstract loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;

@@ -35,6 +35,8 @@ export interface LoadTreeOptions<TItem, TId, TFilter>
     isFolded?: (item: TItem) => boolean;
 }
 
+export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'> {}
+
 export interface TreeParams<TItem, TId> {
     getId?(item: TItem): TId;
     getParentId?(item: TItem): TId | undefined;
@@ -72,6 +74,7 @@ export interface ITree<TItem, TId> {
     ): TId[];
 
     load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren?: boolean): Promise<ITree<TItem, TId>>;
+    loadAll<TFilter>(options: LoadAllTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
 
     loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
 
