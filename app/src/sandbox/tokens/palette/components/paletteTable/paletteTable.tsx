@@ -7,14 +7,26 @@ import {
     Panel,
     ScrollBars,
 } from '@epam/uui';
-import { DataTableRowProps, DataTableState, useArrayDataSource, useColumnsConfig, useTableState } from '@epam/uui-core';
+import {
+    DataTableRowProps,
+    DataTableState,
+    useArrayDataSource,
+    useColumnsConfig,
+    useTableState,
+} from '@epam/uui-core';
 import {
     getColumns,
     getFilter,
     getFiltersConfig,
     getSortBy,
 } from './tableColumns';
-import { IThemeVarUI, TExpectedValueType, TTokensFilter } from '../../types/types';
+import {
+    IThemeVarUI,
+    ITokenRow,
+    ITokenRowGroup,
+    TExpectedValueType,
+    TTokensFilter,
+} from '../../types/types';
 import { TTheme } from '../../../../../common/docs/docsConstants';
 //
 import css from './paletteTable.module.scss';
@@ -25,18 +37,41 @@ import { getFigmaTheme } from '../../utils/themeVarUtils';
 const TOP_INDENT = '135px'; // 60px header + 75px summary/filter area
 
 type PaletteTableProps = {
+    grouped: boolean,
     uuiTheme: TTheme,
     expectedValueType: TExpectedValueType,
     onChangeExpectedValueType: (v: TExpectedValueType) => void
     tokens: IThemeVarUI[],
 };
+
 export function PaletteTable(props: PaletteTableProps) {
-    const { uuiTheme, expectedValueType, onChangeExpectedValueType, tokens } = props;
+    const { uuiTheme, expectedValueType, onChangeExpectedValueType, tokens, grouped } = props;
     const figmaTheme = getFigmaTheme(uuiTheme);
 
     const filtersConfig = useMemo(() => {
         return getFiltersConfig(getTotals(tokens));
     }, [tokens]);
+
+    const items: ITokenRow[] = useMemo(() => {
+        if (grouped) {
+            const parents = new Map<string, ITokenRowGroup>();
+            const tokensWithParentId = tokens.map((srcToken) => {
+                const idArr = getTokenParents(srcToken.id);
+                idArr.forEach((group) => {
+                    parents.set(group.id, group);
+                });
+                const par = idArr[idArr.length - 1];
+                if (par) {
+                    return { ...srcToken, parentId: par.id };
+                }
+                return srcToken;
+            });
+            const parentsArr = Array.from(parents.values());
+            return [...tokensWithParentId, ...parentsArr];
+        }
+        return tokens;
+    }, [grouped, tokens]);
+
     const defaultColumns = useMemo(() => {
         return getColumns(figmaTheme, expectedValueType);
     }, [figmaTheme, expectedValueType]);
@@ -50,21 +85,36 @@ export function PaletteTable(props: PaletteTableProps) {
         columns: defaultColumns,
         value,
     });
-    const tokensDs = useArrayDataSource<IThemeVarUI, string, TTokensFilter>(
+    const tokensDs = useArrayDataSource<ITokenRow, string, TTokensFilter>(
         {
-            items: tokens,
+            items,
             getId: (item) => {
                 return item.id;
             },
             sortBy: getSortBy(),
             getFilter,
+            getParentId: (item) => {
+                if (grouped) {
+                    return item.parentId;
+                }
+            },
         },
-        [tokens],
+        [items],
     );
-    const tokensDsView = tokensDs.getView(tableState, setTableState, { });
+    const tokensDsView = tokensDs.getView(tableState, setTableState, {
+        isFoldedByDefault: () => false,
+    });
     const { columns, config: columnsConfig } = useColumnsConfig(defaultColumns, tableState.columnsConfig || {});
-    const renderRow = (props: DataTableRowProps<IThemeVarUI, string>) => {
-        return <DataTableRow key={ props.id } { ...props } columns={ columns } />;
+    const renderRow = (rowProps: DataTableRowProps<ITokenRow, string>) => {
+        return (
+            <DataTableRow
+                // cx={ cx }
+                key={ rowProps.id }
+                { ...rowProps }
+                columns={ columns }
+                indent={ Math.min(rowProps.indent, 1) }
+            />
+        );
     };
 
     return (
@@ -100,4 +150,19 @@ export function PaletteTable(props: PaletteTableProps) {
             </ScrollBars>
         </Panel>
     );
+}
+
+function getTokenParents(path: string): ITokenRowGroup[] {
+    const pathSplit = path.split('/');
+    const pathSplitArr = pathSplit.slice(0, pathSplit.length - 1);
+    const parents: ITokenRowGroup[] = [];
+    pathSplitArr.forEach((pathToken) => {
+        const lastToken = parents[parents.length - 1];
+        if (lastToken) {
+            parents.push({ id: `${lastToken.id}/${pathToken}`, _group: true, parentId: lastToken.id });
+        } else {
+            parents.push({ id: pathToken, _group: true });
+        }
+    });
+    return parents;
 }
