@@ -32,16 +32,27 @@ const WIDTH = {
 export const getSortBy = () => {
     return function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
         const key = sorting.field as COL_NAMES;
-        if (key === COL_NAMES.status) {
-            const hasErrors = item.value.errors.length > 0;
-            return String(hasErrors);
-        } else if (key === COL_NAMES.actualValue) {
-            return String(item.value);
-        } else if (key === COL_NAMES.expectedValue || key === COL_NAMES.expectedValueChain) {
-            const expected = item.value.expected;
-            return String(expected);
+
+        switch (key) {
+            case COL_NAMES.path: {
+                return String(item.id);
+            }
+            case COL_NAMES.expectedValue:
+            case COL_NAMES.expectedValueChain: {
+                const expected = item.value.expected;
+                return String(expected?.value);
+            }
+            case COL_NAMES.actualValue: {
+                return String(item.value.actual);
+            }
+            case COL_NAMES.status: {
+                const hasErrors = item.value.errors.length > 0;
+                return String(hasErrors);
+            }
+            default: {
+                return item[key as keyof IThemeVarUI];
+            }
         }
-        return item[key as keyof IThemeVarUI];
     };
 };
 
