@@ -8,6 +8,7 @@ import {
 
 import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
+import { ExtendedTTableCellElement } from './types';
 
 export interface TableCellElementProps
     extends PlateElementProps<Value, TTableCellElement> {
@@ -20,6 +21,10 @@ React.ElementRef<typeof PlateElement>,
 TableCellElementProps
 >(({ children, className, style, hideBorder, ...props }, ref) => {
     const { element } = props;
+
+    const el = element as ExtendedTTableCellElement;
+    element.colSpan = element.colSpan || el?.data.colSpan;
+    element.rowSpan = element.rowSpan || el?.data.rowSpan;
 
     const {
         colIndex,
