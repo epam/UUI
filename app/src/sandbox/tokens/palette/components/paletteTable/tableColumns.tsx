@@ -37,8 +37,7 @@ export const getSortBy = () => {
             case COL_NAMES.path: {
                 return String(item.id);
             }
-            case COL_NAMES.expectedValue:
-            case COL_NAMES.expectedValueChain: {
+            case COL_NAMES.expectedValue: {
                 const expected = item.value.expected;
                 return String(expected?.value);
             }
@@ -60,44 +59,26 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
     const expectedValueColumnsArr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [];
 
     if (figmaTheme) {
-        if (expectedValueType === TExpectedValueType.chain) {
-            expectedValueColumnsArr.push({
-                key: COL_NAMES.expectedValueChain,
-                caption: 'Expected',
-                info: 'This is what Figma expects. The value is taken from the chain of aliases (valuesByMode)',
-                render: (item) => {
-                    if (figmaTheme) {
-                        return (
-                            <TokenExample token={ item } mode="showExpected" />
-                        );
-                    }
-                    return <Text>N/A</Text>;
-                },
-                width: WIDTH.expectedValue,
-                isSortable: true,
-                textAlign: 'center',
-                alignSelf: 'center',
-            });
-        }
-        if (expectedValueType === TExpectedValueType.direct) {
-            expectedValueColumnsArr.push({
-                key: COL_NAMES.expectedValue,
-                caption: 'Expected',
-                info: 'This is what Figma expects. The value is taken directly from resolvedValuesByMode',
-                render: (item) => {
-                    if (figmaTheme) {
-                        return (
-                            <TokenExample token={ item } mode="showExpected" />
-                        );
-                    }
-                    return <Text>N/A</Text>;
-                },
-                width: WIDTH.expectedValue,
-                isSortable: true,
-                textAlign: 'center',
-                alignSelf: 'center',
-            });
-        }
+        const info = expectedValueType === TExpectedValueType.chain
+            ? 'This is what Figma expects. The value is taken from the chain of aliases (valuesByMode)'
+            : 'This is what Figma expects. The value is taken directly from resolvedValuesByMode';
+        expectedValueColumnsArr.push({
+            key: COL_NAMES.expectedValue,
+            caption: 'Expected',
+            info,
+            render: (item) => {
+                if (figmaTheme) {
+                    return (
+                        <TokenExample token={ item } mode="showExpected" />
+                    );
+                }
+                return <Text>N/A</Text>;
+            },
+            width: WIDTH.expectedValue,
+            isSortable: true,
+            textAlign: 'center',
+            alignSelf: 'center',
+        });
     }
 
     const arr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [
