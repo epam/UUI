@@ -36,7 +36,6 @@ export enum COL_NAMES {
     useCases = 'useCases',
     actualValue = 'actualValue',
     expectedValue = 'expectedValue',
-    expectedValueChain = 'expectedValueChain',
     status = 'status',
     index = 'index'
 }
