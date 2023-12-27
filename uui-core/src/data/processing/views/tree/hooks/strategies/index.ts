@@ -1,4 +1,4 @@
-import { useAsyncTreeStrategy } from './asyncTree/useAsyncTreeStrategy';
+import { useAsyncTreeStrategy } from './asyncTree';
 import { useLazyTreeStrategy } from './lazyTree';
 import { usePlainTreeStrategy } from './plainTree';
 
