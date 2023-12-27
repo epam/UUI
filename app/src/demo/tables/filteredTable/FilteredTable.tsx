@@ -112,7 +112,6 @@ export function FilteredTable() {
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
-                onScroll={ (v) => console.log(v.clientHeight) }
                 { ...view.getListProps() }
             />
             <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ totalCount } />
