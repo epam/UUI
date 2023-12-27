@@ -29,6 +29,7 @@ export class ButtonDoc extends BaseDocsBlock {
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-50' : 'neutral-60'})`,
                 }),
             });
+            doc.setDefaultPropExample('onClick', () => true);
         },
     };
 
