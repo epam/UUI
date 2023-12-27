@@ -4,6 +4,7 @@
     &:global(.uui-input-box) {
         display: flex;
         outline: none;
+        column-gap: 6px;
     }
 
     :global(.uui-input) {

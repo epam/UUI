@@ -36,8 +36,14 @@
         color: var(--uui-text_input-text);
         font-family: var(--uui-text_input-font);
         font-weight: var(--uui-text_input-font-weight);
-        padding-left: 6px;
-        padding-right: 6px;
+
+        &:nth-child(1) {
+            padding-left: 6px;
+        }
+
+        &:last-child {
+            padding-right: 6px;
+        }
 
         &::placeholder {
             color: var(--uui-text_input-placeholder);
@@ -190,10 +196,5 @@
         min-width: 60px;
         padding-left: 11px;
         padding-right: 11px;
-
-        :global(.uui-input) {
-            padding-left: 6px;
-            padding-right: 0;
-        }
     }
 }
