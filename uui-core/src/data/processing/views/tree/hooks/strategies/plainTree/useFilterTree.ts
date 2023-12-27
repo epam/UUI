@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { useSimplePrevious, usePrevious } from '../../../../../../../hooks';
+import { useSimplePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 import { ITree } from '../../../../tree';
 
@@ -15,7 +15,7 @@ export function useFilterTree<TItem, TId, TFilter = any>(
 ) {
     const prevTree = useSimplePrevious(tree);
     const prevFilter = useSimplePrevious(filter);
-    const prevDeps = usePrevious(deps);
+    const prevDeps = useSimplePrevious(deps);
 
     const filteredTreeRef = useRef(null);
 

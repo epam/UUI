@@ -5,7 +5,7 @@ import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 
 import isEqual from 'lodash.isequal';
-import { onlySearchWasUnset, shouldRebuildTree } from './helpers';
+import { onlySearchWasUnset, isQueryChanged } from './helpers';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
@@ -77,7 +77,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     useEffect(() => {
         let completeReset = false;
         const shouldReloadData = !isEqual(prevFilter, filter)
-            || shouldRebuildTree(prevDataSourceState, dataSourceState)
+            || isQueryChanged(prevDataSourceState, dataSourceState)
             || isForceReload;
 
         let currentTree = treeWithData;

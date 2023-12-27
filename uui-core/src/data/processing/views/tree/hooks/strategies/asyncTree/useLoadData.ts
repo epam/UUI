@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
 import { ITree } from '../../..';
+import { useSimplePrevious } from '../../../../../../../hooks';
+import { isQueryChanged } from '../lazyTree/helpers';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -19,8 +21,10 @@ export function useLoadData<TItem, TId, TFilter = any>(
     { tree, api, dataSourceState }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
+    const prevDataSourceState = useSimplePrevious(dataSourceState);
     const [loadedTree, setLoadedTree] = useState(tree);
     const [isLoading, setIsLoading] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
 
     const loadData = useCallback(async (
         sourceTree: ITree<TItem, TId>,
@@ -55,15 +59,21 @@ export function useLoadData<TItem, TId, TFilter = any>(
     }, [api]);
 
     useEffect(() => {
-        setIsLoading(true);
+        setIsFetching(true);
+        if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
+            setIsLoading(true);
+        }
         loadData(tree, dataSourceState)
             .then(({ isOutdated, isUpdated, tree: newTree }) => {
                 if (isUpdated && !isOutdated) {
                     setLoadedTree(newTree);
                 }
             })
-            .finally(() => setIsLoading(false));
+            .finally(() => {
+                setIsFetching(false);
+                setIsLoading(false);
+            });
     }, deps);
 
-    return { tree: loadedTree, isLoading };
+    return { tree: loadedTree, isLoading, isFetching };
 }
