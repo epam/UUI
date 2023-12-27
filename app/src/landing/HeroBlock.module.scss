@@ -4,6 +4,7 @@
     margin: 0 auto;
     background-color: var(--uui-surface-lower);
     overflow: hidden;
+    position: relative;
 
     .hero {
         max-width: 1200px;
@@ -12,6 +13,7 @@
         margin: 0 auto;
         align-items: start;
         gap: 36px;
+        position: relative;
 
         .hero-text {
             width: 50%;
@@ -302,4 +304,47 @@
             }
         }
     }
+}
+
+@keyframes carGo {
+    0% {
+        left: -10px;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.christmasTree {
+    position: absolute;
+    width: 250px;
+    min-height: 380px;
+    left: 30px;
+    top: 90px;
+    pointer-events: none;
+}
+
+.christmasCar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 180px;
+    opacity: 0;
+    animation-name: carGo;
+    animation-duration: 25s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    pointer-events: none;
 }
