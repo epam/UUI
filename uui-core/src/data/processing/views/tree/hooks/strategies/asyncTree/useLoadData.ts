@@ -15,13 +15,17 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     dataSourceState?: DataSourceState<TFilter, TId>;
+    forceReload?: boolean;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
-    { tree, api, dataSourceState }: UseLoadDataProps<TItem, TId, TFilter>,
+    { tree, api, dataSourceState, forceReload }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevDataSourceState = useSimplePrevious(dataSourceState);
+    const prevDeps = useSimplePrevious(deps);
+    const prevForceReload = useSimplePrevious(forceReload);
+
     const [loadedTree, setLoadedTree] = useState(tree);
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
@@ -58,22 +62,27 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
     }, [api]);
 
+    const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
+    const shouldForceReload = prevForceReload !== forceReload && forceReload;
+
     useEffect(() => {
-        setIsFetching(true);
-        if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
-            setIsLoading(true);
+        if (isDepsChanged || shouldForceReload) {
+            setIsFetching(true);
+            if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
+                setIsLoading(true);
+            }
+            loadData(tree, dataSourceState)
+                .then(({ isOutdated, isUpdated, tree: newTree }) => {
+                    if (isUpdated && !isOutdated) {
+                        setLoadedTree(newTree);
+                    }
+                })
+                .finally(() => {
+                    setIsFetching(false);
+                    setIsLoading(false);
+                });
         }
-        loadData(tree, dataSourceState)
-            .then(({ isOutdated, isUpdated, tree: newTree }) => {
-                if (isUpdated && !isOutdated) {
-                    setLoadedTree(newTree);
-                }
-            })
-            .finally(() => {
-                setIsFetching(false);
-                setIsLoading(false);
-            });
-    }, deps);
+    }, [isDepsChanged, shouldForceReload]);
 
     return { tree: loadedTree, isLoading, isFetching };
 }
