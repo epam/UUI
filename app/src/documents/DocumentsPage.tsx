@@ -8,6 +8,7 @@ import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TMode, TTheme } from '../common/docs/docsConstants';
+import css from './DocumentsPage.module.scss';
 
 type DocsQuery = {
     id: string;
@@ -112,6 +113,7 @@ export function DocumentsPage() {
                             },
                         } }
                 />
+                <img alt="car" src="/static/christmas/gift_big.svg" className={ css.christmasGifts } />
                 <PageComponent />
             </FlexRow>
         </Page>
