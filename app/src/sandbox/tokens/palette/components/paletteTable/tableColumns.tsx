@@ -18,8 +18,8 @@ import { TFigmaThemeName } from '../../types/sharedTypes';
 import css from './paletteTable.module.scss';
 
 const WIDTH = {
-    [COL_NAMES.path]: 200, // E.g: core/surfaces/surface-main
-    [COL_NAMES.cssVar]: 200, // E.g.: --uui-surface-main
+    [COL_NAMES.path]: 250, // E.g: core/surfaces/surface-main
+    [COL_NAMES.cssVar]: 250, // E.g.: --uui-surface-main
     [COL_NAMES.description]: 100, // Some text
     [COL_NAMES.useCases]: 120, // Some text
     //
@@ -102,6 +102,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             width: WIDTH.path,
             isSortable: true,
             textAlign: 'left',
+            alignSelf: 'center',
         },
         {
             key: COL_NAMES.cssVar,
@@ -116,7 +117,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             },
             width: WIDTH.cssVar,
             isSortable: true,
-            textAlign: 'center',
+            textAlign: 'left',
             alignSelf: 'center',
         },
         {
