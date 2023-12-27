@@ -4,8 +4,8 @@ import { TokenExample } from '../tokenExample/tokenExample';
 import React from 'react';
 import { TruncText } from '../truncText/truncText';
 import {
-    COL_NAMES,
-    IThemeVarUI,
+    COL_NAMES, isTokenRowGroup,
+    IThemeVarUI, ITokenRow,
     STATUS_FILTER,
     TExpectedValueType,
     TThemeVarUiErr,
@@ -18,20 +18,26 @@ import { TFigmaThemeName } from '../../types/sharedTypes';
 import css from './paletteTable.module.scss';
 
 const WIDTH = {
-    [COL_NAMES.path]: 200, // E.g: core/surfaces/surface-main
-    [COL_NAMES.cssVar]: 200, // E.g.: --uui-surface-main
+    [COL_NAMES.path]: 250, // E.g: core/surfaces/surface-main
+    [COL_NAMES.cssVar]: 250, // E.g.: --uui-surface-main
     [COL_NAMES.description]: 100, // Some text
     [COL_NAMES.useCases]: 120, // Some text
     //
     [COL_NAMES.actualValue]: 125,
     [COL_NAMES.expectedValue]: 125,
     [COL_NAMES.status]: 120,
-    [COL_NAMES.index]: 60,
 };
 
 export const getSortBy = () => {
-    return function sortBy(item: IThemeVarUI, sorting: SortingOption): any {
+    return function sortBy(item: ITokenRow, sorting: SortingOption): any {
         const key = sorting.field as COL_NAMES;
+
+        if (isTokenRowGroup(item)) {
+            if (key === COL_NAMES.path) {
+                return item.id;
+            }
+            return '';
+        }
 
         switch (key) {
             case COL_NAMES.path: {
@@ -55,8 +61,8 @@ export const getSortBy = () => {
     };
 };
 
-export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValueType: TExpectedValueType): DataColumnProps<IThemeVarUI>[] {
-    const expectedValueColumnsArr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [];
+export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValueType: TExpectedValueType): DataColumnProps<ITokenRow>[] {
+    const expectedValueColumnsArr: DataColumnProps<ITokenRow, string, TTokensFilter>[] = [];
 
     if (figmaTheme) {
         const info = expectedValueType === TExpectedValueType.chain
@@ -67,6 +73,9 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             caption: 'Expected',
             info,
             render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
                 if (figmaTheme) {
                     return (
                         <TokenExample token={ item } mode="showExpected" />
@@ -81,22 +90,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
         });
     }
 
-    const arr: DataColumnProps<IThemeVarUI, string, TTokensFilter>[] = [
-        {
-            key: COL_NAMES.index,
-            caption: '',
-            render: (_, props) => {
-                return (
-                    <Text>
-                        {props.index + 1}
-                    </Text>
-                );
-            },
-            width: WIDTH.index,
-            isSortable: false,
-            textAlign: 'center',
-            alignSelf: 'center',
-        },
+    const arr: DataColumnProps<ITokenRow, string, TTokensFilter>[] = [
         {
             key: COL_NAMES.path,
             caption: 'Path',
@@ -107,20 +101,23 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             },
             width: WIDTH.path,
             isSortable: true,
-            textAlign: 'center',
+            textAlign: 'left',
             alignSelf: 'center',
         },
         {
             key: COL_NAMES.cssVar,
             caption: 'Name',
             render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
                 return (
                     <TruncText text={ item.cssVar } />
                 );
             },
             width: WIDTH.cssVar,
             isSortable: true,
-            textAlign: 'center',
+            textAlign: 'left',
             alignSelf: 'center',
         },
         {
@@ -128,6 +125,9 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             caption: 'Actual',
             info: 'Displays actual value (it depends on current theme)',
             render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
                 return (
                     <TokenExample token={ item } mode="showActual" />
                 );
@@ -142,6 +142,9 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             key: COL_NAMES.status,
             caption: 'Status',
             render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
                 return (
                     <TokenInfo token={ item } />
                 );
@@ -156,6 +159,9 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             key: COL_NAMES.description,
             caption: 'Description',
             render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
                 return (
                     <Text color="primary">
                         {item.description}
@@ -169,6 +175,9 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             key: COL_NAMES.useCases,
             caption: 'Use Cases',
             render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
                 return (
                     <Text color="primary">
                         {item.useCases}
@@ -185,8 +194,11 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
 }
 
 export function getFilter(filter: TTokensFilter) {
-    return (item: IThemeVarUI) => {
+    return (item: ITokenRow) => {
         if (filter) {
+            if (isTokenRowGroup(item)) {
+                return true;
+            }
             switch (filter.status) {
                 case STATUS_FILTER.absent: {
                     return !!item.value.errors.find(({ type }) => type === TThemeVarUiErr.VAR_ABSENT);
@@ -235,7 +247,8 @@ export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFil
                 );
             },
             getTogglerValue: (props) => {
-                return props.value || STATUS_FILTER.all;
+                const id = (props.value || STATUS_FILTER.all) as STATUS_FILTER;
+                return `${id} (${totals[id]})`;
             },
         },
     ];

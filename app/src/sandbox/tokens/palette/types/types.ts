@@ -50,3 +50,10 @@ export type TTokensFilter = {
     status: STATUS_FILTER | undefined,
 };
 export type TTotals = Record<STATUS_FILTER, number>;
+
+export type ITokenRowGroup = { id: string, _group: true, parentId?: string };
+export const isTokenRowGroup = (item: ITokenRow): item is ITokenRowGroup => {
+    return (item as ITokenRowGroup)._group !== undefined;
+};
+
+export type ITokenRow = (IThemeVarUI & { parentId?: string }) | ITokenRowGroup;
