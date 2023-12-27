@@ -246,7 +246,8 @@ export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFil
                 );
             },
             getTogglerValue: (props) => {
-                return props.value || STATUS_FILTER.all;
+                const id = (props.value || STATUS_FILTER.all) as STATUS_FILTER;
+                return `${id} (${totals[id]})`;
             },
         },
     ];

@@ -52,26 +52,6 @@ export function PaletteTable(props: PaletteTableProps) {
         return getFiltersConfig(getTotals(tokens));
     }, [tokens]);
 
-    const items: ITokenRow[] = useMemo(() => {
-        if (grouped) {
-            const parents = new Map<string, ITokenRowGroup>();
-            const tokensWithParentId = tokens.map((srcToken) => {
-                const idArr = getTokenParents(srcToken.id);
-                idArr.forEach((group) => {
-                    parents.set(group.id, group);
-                });
-                const par = idArr[idArr.length - 1];
-                if (par) {
-                    return { ...srcToken, parentId: par.id };
-                }
-                return srcToken;
-            });
-            const parentsArr = Array.from(parents.values());
-            return [...tokensWithParentId, ...parentsArr];
-        }
-        return tokens;
-    }, [grouped, tokens]);
-
     const defaultColumns = useMemo(() => {
         return getColumns(figmaTheme, expectedValueType);
     }, [figmaTheme, expectedValueType]);
@@ -85,6 +65,24 @@ export function PaletteTable(props: PaletteTableProps) {
         columns: defaultColumns,
         value,
     });
+    const items: ITokenRow[] = useMemo(() => {
+        const filterFn = getFilter(tableState.filter);
+        const tokensFiltered = tokens.filter(filterFn);
+        if (grouped) {
+            const parents = new Map<string, ITokenRowGroup>();
+            const tokensWithParentId = tokensFiltered.map((srcToken) => {
+                const group = getTokenParent(srcToken.id);
+                if (group) {
+                    parents.set(group.id, group);
+                    return { ...srcToken, parentId: group.id };
+                }
+                return srcToken;
+            });
+            const parentsArr = Array.from(parents.values());
+            return [...tokensWithParentId, ...parentsArr];
+        }
+        return tokensFiltered;
+    }, [grouped, tokens, tableState.filter]);
     const tokensDs = useArrayDataSource<ITokenRow, string, TTokensFilter>(
         {
             items,
@@ -92,7 +90,6 @@ export function PaletteTable(props: PaletteTableProps) {
                 return item.id;
             },
             sortBy: getSortBy(),
-            getFilter,
             getParentId: (item) => {
                 if (grouped) {
                     return item.parentId;
@@ -152,17 +149,8 @@ export function PaletteTable(props: PaletteTableProps) {
     );
 }
 
-function getTokenParents(path: string): ITokenRowGroup[] {
+function getTokenParent(path: string): ITokenRowGroup {
     const pathSplit = path.split('/');
     const pathSplitArr = pathSplit.slice(0, pathSplit.length - 1);
-    const parents: ITokenRowGroup[] = [];
-    pathSplitArr.forEach((pathToken) => {
-        const lastToken = parents[parents.length - 1];
-        if (lastToken) {
-            parents.push({ id: `${lastToken.id}/${pathToken}`, _group: true, parentId: lastToken.id });
-        } else {
-            parents.push({ id: pathToken, _group: true });
-        }
-    });
-    return parents;
+    return { id: pathSplitArr.join('/'), _group: true };
 }

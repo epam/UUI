@@ -18,7 +18,7 @@ export function PalettePage() {
         );
     }
     const settings = {
-        grouped: false,
+        grouped: true,
         tokens: result.tokens,
         uuiTheme: result.theme,
         expectedValueType,
