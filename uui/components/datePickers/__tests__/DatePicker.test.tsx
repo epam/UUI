@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {
-    renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen,
+    renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent,
 } from '@epam/uui-test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 import dayjs from 'dayjs';
+import { supportedDateFormats } from '@epam/uui-components';
 
 type TestParams = Pick<DatePickerProps, 'value' | 'format' | 'isHoliday'>;
 
@@ -14,7 +15,7 @@ function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
 }
 
 async function setupDatePicker(params: TestParams) {
-    const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
+    const { result, mocks, setProps } = await setupComponentForTest<DatePickerProps>(
         (context) => ({
             ...params,
             onValueChange: jest.fn().mockImplementation((newValue) => {
@@ -29,6 +30,7 @@ async function setupDatePicker(params: TestParams) {
     const dom = { input };
 
     return {
+        result,
         setProps,
         mocks,
         dom,
@@ -110,8 +112,10 @@ describe('DatePicker', () => {
         expect(dom.input.value).toEqual('31-01-2017');
     });
 
+    // 'MM/DD/YYYY', 'DD-MM-YYYY', 'DD.MM.YYYY', 'YYYY/MM/DD', 'YYYY-MM-DD', 'YYYY.MM.DD', 'MMM D, YYYY', 'D/M/YYYY', 'YYYY/M/D',
+
     it('should support entering date from keyboard in default format', async () => {
-        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        const { dom, mocks } = await setupDatePicker({ value: null });
         expect(dom.input.value).toEqual('');
         fireEvent.change(dom.input, { target: { value: '2017-01-22' } });
         fireEvent.blur(dom.input);
@@ -119,15 +123,14 @@ describe('DatePicker', () => {
         expect(dom.input.value).toEqual('Jan 22, 2017');
     });
 
-    it('should support entering date from keyboard in custom format', async () => {
-        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_CUSTOM });
-        expect(dom.input.value).toEqual('');
-        fireEvent.change(dom.input, { target: { value: '2017-01-22' } });
-        fireEvent.blur(dom.input);
-        expect(mocks.onValueChange).toHaveBeenCalledWith('2017-01-22');
-        expect(
-            dom.input.value,
-        ).toEqual('22-01-2017');
+    it.each(supportedDateFormats())('should support entering date from keyboard in custom format %s', async (currentFormat) => {
+        const one = await setupDatePicker({ value: null, format: currentFormat });
+        expect(one.dom.input.value).toEqual('');
+        await userEvent.type(one.dom.input, '2017-01-22');
+        await userEvent.click(one.result.container); // emit blur event
+
+        expect(one.mocks.onValueChange).toHaveBeenCalledWith('2017-01-22');
+        expect(one.dom.input.value).toBe(dayjs('2017-01-22').format(currentFormat));
     });
 
     it('should render with isHoliday prop', async () => {

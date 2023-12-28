@@ -3,6 +3,8 @@ import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within, userEvent,
 } from '@epam/uui-test-utils';
+import { supportedDateFormats } from '@epam/uui-components';
+import dayjs from 'dayjs';
 
 interface TestProps {
     value?: RangeDatePickerProps['value'];
@@ -28,7 +30,7 @@ async function setupRangeDatePicker(props: TestProps) {
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current?.setProperty('value', newValue);
             }),
-            size: '48',
+            // size: '48',
         }),
         (props) => <RangeDatePicker { ...props } />,
     );
@@ -310,5 +312,12 @@ describe('RangeDataPicker', () => {
 
         expect(dom.from.value).toBe('11-09-2019');
         expect(dom.to.value).toBe('15-09-2019');
+    });
+
+    it.each(supportedDateFormats())('should support custom format %s', async (currentFormat) => {
+        const value = { from: '2019-09-10', to: '2019-09-15' };
+        const { dom } = await setupRangeDatePicker({ value, format: currentFormat });
+        expect(dom.from.value).toBe(dayjs('2019-09-10').format(currentFormat));
+        expect(dom.to.value).toBe(dayjs('2019-09-15').format(currentFormat));
     });
 });
