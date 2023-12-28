@@ -8,6 +8,8 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
+const mediaTypes = ['image', 'iframe'];
+
 const migrateTextNode = (oldNode: any) => {
     return {
         text: oldNode.text,
@@ -37,8 +39,6 @@ const migrateTable = (oldTable: any) => {
 };
 
 const migrateElementNode = (node: any) => {
-    const mediaTypes = ['image', 'iframe'];
-
     if (node.type === 'paragraph' && node.nodes?.[0]?.type === 'table') {
         const tableNode = node.nodes[0];
         node = migrateTable(tableNode);
@@ -49,6 +49,8 @@ const migrateElementNode = (node: any) => {
         type: node.type,
         ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
+        ...(node?.data?.colSpan ? { colSpan: node.data.colSpan } : {}),
+        ...(node?.data?.rowSpan ? { rowSpan: node.data.rowSpan } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
     };
 };
@@ -62,15 +64,10 @@ export const migrateNode = (oldNode: any) => {
 };
 
 export const migrateSchema = (oldSchema: any) => {
-    let migratedSchema;
     try {
-        migratedSchema = oldSchema?.document?.nodes.map(migrateNode);
+        return oldSchema?.document?.nodes.map(migrateNode);
     } catch (e) {
         console.error("Can't migrate schema", e);
-    }
-
-    if (migratedSchema) {
-        return migratedSchema;
     }
 
     return oldSchema;
