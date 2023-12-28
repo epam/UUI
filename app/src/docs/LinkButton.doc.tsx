@@ -27,6 +27,7 @@ export class LinkButtonDoc extends BaseDocsBlock {
                     contrast: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-0' : 'neutral-10'})`,
                 }),
             });
+            doc.setDefaultPropExample('onClick', () => true);
         },
     };
 
