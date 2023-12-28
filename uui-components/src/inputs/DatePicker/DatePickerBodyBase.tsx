@@ -8,7 +8,7 @@ export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
 export const defaultFormat = 'MMM D, YYYY';
 export const valueFormat = 'YYYY-MM-DD';
-export const supportedDateFormats = (format: string) => {
+export const supportedDateFormats = (format?: string) => {
     return [
         ...(format ? [format] : []), 'MM/DD/YYYY', 'DD-MM-YYYY', 'DD.MM.YYYY', 'YYYY/MM/DD', 'YYYY-MM-DD', 'YYYY.MM.DD', 'MMM D, YYYY', 'D/M/YYYY', 'YYYY/M/D',
     ];
