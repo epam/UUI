@@ -67,7 +67,7 @@
     &.size-18 {
         min-height: 18px;
         min-width: 18px;
-        padding: 2px;
+        padding: 1px 2px;
 
         :global(.uui-count_indicator):not(:last-child) {
             margin-right: 3px;
@@ -75,7 +75,7 @@
 
         :global(.uui-caption), :global(.uui-input) {
             padding: 0 3px;
-            line-height: 12px;
+            line-height: 14px;
             font-size: 12px;
         }
     }
@@ -86,8 +86,8 @@
         padding: 2px;
 
         :global(.uui-caption), :global(.uui-input) {
-            padding: 3px 3px;
-            line-height: 12px;
+            padding: 0 3px;
+            line-height: 18px;
             font-size: 12px;
         }
     }

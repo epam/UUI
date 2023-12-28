@@ -583,9 +583,9 @@
             }
 
             &.uui-fill-ghost {
-                --uui-btn-border: var(--uui-btn-bg);
-                --uui-btn-border-hover: var(--uui-btn-bg);
-                --uui-btn-border-active: var(--uui-btn-bg);
+                --uui-btn-border: transparent;
+                --uui-btn-border-hover: transparent;
+                --uui-btn-border-active: transparent;
             }
 
             &.uui-fill-outline, &.uui-fill-solid {
