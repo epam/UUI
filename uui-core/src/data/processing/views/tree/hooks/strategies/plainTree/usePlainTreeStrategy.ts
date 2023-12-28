@@ -38,14 +38,14 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         [fullTree],
     );
 
-    const searchTree = useSearchTree(
-        { tree: filteredTree, getSearchFields, sortSearchByRelevance, dataSourceState },
+    const sortTree = useSortTree(
+        { tree: filteredTree, sortBy, dataSourceState },
         [filteredTree],
     );
 
-    const tree = useSortTree(
-        { tree: searchTree, sortBy, dataSourceState },
-        [searchTree],
+    const tree = useSearchTree(
+        { tree: sortTree, getSearchFields, sortSearchByRelevance, dataSourceState },
+        [sortTree],
     );
 
     const treeRowsStats = useMemo(() => {
@@ -71,6 +71,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     return useMemo(
         () => ({
             tree,
+            fullTree: sortTree,
             rowOptions,
             getRowOptions,
             getChildCount,
@@ -83,6 +84,7 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         }),
         [
             tree,
+            sortTree,
             dataSourceState,
             setDataSourceState,
             rowOptions,

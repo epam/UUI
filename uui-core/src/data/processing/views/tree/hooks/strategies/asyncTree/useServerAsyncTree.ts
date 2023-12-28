@@ -61,6 +61,7 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
 
     return {
         tree,
+        fullTree,
         reload,
         isLoading,
         isFetching,
