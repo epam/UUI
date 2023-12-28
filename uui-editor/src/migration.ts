@@ -64,10 +64,15 @@ export const migrateNode = (oldNode: any) => {
 };
 
 export const migrateSchema = (oldSchema: any) => {
+    let migratedSchema;
     try {
-        return oldSchema?.document?.nodes.map(migrateNode);
+        migratedSchema = oldSchema?.document?.nodes.map(migrateNode);
     } catch (e) {
         console.error("Can't migrate schema", e);
+    }
+
+    if (migratedSchema) {
+        return migratedSchema;
     }
 
     return oldSchema;

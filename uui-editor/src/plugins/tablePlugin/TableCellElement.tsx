@@ -25,8 +25,8 @@ TableCellElementProps
     const { element } = props;
 
     const el = element as ExtendedTTableCellElement;
-    element.colSpan = element.colSpan || el?.data.colSpan;
-    element.rowSpan = element.rowSpan || el?.data.rowSpan;
+    element.colSpan = el.colSpan || el?.data?.colSpan;
+    element.rowSpan = el.rowSpan || el?.data?.rowSpan;
 
     const {
         colIndex,
