@@ -45,7 +45,7 @@ function applyBadgeMods(mods: BadgeMods) {
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
 export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
-    uui.Badge,
+    uui.Badge as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {
             devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'fill'>({
@@ -55,6 +55,9 @@ export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
                 propValueUseInstead: 'outline',
                 condition: () => ['semitransparent'].indexOf(props.fill) !== -1,
             });
+            if (props.shape === 'square' || !props.shape) {
+                devLogger.warn('(Badge) The "square" value of shape is deprecated and will be removed in future versions. Please use "round" value instead.');
+            }
         }
         return {
             color: props.color || 'sky',
