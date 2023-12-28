@@ -11,7 +11,7 @@ export const initialValue = {
                 nodes: [
                     {
                         object: 'text',
-                        text: 'All queries and requests for should be sent initially to privacy@epam.com or by post to EPAM Legal Team (Privacy), EPAM Systems Ltd, 2 Finsbury Avenue 5th floor London, EC2M 2PG.\r',
+                        text: 'All queries and requests for should be sent initially to some@email.com.\r',
                         marks: [],
                     },
                 ],
