@@ -140,7 +140,7 @@ describe('RangeDataPicker', () => {
         });
     });
 
-    it('should focus corresponding input on picker values change', async () => {
+    it('should focus corresponding input on picker value changes starting from start date', async () => {
         const value = { from: '2019-09-10', to: '2019-09-12' };
         const { dom } = await setupRangeDatePicker({ value });
 
@@ -149,35 +149,76 @@ describe('RangeDataPicker', () => {
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
 
         const dialog = screen.getByRole('dialog');
+
         const [, oct11] = await within(dialog).findAllByText('11');
-
-        expect(dom.from.value).toBe('Sep 10, 2019');
-        expect(dom.to.value).toBe('Sep 12, 2019');
-
-        // on select, focus should be moved to 'to' input
         await userEvent.click(oct11);
+        // on select, focus should be moved to 'to' input
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
         expect(dom.from.value).toBe('Oct 11, 2019');
         expect(dom.to.value).toBe('');
 
         const [, oct5] = await within(dialog).findAllByText('5');
-
-        // since earlier date is selected, focus should be on 'to' elem still
         await userEvent.click(oct5);
+        // since earlier date is selected, focus should be on 'to' elem still
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
         expect(dom.from.value).toBe('Oct 5, 2019');
         expect(dom.to.value).toBe('');
 
         const [, oct25] = await within(dialog).findAllByText('25');
-
-        // should cancel focus when two dates selected
         await userEvent.click(oct25);
+        // should cancel focus when two dates selected
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
         expect(dom.from.value).toBe('Oct 5, 2019');
         expect(dom.to.value).toBe('Oct 25, 2019');
+    });
+
+    it('should focus corresponding input on picker values change starting from end date', async () => {
+        const value = { from: '2019-09-10', to: '2019-09-12' };
+        const { dom } = await setupRangeDatePicker({ value });
+
+        await userEvent.clear(dom.from);
+
+        // initial state
+        expect(dom.from.value).toBe('');
+        expect(dom.to.value).toBe('Sep 12, 2019');
+
+        await userEvent.click(dom.to);
+        const dialog = screen.getByRole('dialog');
+
+        const [, oct11] = await within(dialog).findAllByText('11');
+        await userEvent.click(oct11);
+        // should focus 'from' input
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
+        expect(dom.from.value).toBe('');
+        expect(dom.to.value).toBe('Oct 11, 2019');
+
+        const [, oct15] = await within(dialog).findAllByText('15');
+        await userEvent.click(oct15);
+        // should clear and focus 'to' input, when selecting older date
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
+        expect(dom.from.value).toBe('Oct 15, 2019');
+        expect(dom.to.value).toBe('');
+
+        const [, oct10] = await within(dialog).findAllByText('10');
+        await userEvent.click(oct10);
+        // should not change focus when earlier date selected for 'to' input
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
+        expect(dom.from.value).toBe('Oct 10, 2019');
+        expect(dom.to.value).toBe('');
+
+        const [, oct17] = await within(dialog).findAllByText('17');
+        await userEvent.click(oct17);
+        // should cancel focus when two dates selected
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
+        expect(dom.from.value).toBe('Oct 10, 2019');
+        expect(dom.to.value).toBe('Oct 17, 2019');
     });
 
     it('should format value onBlur', async () => {
