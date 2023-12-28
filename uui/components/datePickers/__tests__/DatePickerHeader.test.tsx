@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 
-import { fireEvent, setupComponentForTest, screen, within } from '@epam/uui-test-utils';
+import { fireEvent, setupComponentForTest, screen, within, userEvent } from '@epam/uui-test-utils';
 import { DatePickerHeader, DatePickerHeaderProps, getNextListYearFromCurrent, getNextMonthFromCurrent, getNextYearFromCurrent } from '../DatePickerHeader';
 import { ViewType } from '@epam/uui-components';
 
@@ -16,13 +16,13 @@ async function setupDatePickerHeader(params: { initialDate: string, viewType?: V
         (context) => ({
             value,
             onValueChange: params.onValueChange || jest.fn().mockImplementation((newValue) => {
-                context.current.setProperty('value', newValue);
+                context.current?.setProperty('value', newValue);
             }),
         }),
         (props) => <DatePickerHeader { ...props } />,
     );
 
-    const [left, title, right] = within(screen.queryByRole('banner')).queryAllByRole('button');
+    const [left, title, right] = within(screen.getByRole('banner')).queryAllByRole('button');
 
     return {
         result,
@@ -63,6 +63,19 @@ describe('DatePickerHeader', () => {
             const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22', viewType: 'YEAR_SELECTION', onValueChange: onValueChangeMock });
 
             fireEvent.click(dom.left);
+
+            expect(onValueChangeMock).toHaveBeenCalledWith({
+                view: 'YEAR_SELECTION',
+                selectedDate: '',
+                displayedDate: dayjs('2001-01-22').startOf('day'),
+            });
+        });
+
+        it('should change displayed date using keyboard (year selection)', async () => {
+            const onValueChangeMock = jest.fn();
+            const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22', viewType: 'YEAR_SELECTION', onValueChange: onValueChangeMock });
+
+            await userEvent.type(dom.left, '{space}');
 
             expect(onValueChangeMock).toHaveBeenCalledWith({
                 view: 'YEAR_SELECTION',
@@ -111,6 +124,19 @@ describe('DatePickerHeader', () => {
                 displayedDate: getNextListYearFromCurrent(dayjs('2017-01-22').startOf('day')),
             });
         });
+
+        it('should change displayed date using keyboard (year selection)', async () => {
+            const onValueChangeMock = jest.fn();
+            const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22', viewType: 'YEAR_SELECTION', onValueChange: onValueChangeMock });
+
+            await userEvent.type(dom.right, '{space}');
+
+            expect(onValueChangeMock).toHaveBeenCalledWith({
+                view: 'YEAR_SELECTION',
+                selectedDate: '',
+                displayedDate: getNextListYearFromCurrent(dayjs('2017-01-22').startOf('day')),
+            });
+        });
     });
 
     describe('title', () => {
@@ -145,6 +171,19 @@ describe('DatePickerHeader', () => {
             const { dom } = await setupDatePickerHeader({ initialDate: '2018-01-22', viewType: 'DAY_SELECTION', onValueChange: onValueChangeMock });
 
             fireEvent.click(dom.title);
+
+            expect(onValueChangeMock).toHaveBeenCalledWith({
+                view: 'MONTH_SELECTION',
+                selectedDate: '',
+                displayedDate: dayjs('2018-01-22').startOf('day'),
+            });
+        });
+
+        it('should change displayed date using keyboard (day selection)', async () => {
+            const onValueChangeMock = jest.fn();
+            const { dom } = await setupDatePickerHeader({ initialDate: '2018-01-22', viewType: 'DAY_SELECTION', onValueChange: onValueChangeMock });
+
+            await userEvent.type(dom.title, '{space}');
 
             expect(onValueChangeMock).toHaveBeenCalledWith({
                 view: 'MONTH_SELECTION',
