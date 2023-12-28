@@ -61,9 +61,9 @@ export function DemoPage() {
         pageContent = (
             <div className={ css.navPage }>
                 <div className={ css.navTitle }>Demo</div>
-                <div className={ css.christmasBox }>
+                <a className={ css.christmasBox } href="https://www.youtube.com/watch?v=sE3uRRFVsmc" target="_blank" rel="noreferrer">
                     <img alt="car" src="/static/christmas/gift_big.svg" className={ css.christmasGifts } />
-                </div>
+                </a>
                 <div className={ css.navCards }>
                     { demoItems.map((item) => {
                         return <DemoItemCard demoItem={ item } key={ item.id } onOpenItem={ sendEvent } />;
