@@ -146,6 +146,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     return {
         tree: treeWithData,
+        fullTree,
         dataSourceState,
         setDataSourceState,
         isFoldedByDefault,

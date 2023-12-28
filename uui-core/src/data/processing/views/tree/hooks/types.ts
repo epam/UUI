@@ -9,4 +9,5 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     LoadMissingRecords<TItem, TId> {
 
     tree: ITree<TItem, TId>;
+    fullTree: ITree<TItem, TId>; // TODO: TB removed
 }

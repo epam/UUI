@@ -17,6 +17,7 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     LoadMissingRecords<TItem, TId> {
 
     tree: ITree<TItem, TId>;
+    fullTree: ITree<TItem, TId>;
     isPartialLoad?: boolean;
 }
 
@@ -25,6 +26,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
 ) {
     const {
         tree,
+        fullTree,
         getId,
         getParentId,
         dataSourceState,
@@ -104,7 +106,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
     const { handleOnCheck, isRowChecked, isRowChildrenChecked, isItemCheckable, handleSelectAll } = useCheckingService({
-        tree,
+        tree: fullTree,
         dataSourceState,
         setDataSourceState,
         cascadeSelection,
