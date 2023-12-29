@@ -67,75 +67,74 @@
     &.size-18 {
         min-height: 18px;
         min-width: 18px;
-        padding-left: 3px;
-        padding-right: 3px;
+        padding: 1px 2px;
 
         :global(.uui-count_indicator):not(:last-child) {
             margin-right: 3px;
         }
 
-        :global(.uui-caption), :global(.uui-input) {
-            padding: 2px 3px;
-            line-height: 12px;
+        :global(.uui-caption) {
+            padding: 0 3px;
+            line-height: 14px;
             font-size: 12px;
         }
     }
 
     &.size-24 {
-        @include button-horizontal-layout(24px, 1px);
+        min-width: 24px;
         min-height: 24px;
+        padding: 2px;
 
-        :global(.uui-caption), :global(.uui-input) {
-            padding-top: 2px;
-            padding-bottom: 2px;
+        :global(.uui-caption) {
+            padding: 0 3px;
             line-height: 18px;
-            font-size: 14px;
+            font-size: 12px;
         }
     }
 
     &.size-30 {
-        @include button-horizontal-layout(30px, 1px);
+        min-width: 30px;
         min-height: 30px;
+        padding: 5px 2px;
 
-        :global(.uui-caption), :global(.uui-input) {
-            padding-top: 5px;
-            padding-bottom: 5px;
+        :global(.uui-caption) {
+            padding: 0 3px;
             line-height: 18px;
             font-size: 14px;
         }
     }
 
     &.size-36 {
-        @include button-horizontal-layout(36px, 1px);
+        min-width: 36px;
         min-height: 36px;
+        padding: 8px 5px;
 
-        :global(.uui-caption), :global(.uui-input) {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 24px;
+        :global(.uui-caption) {
+            padding: 0 3px;
+            line-height: 18px;
             font-size: 14px;
         }
     }
 
     &.size-42 {
-        @include button-horizontal-layout(42px, 1px);
+        min-width: 42px;
         min-height: 42px;
+        padding: 8px 5px;
 
-        :global(.uui-caption), :global(.uui-input) {
-            padding-top: 8px;
-            padding-bottom: 8px;
+        :global(.uui-caption) {
+            padding: 0 6px;
             line-height: 24px;
             font-size: 16px;
         }
     }
 
     &.size-48 {
-        @include button-horizontal-layout(48px, 1px);
+        min-width: 48px;
         min-height: 48px;
+        padding: 11px 5px;
 
-        :global(.uui-caption), :global(.uui-input) {
-            padding-top: 11px;
-            padding-bottom: 11px;
+        :global(.uui-caption) {
+            padding: 0 6px;
             line-height: 24px;
             font-size: 16px;
         }
