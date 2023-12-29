@@ -8,6 +8,11 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
+import { ExtendedTTableCellElement } from './plugins/tablePlugin/types';
+import { TTableCellElement } from '@udecode/plate-table';
+
+const mediaTypes = ['image', 'iframe'];
+
 const migrateTextNode = (oldNode: any) => {
     return {
         text: oldNode.text,
@@ -20,6 +25,20 @@ const migrateTextNode = (oldNode: any) => {
             {},
         ),
     };
+};
+
+export const migrateTableCell = (element: TTableCellElement): TTableCellElement => {
+    const oldElem = element as ExtendedTTableCellElement;
+    if (oldElem.data) {
+        if (oldElem.data.colSpan) {
+            element.colSpan = oldElem.data.colSpan;
+        }
+        if (oldElem.data.rowSpan) {
+            element.rowSpan = oldElem.data.rowSpan;
+        }
+        delete element.data;
+    }
+    return element;
 };
 
 const migrateTable = (oldTable: any) => {
@@ -37,18 +56,20 @@ const migrateTable = (oldTable: any) => {
 };
 
 const migrateElementNode = (node: any) => {
-    const mediaTypes = ['image', 'iframe'];
-
     if (node.type === 'paragraph' && node.nodes?.[0]?.type === 'table') {
         const tableNode = node.nodes[0];
         node = migrateTable(tableNode);
     }
 
+    const omitData = node.type === 'table_cell' || node.type === 'table_header_cell';
+    const dataProps = omitData ? {} : { data: node.data ?? {} };
     return {
-        data: node.data ?? {},
+        ...dataProps,
         type: node.type,
         ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
+        ...(node?.data?.colSpan ? { colSpan: node.data.colSpan } : {}),
+        ...(node?.data?.rowSpan ? { rowSpan: node.data.rowSpan } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
     };
 };
