@@ -2,6 +2,7 @@
 
 .root {
     --uui-rdtp_date-bg-selected: var(--uui-info-10);
+    --uui-rdtp_blocker-bg: color-mix(in srgb, var(--uui-surface-sunken) 80%, transparent);
 
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
@@ -111,7 +112,7 @@
     }
 
     .blocker {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: var(--uui-rdtp_blocker-bg);
         position: absolute;
         left: 0;
         right: 0;
