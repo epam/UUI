@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`migrate should migrate correctly 1`] = `
+exports[`migrate should migrate content correctly 1`] = `
 Array [
   Object {
     "children": Array [
@@ -28,7 +28,6 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {},
             "type": "table_header_cell",
           },
           Object {
@@ -43,7 +42,6 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {},
             "type": "table_header_cell",
           },
         ],
@@ -75,9 +73,6 @@ Array [
               },
             ],
             "colSpan": 2,
-            "data": Object {
-              "colSpan": 2,
-            },
             "type": "table_cell",
           },
         ],

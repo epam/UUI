@@ -9,7 +9,7 @@ import {
 
 import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
-import { ExtendedTTableCellElement } from './types';
+import { migrateTableCell } from '../../migration';
 
 export interface TableCellElementProps
     extends PlateElementProps<Value, TTableCellElement> {
@@ -22,11 +22,7 @@ React.ElementRef<typeof PlateElement>,
 TableCellElementProps
 >(({ children, className, style, hideBorder, ...props }, ref) => {
     const editor = useEditorRef();
-    const { element } = props;
-
-    const el = element as ExtendedTTableCellElement;
-    element.colSpan = el.colSpan || el?.data?.colSpan;
-    element.rowSpan = el.rowSpan || el?.data?.rowSpan;
+    props.element = migrateTableCell(props.element);
 
     const {
         colIndex,
@@ -47,7 +43,7 @@ TableCellElementProps
         colSpan,
     });
     const { rightProps, bottomProps, leftProps, hiddenLeft } = useTableCellElementResizable(resizableState);
-    const isHeader = element.type === getPluginType(editor, ELEMENT_TH);
+    const isHeader = props.element.type === getPluginType(editor, ELEMENT_TH);
     const Cell = isHeader ? 'th' : 'td';
 
     return (
@@ -76,7 +72,7 @@ TableCellElementProps
             { ...cellProps }
             style={
                 {
-                    '--cellBackground': element.background,
+                    '--cellBackground': props.element.background,
                     ...style,
                 } as React.CSSProperties
             }
