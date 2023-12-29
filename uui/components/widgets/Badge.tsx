@@ -51,18 +51,28 @@ function applyBadgeMods(mods: BadgeProps) {
         css.root,
         css['size-' + (mods.size || DEFAULT_SIZE)],
         `uui-fill-${mods.fill || DEFAULT_FILL}`,
-        mods.color && `uui-color-${mods.color}`,
+        `uui-color-${mods.color || 'info'}`,
         mods.indicator && mods.fill === 'outline' && 'uui-indicator',
     ];
 }
 
-const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['size']> = {
-    18: '12',
-    24: '18',
-    30: '18',
-    36: '18',
-    42: '24',
-    48: '24',
+const mapCountIndicatorSizes = (size: string): CountIndicatorProps['size'] => {
+    const DEFAULT_COUNTER_SIZE = '18';
+    const map: Record<number, CountIndicatorProps['size']> = {
+        18: '12',
+        24: '18',
+        30: '18',
+        36: '18',
+        42: '24',
+        48: '24',
+    };
+    const parsedSize = Number.parseInt(size);
+    if (Number.isNaN(parsedSize)) return DEFAULT_COUNTER_SIZE;
+
+    if (parsedSize < 18) return '12';
+    if (parsedSize > 48) return '24';
+
+    return map[parsedSize] ?? DEFAULT_COUNTER_SIZE;
 };
 
 export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon' | 'iconPosition'>, BadgeProps>(
@@ -86,7 +96,7 @@ export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clear
                 <CountIndicator
                     { ...countIndicatorProps }
                     color={ null }
-                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                    size={ mapCountIndicatorSizes(props.size || DEFAULT_SIZE) }
                 />
             ),
             indicator: props.indicator || false,
