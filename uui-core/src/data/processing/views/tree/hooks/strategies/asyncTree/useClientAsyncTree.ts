@@ -1,21 +1,21 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ClientAsyncTreeProps } from './types';
-import { Tree } from '../../../Tree';
 import { usePlainTreeStrategy } from '../plainTree';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
+import { NewTree } from '../../../newTree';
 
 export function useClientAsyncTree<TItem, TId, TFilter = any>(
     { mode, ...props }: ClientAsyncTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const fullTree = useMemo(() => Tree.blank(props), deps);
+    const baseTree = useMemo(() => NewTree.blank(props), deps);
     const [isForceReload, setIsForceReload] = useState(false);
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
     const { tree: treeWithData, isLoading, isFetching } = useLoadData({
         api: () => props.api().then((items) => ({ items })),
-        tree: fullTree,
+        tree: baseTree,
         dataSourceState: {
             visibleCount: props.dataSourceState.visibleCount,
             topIndex: props.dataSourceState.topIndex,
@@ -43,7 +43,6 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
 
     return {
         tree,
-        fullTree,
         reload,
         isLoading,
         isFetching,

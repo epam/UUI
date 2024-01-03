@@ -1,8 +1,10 @@
 import { useCallback, useRef } from 'react';
 import { CascadeSelection, CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
-import { ITree, ROOT_ID } from '../../../../tree';
+import { ROOT_ID } from '../../../../tree';
 import isEqual from 'lodash.isequal';
 import { CommonDataSourceConfig } from '../types';
+import { NewTree } from '../../../newTree';
+import { SnapshotId } from '../../../newTree/NewTree';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -20,7 +22,7 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: ITree<TItem, TId>;
+    tree: NewTree<TItem, TId>;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
@@ -31,19 +33,21 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const promiseInProgressRef = useRef<Promise<LoadResult<TItem, TId>>>();
 
     const loadMissingImpl = useCallback(async (
-        sourceTree: ITree<TItem, TId>,
+        sourceTree: NewTree<TItem, TId>,
         options?: Partial<{
             loadAllChildren?(id: TId): boolean;
             isLoadStrict?: boolean;
         }>,
         dataSourceState?: DataSourceState<TFilter, TId>,
         withNestedChildren?: boolean,
+        usingSnapshot: SnapshotId = 'visible',
     ): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = sourceTree;
 
         try {
-            const newTreePromise = sourceTree.load(
-                {
+            const newTreePromise = sourceTree.load({
+                using: usingSnapshot,
+                options: {
                     ...props,
                     ...options,
                     isFolded,
@@ -54,9 +58,9 @@ export function useLoadData<TItem, TId, TFilter = any>(
                         ...dataSourceState?.filter,
                     },
                 },
-                { ...props.dataSourceState, ...dataSourceState },
+                dataSourceState: { ...props.dataSourceState, ...dataSourceState },
                 withNestedChildren,
-            );
+            });
 
             const newTree = await newTreePromise;
             const linkToTree = sourceTree;
@@ -74,7 +78,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
     }, [isFolded, api, filter, props.dataSourceState]);
 
     const loadMissing = useCallback((
-        sourceTree: ITree<TItem, TId>,
+        sourceTree: NewTree<TItem, TId>,
         abortInProgress: boolean,
         options?: Partial<{
             loadAllChildren?(id: TId): boolean;
@@ -82,6 +86,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }>,
         dataSourceState?: DataSourceState<TFilter, TId>,
         withNestedChildren?: boolean,
+        usingSnapshot: SnapshotId = 'visible',
     ): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
         if (promiseInProgressRef.current === null || abortInProgress) {
@@ -89,12 +94,12 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         promiseInProgressRef.current = promiseInProgressRef.current.then(() =>
-            loadMissingImpl(sourceTree, options, dataSourceState, withNestedChildren));
+            loadMissingImpl(sourceTree, options, dataSourceState, withNestedChildren, usingSnapshot));
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
 
-    const loadMissingOnCheck = useCallback(async (currentTree: ITree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+    const loadMissingOnCheck = useCallback(async (currentTree: NewTree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (!cascadeSelection && !isRoot) {
@@ -102,7 +107,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         const loadNestedLayersChildren = !isImplicitMode;
-        const parents = currentTree.getParentIdsRecursive(id);
+        const coreTreeSnapshot = currentTree.snapshot('core');
+        const parents = coreTreeSnapshot.getParentIdsRecursive(id);
         const { tree: treeWithMissingRecords } = await loadMissing(
             currentTree,
             false,
@@ -127,6 +133,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             },
             { search: null },
             loadNestedLayersChildren,
+            'core',
         );
 
         return treeWithMissingRecords;

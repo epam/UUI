@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Tree } from '../../../Tree';
 import { LazyTreeStrategyProps } from './types';
 import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
@@ -10,7 +9,7 @@ import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
-import { ITree } from '../../../ITree';
+import { NewTree } from '../../../newTree';
 
 export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
@@ -26,9 +25,8 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
-    const tree = useMemo(() => Tree.blank(props), [...deps]);
+    const tree = useMemo(() => NewTree.blank(props), [...deps]);
     const [treeWithData, setTreeWithData] = useState(tree);
-    const [fullTree, setFullTree] = useState(treeWithData);
 
     const prevFilter = usePrevious(filter);
     const prevDataSourceState = usePrevious(dataSourceState);
@@ -37,7 +35,9 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isForceReload, setIsForceReload] = useState(false);
 
-    const actualRowsCount = useMemo(() => treeWithData.getTotalRecursiveCount() ?? 0, [treeWithData]);
+    const treeSnapshot = useMemo(() => treeWithData.snapshot(), [treeWithData]);
+
+    const actualRowsCount = useMemo(() => treeSnapshot.getTotalRecursiveCount() ?? 0, [treeSnapshot]);
 
     const lastRowIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
 
@@ -65,14 +65,13 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         cascadeSelection,
     });
 
-    const loadMissingRecords = useCallback(async (currentTree: ITree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+    const loadMissingRecords = useCallback(async (currentTree: NewTree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
         const newTree = await loadMissingOnCheck(currentTree, id, isChecked, isRoot);
         if (currentTree !== newTree) {
-            setFullTree(newTree);
-            setTreeWithData(treeWithData.mergeItems(newTree));
+            setTreeWithData(newTree);
         }
         return newTree;
-    }, [loadMissingOnCheck, setFullTree, setTreeWithData, treeWithData]);
+    }, [loadMissingOnCheck, setTreeWithData, treeWithData]);
 
     useEffect(() => {
         let completeReset = false;
@@ -83,9 +82,9 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         let currentTree = treeWithData;
         if (prevDataSourceState == null || shouldReloadData) {
             setIsFetching(true);
-            currentTree = treeWithData.clearStructure();
+            currentTree = treeWithData.clearStructure('visible');
             if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
-                currentTree = fullTree;
+                currentTree = currentTree.reset();
             }
             completeReset = true;
         }
@@ -106,8 +105,6 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setTreeWithData(newTree);
-                        const newFullTree = dataSourceState.search ? fullTree.mergeItems(newTree) : newTree;
-                        setFullTree(newFullTree);
                     }
                 }).finally(() => {
                     setIsFetching(false);
@@ -127,7 +124,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     ]);
 
     const treeRowsStats = useMemo(() => {
-        const rootInfo = treeWithData.getNodeInfo(undefined);
+        const rootInfo = treeSnapshot.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
         let completeFlatListRowsCount = undefined;
         if (!getChildCount && rootCount != null) {
@@ -136,9 +133,9 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
         return {
             completeFlatListRowsCount,
-            totalCount: rootInfo.totalCount ?? treeWithData.getTotalRecursiveCount() ?? 0,
+            totalCount: rootInfo.totalCount ?? treeSnapshot.getTotalRecursiveCount() ?? 0,
         };
-    }, [getChildCount, treeWithData]);
+    }, [getChildCount, treeSnapshot]);
 
     const reload = useCallback(() => {
         setIsForceReload(true);
@@ -146,7 +143,6 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     return {
         tree: treeWithData,
-        fullTree,
         dataSourceState,
         setDataSourceState,
         isFoldedByDefault,

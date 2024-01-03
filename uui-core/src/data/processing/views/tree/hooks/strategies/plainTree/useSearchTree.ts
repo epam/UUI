@@ -1,12 +1,12 @@
 import { useMemo, useRef } from 'react';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
-import { ITree } from '../../../../tree';
+import { NewTree } from '../../../newTree';
 
 export type UseSearchTreeProps<TItem, TId, TFilter = any> = {
     getSearchFields?: (item: TItem) => string[];
     sortSearchByRelevance?: boolean;
-    tree: ITree<TItem, TId>;
+    tree: NewTree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
 };
 
@@ -22,7 +22,7 @@ export function useSearchTree<TItem, TId, TFilter = any>(
     const prevTree = useSimplePrevious(tree);
     const prevSearch = useSimplePrevious(search);
     const prevDeps = useSimplePrevious(deps);
-    const searchTreeRef = useRef(null);
+    const searchTreeRef = useRef<NewTree<TItem, TId>>(null);
 
     return useMemo(() => {
         const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);

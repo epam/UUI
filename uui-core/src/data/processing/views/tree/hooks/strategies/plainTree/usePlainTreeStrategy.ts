@@ -48,21 +48,23 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         [sortTree],
     );
 
+    const treeSnapshot = useMemo(() => tree.snapshot(), [tree]);
+
     const treeRowsStats = useMemo(() => {
-        const rootInfo = tree.getNodeInfo(undefined);
+        const rootInfo = treeSnapshot.getNodeInfo(undefined);
 
         return {
             completeFlatListRowsCount: undefined,
-            totalCount: rootInfo.totalCount ?? tree.getTotalRecursiveCount() ?? 0,
+            totalCount: rootInfo.totalCount ?? treeSnapshot.getTotalRecursiveCount() ?? 0,
         };
-    }, [tree]);
+    }, [treeSnapshot]);
 
     const getChildCount = useCallback((item: TItem): number | undefined => {
         if (props.getChildCount) {
-            return props.getChildCount(item) ?? tree.getChildrenByParentId(getId(item)).length;
+            return props.getChildCount(item) ?? treeSnapshot.getChildrenByParentId(getId(item)).length;
         }
-        return tree.getChildrenByParentId(getId(item)).length;
-    }, [tree, getId, props.getChildCount]);
+        return treeSnapshot.getChildrenByParentId(getId(item)).length;
+    }, [treeSnapshot, getId, props.getChildCount]);
 
     const reload = useCallback(() => {
         resetTree();
@@ -71,7 +73,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     return useMemo(
         () => ({
             tree,
-            fullTree: sortTree,
             rowOptions,
             getRowOptions,
             getChildCount,
@@ -84,7 +85,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         }),
         [
             tree,
-            sortTree,
             dataSourceState,
             setDataSourceState,
             rowOptions,

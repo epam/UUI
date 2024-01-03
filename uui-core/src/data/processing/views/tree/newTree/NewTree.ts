@@ -28,7 +28,6 @@ interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, 
 interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<TItem, TId, TFilter> {}
 
 interface CascadeSelectionOptions<TItem, TId> {
-    snapshot: TreeSnapshot<TItem, TId>;
     currentCheckedIds: TId[];
     checkedId: TId;
     isChecked: boolean;
@@ -36,9 +35,8 @@ interface CascadeSelectionOptions<TItem, TId> {
     cascadeSelectionType?: CascadeSelection;
 }
 
-interface PatchOptions<TItem, TId> {
+interface PatchOptions<TItem> {
     using?: SnapshotId;
-    snapshot: TreeSnapshot<TItem, TId>;
     items: TItem[];
     isDeletedProp?: keyof TItem;
     comparator?: ItemsComparator<TItem>;
@@ -75,7 +73,7 @@ export class NewTree<TItem, TId> {
     public filter<TFilter>({
         filter,
         getFilter,
-    }: FilterOptions<TItem, TId, TFilter>) {
+    }: FilterOptions<TItem, TId, TFilter>): NewTree<TItem, TId> {
         const treeSnapshot = this.snapshot('core');
         const newTreeSnapshot = TreeSnapshot.filter({ snapshot: treeSnapshot, getFilter, filter });
 
@@ -88,7 +86,7 @@ export class NewTree<TItem, TId> {
     public sort<TFilter>({
         sorting,
         sortBy,
-    }: SortOptions<TItem, TId, TFilter>) {
+    }: SortOptions<TItem, TId, TFilter>): NewTree<TItem, TId> {
         const treeSnapshot = this.snapshot('core');
         const newTreeSnapshot = TreeSnapshot.sort({ snapshot: treeSnapshot, sorting, sortBy });
 
@@ -102,7 +100,7 @@ export class NewTree<TItem, TId> {
         search,
         getSearchFields,
         sortSearchByRelevance,
-    }: SearchOptions<TItem, TId, TFilter>) {
+    }: SearchOptions<TItem, TId, TFilter>): NewTree<TItem, TId> {
         const treeSnapshot = this.snapshot('core');
         const visibleTreeSnapshot = this.snapshot();
         const newTreeSnapshot = TreeSnapshot.search({ snapshot: treeSnapshot, search, getSearchFields, sortSearchByRelevance });
@@ -119,8 +117,8 @@ export class NewTree<TItem, TId> {
         return TreeSnapshot.cascadeSelection({ snapshot: treeSnapshot, ...options });
     }
 
-    public patch({ using = 'visible', ...options }: PatchOptions<TItem, TId>) {
-        const treeSnapshot = this.snapshot(using);
+    public patch({ using, ...options }: PatchOptions<TItem>) {
+        const treeSnapshot = this.snapshot(using ?? 'core');
         const newTreeSnapshot = TreeSnapshot.patch({ snapshot: treeSnapshot, ...options });
 
         if (newTreeSnapshot === treeSnapshot) {
@@ -130,7 +128,7 @@ export class NewTree<TItem, TId> {
         return this.updateSnapshots({ using, snapshot: newTreeSnapshot });
     }
 
-    private updateSnapshots({ using, snapshot }: UpdateSnapshots<TItem, TId>) {
+    private updateSnapshots({ using, snapshot }: UpdateSnapshots<TItem, TId>): NewTree<TItem, TId> {
         const newSnapshots = newMap<string, TreeSnapshot<TItem, TId>>(this.params);
         const newById = snapshot.byId;
         if (using === undefined) {
@@ -145,10 +143,10 @@ export class NewTree<TItem, TId> {
             newSnapshots.set(using, snapshot);
         }
 
-        return this.newInstance(this.params, newById, newSnapshots);
+        return NewTree.newInstance(this.params, newById, newSnapshots);
     }
 
-    private newInstance(
+    private static newInstance<TItem, TId>(
         params: TreeParams<TItem, TId>,
         byId: IMap<TId, TItem>,
         snapshots: IMap<string, TreeSnapshot<TItem, TId>>,
@@ -160,11 +158,64 @@ export class NewTree<TItem, TId> {
         );
     }
 
+    public static create<TItem, TId>(
+        params: TreeParams<TItem, TId>,
+        items: TItem[],
+    ) {
+        const snapshot = TreeSnapshot.create(params, items);
+        const snapshots = newMap<string, TreeSnapshot<TItem, TId>>(params);
+        snapshots.set('core', snapshot);
+        snapshots.set('visible', snapshot);
+        return this.newInstance(
+            params,
+            snapshot.byId,
+            snapshots,
+        );
+    }
+
     public snapshot(id: SnapshotId = 'visible') {
         if (!this.snapshots.has(id)) {
             const newSnapshot = TreeSnapshot.newInstance(this.params, this.byId);
             this.snapshots.set(id, newSnapshot);
         }
         return this.snapshots.get(id);
+    }
+
+    public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
+        return new this(
+            params,
+            newMap(params),
+            newMap(params),
+        );
+    }
+
+    public clearStructure(ofSnapshot?: SnapshotId): NewTree<TItem, TId> {
+        const newSnapshots = newMap<string, TreeSnapshot<TItem, TId>>(this.params);
+        if (ofSnapshot === undefined) {
+            for (const [id] of this.snapshots) {
+                newSnapshots.set(id, TreeSnapshot.newInstance(this.params, this.byId));
+            }
+        } else {
+            for (const [id, prevSnapshot] of this.snapshots) {
+                newSnapshots.set(id, prevSnapshot);
+            }
+            newSnapshots.set(ofSnapshot, TreeSnapshot.newInstance(this.params, this.byId));
+        }
+
+        return NewTree.newInstance(this.params, this.byId, newSnapshots);
+    }
+
+    public reset(toSnapshot: SnapshotId = 'core'): NewTree<TItem, TId> {
+        const newSnapshots = newMap<string, TreeSnapshot<TItem, TId>>(this.params);
+        const snapshot = this.snapshot(toSnapshot);
+        for (const [id, prevSnapshot] of this.snapshots) {
+            if (id !== toSnapshot) {
+                newSnapshots.set(id, snapshot);
+            } else {
+                newSnapshots.set(id, prevSnapshot);
+            }
+        }
+
+        return NewTree.newInstance(this.params, this.byId, newSnapshots);
     }
 }

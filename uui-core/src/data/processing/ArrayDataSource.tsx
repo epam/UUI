@@ -2,13 +2,13 @@ import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps, useDataRows } from './views';
-import { ITree, NOT_FOUND_RECORD, Tree, useTree } from './views/tree';
+import { NOT_FOUND_RECORD, NewTree, useTree } from './views/tree';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
 export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
-    tree: ITree<TItem, TId>;
+    tree: NewTree<TItem, TId>;
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.setProps(props);
@@ -16,10 +16,10 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         this.props = props;
-        if (this.props.items instanceof Tree) {
+        if (this.props.items instanceof NewTree) {
             this.tree = this.props.items;
         } else {
-            this.tree = Tree.create(
+            this.tree = NewTree.create(
                 {
                     ...this.props,
                     // These defaults are added for compatibility reasons.
@@ -33,7 +33,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     }
 
     public getById = (id: TId): TItem | void => {
-        const item = this.tree.getById(id);
+        const item = this.tree.snapshot().getById(id);
         if (item === NOT_FOUND_RECORD) {
             return;
         }
@@ -50,7 +50,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         if (!prevItem) {
             const items = Array.isArray(this.props.items)
                 ? [...this.props.items, item]
-                : this.props.items.patch([item]);
+                : this.props.items.patch({ items: [item] });
             this.setProps({ ...this.props, items });
         }
     }

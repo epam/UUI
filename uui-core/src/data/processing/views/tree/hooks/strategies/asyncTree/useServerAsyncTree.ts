@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Tree } from '../../../Tree';
 import { usePlainTreeStrategy } from '../plainTree';
 import { ServerAsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
+import { NewTree } from '../../../newTree';
 
 export function useServerAsyncTree<TItem, TId, TFilter = any>(
     props: ServerAsyncTreeProps<TItem, TId, TFilter>,
@@ -14,13 +14,12 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
 
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
-    const baseTree = useMemo(() => Tree.blank(props), deps);
-    const [fullTree, setFullTree] = useState(baseTree);
-    const [visibleTree, setVisibleTree] = useState(fullTree);
+    const baseTree = useMemo(() => NewTree.blank(props), deps);
+    const [currentTree, setCurrentTree] = useState(baseTree);
 
     const { tree: treeWithData, isLoading, isFetching } = useLoadData({
         api,
-        tree: fullTree,
+        tree: currentTree,
         dataSourceState,
         forceReload: isForceReload,
     }, [
@@ -33,10 +32,9 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
     const prevIsFetching = useSimplePrevious(isFetching);
 
     useEffect(() => {
-        if (treeWithData !== visibleTree) {
-            setVisibleTree(treeWithData);
-            const newFullTree = dataSourceState.search ? fullTree.mergeItems(treeWithData) : treeWithData;
-            setFullTree(newFullTree);
+        if (treeWithData !== currentTree) {
+            setCurrentTree(treeWithData);
+
             if (prevIsForceReload !== isForceReload && isForceReload
                 && prevIsFetching !== isFetching && !isFetching) {
                 setIsForceReload(false);
@@ -48,11 +46,11 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
     const { tree, ...restProps } = usePlainTreeStrategy(
         {
             ...props,
-            items: visibleTree,
+            items: currentTree,
             dataSourceState: restDataSourceState,
             type: 'plain',
         },
-        [...deps, visibleTree],
+        [...deps, currentTree],
     );
 
     const reload = useCallback(() => {
@@ -61,7 +59,6 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
 
     return {
         tree,
-        fullTree,
         reload,
         isLoading,
         isFetching,
