@@ -132,7 +132,9 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
         } else {
             if (value !== null) {
                 const validatedValue = getMinMaxValidatedValue({ value, min, max });
-                props.onValueChange(validatedValue);
+                if (validatedValue !== value) {
+                    props.onValueChange(validatedValue);
+                }
             }
         }
 
