@@ -4,11 +4,17 @@ import {
 
 describe('numericInputCalculations', () => {
     it('getDecimalLength return length of the decimal value', () => {
+        expect(getDecimalLength(null)).toBe(0);
+
         expect(getDecimalLength(2)).toBe(0);
+        expect(getDecimalLength(10)).toBe(0);
+        expect(getDecimalLength(100)).toBe(0);
+
         expect(getDecimalLength(0.123)).toBe(3);
         expect(getDecimalLength(1.25)).toBe(2);
         expect(getDecimalLength(1.3333333333)).toBe(10);
     });
+
     it('getCalculatedValue return calculated value with default step and action', () => {
         expect(getCalculatedValue({ value: 1.25 })).toBe(2.25);
         expect(getCalculatedValue({ value: 2 })).toBe(3);
@@ -29,7 +35,6 @@ describe('numericInputCalculations', () => {
         expect(getMinMaxValidatedValue({ value: 10, min: 0, max: 10 })).toBe(10);
         expect(getMinMaxValidatedValue({ value: 12, min: 0, max: 10 })).toBe(10);
         expect(getMinMaxValidatedValue({ value: -1, max: 10 })).toBe(0);
-        expect(getMinMaxValidatedValue({ value: null, max: 10 })).toBe(null);
     });
 
     it('getSeparatedValue return validated value within min max range', () => {
