@@ -319,7 +319,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         return this.create(snapshot.params, response.items);
     }
 
-    private static create<TItem, TId>(params: TreeParams<TItem, TId>, items: TItem[]) {
+    public static create<TItem, TId>(params: TreeParams<TItem, TId>, items: TItem[]) {
         const byId = newMap<TId, TItem>(params);
         const byParentId = newMap<TId, TId[]>(params);
 

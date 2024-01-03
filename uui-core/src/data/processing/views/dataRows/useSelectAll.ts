@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { ITree } from '../tree';
 import { NodeStats } from './stats';
+import { NewTree } from '../tree/newTree';
 
 export interface UseSelectAllProps<TItem, TId> {
-    tree: ITree<TItem, TId>;
+    tree: NewTree<TItem, TId>;
     selectAll?: boolean;
     stats: NodeStats;
     checked?: TId[];
@@ -21,7 +21,7 @@ export function useSelectAll<TItem, TId>(props: UseSelectAllProps<TItem, TId>) {
                 onValueChange: props.handleSelectAll,
                 indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllChecked,
             };
-        } else if (props.tree.getRootIds().length === 0 && props.areCheckboxesVisible && isSelectAllEnabled) {
+        } else if (props.tree.snapshot().getRootIds().length === 0 && props.areCheckboxesVisible && isSelectAllEnabled) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
             return {
                 value: false,

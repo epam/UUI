@@ -2,7 +2,7 @@ import {
     DataRowProps, SortingOption, IEditable, DataSourceState, DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from '../../../types';
 import { BaseListView } from './BaseListView';
-import { ITree, NOT_FOUND_RECORD, Tree } from './tree';
+import { ITree, NOT_FOUND_RECORD, NewTree, Tree } from './tree';
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /** A pure function that gets search value for each item.
@@ -36,7 +36,7 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     /** Data, which should be represented by a DataSource. */
-    items?: TItem[] | ITree<TItem, TId>;
+    items?: TItem[] | NewTree<TItem, TId>;
 }
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
@@ -66,7 +66,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         if (this.props.items) {
             // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
             if (prevItems !== newItems || !this.fullTree) {
-                this.fullTree = Tree.create(this.props, this.props.items);
+                this.fullTree = Tree.create(this.props, this.props.items as TItem[]);
                 this.visibleTree = this.fullTree;
                 this.refreshCache = true;
             }

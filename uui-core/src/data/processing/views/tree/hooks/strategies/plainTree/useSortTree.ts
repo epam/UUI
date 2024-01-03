@@ -1,11 +1,11 @@
 import { useMemo, useRef } from 'react';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { DataSourceState, SortingOption } from '../../../../../../../types';
-import { ITree } from '../../../../tree';
+import { NewTree } from '../../../newTree';
 
 export type UseSortTreeProps<TItem, TId, TFilter = any> = {
     sortBy?(item: TItem, sorting: SortingOption): any;
-    tree: ITree<TItem, TId>;
+    tree: NewTree<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
 };
 
@@ -16,11 +16,11 @@ export function useSortTree<TItem, TId, TFilter = any>(
         sortBy,
     }: UseSortTreeProps<TItem, TId, TFilter>,
     deps: any[],
-) {
+): NewTree<TItem, TId> {
     const prevTree = useSimplePrevious(tree);
     const prevSorting = useSimplePrevious(sorting);
     const prevDeps = useSimplePrevious(deps);
-    const sortedTreeRef = useRef(null);
+    const sortedTreeRef = useRef<NewTree<TItem, TId>>(null);
 
     return useMemo(() => {
         const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);

@@ -1,4 +1,4 @@
-import { ITree } from '../../tree/ITree';
+import { NewTree } from '../newTree';
 import { CommonDataSourceConfig, LoadMissingRecords, TreeActions, TreeLoadingState, TreeRowsStats } from './strategies/types';
 
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
@@ -8,6 +8,5 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     TreeRowsStats,
     LoadMissingRecords<TItem, TId> {
 
-    tree: ITree<TItem, TId>;
-    fullTree: ITree<TItem, TId>; // TODO: TB removed
+    tree: NewTree<TItem, TId>;
 }

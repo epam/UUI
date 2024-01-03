@@ -2,8 +2,8 @@ import { UseTreeResult } from '../../types';
 import { STRATEGIES } from '../constants';
 import { LazyTreeStrategyProps } from '../lazyTree/types';
 import { PlainTreeStrategyProps } from '../../strategies/plainTree/types';
-import { ITree } from '../../..';
 import { AsyncTreeStrategyProps } from '../asyncTree/types';
+import { NewTree } from '../../../newTree';
 
 type PlainTreeStrategyPropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeStrategyProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
 
@@ -27,5 +27,5 @@ export type TreeStrategyProps<TItem, TId, TFilter = any> = (
 );
 
 export interface LoadMissingRecords<TItem, TId> {
-    loadMissingRecords?: (currentTree: ITree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>;
+    loadMissingRecords?: (currentTree: NewTree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => Promise<NewTree<TItem, TId>>;
 }

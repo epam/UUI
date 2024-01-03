@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
-import { ITree, NOT_FOUND_RECORD } from '../tree';
+import { NOT_FOUND_RECORD } from '../tree';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
 import { FoldingService } from './services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
+import { NewTree } from '../tree/newTree';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     FoldingService<TItem, TId>,
@@ -13,7 +14,7 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     > {
 
-    tree: ITree<TItem, TId>;
+    tree: NewTree<TItem, TId>;
 
     isPartialLoad?: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
@@ -44,6 +45,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     isLoading = false,
 }: UseBuildRowsProps<TItem, TId, TFilter>) {
     const buildRows = () => {
+        const treeSnapshot = tree.snapshot();
         const rows: DataRowProps<TItem, TId>[] = [];
         const pinned: Record<string, number> = {};
         const pinnedByParentId: Record<string, number[]> = {};
@@ -56,13 +58,13 @@ export function useBuildRows<TItem, TId, TFilter = any>({
             let stats = getDefaultNodeStats();
 
             const layerRows: DataRowProps<TItem, TId>[] = [];
-            const nodeInfo = tree.getNodeInfo(parentId);
+            const nodeInfo = treeSnapshot.getNodeInfo(parentId);
 
-            const ids = tree.getChildrenIdsByParentId(parentId);
+            const ids = treeSnapshot.getChildrenIdsByParentId(parentId);
 
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
-                const item = tree.getById(id);
+                const item = treeSnapshot.getById(id);
                 if (item === NOT_FOUND_RECORD) {
                     continue;
                 }
@@ -79,7 +81,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 row.indent = isFlattenSearch ? 0 : row.path.length + 1;
                 const estimatedChildrenCount = getEstimatedChildrenCount(id);
                 if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
-                    const childrenIds = tree.getChildrenIdsByParentId(id);
+                    const childrenIds = treeSnapshot.getChildrenIdsByParentId(id);
 
                     if (estimatedChildrenCount > 0) {
                         row.isFolded = isFolded(item);
@@ -94,7 +96,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                         // while searching and no children in visible tree, no need to append placeholders.
                         } else if (!dataSourceState.search && !row.isFolded && appendRows) {
                         // children are not loaded
-                            const parentsWithRow = [...row.path, tree.getPathItem(item)];
+                            const parentsWithRow = [...row.path, treeSnapshot.getPathItem(item)];
                             for (let m = 0; m < estimatedChildrenCount && rows.length < lastRowIndex; m++) {
                                 const loadingRow = getLoadingRowProps('_loading_' + rows.length, rows.length, parentsWithRow);
                                 loadingRow.indent = parentsWithRow.length + 1;
@@ -116,9 +118,9 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 }
             }
 
-            const pathToParent = tree.getPathById(parentId);
-            const parent = tree.getById(parentId);
-            const parentPathItem = parent !== NOT_FOUND_RECORD ? [tree.getPathItem(parent)] : [];
+            const pathToParent = treeSnapshot.getPathById(parentId);
+            const parent = treeSnapshot.getById(parentId);
+            const parentPathItem = parent !== NOT_FOUND_RECORD ? [treeSnapshot.getPathItem(parent)] : [];
             const path = parentId ? [...pathToParent, ...parentPathItem] : pathToParent;
             if (appendRows) {
                 let missingCount = getMissingRecordsCount(parentId, rows.length, currentLevelRows);
