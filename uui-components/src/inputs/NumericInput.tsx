@@ -77,19 +77,28 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
 };
 
 export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>((props, ref) => {
-    let {
-        value = null, min, max, formatOptions,
+    const {
+        value: initialValue = null,
+        min: initialMin,
+        max: initialMax,
+        formatOptions: initialFormatOptions,
+        step,
+        formatValue,
     } = props;
 
-    const { step, formatValue } = props;
+    const value = initialValue != null ? +initialValue : null;
+    const min = initialMin ?? 0;
+    const max = initialMax ?? Number.MAX_SAFE_INTEGER;
+    const formatOptions = initialFormatOptions ?? { maximumFractionDigits: 0 };
 
-    if (value != null) {
-        value = +value;
-    }
+    const placeholderValue = React.useMemo(() => {
+        if (!value && value !== 0) return props.placeholder || '0';
+        if (formatValue) return formatValue(value);
 
-    min = min ?? 0;
-    max = max ?? Number.MAX_SAFE_INTEGER;
-    formatOptions = formatOptions ?? { maximumFractionDigits: 0 };
+        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
+    }, [
+        props.placeholder, props.disableLocaleFormatting, formatOptions, value,
+    ]);
 
     const context = useUuiContext();
 
@@ -118,11 +127,11 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
         setInFocus(false);
 
         // clearing the input when entering invalid data using special characters
-        if (event.target.validity?.badInput) {
+        if (inputRef.current && event.target.validity?.badInput) {
             inputRef.current.value = '';
         } else {
-            const validatedValue = getMinMaxValidatedValue({ value, min, max });
-            if (validatedValue !== props.value && (validatedValue != null || props.value != null)) {
+            if (value !== null) {
+                const validatedValue = getMinMaxValidatedValue({ value, min, max });
                 props.onValueChange(validatedValue);
             }
         }
@@ -154,7 +163,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
         }
     };
 
-    const inputRef = React.useRef<HTMLInputElement>();
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
     // disable changing the value by scrolling the wheel when the input is in focus and hover
     React.useEffect(() => {
@@ -167,15 +176,6 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
     const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0) ? props.value : ''), [props.value, inFocus]);
-
-    const placeholderValue = React.useMemo(() => {
-        if (!value && value !== 0) return props.placeholder || '0';
-        if (formatValue) return formatValue(value);
-
-        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
-    }, [
-        props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting,
-    ]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
 
