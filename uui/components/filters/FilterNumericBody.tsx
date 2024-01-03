@@ -8,13 +8,28 @@ import { i18n } from '../../i18n';
 import css from './FilterNumericBody.module.scss';
 
 interface INumericRangeValue {
+    /**
+     * Defines range value 'from'
+     */
     from: number | null;
+    /**
+     * Defines range value 'to'
+     */
     to: number | null;
 }
 
 interface IFilterNumericBodyProps extends DropdownBodyProps {
+    /**
+     * Called when numeric body value needs to be changed
+     */
     onValueChange: (value: number | INumericRangeValue) => void;
+    /**
+     * Defines numeric body value
+     */
     value: undefined | number | INumericRangeValue;
+    /**
+     * Defines the selected predicate
+     */
     selectedPredicate?: string;
 }
 
