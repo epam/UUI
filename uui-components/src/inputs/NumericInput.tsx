@@ -92,10 +92,12 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     const formatOptions = initialFormatOptions ?? { maximumFractionDigits: 0 };
 
     const placeholderValue = React.useMemo(() => {
-        if (!value) return props.placeholder || '0';
-        if (formatValue) return formatValue(value);
+        if (typeof value === 'number') {
+            if (formatValue) return formatValue(value);
+            return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
+        }
 
-        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
+        return props.placeholder || '0';
     }, [
         props.placeholder, props.disableLocaleFormatting, formatOptions, value,
     ]);
