@@ -191,11 +191,11 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         }
     }
 
-    private static newInstance<TItem, TId>(
+    public static newInstance<TItem, TId>(
         params: TreeParams<TItem, TId>,
         byId: IMap<TId, TItem>,
-        byParentId: IMap<TId, TId[]>,
-        nodeInfoById: IMap<TId, TreeNodeInfo>,
+        byParentId?: IMap<TId, TId[]>,
+        nodeInfoById?: IMap<TId, TreeNodeInfo>,
     ) {
         return new TreeSnapshot(
             params,

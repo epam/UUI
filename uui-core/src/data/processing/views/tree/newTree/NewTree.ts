@@ -162,7 +162,7 @@ export class NewTree<TItem, TId> {
 
     public snapshot(id: SnapshotId = 'visible') {
         if (!this.snapshots.has(id)) {
-            const newSnapshot = new TreeSnapshot(this.params, this.byId);
+            const newSnapshot = TreeSnapshot.newInstance(this.params, this.byId);
             this.snapshots.set(id, newSnapshot);
         }
         return this.snapshots.get(id);
