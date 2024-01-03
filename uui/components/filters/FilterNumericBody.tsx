@@ -20,6 +20,7 @@ interface IFilterNumericBodyProps extends DropdownBodyProps {
 
 export function FilterNumericBody(props: IFilterNumericBodyProps) {
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
+    const isWrongRange = (from: number | undefined, to: number | undefined) => (from ?? to) && from > to;
 
     const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
         const value = props.value as INumericRangeValue;
@@ -84,6 +85,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                             size="36"
                             placeholder="Max"
                             formatOptions={ { maximumFractionDigits: 2 } }
+                            isInvalid={ isWrongRange(value?.from, value?.to) }
                         />
                     </FlexCell>
                 </FlexRow>
