@@ -1,276 +1,15 @@
 import isEqual from 'lodash.isequal';
 import sortBy from 'lodash.sortby';
-import { DataRowPathItem, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../types';
+import { CascadeSelectionTypes, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../types';
 import { getSearchFilter } from '../../../../querying';
 import { newMap } from '../BaseTree';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, LoadAllTreeOptions, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo, TreeParams } from '../ITree';
-
-interface LoadOptions<TItem, TId, TFilter = any> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: LoadTreeOptions<TItem, TId, TFilter>;
-    dataSourceState: Readonly<DataSourceState>;
-    withNestedChildren: boolean;
-}
-
-interface LoadItemsOptions<TItem, TId, TFilter = any> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: LoadTreeOptions<TItem, TId, TFilter>,
-    parentId: TId,
-    parent: TItem,
-    dataSourceState: Readonly<DataSourceState>,
-    remainingRowsCount: number,
-    loadAll: boolean,
-}
-
-interface LoadMissingItemsAndParentsOptions<TItem, TId, TFilter = any> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: LoadTreeOptions<TItem, TId, TFilter>;
-    itemsToLoad: TId[];
-}
-
-interface LoadAllOptions<TItem, TId, TFilter = any> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: LoadAllTreeOptions<TItem, TId, TFilter>;
-    dataSourceState: DataSourceState;
-}
-
-interface FilterOptions<TItem, TId, TFilter = any> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: ApplyFilterOptions<TItem, TId, TFilter>;
-}
-
-interface ApplyFilterToTreeSnapshotOptions<TItem, TId> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    filter: undefined | ((item: TItem) => number | boolean);
-}
-
-interface SearchOptions<TItem, TId, TFilter> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: ApplySearchOptions<TItem, TId, TFilter>;
-}
-
-interface ApplySearchToTreeSnapshotOptions<TItem, TId> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    search: undefined | ((item: TItem) => number | boolean);
-    sortSearchByRelevance?: boolean;
-}
-
-interface SortOptions<TItem, TId, TFilter> {
-    snapshot: TreeSnapshot<TItem, TId>;
-    options: ApplySortOptions<TItem, TId, TFilter>;
-}
-
-class BaseTreeSnapshot<TItem, TId> {
-    constructor(
-        protected params: TreeParams<TItem, TId>,
-        protected _byId: IMap<TId, TItem>,
-        protected readonly byParentId?: IMap<TId, TId[]>,
-        protected readonly nodeInfoById?: IMap<TId, TreeNodeInfo>,
-    ) {
-        this.byParentId = byParentId ?? newMap(params);
-        this.nodeInfoById = nodeInfoById ?? newMap(params);
-    }
-
-    public get byId() {
-        return this._byId;
-    }
-
-    public set byId(newById: IMap<TId, TItem>) {
-        this._byId = newById;
-    }
-
-    public getRootIds(): TId[] {
-        return this.byParentId.get(undefined) || [];
-    }
-
-    public getRootItems() {
-        return this.getRootIds().map((id) => this.byId.get(id)!);
-    }
-
-    public getById(id: TId): TItem | typeof NOT_FOUND_RECORD {
-        if (!this.byId.has(id)) {
-            return NOT_FOUND_RECORD;
-        }
-
-        return this.byId.get(id);
-    }
-
-    public getChildren(item: TItem) {
-        const id = this.params.getId(item);
-        return this.getChildrenByParentId(id);
-    }
-
-    public getChildrenByParentId(parentId: TId) {
-        const ids = this.getChildrenIdsByParentId(parentId);
-        const children = ids.map((id) => this.byId.get(id));
-        return children;
-    }
-
-    public getChildrenIdsByParentId(parentId: TId) {
-        return this.byParentId.get(parentId) || [];
-    }
-
-    public getParentIdsRecursive(id: TId) {
-        const parentIds: TId[] = [];
-        let parentId = id;
-        while (true) {
-            const item = this.byId.get(parentId);
-            if (!item) {
-                break;
-            }
-            parentId = this.params.getParentId?.(item);
-            if (!parentId) {
-                break;
-            }
-            parentIds.unshift(parentId);
-        }
-        return parentIds;
-    }
-
-    public getParents(id: TId) {
-        const parentIds = this.getParentIdsRecursive(id);
-        const parents: TItem[] = [];
-        parentIds.forEach((parentId) => {
-            if (this.byId.has(parentId)) {
-                parents.push(this.byId.get(parentId));
-            }
-        });
-
-        return parents;
-    }
-
-    public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
-        const foundParents = this.getParents(id);
-        const path: DataRowPathItem<TId, TItem>[] = [];
-        foundParents.forEach((parent) => {
-            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
-            path.push(pathItem);
-        });
-        return path;
-    }
-
-    public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
-        const parentId = this.params.getParentId?.(item);
-        const id = this.params.getId?.(item);
-
-        const ids = this.getChildrenIdsByParentId(parentId);
-        const nodeInfo = this.getNodeInfo(parentId);
-        const lastId = ids[ids.length - 1];
-
-        const isLastChild = lastId !== undefined && lastId === id && nodeInfo.count === ids.length;
-
-        return {
-            id: this.params.getId(item),
-            value: item,
-            isLastChild,
-        };
-    }
-
-    public getNodeInfo(id: TId) {
-        return this.nodeInfoById.get(id) || {};
-    }
-
-    public isFlatList() {
-        return this.byParentId.size <= 1;
-    }
-
-    public getTotalRecursiveCount() {
-        let count = undefined;
-        for (const [, info] of this.nodeInfoById) {
-            if (info.count == null) {
-                // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
-                return null;
-            } else {
-                if (count === undefined) {
-                    count = 0;
-                }
-                count += info.count;
-            }
-        }
-        return count;
-    }
-
-    public forEach(
-        action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
-        options?: {
-            direction?: 'bottom-up' | 'top-down';
-            parentId?: TId;
-            includeParent?: boolean;
-        },
-    ) {
-        let shouldStop = false;
-        const stop = () => {
-            shouldStop = true;
-        };
-
-        options = { direction: 'top-down', parentId: undefined, ...options };
-        if (options.includeParent == null) {
-            options.includeParent = options.parentId != null;
-        }
-
-        const iterateNodes = (ids: TId[]) => {
-            if (shouldStop) return;
-            ids.forEach((id) => {
-                if (shouldStop) return;
-                const item = this.byId.get(id);
-                const parentId = item ? this.params.getParentId?.(item) : undefined;
-                walkChildrenRec(item, id, parentId);
-            });
-        };
-
-        const walkChildrenRec = (item: TItem, id: TId, parentId: TId) => {
-            if (options.direction === 'top-down') {
-                action(item, id, parentId, stop);
-            }
-            const childrenIds = this.byParentId.get(id);
-            childrenIds && iterateNodes(childrenIds);
-            if (options.direction === 'bottom-up') {
-                action(item, id, parentId, stop);
-            }
-        };
-
-        if (options.includeParent) {
-            iterateNodes([options.parentId]);
-        } else {
-            iterateNodes(this.getChildrenIdsByParentId(options.parentId));
-        }
-    }
-
-    public forEachItem(action: (item: TItem, id: TId, parentId: TId) => void) {
-        for (const [id, item] of this.byId) {
-            action(item, id, this.params.getParentId?.(item));
-        }
-    }
-
-    public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
-        const subtotalsMap = newMap<TId | undefined, TSubtotals>(this.params);
-
-        this.forEach(
-            (item, id, parentId) => {
-                let itemSubtotals = get(item, this.byParentId.has(id));
-
-                // add already computed children subtotals
-                if (subtotalsMap.has(id)) {
-                    itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
-                }
-
-                // store
-                subtotalsMap.set(id, itemSubtotals);
-
-                // add value to parent
-                let parentSubtotals: TSubtotals;
-                if (!subtotalsMap.has(parentId)) {
-                    parentSubtotals = itemSubtotals;
-                } else {
-                    parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
-                }
-                subtotalsMap.set(parentId, parentSubtotals);
-            },
-            { direction: 'bottom-up' },
-        );
-        return subtotalsMap;
-    }
-}
+import { ApplySearchOptions, ApplySortOptions, NOT_FOUND_RECORD, ROOT_ID, TreeNodeInfo, TreeParams } from '../ITree';
+import {
+    ActForCheckableOptions, ApplyFilterToTreeSnapshotOptions, ApplySearchToTreeSnapshotOptions, CascadeSelectionOptions,
+    CheckParentsWithFullCheckOptions, FilterOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions,
+    LoadOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchOptions, SearchOptions, SelectionOptions, SortOptions,
+} from './types';
+import { BaseTreeSnapshot } from './BaseTreeSnapshot';
 
 export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
     public static async load<TItem, TId, TFilter = any>({
@@ -609,18 +348,18 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         return new (map.constructor as any)(map) as IMap<TKey, TValue>;
     }
 
-    public static filter<TItem, TId, TFilter>({ snapshot, options }: FilterOptions<TItem, TId, TFilter>): TreeSnapshot<TItem, TId> {
-        const filter = options.getFilter?.(options.filter);
-        return this.applyFilterToTreeSnapshot({ snapshot, filter });
+    public static filter<TItem, TId, TFilter>({ snapshot, getFilter, filter }: FilterOptions<TItem, TId, TFilter>): TreeSnapshot<TItem, TId> {
+        const isMatchingFilter = getFilter?.(filter);
+        return this.applyFilterToTreeSnapshot({ snapshot, filter: isMatchingFilter });
     }
 
-    public static search<TItem, TId, TFilter>({ snapshot, options }: SearchOptions<TItem, TId, TFilter>): TreeSnapshot<TItem, TId> {
+    public static search<TItem, TId, TFilter>({ snapshot, ...options }: SearchOptions<TItem, TId, TFilter>): TreeSnapshot<TItem, TId> {
         const search = this.buildSearchFilter(options);
         return this.applySearchToTree({ snapshot, search, sortSearchByRelevance: options.sortSearchByRelevance });
     }
 
-    public static sort<TItem, TId, TFilter>({ snapshot, options }: SortOptions<TItem, TId, TFilter>) {
-        const sort = this.buildSorter(options);
+    public static sort<TItem, TId, TFilter>({ snapshot, ...sortOptions }: SortOptions<TItem, TId, TFilter>) {
+        const sort = this.buildSorter(sortOptions);
         const sortedItems: TItem[] = [];
         const sortRec = (items: TItem[]) => {
             sortedItems.push(...sort(items));
@@ -762,5 +501,303 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
             }
             return ranks.get(id) * -1;
         });
+    }
+
+    public static patch<TItem, TId>({
+        snapshot, items, isDeletedProp, comparator,
+    }: PatchOptions<TItem, TId>): TreeSnapshot<TItem, TId> {
+        if (!items || items.length === 0) {
+            return snapshot;
+        }
+
+        const newById = this.cloneMap(snapshot.byId);
+        const newByParentId = this.cloneMap(snapshot.byParentId); // shallow clone, still need to copy arrays inside!
+
+        let isPatched = false;
+        items.forEach((item) => {
+            const id = snapshot.params.getId(item);
+            const existingItem = snapshot.byId.get(id);
+            const parentId = snapshot.params.getParentId?.(item);
+
+            if (isDeletedProp && item[isDeletedProp]) {
+                const children = [...(newByParentId.get(parentId) ?? [])];
+                newByParentId.set(parentId, this.deleteFromChildren(id, children));
+                newByParentId.delete(id);
+                newById.delete(id);
+                isPatched = true;
+                return;
+            }
+
+            if (!existingItem || existingItem !== item) {
+                newById.set(id, item);
+                const existingItemParentId = existingItem ? snapshot.params.getParentId?.(existingItem) : undefined;
+                if (!existingItem || parentId !== existingItemParentId) {
+                    const children = newByParentId.get(parentId) ?? [];
+
+                    newByParentId.set(parentId, this.patchChildren({ snapshot, children, existingItem, newItem: item, comparator, byId: newById }));
+
+                    if (existingItem && existingItemParentId !== parentId) {
+                        const prevParentChildren = snapshot.byParentId.get(existingItemParentId) ?? [];
+                        newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
+                    }
+                }
+                isPatched = true;
+            }
+        });
+
+        if (!isPatched) {
+            return snapshot;
+        }
+
+        const newNodeInfoById = newMap<TId, TreeNodeInfo>(snapshot.params);
+
+        for (const [parentId, ids] of newByParentId) {
+            newNodeInfoById.set(parentId, { count: ids.length });
+        }
+
+        return this.newInstance(snapshot.params, newById, newByParentId, newNodeInfoById);
+    }
+
+    private static deleteFromChildren<TId>(id: TId, children: TId[]) {
+        const foundIndex = children.findIndex((childId) => childId === id);
+        if (foundIndex !== -1) {
+            children.splice(foundIndex, 1);
+        }
+
+        return children;
+    }
+
+    private static patchChildren<TItem, TId>({
+        snapshot,
+        children,
+        existingItem,
+        newItem,
+        comparator,
+        byId,
+    }: PatchChildrenOptions<TItem, TId>) {
+        const id = snapshot.params.getId(newItem);
+        const parentId = snapshot.params.getParentId?.(newItem);
+        const prevParentId = existingItem ? snapshot.params.getParentId?.(existingItem) : undefined;
+
+        if (!children || children === snapshot.getChildrenIdsByParentId(parentId)) {
+            children = children ? [...children] : [];
+        }
+
+        if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
+            return this.pasteItemIntoChildrenList({ id: snapshot.params.getId(newItem), item: newItem, children, comparator, byId });
+        }
+
+        children.push(id);
+        return children;
+    }
+
+    private static pasteItemIntoChildrenList<TItem, TId>({ id, item, children, comparator, byId }: PasteItemIntoChildrenListOptions<TItem, TId>) {
+        if (!children.length) {
+            return [id];
+        }
+
+        // paste item should be the second argument
+        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, byId.get(itemId)) <= 0);
+        const position = lessOrEqualPosition === -1 ? children.length : lessOrEqualPosition;
+
+        children.splice(position, 0, id);
+        return children;
+    }
+
+    public static cascadeSelection<TItem, TId>({
+        snapshot,
+        currentCheckedIds,
+        checkedId,
+        isChecked,
+        isCheckable,
+        cascadeSelectionType,
+    }: CascadeSelectionOptions<TItem, TId>) {
+        const isImplicitMode = cascadeSelectionType === CascadeSelectionTypes.IMPLICIT;
+        let checkedIdsMap = newMap<TId, boolean>(snapshot.params);
+        if (!(checkedId === ROOT_ID && isImplicitMode)) {
+            currentCheckedIds.forEach((id) => checkedIdsMap.set(id, true));
+        }
+
+        const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType: cascadeSelectionType ?? true };
+        if (!optionsWithDefaults.cascadeSelectionType) {
+            checkedIdsMap = this.simpleSelection({ snapshot, checkedIdsMap, checkedId, isChecked, ...optionsWithDefaults });
+        }
+
+        if (optionsWithDefaults.cascadeSelectionType === true || optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.EXPLICIT) {
+            checkedIdsMap = this.explicitCascadeSelection({ snapshot, checkedIdsMap, checkedId, isChecked, ...optionsWithDefaults });
+        }
+
+        if (optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.IMPLICIT) {
+            checkedIdsMap = this.implicitCascadeSelection({ snapshot, checkedIdsMap, checkedId, isChecked, ...optionsWithDefaults });
+        }
+
+        const result = [];
+        for (const [id, value] of checkedIdsMap) {
+            value && result.push(id);
+        }
+
+        return result;
+    }
+
+    private static simpleSelection<TItem, TId>({
+        snapshot,
+        checkedIdsMap,
+        checkedId,
+        isChecked,
+        isCheckable,
+    }: SelectionOptions<TItem, TId>) {
+        if (isChecked) {
+            if (checkedId !== ROOT_ID) {
+                checkedIdsMap.set(checkedId, true);
+            } else {
+                for (const [id, item] of snapshot.byId) {
+                    if (isCheckable(item)) {
+                        checkedIdsMap.set(id, true);
+                    }
+                }
+            }
+            return checkedIdsMap;
+        }
+
+        if (checkedId !== ROOT_ID) {
+            checkedIdsMap.delete(checkedId);
+        } else {
+            for (const [checkedItemId, isItemChecked] of checkedIdsMap) {
+                if (isItemChecked) {
+                    this.actForCheckable({
+                        action: (id) => checkedIdsMap.delete(id),
+                        snapshot,
+                        isCheckable,
+                        id: checkedItemId,
+                    });
+                }
+            }
+            return checkedIdsMap;
+        }
+
+        return checkedIdsMap;
+    }
+
+    private static actForCheckable<TItem, TId>({
+        snapshot,
+        action,
+        isCheckable,
+        id,
+    }: ActForCheckableOptions<TItem, TId>) {
+        const item = snapshot.getById(id);
+        if (item !== NOT_FOUND_RECORD && isCheckable(item)) {
+            action(id);
+        }
+    }
+
+    private static explicitCascadeSelection<TItem, TId>({
+        snapshot,
+        checkedIdsMap,
+        checkedId,
+        isChecked,
+        isCheckable,
+    }: SelectionOptions<TItem, TId>) {
+        if (isChecked) {
+            if (checkedId !== ROOT_ID) {
+                checkedIdsMap.set(checkedId, true);
+            }
+            // check all children recursively
+            snapshot.forEachChildren((id) => id !== ROOT_ID && checkedIdsMap.set(id, true), isCheckable, checkedId);
+            return this.checkParentsWithFullCheck({ snapshot, checkedIdsMap, checkedId, isCheckable });
+        }
+
+        if (checkedId !== ROOT_ID) {
+            checkedIdsMap.delete(checkedId);
+        }
+
+        // uncheck all children recursively
+        snapshot.forEachChildren((id) => checkedIdsMap.delete(id), isCheckable, checkedId);
+
+        snapshot.getParentIdsRecursive(checkedId).forEach((parentId) => checkedIdsMap.delete(parentId));
+
+        return checkedIdsMap;
+    }
+
+    private static implicitCascadeSelection<TItem, TId>({
+        snapshot,
+        checkedIdsMap,
+        checkedId,
+        isChecked,
+        isCheckable,
+    }: SelectionOptions<TItem, TId>) {
+        if (isChecked) {
+            if (checkedId !== ROOT_ID) {
+                checkedIdsMap.set(checkedId, true);
+            }
+            // for implicit mode, it is required to remove explicit check from children,
+            // if parent is checked
+            snapshot.forEachChildren((id) => checkedIdsMap.delete(id), isCheckable, checkedId, false);
+            if (checkedId === ROOT_ID) {
+                const childrenIds = snapshot.getChildrenIdsByParentId(checkedId);
+
+                // if selectedId is undefined and it is selected, that means selectAll
+                childrenIds.forEach((id) => checkedIdsMap.set(id, true));
+            }
+            // check parents if all children are checked
+            return this.checkParentsWithFullCheck({
+                snapshot,
+                checkedIdsMap,
+                checkedId,
+                isCheckable,
+                removeExplicitChildrenSelection: true,
+            });
+        }
+
+        if (checkedId !== ROOT_ID) {
+            checkedIdsMap.delete(checkedId);
+        }
+
+        const selectNeighboursOnly = (itemId: TId) => {
+            const item = snapshot.getById(itemId);
+            if (item === NOT_FOUND_RECORD) {
+                return;
+            }
+
+            const parentId = snapshot.params.getParentId?.(item);
+            const parents = snapshot.getParentIdsRecursive(itemId);
+            // if some parent is checked, it is required to check all children explicitly,
+            // except unchecked one.
+            const someParentIsChecked = parents.some((parent) => checkedIdsMap.get(parent));
+            snapshot.getChildrenIdsByParentId(parentId).forEach((id) => {
+                if (itemId !== id && someParentIsChecked) {
+                    checkedIdsMap.set(id, true);
+                }
+            });
+            checkedIdsMap.delete(parentId);
+        };
+
+        if (checkedId !== ROOT_ID) {
+            const parents = snapshot.getParentIdsRecursive(checkedId);
+            [checkedId, ...parents.reverse()].forEach(selectNeighboursOnly);
+        }
+        return checkedIdsMap;
+    }
+
+    private static checkParentsWithFullCheck<TItem, TId>({
+        snapshot,
+        checkedIdsMap,
+        checkedId,
+        isCheckable,
+        removeExplicitChildrenSelection,
+    }: CheckParentsWithFullCheckOptions<TItem, TId>) {
+        snapshot.getParentIdsRecursive(checkedId)
+            .reverse()
+            .forEach((parentId) => {
+                const childrenIds = snapshot.getChildrenIdsByParentId(parentId);
+                if (childrenIds && childrenIds.every((childId) => checkedIdsMap.has(childId))) {
+                    if (parentId !== ROOT_ID) {
+                        checkedIdsMap.set(parentId, true);
+                    }
+                    if (removeExplicitChildrenSelection) {
+                        snapshot.forEachChildren((id) => checkedIdsMap.delete(id), isCheckable, parentId, false);
+                    }
+                }
+            });
+        return checkedIdsMap;
     }
 }
