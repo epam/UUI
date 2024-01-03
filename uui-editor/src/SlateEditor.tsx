@@ -53,7 +53,7 @@ function Editor(props: PlateEditorProps) {
                 className={ css.editor }
                 onKeyDown={ props.onKeyDown }
                 onBlur={ props.onBlur }
-                renderPlaceholder={ ({ attributes }: RenderPlaceholderProps) => {
+                renderPlaceholder={ ({ attributes }) => {
                     return isEditorValueEmpty(editor.children) && (
                         <div
                             { ...attributes }
@@ -64,7 +64,7 @@ function Editor(props: PlateEditorProps) {
                         </div>
                     );
                 } }
-                style={ { height: '100%', padding: '0 24px', minHeight: props.minHeight } }
+                style={ { minHeight: props.minHeight } }
             />
             <MainToolbar />
             <MarksToolbar />
@@ -83,7 +83,6 @@ function Editor(props: PlateEditorProps) {
                 props.scrollbars && css.withScrollbars,
                 props.fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',
             ) }
-            style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }
         >
             { props.scrollbars
