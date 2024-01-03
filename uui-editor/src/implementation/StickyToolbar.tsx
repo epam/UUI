@@ -3,7 +3,7 @@ import { isBlock, useEditorState } from '@udecode/plate-common';
 import cx from 'classnames';
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
-import css from './Sidebar.module.scss';
+import css from './StickyToolbar.module.scss';
 import { useLayer } from '@epam/uui-core';
 
 interface SidebarProps {
@@ -49,7 +49,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
             position: 'sticky',
             bottom: 12,
             display: 'flex',
-            minHeight: 0,
+            minHeight: 52,
             zIndex,
         } }
         >
