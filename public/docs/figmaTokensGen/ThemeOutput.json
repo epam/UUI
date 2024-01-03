@@ -1077,7 +1077,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--white)"
       }
     },
     {
@@ -1154,7 +1154,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night50)"
       }
     },
     {
@@ -1231,7 +1231,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night100)"
       }
     },
     {
@@ -1308,7 +1308,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night200)"
       }
     },
     {
@@ -1385,7 +1385,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night300)"
       }
     },
     {
@@ -1462,7 +1462,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night400)"
       }
     },
     {
@@ -1539,7 +1539,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night500)"
       }
     },
     {
@@ -1616,7 +1616,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night600)"
       }
     },
     {
@@ -1693,7 +1693,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night700)"
       }
     },
     {
@@ -1770,7 +1770,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night800)"
       }
     },
     {
@@ -1847,7 +1847,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night900)"
       }
     },
     {
@@ -1924,7 +1924,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sky-5)"
       }
     },
     {
@@ -2001,7 +2001,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sky-10)"
       }
     },
     {
@@ -2078,7 +2078,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sky-20)"
       }
     },
     {
@@ -2155,7 +2155,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sky-50)"
       }
     },
     {
@@ -2232,7 +2232,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sky-60)"
       }
     },
     {
@@ -2309,7 +2309,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sky-70)"
       }
     },
     {
@@ -2386,7 +2386,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sun-5)"
       }
     },
     {
@@ -2463,7 +2463,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sun-10)"
       }
     },
     {
@@ -2540,7 +2540,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sun-20)"
       }
     },
     {
@@ -2617,7 +2617,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sun-50)"
       }
     },
     {
@@ -2694,7 +2694,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sun-60)"
       }
     },
     {
@@ -2771,7 +2771,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--sun-70)"
       }
     },
     {
@@ -2848,7 +2848,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fire-5)"
       }
     },
     {
@@ -2925,7 +2925,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fire-10)"
       }
     },
     {
@@ -3002,7 +3002,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fire-20)"
       }
     },
     {
@@ -3079,7 +3079,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fire-50)"
       }
     },
     {
@@ -3156,7 +3156,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fire-60)"
       }
     },
     {
@@ -3233,7 +3233,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fire-70)"
       }
     },
     {
@@ -3310,7 +3310,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--yellow-5)"
       }
     },
     {
@@ -3387,7 +3387,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--yellow-10)"
       }
     },
     {
@@ -3464,7 +3464,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--yellow-20)"
       }
     },
     {
@@ -3541,7 +3541,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--yellow-30)"
       }
     },
     {
@@ -3618,7 +3618,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--yellow-40)"
       }
     },
     {
@@ -3695,7 +3695,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--yellow-50)"
       }
     },
     {
@@ -3772,7 +3772,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--orange-5)"
       }
     },
     {
@@ -3849,7 +3849,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--orange-10)"
       }
     },
     {
@@ -3926,7 +3926,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--orange-20)"
       }
     },
     {
@@ -4003,7 +4003,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--orange-30)"
       }
     },
     {
@@ -4080,7 +4080,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--orange-40)"
       }
     },
     {
@@ -4157,7 +4157,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--orange-50)"
       }
     },
     {
@@ -4234,7 +4234,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fuchsia-5)"
       }
     },
     {
@@ -4311,7 +4311,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fuchsia-10)"
       }
     },
     {
@@ -4388,7 +4388,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fuchsia-20)"
       }
     },
     {
@@ -4465,7 +4465,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fuchsia-30)"
       }
     },
     {
@@ -4542,7 +4542,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fuchsia-40)"
       }
     },
     {
@@ -4619,7 +4619,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--fuchsia-50)"
       }
     },
     {
@@ -4696,7 +4696,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--purple-5)"
       }
     },
     {
@@ -4773,7 +4773,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--purple-10)"
       }
     },
     {
@@ -4850,7 +4850,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--purple-20)"
       }
     },
     {
@@ -4927,7 +4927,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--purple-30)"
       }
     },
     {
@@ -5004,7 +5004,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--purple-40)"
       }
     },
     {
@@ -5081,7 +5081,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--purple-50)"
       }
     },
     {
@@ -5158,7 +5158,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--lavanda-5)"
       }
     },
     {
@@ -5235,7 +5235,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--lavanda-10)"
       }
     },
     {
@@ -5312,7 +5312,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--lavanda-20)"
       }
     },
     {
@@ -5389,7 +5389,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--lavanda-30)"
       }
     },
     {
@@ -5466,7 +5466,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--lavanda-40)"
       }
     },
     {
@@ -5543,7 +5543,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--lavanda-50)"
       }
     },
     {
@@ -5620,7 +5620,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cobalt-5)"
       }
     },
     {
@@ -5697,7 +5697,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cobalt-10)"
       }
     },
     {
@@ -5774,7 +5774,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cobalt-20)"
       }
     },
     {
@@ -5851,7 +5851,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cobalt-30)"
       }
     },
     {
@@ -5928,7 +5928,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cobalt-40)"
       }
     },
     {
@@ -6005,7 +6005,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cobalt-50)"
       }
     },
     {
@@ -6082,7 +6082,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cyan-5)"
       }
     },
     {
@@ -6159,7 +6159,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cyan-10)"
       }
     },
     {
@@ -6236,7 +6236,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cyan-20)"
       }
     },
     {
@@ -6313,7 +6313,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cyan-30)"
       }
     },
     {
@@ -6390,7 +6390,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cyan-40)"
       }
     },
     {
@@ -6467,7 +6467,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--cyan-50)"
       }
     },
     {
@@ -6544,7 +6544,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--mint-5)"
       }
     },
     {
@@ -6621,7 +6621,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--mint-10)"
       }
     },
     {
@@ -6698,7 +6698,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--mint-20)"
       }
     },
     {
@@ -6775,7 +6775,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--mint-30)"
       }
     },
     {
@@ -6852,7 +6852,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--mint-40)"
       }
     },
     {
@@ -6929,7 +6929,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--mint-50)"
       }
     },
     {
@@ -54151,7 +54151,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--blue-5)"
       }
     },
     {
@@ -54228,7 +54228,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--blue-10)"
       }
     },
     {
@@ -54305,7 +54305,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--blue-20)"
       }
     },
     {
@@ -54382,7 +54382,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--blue-50)"
       }
     },
     {
@@ -54459,7 +54459,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--blue-60)"
       }
     },
     {
@@ -54536,7 +54536,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--blue-70)"
       }
     },
     {
@@ -54613,7 +54613,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--amber-5)"
       }
     },
     {
@@ -54690,7 +54690,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--amber-10)"
       }
     },
     {
@@ -54767,7 +54767,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--amber-20)"
       }
     },
     {
@@ -54844,7 +54844,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--amber-50)"
       }
     },
     {
@@ -54921,7 +54921,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--amber-60)"
       }
     },
     {
@@ -54998,7 +54998,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--amber-70)"
       }
     },
     {
@@ -55075,7 +55075,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--red-5)"
       }
     },
     {
@@ -55152,7 +55152,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--red-10)"
       }
     },
     {
@@ -55229,7 +55229,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--red-20)"
       }
     },
     {
@@ -55306,7 +55306,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--red-50)"
       }
     },
     {
@@ -55383,7 +55383,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--red-60)"
       }
     },
     {
@@ -55460,7 +55460,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--red-70)"
       }
     },
     {
@@ -56272,7 +56272,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray5)"
       }
     },
     {
@@ -56349,7 +56349,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray10)"
       }
     },
     {
@@ -56426,7 +56426,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray20)"
       }
     },
     {
@@ -56503,7 +56503,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray30)"
       }
     },
     {
@@ -56580,7 +56580,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray40)"
       }
     },
     {
@@ -56657,7 +56657,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray50)"
       }
     },
     {
@@ -56734,7 +56734,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray60)"
       }
     },
     {
@@ -56811,7 +56811,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray70)"
       }
     },
     {
@@ -56888,7 +56888,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray80)"
       }
     },
     {
@@ -56965,7 +56965,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--gray90)"
       }
     },
     {
@@ -64070,7 +64070,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--electric-5)"
       }
     },
     {
@@ -64147,7 +64147,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--electric-10)"
       }
     },
     {
@@ -64224,7 +64224,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--electric-20)"
       }
     },
     {
@@ -64301,7 +64301,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--electric-50)"
       }
     },
     {
@@ -64378,7 +64378,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--electric-60)"
       }
     },
     {
@@ -64455,7 +64455,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--electric-70)"
       }
     },
     {
@@ -64532,7 +64532,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--emerald-5)"
       }
     },
     {
@@ -64609,7 +64609,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--emerald-10)"
       }
     },
     {
@@ -64686,7 +64686,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--emerald-20)"
       }
     },
     {
@@ -64763,7 +64763,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--emerald-50)"
       }
     },
     {
@@ -64840,7 +64840,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--emerald-60)"
       }
     },
     {
@@ -64917,7 +64917,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--emerald-70)"
       }
     },
     {
@@ -64994,7 +64994,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--green-5)"
       }
     },
     {
@@ -65071,7 +65071,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--green-10)"
       }
     },
     {
@@ -65148,7 +65148,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--green-20)"
       }
     },
     {
@@ -65225,7 +65225,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--green-50)"
       }
     },
     {
@@ -65302,7 +65302,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--green-60)"
       }
     },
     {
@@ -65379,7 +65379,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--green-70)"
       }
     },
     {
@@ -65533,7 +65533,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--night950)"
       }
     },
     {
