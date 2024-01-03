@@ -92,7 +92,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
     const formatOptions = initialFormatOptions ?? { maximumFractionDigits: 0 };
 
     const placeholderValue = React.useMemo(() => {
-        if (!value && value !== 0) return props.placeholder || '0';
+        if (!value) return props.placeholder || '0';
         if (formatValue) return formatValue(value);
 
         return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
