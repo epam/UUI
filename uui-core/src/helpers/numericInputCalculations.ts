@@ -47,6 +47,6 @@ export const getDecimalLength = (value: number | null): number => {
 };
 
 export const getSeparatedValue = (value: number | null, formatOptions: Intl.NumberFormatOptions = {}, locale?: string): string | null => {
-    if (!value && value !== 0) return null; // ?
+    if (!value && value !== 0) return null;
     return value.toLocaleString(locale, formatOptions);
 };
