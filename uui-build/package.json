@@ -6,10 +6,11 @@
   },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "generate-components-api": "ts-node scripts/ts/docsGen.ts",
-    "generate-tokens": "ts-node scripts/ts/figmaTokensGen.ts",
+    "generate-components-api": "ts-node ts/scripts/docsGen.ts",
+    "generate-theme-tokens": "ts-node ts/scripts/themeTokensGen.ts",
+    "generate-theme-mixins": "ts-node ts/scripts/themeMixinsGen.ts",
+    "track-bundle-size": "ts-node ts/scripts/trackBundleSize.ts",
     "prepublish": "yarn build",
-    "track-bundle-size": "ts-node scripts/ts/trackBundleSize.ts",
     "lint": "node ../uui-build/scripts/lint",
     "transform-tokens": "npx ts-node -O {\\\"noImplicitAny\\\":false} ./tokens-converter/index.ts"
   },
