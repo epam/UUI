@@ -1,7 +1,7 @@
 import React from 'react';
 import { devLogger, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { CountIndicator, CountIndicatorProps } from './CountIndicator';
+import { CountIndicator } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
 
@@ -51,12 +51,13 @@ function applyBadgeMods(mods: BadgeProps) {
         css.root,
         css['size-' + (mods.size || DEFAULT_SIZE)],
         `uui-fill-${mods.fill || DEFAULT_FILL}`,
-        mods.color && `uui-color-${mods.color}`,
+        `uui-color-${mods.color || 'info'}`,
         mods.indicator && mods.fill === 'outline' && 'uui-indicator',
     ];
 }
 
-const mapCountIndicatorSizes: Record<BadgeMods['size'], CountIndicatorProps['size']> = {
+const mapCountIndicatorSizes = {
+    12: '12',
     18: '12',
     24: '18',
     30: '18',
@@ -86,7 +87,7 @@ export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clear
                 <CountIndicator
                     { ...countIndicatorProps }
                     color={ null }
-                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] as any }
                 />
             ),
             indicator: props.indicator || false,
