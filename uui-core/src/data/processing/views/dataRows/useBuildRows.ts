@@ -157,5 +157,5 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => buildRows(), [tree, dataSourceState.folded, dataSourceState.checked, isLoading, isFlattenSearch]);
+    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading, isFlattenSearch]);
 }

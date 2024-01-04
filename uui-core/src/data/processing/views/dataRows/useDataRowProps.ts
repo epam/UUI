@@ -65,6 +65,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
         row.isChildrenChecked = isRowChildrenChecked(row);
+
         return row;
     }, [
         getRowOptions,
