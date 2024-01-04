@@ -29739,9 +29739,9 @@
      "print": [
       "type RangeDatePickerPresetValue = {",
       "    /** Range from value */",
-      "    from: string;",
+      "    from?: string;",
       "    /** Range to value */",
-      "    to: string;",
+      "    to?: string;",
       "    /** Preset order in presets list */",
       "    order?: number;",
       "};"
@@ -29762,7 +29762,7 @@
       "editor": {
        "type": "string"
       },
-      "required": true
+      "required": false
      },
      {
       "uid": "to",
@@ -29778,7 +29778,7 @@
       "editor": {
        "type": "string"
       },
-      "required": true
+      "required": false
      },
      {
       "uid": "order",
@@ -37831,252 +37831,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:CheckboxGroupProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "CheckboxGroupProps",
-     "nameFull": "CheckboxGroupProps<TValue>"
-    },
-    "src": "uui-components/src/layout/CheckboxGroup.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "CheckboxGroupProps<TValue>",
-     "print": [
-      "interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {",
-      "    /** Overrides the component to render a single checkbox  */",
-      "    CheckboxInput?: React.ComponentType<CheckboxProps>;",
-      "    /** Array of checkbox items to be rendered in group */",
-      "    items: CheckboxGroupItem<TValue>[];",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "CheckboxInput",
-      "name": "CheckboxInput",
-      "comment": {
-       "raw": [
-        "Overrides the component to render a single checkbox"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<CheckboxProps, any> | React.FunctionComponent<CheckboxProps>"
-      },
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "comment": {
-       "raw": [
-        "Array of checkbox items to be rendered in group"
-       ]
-      },
-      "typeValue": {
-       "raw": "CheckboxGroupItem<TValue>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationMessage",
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationProps",
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue[]"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TValue[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": "direction",
-      "name": "direction",
-      "comment": {
-       "raw": [
-        "Direction of child components."
-       ]
-      },
-      "typeValue": {
-       "raw": "'vertical' | 'horizontal'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "vertical",
-        "horizontal"
-       ]
-      },
-      "from": "@epam/uui-core:IHasDirection",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.FieldsetHTMLAttributes<HTMLFieldSetElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLFieldSetElement | null) => void | React.MutableRefObject<HTMLFieldSetElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:CheckboxProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -43074,13 +42828,13 @@
        ]
       },
       "typeValue": {
-       "raw": "'vertical' | 'horizontal'"
+       "raw": "'horizontal' | 'vertical'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "vertical",
-        "horizontal"
+        "horizontal",
+        "vertical"
        ]
       },
       "from": "@types/react:AriaAttributes",
@@ -51668,398 +51422,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:RadioGroupItem": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "RadioGroupItem",
-     "nameFull": "RadioGroupItem<TValue>"
-    },
-    "src": "uui-components/src/layout/RadioGroup.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RadioGroupItem<TValue>",
-     "print": [
-      "interface RadioGroupItem<TValue> extends IDisableable {",
-      "    /** RadioInput label. Can be a string, or React.Element. */",
-      "    name?: string;",
-      "    /** Render callback for checkbox label.",
-      "     * If omitted, 'name' prop value will be rendered.",
-      "     */",
-      "    renderName?: () => React.ReactNode;",
-      "    /** Item ID to put into selection */",
-      "    id: TValue;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "name",
-      "name": "name",
-      "comment": {
-       "raw": [
-        "RadioInput label. Can be a string, or React.Element."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderName",
-      "name": "renderName",
-      "comment": {
-       "raw": [
-        "Render callback for checkbox label.",
-        " If omitted, 'name' prop value will be rendered."
-       ]
-      },
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "Item ID to put into selection"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue"
-      },
-      "required": true
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:RadioGroupProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "RadioGroupProps",
-     "nameFull": "RadioGroupProps<TValue>"
-    },
-    "src": "uui-components/src/layout/RadioGroup.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "RadioGroupProps<TValue>",
-     "print": [
-      "interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement>, ICanFocus<HTMLFieldSetElement> {",
-      "    /** Overrides the component to render a single radio Input  */",
-      "    RadioInput?: React.ComponentType<RadioInputProps>;",
-      "    /** Array of checkbox items to be rendered in group */",
-      "    items: RadioGroupItem<TValue>[];",
-      "    /** RadioInput prop to put on each radio input in group */",
-      "    radioInputProps?: RadioInputProps & {",
-      "        key: React.Key;",
-      "    };",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "RadioInput",
-      "name": "RadioInput",
-      "comment": {
-       "raw": [
-        "Overrides the component to render a single radio Input"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<RadioInputProps, any> | React.FunctionComponent<RadioInputProps>"
-      },
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "comment": {
-       "raw": [
-        "Array of checkbox items to be rendered in group"
-       ]
-      },
-      "typeValue": {
-       "raw": "RadioGroupItem<TValue>[]"
-      },
-      "required": true
-     },
-     {
-      "uid": "radioInputProps",
-      "name": "radioInputProps",
-      "comment": {
-       "raw": [
-        "RadioInput prop to put on each radio input in group"
-       ]
-      },
-      "typeValue": {
-       "raw": "IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & IHasTabIndex & { icon?: Icon | undefined; renderLabel?(): React.ReactNode; id?: string | undefined; } & { key: React.Key; }"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TValue"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TValue) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationMessage",
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationProps",
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": "direction",
-      "name": "direction",
-      "comment": {
-       "raw": [
-        "Direction of child components."
-       ]
-      },
-      "typeValue": {
-       "raw": "'vertical' | 'horizontal'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "vertical",
-        "horizontal"
-       ]
-      },
-      "from": "@epam/uui-core:IHasDirection",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.FieldsetHTMLAttributes<HTMLFieldSetElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLFieldSetElement | null) => void | React.MutableRefObject<HTMLFieldSetElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLFieldSetElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLFieldSetElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:RadioInputProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -55846,13 +55208,13 @@
        ]
       },
       "typeValue": {
-       "raw": "'vertical' | 'horizontal'"
+       "raw": "'horizontal' | 'vertical'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "vertical",
-        "horizontal"
+        "horizontal",
+        "vertical"
        ]
       },
       "from": "@types/react:AriaAttributes",
@@ -67440,6 +66802,274 @@
        "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
       },
       "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:CheckboxGroupProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CheckboxGroupProps",
+     "nameFull": "CheckboxGroupProps<TValue>"
+    },
+    "src": "uui/components/layout/CheckboxGroup.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "CheckboxGroupProps<TValue>",
+     "print": [
+      "interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {",
+      "    /** Overrides the component to render a single checkbox */",
+      "    CheckboxInput?: React.ComponentType<CheckboxProps>;",
+      "    /** Array of checkbox items to be rendered in group */",
+      "    items: CheckboxGroupItem<TValue>[];",
+      "    /** Defines component size */",
+      "    size?: CheckboxProps['size'];",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "CheckboxInput",
+      "name": "CheckboxInput",
+      "comment": {
+       "raw": [
+        "Overrides the component to render a single checkbox"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<CheckboxProps, any> | React.FunctionComponent<CheckboxProps>"
+      },
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Array of checkbox items to be rendered in group"
+       ]
+      },
+      "typeValue": {
+       "raw": "CheckboxGroupItem<TValue>[]"
+      },
+      "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "direction",
+      "name": "direction",
+      "comment": {
+       "raw": [
+        "Direction of child components."
+       ]
+      },
+      "typeValue": {
+       "raw": "'vertical' | 'horizontal'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "vertical",
+        "horizontal"
+       ]
+      },
+      "from": "@epam/uui-core:IHasDirection",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.FieldsetHTMLAttributes<HTMLFieldSetElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLFieldSetElement | null) => void | React.MutableRefObject<HTMLFieldSetElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -84947,12 +84577,12 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:pickerPart": {
+  "@epam/uui:PickerPart": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "pickerPart",
-     "nameFull": "pickerPart"
+     "name": "PickerPart",
+     "nameFull": "PickerPart"
     },
     "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
     "exported": true
@@ -84960,9 +84590,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "'from' | 'to'",
+     "raw": "null | 'from' | 'to'",
      "print": [
-      "type pickerPart = 'from' | 'to';"
+      "type PickerPart = 'from' | 'to' | null;"
      ]
     }
    }
@@ -85357,6 +84987,668 @@
        "type": "bool"
       },
       "from": "@epam/uui:ProgressBarMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:RadioGroupItem": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RadioGroupItem",
+     "nameFull": "RadioGroupItem<TValue>"
+    },
+    "src": "uui/components/layout/RadioGroup.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "RadioGroupItem<TValue>",
+     "print": [
+      "interface RadioGroupItem<TValue> extends IDisableable, Omit<RadioInputProps, 'id' | 'onValueChange' | 'value'> {",
+      "    /** RadioInput label. Can be a string, or React.Element. */",
+      "    name?: string;",
+      "    /** Render callback for checkbox label.",
+      "     * If omitted, 'name' prop value will be rendered.",
+      "     */",
+      "    renderName?: () => React.ReactNode;",
+      "    /** Item ID to put into selection */",
+      "    id: TValue;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "name",
+      "name": "name",
+      "comment": {
+       "raw": [
+        "RadioInput label. Can be a string, or React.Element."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderName",
+      "name": "renderName",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'name' prop value will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "Item ID to put into selection"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "required": true
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon for radio input selected state.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '18'"
+       ],
+       "tags": {
+        "@default": "18"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18"
+       ]
+      },
+      "from": "@epam/uui:RadioInputMods",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "label",
+      "name": "label",
+      "comment": {
+       "raw": [
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "from": "@epam/uui-core:IHasLabel",
+      "required": false
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: boolean | null, oldValue: boolean | null) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "renderLabel",
+      "name": "renderLabel",
+      "comment": {
+       "raw": [
+        "Render callback for checkbox label.",
+        " If omitted, 'label' prop value will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:RadioGroupProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RadioGroupProps",
+     "nameFull": "RadioGroupProps<TValue>"
+    },
+    "src": "uui/components/layout/RadioGroup.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 263,
+    "typeValue": {
+     "raw": "RadioGroupProps<TValue>",
+     "print": [
+      "interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement>, ICanFocus<HTMLFieldSetElement> {",
+      "    /** Overrides the component to render a single radio Input  */",
+      "    RadioInput?: React.ComponentType<RadioInputProps>;",
+      "    /** Array of checkbox items to be rendered in group */",
+      "    items: RadioGroupItem<TValue>[];",
+      "    /** Defines component size */",
+      "    size?: RadioInputProps['size'];",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "RadioInput",
+      "name": "RadioInput",
+      "comment": {
+       "raw": [
+        "Overrides the component to render a single radio Input"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<RadioInputProps, any> | React.FunctionComponent<RadioInputProps>"
+      },
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Array of checkbox items to be rendered in group"
+       ]
+      },
+      "typeValue": {
+       "raw": "RadioGroupItem<TValue>[]"
+      },
+      "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TValue"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TValue) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "direction",
+      "name": "direction",
+      "comment": {
+       "raw": [
+        "Direction of child components."
+       ]
+      },
+      "typeValue": {
+       "raw": "'vertical' | 'horizontal'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "vertical",
+        "horizontal"
+       ]
+      },
+      "from": "@epam/uui-core:IHasDirection",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.FieldsetHTMLAttributes<HTMLFieldSetElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLFieldSetElement | null) => void | React.MutableRefObject<HTMLFieldSetElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLFieldSetElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLFieldSetElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
       "required": false
      }
     ],
