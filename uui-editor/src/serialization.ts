@@ -1,4 +1,5 @@
 import {
+    PlatePlugin,
     createPlateEditor,
     createPlugins,
     deserializeHtml,
@@ -36,9 +37,9 @@ const workingPlugins = [
     codeBlockPlugin(),
 ];
 
-const createTempEditor = () => {
+export const createTempEditor = (plugins?: PlatePlugin[]) => {
     return createPlateEditor({
-        plugins: createPlugins(workingPlugins.flat(), {
+        plugins: createPlugins((plugins || workingPlugins).flat(), {
             components: createPlateUI(),
         }),
     });
