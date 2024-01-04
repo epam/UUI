@@ -1,0 +1,404 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`serialization should paste data with tables 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+      },
+    ],
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+      },
+    ],
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "background": "rgb(255, 255, 0)",
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Sinple ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "background": "rgb(255, 255, 0)",
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Table ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "With yellow ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "back ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+    ],
+    "type": "table",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+      },
+    ],
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Lorem ipsum ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Lorem ipsum ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Lorem ipsum ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "1 ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "In eleifend velit vitae libero sollicitudin euismod. ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Lorem ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "attributes": Object {
+              "colspan": "4",
+            },
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "2 ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Cras fringilla ipsum magna, in fringilla dui commodo a. ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Ipsum ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "3 ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "attributes": Object {
+              "colspan": "2",
+            },
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Aliquam erat volutpat. ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Lorem ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "attributes": Object {
+              "colspan": "4",
+            },
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "4 ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Fusce vitae vestibulum velit. ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Lorem ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "5 ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Etiam vehicula luctus fermentum. ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Ipsum ",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
+                "type": "paragraph",
+              },
+            ],
+            "type": "table_cell",
+          },
+        ],
+        "type": "table_row",
+      },
+    ],
+    "type": "table",
+  },
+]
+`;

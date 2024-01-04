@@ -12,7 +12,6 @@ import { useLayer } from '@epam/uui-core';
 
 interface ToolbarProps {
     editor: any;
-    plugins?: any;
     children: any;
     isImage?: boolean;
     isTable?: boolean;
