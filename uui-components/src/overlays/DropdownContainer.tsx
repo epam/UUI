@@ -20,6 +20,8 @@ export interface DropdownContainerProps
     maxWidth?: number | 'auto';
     /** Defines height in 'px'. */
     height?: number;
+    /** Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content. */
+    maxHeight?: number | 'auto';
     /** If true, arrow tip will be shown
      * @default false
      * */
@@ -79,7 +81,11 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 forwardedRef={ !focusLock && ref as React.ForwardedRef<HTMLDivElement> }
                 cx={ cx(uuiElement.dropdownBody, uuiMarkers.lockFocus, props.cx) }
                 style={ {
-                    ...props.style, minWidth: props.width, minHeight: props.height, maxWidth: props.maxWidth ?? props.width,
+                    ...props.style,
+                    minWidth: props.width,
+                    minHeight: props.height,
+                    maxHeight: props.maxHeight,
+                    maxWidth: props.maxWidth ?? props.width,
                 } }
                 rawProps={ { tabIndex: -1, ...props.rawProps } }
             >
