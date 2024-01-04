@@ -2,7 +2,7 @@
 
 exports[`Badge should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled uui-badge root size-36 uui-fill-solid"
+  className="container uui-button-box uui-enabled uui-badge root size-36 uui-fill-solid uui-color-info"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
