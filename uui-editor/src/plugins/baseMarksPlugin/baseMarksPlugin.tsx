@@ -45,6 +45,7 @@ const boldPlugin = createBoldPlugin<IHasToolbarButton>({
     component: Bold,
     options: {
         floatingBarButton: BoldButton,
+        name: 'bold-button',
     },
 });
 
@@ -53,6 +54,7 @@ const italicPlugin = createItalicPlugin<IHasToolbarButton>({
     component: Italic,
     options: {
         floatingBarButton: ItalicButton,
+        name: 'italic-button',
     },
 });
 
@@ -61,6 +63,7 @@ const underlinePlugin = createUnderlinePlugin<IHasToolbarButton>({
     component: Underline,
     options: {
         floatingBarButton: UnderlineButton,
+        name: 'underline-button',
     },
 });
 

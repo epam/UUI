@@ -9,7 +9,7 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { isUrl } from './isUrl';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 export interface LinkElement extends TElement {
     href: string;
@@ -63,6 +63,7 @@ export const linkPlugin = () => createLinkPlugin<IHasToolbarButton & LinkPlugin>
     },
     options: {
         floatingBarButton: LinkButton,
+        name: 'link-button',
     },
 });
 
