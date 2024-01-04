@@ -301,6 +301,8 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Picke
      * If omitted, true value will be used.
      */
     showSearch?: boolean;
+    /** Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates) */
+    maxBodyHeight?: number;
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {

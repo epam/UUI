@@ -39,6 +39,7 @@ Array [
       className="uui-dropdown-body -lock-focus root container container"
       style={
         Object {
+          "maxHeight": undefined,
           "maxWidth": "auto",
           "minHeight": undefined,
           "minWidth": 280,

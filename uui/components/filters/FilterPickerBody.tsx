@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, PickerFilterConfig } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
 
 const pickerHeight = 300;
 
-type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProps<TItem, TId> & {
+type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProps<TItem, TId> & PickerFilterConfig<any> & {
     showSearch?: boolean;
 };
 
@@ -50,7 +50,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
 
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((props) => renderRow(props));
-        const maxHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
+        const maxHeight = isMobile() ? document.documentElement.clientHeight : props.maxBodyHeight || pickerHeight;
         const maxWidth = isMobile() ? undefined : 360;
 
         return (
