@@ -23,6 +23,7 @@ export const codeBlockPlugin = () => createCodePlugin<IHasToolbarButton>({
     component: Code,
     options: {
         floatingBarButton: CodeButton,
+        name: 'floating-button',
     },
 });
 
