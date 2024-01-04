@@ -13,6 +13,7 @@
 * [Dropdown]: improve close on click outside dropdown logic
 * [FilteredTable]: in range numeric filter set `isInvalid = true` if value `from` bigger than value `to`.
 * [CountIndicator]: set color `info` by default.
+* [FiltersPanel]: added 'maxBodyHeight' prop for picker filters
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
