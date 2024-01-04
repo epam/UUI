@@ -1,11 +1,11 @@
-import fs from 'fs';
 import path from 'path';
 import { logger } from '../../utils/jsBridge';
 import { IUuiTokensCollection, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
-import { coreMixinGenTemplate, coreThemeMixinsConfig, tokensFile } from './constants';
+import { coreMixinGenTemplate, coreThemeMixinsConfig } from './constants';
 import { ITaskConfig } from '../../utils/taskUtils';
 import { uuiRoot } from '../../constants';
 import { createFileSync } from '../../utils/fileUtils';
+import { readFigmaTokens } from './utils/tokensFileUtils';
 
 export const taskConfig: ITaskConfig = { main };
 
@@ -18,11 +18,6 @@ async function main() {
             figmaTheme,
         });
     });
-}
-
-function readFigmaTokens(): IUuiTokensCollection {
-    const content = fs.readFileSync(path.resolve(uuiRoot, tokensFile)).toString();
-    return JSON.parse(content);
 }
 
 function genForFigmaTheme(params: { figmaTheme: TFigmaThemeName, tokens: IUuiTokensCollection }) {

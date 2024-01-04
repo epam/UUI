@@ -12,7 +12,7 @@ import {
     TUuiCssVarName,
     TVarType,
 } from '../types/sharedTypes';
-import { FIGMA_VARS_CFG, IFigmaVarConfigValue } from '../config';
+import { FIGMA_VARS_CFG, IFigmaVarConfigValue, TList } from '../config';
 
 export function getCssVarFromFigmaVar(path: string): TUuiCssVarName | undefined {
     const config = getFigmaVarConfig(path);
@@ -31,33 +31,35 @@ export function isFigmaVarSupported(params: { path: string, theme?: TFigmaThemeN
     const config = getFigmaVarConfig(path);
     if (config) {
         const { blacklist, whitelist } = config;
-        let isIncludedByWhiteList = true;
-        if (whitelist) {
-            const wlItem = whitelist[path];
-            if (wlItem) {
-                if (theme) {
-                    isIncludedByWhiteList = wlItem.indexOf(theme) !== -1;
-                } else {
-                    isIncludedByWhiteList = Object.values(TFigmaThemeName).some((themeItem) => {
-                        return wlItem.indexOf(themeItem) !== -1;
-                    });
-                }
-            } else {
-                isIncludedByWhiteList = false;
-            }
-        }
-        let isIncludedByBlackList = true;
-        if (blacklist) {
-            const blItem = blacklist[path];
-            if (blItem) {
-                isIncludedByBlackList = Object.values(TFigmaThemeName).some((themeItem) => {
-                    return blItem.indexOf(themeItem) === -1;
-                });
-            }
-        }
-        return isIncludedByWhiteList && isIncludedByBlackList;
+        return isItemAllowed({ list: whitelist, isWhitelist: true, path, theme }) && isItemAllowed({ list: blacklist, isWhitelist: false, path, theme });
     }
     return false;
+}
+
+function isItemAllowed(params: { path: string, list?: TList, isWhitelist: boolean, theme?: TFigmaThemeName }): boolean {
+    const { list, isWhitelist, path, theme } = params;
+    let isAllowed: boolean = true;
+    if (list) {
+        const wlItem = list[path];
+        if (wlItem) {
+            if (wlItem === '*') {
+                isAllowed = isWhitelist;
+            } else {
+                if (theme) {
+                    const idx = wlItem.indexOf(theme);
+                    isAllowed = isWhitelist ? idx !== -1 : idx === -1;
+                } else {
+                    isAllowed = Object.values(TFigmaThemeName).some((themeItem) => {
+                        const idx = wlItem.indexOf(themeItem);
+                        return isWhitelist ? idx !== -1 : idx === -1;
+                    });
+                }
+            }
+        } else {
+            isAllowed = !isWhitelist;
+        }
+    }
+    return isAllowed;
 }
 
 export function getNormalizedResolvedValueMap(
