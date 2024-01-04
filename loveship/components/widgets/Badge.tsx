@@ -55,6 +55,13 @@ export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
                 propValueUseInstead: 'outline',
                 condition: () => ['semitransparent'].indexOf(props.fill) !== -1,
             });
+            devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({ // TODO: remove size 12 from @uui/Badge: mapCountIndicatorSizes
+                component: 'Badge',
+                propName: 'size',
+                propValue: props.size,
+                propValueUseInstead: '18',
+                condition: () => props.size === '12',
+            });
             if (props.shape === 'square' || !props.shape) {
                 devLogger.warn('(Badge) The "square" value of shape is deprecated and will be removed in future versions. Please use "round" value instead.');
             }
