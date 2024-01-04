@@ -1,4 +1,4 @@
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions, TreeParams } from '..';
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions, TreeParams } from '../ITree';
 import { CascadeSelection, DataSourceState, IMap } from '../../../../../types';
 import { newMap } from '../BaseTree';
 import { TreeSnapshot } from './TreeSnapshot';

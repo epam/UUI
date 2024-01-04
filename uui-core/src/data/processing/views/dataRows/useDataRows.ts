@@ -160,7 +160,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         ...foldingService,
     });
 
-    const updatedRows = useUpdateRowOptions({ rows, updateRowOptions, getRowOptions });
+    const updatedRows = useUpdateRowOptions({ rows, updateRowOptions });
 
     const withPinnedRows = usePinnedRows({
         rows: updatedRows,
@@ -196,7 +196,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             rowsCount = completeFlatListRowsCount;
         } else if (!stats.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
-            rowsCount = rows.length;
+            rowsCount = updatedRows.length;
         } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
@@ -207,29 +207,29 @@ export function useDataRows<TItem, TId, TFilter = any>(
             // Probably, we'll move this const to props later if needed;
             const rowsToAddBelowLastKnown = 20;
 
-            rowsCount = Math.max(rows.length, lastRowIndex + rowsToAddBelowLastKnown);
+            rowsCount = Math.max(updatedRows.length, lastRowIndex + rowsToAddBelowLastKnown);
         }
 
         return {
             rowsCount,
-            knownRowsCount: rows.length,
-            exactRowsCount: rows.length,
+            knownRowsCount: updatedRows.length,
+            exactRowsCount: updatedRows.length,
             totalCount,
             selectAll,
             isReloading: isFetching,
         };
-    }, [rows.length, selectAll, completeFlatListRowsCount, totalCount, stats.hasMoreRows, lastRowIndex, isFetching]);
+    }, [updatedRows.length, selectAll, completeFlatListRowsCount, totalCount, stats.hasMoreRows, lastRowIndex, isFetching]);
 
     const visibleRows = useMemo(
         () => {
             const from = dataSourceState.topIndex;
             const count = dataSourceState.visibleCount;
-            const visibleRowsWithPins = withPinnedRows(rows.slice(from, from + count));
+            const visibleRowsWithPins = withPinnedRows(updatedRows.slice(from, from + count));
             if (stats.hasMoreRows) {
                 // We don't run rebuild rows on scrolling. We rather wait for the next load to happen.
                 // So there can be a case when we haven't updated rows (to add more loading rows), and view is scrolled down
                 // We need to add more loading rows in such case.
-                const lastRow = rows[rows.length - 1];
+                const lastRow = updatedRows[updatedRows.length - 1];
 
                 while (visibleRowsWithPins.length < count && from + visibleRowsWithPins.length < listProps.rowsCount) {
                     const index = from + visibleRowsWithPins.length;
@@ -244,7 +244,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             return visibleRowsWithPins;
         },
         [
-            rows,
+            updatedRows,
             dataSourceState.topIndex,
             dataSourceState.visibleCount,
             withPinnedRows,
@@ -291,6 +291,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     };
 
     const clearAllChecked = useCallback(() => handleSelectAll(false), [handleSelectAll]);
+
     return {
         listProps,
         visibleRows,

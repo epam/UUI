@@ -101,7 +101,11 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
-            loadMissing(currentTree, completeReset)
+            loadMissing({
+                tree: currentTree,
+                using: dataSourceState.search ? 'visible' : undefined,
+                abortInProgress: completeReset,
+            })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setTreeWithData(newTree);
