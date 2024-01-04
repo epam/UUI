@@ -9,7 +9,7 @@ import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { PositionedToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
+import { DeserializeHtml, PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
 import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove, useTableMergeState } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
@@ -58,6 +58,22 @@ function TableRenderer(props: any) {
     );
 }
 
+// TODO: move to plate
+const createGetNodeFunc = (type: string) => {
+    const getNode: DeserializeHtml['getNode'] = (element) => {
+        const background = element.style.background || element.style.backgroundColor;
+        if (background) {
+            return {
+                type,
+                background,
+            };
+        }
+
+        return { type };
+    };
+    return getNode;
+};
+
 export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlugin>({
     overrideByKey: {
         [ELEMENT_TABLE]: {
@@ -71,15 +87,22 @@ export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlug
         [ELEMENT_TD]: {
             type: 'table_cell',
             component: TableCellElement,
+            deserializeHtml: {
+                getNode: createGetNodeFunc('table_cell'),
+            },
         },
         [ELEMENT_TH]: {
             type: 'table_header_cell',
             component: TableCellElement,
+            deserializeHtml: {
+                getNode: createGetNodeFunc('table_header_cell'),
+            },
         },
     },
     options: {
         enableMerging: true,
         bottomBarButton: TableButton,
+        name: 'table-button',
     },
 });
 

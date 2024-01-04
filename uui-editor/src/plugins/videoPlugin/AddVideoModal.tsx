@@ -39,7 +39,7 @@ export function getVideoSrc(src: string) {
 
     switch (service) {
         case 'youtube': return `https://www.youtube.com/embed/${id}`;
-        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${id}`;
+        case 'videoportal': return `https://videoportal.epam.com/video/iframe.html?video=${id}`;
         case 'vimeo': return `https://player.vimeo.com/video/${id}`;
         default: return src;
     }
