@@ -16770,7 +16770,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -16977,6 +16977,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "maxBodyHeight",
+      "name": "maxBodyHeight",
+      "comment": {
+       "raw": [
+        "Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "@epam/uui-core:PickerFilterConfig",
       "required": false
@@ -29343,6 +29360,8 @@
       "     * If omitted, true value will be used.",
       "     */",
       "    showSearch?: boolean;",
+      "    /** Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates) */",
+      "    maxBodyHeight?: number;",
       "};"
      ]
     },
@@ -29546,6 +29565,22 @@
        "type": "bool"
       },
       "required": false
+     },
+     {
+      "uid": "maxBodyHeight",
+      "name": "maxBodyHeight",
+      "comment": {
+       "raw": [
+        "Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -29739,9 +29774,9 @@
      "print": [
       "type RangeDatePickerPresetValue = {",
       "    /** Range from value */",
-      "    from: string;",
+      "    from?: string;",
       "    /** Range to value */",
-      "    to: string;",
+      "    to?: string;",
       "    /** Preset order in presets list */",
       "    order?: number;",
       "};"
@@ -29762,7 +29797,7 @@
       "editor": {
        "type": "string"
       },
-      "required": true
+      "required": false
      },
      {
       "uid": "to",
@@ -29778,7 +29813,7 @@
       "editor": {
        "type": "string"
       },
-      "required": true
+      "required": false
      },
      {
       "uid": "order",
@@ -31092,6 +31127,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "maxBodyHeight",
+      "name": "maxBodyHeight",
+      "comment": {
+       "raw": [
+        "Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "from": "@epam/uui-core:PickerFilterConfig",
       "required": false
@@ -39971,6 +40023,8 @@
       "    maxWidth?: number | 'auto';",
       "    /** Defines height in 'px'. */",
       "    height?: number;",
+      "    /** Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content. */",
+      "    maxHeight?: number | 'auto';",
       "    /** If true, arrow tip will be shown",
       "     * @default false",
       "     * */",
@@ -40057,6 +40111,19 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "maxHeight",
+      "name": "maxHeight",
+      "comment": {
+       "raw": [
+        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
+       ]
+      },
+      "typeValue": {
+       "raw": "number | 'auto'"
       },
       "required": false
      },
@@ -72602,6 +72669,20 @@
       "required": false
      },
      {
+      "uid": "maxHeight",
+      "name": "maxHeight",
+      "comment": {
+       "raw": [
+        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
+       ]
+      },
+      "typeValue": {
+       "raw": "number | 'auto'"
+      },
+      "from": "@epam/uui-components:DropdownContainerProps",
+      "required": false
+     },
+     {
       "uid": "showArrow",
       "name": "showArrow",
       "comment": {
@@ -84947,12 +85028,12 @@
     "propsFromUnion": true
    }
   },
-  "@epam/uui:pickerPart": {
+  "@epam/uui:PickerPart": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
-     "name": "pickerPart",
-     "nameFull": "pickerPart"
+     "name": "PickerPart",
+     "nameFull": "PickerPart"
     },
     "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
     "exported": true
@@ -84960,9 +85041,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "'from' | 'to'",
+     "raw": "null | 'from' | 'to'",
      "print": [
-      "type pickerPart = 'from' | 'to';"
+      "type PickerPart = 'from' | 'to' | null;"
      ]
     }
    }
@@ -96268,6 +96349,20 @@
       "required": false
      },
      {
+      "uid": "maxHeight",
+      "name": "maxHeight",
+      "comment": {
+       "raw": [
+        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
+       ]
+      },
+      "typeValue": {
+       "raw": "number | 'auto'"
+      },
+      "from": "@epam/uui-components:DropdownContainerProps",
+      "required": false
+     },
+     {
       "uid": "showArrow",
       "name": "showArrow",
       "comment": {
@@ -104646,6 +104741,20 @@
       },
       "editor": {
        "type": "number"
+      },
+      "from": "@epam/uui-components:DropdownContainerProps",
+      "required": false
+     },
+     {
+      "uid": "maxHeight",
+      "name": "maxHeight",
+      "comment": {
+       "raw": [
+        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
+       ]
+      },
+      "typeValue": {
+       "raw": "number | 'auto'"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
