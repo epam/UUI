@@ -66824,29 +66824,14 @@
      "raw": "CheckboxGroupProps<TValue>",
      "print": [
       "interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {",
-      "    /** Overrides the component to render a single checkbox */",
-      "    CheckboxInput?: React.ComponentType<CheckboxProps>;",
       "    /** Array of checkbox items to be rendered in group */",
       "    items: CheckboxGroupItem<TValue>[];",
-      "    /** Defines component size */",
+      "    /** Defines group components size */",
       "    size?: CheckboxProps['size'];",
       "}"
      ]
     },
     "props": [
-     {
-      "uid": "CheckboxInput",
-      "name": "CheckboxInput",
-      "comment": {
-       "raw": [
-        "Overrides the component to render a single checkbox"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<CheckboxProps, any> | React.FunctionComponent<CheckboxProps>"
-      },
-      "required": false
-     },
      {
       "uid": "items",
       "name": "items",
@@ -66865,7 +66850,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size"
+        "Defines group components size"
        ]
       },
       "typeValue": {
@@ -85369,29 +85354,14 @@
      "raw": "RadioGroupProps<TValue>",
      "print": [
       "interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement>, ICanFocus<HTMLFieldSetElement> {",
-      "    /** Overrides the component to render a single radio Input  */",
-      "    RadioInput?: React.ComponentType<RadioInputProps>;",
       "    /** Array of checkbox items to be rendered in group */",
       "    items: RadioGroupItem<TValue>[];",
-      "    /** Defines component size */",
+      "    /** Defines group components size */",
       "    size?: RadioInputProps['size'];",
       "}"
      ]
     },
     "props": [
-     {
-      "uid": "RadioInput",
-      "name": "RadioInput",
-      "comment": {
-       "raw": [
-        "Overrides the component to render a single radio Input"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<RadioInputProps, any> | React.FunctionComponent<RadioInputProps>"
-      },
-      "required": false
-     },
      {
       "uid": "items",
       "name": "items",
@@ -85410,7 +85380,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size"
+        "Defines group components size"
        ]
       },
       "typeValue": {

@@ -23,8 +23,6 @@ export interface RadioGroupProps<TValue>
     IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>,
     IHasForwardedRef<HTMLFieldSetElement>,
     ICanFocus<HTMLFieldSetElement> {
-    /** Overrides the component to render a single radio Input  */
-    RadioInput?: React.ComponentType<RadioInputProps>;
     /** Array of checkbox items to be rendered in group */
     items: RadioGroupItem<TValue>[];
     /** Defines group components size */

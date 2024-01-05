@@ -30,7 +30,6 @@ export class RadioGroupDoc extends BaseDocsBlock {
             });
             doc.merge('direction', { defaultValue: 'vertical' });
             doc.merge('value', { editorType: 'JsonView' });
-            doc.merge('RadioInput', { examples: [{ value: uui.RadioInput, name: 'RadioInput' }] });
         },
     };
 
