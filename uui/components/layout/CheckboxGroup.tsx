@@ -23,8 +23,6 @@ export interface CheckboxGroupProps<TValue>
     ICanBeReadonly,
     IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>,
     IHasForwardedRef<HTMLFieldSetElement> {
-    /** Overrides the component to render a single checkbox */
-    CheckboxInput?: React.ComponentType<CheckboxProps>;
     /** Array of checkbox items to be rendered in group */
     items: CheckboxGroupItem<TValue>[];
     /** Defines group components size */
