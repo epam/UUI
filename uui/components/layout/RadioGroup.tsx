@@ -4,10 +4,10 @@ import css from './RadioGroup.module.scss';
 import * as React from 'react';
 
 export interface RadioGroupItem<TValue> extends IDisableable, Omit<RadioInputProps, 'id' | 'onValueChange' | 'value'> {
-    /** RadioInput label. Can be a string, or React.Element. */
+    /** RadioInput label. Can be a string, or React.ReactNode */
     name?: React.ReactNode;
-    /** Render callback for checkbox label.
-     * If omitted, 'name' prop value will be rendered.
+    /** Render callback for checkbox label
+     * If omitted, 'name' prop value will be rendered
      */
     renderName?: () => React.ReactNode;
     /** Item ID to put into selection */

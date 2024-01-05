@@ -4,7 +4,7 @@ import { Checkbox, CheckboxProps } from '../inputs';
 import css from './CheckboxGroup.module.scss';
 
 interface CheckboxGroupItem<TValue> extends Omit<CheckboxProps, 'id' | 'onValueChange' | 'value'> {
-    /** Checkbox label. Can be a string, or React.Element. */
+    /** Checkbox label. Can be a string, or React.ReactNode */
     name?: React.ReactNode;
     /** Item ID to put into selection */
     id: TValue;
