@@ -20,6 +20,7 @@
 * [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * [VirtualList]: fixed `onScroll` prop typing
 * [PickerInput]: fixed closing picker body by checking some item in 'Show only selected' mode
+* [PresetPanel]: fixed the problem of creating duplicates of the new preset when clicking the accept button quickly.
 
 # 5.4.3 - 19.12.2023
 
