@@ -86,7 +86,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
     uuiApi.getActiveCalls().forEach((c) => {
         if (c.status === 'error' && c.options.errorHandling === 'page') {
             apiErrors.push(c);
-        } else if (c.options.errorHandling === 'notification') {
+        } else if (c.status === 'error' && c.options.errorHandling === 'notification') {
             apiNotifications.push(c);
         }
     });
