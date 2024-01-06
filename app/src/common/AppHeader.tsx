@@ -72,6 +72,7 @@ export function AppHeader() {
                     <Button { ...props } cx={ css.themeSwitcherButton } caption={ themeName[theme] } fill="none" size="36" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
+                key="Theme-switcher"
             />
         );
     };

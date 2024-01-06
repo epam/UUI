@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { ELEMENT_LINK, insertLink, unwrapLink } from '@udecode/plate-link';
-import { PlateEditor, getPluginType, getAboveNode, getSelectionText } from '@udecode/plate-common';
+import React, { useState } from 'react';
+import { ELEMENT_LINK, TLinkElement, unwrapLink, upsertLink } from '@udecode/plate-link';
+import { PlateEditor, getPluginType, getSelectionText, findNode, getEditorString } from '@udecode/plate-common';
 import { IModal } from '@epam/uui-core';
 import { FlexRow, FlexSpacer, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
 
@@ -10,33 +10,23 @@ interface AddLinkModalProps extends IModal<any> {
     editor: PlateEditor;
 }
 
-export function AddLinkModal(props: AddLinkModalProps) {
+export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
+    const { success, abort } = modalProps;
     const [link, setLink] = useState('');
-    const isLinkInvalid = false;
-
-    const linkValidationProps = {
-        isInvalid: isLinkInvalid,
-        validationMessage: 'Link is invalid',
-    };
-
-    useEffect(() => {
-        const type = getPluginType(props.editor, ELEMENT_LINK);
-
-        const linkNode = getAboveNode(props.editor, {
-            match: { type },
-        });
-        if (linkNode) {
-            setLink(linkNode[0].url as string);
-        }
-    }, [props]);
 
     return (
-        <ModalBlocker { ...props }>
+        <ModalBlocker { ...modalProps }>
             <ModalWindow>
-                <ModalHeader title="Add link" onClose={ props.abort } />
+                <ModalHeader title="Add link" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
-                    <LabeledInput label="Link" { ...linkValidationProps }>
-                        <TextInput value={ link } onValueChange={ (newVal) => setLink(newVal) } autoFocus />
+                    <LabeledInput label="Link">
+                        <TextInput
+                            value={ link }
+                            onValueChange={ (newVal) => {
+                                setLink(newVal!);
+                            } }
+                            autoFocus
+                        />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop>
@@ -46,16 +36,26 @@ export function AddLinkModal(props: AddLinkModalProps) {
                         caption="Delete"
                         onClick={ () => {
                             setLink('');
-                            unwrapLink(props.editor);
-                            props.abort();
+                            unwrapLink(editor);
+                            abort();
                         } }
                     />
                     <Button
                         color="accent"
                         caption="Save"
                         onClick={ () => {
-                            link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor), target: '_blank' });
-                            props.success(true);
+                            const entry = findNode<TLinkElement>(editor, {
+                                match: { type: getPluginType(editor, ELEMENT_LINK) },
+                            });
+
+                            let text = getSelectionText(editor);
+                            if (entry) {
+                                // edit
+                                const [, path] = entry;
+                                text = getEditorString(editor, path);
+                            }
+                            upsertLink(editor, { url: link, text, target: '_blank' });
+                            success(true);
                         } }
                     />
                 </ModalFooter>

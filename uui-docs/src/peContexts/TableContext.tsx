@@ -2,23 +2,11 @@ import React from 'react';
 import { demoData } from '../demoData';
 import { DemoComponentProps } from '../types';
 import { ArrayDataSource, DataColumnProps, Metadata } from '@epam/uui-core';
-import {
-    Panel, DataTable, DataTableCell, useForm, FlexRow, Button, FlexSpacer, FlexCell, Text,
-} from '@epam/uui';
+import { Panel, DataTable, DataTableCell, useForm, FlexRow, Button, FlexSpacer, FlexCell, NumericInput, TextInput } from '@epam/uui';
 
 interface Person {
     id: number;
-    name: string;
-    yearsInCompany: number;
-    personType: string;
-    avatarUrl: string;
-    phoneNumber: string;
-    jobTitle: string;
-    birthDate: string;
-    gender: string;
-    hireDate: string;
-    departmentId: number;
-    departmentName: string;
+    [prop: string]: any;
 }
 
 interface FormState {
@@ -71,12 +59,12 @@ export function TableContext(contextProps: DemoComponentProps) {
 
     const personColumns: DataColumnProps<Person>[] = [
         {
-            key: 'name',
-            caption: 'Name',
+            key: 'Component-1',
+            caption: 'Component',
             renderCell: (props) => (
                 <DataTableCell
-                    { ...props.rowLens.prop(DemoComponent.name === 'PickerInput' ? 'id' : 'name').toProps() }
-                    renderEditor={ (props) => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } getName={ (i: any) => i.name } { ...props } /> }
+                    { ...props.rowLens.prop('id').toProps() }
+                    renderEditor={ (props) => <DemoComponent { ...props } { ...contextProps.props } /> }
                     { ...props }
                 />
             ),
@@ -88,10 +76,8 @@ export function TableContext(contextProps: DemoComponentProps) {
             caption: 'Years In Company',
             renderCell: (props) => (
                 <DataTableCell
-                    { ...props.rowLens.prop(DemoComponent.name === 'PickerInput' ? 'id' : 'yearsInCompany').toProps() }
-                    renderEditor={ (props) => (
-                        <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } getName={ (i: any) => i.yearsInCompany } { ...props } />
-                    ) }
+                    { ...props.rowLens.prop('yearsInCompany').toProps() }
+                    renderEditor={ (props) => <NumericInput { ...props } /> }
                     { ...props }
                 />
             ),
@@ -100,16 +86,22 @@ export function TableContext(contextProps: DemoComponentProps) {
         }, {
             key: 'departmentName',
             caption: 'Department Name',
-            render: (props) => <Text>{props.departmentName}</Text>,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('departmentName').toProps() }
+                    renderEditor={ (props) => <TextInput { ...props } /> }
+                    { ...props }
+                />
+            ),
             isSortable: true,
             width: 200,
         }, {
-            key: 'birthDate',
-            caption: 'Birth Date',
+            key: 'Component-2',
+            caption: 'Component',
             renderCell: (props) => (
                 <DataTableCell
-                    { ...props.rowLens.prop(DemoComponent.name === 'PickerInput' ? 'id' : 'birthDate').toProps() }
-                    renderEditor={ (props) => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } getName={ (i: any) => i.birthDate } { ...props } /> }
+                    { ...props.rowLens.prop('id').toProps() }
+                    renderEditor={ (props) => <DemoComponent { ...props } { ...contextProps.props } /> }
                     { ...props }
                 />
             ),
