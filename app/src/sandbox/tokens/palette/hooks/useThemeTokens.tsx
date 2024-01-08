@@ -58,9 +58,15 @@ function loadedTokensConverter(
 ) {
     const { res, expectedValueType, uuiTheme, compStyle } = params;
     const figmaTheme = getFigmaTheme(uuiTheme);
-    return res.map((token) => {
+    return res.reduce<IThemeVarUI[]>((acc, token) => {
         const actual = token.cssVar === undefined ? '' : compStyle.getPropertyValue(token.cssVar);
         const { valueByTheme, ...rest } = token;
+
+        if (figmaTheme && !valueByTheme[figmaTheme]) {
+            // Figma theme exists but token is not defined in this theme. Need to SKIP it.
+            return acc;
+        }
+
         const valueKey = expectedValueType === TExpectedValueType.direct ? 'valueDirect' : 'valueChain';
         const expected = figmaTheme ? valueByTheme[figmaTheme]?.[valueKey] : undefined;
         const tokenUI: IThemeVarUI = {
@@ -73,6 +79,8 @@ function loadedTokensConverter(
         };
 
         const errors = validateActualTokenValue(tokenUI);
-        return { ...tokenUI, value: { ...tokenUI.value, errors } };
-    });
+        acc.push({ ...tokenUI, value: { ...tokenUI.value, errors } });
+
+        return acc;
+    }, []);
 }
