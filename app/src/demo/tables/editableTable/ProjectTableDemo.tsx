@@ -227,7 +227,7 @@ export function ProjectTableDemo() {
                 </FlexCell>
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
-                        <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
+                        <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } isDisabled={ selectedItem === undefined } />
                     </Tooltip>
                 </FlexCell>
                 <FlexSpacer />
