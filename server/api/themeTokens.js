@@ -6,7 +6,7 @@ const router = express.Router();
 
 /**
  *
- * @returns {import('@epam/uui-build/ts/figmaTokensGen/types/sharedTypes.ts').IUuiTokensCollection}
+ * @returns {import('@epam/uui-build/ts/tasks/themeTokensGen/types/sharedTypes.ts').IUuiTokensCollection}
  */
 function readThemeTokensJson() {
     const filePath = path.join(__dirname, '../../public/docs/figmaTokensGen/ThemeTokens.json');
