@@ -7,7 +7,7 @@ const router = express.Router();
 
 /**
  *
- * @returns {import('@epam/uui-build/docsGen/types/sharedTypes.ts').TApiReferenceJson}
+ * @returns {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TApiReferenceJson}
  */
 function readDocsGenResultsJson() {
     const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
@@ -16,8 +16,8 @@ function readDocsGenResultsJson() {
 
 /**
  *
- * @param typeValue {import('@epam/uui-build/docsGen/types/sharedTypes.ts').TTypeValue}
- * @returns {import('@epam/uui-build/docsGen/types/sharedTypes.ts').TTypeValue}
+ * @param typeValue {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TTypeValue}
+ * @returns {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TTypeValue}
  */
 function prettyPrintTypeValue(typeValue) {
     if (typeValue) {
