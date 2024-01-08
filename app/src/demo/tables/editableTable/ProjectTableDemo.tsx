@@ -153,19 +153,19 @@ export function ProjectTableDemo() {
     }, [tableState.selectedId, value.items]);
 
     const deleteSelectedItem = useCallback(() => {
+        if (selectedItem === undefined) return;
+        
         const prevRows = [...rows];
         deleteTask(selectedItem);
-        if (selectedItem !== undefined) {
-            const index = prevRows.findIndex((task) => task.id === selectedItem.id);
-            const newSelectedIndex = index === prevRows.length - 1
-                ? (prevRows.length - 2)
-                : (index + 1);
+        const index = prevRows.findIndex((task) => task.id === selectedItem.id);
+        const newSelectedIndex = index === prevRows.length - 1
+            ? (prevRows.length - 2)
+            : (index + 1);
 
-            setTableState((state) => ({
-                ...state,
-                selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
-            }));
-        }
+        setTableState((state) => ({
+            ...state,
+            selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
+        }));
     }, [deleteTask, rows, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
