@@ -28,7 +28,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     } = props;
 
     const handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
-        if (showSelected && !newDataSourceState.checked?.length) {
+        if (showSelected && (!newDataSourceState.checked?.length || (newDataSourceState.checked?.length && newDataSourceState.search))) {
             setShowSelected(false);
         }
 
