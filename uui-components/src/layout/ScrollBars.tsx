@@ -60,8 +60,20 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     const renderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
         const propsRenderView = props.renderView as (p: any) => any;
-        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
-        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />;
+        const scrollbleProps = {
+            className: css.scrollable,
+            style: {
+                ...innerStyle,
+                position: 'relative',
+                flex: '1 1 auto',
+                width: 'auto',
+                margin: 0,
+            } as React.CSSProperties,
+            ...rest,
+        };
+
+        const rv = propsRenderView?.({ ...scrollbleProps });
+        return rv || <div { ...scrollbleProps } />;
     };
 
     return (
