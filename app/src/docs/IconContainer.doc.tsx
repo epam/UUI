@@ -15,16 +15,30 @@ export class IconContainerDoc extends BaseDocsBlock {
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui-components:ControlIconProps', component: uui.IconContainer },
             [TSkin.Electric]: { type: '@epam/uui-components:ControlIconProps', component: electric.IconContainer },
-            [TSkin.Loveship]: { type: '@epam/loveship:IconContainerProps', component: loveship.IconContainer },
-            [TSkin.Promo]: { type: '@epam/promo:IconContainerProps', component: promo.IconContainer },
-        },
-        doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
-            doc.merge('color', {
-                editorType: getColorPickerComponent({
-                    ...COLOR_MAP,
-                    carbon: '#3D404D',
-                }),
-            });
+            [TSkin.Loveship]: {
+                type: '@epam/loveship:IconContainerProps',
+                component: loveship.IconContainer,
+                doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+                    doc.merge('color', {
+                        editorType: getColorPickerComponent({
+                            ...COLOR_MAP,
+                            carbon: '#3D404D',
+                        }),
+                    });
+                },
+            },
+            [TSkin.Promo]: {
+                type: '@epam/promo:IconContainerProps',
+                component: promo.IconContainer,
+                doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+                    doc.merge('color', {
+                        editorType: getColorPickerComponent({
+                            ...COLOR_MAP,
+                            carbon: '#3D404D',
+                        }),
+                    });
+                },
+            },
         },
     };
 
