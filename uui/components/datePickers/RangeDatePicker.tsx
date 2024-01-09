@@ -19,7 +19,7 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
      * A pure function that gets placeholder for 'from' or 'to' input.
      */
     getPlaceholder?(type: InputType): string;
-    /*
+    /**
     * Defines id for inner input
     */
     id?: string;
