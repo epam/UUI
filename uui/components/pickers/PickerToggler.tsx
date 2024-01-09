@@ -72,7 +72,6 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
     return (
         <UuiPickerToggler
             { ...props }
-            id={ props?.id }
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
