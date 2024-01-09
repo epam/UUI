@@ -72130,6 +72130,9 @@
      "print": [
       "/** Represents the properties of the DatePicker component. */",
       "interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {",
+      "    /*",
+      "    * Defines id for inner input",
+      "    */",
       "    id?: string;",
       "}"
      ]
@@ -86174,6 +86177,10 @@
       "     * A pure function that gets placeholder for 'from' or 'to' input.",
       "     */",
       "    getPlaceholder?(type: InputType): string;",
+      "    /*",
+      "    * Defines id for inner input",
+      "    */",
+      "    id?: string;",
       "}"
      ]
     },
@@ -86191,6 +86198,17 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      },

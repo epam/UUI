@@ -11,6 +11,9 @@ const defaultMode = EditMode.FORM;
 
 /** Represents the properties of the DatePicker component. */
 export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
+    /*
+    * Defines id for inner input
+    */
     id?: string;
 }
 
