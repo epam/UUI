@@ -10,7 +10,9 @@ import { DropdownContainer } from '../overlays';
 const defaultMode = EditMode.FORM;
 
 /** Represents the properties of the DatePicker component. */
-export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {}
+export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
+    id?: string;
+}
 
 class DatePickerComponent extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler & { cx: any }) => {
@@ -46,6 +48,7 @@ class DatePickerComponent extends BaseDatePicker<DatePickerProps> {
                 onBlur={ this.handleBlur }
                 mode={ this.props.mode || defaultMode }
                 rawProps={ this.props.rawProps?.input }
+                id={ this.props.id }
             />
         );
     };
