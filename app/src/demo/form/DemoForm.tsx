@@ -70,7 +70,7 @@ function PersonalInfo({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) 
                     <LabeledInput htmlFor="birthDate" label="Date of Birth" { ...lens.prop('birthdayDate').toProps() }>
                         <DatePicker
                             filter={ (day: Dayjs) => day.valueOf() <= dayjs().subtract(0, 'day').valueOf() }
-                            rawProps={ { input: { id: 'birthDate' } } }
+                            id="birthDate"
                             format="MMM D, YYYY"
                             { ...lens.prop('birthdayDate').toProps() }
                         />
@@ -105,7 +105,7 @@ function Location({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                             dataSource={ countriesDS }
                             selectionMode="single"
                             valueType="id"
-                            rawProps={ { input: { id: 'country' } } }
+                            id="country"
                             placeholder="Select Country"
                             onValueChange={ (value) => lens.set({ country: value as string, city: null }) }
                         />
@@ -117,7 +117,7 @@ function Location({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                             { ...lens.prop('city').toProps() }
                             selectionMode="single"
                             valueType="id"
-                            rawProps={ { input: { id: 'city' } } }
+                            id="city"
                             dataSource={ citiesDataSource }
                             filter={ { country: lens.prop('country').get() } }
                             placeholder="Select City"
@@ -217,7 +217,7 @@ function Education({ lens }: { lens: ILens<PersonDetails['education']> }) {
                             { ...lens.prop('institution').toProps() }
                             dataSource={ institutionLevelsDataSource }
                             selectionMode="single"
-                            rawProps={ { input: { id: 'institution' } } }
+                            id="institution"
                             getName={ (item) => item.university.split(' / ')[0] }
                             sorting={ { field: 'university', direction: 'asc' } }
                             valueType="id"
@@ -303,7 +303,7 @@ function Languages({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) {
                                     dataSource={ languageDataSource }
                                     selectionMode="single"
                                     valueType="id"
-                                    rawProps={ { input: { id: `language-${index}` } } }
+                                    id={ `language-${index}` }
                                     placeholder="Select Language"
                                 />
                             </LabeledInput>
@@ -315,7 +315,7 @@ function Languages({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) {
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode="single"
                                     valueType="id"
-                                    rawProps={ { input: { id: `speakingLevel-${index}` } } }
+                                    id={ `speakingLevel-${index}` }
                                     placeholder="Select Level"
                                     getName={ (item) => item.level }
                                 />
@@ -328,7 +328,7 @@ function Languages({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) {
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode="single"
                                     valueType="id"
-                                    rawProps={ { input: { id: `writingLevel-${index}` } } }
+                                    id={ `writingLevel-${index}` }
                                     placeholder="Select Level"
                                     getName={ (item) => item.level }
                                 />
@@ -416,14 +416,14 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                                     dataSource={ countriesDS }
                                     selectionMode="single"
                                     valueType="id"
-                                    rawProps={ { input: { id: `travelVisasCountry-${index}` } } }
+                                    id={ `travelVisasCountry-${index}` }
                                     placeholder="Select Country"
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell width={ 294 }>
-                            <LabeledInput label="Term" { ...visasLens.index(index).prop('term').toProps() }>
-                                <RangeDatePicker format="MMM D, YYYY" { ...visasLens.index(index).prop('term').toProps() } />
+                            <LabeledInput htmlFor="term" label="Term" { ...visasLens.index(index).prop('term').toProps() }>
+                                <RangeDatePicker id="term" format="MMM D, YYYY" { ...visasLens.index(index).prop('term').toProps() } />
                             </LabeledInput>
                         </FlexCell>
                         <FlexRow size="48" alignItems="bottom" cx={ css.clearButtonWrapper }>
