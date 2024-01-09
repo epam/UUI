@@ -22,6 +22,7 @@
 * [PickerInput]: fixed closing picker body by checking some item in 'Show only selected' mode
 * [ErrorHandling]: fixed notification errors handling for recovery status. Now notification will be shown only after recovery will be completed and request failed.
 * [PresetPanel]: fixed the problem of creating duplicates of the new preset when clicking the accept button quickly.
+* [CheckboxGroup]: added property `size` to set it for all group components. Shared checkbox props into CheckboxGroup, now you can use them for group components.  
 
 # 5.4.3 - 19.12.2023
 

@@ -2,7 +2,7 @@
 
 exports[`CheckboxGroup should be rendered correctly 1`] = `
 <fieldset
-  className="uui-vertical-direction root container"
+  className="root uui-vertical-direction"
 >
   <label
     className="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
@@ -49,7 +49,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
 
 exports[`CheckboxGroup should be rendered correctly with props 1`] = `
 <fieldset
-  className="uui-horizontal-direction root container"
+  className="root uui-horizontal-direction"
 >
   <label
     className="container uui-checkbox-container root size-18 mode-form uui-color-primary uui-disabled"
