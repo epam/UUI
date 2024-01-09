@@ -15,7 +15,7 @@ const pickerHeight = 300;
 const pickerWidth = 360;
 
 export type PickerInputProps = SizeMod & IHasEditMode & {
-    /*
+    /**
     * Defines an id for inner input
     */
     id?: string;
