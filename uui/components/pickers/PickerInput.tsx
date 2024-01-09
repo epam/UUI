@@ -14,12 +14,7 @@ import { PickerItem } from './PickerItem';
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export type PickerInputProps = SizeMod & IHasEditMode & {
-    /**
-    * HTML ID attribute for the toggler input
-    */
-    id?: string;
-};
+export type PickerInputProps = SizeMod & IHasEditMode & {};
 export type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;
 
 function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: CompletePickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -182,7 +177,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
-                const targetProps = { ...getTogglerProps(), id: props?.id };
+                const targetProps = { ...getTogglerProps() };
                 return renderTarget({ ...dropdownProps, ...targetProps });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
