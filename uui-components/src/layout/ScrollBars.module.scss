@@ -47,3 +47,13 @@
         bottom: 2px;
     }
 }
+
+// removes default scrollbars
+.scrollable {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

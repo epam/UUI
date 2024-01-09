@@ -116,7 +116,7 @@
     height: 100%;
 }
 
-.scrollbars > div {
+.scrollbars > :first-child {
     display: flex;
     flex-direction: column;
 }
