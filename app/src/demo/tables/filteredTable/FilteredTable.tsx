@@ -108,7 +108,7 @@ export function FilteredTable() {
                 </FlexCell>
             </FlexRow>
             <DataTable
-                headerTextCase={ 'upper' as 'upper' | 'normal' }
+                headerTextCase="upper"
                 getRows={ () => visibleRows }
                 columns={ personColumns }
                 value={ tableStateApi.tableState }

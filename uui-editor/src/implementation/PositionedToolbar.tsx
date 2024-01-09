@@ -7,12 +7,11 @@ import { Popper } from 'react-popper';
 import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
-import css from './Toolbar.module.scss';
+import css from './PositionedToolbar.module.scss';
 import { useLayer } from '@epam/uui-core';
 
 interface ToolbarProps {
     editor: any;
-    plugins?: any;
     children: any;
     isImage?: boolean;
     isTable?: boolean;

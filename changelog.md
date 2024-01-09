@@ -6,15 +6,22 @@
 * [Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
 * [RadioInput]: in Loveship skin removed property 'theme'.
 * [DataTable]: Focus manager.
-    * Added ability to change focus on different cells using a keyboard in editable tables.
-    * See the example [here](https://uui.epam.com/demo?id=editableTable).
+  * Added ability to change focus on different cells using a keyboard in editable tables.
+  * See the example [here](https://uui.epam.com/demo?id=editableTable).
+* [Badge]: in Loveship property `shape: square` was deprecated and will be removed in future release. Please pay attention to the `sguare` value set by default now, and we recommend changing it to `round` in this case.
+* [Badge]: in Loveship `size 12` is deprecated and will be removed in future release. Please, use size `18` instead.
 * [Dropdown]: improve close on click outside dropdown logic
+* [FilteredTable]: in range numeric filter set `isInvalid = true` if value `from` bigger than value `to`.
+* [CountIndicator]: set color `info` by default.
+* [FiltersPanel]: added 'maxBodyHeight' prop for picker filters
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
 * [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * [VirtualList]: fixed `onScroll` prop typing
 * [PickerInput]: fixed closing picker body by checking some item in 'Show only selected' mode
+* [ErrorHandling]: fixed notification errors handling for recovery status. Now notification will be shown only after recovery will be completed and request failed.
+* [PresetPanel]: fixed the problem of creating duplicates of the new preset when clicking the accept button quickly.
 
 # 5.4.3 - 19.12.2023
 

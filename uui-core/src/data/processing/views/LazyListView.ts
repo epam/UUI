@@ -369,7 +369,22 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     };
 
     protected handleSelectAll = (value: boolean) => {
-        this.checkItems(value, true);
+        if (value) {
+            this.checkItems(value, true);
+        } else {
+            // if cascadeSelection mode (implicit or explicit) is enabled, mostly all the rows
+            // should be loaded. It is very expensive and slow.
+            // To avoid it, only those items, which are selectable, should be unchecked, avoiding cascading logic.
+            const checked = this.fullTree.cascadeSelection(this.value.checked, undefined, value, {
+                cascade: false,
+                isSelectable: (item: TItem) => {
+                    const { isCheckable } = this.getRowProps(item, null);
+                    return isCheckable;
+                },
+            });
+
+            this.handleCheckedChange(checked);
+        }
     };
 
     private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {

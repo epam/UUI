@@ -27,6 +27,7 @@ export class TagDoc extends BaseDocsBlock {
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-40' : 'neutral-30'})`,
                 }),
             });
+            doc.setDefaultPropExample('onClick', () => true);
         },
     };
 

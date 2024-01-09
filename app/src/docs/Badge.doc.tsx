@@ -15,12 +15,19 @@ export class BadgeDoc extends BaseDocsBlock {
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:BadgeProps', component: uui.Badge },
-            [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
+            [TSkin.Loveship]: {
+                type: '@epam/loveship:BadgeProps',
+                component: loveship.Badge,
+                doc: (doc: DocBuilder<loveship.BadgeProps>) => {
+                    doc.setDefaultPropExample('shape', ({ value }) => value === 'round');
+                },
+            },
             [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
             [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
         doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
-            doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.setDefaultPropExample('size', ({ value }) => value === '36');
+            doc.setDefaultPropExample('onClick', () => true);
             doc.merge('color', {
                 defaultValue: 'info',
                 editorType: getColorPickerComponent({

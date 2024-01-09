@@ -8,18 +8,34 @@ import { i18n } from '../../i18n';
 import css from './FilterNumericBody.module.scss';
 
 interface INumericRangeValue {
+    /**
+     * Defines range value 'from'
+     */
     from: number | null;
+    /**
+     * Defines range value 'to'
+     */
     to: number | null;
 }
 
 interface IFilterNumericBodyProps extends DropdownBodyProps {
+    /**
+     * Called when numeric body value needs to be changed
+     */
     onValueChange: (value: number | INumericRangeValue) => void;
+    /**
+     * Defines numeric body value
+     */
     value: undefined | number | INumericRangeValue;
+    /**
+     * Defines the selected predicate
+     */
     selectedPredicate?: string;
 }
 
 export function FilterNumericBody(props: IFilterNumericBodyProps) {
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
+    const isWrongRange = (from: number | undefined, to: number | undefined) => from > to;
 
     const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
         const value = props.value as INumericRangeValue;
@@ -84,6 +100,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                             size="36"
                             placeholder="Max"
                             formatOptions={ { maximumFractionDigits: 2 } }
+                            isInvalid={ isWrongRange(value?.from, value?.to) }
                         />
                     </FlexCell>
                 </FlexRow>
