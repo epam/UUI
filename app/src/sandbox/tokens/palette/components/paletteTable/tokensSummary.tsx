@@ -20,7 +20,7 @@ export function TokensSummary(props: TokensSummaryProps) {
         [TExpectedValueType.direct]: 'Direct',
         [TExpectedValueType.chain]: 'Chain of aliases',
     };
-    const expectedValueDs = useArrayDataSource<{ id: TExpectedValueType, name: string }, string, never>(
+    const expectedValueDs = useArrayDataSource<{ id: TExpectedValueType, name: string }, string, any>(
         {
             items: Object.values(TExpectedValueType).map((id) => ({ id, name: MODE_LABELS[id] })),
         },
