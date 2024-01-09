@@ -92,6 +92,9 @@ IHasIcon & {
 
     /** Search input debounce delay in ms. Default value is 500ms */
     searchDebounceDelay?: number;
+
+    /** HTML ID attribute for the picker input */
+    id?: string;
 };
 
 export interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {

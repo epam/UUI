@@ -24,7 +24,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     disableClear?: boolean;
     minCharsToSearch?: number;
     /**
-    * Defines id for inner input
+    * HTML ID attribute for the toggler input
     */
     id?: string;
 }
