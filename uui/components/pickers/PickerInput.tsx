@@ -16,7 +16,7 @@ const pickerWidth = 360;
 
 export type PickerInputProps = SizeMod & IHasEditMode & {
     /**
-    * Defines an id for inner input
+    * HTML ID attribute for the toggler input
     */
     id?: string;
 };
@@ -182,8 +182,8 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
-                const targetProps = getTogglerProps();
-                return renderTarget({ id: props?.id, ...dropdownProps, ...targetProps });
+                const targetProps = { ...getTogglerProps(), id: props?.id };
+                return renderTarget({ ...dropdownProps, ...targetProps });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
             value={ shouldShowBody() }

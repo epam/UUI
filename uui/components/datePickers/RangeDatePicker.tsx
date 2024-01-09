@@ -20,7 +20,7 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
      */
     getPlaceholder?(type: InputType): string;
     /**
-    * Defines id for inner input
+    * HTML ID attribute for the first input into toggler
     */
     id?: string;
 }
