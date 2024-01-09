@@ -164,6 +164,16 @@ describe('NumericInput', () => {
             expect(mockOnValueChange).not.toHaveBeenCalled();
         });
 
+        it('should not call onValueChange when value is null', async () => {
+            const mockOnValueChange = jest.fn();
+            const { dom } = await setupNumericInput({ value: null, onValueChange: mockOnValueChange, max: 5 });
+
+            await userEvent.click(dom.input);
+            await userEvent.click(dom.wrapper);
+
+            expect(mockOnValueChange).not.toHaveBeenCalled();
+        });
+
         it('should call onBlur prop', async () => {
             const mockOnBlur = jest.fn();
             const { dom } = await setupNumericInput({ onBlur: mockOnBlur });

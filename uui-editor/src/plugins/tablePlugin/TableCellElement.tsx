@@ -1,13 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
-import { PlateElement, PlateElementProps, Value } from '@udecode/plate-common';
+import { PlateElement, PlateElementProps, Value, getPluginType, useEditorRef } from '@udecode/plate-common';
 import {
+    ELEMENT_TH,
     TTableCellElement,
     useTableCellElement, useTableCellElementResizable, useTableCellElementResizableState, useTableCellElementState,
 } from '@udecode/plate-table';
 
 import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
+import { migrateTableCell } from '../../migration';
 
 export interface TableCellElementProps
     extends PlateElementProps<Value, TTableCellElement> {
@@ -19,7 +21,8 @@ const TableCellElement = React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 TableCellElementProps
 >(({ children, className, style, hideBorder, ...props }, ref) => {
-    const { element } = props;
+    const editor = useEditorRef();
+    props.element = migrateTableCell(props.element);
 
     const {
         colIndex,
@@ -40,7 +43,7 @@ TableCellElementProps
         colSpan,
     });
     const { rightProps, bottomProps, leftProps, hiddenLeft } = useTableCellElementResizable(resizableState);
-    const isHeader = element.type === 'table_header_cell';
+    const isHeader = props.element.type === getPluginType(editor, ELEMENT_TH);
     const Cell = isHeader ? 'th' : 'td';
 
     return (
@@ -69,7 +72,7 @@ TableCellElementProps
             { ...cellProps }
             style={
                 {
-                    '--cellBackground': element.background,
+                    '--cellBackground': props.element.background,
                     ...style,
                 } as React.CSSProperties
             }

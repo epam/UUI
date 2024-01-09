@@ -1,7 +1,7 @@
 import { PropExample } from '../../../types';
 import React from 'react';
-import { Button, FlexRow, Panel } from '@epam/uui';
-import { UuiContexts } from '@epam/uui-core';
+import { Button, NotificationCard, Text } from '@epam/uui';
+import { INotification, UuiContexts } from '@epam/uui-core';
 
 const TEXT_EXAMPLES = {
     SHORT_TEXT: 'Hello, World!',
@@ -76,7 +76,7 @@ export function getCallbackExample(params: { uuiCtx: Pick<UuiContexts, 'uuiNotif
     const { uuiCtx, name } = params;
     function callbackFn(...args: unknown[]) {
         uuiCtx.uuiNotifications.show(
-            () => (<CallbackExampleNotification name={ name } args={ args } />),
+            (cardProps: INotification) => (<CallbackExampleNotification name={ name } args={ args } cardProps={ cardProps } />),
             { position: 'bot-right' },
         ).catch(() => null);
         // eslint-disable-next-line no-console
@@ -86,19 +86,11 @@ export function getCallbackExample(params: { uuiCtx: Pick<UuiContexts, 'uuiNotif
     return [callbackFn];
 }
 
-function CallbackExampleNotification(props: { name: string, args: unknown[] }) {
-    const { name, args } = props;
+function CallbackExampleNotification(props: { name: string, args: unknown[], cardProps: INotification }) {
+    const { name, args, cardProps } = props;
     return (
-        <Panel shadow={ true } background="surface-main">
-            <FlexRow padding="24" vPadding="12" borderBottom={ true }>
-                <pre>
-                    {name}
-                    (
-                    {args.length}
-                    {' '}
-                    args)
-                </pre>
-            </FlexRow>
-        </Panel>
+        <NotificationCard { ...cardProps } color="info">
+            <Text>{ `${name} (${args.length} args)` }</Text>
+        </NotificationCard>
     );
 }

@@ -15,16 +15,19 @@ interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAtt
     focusLock?: boolean;
     width?: number | 'auto';
     maxWidth?: number | 'auto';
+    maxHeight?: number;
 }
 
 export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = (props) => {
     const isMobileView = isMobile();
     const maxWidth = isMobileView ? 'auto' : props.maxWidth;
+    const maxHeight = isMobileView ? 'auto' : props.maxHeight;
 
     return (
         <DropdownContainer
             { ...props }
             maxWidth={ maxWidth }
+            maxHeight={ maxHeight }
             cx={ [css.container, props.cx] }
         >
             {isMobileView && <DataPickerHeader title={ props.title } close={ props.onClose } />}

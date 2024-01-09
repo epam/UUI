@@ -1,8 +1,7 @@
 import React from 'react';
-import { useEventPlateId, useEditorRef, useEditorState, isEditorFocused, PlateEditor } from '@udecode/plate-common';
+import { useEventPlateId, useEditorRef, useEditorState, isEditorFocused, PlateEditor, WithPlatePlugin } from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
 import { PositionedToolbar } from './PositionedToolbar';
-import { WithPlatePlugin } from '@udecode/plate-core';
 
 interface ToolbarButtonProps {
     editor: PlateEditor;
@@ -10,15 +9,16 @@ interface ToolbarButtonProps {
 export interface IHasToolbarButton {
     floatingBarButton?: React.ComponentType<ToolbarButtonProps>,
     bottomBarButton?: React.ComponentType<ToolbarButtonProps>
+    name?: string;
 }
 export function MarksToolbar() {
     const editorRef = useEditorRef();
 
     return (
-        <PositionedToolbar isImage={ false } editor={ editorRef } plugins={ [] }>
+        <PositionedToolbar isImage={ false } editor={ editorRef }>
             { editorRef?.plugins.map((p: WithPlatePlugin<IHasToolbarButton>) => {
                 const Button = p.options?.floatingBarButton;
-                return Button && <Button editor={ editorRef } />;
+                return Button && <Button key={ p.options.name } editor={ editorRef } />;
             }) }
         </PositionedToolbar>
     );
@@ -36,7 +36,7 @@ export function MainToolbar() {
         <StickyToolbar isReadonly={ false }>
             { editor?.plugins.map((p: WithPlatePlugin<IHasToolbarButton>) => {
                 const Button = p.options?.bottomBarButton;
-                return Button && <Button editor={ editor } />;
+                return Button && <Button key={ p.options.name } editor={ editor } />;
             }) }
         </StickyToolbar>
     );

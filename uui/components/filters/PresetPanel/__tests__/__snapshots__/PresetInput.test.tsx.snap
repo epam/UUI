@@ -20,6 +20,7 @@ exports[`PresetInput should render correctly 1`] = `
     tabIndex={-1}
   >
     <input
+      aria-readonly={false}
       autoFocus={true}
       className="uui-input"
       maxLength={50}
@@ -27,6 +28,7 @@ exports[`PresetInput should render correctly 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
+      readOnly={false}
       tabIndex={0}
       type="text"
       value=""

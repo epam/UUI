@@ -8320,7 +8320,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--uui-text-contrast)"
       }
     },
     {
@@ -8393,7 +8393,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--uui-text-white)"
       }
     },
     {
@@ -8466,7 +8466,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "/* UUI internal variable */"
+        "WEB": "var(--uui-text-black)"
       }
     },
     {

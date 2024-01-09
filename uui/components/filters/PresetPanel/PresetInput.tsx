@@ -13,6 +13,7 @@ interface IPresetInputProps {
 
 export function PresetInput(props: IPresetInputProps) {
     const [presetCaption, setPresetCaption] = useState(props.preset?.name || '');
+    const [readonly, setReadonly] = useState(false);
 
     const cancelActionHandler = useCallback(() => {
         setPresetCaption('');
@@ -20,10 +21,12 @@ export function PresetInput(props: IPresetInputProps) {
     }, [props.onCancel]);
 
     const acceptActionHandler = useCallback(async () => {
+        setReadonly(() => true);
         if (presetCaption) {
             await props.onSuccess(presetCaption);
         }
         props.onCancel();
+        setReadonly(() => false);
     }, [presetCaption]);
 
     const newPresetOnBlurHandler = useCallback(() => {
@@ -44,6 +47,7 @@ export function PresetInput(props: IPresetInputProps) {
                 onBlur={ newPresetOnBlurHandler }
                 autoFocus
                 maxLength={ 50 }
+                isReadonly={ readonly }
             />
         </FlexCell>
     );

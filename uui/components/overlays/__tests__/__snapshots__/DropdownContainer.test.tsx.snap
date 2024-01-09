@@ -5,6 +5,7 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
   className="uui-dropdown-body -lock-focus root container"
   style={
     Object {
+      "maxHeight": undefined,
       "maxWidth": undefined,
       "minHeight": undefined,
       "minWidth": undefined,
@@ -26,6 +27,7 @@ exports[`DropdownContainer should be rendered correctly 2`] = `
   className="uui-dropdown-body -lock-focus root vPadding-18 padding-24 container"
   style={
     Object {
+      "maxHeight": undefined,
       "maxWidth": 300,
       "minHeight": 600,
       "minWidth": 300,

@@ -840,7 +840,7 @@ export const slateInitialValue = {
                         type: 'table',
                         data: {
                             cellSizes: [
-                                200, 200, 183, 161,
+                                130, 200, 200, 183, 161,
                             ],
                         },
                         nodes: [
@@ -852,43 +852,7 @@ export const slateInitialValue = {
                                     {
                                         object: 'block',
                                         type: 'table_header_cell',
-                                        data: {},
-                                        nodes: [
-                                            {
-                                                object: 'block',
-                                                type: 'paragraph',
-                                                data: {},
-                                                nodes: [
-                                                    {
-                                                        object: 'text',
-                                                        text: 'Name',
-                                                        marks: [],
-                                                    },
-                                                ],
-                                            },
-                                        ],
-                                    }, {
-                                        object: 'block',
-                                        type: 'table_header_cell',
-                                        data: {},
-                                        nodes: [
-                                            {
-                                                object: 'block',
-                                                type: 'paragraph',
-                                                data: {},
-                                                nodes: [
-                                                    {
-                                                        object: 'text',
-                                                        text: 'Title',
-                                                        marks: [],
-                                                    },
-                                                ],
-                                            },
-                                        ],
-                                    }, {
-                                        object: 'block',
-                                        type: 'table_header_cell',
-                                        data: {},
+                                        data: { },
                                         nodes: [
                                             {
                                                 object: 'block',
@@ -900,10 +864,42 @@ export const slateInitialValue = {
                                                         text: 'Department',
                                                         marks: [],
                                                     },
+
                                                 ],
                                             },
                                         ],
-                                    }, {
+                                    },
+                                    {
+                                        object: 'block',
+                                        type: 'table_header_cell',
+                                        data: { colSpan: 2 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'Name',
+                                                        marks: [],
+                                                    },
+                                                    {
+                                                        object: 'text',
+                                                        text: ' & ',
+                                                        marks: [],
+                                                    },
+                                                    {
+                                                        object: 'text',
+                                                        text: 'Title',
+                                                        marks: [],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+
+                                    {
                                         object: 'block',
                                         type: 'table_header_cell',
                                         data: {},
@@ -923,11 +919,31 @@ export const slateInitialValue = {
                                         ],
                                     },
                                 ],
-                            }, {
+                            },
+                            {
                                 object: 'block',
                                 type: 'table_row',
                                 data: {},
                                 nodes: [
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { rowSpan: 2 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'RnD',
+                                                        marks: [],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
                                     {
                                         object: 'block',
                                         type: 'table_cell',
@@ -946,7 +962,8 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    }, {
+                                    },
+                                    {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -958,31 +975,14 @@ export const slateInitialValue = {
                                                 nodes: [
                                                     {
                                                         object: 'text',
-                                                        text: 'Primary HR',
+                                                        text: 'Design',
                                                         marks: [],
                                                     },
                                                 ],
                                             },
                                         ],
-                                    }, {
-                                        object: 'block',
-                                        type: 'table_cell',
-                                        data: {},
-                                        nodes: [
-                                            {
-                                                object: 'block',
-                                                type: 'paragraph',
-                                                data: {},
-                                                nodes: [
-                                                    {
-                                                        object: 'text',
-                                                        text: 'People',
-                                                        marks: [],
-                                                    },
-                                                ],
-                                            },
-                                        ],
-                                    }, {
+                                    },
+                                    {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1016,7 +1016,8 @@ export const slateInitialValue = {
                                         ],
                                     },
                                 ],
-                            }, {
+                            },
+                            {
                                 object: 'block',
                                 type: 'table_row',
                                 data: {},
@@ -1069,24 +1070,6 @@ export const slateInitialValue = {
                                                 nodes: [
                                                     {
                                                         object: 'text',
-                                                        text: 'RnD',
-                                                        marks: [],
-                                                    },
-                                                ],
-                                            },
-                                        ],
-                                    }, {
-                                        object: 'block',
-                                        type: 'table_cell',
-                                        data: {},
-                                        nodes: [
-                                            {
-                                                object: 'block',
-                                                type: 'paragraph',
-                                                data: {},
-                                                nodes: [
-                                                    {
-                                                        object: 'text',
                                                         text: 'Ok',
                                                         marks: [
                                                             {
@@ -1103,6 +1086,147 @@ export const slateInitialValue = {
                                                                 data: {},
                                                             },
                                                         ],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                object: 'block',
+                                type: 'table_row',
+                                data: {},
+                                nodes: [
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { rowSpan: 1 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'People',
+                                                        marks: [],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { rowSpan: 1 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'Ann Chovey',
+                                                        marks: [],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { rowSpan: 1 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'Primary HR',
+                                                        marks: [],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { rowSpan: 1 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'In progress',
+                                                        marks: [
+                                                            {
+                                                                object: 'mark',
+                                                                type: 'uui-richTextEditor-span-mark',
+                                                                data: {
+                                                                    style: {
+                                                                        color: '#8A7CBB',
+                                                                    },
+                                                                },
+                                                            }, {
+                                                                object: 'mark',
+                                                                type: 'uui-richTextEditor-bold',
+                                                                data: {},
+                                                            },
+                                                        ],
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                object: 'block',
+                                type: 'table_row',
+                                data: {},
+                                nodes: [
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: '',
+                                                    },
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        object: 'block',
+                                        type: 'table_cell',
+                                        data: { colSpan: 3 },
+                                        nodes: [
+                                            {
+                                                object: 'block',
+                                                type: 'paragraph',
+                                                data: {},
+                                                nodes: [
+                                                    {
+                                                        object: 'text',
+                                                        text: 'Footer',
+                                                        marks: [],
                                                     },
                                                 ],
                                             },

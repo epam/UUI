@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
-import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
-import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin, superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, EditorValue, codeBlockPlugin } from '@epam/uui-editor';
+import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/uui';
+import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin, linkPlugin,
+    iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin, superscriptPlugin,
+    headerPlugin, listPlugin, placeholderPlugin, EditorValue, codeBlockPlugin } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
 
@@ -61,7 +63,7 @@ export default function SlateEditorBasicExample() {
                     items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
                     value={ fontSize }
                     onValueChange={ (v: EditorFontSize) => setFontSize(v) }
-                    color="blue"
+                    color="primary"
                 />
                 <FlexSpacer />
                 <Switch value={ mode === 'inline' } onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') } label="Inline mode" />
