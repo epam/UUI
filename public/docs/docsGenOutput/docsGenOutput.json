@@ -50934,6 +50934,7 @@
       "    disableSearch?: boolean;",
       "    disableClear?: boolean;",
       "    minCharsToSearch?: number;",
+      "    id?: string;",
       "}"
      ]
     },
@@ -51109,6 +51110,17 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      },
@@ -68143,7 +68155,7 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; }",
+     "raw": "SizeMod & IHasEditMode & { id?: string | undefined; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; } | SizeMod & IHasEditMode & { id?: string | undefined; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; } | SizeMod & IHasEditMode & { id?: string | undefined; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; } | SizeMod & IHasEditMode & { id?: string | undefined; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; }",
      "print": [
       "type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;"
      ]
@@ -68197,6 +68209,18 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui:PickerInputProps",
       "required": false
      },
      {
@@ -72106,10 +72130,22 @@
      "print": [
       "/** Represents the properties of the DatePicker component. */",
       "interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {",
+      "    id?: string;",
       "}"
      ]
     },
     "props": [
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
      {
       "uid": "renderFooter",
       "name": "renderFooter",
@@ -81861,7 +81897,12 @@
     "typeValue": {
      "raw": "PickerInputProps",
      "print": [
-      "type PickerInputProps = SizeMod & IHasEditMode & {};"
+      "type PickerInputProps = SizeMod & IHasEditMode & {",
+      "    /*",
+      "    * Defines an id for inner input",
+      "    */",
+      "    id?: string;",
+      "};"
      ]
     },
     "props": [
@@ -81913,6 +81954,17 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
       "required": false
      }
     ],
