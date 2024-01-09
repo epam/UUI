@@ -12,6 +12,10 @@ const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
 
 export interface PickerTogglerMods extends types.IHasEditMode {
+    /**
+    * Defines component size
+    * @default 36
+    */
     size?: '24' | '30' | '36' | '42' | '48';
 }
 

@@ -23,6 +23,9 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
+    /**
+    * Defines id for inner input
+    */
     id?: string;
 }
 
