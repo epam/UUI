@@ -19,6 +19,10 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
      * A pure function that gets placeholder for 'from' or 'to' input.
      */
     getPlaceholder?(type: InputType): string;
+    /*
+    * Defines id for inner input
+    */
+    id?: string;
 }
 
 /*
@@ -90,6 +94,7 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
                     onBlur={ (event) => this.handleBlur(event, 'from') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.from }
+                    id={ this.props?.id }
                 />
                 <div className={ css.separator } />
                 <TextInput
