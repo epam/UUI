@@ -177,7 +177,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
-                const targetProps = { ...getTogglerProps() };
+                const targetProps = getTogglerProps();
                 return renderTarget({ ...dropdownProps, ...targetProps });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }

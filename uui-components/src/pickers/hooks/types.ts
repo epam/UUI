@@ -93,7 +93,7 @@ IHasIcon & {
     /** Search input debounce delay in ms. Default value is 500ms */
     searchDebounceDelay?: number;
 
-    /** HTML ID attribute for the picker input */
+    /** HTML ID attribute for the input in toggler */
     id?: string;
 };
 
