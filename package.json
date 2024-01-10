@@ -31,8 +31,7 @@
     "test-typecheck": "tsc --project ./tsconfig.test.json",
     "test-update": "yarn test --updateSnapshot",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
-    "track-bundle-size-override": "yarn track-bundle-size --override-baseline",
-    "transform-tokens": "yarn --cwd uui-build transform-tokens"
+    "track-bundle-size-override": "yarn track-bundle-size --override-baseline"
   },
   "repository": {
     "type": "git",

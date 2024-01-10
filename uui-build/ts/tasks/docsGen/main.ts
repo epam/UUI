@@ -35,6 +35,6 @@ async function main(params: TTaskParams) {
      * Prev stats is optional and can be passed via CLI:
      * generate-components-api --prev-stats=../docsGenStats.json
      */
-    const prevStatsPath = params.cliArgs.find(({ name }) => name === ARGS.PREV_STATS);
+    const prevStatsPath = params.cliArgs[ARGS.PREV_STATS];
     compareToPrevStats(nextStats, prevStatsPath?.value);
 }
