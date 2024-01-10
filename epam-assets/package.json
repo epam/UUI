@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule && yarn buildTheme",
-    "buildTheme": "node ../uui-build/scripts/compileScss.js ./theme:./build/css/theme",
+    "buildTheme": "yarn --cwd ../uui-build compile-theme-scss --dirs=./epam-assets/theme:./epam-assets/build/css/theme",
     "prepublish": "yarn build"
   },
   "repository": {

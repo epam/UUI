@@ -1,4 +1,4 @@
-import { runYarnScriptFromRootSync } from '../../../utils/jsBridge';
+import { runYarnScriptFromRootSync } from '../../../utils/cliUtils';
 
 export const buildAllModules = async () => {
     runYarnScriptFromRootSync('build-modules');

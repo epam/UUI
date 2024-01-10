@@ -1,9 +1,31 @@
-const { turnOffStylelintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./utils/rulesToBeFixed');
+const { uuiRoot } = require('../utils/constants');
+const path = require('path');
+
+const stylelintCustomRules = path.resolve(uuiRoot, './uui-build/linting/stylelintCustomRules/index.js');
 
 const SCSS_COMMON_RULES = {
+    // start - migrated stylistic rules
+    'block-opening-brace-space-before': 'always',
+    'declaration-bang-space-after': 'never',
+    'declaration-bang-space-before': 'always',
+    'declaration-block-semicolon-newline-after': 'always',
+    'declaration-block-semicolon-space-before': 'never',
+    'declaration-block-trailing-semicolon': 'always',
+    'declaration-colon-space-after': 'always-single-line',
+    'declaration-colon-space-before': 'never',
+    'function-comma-space-after': 'always-single-line',
+    'function-parentheses-space-inside': 'never',
+    'media-feature-parentheses-space-inside': 'never',
+    'no-missing-end-of-source-newline': null,
+    'number-leading-zero': 'always',
+    'number-no-trailing-zeros': true,
+    'selector-list-comma-newline-after': null,
+    'string-quotes': 'single',
+    indentation: 4,
+    'color-hex-case': 'upper',
+    // end - migrated stylistic rules
     'order/properties-alphabetical-order': null,
     'max-nesting-depth': null,
-    'selector-list-comma-newline-after': null,
     'color-named': null,
     'selector-max-compound-selectors': null,
     'shorthand-property-no-redundant-values': null,
@@ -12,7 +34,6 @@ const SCSS_COMMON_RULES = {
     'selector-no-vendor-prefix': null,
     'property-no-vendor-prefix': null,
     'selector-no-qualifying-type': null,
-    'no-missing-end-of-source-newline': null,
     //
     'declaration-empty-line-before': 'never',
     'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
@@ -25,8 +46,6 @@ const SCSS_COMMON_RULES = {
             'border-left': ['none'],
         }, { message: 'E.g.: border: none can be replaced by "border: 0 none;"' },
     ],
-    indentation: 4,
-    'color-hex-case': 'upper',
     'unit-no-unknown': true,
     'media-feature-name-no-unknown': true,
     'color-no-invalid-hex': true,
@@ -52,19 +71,33 @@ const SCSS_COMMON_RULES = {
     'scss/at-import-partial-extension-blacklist': null,
     'scss/selector-no-redundant-nesting-selector': null,
     'scss/dollar-variable-pattern': null,
-    ...turnOffStylelintRulesToBeFixed(),
+    'scss/no-global-function-names': null,
 };
 
 module.exports = {
     reportInvalidScopeDisables: true,
-    reportNeedlessDisables: !shouldTurnOffRulesToBeFixed,
-    plugins: ['stylelint-order'],
+    reportNeedlessDisables: true,
+    plugins: [
+        'stylelint-order',
+        stylelintCustomRules,
+    ],
     overrides: [
         {
             extends: ['stylelint-config-sass-guidelines'],
             files: ['**/*.scss'],
             rules: {
                 ...SCSS_COMMON_RULES,
+            },
+        },
+        {
+            extends: ['stylelint-config-sass-guidelines'],
+            files: ['**/epam-assets/theme/*.scss'],
+            rules: {
+                ...SCSS_COMMON_RULES,
+                'uui-custom-rules/no-unknown-theme-tokens': [
+                    true,
+                    { ignored: ['--font-inter', '--font-museo-sans', '--uui-btn-bg'] }, // It's temporarily ignored
+                ],
             },
         },
     ],
