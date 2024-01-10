@@ -4,7 +4,7 @@ import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject,
 } from '@epam/uui-test-utils';
 import { Modals, PickerInputBaseProps, PickerToggler } from '@epam/uui-components';
-import { Button, DataPickerRow, FlexCell, PickerItem, Text } from '@epam/promo';
+import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
 import { TestItemType, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
@@ -707,7 +707,7 @@ describe('PickerInput', () => {
                     onClick={ props.onClick }
                     ref={ props.ref }
                     iconPosition="left"
-                    mode="ghost"
+                    fill="ghost"
                     caption={ props.selection?.map((s) => s.value?.name).join(', ') }
                 />
             ),
