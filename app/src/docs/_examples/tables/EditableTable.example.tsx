@@ -113,19 +113,22 @@ export default function EditableTableExample() {
                     ),
                     fix: 'left',
                     width: 300,
-                }, {
+                },
+                {
                     key: 'isDone',
                     caption: 'Done',
                     renderCell: (props) => <DataTableCell { ...props.rowLens.prop('isDone').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
                     textAlign: 'center',
                     fix: 'left',
                     width: 80,
-                }, {
+                },
+                {
                     key: 'dueDate',
                     caption: 'Due date',
                     renderCell: (props) => <DataTableCell { ...props.rowLens.prop('dueDate').toProps() } renderEditor={ (props) => <DatePicker { ...props } /> } { ...props } />,
                     width: 150,
-                }, {
+                },
+                {
                     key: 'priority',
                     caption: 'Priority',
                     renderCell: (props) => (
@@ -136,7 +139,8 @@ export default function EditableTableExample() {
                         />
                     ),
                     width: 130,
-                }, {
+                },
+                {
                     key: 'comments',
                     caption: 'Comments',
                     renderCell: (props) => (
@@ -144,11 +148,13 @@ export default function EditableTableExample() {
                     ),
                     width: 120,
                     grow: 1,
-                }, {
+                }, 
+                {
                     key: 'actions',
                     render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="secondary" />,
                     width: 55,
                     alignSelf: 'center',
+                    allowResizing: false,
                 },
             ] as DataColumnProps<ToDoItem>[],
         [],

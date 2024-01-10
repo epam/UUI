@@ -20,19 +20,22 @@ export default function TreeTableExample() {
                 width: 336,
                 isSortable: true,
                 fix: 'left',
-            }, {
+            },
+            {
                 key: 'country',
                 caption: 'Country',
                 render: (location) => <Text>{location.countryName}</Text>,
                 isSortable: true,
                 width: 164,
-            }, {
+            },
+            {
                 key: 'type',
                 caption: 'Type',
                 render: (location) => location.featureCode && <Text>{location.featureCode}</Text>,
                 isSortable: true,
                 width: 84,
-            }, {
+            },
+            {
                 key: 'lat/long',
                 caption: 'LAT/LONG',
                 render: (location) =>
@@ -45,7 +48,8 @@ export default function TreeTableExample() {
                     ),
                 width: 150,
                 textAlign: 'center',
-            }, {
+            },
+            {
                 key: 'population',
                 caption: 'Population',
                 render: (location) => <Text>{location.population}</Text>,

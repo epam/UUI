@@ -14,6 +14,7 @@
 * [FilteredTable]: in range numeric filter set `isInvalid = true` if value `from` bigger than value `to`.
 * [CountIndicator]: set color `info` by default.
 * [FiltersPanel]: added 'maxBodyHeight' prop for picker filters
+* [DataTable]: added allowResizing field in DataColumnProps, to be able to configure resizing for each column
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
