@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { runCmdFromRootSync } from '../../../utils/jsBridge';
 import { CLI, TEMPLATE_APP_TARGET_DIR } from '../constants';
 import { uuiRoot } from '../../../constants';
+import { runCmdFromRootSync } from '../../../utils/cliUtils';
 
 const appTargetParentDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR, '..');
 

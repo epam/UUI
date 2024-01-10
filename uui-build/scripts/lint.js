@@ -38,7 +38,7 @@ function main() {
         if (isFromCI) {
             args.push('-f', 'compact');
         } else {
-            args.push('--custom-formatter', 'uui-build/linting/formatters/stylelintFormatter.js');
+            args.push('--custom-formatter', `file:${path.resolve(ROOT_DIR, './uui-build/linting/formatters/stylelintFormatter.js')}`);
             args.push('-o', './.reports/stylelint.html');
         }
     } else {
