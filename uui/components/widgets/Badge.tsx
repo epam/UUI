@@ -64,7 +64,7 @@ const mapCountIndicatorSizes = {
     36: '18',
     42: '24',
     48: '24',
-};
+} as const;
 
 export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon' | 'iconPosition'>, BadgeProps>(
     uuiComponents.Button as any,
@@ -87,7 +87,7 @@ export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clear
                 <CountIndicator
                     { ...countIndicatorProps }
                     color={ null }
-                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] as any }
+                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
                 />
             ),
             indicator: props.indicator || false,
