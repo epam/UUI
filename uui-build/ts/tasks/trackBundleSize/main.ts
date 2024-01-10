@@ -23,7 +23,7 @@ export const taskConfig: ITaskConfig = {
 };
 
 async function main(params: TTaskParams) {
-    const overrideBaseline = Boolean(params.cliArgs.find(({ name }) => name === ARGS.OVERRIDE_BASELINE));
+    const overrideBaseline = Boolean(params.cliArgs[ARGS.OVERRIDE_BASELINE]);
     await trackBundleSize({ overrideBaseline });
 }
 

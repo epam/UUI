@@ -9,8 +9,4 @@ export { logger } from '../../utils/loggerUtils';
 // @ts-ignore
 export { getAllMonorepoPackages, getAllLocalDependenciesInfo, getUuiVersion } from '../../utils/monorepoUtils';
 // @ts-ignore
-export { readPackageJsonContentSync } from '../../utils/packageJsonUtils';
-// @ts-ignore
-export { runYarnScriptFromRootSync, runCmdFromRootSync, runCmdSync } from '../../utils/cmdUtils';
-// @ts-ignore
 export { isRollupModule } from '../../utils/indexFileUtils';

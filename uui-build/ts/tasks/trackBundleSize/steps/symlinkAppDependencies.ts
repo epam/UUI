@@ -3,14 +3,14 @@ import {
     getAllLocalDependenciesInfo,
     getAllMonorepoPackages,
     logger,
-    readPackageJsonContentSync,
-    runCmdSync,
 } from '../../../utils/jsBridge';
 import { appTargetDirResolved, epamPrefix } from '../constants';
+import { runCmdSync } from '../../../utils/cliUtils';
+import { readJsonFileSync } from '../../../utils/fileUtils';
 
 export const symlinkAppDependencies = async () => {
     // 1. get list of dependencies which can be symlinked to local folders
-    const { dependencies, devDependencies } = readPackageJsonContentSync(appTargetDirResolved);
+    const { dependencies, devDependencies } = readJsonFileSync(path.resolve(appTargetDirResolved, 'package.json'));
     const potentiallyLocalDeps = Object.keys({ ...dependencies, ...devDependencies }).filter((n) => n.indexOf(epamPrefix) === 0);
 
     // 2. check whether we have any local dependencies with same names and symlink them if so.
