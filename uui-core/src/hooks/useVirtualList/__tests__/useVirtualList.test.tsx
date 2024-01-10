@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, renderHookWithContextAsync, renderWithContextAsync } from '@epam/uui-test-utils';
-import { useVirtualList } from '../../useVirtualList';
+import { useVirtualList } from '../index';
 import { VirtualListState } from '../../../types';
 
 interface Props {
