@@ -2,7 +2,7 @@ const noUnknownThemeTokens = require('./rules/noUnknownThemeTokens');
 const stylelint = require('stylelint');
 
 const allRules = {
-    [noUnknownThemeTokens.ruleName]: Promise.resolve(noUnknownThemeTokens),
+    [noUnknownThemeTokens.ruleName]: noUnknownThemeTokens,
 };
 
 const rulesPlugins = Object.keys(allRules).map((ruleName) => {
