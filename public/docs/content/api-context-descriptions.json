@@ -1,180 +1,124 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "ApiContext, along with the ErrorHandler component, provides a solution to deal with various errors which can be occurred during API calls. The following cases are handled:",
-            "marks": []
-          }
-        ]
-      },
+        "text": "ApiContext, along with the ErrorHandler component, provides a solution to deal with various errors which can be occurred during API calls. The following cases are handled:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "403, 404, 500, or other error status is returned from the server. ErrorContext replaces their children with an appropriate error screen.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Network and server failures. APIContext will start pinging /auth/ping endpoint until it gets OK. Then it will retry failed requests. A splash screen will be shown until a network connection is recovered.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "JavaScript errors in React components lifecycle (using",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://reactjs.org/docs/react-component.html#componentdidcatch"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "onComponentDidCatch",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "API).   ",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Authentication lost scenario. The server is required to return 401, if auth cookie is not found or is invalid during the XHR call. This is required because ordinary login redirect responses can't be detected from JS during XHR calls. ApiContext will open /auth/login page in such case. The page should process the usual login process before opening. After the auth process, the page opens, and the script inside it should send a Cross Window Message to the app. Upon receiving the message, failed requests are retried. A splash screen will be shown until the problem is recovered.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "In all cases, an error is logged via AnalyticsContext.",
-                    "marks": []
-                  }
-                ]
+                "text": "403, 404, 500, or other error status is returned from the server. ErrorContext replaces their children with an appropriate error screen."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "Errors are discarded on navigation (e.g., clicking a main menu item), and all pending API calls are canceled. Also, we close all modal windows on any JS/API error. ",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Network and server failures. APIContext will start pinging /auth/ping endpoint until it gets OK. Then it will retry failed requests. A splash screen will be shown until a network connection is recovered."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "JavaScript errors in React components lifecycle (using"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://reactjs.org/docs/react-component.html#componentdidcatch"
+                },
+                "type": "link",
+                "url": "https://reactjs.org/docs/react-component.html#componentdidcatch",
+                "children": [
+                  {
+                    "text": "onComponentDidCatch"
+                  }
+                ]
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "text": "API).   "
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Authentication lost scenario. The server is required to return 401, if auth cookie is not found or is invalid during the XHR call. This is required because ordinary login redirect responses can't be detected from JS during XHR calls. ApiContext will open /auth/login page in such case. The page should process the usual login process before opening. After the auth process, the page opens, and the script inside it should send a Cross Window Message to the app. Upon receiving the message, failed requests are retried. A splash screen will be shown until the problem is recovered."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "In all cases, an error is logged via AnalyticsContext."
+              }
+            ]
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Errors are discarded on navigation (e.g., clicking a main menu item), and all pending API calls are canceled. Also, we close all modal windows on any JS/API error. "
+      }
+    ]
   }
-}
+]
