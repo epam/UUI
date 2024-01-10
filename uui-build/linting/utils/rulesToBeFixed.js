@@ -23,8 +23,6 @@ const eslintRulesToBeFixed = [
     '@typescript-eslint/no-useless-constructor', 'array-callback-return', 'func-names', 'import/extensions', 'import/no-cycle', 'jest/no-identical-title', 'jsx-a11y/alt-text', 'jsx-a11y/click-events-have-key-events', 'jsx-a11y/mouse-events-have-key-events', 'jsx-a11y/no-noninteractive-element-interactions', 'jsx-a11y/no-noninteractive-tabindex', 'jsx-a11y/no-static-element-interactions', 'jsx-a11y/role-supports-aria-props', 'jsx-a11y/role-supports-aria-props', 'no-console', 'no-loop-func', 'no-nested-ternary', 'no-param-reassign', 'no-restricted-syntax', 'no-return-assign', 'no-throw-literal', 'no-unused-vars', 'no-useless-concat', 'no-useless-escape', 'prefer-const', 'prefer-promise-reject-errors', 'prefer-rest-params', 'radix', 'react-hooks/exhaustive-deps', 'react-hooks/rules-of-hooks', 'react/function-component-definition', 'react/jsx-no-useless-fragment', 'react/no-access-state-in-setstate', 'react/prefer-stateless-function',
 ];
 
-const stylelintRulesToBeFixed = ['declaration-property-value-disallowed-list', 'block-no-empty'];
-
 function turnOffEslintRulesToBeFixed() {
     if (!shouldTurnOffRulesToBeFixed) {
         return {};
@@ -35,20 +33,8 @@ function turnOffEslintRulesToBeFixed() {
     }, {});
 }
 
-function turnOffStylelintRulesToBeFixed() {
-    if (!shouldTurnOffRulesToBeFixed) {
-        return {};
-    }
-    return stylelintRulesToBeFixed.reduce((acc, n) => {
-        acc[n] = null;
-        return acc;
-    }, {});
-}
-
 module.exports = {
     shouldTurnOffRulesToBeFixed,
     eslintRulesToBeFixed,
-    stylelintRulesToBeFixed,
     turnOffEslintRulesToBeFixed,
-    turnOffStylelintRulesToBeFixed,
 };

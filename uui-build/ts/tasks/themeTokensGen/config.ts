@@ -1,22 +1,26 @@
 import { TFigmaThemeName, TUuiCssVarName } from './types/sharedTypes';
-import { corePathToCssVar } from './utils/cssVarUtils';
+import { corePathToCssVar, palettePathToCssVar } from './utils/cssVarUtils';
 
 interface IFigmaVarsConfig {
     [pathPrefix: string]: IFigmaVarConfigValue
 }
 export type TList = Record<string, TFigmaThemeName[] | '*'>;
 export interface IFigmaVarConfigValue {
+    enabled: boolean;
     pathToCssVar: (path: string) => TUuiCssVarName;
     whitelist?: TList;
     blacklist?: TList;
 }
 
-// const { EPAM, PROMO, LOVESHIP_LIGHT, LOVESHIP_DARK } = TFigmaThemeName;
+const { EPAM, PROMO, LOVESHIP_LIGHT, LOVESHIP_DARK } = TFigmaThemeName;
+
+const USE_TEMP_BL_AND_WL = false;
 
 export const FIGMA_VARS_CFG: IFigmaVarsConfig = clearLists({
     'core/': {
+        enabled: true,
         pathToCssVar: corePathToCssVar,
-        /*        whitelist: {
+        whitelist: {
             'core/border-radius': '*',
             'core/controls/control-bg': '*',
             'core/controls/control-bg-disabled': '*',
@@ -122,9 +126,10 @@ export const FIGMA_VARS_CFG: IFigmaVarsConfig = clearLists({
             'core/text/text-success': '*',
             'core/text/text-tertiary': '*',
             'core/text/text-warning': '*',
-        }, */
+        },
     },
-/*    'palette-additional/': {
+    'palette-additional/': {
+        enabled: true,
         pathToCssVar: palettePathToCssVar,
         whitelist: {
             'palette-additional/cobalt/cobalt-5': '*',
@@ -158,6 +163,7 @@ export const FIGMA_VARS_CFG: IFigmaVarsConfig = clearLists({
         },
     },
     'palette/': {
+        enabled: true,
         pathToCssVar: palettePathToCssVar,
         whitelist: {
             'palette/amber/amber-5': [PROMO],
@@ -237,7 +243,7 @@ export const FIGMA_VARS_CFG: IFigmaVarsConfig = clearLists({
             'palette/sun/sun-70': [LOVESHIP_LIGHT, LOVESHIP_DARK, EPAM],
             'palette/white': '*',
         },
-    }, */
+    },
 });
 
 /**
@@ -260,8 +266,15 @@ export const FIGMA_VARS_CFG: IFigmaVarsConfig = clearLists({
  */
 function clearLists(originalCfg: IFigmaVarsConfig): IFigmaVarsConfig {
     return Object.keys(originalCfg).reduce<IFigmaVarsConfig>((acc, key) => {
-        const { whitelist, blacklist, ...rest } = originalCfg[key];
-        acc[key] = rest;
+        const orig = originalCfg[key];
+        if (orig.enabled) {
+            if (USE_TEMP_BL_AND_WL) {
+                acc[key] = orig;
+            } else {
+                const { whitelist, blacklist, ...rest } = orig;
+                acc[key] = rest;
+            }
+        }
         return acc;
     }, {});
 }
