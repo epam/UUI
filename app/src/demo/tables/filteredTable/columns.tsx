@@ -149,5 +149,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 54,
         alignSelf: 'center',
         fix: 'right',
+        allowResizing: false,
     },
 ];

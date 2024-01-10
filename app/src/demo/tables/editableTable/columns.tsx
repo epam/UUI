@@ -164,6 +164,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 54,
             fix: 'right',
             alignSelf: 'center',
+            allowResizing: false,
         },
     ];
 

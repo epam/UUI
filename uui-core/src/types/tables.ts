@@ -88,6 +88,9 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     /** A pure function that defines that column accepts copying other column value into it */
     canAcceptCopy?: (from: DataTableSelectedCellData<TItem, TId, TFilter>, to: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
 
+    /** Pass true, to enable column resizing. By default, will be used global 'allowColumnsResizing' value from DataTable component.  */
+    allowResizing?: boolean
+
     /** Render the cell content. The item props is the value of the whole row (TItem). */
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
 
