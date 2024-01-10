@@ -23,6 +23,10 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
+    /**
+    * HTML ID attribute for the toggler input
+    */
+    id?: string;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -121,6 +125,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
         return (
             <input
+                id={ props?.id }
                 type="text"
                 tabIndex={ -1 }
                 ref={ inputContainer }
