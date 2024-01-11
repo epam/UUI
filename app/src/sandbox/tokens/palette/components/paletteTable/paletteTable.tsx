@@ -17,77 +17,65 @@ import {
 } from '@epam/uui-core';
 import {
     getColumns,
-    getFilter,
     getFiltersConfig,
     getSortBy,
 } from './tableColumns';
 import {
     ITokenRow,
-    ITokenRowGroup,
-    TExpectedValueType,
-    TTokensFilter,
+    TLoadThemeTokensParams, TLoadThemeTokensResult, TThemeTokenValueType,
+    TTokensLocalFilter,
 } from '../../types/types';
-import { TTheme } from '../../../../../common/docs/docsConstants';
-//
-import css from './paletteTable.module.scss';
 import { getTotals } from '../../utils/totalsUtils';
 import { TokensSummary } from './tokensSummary';
-import { getFigmaTheme } from '../../utils/themeVarUtils';
-import { TUseThemeTokensResult } from '../../hooks/useThemeTokens';
+//
+import css from './paletteTable.module.scss';
+import { convertLocalTokens } from './localTokensConverter';
+import { DEFAULT_LOCAL_FILTER } from '../../constants';
 
 const TOP_INDENT = '135px'; // 60px header + 75px summary/filter area
 
 type PaletteTableProps = {
     grouped: boolean,
-    uuiTheme: TTheme,
-    expectedValueType: TExpectedValueType,
-    onChangeExpectedValueType: (v: TExpectedValueType) => void
-    result: TUseThemeTokensResult,
-    filter: { path: string },
-    onChangeFilter: (params: { path: string }) => void;
+    params: TLoadThemeTokensParams,
+    onChangeParams: (updater: ((prevParams: TLoadThemeTokensParams) => TLoadThemeTokensParams)) => void,
+    result: TLoadThemeTokensResult,
 };
 
 export function PaletteTable(props: PaletteTableProps) {
-    const { uuiTheme, expectedValueType, onChangeExpectedValueType, result, grouped } = props;
-    const { tokens, loading } = result;
-    const figmaTheme = getFigmaTheme(uuiTheme);
+    const { params, result, grouped } = props;
+    const { tokens, loading, uuiTheme } = result;
+    const { valueType, filter } = params;
 
     const filtersConfig = useMemo(() => {
         return getFiltersConfig(getTotals(tokens));
     }, [tokens]);
 
     const defaultColumns = useMemo(() => {
-        return getColumns(figmaTheme, expectedValueType, props.filter);
-    }, [figmaTheme, expectedValueType, props.filter]);
-    const [value, onValueChange] = useState<DataTableState<TTokensFilter>>({
+        return getColumns({ uuiTheme, valueType, filter });
+    }, [filter, uuiTheme, valueType]);
+
+    const [value, onValueChange] = useState<DataTableState<TTokensLocalFilter>>({
         topIndex: 0,
         visibleCount: Number.MAX_SAFE_INTEGER,
+        filter: DEFAULT_LOCAL_FILTER,
     });
-    const { tableState, setTableState } = useTableState<TTokensFilter>({
+
+    const { tableState, setTableState } = useTableState<TTokensLocalFilter>({
         onValueChange,
         filters: filtersConfig,
         columns: defaultColumns,
         value,
     });
+
     const items: ITokenRow[] = useMemo(() => {
-        const filterFn = getFilter(tableState.filter);
-        const tokensFiltered = tokens.filter(filterFn);
-        if (grouped) {
-            const parents = new Map<string, ITokenRowGroup>();
-            const tokensWithParentId = tokensFiltered.map((srcToken) => {
-                const group = getTokenParent(srcToken.id);
-                if (group) {
-                    parents.set(group.id, group);
-                    return { ...srcToken, parentId: group.id };
-                }
-                return srcToken;
-            });
-            const parentsArr = Array.from(parents.values());
-            return [...tokensWithParentId, ...parentsArr];
-        }
-        return tokensFiltered;
+        return convertLocalTokens({
+            tokens,
+            grouped,
+            localFilter: tableState.filter,
+        });
     }, [grouped, tokens, tableState.filter]);
-    const tokensDs = useArrayDataSource<ITokenRow, string, TTokensFilter>(
+
+    const tokensDs = useArrayDataSource<ITokenRow, string, TTokensLocalFilter>(
         {
             items,
             getId: (item) => {
@@ -113,9 +101,30 @@ export function PaletteTable(props: PaletteTableProps) {
                 key={ rowProps.id }
                 { ...rowProps }
                 columns={ columns }
-                indent={ Math.min(rowProps.indent, 1) }
+                indent={ Math.min(rowProps.indent || 0, 1) }
             />
         );
+    };
+
+    const handleChangeFilterPath = (newPath: string) => {
+        props.onChangeParams((prev) => {
+            return {
+                ...prev,
+                filter: {
+                    ...prev.filter,
+                    path: newPath,
+                },
+            };
+        });
+    };
+
+    const handleChangeValueType = (newValueType: TThemeTokenValueType) => {
+        props.onChangeParams((prev) => {
+            return {
+                ...prev,
+                valueType: newValueType,
+            };
+        });
     };
 
     return (
@@ -128,19 +137,19 @@ export function PaletteTable(props: PaletteTableProps) {
                 <FlexCell style={ { width: '150px', flexBasis: 'auto' } }>
                     <SearchInput
                         placeholder="Filter 'Path'"
-                        value={ props.filter.path }
-                        onValueChange={ (newPath) => props.onChangeFilter({ ...props.filter, path: newPath }) }
+                        value={ params.filter.path }
+                        onValueChange={ handleChangeFilterPath }
                     />
                 </FlexCell>
-                <FiltersPanel<TTokensFilter>
+                <FiltersPanel<TTokensLocalFilter>
                     filters={ filtersConfig }
                     tableState={ tableState }
                     setTableState={ setTableState }
                 />
                 <TokensSummary
                     uuiTheme={ uuiTheme }
-                    expectedValueType={ expectedValueType }
-                    onChangeExpectedValueType={ onChangeExpectedValueType }
+                    expectedValueType={ params.valueType }
+                    onChangeExpectedValueType={ handleChangeValueType }
                 />
             </FlexRow>
             <div>
@@ -161,10 +170,4 @@ export function PaletteTable(props: PaletteTableProps) {
             </div>
         </Panel>
     );
-}
-
-function getTokenParent(path: string): ITokenRowGroup {
-    const pathSplit = path.split('/');
-    const pathSplitArr = pathSplit.slice(0, pathSplit.length - 1);
-    return { id: pathSplitArr.join('/'), _group: true };
 }
