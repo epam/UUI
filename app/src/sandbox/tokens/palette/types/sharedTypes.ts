@@ -12,8 +12,8 @@ export enum TFigmaThemeName {
     PROMO = 'Promo',
     EPAM = 'EPAM'
 }
-export type TFloatValue = number;
-export type THexaValue = `#${string}`;
+export type TVariableValue = unknown;
+
 export type TUuiCssVarName = `--${string}`;
 export enum TVarType {
     COLOR = 'COLOR',
@@ -23,15 +23,15 @@ export enum TVarType {
 export type TCssVarRef = {
     id: IThemeVar['id'],
 } & (
-    { cssVar: IThemeVar['cssVar'], supported: true } | { supported: false }
+    { cssVar?: TUuiCssVarName, supported: boolean }
 );
 export type TResolvedValueNorm = {
-    value: THexaValue | TFloatValue
+    value: TVariableValue
     alias: TCssVarRef[],
 };
 export type TValueByThemeValue = {
-    valueChain: TResolvedValueNorm,
-    valueDirect: TResolvedValueNorm,
+    valueChain: TResolvedValueNorm | undefined,
+    valueDirect: TResolvedValueNorm | undefined,
 };
 
 export interface IThemeVar {
