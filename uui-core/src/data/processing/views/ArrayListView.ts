@@ -2,7 +2,7 @@ import {
     DataRowProps, SortingOption, IEditable, DataSourceState, DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from '../../../types';
 import { BaseListView } from './BaseListView';
-import { ITree, NOT_FOUND_RECORD, NewTree, Tree } from './tree';
+import { ITree, NOT_FOUND_RECORD, Tree } from './tree';
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /** A pure function that gets search value for each item.
@@ -36,7 +36,7 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     /** Data, which should be represented by a DataSource. */
-    items?: TItem[] | NewTree<TItem, TId>;
+    items?: TItem[];
 }
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {

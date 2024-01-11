@@ -12,11 +12,6 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     abstract getById(id: TId): TItem | void;
     abstract setItem(item: TItem): void;
-    abstract getView(
-        value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<BaseListViewProps<TItem, TId, TFilter>>
-    ): IDataSourceView<TItem, TId, TFilter>;
 
     abstract useView(
         value: DataSourceState<TFilter, TId>,

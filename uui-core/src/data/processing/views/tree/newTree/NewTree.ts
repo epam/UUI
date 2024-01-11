@@ -2,6 +2,8 @@ import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparat
 import { CascadeSelection, DataSourceState, IMap } from '../../../../../types';
 import { newMap } from '../BaseTree';
 import { TreeSnapshot } from './TreeSnapshot';
+import { ItemsMap } from '../../../ItemsMap';
+import { ItemsStorage } from '../../../ItemsStorage';
 
 export type SnapshotId = 'core' | 'visible';
 
@@ -45,9 +47,22 @@ interface PatchOptions<TItem> {
 export class NewTree<TItem, TId> {
     private constructor(
         protected params: TreeParams<TItem, TId>,
-        private readonly byId: IMap<TId, TItem>,
+        private _itemsMap: ItemsMap<TId, TItem>,
+        private readonly setItems: ItemsStorage<TItem, TId>['setItems'],
         private readonly snapshots: IMap<string, TreeSnapshot<TItem, TId>>,
     ) {}
+
+    public get itemsMap() {
+        return this._itemsMap;
+    }
+
+    public set itemsMap(itemsMap: ItemsMap<TId, TItem>) {
+        this._itemsMap = itemsMap;
+        for (const [id, prevSnapshot] of this.snapshots) {
+            prevSnapshot.itemsMap = this._itemsMap;
+            this.snapshots.set(id, prevSnapshot);
+        }
+    }
 
     public async load<TFilter>({
         using,
@@ -130,61 +145,63 @@ export class NewTree<TItem, TId> {
 
     private updateSnapshots({ using, snapshot }: UpdateSnapshots<TItem, TId>): NewTree<TItem, TId> {
         const newSnapshots = newMap<string, TreeSnapshot<TItem, TId>>(this.params);
-        const newById = snapshot.byId;
+        const newItemsMap = snapshot.itemsMap;
         if (using === undefined) {
             for (const [id] of this.snapshots) {
                 newSnapshots.set(id, snapshot);
             }
         } else {
             for (const [id, prevSnapshot] of this.snapshots) {
-                prevSnapshot.byId = newById;
+                prevSnapshot.itemsMap = newItemsMap;
                 newSnapshots.set(id, prevSnapshot);
             }
             newSnapshots.set(using, snapshot);
         }
 
-        return NewTree.newInstance(this.params, newById, newSnapshots);
+        return NewTree.newInstance(this.params, newItemsMap, newSnapshots);
     }
 
     private static newInstance<TItem, TId>(
         params: TreeParams<TItem, TId>,
-        byId: IMap<TId, TItem>,
+        itemsMap: ItemsMap<TId, TItem>,
         snapshots: IMap<string, TreeSnapshot<TItem, TId>>,
     ) {
         return new (this as any)(
             params,
-            byId,
+            itemsMap,
             snapshots,
         );
     }
 
     public static create<TItem, TId>(
         params: TreeParams<TItem, TId>,
-        items: TItem[],
+        itemsMap: ItemsMap<TId, TItem>,
+        setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {
-        const snapshot = TreeSnapshot.create(params, items);
+        const snapshot = TreeSnapshot.create(params, itemsMap, setItems);
         const snapshots = newMap<string, TreeSnapshot<TItem, TId>>(params);
         snapshots.set('core', snapshot);
         snapshots.set('visible', snapshot);
         return this.newInstance(
             params,
-            snapshot.byId,
+            snapshot.itemsMap,
             snapshots,
         );
     }
 
     public snapshot(id: SnapshotId = 'visible') {
         if (!this.snapshots.has(id)) {
-            const newSnapshot = TreeSnapshot.newInstance(this.params, this.byId);
+            const newSnapshot = TreeSnapshot.newInstance(this.params, this.itemsMap, this.setItems);
             this.snapshots.set(id, newSnapshot);
         }
         return this.snapshots.get(id);
     }
 
-    public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
+    public static blank<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']) {
         return new this(
             params,
-            newMap(params),
+            itemsMap,
+            setItems,
             newMap(params),
         );
     }
@@ -193,16 +210,16 @@ export class NewTree<TItem, TId> {
         const newSnapshots = newMap<string, TreeSnapshot<TItem, TId>>(this.params);
         if (ofSnapshot === undefined) {
             for (const [id] of this.snapshots) {
-                newSnapshots.set(id, TreeSnapshot.newInstance(this.params, this.byId));
+                newSnapshots.set(id, TreeSnapshot.newInstance(this.params, this.itemsMap, this.setItems));
             }
         } else {
             for (const [id, prevSnapshot] of this.snapshots) {
                 newSnapshots.set(id, prevSnapshot);
             }
-            newSnapshots.set(ofSnapshot, TreeSnapshot.newInstance(this.params, this.byId));
+            newSnapshots.set(ofSnapshot, TreeSnapshot.newInstance(this.params, this.itemsMap, this.setItems));
         }
 
-        return NewTree.newInstance(this.params, this.byId, newSnapshots);
+        return NewTree.newInstance(this.params, this.itemsMap, newSnapshots);
     }
 
     public reset(toSnapshot: SnapshotId = 'core'): NewTree<TItem, TId> {
@@ -216,6 +233,6 @@ export class NewTree<TItem, TId> {
             }
         }
 
-        return NewTree.newInstance(this.params, this.byId, newSnapshots);
+        return NewTree.newInstance(this.params, this.itemsMap, newSnapshots);
     }
 }

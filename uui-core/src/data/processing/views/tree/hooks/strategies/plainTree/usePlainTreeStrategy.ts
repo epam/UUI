@@ -6,6 +6,7 @@ import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
+import { useItemsStorage } from '../useItemsStorage';
 
 export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, ...restProps }: PlainTreeStrategyProps<TItem, TId, TFilter>,
@@ -18,7 +19,14 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
         setTrigger((currentTrigger) => !currentTrigger);
     }, [setTrigger]);
 
-    const fullTree = useCreateTree(props, [...deps, trigger]);
+    const { itemsMap, setItems } = useItemsStorage({
+        itemsMap: restProps.itemsMap,
+        items: restProps.items,
+        setItems: restProps.setItems,
+        getId: restProps.getId,
+    });
+
+    const fullTree = useCreateTree({ ...props, itemsMap, setItems }, [...deps, trigger]);
 
     const {
         getId,
