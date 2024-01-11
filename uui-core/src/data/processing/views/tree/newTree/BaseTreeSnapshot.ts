@@ -1,11 +1,14 @@
 import { DataRowPathItem, IMap } from '../../../../../types';
+import { ItemsMap } from '../../../ItemsMap';
+import { ItemsStorage } from '../../../ItemsStorage';
 import { newMap } from '../BaseTree';
 import { NOT_FOUND_RECORD, TreeNodeInfo, TreeParams } from '../ITree';
 
 export class BaseTreeSnapshot<TItem, TId> {
     protected constructor(
         protected params: TreeParams<TItem, TId>,
-        protected _byId: IMap<TId, TItem>,
+        protected _itemsMap: ItemsMap<TId, TItem>,
+        protected setItems: ItemsStorage<TItem, TId>['setItems'],
         protected readonly byParentId?: IMap<TId, TId[]>,
         protected readonly nodeInfoById?: IMap<TId, TreeNodeInfo>,
     ) {
@@ -13,12 +16,12 @@ export class BaseTreeSnapshot<TItem, TId> {
         this.nodeInfoById = nodeInfoById ?? newMap(params);
     }
 
-    public get byId() {
-        return this._byId;
+    public get itemsMap() {
+        return this.itemsMap;
     }
 
-    public set byId(newById: IMap<TId, TItem>) {
-        this._byId = newById;
+    public set itemsMap(newItemsMap: ItemsMap<TId, TItem>) {
+        this._itemsMap = newItemsMap;
     }
 
     public getRootIds(): TId[] {
@@ -26,15 +29,15 @@ export class BaseTreeSnapshot<TItem, TId> {
     }
 
     public getRootItems() {
-        return this.getRootIds().map((id) => this.byId.get(id)!);
+        return this.getRootIds().map((id) => this._itemsMap.get(id)!);
     }
 
     public getById(id: TId): TItem | typeof NOT_FOUND_RECORD {
-        if (!this.byId.has(id)) {
+        if (!this._itemsMap.has(id)) {
             return NOT_FOUND_RECORD;
         }
 
-        return this.byId.get(id);
+        return this._itemsMap.get(id);
     }
 
     public getChildren(item: TItem) {
@@ -44,7 +47,7 @@ export class BaseTreeSnapshot<TItem, TId> {
 
     public getChildrenByParentId(parentId: TId) {
         const ids = this.getChildrenIdsByParentId(parentId);
-        const children = ids.map((id) => this.byId.get(id));
+        const children = ids.map((id) => this._itemsMap.get(id));
         return children;
     }
 
@@ -56,7 +59,7 @@ export class BaseTreeSnapshot<TItem, TId> {
         const parentIds: TId[] = [];
         let parentId = id;
         while (true) {
-            const item = this.byId.get(parentId);
+            const item = this._itemsMap.get(parentId);
             if (!item) {
                 break;
             }
@@ -73,8 +76,8 @@ export class BaseTreeSnapshot<TItem, TId> {
         const parentIds = this.getParentIdsRecursive(id);
         const parents: TItem[] = [];
         parentIds.forEach((parentId) => {
-            if (this.byId.has(parentId)) {
-                parents.push(this.byId.get(parentId));
+            if (this._itemsMap.has(parentId)) {
+                parents.push(this._itemsMap.get(parentId));
             }
         });
 
@@ -165,7 +168,7 @@ export class BaseTreeSnapshot<TItem, TId> {
             if (shouldStop) return;
             ids.forEach((id) => {
                 if (shouldStop) return;
-                const item = this.byId.get(id);
+                const item = this._itemsMap.get(id);
                 const parentId = item ? this.params.getParentId?.(item) : undefined;
                 walkChildrenRec(item, id, parentId);
             });
@@ -190,9 +193,9 @@ export class BaseTreeSnapshot<TItem, TId> {
     }
 
     public forEachItem(action: (item: TItem, id: TId, parentId: TId) => void) {
-        for (const [id, item] of this.byId) {
+        this.itemsMap.forEach((item, id) => {
             action(item, id, this.params.getParentId?.(item));
-        }
+        });
     }
 
     public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {

@@ -14,7 +14,7 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
 
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
-    const baseTree = useMemo(() => NewTree.blank(props), deps);
+    const baseTree = useMemo(() => NewTree.blank(props, null, null), deps);
     const [currentTree, setCurrentTree] = useState(baseTree);
 
     const { tree: treeWithData, isLoading, isFetching } = useLoadData({

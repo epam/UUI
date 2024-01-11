@@ -1,6 +1,5 @@
 import { UseTreeResult } from '../../..';
 import { LazyDataSourceApi, SortingOption } from '../../../../../../../types';
-import { NewTree } from '../../../newTree';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
 
@@ -14,6 +13,9 @@ export const MODES = {
 export interface ServerAsyncTreeProps<TItem, TId, TFilter> extends CommonDataSourceConfig<TItem, TId, TFilter> {
     mode: typeof MODES.server,
     api: LazyDataSourceApi<TItem, TId, TFilter>;
+
+    // itemsMap?: ItemsMap<TId, TItem>;
+    // setItems?: ItemsStorage<TItem, TId>['setItems'];
 }
 
 export interface ClientAsyncTreeProps<TItem, TId, TFilter> extends
@@ -21,8 +23,10 @@ export interface ClientAsyncTreeProps<TItem, TId, TFilter> extends
 
     mode: 'client',
     api(): Promise<TItem[]>;
-    items?: TItem[] | Record<string | number | symbol, TItem> | NewTree<TItem, TId>,
-    tree?: NewTree<TItem, TId>,
+
+    // itemsMap?: ItemsMap<TId, TItem>;
+    // setItems?: ItemsStorage<TItem, TId>['setItems'];
+    // items?: TItem[];
 
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;

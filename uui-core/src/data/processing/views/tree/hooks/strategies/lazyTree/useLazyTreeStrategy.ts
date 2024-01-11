@@ -25,7 +25,7 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
-    const tree = useMemo(() => NewTree.blank(props), [...deps]);
+    const tree = useMemo(() => NewTree.blank(props, null, null), [...deps]);
     const [treeWithData, setTreeWithData] = useState(tree);
 
     const prevFilter = usePrevious(filter);

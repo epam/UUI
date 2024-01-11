@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { DataSourceState, SortingOption } from '../../../../../../../types';
 import { NewTree } from '../../../newTree';
@@ -22,11 +22,19 @@ export function useSortTree<TItem, TId, TFilter = any>(
     const prevDeps = useSimplePrevious(deps);
     const sortedTreeRef = useRef<NewTree<TItem, TId>>(null);
 
-    return useMemo(() => {
+    const sortTree = useMemo(() => {
         const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
         if (sortedTreeRef.current === null || prevTree !== tree || sorting !== prevSorting || isDepsChanged) {
             sortedTreeRef.current = tree.sort({ sorting, sortBy });
         }
         return sortedTreeRef.current;
     }, [tree, sorting, ...deps]);
+
+    useEffect(() => {
+        if (tree.itemsMap) {
+            sortTree.itemsMap = tree.itemsMap;
+        }
+    }, [tree?.itemsMap]);
+
+    return sortTree;
 }

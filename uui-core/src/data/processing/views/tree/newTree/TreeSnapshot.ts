@@ -10,6 +10,8 @@ import {
     LoadOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchOptions, SearchOptions, SelectionOptions, SortOptions,
 } from './types';
 import { BaseTreeSnapshot } from './BaseTreeSnapshot';
+import { ItemsMap } from '../../../ItemsMap';
+import { ItemsStorage } from '../../../ItemsStorage';
 
 export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
     public static async load<TItem, TId, TFilter = any>({
@@ -30,7 +32,8 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
     }: LoadOptions<TItem, TId, TFilter>): Promise<TreeSnapshot<TItem, TId>> {
         const requiredRowsCount = dataSourceState.topIndex + dataSourceState.visibleCount;
 
-        let byId: IMap<TId, TItem> = snapshot.byId;
+        // let byId: IMap<TId, TItem> = snapshot.byId;
+        let itemsMap = snapshot.itemsMap;
         let byParentId = snapshot.byParentId;
         let nodeInfoById = snapshot.nodeInfoById;
 
@@ -60,15 +63,8 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
             }
 
             recursiveLoadedCount += ids.length;
-
             if (loadedItems.length > 0) {
-                // Clone the map if it's not cloned yet
-                byId = byId === snapshot.byId ? this.cloneMap(byId) : byId;
-
-                loadedItems.forEach((item) => {
-                    const id = snapshot.params.getId(item);
-                    byId.set(id, item);
-                });
+                itemsMap = snapshot.setItems(loadedItems);
             }
 
             if (!flatten && options.getChildCount) {
@@ -76,7 +72,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
 
                 for (let n = 0; n < ids.length; n++) {
                     const id = ids[n];
-                    const item = byId.get(id);
+                    const item = itemsMap.get(id);
 
                     let isFolded = false;
                     let hasChildren = false;
@@ -121,7 +117,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
-        return this.newInstance(snapshot.params, byId, byParentId, nodeInfoById);
+        return this.newInstance(snapshot.params, itemsMap, snapshot.setItems, byParentId, nodeInfoById);
     }
 
     private static async loadMissingItemsAndParents<TItem, TId, TFilter>({
@@ -129,7 +125,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         options,
         itemsToLoad,
     }: LoadMissingItemsAndParentsOptions<TItem, TId, TFilter>): Promise<TreeSnapshot<TItem, TId>> {
-        let byId = snapshot.byId;
+        let itemsMap = snapshot.itemsMap;
         let iteration = 0;
         let prevMissingIds = new Set<TId>();
         while (true) {
@@ -137,18 +133,18 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
 
             if (itemsToLoad && itemsToLoad.length > 0) {
                 itemsToLoad.forEach((id) => {
-                    if (!byId.has(id)) {
+                    if (!itemsMap.has(id)) {
                         missingIds.add(id);
                     }
                 });
             }
             if (snapshot.params.getParentId) {
-                for (const [, item] of byId) {
+                itemsMap.forEach((item) => {
                     const parentId = snapshot.params.getParentId(item);
-                    if (parentId != null && !byId.has(parentId)) {
+                    if (parentId != null && !itemsMap.has(parentId)) {
                         missingIds.add(parentId);
                     }
-                }
+                });
             }
 
             if (missingIds.size === 0) {
@@ -162,15 +158,12 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
                         Read more here: https://github.com/epam/UUI/issues/89`);
                 }
 
-                // Clone before first update
-                byId = byId === snapshot.byId ? TreeSnapshot.cloneMap(byId) : byId;
-
-                response.items.forEach((item) => {
+                const newItems = response.items.filter((item) => {
                     const id = item ? snapshot.params.getId(item) : null;
-                    if (id !== null) {
-                        byId.set(id, item);
-                    }
+                    return id !== null;
                 });
+
+                itemsMap = snapshot.setItems(newItems);
 
                 if (prevMissingIds.size === missingIds.size && isEqual(prevMissingIds, missingIds)) {
                     break;
@@ -184,22 +177,24 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
                 throw new Error('LazyTree: More than 1000 iterations are made to load required items and their parents by ID. Check your api implementation');
             }
         }
-        if (byId === snapshot.byId) {
+        if (itemsMap === snapshot.itemsMap) {
             return snapshot;
         } else {
-            return this.newInstance(snapshot.params, byId, snapshot.byParentId, snapshot.nodeInfoById);
+            return this.newInstance(snapshot.params, itemsMap, snapshot.setItems, snapshot.byParentId, snapshot.nodeInfoById);
         }
     }
 
     public static newInstance<TItem, TId>(
         params: TreeParams<TItem, TId>,
-        byId: IMap<TId, TItem>,
+        itemsMap: ItemsMap<TId, TItem>,
+        setItems: ItemsStorage<TItem, TId>['setItems'],
         byParentId?: IMap<TId, TId[]>,
         nodeInfoById?: IMap<TId, TreeNodeInfo>,
     ) {
         return new TreeSnapshot(
             params,
-            byId,
+            itemsMap,
+            setItems,
             byParentId,
             nodeInfoById,
         );
@@ -315,16 +310,14 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
                 pageSize: dataSourceState.pageSize,
             },
         );
-
-        return this.create(snapshot.params, response.items);
+        const itemsMap = snapshot.setItems(response.items);
+        return this.create(snapshot.params, itemsMap, snapshot.setItems);
     }
 
-    public static create<TItem, TId>(params: TreeParams<TItem, TId>, items: TItem[]) {
-        const byId = newMap<TId, TItem>(params);
+    public static create<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']) {
         const byParentId = newMap<TId, TId[]>(params);
 
-        items.forEach((item) => {
-            byId.set(params.getId(item), item);
+        itemsMap.forEach((item) => {
             const parentId = params.getParentId?.(item);
 
             if (!byParentId.has(parentId)) {
@@ -341,7 +334,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
-        return this.newInstance(params, byId, byParentId, newNodeInfoById);
+        return this.newInstance(params, itemsMap, setItems, byParentId, newNodeInfoById);
     }
 
     protected static cloneMap<TKey, TValue>(map: IMap<TKey, TValue>) {
@@ -370,7 +363,8 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         };
 
         sortRec(snapshot.getRootItems());
-        return this.create({ ...snapshot.params }, sortedItems);
+        const itemsMap = snapshot.setItems(sortedItems, { reset: true });
+        return this.create({ ...snapshot.params }, itemsMap, snapshot.setItems);
     }
 
     private static buildSearchFilter<TItem, TId, TFilter>({ search, getSearchFields }: ApplySearchOptions<TItem, TId, TFilter>) {
@@ -446,7 +440,9 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         };
 
         applyFilterRec(snapshot.getRootItems());
-        return this.create({ ...snapshot.params }, matchedItems);
+        const itemsMap = snapshot.setItems(matchedItems, { reset: true });
+
+        return this.create({ ...snapshot.params }, itemsMap, snapshot.setItems);
     }
 
     private static applySearchToTree<TItem, TId>({ snapshot, search, sortSearchByRelevance }: ApplySearchToTreeSnapshotOptions<TItem, TId>) {
@@ -482,10 +478,11 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         };
 
         applySearchRec(snapshot.getRootItems());
-        return this.create(
-            { ...snapshot.params },
-            sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks, snapshot.params.getId) : matchedItems,
-        );
+
+        const searchItems = sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks, snapshot.params.getId) : matchedItems;
+        const itemsMap = snapshot.setItems(searchItems, { reset: true });
+
+        return this.create({ ...snapshot.params }, itemsMap, snapshot.setItems);
     }
 
     private static sortByRanks<TItem, TId>(items: TItem[], ranks: Map<TId, number>, getId: (item: TItem) => TId) {
@@ -510,31 +507,30 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
             return snapshot;
         }
 
-        const newById = this.cloneMap(snapshot.byId);
         const newByParentId = this.cloneMap(snapshot.byParentId); // shallow clone, still need to copy arrays inside!
 
         let isPatched = false;
+        let itemsMap = snapshot.itemsMap;
         items.forEach((item) => {
             const id = snapshot.params.getId(item);
-            const existingItem = snapshot.byId.get(id);
+            const existingItem = snapshot.itemsMap.get(id);
             const parentId = snapshot.params.getParentId?.(item);
 
             if (isDeletedProp && item[isDeletedProp]) {
                 const children = [...(newByParentId.get(parentId) ?? [])];
                 newByParentId.set(parentId, this.deleteFromChildren(id, children));
                 newByParentId.delete(id);
-                newById.delete(id);
                 isPatched = true;
                 return;
             }
 
             if (!existingItem || existingItem !== item) {
-                newById.set(id, item);
+                itemsMap = snapshot.setItems([item]);
                 const existingItemParentId = existingItem ? snapshot.params.getParentId?.(existingItem) : undefined;
                 if (!existingItem || parentId !== existingItemParentId) {
                     const children = newByParentId.get(parentId) ?? [];
 
-                    newByParentId.set(parentId, this.patchChildren({ snapshot, children, existingItem, newItem: item, comparator, byId: newById }));
+                    newByParentId.set(parentId, this.patchChildren({ snapshot, children, existingItem, newItem: item, comparator, itemsMap }));
 
                     if (existingItem && existingItemParentId !== parentId) {
                         const prevParentChildren = snapshot.byParentId.get(existingItemParentId) ?? [];
@@ -555,7 +551,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
-        return this.newInstance(snapshot.params, newById, newByParentId, newNodeInfoById);
+        return this.newInstance(snapshot.params, itemsMap, snapshot.setItems, newByParentId, newNodeInfoById);
     }
 
     private static deleteFromChildren<TId>(id: TId, children: TId[]) {
@@ -573,7 +569,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         existingItem,
         newItem,
         comparator,
-        byId,
+        itemsMap,
     }: PatchChildrenOptions<TItem, TId>) {
         const id = snapshot.params.getId(newItem);
         const parentId = snapshot.params.getParentId?.(newItem);
@@ -584,20 +580,20 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         }
 
         if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
-            return this.pasteItemIntoChildrenList({ id: snapshot.params.getId(newItem), item: newItem, children, comparator, byId });
+            return this.pasteItemIntoChildrenList({ id: snapshot.params.getId(newItem), item: newItem, children, comparator, itemsMap });
         }
 
         children.push(id);
         return children;
     }
 
-    private static pasteItemIntoChildrenList<TItem, TId>({ id, item, children, comparator, byId }: PasteItemIntoChildrenListOptions<TItem, TId>) {
+    private static pasteItemIntoChildrenList<TItem, TId>({ id, item, children, comparator, itemsMap }: PasteItemIntoChildrenListOptions<TItem, TId>) {
         if (!children.length) {
             return [id];
         }
 
         // paste item should be the second argument
-        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, byId.get(itemId)) <= 0);
+        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, itemsMap.get(itemId)) <= 0);
         const position = lessOrEqualPosition === -1 ? children.length : lessOrEqualPosition;
 
         children.splice(position, 0, id);
@@ -650,11 +646,11 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
             if (checkedId !== ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             } else {
-                for (const [id, item] of snapshot.byId) {
+                snapshot.itemsMap.forEach((item, id) => {
                     if (isCheckable(item)) {
                         checkedIdsMap.set(id, true);
                     }
-                }
+                });
             }
             return checkedIdsMap;
         }

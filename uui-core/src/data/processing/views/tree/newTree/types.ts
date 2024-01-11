@@ -1,7 +1,8 @@
-import { CascadeSelection, DataSourceState, IMap } from '../../../../../types';
+import { CascadeSelection, DataSourceState } from '../../../../../types';
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadAllTreeOptions, LoadTreeOptions } from '../ITree';
 import { CompositeKeysMap } from '../CompositeKeysMap';
 import type { TreeSnapshot } from '../newTree';
+import { ItemsMap } from '../../../ItemsMap';
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
     snapshot: TreeSnapshot<TItem, TId>;
@@ -64,7 +65,7 @@ export interface PatchOptions<TItem, TId> {
 
 export interface PatchChildrenOptions<TItem, TId> {
     snapshot: TreeSnapshot<TItem, TId>;
-    byId: IMap<TId, TItem>;
+    itemsMap: ItemsMap<TId, TItem>;
     children: TId[] | undefined;
     existingItem: TItem | undefined;
     newItem: TItem;
@@ -76,7 +77,7 @@ export interface PasteItemIntoChildrenListOptions<TItem, TId> {
     item: TItem;
     children: TId[];
     comparator: ItemsComparator<TItem>;
-    byId: IMap<TId, TItem>;
+    itemsMap: ItemsMap<TId, TItem>;
 }
 
 export interface CascadeSelectionOptions<TItem, TId> {

@@ -69,7 +69,6 @@ export interface IDataSource<TItem, TId, TFilter> {
     getId(item: TItem): TId;
     getById(id: TId): TItem | void;
     setItem(item: TItem): void;
-    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
     useView(
         value: DataSourceState<any, TId>,
         onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
