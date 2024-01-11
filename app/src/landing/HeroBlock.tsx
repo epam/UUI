@@ -97,8 +97,6 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
 
                     return (
                         <div className={ css.layout } ref={ measureRef }>
-                            <img alt="tree" src="/static/christmas/tree.svg" className={ css.christmasTree } />
-                            <img alt="car" src="/static/christmas/car.svg" className={ css.christmasCar } />
                             <FlexRow cx={ css.hero }>
                                 <div className={ css.heroText }>
                                     <Text rawProps={ { role: 'heading', 'aria-level': 1 } } cx={ css.heroHeader }>
@@ -109,24 +107,18 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                                     </Text>
                                     <Text fontSize="24" cx={ css.heroSecondary }>
                                         Complete set of components,
-                                        guidelines, blueprints, examples, to build your apps on top of React, Figma,
-                                        TypeScript
+                                        guidelines, blueprints, examples, to build your apps on top of React, Figma, TypeScript
                                     </Text>
                                 </div>
-                                <div
-                                    className={ cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation') }
-                                >
-                                    <div
-                                        className={ css.heroImage }
-                                        style={ { '--height': `${containerWidth / 2}px` } as React.CSSProperties }
-                                    >
-                                        { containerWidth > 1280 ? this.renderAnimatedImage() : this.renderStaticImage() }
+                                <div className={ cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation') }>
+                                    <div className={ css.heroImage } style={ { '--height': `${containerWidth / 2}px` } as React.CSSProperties }>
+                                        {containerWidth > 1280 ? this.renderAnimatedImage() : this.renderStaticImage()}
                                     </div>
                                 </div>
                             </FlexRow>
                         </div>
                     );
-                } }
+                }}
             </Measure>
         );
     }

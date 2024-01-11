@@ -17,7 +17,6 @@ import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import '@epam/assets/theme/theme_loveship_dark.scss';
 import '@epam/assets/theme/theme_electric.scss';
 import './index.module.scss';
-import christmasCss from './christmas.module.scss';
 
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
@@ -49,16 +48,6 @@ function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router });
 
-    const renderSnow = () => {
-        const snow = [];
-
-        for (let index = 0; index < 300; index++) {
-            snow.push(<div key={ `snow-${index}` } className={ christmasCss.christmasSnow } />);
-        }
-
-        return <div className={ christmasCss.christmasBox }>{ snow }</div>;
-    };
-    
     React.useEffect(() => {
         Object.assign(svc, services);
         services.uuiAnalytics.addListener(new GAListener(GA_CODE));
@@ -70,7 +59,6 @@ function UuiEnhancedApp() {
         return (
             <UuiContext.Provider value={ services }>
                 <RouterProvider router={ router6 } />
-                { renderSnow() }
                 <Snackbar />
                 <Modals />
                 <DragGhost />

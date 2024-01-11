@@ -61,25 +61,17 @@ export function DemoPage() {
         pageContent = (
             <div className={ css.navPage }>
                 <div className={ css.navTitle }>Demo</div>
-                <div className={ css.christmasBox }>
-                    <img alt="car" src="/static/christmas/gift_big.svg" className={ css.christmasGifts } />
-                </div>
                 <div className={ css.navCards }>
-                    { demoItems.map((item) => {
+                    {demoItems.map((item) => {
                         return <DemoItemCard demoItem={ item } key={ item.id } onOpenItem={ sendEvent } />;
-                    }) }
+                    })}
                 </div>
             </div>
         );
     }
 
     return (
-        <Page
-            contentCx={ css.root }
-            renderHeader={ renderHeader }
-            renderFooter={ renderFooter }
-            isFullScreen={ fullScreenApi.isFullScreen }
-        >
+        <Page contentCx={ css.root } renderHeader={ renderHeader } renderFooter={ renderFooter } isFullScreen={ fullScreenApi.isFullScreen }>
             {pageContent}
         </Page>
     );
