@@ -12,3 +12,14 @@
     justify-content: space-between;
     margin-left: 12px;
 }
+
+.blocker {
+    :global(.uui-blocker) {
+        z-index: 10;
+    }
+
+    :global(.uui-spinner-container) {
+        transition-duration: 0s;
+        transition-delay: 0s;
+    }
+}

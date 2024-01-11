@@ -1,4 +1,5 @@
 import { IThemeVar, TValueByThemeValue } from './sharedTypes';
+import { TTheme } from '../../../../common/docs/docsConstants';
 
 export enum TThemeVarUiErr {
     VAR_ABSENT= 'VAR_ABSENT',
@@ -11,12 +12,12 @@ export type IThemeVarUI = Omit<IThemeVar, 'valueByTheme'> & {
         /**
          * The actual value retrieved from the browser for the theme which is actually selected.
          */
-        actual: string,
+        browser: string,
         /**
          * The expected value defined in Figma for the current theme.
          * It's undefined if absent in Figma.
          */
-        expected: TValueByThemeValue[keyof TValueByThemeValue] | undefined,
+        figma: TValueByThemeValue[keyof TValueByThemeValue] | undefined,
         /**
          * Validation errors
          */
@@ -24,7 +25,20 @@ export type IThemeVarUI = Omit<IThemeVar, 'valueByTheme'> & {
     }
 };
 
-export enum TExpectedValueType {
+export interface TLoadThemeTokensParams {
+    filter: TLoadThemeTokensFilter,
+    valueType: TThemeTokenValueType,
+}
+export type TLoadThemeTokensResult = {
+    tokens: IThemeVarUI[],
+    loading: boolean,
+    uuiTheme: TTheme,
+};
+export interface TLoadThemeTokensFilter {
+    path: string | undefined,
+}
+
+export enum TThemeTokenValueType {
     direct= 'direct',
     chain= 'chain'
 }
@@ -46,7 +60,7 @@ export enum STATUS_FILTER {
     mismatched = 'Mismatched'
 }
 
-export type TTokensFilter = {
+export type TTokensLocalFilter = {
     status: STATUS_FILTER | undefined,
 };
 export type TTotals = Record<STATUS_FILTER, number>;

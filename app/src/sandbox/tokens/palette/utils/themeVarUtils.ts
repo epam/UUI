@@ -16,23 +16,23 @@ export function getFigmaTheme(theme: TTheme) {
 }
 
 function isActualEqualsExpected(token: IThemeVarUI) {
-    const { actual, expected } = token.value;
-    if (expected !== undefined) {
+    const { browser, figma } = token.value;
+    if (figma !== undefined) {
         if (token.type === TVarType.COLOR) {
-            const expectedNorm = normalizeColor(expected.value as string);
-            const actualNorm = normalizeColor(actual);
+            const expectedNorm = normalizeColor(figma.value as string);
+            const actualNorm = normalizeColor(browser);
             return expectedNorm.localeCompare(actualNorm) === 0;
         }
-        return String(expected.value) === actual;
+        return String(figma.value) === browser;
     }
     return true;
 }
 
 export function validateActualTokenValue(token: IThemeVarUI): IThemeVarUIError[] {
     //
-    const { actual } = token.value;
+    const { browser } = token.value;
     const errors: IThemeVarUIError[] = [];
-    if (actual === '') {
+    if (browser === '') {
         errors.push({
             type: TThemeVarUiErr.VAR_ABSENT,
             message: `CSS variable ${token.cssVar} is not defined`,
