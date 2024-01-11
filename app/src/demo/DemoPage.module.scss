@@ -49,9 +49,7 @@
 
 .christmasBox {
     position: relative;
-    cursor: pointer;
-    text-decoration: none;
-    outline: none;
+    pointer-events: none;
 }
 
 .christmasGifts {
