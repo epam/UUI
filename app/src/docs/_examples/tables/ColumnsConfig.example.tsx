@@ -26,8 +26,10 @@ export default function ColumnsConfigurationDataTableExample() {
                     </Text>
                 ),
                 isSortable: true,
+                allowResizing: true,
                 width: 120,
-            }, {
+            },
+            {
                 key: 'name',
                 caption: 'Name',
                 render: (city) => (
@@ -36,8 +38,10 @@ export default function ColumnsConfigurationDataTableExample() {
                     </Text>
                 ),
                 isSortable: true,
+                allowResizing: true,
                 width: 200,
-            }, {
+            },
+            {
                 key: 'countryName',
                 caption: 'Country',
                 render: (city) => (
@@ -47,7 +51,8 @@ export default function ColumnsConfigurationDataTableExample() {
                 ),
                 isSortable: true,
                 width: 140,
-            }, {
+            },
+            {
                 key: 'population',
                 caption: 'Population',
                 render: (city) => (
@@ -58,17 +63,20 @@ export default function ColumnsConfigurationDataTableExample() {
                 width: 140,
                 isSortable: true,
                 textAlign: 'right',
-            }, {
+            },
+            {
                 key: 'altname',
                 caption: 'Alt. names',
                 render: (city) => <Text color="primary">{city.alternativeNames.join(', ')}</Text>,
                 info: 'Alternative city names',
                 width: 300,
-            }, {
+            },
+            {
                 key: 'actions',
                 render: () => <IconButton icon={ MoreIcon } color="secondary" />,
                 width: 54,
                 fix: 'right',
+                allowResizing: false,
             },
         ],
         [],
@@ -109,7 +117,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 headerTextCase="upper"
                 showColumnsConfig={ true }
                 allowColumnsReordering={ true }
-                allowColumnsResizing={ true }
+                // allowColumnsResizing={ true }
                 { ...view.getListProps() }
             />
         </Panel>

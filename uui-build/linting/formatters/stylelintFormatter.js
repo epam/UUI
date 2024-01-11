@@ -4,12 +4,10 @@ const {
     sumComparator,
     convertResultsToHtml,
     getReportLocationPath,
-    reportUnnecessaryRulesToBeFixed,
     logSummary,
 } = require('./formatterUtils');
 const path = require('path');
 const fs = require('fs');
-const { stylelintRulesToBeFixed } = require('../utils/rulesToBeFixed');
 const { logger } = require('../../utils/loggerUtils');
 
 function writeReport(dataStr) {
@@ -47,7 +45,6 @@ function stylelintFormatter(results) {
     logSummary(summary, kind);
     logger.info(`Total amount of files scanned: ${results.length}.`);
     const reportAbsPath = getReportLocationPath();
-    reportUnnecessaryRulesToBeFixed(summary, stylelintRulesToBeFixed);
     reportAbsPath && logger.info(`Report was generated at: ${reportAbsPath}`);
 }
 

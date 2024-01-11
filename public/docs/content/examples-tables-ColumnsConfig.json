@@ -1,132 +1,84 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can allow your users to configure column visibility, order, and width by themselves.",
-            "marks": []
-          }
-        ]
+        "text": "You can allow your users to configure column visibility, order, and width by themselves."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Provide the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Provide the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "showColumnsConfig={true}",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop to enable the columns' config dialog. The config button will appear in the last column.",
-            "marks": []
-          }
-        ]
+        "text": "showColumnsConfig={true}",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For allowing columns to resize and reorder, use ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "allowColumnsResizing={true}",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "allowColumnsReordering={true}",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props. ",
-            "marks": []
-          }
-        ]
+        "text": " prop to enable the columns' config dialog. The config button will appear in the last column."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For allowing columns to resize and reorder, use "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Hint",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ": To display a column config button in your table, you need to explicitly add last column with empty caption and  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "fix:'right'",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to provide the required space for this button.",
-            "marks": []
-          }
-        ]
+        "text": "allowColumnsResizing={true}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "allowColumnsReordering={true}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props.  Additionally, you can individually allow or disable resizing for each column by using the "
+      },
+      {
+        "text": "allowResizing",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " field in "
+      },
+      {
+        "text": "DataColumnProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Hint",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ": To display a column config button in your table, you need to explicitly add last column with empty caption and  "
+      },
+      {
+        "text": "fix:'right'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to provide the required space for this button."
       }
     ]
   }
-}
+]
