@@ -20,6 +20,7 @@ import {
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
 import { AnchorDoc } from '../docs/anchor/Anchor.doc';
+import { Tokens } from '../docs/advanced/tokens/Tokens';
 
 export interface DocItem {
     id: string;
@@ -143,7 +144,9 @@ export const items: DocItem[] = [
     { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
 
-    { id: 'themes', name: 'Themes', component: ThemesDoc },
+    { id: 'themes', name: 'Themes' },
+    { id: 'themesPage', name: 'Themes', component: ThemesDoc, parentId: 'themes' },
+    { id: 'tokens', name: 'Tokens', component: Tokens, parentId: 'themes' },
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
