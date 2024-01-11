@@ -2,26 +2,26 @@ import React from 'react';
 import { useArrayDataSource } from '@epam/uui-core';
 import { FlexRow, LabeledInput, PickerInput } from '@epam/uui';
 import { TTheme } from '../../../../../common/docs/docsConstants';
-import { TExpectedValueType } from '../../types/types';
+import { TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
 
 type TokensSummaryProps = {
     uuiTheme: TTheme,
-    expectedValueType: TExpectedValueType,
-    onChangeExpectedValueType: (v: TExpectedValueType) => void
+    expectedValueType: TThemeTokenValueType,
+    onChangeExpectedValueType: (v: TThemeTokenValueType) => void
 };
 export function TokensSummary(props: TokensSummaryProps) {
     const { uuiTheme, expectedValueType, onChangeExpectedValueType } = props;
     const figmaTheme = getFigmaTheme(uuiTheme);
     const figmaThemeLabel = figmaTheme || '<no such theme>';
 
-    const MODE_LABELS: Record<TExpectedValueType, string> = {
-        [TExpectedValueType.direct]: 'Direct',
-        [TExpectedValueType.chain]: 'Chain of aliases',
+    const MODE_LABELS: Record<TThemeTokenValueType, string> = {
+        [TThemeTokenValueType.direct]: 'Direct',
+        [TThemeTokenValueType.chain]: 'Chain of aliases',
     };
-    const expectedValueDs = useArrayDataSource<{ id: TExpectedValueType, name: string }, string, never>(
+    const expectedValueDs = useArrayDataSource<{ id: TThemeTokenValueType, name: string }, string, never>(
         {
-            items: Object.values(TExpectedValueType).map((id) => ({ id, name: MODE_LABELS[id] })),
+            items: Object.values(TThemeTokenValueType).map((id) => ({ id, name: MODE_LABELS[id] })),
         },
         [],
     );
