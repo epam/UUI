@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ELEMENT_LINK, TLinkElement, unwrapLink, upsertLink } from '@udecode/plate-link';
-import { PlateEditor, getPluginType, getSelectionText, findNode, getEditorString } from '@udecode/plate-common';
+import { PlateEditor, getPluginType, getSelectionText, findNode, getEditorString, getAboveNode } from '@udecode/plate-common';
 import { IModal } from '@epam/uui-core';
 import { FlexRow, FlexSpacer, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
 
@@ -12,7 +12,16 @@ interface AddLinkModalProps extends IModal<any> {
 
 export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
     const { success, abort } = modalProps;
-    const [link, setLink] = useState('');
+    const [link, setLink] = useState(() => {
+        const type = getPluginType(editor, ELEMENT_LINK);
+        const linkNode = getAboveNode(editor, {
+            match: { type },
+        });
+        if (linkNode) {
+            return linkNode[0].url as string;
+        }
+        return '';
+    });
 
     return (
         <ModalBlocker { ...modalProps }>
