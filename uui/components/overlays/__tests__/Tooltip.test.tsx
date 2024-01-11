@@ -10,7 +10,7 @@ describe('Tooltip', () => {
 
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <Tooltip color="contrast" content="Test" trigger="click">
+            <Tooltip color="neutral" content="Test">
                 Test
             </Tooltip>,
         );

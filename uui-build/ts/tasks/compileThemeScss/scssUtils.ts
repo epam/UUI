@@ -1,20 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const postcss = require('postcss');
-const scssParser = require('postcss-scss');
-const postcssSass = require('@csstools/postcss-sass');
-const scssDiscardComments = require('postcss-discard-comments');
-const { createFileSync, iterateFilesInDirAsync } = require('../utils/fileUtils.js');
+import path from 'path';
+import fs from 'fs';
+import postcss from 'postcss';
+import scssParser from 'postcss-scss';
+// @ts-ignore Reason: no DTS in this package
+import postcssSass from '@csstools/postcss-sass';
+import scssDiscardComments from 'postcss-discard-comments';
+import { createFileSync, iterateFilesInDirAsync } from '../../utils/fileUtils';
 
-module.exports = {
-    compileScssDir,
-};
-
-function isScssModule(filePath) {
+function isScssModule(filePath: string) {
     return filePath.endsWith('.module.scss');
 }
 
-function getCompiler(isModule) {
+function getCompiler(isModule: boolean) {
     const plugins = [
         postcssSass({}),
         scssDiscardComments({ removeAll: true }),
@@ -25,7 +22,8 @@ function getCompiler(isModule) {
     return postcss(plugins);
 }
 
-async function compileScssFile({ from, to }) {
+async function compileScssFile(params: { from: string, to: string }) {
+    const { from, to } = params;
     const src = await fs.promises.readFile(from, 'utf8');
     const compiler = getCompiler(isScssModule(from));
 
@@ -38,7 +36,7 @@ async function compileScssFile({ from, to }) {
     }
 
     if (result) {
-        const isEmptyCss = result.map._sources.size() === 0;
+        const isEmptyCss = (result.map as any)._sources.size() === 0;
         if (!isEmptyCss) {
             createFileSync(to, result.css);
             createFileSync(`${to}.map`, result.map.toString());
@@ -50,14 +48,13 @@ async function compileScssFile({ from, to }) {
  * Compiles all scss files in the dir.
  * If some scss file in the dir compiles to empty css, then such empty *.css file will not be created.
  *
- * @param from - Absolute path to the source directory.
- * @param to - Absolute path to the target dir. The dir structure will be automatically created if it doesn't exist.
- * @param filter - A callback, should return true in order to include a file and false - to exclude it.
- * @param [recursive=false]
  * @returns {Promise<void>}
  */
-async function compileScssDir({ from, to, filter, recursive = false }) {
-    const inProgress = [];
+export async function compileScssDir(
+    params: { from: string, to: string, filter: (p: string) => boolean, recursive: boolean },
+) {
+    const { from, to, filter, recursive = false } = params;
+    const inProgress: Promise<unknown>[] = [];
     await iterateFilesInDirAsync(from, (filePath) => {
         if (!filter(filePath)) {
             return;

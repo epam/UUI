@@ -35,7 +35,10 @@ interface IFilterNumericBodyProps extends DropdownBodyProps {
 
 export function FilterNumericBody(props: IFilterNumericBodyProps) {
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
-    const isWrongRange = (from: number | undefined, to: number | undefined) => from > to;
+    const isWrongRange = (from: number | undefined, to: number | undefined) => {
+        if (!to && to !== 0) return false;
+        return from > to;
+    };
 
     const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
         const value = props.value as INumericRangeValue;

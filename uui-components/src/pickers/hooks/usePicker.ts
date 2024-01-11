@@ -35,7 +35,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
             dsState = newDataSourceState;
         }
 
-        if (showSelected && !dsState.checked?.length) {
+        if (showSelected && (!dsState.checked?.length || dsState.search)) {
             setShowSelected(false);
         }
 

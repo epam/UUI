@@ -103,5 +103,6 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
         width: 54,
         alignSelf: 'center',
         fix: 'right',
+        allowResizing: false,
     },
 ];

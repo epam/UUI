@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useUuiContext, UuiError, ErrorPageInfo } from '../services';
 import {
     ApiCallInfo, ApiRecoveryReason,
@@ -31,7 +31,6 @@ export const useUuiError = (props: UseUuiErrorProps) => {
     const { getErrorInfo, options: { errorConfig, recoveryConfig } = {} } = props;
     const apiErrors: ApiCallInfo[] = [];
     const apiNotifications: ApiCallInfo[] = [];
-    const initializing = useRef(true);
 
     const onRouteChange = () => {
         let hasError = false;
@@ -48,18 +47,18 @@ export const useUuiError = (props: UseUuiErrorProps) => {
         hasError && forceUpdate();
     };
 
-    // we need to subscribe contexts before component mount, to be able to handle errors during the first render
-    if (initializing.current) {
-        isClientSide && uuiRouter.listen(onRouteChange);
+    useEffect(() => {
+        let routerUnsubscribe: () => void;
+        if (isClientSide) {
+            routerUnsubscribe = uuiRouter.listen(onRouteChange);
+        }
         uuiApi.subscribe(forceUpdate);
         uuiErrors.subscribe(forceUpdate);
-        initializing.current = false;
-    }
 
-    useEffect(() => {
         return () => {
             uuiApi.unsubscribe(forceUpdate);
             uuiErrors.unsubscribe(forceUpdate);
+            routerUnsubscribe?.();
         };
     }, []);
 

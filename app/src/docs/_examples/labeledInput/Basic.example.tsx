@@ -7,35 +7,36 @@ export default function BasicTextInputExample() {
 
     return (
         <FlexCell cx={ css.container } width={ 360 }>
-            <LabeledInput label="Some label">
-                <TextInput value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="001" label="Some label">
+                <TextInput id="001" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput label="Left label" labelPosition="left">
-                <TextInput value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="002" label="Left label" labelPosition="left">
+                <TextInput id="002" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput label="Label with tooltip" info="This tooltip can be helpful">
-                <TextInput value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="003" label="Label with tooltip" info="This tooltip can be helpful">
+                <TextInput id="003" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput label="With validation" isInvalid={ !value } validationMessage="This field is mandatory">
-                <TextInput value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="004" label="With validation" isInvalid={ !value } validationMessage="This field is mandatory">
+                <TextInput id="004" value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput label="With optional label" isOptional={ true }>
-                <TextInput value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="005" label="With optional label" isOptional={ true }>
+                <TextInput id="005" value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput label="With sideNote" sidenote={ <Badge color="warning" fill="solid" caption="Condition" size="18" /> }>
-                <TextInput value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="006" label="With sideNote" sidenote={ <Badge color="warning" fill="solid" caption="Condition" size="18" /> }>
+                <TextInput id="006" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
             <LabeledInput
+                htmlFor="007"
                 label="With left sideNote"
                 sidenote={ <LinkButton caption="More Details" link={ { pathname: '/' } } size="30" rawProps={ { style: { flexGrow: '100' } } } /> }
             >
-                <TextInput value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
+                <TextInput id="007" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput value={ value } label="With footNote" footnote="Some additional text in footNote.">
-                <TextInput value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
+            <LabeledInput htmlFor="008" value={ value } label="With footNote" footnote="Some additional text in footNote.">
+                <TextInput id="008" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput value={ value } label="With charCounter" maxLength={ 10 } charCounter={ true }>
-                <TextArea value={ value } onValueChange={ onValueChange } placeholder="Please type text" maxLength={ 10 } />
+            <LabeledInput htmlFor="009" value={ value } label="With charCounter" maxLength={ 10 } charCounter={ true }>
+                <TextArea id="009" value={ value } onValueChange={ onValueChange } placeholder="Please type text" maxLength={ 10 } />
             </LabeledInput>
         </FlexCell>
     );
