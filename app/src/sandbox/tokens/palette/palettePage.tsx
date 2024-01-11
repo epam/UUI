@@ -4,25 +4,20 @@ import { PaletteTable } from './components/paletteTable/paletteTable';
 import { useCurrentTheme } from './hooks/useCurrentTheme';
 import { TExpectedValueType } from './types/types';
 import { useThemeTokens } from './hooks/useThemeTokens';
-import { Spinner } from '@epam/uui';
 
 export function PalettePage() {
-    const uuiThemeRequested = useCurrentTheme();
+    const uuiTheme = useCurrentTheme();
+    const [filter, setFilter] = useState<{ path: string }>({ path: 'core' });
     const [expectedValueType, setExpectedValueType] = useState<TExpectedValueType>(TExpectedValueType.chain);
-    const result = useThemeTokens({ uuiThemeRequested, expectedValueType });
-    if (!result) {
-        return (
-            <Layout>
-                <Spinner />
-            </Layout>
-        );
-    }
+    const result = useThemeTokens({ uuiTheme, expectedValueType, filter });
     const settings = {
         grouped: true,
-        tokens: result.tokens,
-        uuiTheme: result.theme,
+        result,
+        uuiTheme,
         expectedValueType,
         onChangeExpectedValueType: setExpectedValueType,
+        filter,
+        onChangeFilter: setFilter,
     };
     return (
         <Layout>

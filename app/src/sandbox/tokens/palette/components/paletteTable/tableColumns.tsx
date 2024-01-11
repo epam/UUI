@@ -61,7 +61,11 @@ export const getSortBy = () => {
     };
 };
 
-export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValueType: TExpectedValueType): DataColumnProps<ITokenRow>[] {
+export function getColumns(
+    figmaTheme: TFigmaThemeName | undefined,
+    expectedValueType: TExpectedValueType,
+    filter: { path: string },
+): DataColumnProps<ITokenRow>[] {
     const expectedValueColumnsArr: DataColumnProps<ITokenRow, string, TTokensFilter>[] = [];
 
     if (figmaTheme) {
@@ -103,6 +107,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             isSortable: true,
             textAlign: 'left',
             alignSelf: 'center',
+            isFilterActive: () => !!filter.path?.trim(),
         },
         {
             key: COL_NAMES.cssVar,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useArrayDataSource } from '@epam/uui-core';
 import { FlexRow, LabeledInput, PickerInput } from '@epam/uui';
-import { themeName, TTheme } from '../../../../../common/docs/docsConstants';
+import { TTheme } from '../../../../../common/docs/docsConstants';
 import { TExpectedValueType } from '../../types/types';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
 
@@ -14,7 +14,6 @@ export function TokensSummary(props: TokensSummaryProps) {
     const { uuiTheme, expectedValueType, onChangeExpectedValueType } = props;
     const figmaTheme = getFigmaTheme(uuiTheme);
     const figmaThemeLabel = figmaTheme || '<no such theme>';
-    const uuiThemeLabel = themeName[uuiTheme];
 
     const MODE_LABELS: Record<TExpectedValueType, string> = {
         [TExpectedValueType.direct]: 'Direct',
@@ -29,16 +28,6 @@ export function TokensSummary(props: TokensSummaryProps) {
 
     return (
         <FlexRow padding="12" vPadding="24" rawProps={ { style: { flexWrap: 'nowrap', gap: '3px', paddingBottom: 6, paddingTop: 6 } } }>
-            <LabeledInput label="UUI:" labelPosition="left">
-                <span style={ { whiteSpace: 'nowrap' } }>
-                    {`${uuiThemeLabel}; `}
-                </span>
-            </LabeledInput>
-            <LabeledInput label="Figma:" labelPosition="left">
-                <span style={ { whiteSpace: 'nowrap' } }>
-                    {figmaThemeLabel}
-                </span>
-            </LabeledInput>
             { figmaTheme && (
                 <LabeledInput label="Expected value:" labelPosition="left">
                     <PickerInput
@@ -52,6 +41,11 @@ export function TokensSummary(props: TokensSummaryProps) {
                     />
                 </LabeledInput>
             )}
+            <LabeledInput label="Figma theme:" labelPosition="left">
+                <span style={ { whiteSpace: 'nowrap' } }>
+                    {figmaThemeLabel}
+                </span>
+            </LabeledInput>
         </FlexRow>
     );
 }
