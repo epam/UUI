@@ -10,9 +10,11 @@ export class ApiContextDoc extends BaseDocsBlock {
 
                 {this.renderSectionTitle('Examples')}
 
-                <DocExample title="Handle server errors" path="./_examples/contexts/ApiContextBase.example.tsx" />
+                <DocExample title="Handle server errors" path="./_examples/contexts/apiContext/ApiContextBase.example.tsx" />
 
-                <DocExample title="Throw errors from your code" path="./_examples/contexts/ApiContextThrowUUIError.example.tsx" />
+                <DocExample title="Throw errors from your code" path="./_examples/contexts/apiContext/ApiContextThrowUUIError.example.tsx" />
+
+                <DocExample title="Custom fetcher" path="./_examples/contexts/apiContext/CustomFetch.example.tsx" onlyCode={ true } />
             </>
         );
     }
