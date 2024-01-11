@@ -76,7 +76,7 @@ export function TokenGroups() {
 
     const renderCardBody = (itemBodyArray: ITokensDocItem[]) => {
         return itemBodyArray.map((item) => {
-            const valueNotPresent = item.value ? null : 'No data...';
+            const valueNotPresent = item.value ? null : 'No data...'; // this marker uses to show text only if the value not present
             const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
 
             return (
