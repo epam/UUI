@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import {
+    Blocker,
     DataTableHeaderRow,
     DataTableRow,
-    FiltersPanel,
+    FiltersPanel, FlexCell,
     FlexRow,
     Panel,
-    ScrollBars,
+    ScrollBars, SearchInput,
 } from '@epam/uui';
 import {
     DataTableRowProps,
@@ -21,7 +22,6 @@ import {
     getSortBy,
 } from './tableColumns';
 import {
-    IThemeVarUI,
     ITokenRow,
     ITokenRowGroup,
     TExpectedValueType,
@@ -33,6 +33,7 @@ import css from './paletteTable.module.scss';
 import { getTotals } from '../../utils/totalsUtils';
 import { TokensSummary } from './tokensSummary';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
+import { TUseThemeTokensResult } from '../../hooks/useThemeTokens';
 
 const TOP_INDENT = '135px'; // 60px header + 75px summary/filter area
 
@@ -41,11 +42,14 @@ type PaletteTableProps = {
     uuiTheme: TTheme,
     expectedValueType: TExpectedValueType,
     onChangeExpectedValueType: (v: TExpectedValueType) => void
-    tokens: IThemeVarUI[],
+    result: TUseThemeTokensResult,
+    filter: { path: string },
+    onChangeFilter: (params: { path: string }) => void;
 };
 
 export function PaletteTable(props: PaletteTableProps) {
-    const { uuiTheme, expectedValueType, onChangeExpectedValueType, tokens, grouped } = props;
+    const { uuiTheme, expectedValueType, onChangeExpectedValueType, result, grouped } = props;
+    const { tokens, loading } = result;
     const figmaTheme = getFigmaTheme(uuiTheme);
 
     const filtersConfig = useMemo(() => {
@@ -53,8 +57,8 @@ export function PaletteTable(props: PaletteTableProps) {
     }, [tokens]);
 
     const defaultColumns = useMemo(() => {
-        return getColumns(figmaTheme, expectedValueType);
-    }, [figmaTheme, expectedValueType]);
+        return getColumns(figmaTheme, expectedValueType, props.filter);
+    }, [figmaTheme, expectedValueType, props.filter]);
     const [value, onValueChange] = useState<DataTableState<TTokensFilter>>({
         topIndex: 0,
         visibleCount: Number.MAX_SAFE_INTEGER,
@@ -121,6 +125,13 @@ export function PaletteTable(props: PaletteTableProps) {
                 vPadding="24"
                 rawProps={ { style: { flexWrap: 'nowrap', gap: '3px', paddingBottom: 0 } } }
             >
+                <FlexCell style={ { width: '150px', flexBasis: 'auto' } }>
+                    <SearchInput
+                        placeholder="Filter 'Path'"
+                        value={ props.filter.path }
+                        onValueChange={ (newPath) => props.onChangeFilter({ ...props.filter, path: newPath }) }
+                    />
+                </FlexCell>
                 <FiltersPanel<TTokensFilter>
                     filters={ filtersConfig }
                     tableState={ tableState }
@@ -132,19 +143,22 @@ export function PaletteTable(props: PaletteTableProps) {
                     onChangeExpectedValueType={ onChangeExpectedValueType }
                 />
             </FlexRow>
-            <ScrollBars style={ { height: `calc(100vh - ${TOP_INDENT})`, marginBottom: '0px' } }>
-                <div>
-                    <div className={ css.stickyHeader }>
-                        <DataTableHeaderRow
-                            columns={ columns }
-                            allowColumnsResizing={ false }
-                            value={ { ...tableState, columnsConfig } }
-                            onValueChange={ setTableState }
-                        />
+            <div>
+                <Blocker isEnabled={ loading } cx={ css.blocker } />
+                <ScrollBars style={ { height: `calc(100vh - ${TOP_INDENT})`, marginBottom: '0px' } }>
+                    <div>
+                        <div className={ css.stickyHeader }>
+                            <DataTableHeaderRow
+                                columns={ columns }
+                                allowColumnsResizing={ false }
+                                value={ { ...tableState, columnsConfig } }
+                                onValueChange={ setTableState }
+                            />
+                        </div>
+                        { tokensDsView.getVisibleRows().map(renderRow) }
                     </div>
-                    { tokensDsView.getVisibleRows().map(renderRow) }
-                </div>
-            </ScrollBars>
+                </ScrollBars>
+            </div>
         </Panel>
     );
 }

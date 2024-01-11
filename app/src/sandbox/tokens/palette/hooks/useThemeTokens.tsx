@@ -14,37 +14,51 @@ async function loadThemeTokens(): Promise<IThemeVar[]> {
         const { content } = await svc.api.getThemeTokens();
         cache.content = content;
     }
+
     return cache.content;
 }
 
 type TUseThemeTokensParams = {
-    uuiThemeRequested: TTheme | undefined,
-    expectedValueType: TExpectedValueType
+    uuiTheme: TTheme | undefined,
+    expectedValueType: TExpectedValueType,
+    filter: { path: string },
 };
-type TUseThemeTokensResult = {
-    theme: TTheme,
+export type TUseThemeTokensResult = {
     tokens: IThemeVarUI[],
-} | undefined;
+    loading: boolean,
+};
 
 export function useThemeTokens(params: TUseThemeTokensParams): TUseThemeTokensResult {
-    const { uuiThemeRequested, expectedValueType } = params;
-    const [result, setResult] = useState<TUseThemeTokensResult>(undefined);
+    const { uuiTheme, expectedValueType, filter } = params;
+    const [result, setResult] = useState<TUseThemeTokensResult>({ loading: true, tokens: [] });
 
     useEffect(() => {
         let active = true;
-        setResult(undefined);
-        if (uuiThemeRequested) {
+        if (uuiTheme) {
+            setResult((prev) => ({ ...prev, loading: true }));
             const compStyle = getComputedStyle(document.body);
             loadThemeTokens().then((res) => {
                 if (!active) {
                     return;
                 }
-                const tokens = loadedTokensConverter({ res, compStyle, uuiTheme: uuiThemeRequested, expectedValueType });
-                setResult({ tokens, theme: uuiThemeRequested });
+                const resFiltered = res.filter(({ id }) => {
+                    if (typeof filter.path === 'string') {
+                        const f = filter.path.trim();
+                        return id.indexOf(f) !== -1;
+                    }
+                    return true;
+                });
+                const tokens = loadedTokensConverter({ res: resFiltered, compStyle, uuiTheme, expectedValueType });
+                setResult({ loading: false, tokens });
+            }).catch((err) => {
+                console.error(err);
+                setResult({ tokens: [], loading: false });
             });
+        } else {
+            setResult({ tokens: [], loading: false });
         }
         return () => { active = false; };
-    }, [uuiThemeRequested, expectedValueType]);
+    }, [uuiTheme, expectedValueType, filter.path]);
     return result;
 }
 
