@@ -39,7 +39,7 @@ export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
 
     const renderCardSubgroup = (tokensCard: ITokensDocGroup, index: number) => {
         let CARD: ReactNode;
-        const TEXT = <Text color="info" fontSize="16">The data of this group is in work. They will be soon...</Text>;
+        const TEXT = <Text color="info" fontSize="16" fontStyle="italic">The data of this group is in work. It will be soon...</Text>;
 
         if (isGroupWithSubgroups(tokensCard)) {
             CARD = tokensCard.subgroups.length ? renderCardTitle(tokensCard.subgroups) : TEXT;
