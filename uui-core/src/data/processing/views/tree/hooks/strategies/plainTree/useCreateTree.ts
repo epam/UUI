@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { PlainTreeStrategyProps } from './types';
 import { NewTree } from '../../../newTree';
 
@@ -8,7 +8,12 @@ export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeStrateg
         return items instanceof NewTree
             ? NewTree.clone(items)
             : NewTree.create(props, itemsMap, setItems);
-    }, [...deps, itemsMap]);
+    }, deps);
 
+    useEffect(() => {
+        if (itemsMap) {
+            tree.itemsMap = itemsMap;
+        }
+    }, [tree?.itemsMap]);
     return tree;
 }

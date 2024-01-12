@@ -67,6 +67,9 @@ export function ProjectTableDemo() {
         };
     }, [itemsStorage]);
 
+    useEffect(() => {
+        itemsStorage.setItems(Object.values(value.items), { reset: true });
+    }, [itemsStorage, value.items]);
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
@@ -159,7 +162,7 @@ export function ProjectTableDemo() {
                 },
             }),
         },
-        [value.items],
+        [itemsMap],
     );
 
     const { visibleRows, listProps } = useDataRows({
