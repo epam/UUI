@@ -1,5 +1,5 @@
 import { IFigmaVarRawNorm, IFigmaVarTemplateNormResolvedValue } from '../types/sourceTypes';
-import { IThemeVar, TFigmaThemeName, TResolvedValueNorm, TUuiCssVarName } from '../types/sharedTypes';
+import { IThemeVar, TCssVarRef, TFigmaThemeName, TResolvedValueNorm, TUuiCssVarName } from '../types/sharedTypes';
 import { FIGMA_VARS_CFG, IFigmaVarConfigValue, TList } from '../config';
 import { UNDEFINED_ALIASES } from '../constants';
 
@@ -19,39 +19,60 @@ export function convertRawToken(
         description: rawTokenNorm.description,
         useCases: '',
         cssVar,
+        published: !rawTokenNorm.hiddenFromPublishing,
         valueByTheme: Object.keys(modes).reduce<IThemeVar['valueByTheme']>((acc, themeId) => {
             const themeName = modes[themeId];
             const valueForTheme = rawTokenNorm.valueByTheme[themeId];
             const supported = isFigmaTokenSupported({ rawTokenNorm, theme: themeName, modes });
             if (valueForTheme && supported) {
-                const mapValue = (value: IFigmaVarTemplateNormResolvedValue): TResolvedValueNorm => {
-                    const alias = value.alias.map(({ name }) => {
-                        const rawTokenNormLocal = figmaVarByNameNorm[name];
-                        const supportedLocal = isFigmaTokenSupported({ rawTokenNorm: rawTokenNormLocal as IFigmaVarRawNorm, theme: themeName, modes });
-                        if (supportedLocal) {
-                            return {
-                                id: name,
-                                cssVar: getCssVarFromFigmaVar(name),
-                                supported: true,
-                            };
-                        }
-                        return {
-                            id: name,
-                            supported: false,
-                        };
-                    });
-                    return {
-                        alias,
-                        value: value.value,
-                    };
-                };
                 acc[themeName] = {
-                    valueChain: mapValue(valueForTheme.valueChain as IFigmaVarTemplateNormResolvedValue),
-                    valueDirect: mapValue(valueForTheme.valueDirect as IFigmaVarTemplateNormResolvedValue),
+                    valueChain: mapValue({
+                        value: valueForTheme.valueChain as IFigmaVarTemplateNormResolvedValue,
+                        figmaVarByNameNorm,
+                        modes,
+                        themeName,
+                    }),
+                    valueDirect: mapValue({
+                        value: valueForTheme.valueDirect as IFigmaVarTemplateNormResolvedValue,
+                        figmaVarByNameNorm,
+                        modes,
+                        themeName,
+                    }),
                 };
             }
             return acc;
         }, {}),
+    };
+}
+
+function mapValue(
+    params: {
+        value: IFigmaVarTemplateNormResolvedValue,
+        figmaVarByNameNorm: Record<string, IFigmaVarRawNorm | undefined>,
+        themeName: TFigmaThemeName,
+        modes: Record<string, TFigmaThemeName>,
+    },
+): TResolvedValueNorm {
+    const { value, figmaVarByNameNorm, themeName, modes } = params;
+    const alias = value.alias.map(({ name }): TCssVarRef => {
+        const rawTokenNormLocal = figmaVarByNameNorm[name] as IFigmaVarRawNorm;
+        const supportedLocal = isFigmaTokenSupported({ rawTokenNorm: rawTokenNormLocal, theme: themeName, modes });
+        if (supportedLocal) {
+            return {
+                id: name,
+                cssVar: getCssVarFromFigmaVar(name),
+                supported: true,
+                published: !rawTokenNormLocal.hiddenFromPublishing,
+            };
+        }
+        return {
+            id: name,
+            supported: false,
+        };
+    });
+    return {
+        alias,
+        value: value.value,
     };
 }
 

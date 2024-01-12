@@ -23,10 +23,11 @@ export enum TVarType {
 export type TCssVarRef = {
     id: IThemeVar['id'],
 } & (
-    { cssVar?: TUuiCssVarName, supported: boolean }
+    { cssVar?: TUuiCssVarName } & ({ supported: false } | { supported: true, published: boolean })
 );
 export type TResolvedValueNorm = {
-    value: TVariableValue
+    /* it's always final resolved value, like HEX or etc. */
+    value: TVariableValue,
     alias: TCssVarRef[],
 };
 export type TValueByThemeValue = {
@@ -41,6 +42,7 @@ export interface IThemeVar {
     description: string,
     useCases: string,
     cssVar: TUuiCssVarName,
+    published: boolean,
     /** resolvedValue in this map is taken from Figma. It can be used to compare with actual rendered value in browser */
     valueByTheme: {
         [themeName in TFigmaThemeName]?: TValueByThemeValue
