@@ -145,7 +145,7 @@ export const items: DocItem[] = [
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
 
     { id: 'themes', name: 'Themes' },
-    { id: 'themesPage', name: 'Themes', component: ThemesDoc, parentId: 'themes' },
+    { id: 'overview-themes', name: 'Overview', component: ThemesDoc, parentId: 'themes' },
     { id: 'tokens', name: 'Tokens', component: Tokens, parentId: 'themes' },
 
     { id: 'testing', name: 'Testing' },

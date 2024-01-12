@@ -6,6 +6,28 @@ import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
 import { ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
 import css from './TokensPage.module.scss';
 
+const groupDescription: Record<string, string> = {
+    Semantic_tokens: 'Some description about the colors category.',
+    Neutral_tokens: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
+    Controls_tokens: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
+    Icons_tokens: 'Tokens for icons',
+    Surface_tokens: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
+    Text_tokens: 'Tokens for text and typography.',
+    Links_tokens: 'Tokens for text and typography',
+    Other_tokens: 'Other tokens.',
+};
+
+const semanticGroupDescription: Record<string, string> = {
+    Primary: 'It\'s primary brand theme color. Applied for primary actions and component states.',
+    Secondary: 'Uses for secondary actions, component states, that are should not attract user attention.',
+    Accent: 'It\'s primary brand theme color. Applied for primary actions and component states.',
+    Info: 'It\'s primary brand theme color. Applied for primary actions and component states.',
+    Success: 'It\'s primary brand theme color. Applied for primary actions and component states.',
+    Warning: 'Uses for secondary actions, component states, that are should not attract user attention.',
+    Error: 'Uses in components for destructive or critical actions or information.',
+    Critical: 'Uses in components for destructive or critical actions or information.',
+};
+
 export function TokenGroups() {
     const { uuiNotifications } = useUuiContext();
     const { loading, tokens } = useTokensDoc();
@@ -41,7 +63,7 @@ export function TokenGroups() {
                 <>
                     <RichTextView size="16">
                         <h2 className={ css.groupTitle }>{ tokensCard.title }</h2>
-                        <p className={ css.groupInfo }>{ tokensCard.description }</p>
+                        <p className={ css.groupInfo }>{ groupDescription[tokensCard.id] }</p>
                     </RichTextView>
                     <Panel background="surface-main" cx={ css.subgroup } shadow={ true }>
                         { renderCardTitle(tokensCard.children) }
@@ -60,13 +82,13 @@ export function TokenGroups() {
                     cardBody = renderCardBody(item.children);
                 }
                 return (
-                    <>
+                    <div key={ item.id }>
                         <RichTextView size="16">
                             <h3 className={ css.subgroupTitle }>{ item.title }</h3>
-                            <p>{ item.description}</p>
+                            <p>{ semanticGroupDescription[item.title]}</p>
                         </RichTextView>
                         {cardBody}
-                    </>
+                    </div>
                 );
             });
         } else {
@@ -75,21 +97,21 @@ export function TokenGroups() {
     };
 
     const renderCardBody = (itemBodyArray: ITokensDocItem[]) => {
-        return itemBodyArray.map((item) => {
+        return itemBodyArray.map((item, index) => {
             const valueNotPresent = item.value ? null : 'No data...'; // this marker uses to show text only if the value not present
             const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
 
             return (
-                <FlexRow cx={ css.tokenCard } borderBottom={ true }>
+                <FlexRow key={ item.value + index } cx={ css.tokenCard } borderBottom={ true } alignItems="top">
                     <FlexCell width="auto">
                         <Tooltip content={ `Copy var(${item.cssVar}) to clipboard` } placement="top" openDelay={ 200 }>
                             <Text cx={ css.var } onClick={ () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar)) }>{ item.cssVar }</Text>
                         </Tooltip>
-                        <Text>{ item.description || (item.useCases ? null : 'No description...') }</Text>
-                        <Text cx={ css.tokenCardInfo }>{ item.useCases || 'No useCases data...' }</Text>
+                        { item.description && <Text>{ item.description }</Text> }
+                        { item.useCases && <Text cx={ css.tokenCardInfo }>{ item.useCases }</Text> }
                     </FlexCell>
                     <FlexSpacer />
-                    <FlexCell width="auto" alignSelf="flex-start">
+                    <FlexCell width="auto">
                         <Tooltip content={ item.value || 'No data' } placement="top" openDelay={ 200 }>
                             <div className={ css.colorViewer } style={ { backgroundColor: valueBackground } }>
                                 { valueNotPresent && <Text children={ valueNotPresent } color="critical" fontWeight="600" /> }
@@ -104,8 +126,8 @@ export function TokenGroups() {
     return (
         <>
             <Blocker isEnabled={ loading } />
-            { !loading && tokens?.children?.length && tokens?.children.map((tokensCard) => (
-                <div className={ css.root }>
+            { !loading && tokens?.children?.length && tokens?.children.map((tokensCard, index) => (
+                <div className={ css.root } key={ tokensCard.description + index }>
                     {renderCard(tokensCard)}
                 </div>
             )) }

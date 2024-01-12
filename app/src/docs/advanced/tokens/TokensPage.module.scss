@@ -27,26 +27,28 @@
         .token-card {
             padding-top: 18px;
             padding-bottom: 18px;
+            min-height: 86px;
 
             &:last-of-type {
                 border-bottom-style: none;
             }
 
             .token-card-info {
-                padding-top: 0;
+                &:nth-of-type(3) {
+                    padding-top: 0;
+                }
             }
         }
 
         .var {
             max-width: fit-content;
             font-family: var(--uui-font-mono);
-            background-color: var(--uui-neutral-10);
+            background-color: var(--uui-surface-higher);
             padding: 3px 6px;
             border-radius: 3px;
-            color: var(--uui-neutral-80);
 
             &:hover {
-                background-color: var(--uui-neutral-20);
+                background-color: var(--uui-surface-highest);
                 cursor: pointer;
             }
         }
@@ -55,7 +57,7 @@
             box-sizing: border-box;
             width: 106px;
             height: 36px;
-            border: 1px solid var(--uui-neutral-40);
+            border: 1px solid var(--uui-control-border);
             border-radius: 3px;
             text-align: center;
         }
