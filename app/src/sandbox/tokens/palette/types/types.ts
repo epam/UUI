@@ -35,7 +35,8 @@ export type TLoadThemeTokensResult = {
     uuiTheme: TTheme,
 };
 export interface TLoadThemeTokensFilter {
-    path: string | undefined,
+    path?: string,
+    published?: 'yes' | 'no',
 }
 
 export enum TThemeTokenValueType {
@@ -51,7 +52,7 @@ export enum COL_NAMES {
     actualValue = 'actualValue',
     expectedValue = 'expectedValue',
     status = 'status',
-    index = 'index'
+    published = 'published'
 }
 export enum STATUS_FILTER {
     all= 'All',

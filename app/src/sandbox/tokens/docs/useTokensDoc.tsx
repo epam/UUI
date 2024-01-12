@@ -1,16 +1,14 @@
 import {
-    isGroupWithSubgroups,
     TOKENS_DOC_CONFIG,
-    TTokensDocGroupCfg,
-    TTokensDocItemCfg,
 } from './config';
 import { useThemeTokens } from '../palette/hooks/useThemeTokens/useThemeTokens';
-import { IThemeVarUI, TThemeTokenValueType } from '../palette/types/types';
-import { ITokensDocGroup, ITokensDocItem } from './types';
+import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../palette/types/types';
+import { isGroupWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
 
-const PARAMS = {
+const PARAMS: TLoadThemeTokensParams = {
     filter: {
         path: '',
+        published: 'yes',
     },
     valueType: TThemeTokenValueType.chain,
 };

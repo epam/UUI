@@ -5,7 +5,7 @@ import {
     DataTableRow,
     FiltersPanel, FlexCell,
     FlexRow,
-    Panel,
+    Panel, PickerInput,
     ScrollBars, SearchInput,
 } from '@epam/uui';
 import {
@@ -106,18 +106,6 @@ export function PaletteTable(props: PaletteTableProps) {
         );
     };
 
-    const handleChangeFilterPath = (newPath: string) => {
-        props.onChangeParams((prev) => {
-            return {
-                ...prev,
-                filter: {
-                    ...prev.filter,
-                    path: newPath,
-                },
-            };
-        });
-    };
-
     const handleChangeValueType = (newValueType: TThemeTokenValueType) => {
         props.onChangeParams((prev) => {
             return {
@@ -134,13 +122,7 @@ export function PaletteTable(props: PaletteTableProps) {
                 vPadding="24"
                 rawProps={ { style: { flexWrap: 'nowrap', gap: '3px', paddingBottom: 0 } } }
             >
-                <FlexCell style={ { width: '150px', flexBasis: 'auto' } }>
-                    <SearchInput
-                        placeholder="Filter 'Path'"
-                        value={ params.filter.path }
-                        onValueChange={ handleChangeFilterPath }
-                    />
-                </FlexCell>
+                <ParamsFilters params={ props.params } onChangeParams={ props.onChangeParams } />
                 <FiltersPanel<TTokensLocalFilter>
                     filters={ filtersConfig }
                     tableState={ tableState }
@@ -169,5 +151,71 @@ export function PaletteTable(props: PaletteTableProps) {
                 </ScrollBars>
             </div>
         </Panel>
+    );
+}
+
+function ParamsFilters(props: {
+    params: TLoadThemeTokensParams,
+    onChangeParams: (updater: ((prevParams: TLoadThemeTokensParams) => TLoadThemeTokensParams)) => void,
+}) {
+    const handleChangeFilterPath = (newPath: string) => {
+        props.onChangeParams((prev) => {
+            return {
+                ...prev,
+                filter: {
+                    ...prev.filter,
+                    path: newPath,
+                },
+            };
+        });
+    };
+    const handleChangeFilterPublished = (newPublished: 'yes' | 'no' | undefined) => {
+        props.onChangeParams((prev) => {
+            return {
+                ...prev,
+                filter: {
+                    ...prev.filter,
+                    published: newPublished,
+                },
+            };
+        });
+    };
+    const dataSource = useArrayDataSource(
+        {
+            items: [
+                {
+                    id: 'yes',
+                    label: 'Published',
+                },
+                {
+                    id: 'no',
+                    label: 'Not published',
+                },
+            ],
+        },
+        [],
+    );
+    return (
+        <>
+            <FlexCell style={ { width: '150px', flexBasis: 'auto' } }>
+                <SearchInput
+                    placeholder="Filter 'Path'"
+                    value={ props.params.filter.path }
+                    onValueChange={ handleChangeFilterPath }
+                />
+            </FlexCell>
+            <FlexCell style={ { width: '150px', flexBasis: 'auto' } }>
+                <PickerInput
+                    placeholder="Filter 'Published'"
+                    dataSource={ dataSource }
+                    value={ props.params.filter.published }
+                    onValueChange={ handleChangeFilterPublished }
+                    getName={ (item) => item.label }
+                    entityName="Published"
+                    selectionMode="single"
+                    valueType="id"
+                />
+            </FlexCell>
+        </>
     );
 }
