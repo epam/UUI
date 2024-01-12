@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { Blocker, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
 import { useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
@@ -6,31 +6,21 @@ import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
 import { ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
 import css from './TokensPage.module.scss';
 
-const groupDescription: Record<string, string> = {
-    Semantic_tokens: 'Some description about the colors category.',
-    Neutral_tokens: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
-    Controls_tokens: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
-    Icons_tokens: 'Tokens for icons',
-    Surface_tokens: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
-    Text_tokens: 'Tokens for text and typography.',
-    Links_tokens: 'Tokens for text and typography',
-    Other_tokens: 'Other tokens.',
-};
+interface TokenGroupsProps {
+    setTitleAndSubtitle: (title: string, subtitle: string) => void
+}
 
-const semanticGroupDescription: Record<string, string> = {
-    Primary: 'It\'s primary brand theme color. Applied for primary actions and component states.',
-    Secondary: 'Uses for secondary actions, component states, that are should not attract user attention.',
-    Accent: 'It\'s primary brand theme color. Applied for primary actions and component states.',
-    Info: 'It\'s primary brand theme color. Applied for primary actions and component states.',
-    Success: 'It\'s primary brand theme color. Applied for primary actions and component states.',
-    Warning: 'Uses for secondary actions, component states, that are should not attract user attention.',
-    Error: 'Uses in components for destructive or critical actions or information.',
-    Critical: 'Uses in components for destructive or critical actions or information.',
-};
+// There the config file with titles and descriptions to data groups and subgroups (app/src/sandbox/tokens/docs/config.ts)
 
-export function TokenGroups() {
+export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
     const { uuiNotifications } = useUuiContext();
     const { loading, tokens } = useTokensDoc();
+
+    useEffect(() => {
+        if (!loading && tokens?.children?.length) {
+            setTitleAndSubtitle(tokens.title, tokens.description);
+        }
+    }, [loading, setTitleAndSubtitle]);
 
     const showNotification = (color: string) => {
         uuiNotifications
@@ -63,10 +53,10 @@ export function TokenGroups() {
                 <>
                     <RichTextView size="16">
                         <h2 className={ css.groupTitle }>{ tokensCard.title }</h2>
-                        <p className={ css.groupInfo }>{ groupDescription[tokensCard.id] }</p>
+                        <p className={ css.groupInfo }>{ tokensCard.description }</p>
                     </RichTextView>
                     <Panel background="surface-main" cx={ css.subgroup } shadow={ true }>
-                        { renderCardTitle(tokensCard.children) }
+                        { tokensCard.children.length ? renderCardTitle(tokensCard.children) : <Text color="warning" fontSize="16">The data of this group is in work. They will be soon...</Text> }
                     </Panel>
                 </>
             );
@@ -85,7 +75,7 @@ export function TokenGroups() {
                     <div key={ item.id }>
                         <RichTextView size="16">
                             <h3 className={ css.subgroupTitle }>{ item.title }</h3>
-                            <p>{ semanticGroupDescription[item.title]}</p>
+                            <p>{ item.description}</p>
                         </RichTextView>
                         {cardBody}
                     </div>
@@ -102,13 +92,13 @@ export function TokenGroups() {
             const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
 
             return (
-                <FlexRow key={ item.value + index } cx={ css.tokenCard } borderBottom={ true } alignItems="top">
+                <FlexRow key={ item.value + index } cx={ css.tokenCard } borderBottom={ true } alignItems="center">
                     <FlexCell width="auto">
                         <Tooltip content={ `Copy var(${item.cssVar}) to clipboard` } placement="top" openDelay={ 200 }>
                             <Text cx={ css.var } onClick={ () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar)) }>{ item.cssVar }</Text>
                         </Tooltip>
-                        { item.description && <Text>{ item.description }</Text> }
-                        { item.useCases && <Text cx={ css.tokenCardInfo }>{ item.useCases }</Text> }
+                        {/* { item.description && <Text>{ item.description }</Text> } */}
+                        {/* { item.useCases && <Text cx={ css.tokenCardInfo }>{ item.useCases }</Text> } */}
                     </FlexCell>
                     <FlexSpacer />
                     <FlexCell width="auto">
