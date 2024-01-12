@@ -16,6 +16,12 @@ export type ITokensDocGroup = ITokensDocGroupWithSubgroups | ITokensDocGroupWith
 export const isGroupWithSubgroups = (cfg: ITokensDocGroup): cfg is ITokensDocGroupWithSubgroups => {
     return (cfg as ITokensDocGroupWithSubgroups).subgroups !== undefined;
 };
+export const isGroupWithItems = (cfg: ITokensDocGroup[] | ITokensDocItem[]): cfg is ITokensDocItem[] => {
+    return (cfg as ITokensDocItem[])[0].cssVar !== undefined;
+};
+export const isGroupWithItemsArray = (cfg: ITokensDocGroup[] | ITokensDocItem[]): cfg is ITokensDocGroupWithItems[] => {
+    return (cfg as ITokensDocGroupWithItems[])[0].items !== undefined;
+};
 
 export interface ITokensDocItem {
     cssVar: string, // use it to render color rectangle
