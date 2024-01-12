@@ -33,7 +33,7 @@ export function useItemsStorage<TItem, TId>({ itemsMap: outerItemsMap, setItems,
     }, []);
 
     return {
-        itemsMap,
+        itemsMap: outerItemsMap ?? itemsMap,
         setItems: setItems ?? (items instanceof NewTree ? items.setItems : itemsStorage.setItems),
     };
 }
