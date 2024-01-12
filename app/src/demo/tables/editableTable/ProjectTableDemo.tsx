@@ -38,7 +38,7 @@ let savedValue: FormState = { items: getDemoTasks() };
 
 export function ProjectTableDemo() {
     const {
-        lens, value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue,
+        value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue,
     } = useForm<FormState>({
         value: savedValue,
         onSave: async (data) => {
@@ -49,12 +49,13 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
-    const [itemsMap, setItemsMap] = useState<ItemsMap<number, Task>>();
 
     const itemsStorage = useMemo(
-        () => new ItemsStorage({ items: Object.values(savedValue.items), getId: (item) => item.id }),
+        () => new ItemsStorage({ items: Object.values(value.items), getId: (item) => item.id }),
         [],
     );
+
+    const [itemsMap, setItemsMap] = useState<ItemsMap<number, Task>>(itemsStorage.itemsMap);
 
     useEffect(() => {
         const unsubscribe = itemsStorage.subscribe(() => {
@@ -65,10 +66,6 @@ export function ProjectTableDemo() {
             unsubscribe();
         };
     }, [itemsStorage]);
-
-    useEffect(() => {
-        itemsStorage.setItems(Object.values(value.items), { isDirty: true });
-    }, [itemsStorage, value.items]);
 
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
@@ -142,13 +139,16 @@ export function ProjectTableDemo() {
             type: 'plain',
             dataSourceState: tableState,
             setDataSourceState: setTableState,
+            // items: Object.values(value.items),
             itemsMap,
             setItems: itemsStorage.setItems,
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
-                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
+                // ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
+                value: itemsMap.get(task.id),
+                onValueChange: (newValue) => itemsStorage.setItems([newValue], { isDirty: true }),
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {
@@ -161,7 +161,7 @@ export function ProjectTableDemo() {
         },
         [value.items],
     );
-    
+
     const { visibleRows, listProps } = useDataRows({
         tree, ...restProps,
     });
