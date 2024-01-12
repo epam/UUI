@@ -4,7 +4,7 @@ export const DEFAULT_LOAD_PARAMS: TLoadThemeTokensParams = {
     valueType: TThemeTokenValueType.chain,
     filter: {
         path: 'core',
-        published: 'yes',
+        published: undefined,
     },
 };
 
