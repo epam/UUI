@@ -17,7 +17,7 @@ export class BaseTreeSnapshot<TItem, TId> {
     }
 
     public get itemsMap() {
-        return this.itemsMap;
+        return this._itemsMap;
     }
 
     public set itemsMap(newItemsMap: ItemsMap<TId, TItem>) {

@@ -4,12 +4,20 @@ import { usePlainTreeStrategy } from '../plainTree';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { NewTree } from '../../../newTree';
+import { useItemsStorage } from '../useItemsStorage';
 
 export function useClientAsyncTree<TItem, TId, TFilter = any>(
     { mode, ...props }: ClientAsyncTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const baseTree = useMemo(() => NewTree.blank(props), deps);
+    const { itemsMap, setItems } = useItemsStorage({
+        itemsMap: props.itemsMap,
+        items: props.items,
+        setItems: props.setItems,
+        getId: props.getId,
+    });
+
+    const baseTree = useMemo(() => NewTree.blank(props, itemsMap, setItems), deps);
     const [isForceReload, setIsForceReload] = useState(false);
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
@@ -21,7 +29,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
             topIndex: props.dataSourceState.topIndex,
         },
         forceReload: isForceReload,
-    }, deps);
+    }, [...deps, baseTree]);
 
     const prevIsFetching = useSimplePrevious(isFetching);
 

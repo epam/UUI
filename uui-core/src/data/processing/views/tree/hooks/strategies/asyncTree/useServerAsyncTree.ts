@@ -4,6 +4,7 @@ import { ServerAsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { NewTree } from '../../../newTree';
+import { useItemsStorage } from '../useItemsStorage';
 
 export function useServerAsyncTree<TItem, TId, TFilter = any>(
     props: ServerAsyncTreeProps<TItem, TId, TFilter>,
@@ -11,10 +12,15 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
 ) {
     const { api, dataSourceState } = props;
     const [isForceReload, setIsForceReload] = useState(false);
+    const { itemsMap, setItems } = useItemsStorage({
+        itemsMap: props.itemsMap,
+        setItems: props.setItems,
+        getId: props.getId,
+    });
 
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
-    const baseTree = useMemo(() => NewTree.blank(props, null, null), deps);
+    const baseTree = useMemo(() => NewTree.blank(props, itemsMap, setItems), deps);
     const [currentTree, setCurrentTree] = useState(baseTree);
 
     const { tree: treeWithData, isLoading, isFetching } = useLoadData({

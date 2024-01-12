@@ -27,7 +27,6 @@ export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
     });
 
     const fullTree = useCreateTree({ ...props, itemsMap, setItems }, [...deps, trigger]);
-
     const {
         getId,
         getParentId,

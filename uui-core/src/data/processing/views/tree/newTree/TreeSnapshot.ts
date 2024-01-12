@@ -318,7 +318,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         const byParentId = newMap<TId, TId[]>(params);
 
         itemsMap.forEach((item) => {
-            const parentId = params.getParentId?.(item);
+            const parentId = params.getParentId?.(item) ?? undefined;
 
             if (!byParentId.has(parentId)) {
                 byParentId.set(parentId, []);
@@ -363,8 +363,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         };
 
         sortRec(snapshot.getRootItems());
-        const itemsMap = snapshot.setItems(sortedItems, { reset: true });
-        return this.create({ ...snapshot.params }, itemsMap, snapshot.setItems);
+        return this.create({ ...snapshot.params }, snapshot.itemsMap, snapshot.setItems);
     }
 
     private static buildSearchFilter<TItem, TId, TFilter>({ search, getSearchFields }: ApplySearchOptions<TItem, TId, TFilter>) {

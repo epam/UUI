@@ -1,4 +1,5 @@
 import { UseTreeResult } from '../../..';
+import { ItemsMap, ItemsStorage } from '../../../../../../processing';
 import { LazyDataSourceApi, SortingOption } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
@@ -14,8 +15,8 @@ export interface ServerAsyncTreeProps<TItem, TId, TFilter> extends CommonDataSou
     mode: typeof MODES.server,
     api: LazyDataSourceApi<TItem, TId, TFilter>;
 
-    // itemsMap?: ItemsMap<TId, TItem>;
-    // setItems?: ItemsStorage<TItem, TId>['setItems'];
+    itemsMap?: ItemsMap<TId, TItem>;
+    setItems?: ItemsStorage<TItem, TId>['setItems'];
 }
 
 export interface ClientAsyncTreeProps<TItem, TId, TFilter> extends
@@ -24,9 +25,9 @@ export interface ClientAsyncTreeProps<TItem, TId, TFilter> extends
     mode: 'client',
     api(): Promise<TItem[]>;
 
-    // itemsMap?: ItemsMap<TId, TItem>;
-    // setItems?: ItemsStorage<TItem, TId>['setItems'];
-    // items?: TItem[];
+    items?: TItem[];
+    itemsMap?: ItemsMap<TId, TItem>;
+    setItems?: ItemsStorage<TItem, TId>['setItems'];
 
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;

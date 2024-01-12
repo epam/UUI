@@ -10,6 +10,7 @@ import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 import { NewTree } from '../../../newTree';
+import { useItemsStorage } from '../useItemsStorage';
 
 export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
@@ -24,8 +25,13 @@ export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
+    const { itemsMap, setItems } = useItemsStorage({
+        itemsMap: props.itemsMap,
+        setItems: props.setItems,
+        getId: props.getId,
+    });
 
-    const tree = useMemo(() => NewTree.blank(props, null, null), [...deps]);
+    const tree = useMemo(() => NewTree.blank(props, itemsMap, setItems), [...deps]);
     const [treeWithData, setTreeWithData] = useState(tree);
 
     const prevFilter = usePrevious(filter);
