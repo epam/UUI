@@ -1,25 +1,36 @@
 import React from 'react';
 import { BaseDocsBlock } from '../../../common';
 import { TokenGroups } from './TokenGroups';
-import { RichTextView } from '@epam/uui';
+import { Blocker, RichTextView } from '@epam/uui';
 import css from './TokensPage.module.scss';
 
 export class Tokens extends BaseDocsBlock {
-    title = 'Tokens';
-    subtitle = 'Core tokens are 2nd level of tokens and recommended to use for every case. Also, core tokens uses in the component level. Core tokens have many categories for every role. Find these categories below.';
+    title: string;
+    subtitle: string;
+
+    setTitleAndSubtitle = (title: string, subtitle: string) => {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.forceUpdate(); // This is crucial since class properties don't trigger a re-render.
+    };
 
     renderDocTitle() {
         return (
-            <RichTextView size="16">
-                <div className={ css.title }>{ this.title }</div>
-                <p>{ this.subtitle }</p>
-            </RichTextView>
+            <>
+                <Blocker isEnabled={ !this.title && !this.subtitle } />
+                { this.title && this.subtitle && (
+                    <RichTextView size="16">
+                        <div className={ css.title }>{ this.title }</div>
+                        <p>{ this.subtitle }</p>
+                    </RichTextView>
+                ) }
+            </>
         );
     }
 
     renderContent() {
         return (
-            <TokenGroups />
+            <TokenGroups setTitleAndSubtitle={ this.setTitleAndSubtitle } />
         );
     }
 }
