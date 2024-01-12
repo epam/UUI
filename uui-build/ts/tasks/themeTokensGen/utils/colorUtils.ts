@@ -1,7 +1,6 @@
 import { TRgbaValue } from '../types/sourceTypes';
-import { THexaValue } from '../types/sharedTypes';
 
-export function rgbaToHEXA({ r, g, b, a }: TRgbaValue): THexaValue {
+export function rgbaToHEXA({ r, g, b, a }: TRgbaValue): string {
     const h = (n: number) => {
         return ((n * 255) | (1 << 8)).toString(16).slice(1);
     };

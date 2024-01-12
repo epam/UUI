@@ -31,7 +31,7 @@ export function TokenExample(props: TTokenExampleProps) {
                 if (expected === undefined) {
                     return null;
                 }
-                return <div>{expected.value}</div>;
+                return <div>{expected.value as string}</div>;
             }
             return <div>{token.value.browser}</div>;
         }
