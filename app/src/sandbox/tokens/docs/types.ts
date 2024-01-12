@@ -1,11 +1,22 @@
 import { IThemeVarUI } from '../palette/types/types';
 
-export interface ITokensDocGroup {
+export type ITokensDocGroupWithSubgroups = {
     id: string,
     title: string,
     description: string,
-    children: ITokensDocGroup[] | ITokensDocItem[],
-}
+    subgroups: ITokensDocGroup[]
+};
+export type ITokensDocGroupWithItems = {
+    id: string,
+    title: string,
+    description: string,
+    items: ITokensDocItem[]
+};
+export type ITokensDocGroup = ITokensDocGroupWithSubgroups | ITokensDocGroupWithItems;
+export const isGroupWithSubgroups = (cfg: ITokensDocGroup): cfg is ITokensDocGroupWithSubgroups => {
+    return (cfg as ITokensDocGroupWithSubgroups).subgroups !== undefined;
+};
+
 export interface ITokensDocItem {
     cssVar: string, // use it to render color rectangle
     description: string,
@@ -18,6 +29,6 @@ export type TTokensDocGroupCfg = TTokensDocGroupCfgWithSubgroups | TTokensDocGro
 export type TTokensDocGroupCfgWithSubgroups = { title: string, description: string, subgroups: TTokensDocGroupCfg[] };
 export type TTokensDocGroupCfgWithItems = { title: string, description: string, items: TTokensDocItemCfg };
 
-export const isGroupWithSubgroups = (cfg: TTokensDocGroupCfg): cfg is TTokensDocGroupCfgWithSubgroups => {
+export const isGroupCfgWithSubgroups = (cfg: TTokensDocGroupCfg): cfg is TTokensDocGroupCfgWithSubgroups => {
     return (cfg as TTokensDocGroupCfgWithSubgroups).subgroups !== undefined;
 };
