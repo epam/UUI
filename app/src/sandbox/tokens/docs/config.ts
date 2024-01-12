@@ -9,6 +9,12 @@ export const isGroupWithSubgroups = (cfg: TTokensDocGroupCfg): cfg is TTokensDoc
     return (cfg as TTokensDocGroupCfgWithSubgroups).subgroups !== undefined;
 };
 
+const CRITERIA = {
+    pathStartsWith: (str: string) => (tok: IThemeVarUI) => {
+        return tok.id.indexOf(str) === 0;
+    },
+};
+
 export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg = {
     title: 'Core or base tokens',
     description: 'Core tokens is 2nd level of tokens...',
@@ -20,42 +26,42 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg = {
                 {
                     title: 'Primary',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/primary-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/primary-'),
                 },
                 {
                     title: 'Secondary',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/secondary-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/secondary-'),
                 },
                 {
                     title: 'Accent',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/accent-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/accent-'),
                 },
                 {
                     title: 'Info',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/info-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/info-'),
                 },
                 {
                     title: 'Success',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/success-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/success-'),
                 },
                 {
                     title: 'Warning',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/warning-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/warning-'),
                 },
                 {
                     title: 'Error',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/error-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/error-'),
                 },
                 {
                     title: 'Critical',
                     description: 'Applied for...',
-                    items: (tok) => tok.id.indexOf('core/semantic/critical-') === 0,
+                    items: CRITERIA.pathStartsWith('core/semantic/critical-'),
                 },
 
             ],
@@ -63,37 +69,37 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg = {
         {
             title: 'Neutral tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/neutral/') === 0,
+            items: CRITERIA.pathStartsWith('core/neutral/'),
         },
         {
             title: 'Controls tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/controls/') === 0,
+            items: CRITERIA.pathStartsWith('core/controls/'),
         },
         {
             title: 'Icons tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/icons/') === 0,
+            items: CRITERIA.pathStartsWith('core/icons/'),
         },
         {
             title: 'Surface tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/surfaces/') === 0,
+            items: CRITERIA.pathStartsWith('core/surfaces/'),
         },
         {
             title: 'Text tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/text/') === 0,
+            items: CRITERIA.pathStartsWith('core/text/'),
         },
         {
             title: 'Links tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/links/') === 0,
+            items: CRITERIA.pathStartsWith('core/links/'),
         },
         {
             title: 'Other tokens',
             description: 'Some description about...',
-            items: (tok) => tok.id.indexOf('core/other/') === 0,
+            items: CRITERIA.pathStartsWith('core/other/'),
         },
     ],
 };
