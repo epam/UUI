@@ -1063,7 +1063,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--white)"
+        "WEB": "/* UUI internal variable var(--white) */"
       }
     },
     {
@@ -1140,7 +1140,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night50)"
+        "WEB": "/* UUI internal variable var(--night50) */"
       }
     },
     {
@@ -1217,7 +1217,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night100)"
+        "WEB": "/* UUI internal variable var(--night100) */"
       }
     },
     {
@@ -1294,7 +1294,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night200)"
+        "WEB": "/* UUI internal variable var(--night200) */"
       }
     },
     {
@@ -1371,7 +1371,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night300)"
+        "WEB": "/* UUI internal variable var(--night300) */"
       }
     },
     {
@@ -1448,7 +1448,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night400)"
+        "WEB": "/* UUI internal variable var(--night400) */"
       }
     },
     {
@@ -1525,7 +1525,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night500)"
+        "WEB": "/* UUI internal variable var(--night500) */"
       }
     },
     {
@@ -1602,7 +1602,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night600)"
+        "WEB": "/* UUI internal variable var(--night600) */"
       }
     },
     {
@@ -1679,7 +1679,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night700)"
+        "WEB": "/* UUI internal variable var(--night700) */"
       }
     },
     {
@@ -1756,7 +1756,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night800)"
+        "WEB": "/* UUI internal variable var(--night800) */"
       }
     },
     {
@@ -1833,7 +1833,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night900)"
+        "WEB": "/* UUI internal variable var(--night900) */"
       }
     },
     {
@@ -1910,7 +1910,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sky-5)"
+        "WEB": "/* UUI internal variable var(--sky-5) */"
       }
     },
     {
@@ -1987,7 +1987,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sky-10)"
+        "WEB": "/* UUI internal variable var(--sky-10) */"
       }
     },
     {
@@ -2064,7 +2064,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sky-20)"
+        "WEB": "/* UUI internal variable var(--sky-20) */"
       }
     },
     {
@@ -2141,7 +2141,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sky-50)"
+        "WEB": "/* UUI internal variable var(--sky-50) */"
       }
     },
     {
@@ -2218,7 +2218,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sky-60)"
+        "WEB": "/* UUI internal variable var(--sky-60) */"
       }
     },
     {
@@ -2295,7 +2295,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sky-70)"
+        "WEB": "/* UUI internal variable var(--sky-70) */"
       }
     },
     {
@@ -2372,7 +2372,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sun-5)"
+        "WEB": "/* UUI internal variable var(--sun-5) */"
       }
     },
     {
@@ -2449,7 +2449,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sun-10)"
+        "WEB": "/* UUI internal variable var(--sun-10) */"
       }
     },
     {
@@ -2526,7 +2526,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sun-20)"
+        "WEB": "/* UUI internal variable var(--sun-20) */"
       }
     },
     {
@@ -2603,7 +2603,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sun-50)"
+        "WEB": "/* UUI internal variable var(--sun-50) */"
       }
     },
     {
@@ -2680,7 +2680,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sun-60)"
+        "WEB": "/* UUI internal variable var(--sun-60) */"
       }
     },
     {
@@ -2757,7 +2757,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--sun-70)"
+        "WEB": "/* UUI internal variable var(--sun-70) */"
       }
     },
     {
@@ -2834,7 +2834,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fire-5)"
+        "WEB": "/* UUI internal variable var(--fire-5) */"
       }
     },
     {
@@ -2911,7 +2911,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fire-10)"
+        "WEB": "/* UUI internal variable var(--fire-10) */"
       }
     },
     {
@@ -2988,7 +2988,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fire-20)"
+        "WEB": "/* UUI internal variable var(--fire-20) */"
       }
     },
     {
@@ -3065,7 +3065,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fire-50)"
+        "WEB": "/* UUI internal variable var(--fire-50) */"
       }
     },
     {
@@ -3142,7 +3142,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fire-60)"
+        "WEB": "/* UUI internal variable var(--fire-60) */"
       }
     },
     {
@@ -3219,7 +3219,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fire-70)"
+        "WEB": "/* UUI internal variable var(--fire-70) */"
       }
     },
     {
@@ -3296,7 +3296,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--yellow-5)"
+        "WEB": "/* UUI internal variable var(--yellow-5) */"
       }
     },
     {
@@ -3373,7 +3373,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--yellow-10)"
+        "WEB": "/* UUI internal variable var(--yellow-10) */"
       }
     },
     {
@@ -3450,7 +3450,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--yellow-20)"
+        "WEB": "/* UUI internal variable var(--yellow-20) */"
       }
     },
     {
@@ -3527,7 +3527,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--yellow-50)"
+        "WEB": "/* UUI internal variable var(--yellow-50) */"
       }
     },
     {
@@ -3604,7 +3604,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--yellow-60)"
+        "WEB": "/* UUI internal variable var(--yellow-60) */"
       }
     },
     {
@@ -3681,7 +3681,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--yellow-70)"
+        "WEB": "/* UUI internal variable var(--yellow-70) */"
       }
     },
     {
@@ -3758,7 +3758,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--orange-5)"
+        "WEB": "/* UUI internal variable var(--orange-5) */"
       }
     },
     {
@@ -3835,7 +3835,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--orange-10)"
+        "WEB": "/* UUI internal variable var(--orange-10) */"
       }
     },
     {
@@ -3912,7 +3912,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--orange-20)"
+        "WEB": "/* UUI internal variable var(--orange-20) */"
       }
     },
     {
@@ -3989,7 +3989,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--orange-50)"
+        "WEB": "/* UUI internal variable var(--orange-50) */"
       }
     },
     {
@@ -4066,7 +4066,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--orange-60)"
+        "WEB": "/* UUI internal variable var(--orange-60) */"
       }
     },
     {
@@ -4143,7 +4143,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--orange-70)"
+        "WEB": "/* UUI internal variable var(--orange-70) */"
       }
     },
     {
@@ -4220,7 +4220,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fuchsia-5)"
+        "WEB": "/* UUI internal variable var(--fuchsia-5) */"
       }
     },
     {
@@ -4297,7 +4297,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fuchsia-10)"
+        "WEB": "/* UUI internal variable var(--fuchsia-10) */"
       }
     },
     {
@@ -4374,7 +4374,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fuchsia-20)"
+        "WEB": "/* UUI internal variable var(--fuchsia-20) */"
       }
     },
     {
@@ -4451,7 +4451,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fuchsia-50)"
+        "WEB": "/* UUI internal variable var(--fuchsia-50) */"
       }
     },
     {
@@ -4528,7 +4528,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fuchsia-60)"
+        "WEB": "/* UUI internal variable var(--fuchsia-60) */"
       }
     },
     {
@@ -4605,7 +4605,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--fuchsia-70)"
+        "WEB": "/* UUI internal variable var(--fuchsia-70) */"
       }
     },
     {
@@ -4682,7 +4682,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--purple-5)"
+        "WEB": "/* UUI internal variable var(--purple-5) */"
       }
     },
     {
@@ -4759,7 +4759,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--purple-10)"
+        "WEB": "/* UUI internal variable var(--purple-10) */"
       }
     },
     {
@@ -4836,7 +4836,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--purple-20)"
+        "WEB": "/* UUI internal variable var(--purple-20) */"
       }
     },
     {
@@ -4913,7 +4913,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--purple-50)"
+        "WEB": "/* UUI internal variable var(--purple-50) */"
       }
     },
     {
@@ -4990,7 +4990,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--purple-60)"
+        "WEB": "/* UUI internal variable var(--purple-60) */"
       }
     },
     {
@@ -5067,7 +5067,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--purple-70)"
+        "WEB": "/* UUI internal variable var(--purple-70) */"
       }
     },
     {
@@ -5144,7 +5144,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--violet-5)"
+        "WEB": "/* UUI internal variable var(--violet-5) */"
       }
     },
     {
@@ -5221,7 +5221,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--violet-10)"
+        "WEB": "/* UUI internal variable var(--violet-10) */"
       }
     },
     {
@@ -5298,7 +5298,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--violet-20)"
+        "WEB": "/* UUI internal variable var(--violet-20) */"
       }
     },
     {
@@ -5375,7 +5375,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--violet-50)"
+        "WEB": "/* UUI internal variable var(--violet-50) */"
       }
     },
     {
@@ -5452,7 +5452,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--violet-60)"
+        "WEB": "/* UUI internal variable var(--violet-60) */"
       }
     },
     {
@@ -5529,7 +5529,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--violet-70)"
+        "WEB": "/* UUI internal variable var(--violet-70) */"
       }
     },
     {
@@ -5606,7 +5606,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cobalt-5)"
+        "WEB": "/* UUI internal variable var(--cobalt-5) */"
       }
     },
     {
@@ -5683,7 +5683,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cobalt-10)"
+        "WEB": "/* UUI internal variable var(--cobalt-10) */"
       }
     },
     {
@@ -5760,7 +5760,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cobalt-20)"
+        "WEB": "/* UUI internal variable var(--cobalt-20) */"
       }
     },
     {
@@ -5837,7 +5837,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cobalt-50)"
+        "WEB": "/* UUI internal variable var(--cobalt-50) */"
       }
     },
     {
@@ -5914,7 +5914,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cobalt-60)"
+        "WEB": "/* UUI internal variable var(--cobalt-60) */"
       }
     },
     {
@@ -5991,7 +5991,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cobalt-70)"
+        "WEB": "/* UUI internal variable var(--cobalt-70) */"
       }
     },
     {
@@ -6068,7 +6068,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cyan-5)"
+        "WEB": "/* UUI internal variable var(--cyan-5) */"
       }
     },
     {
@@ -6145,7 +6145,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cyan-10)"
+        "WEB": "/* UUI internal variable var(--cyan-10) */"
       }
     },
     {
@@ -6222,7 +6222,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cyan-20)"
+        "WEB": "/* UUI internal variable var(--cyan-20) */"
       }
     },
     {
@@ -6299,7 +6299,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cyan-50)"
+        "WEB": "/* UUI internal variable var(--cyan-50) */"
       }
     },
     {
@@ -6376,7 +6376,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cyan-60)"
+        "WEB": "/* UUI internal variable var(--cyan-60) */"
       }
     },
     {
@@ -6453,7 +6453,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--cyan-70)"
+        "WEB": "/* UUI internal variable var(--cyan-70) */"
       }
     },
     {
@@ -6530,7 +6530,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--mint-5)"
+        "WEB": "/* UUI internal variable var(--mint-5) */"
       }
     },
     {
@@ -6607,7 +6607,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--mint-10)"
+        "WEB": "/* UUI internal variable var(--mint-10) */"
       }
     },
     {
@@ -6684,7 +6684,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--mint-20)"
+        "WEB": "/* UUI internal variable var(--mint-20) */"
       }
     },
     {
@@ -6761,7 +6761,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--mint-50)"
+        "WEB": "/* UUI internal variable var(--mint-50) */"
       }
     },
     {
@@ -6838,7 +6838,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--mint-60)"
+        "WEB": "/* UUI internal variable var(--mint-60) */"
       }
     },
     {
@@ -6915,7 +6915,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--mint-70)"
+        "WEB": "/* UUI internal variable var(--mint-70) */"
       }
     },
     {
@@ -7868,7 +7868,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-text-brand)"
+        "WEB": "/* UUI internal variable var(--uui-text-brand) */"
       }
     },
     {
@@ -8456,7 +8456,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg) */"
       }
     },
     {
@@ -8529,7 +8529,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-switch-bg)"
+        "WEB": "/* UUI internal variable var(--uui-control-switch-bg) */"
       }
     },
     {
@@ -8602,7 +8602,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg-checked)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg-checked) */"
       }
     },
     {
@@ -8675,7 +8675,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg-checked-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg-checked-hover) */"
       }
     },
     {
@@ -8748,7 +8748,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg-checked-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg-checked-disabled) */"
       }
     },
     {
@@ -8821,7 +8821,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg-hover) */"
       }
     },
     {
@@ -8894,7 +8894,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border-checked-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-border-checked-disabled) */"
       }
     },
     {
@@ -8967,7 +8967,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border)"
+        "WEB": "/* UUI internal variable var(--uui-control-border) */"
       }
     },
     {
@@ -9040,7 +9040,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg-readonly)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg-readonly) */"
       }
     },
     {
@@ -9113,7 +9113,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border-checked)"
+        "WEB": "/* UUI internal variable var(--uui-control-border-checked) */"
       }
     },
     {
@@ -9186,7 +9186,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border-checked-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-border-checked-hover) */"
       }
     },
     {
@@ -9259,7 +9259,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-border-hover) */"
       }
     },
     {
@@ -9332,7 +9332,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-switch-border-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-switch-border-hover) */"
       }
     },
     {
@@ -9405,7 +9405,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-text_input-border-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-text_input-border-hover) */"
       }
     },
     {
@@ -9478,7 +9478,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-border-disabled) */"
       }
     },
     {
@@ -9551,7 +9551,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-border-readonly)"
+        "WEB": "/* UUI internal variable var(--uui-control-border-readonly) */"
       }
     },
     {
@@ -9624,7 +9624,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-rest)"
+        "WEB": "/* UUI internal variable var(--uui-control-rest) */"
       }
     },
     {
@@ -9697,7 +9697,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-hover)"
+        "WEB": "/* UUI internal variable var(--uui-control-hover) */"
       }
     },
     {
@@ -9770,7 +9770,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-active)"
+        "WEB": "/* UUI internal variable var(--uui-control-active) */"
       }
     },
     {
@@ -9843,7 +9843,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-label)"
+        "WEB": "/* UUI internal variable var(--uui-control-label) */"
       }
     },
     {
@@ -9916,7 +9916,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-label-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-label-disabled) */"
       }
     },
     {
@@ -9989,7 +9989,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-placeholder)"
+        "WEB": "/* UUI internal variable var(--uui-control-placeholder) */"
       }
     },
     {
@@ -10062,7 +10062,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-placeholder-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-placeholder-disabled) */"
       }
     },
     {
@@ -10135,7 +10135,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-text)"
+        "WEB": "/* UUI internal variable var(--uui-control-text) */"
       }
     },
     {
@@ -10208,7 +10208,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-text-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-text-disabled) */"
       }
     },
     {
@@ -10281,7 +10281,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-icon)"
+        "WEB": "/* UUI internal variable var(--uui-control-icon) */"
       }
     },
     {
@@ -10354,7 +10354,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-icon-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-icon-disabled) */"
       }
     },
     {
@@ -10427,7 +10427,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-checkbox-icon)"
+        "WEB": "/* UUI internal variable var(--uui-control-checkbox-icon) */"
       }
     },
     {
@@ -53334,7 +53334,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--blue-5)"
+        "WEB": "/* UUI internal variable var(--blue-5) */"
       }
     },
     {
@@ -53411,7 +53411,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--blue-10)"
+        "WEB": "/* UUI internal variable var(--blue-10) */"
       }
     },
     {
@@ -53488,7 +53488,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--blue-20)"
+        "WEB": "/* UUI internal variable var(--blue-20) */"
       }
     },
     {
@@ -53565,7 +53565,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--blue-50)"
+        "WEB": "/* UUI internal variable var(--blue-50) */"
       }
     },
     {
@@ -53642,7 +53642,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--blue-60)"
+        "WEB": "/* UUI internal variable var(--blue-60) */"
       }
     },
     {
@@ -53719,7 +53719,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--blue-70)"
+        "WEB": "/* UUI internal variable var(--blue-70) */"
       }
     },
     {
@@ -53796,7 +53796,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--amber-5)"
+        "WEB": "/* UUI internal variable var(--amber-5) */"
       }
     },
     {
@@ -53873,7 +53873,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--amber-10)"
+        "WEB": "/* UUI internal variable var(--amber-10) */"
       }
     },
     {
@@ -53950,7 +53950,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--amber-20)"
+        "WEB": "/* UUI internal variable var(--amber-20) */"
       }
     },
     {
@@ -54027,7 +54027,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--amber-50)"
+        "WEB": "/* UUI internal variable var(--amber-50) */"
       }
     },
     {
@@ -54104,7 +54104,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--amber-60)"
+        "WEB": "/* UUI internal variable var(--amber-60) */"
       }
     },
     {
@@ -54181,7 +54181,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--amber-70)"
+        "WEB": "/* UUI internal variable var(--amber-70) */"
       }
     },
     {
@@ -54258,7 +54258,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--red-5)"
+        "WEB": "/* UUI internal variable var(--red-5) */"
       }
     },
     {
@@ -54335,7 +54335,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--red-10)"
+        "WEB": "/* UUI internal variable var(--red-10) */"
       }
     },
     {
@@ -54412,7 +54412,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--red-20)"
+        "WEB": "/* UUI internal variable var(--red-20) */"
       }
     },
     {
@@ -54489,7 +54489,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--red-50)"
+        "WEB": "/* UUI internal variable var(--red-50) */"
       }
     },
     {
@@ -54566,7 +54566,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--red-60)"
+        "WEB": "/* UUI internal variable var(--red-60) */"
       }
     },
     {
@@ -54643,7 +54643,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--red-70)"
+        "WEB": "/* UUI internal variable var(--red-70) */"
       }
     },
     {
@@ -55455,7 +55455,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray5)"
+        "WEB": "/* UUI internal variable var(--gray5) */"
       }
     },
     {
@@ -55532,7 +55532,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray10)"
+        "WEB": "/* UUI internal variable var(--gray10) */"
       }
     },
     {
@@ -55609,7 +55609,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray20)"
+        "WEB": "/* UUI internal variable var(--gray20) */"
       }
     },
     {
@@ -55686,7 +55686,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray30)"
+        "WEB": "/* UUI internal variable var(--gray30) */"
       }
     },
     {
@@ -55763,7 +55763,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray40)"
+        "WEB": "/* UUI internal variable var(--gray40) */"
       }
     },
     {
@@ -55840,7 +55840,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray50)"
+        "WEB": "/* UUI internal variable var(--gray50) */"
       }
     },
     {
@@ -55917,7 +55917,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray60)"
+        "WEB": "/* UUI internal variable var(--gray60) */"
       }
     },
     {
@@ -55994,7 +55994,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray70)"
+        "WEB": "/* UUI internal variable var(--gray70) */"
       }
     },
     {
@@ -56071,7 +56071,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray80)"
+        "WEB": "/* UUI internal variable var(--gray80) */"
       }
     },
     {
@@ -56148,7 +56148,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--gray90)"
+        "WEB": "/* UUI internal variable var(--gray90) */"
       }
     },
     {
@@ -63099,7 +63099,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--electric-5)"
+        "WEB": "/* UUI internal variable var(--electric-5) */"
       }
     },
     {
@@ -63176,7 +63176,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--electric-10)"
+        "WEB": "/* UUI internal variable var(--electric-10) */"
       }
     },
     {
@@ -63253,7 +63253,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--electric-20)"
+        "WEB": "/* UUI internal variable var(--electric-20) */"
       }
     },
     {
@@ -63330,7 +63330,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--electric-50)"
+        "WEB": "/* UUI internal variable var(--electric-50) */"
       }
     },
     {
@@ -63407,7 +63407,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--electric-60)"
+        "WEB": "/* UUI internal variable var(--electric-60) */"
       }
     },
     {
@@ -63484,7 +63484,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--electric-70)"
+        "WEB": "/* UUI internal variable var(--electric-70) */"
       }
     },
     {
@@ -63561,7 +63561,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--emerald-5)"
+        "WEB": "/* UUI internal variable var(--emerald-5) */"
       }
     },
     {
@@ -63638,7 +63638,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--emerald-10)"
+        "WEB": "/* UUI internal variable var(--emerald-10) */"
       }
     },
     {
@@ -63715,7 +63715,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--emerald-20)"
+        "WEB": "/* UUI internal variable var(--emerald-20) */"
       }
     },
     {
@@ -63792,7 +63792,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--emerald-50)"
+        "WEB": "/* UUI internal variable var(--emerald-50) */"
       }
     },
     {
@@ -63869,7 +63869,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--emerald-60)"
+        "WEB": "/* UUI internal variable var(--emerald-60) */"
       }
     },
     {
@@ -63946,7 +63946,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--emerald-70)"
+        "WEB": "/* UUI internal variable var(--emerald-70) */"
       }
     },
     {
@@ -64023,7 +64023,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--green-5)"
+        "WEB": "/* UUI internal variable var(--green-5) */"
       }
     },
     {
@@ -64100,7 +64100,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--green-10)"
+        "WEB": "/* UUI internal variable var(--green-10) */"
       }
     },
     {
@@ -64177,7 +64177,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--green-20)"
+        "WEB": "/* UUI internal variable var(--green-20) */"
       }
     },
     {
@@ -64254,7 +64254,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--green-50)"
+        "WEB": "/* UUI internal variable var(--green-50) */"
       }
     },
     {
@@ -64331,7 +64331,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--green-60)"
+        "WEB": "/* UUI internal variable var(--green-60) */"
       }
     },
     {
@@ -64408,7 +64408,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--green-70)"
+        "WEB": "/* UUI internal variable var(--green-70) */"
       }
     },
     {
@@ -64485,7 +64485,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--black)"
+        "WEB": "/* UUI internal variable var(--black) */"
       }
     },
     {
@@ -64562,7 +64562,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--night950)"
+        "WEB": "/* UUI internal variable var(--night950) */"
       }
     },
     {
@@ -65587,7 +65587,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-control-bg-disabled)"
+        "WEB": "/* UUI internal variable var(--uui-control-bg-disabled) */"
       }
     },
     {
@@ -71059,7 +71059,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-primary-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-primary-contrast) */"
       }
     },
     {
@@ -71132,7 +71132,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-accent-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-accent-contrast) */"
       }
     },
     {
@@ -71205,7 +71205,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-secondary-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-secondary-contrast) */"
       }
     },
     {
@@ -71278,7 +71278,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-critical-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-critical-contrast) */"
       }
     },
     {
@@ -71351,7 +71351,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-info-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-info-contrast) */"
       }
     },
     {
@@ -71424,7 +71424,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-success-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-success-contrast) */"
       }
     },
     {
@@ -71497,7 +71497,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-warning-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-warning-contrast) */"
       }
     },
     {
@@ -71570,7 +71570,7 @@
       ],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--uui-error-contrast)"
+        "WEB": "/* UUI internal variable var(--uui-error-contrast) */"
       }
     },
     {

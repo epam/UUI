@@ -15,6 +15,7 @@
 * [CountIndicator]: set color `info` by default.
 * [FiltersPanel]: added 'maxBodyHeight' prop for picker filters
 * [DataTable]: added allowResizing field in DataColumnProps, to be able to configure resizing for each column
+* [ApiContext]: added possibility to provide your own fetcher for requests
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
