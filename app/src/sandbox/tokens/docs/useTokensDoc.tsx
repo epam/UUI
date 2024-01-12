@@ -3,7 +3,7 @@ import {
 } from './config';
 import { useThemeTokens } from '../palette/hooks/useThemeTokens/useThemeTokens';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../palette/types/types';
-import { isGroupWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
+import { isGroupCfgWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
 
 const PARAMS: TLoadThemeTokensParams = {
     filter: {
@@ -27,20 +27,22 @@ export function useTokensDoc() {
 function convertDocGroup(params: { docGroupCfg: TTokensDocGroupCfg, tokens: IThemeVarUI[] }): ITokensDocGroup {
     const { docGroupCfg, tokens } = params;
     const { title, description } = docGroupCfg;
-    const result: ITokensDocGroup = {
-        id: title.replace(/[\s]/g, '_'),
+    const id = title.replace(/[\s]/g, '_');
+
+    if (isGroupCfgWithSubgroups(docGroupCfg)) {
+        return {
+            id,
+            title,
+            description,
+            subgroups: docGroupCfg.subgroups.map((s: TTokensDocGroupCfg) => convertDocGroup({ docGroupCfg: s, tokens })),
+        };
+    }
+    return {
+        id,
         title,
         description,
-        children: [],
+        items: convertDocItems({ docItemCfg: docGroupCfg.items, tokens }),
     };
-
-    if (isGroupWithSubgroups(docGroupCfg)) {
-        result.children = docGroupCfg.subgroups.map((s: TTokensDocGroupCfg) => convertDocGroup({ docGroupCfg: s, tokens }));
-    } else {
-        result.children = convertDocItems({ docItemCfg: docGroupCfg.items, tokens });
-    }
-
-    return result;
 }
 
 function convertDocItems(params: { docItemCfg: TTokensDocItemCfg, tokens: IThemeVarUI[] }): ITokensDocItem[] {
