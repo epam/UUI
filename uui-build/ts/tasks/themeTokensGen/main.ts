@@ -1,13 +1,16 @@
 import { FileUtils } from './utils/fileUtils';
-import { IGNORED_VAR_PLACEHOLDER } from './constants';
+import { getHiddenFromPublishingVarPlaceholder, IGNORED_VAR_PLACEHOLDER } from './constants';
 import { FigmaScriptsContext } from './context/context';
 import {
+    convertRawToken,
     getCssVarFromFigmaVar,
-    getNormalizedResolvedValueMap, isFigmaVarSupported,
+    isFigmaTokenSupported,
 } from './utils/figmaVarUtils';
-import { IThemeVar, TUuiCssVarName } from './types/sharedTypes';
-import { IFigmaVar } from './types/sourceTypes';
+import { IThemeVar } from './types/sharedTypes';
+import { IFigmaVarRaw, IFigmaVarRawNorm } from './types/sourceTypes';
 import { ITaskConfig } from '../../utils/taskUtils';
+import { normalizeFigmaVarRawMap } from './utils/firmaVarRawNormalizer';
+import { sortSupportedTokens } from './utils/sortingUtils';
 
 export const taskConfig: ITaskConfig = { main };
 
@@ -21,37 +24,31 @@ function generateTokens() {
     const supportedTokens: IThemeVar[] = [];
 
     // non-filtered map
-    const figmaVarById = source.variables.reduce<Record<string, IFigmaVar>>((acc, figmaVar) => {
+    const rawVarsById = source.variables.reduce<Record<string, IFigmaVarRaw>>((acc, figmaVar) => {
         acc[figmaVar.id] = figmaVar;
         return acc;
     }, {});
+    const figmaVarByNameNorm = normalizeFigmaVarRawMap({ rawVarsById, modes: source.modes });
 
     const variables = source.variables.map((figmaVar) => {
-        const cssVar = getCssVarFromFigmaVar(figmaVar.name) as TUuiCssVarName;
-        const supported = isFigmaVarSupported({ path: figmaVar.name });
+        const rawTokenNorm = figmaVarByNameNorm[figmaVar.name] as IFigmaVarRawNorm;
+        const supported = isFigmaTokenSupported({ rawTokenNorm, modes: source.modes });
+
         if (supported) {
-            supportedTokens.push({
-                id: figmaVar.name,
-                type: figmaVar.type,
-                description: figmaVar.description,
-                useCases: '',
-                cssVar,
-                valueByTheme: getNormalizedResolvedValueMap({ figmaVar, figmaVarById, modes: source.modes }),
-            });
+            const converted = convertRawToken({ rawTokenNorm, modes: source.modes, figmaVarByNameNorm });
+            supportedTokens.push(converted);
         }
         return {
             ...figmaVar,
             codeSyntax: {
                 ...figmaVar.codeSyntax,
-                WEB: supported ? `var(${cssVar})` : IGNORED_VAR_PLACEHOLDER,
+                WEB: getCodeSyntaxValue({ rawTokenNorm, supported }),
             },
         };
     });
 
     // It will mutate the original arr.
-    supportedTokens.sort((t1, t2) => {
-        return figmaVarComparator(t1.id, t2.id);
-    });
+    sortSupportedTokens(supportedTokens);
 
     FileUtils.writeResults({
         newFigmaVarCollection: { ...source, variables },
@@ -60,18 +57,16 @@ function generateTokens() {
     });
 }
 
-export function figmaVarComparator(path1: string, path2: string) {
-    const s1 = splitByTrailingNumber(path1);
-    const s2 = splitByTrailingNumber(path2);
-    return s1.first.localeCompare(s2.first) || (Number(s1.second) - Number(s2.second));
-}
-
-function splitByTrailingNumber(figmaVarPath: string): { first: string, second: number | undefined } {
-    const reg = /[0-9]+$/;
-    if (reg.test(figmaVarPath)) {
-        const secondStr = figmaVarPath.match(reg)?.[0] || '';
-        const first = figmaVarPath.substring(0, (figmaVarPath.length - secondStr.length));
-        return { first, second: Number(secondStr) };
+function getCodeSyntaxValue(
+    params: { supported: boolean, rawTokenNorm: IFigmaVarRawNorm },
+) {
+    const { supported, rawTokenNorm } = params;
+    if (supported) {
+        const cssVar = `var(${getCssVarFromFigmaVar(rawTokenNorm.name)})`;
+        if (rawTokenNorm.hiddenFromPublishing) {
+            return getHiddenFromPublishingVarPlaceholder(cssVar);
+        }
+        return cssVar;
     }
-    return { first: figmaVarPath, second: undefined };
+    return IGNORED_VAR_PLACEHOLDER;
 }

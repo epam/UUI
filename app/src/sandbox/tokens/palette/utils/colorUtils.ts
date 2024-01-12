@@ -1,6 +1,4 @@
-import { THexaValue } from '../types/sharedTypes';
-
-function rgbToHex(color: string): THexaValue {
+function rgbToHex(color: string): string {
     const isRgba = color.startsWith('rgb');
     if (isRgba) {
         const commaSeparated = color.replace(/(rgb[a]?\()([0-9\s,.]+)(\))/g, '$2');
@@ -14,7 +12,7 @@ function rgbToHex(color: string): THexaValue {
         }
         return `#${arr3.join('')}`;
     }
-    return color as THexaValue;
+    return color as string;
 }
 
 export function hexToRgb(color: string | undefined, percents: boolean = false) {
