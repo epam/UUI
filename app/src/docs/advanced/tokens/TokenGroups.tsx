@@ -3,24 +3,24 @@ import { Blocker, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNot
 import { useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
-import { ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
+import { isGroupWithItems, isGroupWithItemsArray, isGroupWithSubgroups, ITokensDocGroup, ITokensDocGroupWithItems, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
 import css from './TokensPage.module.scss';
+
+// The config file with titles and descriptions to data groups and subgroups placed here: ( app/src/sandbox/tokens/docs/config.ts )
 
 interface TokenGroupsProps {
     setTitleAndSubtitle: (title: string, subtitle: string) => void
 }
-
-// There the config file with titles and descriptions to data groups and subgroups (app/src/sandbox/tokens/docs/config.ts)
 
 export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
     const { uuiNotifications } = useUuiContext();
     const { loading, tokens } = useTokensDoc();
 
     useEffect(() => {
-        if (!loading && tokens?.children?.length) {
+        if (!loading) {
             setTitleAndSubtitle(tokens.title, tokens.description);
         }
-    }, [loading, setTitleAndSubtitle]);
+    }, [loading]);
 
     const showNotification = (color: string) => {
         uuiNotifications
@@ -37,58 +37,55 @@ export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
             .catch(() => null);
     };
 
-    // type guard to determine the type of tokenItem
-    function isTokensDocGroup(tokenGroup: ITokensDocGroup | ITokensDocItem): tokenGroup is ITokensDocGroup {
-        return 'id' in tokenGroup;
-    }
+    const renderCardSubgroup = (tokensCard: ITokensDocGroup, index: number) => {
+        let CARD: ReactNode;
+        const TEXT = <Text color="info" fontSize="16">The data of this group is in work. They will be soon...</Text>;
 
-    // type guard to determine the type of tokenItem array
-    function isTokensDocGroupArray(tokenItem: ITokensDocGroup[] | ITokensDocItem[]): tokenItem is ITokensDocGroup[] {
-        return tokenItem.length > 0 && 'id' in tokenItem[0];
-    }
-
-    const renderCard = (tokensCard: ITokensDocGroup | ITokensDocItem) => {
-        if (isTokensDocGroup(tokensCard)) {
-            return (
-                <>
-                    <RichTextView size="16">
-                        <h2 className={ css.groupTitle }>{ tokensCard.title }</h2>
-                        <p className={ css.groupInfo }>{ tokensCard.description }</p>
-                    </RichTextView>
-                    <Panel background="surface-main" cx={ css.subgroup } shadow={ true }>
-                        { tokensCard.children.length ? renderCardTitle(tokensCard.children) : <Text color="warning" fontSize="16">The data of this group is in work. They will be soon...</Text> }
-                    </Panel>
-                </>
-            );
+        if (isGroupWithSubgroups(tokensCard)) {
+            CARD = tokensCard.subgroups.length ? renderCardTitle(tokensCard.subgroups) : TEXT;
+        } else {
+            CARD = tokensCard.items.length ? renderCardTitle(tokensCard.items) : TEXT;
         }
+        return (
+            <div className={ css.root } key={ tokensCard.description + index }>
+                <RichTextView size="16">
+                    <h2 className={ css.groupTitle }>{ tokensCard.title }</h2>
+                    <p className={ css.groupInfo }>{ tokensCard.description }</p>
+                </RichTextView>
+                <Panel background="surface-main" cx={ css.subgroup } shadow={ true }>
+                    {CARD}
+                </Panel>
+            </div>
+        );
+    };
+
+    const renderGroupWithItemsArray = (item: ITokensDocGroupWithItems) => {
+        let CARD_BODY: ReactNode;
+
+        if (item?.items && item?.items.length) {
+            CARD_BODY = renderCardBody(item.items);
+        }
+        return (
+            <div key={ item.id }>
+                <RichTextView size="16">
+                    <h3 className={ css.subgroupTitle }>{ item.title }</h3>
+                    <p>{ item.description }</p>
+                </RichTextView>
+                {CARD_BODY}
+            </div>
+        );
     };
 
     const renderCardTitle = (tokenItemArray: ITokensDocGroup[] | ITokensDocItem[]) => {
-        let cardBody: null | ReactNode = null;
-
-        if (isTokensDocGroupArray(tokenItemArray)) {
-            return tokenItemArray.map((item) => {
-                if (item?.children && item?.children.length && !isTokensDocGroupArray(item.children)) {
-                    cardBody = renderCardBody(item.children);
-                }
-                return (
-                    <div key={ item.id }>
-                        <RichTextView size="16">
-                            <h3 className={ css.subgroupTitle }>{ item.title }</h3>
-                            <p>{ item.description}</p>
-                        </RichTextView>
-                        {cardBody}
-                    </div>
-                );
-            });
-        } else {
+        if (isGroupWithItemsArray(tokenItemArray)) {
+            return tokenItemArray.map((item) => renderGroupWithItemsArray(item));
+        } else if (isGroupWithItems(tokenItemArray)) {
             return renderCardBody(tokenItemArray);
         }
     };
 
     const renderCardBody = (itemBodyArray: ITokensDocItem[]) => {
         return itemBodyArray.map((item, index) => {
-            const valueNotPresent = item.value ? null : 'No data...'; // this marker uses to show text only if the value not present
             const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
 
             return (
@@ -104,7 +101,7 @@ export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
                     <FlexCell width="auto">
                         <Tooltip content={ item.value || 'No data' } placement="top" openDelay={ 200 }>
                             <div className={ css.colorViewer } style={ { backgroundColor: valueBackground } }>
-                                { valueNotPresent && <Text children={ valueNotPresent } color="critical" fontWeight="600" /> }
+                                { !item.value && <Text color="critical" fontWeight="600">No data...</Text> }
                             </div>
                         </Tooltip>
                     </FlexCell>
@@ -116,11 +113,7 @@ export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
     return (
         <>
             <Blocker isEnabled={ loading } />
-            { !loading && tokens?.children?.length && tokens?.children.map((tokensCard, index) => (
-                <div className={ css.root } key={ tokensCard.description + index }>
-                    {renderCard(tokensCard)}
-                </div>
-            )) }
+            { !loading && isGroupWithSubgroups(tokens) && tokens?.subgroups.map((tokensCard, index) => renderCardSubgroup(tokensCard, index)) }
         </>
     );
 }
