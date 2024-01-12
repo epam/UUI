@@ -75,7 +75,7 @@ export class NewTree<TItem, TId> {
         withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>) {
         const treeSnapshot = this.snapshot(using ?? 'core');
-        const newTreeSnapshot = await TreeSnapshot.load({ snapshot: treeSnapshot, options, dataSourceState, withNestedChildren });
+        const newTreeSnapshot = await treeSnapshot.load({ options, dataSourceState, withNestedChildren });
         return this.updateSnapshots({ using, snapshot: newTreeSnapshot });
     }
 
@@ -85,7 +85,7 @@ export class NewTree<TItem, TId> {
         dataSourceState,
     }: LoadAllOptions<TItem, TId, TFilter>) {
         const treeSnapshot = this.snapshot(using ?? 'core');
-        const newTreeSnapshot = await TreeSnapshot.loadAll({ snapshot: treeSnapshot, options, dataSourceState });
+        const newTreeSnapshot = await treeSnapshot.loadAll({ options, dataSourceState });
         return this.updateSnapshots({ using, snapshot: newTreeSnapshot });
     }
 
@@ -94,7 +94,7 @@ export class NewTree<TItem, TId> {
         getFilter,
     }: FilterOptions<TItem, TId, TFilter>): NewTree<TItem, TId> {
         const treeSnapshot = this.snapshot('core');
-        const newTreeSnapshot = TreeSnapshot.filter({ snapshot: treeSnapshot, getFilter, filter });
+        const newTreeSnapshot = treeSnapshot.filter({ getFilter, filter });
 
         if (treeSnapshot === newTreeSnapshot) {
             return this;
@@ -107,7 +107,7 @@ export class NewTree<TItem, TId> {
         sortBy,
     }: SortOptions<TItem, TId, TFilter>): NewTree<TItem, TId> {
         const treeSnapshot = this.snapshot('core');
-        const newTreeSnapshot = TreeSnapshot.sort({ snapshot: treeSnapshot, sorting, sortBy });
+        const newTreeSnapshot = treeSnapshot.sort({ sorting, sortBy });
 
         if (treeSnapshot === newTreeSnapshot) {
             return this;
@@ -122,7 +122,7 @@ export class NewTree<TItem, TId> {
     }: SearchOptions<TItem, TId, TFilter>): NewTree<TItem, TId> {
         const treeSnapshot = this.snapshot('core');
         const visibleTreeSnapshot = this.snapshot();
-        const newTreeSnapshot = TreeSnapshot.search({ snapshot: treeSnapshot, search, getSearchFields, sortSearchByRelevance });
+        const newTreeSnapshot = treeSnapshot.search({ search, getSearchFields, sortSearchByRelevance });
 
         if (visibleTreeSnapshot === newTreeSnapshot) {
             return this;
@@ -133,12 +133,12 @@ export class NewTree<TItem, TId> {
 
     public cascadeSelection(options: CascadeSelectionOptions<TItem, TId>) {
         const treeSnapshot = this.snapshot('core');
-        return TreeSnapshot.cascadeSelection({ snapshot: treeSnapshot, ...options });
+        return treeSnapshot.cascadeSelection(options);
     }
 
     public patch({ using, ...options }: PatchOptions<TItem>) {
         const treeSnapshot = this.snapshot(using ?? 'core');
-        const newTreeSnapshot = TreeSnapshot.patch({ snapshot: treeSnapshot, ...options });
+        const newTreeSnapshot = treeSnapshot.patch(options);
 
         if (newTreeSnapshot === treeSnapshot) {
             return this;
