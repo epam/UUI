@@ -14,7 +14,25 @@ export function loadedTokensConverter(
     const rawTokensFiltered = rawTokens.filter((tok) => {
         if (filter.path) {
             const filterPathNorm = filter.path.trim();
-            return tok.id.indexOf(filterPathNorm) !== -1;
+            if (tok.id.indexOf(filterPathNorm) === -1) {
+                return false;
+            }
+        }
+        if (filter.published) {
+            switch (filter.published) {
+                case 'yes': {
+                    if (!tok.published) {
+                        return false;
+                    }
+                    break;
+                }
+                case 'no': {
+                    if (tok.published) {
+                        return false;
+                    }
+                    break;
+                }
+            }
         }
         return true;
     });

@@ -4,9 +4,12 @@ import { TokenExample } from '../tokenExample/tokenExample';
 import React from 'react';
 import { TruncText } from '../truncText/truncText';
 import {
-    COL_NAMES, isTokenRowGroup,
-    IThemeVarUI, ITokenRow,
-    STATUS_FILTER, TLoadThemeTokensParams,
+    COL_NAMES,
+    isTokenRowGroup,
+    IThemeVarUI,
+    ITokenRow,
+    STATUS_FILTER,
+    TLoadThemeTokensParams,
     TThemeTokenValueType,
     TTokensLocalFilter,
     TTotals,
@@ -26,6 +29,7 @@ const WIDTH = {
     [COL_NAMES.actualValue]: 125,
     [COL_NAMES.expectedValue]: 125,
     [COL_NAMES.status]: 120,
+    [COL_NAMES.published]: 100,
 };
 
 export const getSortBy = () => {
@@ -88,7 +92,7 @@ export function getColumns(
                 return <Text>N/A</Text>;
             },
             width: WIDTH.expectedValue,
-            isSortable: true,
+            isSortable: false,
             textAlign: 'center',
             alignSelf: 'center',
         });
@@ -138,7 +142,7 @@ export function getColumns(
                 );
             },
             width: WIDTH.actualValue,
-            isSortable: true,
+            isSortable: false,
             textAlign: 'center',
             alignSelf: 'center',
         },
@@ -159,6 +163,23 @@ export function getColumns(
             isAlwaysVisible: true,
             textAlign: 'center',
             isFilterActive: (f) => !!f.status && f.status !== STATUS_FILTER.all,
+        },
+        {
+            key: COL_NAMES.published,
+            caption: 'Published',
+            render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
+                return (
+                    <Text color="primary">
+                        {item.published ? 'y' : 'n'}
+                    </Text>
+                );
+            },
+            textAlign: 'center',
+            alignSelf: 'center',
+            width: WIDTH[COL_NAMES.published],
         },
         {
             key: COL_NAMES.description,
