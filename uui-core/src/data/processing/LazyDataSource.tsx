@@ -1,14 +1,17 @@
-import { useEffect, useMemo } from 'react';
-import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD, useDataRows, useTree } from './views';
+import { useEffect, useMemo, useState } from 'react';
+import { LazyListViewProps, NOT_FOUND_RECORD, useDataRows, useTree } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState } from '../../types';
+import { ItemsStorage } from './ItemsStorage';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
 
 export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;
     cache: ListApiCache<TItem, TId, TFilter> = null;
+    itemsStorage: ItemsStorage<TItem, TId>;
+
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.props = {
@@ -24,6 +27,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             ...props,
             flattenSearchResults: props.flattenSearchResults ?? true,
         };
+        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
     }
 
     public getById = (id: TId): TItem | void => {
@@ -51,28 +55,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         super.reload();
     }
 
-    public getView = <TState extends DataSourceState<any, TId>>(
-        value: TState,
-        onValueChange: (value: TState) => void,
-        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
-    ): LazyListView<TItem, TId, TFilter> => {
-        const view = this.views.get(onValueChange) as LazyListView<TItem, TId, TFilter>;
-        const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
-            ...this.props,
-            getId: this.getId,
-            ...props,
-        };
-
-        if (view) {
-            view.update({ value, onValueChange }, viewProps);
-            return view;
-        } else {
-            const newView = new LazyListView({ value, onValueChange }, viewProps, this.cache);
-            this.views.set(onValueChange, newView);
-            return newView;
-        }
-    };
-
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
         onValueChange: React.Dispatch<React.SetStateAction<TState>>,
@@ -80,9 +62,14 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         deps: any[] = [],
     ) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [itemsMap, setItemsMap] = useState(this.itemsStorage.itemsMap);
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, ...restProps } = useTree({
             type: 'lazy',
             ...this.props,
+            itemsMap,
+            setItems: this.itemsStorage.setItems,
             dataSourceState: value,
             setDataSourceState: onValueChange as React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>,
             // These defaults are added for compatibility reasons.
@@ -90,6 +77,17 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             getId: this.getId,
             ...props,
         }, [...deps, this]);
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.itemsStorage.subscribe(() => {
+                setItemsMap(this.itemsStorage.itemsMap);
+            });
+            
+            return () => {
+                unsubscribe();
+            };
+        }, []);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {

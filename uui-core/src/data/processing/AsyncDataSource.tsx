@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { DataSourceState, IDataSourceView } from '../../types';
 import { AsyncListViewProps } from './views/AsyncListView';
@@ -36,16 +36,32 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [itemsMap, setItemsMap] = useState(this.itemsStorage.itemsMap);
+        
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, ...restProps } = useTree({
             type: 'async',
             ...this.props,
             api: this.api,
             ...options,
+            itemsMap,
+            setItems: this.itemsStorage.setItems,
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
             dataSourceState: value,
             setDataSourceState: onValueChange,
         }, [...deps, this]);
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.itemsStorage.subscribe(() => {
+                setItemsMap(this.itemsStorage.itemsMap);
+            });
+            
+            return () => {
+                unsubscribe();
+            };
+        }, []);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
