@@ -35,7 +35,9 @@ export class ItemsStorage<TItem, TId> {
     }
 
     setItems = (items: TItem[], options?: ModificationOptions) => {
-        if (options.reset) {
+        let updated = false;
+        if (options?.reset) {
+            updated = true;
             this._dirtyItems = new Map(this._dirtyItems);
             this._dirtyItems.clear();
 
@@ -46,12 +48,17 @@ export class ItemsStorage<TItem, TId> {
         const itemsLink = options?.isDirty ? this._dirtyItems : this._originalItems;
 
         items.forEach((item) => {
-            itemsLink.set(this.getId(item), item);
+            const isExistingItem = itemsLink.has(this.getId(item));
+
+            if (!isExistingItem || (isExistingItem && item !== itemsLink.get(this.getId(item)))) {
+                itemsLink.set(this.getId(item), item);
+                updated = true;
+            }
         });
-
-        this._itemsMap = new ItemsMap(this._originalItems, this._dirtyItems);
-
-        this.subs.forEach((_, onUpdate) => onUpdate(items, options));
+        if (updated) {
+            this._itemsMap = new ItemsMap(this._originalItems, this._dirtyItems);
+            this.subs.forEach((_, onUpdate) => onUpdate(items, options));
+        }
 
         return this._itemsMap;
     };

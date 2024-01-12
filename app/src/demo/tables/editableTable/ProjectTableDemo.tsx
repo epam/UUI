@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, ItemsStorage, Metadata, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -49,6 +49,27 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
+    const [itemsMap, setItemsMap] = useState<ItemsMap<number, Task>>();
+
+    const itemsStorage = useMemo(
+        () => new ItemsStorage({ items: Object.values(savedValue.items), getId: (item) => item.id }),
+        [],
+    );
+
+    useEffect(() => {
+        const unsubscribe = itemsStorage.subscribe(() => {
+            setItemsMap(itemsStorage.itemsMap);
+        });
+        
+        return () => {
+            unsubscribe();
+        };
+    }, [itemsStorage]);
+
+    useEffect(() => {
+        itemsStorage.setItems(Object.values(value.items), { isDirty: true });
+    }, [itemsStorage, value.items]);
+
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
@@ -121,7 +142,8 @@ export function ProjectTableDemo() {
             type: 'plain',
             dataSourceState: tableState,
             setDataSourceState: setTableState,
-            items: value.items,
+            itemsMap,
+            setItems: itemsStorage.setItems,
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,

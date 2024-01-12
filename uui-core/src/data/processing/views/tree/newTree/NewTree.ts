@@ -48,12 +48,16 @@ export class NewTree<TItem, TId> {
     private constructor(
         protected params: TreeParams<TItem, TId>,
         private _itemsMap: ItemsMap<TId, TItem>,
-        private readonly setItems: ItemsStorage<TItem, TId>['setItems'],
+        private readonly _setItems: ItemsStorage<TItem, TId>['setItems'],
         private readonly snapshots: IMap<string, TreeSnapshot<TItem, TId>>,
     ) {}
 
     public get itemsMap() {
         return this._itemsMap;
+    }
+
+    public get setItems() {
+        return this._setItems;
     }
 
     public set itemsMap(itemsMap: ItemsMap<TId, TItem>) {
@@ -158,17 +162,19 @@ export class NewTree<TItem, TId> {
             newSnapshots.set(using, snapshot);
         }
 
-        return NewTree.newInstance(this.params, newItemsMap, newSnapshots);
+        return NewTree.newInstance(this.params, newItemsMap, this.setItems, newSnapshots);
     }
 
     private static newInstance<TItem, TId>(
         params: TreeParams<TItem, TId>,
         itemsMap: ItemsMap<TId, TItem>,
+        setItems: ItemsStorage<TItem, TId>['setItems'],
         snapshots: IMap<string, TreeSnapshot<TItem, TId>>,
     ) {
         return new (this as any)(
             params,
             itemsMap,
+            setItems,
             snapshots,
         );
     }
@@ -185,7 +191,19 @@ export class NewTree<TItem, TId> {
         return this.newInstance(
             params,
             snapshot.itemsMap,
+            setItems,
             snapshots,
+        );
+    }
+
+    public static clone<TItem, TId>(
+        tree: NewTree<TItem, TId>,
+    ) {
+        return this.newInstance(
+            tree.params,
+            tree.itemsMap,
+            tree.setItems,
+            new Map(tree.snapshots),
         );
     }
 
@@ -219,7 +237,7 @@ export class NewTree<TItem, TId> {
             newSnapshots.set(ofSnapshot, TreeSnapshot.newInstance(this.params, this.itemsMap, this.setItems));
         }
 
-        return NewTree.newInstance(this.params, this.itemsMap, newSnapshots);
+        return NewTree.newInstance(this.params, this.itemsMap, this.setItems, newSnapshots);
     }
 
     public reset(toSnapshot: SnapshotId = 'core'): NewTree<TItem, TId> {
@@ -233,6 +251,6 @@ export class NewTree<TItem, TId> {
             }
         }
 
-        return NewTree.newInstance(this.params, this.itemsMap, newSnapshots);
+        return NewTree.newInstance(this.params, this.itemsMap, this.setItems, newSnapshots);
     }
 }

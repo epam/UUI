@@ -20,7 +20,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         this.props = props;
-        this.itemsStorage = new ItemsStorage({ items: props.items, getId: props.getId });
+        this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
     }
 
     public getById = (id: TId): TItem | undefined => {

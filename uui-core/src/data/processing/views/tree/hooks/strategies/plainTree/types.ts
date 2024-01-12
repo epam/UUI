@@ -1,11 +1,11 @@
-import { ItemsMap, ItemsStorage } from '../../../../../../processing';
+import { ItemsMap, ItemsStorage, NewTree } from '../../../../../../processing';
 import { SortingOption } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
 
 export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.plain;
-    items?: TItem[];
+    items?: TItem[] | NewTree<TItem, TId>;
     itemsMap?: ItemsMap<TId, TItem>;
     setItems?: ItemsStorage<TItem, TId>['setItems'];
 
