@@ -304,8 +304,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
                 pageSize: dataSourceState.pageSize,
             },
         );
-        const itemsMap = this.setItems(response.items);
-        return TreeSnapshot.create(this.params, itemsMap, this.setItems);
+        return TreeSnapshot.createFromItems({ snapshot: this, items: response.items });
     }
 
     public static create<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']) {
@@ -329,6 +328,29 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         }
 
         return this.newInstance(params, itemsMap, setItems, byParentId, newNodeInfoById);
+    }
+
+    public static createFromItems<TItem, TId>({ snapshot, items }: { snapshot: TreeSnapshot<TItem, TId>, items: TItem[] }) {
+        const byParentId = newMap<TId, TId[]>(snapshot.params);
+
+        items.forEach((item) => {
+            const parentId = snapshot.params.getParentId?.(item) ?? undefined;
+
+            if (!byParentId.has(parentId)) {
+                byParentId.set(parentId, []);
+            }
+            const children = byParentId.get(parentId);
+            children.push(snapshot.params.getId(item));
+
+            byParentId.set(parentId, children);
+        });
+
+        const newNodeInfoById = newMap<TId, TreeNodeInfo>(snapshot.params);
+        for (const [parentId, ids] of byParentId) {
+            newNodeInfoById.set(parentId, { count: ids.length });
+        }
+
+        return this.newInstance(snapshot.params, snapshot.itemsMap, snapshot.setItems, byParentId, newNodeInfoById);
     }
 
     protected static cloneMap<TKey, TValue>(map: IMap<TKey, TValue>) {
@@ -357,7 +379,7 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         };
 
         sortRec(this.getRootItems());
-        return TreeSnapshot.create({ ...this.params }, this.itemsMap, this.setItems);
+        return TreeSnapshot.createFromItems({ snapshot: this, items: sortedItems });
     }
 
     private buildSearchFilter<TFilter>({ search, getSearchFields }: ApplySearchOptions<TItem, TId, TFilter>) {
@@ -433,9 +455,8 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         };
 
         applyFilterRec(this.getRootItems());
-        const itemsMap = this.setItems(matchedItems, { reset: true });
 
-        return TreeSnapshot.create({ ...this.params }, itemsMap, this.setItems);
+        return TreeSnapshot.createFromItems({ snapshot: this, items: matchedItems });
     }
 
     private applySearchToTree({ search, sortSearchByRelevance }: ApplySearchToTreeSnapshotOptions<TItem>) {
@@ -473,9 +494,8 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         applySearchRec(this.getRootItems());
 
         const searchItems = sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks, this.params.getId) : matchedItems;
-        const itemsMap = this.setItems(searchItems, { reset: true });
 
-        return TreeSnapshot.create({ ...this.params }, itemsMap, this.setItems);
+        return TreeSnapshot.createFromItems({ snapshot: this, items: searchItems });
     }
 
     private sortByRanks(items: TItem[], ranks: Map<TId, number>, getId: (item: TItem) => TId) {
