@@ -28,6 +28,7 @@
 * [PickerInput]: added an HTML ID attribute for the input.
 * [DatePicker]: added an HTML ID attribute for the toggler input.
 * [RangeDatePicker]: added an HTML ID attribute for the first input into toggler.
+* [ApiContext]: file upload now handle JSON.parse errors
 
 # 5.4.3 - 19.12.2023
 
