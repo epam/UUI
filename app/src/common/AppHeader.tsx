@@ -173,17 +173,7 @@ export function AppHeader() {
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
-            { id: 'survey',
-                priority: 0,
-                render: () => (
-                    <Anchor
-                        rawProps={ { style: { height: '60px' } } }
-                        target="_blank"
-                        href="https://forms.office.com/e/9iEvJUKdeM"
-                    >
-                        <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
-                    </Anchor>
-                ) },
+
             {
                 id: 'themeCaption',
                 priority: 2,
@@ -206,6 +196,18 @@ export function AppHeader() {
                         <Text fontWeight="600" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
                             Open Git
                         </Text>
+                    </Anchor>
+                ),
+            },
+            { id: 'survey',
+                priority: 0,
+                render: () => (
+                    <Anchor
+                        rawProps={ { style: { height: '60px' } } }
+                        target="_blank"
+                        href="https://forms.office.com/e/9iEvJUKdeM"
+                    >
+                        <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
                     </Anchor>
                 ),
             },
