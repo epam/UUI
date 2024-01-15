@@ -17,7 +17,7 @@ const defaultTextSettings = {
 };
 
 export function getTextClasses(props: TextSettings & { size: '18' | ControlSize | '60' }, border: boolean) {
-    if (props.size === 'none') {
+    if (!props.size) {
         return [css['line-height-' + props.lineHeight], css['font-size-' + props.fontSize]];
     }
 

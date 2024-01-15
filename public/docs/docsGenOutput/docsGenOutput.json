@@ -66561,7 +66561,7 @@
        }
       },
       "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -66571,8 +66571,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:ButtonMods",
@@ -66591,15 +66590,15 @@
        }
       },
       "typeValue": {
-       "raw": "'solid' | 'outline' | 'none' | 'ghost'"
+       "raw": "'solid' | 'outline' | 'ghost' | 'none'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "solid",
         "outline",
-        "none",
-        "ghost"
+        "ghost",
+        "none"
        ]
       },
       "from": "@epam/uui:ButtonMods",
@@ -67957,7 +67956,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -67966,8 +67965,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -69492,7 +69490,7 @@
       "uid": "searchSize",
       "name": "searchSize",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -69501,8 +69499,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "required": false
@@ -69895,7 +69892,7 @@
       "interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {",
       "    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;",
       "    padding?: '12' | '24';",
-      "    size?: 'none' | '24' | '30' | '36' | '42' | '48' | '60';",
+      "    size?: '24' | '30' | '36' | '42' | '48' | '60';",
       "    alignActions?: 'top' | 'center';",
       "}"
      ]
@@ -69931,7 +69928,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -69941,8 +69938,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "required": false
@@ -70752,7 +70748,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -70762,8 +70758,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "required": false
@@ -70904,7 +70899,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -70914,8 +70909,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "from": "@epam/uui:TableSizesAndPositionMods",
@@ -70998,7 +70992,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -71008,8 +71002,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "from": "@epam/uui:BaseRowMods",
@@ -71059,7 +71052,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -71069,8 +71062,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "from": "@epam/uui:BaseRowMods",
@@ -71107,7 +71099,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -71116,8 +71108,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "required": false
@@ -71666,7 +71657,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -71676,8 +71667,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "from": "@epam/uui:TableSizesAndPositionMods",
@@ -72388,7 +72378,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -72397,8 +72387,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -76251,7 +76240,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -76260,8 +76249,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -76742,7 +76730,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -76751,8 +76739,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "required": false
@@ -77285,7 +77272,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -77294,8 +77281,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:LinkButtonCoreProps",
@@ -80257,7 +80243,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -80266,8 +80252,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -80466,7 +80451,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -80475,8 +80460,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -81709,7 +81693,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -81718,8 +81702,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -82578,7 +82561,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -82587,8 +82570,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -83378,7 +83360,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -83387,8 +83369,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -87095,7 +87076,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -87104,8 +87085,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -88211,7 +88191,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -88221,8 +88201,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "from": "@epam/uui:TextInputMods",
@@ -91375,7 +91354,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -91384,8 +91363,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:TextAreaMods",
@@ -91422,7 +91400,7 @@
       "     */",
       "    fontStyle?: TextFontStyle;",
       "    /**",
-      "     * Defines text size.",
+      "     * Defines text size",
       "     * @default '36'",
       "     */",
       "    size?: TextSize;",
@@ -91487,7 +91465,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size.",
+        "Defines text size",
         " @default '36'"
        ],
        "tags": {
@@ -91495,7 +91473,7 @@
        }
       },
       "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -91505,8 +91483,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "required": false
@@ -92382,7 +92359,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none' | '60'"
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -92392,8 +92369,7 @@
         "36",
         "42",
         "48",
-        "60",
-        "none"
+        "60"
        ]
       },
       "from": "@epam/uui:TextInputMods",
@@ -92568,7 +92544,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size.",
+        "Defines text size",
         " @default '36'"
        ],
        "tags": {
@@ -92576,7 +92552,7 @@
        }
       },
       "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -92586,8 +92562,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:TextCoreProps",
@@ -93167,7 +93142,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -93176,8 +93151,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -96654,7 +96628,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -96664,8 +96638,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/promo:ButtonMods",
@@ -98894,7 +98867,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -98903,8 +98876,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:LinkButtonCoreProps",
@@ -99325,7 +99297,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -99334,8 +99306,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -101077,7 +101048,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size.",
+        "Defines text size",
         " @default '36'"
        ],
        "tags": {
@@ -101085,7 +101056,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -101095,8 +101066,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:TextCoreProps",
@@ -104999,7 +104969,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -105009,8 +104979,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/loveship:ButtonMods",
@@ -105054,15 +105023,15 @@
        }
       },
       "typeValue": {
-       "raw": "'white' | 'solid' | 'none' | 'light'"
+       "raw": "'white' | 'solid' | 'light' | 'none'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "white",
         "solid",
-        "none",
-        "light"
+        "light",
+        "none"
        ]
       },
       "from": "@epam/loveship:ButtonMods",
@@ -107381,7 +107350,7 @@
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -107390,8 +107359,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:LinkButtonCoreProps",
@@ -107943,7 +107911,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -107952,8 +107920,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:SizeMod",
@@ -110750,7 +110717,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines text size.",
+        "Defines text size",
         " @default '36'"
        ],
        "tags": {
@@ -110758,7 +110725,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -110768,8 +110735,7 @@
         "30",
         "36",
         "42",
-        "48",
-        "none"
+        "48"
        ]
       },
       "from": "@epam/uui:TextCoreProps",

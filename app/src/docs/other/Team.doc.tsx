@@ -166,7 +166,7 @@ export class TeamDoc extends React.Component {
                             <div key={ index } className={ css.card }>
                                 <img alt={ name } src={ src } width="222" height="222" />
                                 <LinkButton size="24" caption={ name } target="_blank" href={ link } />
-                                <Text lineHeight="24" fontSize="16" size="none">
+                                <Text lineHeight="24" fontSize="16">
                                     {position}
                                 </Text>
                             </div>
@@ -184,7 +184,7 @@ export class TeamDoc extends React.Component {
                             <div key={ index } className={ css.card }>
                                 <img alt={ name } src={ src } width="222" height="222" />
                                 <LinkButton size="24" caption={ name } target="_blank" href={ link } />
-                                <Text lineHeight="24" fontSize="16" size="none">
+                                <Text lineHeight="24" fontSize="16">
                                     {position}
                                 </Text>
                             </div>
