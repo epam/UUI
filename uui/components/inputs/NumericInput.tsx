@@ -1,6 +1,6 @@
 import { devLogger, withMods } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputProps } from '@epam/uui-components';
-import { ControlSize, EditMode, IHasEditMode } from '../types';
+import { EditMode, IHasEditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import textInputCss from './TextInput.module.scss';
 import css from './NumericInput.module.scss';
@@ -10,11 +10,11 @@ const DEFAULT_MODE = EditMode.FORM;
 
 type NumericInputMods = IHasEditMode & {
     /**
-     * Defines component size.
+     * Defines component size
      * @default '36'
      * Size '48' is deprecated and will be removed in future release
      */
-    size?: ControlSize;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 function applyNumericInputMods(mods: NumericInputMods) {
