@@ -10,7 +10,7 @@ const DEFAULT_MODE = EditMode.FORM;
 
 type NumericInputMods = IHasEditMode & {
     /**
-     * Defines component size.
+     * Defines component size
      * @default '36'
      * Size '48' is deprecated and will be removed in future release
      */
