@@ -1,10 +1,19 @@
 [
   {
+    "type": "uui-richTextEditor-header-1",
+    "children": [
+      {
+        "text": "Tokens"
+      }
+    ]
+  },
+  {
     "type": "paragraph",
     "children": [
       {
-        "text": "Core tokens are 2nd level of tokens and recommended to use for every case. Also, core tokens are used in the component level. Core tokens have many categories for every role. Find these categories below."
+        "text": "Core tokens are 2nd level of tokens and recommended to use for every case. Also, core tokens uses in the component level. Core tokens have many categories for every role. Find these categories below."
       }
-    ]
+    ],
+    "data": {}
   }
 ]
