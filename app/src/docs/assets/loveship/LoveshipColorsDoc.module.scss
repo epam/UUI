@@ -1,27 +1,6 @@
 @use '~@epam/loveship/assets/styles/scss/index' as *;
 @use '../contrast' as *;
 
-@each $name, $color in $epam-basic-color-names {
-    .basic-color-#{$name} {
-        background-color: $color;
-        color: contrast($color, $night900, #FFFFFF);
-    }
-}
-
-@each $name, $color in $epam-grayscale-color-names {
-    .grayscale-color-#{$name} {
-        background-color: $color;
-        color: contrast($color, $night700, #FFFFFF);
-    }
-}
-
-@each $name, $color in $epam-additional-color-names {
-    .additional-color-#{$name} {
-        background-color: $color;
-        color: contrast($color, $night900, #FFFFFF);
-    }
-}
-
 .hex-text, .color-name {
     font-size: 14px;
 }
