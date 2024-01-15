@@ -30,56 +30,56 @@ $red-dark: #C03316;
 $red-darkest: #A02B13;
 
 //Additional Colors
-$yellow-0: #FFFFF0;
-$yellow-10: #FFFECC;
+$yellow-5: #FFFFF5;
+$yellow-10: #FFFFE5;
 $yellow-20: #FFFCA4;
 $yellow-30: #FDD63B;
 $yellow-40: #F9B71D;
-$yellow-50: #D3910C;
+$yellow-50: #BC7E02;
 
-$orange-0: #FEF8F4;
+$orange-5: #FEF8F4;
 $orange-10: #FFE8D7;
 $orange-20: #FFCCA7;
 $orange-30: #FF8B3E;
 $orange-40: #F76B0D;
 $orange-50: #BD4B00;
 
-$fuchia-0: #FFF7FB;
+$fuchia-5: #FFF7FB;
 $fuchia-10: #F9D8E7;
 $fuchia-20: #EDADC8;
 $fuchia-30: #EA4386;
 $fuchia-40: #D61E68;
 $fuchia-50: #AE1955;
 
-$purple-0: #FDF6FE;
+$purple-5: #FDF6FE;
 $purple-10: #F2CCFA;
 $purple-20: #E79DF5;
 $purple-30: #B114D1;
 $purple-40: #860F9E;
 $purple-50: #5E0B6F;
 
-$violet-0: #F8F6FE;
+$violet-5: #F8F6FE;
 $violet-10: #DBCCFA;
 $violet-20: #BB9DF5;
 $violet-30: #773CEC;
 $violet-40: #5514D6;
 $violet-50: #40109E;
 
-$cobalt-0: #F8FAFF;
+$cobalt-5: #F8FAFF;
 $cobalt-10: #D9E2FC;
 $cobalt-20: #AEC0F5;
 $cobalt-30: #0F98FF;
 $cobalt-40: #006FE5;
 $cobalt-50: #0954A5;
 
-$cyan-0: #F5FBFF;
+$cyan-5: #F6FEFE;
 $cyan-10: #D1FAFA;
 $cyan-20: #AAEEEE;
 $cyan-30: #14CCCC;
 $cyan-40: #0F9E9E;
 $cyan-50: #0B6F6F;
 
-$mint-0: #F2FCF5;
+$mint-5: #F2FCF5;
 $mint-10: #DDF3E4;
 $mint-20: #B4DFC4;
 $mint-30: #4FC48C;
@@ -106,11 +106,11 @@ $epam-basic-color-names: ('white' $white ,'blue-soft' $blue-soft, 'blue' $blue, 
 $epam-grayscale-color-names: ('gray5' $gray5, 'gray10' $gray10, 'gray20' $gray20, 'gray30' $gray30, 'gray40' $gray40,
 'gray50' $gray50, 'gray60' $gray60, 'gray70' $gray70, 'gray80' $gray80, 'gray90' $gray90);
 
-$epam-additional-color-names: ('yellow-0' $yellow-0, 'yellow-10' $yellow-10, 'yellow-20' $yellow-20, 'yellow-30' $yellow-30, 'yellow-40' $yellow-40, 'yellow-50' $yellow-50,
-'orange-0' $orange-0, 'orange-10' $orange-10, 'orange-20' $orange-20, 'orange-30' $orange-30, 'orange-40' $orange-40, 'orange-50' $orange-50,
-'fuchia-0' $fuchia-0, 'fuchia-10' $fuchia-10, 'fuchia-20' $fuchia-20, 'fuchia-30' $fuchia-30, 'fuchia-40' $fuchia-40, 'fuchia-50' $fuchia-50,
-'purple-0' $purple-0, 'purple-10' $purple-10, 'purple-20' $purple-20, 'purple-30' $purple-30, 'purple-40' $purple-40, 'purple-50' $purple-50,
-'violet-0' $violet-0, 'violet-10' $violet-10, 'violet-20' $violet-20, 'violet-30' $violet-30, 'violet-40' $violet-40, 'violet-50' $violet-50,
-'cobalt-0' $cobalt-0, 'cobalt-10' $cobalt-10, 'cobalt-20' $cobalt-20, 'cobalt-30' $cobalt-30, 'cobalt-40' $cobalt-40, 'cobalt-50' $cobalt-50,
-'cyan-0' $cyan-0, 'cyan-10' $cyan-10, 'cyan-20' $cyan-20, 'cyan-30' $cyan-30, 'cyan-40' $cyan-40, 'cyan-50' $cyan-50,
-'mint-0' $mint-0, 'mint-10' $mint-10, 'mint-20' $mint-20, 'mint-30' $mint-30, 'mint-40' $mint-40, 'mint-50' $mint-50);
+$epam-additional-color-names: ('yellow-0' $yellow-5, 'yellow-10' $yellow-10, 'yellow-20' $yellow-20, 'yellow-30' $yellow-30, 'yellow-40' $yellow-40, 'yellow-50' $yellow-50,
+'orange-5' $orange-5, 'orange-10' $orange-10, 'orange-20' $orange-20, 'orange-30' $orange-30, 'orange-40' $orange-40, 'orange-50' $orange-50,
+'fuchia-5' $fuchia-5, 'fuchia-10' $fuchia-10, 'fuchia-20' $fuchia-20, 'fuchia-30' $fuchia-30, 'fuchia-40' $fuchia-40, 'fuchia-50' $fuchia-50,
+'purple-5' $purple-5, 'purple-10' $purple-10, 'purple-20' $purple-20, 'purple-30' $purple-30, 'purple-40' $purple-40, 'purple-50' $purple-50,
+'violet-5' $violet-5, 'violet-10' $violet-10, 'violet-20' $violet-20, 'violet-30' $violet-30, 'violet-40' $violet-40, 'violet-50' $violet-50,
+'cobalt-5' $cobalt-5, 'cobalt-10' $cobalt-10, 'cobalt-20' $cobalt-20, 'cobalt-30' $cobalt-30, 'cobalt-40' $cobalt-40, 'cobalt-50' $cobalt-50,
+'cyan-5' $cyan-5, 'cyan-10' $cyan-10, 'cyan-20' $cyan-20, 'cyan-30' $cyan-30, 'cyan-40' $cyan-40, 'cyan-50' $cyan-50,
+'mint-5' $mint-5, 'mint-10' $mint-10, 'mint-20' $mint-20, 'mint-30' $mint-30, 'mint-40' $mint-40, 'mint-50' $mint-50);
