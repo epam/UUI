@@ -15,7 +15,7 @@ import {
 } from '@epam/uui';
 import css from './FormContext.module.scss';
 
-type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
+type ControlSize = '24' | '30' | '36' | '42' | '48';
 
 interface FormContextState {
     textValue: string;
