@@ -47,7 +47,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.itemsMap);
-        
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, ...restProps } = useTree({
             type: 'plain',

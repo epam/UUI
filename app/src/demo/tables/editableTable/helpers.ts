@@ -1,4 +1,4 @@
-import { getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
+import { ItemsMap, getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
 import { Task } from './types';
 
 /**
@@ -39,8 +39,13 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
     }
 }
 
-const findAllChildren = (tasks: Task[], parentTask: Task) => {
-    const children = tasks.filter((task) => task.parentId === parentTask.id);
+const findAllChildren = (tasks: ItemsMap<number, Task>, parentTask: Task) => {
+    const children: Task[] = [];
+    tasks.forEach((task) => {
+        if (task.parentId === parentTask.id) {
+            children.push(task);
+        }
+    });
     let ids: number[] = [];
     children.forEach((task) => {
         ids.push(task.id);
@@ -50,22 +55,26 @@ const findAllChildren = (tasks: Task[], parentTask: Task) => {
     return ids;
 };
 
-export const deleteTaskWithChildren = (tasks: Record<number, Task>, taskToDelete: Task | null): Record<number, Task> => {
-    const currentTasks = { ...tasks };
+export const deleteTaskWithChildren = (tasks: ItemsMap<number, Task>, taskToDelete: Task | null): ItemsMap<number, Task> => {
     let taskToBeDeleted = taskToDelete;
     if (taskToBeDeleted === undefined) {
-        const rootItems = Object.values(currentTasks).filter((task) => task.parentId === undefined);
-        taskToBeDeleted = rootItems[rootItems.length - 1];
+        tasks.forEach((task) => {
+            if (task.parentId === undefined) {
+                taskToBeDeleted = task;
+            }
+        });
     }
 
     if (!taskToBeDeleted) {
-        return currentTasks;
+        return tasks;
     }
 
-    const childrenIds = findAllChildren(Object.values(currentTasks), taskToBeDeleted);
+    const childrenIds = findAllChildren(tasks, taskToBeDeleted);
+    let newItemsMap = tasks;
+
     [taskToBeDeleted.id, ...childrenIds].forEach((id) => {
-        delete currentTasks[id];
+        newItemsMap = newItemsMap.delete(id);
     });
 
-    return currentTasks;
+    return newItemsMap;
 };

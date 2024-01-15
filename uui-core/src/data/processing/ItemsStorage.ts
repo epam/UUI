@@ -1,6 +1,4 @@
-import { ItemsMap } from './ItemsMap';
-
-type OnUpdate<TItem> = (items: TItem[], options: ModificationOptions) => void;
+import { ItemsMap, OnUpdate } from './ItemsMap';
 
 interface ModificationOptions {
     isDirty?: boolean;
@@ -13,54 +11,33 @@ interface ItemsStorageParams<TItem, TId> {
 }
 
 export class ItemsStorage<TItem, TId> {
-    private getId: (item: TItem) => TId;
-    private subs: Map<OnUpdate<TItem>, void> = new Map();
-    private _dirtyItems: Map<TId, TItem> = new Map();
-    private _originalItems: Map<TId, TItem> = new Map();
-
-    private _itemsMap: ItemsMap<TId, TItem> = new ItemsMap(this._originalItems, this._dirtyItems);
+    private subs: Map<OnUpdate<TId, TItem>, void> = new Map();
+    private _itemsMap: ItemsMap<TId, TItem>;
 
     constructor({ items, getId }: ItemsStorageParams<TItem, TId>) {
-        this.getId = getId;
-
+        this._itemsMap = new ItemsMap(
+            null,
+            getId,
+            this.onUpdate,
+        );
         if (items?.length) {
             this.setItems(items);
         }
     }
 
-    subscribe(onUpdate: OnUpdate<TItem>) {
+    subscribe(onUpdate: OnUpdate<TId, TItem>) {
         this.subs.set(onUpdate);
 
         return () => this.subs.delete(onUpdate);
     }
 
     setItems = (items: TItem[], options?: ModificationOptions) => {
-        let updated = false;
-        if (options?.reset) {
-            updated = true;
-            this._dirtyItems = new Map(this._dirtyItems);
-            this._dirtyItems.clear();
+        return this._itemsMap.setItems(items, options);
+    };
 
-            this._originalItems = new Map(this._originalItems);
-            this._originalItems.clear();
-        }
-
-        const itemsLink = options?.isDirty ? this._dirtyItems : this._originalItems;
-
-        items.forEach((item) => {
-            const isExistingItem = itemsLink.has(this.getId(item));
-
-            if (!isExistingItem || (isExistingItem && item !== itemsLink.get(this.getId(item)))) {
-                itemsLink.set(this.getId(item), item);
-                updated = true;
-            }
-        });
-        if (updated) {
-            this._itemsMap = new ItemsMap(this._originalItems, this._dirtyItems);
-            this.subs.forEach((_, onUpdate) => onUpdate(items, options));
-        }
-
-        return this._itemsMap;
+    onUpdate = (newItemsMap: ItemsMap<TId, TItem>) => {
+        this._itemsMap = newItemsMap;
+        this.subs.forEach((_, onUpdate) => onUpdate(newItemsMap));
     };
 
     get itemsMap() {

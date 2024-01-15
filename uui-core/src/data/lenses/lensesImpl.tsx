@@ -1,4 +1,5 @@
 import { ICanBeInvalid, Metadata } from '../../types';
+import { ItemsMap } from '../processing';
 import { blankValidationState } from '../validation';
 
 export interface ILensImpl<TBig, TSmall> {
@@ -54,6 +55,33 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return {
                 isDisabled, isReadonly, isRequired, ...metadataProps[name],
             };
+        },
+    };
+}
+
+export function get<TItem, TId>(id: TId): ILensImpl<ItemsMap<TId, TItem>, TItem> {
+    return {
+        get(big: ItemsMap<TId, TItem>) {
+            if (big == null) {
+                return undefined;
+            } else {
+                return big.get(id);
+            }
+        },
+        set(big: ItemsMap<TId, TItem>, small: TItem) {
+            return big.set(id, small);
+        },
+        getValidationState(big: ICanBeInvalid) {
+            const validationStateProps = (big || blankValidationState).validationProps || {};
+            return validationStateProps[id as string];
+        },
+        getMetadata(big: Metadata<ItemsMap<TId, TItem>>) {
+            const metadata: Metadata<ItemsMap<TId, TItem>> = big || { all: { props: {} } };
+            const metadataProps = metadata.all;
+            const { isDisabled, isRequired, isReadonly } = metadata;
+            return {
+                ...metadataProps, isDisabled, isReadonly, isRequired,
+            } as any;
         },
     };
 }

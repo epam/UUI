@@ -32,8 +32,9 @@ export function useItemsStorage<TItem, TId>({ itemsMap: outerItemsMap, setItems,
         }
     }, []);
 
+    const currentItemsMap = outerItemsMap ?? itemsMap;
     return {
-        itemsMap: outerItemsMap ?? itemsMap,
-        setItems: setItems ?? (items instanceof NewTree ? items.setItems : itemsStorage.setItems),
+        itemsMap: currentItemsMap,
+        setItems: setItems ?? (items instanceof NewTree ? items.setItems : itemsStorage?.setItems ?? currentItemsMap.setItems),
     };
 }

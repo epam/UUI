@@ -1,10 +1,14 @@
 import { IEditable } from '../../types';
+import { ItemsMap } from '../processing';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
+export type ItemsMapElement<MapType> = MapType extends ItemsMap<any, infer Item> ? Item : never;
 
 export interface ILens<TFocused> {
     /** Get lens value */
     get(): TFocused;
+    getItem<TId>(id: TId): ILens<NonNullable<ItemsMapElement<TFocused>>>;
+
     /** Set new lens value */
     set(value: TFocused): void;
     /** Updates lens value with returned value from provided callback.
@@ -13,6 +17,7 @@ export interface ILens<TFocused> {
     update(fn: (current: TFocused) => TFocused): void;
     /** Return a new lens on the provided field name */
     prop<K extends keyof TFocused>(name: K): ILens<NonNullable<TFocused[K]>>;
+
     /** Return a new lens on item of array by provided index */
     index(index: number): ILens<ArrayElement<TFocused>>;
     /** Add to the lens a setter callback, which received old and new value and should return new value for set.
