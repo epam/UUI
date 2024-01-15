@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, ItemsStorage, Metadata, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, Metadata, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -15,9 +15,10 @@ import { getColumns } from './columns';
 import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
+import { SomeContext } from '@epam/uui-core';
 
 interface FormState {
-    items: Record<number, Task>;
+    items: ItemsMap<number, Task>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -34,11 +35,11 @@ const metadata: Metadata<FormState> = {
 
 let lastId = -1;
 
-let savedValue: FormState = { items: getDemoTasks() };
+let savedValue: FormState = { items: ItemsMap.fromObject(getDemoTasks(), (item) => item.id) };
 
 export function ProjectTableDemo() {
     const {
-        value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue,
+        value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
     } = useForm<FormState>({
         value: savedValue,
         onSave: async (data) => {
@@ -49,27 +50,6 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
-
-    const itemsStorage = useMemo(
-        () => new ItemsStorage({ items: Object.values(value.items), getId: (item) => item.id }),
-        [],
-    );
-
-    const [itemsMap, setItemsMap] = useState<ItemsMap<number, Task>>(itemsStorage.itemsMap);
-
-    useEffect(() => {
-        const unsubscribe = itemsStorage.subscribe(() => {
-            setItemsMap(itemsStorage.itemsMap);
-        });
-        
-        return () => {
-            unsubscribe();
-        };
-    }, [itemsStorage]);
-
-    useEffect(() => {
-        itemsStorage.setItems(Object.values(value.items), { reset: true });
-    }, [itemsStorage, value.items]);
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
@@ -94,7 +74,7 @@ export function ProjectTableDemo() {
                 tempRelativeTask?.order,
             );
 
-            return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
+            return { ...currentValue, items: currentValue.items.set(task.id, task) };
         });
 
         setTableState((currentTableState) => {
@@ -106,7 +86,7 @@ export function ProjectTableDemo() {
                 selectedId: task.id,
             };
         });
-        
+
         dataTableFocusManager?.focusRow(task.id);
     }, [setValue, setTableState, dataTableFocusManager]);
 
@@ -142,16 +122,14 @@ export function ProjectTableDemo() {
             type: 'plain',
             dataSourceState: tableState,
             setDataSourceState: setTableState,
-            // items: Object.values(value.items),
-            itemsMap,
-            setItems: itemsStorage.setItems,
+            itemsMap: value.items,
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
-                // ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
-                value: itemsMap.get(task.id),
-                onValueChange: (newValue) => itemsStorage.setItems([newValue], { isDirty: true }),
+                ...lens.prop('items').getItem(task.id).toProps(), // pass IEditable to ezach row to allow editing
+                // value: value.items.get(task.id),
+                // onValueChange: (newValue) => value.items.set(newValue.id, newValue),
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {
@@ -162,7 +140,7 @@ export function ProjectTableDemo() {
                 },
             }),
         },
-        [itemsMap],
+        [value.items],
     );
 
     const { visibleRows, listProps } = useDataRows({
@@ -176,7 +154,7 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            return value.items[tableState.selectedId];
+            return value.items.get(tableState.selectedId);
         }
         return undefined;
     }, [tableState.selectedId, value.items]);
@@ -237,58 +215,60 @@ export function ProjectTableDemo() {
     };
 
     return (
-        <Panel cx={ css.container }>
-            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
-                <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
-                        <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
-                    </Tooltip>
-                </FlexCell>
-                <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
-                        <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
-                    </Tooltip>
-                </FlexCell>
-                <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
-                        <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
-                    </Tooltip>
-                </FlexCell>
-                <FlexCell width="auto">
-                    <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
-                        <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
-                    </Tooltip>
-                </FlexCell>
-                <FlexSpacer />
-                <FlexCell cx={ css.search } width={ 295 }>
-                    <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
-                </FlexCell>
-                <div className={ css.divider } />
-                <FlexCell width="auto">
-                    <IconButton icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
-                </FlexCell>
-                <FlexCell width="auto">
-                    <IconButton icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
-                </FlexCell>
-                <FlexCell width="auto">
-                    <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />
-                </FlexCell>
-                <FlexCell width="auto">
-                    <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
-                </FlexCell>
-            </FlexRow>
-            <DataTable
-                headerTextCase="upper"
-                getRows={ () => visibleRows }
-                columns={ columns }
-                value={ tableState }
-                onValueChange={ setTableState }
-                dataTableFocusManager={ dataTableFocusManager }
-                showColumnsConfig
-                allowColumnsResizing
-                allowColumnsReordering
-                { ...listProps }
-            />
-        </Panel>
+        <SomeContext.Provider value={ { c: '2' } }>
+            <Panel cx={ css.container }>
+                <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
+                    <FlexCell width="auto">
+                        <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
+                            <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
+                        </Tooltip>
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
+                            <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
+                        </Tooltip>
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
+                            <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
+                        </Tooltip>
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
+                            <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
+                        </Tooltip>
+                    </FlexCell>
+                    <FlexSpacer />
+                    <FlexCell cx={ css.search } width={ 295 }>
+                        <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
+                    </FlexCell>
+                    <div className={ css.divider } />
+                    <FlexCell width="auto">
+                        <IconButton icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <IconButton icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
+                    </FlexCell>
+                </FlexRow>
+                <DataTable
+                    headerTextCase="upper"
+                    getRows={ () => visibleRows }
+                    columns={ columns }
+                    value={ tableState }
+                    onValueChange={ setTableState }
+                    dataTableFocusManager={ dataTableFocusManager }
+                    showColumnsConfig
+                    allowColumnsResizing
+                    allowColumnsReordering
+                    { ...listProps }
+                />
+            </Panel>
+        </SomeContext.Provider>
     );
 }

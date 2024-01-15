@@ -1,10 +1,13 @@
+import { ItemsMap } from '../data';
 import { ICanBeReadonly, ICanBeRequired, IDisableable } from './props';
 
 type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ArrayType)[]
     ? ArrayType
-    : ArrayOrObject extends Record<any, infer ValueType>
+    : ArrayOrObject extends ItemsMap<any, infer ValueType>
         ? ValueType
-        : never;
+        : ArrayOrObject extends Record<any, infer ValueType>
+            ? ValueType
+            : never;
 
 export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired {
     /** Metadata for the nested fields */
