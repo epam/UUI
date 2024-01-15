@@ -29,6 +29,9 @@
 * [DatePicker]: added an HTML ID attribute for the toggler input.
 * [RangeDatePicker]: added an HTML ID attribute for the first input into toggler.
 * [ApiContext]: file upload now handle JSON.parse errors
+* [NumericInput]: removed 'none' from size type. 
+* [IconsDoc]: removed 'none' from size type. 
+* [DataPickerRow]: removed 'none' from size type. 
 
 # 5.4.3 - 19.12.2023
 
