@@ -46,7 +46,7 @@ export class TeamBlock extends React.Component {
                                                     href={ link }
                                                     clickAnalyticsEvent={ analyticsEvents.welcome.team(name) }
                                                 />
-                                                <Text lineHeight="24" fontSize="16">
+                                                <Text lineHeight="24" fontSize="16" size="none">
                                                     {position}
                                                 </Text>
                                             </div>
