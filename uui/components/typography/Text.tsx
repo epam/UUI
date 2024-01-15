@@ -4,7 +4,7 @@ import * as uuiComponents from '@epam/uui-components';
 import css from './Text.module.scss';
 
 type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'brand' | 'primary' | 'secondary' | 'disabled' | 'white';
-type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
+type TextSize = '18' | '24' | '30' | '36' | '42' | '48';
 type TextFontStyle = 'normal' | 'italic';
 type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
 
@@ -28,7 +28,7 @@ export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
      */
     fontStyle?: TextFontStyle;
     /**
-     * Defines text size.
+     * Defines text size
      * @default '36'
      */
     size?: TextSize;

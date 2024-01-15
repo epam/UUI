@@ -20,10 +20,10 @@ export class Slide extends React.Component<SlideProps> {
             <div className={ css.slide }>
                 <div className={ css.card }>
                     <img alt={ this.props.name } src={ this.props.image } width="180" height="180" />
-                    <Text fontWeight="600" lineHeight="24" fontSize="16" size="none">
+                    <Text fontWeight="600" lineHeight="24" fontSize="16">
                         {this.props.name}
                     </Text>
-                    <Text lineHeight="24" fontSize="16" size="none">
+                    <Text lineHeight="24" fontSize="16">
                         {this.props.position}
                     </Text>
                 </div>
