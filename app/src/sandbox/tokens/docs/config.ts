@@ -8,8 +8,8 @@ const CRITERIA = {
 };
 
 export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg = {
-    title: 'Tokens',
-    description: 'Core tokens are 2nd level of tokens and recommended to use for every case. Also, core tokens uses in the component level. Core tokens have many categories for every role. Find these categories below.',
+    title: '',
+    description: '',
     subgroups: [
         {
             title: 'Semantic tokens',

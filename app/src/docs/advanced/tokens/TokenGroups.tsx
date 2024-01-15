@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { Blocker, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
 import { useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
@@ -8,19 +8,9 @@ import css from './TokensPage.module.scss';
 
 // The config file with titles and descriptions to data groups and subgroups placed here: ( app/src/sandbox/tokens/docs/config.ts )
 
-interface TokenGroupsProps {
-    setTitleAndSubtitle: (title: string, subtitle: string) => void
-}
-
-export function TokenGroups({ setTitleAndSubtitle }: TokenGroupsProps) {
+export function TokenGroups() {
     const { uuiNotifications } = useUuiContext();
     const { loading, tokens } = useTokensDoc();
-
-    useEffect(() => {
-        if (!loading) {
-            setTitleAndSubtitle(tokens.title, tokens.description);
-        }
-    }, [loading]);
 
     const showNotification = (color: string) => {
         uuiNotifications
