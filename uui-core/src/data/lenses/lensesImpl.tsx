@@ -1,4 +1,4 @@
-import { ICanBeInvalid, IImmutableMap, Metadata } from '../../types';
+import { ICanBeInvalid, IBaseMap, Metadata } from '../../types';
 import { blankValidationState } from '../validation';
 
 export interface ILensImpl<TBig, TSmall> {
@@ -58,24 +58,24 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
     };
 }
 
-export function get<TItem, TId>(id: TId): ILensImpl<IImmutableMap<TId, TItem>, TItem> {
+export function get<TItem, TId>(id: TId): ILensImpl<IBaseMap<TId, TItem>, TItem> {
     return {
-        get(big: IImmutableMap<TId, TItem>) {
+        get(big: IBaseMap<TId, TItem>) {
             if (big == null) {
                 return undefined;
             } else {
                 return big.get(id);
             }
         },
-        set(big: IImmutableMap<TId, TItem>, small: TItem) {
+        set(big: IBaseMap<TId, TItem>, small: TItem) {
             return big.set(id, small);
         },
         getValidationState(big: ICanBeInvalid) {
             const validationStateProps = (big || blankValidationState).validationProps || {};
             return validationStateProps[id as string];
         },
-        getMetadata(big: Metadata<IImmutableMap<TId, TItem>>) {
-            const metadata: Metadata<IImmutableMap<TId, TItem>> = big || { all: { props: {} } };
+        getMetadata(big: Metadata<IBaseMap<TId, TItem>>) {
+            const metadata: Metadata<IBaseMap<TId, TItem>> = big || { all: { props: {} } };
             const metadataProps = metadata.all;
             const { isDisabled, isRequired, isReadonly } = metadata;
             return {

@@ -18,7 +18,6 @@ export class ItemsStorage<TItem, TId> {
         this._itemsMap = new ItemsMap(
             null,
             getId,
-            this.onUpdate,
         );
         if (items?.length) {
             this.setItems(items);
