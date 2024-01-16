@@ -15,12 +15,10 @@ export type CX = ClassValue;
 
 export type Icon = React.FC<any>;
 
-export interface IMap<TKey, TValue> {
+export interface IMap<TKey, TValue> extends IBaseMap<TKey, TValue> {
     constructor: Function;
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
-    get(key: TKey): TValue;
     set(key: TKey, value: TValue): IMap<TKey, TValue>;
-    has(key: TKey): boolean;
     delete(key: TKey): boolean;
     size: number;
 }
@@ -32,12 +30,10 @@ export type AnalyticsEvent = {
     [key: string]: any;
 } | null;
 
-export interface IImmutableMap<TKey, TValue> {
+export interface IBaseMap<TKey, TValue> {
     constructor: Function;
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
     get(key: TKey): TValue;
-    set(key: TKey, value: TValue): IImmutableMap<TKey, TValue>;
+    set(key: TKey, value?: TValue): IBaseMap<TKey, TValue>;
     has(key: TKey): boolean;
-    delete(key: TKey): IImmutableMap<TKey, TValue>;
-    size: number;
 }

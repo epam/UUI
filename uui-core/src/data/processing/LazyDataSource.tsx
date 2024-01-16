@@ -19,6 +19,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             flattenSearchResults: props.flattenSearchResults ?? true,
         };
         this.initCache();
+        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
@@ -27,7 +28,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             ...props,
             flattenSearchResults: props.flattenSearchResults ?? true,
         };
-        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
     }
 
     public getById = (id: TId): TItem | void => {
@@ -88,7 +88,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
                 unsubscribe();
             };
         }, []);
-
+        
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.trees.set(tree, reload);

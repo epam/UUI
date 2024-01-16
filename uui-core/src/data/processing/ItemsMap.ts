@@ -1,4 +1,4 @@
-import { IImmutableMap } from '../../types/objects';
+import { IBaseMap } from '../../types/objects';
 
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 
@@ -7,13 +7,12 @@ interface ModificationOptions {
     reset?: boolean;
 }
 
-export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
+export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
     private _itemsMap: Map<TId, TItem>;
 
     constructor(
         itemsMap: Map<TId, TItem>,
         private getId: (item: TItem) => TId,
-        private onUpdate?: OnUpdate<TId, TItem>,
     ) {
         this._itemsMap = new Map(itemsMap);
     }
@@ -26,26 +25,11 @@ export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
         return this._itemsMap.has(id);
     }
 
-    set(id: TId, item: TItem): ItemsMap<TId, TItem> {
+    set(id: TId, item?: TItem): ItemsMap<TId, TItem> {
         const itemsMap = new Map(this._itemsMap);
 
         itemsMap.set(id, item);
-        const newItemsMap = new ItemsMap(itemsMap, this.getId, this.onUpdate);
-
-        this.onUpdate?.(newItemsMap);
-
-        return newItemsMap;
-    }
-
-    delete(id: TId): ItemsMap<TId, TItem> {
-        const itemsMap = new Map(this._itemsMap);
-
-        itemsMap.delete(id);
-        const newItemsMap = new ItemsMap(itemsMap, this.getId, this.onUpdate);
-
-        this.onUpdate?.(newItemsMap);
-
-        return newItemsMap;
+        return new ItemsMap(itemsMap, this.getId);
     }
 
     forEach(action: (item: TItem, id: TId) => void) {
@@ -74,14 +58,14 @@ export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
         });
 
         if (updated) {
-            const newItemsMap = new ItemsMap(itemsLink, this.getId, this.onUpdate);
-
-            this.onUpdate?.(newItemsMap);
-
-            return newItemsMap;
+            return new ItemsMap(itemsLink, this.getId);
         }
 
         return this;
+    }
+
+    [Symbol.iterator]() {
+        return this._itemsMap[Symbol.iterator]();
     }
 
     public static fromObject<TId extends symbol | string | number, TItem>(
@@ -94,13 +78,5 @@ export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
         }
 
         return new ItemsMap<TId, TItem>(itemsMap, getId);
-    }
-
-    public get size() {
-        return this._itemsMap.size;
-    }
-
-    [Symbol.iterator]() {
-        return this._itemsMap[Symbol.iterator]();
     }
 }

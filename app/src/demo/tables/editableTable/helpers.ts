@@ -73,7 +73,7 @@ export const deleteTaskWithChildren = (tasks: ItemsMap<number, Task>, taskToDele
     let newItemsMap = tasks;
 
     [taskToBeDeleted.id, ...childrenIds].forEach((id) => {
-        newItemsMap = newItemsMap.delete(id);
+        newItemsMap = newItemsMap.set(id);
     });
 
     return newItemsMap;

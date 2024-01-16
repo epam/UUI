@@ -15,7 +15,6 @@ import { getColumns } from './columns';
 import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
-import { SomeContext } from '@epam/uui-core';
 
 interface FormState {
     items: ItemsMap<number, Task>;
@@ -218,60 +217,58 @@ export function ProjectTableDemo() {
     };
 
     return (
-        <SomeContext.Provider value={ { c: '2' } }>
-            <Panel cx={ css.container }>
-                <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
-                    <FlexCell width="auto">
-                        <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
-                            <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
-                        </Tooltip>
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
-                            <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
-                        </Tooltip>
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
-                            <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
-                        </Tooltip>
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
-                            <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
-                        </Tooltip>
-                    </FlexCell>
-                    <FlexSpacer />
-                    <FlexCell cx={ css.search } width={ 295 }>
-                        <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
-                    </FlexCell>
-                    <div className={ css.divider } />
-                    <FlexCell width="auto">
-                        <IconButton icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <IconButton icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
-                    </FlexCell>
-                </FlexRow>
-                <DataTable
-                    headerTextCase="upper"
-                    getRows={ () => visibleRows }
-                    columns={ columns }
-                    value={ tableState }
-                    onValueChange={ setTableState }
-                    dataTableFocusManager={ dataTableFocusManager }
-                    showColumnsConfig
-                    allowColumnsResizing
-                    allowColumnsReordering
-                    { ...listProps }
-                />
-            </Panel>
-        </SomeContext.Provider>
+        <Panel cx={ css.container }>
+            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
+                <FlexCell width="auto">
+                    <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
+                        <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
+                    </Tooltip>
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
+                        <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
+                    </Tooltip>
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
+                        <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
+                    </Tooltip>
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
+                        <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } />
+                    </Tooltip>
+                </FlexCell>
+                <FlexSpacer />
+                <FlexCell cx={ css.search } width={ 295 }>
+                    <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
+                </FlexCell>
+                <div className={ css.divider } />
+                <FlexCell width="auto">
+                    <IconButton icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <IconButton icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
+                </FlexCell>
+            </FlexRow>
+            <DataTable
+                headerTextCase="upper"
+                getRows={ () => visibleRows }
+                columns={ columns }
+                value={ tableState }
+                onValueChange={ setTableState }
+                dataTableFocusManager={ dataTableFocusManager }
+                showColumnsConfig
+                allowColumnsResizing
+                allowColumnsReordering
+                { ...listProps }
+            />
+        </Panel>
     );
 }
