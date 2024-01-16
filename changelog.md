@@ -32,6 +32,8 @@
 * [NumericInput]: removed 'none' from size type. 
 * [IconsDoc]: removed 'none' from size type. 
 * [DataPickerRow]: removed 'none' from size type. 
+* [PickerInput]: clip selected value with ellipsis while overflow
+
 
 # 5.4.3 - 19.12.2023
 
