@@ -47,7 +47,7 @@ export type TreeModeHook<T extends Modes> =
         deps: any[],
     ) => UseTreeResult<TItem, TId, TFilter>;
 
-export type AsyncTreeStrategyProps<TItem, TId, TFilter> =
+export type AsyncTreeProps<TItem, TId, TFilter> =
 {
     type: typeof STRATEGIES.async,
 } &

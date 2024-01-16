@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
-import { PlainTreeStrategyProps } from './types';
+import { PlainTreeProps } from './types';
 import { NewTree } from '../../../newTree';
 
-export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeStrategyProps<TItem, TId, TFilter>, deps: any[]): NewTree<TItem, TId> {
+export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeProps<TItem, TId, TFilter>, deps: any[]): NewTree<TItem, TId> {
     const { itemsMap, setItems, items } = props;
     const tree = useMemo(() => {
         return items instanceof NewTree

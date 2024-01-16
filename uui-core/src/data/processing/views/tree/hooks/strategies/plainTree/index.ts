@@ -1,1 +1,1 @@
-export { usePlainTreeStrategy } from './usePlainTreeStrategy';
+export { usePlainTree } from './usePlainTree';
