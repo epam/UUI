@@ -15,10 +15,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
-
-        this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
-
         this.setProps(props);
+        this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
