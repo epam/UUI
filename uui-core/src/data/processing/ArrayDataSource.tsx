@@ -15,16 +15,18 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
+
+        this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
+
         this.setProps(props);
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         this.props = props;
-        this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
     }
 
     public getById = (id: TId): TItem | undefined => {
-        return this.itemsStorage.itemsMap.get(id);
+        return this.itemsStorage.getItemsMap().get(id);
     };
 
     protected defaultGetParentId = (item: TItem) => {
@@ -38,7 +40,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             this.itemsStorage.setItems([item]);
         }
     }
- 
+
     useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
@@ -46,13 +48,14 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [itemsMap, setItemsMap] = useState(this.itemsStorage.itemsMap);
+        const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, ...restProps } = useTree({
             type: 'plain',
             ...this.props,
             ...options,
+            
             itemsMap,
             setItems: this.itemsStorage.setItems,
             dataSourceState: value,
@@ -66,7 +69,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.itemsStorage.subscribe(() => {
-                setItemsMap(this.itemsStorage.itemsMap);
+                setItemsMap(this.itemsStorage.getItemsMap());
             });
             
             return () => {

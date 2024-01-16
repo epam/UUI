@@ -3,6 +3,7 @@ import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { DataSourceState, IDataSourceView } from '../../types';
 import { AsyncListViewProps } from './views/AsyncListView';
 import { useDataRows, useTree } from './views';
+import { ItemsStorage } from './ItemsStorage';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
@@ -18,14 +19,19 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
         const props = { ...newProps };
+        if (newProps.items && newProps.items !== this.props.items) {
+            this.itemsStorage.setItems(newProps.items, { reset: true });
+        }
         // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
         // so this tweak is required to not reset items on any update
         props.items = newProps.items || this.props.items;
+
         super.setProps(props);
     }
 
     reload() {
         super.reload();
+        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
         this.setProps({ ...this.props, items: [] });
     }
 
@@ -36,7 +42,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [itemsMap, setItemsMap] = useState(this.itemsStorage.itemsMap);
+        const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
         
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, ...restProps } = useTree({
@@ -55,7 +61,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.itemsStorage.subscribe(() => {
-                setItemsMap(this.itemsStorage.itemsMap);
+                setItemsMap(this.itemsStorage.getItemsMap());
             });
             
             return () => {

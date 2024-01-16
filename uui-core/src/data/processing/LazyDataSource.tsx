@@ -18,7 +18,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             ...props,
             flattenSearchResults: props.flattenSearchResults ?? true,
         };
-        this.initCache();
         this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
     }
 
@@ -38,20 +37,12 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         return item;
     };
 
-    private initCache() {
-        this.cache = new ListApiCache({
-            api: this.props.api,
-            getId: this.getId,
-            onUpdate: this.updateViews,
-        });
-    }
-
     setItem(item: TItem) {
-        this.cache.setItem(item);
+        this.itemsStorage.setItems([item]);
     }
 
     public clearCache() {
-        this.initCache();
+        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
         super.reload();
     }
 
@@ -62,7 +53,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         deps: any[] = [],
     ) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [itemsMap, setItemsMap] = useState(this.itemsStorage.itemsMap);
+        const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, ...restProps } = useTree({
@@ -81,7 +72,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.itemsStorage.subscribe(() => {
-                setItemsMap(this.itemsStorage.itemsMap);
+                setItemsMap(this.itemsStorage.getItemsMap());
             });
             
             return () => {
