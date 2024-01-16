@@ -31,3 +31,13 @@ export type AnalyticsEvent = {
     /** Any data, which will be sent with event */
     [key: string]: any;
 } | null;
+
+export interface IImmutableMap<TKey, TValue> {
+    constructor: Function;
+    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    get(key: TKey): TValue;
+    set(key: TKey, value: TValue): IImmutableMap<TKey, TValue>;
+    has(key: TKey): boolean;
+    delete(key: TKey): IImmutableMap<TKey, TValue>;
+    size: number;
+}

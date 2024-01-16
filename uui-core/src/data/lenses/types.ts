@@ -1,13 +1,12 @@
-import { IEditable } from '../../types';
-import { ItemsMap } from '../processing';
+import { IEditable, IImmutableMap } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
-export type ItemsMapElement<MapType> = MapType extends ItemsMap<any, infer Item> ? Item : never;
+export type IImmutableMapElement<MapType> = MapType extends IImmutableMap<any, infer Item> ? Item : never;
 
 export interface ILens<TFocused> {
     /** Get lens value */
     get(): TFocused;
-    getItem<TId>(id: TId): ILens<NonNullable<ItemsMapElement<TFocused>>>;
+    getItem<TId>(id: TId): ILens<NonNullable<IImmutableMapElement<TFocused>>>;
 
     /** Set new lens value */
     set(value: TFocused): void;
