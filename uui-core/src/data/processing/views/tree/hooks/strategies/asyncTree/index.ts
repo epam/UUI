@@ -1,1 +1,1 @@
-export { useAsyncTreeStrategy } from './useAsyncTreeStrategy';
+export { useAsyncTree } from './useAsyncTree';

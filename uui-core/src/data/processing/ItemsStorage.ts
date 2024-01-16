@@ -1,6 +1,6 @@
 import { ItemsMap, OnUpdate } from './ItemsMap';
 
-interface ModificationOptions {
+export interface ModificationOptions {
     isDirty?: boolean;
     reset?: boolean;
 }

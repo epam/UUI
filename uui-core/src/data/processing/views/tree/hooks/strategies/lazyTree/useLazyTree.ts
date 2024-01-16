@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { LazyTreeStrategyProps } from './types';
+import { LazyTreeProps } from './types';
 import { usePrevious } from '../../../../../../../hooks';
 import { DataSourceState } from '../../../../../../../types';
 
@@ -12,8 +12,8 @@ import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefault
 import { NewTree } from '../../../newTree';
 import { useItemsStorage } from '../useItemsStorage';
 
-export function useLazyTreeStrategy<TItem, TId, TFilter = any>(
-    { flattenSearchResults = true, ...restProps }: LazyTreeStrategyProps<TItem, TId, TFilter>,
+export function useLazyTree<TItem, TId, TFilter = any>(
+    { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };

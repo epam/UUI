@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ClientAsyncTreeProps } from './types';
-import { usePlainTreeStrategy } from '../plainTree';
+import { usePlainTree } from '../plainTree';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { NewTree } from '../../../newTree';
@@ -33,7 +33,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
 
     const prevIsFetching = useSimplePrevious(isFetching);
 
-    const { tree, ...restProps } = usePlainTreeStrategy(
+    const { tree, ...restProps } = usePlainTree(
         { ...props, items: treeWithData, type: 'plain' },
         [...deps, treeWithData],
     );

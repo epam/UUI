@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { PlainTreeStrategyProps } from './types';
+import { PlainTreeProps } from './types';
 import { useCreateTree } from './useCreateTree';
 import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
@@ -8,8 +8,8 @@ import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 import { useItemsStorage } from '../useItemsStorage';
 
-export function usePlainTreeStrategy<TItem, TId, TFilter = any>(
-    { sortSearchByRelevance = true, ...restProps }: PlainTreeStrategyProps<TItem, TId, TFilter>,
+export function usePlainTree<TItem, TId, TFilter = any>(
+    { sortSearchByRelevance = true, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { ...restProps, sortSearchByRelevance };

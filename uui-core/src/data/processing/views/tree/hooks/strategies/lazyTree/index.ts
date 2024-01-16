@@ -1,1 +1,1 @@
-export { useLazyTreeStrategy } from './useLazyTreeStrategy';
+export { useLazyTree } from './useLazyTree';

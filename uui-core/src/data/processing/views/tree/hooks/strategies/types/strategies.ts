@@ -1,29 +1,29 @@
 import { UseTreeResult } from '../../types';
 import { STRATEGIES } from '../constants';
-import { LazyTreeStrategyProps } from '../lazyTree/types';
-import { PlainTreeStrategyProps } from '../../strategies/plainTree/types';
-import { AsyncTreeStrategyProps } from '../asyncTree/types';
+import { LazyTreeProps } from '../lazyTree/types';
+import { PlainTreeProps } from '../../strategies/plainTree/types';
+import { AsyncTreeProps } from '../asyncTree/types';
 import { NewTree } from '../../../newTree';
 
-type PlainTreeStrategyPropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeStrategyProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
+type PlainTreePropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
 
-export type UseTreeStrategyProps<TItem, TId, TFilter = any> = Exclude<TreeStrategyProps<TItem, TId, TFilter>, { type: 'plain' }>
-| PlainTreeStrategyPropsWithOptionalType<TItem, TId, TFilter>;
+export type UseTreeProps<TItem, TId, TFilter = any> = Exclude<TreeProps<TItem, TId, TFilter>, { type: 'plain' }>
+| PlainTreePropsWithOptionalType<TItem, TId, TFilter>;
 
 export type Strategies = typeof STRATEGIES[keyof typeof STRATEGIES];
 
-export type ExtractTreeStrategyProps<T extends Strategies, TItem, TId, TFilter = any> = Extract<TreeStrategyProps< TItem, TId, TFilter>, { type: T }>;
+export type ExtractTreeProps<T extends Strategies, TItem, TId, TFilter = any> = Extract<TreeProps< TItem, TId, TFilter>, { type: T }>;
 
-export type TreeStrategyHook<T extends Strategies> =
+export type TreeHook<T extends Strategies> =
     <TItem, TId, TFilter = any>(
-        props: ExtractTreeStrategyProps<T, TItem, TId, TFilter>,
+        props: ExtractTreeProps<T, TItem, TId, TFilter>,
         deps: any[],
     ) => UseTreeResult<TItem, TId, TFilter>;
 
-export type TreeStrategyProps<TItem, TId, TFilter = any> = (
-    PlainTreeStrategyProps<TItem, TId, TFilter>
-    | AsyncTreeStrategyProps<TItem, TId, TFilter>
-    | LazyTreeStrategyProps<TItem, TId, TFilter>
+export type TreeProps<TItem, TId, TFilter = any> = (
+    PlainTreeProps<TItem, TId, TFilter>
+    | AsyncTreeProps<TItem, TId, TFilter>
+    | LazyTreeProps<TItem, TId, TFilter>
 );
 
 export interface LoadMissingRecords<TItem, TId> {

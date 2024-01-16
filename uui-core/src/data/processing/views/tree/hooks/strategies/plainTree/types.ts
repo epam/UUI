@@ -3,7 +3,7 @@ import { SortingOption } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
 
-export type PlainTreeStrategyProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, TId, TFilter> & {
+export type PlainTreeProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.plain;
     items?: TItem[] | NewTree<TItem, TId>;
     itemsMap?: ItemsMap<TId, TItem>;

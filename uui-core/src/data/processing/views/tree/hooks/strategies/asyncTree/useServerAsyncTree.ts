@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { usePlainTreeStrategy } from '../plainTree';
+import { usePlainTree } from '../plainTree';
 import { ServerAsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
@@ -49,7 +49,7 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
     }, [treeWithData]);
 
     const { filter, sorting, search, ...restDataSourceState } = dataSourceState;
-    const { tree, ...restProps } = usePlainTreeStrategy(
+    const { tree, ...restProps } = usePlainTree(
         {
             ...props,
             items: currentTree,
