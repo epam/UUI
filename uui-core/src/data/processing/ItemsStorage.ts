@@ -39,7 +39,7 @@ export class ItemsStorage<TItem, TId> {
         this.subs.forEach((_, onUpdate) => onUpdate(newItemsMap));
     };
 
-    get itemsMap() {
+    public getItemsMap() {
         return this._itemsMap;
     }
 }

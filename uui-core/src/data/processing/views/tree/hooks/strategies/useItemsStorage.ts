@@ -18,12 +18,12 @@ export function useItemsStorage<TItem, TId>({ itemsMap: outerItemsMap, setItems,
         return null;
     }, [outerItemsMap]);
 
-    const [itemsMap, setItemsMap] = useState(outerItemsMap ?? (items instanceof NewTree ? items.itemsMap : itemsStorage.itemsMap));
+    const [itemsMap, setItemsMap] = useState(outerItemsMap ?? (items instanceof NewTree ? items.itemsMap : itemsStorage.getItemsMap()));
 
     useEffect(() => {
         if (itemsStorage) {
             const unsubscribe = itemsStorage.subscribe(() => {
-                setItemsMap(itemsStorage.itemsMap);
+                setItemsMap(itemsStorage.getItemsMap());
             });
 
             return () => {
