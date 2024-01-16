@@ -66,10 +66,15 @@ export function ProjectTableDemo() {
         }
 
         setValue((currentValue) => {
+            const orders: string[] = [];
+            currentValue.items.forEach((item) => {
+                if (item.parentId === task.parentId) {
+                    orders.push(item.order);
+                }
+            });
+        
             task.order = getInsertionOrder(
-                Object.values(currentValue.items)
-                    .filter((i) => i.parentId === task.parentId)
-                    .map((i) => i.order),
+                orders,
                 position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
                 tempRelativeTask?.order,
             );
