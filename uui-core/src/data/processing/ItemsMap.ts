@@ -1,3 +1,5 @@
+import { IImmutableMap } from '../../types/objects';
+
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 
 interface ModificationOptions {
@@ -5,7 +7,7 @@ interface ModificationOptions {
     reset?: boolean;
 }
 
-export class ItemsMap<TId, TItem> {
+export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
     private _itemsMap: Map<TId, TItem>;
 
     constructor(
@@ -35,7 +37,7 @@ export class ItemsMap<TId, TItem> {
         return newItemsMap;
     }
 
-    delete(id: TId) {
+    delete(id: TId): ItemsMap<TId, TItem> {
         const itemsMap = new Map(this._itemsMap);
 
         itemsMap.delete(id);
@@ -92,5 +94,13 @@ export class ItemsMap<TId, TItem> {
         }
 
         return new ItemsMap<TId, TItem>(itemsMap, getId);
+    }
+
+    public get size() {
+        return this._itemsMap.size;
+    }
+
+    [Symbol.iterator]() {
+        return this._itemsMap[Symbol.iterator]();
     }
 }

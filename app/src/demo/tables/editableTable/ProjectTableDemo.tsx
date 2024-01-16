@@ -128,8 +128,6 @@ export function ProjectTableDemo() {
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
                 ...lens.prop('items').getItem(task.id).toProps(), // pass IEditable to ezach row to allow editing
-                // value: value.items.get(task.id),
-                // onValueChange: (newValue) => value.items.set(newValue.id, newValue),
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {

@@ -1,9 +1,9 @@
-import { ItemsMap } from '../data';
+import { IImmutableMap } from './objects';
 import { ICanBeReadonly, ICanBeRequired, IDisableable } from './props';
 
 type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ArrayType)[]
     ? ArrayType
-    : ArrayOrObject extends ItemsMap<any, infer ValueType>
+    : ArrayOrObject extends IImmutableMap<any, infer ValueType>
         ? ValueType
         : ArrayOrObject extends Record<any, infer ValueType>
             ? ValueType
