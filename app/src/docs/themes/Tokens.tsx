@@ -1,9 +1,9 @@
 import React from 'react';
-import { BaseDocsBlock, EditableDocContent } from '../../../common';
-import { TokenGroups } from './TokenGroups';
+import { BaseDocsBlock, EditableDocContent } from '../../common';
+import { TokenGroups } from './implementation/TokenGroups';
 
 export class Tokens extends BaseDocsBlock {
-    title: string;
+    title: 'Tokens';
 
     renderContent() {
         return (

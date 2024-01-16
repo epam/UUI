@@ -4,6 +4,7 @@ export * from './other';
 export * from './design';
 export * from './advanced';
 export * from './tables';
+export * from './themes';
 export * from './GettingStarted.doc';
 export * from './Overview.doc';
 export * from './accordion/Accordion.doc';

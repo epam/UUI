@@ -4,7 +4,7 @@ import { useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
 import { ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
-import css from './TokensPage.module.scss';
+import css from './TokenGroups.module.scss';
 
 // The config file with titles and descriptions to data groups and subgroups placed here: ( app/src/sandbox/tokens/docs/config.ts )
 
