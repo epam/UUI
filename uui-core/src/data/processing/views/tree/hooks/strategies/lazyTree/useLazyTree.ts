@@ -88,7 +88,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         let currentTree = treeWithData;
         if (prevDataSourceState == null || shouldReloadData) {
             setIsFetching(true);
-            currentTree = treeWithData.clearStructure('visible');
+            currentTree = treeWithData.clearStructure();
             if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
                 currentTree = currentTree.reset();
             }
