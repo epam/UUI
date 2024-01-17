@@ -68,7 +68,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 }
 
                 const row = getRowProps(item, rows.length);
-                if (appendRows && rows.length < lastRowIndex) {
+                if (appendRows) {
                     rows.push(row);
                     layerRows.push(row);
                     currentLevelRows++;
