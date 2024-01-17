@@ -304,6 +304,9 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
                 pageSize: dataSourceState.pageSize,
             },
         );
+
+        this.itemsMap = this.setItems(response.items, { reset: true });
+
         return TreeSnapshot.createFromItems({ snapshot: this, items: response.items });
     }
 

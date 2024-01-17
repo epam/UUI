@@ -6,7 +6,7 @@ import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
-import { CommonDataSourceConfig, TreeLoadingState, TreeRowsStats } from '../tree/hooks/strategies/types/common';
+import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD } from '../tree';
 import { LoadMissingRecords } from '../tree/hooks/strategies/types';
 import { NewTree } from '../tree/newTree';
@@ -14,11 +14,9 @@ import { NewTree } from '../tree/newTree';
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
-    TreeRowsStats,
     LoadMissingRecords<TItem, TId> {
 
     tree: NewTree<TItem, TId>;
-    isPartialLoad?: boolean;
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
@@ -28,24 +26,32 @@ export function useDataRows<TItem, TId, TFilter = any>(
         tree,
         getId,
         getParentId,
+        getChildCount,
         dataSourceState,
 
         flattenSearchResults,
-        isPartialLoad,
         getRowOptions,
         rowOptions,
 
         cascadeSelection,
         isLoading,
         isFetching,
-        completeFlatListRowsCount,
-        totalCount,
         setDataSourceState,
         isFoldedByDefault,
         loadMissingRecords,
     } = props;
 
     const treeSnapshot = useMemo(() => tree.snapshot(), [tree]);
+
+    const { completeFlatListRowsCount, totalCount } = useMemo(() => {
+        const rootInfo = treeSnapshot.getNodeInfo(undefined);
+        const rootCount = rootInfo.count;
+
+        return {
+            completeFlatListRowsCount: !getChildCount && rootCount != null ? rootCount : undefined,
+            totalCount: rootInfo.totalCount ?? treeSnapshot.getTotalRecursiveCount() ?? 0,
+        };
+    }, [getChildCount, treeSnapshot]);
 
     const lastRowIndex = useMemo(
         () => {
@@ -149,7 +155,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         tree,
         dataSourceState,
         cascadeSelection,
-        isPartialLoad,
         isFlattenSearch,
         lastRowIndex,
         getEstimatedChildrenCount,

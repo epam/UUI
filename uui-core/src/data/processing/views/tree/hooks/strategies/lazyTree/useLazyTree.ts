@@ -133,20 +133,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         areMoreRowsNeeded,
     ]);
 
-    const treeRowsStats = useMemo(() => {
-        const rootInfo = treeSnapshot.getNodeInfo(undefined);
-        const rootCount = rootInfo.count;
-        let completeFlatListRowsCount = undefined;
-        if (!getChildCount && rootCount != null) {
-            completeFlatListRowsCount = rootCount;
-        }
-
-        return {
-            completeFlatListRowsCount,
-            totalCount: rootInfo.totalCount ?? treeSnapshot.getTotalRecursiveCount() ?? 0,
-        };
-    }, [getChildCount, treeSnapshot]);
-
     const reload = useCallback(() => {
         setIsForceReload(true);
     }, [props, setTreeWithData]);
@@ -166,6 +152,5 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isFetching,
         isLoading,
         loadMissingRecords,
-        ...treeRowsStats,
     };
 }

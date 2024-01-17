@@ -57,15 +57,6 @@ export function usePlainTree<TItem, TId, TFilter = any>(
 
     const treeSnapshot = useMemo(() => tree.snapshot(), [tree]);
 
-    const treeRowsStats = useMemo(() => {
-        const rootInfo = treeSnapshot.getNodeInfo(undefined);
-
-        return {
-            completeFlatListRowsCount: undefined,
-            totalCount: rootInfo.totalCount ?? treeSnapshot.getTotalRecursiveCount() ?? 0,
-        };
-    }, [treeSnapshot]);
-
     const getChildCount = useCallback((item: TItem): number | undefined => {
         if (props.getChildCount) {
             return props.getChildCount(item) ?? treeSnapshot.getChildrenByParentId(getId(item)).length;
@@ -88,7 +79,6 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             dataSourceState,
             setDataSourceState,
             reload,
-            ...treeRowsStats,
         }),
         [
             tree,
@@ -97,7 +87,6 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             rowOptions,
             getRowOptions,
             dataSourceState,
-            treeRowsStats,
             getChildCount,
             getParentId,
             getId,

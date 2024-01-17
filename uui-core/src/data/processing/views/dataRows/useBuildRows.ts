@@ -16,7 +16,6 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
 
     tree: NewTree<TItem, TId>;
 
-    isPartialLoad?: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
     lastRowIndex: number;
@@ -32,7 +31,6 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
 export function useBuildRows<TItem, TId, TFilter = any>({
     tree,
     dataSourceState,
-    isPartialLoad,
     getEstimatedChildrenCount,
     getMissingRecordsCount,
     cascadeSelection,
@@ -70,7 +68,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 }
 
                 const row = getRowProps(item, rows.length);
-                if (appendRows && (!isPartialLoad || (isPartialLoad && rows.length < lastRowIndex))) {
+                if (appendRows && rows.length < lastRowIndex) {
                     rows.push(row);
                     layerRows.push(row);
                     currentLevelRows++;

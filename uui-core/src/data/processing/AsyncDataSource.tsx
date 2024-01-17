@@ -30,9 +30,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     }
 
     reload() {
-        super.reload();
         this.setProps({ ...this.props, items: [] });
         this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+        super.reload();
     }
 
     useView(
