@@ -19,7 +19,7 @@ export class PickerInputDoc extends BaseDocsBlock {
             [TSkin.Loveship]: { type: '@epam/uui:CompletePickerInputProps', component: loveship.PickerInput },
             [TSkin.Promo]: { type: '@epam/uui:CompletePickerInputProps', component: promo.PickerInput },
         },
-        doc: (doc: DocBuilder<uui.CompletePickerInputProps<any, any>>) => {
+        doc: (doc: DocBuilder<uui.PickerInputProps<any, any>>) => {
             doc.merge('renderToggler', { examples: renderTogglerExamples });
             doc.merge('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] });
             doc.merge('size', { defaultValue: '36' });

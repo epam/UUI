@@ -13,7 +13,13 @@ export interface ContextProviderProps<TApi, TAppContext> extends UuiServicesProp
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
     /** Called when all contexts were initiated */
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
+    /** Instance of react-router history.
+     * Note, that it should be the same object which you passed to the Router.
+     * */
     history?: IHistory4;
+    /** Code of Google Analytics.
+     * If provided, user interactions events will be sent to your GA.
+     * */
     gaCode?: string;
 }
 

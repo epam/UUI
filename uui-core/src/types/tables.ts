@@ -169,6 +169,9 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     rowProps: DataRowProps<TItem, TId>;
     /** Cell mode signal the editor component to adapt it's visuals to cell editor */
     mode: 'cell';
+    /** Ref to pass to the editor component.
+     * It's required for correct focus/blur behavior.
+     * */
     ref?: ForwardedRef<HTMLElement>;
 }
 
