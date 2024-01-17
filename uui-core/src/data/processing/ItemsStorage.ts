@@ -32,12 +32,10 @@ export class ItemsStorage<TItem, TId> {
 
     setItems = (items: TItem[], options?: ModificationOptions) => {
         this._itemsMap = this._itemsMap.setItems(items, options);
-        return this._itemsMap;
-    };
 
-    onUpdate = (newItemsMap: ItemsMap<TId, TItem>) => {
-        this._itemsMap = newItemsMap;
-        this.subs.forEach((_, onUpdate) => onUpdate(newItemsMap));
+        this.subs.forEach((_, onUpdate) => onUpdate(this._itemsMap));
+
+        return this._itemsMap;
     };
 
     public getItemsMap() {

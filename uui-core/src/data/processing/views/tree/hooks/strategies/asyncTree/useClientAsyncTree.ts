@@ -34,7 +34,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
     const prevIsFetching = useSimplePrevious(isFetching);
 
     const { tree, ...restProps } = usePlainTree(
-        { ...props, items: treeWithData, type: 'plain' },
+        { ...props, itemsMap, setItems, items: treeWithData, type: 'plain' },
         [...deps, treeWithData],
     );
 

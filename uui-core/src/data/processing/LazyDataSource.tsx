@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { LazyListViewProps, NOT_FOUND_RECORD, useDataRows, useTree } from './views';
+import { LazyListViewProps, useDataRows, useTree } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState } from '../../types';
@@ -30,11 +30,8 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     }
 
     public getById = (id: TId): TItem | void => {
-        const item = this.cache.byId(id);
-        if (item === NOT_FOUND_RECORD) {
-            return;
-        }
-        return item;
+        const map = this.itemsStorage.getItemsMap();
+        return map.has(id) ? map.get(id) : null;
     };
 
     setItem(item: TItem) {
@@ -42,8 +39,8 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     }
 
     public clearCache() {
-        super.reload();
         this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+        super.reload();
     }
 
     useView<TState extends DataSourceState<any, TId>>(

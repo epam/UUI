@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import dayjs from 'dayjs';
 import cx from 'classnames';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig } from '@epam/uui-core';
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
@@ -27,6 +27,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
+    const forceUpdate = useForceUpdate();
 
     const popperModifiers: Modifier<any>[] = useMemo(() => {
         const modifiers: Modifier<any>[] = [
@@ -176,11 +177,12 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         switch (props.type) {
             case 'multiPicker': {
                 let isLoading = false;
-
+                
+                const view = props.dataSource.useView({}, forceUpdate);
                 const selection = currentValue
                     ? currentValue?.slice(0, maxCount).map((i: any) => {
-                        const item = props.dataSource.getById(i);
-                        isLoading = item.isLoading;
+                        const item = view.getById(i, null);
+                        isLoading = item?.isLoading;
                         return getPickerItemName(item, props);
                     })
                     : currentValue;
@@ -205,8 +207,9 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 if (currentValue === null || currentValue === undefined) {
                     return { selection: undefined };
                 }
+                const view = props.dataSource.useView({}, forceUpdate);
 
-                const item = props.dataSource.getById(currentValue);
+                const item = view.getById(currentValue, null);
                 const selection = getPickerItemName(item, props);
 
                 return { selection: [selection] };

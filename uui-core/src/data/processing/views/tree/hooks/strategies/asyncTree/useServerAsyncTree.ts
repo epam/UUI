@@ -54,6 +54,8 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
             ...props,
             items: currentTree,
             dataSourceState: restDataSourceState,
+            itemsMap,
+            setItems,
             type: 'plain',
         },
         [...deps, currentTree],
