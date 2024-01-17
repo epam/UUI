@@ -5,7 +5,6 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
     TreeActions,
-    TreeRowsStats,
     LoadMissingRecords<TItem, TId> {
 
     tree: NewTree<TItem, TId>;

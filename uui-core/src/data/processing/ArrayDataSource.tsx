@@ -16,11 +16,18 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.setProps(props);
-        this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
+        const currentItems = this.props?.items;
+
         this.props = props;
+        if (props.items && currentItems !== props.items) {
+            if (!this.itemsStorage) {
+                this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+            }
+            this.itemsStorage.setItems(props.items, { reset: true });
+        }
     }
 
     public getById = (id: TId): TItem | undefined => {

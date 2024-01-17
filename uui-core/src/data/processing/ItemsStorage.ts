@@ -31,7 +31,8 @@ export class ItemsStorage<TItem, TId> {
     }
 
     setItems = (items: TItem[], options?: ModificationOptions) => {
-        return this._itemsMap.setItems(items, options);
+        this._itemsMap = this._itemsMap.setItems(items, options);
+        return this._itemsMap;
     };
 
     onUpdate = (newItemsMap: ItemsMap<TId, TItem>) => {
