@@ -3,13 +3,13 @@ import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject,
 } from '@epam/uui-test-utils';
-import { Modals, PickerInputBaseProps, PickerToggler } from '@epam/uui-components';
+import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
 import { TestItemType, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
-type PickerInputComponentProps<TItem, TId> = PickerInputBaseProps<TItem, TId> & PickerInputProps;
+type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
 async function setupPickerInputForTest<TItem = TestItemType, TId = number>(params: Partial<PickerInputComponentProps<TItem, TId>>) {
     const { result, mocks, setProps } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
@@ -23,6 +23,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                     getName: (item: TestItemType) => item.level,
                     value: params.value as TId,
                     selectionMode: 'single',
+                    searchDebounceDelay: 0,
                 }, params) as PickerInputComponentProps<TItem, TId>;
             }
 
@@ -34,6 +35,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                 getName: (item: TestItemType) => item.level,
                 value: params.value as number[],
                 selectionMode: 'multi',
+                searchDebounceDelay: 0,
             }, params) as PickerInputComponentProps<TItem, TId>;
         },
         (props) => (
@@ -495,27 +497,79 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickClearAllOptions();
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
         });
-
-        it('should show only selected', async () => {
+        
+        describe('show only selected', () => {
+            it('should show only selected items', async () => {
+                const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                    value: [4, 2, 6, 8],
+                    selectionMode: 'multi',
+                });
+    
+                fireEvent.click(dom.input);
+    
+                const dialog = await screen.findByRole('dialog');
+                expect(dialog).toBeInTheDocument();
+    
+                await PickerInputTestObject.waitForOptionsToBeReady();
+    
+                expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
+                expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
+    
+                await PickerInputTestObject.clickShowOnlySelected();
+    
+                expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
+                expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
+            });
+        });
+    
+        it('should clear search on show only selected toggle', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: [4, 2, 6, 8],
                 selectionMode: 'multi',
+                searchPosition: 'body',
             });
-
-            fireEvent.click(dom.input);
-
-            const dialog = await screen.findByRole('dialog');
+    
+            fireEvent.click(dom.target);
+    
+            const dialog = await PickerInputTestObject.findDialog();
             expect(dialog).toBeInTheDocument();
-
+    
             await PickerInputTestObject.waitForOptionsToBeReady();
-
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
+    
+            const searchInput = within(dialog).queryByRole('searchbox') as HTMLInputElement;
+            fireEvent.change(searchInput, { target: { value: 'search' } });
 
             await PickerInputTestObject.clickShowOnlySelected();
 
+            await waitFor(() => expect(searchInput.value).toEqual(''));
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
+        });
+
+        it('should turn off show only selected mode on search change', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: [4, 2, 6, 8],
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+    
+            fireEvent.click(dom.target);
+    
+            const dialog = screen.queryByRole('dialog');
+            expect(dialog).toBeInTheDocument();
+            await PickerInputTestObject.waitForOptionsToBeReady();
+    
+            await PickerInputTestObject.clickShowOnlySelected();
+    
+            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
+            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
+    
+            const searchInput = within(dialog).getByRole('searchbox') as HTMLInputElement;
+            fireEvent.change(searchInput, { target: { value: 'search' } });
+
+            const showOnlySelectedSwitch = within(dialog).queryByRole('switch', { name: 'Show only selected' }) as HTMLInputElement;
+
+            await waitFor(() => expect(showOnlySelectedSwitch.checked).toEqual(false));
         });
     });
 
