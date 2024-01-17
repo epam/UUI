@@ -15,8 +15,6 @@ import {
     Tree, LoadTreeOptions, ITree, ROOT_ID, NOT_FOUND_RECORD,
 } from './tree';
 
-export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
-
 export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /**
      * A function to retrieve the data, asynchronously.

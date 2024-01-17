@@ -111,8 +111,11 @@ DataRowOptions<TItem, TId> & {
 
 /** Holds parent info for data rows */
 export interface DataRowPathItem<TId, TItem> {
+    /** Item ID */
     id: TId;
+    /** Item value */
     value: TItem;
+    /** If true, indicates that this item last child of his parent */
     isLastChild: boolean;
 }
 

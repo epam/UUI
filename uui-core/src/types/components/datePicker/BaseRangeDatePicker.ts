@@ -17,6 +17,7 @@ export interface RangeDatePickerValue {
 export type RangeDatePickerInputType = 'from' | 'to';
 
 export type RangeDatePickerPresets = {
+    /** Preset config */
     [key: string]: {
         /** Name of the preset to display in rangeDatePicker body */
         name: ReactNode;

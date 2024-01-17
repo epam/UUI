@@ -5490,7 +5490,13 @@
       "    loadAppContext?: (api: TApi) => Promise<TAppContext>;",
       "    /** Called when all contexts were initiated */",
       "    onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;",
+      "    /** Instance of react-router history.",
+      "     * Note, that it should be the same object which you passed to the Router.",
+      "     * */",
       "    history?: IHistory4;",
+      "    /** Code of Google Analytics.",
+      "     * If provided, user interactions events will be sent to your GA.",
+      "     * */",
       "    gaCode?: string;",
       "}"
      ]
@@ -5531,6 +5537,12 @@
      {
       "uid": "history",
       "name": "history",
+      "comment": {
+       "raw": [
+        "Instance of react-router history.",
+        " Note, that it should be the same object which you passed to the Router."
+       ]
+      },
       "typeValue": {
        "raw": "IHistory4"
       },
@@ -5539,6 +5551,12 @@
      {
       "uid": "gaCode",
       "name": "gaCode",
+      "comment": {
+       "raw": [
+        "Code of Google Analytics.",
+        " If provided, user interactions events will be sent to your GA."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -6285,6 +6303,7 @@
      "raw": "DataQuery<T>",
      "print": [
       "interface DataQuery<T> extends Pick<LazyDataSourceApiRequest<T>, 'sorting' | 'range' | 'search'> {",
+      "    /** The filter object value with predicates, by which data should be filtered. */",
       "    filter?: DataQueryFilter<T>;",
       "}"
      ]
@@ -6293,6 +6312,11 @@
      {
       "uid": "filter",
       "name": "filter",
+      "comment": {
+       "raw": [
+        "The filter object value with predicates, by which data should be filtered."
+       ]
+      },
       "typeValue": {
        "raw": "DataQueryFilter<T>"
       },
@@ -6676,8 +6700,11 @@
      "print": [
       "/** Holds parent info for data rows */",
       "interface DataRowPathItem<TId, TItem> {",
+      "    /** Item ID */",
       "    id: TId;",
+      "    /** Item value */",
       "    value: TItem;",
+      "    /** If true, indicates that this item last child of his parent */",
       "    isLastChild: boolean;",
       "}"
      ]
@@ -6686,6 +6713,11 @@
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "Item ID"
+       ]
+      },
       "typeValue": {
        "raw": "TId"
       },
@@ -6694,6 +6726,11 @@
      {
       "uid": "value",
       "name": "value",
+      "comment": {
+       "raw": [
+        "Item value"
+       ]
+      },
       "typeValue": {
        "raw": "TItem"
       },
@@ -6702,6 +6739,11 @@
      {
       "uid": "isLastChild",
       "name": "isLastChild",
+      "comment": {
+       "raw": [
+        "If true, indicates that this item last child of his parent"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -11408,90 +11450,6 @@
       },
       "typeValue": {
        "raw": "null | (instance: any) => void | React.RefObject<any>"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:DndContextState": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "DndContextState",
-     "nameFull": "DndContextState"
-    },
-    "src": "uui-core/src/services/dnd/DndContext.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "DndContextState",
-     "print": [
-      "interface DndContextState {",
-      "    isDragging: boolean;",
-      "    ghostOffsetX?: number;",
-      "    ghostOffsetY?: number;",
-      "    ghostWidth?: number;",
-      "    renderGhost?(): React.ReactNode;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "isDragging",
-      "name": "isDragging",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
-     },
-     {
-      "uid": "ghostOffsetX",
-      "name": "ghostOffsetX",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "ghostOffsetY",
-      "name": "ghostOffsetY",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "ghostWidth",
-      "name": "ghostWidth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderGhost",
-      "name": "renderGhost",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
       },
       "required": false
      }
@@ -31997,138 +31955,6 @@
       },
       "from": "@epam/uui-core:IHasTabIndex",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:TMouseCoords": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "TMouseCoords",
-     "nameFull": "TMouseCoords"
-    },
-    "src": "uui-core/src/services/dnd/DndContext.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TMouseCoords",
-     "print": [
-      "type TMouseCoords = {",
-      "    mousePageX: number;",
-      "    mousePageY: number;",
-      "    mouseDx: number;",
-      "    mouseDy: number;",
-      "    mouseDxSmooth: number;",
-      "    mouseDySmooth: number;",
-      "    mouseDownPageX: number;",
-      "    mouseDownPageY: number;",
-      "    buttons: number;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "mousePageX",
-      "name": "mousePageX",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mousePageY",
-      "name": "mousePageY",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mouseDx",
-      "name": "mouseDx",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mouseDy",
-      "name": "mouseDy",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mouseDxSmooth",
-      "name": "mouseDxSmooth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mouseDySmooth",
-      "name": "mouseDySmooth",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mouseDownPageX",
-      "name": "mouseDownPageX",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "mouseDownPageY",
-      "name": "mouseDownPageY",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "buttons",
-      "name": "buttons",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
