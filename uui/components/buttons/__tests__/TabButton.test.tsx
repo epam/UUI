@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabButton } from '../TabButton';
-import { renderer, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { ReactComponent as calendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('TabButton', () => {
