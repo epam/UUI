@@ -89,41 +89,44 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         );
 
     renderResizeMark = (props: HeaderCellContentProps) => <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />;
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => (
-        <FlexCell
-            { ...this.props.column }
-            minWidth={ this.props.column.width }
-            ref={ (ref) => {
-                (props.ref as React.RefCallback<HTMLElement>)(ref);
-                (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
-            } }
-            cx={ cx(
-                'uui-dt-vars',
-                uuiDataTableHeaderCell.uuiTableHeaderCell,
-                (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
-                css.cell,
-                css['size-' + (this.props.size || '36')],
-                this.props.isFirstColumn && css['padding-left-24'],
-                this.props.isLastColumn && css['padding-right-24'],
-                this.props.column.cx,
-                this.props.allowColumnsResizing && css.resizable,
-                props.isDraggable && css.draggable,
-                props.isDragGhost && css.ghost,
-                props.isDraggedOut && css.isDraggedOut,
-                props.isDndInProgress && css['dnd-marker-' + props.position],
-            ) }
-            onClick={ !this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick }
-            rawProps={ {
-                role: 'columnheader',
-                'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
-                ...props.eventHandlers,
-            } }
-        >
-            {this.renderHeaderCheckbox()}
-            {this.getColumnCaption()}
-            {this.props.allowColumnsResizing && this.renderResizeMark(props)}
-        </FlexCell>
-    );
+    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
+        const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
+        return (
+            <FlexCell
+                { ...this.props.column }
+                minWidth={ this.props.column.width }
+                ref={ (ref) => {
+                    (props.ref as React.RefCallback<HTMLElement>)(ref);
+                    (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
+                } }
+                cx={ cx(
+                    'uui-dt-vars',
+                    uuiDataTableHeaderCell.uuiTableHeaderCell,
+                    (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
+                    css.cell,
+                    css['size-' + (this.props.size || '36')],
+                    this.props.isFirstColumn && css['padding-left-24'],
+                    this.props.isLastColumn && css['padding-right-24'],
+                    this.props.column.cx,
+                    isResizable && css.resizable,
+                    props.isDraggable && css.draggable,
+                    props.isDragGhost && css.ghost,
+                    props.isDraggedOut && css.isDraggedOut,
+                    props.isDndInProgress && css['dnd-marker-' + props.position],
+                ) }
+                onClick={ !this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick }
+                rawProps={ {
+                    role: 'columnheader',
+                    'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
+                    ...props.eventHandlers,
+                } }
+            >
+                {this.renderHeaderCheckbox()}
+                {this.getColumnCaption()}
+                { isResizable && this.renderResizeMark(props) }
+            </FlexCell>
+        );
+    };
 
     renderCellWithFilter = (props: HeaderCellContentProps) => (
         <ColumnHeaderDropdown

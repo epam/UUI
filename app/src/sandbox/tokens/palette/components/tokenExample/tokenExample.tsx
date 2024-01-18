@@ -11,7 +11,7 @@ export function TokenExample(props: TTokenExampleProps) {
     switch (token.type) {
         case TVarType.COLOR: {
             if (mode === 'showExpected') {
-                const expected = token.value.expected;
+                const expected = token.value.figma;
                 if (expected === undefined) {
                     return null;
                 }
@@ -22,18 +22,18 @@ export function TokenExample(props: TTokenExampleProps) {
 
             const actual = `var(${token.cssVar})`;
             return (
-                <ColorRectangle color={ actual } hex={ `${token.value.actual}` } />
+                <ColorRectangle color={ actual } hex={ `${token.value.browser}` } />
             );
         }
         case TVarType.FLOAT: {
             if (mode === 'showExpected') {
-                const expected = token.value.expected;
+                const expected = token.value.figma;
                 if (expected === undefined) {
                     return null;
                 }
-                return <div>{expected.value}</div>;
+                return <div>{expected.value as string}</div>;
             }
-            return <div>{token.value.actual}</div>;
+            return <div>{token.value.browser}</div>;
         }
         default: {
             return null;

@@ -24,7 +24,7 @@ describe('ApiContext', () => {
     };
 
     afterEach(() => {
-        (global.fetch as any).mockClear();
+        (global.fetch as any).mockClear?.();
         context = new ApiContext({});
     });
 
@@ -102,5 +102,13 @@ describe('ApiContext', () => {
 
         expect(context.status).toEqual('idle');
         expect(call.length).toEqual(0);
+    });
+
+    it('should use custom fetcher', async () => {
+        const customFetchMock = getFetchMock(200);
+        context = new ApiContext({ fetch: customFetchMock });
+
+        await context.processRequest('path', 'POST', testData);
+        expect(customFetchMock).toBeCalledTimes(1);
     });
 });

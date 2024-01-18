@@ -2,8 +2,8 @@ import { VirtualListState } from '../../../types';
 import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedContainerHeight, getOffsetYForIndex,
     getRowsToFetchForScroll, getTopCoordinate, getTopIndexWithOffset, getUpdatedRowHeights, getUpdatedRowOffsets,
     getUpdatedRowsInfo,
-} from '../../useVirtualList/utils';
-import { VirtualListInfo } from '../../useVirtualList/types';
+} from '../utils';
+import { VirtualListInfo } from '../types';
 import { createListContainer, createScrollContainer } from './helpers';
 
 describe('getUpdatedRowHeights', () => {

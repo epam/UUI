@@ -6,7 +6,9 @@ import { IModalContext } from '../types/contexts';
 import { IModal } from '../types/props';
 
 export interface ModalOperation {
+    /** Modal component that should be rendered */
     component?: React.ComponentType<any>;
+    /** Modal component props */
     props: IModal<any>;
 }
 

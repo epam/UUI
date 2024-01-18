@@ -1,22 +1,33 @@
-import { TFigmaThemeName, TFloatValue, TVarType } from './sharedTypes';
+import { TFigmaThemeName, TVariableValue, TVarType } from './sharedTypes';
 
 export interface IFigmaVarCollection {
     id: string
     name: string
     modes: Record<string, TFigmaThemeName>
     variableIds: string[]
-    variables: IFigmaVar[]
+    variables: IFigmaVarRaw[]
 }
-export type IFigmaVar = IFigmaVarTemplate<TVarType.COLOR, TRgbaValue> | IFigmaVarTemplate<TVarType.FLOAT, TFloatValue>;
 
 export type TRgbaValue = { r: number, g: number, b: number, a: number };
 
-///
-
-type TVarScope = string | 'ALL_SCOPES' | 'STROKE_COLOR' | 'ALL_FILLS';
 export type TFigmaVariableAlias = { type: 'VARIABLE_ALIAS', id: string };
 
-interface IFigmaVarTemplate<TType, TValue> {
+export type IFigmaVarRawNorm = IFigmaVarTemplateBase & {
+    valueByTheme: {
+        [themeId: string]: IFigmaVarTemplateNormValue
+    }
+};
+
+export type IFigmaVarRaw = IFigmaVarTemplateBase & {
+    valuesByMode: {
+        [themeId: string]: TFigmaVariableAlias | TVariableValue
+    }
+    resolvedValuesByMode: {
+        [themeId: string]: { resolvedValue: TVariableValue, alias: null } | { resolvedValue: TVariableValue, alias: string, aliasName: string }
+    }
+};
+
+type IFigmaVarTemplateBase = {
     id: string
     /**
      * It's actually a path (it looks like: "core/semantic/critical-70").
@@ -24,13 +35,8 @@ interface IFigmaVarTemplate<TType, TValue> {
      */
     name: string
     description: string
-    type: TType
-    valuesByMode: {
-        [themeId: string]: TFigmaVariableAlias | TValue
-    }
-    resolvedValuesByMode: {
-        [themeId: string]: { resolvedValue: TValue, alias: null } | { resolvedValue: TValue, alias: string, aliasName: string }
-    }
+    type: TVarType
+
     scopes: TVarScope[]
     hiddenFromPublishing: boolean
     codeSyntax: {
@@ -41,4 +47,16 @@ interface IFigmaVarTemplate<TType, TValue> {
          */
         WEB?: string
     }
-}
+};
+
+export type IFigmaVarTemplateNormResolvedValue = {
+    value: TVariableValue
+    alias: { name: string }[],
+};
+
+export type IFigmaVarTemplateNormValue = {
+    valueChain: IFigmaVarTemplateNormResolvedValue | undefined,
+    valueDirect: IFigmaVarTemplateNormResolvedValue | undefined,
+};
+
+type TVarScope = string | 'ALL_SCOPES' | 'STROKE_COLOR' | 'ALL_FILLS';

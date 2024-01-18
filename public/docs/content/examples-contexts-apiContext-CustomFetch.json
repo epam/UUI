@@ -1,0 +1,31 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default, "
+      },
+      {
+        "text": "ApiContext",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " uses the native fetch method to process requests. However, you can replace it with your own implementation by passing the "
+      },
+      {
+        "text": "fetch",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop in the "
+      },
+      {
+        "text": "useUuiServices",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " hook. This prop has the same signature as the native fetch method, allowing you to just wrap native fetch with your own params or you can map fetch props to your preferred fetcher, like axios or others."
+      }
+    ]
+  }
+]
