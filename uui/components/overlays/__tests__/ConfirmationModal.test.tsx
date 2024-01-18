@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConfirmationModal } from '../ConfirmationModal';
-import { renderer, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('ConfirmationModal', () => {
     it('should be rendered correctly without body', async () => {
