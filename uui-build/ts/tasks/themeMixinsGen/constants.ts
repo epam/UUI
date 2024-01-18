@@ -1,6 +1,6 @@
 import { TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
 import { PATH } from '../themeTokensGen/constants';
-import { figmaVarComparator } from '../themeTokensGen/main';
+import { figmaVarComparator } from '../themeTokensGen/utils/sortingUtils';
 
 const THEME_DIR = './epam-assets/theme';
 
@@ -88,6 +88,9 @@ function mapToSortedArr(map: Map<string, unknown>) {
 }
 
 function wrapGroupInComments(str: string, groupName: string, indent: number = 1) {
+    if (str.trim() === '') {
+        return '';
+    }
     const I = indent === 0 ? '' : INDENT_1;
     const start = `${I}/* "${groupName}" start */\n`;
     const end = `\n${I}/* "${groupName}" end */`;

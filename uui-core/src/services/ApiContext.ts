@@ -65,6 +65,12 @@ export interface ApiContextProps {
      * @default ''
      * */
     apiServerUrl?: string;
+
+    /**
+     * Allows to replace fetch implementation, for adding auth headers, mocking for testing, etc.
+     * By default, standard fetch will be used.
+     */
+    fetch?: typeof fetch;
 }
 
 export class ApiContext extends BaseContext implements IApiContext {
@@ -160,7 +166,8 @@ export class ApiContext extends BaseContext implements IApiContext {
         call.attemptsCount += 1;
         call.status = 'running';
         call.startedAt = new Date();
-        fetch(this.props.apiServerUrl + call.url, {
+        const fetcher = this.props.fetch || fetch;
+        fetcher(this.props.apiServerUrl + call.url, {
             headers,
             method: call.method,
             body: call.requestData && JSON.stringify(call.requestData),
@@ -273,7 +280,8 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     private recoverConnection() {
         const retry = () => setTimeout(() => this.recoverConnection(), 2000);
-        fetch(this.props.apiPingPath, {
+        const fetcher = this.props.fetch || fetch;
+        fetcher(this.props.apiPingPath, {
             method: 'GET',
             credentials: 'include',
         })
@@ -361,12 +369,18 @@ export class ApiContext extends BaseContext implements IApiContext {
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
+                let response;
+                try {
+                    response = JSON.parse(xhr.response);
+                } catch {
+                    reject({ error: { isError: true, message: 'File upload error' } });
+                }
                 if (!new RegExp('^2[0-9][0-9]').test(xhr.status.toString())) {
-                    reject({ error: { isError: true, message: xhr.response && JSON.parse(xhr.response)?.error?.message } });
+                    reject({ error: { isError: true, message: response?.error?.message } });
                 }
 
                 removeAllListeners();
-                resolve((xhr.response && { ...JSON.parse(xhr.response) }) || null);
+                resolve(response);
             };
             xhr.send(formData);
         });

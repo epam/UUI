@@ -28,7 +28,7 @@ export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
      */
     fontStyle?: TextFontStyle;
     /**
-     * Defines text size.
+     * Defines text size
      * @default '36'
      */
     size?: TextSize;

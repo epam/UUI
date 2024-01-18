@@ -12,8 +12,8 @@ export enum TFigmaThemeName {
     PROMO = 'Promo',
     EPAM = 'EPAM'
 }
-export type TFloatValue = number;
-export type THexaValue = `#${string}`;
+export type TVariableValue = unknown;
+
 export type TUuiCssVarName = `--${string}`;
 export enum TVarType {
     COLOR = 'COLOR',
@@ -23,15 +23,16 @@ export enum TVarType {
 export type TCssVarRef = {
     id: IThemeVar['id'],
 } & (
-    { cssVar: IThemeVar['cssVar'], supported: true } | { supported: false }
+    { cssVar?: TUuiCssVarName } & ({ supported: false } | { supported: true, published: boolean })
 );
 export type TResolvedValueNorm = {
-    value: THexaValue | TFloatValue
+    /* it's always final resolved value, like HEX or etc. */
+    value: TVariableValue,
     alias: TCssVarRef[],
 };
 export type TValueByThemeValue = {
-    valueChain: TResolvedValueNorm,
-    valueDirect: TResolvedValueNorm,
+    valueChain: TResolvedValueNorm | undefined,
+    valueDirect: TResolvedValueNorm | undefined,
 };
 
 export interface IThemeVar {
@@ -41,6 +42,7 @@ export interface IThemeVar {
     description: string,
     useCases: string,
     cssVar: TUuiCssVarName,
+    published: boolean,
     /** resolvedValue in this map is taken from Figma. It can be used to compare with actual rendered value in browser */
     valueByTheme: {
         [themeName in TFigmaThemeName]?: TValueByThemeValue

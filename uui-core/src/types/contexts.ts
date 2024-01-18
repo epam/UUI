@@ -185,6 +185,7 @@ export interface IApiContext extends IBaseContext {
      * recovery - service trying to restore connection and recover latest requests
      * */
     readonly status: ApiStatus;
+    /** Reason of why api trying to recover connection */
     readonly recoveryReason: ApiRecoveryReason | null;
     /** Returns currently processing or failed requests */
     getActiveCalls(status?: ApiCallStatus): ApiCallInfo[];

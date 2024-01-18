@@ -21,7 +21,7 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
         getPickerBodyProps,
         getListProps,
         handleDataSourceValueChange,
-    } = usePickerInput<TItem, TId, PickerInputProps>({ ...props, shouldShowBody });
+    } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, shouldShowBody });
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ getName(item) } size="36" { ...rowProps } />;

@@ -43,16 +43,27 @@ const JSDOM_TESTS_ROOTS = [
     'uui-components',
     'uui',
     'epam-promo',
+    'epam-electric',
     'loveship',
-    'extra',
-    'uui-db',
+    'uui-editor',
     // TODO: uncomment line(s) below as soon as we have any tests in these modules
-    'app',
+    // 'extra',
+    // 'uui-db',
+    // 'app',
     // 'draft-rte',
     // 'uui-docs',
-    'uui-editor',
     // 'uui-timeline',
 ];
+
+const COLLECT_COVERAGE_FROM_PACKAGES = [
+    'uui-core',
+    'uui-components',
+    'uui',
+    'epam-promo',
+    'epam-electric',
+    'loveship',
+];
+
 const NODEJS_TESTS_ROOTS = [
     // TODO: uncomment line(s) below as soon as we have any tests in these modules
     'uui-build',
@@ -81,9 +92,9 @@ const reporters = createHtmlReport ? [
  */
 module.exports = {
     coverageDirectory: '<rootDir>/.reports/unit-tests/coverage',
-    coverageReporters: ['lcov'],
+    coverageReporters: ['html-spa'],
     collectCoverageFrom: [
-        ...JSDOM_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts,tsx}`), ...NODEJS_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts}`), '!**/__tests__/**', '!**/node_modules/**', '!**/build/**',
+        ...COLLECT_COVERAGE_FROM_PACKAGES.map((dir) => `${dir}/**/*.{js,ts,tsx}`), ...NODEJS_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts}`), '!**/__tests__/**', '!**/node_modules/**', '!**/build/**',
     ],
     reporters,
     projects: [
