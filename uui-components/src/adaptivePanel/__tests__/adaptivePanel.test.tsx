@@ -1,4 +1,5 @@
-import { AdaptiveItemProps, AdaptivePanel } from '../AdaptivePanel';
+import { AdaptivePanel } from '../AdaptivePanel';
+import { AdaptiveItemProps } from '../types';
 import {
     renderSnapshotWithContextAsync, renderWithContextAsync, mockAdaptivePanelLayout, screen,
 } from '@epam/uui-test-utils';

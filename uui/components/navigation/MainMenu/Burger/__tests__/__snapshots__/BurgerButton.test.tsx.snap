@@ -1,19 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BurgerButton should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled root uui-main_menu-burger-button button-primary indent-0"
-  onClick={[Function]}
-  tabIndex={-1}
-  type="button"
-/>
-`;
-
-exports[`BurgerButton should be rendered correctly 2`] = `
 <a
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
+  className="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
   href="#"
   onClick={[Function]}
   rel="noopener noreferrer"
@@ -30,6 +21,11 @@ exports[`BurgerButton should be rendered correctly 2`] = `
     />
   </div>
   <div
+    className="uui-caption"
+  >
+    Test button
+  </div>
+  <div
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
@@ -37,10 +33,12 @@ exports[`BurgerButton should be rendered correctly 2`] = `
       className=""
     />
   </div>
-  <div
-    className="uui-caption"
-  >
-    Test button
-  </div>
 </a>
+`;
+
+exports[`BurgerButton should be rendered correctly with minimum props 1`] = `
+<span
+  className="uui-button-box uui-enabled container root uui-main_menu-burger-button button-primary indent-0"
+  tabIndex={-1}
+/>
 `;

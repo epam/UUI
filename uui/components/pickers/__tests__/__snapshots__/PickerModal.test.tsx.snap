@@ -57,7 +57,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -403,7 +403,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -415,7 +415,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </button>
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -488,7 +488,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1769,7 +1769,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     >
       <button
         aria-disabled={false}
-        className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1784,7 +1784,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1796,7 +1796,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </div>
       </button>
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1818,7 +1818,7 @@ exports[`PickerModal should open body 1`] = `
 >
   <div>
     <button
-      class="container uui-button-box uui-enabled -clickable"
+      class="uui-button-box uui-enabled -clickable container"
       tabindex="0"
       type="button"
     />
@@ -1853,7 +1853,7 @@ exports[`PickerModal should open body 1`] = `
           >
             <button
               aria-label="Close modal"
-              class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+              class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
               tabindex="0"
               type="button"
             >
@@ -2033,7 +2033,7 @@ exports[`PickerModal should open body 1`] = `
             class="flexSpacer"
           />
           <button
-            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
+            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
             tabindex="0"
             type="button"
           >
@@ -2044,7 +2044,7 @@ exports[`PickerModal should open body 1`] = `
             </div>
           </button>
           <button
-            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
+            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
             tabindex="0"
             type="button"
           >

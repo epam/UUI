@@ -1,15 +1,23 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
-import { systemIcons } from '../../icons/icons';
+import { IClickable, IDisableable, IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
 import { IconContainer, FlexRow } from '@epam/uui-components';
+import { systemIcons } from '../../icons/icons';
 import { Text } from '../typography';
 import { UUI_FILTERS_PANEL_ITEM_TOGGLER } from './constants';
 import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
 
-export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
+export interface FilterToolbarItemTogglerProps extends IClickable, IDropdownToggler, IDisableable {
+    /** Called when associated dropdown should open or close  */
+    toggleDropdownOpening?: (value: boolean) => void;
+
+    /** Called when component is interacted outside, to close the dropdown */
+    isInteractedOutside?: (event: Event) => boolean;
+
+    /** toggler component ref */
+    ref?: React.Ref<any>;
     selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;

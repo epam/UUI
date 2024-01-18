@@ -1,18 +1,15 @@
+import * as React from 'react';
+import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
-import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
-import css from './LinkButton.module.scss';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
+import css from './LinkButton.module.scss';
 
 const DEFAULT_SIZE = '36';
+const DEFAULT_COLOR = 'primary';
 
 interface LinkButtonMods {
-    /**
-     * Defines component size.
-     * @default '36'
-     */
-    size?: types.ControlSize | '42';
     /**
      * Defines component color.
      * @default 'primary'
@@ -21,7 +18,20 @@ interface LinkButtonMods {
 }
 
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = ButtonProps & {
+export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+    /**
+     * CSS classes to put on the caption
+     * @deprecated
+     * */
+    captionCX?: CX;
+
+    /** Icon for drop-down toggler */
+    dropdownIcon?: Icon;
+
+    /**
+     * Defines component size.
+     * @default '36'
+     */
     size?: types.ControlSize | '42';
 };
 
@@ -34,15 +44,39 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
         css.root,
         `uui-size-${mods.size || DEFAULT_SIZE}`,
         ...getIconClass(mods),
-        `uui-color-${mods.color || 'primary'}`,
+        `uui-color-${mods.color || DEFAULT_COLOR}`,
     ];
 }
 
-export const LinkButton = withMods<LinkButtonCoreProps, LinkButtonMods>(
-    Button,
-    applyLinkButtonMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
-        clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
-    }),
-);
+export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
+    if (__DEV__ && props.captionCX) {
+        devLogger.warn('LinkButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
+    }
+
+    const styles = [applyLinkButtonMods(props), props.cx];
+
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[props.size || DEFAULT_SIZE].foldingArrow;
+
+    return (
+        <Clickable { ...props } cx={ styles } ref={ ref }>
+            { props.icon && props.iconPosition !== 'right' && (
+                <IconContainer
+                    key="icon-left"
+                    icon={ props.icon }
+                    onClick={ !props.isDisabled ? props.onIconClick : undefined }
+                />
+            ) }
+            { props.caption && (
+                <div key="caption" className={ cx(uuiElement.caption, props.captionCX) }>
+                    { props.caption }
+                </div>
+            ) }
+            { props.icon && props.iconPosition === 'right' && (
+                <IconContainer key="icon-right" icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
+            ) }
+            { props.isDropdown && (
+                <IconContainer key="dropdown-icon-right" icon={ DropdownIcon } flipY={ props.isOpen } />
+            ) }
+        </Clickable>
+    );
+});

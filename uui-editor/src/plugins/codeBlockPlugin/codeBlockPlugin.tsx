@@ -6,7 +6,7 @@ import { isPluginActive } from '../../helpers';
 import { ReactComponent as CodeIcon } from '../../icons/editor-code.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
 

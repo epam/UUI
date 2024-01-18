@@ -33,7 +33,6 @@ export default function TypesExample() {
                             <Badge
                                 { ...props }
                                 dropdownIcon={ navigationDownIcon }
-                                dropdownIconPosition="right"
                                 color="neutral"
                                 fill="outline"
                                 caption="In Progress"

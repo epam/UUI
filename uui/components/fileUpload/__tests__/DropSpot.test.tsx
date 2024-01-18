@@ -1,15 +1,15 @@
 import React from 'react';
 import { DropSpot } from '../DropSpot';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('DropSpot', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<DropSpot onUploadFiles={ jest.fn } />).toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<DropSpot onUploadFiles={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<DropSpot onUploadFiles={ jest.fn } infoText="Test info" />).toJSON();
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<DropSpot onUploadFiles={ jest.fn } infoText="Test info" />);
         expect(tree).toMatchSnapshot();
     });
 });

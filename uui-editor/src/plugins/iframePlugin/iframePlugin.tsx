@@ -11,7 +11,7 @@ import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
 import { IFRAME_PLUGIN_KEY, IFRAME_PLUGIN_TYPE } from '../../types';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 export const iframePlugin = () => {
     const createIframePlugin = createPluginFactory<IHasToolbarButton>({
