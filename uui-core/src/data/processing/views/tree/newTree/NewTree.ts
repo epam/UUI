@@ -44,6 +44,11 @@ interface PatchOptions<TItem> {
     comparator?: ItemsComparator<TItem>;
 }
 
+interface PatchItemsOptions<TItem, TId> {
+    patchItems: ItemsMap<TId, TItem>;
+    isDeletedProp?: keyof TItem;
+}
+
 export class NewTree<TItem, TId> {
     private constructor(
         protected params: TreeParams<TItem, TId>,
@@ -145,6 +150,17 @@ export class NewTree<TItem, TId> {
         }
 
         return this.updateSnapshots({ using, snapshot: newTreeSnapshot });
+    }
+
+    public patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>) {
+        const treeSnapshot = this.snapshot('core');
+        const newTreeSnapshot = treeSnapshot.patchItems({ patchItems, isDeletedProp });
+
+        if (newTreeSnapshot === treeSnapshot) {
+            return this;
+        }
+
+        return this.updateSnapshots({ snapshot: newTreeSnapshot });
     }
 
     private updateSnapshots({ using, snapshot }: UpdateSnapshots<TItem, TId>): NewTree<TItem, TId> {

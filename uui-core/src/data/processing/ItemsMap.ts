@@ -64,6 +64,10 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
         return this;
     }
 
+    get size() {
+        return this._itemsMap.size;
+    }
+
     [Symbol.iterator]() {
         return this._itemsMap[Symbol.iterator]();
     }
