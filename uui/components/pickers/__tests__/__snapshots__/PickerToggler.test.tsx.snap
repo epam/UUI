@@ -12,11 +12,9 @@ exports[`PickerToggler should render with maximum props 1`] = `
   <div
     className="body multiline"
   >
-    <button
-      className="container uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
-      onClick={[Function]}
+    <span
+      className="uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
       tabIndex={-1}
-      type="button"
     >
       <div
         className="uui-caption"
@@ -32,7 +30,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
           className=""
         />
       </div>
-    </button>
+    </span>
   </div>
   <div
     className="actions"

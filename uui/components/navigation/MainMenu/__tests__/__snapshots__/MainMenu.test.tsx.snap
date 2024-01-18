@@ -33,11 +33,10 @@ exports[`MainMenu should be rendered correctly 1`] = `
           </div>
         </button>
       </div>
-      <button
-        className="container uui-button-box uui-enabled root type-primary"
-        onClick={[Function]}
+      <span
+        className="uui-button-box uui-enabled root type-primary"
+        role="menuitem"
         tabIndex={-1}
-        type="button"
       />
     </div>
   </div>
@@ -77,11 +76,10 @@ exports[`MainMenu should be rendered correctly 2`] = `
           </div>
         </button>
       </div>
-      <button
-        className="container uui-button-box uui-enabled root type-primary"
-        onClick={[Function]}
+      <span
+        className="uui-button-box uui-enabled root type-primary"
+        role="menuitem"
         tabIndex={-1}
-        type="button"
       />
     </div>
   </div>

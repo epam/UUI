@@ -44,13 +44,6 @@ export function isAnyParentHasClass(fromElement: EventTarget, toElement: Node, c
     return false;
 }
 
-export function handleSpaceKey(e: any, cb: any): void {
-    if (e.keyCode === 32) {
-        e.preventDefault();
-        cb(e);
-    }
-}
-
 export function blurFocusedElement() {
     const elem = _getActiveElement() as HTMLElement;
     elem?.blur();

@@ -9,7 +9,7 @@ import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 
 import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
 import { AddVideoModal } from './AddVideoModal';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 export const VIDEO_PLUGIN_KEY = 'video';
 

@@ -1,29 +1,34 @@
 import React from 'react';
 import { ConfirmationModal } from '../ConfirmationModal';
-import { renderer } from '@epam/uui-test-utils';
+import { renderer, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('ConfirmationModal', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<ConfirmationModal caption="Test" key="test-key" success={ (result) => jest.fn(result) } abort={ jest.fn } isActive zIndex={ 1 } />)
-            .toJSON();
+    it('should be rendered correctly without body', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <ConfirmationModal
+                caption="Test"
+                key="test-key"
+                success={ (result) => jest.fn(result) }
+                abort={ jest.fn }
+                isActive
+                zIndex={ 1 }
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(
-                <ConfirmationModal
-                    caption="Test"
-                    key="test-key"
-                    success={ (result) => jest.fn(result) }
-                    abort={ jest.fn }
-                    isActive
-                    zIndex={ 1 }
-                    bodyContent={ <div>Test content</div> }
-                />,
-            )
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <ConfirmationModal
+                caption="Test"
+                key="test-key"
+                success={ (result) => jest.fn(result) }
+                abort={ jest.fn }
+                isActive
+                zIndex={ 1 }
+                bodyContent={ <div>Test content</div> }
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
