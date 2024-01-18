@@ -1,6 +1,6 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
 import React, { useCallback } from 'react';
-import { DataSourceState, Metadata, useDataRows, useTree, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
+import { DataSourceState, ItemsMap, Metadata, useDataRows, useTree, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -8,10 +8,9 @@ import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-ed
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as add } from '@epam/assets/icons/common/action-add-12.svg';
 import css from './ProductsTableDemo.module.scss';
-import { usePatchTree } from './usePatchTree';
 
 interface FormState {
-    items: Record<number, Product>;
+    items: ItemsMap<number, Product>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -29,7 +28,7 @@ const metadata: Metadata<FormState> = {
     },
 };
 
-let savedValue: FormState = { items: {} };
+let savedValue: FormState = { items: ItemsMap.fromObject<number, Product>({}, (product) => product.ProductID) };
 let lastId = -1;
 
 export function ProductsTableDemo() {
@@ -52,26 +51,22 @@ export function ProductsTableDemo() {
         const product: Product = { ProductID: lastId-- } as Product;
 
         setValue((currentValue) => {
-            return { ...currentValue, items: { [product.ProductID]: product, ...currentValue.items } };
+            return { ...currentValue, items: currentValue.items.set(product.ProductID, product) };
         });
     }, [setValue]);
 
     const { tree, ...restProps } = useTree({ 
         type: 'lazy',
         api: svc.api.demo.products,
+        patchItems: updatedRows.items,
         getId: (i) => i.ProductID,
-        getRowOptions: (product) => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
+        getRowOptions: (product) => ({ ...lens.prop('items').getItem(product.ProductID).default(product).toProps() }),
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         backgroundReload: true,
     }, []);
 
-    const patchedTree = usePatchTree({ 
-        tree,
-        additionalRows: Object.values(updatedRows.items),
-    });
-
-    const { visibleRows, listProps } = useDataRows({ tree: patchedTree, ...restProps });
+    const { visibleRows, listProps } = useDataRows({ tree, ...restProps });
 
     return (
         <Panel cx={ [css.container, css.uuiThemeLoveship] }>

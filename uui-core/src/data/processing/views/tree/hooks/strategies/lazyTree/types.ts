@@ -8,6 +8,8 @@ export type LazyTreeProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, T
     itemsMap?: ItemsMap<TId, TItem>;
     setItems?: ItemsStorage<TItem, TId>['setItems'];
 
+    patchItems?: ItemsMap<TId, TItem>;
+
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     filter?: TFilter;
     fetchStrategy?: 'sequential' | 'parallel';

@@ -11,6 +11,7 @@ import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 import { NewTree } from '../../../newTree';
 import { useItemsStorage } from '../useItemsStorage';
+import { usePatchTree } from '../usePatchTree';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -21,7 +22,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         api, filter, backgroundReload,
         isFoldedByDefault, getId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions,
-        getChildCount,
+        getChildCount, patchItems,
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
@@ -31,8 +32,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         getId: props.getId,
     });
 
-    const tree = useMemo(() => NewTree.blank(props, itemsMap, setItems), [...deps]);
-    const [treeWithData, setTreeWithData] = useState(tree);
+    const blankTree = useMemo(() => NewTree.blank(props, itemsMap, setItems), [...deps]);
+    const [treeWithData, setTreeWithData] = useState(blankTree);
 
     const prevFilter = usePrevious(filter);
     const prevDataSourceState = usePrevious(dataSourceState);
@@ -57,8 +58,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const foldingService = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
 
     useEffect(() => {
-        setTreeWithData(tree);
-    }, [tree]);
+        setTreeWithData(blankTree);
+    }, [blankTree]);
 
     const { loadMissing, loadMissingOnCheck } = useLoadData({
         api,
@@ -133,12 +134,17 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         areMoreRowsNeeded,
     ]);
 
+    const tree = usePatchTree({
+        tree: treeWithData,
+        patchItems,
+    });
+
     const reload = useCallback(() => {
         setIsForceReload(true);
     }, [props, setTreeWithData]);
 
     return {
-        tree: treeWithData,
+        tree,
         dataSourceState,
         setDataSourceState,
         isFoldedByDefault,

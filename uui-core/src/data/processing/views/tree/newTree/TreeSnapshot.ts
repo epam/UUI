@@ -6,8 +6,8 @@ import { newMap } from '../BaseTree';
 import { ApplySearchOptions, ApplySortOptions, NOT_FOUND_RECORD, ROOT_ID, TreeNodeInfo, TreeParams } from '../ITree';
 import {
     ActForCheckableOptions, ApplyFilterToTreeSnapshotOptions, ApplySearchToTreeSnapshotOptions, CascadeSelectionOptions,
-    CheckParentsWithFullCheckOptions, FilterOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions,
-    LoadOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchOptions, SearchOptions, SelectionOptions, SortOptions,
+    CheckParentsWithFullCheckOptions, FilterOptions, InsertIntoPositionOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions,
+    LoadOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchItemsOptions, PatchOptions, SearchOptions, SelectionOptions, SortOptions,
 } from './types';
 import { BaseTreeSnapshot } from './BaseTreeSnapshot';
 import { ItemsMap } from '../../../ItemsMap';
@@ -570,6 +570,62 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         return TreeSnapshot.newInstance(this.params, itemsMap, this.setItems, newByParentId, newNodeInfoById);
     }
 
+    public patchItems({
+        patchItems,
+        isDeletedProp,
+        getPosition = () => 'initial',
+    }: PatchItemsOptions<TItem, TId>) {
+        if (!patchItems || !patchItems.size) return this;
+
+        const newByParentId = TreeSnapshot.cloneMap(this.byParentId); // shallow clone, still need to copy arrays inside!
+
+        let isPatched = false;
+        let itemsMap = this.itemsMap;
+        patchItems.forEach((item, id) => {
+            const parentId = this.params.getParentId?.(item);
+
+            if (isDeletedProp && item[isDeletedProp]) {
+                const children = [...(newByParentId.get(parentId) ?? [])];
+                newByParentId.set(parentId, this.deleteFromChildren(id, children));
+                newByParentId.delete(id);
+                isPatched = true;
+                return;
+            }
+
+            const existingItem = itemsMap.get(id);
+            itemsMap = itemsMap.setItems([item]);
+            const existingItemParentId = existingItem ? this.params.getParentId?.(existingItem) : undefined;
+            const children = newByParentId.get(parentId) ?? [];
+
+            newByParentId.set(parentId, this.insertIntoPosition({ item, ids: children, position: getPosition(item) }));
+
+            if (existingItem && existingItemParentId !== parentId) {
+                const prevParentChildren = this.byParentId.get(existingItemParentId) ?? [];
+                newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
+            }
+            isPatched = true;
+        });
+
+        if (!isPatched) {
+            return this;
+        }
+
+        const newNodeInfoById = newMap<TId, TreeNodeInfo>(this.params);
+
+        for (const [parentId, ids] of newByParentId) {
+            if (this.nodeInfoById.has(parentId)) {
+                const prevNodeInfo = this.nodeInfoById.get(parentId);
+                if (prevNodeInfo.count !== undefined) {
+                    newNodeInfoById.set(parentId, { count: ids.length });
+                } else {
+                    newNodeInfoById.set(parentId, prevNodeInfo);
+                }
+            }
+        }
+
+        return TreeSnapshot.newInstance(this.params, itemsMap, this.setItems, newByParentId, newNodeInfoById);
+    }
+
     private deleteFromChildren(id: TId, children: TId[]) {
         const foundIndex = children.findIndex((childId) => childId === id);
         if (foundIndex !== -1) {
@@ -577,6 +633,42 @@ export class TreeSnapshot<TItem, TId> extends BaseTreeSnapshot<TItem, TId> {
         }
 
         return children;
+    }
+
+    private insertIntoPosition({
+        ids,
+        item,
+        position,
+    }: InsertIntoPositionOptions<TItem, TId>) {
+        const itemId = this.params.getId(item);
+        const currentItemIndex = ids.findIndex((id) => this.params.getId(item) === id);
+        if (position === 'initial') {
+            if (currentItemIndex === -1) {
+                return [itemId, ...ids];
+            }
+            return ids;
+        }
+
+        const withoutCurrentItem = [...ids.slice(0, currentItemIndex), ...ids.slice(currentItemIndex + 1)];
+        if (position === 'top') {
+            if (currentItemIndex === -1) {
+                return [itemId, ...ids];
+            }
+            return [itemId, ...withoutCurrentItem];
+        }
+
+        if (position === 'bottom') {
+            if (currentItemIndex === -1) {
+                return [...ids, itemId];
+            }
+            return [...withoutCurrentItem, itemId];
+        }
+        const afterIndex = ids.findIndex((id) => id === position.after);
+        if (afterIndex === -1) {
+            return [itemId, ...ids];
+        }
+
+        return [...ids.slice(0, afterIndex + 1), itemId, ...ids.slice(afterIndex + 1)];
     }
 
     private patchChildren({
