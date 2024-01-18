@@ -63,7 +63,7 @@ export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
                 condition: () => props.size === '12',
             });
             if (props.shape === 'square' || !props.shape) {
-                devLogger.warn('(Badge) The "square" value of shape is deprecated and will be removed in future versions. Please use "round" value instead.');
+                devLogger.warn('(Badge) The "square" value of shape is deprecated and will be removed in future versions. Please use Tag component instead if you need square appearance or use "round" value.');
             }
         }
         return {
