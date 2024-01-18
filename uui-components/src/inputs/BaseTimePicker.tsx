@@ -53,6 +53,7 @@ export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>,
 interface TimePickerState {
     isOpen: boolean;
     value: string | null;
+    result: string | null;
 }
 
 const valueToTimeString = (value: TimePickerValue, format: BaseTimePickerProps['format']) => {
@@ -66,14 +67,19 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     state = {
         isOpen: false,
         value: valueToTimeString(this.props.value, this.props.format),
+        result: valueToTimeString(this.props.value, this.props.format),
     };
 
     abstract renderInput: (props: IDropdownToggler) => React.ReactNode;
     abstract renderBody: (props: DropdownBodyProps) => React.ReactNode;
+
     componentDidUpdate(prevProps: BaseTimePickerProps) {
-        if (this.props.value !== prevProps.value) {
+        if (this.props.value !== prevProps.value || this.props.format !== prevProps.format) {
             this.setState((state) =>
-                ({ ...state, value: valueToTimeString(this.props.value, this.props.format) }));
+                ({ ...state,
+                    value: valueToTimeString(this.props.value, this.props.format),
+                    result: valueToTimeString(this.props.value, this.props.format),
+                }));
         }
     }
 
@@ -83,21 +89,92 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
 
     onClear = () => {
         this.props.onValueChange(null);
+        this.setState((state) => ({ ...state, result: '' }));
     };
 
     onToggle = (value: boolean) => {
         this.setState((state) => ({ ...state, isOpen: value }));
     };
 
-    handleInputChange = (newValue: string) => {
-        if (this.getFormat() === 'hh:mm A' && newValue.length < 8) {
-            this.setState((state) => ({ ...state, value: newValue }));
-        } else if (dayjs(newValue, this.getFormat(), true).isValid()) {
-            const value = dayjs(newValue, this.getFormat(), true);
-            this.props.onValueChange({ hours: value.hour(), minutes: value.minute() });
-            this.setState((state) => ({ ...state, value: newValue }));
+    setTimeValue = (value: string) => {
+        this.setState((state) => ({ ...state, value: value }));
+    };
+
+    setTimeResult = () => {
+        const value = dayjs(this.state.result, this.getFormat(), true);
+        this.props.onValueChange({ hours: value.hour(), minutes: value.minute() });
+        this.setTimeValue(this.state.result);
+    };
+
+    checkTimeFormat = (newValue: string) => {
+        return dayjs(newValue, this.getFormat(), true).isValid();
+    };
+
+    parseTimeNumbers = (timeNumbers: string, separator: number) => {
+        let hours: number, minutes: number;
+
+        switch (separator) {
+            case 0:
+                hours = 0;
+                minutes = parseInt(timeNumbers.trim().slice(0, 2));
+                break;
+            case 1:
+                hours = parseInt(timeNumbers.slice(0, 1));
+                minutes = parseInt(timeNumbers.slice(1, 3));
+                break;
+            default:
+                hours = parseInt(timeNumbers.slice(0, 2));
+                minutes = parseInt(timeNumbers.slice(2, 4));
+        }
+        return { hours, minutes };
+    };
+
+    formatTime = (hours: number, minutes: number, meridian: 'AM' | 'PM' | false) => {
+        const hoursToString = Number.isNaN(hours) ? '00' : hours.toString().padStart(2, '0');
+        const minutesToString = Number.isNaN(minutes) ? '00' : minutes.toString().padStart(2, '0');
+
+        let result = `${hoursToString}:${minutesToString}`;
+
+        if (result === '00:00') {
+            return '';
+        }
+
+        if (meridian) {
+            result = result.concat(` ${meridian}`);
+        }
+        return result;
+    };
+
+    getMeridian = (newValue: string) => {
+        let meridian: false | 'AM' | 'PM';
+        const format = this.getFormat();
+
+        if (format === 'hh:mm A') {
+            meridian = newValue.toLowerCase().includes('pm') ? 'PM' : 'AM';
         } else {
-            this.setState((state) => ({ ...state, value: newValue }));
+            meridian = false;
+        }
+        return meridian;
+    };
+
+    handleInputChange = (newValue: string) => {
+        const trimmedNewValue = newValue.trimStart();
+
+        if (trimmedNewValue.length <= 8) {
+            const separator = trimmedNewValue.search(/\D/);
+            const meridian = this.getMeridian(trimmedNewValue);
+
+            const timeNumbers = trimmedNewValue.replace(/\D/gi, '');
+
+            if (timeNumbers.length >= 0 && timeNumbers.length <= 4) {
+                const { hours, minutes } = this.parseTimeNumbers(timeNumbers, separator);
+                const result = this.formatTime(hours, minutes, meridian);
+                this.setTimeValue(trimmedNewValue);
+
+                if (this.checkTimeFormat(result)) {
+                    this.setState(({ result: result }));
+                }
+            }
         }
     };
 
@@ -113,10 +190,9 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
 
         if (this.state.value === '') {
             this.props.onValueChange(null);
-            this.setState((state) => ({ ...state, value: null }));
-        } else if (!dayjs(this.state.value, this.getFormat(), true).isValid()) {
-            this.props.onValueChange(this.props.value);
-            this.setState((state) => ({ ...state, value: valueToTimeString(this.props.value, this.props.format) }));
+            this.setState(({ result: null, value: null }));
+        } else if (this.checkTimeFormat(this.state.result)) {
+            this.setTimeResult();
         }
     };
 
