@@ -1,5 +1,5 @@
-import { NOT_FOUND_RECORD } from '..';
-import { ItemsMap } from '../../../ItemsMap';
+import { ItemsMap } from '../../ItemsMap';
+import { NOT_FOUND_RECORD } from '../constants';
 
 export class ItemsAccessor<TItem, TId> {
     constructor(

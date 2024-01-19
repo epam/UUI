@@ -1,9 +1,8 @@
-import { TreeNodeInfo } from '../../..';
-import { newMap } from '../../../BaseTree';
-import { ItemsAccessor } from '../../ItemsAccessor';
-import { InsertIntoPositionOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchItemsOptions, PatchOptions } from '../../types';
+import { TreeNodeInfo } from '../ITreeStructure';
+import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap } from './map';
+import { cloneMap, newMap } from './map';
+import { InsertIntoPositionOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchItemsOptions, PatchOptions } from './types';
 
 export class PatchHelper {
     public static patch<TItem, TId>({

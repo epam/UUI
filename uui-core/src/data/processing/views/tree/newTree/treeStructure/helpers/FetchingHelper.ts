@@ -1,10 +1,10 @@
 import isEqual from 'lodash.isequal';
 import { LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../../../types';
-import { ItemsMap } from '../../../../../ItemsMap';
-import { LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptions } from '../../types';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap } from './map';
-import { ItemsAccessor } from '../../ItemsAccessor';
+import { ItemsAccessor } from '../ItemsAccessor';
+import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions } from './types';
+import { ItemsMap } from '../../../ItemsMap';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
@@ -42,7 +42,7 @@ export class FetchingHelper {
         dataSourceState,
         withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>) {
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await this.loadMissing({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await this.loadMissing<TItem, TId, TFilter>({
             treeStructure,
             itemsMap,
             options,
@@ -50,7 +50,7 @@ export class FetchingHelper {
             withNestedChildren,
         });
 
-        const updatedItemsMap = await this.loadMissingItemsAndParents({
+        const updatedItemsMap = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
             treeStructure: newTreeStructure,
             itemsMap: newItemsMap,
             options,
@@ -163,9 +163,9 @@ export class FetchingHelper {
 
         if (treeStructure.byParentId !== byParentId || treeStructure.nodeInfoById !== nodeInfoById || itemsMap !== newItemsMap) {
             return {
-                treeStructure: TreeStructure.create(
+                treeStructure: TreeStructure.create<TItem, TId>(
                     treeStructure.params,
-                    ItemsAccessor.toItemsAccessor(newItemsMap),
+                    ItemsAccessor.toItemsAccessor<TId, TItem>(newItemsMap),
                     byParentId,
                     nodeInfoById,
                 ),

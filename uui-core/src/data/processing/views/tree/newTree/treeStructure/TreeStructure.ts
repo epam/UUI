@@ -1,9 +1,10 @@
 import { DataRowPathItem, IMap } from '../../../../../../types';
 import { PureTreeStructure } from './PureTreeStructure';
-import { NOT_FOUND_RECORD, TreeNodeInfo, TreeParams } from '../..';
-import { newMap } from '../../BaseTree';
+import { TreeNodeInfo, TreeParams } from './ITreeStructure';
+import { newMap } from './helpers';
 import { ITreeStructure, ItemsAccessor } from './ITreeStructure';
-import { ItemsMap } from '../../../../../processing/ItemsMap';
+import { NOT_FOUND_RECORD } from '../constants';
+import { ItemsMap } from '../../ItemsMap';
 
 export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> implements ITreeStructure<TItem, TId> {
     constructor(

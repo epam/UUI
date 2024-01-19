@@ -3,7 +3,7 @@ import { LazyListViewProps, useDataRows, useTree } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState } from '../../types';
-import { ItemsStorage } from './ItemsStorage';
+import { ItemsStorage } from './views/tree/ItemsStorage';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
 

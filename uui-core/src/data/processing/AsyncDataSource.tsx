@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { DataSourceState, IDataSourceView } from '../../types';
-import { AsyncListViewProps } from './views/AsyncListView';
 import { useDataRows, useTree } from './views';
-import { ItemsStorage } from './ItemsStorage';
+import { ItemsStorage } from './views/tree/ItemsStorage';
+import { AsyncListViewProps } from './views/types';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
