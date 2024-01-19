@@ -117,7 +117,6 @@
     "VariableID:25178:7158",
     "VariableID:25178:7157",
     "VariableID:25178:7156",
-    "VariableID:25178:7155",
     "VariableID:25178:7154",
     "VariableID:25178:7152",
     "VariableID:25178:7151",
@@ -7789,7 +7788,7 @@
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151882"
+          "id": "VariableID:28895:234623"
         }
       },
       "resolvedValuesByMode": {
@@ -7825,13 +7824,13 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.9803921580314636,
-            "g": 0.9803921580314636,
-            "b": 0.9882352948188782,
-            "a": 1
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0
           },
-          "alias": "VariableID:27513:151882",
-          "aliasName": "core/neutral/neutral-5"
+          "alias": "VariableID:28895:234623",
+          "aliasName": "core/neutral/neutral-95"
         }
       },
       "scopes": [
@@ -9168,61 +9167,61 @@
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155658"
+          "id": "VariableID:27513:151888"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155658"
+          "id": "VariableID:27513:151884"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155658"
+          "id": "VariableID:27513:151888"
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155658"
+          "id": "VariableID:27513:151888"
         }
       },
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:28101:155658",
-          "aliasName": "core/semantic/primary-60"
+          "alias": "VariableID:27513:151888",
+          "aliasName": "core/neutral/neutral-60"
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.9215686321258545,
+            "g": 0.929411768913269,
+            "b": 0.9607843160629272,
             "a": 1
           },
-          "alias": "VariableID:28101:155658",
-          "aliasName": "core/semantic/primary-60"
+          "alias": "VariableID:27513:151884",
+          "aliasName": "core/neutral/neutral-20"
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:28101:155658",
-          "aliasName": "core/semantic/primary-60"
+          "alias": "VariableID:27513:151888",
+          "aliasName": "core/neutral/neutral-60"
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:28101:155658",
-          "aliasName": "core/semantic/primary-60"
+          "alias": "VariableID:27513:151888",
+          "aliasName": "core/neutral/neutral-60"
         }
       },
       "scopes": [
@@ -9304,79 +9303,6 @@
       "hiddenFromPublishing": true,
       "codeSyntax": {
         "WEB": "/* UUI internal variable var(--uui-control-switch-border-hover) */"
-      }
-    },
-    {
-      "id": "VariableID:25178:7155",
-      "name": "core/controls/control-text_input-border-hover",
-      "description": "",
-      "type": "COLOR",
-      "valuesByMode": {
-        "25178:0": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151888"
-        },
-        "25178:1": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151884"
-        },
-        "25178:2": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151888"
-        },
-        "26302:0": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151888"
-        }
-      },
-      "resolvedValuesByMode": {
-        "25178:0": {
-          "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
-            "a": 1
-          },
-          "alias": "VariableID:27513:151888",
-          "aliasName": "core/neutral/neutral-60"
-        },
-        "25178:1": {
-          "resolvedValue": {
-            "r": 0.9215686321258545,
-            "g": 0.929411768913269,
-            "b": 0.9607843160629272,
-            "a": 1
-          },
-          "alias": "VariableID:27513:151884",
-          "aliasName": "core/neutral/neutral-20"
-        },
-        "25178:2": {
-          "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
-            "a": 1
-          },
-          "alias": "VariableID:27513:151888",
-          "aliasName": "core/neutral/neutral-60"
-        },
-        "26302:0": {
-          "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
-            "a": 1
-          },
-          "alias": "VariableID:27513:151888",
-          "aliasName": "core/neutral/neutral-60"
-        }
-      },
-      "scopes": [
-        "ALL_SCOPES"
-      ],
-      "hiddenFromPublishing": true,
-      "codeSyntax": {
-        "WEB": "/* UUI internal variable var(--uui-control-text_input-border-hover) */"
       }
     },
     {
@@ -10988,7 +10914,7 @@
     {
       "id": "VariableID:25178:7189",
       "name": "button/button-color-primary/button-border-color-hover",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -11061,7 +10987,7 @@
     {
       "id": "VariableID:25178:7190",
       "name": "button/button-color-primary/button-border-color-active",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -12010,12 +11936,12 @@
     {
       "id": "VariableID:25178:7203",
       "name": "button/button-color-accent/button-border-color-hover",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155664"
+          "id": "VariableID:28101:155663"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -12033,13 +11959,13 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0.32156863808631897,
-            "g": 0.5215686559677124,
+            "r": 0.40392157435417175,
+            "g": 0.6392157077789307,
             "b": 0,
             "a": 1
           },
-          "alias": "VariableID:28101:155664",
-          "aliasName": "core/semantic/accent-60"
+          "alias": "VariableID:28101:155663",
+          "aliasName": "core/semantic/accent-50"
         },
         "25178:1": {
           "resolvedValue": {
@@ -12083,7 +12009,7 @@
     {
       "id": "VariableID:25178:7204",
       "name": "button/button-color-accent/button-border-color-active",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -13032,7 +12958,7 @@
     {
       "id": "VariableID:25178:7217",
       "name": "button/button-color-critical/button-border-color-hover",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -13105,7 +13031,7 @@
     {
       "id": "VariableID:25178:7218",
       "name": "button/button-color-critical/button-border-color-active",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -14054,7 +13980,7 @@
     {
       "id": "VariableID:25178:7231",
       "name": "button/button-color-secondary/button-border-color-hover",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -14127,7 +14053,7 @@
     {
       "id": "VariableID:25178:7232",
       "name": "button/button-color-secondary/button-border-color-active",
-      "description": "Only for FE developers for Solid buttons",
+      "description": "",
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
@@ -19625,9 +19551,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -19635,9 +19561,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -19645,9 +19571,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -19655,9 +19581,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -20866,9 +20792,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -20876,9 +20802,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -20886,9 +20812,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -20896,9 +20822,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -21304,9 +21230,9 @@
       "resolvedValuesByMode": {
         "25178:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -21314,9 +21240,9 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -21324,9 +21250,9 @@
         },
         "25178:2": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -21334,9 +21260,9 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
           "alias": "VariableID:25178:7153",
@@ -24064,19 +23990,19 @@
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         }
       },
       "resolvedValuesByMode": {
@@ -24087,8 +24013,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:1": {
           "resolvedValue": {
@@ -24097,8 +24023,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:2": {
           "resolvedValue": {
@@ -24107,8 +24033,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "26302:0": {
           "resolvedValue": {
@@ -24117,8 +24043,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         }
       },
       "scopes": [
@@ -44511,19 +44437,19 @@
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         }
       },
       "resolvedValuesByMode": {
@@ -44534,8 +44460,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:1": {
           "resolvedValue": {
@@ -44544,8 +44470,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:2": {
           "resolvedValue": {
@@ -44554,8 +44480,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "26302:0": {
           "resolvedValue": {
@@ -44564,8 +44490,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         }
       },
       "scopes": [
@@ -51970,19 +51896,19 @@
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         }
       },
       "resolvedValuesByMode": {
@@ -51993,8 +51919,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:1": {
           "resolvedValue": {
@@ -52003,8 +51929,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:2": {
           "resolvedValue": {
@@ -52013,8 +51939,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "26302:0": {
           "resolvedValue": {
@@ -52023,8 +51949,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         }
       },
       "scopes": [
@@ -56362,7 +56288,7 @@
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "26302:0": {
           "r": 1,
@@ -56397,8 +56323,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "26302:0": {
           "resolvedValue": {
@@ -57654,7 +57580,7 @@
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "26302:0": {
           "r": 1,
@@ -57689,8 +57615,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "26302:0": {
           "resolvedValue": {
@@ -62770,11 +62696,11 @@
       "valuesByMode": {
         "25178:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         },
         "25178:2": {
           "r": 1,
@@ -62784,7 +62710,7 @@
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7155"
+          "id": "VariableID:25178:7153"
         }
       },
       "resolvedValuesByMode": {
@@ -62795,8 +62721,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:1": {
           "resolvedValue": {
@@ -62805,8 +62731,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         },
         "25178:2": {
           "resolvedValue": {
@@ -62824,8 +62750,8 @@
             "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:25178:7155",
-          "aliasName": "core/controls/control-text_input-border-hover"
+          "alias": "VariableID:25178:7153",
+          "aliasName": "core/controls/control-border-hover"
         }
       },
       "scopes": [
@@ -70755,7 +70681,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -70779,13 +70705,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
@@ -70828,7 +70754,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -70852,13 +70778,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
@@ -70901,7 +70827,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -70925,13 +70851,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
@@ -70974,7 +70900,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -70998,13 +70924,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
@@ -71047,7 +70973,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -71071,13 +70997,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
@@ -71120,7 +71046,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -71144,13 +71070,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
@@ -71193,7 +71119,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151884"
+          "id": "VariableID:27513:151889"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -71217,13 +71143,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0.9215686321258545,
-            "g": 0.929411768913269,
-            "b": 0.9607843160629272,
+            "r": 0.27843138575553894,
+            "g": 0.29019609093666077,
+            "b": 0.3490196168422699,
             "a": 1
           },
-          "alias": "VariableID:27513:151884",
-          "aliasName": "core/neutral/neutral-20"
+          "alias": "VariableID:27513:151889",
+          "aliasName": "core/neutral/neutral-70"
         },
         "25178:2": {
           "resolvedValue": {
@@ -71266,7 +71192,7 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151881"
         },
         "25178:2": {
           "type": "VARIABLE_ALIAS",
@@ -71290,13 +71216,13 @@
         },
         "25178:1": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 1,
+            "g": 1,
+            "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151881",
+          "aliasName": "core/neutral/neutral-0"
         },
         "25178:2": {
           "resolvedValue": {
