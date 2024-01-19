@@ -2,7 +2,7 @@
 
 exports[`TimePickerBody should be rendered with maximum props 1`] = `
 <div
-  className="uui-timepicker-container root"
+  className="root uui-timepicker-container"
 >
   <div
     className="uui-timepicker-item"
@@ -165,7 +165,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
 
 exports[`TimePickerBody should be rendered with minimum props 1`] = `
 <div
-  className="uui-timepicker-container root"
+  className="root uui-timepicker-container"
 >
   <div
     className="uui-timepicker-item"
