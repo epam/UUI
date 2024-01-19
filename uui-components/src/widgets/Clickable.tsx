@@ -5,32 +5,47 @@ import {
 } from '@epam/uui-core';
 
 export type HrefRawProps = {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
+    /** The URL that the hyperlink points to. */
     href: string | never;
+    /** Defines location within SPA application */
     link?: never;
 };
 
 export type LinkButtonRawProps = {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
+    /** The URL that the hyperlink points to. */
     href?: never;
+    /** Defines location within SPA application */
     link: Link;
 };
 
 export type ButtonRawProps = {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>['rawProps'];
+    /** The URL that the hyperlink points to. */
     href?: never;
+    /** Defines location within SPA application */
     link?: never;
 };
 
 export type SpanRawProps = {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: IHasRawProps<React.HTMLAttributes<HTMLSpanElement>>['rawProps'];
+    /** The URL that the hyperlink points to. */
     href?: never;
+    /** Defines location within SPA application */
     link?: never;
 };
 
 export type AnchorRawProps = {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
+    /** The URL that the hyperlink points to. */
     href: string;
+    /** Defines location within SPA application */
     link: Link;
 };
 
