@@ -10,7 +10,8 @@ import {
     useArrayDataSource,
     DataTableCellProps,
     RenderCellProps,
-    useList,
+    useTree,
+    useDataRows,
 } from '@epam/uui-core';
 import { useForm } from '@epam/promo';
 import * as promo from '@epam/promo';
@@ -282,11 +283,11 @@ export default function TableCellsStylesSandbox() {
         [skinName],
     );
 
-    const { rows, listProps } = useList(
+    const tree = useTree(
         {
-            type: 'array',
-            listState: tableState,
-            setListState: setTableState,
+            type: 'plain',
+            dataSourceState: tableState,
+            setDataSourceState: setTableState,
             items,
             getId: ({ id: listId }) => listId,
             getRowOptions: (_: Item, index: number) => ({
@@ -295,6 +296,8 @@ export default function TableCellsStylesSandbox() {
         },
         [],
     );
+
+    const { visibleRows, listProps } = useDataRows(tree);
 
     const renderRow = useCallback(
         (props: DataTableRowProps<Item, number>) => {
@@ -319,7 +322,7 @@ export default function TableCellsStylesSandbox() {
             </skin.FlexRow>
             <skin.DataTable
                 { ...listProps }
-                getRows={ () => rows }
+                getRows={ () => visibleRows }
                 value={ tableState }
                 onValueChange={ setTableState }
                 columns={ columns }
