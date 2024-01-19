@@ -1,6 +1,7 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
+* Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
 * [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
 
 **What's Fixed**
