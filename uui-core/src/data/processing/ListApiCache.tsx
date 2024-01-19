@@ -1,7 +1,7 @@
 import { FAILED, LazyLoadedMap, UNKNOWN } from '../../helpers';
 import { LazyDataSourceApi } from '../../types';
 import { batch } from '../../helpers/batch';
-import { NOT_FOUND_RECORD } from '../processing/views/tree/ITree';
+import { NOT_FOUND_RECORD } from './views';
 
 export interface ListApiSettings<TItem, TId, TFilter> {
     /** Lazy List API used to fetch items */

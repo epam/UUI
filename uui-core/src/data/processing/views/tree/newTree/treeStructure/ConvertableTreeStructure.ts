@@ -1,5 +1,5 @@
-import { ItemsMap } from '../../../../../../data/processing/ItemsMap';
-import { ItemsAccessor } from '../ItemsAccessor';
+import { ItemsMap } from '../../ItemsMap';
+import { ItemsAccessor } from './ItemsAccessor';
 import { PureTreeStructure } from './PureTreeStructure';
 import { TreeStructure } from './TreeStructure';
 

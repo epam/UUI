@@ -1,6 +1,6 @@
-import { ApplyFilterToTreeSnapshotOptions, FilterOptions } from '../../types';
 import { ITreeStructure } from '../ITreeStructure';
 import { TreeStructure } from '../TreeStructure';
+import { ApplyFilterToTreeSnapshotOptions, FilterOptions } from './types';
 
 export class FilterHelper {
     public static filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter }: FilterOptions<TItem, TId, TFilter>): ITreeStructure<TItem, TId> {

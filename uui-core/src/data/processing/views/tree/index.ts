@@ -1,4 +1,2 @@
-export * from './Tree';
-export * from './ITree';
 export * from './hooks';
-export * from './newTree';
+export * from './newTree/exposed';

@@ -1,18 +1,12 @@
-import { ItemsMap } from '../../../../../processing/ItemsMap';
-import { ItemsStorage } from '../../../../../processing/ItemsStorage';
-import { TreeParams } from '../../ITree';
-import { ITreeStructure } from '../treeStructure/ITreeStructure';
-import { CascadeSelectionOptions, FilterOptions, ITreeState, LoadAllOptions, LoadOptions, PatchOptions, SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions } from './ITreeState';
+import { ItemsStorage } from '../../ItemsStorage';
+import {
+    CascadeSelectionOptions, FilterOptions, ITreeState, LoadAllOptions, LoadOptions, PatchOptions,
+    SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
+} from './ITreeState';
 import { PureTreeState } from './PureTreeState';
-import { FetchingHelper } from '../treeStructure/helpers/FetchingHelper';
-import { TreeStructure } from '../treeStructure/TreeStructure';
-import { ItemsAccessor } from '../ItemsAccessor';
-import { FilterHelper } from '../treeStructure/helpers/FilterHelper';
-import { SortHelper } from '../treeStructure/helpers/SortHelper';
-import { SearchHelper } from '../treeStructure/helpers/SearchHelper';
-import { CheckingHelper } from '../treeStructure/helpers/CheckingHelper';
-import { PatchHelper } from '../treeStructure/helpers/PatchHelper';
-import { PatchItemsOptions } from '../types';
+import { TreeStructure, ITreeStructure, TreeParams, FetchingHelper, FilterHelper, SortHelper, SearchHelper, CheckingHelper, PatchHelper } from '../treeStructure';
+import { ItemsMap } from '../../ItemsMap';
+import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 
 export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements ITreeState<TItem, TId> {
     protected constructor(
@@ -37,7 +31,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
     }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await FetchingHelper.load({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await FetchingHelper.load<TItem, TId, TFilter>({
             treeStructure,
             itemsMap: this.itemsMap,
             options,
@@ -78,7 +72,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         getFilter,
     }: FilterOptions<TItem, TId, TFilter>): ITreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = FilterHelper.filter({ treeStructure, getFilter, filter });
+        const newTreeStructure = FilterHelper.filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter });
 
         if (treeStructure === newTreeStructure) {
             return this;
@@ -92,7 +86,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         sortBy,
     }: SortOptions<TItem, TId, TFilter>): ITreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = SortHelper.sort({ treeStructure, sorting, sortBy });
+        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ treeStructure, sorting, sortBy });
 
         if (treeStructure === newTreeStructure) {
             return this;

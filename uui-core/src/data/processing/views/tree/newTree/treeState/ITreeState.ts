@@ -1,11 +1,16 @@
-import { CascadeSelection, DataSourceState } from '../../../../../../types';
-import { ItemsMap } from '../../../../../processing/ItemsMap';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../ITree';
-import { ITreeStructure } from '../treeStructure/ITreeStructure';
-import { PatchItemsOptions } from '../types';
+import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../../types';
+import { LazyListViewProps } from '../../../types';
+import { ItemsMap } from '../../ItemsMap';
+import { ITreeStructure } from '../treeStructure';
+
+export interface LoadTreeOptions<TItem, TId, TFilter>
+    extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
+    loadAllChildren?(id: TId): boolean;
+    isLoadStrict?: boolean;
+    isFolded?: (item: TItem) => boolean;
+}
 
 export type TreeStructureId = 'full' | 'visible';
-
 export interface LoadOptions<TItem, TId, TFilter> {
     using?: TreeStructureId;
     options: LoadTreeOptions<TItem, TId, TFilter>,
@@ -24,6 +29,23 @@ export interface UpdateTreeStructuresOptions<TItem, TId> {
     treeStructure: ITreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
 }
+export interface ApplyFilterOptions<TItem, TId, TFilter> {
+    filter: DataSourceState<TFilter, TId>['filter'];
+    getFilter?: (filter: TFilter) => (item: TItem) => boolean;
+}
+
+export interface ApplySearchOptions<TItem, TId, TFilter> {
+    search: DataSourceState<TFilter, TId>['search'];
+    getSearchFields?: (item: TItem) => string[];
+    sortSearchByRelevance?: boolean;
+}
+
+export interface ApplySortOptions<TItem, TId, TFilter> {
+    sorting: DataSourceState<TFilter, TId>['sorting'];
+    sortBy?(item: TItem, sorting: SortingOption): any;
+}
+
+export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem) => number;
 
 export interface FilterOptions<TItem, TId, TFilter = any> extends ApplyFilterOptions<TItem, TId, TFilter> {}
 export interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, TFilter> {}
@@ -43,6 +65,15 @@ export interface PatchOptions<TItem> {
     items: TItem[];
     isDeletedProp?: keyof TItem;
     comparator?: ItemsComparator<TItem>;
+}
+
+export type Position = 'initial' | 'top' | 'bottom';
+export interface PatchItemsOptions<TItem, TId> {
+    treeStructure: ITreeStructure<TItem, TId>;
+    itemsMap: ItemsMap<TId, TItem>;
+    patchItems?: ItemsMap<TId, TItem>;
+    isDeletedProp?: keyof TItem;
+    getPosition?: (item: TItem) => Position | { after: TId };
 }
 
 export interface ITreeState<TItem, TId> {

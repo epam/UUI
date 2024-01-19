@@ -1,4 +1,4 @@
-import { IBaseMap } from '../../types/objects';
+import { IBaseMap } from '../../../../types';
 
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 

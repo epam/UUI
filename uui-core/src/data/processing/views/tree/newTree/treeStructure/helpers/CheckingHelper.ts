@@ -1,7 +1,7 @@
 import { CascadeSelectionTypes } from '../../../../../../../types';
-import { newMap } from '../../../BaseTree';
-import { ROOT_ID } from '../../../ITree';
-import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, SelectionOptions } from '../../types';
+import { ROOT_ID } from '../../constants';
+import { newMap } from './map';
+import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, SelectionOptions } from './types';
 
 export class CheckingHelper {
     public static cascadeSelection<TItem, TId>({
