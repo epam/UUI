@@ -972,6 +972,14 @@
         --uui-text_placeholder-gradient: repeating-linear-gradient(90deg, var(--uui-neutral-30) 0, var(--uui-neutral-50) 150px, var(--uui-neutral-30) 300px);
     }
 
+    .uui-dt-vars {
+        --uui-dt-header-row-bg: var(--uui-surface-sunken);
+    }
+
+    .uui-filters-panel-item-toggler {
+        --uui-filters_toggler-bg-hover: var(--uui-neutral-30);
+    }
+
     /* fonts */
 
     .uui-font-sans {
