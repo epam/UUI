@@ -1,3 +1,11 @@
+# 5.x.x - xx.xx.2024
+
+**What's New**
+* [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
+
+**What's Fixed**
+
+
 # 5.5.0 - 18.01.2024
 
 **What's New**
