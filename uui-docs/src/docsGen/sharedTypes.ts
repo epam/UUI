@@ -35,7 +35,8 @@ export type TTypeDetails = {
 export type TComment = {
     raw: string[],
     tags: {
-        '@default'?: boolean | string | number | null
+        '@default'?: boolean | string | number | null,
+        '@deprecated'?: string,
     } | undefined,
 };
 export type TTypeProp = {
