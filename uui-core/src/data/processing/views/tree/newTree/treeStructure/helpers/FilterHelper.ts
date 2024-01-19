@@ -32,6 +32,10 @@ export class FilterHelper {
 
         applyFilterRec(treeStructure.getRootItems());
 
-        return TreeStructure.createFromItems({ params: treeStructure.params, items: matchedItems });
+        return TreeStructure.createFromItems({
+            itemsAccessor: treeStructure.itemsAccessor,
+            params: treeStructure.params,
+            items: matchedItems,
+        });
     }
 }

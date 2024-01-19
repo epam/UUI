@@ -1,10 +1,8 @@
 import { CascadeSelection, DataSourceState } from '../../../../../types';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadAllTreeOptions, LoadTreeOptions } from '../ITree';
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadAllTreeOptions, LoadTreeOptions, TreeParams } from '../ITree';
 import { CompositeKeysMap } from '../CompositeKeysMap';
 import { ItemsMap } from '../../../ItemsMap';
 import { ITreeStructure } from './treeStructure/ITreeStructure';
-import { TreeStructure } from './treeStructure/TreeStructure';
-import { TreeStructureParams } from './treeStructure/PureTreeStructure';
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
     treeStructure: ITreeStructure<TItem, TId>;
@@ -80,7 +78,7 @@ export interface PatchItemsOptions<TItem, TId> {
 }
 
 export interface InsertIntoPositionOptions<TItem, TId> {
-    params: TreeStructureParams<TItem, TId>;
+    params: TreeParams<TItem, TId>;
     ids: TId[];
     item: TItem;
     position: Position | { after: TId };

@@ -1,11 +1,12 @@
 import isEqual from 'lodash.isequal';
 import { LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../../../types';
-import { ItemsMap } from '../../../../../../../data/processing/ItemsMap';
+import { ItemsMap } from '../../../../../ItemsMap';
 import { LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptions } from '../../types';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap } from './map';
+import { ItemsAccessor } from '../../ItemsAccessor';
 
-export class LoadingHelpers {
+export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
         treeStructure,
         itemsMap,
@@ -26,7 +27,11 @@ export class LoadingHelpers {
 
         return {
             itemsMap: newItemsMap,
-            treeStructure: TreeStructure.createFromItems({ params: treeStructure.params, items: response.items }),
+            treeStructure: TreeStructure.createFromItems({
+                params: treeStructure.params,
+                items: response.items,
+                itemsAccessor: ItemsAccessor.toItemsAccessor(newItemsMap),
+            }),
         };
     }
 
@@ -52,7 +57,15 @@ export class LoadingHelpers {
             itemsToLoad: dataSourceState.checked,
         });
 
-        return { itemsMap: updatedItemsMap, treeStructure: newTreeStructure };
+        return {
+            itemsMap: updatedItemsMap,
+            treeStructure: TreeStructure.create(
+                newTreeStructure.params,
+                ItemsAccessor.toItemsAccessor(updatedItemsMap),
+                newTreeStructure.byParentId,
+                newTreeStructure.nodeInfoById,
+            ),
+        };
     }
 
     private static async loadMissing<TItem, TId, TFilter = any>({
@@ -148,10 +161,18 @@ export class LoadingHelpers {
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
-        if (treeStructure.byParentId !== byParentId || treeStructure.nodeInfoById !== nodeInfoById) {
-            return { treeStructure: TreeStructure.create(treeStructure.params, byParentId, nodeInfoById), itemsMap: newItemsMap };
+        if (treeStructure.byParentId !== byParentId || treeStructure.nodeInfoById !== nodeInfoById || itemsMap !== newItemsMap) {
+            return {
+                treeStructure: TreeStructure.create(
+                    treeStructure.params,
+                    ItemsAccessor.toItemsAccessor(newItemsMap),
+                    byParentId,
+                    nodeInfoById,
+                ),
+                itemsMap: newItemsMap,
+            };
         }
-        return { treeStructure, itemsMap: newItemsMap };
+        return { treeStructure, itemsMap };
     }
 
     private static async loadMissingItemsAndParents<TItem, TId, TFilter>({

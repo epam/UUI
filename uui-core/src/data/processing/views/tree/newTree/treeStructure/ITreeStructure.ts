@@ -1,6 +1,9 @@
 import { DataRowPathItem, IMap } from '../../../../../../types';
-import { TreeNodeInfo } from '../../ITree';
-import { TreeStructureParams } from './PureTreeStructure';
+import { NOT_FOUND_RECORD, TreeNodeInfo, TreeParams } from '../../ITree';
+
+export interface ItemsAccessor<TItem, TId> {
+    get: (id: TId) => TItem | typeof NOT_FOUND_RECORD;
+}
 
 export interface ITreeStructure<TItem, TId> {
     getRootIds(): TId[];
@@ -31,5 +34,6 @@ export interface ITreeStructure<TItem, TId> {
 
     get byParentId(): IMap<TId, TId[]>;
     get nodeInfoById(): IMap<TId, TreeNodeInfo>;
-    get params(): TreeStructureParams<TItem, TId>;
+    get params(): TreeParams<TItem, TId>;
+    get itemsAccessor(): ItemsAccessor<TItem, TId>;
 }

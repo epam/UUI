@@ -1,5 +1,6 @@
 import { TreeNodeInfo } from '../../..';
 import { newMap } from '../../../BaseTree';
+import { ItemsAccessor } from '../../ItemsAccessor';
 import { InsertIntoPositionOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchItemsOptions, PatchOptions } from '../../types';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap } from './map';
@@ -56,7 +57,15 @@ export class PatchHelper {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
-        return { treeStructure: TreeStructure.create(treeStructure.params, newByParentId, newNodeInfoById), itemsMap: newItemsMap };
+        return {
+            treeStructure: TreeStructure.create(
+                treeStructure.params,
+                ItemsAccessor.toItemsAccessor(newItemsMap),
+                newByParentId,
+                newNodeInfoById,
+            ),
+            itemsMap: newItemsMap,
+        };
     }
 
     public static patchItems<TItem, TId>({
@@ -94,7 +103,7 @@ export class PatchHelper {
         });
 
         if (!isPatched) {
-            return this;
+            return { treeStructure, itemsMap };
         }
 
         const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.params);
@@ -110,7 +119,15 @@ export class PatchHelper {
             }
         }
 
-        return { treeStructure: TreeStructure.create(treeStructure.params, newByParentId, newNodeInfoById), itemsMap: newItemsMap };
+        return {
+            treeStructure: TreeStructure.create(
+                treeStructure.params,
+                ItemsAccessor.toItemsAccessor(newItemsMap),
+                newByParentId,
+                newNodeInfoById,
+            ),
+            itemsMap: newItemsMap,
+        };
     }
 
     private static deleteFromChildren<TId>(id: TId, children: TId[]) {
