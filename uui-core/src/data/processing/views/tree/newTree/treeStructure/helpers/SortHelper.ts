@@ -15,7 +15,11 @@ export class SortHelper {
         };
 
         sortRec(treeStructure.getRootItems());
-        return TreeStructure.createFromItems({ params: treeStructure.params, items: sortedItems });
+        return TreeStructure.createFromItems({
+            params: treeStructure.params,
+            itemsAccessor: treeStructure.itemsAccessor,
+            items: sortedItems,
+        });
     }
 
     private static buildSorter<TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {

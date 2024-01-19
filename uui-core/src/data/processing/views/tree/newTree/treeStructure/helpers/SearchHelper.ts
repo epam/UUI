@@ -57,7 +57,11 @@ export class SearchHelper {
 
         const searchItems = sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks, treeStructure.params.getId) : matchedItems;
 
-        return TreeStructure.createFromItems({ params: treeStructure.params, items: searchItems });
+        return TreeStructure.createFromItems({
+            itemsAccessor: treeStructure.itemsAccessor,
+            params: treeStructure.params,
+            items: searchItems,
+        });
     }
 
     private static sortByRanks<TItem, TId>(items: TItem[], ranks: Map<TId, number>, getId: (item: TItem) => TId) {
