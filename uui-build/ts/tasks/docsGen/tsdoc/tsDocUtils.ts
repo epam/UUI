@@ -26,9 +26,10 @@ export class TsDocUtils {
     static parseComment(srcComment: string): TComment | undefined {
         const isTsDoc = srcComment.indexOf('/**') === 0;
         if (isTsDoc) {
-            const LF = '\n';
-            const raw = srcComment.split(LF).map(cleanAsteriks).join(LF).trim()
-                .split(LF);
+            const NL_LINUX = '\n';
+            const NL_ANY_REGEX = /\r?\n/g;
+            const raw = srcComment.split(NL_ANY_REGEX).map(cleanAsteriks).join(NL_LINUX).trim()
+                .split(NL_LINUX);
             return {
                 raw,
                 tags: TsDocUtils.parseCommentTags(srcComment),
