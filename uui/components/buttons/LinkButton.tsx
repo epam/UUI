@@ -61,21 +61,20 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
         <Clickable { ...props } cx={ styles } ref={ ref }>
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
-                    key="icon-left"
                     icon={ props.icon }
                     onClick={ !props.isDisabled ? props.onIconClick : undefined }
                 />
             ) }
             { props.caption && (
-                <div key="caption" className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ cx(uuiElement.caption, props.captionCX) }>
                     { props.caption }
                 </div>
             ) }
             { props.icon && props.iconPosition === 'right' && (
-                <IconContainer key="icon-right" icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
+                <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
             ) }
             { props.isDropdown && (
-                <IconContainer key="dropdown-icon-right" icon={ DropdownIcon } flipY={ props.isOpen } />
+                <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
             ) }
         </Clickable>
     );

@@ -14,7 +14,7 @@ export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
 export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
     return (
         <Clickable { ...props } cx={ [css.container, props.cx] } ref={ ref }>
-            <IconContainer key="icon" icon={ props.icon } />
+            <IconContainer icon={ props.icon } />
         </Clickable>
     );
 });
