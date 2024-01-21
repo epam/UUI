@@ -285,6 +285,6 @@ export interface IDropdownTogglerProps extends IDropdownToggler, IClickable {
     toggleDropdownOpening?: (value: boolean) => void;
     /** Called when component is interacted outside, to close the dropdown */
     isInteractedOutside?: (event: Event) => boolean;
-    /** toggler component ref */
+    /** Toggler component ref */
     ref?: React.Ref<any>;
 }

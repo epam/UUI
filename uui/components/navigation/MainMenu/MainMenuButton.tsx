@@ -53,29 +53,27 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
-                    key="icon-left"
                     icon={ props.icon }
                     onClick={ props.onIconClick }
                 />
             ) }
             { props.caption && (
-                <div key="caption" className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ cx(uuiElement.caption, props.captionCX) }>
                     { props.caption }
                 </div>
             ) }
             { props.count !== undefined && props.count !== null && (
                 <CountIndicator
-                    key="count-indicator"
                     caption={ props.count }
                     color="neutral"
                     size="18"
                 />
             ) }
             { props.icon && props.iconPosition === 'right' && (
-                <IconContainer key="icon-right" icon={ props.icon } onClick={ props.onIconClick } />
+                <IconContainer icon={ props.icon } onClick={ props.onIconClick } />
             ) }
             { props.isDropdown && (
-                <IconContainer key="dropdown-icon-right" icon={ SvgTriangle } flipY={ props.isOpen } />
+                <IconContainer icon={ SvgTriangle } flipY={ props.isOpen } />
             )}
         </Clickable>
     );

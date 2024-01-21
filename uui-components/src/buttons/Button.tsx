@@ -36,24 +36,23 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | H
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
-                    key="icon-left"
                     icon={ props.icon }
                     onClick={ !props.isDisabled ? props.onIconClick : undefined }
                 />
             )}
             { props.caption && (
-                <div key="caption" className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ cx(uuiElement.caption, props.captionCX) }>
                     { props.caption }
                 </div>
             )}
             { props.icon && props.iconPosition === 'right' && (
-                <IconContainer key="icon-right" icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
+                <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
             ) }
             { props.isDropdown && (
-                <IconContainer key="dropdown-icon-right" icon={ props.dropdownIcon } flipY={ props.isOpen } />
+                <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } />
             ) }
             { props.onClear && !props.isDisabled && (
-                <IconContainer key="clear-icon" cx={ uuiMarkers.clickable } icon={ props.clearIcon } onClick={ props.onClear } />
+                <IconContainer cx={ uuiMarkers.clickable } icon={ props.clearIcon } onClick={ props.onClear } />
             ) }
         </Clickable>
     );

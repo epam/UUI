@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren } from 'react';
 import {
     cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext,
     IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, IHasRawProps, Link, ICanRedirect,
@@ -56,16 +56,16 @@ export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabI
 
 export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, PropsWithChildren<ClickableComponentProps>>((props, ref) => {
     const context = useUuiContext();
-    const isAnchor = useMemo(() => Boolean(props.href || props.link), [props.href, props.link]);
-    const isButton = useMemo(() => Boolean(!isAnchor && props.onClick), [isAnchor, props.onClick]);
-    const isClickable = useMemo(() => Boolean(!props.isDisabled && (isAnchor || props.onClick)), [props.isDisabled, isAnchor, props.onClick]);
-    const isLinkActive = useMemo(() => {
+    const isAnchor = Boolean(props.href || props.link);
+    const isButton = Boolean(!isAnchor && props.onClick);
+    const isClickable = Boolean(!props.isDisabled && (isAnchor || props.onClick));
+    const getIsLinkActive = () => {
         if (props.isLinkActive !== undefined) {
             return props.isLinkActive;
         } else {
             return props.link ? context.uuiRouter?.isActive(props.link) : false;
         }
-    }, [props.isLinkActive, props.link]);
+    };
 
     const clickHandler = (e: React.MouseEvent) => {
         if (!isEventTargetInsideClickable(e) && !props.isDisabled) {
@@ -97,7 +97,7 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
             [uuiElement.buttonBox]: true,
             [uuiMod.enabled]: !props.isDisabled,
             [uuiMod.disabled]: props.isDisabled,
-            [uuiMod.active]: isLinkActive,
+            [uuiMod.active]: getIsLinkActive(),
             [uuiMarkers.clickable]: isClickable,
             [uuiElement.anchor]: isAnchor,
         },

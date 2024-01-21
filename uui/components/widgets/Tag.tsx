@@ -98,32 +98,30 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
-                    key="icon-left"
                     icon={ props.icon }
                     onClick={ !props.isDisabled ? props.onIconClick : undefined }
                 />
             ) }
             { props.caption && (
-                <div key="caption" className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ cx(uuiElement.caption, props.captionCX) }>
                     { props.caption }
                 </div>
             ) }
             { props.count !== undefined && props.count !== null && (
                 <CountIndicator
-                    key="count-indicator"
                     color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
                     size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
                     caption={ props.count }
                 />
             ) }
             { props.icon && props.iconPosition === 'right' && (
-                <IconContainer key="icon-right" icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
+                <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
             ) }
             { props.isDropdown && (
-                <IconContainer key="dropdown-icon-right" icon={ DropdownIcon } flipY={ props.isOpen } />
+                <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
             )}
             { props.onClear && !props.isDisabled && (
-                <IconContainer key="clear-icon" cx={ uuiMarkers.clickable } icon={ ClearIcon } onClick={ props.onClear } />
+                <IconContainer cx={ uuiMarkers.clickable } icon={ ClearIcon } onClick={ props.onClear } />
             ) }
         </Clickable>
     );
