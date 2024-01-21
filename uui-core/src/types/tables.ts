@@ -98,18 +98,26 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     renderCell?(cellProps: RenderCellProps<TItem, TId>): any;
 
     /**
-     * Renders column header dropdown.
+     *  Render callback for column header dropdown.
      * Usually, this prop is filled automatically by the useTableState hook.
      * If you use the useTableState hook, you don't need to specify it manually.
      */
     renderDropdown?(): React.ReactNode;
 
     /**
-     * Renders column filter.
+     *  Render callback for column filter.
      * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.
      * You can use this prop to render a custom filter component.
      */
     renderFilter?(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps): React.ReactNode;
+
+    /** Render callback for column header tooltip.
+     * This tooltip will appear on cell hover with 600ms delay.
+     *
+     * If omitted, default implementation with column.caption + column.info will be rendered.
+     * Pass `() => null` to disable tooltip rendering.
+     */
+    renderTooltip?(column: DataColumnProps<TItem, TId, TFilter>): React.ReactNode;
 }
 
 export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {

@@ -1,21 +1,13 @@
-import { IThemeVarUI } from '../palette/types/types';
+type ITokensDocGroupBase = {
+    id: string,
+    title: string,
+    description: string,
+};
 
-export type ITokensDocGroupWithSubgroups = {
-    id: string,
-    title: string,
-    description: string,
-    subgroups: ITokensDocGroup[]
-};
-export type ITokensDocGroupWithItems = {
-    id: string,
-    title: string,
-    description: string,
-    items: ITokensDocItem[]
-};
-export type ITokensDocGroup = ITokensDocGroupWithSubgroups | ITokensDocGroupWithItems;
-export const isGroupWithSubgroups = (cfg: ITokensDocGroup): cfg is ITokensDocGroupWithSubgroups => {
-    return (cfg as ITokensDocGroupWithSubgroups).subgroups !== undefined;
-};
+export type ITokensDocGroup =
+    ({ _type: 'group_with_subgroups', subgroups: ITokensDocGroup[] } & ITokensDocGroupBase)
+    |
+    ({ _type: 'group_with_items', items: ITokensDocItem[] } & ITokensDocGroupBase);
 
 export interface ITokensDocItem {
     cssVar: string, // use it to render color rectangle
@@ -24,7 +16,7 @@ export interface ITokensDocItem {
     value: string, // hex, for tooltip
 }
 
-export type TTokensDocItemCfg = (token: IThemeVarUI) => boolean;
+export type TTokensDocItemCfg = string;
 export type TTokensDocGroupCfg = TTokensDocGroupCfgWithSubgroups | TTokensDocGroupCfgWithItems;
 export type TTokensDocGroupCfgWithSubgroups = { title: string, description: string, subgroups: TTokensDocGroupCfg[] };
 export type TTokensDocGroupCfgWithItems = { title: string, description: string, items: TTokensDocItemCfg };

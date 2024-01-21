@@ -2,7 +2,7 @@
 
 .root {
     --uui-rdtp_date-bg-selected: var(--uui-info-10);
-    --uui-rdtp_blocker-bg: color-mix(in srgb, var(--uui-surface-sunken) 80%, transparent);
+    --uui-rdtp_blocker-bg: color-mix(in srgb, var(--uui-surface-higher) 80%, transparent);
 
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {

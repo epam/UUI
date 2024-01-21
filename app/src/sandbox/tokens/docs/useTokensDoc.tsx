@@ -12,7 +12,7 @@ const PARAMS: TLoadThemeTokensParams = {
     },
     valueType: TThemeTokenValueType.chain,
 };
-export function useTokensDoc() {
+export function useTokensDoc(): { loading: boolean, tokens: ITokensDocGroup[] } {
     const result = useThemeTokens(PARAMS);
     const {
         tokens,
@@ -20,34 +20,46 @@ export function useTokensDoc() {
     } = result;
     return {
         loading,
-        tokens: convertDocGroup({ tokens, docGroupCfg: TOKENS_DOC_CONFIG }),
+        tokens: convertDocGroup({ tokens, docGroupCfgArr: TOKENS_DOC_CONFIG }),
     };
 }
 
-function convertDocGroup(params: { docGroupCfg: TTokensDocGroupCfg, tokens: IThemeVarUI[] }): ITokensDocGroup {
-    const { docGroupCfg, tokens } = params;
-    const { title, description } = docGroupCfg;
-    const id = title.replace(/[\s]/g, '_');
+function convertDocGroup(params: { docGroupCfgArr: TTokensDocGroupCfg[], tokens: IThemeVarUI[] }): ITokensDocGroup[] {
+    const { docGroupCfgArr, tokens } = params;
 
-    if (isGroupCfgWithSubgroups(docGroupCfg)) {
+    return docGroupCfgArr.map((group) => {
+        const { title, description } = group;
+        const id = title.replace(/[\s]/g, '_');
+
+        if (isGroupCfgWithSubgroups(group)) {
+            return {
+                _type: 'group_with_subgroups',
+                id,
+                title,
+                description,
+                subgroups: convertDocGroup({ docGroupCfgArr: group.subgroups, tokens }),
+            };
+        }
         return {
+            _type: 'group_with_items',
             id,
             title,
             description,
-            subgroups: docGroupCfg.subgroups.map((s: TTokensDocGroupCfg) => convertDocGroup({ docGroupCfg: s, tokens })),
+            items: convertDocItems({ docItemCfg: group.items, tokens }),
         };
-    }
-    return {
-        id,
-        title,
-        description,
-        items: convertDocItems({ docItemCfg: docGroupCfg.items, tokens }),
-    };
+    });
 }
 
 function convertDocItems(params: { docItemCfg: TTokensDocItemCfg, tokens: IThemeVarUI[] }): ITokensDocItem[] {
+    const CRITERIA = {
+        pathStartsWith: (str: string) => (tok: IThemeVarUI) => {
+            return tok.id.indexOf(str) === 0;
+        },
+    };
+    const condition = CRITERIA.pathStartsWith(params.docItemCfg);
+
     return params.tokens.reduce<ITokensDocItem[]>((acc, tok) => {
-        if (params.docItemCfg(tok)) {
+        if (condition(tok)) {
             acc.push({
                 cssVar: tok.cssVar,
                 description: tok.description,

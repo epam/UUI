@@ -1,8 +1,8 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    --uui-filters_toggler-bg: var(--uui-surface-main);
-    --uui-filters_toggler-bg-hover: var(--uui-surface-sunken);
+    --uui-filters_toggler-bg: var(--uui-control-bg);
+    --uui-filters_toggler-bg-hover: var(--uui-neutral-5);
     --uui-filters_toggler-border: var(--uui-control-border);
     --uui-filters_toggler-border-hover: var(--uui-control-border-hover);
     --uui-filters_toggler-icon: var(--uui-icon);

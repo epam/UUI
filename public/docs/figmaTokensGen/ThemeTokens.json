@@ -98,8 +98,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
@@ -186,7 +186,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-bg",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -382,8 +382,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-50",
-                "cssVar": "--blue-50",
+                "id": "palette/sky/sky-50",
+                "cssVar": "--sky-50",
                 "supported": true,
                 "published": false
               }
@@ -512,8 +512,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-20",
-                "cssVar": "--blue-20",
+                "id": "palette/sky/sky-20",
+                "cssVar": "--sky-20",
                 "supported": true,
                 "published": false
               }
@@ -642,8 +642,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -730,7 +730,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-bg-disabled",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -860,7 +860,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-bg-hover",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1120,7 +1120,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-border",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1292,8 +1292,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -1422,8 +1422,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-20",
-                "cssVar": "--blue-20",
+                "id": "palette/sky/sky-20",
+                "cssVar": "--sky-20",
                 "supported": true,
                 "published": false
               }
@@ -1552,8 +1552,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -1770,126 +1770,126 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-border-hover",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/sky/sky-60",
-                "cssVar": "--sky-60",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#0086AD"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#0086AD"
+            "value": "#6C6F80"
           }
         },
         "Loveship-Dark": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#48A4D0"
+            "value": "#ACAFBF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#0086AD"
+            "value": "#EBEDF5"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/gray/gray60",
+                "cssVar": "--gray60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#006AA3"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#0086AD"
+            "value": "#6C6F80"
           }
         },
         "EPAM": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/electric/electric-60",
-                "cssVar": "--electric-60",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#095ED9"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#0086AD"
+            "value": "#6C6F80"
           }
         }
       }
@@ -2196,8 +2196,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -2284,7 +2284,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-icon",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -2414,7 +2414,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-icon-disabled",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -2840,7 +2840,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-placeholder",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -2976,7 +2976,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-placeholder-disabled",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -3172,8 +3172,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-50",
-                "cssVar": "--blue-50",
+                "id": "palette/sky/sky-50",
+                "cssVar": "--sky-50",
                 "supported": true,
                 "published": false
               }
@@ -3520,7 +3520,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-text",
-      "published": false,
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -3657,16 +3657,22 @@
       }
     },
     {
-      "id": "core/controls/control-text_input-border-hover",
+      "id": "core/controls/control-text-disabled",
       "type": "COLOR",
       "description": "",
       "useCases": "",
-      "cssVar": "--uui-control-text_input-border-hover",
-      "published": false,
+      "cssVar": "--uui-control-text-disabled",
+      "published": true,
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
             "alias": [
+              {
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
+                "supported": true,
+                "published": true
+              },
               {
                 "id": "core/neutral/neutral-60",
                 "cssVar": "--uui-neutral-60",
@@ -3685,8 +3691,8 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
                 "supported": true,
                 "published": true
               }
@@ -3697,6 +3703,12 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [
+              {
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
+                "supported": true,
+                "published": true
+              },
               {
                 "id": "core/neutral/neutral-20",
                 "cssVar": "--uui-neutral-20",
@@ -3715,18 +3727,24 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#EBEDF5"
+            "value": "#6C6F80"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
+              {
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
+                "supported": true,
+                "published": true
+              },
               {
                 "id": "core/neutral/neutral-60",
                 "cssVar": "--uui-neutral-60",
@@ -3745,8 +3763,8 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
                 "supported": true,
                 "published": true
               }
@@ -3757,6 +3775,12 @@
         "EPAM": {
           "valueChain": {
             "alias": [
+              {
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
+                "supported": true,
+                "published": true
+              },
               {
                 "id": "core/neutral/neutral-60",
                 "cssVar": "--uui-neutral-60",
@@ -3775,167 +3799,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
                 "supported": true,
                 "published": true
               }
             ],
             "value": "#6C6F80"
-          }
-        }
-      }
-    },
-    {
-      "id": "core/controls/control-text-disabled",
-      "type": "COLOR",
-      "description": "",
-      "useCases": "",
-      "cssVar": "--uui-control-text-disabled",
-      "published": false,
-      "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
-                "supported": true,
-                "published": false
-              }
-            ],
-            "value": "#ACAFBF"
-          },
-          "valueDirect": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              }
-            ],
-            "value": "#ACAFBF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
-                "supported": true,
-                "published": false
-              }
-            ],
-            "value": "#6C6F80"
-          },
-          "valueDirect": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              }
-            ],
-            "value": "#ACAFBF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/gray/gray50",
-                "cssVar": "--gray50",
-                "supported": true,
-                "published": false
-              }
-            ],
-            "value": "#ACAFBF"
-          },
-          "valueDirect": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              }
-            ],
-            "value": "#ACAFBF"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
-                "supported": true,
-                "published": false
-              }
-            ],
-            "value": "#ACAFBF"
-          },
-          "valueDirect": {
-            "alias": [
-              {
-                "id": "core/text/text-disabled",
-                "cssVar": "--uui-text-disabled",
-                "supported": true,
-                "published": true
-              }
-            ],
-            "value": "#ACAFBF"
           }
         }
       }
@@ -4502,8 +4372,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -4513,13 +4383,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#0086AD"
           }
         },
         "Promo": {
@@ -4626,8 +4496,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
@@ -4637,13 +4507,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#006B8A"
           }
         },
         "Promo": {
@@ -4941,7 +4811,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5047,7 +4917,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5153,7 +5023,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5259,7 +5129,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5365,7 +5235,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5471,7 +5341,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5577,7 +5447,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5683,7 +5553,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5789,7 +5659,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5895,7 +5765,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -5953,7 +5823,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6115,76 +5985,6 @@
       }
     },
     {
-      "id": "core/other/scroll",
-      "type": "COLOR",
-      "description": "",
-      "useCases": "",
-      "cssVar": "--uui-scroll",
-      "published": true,
-      "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [
-              {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/gray/gray60",
-                "cssVar": "--gray60",
-                "supported": true,
-                "published": false
-              }
-            ],
-            "value": "#6C6F80"
-          },
-          "valueDirect": {
-            "alias": [
-              {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
-                "supported": true,
-                "published": true
-              }
-            ],
-            "value": "#6C6F80"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        }
-      }
-    },
-    {
       "id": "core/other/skeleton",
       "type": "COLOR",
       "description": "",
@@ -6226,30 +6026,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#474A59"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#E1E3EB"
           }
         },
         "Promo": {
@@ -6320,10 +6120,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#FCFFF5"
@@ -6331,10 +6131,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#FCFFF5"
@@ -6344,10 +6144,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#343A3B"
@@ -6355,10 +6155,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#FCFFF5"
@@ -6385,7 +6185,7 @@
                 "published": false
               }
             ],
-            "value": "#FCFFF5"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -6409,7 +6209,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6426,10 +6226,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#EBF3D8"
@@ -6437,10 +6237,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#EBF3D8"
@@ -6450,10 +6250,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#39443D"
@@ -6461,10 +6261,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#EBF3D8"
@@ -6491,7 +6291,7 @@
                 "published": false
               }
             ],
-            "value": "#EBF3D8"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -6515,7 +6315,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6532,10 +6332,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#C1E288"
@@ -6543,10 +6343,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#C1E288"
@@ -6556,10 +6356,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#505F49"
@@ -6567,10 +6367,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#C1E288"
@@ -6597,7 +6397,7 @@
                 "published": false
               }
             ],
-            "value": "#C1E288"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -6621,7 +6421,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6638,10 +6438,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#67A300"
@@ -6649,10 +6449,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#67A300"
@@ -6662,10 +6462,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#669900"
@@ -6673,10 +6473,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#67A300"
@@ -6703,7 +6503,7 @@
                 "published": false
               }
             ],
-            "value": "#67A300"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -6727,7 +6527,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6744,10 +6544,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#528500"
@@ -6755,10 +6555,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#528500"
@@ -6768,10 +6568,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#83B918"
@@ -6779,10 +6579,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#528500"
@@ -6809,7 +6609,7 @@
                 "published": false
               }
             ],
-            "value": "#528500"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -6833,7 +6633,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6850,10 +6650,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -6861,10 +6661,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -6874,10 +6674,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#A6D151"
@@ -6885,10 +6685,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -6915,7 +6715,7 @@
                 "published": false
               }
             ],
-            "value": "#396F1F"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -6939,7 +6739,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -6986,30 +6786,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -7110,8 +6910,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-5",
-                "cssVar": "--red-5",
+                "id": "palette/fire/fire-5",
+                "cssVar": "--fire-5",
                 "supported": true,
                 "published": false
               }
@@ -7121,13 +6921,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-5",
-                "cssVar": "--red-5",
+                "id": "palette/fire/fire-5",
+                "cssVar": "--fire-5",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FEF6F6"
           }
         },
         "Promo": {
@@ -7151,7 +6951,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7216,8 +7016,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-10",
-                "cssVar": "--red-10",
+                "id": "palette/fire/fire-10",
+                "cssVar": "--fire-10",
                 "supported": true,
                 "published": false
               }
@@ -7227,13 +7027,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-10",
-                "cssVar": "--red-10",
+                "id": "palette/fire/fire-10",
+                "cssVar": "--fire-10",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FDE1E1"
           }
         },
         "Promo": {
@@ -7257,7 +7057,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7322,8 +7122,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-20",
-                "cssVar": "--red-20",
+                "id": "palette/fire/fire-20",
+                "cssVar": "--fire-20",
                 "supported": true,
                 "published": false
               }
@@ -7333,13 +7133,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-20",
-                "cssVar": "--red-20",
+                "id": "palette/fire/fire-20",
+                "cssVar": "--fire-20",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FBB6B6"
           }
         },
         "Promo": {
@@ -7363,7 +7163,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7428,8 +7228,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-50",
-                "cssVar": "--red-50",
+                "id": "palette/fire/fire-50",
+                "cssVar": "--fire-50",
                 "supported": true,
                 "published": false
               }
@@ -7439,13 +7239,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-50",
-                "cssVar": "--red-50",
+                "id": "palette/fire/fire-50",
+                "cssVar": "--fire-50",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FF4242"
           }
         },
         "Promo": {
@@ -7469,7 +7269,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7534,8 +7334,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-60",
-                "cssVar": "--red-60",
+                "id": "palette/fire/fire-60",
+                "cssVar": "--fire-60",
                 "supported": true,
                 "published": false
               }
@@ -7545,13 +7345,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-60",
-                "cssVar": "--red-60",
+                "id": "palette/fire/fire-60",
+                "cssVar": "--fire-60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#E22A2A"
           }
         },
         "Promo": {
@@ -7575,7 +7375,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7640,8 +7440,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-70",
-                "cssVar": "--red-70",
+                "id": "palette/fire/fire-70",
+                "cssVar": "--fire-70",
                 "supported": true,
                 "published": false
               }
@@ -7651,13 +7451,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-70",
-                "cssVar": "--red-70",
+                "id": "palette/fire/fire-70",
+                "cssVar": "--fire-70",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#AD0000"
           }
         },
         "Promo": {
@@ -7681,7 +7481,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7752,30 +7552,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -7876,8 +7676,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-5",
-                "cssVar": "--red-5",
+                "id": "palette/fire/fire-5",
+                "cssVar": "--fire-5",
                 "supported": true,
                 "published": false
               }
@@ -7887,13 +7687,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-5",
-                "cssVar": "--red-5",
+                "id": "palette/fire/fire-5",
+                "cssVar": "--fire-5",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FEF6F6"
           }
         },
         "Promo": {
@@ -7917,7 +7717,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -7982,8 +7782,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-10",
-                "cssVar": "--red-10",
+                "id": "palette/fire/fire-10",
+                "cssVar": "--fire-10",
                 "supported": true,
                 "published": false
               }
@@ -7993,13 +7793,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-10",
-                "cssVar": "--red-10",
+                "id": "palette/fire/fire-10",
+                "cssVar": "--fire-10",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FDE1E1"
           }
         },
         "Promo": {
@@ -8023,7 +7823,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8088,8 +7888,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-20",
-                "cssVar": "--red-20",
+                "id": "palette/fire/fire-20",
+                "cssVar": "--fire-20",
                 "supported": true,
                 "published": false
               }
@@ -8099,13 +7899,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-20",
-                "cssVar": "--red-20",
+                "id": "palette/fire/fire-20",
+                "cssVar": "--fire-20",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FBB6B6"
           }
         },
         "Promo": {
@@ -8129,7 +7929,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8194,8 +7994,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-50",
-                "cssVar": "--red-50",
+                "id": "palette/fire/fire-50",
+                "cssVar": "--fire-50",
                 "supported": true,
                 "published": false
               }
@@ -8205,13 +8005,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-50",
-                "cssVar": "--red-50",
+                "id": "palette/fire/fire-50",
+                "cssVar": "--fire-50",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FF4242"
           }
         },
         "Promo": {
@@ -8235,7 +8035,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8300,8 +8100,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-60",
-                "cssVar": "--red-60",
+                "id": "palette/fire/fire-60",
+                "cssVar": "--fire-60",
                 "supported": true,
                 "published": false
               }
@@ -8311,13 +8111,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-60",
-                "cssVar": "--red-60",
+                "id": "palette/fire/fire-60",
+                "cssVar": "--fire-60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#E22A2A"
           }
         },
         "Promo": {
@@ -8341,7 +8141,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8406,8 +8206,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/red/red-70",
-                "cssVar": "--red-70",
+                "id": "palette/fire/fire-70",
+                "cssVar": "--fire-70",
                 "supported": true,
                 "published": false
               }
@@ -8417,13 +8217,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/red/red-70",
-                "cssVar": "--red-70",
+                "id": "palette/fire/fire-70",
+                "cssVar": "--fire-70",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#AD0000"
           }
         },
         "Promo": {
@@ -8447,7 +8247,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8518,30 +8318,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -8642,8 +8442,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-5",
-                "cssVar": "--blue-5",
+                "id": "palette/sky/sky-5",
+                "cssVar": "--sky-5",
                 "supported": true,
                 "published": false
               }
@@ -8653,13 +8453,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-5",
-                "cssVar": "--blue-5",
+                "id": "palette/sky/sky-5",
+                "cssVar": "--sky-5",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#F5FDFF"
           }
         },
         "Promo": {
@@ -8683,7 +8483,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8707,7 +8507,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -8748,8 +8548,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-10",
-                "cssVar": "--blue-10",
+                "id": "palette/sky/sky-10",
+                "cssVar": "--sky-10",
                 "supported": true,
                 "published": false
               }
@@ -8759,13 +8559,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-10",
-                "cssVar": "--blue-10",
+                "id": "palette/sky/sky-10",
+                "cssVar": "--sky-10",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#E1F4FA"
           }
         },
         "Promo": {
@@ -8789,7 +8589,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8813,7 +8613,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -8854,8 +8654,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-20",
-                "cssVar": "--blue-20",
+                "id": "palette/sky/sky-20",
+                "cssVar": "--sky-20",
                 "supported": true,
                 "published": false
               }
@@ -8865,13 +8665,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-20",
-                "cssVar": "--blue-20",
+                "id": "palette/sky/sky-20",
+                "cssVar": "--sky-20",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#A0DDEE"
           }
         },
         "Promo": {
@@ -8895,7 +8695,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -8919,7 +8719,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -8960,8 +8760,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-50",
-                "cssVar": "--blue-50",
+                "id": "palette/sky/sky-50",
+                "cssVar": "--sky-50",
                 "supported": true,
                 "published": false
               }
@@ -8971,13 +8771,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-50",
-                "cssVar": "--blue-50",
+                "id": "palette/sky/sky-50",
+                "cssVar": "--sky-50",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#009ECC"
           }
         },
         "Promo": {
@@ -9001,7 +8801,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9025,7 +8825,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9066,8 +8866,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -9077,13 +8877,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#0086AD"
           }
         },
         "Promo": {
@@ -9107,7 +8907,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9131,7 +8931,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9172,8 +8972,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
@@ -9183,13 +8983,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#006B8A"
           }
         },
         "Promo": {
@@ -9213,7 +9013,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9237,7 +9037,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9284,30 +9084,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -9408,8 +9208,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-5",
-                "cssVar": "--blue-5",
+                "id": "palette/sky/sky-5",
+                "cssVar": "--sky-5",
                 "supported": true,
                 "published": false
               }
@@ -9419,13 +9219,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-5",
-                "cssVar": "--blue-5",
+                "id": "palette/sky/sky-5",
+                "cssVar": "--sky-5",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#F5FDFF"
           }
         },
         "Promo": {
@@ -9449,7 +9249,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9473,7 +9273,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9514,8 +9314,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-10",
-                "cssVar": "--blue-10",
+                "id": "palette/sky/sky-10",
+                "cssVar": "--sky-10",
                 "supported": true,
                 "published": false
               }
@@ -9525,13 +9325,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-10",
-                "cssVar": "--blue-10",
+                "id": "palette/sky/sky-10",
+                "cssVar": "--sky-10",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#E1F4FA"
           }
         },
         "Promo": {
@@ -9555,7 +9355,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9579,7 +9379,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9620,8 +9420,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-20",
-                "cssVar": "--blue-20",
+                "id": "palette/sky/sky-20",
+                "cssVar": "--sky-20",
                 "supported": true,
                 "published": false
               }
@@ -9631,13 +9431,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-20",
-                "cssVar": "--blue-20",
+                "id": "palette/sky/sky-20",
+                "cssVar": "--sky-20",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#A0DDEE"
           }
         },
         "Promo": {
@@ -9661,7 +9461,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9685,7 +9485,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9726,8 +9526,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-50",
-                "cssVar": "--blue-50",
+                "id": "palette/sky/sky-50",
+                "cssVar": "--sky-50",
                 "supported": true,
                 "published": false
               }
@@ -9737,13 +9537,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-50",
-                "cssVar": "--blue-50",
+                "id": "palette/sky/sky-50",
+                "cssVar": "--sky-50",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#009ECC"
           }
         },
         "Promo": {
@@ -9767,7 +9567,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9791,7 +9591,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9832,8 +9632,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
@@ -9843,13 +9643,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-60",
-                "cssVar": "--blue-60",
+                "id": "palette/sky/sky-60",
+                "cssVar": "--sky-60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#0086AD"
           }
         },
         "Promo": {
@@ -9873,7 +9673,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -9897,7 +9697,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -9938,8 +9738,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
@@ -9949,13 +9749,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#006B8A"
           }
         },
         "Promo": {
@@ -9979,7 +9779,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -10003,7 +9803,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -10050,30 +9850,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -10150,12 +9950,6 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-10",
-                "cssVar": "--uui-neutral-10",
-                "supported": true,
-                "published": true
-              },
-              {
                 "id": "palette/night/night100",
                 "cssVar": "--night100",
                 "supported": true,
@@ -10167,10 +9961,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-10",
-                "cssVar": "--uui-neutral-10",
+                "id": "palette/night/night100",
+                "cssVar": "--night100",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
             "value": "#F5F6FA"
@@ -10180,41 +9974,29 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-10",
-                "cssVar": "--uui-neutral-10",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night100",
-                "cssVar": "--night100",
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#272833"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-10",
-                "cssVar": "--uui-neutral-10",
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#F5F6FA"
+            "value": "#303240"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
-              {
-                "id": "core/neutral/neutral-10",
-                "cssVar": "--uui-neutral-10",
-                "supported": true,
-                "published": true
-              },
               {
                 "id": "palette/gray/gray10",
                 "cssVar": "--gray10",
@@ -10227,37 +10009,37 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-10",
-                "cssVar": "--uui-neutral-10",
+                "id": "palette/gray/gray10",
+                "cssVar": "--gray10",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#F5F6FA"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
           "valueChain": {
             "alias": [
               {
-                "id": "palette/night/night200",
-                "cssVar": "--night200",
+                "id": "palette/night/night100",
+                "cssVar": "--night100",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#EBEDF5"
+            "value": "#F5F6FA"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/night/night200",
-                "cssVar": "--night200",
+                "id": "palette/night/night100",
+                "cssVar": "--night100",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#EBEDF5"
+            "value": "#F5F6FA"
           }
         }
       }
@@ -10274,12 +10056,6 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
-                "supported": true,
-                "published": true
-              },
-              {
                 "id": "palette/night/night200",
                 "cssVar": "--night200",
                 "supported": true,
@@ -10291,10 +10067,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
             "value": "#EBEDF5"
@@ -10304,41 +10080,29 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night200",
-                "cssVar": "--night200",
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#303240"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#EBEDF5"
+            "value": "#474A59"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
-              {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
-                "supported": true,
-                "published": true
-              },
               {
                 "id": "palette/gray/gray20",
                 "cssVar": "--gray20",
@@ -10351,37 +10115,37 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
+                "id": "palette/gray/gray20",
+                "cssVar": "--gray20",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#EBEDF5"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
           "valueChain": {
             "alias": [
               {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#EBEDF5"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#EBEDF5"
           }
         }
       }
@@ -10398,12 +10162,6 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
-                "supported": true,
-                "published": true
-              },
-              {
                 "id": "palette/night/night300",
                 "cssVar": "--night300",
                 "supported": true,
@@ -10415,10 +10173,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
             "value": "#E1E3EB"
@@ -10428,41 +10186,29 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "supported": true,
-                "published": true
-              },
+                "published": false
+              }
+            ],
+            "value": "#383B4A"
+          },
+          "valueDirect": {
+            "alias": [
               {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "supported": true,
                 "published": false
               }
             ],
             "value": "#6C6F80"
-          },
-          "valueDirect": {
-            "alias": [
-              {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
-                "supported": true,
-                "published": true
-              }
-            ],
-            "value": "#E1E3EB"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
-              {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
-                "supported": true,
-                "published": true
-              },
               {
                 "id": "palette/gray/gray30",
                 "cssVar": "--gray30",
@@ -10475,37 +10221,37 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "palette/gray/gray30",
+                "cssVar": "--gray30",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
           "valueChain": {
             "alias": [
               {
-                "id": "palette/night/night400",
-                "cssVar": "--night400",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#CED0DB"
+            "value": "#E1E3EB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/night/night400",
-                "cssVar": "--night400",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#CED0DB"
+            "value": "#E1E3EB"
           }
         }
       }
@@ -10522,12 +10268,6 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
-                "supported": true,
-                "published": true
-              },
-              {
                 "id": "palette/night/night600",
                 "cssVar": "--night600",
                 "supported": true,
@@ -10539,10 +10279,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
             "value": "#6C6F80"
@@ -10552,41 +10292,29 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-40",
-                "cssVar": "--uui-neutral-40",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night400",
-                "cssVar": "--night400",
+                "id": "palette/night/night500",
+                "cssVar": "--night500",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#585B69"
+            "value": "#474A59"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-40",
-                "cssVar": "--uui-neutral-40",
+                "id": "palette/night/night500",
+                "cssVar": "--night500",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#CED0DB"
+            "value": "#ACAFBF"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
-              {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
-                "supported": true,
-                "published": true
-              },
               {
                 "id": "palette/gray/gray60",
                 "cssVar": "--gray60",
@@ -10599,13 +10327,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "palette/gray/gray60",
+                "cssVar": "--gray60",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#6C6F80"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -10646,12 +10374,6 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
-                "supported": true,
-                "published": true
-              },
-              {
                 "id": "palette/night/night700",
                 "cssVar": "--night700",
                 "supported": true,
@@ -10663,10 +10385,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
             "value": "#474A59"
@@ -10676,41 +10398,29 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night400",
+                "cssVar": "--night400",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#474A59"
+            "value": "#585B69"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "palette/night/night400",
+                "cssVar": "--night400",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#CED0DB"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
-              {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
-                "supported": true,
-                "published": true
-              },
               {
                 "id": "palette/gray/gray70",
                 "cssVar": "--gray70",
@@ -10723,13 +10433,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "palette/gray/gray70",
+                "cssVar": "--gray70",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#474A59"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -10770,12 +10480,6 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-80",
-                "cssVar": "--uui-neutral-80",
-                "supported": true,
-                "published": true
-              },
-              {
                 "id": "palette/night/night800",
                 "cssVar": "--night800",
                 "supported": true,
@@ -10787,10 +10491,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-80",
-                "cssVar": "--uui-neutral-80",
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
             "value": "#303240"
@@ -10800,41 +10504,29 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
-                "supported": true,
-                "published": true
-              },
-              {
-                "id": "palette/night/night600",
-                "cssVar": "--night600",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#383B4A"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#6C6F80"
+            "value": "#E1E3EB"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
-              {
-                "id": "core/neutral/neutral-80",
-                "cssVar": "--uui-neutral-80",
-                "supported": true,
-                "published": true
-              },
               {
                 "id": "palette/gray/gray80",
                 "cssVar": "--gray80",
@@ -10847,13 +10539,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-80",
-                "cssVar": "--uui-neutral-80",
+                "id": "palette/gray/gray80",
+                "cssVar": "--gray80",
                 "supported": true,
-                "published": true
+                "published": false
               }
             ],
-            "value": "#303240"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -10924,30 +10616,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -11024,10 +10716,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#FCFFF5"
@@ -11035,10 +10727,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#FCFFF5"
@@ -11048,10 +10740,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#343A3B"
@@ -11059,10 +10751,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-5",
-                "cssVar": "--green-5",
+                "id": "palette/grass/grass-5",
+                "cssVar": "--grass-5",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#FCFFF5"
@@ -11089,7 +10781,7 @@
                 "published": false
               }
             ],
-            "value": "#FCFFF5"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11113,7 +10805,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -11130,10 +10822,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#EBF3D8"
@@ -11141,10 +10833,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#EBF3D8"
@@ -11154,10 +10846,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#39443D"
@@ -11165,10 +10857,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-10",
-                "cssVar": "--green-10",
+                "id": "palette/grass/grass-10",
+                "cssVar": "--grass-10",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#EBF3D8"
@@ -11195,7 +10887,7 @@
                 "published": false
               }
             ],
-            "value": "#EBF3D8"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11219,7 +10911,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -11236,10 +10928,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#C1E288"
@@ -11247,10 +10939,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#C1E288"
@@ -11260,10 +10952,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#505F49"
@@ -11271,10 +10963,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-20",
-                "cssVar": "--green-20",
+                "id": "palette/grass/grass-20",
+                "cssVar": "--grass-20",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#C1E288"
@@ -11301,7 +10993,7 @@
                 "published": false
               }
             ],
-            "value": "#C1E288"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11325,7 +11017,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -11342,10 +11034,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#67A300"
@@ -11353,10 +11045,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#67A300"
@@ -11366,10 +11058,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#669900"
@@ -11377,10 +11069,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-50",
-                "cssVar": "--green-50",
+                "id": "palette/grass/grass-50",
+                "cssVar": "--grass-50",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#67A300"
@@ -11407,7 +11099,7 @@
                 "published": false
               }
             ],
-            "value": "#67A300"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11431,7 +11123,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -11448,10 +11140,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#528500"
@@ -11459,10 +11151,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#528500"
@@ -11472,10 +11164,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#83B918"
@@ -11483,10 +11175,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-60",
-                "cssVar": "--green-60",
+                "id": "palette/grass/grass-60",
+                "cssVar": "--grass-60",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#528500"
@@ -11513,7 +11205,7 @@
                 "published": false
               }
             ],
-            "value": "#528500"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11537,7 +11229,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -11554,10 +11246,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -11565,10 +11257,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -11578,10 +11270,10 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#A6D151"
@@ -11589,10 +11281,10 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -11619,7 +11311,7 @@
                 "published": false
               }
             ],
-            "value": "#396F1F"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11643,7 +11335,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -11690,30 +11382,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#000000"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
@@ -11814,8 +11506,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/amber/amber-5",
-                "cssVar": "--amber-5",
+                "id": "palette/sun/sun-5",
+                "cssVar": "--sun-5",
                 "supported": true,
                 "published": false
               }
@@ -11825,13 +11517,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/amber/amber-5",
-                "cssVar": "--amber-5",
+                "id": "palette/sun/sun-5",
+                "cssVar": "--sun-5",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFCF5"
           }
         },
         "Promo": {
@@ -11855,7 +11547,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -11920,8 +11612,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/amber/amber-10",
-                "cssVar": "--amber-10",
+                "id": "palette/sun/sun-10",
+                "cssVar": "--sun-10",
                 "supported": true,
                 "published": false
               }
@@ -11931,13 +11623,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/amber/amber-10",
-                "cssVar": "--amber-10",
+                "id": "palette/sun/sun-10",
+                "cssVar": "--sun-10",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFEDC9"
           }
         },
         "Promo": {
@@ -11961,7 +11653,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -12026,8 +11718,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/amber/amber-20",
-                "cssVar": "--amber-20",
+                "id": "palette/sun/sun-20",
+                "cssVar": "--sun-20",
                 "supported": true,
                 "published": false
               }
@@ -12037,13 +11729,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/amber/amber-20",
-                "cssVar": "--amber-20",
+                "id": "palette/sun/sun-20",
+                "cssVar": "--sun-20",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFD785"
           }
         },
         "Promo": {
@@ -12067,7 +11759,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -12132,8 +11824,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/amber/amber-50",
-                "cssVar": "--amber-50",
+                "id": "palette/sun/sun-50",
+                "cssVar": "--sun-50",
                 "supported": true,
                 "published": false
               }
@@ -12143,13 +11835,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/amber/amber-50",
-                "cssVar": "--amber-50",
+                "id": "palette/sun/sun-50",
+                "cssVar": "--sun-50",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FCAA00"
           }
         },
         "Promo": {
@@ -12173,7 +11865,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -12238,8 +11930,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/amber/amber-60",
-                "cssVar": "--amber-60",
+                "id": "palette/sun/sun-60",
+                "cssVar": "--sun-60",
                 "supported": true,
                 "published": false
               }
@@ -12249,13 +11941,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/amber/amber-60",
-                "cssVar": "--amber-60",
+                "id": "palette/sun/sun-60",
+                "cssVar": "--sun-60",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FF9000"
           }
         },
         "Promo": {
@@ -12279,7 +11971,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -12344,8 +12036,8 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/amber/amber-70",
-                "cssVar": "--amber-70",
+                "id": "palette/sun/sun-70",
+                "cssVar": "--sun-70",
                 "supported": true,
                 "published": false
               }
@@ -12355,13 +12047,13 @@
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/amber/amber-70",
-                "cssVar": "--amber-70",
+                "id": "palette/sun/sun-70",
+                "cssVar": "--sun-70",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#BD5800"
           }
         },
         "Promo": {
@@ -12385,7 +12077,7 @@
                 "published": false
               }
             ],
-            "value": "#FFFFFF"
+            "value": "#FFFFFF00"
           }
         },
         "EPAM": {
@@ -12456,30 +12148,30 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
+                "id": "core/neutral/neutral-70",
+                "cssVar": "--uui-neutral-70",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/night/night200",
-                "cssVar": "--night200",
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#303240"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-20",
-                "cssVar": "--uui-neutral-20",
+                "id": "core/neutral/neutral-70",
+                "cssVar": "--uui-neutral-70",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#EBEDF5"
+            "value": "#474A59"
           }
         },
         "Promo": {
@@ -13552,8 +13244,8 @@
                 "published": true
               },
               {
-                "id": "palette/amber/amber-20",
-                "cssVar": "--amber-20",
+                "id": "palette/sun/sun-20",
+                "cssVar": "--sun-20",
                 "supported": true,
                 "published": false
               }
@@ -13646,120 +13338,120 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-90",
+                "cssVar": "--uui-neutral-90",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/night/night50",
-                "cssVar": "--night50",
+                "id": "palette/night/night900",
+                "cssVar": "--night900",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#1D1E26"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-90",
+                "cssVar": "--uui-neutral-90",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#1D1E26"
           }
         },
         "Loveship-Dark": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/night/night700",
-                "cssVar": "--night700",
+                "id": "palette/white",
+                "cssVar": "--white",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#303240"
+            "value": "#FFFFFF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-0",
+                "cssVar": "--uui-neutral-0",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#474A59"
+            "value": "#FFFFFF"
           }
         },
         "Promo": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-90",
+                "cssVar": "--uui-neutral-90",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/gray/gray5",
-                "cssVar": "--gray5",
+                "id": "palette/gray/gray90",
+                "cssVar": "--gray90",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#1D1E26"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-90",
+                "cssVar": "--uui-neutral-90",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#1D1E26"
           }
         },
         "EPAM": {
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-95",
+                "cssVar": "--uui-neutral-95",
                 "supported": true,
                 "published": true
               },
               {
-                "id": "palette/night/night50",
-                "cssVar": "--night50",
+                "id": "palette/night/night950",
+                "cssVar": "--night950",
                 "supported": true,
                 "published": false
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#111111"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-95",
+                "cssVar": "--uui-neutral-95",
                 "supported": true,
                 "published": true
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#FFFFFF00"
           }
         }
       }
@@ -13812,8 +13504,8 @@
                 "published": true
               },
               {
-                "id": "palette/red/red-70",
-                "cssVar": "--red-70",
+                "id": "palette/fire/fire-70",
+                "cssVar": "--fire-70",
                 "supported": true,
                 "published": false
               }
@@ -14072,8 +13764,8 @@
                 "published": true
               },
               {
-                "id": "palette/blue/blue-70",
-                "cssVar": "--blue-70",
+                "id": "palette/sky/sky-70",
+                "cssVar": "--sky-70",
                 "supported": true,
                 "published": false
               }
@@ -14432,10 +14124,10 @@
                 "published": true
               },
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#396F1F"
@@ -14462,10 +14154,10 @@
                 "published": true
               },
               {
-                "id": "palette/green/green-70",
-                "cssVar": "--green-70",
+                "id": "palette/grass/grass-70",
+                "cssVar": "--grass-70",
                 "supported": true,
-                "published": false
+                "published": true
               }
             ],
             "value": "#A6D151"
@@ -14722,8 +14414,8 @@
                 "published": true
               },
               {
-                "id": "palette/amber/amber-70",
-                "cssVar": "--amber-70",
+                "id": "palette/sun/sun-70",
+                "cssVar": "--sun-70",
                 "supported": true,
                 "published": false
               }
@@ -15135,21 +14827,21 @@
         "Promo": {
           "valueChain": {
             "alias": [],
-            "value": "#F5FBFF"
+            "value": "#F6FEFE"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#F5FBFF"
+            "value": "#F6FEFE"
           }
         },
         "EPAM": {
           "valueChain": {
             "alias": [],
-            "value": "#F5FBFF"
+            "value": "#F6FEFE"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#F5FBFF"
+            "value": "#F6FEFE"
           }
         }
       }
@@ -15345,11 +15037,11 @@
         "EPAM": {
           "valueChain": {
             "alias": [],
-            "value": "#0F9E9E"
+            "value": "#12B5B5"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#0F9E9E"
+            "value": "#12B5B5"
           }
         }
       }
@@ -15945,11 +15637,11 @@
         "EPAM": {
           "valueChain": {
             "alias": [],
-            "value": "#2E9E68"
+            "value": "#31AA70"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#2E9E68"
+            "value": "#31AA70"
           }
         }
       }
@@ -17212,26 +16904,6 @@
       "cssVar": "--amber-5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#3F3B3B"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#3F3B3B"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17240,16 +16912,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FFFCF5"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17262,26 +16924,6 @@
       "cssVar": "--amber-10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#47433D"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#47433D"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17290,16 +16932,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FFF2CC"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17312,26 +16944,6 @@
       "cssVar": "--amber-20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#625747"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#625747"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17340,16 +16952,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FFE38F"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17362,26 +16964,6 @@
       "cssVar": "--amber-50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#F1A105"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#F1A105"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17390,16 +16972,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FFC000"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17412,26 +16984,6 @@
       "cssVar": "--amber-60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#F4B83A"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#F4B83A"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17440,16 +16992,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#DB9D00"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17462,26 +17004,6 @@
       "cssVar": "--amber-70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFD06D"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFD06D"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17490,16 +17012,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#9F6B04"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17562,26 +17074,6 @@
       "cssVar": "--blue-5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#2C394B"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#2C394B"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17590,16 +17082,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#F5FBFF"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17612,26 +17094,6 @@
       "cssVar": "--blue-10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#334052"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#334052"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17640,16 +17102,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#D6F2FF"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17662,26 +17114,6 @@
       "cssVar": "--blue-20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#3E586F"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#3E586F"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17690,16 +17122,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#99DDFF"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17712,26 +17134,6 @@
       "cssVar": "--blue-50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#008ACE"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#008ACE"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17740,16 +17142,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#007BBD"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17762,26 +17154,6 @@
       "cssVar": "--blue-60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#48A4D0"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#48A4D0"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17790,16 +17162,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#006AA3"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17812,26 +17174,6 @@
       "cssVar": "--blue-70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#7DBCDB"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#7DBCDB"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -17840,16 +17182,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#005685"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -17862,36 +17194,6 @@
       "cssVar": "--electric-5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -17912,36 +17214,6 @@
       "cssVar": "--electric-10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -17962,36 +17234,6 @@
       "cssVar": "--electric-20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18012,36 +17254,6 @@
       "cssVar": "--electric-50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18062,36 +17274,6 @@
       "cssVar": "--electric-60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18112,36 +17294,6 @@
       "cssVar": "--electric-70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18162,36 +17314,6 @@
       "cssVar": "--emerald-5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18212,36 +17334,6 @@
       "cssVar": "--emerald-10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18262,36 +17354,6 @@
       "cssVar": "--emerald-20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18312,36 +17374,6 @@
       "cssVar": "--emerald-50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18362,36 +17394,6 @@
       "cssVar": "--emerald-60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18412,36 +17414,6 @@
       "cssVar": "--emerald-70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -18475,21 +17447,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FEF6F6"
+            "value": "#3C343E"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FEF6F6"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FEF6F6"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FEF6F6"
+            "value": "#3C343E"
           }
         },
         "EPAM": {
@@ -18525,21 +17487,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FDE1E1"
+            "value": "#473943"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FDE1E1"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FDE1E1"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FDE1E1"
+            "value": "#473943"
           }
         },
         "EPAM": {
@@ -18575,21 +17527,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FBB6B6"
+            "value": "#6B4447"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FBB6B6"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FBB6B6"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FBB6B6"
+            "value": "#6B4447"
           }
         },
         "EPAM": {
@@ -18625,21 +17567,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FF4242"
+            "value": "#CC482D"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FF4242"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FF4242"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FF4242"
+            "value": "#CC482D"
           }
         },
         "EPAM": {
@@ -18675,21 +17607,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#E22A2A"
+            "value": "#E56248"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#E22A2A"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#E22A2A"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#E22A2A"
+            "value": "#E56248"
           }
         },
         "EPAM": {
@@ -18725,21 +17647,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#AD0000"
+            "value": "#F78C77"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#AD0000"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#AD0000"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#AD0000"
+            "value": "#F78C77"
           }
         },
         "EPAM": {
@@ -18750,6 +17662,186 @@
           "valueDirect": {
             "alias": [],
             "value": "#AD0000"
+          }
+        }
+      }
+    },
+    {
+      "id": "palette/grass/grass-5",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--grass-5",
+      "published": true,
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#FCFFF5"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#FCFFF5"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#343A3B"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#343A3B"
+          }
+        }
+      }
+    },
+    {
+      "id": "palette/grass/grass-10",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--grass-10",
+      "published": true,
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#EBF3D8"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#EBF3D8"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#39443D"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#39443D"
+          }
+        }
+      }
+    },
+    {
+      "id": "palette/grass/grass-20",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--grass-20",
+      "published": true,
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#C1E288"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#C1E288"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#505F49"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#505F49"
+          }
+        }
+      }
+    },
+    {
+      "id": "palette/grass/grass-50",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--grass-50",
+      "published": true,
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#67A300"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#67A300"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#669900"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#669900"
+          }
+        }
+      }
+    },
+    {
+      "id": "palette/grass/grass-60",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--grass-60",
+      "published": true,
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#528500"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#528500"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#83B918"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#83B918"
+          }
+        }
+      }
+    },
+    {
+      "id": "palette/grass/grass-70",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--grass-70",
+      "published": true,
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#396F1F"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#396F1F"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#A6D151"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#A6D151"
           }
         }
       }
@@ -18762,26 +17854,6 @@
       "cssVar": "--gray5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -18790,16 +17862,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FAFAFC"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -18812,26 +17874,6 @@
       "cssVar": "--gray10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -18840,16 +17882,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#F5F6FA"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -18862,26 +17894,6 @@
       "cssVar": "--gray20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -18890,16 +17902,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#EBEDF5"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -18912,26 +17914,6 @@
       "cssVar": "--gray30",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -18940,16 +17922,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#E1E3EB"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -18962,26 +17934,6 @@
       "cssVar": "--gray40",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -18990,16 +17942,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#CED0DB"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19012,26 +17954,6 @@
       "cssVar": "--gray50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19040,16 +17962,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#ACAFBF"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19062,26 +17974,6 @@
       "cssVar": "--gray60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19090,16 +17982,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#6C6F80"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19112,26 +17994,6 @@
       "cssVar": "--gray70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19140,16 +18002,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#474A59"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19162,26 +18014,6 @@
       "cssVar": "--gray80",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19190,16 +18022,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#303240"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19212,26 +18034,6 @@
       "cssVar": "--gray90",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19240,16 +18042,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#1D1E26"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19262,26 +18054,6 @@
       "cssVar": "--green-5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FCFFF5"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FCFFF5"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#343A3B"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#343A3B"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19290,16 +18062,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FCFFF5"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19312,26 +18074,6 @@
       "cssVar": "--green-10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#EBF3D8"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#EBF3D8"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#39443D"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#39443D"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19340,16 +18082,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#EEFFCC"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19362,26 +18094,6 @@
       "cssVar": "--green-20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#C1E288"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#C1E288"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#505F49"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#505F49"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19390,16 +18102,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#CFF486"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19412,26 +18114,6 @@
       "cssVar": "--green-50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#67A300"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#67A300"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#669900"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#669900"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19440,16 +18122,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#65A300"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19462,26 +18134,6 @@
       "cssVar": "--green-60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#528500"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#528500"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#83B918"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#83B918"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19490,16 +18142,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#528500"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19512,26 +18154,6 @@
       "cssVar": "--green-70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#396F1F"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#396F1F"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#A6D151"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#A6D151"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -19540,16 +18162,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#446600"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -19573,16 +18185,6 @@
           }
         },
         "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FAFAFC"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FAFAFC"
-          }
-        },
-        "Promo": {
           "valueChain": {
             "alias": [],
             "value": "#FAFAFC"
@@ -19632,16 +18234,6 @@
             "value": "#E1E3EB"
           }
         },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#F5F6FA"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#F5F6FA"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -19680,16 +18272,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#ACAFBF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#EBEDF5"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#EBEDF5"
           }
         },
         "EPAM": {
@@ -19732,16 +18314,6 @@
             "value": "#6C6F80"
           }
         },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#E1E3EB"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#E1E3EB"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -19780,16 +18352,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#585B69"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#CED0DB"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#CED0DB"
           }
         },
         "EPAM": {
@@ -19832,16 +18394,6 @@
             "value": "#474A59"
           }
         },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#ACAFBF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#ACAFBF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -19880,16 +18432,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#383B4A"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#6C6F80"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#6C6F80"
           }
         },
         "EPAM": {
@@ -19932,16 +18474,6 @@
             "value": "#303240"
           }
         },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#474A59"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#474A59"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -19980,16 +18512,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#272833"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#303240"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#303240"
           }
         },
         "EPAM": {
@@ -20032,16 +18554,6 @@
             "value": "#1D1E26"
           }
         },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#1D1E26"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#1D1E26"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -20062,36 +18574,6 @@
       "cssVar": "--night950",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
         "EPAM": {
           "valueChain": {
             "alias": [],
@@ -20112,26 +18594,6 @@
       "cssVar": "--red-5",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#3C343E"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#3C343E"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -20140,16 +18602,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FEF7F6"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -20162,26 +18614,6 @@
       "cssVar": "--red-10",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#473943"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#473943"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -20190,16 +18622,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#FADED9"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -20212,26 +18634,6 @@
       "cssVar": "--red-20",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#6B4447"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#6B4447"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -20240,16 +18642,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#F5B5A8"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -20262,26 +18654,6 @@
       "cssVar": "--red-50",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#CC482D"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#CC482D"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -20290,16 +18662,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#DB3A1A"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -20312,26 +18674,6 @@
       "cssVar": "--red-60",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#E56248"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#E56248"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -20340,16 +18682,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#C03316"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -20362,26 +18694,6 @@
       "cssVar": "--red-70",
       "published": false,
       "valueByTheme": {
-        "Loveship-Light": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
-          }
-        },
-        "Loveship-Dark": {
-          "valueChain": {
-            "alias": [],
-            "value": "#F78C77"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#F78C77"
-          }
-        },
         "Promo": {
           "valueChain": {
             "alias": [],
@@ -20390,16 +18702,6 @@
           "valueDirect": {
             "alias": [],
             "value": "#A02B13"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFFFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFFFF"
           }
         }
       }
@@ -20425,31 +18727,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#F5FDFF"
+            "value": "#2C394B"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#F5FDFF"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#F5FDFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#F5FDFF"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#F5FDFF"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#F5FDFF"
+            "value": "#2C394B"
           }
         }
       }
@@ -20475,31 +18757,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#E1F4FA"
+            "value": "#334052"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#E1F4FA"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#E1F4FA"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#E1F4FA"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#E1F4FA"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#E1F4FA"
+            "value": "#334052"
           }
         }
       }
@@ -20525,31 +18787,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#A0DDEE"
+            "value": "#3E586F"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#A0DDEE"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#A0DDEE"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#A0DDEE"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#A0DDEE"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#A0DDEE"
+            "value": "#3E586F"
           }
         }
       }
@@ -20575,31 +18817,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#009ECC"
+            "value": "#008ACE"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#009ECC"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#009ECC"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#009ECC"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#009ECC"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#009ECC"
+            "value": "#008ACE"
           }
         }
       }
@@ -20625,31 +18847,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#0086AD"
+            "value": "#48A4D0"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#0086AD"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#0086AD"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#0086AD"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#0086AD"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#0086AD"
+            "value": "#48A4D0"
           }
         }
       }
@@ -20675,31 +18877,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#006B8A"
+            "value": "#7DBCDB"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#006B8A"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#006B8A"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#006B8A"
-          }
-        },
-        "EPAM": {
-          "valueChain": {
-            "alias": [],
-            "value": "#006B8A"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#006B8A"
+            "value": "#7DBCDB"
           }
         }
       }
@@ -20725,21 +18907,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FFFCF5"
+            "value": "#3F3B3B"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FFFCF5"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFFCF5"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFFCF5"
+            "value": "#3F3B3B"
           }
         },
         "EPAM": {
@@ -20775,21 +18947,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FFEDC9"
+            "value": "#47433D"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FFEDC9"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFEDC9"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFEDC9"
+            "value": "#47433D"
           }
         },
         "EPAM": {
@@ -20825,21 +18987,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FFD785"
+            "value": "#625747"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FFD785"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FFD785"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FFD785"
+            "value": "#625747"
           }
         },
         "EPAM": {
@@ -20875,21 +19027,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FCAA00"
+            "value": "#F1A105"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FCAA00"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FCAA00"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FCAA00"
+            "value": "#F1A105"
           }
         },
         "EPAM": {
@@ -20925,21 +19067,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#FF9000"
+            "value": "#F4B83A"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#FF9000"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#FF9000"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#FF9000"
+            "value": "#F4B83A"
           }
         },
         "EPAM": {
@@ -20975,21 +19107,11 @@
         "Loveship-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#BD5800"
+            "value": "#FFD06D"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#BD5800"
-          }
-        },
-        "Promo": {
-          "valueChain": {
-            "alias": [],
-            "value": "#BD5800"
-          },
-          "valueDirect": {
-            "alias": [],
-            "value": "#BD5800"
+            "value": "#FFD06D"
           }
         },
         "EPAM": {

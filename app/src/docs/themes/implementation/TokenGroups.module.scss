@@ -1,0 +1,55 @@
+.root {
+    .group-title {
+        margin-bottom: 0;
+    }
+
+    .group-info {
+        margin-top: 6px;
+        margin-bottom: 18px;
+    }
+
+    .subgroup {
+        padding: 0 36px;
+
+        .subgroup-title {
+            margin-top: 32px;
+        }
+
+        .token-card {
+            padding-top: 18px;
+            padding-bottom: 18px;
+
+            &:last-of-type {
+                border-bottom-style: none;
+            }
+
+            .token-card-info {
+                &:nth-of-type(3) {
+                    padding-top: 0;
+                }
+            }
+        }
+
+        .var {
+            max-width: fit-content;
+            font-family: var(--uui-font-mono);
+            background-color: var(--uui-surface-higher);
+            padding: 3px 6px;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: var(--uui-surface-highest);
+                cursor: pointer;
+            }
+        }
+
+        .color-viewer {
+            box-sizing: border-box;
+            width: 106px;
+            height: 36px;
+            border: 1px solid var(--uui-control-border);
+            border-radius: 3px;
+            text-align: center;
+        }
+    }
+}
