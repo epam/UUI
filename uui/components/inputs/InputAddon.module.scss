@@ -1,11 +1,16 @@
 @use '~@epam/assets/scss/index' as *;
 
 .root {
-    color: var(--uui-text-tertiary);
-    background-color: var(--uui-surface-sunken);
-    font-size: 14px;
-    font-family: var(--uui-font);
-    font-weight: 400;
+    --uui-input_addon-bg: var(--uui-surface-higher);
+    --uui-input_addon-text: var(--uui-text-tertiary);
+    --uui-input_addon-font: var(--uui-font);
+    --uui-input_addon-font-weight: 400;
+    //
+    background-color: var(--uui-input_addon-bg);
     border: 1px solid var(--uui-control-border);
+    color: var(--uui-input_addon-text);
     padding: 6px;
+    font-size: 14px;
+    font-family: var(--uui-input_addon-font);
+    font-weight: var(--uui-input_addon-font-weight);
 }
