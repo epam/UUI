@@ -43,3 +43,26 @@ exports[`TimePicker should be rendered correctly 2`] = `
   />
 </div>
 `;
+
+exports[`TimePicker should be rendered correctly with full props 1`] = `
+<div
+  className="container uui-input-box uui-disabled root size-36 mode-form root timepickerInput"
+  onClick={null}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    aria-disabled={true}
+    className="uui-input"
+    disabled={true}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="HH:mm"
+    tabIndex={-1}
+    type="text"
+    value="01:05"
+  />
+</div>
+`;
