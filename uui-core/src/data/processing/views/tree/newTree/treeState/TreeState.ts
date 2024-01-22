@@ -52,7 +52,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
     }: LoadOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await FetchingHelper.load<TItem, TId, TFilter>({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, loadedItems } = await FetchingHelper.load<TItem, TId, TFilter>({
             treeStructure,
             itemsMap: this.itemsMap,
             options,
@@ -60,8 +60,12 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
             withNestedChildren,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap) {
+        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !loadedItems.length) {
             return this;
+        }
+
+        if (loadedItems.length) {
+            this.setItems(loadedItems, { on: 'load' });
         }
 
         return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
@@ -74,15 +78,19 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
     }: LoadAllOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await FetchingHelper.loadAll({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, loadedItems } = await FetchingHelper.loadAll({
             treeStructure,
             itemsMap: this.itemsMap,
             options,
             dataSourceState,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap) {
+        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !loadedItems.length) {
             return this;
+        }
+
+        if (loadedItems.length) {
+            this.setItems(loadedItems, { on: 'load' });
         }
 
         return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
@@ -138,14 +146,18 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
 
     public patch({ using, ...options }: PatchOptions<TItem>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure(using);
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = PatchHelper.patch<TItem, TId>({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
             treeStructure,
             itemsMap: this.itemsMap,
             ...options,
         });
 
-        if (newTreeStructure === treeStructure && this.itemsMap === newItemsMap) {
+        if (newTreeStructure === treeStructure && this.itemsMap === newItemsMap && !newItems.length) {
             return this;
+        }
+
+        if (newItems.length) {
+            this.setItems(newItems, { on: 'patch' });
         }
 
         return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
@@ -153,15 +165,19 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
 
     public patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = PatchHelper.patchItems({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
             treeStructure,
             itemsMap: this.itemsMap,
             patchItems,
             isDeletedProp,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap) {
+        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !newItems.length) {
             return this;
+        }
+
+        if (newItems.length) {
+            this.setItems(newItems, { on: 'patch' });
         }
 
         return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap });

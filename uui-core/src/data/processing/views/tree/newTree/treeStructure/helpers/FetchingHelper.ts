@@ -4,7 +4,6 @@ import { TreeStructure } from '../TreeStructure';
 import { cloneMap } from './map';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions } from './types';
-import { ItemsMap } from '../../../ItemsMap';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
@@ -32,6 +31,7 @@ export class FetchingHelper {
                 items: response.items,
                 itemsAccessor: ItemsAccessor.toItemsAccessor(newItemsMap),
             }),
+            loadedItems: response.items,
         };
     }
 
@@ -42,7 +42,7 @@ export class FetchingHelper {
         dataSourceState,
         withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>) {
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await this.loadMissing<TItem, TId, TFilter>({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, loadedItems: loadedMissingItems } = await this.loadMissing<TItem, TId, TFilter>({
             treeStructure,
             itemsMap,
             options,
@@ -50,7 +50,7 @@ export class FetchingHelper {
             withNestedChildren,
         });
 
-        const updatedItemsMap = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
+        const { itemsMap: updatedItemsMap, loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
             treeStructure: newTreeStructure,
             itemsMap: newItemsMap,
             options,
@@ -58,6 +58,7 @@ export class FetchingHelper {
         });
 
         return {
+            loadedItems: loadedMissingItems.concat(loadedMissingItemsAndParents),
             itemsMap: updatedItemsMap,
             treeStructure: TreeStructure.create(
                 newTreeStructure.params,
@@ -82,6 +83,7 @@ export class FetchingHelper {
         let newItemsMap = itemsMap;
         const flatten = dataSourceState.search && options.flattenSearchResults;
 
+        let newItems: TItem[] = [];
         const loadRecursive = async (parentId: TId, parent: TItem, parentLoadAll: boolean, remainingRowsCount: number) => {
             let recursiveLoadedCount = 0;
 
@@ -109,6 +111,7 @@ export class FetchingHelper {
             recursiveLoadedCount += ids.length;
             if (loadedItems.length > 0) {
                 newItemsMap = newItemsMap.setItems(loadedItems);
+                newItems = newItems.concat(loadedItems);
             }
 
             if (!flatten && options.getChildCount) {
@@ -161,7 +164,7 @@ export class FetchingHelper {
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
-        if (treeStructure.byParentId !== byParentId || treeStructure.nodeInfoById !== nodeInfoById || itemsMap !== newItemsMap) {
+        if (treeStructure.byParentId !== byParentId || treeStructure.nodeInfoById !== nodeInfoById || itemsMap !== newItemsMap || newItems.length) {
             return {
                 treeStructure: TreeStructure.create<TItem, TId>(
                     treeStructure.params,
@@ -170,6 +173,7 @@ export class FetchingHelper {
                     nodeInfoById,
                 ),
                 itemsMap: newItemsMap,
+                loadedItems: newItems,
             };
         }
         return { treeStructure, itemsMap };
@@ -180,10 +184,11 @@ export class FetchingHelper {
         itemsMap,
         options,
         itemsToLoad,
-    }: LoadMissingItemsAndParentsOptions<TItem, TId, TFilter>): Promise<ItemsMap<TId, TItem>> {
+    }: LoadMissingItemsAndParentsOptions<TItem, TId, TFilter>) {
         let newItemsMap = itemsMap;
         let iteration = 0;
         let prevMissingIds = new Set<TId>();
+        let loadedItems: TItem[] = [];
         while (true) {
             const missingIds = new Set<TId>();
 
@@ -220,7 +225,7 @@ export class FetchingHelper {
                 });
 
                 newItemsMap = newItemsMap.setItems(newItems);
-
+                loadedItems = loadedItems.concat(newItems);
                 if (prevMissingIds.size === missingIds.size && isEqual(prevMissingIds, missingIds)) {
                     break;
                 }
@@ -233,7 +238,7 @@ export class FetchingHelper {
                 throw new Error('LazyTree: More than 1000 iterations are made to load required items and their parents by ID. Check your api implementation');
             }
         }
-        return newItemsMap;
+        return { itemsMap: newItemsMap, loadedItems };
     }
 
     private static async loadItems<TItem, TId, TFilter>({

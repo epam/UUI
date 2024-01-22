@@ -3,6 +3,7 @@ import { ItemsMap, OnUpdate } from './ItemsMap';
 export interface ModificationOptions {
     isDirty?: boolean;
     reset?: boolean;
+    on?: 'load' | 'patch'
 }
 
 interface ItemsStorageParams<TItem, TId> {
