@@ -3,7 +3,7 @@ import { ClientAsyncTreeProps } from './types';
 import { usePlainTree } from '../plainTree';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
-import { NewTree } from '../../../newTree';
+import { TreeState } from '../../../newTree';
 import { useItemsStorage } from '../useItemsStorage';
 
 export function useClientAsyncTree<TItem, TId, TFilter = any>(
@@ -17,7 +17,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         getId: props.getId,
     });
 
-    const baseTree = useMemo(() => NewTree.blank(props, itemsMap, setItems), deps);
+    const baseTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
     const [isForceReload, setIsForceReload] = useState(false);
     const prevIsForceReload = useSimplePrevious(isForceReload);
 

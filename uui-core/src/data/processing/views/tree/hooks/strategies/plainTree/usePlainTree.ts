@@ -7,9 +7,10 @@ import { useSortTree } from './useSortTree';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 import { useItemsStorage } from '../useItemsStorage';
+import { TreeState } from '../../../newTree';
 
 export function usePlainTree<TItem, TId, TFilter = any>(
-    { sortSearchByRelevance = true, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
+    { sortSearchByRelevance = true, items, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { ...restProps, sortSearchByRelevance };
@@ -21,7 +22,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
 
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: restProps.itemsMap,
-        items: restProps.items,
+        items,
         setItems: restProps.setItems,
         getId: restProps.getId,
     });
@@ -55,22 +56,22 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         [sortTree],
     );
 
-    const treeSnapshot = useMemo(() => tree.snapshot(), [tree]);
-
     const getChildCount = useCallback((item: TItem): number | undefined => {
         if (props.getChildCount) {
-            return props.getChildCount(item) ?? treeSnapshot.getChildrenByParentId(getId(item)).length;
+            return props.getChildCount(item) ?? tree.visible.getChildrenByParentId(getId(item)).length;
         }
-        return treeSnapshot.getChildrenByParentId(getId(item)).length;
-    }, [treeSnapshot, getId, props.getChildCount]);
+        return tree.visible.getChildrenByParentId(getId(item)).length;
+    }, [tree.visible, getId, props.getChildCount]);
 
     const reload = useCallback(() => {
         resetTree();
     }, [resetTree]);
 
+    const pureTree = useMemo(() => TreeState.toPureTreeState(tree), [tree]);
+
     return useMemo(
         () => ({
-            tree,
+            tree: pureTree,
             rowOptions,
             getRowOptions,
             getChildCount,
@@ -81,7 +82,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             reload,
         }),
         [
-            tree,
+            pureTree,
             dataSourceState,
             setDataSourceState,
             rowOptions,

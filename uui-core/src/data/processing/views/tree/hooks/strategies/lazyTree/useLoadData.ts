@@ -1,10 +1,9 @@
 import { useCallback, useRef } from 'react';
 import { CascadeSelection, CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
-import { ROOT_ID } from '../../../../tree';
 import isEqual from 'lodash.isequal';
 import { CommonDataSourceConfig } from '../types';
-import { NewTree } from '../../../newTree';
-import { SnapshotId } from '../../../newTree/NewTree';
+import { ROOT_ID, TreeState } from '../../../newTree';
+import { TreeStructureId } from '../../../newTree/treeState/ITreeState';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -22,12 +21,12 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: NewTree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
 }
 
 interface LoadMissingOptions<TItem, TId, TFilter> {
-    using?: SnapshotId;
-    tree: NewTree<TItem, TId>;
+    using?: TreeStructureId;
+    tree: TreeState<TItem, TId>;
     abortInProgress?: boolean;
     loadAllChildren?(id: TId): boolean;
     isLoadStrict?: boolean;
@@ -106,7 +105,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
 
-    const loadMissingOnCheck = useCallback(async (currentTree: NewTree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+    const loadMissingOnCheck = useCallback(async (currentTree: TreeState<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (!cascadeSelection && !isRoot) {
@@ -114,8 +113,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         const loadNestedLayersChildren = !isImplicitMode;
-        const coreTreeSnapshot = currentTree.snapshot('core');
-        const parents = coreTreeSnapshot.getParentIdsRecursive(id);
+        const parents = currentTree.full.getParentIdsRecursive(id);
         const { tree: treeWithMissingRecords } = await loadMissing({
             tree: currentTree,
             // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
@@ -137,7 +135,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             isLoadStrict: true,
             dataSourceState: { search: null },
             withNestedChildren: loadNestedLayersChildren,
-            using: 'core',
+            using: 'full',
         });
 
         return treeWithMissingRecords;

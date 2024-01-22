@@ -9,21 +9,20 @@ import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD } from '../tree';
 import { LoadMissingRecords } from '../tree/hooks/strategies/types';
-import { NewTree } from '../tree/newTree';
+import { ConvertableTreeState, PureTreeState } from '../tree/newTree';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
     LoadMissingRecords<TItem, TId> {
 
-    tree: NewTree<TItem, TId>;
+    tree: PureTreeState<TItem, TId>;
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
     props: UseDataRowsProps<TItem, TId, TFilter>,
 ) {
     const {
-        tree,
         getId,
         getParentId,
         getChildCount,
@@ -41,26 +40,26 @@ export function useDataRows<TItem, TId, TFilter = any>(
         loadMissingRecords,
     } = props;
 
-    const treeSnapshot = useMemo(() => tree.snapshot(), [tree]);
+    const tree = useMemo(() => ConvertableTreeState.toTreeState(props.tree), [props.tree]);
 
     const { completeFlatListRowsCount, totalCount } = useMemo(() => {
-        const rootInfo = treeSnapshot.getNodeInfo(undefined);
+        const rootInfo = tree.visible.getNodeInfo(undefined);
         const rootCount = rootInfo.count;
 
         return {
             completeFlatListRowsCount: !getChildCount && rootCount != null ? rootCount : undefined,
-            totalCount: rootInfo.totalCount ?? treeSnapshot.getTotalRecursiveCount() ?? 0,
+            totalCount: rootInfo.totalCount ?? tree.visible.getTotalRecursiveCount() ?? 0,
         };
-    }, [getChildCount, treeSnapshot]);
+    }, [getChildCount, tree.visible]);
 
     const lastRowIndex = useMemo(
         () => {
-            const actualCount = treeSnapshot.getTotalRecursiveCount();
+            const actualCount = tree.visible.getTotalRecursiveCount();
             const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
             if (actualCount != null && actualCount < currentLastIndex) return actualCount;
             return currentLastIndex;
         },
-        [treeSnapshot, dataSourceState.topIndex, dataSourceState.visibleCount],
+        [tree.visible, dataSourceState.topIndex, dataSourceState.visibleCount],
     );
     const isFlattenSearch = useMemo(
         () => dataSourceState.search && flattenSearchResults,
@@ -70,23 +69,23 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const getEstimatedChildrenCount = useCallback((id: TId) => {
         if (id === undefined) return undefined;
 
-        const item = treeSnapshot.getById(id);
+        const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) return undefined;
 
         const childCount = props.getChildCount?.(item) ?? undefined;
         if (childCount === undefined) return undefined;
 
-        const nodeInfo = treeSnapshot.getNodeInfo(id);
+        const nodeInfo = tree.visible.getNodeInfo(id);
         if (nodeInfo?.count !== undefined) {
             // nodes are already loaded, and we know the actual count
             return nodeInfo.count;
         }
 
         return childCount;
-    }, [props.getChildCount, treeSnapshot]);
+    }, [props.getChildCount, tree.visible]);
 
     const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
-        const nodeInfo = treeSnapshot.getNodeInfo(id);
+        const nodeInfo = tree.visible.getNodeInfo(id);
 
         const estimatedChildCount = getEstimatedChildrenCount(id);
 
@@ -110,7 +109,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
         // let's guess we have at least 1 item more than loaded
         return 1;
-    }, [lastRowIndex, treeSnapshot, getEstimatedChildrenCount]);
+    }, [lastRowIndex, tree.visible, getEstimatedChildrenCount]);
 
     const { handleOnCheck, isRowChecked, isRowChildrenChecked, isItemCheckable, handleSelectAll } = useCheckingService({
         tree,
@@ -182,7 +181,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     });
 
     const getById = (id: TId, index: number) => {
-        const item = treeSnapshot.getById(id);
+        const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) {
             return getUnknownRowProps(id, index, []);
         }

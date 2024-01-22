@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
 import { NOT_FOUND_RECORD } from '../../tree';
 import { CommonDataSourceConfig, LoadMissingRecords } from '../../tree/hooks/strategies/types';
-import { NewTree } from '../../tree/newTree';
+import { TreeState } from '../../tree/newTree';
 
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -11,7 +11,7 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,
     LoadMissingRecords<TItem, TId> {
-    tree: NewTree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
 }
 
 export interface CheckingService<TItem, TId> {
@@ -26,7 +26,7 @@ export interface CheckingService<TItem, TId> {
 
 const idToKey = <TId, >(id: TId) => typeof id === 'object' ? JSON.stringify(id) : `${id}`;
 
-const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: NewTree<TItem, TId>, getParentId?: (item: TItem) => TId) => {
+const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: TreeState<TItem, TId>, getParentId?: (item: TItem) => TId) => {
     const checkedByKey: Record<string, boolean> = {};
     const someChildCheckedByKey: Record<string, boolean> = {};
     const checkedItems = checked ?? [];
@@ -38,14 +38,14 @@ const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: NewTree<TItem, T
             continue;
         }
 
-        const item = tree.snapshot().getById(id);
+        const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) {
             continue;
         }
 
         const parentId = getParentId(item);
         if (!someChildCheckedByKey[idToKey(parentId)]) {
-            const parents = tree.snapshot().getParentIdsRecursive(id).reverse();
+            const parents = tree.visible.getParentIdsRecursive(id).reverse();
             for (const parent of parents) {
                 if (someChildCheckedByKey[idToKey(parent)]) {
                     break;
