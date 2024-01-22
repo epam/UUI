@@ -2,10 +2,11 @@ import { ItemsMap, ItemsStorage, PureTreeState } from '../../../../../../process
 import { SortingOption } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
+import { TreeState } from '../../../newTree';
 
 export type PlainTreeProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, TId, TFilter> & {
     type: typeof STRATEGIES.plain;
-    items?: TItem[] | PureTreeState<TItem, TId>;
+    items?: TItem[] | PureTreeState<TItem, TId> | TreeState<TItem, TId>;
     itemsMap?: ItemsMap<TId, TItem>;
     setItems?: ItemsStorage<TItem, TId>['setItems'];
 
