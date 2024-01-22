@@ -1,1 +1,1 @@
-export type { PureTreeState } from './PureTreeState';
+export { PureTreeState } from './PureTreeState';

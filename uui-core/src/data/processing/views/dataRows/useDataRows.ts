@@ -7,9 +7,9 @@ import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
-import { NOT_FOUND_RECORD } from '../tree';
+import { NOT_FOUND_RECORD, PureTreeState } from '../tree';
 import { LoadMissingRecords } from '../tree/hooks/strategies/types';
-import { ConvertableTreeState, PureTreeState } from '../tree/newTree';
+import { ConvertableTreeState } from '../tree/newTree';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,

@@ -2,9 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListViewProps, useDataRows } from './views';
-import { useTree } from './views/tree';
+import { PureTreeState, useTree } from './views/tree';
 import { ItemsStorage } from './views/tree/ItemsStorage';
-import { PureTreeState } from './views/tree/newTree';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 

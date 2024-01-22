@@ -9,7 +9,7 @@ import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
 
-export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements TreeState<TItem, TId> {
+export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
     protected constructor(
         private _fullTreeStructure: ITreeStructure<TItem, TId> | null,
         private _visibleTreeStructure: ITreeStructure<TItem, TId> | null,

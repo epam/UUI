@@ -1,6 +1,6 @@
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsStorage } from '../../ItemsStorage';
-import { PureTreeStructure } from '../treeStructure';
+import { PureTreeStructure } from '../exposed';
 
 export class PureTreeState<TItem, TId> {
     protected constructor(

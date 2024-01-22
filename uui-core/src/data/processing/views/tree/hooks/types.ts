@@ -1,4 +1,4 @@
-import { PureTreeState } from '../newTree';
+import { PureTreeState } from '../newTree/exposed';
 import { CommonDataSourceConfig, LoadMissingRecords, TreeActions, TreeLoadingState } from './strategies/types';
 
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
