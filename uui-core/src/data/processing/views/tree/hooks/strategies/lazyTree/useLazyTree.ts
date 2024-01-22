@@ -20,7 +20,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const props = { flattenSearchResults, ...restProps };
     const {
         api, filter, backgroundReload,
-        isFoldedByDefault, getId, setDataSourceState,
+        isFoldedByDefault, getId, getParentId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions,
         getChildCount, patchItems,
     } = props;
@@ -148,6 +148,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         setDataSourceState,
         isFoldedByDefault,
         getId,
+        getParentId,
         cascadeSelection,
         getRowOptions,
         rowOptions,
