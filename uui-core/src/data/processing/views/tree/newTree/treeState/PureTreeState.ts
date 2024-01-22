@@ -4,9 +4,9 @@ import { PureTreeStructure } from '../treeStructure';
 
 export class PureTreeState<TItem, TId> {
     protected constructor(
-        protected fullTree: PureTreeStructure<TItem, TId> | null,
-        protected visibleTree: PureTreeStructure<TItem, TId> | null,
-        protected itemsMap: ItemsMap<TId, TItem>,
-        protected setItems: ItemsStorage<TItem, TId>['setItems'],
+        protected _fullTree: PureTreeStructure<TItem, TId> | null,
+        protected _visibleTree: PureTreeStructure<TItem, TId> | null,
+        protected _itemsMap: ItemsMap<TId, TItem>,
+        protected _setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {}
 }

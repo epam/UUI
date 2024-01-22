@@ -1,12 +1,12 @@
 import {
     BaseListViewProps, DataSourceState, IDataSource, IDataSourceView,
 } from '../../types/dataSources';
-import { ITreeState } from './views/tree/newTree';
+import { PureTreeState } from './views/tree/newTree';
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
     private subscriptions = new Map<IDataSourceView<TItem, TId, TFilter>, () => void>();
-    protected trees = new Map<ITreeState<TItem, TId>, () => void>();
+    protected trees = new Map<PureTreeState<TItem, TId>, () => void>();
 
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
 

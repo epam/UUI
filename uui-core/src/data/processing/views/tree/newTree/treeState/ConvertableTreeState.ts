@@ -5,10 +5,10 @@ import { ConvertableTreeStructure } from '../treeStructure';
 export class ConvertableTreeState<TItem, TId> extends PureTreeState<TItem, TId> {
     public static toTreeState<TItem, TId>(treeState: ConvertableTreeState<TItem, TId>) {
         return TreeState.create(
-            ConvertableTreeStructure.toTreeStructure(treeState.fullTree, treeState.itemsMap),
-            ConvertableTreeStructure.toTreeStructure(treeState.visibleTree, treeState.itemsMap),
-            treeState.itemsMap,
-            treeState.setItems,
+            ConvertableTreeStructure.toTreeStructure(treeState._fullTree, treeState._itemsMap),
+            ConvertableTreeStructure.toTreeStructure(treeState._visibleTree, treeState._itemsMap),
+            treeState._itemsMap,
+            treeState._setItems,
         );
     }
 

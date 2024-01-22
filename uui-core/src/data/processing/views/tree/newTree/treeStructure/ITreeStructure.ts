@@ -26,7 +26,7 @@ export interface ITreeStructure<TItem, TId> {
     getParents(id: TId): TItem[];
     getPathById(id: TId): DataRowPathItem<TId, TItem>[];
     getPathItem(item: TItem): DataRowPathItem<TId, TItem>;
-    getNodeInfo(id: TId): TreeNodeInfo | {};
+    getNodeInfo(id: TId): TreeNodeInfo;
     isFlatList(): boolean;
     getTotalRecursiveCount(): number | null;
     forEachChildren(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, parentId?: TId, includeParent?: boolean): void;

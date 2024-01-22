@@ -3,7 +3,7 @@ import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { CheckingService, FocusService, SelectingService } from './services';
 import { idToKey } from '../helpers';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
-import { NewTree } from '../tree/newTree';
+import { ITreeState } from '../tree/newTree';
 
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
@@ -13,7 +13,7 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
     > {
 
-    tree: NewTree<TItem, TId>;
+    tree: ITreeState<TItem, TId>;
 
     isFlattenSearch: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
@@ -35,8 +35,6 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         getEstimatedChildrenCount,
     }: UseDataRowPropsProps<TItem, TId, TFilter>,
 ) {
-    const treeSnapshot = useMemo(() => tree.snapshot(), [tree]);
-
     const updateRowOptions = useCallback((row: DataRowProps<TItem, TId>) => {
         const externalRowOptions = (getRowOptions && !row.isLoading)
             ? getRowOptions(row.value, row.index)
@@ -84,7 +82,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
     const getRowProps = useCallback((item: TItem, index: number): DataRowProps<TItem, TId> => {
         const id = getId(item);
         const key = idToKey(id);
-        const path = treeSnapshot.getPathById(id);
+        const path = tree.visible.getPathById(id);
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
         const rowProps = {
             id,
@@ -98,7 +96,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         } as DataRowProps<TItem, TId>;
 
         return updateRowOptions(rowProps);
-    }, [getId, tree, updateRowOptions]);
+    }, [getId, tree.visible, updateRowOptions]);
 
     const getEmptyRowProps = useCallback((id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
         const checked = dataSourceState?.checked ?? [];

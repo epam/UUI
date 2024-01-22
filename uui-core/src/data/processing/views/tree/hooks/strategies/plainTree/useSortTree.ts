@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { DataSourceState, SortingOption } from '../../../../../../../types';
-import { NewTree } from '../../../newTree';
+import { TreeState } from '../../../newTree';
 
 export type UseSortTreeProps<TItem, TId, TFilter = any> = {
     sortBy?(item: TItem, sorting: SortingOption): any;
-    tree: NewTree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
 };
 
@@ -16,11 +16,11 @@ export function useSortTree<TItem, TId, TFilter = any>(
         sortBy,
     }: UseSortTreeProps<TItem, TId, TFilter>,
     deps: any[],
-): NewTree<TItem, TId> {
+): TreeState<TItem, TId> {
     const prevTree = useSimplePrevious(tree);
     const prevSorting = useSimplePrevious(sorting);
     const prevDeps = useSimplePrevious(deps);
-    const sortedTreeRef = useRef<NewTree<TItem, TId>>(null);
+    const sortedTreeRef = useRef<TreeState<TItem, TId>>(null);
 
     const sortTree = useMemo(() => {
         const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
@@ -29,12 +29,6 @@ export function useSortTree<TItem, TId, TFilter = any>(
         }
         return sortedTreeRef.current;
     }, [tree, sorting, ...deps]);
-
-    useEffect(() => {
-        if (tree.itemsMap) {
-            sortTree.itemsMap = tree.itemsMap;
-        }
-    }, [tree?.itemsMap]);
 
     return sortTree;
 }

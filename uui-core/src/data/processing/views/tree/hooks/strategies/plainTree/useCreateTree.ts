@@ -1,19 +1,12 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { PlainTreeProps } from './types';
-import { NewTree } from '../../../newTree';
+import { TreeState } from '../../../newTree';
 
-export function useCreateTree<TItem, TId, TFilter = any>(props: PlainTreeProps<TItem, TId, TFilter>, deps: any[]): NewTree<TItem, TId> {
-    const { itemsMap, setItems, items } = props;
+export function useCreateTree<TItem, TId, TFilter = any>(props: Omit<PlainTreeProps<TItem, TId, TFilter>, 'items'>, deps: any[]): TreeState<TItem, TId> {
+    const { itemsMap, setItems } = props;
     const tree = useMemo(() => {
-        return items instanceof NewTree
-            ? NewTree.clone(items)
-            : NewTree.create(props, itemsMap, setItems);
-    }, deps);
+        return TreeState.createFromItems<TItem, TId>(props, itemsMap, setItems);
+    }, [...deps, itemsMap]);
 
-    useEffect(() => {
-        if (itemsMap) {
-            tree.itemsMap = itemsMap;
-        }
-    }, [tree?.itemsMap]);
     return tree;
 }

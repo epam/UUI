@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
-import { NewTree } from '../../../newTree';
+import { TreeState } from '../../../newTree';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: NewTree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
     error?: Error;
 }
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> {
-    tree: NewTree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     dataSourceState?: DataSourceState<TFilter, TId>;
     forceReload?: boolean;
@@ -31,7 +31,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const [isFetching, setIsFetching] = useState(false);
 
     const loadData = useCallback(async (
-        sourceTree: NewTree<TItem, TId>,
+        sourceTree: TreeState<TItem, TId>,
         dsState: DataSourceState<TFilter, TId> = {},
     ): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = sourceTree;

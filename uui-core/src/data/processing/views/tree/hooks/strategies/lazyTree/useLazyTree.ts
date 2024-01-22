@@ -9,7 +9,7 @@ import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
-import { NewTree } from '../../../newTree';
+import { TreeState } from '../../../newTree';
 import { useItemsStorage } from '../useItemsStorage';
 import { usePatchTree } from '../usePatchTree';
 
@@ -32,7 +32,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         getId: props.getId,
     });
 
-    const blankTree = useMemo(() => NewTree.blank(props, itemsMap, setItems), [...deps]);
+    const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
     const prevFilter = usePrevious(filter);
@@ -42,9 +42,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isForceReload, setIsForceReload] = useState(false);
 
-    const treeSnapshot = useMemo(() => treeWithData.snapshot(), [treeWithData]);
-
-    const actualRowsCount = useMemo(() => treeSnapshot.getTotalRecursiveCount() ?? 0, [treeSnapshot]);
+    const actualRowsCount = useMemo(() => treeWithData.visible.getTotalRecursiveCount() ?? 0, [treeWithData.visible]);
 
     const lastRowIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
 
@@ -72,7 +70,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         cascadeSelection,
     });
 
-    const loadMissingRecords = useCallback(async (currentTree: NewTree<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
+    const loadMissingRecords = useCallback(async (currentTree: TreeState<TItem, TId>, id: TId, isChecked: boolean, isRoot: boolean) => {
         const newTree = await loadMissingOnCheck(currentTree, id, isChecked, isRoot);
         if (currentTree !== newTree) {
             setTreeWithData(newTree);
@@ -143,8 +141,9 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         setIsForceReload(true);
     }, [props, setTreeWithData]);
 
+    const pureTree = useMemo(() => TreeState.toPureTreeState(tree), [tree]);
     return {
-        tree,
+        tree: pureTree,
         dataSourceState,
         setDataSourceState,
         isFoldedByDefault,

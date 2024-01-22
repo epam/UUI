@@ -1,5 +1,5 @@
-import { NewTree } from '../newTree';
-import { CommonDataSourceConfig, LoadMissingRecords, TreeActions, TreeLoadingState, TreeRowsStats } from './strategies/types';
+import { PureTreeState } from '../newTree';
+import { CommonDataSourceConfig, LoadMissingRecords, TreeActions, TreeLoadingState } from './strategies/types';
 
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
@@ -7,5 +7,5 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     TreeActions,
     LoadMissingRecords<TItem, TId> {
 
-    tree: NewTree<TItem, TId>;
+    tree: PureTreeState<TItem, TId>;
 }

@@ -1,14 +1,15 @@
 import { ItemsStorage } from '../../ItemsStorage';
 import {
-    CascadeSelectionOptions, FilterOptions, ITreeState, LoadAllOptions, LoadOptions, PatchOptions,
+    CascadeSelectionOptions, FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './ITreeState';
 import { PureTreeState } from './PureTreeState';
 import { TreeStructure, ITreeStructure, TreeParams, FetchingHelper, FilterHelper, SortHelper, SearchHelper, CheckingHelper, PatchHelper } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
+import { NOT_FOUND_RECORD } from '../constants';
 
-export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements ITreeState<TItem, TId> {
+export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements TreeState<TItem, TId> {
     protected constructor(
         private _fullTreeStructure: ITreeStructure<TItem, TId> | null,
         private _visibleTreeStructure: ITreeStructure<TItem, TId> | null,
@@ -23,12 +24,32 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         );
     }
 
+    public get itemsMap() {
+        return this._itemsMap;
+    }
+
+    public get setItems() {
+        return this._setItems;
+    }
+
+    public get visible() {
+        return this._visibleTreeStructure;
+    }
+
+    public get full() {
+        return this._fullTreeStructure;
+    }
+
+    public getById(id: TId) {
+        return this.itemsMap.has(id) ? this.itemsMap.get(id) : NOT_FOUND_RECORD;
+    }
+
     public async load<TFilter>({
         using,
         options,
         dataSourceState,
         withNestedChildren = true,
-    }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeState<TItem, TId>> {
+    }: LoadOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await FetchingHelper.load<TItem, TId, TFilter>({
@@ -50,7 +71,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         using,
         options,
         dataSourceState,
-    }: LoadAllOptions<TItem, TId, TFilter>): Promise<ITreeState<TItem, TId>> {
+    }: LoadAllOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = await FetchingHelper.loadAll({
@@ -70,7 +91,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
     public filter<TFilter>({
         filter,
         getFilter,
-    }: FilterOptions<TItem, TId, TFilter>): ITreeState<TItem, TId> {
+    }: FilterOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
         const newTreeStructure = FilterHelper.filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter });
 
@@ -84,7 +105,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
     public sort<TFilter>({
         sorting,
         sortBy,
-    }: SortOptions<TItem, TId, TFilter>): ITreeState<TItem, TId> {
+    }: SortOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
         const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ treeStructure, sorting, sortBy });
 
@@ -99,7 +120,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         search,
         getSearchFields,
         sortSearchByRelevance,
-    }: SearchOptions<TItem, TId, TFilter>): ITreeState<TItem, TId> {
+    }: SearchOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
         const newTreeStructure = SearchHelper.search({ treeStructure, search, getSearchFields, sortSearchByRelevance });
 
@@ -115,7 +136,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         return CheckingHelper.cascadeSelection<TItem, TId>({ treeStructure, itemsMap: this.itemsMap, ...options });
     }
 
-    public patch({ using, ...options }: PatchOptions<TItem>): ITreeState<TItem, TId> {
+    public patch({ using, ...options }: PatchOptions<TItem>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure(using);
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = PatchHelper.patch<TItem, TId>({
             treeStructure,
@@ -130,7 +151,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
     }
 
-    public patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>): ITreeState<TItem, TId> {
+    public patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap } = PatchHelper.patchItems({
             treeStructure,
@@ -150,13 +171,31 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         return (treeStructureId ?? 'full') === 'full' ? this._fullTreeStructure : this._visibleTreeStructure;
     }
 
+    public clearStructure(): TreeState<TItem, TId> {
+        return TreeState.create(
+            TreeStructure.create(this.full.params, ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            TreeStructure.create(this.visible.params, ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            this.itemsMap,
+            this.setItems,
+        );
+    }
+
+    public reset(): TreeState<TItem, TId> {
+        return TreeState.create(
+            this.full,
+            this.full,
+            this.itemsMap,
+            this.setItems,
+        );
+    }
+
     private withNewTreeStructures({
         using,
         treeStructure,
         itemsMap,
-    }: UpdateTreeStructuresOptions<TItem, TId>): ITreeState<TItem, TId> {
+    }: UpdateTreeStructuresOptions<TItem, TId>): TreeState<TItem, TId> {
         if (!using) {
-            return TreeState.create(treeStructure, treeStructure, itemsMap, this.setItems);
+            return TreeState.create(treeStructure, treeStructure, itemsMap, this._setItems);
         }
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
         const visibleTree = using === 'visible'
@@ -167,15 +206,15 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
             ? treeStructure
             : TreeStructure.withNewItemsAccessor(itemsAccessor, this._fullTreeStructure);
 
-        return TreeState.create(fullTree, visibleTree, itemsMap, this.setItems);
+        return TreeState.create(fullTree, visibleTree, itemsMap, this._setItems);
     }
 
     public static toPureTreeState<TItem, TId>(treeState: TreeState<TItem, TId>) {
         return new PureTreeState(
-            treeState.fullTree,
-            treeState.visibleTree,
-            treeState.itemsMap,
-            treeState.setItems,
+            treeState._fullTree,
+            treeState._visibleTree,
+            treeState._itemsMap,
+            treeState._setItems,
         );
     }
 
@@ -212,7 +251,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> implements 
         );
     }
 
-    public static blank<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']) {
+    public static blank<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']): TreeState<TItem, TId> {
         const treeStructure = TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap));
 
         return this.create(
