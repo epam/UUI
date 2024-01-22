@@ -127,7 +127,7 @@ exports[`PickerList should open body 1`] = `
         </label>
       </div>
       <button
-        class="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         tabindex="0"
         type="button"
       >
@@ -169,7 +169,7 @@ exports[`PickerList should open body 1`] = `
           >
             <button
               aria-label="Close modal"
-              class="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+              class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
               tabindex="0"
               type="button"
             >
@@ -736,7 +736,7 @@ exports[`PickerList should open body 1`] = `
             class="flexSpacer"
           />
           <button
-            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-36"
+            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
             tabindex="0"
             type="button"
           >
@@ -747,7 +747,7 @@ exports[`PickerList should open body 1`] = `
             </div>
           </button>
           <button
-            class="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-accent uui-size-36"
+            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
             tabindex="0"
             type="button"
           >
@@ -964,7 +964,7 @@ exports[`PickerList should render with minimum props 1`] = `
         </label>
       </div>
       <button
-        class="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         tabindex="0"
         type="button"
       >

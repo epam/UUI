@@ -1,11 +1,24 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
+* [Badge]: can become a `span` tag if the `onClick` is not passed to the props, consider this point when writing tests.
+* [Tag]: can become a `span` tag if the `onClick` is not passed to the props, consider this point when writing tests.
+* [PickerInput]: in `selectionMode: multi` `Tag` rendered as a `span`, consider this point when writing tests.
+* prop `captionCX` is deprecated for components `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class.
+* [Breaking changes]:
+    * [Button]: removed `count`, `dropdownIconPosition` props.
+    * [TabButton]: removed `dropdownIconPosition` prop.
+    * [VerticalTabButton]: removed `dropdownIconPosition` prop.
+    * [LinkButton]: removed `onClear`, `clearIcon`, `count`, `dropdownIconPosition` props.
+    * [MainMenuButton]: removed `onClear`, `clearIcon`, `isDisabled`, `dropdownIconPosition` props.
+    * [Badge]: removed `dropdownIconPosition` prop.
+    * [Tag]: removed `dropdownIconPosition` prop.
 * Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
 * [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
 
-**What's Fixed**
 
+**What's Fixed**
+* ????
 
 # 5.5.0 - 18.01.2024
 

@@ -42,7 +42,6 @@ export default function TypesExample() {
                     <Badge
                         { ...props }
                         dropdownIcon={ navigationDownIcon }
-                        dropdownIconPosition="right"
                         color="neutral"
                         icon={ () => statusDot(selectedItem.color) }
                         fill="outline"

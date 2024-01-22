@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx, DataColumnProps,
+    DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps,
 } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
@@ -93,7 +93,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         );
 
     renderResizeMark = (props: HeaderCellContentProps) => <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />;
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => {
+    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
         return (
             <FlexCell

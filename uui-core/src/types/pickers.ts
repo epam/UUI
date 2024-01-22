@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder, IHasCX } from './props';
+import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IHasPlaceholder, IHasCX, IDropdownTogglerProps } from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
@@ -136,7 +136,7 @@ export interface IPickerToggler<TItem = any, TId = any>
  * This interface is enough for basic pickers.
  * Picker togglers with search or advanced selection display should implement IPickerToggler interface
  */
-export interface IBasicPickerToggler extends IDropdownToggler {
+export interface IBasicPickerToggler extends IDropdownTogglerProps {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
 }
@@ -150,5 +150,5 @@ export interface DataPickerCellProps<TItem = any, TId = any> extends IHasCX {
     rowProps: DataRowProps<TItem, TId>;
 
     /** Render the cell content. The item props is the value of the whole row (TItem). */
-    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
+    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): ReactNode;
 }

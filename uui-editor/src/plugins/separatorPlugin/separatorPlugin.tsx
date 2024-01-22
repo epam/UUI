@@ -7,7 +7,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 export const SEPARATOR_KEY = 'separatorBLock';
 

@@ -8,7 +8,6 @@ import {
 import {
     IAnalyticableClick,
     ICanBeInvalid,
-    IDropdownToggler,
     IHasCaption,
     IHasCX,
     IHasForwardedRef,
@@ -27,16 +26,6 @@ import {
 import { iCanRedirectDoc, iEditable, iHasLabelDoc } from '../../commonDocs';
 
 const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx: Pick<UuiContexts, 'uuiNotifications'> }) => DocBuilder<any> } = {
-    '@epam/uui-core:ButtonCoreProps': () => {
-        return new DocBuilder<any>({ name: '' }).prop('count', {
-            examples: [0,
-                1,
-                123,
-                { name: '"This is a string"', value: 'This is a string' },
-                { name: '<i>This is React.ReactElement</i>', value: <i>This is React.ReactElement</i> }],
-            editorType: 'MultiUnknownEditor',
-        });
-    },
     '@epam/uui-components:ButtonProps': () => {
         return new DocBuilder<any>({ name: '' }).prop('countIndicator', {
             examples: [
@@ -46,9 +35,6 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx:
             editorType: 'MultiUnknownEditor',
         });
     },
-    '@epam/uui-core:IDropdownToggler': (params) => new DocBuilder<IDropdownToggler>({ name: '' }).prop('ref', {
-        examples: getReactRefExamples({ name: 'ref', uuiCtx: params.uuiCtx }),
-    }),
     '@epam/uui-core:IHasForwardedRef': (params) => new DocBuilder<IHasForwardedRef<any>>({ name: '' }).prop('forwardedRef', {
         examples: getReactRefExamples({ name: 'ref', uuiCtx: params.uuiCtx }),
     }),
