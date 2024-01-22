@@ -9,6 +9,7 @@ import { Dropdown, DropdownContainer } from '../../overlays';
 import { TextInput } from '../TextInput';
 import { TimePickerBody } from '../timePicker';
 import { IHasEditMode, SizeMod, EditMode } from '../../types';
+import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
 
 dayjs.extend(customParseFormat);
@@ -21,7 +22,8 @@ export interface TimePickerProps extends SizeMod, IHasEditMode, IEditable<TimePi
     IHasPlaceholder,
     ICanFocus<HTMLElement>,
     IHasForwardedRef<HTMLElement> {
-    /** Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys
+    /**
+     * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys
      * @default 5
      */
     minutesStep?: number;
@@ -33,7 +35,8 @@ export interface TimePickerProps extends SizeMod, IHasEditMode, IEditable<TimePi
     /** ID to put on time picker toggler 'input' node */
     id?: string;
 
-    /** Render callback for time picker toggler.
+    /**
+     * Render callback for time picker toggler.
      * If omitted, default TextInput component will be rendered.
      */
     renderTarget?(props: IDropdownToggler): React.ReactNode;
@@ -113,70 +116,19 @@ export function TimePicker(props: TimePickerProps) {
         return dayjs(newValue, getFormat(), true).isValid();
     };
 
-    const parseTimeNumbers = (timeNumbers: string, separator: number) => {
-        let hours: number, minutes: number;
-
-        switch (separator) {
-            case 0:
-                hours = 0;
-                minutes = parseInt(timeNumbers.trim().slice(0, 2));
-                break;
-            case 1:
-                hours = parseInt(timeNumbers.slice(0, 1));
-                minutes = parseInt(timeNumbers.slice(1, 3));
-                break;
-            default:
-                hours = parseInt(timeNumbers.slice(0, 2));
-                minutes = parseInt(timeNumbers.slice(2, 4));
-        }
-        return { hours, minutes };
-    };
-
-    const formatTime = (hours: number, minutes: number, meridian: 'AM' | 'PM' | false) => {
-        const hoursToString = Number.isNaN(hours) ? '00' : hours.toString().padStart(2, '0');
-        const minutesToString = Number.isNaN(minutes) ? '00' : minutes.toString().padStart(2, '0');
-
-        let result = `${hoursToString}:${minutesToString}`;
-
-        if (result === '00:00') {
-            return '';
-        }
-
-        if (meridian) {
-            result = result.concat(` ${meridian}`);
-        }
-        return result;
-    };
-
-    const getMeridian = (newValue: string) => {
-        let meridian: false | 'AM' | 'PM';
-        const format = getFormat();
-
-        if (format === 'hh:mm A') {
-            meridian = newValue.toLowerCase().includes('pm') ? 'PM' : 'AM';
-        } else {
-            meridian = false;
-        }
-        return meridian;
-    };
-
     const handleInputChange = (newValue: string) => {
         const trimmedNewValue = newValue.trimStart();
 
         if (trimmedNewValue.length <= 8) {
             const separator = trimmedNewValue.search(/\D/);
-            const meridian = getMeridian(trimmedNewValue);
+            const meridian = getMeridian(trimmedNewValue, getFormat());
+            
+            const { hours, minutes } = parseTimeNumbers(trimmedNewValue, separator);
+            const result = formatTime(hours, minutes, meridian);
+            setTimeValue(trimmedNewValue);
 
-            const timeNumbers = trimmedNewValue.replace(/\D/gi, '');
-
-            if (timeNumbers.length >= 0 && timeNumbers.length <= 4) {
-                const { hours, minutes } = parseTimeNumbers(timeNumbers, separator);
-                const result = formatTime(hours, minutes, meridian);
-                setTimeValue(trimmedNewValue);
-
-                if (checkTimeFormat(result)) {
-                    setTimeResult(result);
-                }
+            if (checkTimeFormat(result)) {
+                setTimeResult(result);
             }
         }
     };
@@ -196,6 +148,8 @@ export function TimePicker(props: TimePickerProps) {
             setState((prevState) => ({ ...prevState, result: null, value: null }));
         } else if (checkTimeFormat(state.result)) {
             saveTime();
+        } else if (state.result === null) {
+            setTimeValue(null);
         }
     };
 

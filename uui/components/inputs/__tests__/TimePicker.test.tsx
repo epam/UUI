@@ -1,6 +1,26 @@
 import React from 'react';
-import { TimePicker } from '../timePicker';
-import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { TimePicker, TimePickerProps } from '../timePicker';
+import { renderSnapshotWithContextAsync, screen, setupComponentForTest, fireEvent } from '@epam/uui-test-utils';
+
+async function setupTestComponent(params: Partial<TimePickerProps>) {
+    const { mocks, setProps } = await setupComponentForTest<TimePickerProps>(
+        (context) => ({
+            value: params.value,
+            format: params.format,
+            onValueChange: jest.fn().mockImplementation((newValue) => {
+                context.current.setProperty('value', newValue);
+            }),
+        }),
+        (props) => <TimePicker { ...props } />,
+    );
+    const input = screen.queryByRole('textbox') as HTMLInputElement;
+    const dom = { input };
+    return {
+        setProps,
+        mocks,
+        dom,
+    };
+}
 
 describe('TimePicker', () => {
     it('should be rendered correctly', async () => {
@@ -15,5 +35,95 @@ describe('TimePicker', () => {
         );
 
         expect(tree).toMatchSnapshot();
+    });
+
+    it('should set a value', async () => {
+        const { dom } = await setupTestComponent({ value: null });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '12 23pm' } });
+        expect(dom.input.value).toEqual('12 23pm');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('12:23 PM');
+    });
+
+    it('should set a right value #1', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 1, minutes: 10 }, format: 24 });
+        expect(dom.input.value).toEqual('01:10');
+        fireEvent.change(dom.input, { target: { value: '.35' } });
+        expect(dom.input.value).toEqual('.35');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('00:35');
+    });
+
+    it('should set a right value #2', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 }, format: 24 });
+        expect(dom.input.value).toEqual('18:23');
+        fireEvent.change(dom.input, { target: { value: '1930' } });
+        expect(dom.input.value).toEqual('1930');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('19:30');
+    });
+
+    it('should set a right value #3', async () => {
+        const { dom } = await setupTestComponent({ value: null });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '3hgfh' } });
+        expect(dom.input.value).toEqual('3hgfh');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('03:00 AM');
+    });
+
+    it('should set a right value #4', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 11, minutes: 23 }, format: 24 });
+        expect(dom.input.value).toEqual('11:23');
+        fireEvent.change(dom.input, { target: { value: '2/34' } });
+        expect(dom.input.value).toEqual('2/34');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('02:34');
+    });
+
+    it('should set a right value #5', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 11, minutes: 23 }, format: 24 });
+        expect(dom.input.value).toEqual('11:23');
+        fireEvent.change(dom.input, { target: { value: '23/4' } });
+        expect(dom.input.value).toEqual('23/4');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('23:04');
+    });
+
+    it('should set a right value #6', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 11, minutes: 23 }, format: 24 });
+        expect(dom.input.value).toEqual('11:23');
+        fireEvent.change(dom.input, { target: { value: '234' } });
+        expect(dom.input.value).toEqual('234');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('23:04');
+    });
+
+    it('should set a right value #7', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 11, minutes: 23 }, format: 24 });
+        expect(dom.input.value).toEqual('11:23');
+        fireEvent.change(dom.input, { target: { value: '2349' } });
+        expect(dom.input.value).toEqual('2349');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('23:49');
+    });
+
+    it('should set a right value #8', async () => {
+        const { dom } = await setupTestComponent({ value: null });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '5hgfhpm' } });
+        expect(dom.input.value).toEqual('5hgfhpm');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('05:00 PM');
+    });
+
+    it('should stay a previous value', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
+        expect(dom.input.value).toEqual('06:23 PM');
+        fireEvent.change(dom.input, { target: { value: 'fhghg' } });
+        expect(dom.input.value).toEqual('fhghg');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('06:23 PM');
     });
 });
