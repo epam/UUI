@@ -4784,17 +4784,24 @@
       "    /** Overrides rendering of the whole cell */",
       "    renderCell?(cellProps: RenderCellProps<TItem, TId>): any;",
       "    /**",
-      "     * Renders column header dropdown.",
+      "     *  Render callback for column header dropdown.",
       "     * Usually, this prop is filled automatically by the useTableState hook.",
       "     * If you use the useTableState hook, you don't need to specify it manually.",
       "     */",
       "    renderDropdown?(): React.ReactNode;",
       "    /**",
-      "     * Renders column filter.",
+      "     *  Render callback for column filter.",
       "     * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.",
       "     * You can use this prop to render a custom filter component.",
       "     */",
       "    renderFilter?(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps): React.ReactNode;",
+      "    /** Render callback for column header tooltip.",
+      "     * This tooltip will appear on cell hover with 600ms delay.",
+      "     *",
+      "     * If omitted, default implementation with column.caption + column.info will be rendered.",
+      "     * Pass `() => null` to disable tooltip rendering.",
+      "     */",
+      "    renderTooltip?(column: DataColumnProps<TItem, TId, TFilter>): React.ReactNode;",
       "}"
      ]
     },
@@ -5099,7 +5106,7 @@
       "name": "renderDropdown",
       "comment": {
        "raw": [
-        "Renders column header dropdown.",
+        "Render callback for column header dropdown.",
         " Usually, this prop is filled automatically by the useTableState hook.",
         " If you use the useTableState hook, you don't need to specify it manually."
        ]
@@ -5117,13 +5124,33 @@
       "name": "renderFilter",
       "comment": {
        "raw": [
-        "Renders column filter.",
+        "Render callback for column filter.",
         " If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.",
         " You can use this prop to render a custom filter component."
        ]
       },
       "typeValue": {
        "raw": "(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderTooltip",
+      "name": "renderTooltip",
+      "comment": {
+       "raw": [
+        "Render callback for column header tooltip.",
+        " This tooltip will appear on cell hover with 600ms delay.",
+        "",
+        " If omitted, default implementation with column.caption + column.info will be rendered.",
+        " Pass `() => null` to disable tooltip rendering."
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -14948,7 +14975,7 @@
       "    toggleDropdownOpening?: (value: boolean) => void;",
       "    /** Called when component is interacted outside, to close the dropdown */",
       "    isInteractedOutside?: (event: Event) => boolean;",
-      "    /** toggler component ref */",
+      "    /** Toggler component ref */",
       "    ref?: React.Ref<any>;",
       "}"
      ]
@@ -14991,7 +15018,7 @@
       "name": "ref",
       "comment": {
        "raw": [
-        "toggler component ref"
+        "Toggler component ref"
        ]
       },
       "typeValue": {
@@ -29794,6 +29821,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -29846,6 +29878,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -29855,6 +29892,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -29864,6 +29906,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -29873,6 +29920,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -29899,8 +29951,11 @@
      "raw": "AnchorRawProps",
      "print": [
       "type AnchorRawProps = {",
+      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
       "    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];",
+      "    /** The URL that the hyperlink points to. */",
       "    href: string;",
+      "    /** Defines location within SPA application */",
       "    link: Link;",
       "};"
      ]
@@ -29909,6 +29964,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -29917,6 +29977,11 @@
      {
       "uid": "href",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -29928,6 +29993,11 @@
      {
       "uid": "link",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "Link"
       },
@@ -30297,7 +30367,10 @@
        "raw": [
         "Avatar onClick.",
         "  @deprecated Property onClick is deprecated and will be removed in future release."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "Property onClick is deprecated and will be removed in future release."
+       }
       },
       "typeValue": {
        "raw": "() => void"
@@ -31551,6 +31624,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -31755,6 +31833,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -31764,6 +31847,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -31773,6 +31861,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -31782,6 +31875,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -31808,8 +31906,11 @@
      "raw": "ButtonRawProps",
      "print": [
       "type ButtonRawProps = {",
+      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
       "    rawProps?: IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>['rawProps'];",
+      "    /** The URL that the hyperlink points to. */",
       "    href?: never;",
+      "    /** Defines location within SPA application */",
       "    link?: never;",
       "};"
      ]
@@ -31818,6 +31919,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -31826,6 +31932,11 @@
      {
       "uid": "href",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -31834,6 +31945,11 @@
      {
       "uid": "link",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -32640,6 +32756,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -32677,6 +32798,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -32686,6 +32812,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -32695,6 +32826,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -32704,6 +32840,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -33164,7 +33305,7 @@
       "name": "renderDropdown",
       "comment": {
        "raw": [
-        "Renders column header dropdown.",
+        "Render callback for column header dropdown.",
         " Usually, this prop is filled automatically by the useTableState hook.",
         " If you use the useTableState hook, you don't need to specify it manually."
        ]
@@ -33183,13 +33324,34 @@
       "name": "renderFilter",
       "comment": {
        "raw": [
-        "Renders column filter.",
+        "Render callback for column filter.",
         " If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.",
         " You can use this prop to render a custom filter component."
        ]
       },
       "typeValue": {
        "raw": "(lens: ILens<any>, dropdownProps: IDropdownBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataColumnProps",
+      "required": false
+     },
+     {
+      "uid": "renderTooltip",
+      "name": "renderTooltip",
+      "comment": {
+       "raw": [
+        "Render callback for column header tooltip.",
+        " This tooltip will appear on cell hover with 600ms delay.",
+        "",
+        " If omitted, default implementation with column.caption + column.info will be rendered.",
+        " Pass `() => null` to disable tooltip rendering."
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnProps<any, any, any>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -35130,8 +35292,11 @@
      "raw": "HrefRawProps",
      "print": [
       "type HrefRawProps = {",
+      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
       "    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];",
+      "    /** The URL that the hyperlink points to. */",
       "    href: string | never;",
+      "    /** Defines location within SPA application */",
       "    link?: never;",
       "};"
      ]
@@ -35140,6 +35305,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -35148,6 +35318,11 @@
      {
       "uid": "href",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -35159,6 +35334,11 @@
      {
       "uid": "link",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -35344,6 +35524,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -35447,6 +35632,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -35456,6 +35646,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -35465,6 +35660,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -35474,6 +35674,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -36591,10 +36796,8 @@
       "name": "inputMode",
       "comment": {
        "raw": [
-        "/**",
-        "         * Hints at the type of data that might be entered by the user while editing the element or its contents",
-        "         * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute",
-        "         */"
+        "Hints at the type of data that might be entered by the user while editing the element or its contents",
+        " @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute"
        ]
       },
       "typeValue": {
@@ -36621,10 +36824,8 @@
       "name": "is",
       "comment": {
        "raw": [
-        "/**",
-        "         * Specify that a standard HTML element should behave like a defined custom built-in element",
-        "         * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is",
-        "         */"
+        "Specify that a standard HTML element should behave like a defined custom built-in element",
+        " @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is"
        ]
       },
       "typeValue": {
@@ -36681,10 +36882,8 @@
       "name": "'aria-autocomplete'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be",
-        "         * presented if they are made.",
-        "         */"
+        "Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be",
+        " presented if they are made."
        ]
       },
       "typeValue": {
@@ -36730,10 +36929,8 @@
       "name": "'aria-checked'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the current \"checked\" state of checkboxes, radio buttons, and other widgets.",
-        "         * @see aria-pressed @see aria-selected.",
-        "         */"
+        "Indicates the current \"checked\" state of checkboxes, radio buttons, and other widgets.",
+        " @see aria-pressed @see aria-selected."
        ]
       },
       "typeValue": {
@@ -36757,10 +36954,8 @@
       "name": "'aria-colcount'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the total number of columns in a table, grid, or treegrid.",
-        "         * @see aria-colindex.",
-        "         */"
+        "Defines the total number of columns in a table, grid, or treegrid.",
+        " @see aria-colindex."
        ]
       },
       "typeValue": {
@@ -36777,10 +36972,8 @@
       "name": "'aria-colindex'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.",
-        "         * @see aria-colcount @see aria-colspan.",
-        "         */"
+        "Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.",
+        " @see aria-colcount @see aria-colspan."
        ]
       },
       "typeValue": {
@@ -36797,10 +36990,8 @@
       "name": "'aria-colspan'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.",
-        "         * @see aria-colindex @see aria-rowspan.",
-        "         */"
+        "Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.",
+        " @see aria-colindex @see aria-rowspan."
        ]
       },
       "typeValue": {
@@ -36817,10 +37008,8 @@
       "name": "'aria-controls'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element (or elements) whose contents or presence are controlled by the current element.",
-        "         * @see aria-owns.",
-        "         */"
+        "Identifies the element (or elements) whose contents or presence are controlled by the current element.",
+        " @see aria-owns."
        ]
       },
       "typeValue": {
@@ -36865,10 +37054,8 @@
       "name": "'aria-describedby'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element (or elements) that describes the object.",
-        "         * @see aria-labelledby",
-        "         */"
+        "Identifies the element (or elements) that describes the object.",
+        " @see aria-labelledby"
        ]
       },
       "typeValue": {
@@ -36885,10 +37072,8 @@
       "name": "'aria-details'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element that provides a detailed, extended description for the object.",
-        "         * @see aria-describedby.",
-        "         */"
+        "Identifies the element that provides a detailed, extended description for the object.",
+        " @see aria-describedby."
        ]
       },
       "typeValue": {
@@ -36905,10 +37090,8 @@
       "name": "'aria-disabled'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.",
-        "         * @see aria-hidden @see aria-readonly.",
-        "         */"
+        "Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.",
+        " @see aria-hidden @see aria-readonly."
        ]
       },
       "typeValue": {
@@ -36931,11 +37114,12 @@
       "name": "'aria-dropeffect'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates what functions can be performed when a dragged object is released on the drop target.",
-        "         * @deprecated in ARIA 1.1",
-        "         */"
-       ]
+        "Indicates what functions can be performed when a dragged object is released on the drop target.",
+        " @deprecated in ARIA 1.1"
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
@@ -36959,10 +37143,8 @@
       "name": "'aria-errormessage'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element that provides an error message for the object.",
-        "         * @see aria-invalid @see aria-describedby.",
-        "         */"
+        "Identifies the element that provides an error message for the object.",
+        " @see aria-invalid @see aria-describedby."
        ]
       },
       "typeValue": {
@@ -37002,10 +37184,8 @@
       "name": "'aria-flowto'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,",
-        "         * allows assistive technology to override the general default of reading in document source order.",
-        "         */"
+        "Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,",
+        " allows assistive technology to override the general default of reading in document source order."
        ]
       },
       "typeValue": {
@@ -37022,11 +37202,12 @@
       "name": "'aria-grabbed'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
-        "         * @deprecated in ARIA 1.1",
-        "         */"
-       ]
+        "Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
+        " @deprecated in ARIA 1.1"
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "boolean | 'true' | 'false'"
@@ -37076,10 +37257,8 @@
       "name": "'aria-hidden'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates whether the element is exposed to an accessibility API.",
-        "         * @see aria-disabled.",
-        "         */"
+        "Indicates whether the element is exposed to an accessibility API.",
+        " @see aria-disabled."
        ]
       },
       "typeValue": {
@@ -37102,10 +37281,8 @@
       "name": "'aria-invalid'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the entered value does not conform to the format expected by the application.",
-        "         * @see aria-errormessage.",
-        "         */"
+        "Indicates the entered value does not conform to the format expected by the application.",
+        " @see aria-errormessage."
        ]
       },
       "typeValue": {
@@ -37147,10 +37324,8 @@
       "name": "'aria-label'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines a string value that labels the current element.",
-        "         * @see aria-labelledby.",
-        "         */"
+        "Defines a string value that labels the current element.",
+        " @see aria-labelledby."
        ]
       },
       "typeValue": {
@@ -37167,10 +37342,8 @@
       "name": "'aria-labelledby'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element (or elements) that labels the current element.",
-        "         * @see aria-describedby.",
-        "         */"
+        "Identifies the element (or elements) that labels the current element.",
+        " @see aria-describedby."
        ]
       },
       "typeValue": {
@@ -37316,11 +37489,9 @@
       "name": "'aria-owns'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship",
-        "         * between DOM elements where the DOM hierarchy cannot be used to represent the relationship.",
-        "         * @see aria-controls.",
-        "         */"
+        "Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship",
+        " between DOM elements where the DOM hierarchy cannot be used to represent the relationship.",
+        " @see aria-controls."
        ]
       },
       "typeValue": {
@@ -37337,10 +37508,8 @@
       "name": "'aria-placeholder'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.",
-        "         * A hint could be a sample value or a brief description of the expected format.",
-        "         */"
+        "Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.",
+        " A hint could be a sample value or a brief description of the expected format."
        ]
       },
       "typeValue": {
@@ -37357,10 +37526,8 @@
       "name": "'aria-posinset'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
-        "         * @see aria-setsize.",
-        "         */"
+        "Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
+        " @see aria-setsize."
        ]
       },
       "typeValue": {
@@ -37377,10 +37544,8 @@
       "name": "'aria-pressed'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the current \"pressed\" state of toggle buttons.",
-        "         * @see aria-checked @see aria-selected.",
-        "         */"
+        "Indicates the current \"pressed\" state of toggle buttons.",
+        " @see aria-checked @see aria-selected."
        ]
       },
       "typeValue": {
@@ -37404,10 +37569,8 @@
       "name": "'aria-readonly'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates that the element is not editable, but is otherwise operable.",
-        "         * @see aria-disabled.",
-        "         */"
+        "Indicates that the element is not editable, but is otherwise operable.",
+        " @see aria-disabled."
        ]
       },
       "typeValue": {
@@ -37430,10 +37593,8 @@
       "name": "'aria-relevant'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.",
-        "         * @see aria-atomic.",
-        "         */"
+        "Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.",
+        " @see aria-atomic."
        ]
       },
       "typeValue": {
@@ -37502,10 +37663,8 @@
       "name": "'aria-rowcount'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the total number of rows in a table, grid, or treegrid.",
-        "         * @see aria-rowindex.",
-        "         */"
+        "Defines the total number of rows in a table, grid, or treegrid.",
+        " @see aria-rowindex."
        ]
       },
       "typeValue": {
@@ -37522,10 +37681,8 @@
       "name": "'aria-rowindex'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.",
-        "         * @see aria-rowcount @see aria-rowspan.",
-        "         */"
+        "Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.",
+        " @see aria-rowcount @see aria-rowspan."
        ]
       },
       "typeValue": {
@@ -37542,10 +37699,8 @@
       "name": "'aria-rowspan'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.",
-        "         * @see aria-rowindex @see aria-colspan.",
-        "         */"
+        "Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.",
+        " @see aria-rowindex @see aria-colspan."
        ]
       },
       "typeValue": {
@@ -37562,10 +37717,8 @@
       "name": "'aria-selected'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the current \"selected\" state of various widgets.",
-        "         * @see aria-checked @see aria-pressed.",
-        "         */"
+        "Indicates the current \"selected\" state of various widgets.",
+        " @see aria-checked @see aria-pressed."
        ]
       },
       "typeValue": {
@@ -37588,10 +37741,8 @@
       "name": "'aria-setsize'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
-        "         * @see aria-posinset.",
-        "         */"
+        "Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
+        " @see aria-posinset."
        ]
       },
       "typeValue": {
@@ -37665,10 +37816,8 @@
       "name": "'aria-valuenow'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the current value for a range widget.",
-        "         * @see aria-valuetext.",
-        "         */"
+        "Defines the current value for a range widget.",
+        " @see aria-valuetext."
        ]
       },
       "typeValue": {
@@ -40134,8 +40283,11 @@
      "raw": "LinkButtonRawProps",
      "print": [
       "type LinkButtonRawProps = {",
+      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
       "    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];",
+      "    /** The URL that the hyperlink points to. */",
       "    href?: never;",
+      "    /** Defines location within SPA application */",
       "    link: Link;",
       "};"
      ]
@@ -40144,6 +40296,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -40152,6 +40309,11 @@
      {
       "uid": "href",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -40160,6 +40322,11 @@
      {
       "uid": "link",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "Link"
       },
@@ -49117,10 +49284,8 @@
       "name": "inputMode",
       "comment": {
        "raw": [
-        "/**",
-        "         * Hints at the type of data that might be entered by the user while editing the element or its contents",
-        "         * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute",
-        "         */"
+        "Hints at the type of data that might be entered by the user while editing the element or its contents",
+        " @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute"
        ]
       },
       "typeValue": {
@@ -49147,10 +49312,8 @@
       "name": "is",
       "comment": {
        "raw": [
-        "/**",
-        "         * Specify that a standard HTML element should behave like a defined custom built-in element",
-        "         * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is",
-        "         */"
+        "Specify that a standard HTML element should behave like a defined custom built-in element",
+        " @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is"
        ]
       },
       "typeValue": {
@@ -49207,10 +49370,8 @@
       "name": "'aria-autocomplete'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be",
-        "         * presented if they are made.",
-        "         */"
+        "Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be",
+        " presented if they are made."
        ]
       },
       "typeValue": {
@@ -49256,10 +49417,8 @@
       "name": "'aria-checked'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the current \"checked\" state of checkboxes, radio buttons, and other widgets.",
-        "         * @see aria-pressed @see aria-selected.",
-        "         */"
+        "Indicates the current \"checked\" state of checkboxes, radio buttons, and other widgets.",
+        " @see aria-pressed @see aria-selected."
        ]
       },
       "typeValue": {
@@ -49283,10 +49442,8 @@
       "name": "'aria-colcount'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the total number of columns in a table, grid, or treegrid.",
-        "         * @see aria-colindex.",
-        "         */"
+        "Defines the total number of columns in a table, grid, or treegrid.",
+        " @see aria-colindex."
        ]
       },
       "typeValue": {
@@ -49303,10 +49460,8 @@
       "name": "'aria-colindex'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.",
-        "         * @see aria-colcount @see aria-colspan.",
-        "         */"
+        "Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.",
+        " @see aria-colcount @see aria-colspan."
        ]
       },
       "typeValue": {
@@ -49323,10 +49478,8 @@
       "name": "'aria-colspan'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.",
-        "         * @see aria-colindex @see aria-rowspan.",
-        "         */"
+        "Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.",
+        " @see aria-colindex @see aria-rowspan."
        ]
       },
       "typeValue": {
@@ -49343,10 +49496,8 @@
       "name": "'aria-controls'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element (or elements) whose contents or presence are controlled by the current element.",
-        "         * @see aria-owns.",
-        "         */"
+        "Identifies the element (or elements) whose contents or presence are controlled by the current element.",
+        " @see aria-owns."
        ]
       },
       "typeValue": {
@@ -49391,10 +49542,8 @@
       "name": "'aria-describedby'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element (or elements) that describes the object.",
-        "         * @see aria-labelledby",
-        "         */"
+        "Identifies the element (or elements) that describes the object.",
+        " @see aria-labelledby"
        ]
       },
       "typeValue": {
@@ -49411,10 +49560,8 @@
       "name": "'aria-details'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element that provides a detailed, extended description for the object.",
-        "         * @see aria-describedby.",
-        "         */"
+        "Identifies the element that provides a detailed, extended description for the object.",
+        " @see aria-describedby."
        ]
       },
       "typeValue": {
@@ -49431,10 +49578,8 @@
       "name": "'aria-disabled'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.",
-        "         * @see aria-hidden @see aria-readonly.",
-        "         */"
+        "Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.",
+        " @see aria-hidden @see aria-readonly."
        ]
       },
       "typeValue": {
@@ -49457,11 +49602,12 @@
       "name": "'aria-dropeffect'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates what functions can be performed when a dragged object is released on the drop target.",
-        "         * @deprecated in ARIA 1.1",
-        "         */"
-       ]
+        "Indicates what functions can be performed when a dragged object is released on the drop target.",
+        " @deprecated in ARIA 1.1"
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
@@ -49485,10 +49631,8 @@
       "name": "'aria-errormessage'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element that provides an error message for the object.",
-        "         * @see aria-invalid @see aria-describedby.",
-        "         */"
+        "Identifies the element that provides an error message for the object.",
+        " @see aria-invalid @see aria-describedby."
        ]
       },
       "typeValue": {
@@ -49528,10 +49672,8 @@
       "name": "'aria-flowto'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,",
-        "         * allows assistive technology to override the general default of reading in document source order.",
-        "         */"
+        "Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,",
+        " allows assistive technology to override the general default of reading in document source order."
        ]
       },
       "typeValue": {
@@ -49548,11 +49690,12 @@
       "name": "'aria-grabbed'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
-        "         * @deprecated in ARIA 1.1",
-        "         */"
-       ]
+        "Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
+        " @deprecated in ARIA 1.1"
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "boolean | 'true' | 'false'"
@@ -49602,10 +49745,8 @@
       "name": "'aria-hidden'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates whether the element is exposed to an accessibility API.",
-        "         * @see aria-disabled.",
-        "         */"
+        "Indicates whether the element is exposed to an accessibility API.",
+        " @see aria-disabled."
        ]
       },
       "typeValue": {
@@ -49628,10 +49769,8 @@
       "name": "'aria-invalid'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the entered value does not conform to the format expected by the application.",
-        "         * @see aria-errormessage.",
-        "         */"
+        "Indicates the entered value does not conform to the format expected by the application.",
+        " @see aria-errormessage."
        ]
       },
       "typeValue": {
@@ -49673,10 +49812,8 @@
       "name": "'aria-label'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines a string value that labels the current element.",
-        "         * @see aria-labelledby.",
-        "         */"
+        "Defines a string value that labels the current element.",
+        " @see aria-labelledby."
        ]
       },
       "typeValue": {
@@ -49693,10 +49830,8 @@
       "name": "'aria-labelledby'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies the element (or elements) that labels the current element.",
-        "         * @see aria-describedby.",
-        "         */"
+        "Identifies the element (or elements) that labels the current element.",
+        " @see aria-describedby."
        ]
       },
       "typeValue": {
@@ -49842,11 +49977,9 @@
       "name": "'aria-owns'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship",
-        "         * between DOM elements where the DOM hierarchy cannot be used to represent the relationship.",
-        "         * @see aria-controls.",
-        "         */"
+        "Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship",
+        " between DOM elements where the DOM hierarchy cannot be used to represent the relationship.",
+        " @see aria-controls."
        ]
       },
       "typeValue": {
@@ -49863,10 +49996,8 @@
       "name": "'aria-placeholder'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.",
-        "         * A hint could be a sample value or a brief description of the expected format.",
-        "         */"
+        "Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.",
+        " A hint could be a sample value or a brief description of the expected format."
        ]
       },
       "typeValue": {
@@ -49883,10 +50014,8 @@
       "name": "'aria-posinset'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
-        "         * @see aria-setsize.",
-        "         */"
+        "Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
+        " @see aria-setsize."
        ]
       },
       "typeValue": {
@@ -49903,10 +50032,8 @@
       "name": "'aria-pressed'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the current \"pressed\" state of toggle buttons.",
-        "         * @see aria-checked @see aria-selected.",
-        "         */"
+        "Indicates the current \"pressed\" state of toggle buttons.",
+        " @see aria-checked @see aria-selected."
        ]
       },
       "typeValue": {
@@ -49930,10 +50057,8 @@
       "name": "'aria-readonly'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates that the element is not editable, but is otherwise operable.",
-        "         * @see aria-disabled.",
-        "         */"
+        "Indicates that the element is not editable, but is otherwise operable.",
+        " @see aria-disabled."
        ]
       },
       "typeValue": {
@@ -49956,10 +50081,8 @@
       "name": "'aria-relevant'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.",
-        "         * @see aria-atomic.",
-        "         */"
+        "Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.",
+        " @see aria-atomic."
        ]
       },
       "typeValue": {
@@ -50028,10 +50151,8 @@
       "name": "'aria-rowcount'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the total number of rows in a table, grid, or treegrid.",
-        "         * @see aria-rowindex.",
-        "         */"
+        "Defines the total number of rows in a table, grid, or treegrid.",
+        " @see aria-rowindex."
        ]
       },
       "typeValue": {
@@ -50048,10 +50169,8 @@
       "name": "'aria-rowindex'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.",
-        "         * @see aria-rowcount @see aria-rowspan.",
-        "         */"
+        "Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.",
+        " @see aria-rowcount @see aria-rowspan."
        ]
       },
       "typeValue": {
@@ -50068,10 +50187,8 @@
       "name": "'aria-rowspan'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.",
-        "         * @see aria-rowindex @see aria-colspan.",
-        "         */"
+        "Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.",
+        " @see aria-rowindex @see aria-colspan."
        ]
       },
       "typeValue": {
@@ -50088,10 +50205,8 @@
       "name": "'aria-selected'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Indicates the current \"selected\" state of various widgets.",
-        "         * @see aria-checked @see aria-pressed.",
-        "         */"
+        "Indicates the current \"selected\" state of various widgets.",
+        " @see aria-checked @see aria-pressed."
        ]
       },
       "typeValue": {
@@ -50114,10 +50229,8 @@
       "name": "'aria-setsize'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
-        "         * @see aria-posinset.",
-        "         */"
+        "Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.",
+        " @see aria-posinset."
        ]
       },
       "typeValue": {
@@ -50191,10 +50304,8 @@
       "name": "'aria-valuenow'",
       "comment": {
        "raw": [
-        "/**",
-        "         * Defines the current value for a range widget.",
-        "         * @see aria-valuetext.",
-        "         */"
+        "Defines the current value for a range widget.",
+        " @see aria-valuetext."
        ]
       },
       "typeValue": {
@@ -52391,21 +52502,19 @@
       "name": "context",
       "comment": {
        "raw": [
-        "/**",
-        "         * If using the new style context, re-declare this in your class to be the",
-        "         * `React.ContextType` of your `static contextType`.",
-        "         * Should be used with type annotation or static contextType.",
-        "         *",
-        "         * ```ts",
-        "         * static contextType = MyContext",
-        "         * // For TS pre-3.7:",
-        "         * context!: React.ContextType<typeof MyContext>",
-        "         * // For TS 3.7 and above:",
-        "         * declare context: React.ContextType<typeof MyContext>",
-        "         * ```",
-        "         *",
-        "         * @see https://reactjs.org/docs/context.html",
-        "         */"
+        "If using the new style context, re-declare this in your class to be the",
+        " `React.ContextType` of your `static contextType`.",
+        " Should be used with type annotation or static contextType.",
+        "",
+        " ```ts",
+        " static contextType = MyContext",
+        " // For TS pre-3.7:",
+        " context!: React.ContextType<typeof MyContext>",
+        " // For TS 3.7 and above:",
+        " declare context: React.ContextType<typeof MyContext>",
+        " ```",
+        "",
+        " @see https://reactjs.org/docs/context.html"
        ]
       },
       "typeValue": {
@@ -52475,10 +52584,8 @@
       "name": "refs",
       "comment": {
        "raw": [
-        "/**",
-        "         * @deprecated",
-        "         * https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs",
-        "         */"
+        "@deprecated",
+        " https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs"
        ]
       },
       "typeValue": {
@@ -52492,9 +52599,7 @@
       "name": "componentDidMount",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately after a component is mounted. Setting state here will trigger re-rendering.",
-        "         */"
+        "Called immediately after a component is mounted. Setting state here will trigger re-rendering."
        ]
       },
       "typeValue": {
@@ -52511,16 +52616,14 @@
       "name": "shouldComponentUpdate",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called to determine whether the change in props and state should trigger a re-render.",
-        "         *",
-        "         * `Component` always returns true.",
-        "         * `PureComponent` implements a shallow comparison on props and state and returns true if any",
-        "         * props or states have changed.",
-        "         *",
-        "         * If false is returned, `Component#render`, `componentWillUpdate`",
-        "         * and `componentDidUpdate` will not be called.",
-        "         */"
+        "Called to determine whether the change in props and state should trigger a re-render.",
+        "",
+        " `Component` always returns true.",
+        " `PureComponent` implements a shallow comparison on props and state and returns true if any",
+        " props or states have changed.",
+        "",
+        " If false is returned, `Component#render`, `componentWillUpdate`",
+        " and `componentDidUpdate` will not be called."
        ]
       },
       "typeValue": {
@@ -52537,10 +52640,8 @@
       "name": "componentWillUnmount",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as",
-        "         * cancelled network requests, or cleaning up any DOM elements created in `componentDidMount`.",
-        "         */"
+        "Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as",
+        " cancelled network requests, or cleaning up any DOM elements created in `componentDidMount`."
        ]
       },
       "typeValue": {
@@ -52557,10 +52658,8 @@
       "name": "componentDidCatch",
       "comment": {
        "raw": [
-        "/**",
-        "         * Catches exceptions generated in descendant components. Unhandled exceptions will cause",
-        "         * the entire component tree to unmount.",
-        "         */"
+        "Catches exceptions generated in descendant components. Unhandled exceptions will cause",
+        " the entire component tree to unmount."
        ]
       },
       "typeValue": {
@@ -52577,14 +52676,12 @@
       "name": "getSnapshotBeforeUpdate",
       "comment": {
        "raw": [
-        "/**",
-        "         * Runs before React applies the result of `render` to the document, and",
-        "         * returns an object to be given to componentDidUpdate. Useful for saving",
-        "         * things such as scroll position before `render` causes changes to it.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate prevents any of the deprecated",
-        "         * lifecycle events from running.",
-        "         */"
+        "Runs before React applies the result of `render` to the document, and",
+        " returns an object to be given to componentDidUpdate. Useful for saving",
+        " things such as scroll position before `render` causes changes to it.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate prevents any of the deprecated",
+        " lifecycle events from running."
        ]
       },
       "typeValue": {
@@ -52601,11 +52698,9 @@
       "name": "componentDidUpdate",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately after updating occurs. Not called for the initial render.",
-        "         *",
-        "         * The snapshot is only present if getSnapshotBeforeUpdate is present and returns non-null.",
-        "         */"
+        "Called immediately after updating occurs. Not called for the initial render.",
+        "",
+        " The snapshot is only present if getSnapshotBeforeUpdate is present and returns non-null."
        ]
       },
       "typeValue": {
@@ -52622,18 +52717,19 @@
       "name": "componentWillMount",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately before mounting occurs, and before `Component#render`.",
-        "         * Avoid introducing any side-effects or subscriptions in this method.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
-        "         * prevents this from being invoked.",
-        "         *",
-        "         * @deprecated 16.3, use componentDidMount or the constructor instead; will stop working in React 17",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path",
-        "         */"
-       ]
+        "Called immediately before mounting occurs, and before `Component#render`.",
+        " Avoid introducing any side-effects or subscriptions in this method.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
+        " prevents this from being invoked.",
+        "",
+        " @deprecated 16.3, use componentDidMount or the constructor instead; will stop working in React 17",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
+       ],
+       "tags": {
+        "@deprecated": "16.3, use componentDidMount or the constructor instead; will stop working in React 17"
+       }
       },
       "typeValue": {
        "raw": "() => void"
@@ -52649,20 +52745,21 @@
       "name": "UNSAFE_componentWillMount",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately before mounting occurs, and before `Component#render`.",
-        "         * Avoid introducing any side-effects or subscriptions in this method.",
-        "         *",
-        "         * This method will not stop working in React 17.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
-        "         * prevents this from being invoked.",
-        "         *",
-        "         * @deprecated 16.3, use componentDidMount or the constructor instead",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path",
-        "         */"
-       ]
+        "Called immediately before mounting occurs, and before `Component#render`.",
+        " Avoid introducing any side-effects or subscriptions in this method.",
+        "",
+        " This method will not stop working in React 17.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
+        " prevents this from being invoked.",
+        "",
+        " @deprecated 16.3, use componentDidMount or the constructor instead",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
+       ],
+       "tags": {
+        "@deprecated": "16.3, use componentDidMount or the constructor instead"
+       }
       },
       "typeValue": {
        "raw": "() => void"
@@ -52678,21 +52775,22 @@
       "name": "componentWillReceiveProps",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called when the component may be receiving new props.",
-        "         * React may call this even if props have not changed, so be sure to compare new and existing",
-        "         * props if you only want to handle changes.",
-        "         *",
-        "         * Calling `Component#setState` generally does not trigger this method.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
-        "         * prevents this from being invoked.",
-        "         *",
-        "         * @deprecated 16.3, use static getDerivedStateFromProps instead; will stop working in React 17",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path",
-        "         */"
-       ]
+        "Called when the component may be receiving new props.",
+        " React may call this even if props have not changed, so be sure to compare new and existing",
+        " props if you only want to handle changes.",
+        "",
+        " Calling `Component#setState` generally does not trigger this method.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
+        " prevents this from being invoked.",
+        "",
+        " @deprecated 16.3, use static getDerivedStateFromProps instead; will stop working in React 17",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
+       ],
+       "tags": {
+        "@deprecated": "16.3, use static getDerivedStateFromProps instead; will stop working in React 17"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextContext: any) => void"
@@ -52708,23 +52806,24 @@
       "name": "UNSAFE_componentWillReceiveProps",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called when the component may be receiving new props.",
-        "         * React may call this even if props have not changed, so be sure to compare new and existing",
-        "         * props if you only want to handle changes.",
-        "         *",
-        "         * Calling `Component#setState` generally does not trigger this method.",
-        "         *",
-        "         * This method will not stop working in React 17.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
-        "         * prevents this from being invoked.",
-        "         *",
-        "         * @deprecated 16.3, use static getDerivedStateFromProps instead",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path",
-        "         */"
-       ]
+        "Called when the component may be receiving new props.",
+        " React may call this even if props have not changed, so be sure to compare new and existing",
+        " props if you only want to handle changes.",
+        "",
+        " Calling `Component#setState` generally does not trigger this method.",
+        "",
+        " This method will not stop working in React 17.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
+        " prevents this from being invoked.",
+        "",
+        " @deprecated 16.3, use static getDerivedStateFromProps instead",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
+       ],
+       "tags": {
+        "@deprecated": "16.3, use static getDerivedStateFromProps instead"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextContext: any) => void"
@@ -52740,19 +52839,20 @@
       "name": "componentWillUpdate",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately before rendering when new props or state is received. Not called for the initial render.",
-        "         *",
-        "         * Note: You cannot call `Component#setState` here.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
-        "         * prevents this from being invoked.",
-        "         *",
-        "         * @deprecated 16.3, use getSnapshotBeforeUpdate instead; will stop working in React 17",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path",
-        "         */"
-       ]
+        "Called immediately before rendering when new props or state is received. Not called for the initial render.",
+        "",
+        " Note: You cannot call `Component#setState` here.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
+        " prevents this from being invoked.",
+        "",
+        " @deprecated 16.3, use getSnapshotBeforeUpdate instead; will stop working in React 17",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
+       ],
+       "tags": {
+        "@deprecated": "16.3, use getSnapshotBeforeUpdate instead; will stop working in React 17"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextState: Readonly<{}>, nextContext: any) => void"
@@ -52768,21 +52868,22 @@
       "name": "UNSAFE_componentWillUpdate",
       "comment": {
        "raw": [
-        "/**",
-        "         * Called immediately before rendering when new props or state is received. Not called for the initial render.",
-        "         *",
-        "         * Note: You cannot call `Component#setState` here.",
-        "         *",
-        "         * This method will not stop working in React 17.",
-        "         *",
-        "         * Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
-        "         * prevents this from being invoked.",
-        "         *",
-        "         * @deprecated 16.3, use getSnapshotBeforeUpdate instead",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update",
-        "         * @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path",
-        "         */"
-       ]
+        "Called immediately before rendering when new props or state is received. Not called for the initial render.",
+        "",
+        " Note: You cannot call `Component#setState` here.",
+        "",
+        " This method will not stop working in React 17.",
+        "",
+        " Note: the presence of getSnapshotBeforeUpdate or getDerivedStateFromProps",
+        " prevents this from being invoked.",
+        "",
+        " @deprecated 16.3, use getSnapshotBeforeUpdate instead",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update",
+        " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
+       ],
+       "tags": {
+        "@deprecated": "16.3, use getSnapshotBeforeUpdate instead"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextState: Readonly<{}>, nextContext: any) => void"
@@ -53488,8 +53589,11 @@
      "raw": "SpanRawProps",
      "print": [
       "type SpanRawProps = {",
+      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
       "    rawProps?: IHasRawProps<React.HTMLAttributes<HTMLSpanElement>>['rawProps'];",
+      "    /** The URL that the hyperlink points to. */",
       "    href?: never;",
+      "    /** Defines location within SPA application */",
       "    link?: never;",
       "};"
      ]
@@ -53498,6 +53602,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -53506,6 +53615,11 @@
      {
       "uid": "href",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -53514,6 +53628,11 @@
      {
       "uid": "link",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56127,6 +56246,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -56136,6 +56260,11 @@
      {
       "uid": "href",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -56148,6 +56277,11 @@
      {
       "uid": "link",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56157,6 +56291,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -56166,6 +56305,11 @@
      {
       "uid": "href_2",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56175,6 +56319,11 @@
      {
       "uid": "link_2",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "Link"
       },
@@ -56184,6 +56333,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -56193,6 +56347,11 @@
      {
       "uid": "href_3",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56202,6 +56361,11 @@
      {
       "uid": "link_3",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56211,6 +56375,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -56220,6 +56389,11 @@
      {
       "uid": "href_4",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56229,6 +56403,11 @@
      {
       "uid": "link_4",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "undefined"
       },
@@ -56238,6 +56417,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -56247,6 +56431,11 @@
      {
       "uid": "href_5",
       "name": "href",
+      "comment": {
+       "raw": [
+        "The URL that the hyperlink points to."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -56259,6 +56448,11 @@
      {
       "uid": "link_5",
       "name": "link",
+      "comment": {
+       "raw": [
+        "Defines location within SPA application"
+       ]
+      },
       "typeValue": {
        "raw": "Link"
       },
@@ -59878,6 +60072,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -60080,6 +60279,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -60089,6 +60293,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -60098,6 +60307,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -60107,6 +60321,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -60294,6 +60513,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -60578,6 +60802,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -60587,6 +60816,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -60596,6 +60830,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -60605,6 +60844,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -60792,6 +61036,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -61000,6 +61249,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -61009,6 +61263,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -61018,6 +61277,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -61027,6 +61291,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -61298,6 +61567,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -61506,6 +61780,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -61515,6 +61794,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -61524,6 +61808,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -61533,6 +61822,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -67936,6 +68230,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -68041,6 +68340,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -68050,6 +68354,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -68059,6 +68368,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -68068,6 +68382,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -68255,6 +68574,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -68389,6 +68713,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -68398,6 +68727,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -68407,6 +68741,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -68416,6 +68755,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -68521,7 +68865,7 @@
       "name": "ref",
       "comment": {
        "raw": [
-        "toggler component ref"
+        "Toggler component ref"
        ]
       },
       "typeValue": {
@@ -69485,6 +69829,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -69684,6 +70033,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -69693,6 +70047,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -69702,6 +70061,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -69711,6 +70075,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -69898,6 +70267,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -70126,6 +70500,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -70135,6 +70514,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -70144,6 +70528,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -70153,6 +70542,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -70588,6 +70982,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -70774,6 +71173,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -70783,6 +71187,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -70792,6 +71201,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -70801,6 +71215,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -70993,6 +71412,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -71261,6 +71685,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -71270,6 +71699,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -71279,6 +71713,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -71288,6 +71727,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -83468,6 +83912,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -83686,6 +84135,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -83695,6 +84149,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -83704,6 +84163,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -83713,6 +84177,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -83926,6 +84395,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -84209,6 +84683,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -84218,6 +84697,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -84227,6 +84711,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -84236,6 +84725,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -84423,6 +84917,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -84742,6 +85241,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -84751,6 +85255,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -84760,6 +85269,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -84769,6 +85283,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -88097,6 +88616,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -88320,6 +88844,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -88329,6 +88858,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -88338,6 +88872,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -88347,6 +88886,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -89423,6 +89967,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -89729,6 +90278,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -89738,6 +90292,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -89747,6 +90306,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -89756,6 +90320,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -89943,6 +90512,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -90241,6 +90815,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -90250,6 +90829,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -90259,6 +90843,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -90268,6 +90857,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -91450,6 +92044,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -91591,6 +92190,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -91600,6 +92204,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -91609,6 +92218,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -91618,6 +92232,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -91832,7 +92451,8 @@
         "  @default 'gray60'"
        ],
        "tags": {
-        "@default": "gray60"
+        "@default": "gray60",
+        "@deprecated": "Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop."
        }
       },
       "typeValue": {
@@ -92046,6 +92666,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -92280,6 +92905,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -92289,6 +92919,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -92298,6 +92933,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -92307,6 +92947,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -93870,6 +94515,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -94197,6 +94847,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -94206,6 +94861,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -94215,6 +94875,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -94224,6 +94889,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -95432,6 +96102,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -95728,6 +96403,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -95737,6 +96417,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -95746,6 +96431,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -95755,6 +96445,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -95811,6 +96506,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -96447,6 +97147,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -96769,6 +97474,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -96778,6 +97488,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -96787,6 +97502,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -96796,6 +97516,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -97194,6 +97919,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -97526,6 +98256,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -97535,6 +98270,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -97544,6 +98284,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -97553,6 +98298,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -97740,6 +98490,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -98066,6 +98821,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -98075,6 +98835,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -98084,6 +98849,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -98093,6 +98863,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -99357,6 +100132,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -99505,6 +100285,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -99514,6 +100299,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -99523,6 +100313,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -99532,6 +100327,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -99746,7 +100546,8 @@
         " @default 'night600'"
        ],
        "tags": {
-        "@default": "night600"
+        "@default": "night600",
+        "@deprecated": "Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop."
        }
       },
       "typeValue": {
@@ -99961,6 +100762,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -100208,6 +101014,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -100217,6 +101028,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -100226,6 +101042,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -100235,6 +101056,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -100243,124 +101069,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/loveship:MakeMeItemProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MakeMeItemProps",
-     "nameFull": "MakeMeItemProps"
-    },
-    "src": "loveship/components/dev/MakeMeItem.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MakeMeItemProps",
-     "print": [
-      "interface MakeMeItemProps {",
-      "    api: LazyDataSourceApi<MakeMeUser, number | string, any>;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "api",
-      "name": "api",
-      "typeValue": {
-       "raw": "LazyDataSourceApi<MakeMeUser, string | number, any>"
-      },
-      "typeValueRef": "@epam/uui-core:LazyDataSourceApi",
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:MakeMeUser": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MakeMeUser",
-     "nameFull": "MakeMeUser"
-    },
-    "src": "loveship/components/dev/MakeMeItem.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MakeMeUser",
-     "print": [
-      "interface MakeMeUser {",
-      "    externalId: number | string;",
-      "    name: string;",
-      "    avatarUrl: string;",
-      "    jobTitle?: string;",
-      "    email?: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "externalId",
-      "name": "externalId",
-      "typeValue": {
-       "raw": "string | number"
-      },
-      "required": true
-     },
-     {
-      "uid": "name",
-      "name": "name",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "avatarUrl",
-      "name": "avatarUrl",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "jobTitle",
-      "name": "jobTitle",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "email",
-      "name": "email",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/loveship:ModalWindowProps": {
@@ -102971,6 +103679,11 @@
      {
       "uid": "rawProps",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -103298,6 +104011,11 @@
      {
       "uid": "rawProps_2",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -103307,6 +104025,11 @@
      {
       "uid": "rawProps_3",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
       },
@@ -103316,6 +104039,11 @@
      {
       "uid": "rawProps_4",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
@@ -103325,6 +104053,11 @@
      {
       "uid": "rawProps_5",
       "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
       "typeValue": {
        "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
       },
@@ -104817,10 +105550,8 @@
     "src": "node_modules/@types/react/index.d.ts",
     "comment": {
      "raw": [
-      "/**",
-      "     * @internal You shouldn't need to use this type since you never see these attributes",
-      "     * inside your component or have to validate them.",
-      "     */"
+      "@internal You shouldn't need to use this type since you never see these attributes",
+      " inside your component or have to validate them."
      ]
     },
     "exported": false
@@ -104957,11 +105688,9 @@
     "src": "node_modules/@udecode/slate/dist/index.d.ts",
     "comment": {
      "raw": [
-      "/**",
-      " * `Element` objects are a type of node in a Slate document that contain other",
-      " * element nodes or text nodes. They can be either \"blocks\" or \"inlines\"",
-      " * depending on the Slate editor's configuration.",
-      " */"
+      "`Element` objects are a type of node in a Slate document that contain other",
+      " element nodes or text nodes. They can be either \"blocks\" or \"inlines\"",
+      " depending on the Slate editor's configuration."
      ]
     },
     "exported": false
@@ -105021,11 +105750,9 @@
     "src": "node_modules/typescript/lib/lib.dom.d.ts",
     "comment": {
      "raw": [
-      "/**",
-      " * Provides information about files and allows JavaScript in a web page to access their content.",
-      " *",
-      " * [MDN Reference](https://developer.mozilla.org/docs/Web/API/File)",
-      " */"
+      "Provides information about files and allows JavaScript in a web page to access their content.",
+      "",
+      " [MDN Reference](https://developer.mozilla.org/docs/Web/API/File)"
      ]
     },
     "exported": false
