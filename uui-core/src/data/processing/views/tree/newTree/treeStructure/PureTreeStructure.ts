@@ -2,13 +2,12 @@ import { IMap } from '../../../../../../types';
 import { TreeNodeInfo, TreeParams } from './ITreeStructure';
 import { newMap } from './helpers';
 
-export class PureTreeStructure<TItem, TId> {
+class PureTreeStructure<TItem, TId> {
     protected constructor(
         protected _params: TreeParams<TItem, TId>,
-        protected readonly _byParentId?: IMap<TId, TId[]>,
-        protected readonly _nodeInfoById?: IMap<TId, TreeNodeInfo>,
-    ) {
-        this._byParentId = _byParentId ?? newMap(_params);
-        this._nodeInfoById = _nodeInfoById ?? newMap(_params);
-    }
+        protected readonly _byParentId: IMap<TId, TId[]> = newMap(_params),
+        protected readonly _nodeInfoById: IMap<TId, TreeNodeInfo> = newMap(_params),
+    ) {}
 }
+
+export { PureTreeStructure };

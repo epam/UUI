@@ -3,9 +3,6 @@ import { ItemsAccessor } from './ItemsAccessor';
 import { PureTreeStructure } from './PureTreeStructure';
 import { TreeStructure } from './TreeStructure';
 
-/**
- * @internal
- */
 export class ConvertableTreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
     public static toPureTreeStructure<TItem, TId>(treeStructure: TreeStructure<TItem, TId>) {
         return TreeStructure.toPureTreeStructure(treeStructure);

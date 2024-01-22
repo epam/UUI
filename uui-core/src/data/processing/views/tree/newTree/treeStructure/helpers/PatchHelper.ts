@@ -9,7 +9,7 @@ export class PatchHelper {
         treeStructure, itemsMap, items, isDeletedProp, comparator,
     }: PatchOptions<TItem, TId>) {
         if (!items || items.length === 0) {
-            return { treeStructure, itemsMap };
+            return { treeStructure, itemsMap, newItems: [] };
         }
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
@@ -74,7 +74,7 @@ export class PatchHelper {
     public static patchItems<TItem, TId>({
         itemsMap, treeStructure, patchItems, isDeletedProp, getPosition = () => 'initial',
     }: PatchItemsOptions<TItem, TId>) {
-        if (!patchItems || !patchItems.size) return { treeStructure, itemsMap };
+        if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
 

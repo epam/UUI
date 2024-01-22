@@ -1,1 +1,1 @@
-export type { PureTreeStructure } from './PureTreeStructure';
+export { PureTreeStructure } from './PureTreeStructure';

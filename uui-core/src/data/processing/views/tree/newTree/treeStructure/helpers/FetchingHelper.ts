@@ -176,7 +176,7 @@ export class FetchingHelper {
                 loadedItems: newItems,
             };
         }
-        return { treeStructure, itemsMap };
+        return { treeStructure, itemsMap, loadedItems: newItems };
     }
 
     private static async loadMissingItemsAndParents<TItem, TId, TFilter>({

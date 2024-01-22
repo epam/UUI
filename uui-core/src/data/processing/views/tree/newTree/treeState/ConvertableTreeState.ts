@@ -1,5 +1,5 @@
-import { TreeState } from './TreeState';
 import { PureTreeState } from './PureTreeState';
+import { TreeState } from './TreeState';
 import { ConvertableTreeStructure } from '../treeStructure';
 
 export class ConvertableTreeState<TItem, TId> extends PureTreeState<TItem, TId> {

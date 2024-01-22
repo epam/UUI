@@ -1,17 +1,16 @@
 import { DataRowPathItem, IMap } from '../../../../../../types';
+import { TreeNodeInfo, TreeParams, ITreeStructure, ItemsAccessor } from './ITreeStructure';
 import { PureTreeStructure } from './PureTreeStructure';
-import { TreeNodeInfo, TreeParams } from './ITreeStructure';
 import { newMap } from './helpers';
-import { ITreeStructure, ItemsAccessor } from './ITreeStructure';
 import { NOT_FOUND_RECORD } from '../constants';
 import { ItemsMap } from '../../ItemsMap';
 
-export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> implements ITreeStructure<TItem, TId> {
+export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
     constructor(
-        protected _params: TreeParams<TItem, TId>,
+        _params: TreeParams<TItem, TId>,
         protected readonly _itemsAccessor: ItemsAccessor<TItem, TId>,
-        protected readonly _byParentId?: IMap<TId, TId[]>,
-        protected readonly _nodeInfoById?: IMap<TId, TreeNodeInfo>,
+        _byParentId?: IMap<TId, TId[]>,
+        _nodeInfoById?: IMap<TId, TreeNodeInfo>,
     ) {
         super(_params, _byParentId, _nodeInfoById);
     }
