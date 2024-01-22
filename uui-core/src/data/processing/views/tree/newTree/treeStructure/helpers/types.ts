@@ -1,9 +1,10 @@
 import { CascadeSelection, DataSourceState } from '../../../../../../../types';
-import { ITreeStructure, TreeParams } from '../ITreeStructure';
+import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from './map';
 import { LazyListViewProps } from '../../../../types';
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../../ItemsMap';
+import { TreeParams } from '../types';
 
 export interface ActForCheckableOptions<TItem, TId> {
     itemsMap: ItemsMap<TId, TItem>;
@@ -13,7 +14,7 @@ export interface ActForCheckableOptions<TItem, TId> {
 }
 
 export interface CascadeSelectionOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     currentCheckedIds: TId[];
     checkedId: TId;
@@ -23,7 +24,7 @@ export interface CascadeSelectionOptions<TItem, TId> {
 }
 
 export interface CheckParentsWithFullCheckOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
     checkedId: TId,
     isCheckable: (item: TItem) => boolean,
@@ -31,7 +32,7 @@ export interface CheckParentsWithFullCheckOptions<TItem, TId> {
 }
 
 export interface SelectionOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
     checkedId: TId,
@@ -42,14 +43,14 @@ export interface SelectionOptions<TItem, TId> {
 export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'> {}
 
 export interface LoadAllOptions<TItem, TId, TFilter = any> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     options: LoadAllTreeOptions<TItem, TId, TFilter>;
     dataSourceState: DataSourceState;
 }
 
 export interface LoadItemsOptions<TItem, TId, TFilter = any> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     options: LoadTreeOptions<TItem, TId, TFilter>,
     parentId: TId,
@@ -60,14 +61,14 @@ export interface LoadItemsOptions<TItem, TId, TFilter = any> {
 }
 
 export interface LoadMissingItemsAndParentsOptions<TItem, TId, TFilter = any> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     itemsToLoad: TId[];
 }
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
@@ -75,22 +76,22 @@ export interface LoadOptions<TItem, TId, TFilter = any> {
 }
 
 export interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, TFilter> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
 }
 
 export interface ApplySearchToTreeSnapshotOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     search: undefined | ((item: TItem) => number | boolean);
     sortSearchByRelevance?: boolean;
 }
 
 export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<TItem, TId, TFilter> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
 }
 
 export type Position = 'initial' | 'top' | 'bottom';
 export interface PatchItemsOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     patchItems?: ItemsMap<TId, TItem>;
     isDeletedProp?: keyof TItem;
@@ -105,7 +106,7 @@ export interface InsertIntoPositionOptions<TItem, TId> {
 }
 
 export interface PatchChildrenOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     children: TId[] | undefined;
     existingItem: TItem | undefined;
@@ -122,7 +123,7 @@ export interface PasteItemIntoChildrenListOptions<TItem, TId> {
 }
 
 export interface PatchOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     items: TItem[];
     isDeletedProp?: keyof TItem;
@@ -130,10 +131,10 @@ export interface PatchOptions<TItem, TId> {
 }
 
 export interface FilterOptions<TItem, TId, TFilter = any> extends ApplyFilterOptions<TItem, TId, TFilter> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
 }
 
 export interface ApplyFilterToTreeSnapshotOptions<TItem, TId> {
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     filter: undefined | ((item: TItem) => number | boolean);
 }

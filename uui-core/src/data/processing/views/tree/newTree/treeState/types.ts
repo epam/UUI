@@ -1,7 +1,7 @@
 import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../../types';
 import { LazyListViewProps } from '../../../types';
 import { ItemsMap } from '../../ItemsMap';
-import { ITreeStructure } from '../treeStructure';
+import { TreeStructure } from '../treeStructure';
 
 export interface LoadTreeOptions<TItem, TId, TFilter>
     extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
@@ -26,7 +26,7 @@ export interface LoadAllOptions<TItem, TId, TFilter> {
 
 export interface UpdateTreeStructuresOptions<TItem, TId> {
     using?: TreeStructureId;
-    treeStructure: ITreeStructure<TItem, TId>;
+    treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
 }
 export interface ApplyFilterOptions<TItem, TId, TFilter> {

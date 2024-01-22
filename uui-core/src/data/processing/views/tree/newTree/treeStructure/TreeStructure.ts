@@ -1,5 +1,5 @@
 import { DataRowPathItem, IMap } from '../../../../../../types';
-import { TreeNodeInfo, TreeParams, ITreeStructure, ItemsAccessor } from './ITreeStructure';
+import { TreeNodeInfo, TreeParams, ItemsAccessor } from './types';
 import { PureTreeStructure } from './PureTreeStructure';
 import { newMap } from './helpers';
 import { NOT_FOUND_RECORD } from '../constants';
@@ -228,12 +228,12 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
         itemsAccessor: ItemsAccessor<TItem, TId>,
         byParentId?: IMap<TId, TId[]>,
         nodeInfoById?: IMap<TId, TreeNodeInfo>,
-    ): ITreeStructure<TItem, TId> {
+    ): TreeStructure<TItem, TId> {
         return new TreeStructure(params, itemsAccessor, byParentId, nodeInfoById);
     }
 
-    public static withNewItemsAccessor<TItem, TId>(itemsAccessor: ItemsAccessor<TItem, TId>, treeStructure: ITreeStructure<TItem, TId>) {
-        return TreeStructure.create(treeStructure.params, itemsAccessor, treeStructure.byParentId, treeStructure.nodeInfoById);
+    public static withNewItemsAccessor<TItem, TId>(itemsAccessor: ItemsAccessor<TItem, TId>, treeStructure: TreeStructure<TItem, TId>) {
+        return TreeStructure.create<TItem, TId>(treeStructure.params, itemsAccessor, treeStructure.byParentId, treeStructure.nodeInfoById);
     }
 
     public static createFromItems<TItem, TId>({
@@ -264,10 +264,10 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
-        return this.create(params, itemsAccessor, byParentId, newNodeInfoById);
+        return this.create<TItem, TId>(params, itemsAccessor, byParentId, newNodeInfoById);
     }
 
-    public static toPureTreeStructure<TItem, TId>(treeStructure: ITreeStructure<TItem, TId>): PureTreeStructure<TItem, TId> {
+    public static toPureTreeStructure<TItem, TId>(treeStructure: TreeStructure<TItem, TId>): PureTreeStructure<TItem, TId> {
         return new PureTreeStructure(treeStructure.params, treeStructure.byParentId, treeStructure.nodeInfoById);
     }
 }

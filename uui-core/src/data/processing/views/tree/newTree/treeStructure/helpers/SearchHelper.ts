@@ -1,11 +1,10 @@
 import { TreeStructure } from '../TreeStructure';
 import { getSearchFilter } from '../../../../../../querying';
 import sortBy from 'lodash.sortby';
-import { ITreeStructure } from '../ITreeStructure';
 import { ApplySearchToTreeSnapshotOptions, SearchOptions } from './types';
 
 export class SearchHelper {
-    public static search<TItem, TId, TFilter>(options: SearchOptions<TItem, TId, TFilter>): ITreeStructure<TItem, TId> {
+    public static search<TItem, TId, TFilter>(options: SearchOptions<TItem, TId, TFilter>): TreeStructure<TItem, TId> {
         const search = this.buildSearchFilter(options);
         return this.applySearchToTree({ treeStructure: options.treeStructure, search, sortSearchByRelevance: options.sortSearchByRelevance });
     }

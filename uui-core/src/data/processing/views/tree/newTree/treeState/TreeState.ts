@@ -4,15 +4,16 @@ import {
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
 import { PureTreeState } from './PureTreeState';
-import { TreeStructure, ITreeStructure, TreeParams, FetchingHelper, FilterHelper, SortHelper, SearchHelper, CheckingHelper, PatchHelper } from '../treeStructure';
+import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, CheckingHelper, PatchHelper } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
+import { TreeParams } from '../treeStructure/types';
 
 export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
     protected constructor(
-        private _fullTreeStructure: ITreeStructure<TItem, TId> | null,
-        private _visibleTreeStructure: ITreeStructure<TItem, TId> | null,
+        private _fullTreeStructure: TreeStructure<TItem, TId> | null,
+        private _visibleTreeStructure: TreeStructure<TItem, TId> | null,
         protected _itemsMap: ItemsMap<TId, TItem>,
         protected _setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {
@@ -235,8 +236,8 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
     }
 
     public static create<TItem, TId>(
-        fullTree: ITreeStructure<TItem, TId>,
-        visibleTree: ITreeStructure<TItem, TId>,
+        fullTree: TreeStructure<TItem, TId>,
+        visibleTree: TreeStructure<TItem, TId>,
         itemsMap: ItemsMap<TId, TItem>,
         setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {

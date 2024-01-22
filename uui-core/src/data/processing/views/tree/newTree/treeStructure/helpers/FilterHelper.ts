@@ -1,9 +1,8 @@
-import { ITreeStructure } from '../ITreeStructure';
 import { TreeStructure } from '../TreeStructure';
 import { ApplyFilterToTreeSnapshotOptions, FilterOptions } from './types';
 
 export class FilterHelper {
-    public static filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter }: FilterOptions<TItem, TId, TFilter>): ITreeStructure<TItem, TId> {
+    public static filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter }: FilterOptions<TItem, TId, TFilter>): TreeStructure<TItem, TId> {
         const isMatchingFilter = getFilter?.(filter);
         return this.applyFilterToTreeSnapshot({ treeStructure, filter: isMatchingFilter });
     }
