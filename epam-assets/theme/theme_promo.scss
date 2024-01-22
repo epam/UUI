@@ -20,7 +20,7 @@
     --gray80: #303240;
     --gray90: #1D1E26;
 
-    --blue-5: #F5FDFF;
+    --blue-5: #F5FBFF;
     --blue-10: #D6F2FF;
     --blue-20: #99DDFF;
     --blue-50: #007BBD;
@@ -194,7 +194,7 @@
     --uui-app-bg: var(--uui-neutral-10);
     --uui-overlay: rgba(29, 30, 38, 0.8);
 
-    --uui-surface-sunken: var(--uui-neutral-5);
+    --uui-surface-sunken: var(--uui-neutral-20);
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
@@ -212,6 +212,7 @@
     --uui-text-warning: var(--uui-warning-70);
     --uui-text-critical: var(--uui-critical-70);
     --uui-text-success: var(--uui-success-70);
+    --uui-text-bg-highlight: var(--uui-warning-10);
 
     /* not accepted part */
 
@@ -247,7 +248,7 @@
     --uui-control-icon: var(--uui-neutral-50);
     --uui-control-icon-disabled: var(--uui-neutral-50);
 
-    --uui-outline-focus: #008ACE80;
+    --uui-outline-focus: #007BBD7F;
 
     --uui-skeleton: var(--uui-neutral-40);
 
