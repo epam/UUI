@@ -16,6 +16,8 @@ export class PatchHelper {
 
         let isPatched = false;
         let newItemsMap = itemsMap;
+        const newItems: TItem[] = [];
+
         items.forEach((item) => {
             const id = treeStructure.params.getId(item);
             const existingItem = newItemsMap.get(id);
@@ -31,6 +33,7 @@ export class PatchHelper {
 
             if (!existingItem || existingItem !== item) {
                 newItemsMap = itemsMap.set(id, item);
+                newItems.push(item);
                 const existingItemParentId = existingItem ? treeStructure.params.getParentId?.(existingItem) : undefined;
                 if (!existingItem || parentId !== existingItemParentId) {
                     const children = newByParentId.get(parentId) ?? [];
@@ -64,6 +67,7 @@ export class PatchHelper {
                 newNodeInfoById,
             ),
             itemsMap: newItemsMap,
+            newItems,
         };
     }
 
@@ -76,6 +80,7 @@ export class PatchHelper {
 
         let isPatched = false;
         let newItemsMap = itemsMap;
+        const newItems: TItem[] = [];
         patchItems.forEach((item, id) => {
             const parentId = treeStructure.params.getParentId?.(item);
 
@@ -88,7 +93,8 @@ export class PatchHelper {
             }
 
             const existingItem = newItemsMap.get(id);
-            newItemsMap = newItemsMap.setItems([item]);
+            newItemsMap = newItemsMap.set(id, item);
+            newItems.push(item);
             const existingItemParentId = existingItem ? treeStructure.params.getParentId?.(existingItem) : undefined;
             const children = newByParentId.get(parentId) ?? [];
 
@@ -126,6 +132,7 @@ export class PatchHelper {
                 newNodeInfoById,
             ),
             itemsMap: newItemsMap,
+            newItems,
         };
     }
 
