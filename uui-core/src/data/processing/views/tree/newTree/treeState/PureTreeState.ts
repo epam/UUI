@@ -9,4 +9,8 @@ export class PureTreeState<TItem, TId> {
         protected _itemsMap: ItemsMap<TId, TItem>,
         protected _setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {}
+
+    getById(id: TId) {
+        return this._itemsMap.get(id);
+    }
 }
