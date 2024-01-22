@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { ForwardedRef, PropsWithChildren } from 'react';
 import {
     cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext,
     IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, IHasRawProps, Link, ICanRedirect,
@@ -105,7 +105,6 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
     );
 
     const commonProps = {
-        ref,
         className,
         onClick: isClickable ? clickHandler : undefined,
         tabIndex: getTabIndex(),
@@ -113,7 +112,6 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
         // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least
         // more info: https://github.com/epam/UUI/issues/1057#issuecomment-1508632942
         // disabled: props.isDisabled,
-        ...props.rawProps,
     };
 
     if (isAnchor) {
@@ -121,14 +119,40 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
         const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
         const href = !props.isDisabled ? getHref() : undefined;
 
-        return React.createElement('a', {
-            role: 'link', href, target, ...relProp, ...commonProps,
-        }, props.children);
+        return (
+            <a
+                href={ href }
+                target={ target }
+                ref={ ref as ForwardedRef<HTMLAnchorElement> }
+                { ...relProp }
+                { ...commonProps }
+                { ...props.rawProps as React.AnchorHTMLAttributes<HTMLAnchorElement> }
+            >
+                { props.children }
+            </a>
+        );
     }
 
     if (isButton) {
-        return React.createElement('button', { type: 'button', ...commonProps }, props.children);
+        return (
+            <button
+                type="button"
+                ref={ ref as ForwardedRef<HTMLButtonElement> }
+                { ...commonProps }
+                { ...props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement> }
+            >
+                { props.children }
+            </button>
+        );
     }
 
-    return React.createElement('span', commonProps, props.children);
+    return (
+        <span
+            ref={ ref as ForwardedRef<HTMLSpanElement> }
+            { ...commonProps }
+            { ...props.rawProps as React.HTMLAttributes<HTMLSpanElement> }
+        >
+            { props.children }
+        </span>
+    );
 });

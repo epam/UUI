@@ -8,7 +8,6 @@ exports[`BurgerButton should be rendered correctly 1`] = `
   href="#"
   onClick={[Function]}
   rel="noopener noreferrer"
-  role="link"
   tabIndex={0}
   target="_blank"
 >
