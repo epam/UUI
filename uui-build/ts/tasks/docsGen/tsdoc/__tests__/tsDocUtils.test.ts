@@ -48,4 +48,10 @@ describe('TsDocUtils', () => {
             TsDocUtils.isCommentEmpty(TsDocUtils.parseComment(NON_EMPTY_3)),
         ).toBeFalsy();
     });
+    it('Should resolve @deprecated tag with some value', () => {
+        const ONLY_TAGS_1 = '/** @deprecated Use something else instead */';
+        expect(
+            TsDocUtils.parseComment(ONLY_TAGS_1).tags['@deprecated'] === 'Use something else instead',
+        ).toBeTruthy();
+    });
 });

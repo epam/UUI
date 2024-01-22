@@ -2,6 +2,7 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 .uui-theme-vanilla_thunder {
     --uui-font: var(--font-inter);
+    --uui-font-mono: 'Roboto Mono', monospace;
 
     --blue-0: #F0F7FC;
     --blue-50: #E1F4FA;
@@ -160,6 +161,7 @@
     --uui-text-warning: var(--uui-warning-50);
     --uui-text-critical: var(--uui-critical-50);
     --uui-text-success: var(--uui-success-50);
+    --uui-text-bg-highlight: var(--uui-warning-10);
 
     /* not accepted part */
 
