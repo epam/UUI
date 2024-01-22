@@ -121,7 +121,7 @@ export function ProjectTableDemo() {
         [],
     );
 
-    const { tree, ...restProps } = useTree(
+    const { tree, ...restProps } = useTree<Task, number>(
         {
             type: 'plain',
             dataSourceState: tableState,
