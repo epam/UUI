@@ -1,14 +1,5 @@
-import { ReactNode, Ref } from 'react';
-import {
-    IAnalyticableOnChange,
-    ICanBeInvalid,
-    IDisableable,
-    IEditable,
-    IDropdownToggler,
-    IHasPlaceholder,
-    IHasCX,
-    IClickable,
-} from './props';
+import { ReactNode } from 'react';
+import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IHasPlaceholder, IHasCX, IDropdownTogglerProps } from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
@@ -145,16 +136,7 @@ export interface IPickerToggler<TItem = any, TId = any>
  * This interface is enough for basic pickers.
  * Picker togglers with search or advanced selection display should implement IPickerToggler interface
  */
-export interface IBasicPickerToggler extends IDropdownToggler, IClickable {
-    /** Called when associated dropdown should open or close  */
-    toggleDropdownOpening?: (value: boolean) => void;
-
-    /** Called when component is interacted outside, to close the dropdown */
-    isInteractedOutside?: (event: Event) => boolean;
-
-    /** toggler component ref */
-    ref?: Ref<any>;
-
+export interface IBasicPickerToggler extends IDropdownTogglerProps {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
 }
