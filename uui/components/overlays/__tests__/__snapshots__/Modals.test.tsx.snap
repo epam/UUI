@@ -20,53 +20,6 @@ exports[`Modals should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "auto",
-        "width": "420px",
-      }
-    }
-  >
-    <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
-        }
-      }
-    />
-    <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`Modals should be rendered correctly 2`] = `
-<div
-  className="container modalBlocker"
-  style={
-    Object {
-      "zIndex": 1,
-    }
-  }
->
-  <div
-    aria-label="Click to close a modal"
-    className="uui-modal-blocker"
-    onClick={[Function]}
-  />
-  <div
-    aria-modal={true}
-    className="uui-modal-window root modal container"
-    role="dialog"
-    style={
-      Object {
         "height": "300px",
         "width": "300px",
       }
@@ -104,7 +57,7 @@ exports[`Modals should be rendered correctly 2`] = `
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -122,6 +75,53 @@ exports[`Modals should be rendered correctly 2`] = `
     </div>
     <div
       className="uui-flex-row root size-36 padding-18 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Modals should be rendered correctly with minimum props 1`] = `
+<div
+  className="container modalBlocker"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    aria-label="Click to close a modal"
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    aria-modal={true}
+    className="uui-modal-window root modal container"
+    role="dialog"
+    style={
+      Object {
+        "height": "auto",
+        "width": "420px",
+      }
+    }
+  >
+    <div
+      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
+    />
+    <div
+      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": undefined,

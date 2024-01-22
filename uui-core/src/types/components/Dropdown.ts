@@ -1,18 +1,18 @@
 import React from 'react';
 import { Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
-import { IDropdownBodyProps, IDropdownToggler } from '../props';
-import { IEditable, IHasForwardedRef } from '../../../src/types/props';
+import { IDropdownTogglerProps, IDropdownBodyProps, IEditable, IHasForwardedRef } from '../props';
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}
 
 export type DropdownPlacement = Placement;
 
 export interface DropdownProps extends Partial<IEditable<boolean>>, IHasForwardedRef<HTMLElement> {
-    /** Render callback fo the dropdown target.
-     Note, that it's required to pass 'props' parameters to the target component.
+    /**
+     * Render callback for the dropdown target.
+     * Note, that it's required to pass 'props' parameters to the target component.
      */
-    renderTarget: (props: IDropdownToggler) => React.ReactNode;
+    renderTarget: (props: IDropdownTogglerProps) => React.ReactNode;
     /** Render callback for the dropdown body */
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
     /** Called when dropdown was closed */

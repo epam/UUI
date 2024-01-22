@@ -1,6 +1,6 @@
 import React from 'react';
-import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
+import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps, IconContainer, UnionRawProps } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Tag.module.scss';
@@ -34,7 +34,7 @@ interface TagMods {
 }
 
 /** Represents the Core properties of the Tag component. */
-export type TagCoreProps = ButtonProps & {
+export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /**
      * Defines component size.
      * @default '36'
@@ -45,6 +45,21 @@ export type TagCoreProps = ButtonProps & {
      * @default 'solid'
      */
     fill?: 'solid' | 'outline';
+    /** Call to clear toggler value */
+    onClear?(e?: any): void;
+    /** Icon for clear value button (usually cross) */
+    clearIcon?: Icon;
+    /**
+     * CSS classes to put on the caption
+     * @deprecated
+     * */
+    captionCX?: CX;
+    /** Icon for drop-down toggler */
+    dropdownIcon?: Icon;
+    /** CountIndicator component */
+    countIndicator?: React.ComponentType<IHasCaption> ;
+    /** Count value to be placed in component */
+    count?: React.ReactNode;
 };
 
 /** Represents the properties of the Tag component. */
@@ -60,14 +75,54 @@ function applyTagMods(props: TagProps) {
     ];
 }
 
-export const Tag = withMods<TagCoreProps, TagMods>(Button, applyTagMods, (props) => ({
-    dropdownIcon: systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow,
-    clearIcon: systemIcons[mapSize[props.size] || DEFAULT_SIZE].clear,
-    countIndicator: (countIndicatorProps) => (
-        <CountIndicator
-            { ...countIndicatorProps }
-            color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
-            size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
-        />
-    ),
-}));
+export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TagProps>((props, ref) => {
+    if (__DEV__ && props.captionCX) {
+        devLogger.warn('Tag: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
+    }
+
+    const styles = [applyTagMods(props), props.cx];
+
+    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].clear;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow;
+
+    return (
+        <Clickable
+            { ...props }
+            rawProps={ {
+                'aria-haspopup': props.isDropdown,
+                'aria-expanded': props.isOpen,
+                ...props.rawProps as UnionRawProps,
+            } }
+            cx={ styles }
+            ref={ ref }
+        >
+            { props.icon && props.iconPosition !== 'right' && (
+                <IconContainer
+                    icon={ props.icon }
+                    onClick={ !props.isDisabled ? props.onIconClick : undefined }
+                />
+            ) }
+            { props.caption && (
+                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                    { props.caption }
+                </div>
+            ) }
+            { props.count !== undefined && props.count !== null && (
+                <CountIndicator
+                    color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
+                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                    caption={ props.count }
+                />
+            ) }
+            { props.icon && props.iconPosition === 'right' && (
+                <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
+            ) }
+            { props.isDropdown && (
+                <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
+            )}
+            { props.onClear && !props.isDisabled && (
+                <IconContainer cx={ uuiMarkers.clickable } icon={ ClearIcon } onClick={ props.onClear } />
+            ) }
+        </Clickable>
+    );
+});
