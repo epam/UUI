@@ -1,4 +1,4 @@
-import { TreeNodeInfo } from '../ITreeStructure';
+import { TreeNodeInfo } from '../types';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from './map';

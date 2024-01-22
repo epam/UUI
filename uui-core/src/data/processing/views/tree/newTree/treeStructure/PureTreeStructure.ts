@@ -1,6 +1,6 @@
 import { IMap } from '../../../../../../types';
-import { TreeNodeInfo, TreeParams } from './ITreeStructure';
 import { newMap } from './helpers';
+import { TreeNodeInfo, TreeParams } from './types';
 
 class PureTreeStructure<TItem, TId> {
     protected constructor(
