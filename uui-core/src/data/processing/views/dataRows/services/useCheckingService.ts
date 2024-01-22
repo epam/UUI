@@ -30,7 +30,6 @@ const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: TreeState<TItem,
     const checkedByKey: Record<string, boolean> = {};
     const someChildCheckedByKey: Record<string, boolean> = {};
     const checkedItems = checked ?? [];
-
     for (let i = checkedItems.length - 1; i >= 0; i--) {
         const id = checkedItems[i];
         checkedByKey[idToKey(id)] = true;
@@ -72,7 +71,7 @@ export function useCheckingService<TItem, TId>(
     const checked = dataSourceState.checked ?? [];
     const checkingInfoById = useMemo(
         () => getCheckingInfo(checked, tree, getParentId),
-        [tree, checked],
+        [tree, tree.visible, getParentId, checked],
     );
 
     const { checkedByKey, someChildCheckedByKey } = checkingInfoById;
