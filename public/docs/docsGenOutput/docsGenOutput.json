@@ -13068,19 +13068,29 @@
       " * This interface is enough for basic pickers.",
       " * Picker togglers with search or advanced selection display should implement IPickerToggler interface",
       " */",
-      "interface IBasicPickerToggler extends IDropdownToggler, IClickable {",
-      "    /** Called when associated dropdown should open or close  */",
-      "    toggleDropdownOpening?: (value: boolean) => void;",
-      "    /** Called when component is interacted outside, to close the dropdown */",
-      "    isInteractedOutside?: (event: Event) => boolean;",
-      "    /** toggler component ref */",
-      "    ref?: Ref<any>;",
+      "interface IBasicPickerToggler extends IDropdownTogglerProps {",
       "    /** Call to clear toggler value */",
       "    onClear?(e?: any): void;",
       "}"
      ]
     },
     "props": [
+     {
+      "uid": "onClear",
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
      {
       "uid": "toggleDropdownOpening",
       "name": "toggleDropdownOpening",
@@ -13095,6 +13105,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -13111,6 +13122,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -13118,28 +13130,13 @@
       "name": "ref",
       "comment": {
        "raw": [
-        "toggler component ref"
+        "Toggler component ref"
        ]
       },
       "typeValue": {
        "raw": "null | (instance: any) => void | React.RefObject<any>"
       },
-      "required": false
-     },
-     {
-      "uid": "onClear",
-      "name": "onClear",
-      "comment": {
-       "raw": [
-        "Call to clear toggler value"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -18665,6 +18662,23 @@
       "required": false
      },
      {
+      "uid": "onClear",
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBasicPickerToggler",
+      "required": false
+     },
+     {
       "uid": "toggleDropdownOpening",
       "name": "toggleDropdownOpening",
       "comment": {
@@ -18678,7 +18692,7 @@
       "editor": {
        "type": "func"
       },
-      "from": "@epam/uui-core:IBasicPickerToggler",
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -18695,7 +18709,7 @@
       "editor": {
        "type": "func"
       },
-      "from": "@epam/uui-core:IBasicPickerToggler",
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -18703,30 +18717,13 @@
       "name": "ref",
       "comment": {
        "raw": [
-        "toggler component ref"
+        "Toggler component ref"
        ]
       },
       "typeValue": {
        "raw": "null | (instance: any) => void | React.RefObject<any>"
       },
-      "from": "@epam/uui-core:IBasicPickerToggler",
-      "required": false
-     },
-     {
-      "uid": "onClear",
-      "name": "onClear",
-      "comment": {
-       "raw": [
-        "Call to clear toggler value"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IBasicPickerToggler",
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -45592,6 +45589,23 @@
       "required": false
      },
      {
+      "uid": "onClear",
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IBasicPickerToggler",
+      "required": false
+     },
+     {
       "uid": "toggleDropdownOpening",
       "name": "toggleDropdownOpening",
       "comment": {
@@ -45605,7 +45619,7 @@
       "editor": {
        "type": "func"
       },
-      "from": "@epam/uui-core:IBasicPickerToggler",
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -45622,7 +45636,7 @@
       "editor": {
        "type": "func"
       },
-      "from": "@epam/uui-core:IBasicPickerToggler",
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
@@ -45630,30 +45644,13 @@
       "name": "ref",
       "comment": {
        "raw": [
-        "toggler component ref"
+        "Toggler component ref"
        ]
       },
       "typeValue": {
        "raw": "null | (instance: any) => void | React.RefObject<any>"
       },
-      "from": "@epam/uui-core:IBasicPickerToggler",
-      "required": false
-     },
-     {
-      "uid": "onClear",
-      "name": "onClear",
-      "comment": {
-       "raw": [
-        "Call to clear toggler value"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IBasicPickerToggler",
+      "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
      },
      {
