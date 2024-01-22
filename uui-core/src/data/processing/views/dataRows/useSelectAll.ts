@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { NodeStats } from './stats';
-import { ITreeState } from '../tree/newTree';
+import { TreeState } from '../tree/newTree';
 
 export interface UseSelectAllProps<TItem, TId> {
-    tree: ITreeState<TItem, TId>;
+    tree: TreeState<TItem, TId>;
     selectAll?: boolean;
     stats: NodeStats;
     checked?: TId[];

@@ -3,7 +3,7 @@ import { CascadeSelection, CascadeSelectionTypes, DataSourceState, LazyDataSourc
 import isEqual from 'lodash.isequal';
 import { CommonDataSourceConfig } from '../types';
 import { ROOT_ID, TreeState } from '../../../newTree';
-import { TreeStructureId } from '../../../newTree/treeState/ITreeState';
+import { TreeStructureId } from '../../../newTree/treeState/types';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<
