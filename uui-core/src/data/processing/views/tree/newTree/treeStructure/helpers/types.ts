@@ -2,7 +2,7 @@ import { CascadeSelection, DataSourceState } from '../../../../../../../types';
 import { ITreeStructure, TreeParams } from '../ITreeStructure';
 import { CompositeKeysMap } from './map';
 import { LazyListViewProps } from '../../../../types';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/ITreeState';
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../../ItemsMap';
 
 export interface ActForCheckableOptions<TItem, TId> {

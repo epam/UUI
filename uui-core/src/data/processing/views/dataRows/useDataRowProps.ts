@@ -3,7 +3,7 @@ import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { CheckingService, FocusService, SelectingService } from './services';
 import { idToKey } from '../helpers';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
-import { ITreeState } from '../tree/newTree';
+import { TreeState } from '../tree/newTree';
 
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
@@ -13,7 +13,7 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
     > {
 
-    tree: ITreeState<TItem, TId>;
+    tree: TreeState<TItem, TId>;
 
     isFlattenSearch: boolean;
     getEstimatedChildrenCount: (id: TId) => number;

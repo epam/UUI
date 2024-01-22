@@ -5,7 +5,7 @@ import { idToKey } from '../helpers';
 import { FoldingService } from './services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
-import { ITreeState } from '../tree/newTree';
+import { TreeState } from '../tree/newTree';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     FoldingService<TItem, TId>,
@@ -14,7 +14,7 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     > {
 
-    tree: ITreeState<TItem, TId>;
+    tree: TreeState<TItem, TId>;
 
     getEstimatedChildrenCount: (id: TId) => number;
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;

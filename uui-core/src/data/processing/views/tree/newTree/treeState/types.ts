@@ -1,7 +1,6 @@
 import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../../types';
 import { LazyListViewProps } from '../../../types';
 import { ItemsMap } from '../../ItemsMap';
-import { NOT_FOUND_RECORD } from '../constants';
 import { ITreeStructure } from '../treeStructure';
 
 export interface LoadTreeOptions<TItem, TId, TFilter>
@@ -73,32 +72,4 @@ export interface PatchItemsOptions<TItem, TId> {
     patchItems?: ItemsMap<TId, TItem>;
     isDeletedProp?: keyof TItem;
     getPosition?: (item: TItem) => Position | { after: TId };
-}
-
-export interface ITreeState<TItem, TId> {
-    visible: ITreeStructure<TItem, TId>;
-    full: ITreeStructure<TItem, TId>;
-
-    load<TFilter>({
-        using,
-        options,
-        dataSourceState,
-        withNestedChildren,
-    }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeState<TItem, TId>>;
-
-    loadAll<TFilter>({
-        using,
-        options,
-        dataSourceState,
-    }: LoadAllOptions<TItem, TId, TFilter>): Promise<ITreeState<TItem, TId>>;
-
-    filter<TFilter>({ filter, getFilter }: FilterOptions<TItem, TId, TFilter>): ITreeState<TItem, TId>;
-    sort<TFilter>({ sorting, sortBy }: SortOptions<TItem, TId, TFilter>): ITreeState<TItem, TId>;
-    search<TFilter>({ search, getSearchFields, sortSearchByRelevance }: SearchOptions<TItem, TId, TFilter>): ITreeState<TItem, TId>;
-    cascadeSelection(options: CascadeSelectionOptions<TItem, TId>): TId[];
-    patch({ using, ...options }: PatchOptions<TItem>): ITreeState<TItem, TId>;
-    patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>): ITreeState<TItem, TId>;
-    clearStructure(): ITreeState<TItem, TId>;
-    reset(): ITreeState<TItem, TId>;
-    getById(id: TId): typeof NOT_FOUND_RECORD | TItem;
 }

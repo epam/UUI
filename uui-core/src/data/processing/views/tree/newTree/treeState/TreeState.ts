@@ -2,7 +2,7 @@ import { ItemsStorage } from '../../ItemsStorage';
 import {
     CascadeSelectionOptions, FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
-} from './ITreeState';
+} from './types';
 import { PureTreeState } from './PureTreeState';
 import { TreeStructure, ITreeStructure, TreeParams, FetchingHelper, FilterHelper, SortHelper, SearchHelper, CheckingHelper, PatchHelper } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';

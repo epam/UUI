@@ -1,4 +1,4 @@
-import { ApplySortOptions } from '../../treeState/ITreeState';
+import { ApplySortOptions } from '../../treeState/types';
 import { TreeStructure } from '../TreeStructure';
 import { SortOptions } from './types';
 
