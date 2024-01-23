@@ -1,6 +1,7 @@
 @use '~@epam/promo/assets/styles/index' as *;
 
 .container {
+    --uui-docs-bg: var(--uui-surface-main);
     margin: 24px 0;
     max-width: 100%;
 }
@@ -11,7 +12,7 @@
 }
 
 .preview-container {
-    background: var(--uui-surface-main);
+    background: var(--uui-docs-bg);
     border: 1px solid var(--uui-divider);
     width: 960px;
     max-width: 100%;
