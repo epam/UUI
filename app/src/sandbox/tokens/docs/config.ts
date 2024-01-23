@@ -75,7 +75,7 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     },
     {
         title: 'Links tokens',
-        description: 'Tokens for text and typography',
+        description: 'Tokens for links.',
         items: ('core/links/'),
     },
     {
