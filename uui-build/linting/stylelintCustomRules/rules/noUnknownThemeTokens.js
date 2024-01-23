@@ -110,7 +110,7 @@ function rule(primaryOptions, secondaryOptions) {
 
         if (info) {
             root.walkDecls((decl) => {
-                if (decl.prop.startsWith('--')) {
+                /*                 if (decl.prop.startsWith('--')) {
                     if (isPropIgnored(decl.prop)) {
                         return;
                     }
@@ -123,7 +123,7 @@ function rule(primaryOptions, secondaryOptions) {
                             ruleName,
                         });
                     }
-                }
+                } */
 
                 const usedCustomProps = getReferencedCustomPropsFromDecl(decl);
                 if (usedCustomProps.size) {
