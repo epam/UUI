@@ -20,11 +20,14 @@ export enum TVarType {
     FLOAT = 'FLOAT'
 }
 
+export type TCssVarSupport = 'supported' | 'notSupported' | 'notDecided' | 'supportedExceptFigma';
+
 export type TCssVarRef = {
     id: IThemeVar['id'],
-} & (
-    { cssVar?: TUuiCssVarName } & ({ supported: false } | { supported: true, published: boolean })
-);
+    cssVar: TUuiCssVarName | undefined;
+    cssVarSupport: TCssVarSupport
+};
+
 export type TResolvedValueNorm = {
     /* it's always final resolved value, like HEX or etc. */
     value: TVariableValue,
@@ -41,13 +44,13 @@ export interface IThemeVar {
     type: TVarType,
     description: string,
     useCases: string,
-    cssVar: TUuiCssVarName,
-    published: boolean,
+    cssVar: TUuiCssVarName | undefined,
+    cssVarSupport: TCssVarSupport,
     /** resolvedValue in this map is taken from Figma. It can be used to compare with actual rendered value in browser */
     valueByTheme: {
         [themeName in TFigmaThemeName]?: TValueByThemeValue
     },
 }
 export interface IUuiTokensCollection {
-    supportedTokens: IThemeVar[]
+    exposedTokens: IThemeVar[]
 }
