@@ -78,7 +78,7 @@ export function FilteredTable() {
         },
     }, []);
 
-    const { visibleRows, listProps } = useDataRows({ 
+    const { rows, listProps } = useDataRows({ 
         tree, ...restProps,
     });
 
@@ -109,7 +109,7 @@ export function FilteredTable() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ () => visibleRows }
+                rows={ rows }
                 columns={ personColumns }
                 value={ tableStateApi.tableState }
                 onValueChange={ tableStateApi.setTableState }

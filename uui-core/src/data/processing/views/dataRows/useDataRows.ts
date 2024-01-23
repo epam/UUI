@@ -150,7 +150,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         ...focusService,
     });
 
-    const { rows, pinned, pinnedByParentId, stats } = useBuildRows({
+    const { rows: allRows, pinned, pinnedByParentId, stats } = useBuildRows({
         tree,
         dataSourceState,
         cascadeSelection,
@@ -164,7 +164,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         ...foldingService,
     });
 
-    const updatedRows = useUpdateRowOptions({ rows, updateRowOptions });
+    const updatedRows = useUpdateRowOptions({ rows: allRows, updateRowOptions });
 
     const withPinnedRows = usePinnedRows({
         rows: updatedRows,
@@ -224,7 +224,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         };
     }, [updatedRows.length, selectAll, completeFlatListRowsCount, totalCount, stats.hasMoreRows, lastRowIndex, isFetching]);
 
-    const visibleRows = useMemo(
+    const rows = useMemo(
         () => {
             const from = dataSourceState.topIndex;
             const count = dataSourceState.visibleCount;
@@ -298,7 +298,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     return {
         listProps,
-        visibleRows,
+        rows,
         getSelectedRows,
         getSelectedRowsCount,
         getById,

@@ -19,7 +19,8 @@ import { i18n } from '../../i18n';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
     /** Callback to get rows that will be rendered in table */
-    getRows(): DataRowProps<TItem, TId>[];
+    getRows?(): DataRowProps<TItem, TId>[];
+    rows?: DataRowProps<TItem, TId>[];
     /** Array of all possible columns for the table */
     columns: DataColumnProps<TItem, TId>[];
     /** Render callback for the table row.
@@ -61,7 +62,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     }, []);
 
     const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });
-    const rows = props.getRows();
+    const rows = props.getRows?.() ?? props.rows ?? [];
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (

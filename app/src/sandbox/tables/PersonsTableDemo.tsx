@@ -160,7 +160,7 @@ export function PersonsTableDemo() {
         },
         [value.filter?.groupBy],
     );
-    const { visibleRows, listProps } = useDataRows(tree);
+    const { rows, listProps } = useDataRows(tree);
     
     return (
         <div className={ cx(css.container, css.uuiThemeLoveship) }>
@@ -187,7 +187,7 @@ export function PersonsTableDemo() {
                 </FlexCell>
             </FlexRow>
             <DataTable
-                getRows={ () => visibleRows }
+                rows={ rows }
                 columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
                 value={ value }
                 onValueChange={ onValueChange }
