@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface HighlightRange {
+interface HighlightRange {
     from: number;
     to: number;
     isHighlighted: boolean;

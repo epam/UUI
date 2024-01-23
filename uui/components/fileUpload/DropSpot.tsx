@@ -9,19 +9,19 @@ import { i18n } from '../../i18n';
 import css from './DropSpot.module.scss';
 
 export interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {
-    /*
+    /**
     * Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea.
     */
     infoText?: string;
-    /*
-    * Called when uploading files.
+    /**
+    * Called when files was added to the DropSpot.
     */
     onUploadFiles(files: File[]): any;
-    /*
+    /**
     * Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details
     */
     accept?: string;
-    /*
+    /**
     * Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details
     */
     single?: boolean;
