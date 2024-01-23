@@ -497,45 +497,45 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickClearAllOptions();
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
         });
-        
+
         describe('show only selected', () => {
             it('should show only selected items', async () => {
                 const { dom } = await setupPickerInputForTest<TestItemType, number>({
                     value: [4, 2, 6, 8],
                     selectionMode: 'multi',
                 });
-    
+
                 fireEvent.click(dom.input);
-    
+
                 const dialog = await screen.findByRole('dialog');
                 expect(dialog).toBeInTheDocument();
-    
+
                 await PickerInputTestObject.waitForOptionsToBeReady();
-    
+
                 expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
                 expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
-    
+
                 await PickerInputTestObject.clickShowOnlySelected();
-    
+
                 expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
                 expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
             });
         });
-    
+
         it('should clear search on show only selected toggle', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: [4, 2, 6, 8],
                 selectionMode: 'multi',
                 searchPosition: 'body',
             });
-    
+
             fireEvent.click(dom.target);
-    
+
             const dialog = await PickerInputTestObject.findDialog();
             expect(dialog).toBeInTheDocument();
-    
+
             await PickerInputTestObject.waitForOptionsToBeReady();
-    
+
             const searchInput = within(dialog).queryByRole('searchbox') as HTMLInputElement;
             fireEvent.change(searchInput, { target: { value: 'search' } });
 
@@ -552,18 +552,18 @@ describe('PickerInput', () => {
                 selectionMode: 'multi',
                 searchPosition: 'body',
             });
-    
+
             fireEvent.click(dom.target);
-    
+
             const dialog = screen.queryByRole('dialog');
             expect(dialog).toBeInTheDocument();
             await PickerInputTestObject.waitForOptionsToBeReady();
-    
+
             await PickerInputTestObject.clickShowOnlySelected();
-    
+
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-    
+
             const searchInput = within(dialog).getByRole('searchbox') as HTMLInputElement;
             fireEvent.change(searchInput, { target: { value: 'search' } });
 

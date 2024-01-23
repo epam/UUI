@@ -1,4 +1,5 @@
 @use  '../../assets/styles/buttonLayout' as *;
+@use  '../../assets/styles/clickable' as *;
 
 .root {
     --uui-link_btn-text: var(--uui-color-50);
@@ -8,6 +9,8 @@
 
     --uui-link-button-font: var(--uui-font);
     --uui-link-button-font-weight: 600;
+
+    @include clickable-styles();
 
     &:global(.uui-button-box) {
         background-color: transparent;

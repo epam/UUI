@@ -1,17 +1,15 @@
 import React from 'react';
 import { ScrollBars } from '../ScrollBars';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { Button } from '../../buttons';
 
 describe('ScrollBars', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(
-                <ScrollBars>
-                    <Button />
-                </ScrollBars>,
-            )
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <ScrollBars>
+                <Button />
+            </ScrollBars>,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
