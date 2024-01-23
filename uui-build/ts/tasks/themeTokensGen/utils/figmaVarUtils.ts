@@ -1,6 +1,13 @@
 import { IFigmaVarRawNorm, IFigmaVarTemplateNormResolvedValue } from '../types/sourceTypes';
-import { IThemeVar, TCssVarRef, TFigmaThemeName, TResolvedValueNorm, TUuiCssVarName } from '../types/sharedTypes';
-import { FIGMA_VARS_CFG, IFigmaVarConfigValue, TList } from '../config';
+import {
+    IThemeVar,
+    TCssVarRef,
+    TCssVarSupport,
+    TFigmaThemeName,
+    TResolvedValueNorm,
+    TUuiCssVarName,
+} from '../types/sharedTypes';
+import { FIGMA_VARS_CFG, IFigmaVarConfigValue } from '../config';
 import { UNDEFINED_ALIASES } from '../constants';
 
 export function convertRawToken(
@@ -11,20 +18,20 @@ export function convertRawToken(
     },
 ): IThemeVar {
     const { rawTokenNorm, modes, figmaVarByNameNorm } = params;
-    const cssVar = getCssVarFromFigmaVar(rawTokenNorm.name) as TUuiCssVarName;
-
+    const cssVarSupport = getCssVarSupportForToken(rawTokenNorm);
+    const cssVar = getCssVarFromFigmaVar(rawTokenNorm);
     return {
         id: rawTokenNorm.name,
         type: rawTokenNorm.type,
         description: rawTokenNorm.description,
         useCases: '',
         cssVar,
-        published: !rawTokenNorm.hiddenFromPublishing,
+        cssVarSupport,
         valueByTheme: Object.keys(modes).reduce<IThemeVar['valueByTheme']>((acc, themeId) => {
             const themeName = modes[themeId];
             const valueForTheme = rawTokenNorm.valueByTheme[themeId];
-            const supported = isFigmaTokenSupported({ rawTokenNorm, theme: themeName, modes });
-            if (valueForTheme && supported) {
+            const canPotentiallyDefineCssVar = canTokenPotentiallyDefineCssVar({ rawTokenNorm, theme: themeName, modes });
+            if (canPotentiallyDefineCssVar && valueForTheme) {
                 acc[themeName] = {
                     valueChain: mapValue({
                         value: valueForTheme.valueChain as IFigmaVarTemplateNormResolvedValue,
@@ -53,21 +60,15 @@ function mapValue(
         modes: Record<string, TFigmaThemeName>,
     },
 ): TResolvedValueNorm {
-    const { value, figmaVarByNameNorm, themeName, modes } = params;
+    const { value, figmaVarByNameNorm } = params;
     const alias = value.alias.map(({ name }): TCssVarRef => {
         const rawTokenNormLocal = figmaVarByNameNorm[name] as IFigmaVarRawNorm;
-        const supportedLocal = isFigmaTokenSupported({ rawTokenNorm: rawTokenNormLocal, theme: themeName, modes });
-        if (supportedLocal) {
-            return {
-                id: name,
-                cssVar: getCssVarFromFigmaVar(name),
-                supported: true,
-                published: !rawTokenNormLocal.hiddenFromPublishing,
-            };
-        }
+        const cssVarSupport = getCssVarSupportForToken(rawTokenNormLocal);
+        const cssVar = getCssVarFromFigmaVar(rawTokenNormLocal);
         return {
             id: name,
-            supported: false,
+            cssVar,
+            cssVarSupport,
         };
     });
     return {
@@ -76,27 +77,35 @@ function mapValue(
     };
 }
 
-export function getCssVarFromFigmaVar(path: string): TUuiCssVarName | undefined {
-    const config = getFigmaVarConfig(path);
-    if (config) {
-        return config.pathToCssVar(path);
+export function getCssVarSupportForToken(token: IFigmaVarRawNorm): TCssVarSupport {
+    if (token.hiddenFromPublishing) {
+        const cfg = getFigmaVarConfig(token.name);
+        return cfg ? cfg.cssVarSupportForUnpublished : 'notSupported';
+    } else {
+        return 'supported';
+    }
+}
+
+export function getCssVarFromFigmaVar(token: IFigmaVarRawNorm): TUuiCssVarName | undefined {
+    const cssVarSupport = getCssVarSupportForToken(token);
+    if (cssVarSupport !== 'notSupported') {
+        const config = getFigmaVarConfig(token.name);
+        if (config) {
+            return config.pathToCssVar(token.name);
+        }
     }
 }
 
 /**
- * If "theme" is passed then it checks against this theme only.
- * Otherwise - it checks that it's supported in at least 1 theme.
+ * It checks that token is allowed to (potentially) define some "CSS variable"
  * @param params
  */
-export function isFigmaTokenSupported(params: { rawTokenNorm: IFigmaVarRawNorm, theme?: TFigmaThemeName, modes: Record<string, TFigmaThemeName> }) {
-    const { rawTokenNorm, theme, modes } = params;
+export function canTokenPotentiallyDefineCssVar(params: { rawTokenNorm: IFigmaVarRawNorm, modes: Record<string, TFigmaThemeName>, theme?: TFigmaThemeName }) {
+    const { rawTokenNorm, modes, theme } = params;
     const path = rawTokenNorm.name;
     const config = getFigmaVarConfig(path);
     if (config) {
-        const { blacklist, whitelist } = config;
-        return isTokenSupportedByList({ list: whitelist, isWhitelist: true, path, theme })
-            && isTokenSupportedByList({ list: blacklist, isWhitelist: false, path, theme })
-            && !isTokenExcludedByAliasRef({ rawTokenNorm, theme, modes });
+        return !isTokenExcludedByAliasRef({ rawTokenNorm, modes, theme });
     }
     return false;
 }
@@ -124,32 +133,6 @@ function isAliasChainContainsExcludedRef(chain: { name: string }[] | undefined) 
         }) !== -1;
     }
     return false;
-}
-
-function isTokenSupportedByList(params: { path: string, list?: TList, isWhitelist: boolean, theme?: TFigmaThemeName }): boolean {
-    const { list, isWhitelist, path, theme } = params;
-    let isAllowed: boolean = true;
-    if (list) {
-        const wlItem = list[path];
-        if (wlItem) {
-            if (wlItem === '*') {
-                isAllowed = isWhitelist;
-            } else {
-                if (theme) {
-                    const idx = wlItem.indexOf(theme);
-                    isAllowed = isWhitelist ? idx !== -1 : idx === -1;
-                } else {
-                    isAllowed = Object.values(TFigmaThemeName).some((themeItem) => {
-                        const idx = wlItem.indexOf(themeItem);
-                        return isWhitelist ? idx !== -1 : idx === -1;
-                    });
-                }
-            }
-        } else {
-            isAllowed = !isWhitelist;
-        }
-    }
-    return isAllowed;
 }
 
 function getFigmaVarConfig(path: string): IFigmaVarConfigValue | undefined {
