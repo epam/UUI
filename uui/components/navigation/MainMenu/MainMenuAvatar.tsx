@@ -1,15 +1,12 @@
 import * as React from 'react';
-import css from './MainMenuAvatar.module.scss';
 import cx from 'classnames';
-import {
-    IAdaptiveItem, IDropdownToggler, Icon, IHasCX, uuiMarkers,
-} from '@epam/uui-core';
-import { IconContainer } from '@epam/uui-components';
+import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX, uuiMarkers, IClickable } from '@epam/uui-core';
+import { IconContainer, Avatar } from '@epam/uui-components';
 import { ReactComponent as FoldingArrow } from '../../../icons/folding-arrow-18.svg';
-import { Avatar } from '@epam/uui-components';
+import css from './MainMenuAvatar.module.scss';
 
 /** Represents the properties of the MainMenuAvatar component. */
-export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IHasCX {
+export interface MainMenuAvatarProps extends IClickable, IAdaptiveItem, IDropdownToggler, IHasCX {
     avatarUrl?: string;
     icon?: Icon;
 }

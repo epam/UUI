@@ -20,7 +20,7 @@ export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElem
         } }
         icon={ props.icon }
         caption={ props.caption }
-        forwardedRef={ ref }
+        ref={ ref }
         cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
         isDisabled={ props.isDisabled }
     />

@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { ButtonBaseProps, ButtonBase } from './ButtonBase';
+import { IDropdownToggler, Icon } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './Button.module.scss';
+import { Clickable, ClickableComponentProps } from '../widgets';
+import css from './IconButton.module.scss';
 
-export type IconButtonBaseProps = ButtonBaseProps & {};
+export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
+    /** Icon can be a React element (usually an SVG element) */
+    icon?: Icon;
+    /** Icon for drop-down toggler */
+    dropdownIcon?: Icon;
+};
 
-export class IconButton extends ButtonBase<IconButtonBaseProps> {
-    constructor(props: IconButtonBaseProps) {
-        super(props);
-    }
-
-    getClassName() {
-        return [css.container];
-    }
-
-    getChildren() {
-        return <IconContainer key="icon" icon={ this.props.icon } />;
-    }
-}
+export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
+    return (
+        <Clickable { ...props } cx={ [css.container, props.cx] } ref={ ref }>
+            <IconContainer icon={ props.icon } />
+        </Clickable>
+    );
+});

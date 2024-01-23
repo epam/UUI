@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { uuiDaySelection, type ViewType } from '@epam/uui-components';
 import { RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets, RangeDatePickerValue } from '../RangeDatePickerBody';
-import { act, fireEvent, renderer, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
+import { act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
 
 type RangePickerSetupProps = {
     selectedDate: RangeDatePickerBodyProps<RangeDatePickerValue>['value']['selectedDate'];
@@ -49,7 +49,7 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
 }
 
 describe('RangeDatePickerBody', () => {
-    it('should be rendered correctly', () => {
+    it('should be rendered correctly', async () => {
         const displayedDate = dayjs('2020-09-03');
         const value = {
             view: 'DAY_SELECTION' as ViewType,
@@ -59,13 +59,13 @@ describe('RangeDatePickerBody', () => {
             },
             displayedDate,
         };
-        const tree = renderer.create(
+        const tree = await renderSnapshotWithContextAsync(
             <RangeDatePickerBody
                 value={ value }
                 focusPart="from"
                 onValueChange={ jest.fn }
             />,
-        ).toJSON();
+        );
         expect(tree).toMatchSnapshot();
     });
 

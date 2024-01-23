@@ -70,11 +70,9 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     <div
       className="flexSpacer"
     />
-    <button
-      className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root root icon iconAfter"
-      onClick={[Function]}
+    <span
+      className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root root icon iconAfter"
       tabIndex={-1}
-      type="button"
     >
       <div
         className="container uui-icon uui-enabled"
@@ -84,7 +82,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
           className=""
         />
       </div>
-    </button>
+    </span>
   </div>
 </div>
 `;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps } from '@epam/uui-core';
+import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps } from '@epam/uui-core';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
@@ -32,7 +32,7 @@ export function Tooltip(props: TooltipProps) {
         }
     };
 
-    const renderTarget = (props: IDropdownToggler) =>
+    const renderTarget = (props: IDropdownTogglerProps) =>
         React.Children.map(children, (child, idx) => {
             if (idx > 0 || !React.isValidElement(child)) return child;
             return React.cloneElement<React.ComponentPropsWithRef<any>>(child, { ref: props.ref });
@@ -46,7 +46,7 @@ export function Tooltip(props: TooltipProps) {
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
             placement={ props.placement || 'top' }
             modifiers={ [{ name: 'offset', options: { offset: props.offset || [0, 12] } }] }
-            renderTarget={ (props: IDropdownToggler) => renderTarget(props) }
+            renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
         />
     );
 }

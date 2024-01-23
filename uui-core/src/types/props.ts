@@ -273,17 +273,18 @@ export interface IDropdownBodyProps {
 }
 
 /** Component can be used as Toggler control for dropdown menus */
-export interface IDropdownToggler extends IHasCaption, IClickable {
+export interface IDropdownToggler {
     /** When isDropdown=true, indicate that dropdown is open with chevron icon */
     isOpen?: boolean;
     /** Shows chevron icon, enabling component to act as dropdown toggler */
     isDropdown?: boolean;
+}
+
+export interface IDropdownTogglerProps extends IDropdownToggler, IClickable {
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
     /** Called when component is interacted outside, to close the dropdown */
     isInteractedOutside?: (event: Event) => boolean;
-    /** Component's ref */
+    /** Toggler component ref */
     ref?: React.Ref<any>;
-    /** Disables component */
-    isDisabled?: boolean;
 }

@@ -173,7 +173,7 @@ export function getColumns(
                 }
                 return (
                     <Text color="primary">
-                        {item.published ? 'y' : 'n'}
+                        {item.cssVarSupport === 'supported' ? 'y' : 'n'}
                     </Text>
                 );
             },
