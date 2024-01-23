@@ -4,7 +4,7 @@ exports[`Dropdown should be rendered correctly 1`] = `
 <button
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
+  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -25,11 +25,11 @@ exports[`Dropdown should be rendered correctly 1`] = `
 </button>
 `;
 
-exports[`Dropdown should be rendered correctly 2`] = `
+exports[`Dropdown should be rendered correctly with more props 1`] = `
 <button
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
+  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
   onClick={[Function]}
   tabIndex={0}
   type="button"

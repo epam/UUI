@@ -5,7 +5,6 @@ import { useFocused, useSelected } from 'slate-react';
 import { Dropdown, FlexRow, Spinner } from '@epam/uui';
 import { ImageElement } from './ImageElement';
 
-
 import debounce from 'lodash.debounce';
 import invert from 'lodash.invert';
 
