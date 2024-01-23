@@ -1,10 +1,9 @@
 import { FileUtils } from './utils/fileUtils';
-import { getHiddenFromPublishingVarPlaceholder, IGNORED_VAR_PLACEHOLDER } from './constants';
+import { getHiddenFromPublishingVarPlaceholder } from './constants';
 import { FigmaScriptsContext } from './context/context';
 import {
     convertRawToken,
-    getCssVarFromFigmaVar,
-    isFigmaTokenSupported,
+    getCssVarFromFigmaVar, getCssVarSupportForToken, canTokenPotentiallyDefineCssVar,
 } from './utils/figmaVarUtils';
 import { IThemeVar } from './types/sharedTypes';
 import { IFigmaVarRaw, IFigmaVarRawNorm } from './types/sourceTypes';
@@ -21,7 +20,7 @@ async function main() {
 function generateTokens() {
     const ctx = new FigmaScriptsContext();
     const source = FileUtils.readFigmaVarCollection();
-    const supportedTokens: IThemeVar[] = [];
+    const exposedTokens: IThemeVar[] = [];
 
     // non-filtered map
     const rawVarsById = source.variables.reduce<Record<string, IFigmaVarRaw>>((acc, figmaVar) => {
@@ -32,41 +31,43 @@ function generateTokens() {
 
     const variables = source.variables.map((figmaVar) => {
         const rawTokenNorm = figmaVarByNameNorm[figmaVar.name] as IFigmaVarRawNorm;
-        const supported = isFigmaTokenSupported({ rawTokenNorm, modes: source.modes });
+        const canPotentiallyDefineCssVar = canTokenPotentiallyDefineCssVar({ rawTokenNorm, modes: source.modes });
 
-        if (supported) {
+        if (canPotentiallyDefineCssVar) {
             const converted = convertRawToken({ rawTokenNorm, modes: source.modes, figmaVarByNameNorm });
-            supportedTokens.push(converted);
+            exposedTokens.push(converted);
         }
         return {
             ...figmaVar,
             codeSyntax: {
                 ...figmaVar.codeSyntax,
-                WEB: getCodeSyntaxValue({ rawTokenNorm, supported }),
+                WEB: getFigmaCodeSyntaxValue({ rawTokenNorm, canPotentiallyDefineCssVar }),
             },
         };
     });
 
     // It will mutate the original arr.
-    sortSupportedTokens(supportedTokens);
+    sortSupportedTokens(exposedTokens);
 
     FileUtils.writeResults({
         newFigmaVarCollection: { ...source, variables },
-        uuiTokensCollection: { supportedTokens },
+        uuiTokensCollection: { exposedTokens },
         ctx,
     });
 }
 
-function getCodeSyntaxValue(
-    params: { supported: boolean, rawTokenNorm: IFigmaVarRawNorm },
-) {
-    const { supported, rawTokenNorm } = params;
-    if (supported) {
-        const cssVar = `var(${getCssVarFromFigmaVar(rawTokenNorm.name)})`;
-        if (rawTokenNorm.hiddenFromPublishing) {
-            return getHiddenFromPublishingVarPlaceholder(cssVar);
+function getFigmaCodeSyntaxValue(params: { rawTokenNorm: IFigmaVarRawNorm, canPotentiallyDefineCssVar: boolean }) {
+    const { rawTokenNorm, canPotentiallyDefineCssVar } = params;
+    if (canPotentiallyDefineCssVar) {
+        const cssVarSupport = getCssVarSupportForToken(rawTokenNorm);
+        const cssVarVisibleInFigma = cssVarSupport !== 'notSupported' && cssVarSupport !== 'supportedExceptFigma';
+
+        if (cssVarVisibleInFigma) {
+            const cssVarName = getCssVarFromFigmaVar(rawTokenNorm);
+            return cssVarName ? `var(${cssVarName})` : undefined;
         }
-        return cssVar;
     }
-    return IGNORED_VAR_PLACEHOLDER;
+    // print chain
+    const chain: string[] = [rawTokenNorm.name];
+    return getHiddenFromPublishingVarPlaceholder(chain.join(' inherited from '));
 }
