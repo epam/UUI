@@ -45,16 +45,14 @@ exports[`DropSpot should be rendered correctly 1`] = `
         <div
           className="uui-typography uui-typography-size-14"
         >
-          <a
-            className="container uui-anchor uui-enabled -clickable root link"
-            href={null}
+          <button
+            className="uui-button-box uui-enabled -clickable container root link"
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="link"
             tabIndex={0}
+            type="button"
           >
             browse
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -107,16 +105,14 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         <div
           className="uui-typography uui-typography-size-14"
         >
-          <a
-            className="container uui-anchor uui-enabled -clickable root link"
-            href={null}
+          <button
+            className="uui-button-box uui-enabled -clickable container root link"
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="link"
             tabIndex={0}
+            type="button"
           >
             browse
-          </a>
+          </button>
         </div>
       </div>
     </div>

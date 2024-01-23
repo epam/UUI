@@ -1,29 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root container"
-  onClick={[Function]}
-  tabIndex={-1}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-</button>
-`;
-
-exports[`MainMenuIcon should be rendered correctly 2`] = `
 <a
-  className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root container"
+  className="uui-button-box uui-enabled -clickable uui-anchor container uui-icon_button uui-color-neutral root container"
+  href=""
   onClick={[Function]}
   rel="noopener noreferrer"
-  role="link"
   tabIndex={0}
   target="_blank"
 >
@@ -36,4 +18,20 @@ exports[`MainMenuIcon should be rendered correctly 2`] = `
     />
   </div>
 </a>
+`;
+
+exports[`MainMenuIcon should be rendered correctly with minimum props 1`] = `
+<span
+  className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root container"
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+</span>
 `;

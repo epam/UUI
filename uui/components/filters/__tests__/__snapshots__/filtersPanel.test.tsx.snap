@@ -272,7 +272,7 @@ Array [
     </div>
   </div>,
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-filters-panel-add-button"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-filters-panel-add-button"
     onClick={[Function]}
     tabIndex={0}
     type="button"

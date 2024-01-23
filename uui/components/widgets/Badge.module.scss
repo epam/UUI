@@ -57,6 +57,7 @@
     --uui-badge-font: var(--uui-font);
     --uui-badge-font-weight: 400;
     //
+    @include clickable-styles();
     background-color: var(--uui-badge-bg);
     color: var(--uui-badge-caption);
     fill: var(--uui-badge-caption); // ??? separate variable

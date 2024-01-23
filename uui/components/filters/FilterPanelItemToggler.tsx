@@ -1,15 +1,15 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
-import { systemIcons } from '../../icons/icons';
+import { IDisableable, IDropdownTogglerProps, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
 import { IconContainer, FlexRow } from '@epam/uui-components';
+import { systemIcons } from '../../icons/icons';
 import { Text } from '../typography';
 import { UUI_FILTERS_PANEL_ITEM_TOGGLER } from './constants';
 import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
 
-export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
+export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable {
     selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;

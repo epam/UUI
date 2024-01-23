@@ -29,7 +29,7 @@ export class PickerInputTestObject extends PickerTestObject {
         const tags: HTMLElement[] = [];
         let s = input;
         while ((s = s.previousElementSibling as HTMLElement)) {
-            if (s.tagName.toLowerCase() === 'button') {
+            if (s.tagName.toLowerCase() === 'span') {
                 tags.push(s);
             }
         }

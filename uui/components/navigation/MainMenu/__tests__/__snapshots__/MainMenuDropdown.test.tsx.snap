@@ -4,11 +4,17 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
 <button
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root type-primary"
+  className="uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
+  role="menuitem"
   tabIndex={0}
   type="button"
 >
+  <div
+    className="uui-caption"
+  >
+    Test button
+  </div>
   <div
     className="container uui-icon uui-enabled"
     style={Object {}}
@@ -20,20 +26,16 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
 </button>
 `;
 
-exports[`MainMenuDropdown should be rendered correctly 2`] = `
+exports[`MainMenuDropdown should be rendered correctly with minimum props 1`] = `
 <button
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root type-primary"
+  className="uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
+  role="menuitem"
   tabIndex={0}
   type="button"
 >
-  <div
-    className="uui-caption"
-  >
-    Test button
-  </div>
   <div
     className="container uui-icon uui-enabled"
     style={Object {}}

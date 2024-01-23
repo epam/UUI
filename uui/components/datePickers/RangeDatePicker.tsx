@@ -1,8 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import {
-    IDropdownToggler, uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger, withMods,
-} from '@epam/uui-core';
+import { uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps } from '@epam/uui-core';
 import { RangeDatePickerValue } from '@epam/uui-core';
 import { BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
@@ -54,7 +52,7 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
         );
     }
 
-    renderInput = (props: IDropdownToggler) => {
+    renderInput = (props: IDropdownTogglerProps) => {
         if (__DEV__) {
             if (this.props.size === '48') {
                 devLogger.warnAboutDeprecatedPropValue<RangeDatePickerProps, 'size'>({

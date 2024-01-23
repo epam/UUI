@@ -18,7 +18,6 @@ describe('Button', () => {
                 icon={ SvgMock }
                 isDisabled={ false }
                 isDropdown={ true }
-                count={ 10 }
                 iconPosition="right"
                 onClear={ jest.fn }
                 isOpen

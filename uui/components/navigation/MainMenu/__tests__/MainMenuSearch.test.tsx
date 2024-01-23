@@ -14,7 +14,6 @@ describe('MainMenuSearch', () => {
             <MainMenuSearch
                 value="test"
                 onValueChange={ jest.fn }
-                caption="Test button"
                 type="primary"
                 collapseToMore
                 estimatedWidth={ 120 }

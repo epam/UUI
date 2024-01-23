@@ -1,18 +1,26 @@
 import React from 'react';
 import { Tag } from '../Tag';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('Tag', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Tag />).toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Tag />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<Tag caption="Test badge" icon={ CalendarIcon } count={ 12 } onIconClick={ () => {} } onClick={ () => {} } onClear={ () => {} } size="36" />)
-            .toJSON();
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Tag
+                caption="Test badge"
+                icon={ CalendarIcon }
+                count={ 12 }
+                onIconClick={ () => {} }
+                onClick={ () => {} }
+                onClear={ () => {} }
+                size="36"
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });

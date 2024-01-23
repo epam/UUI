@@ -16,7 +16,7 @@ export const iCanRedirectDoc = new DocBuilder<ICanRedirect>({ name: 'Icon' })
     .prop('isLinkActive', { examples: [true] })
     .prop('href', {
         examples: [
-            { name: 'EPAM', value: 'https://epam.com' }, { name: 'Google', value: 'https://google.com' },
+            { name: 'EPAM', value: 'https://www.epam.com' }, { name: 'Google', value: 'https://google.com' },
         ],
         editorType: 'StringWithExamplesEditor',
     })
