@@ -97,7 +97,7 @@ export default function TableWithPinnedRows() {
         },
     }, []);
 
-    const { visibleRows, listProps } = useDataRows({ tree, ...restProps });
+    const { rows, listProps } = useDataRows({ tree, ...restProps });
 
     return (
         <Panel shadow cx={ css.container }>
@@ -105,7 +105,7 @@ export default function TableWithPinnedRows() {
                 value={ tableState }
                 onValueChange={ setTableState }
                 { ...listProps }
-                getRows={ () => visibleRows }
+                rows={ rows }
                 headerTextCase="upper"
                 columns={ locationsColumns }
             />

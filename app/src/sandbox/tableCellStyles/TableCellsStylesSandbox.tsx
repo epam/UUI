@@ -297,7 +297,7 @@ export default function TableCellsStylesSandbox() {
         [],
     );
 
-    const { visibleRows, listProps } = useDataRows(tree);
+    const { rows, listProps } = useDataRows(tree);
 
     const renderRow = useCallback(
         (props: DataTableRowProps<Item, number>) => {
@@ -322,7 +322,7 @@ export default function TableCellsStylesSandbox() {
             </skin.FlexRow>
             <skin.DataTable
                 { ...listProps }
-                getRows={ () => visibleRows }
+                rows={ rows }
                 value={ tableState }
                 onValueChange={ setTableState }
                 columns={ columns }

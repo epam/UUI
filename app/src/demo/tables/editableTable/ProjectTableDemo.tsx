@@ -145,7 +145,7 @@ export function ProjectTableDemo() {
         [value.items],
     );
 
-    const { visibleRows, listProps } = useDataRows({
+    const { rows, listProps } = useDataRows({
         tree, ...restProps,
     });
 
@@ -162,7 +162,7 @@ export function ProjectTableDemo() {
     }, [tableState.selectedId, value.items]);
 
     const deleteSelectedItem = useCallback(() => {
-        const prevRows = [...visibleRows];
+        const prevRows = [...rows];
         deleteTask(selectedItem);
         if (selectedItem !== undefined) {
             const index = prevRows.findIndex((task) => task.id === selectedItem.id);
@@ -175,7 +175,7 @@ export function ProjectTableDemo() {
                 selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
             }));
         }
-    }, [deleteTask, visibleRows, selectedItem, setTableState]);
+    }, [deleteTask, rows, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
         if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'Enter') {
@@ -259,7 +259,7 @@ export function ProjectTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ () => visibleRows }
+                rows={ rows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }

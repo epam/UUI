@@ -89,7 +89,7 @@ export function DbDemoImpl() {
         [],
     );
 
-    const { visibleRows, listProps } = useDataRows(tree);
+    const { rows, listProps } = useDataRows(tree);
 
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>
@@ -108,7 +108,7 @@ export function DbDemoImpl() {
                     <Button caption="Reload" onClick={ () => tree.reload() } size="30" />
                 </FlexCell>
             </FlexRow>
-            <PersonsTable { ...lens.toProps() } rows={ visibleRows } listProps={ listProps } />
+            <PersonsTable { ...lens.toProps() } rows={ rows } listProps={ listProps } />
         </div>
     );
 }

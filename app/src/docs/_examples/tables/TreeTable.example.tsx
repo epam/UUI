@@ -122,12 +122,12 @@ export default function TreeTableExample() {
         }),
     }, []);
 
-    const { visibleRows, listProps } = useDataRows({ tree, ...restProps });
+    const { rows, listProps } = useDataRows({ tree, ...restProps });
 
     return (
         <Panel background="surface-main" shadow cx={ css.container } rawProps={ { role: 'tree_grid' } }>
             <DataTable
-                getRows={ () => visibleRows }
+                rows={ rows }
                 { ...listProps }
                 value={ tableState }
                 onValueChange={ (newVal) => setTableState(newVal) }

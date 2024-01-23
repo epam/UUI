@@ -86,14 +86,14 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         }, [tree, reload]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { visibleRows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
+        const { rows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
-            getVisibleRows: () => visibleRows,
+            getVisibleRows: () => rows,
             getListProps: () => listProps,
             selectAll,
             getConfig: () => restProps,
@@ -107,7 +107,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             loadData: () => {},
             _forceUpdate: () => {},
         }), [
-            visibleRows,
+            rows,
             listProps,
             selectAll,
             restProps,

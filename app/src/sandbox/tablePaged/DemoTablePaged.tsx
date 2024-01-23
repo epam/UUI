@@ -68,7 +68,7 @@ export function DemoTablePaged() {
         [],
     );
 
-    const { visibleRows, listProps, getById } = useDataRows({
+    const { rows, listProps, getById } = useDataRows({
         tree, ...restProps,
     });
 
@@ -79,7 +79,7 @@ export function DemoTablePaged() {
             <div className={ cx(css.wrapper) }>
                 <DataTable
                     headerTextCase="upper"
-                    getRows={ () => visibleRows }
+                    rows={ rows }
                     columns={ personColumns }
                     filters={ filters }
                     showColumnsConfig

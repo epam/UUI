@@ -66,7 +66,7 @@ export function ProductsTableDemo() {
         backgroundReload: true,
     }, []);
 
-    const { visibleRows, listProps } = useDataRows({ tree, ...restProps });
+    const { rows, listProps } = useDataRows({ tree, ...restProps });
 
     return (
         <Panel cx={ [css.container, css.uuiThemeLoveship] }>
@@ -77,7 +77,7 @@ export function ProductsTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ () => visibleRows }
+                rows={ rows }
                 columns={ productColumns }
                 value={ restProps.dataSourceState }
                 onValueChange={ setTableState }
