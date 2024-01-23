@@ -7,19 +7,16 @@ import { CompositeKeysMap } from './CompositeKeysMap';
 export const ROOT_ID: undefined = undefined;
 export const NOT_FOUND_RECORD = Symbol('NOT_FOUND_RECORD');
 
-export interface ApplyFilterOptions<TItem, TId, TFilter> {
-    filter: DataSourceState<TFilter, TId>['filter'];
+export interface ApplyFilterOptions<TItem, TId, TFilter> extends Pick<DataSourceState<TFilter, TId>, 'filter'> {
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;
 }
 
-export interface ApplySearchOptions<TItem, TId, TFilter> {
-    search: DataSourceState<TFilter, TId>['search'];
+export interface ApplySearchOptions<TItem, TId, TFilter> extends Pick<DataSourceState<TFilter, TId>, 'search'> {
     getSearchFields?: (item: TItem) => string[];
     sortSearchByRelevance?: boolean;
 }
 
-export interface ApplySortOptions<TItem, TId, TFilter> {
-    sorting: DataSourceState<TFilter, TId>['sorting'];
+export interface ApplySortOptions<TItem, TId, TFilter> extends Pick<DataSourceState<TFilter, TId>, 'sorting'> {
     sortBy?(item: TItem, sorting: SortingOption): any;
 }
 
