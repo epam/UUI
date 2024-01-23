@@ -1,5 +1,5 @@
 {
- "version": "5.4.3",
+ "version": "5.5.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -5773,17 +5773,24 @@
       "    /** Overrides rendering of the whole cell */",
       "    renderCell?(cellProps: RenderCellProps<TItem, TId>): any;",
       "    /**",
-      "     * Renders column header dropdown.",
+      "     *  Render callback for column header dropdown.",
       "     * Usually, this prop is filled automatically by the useTableState hook.",
       "     * If you use the useTableState hook, you don't need to specify it manually.",
       "     */",
       "    renderDropdown?(): React.ReactNode;",
       "    /**",
-      "     * Renders column filter.",
+      "     *  Render callback for column filter.",
       "     * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.",
       "     * You can use this prop to render a custom filter component.",
       "     */",
       "    renderFilter?(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps): React.ReactNode;",
+      "    /** Render callback for column header tooltip.",
+      "     * This tooltip will appear on cell hover with 600ms delay.",
+      "     *",
+      "     * If omitted, default implementation with column.caption + column.info will be rendered.",
+      "     * Pass `() => null` to disable tooltip rendering.",
+      "     */",
+      "    renderTooltip?(column: DataColumnProps<TItem, TId, TFilter>): React.ReactNode;",
       "}"
      ]
     },
@@ -6088,7 +6095,7 @@
       "name": "renderDropdown",
       "comment": {
        "raw": [
-        "Renders column header dropdown.",
+        "Render callback for column header dropdown.",
         " Usually, this prop is filled automatically by the useTableState hook.",
         " If you use the useTableState hook, you don't need to specify it manually."
        ]
@@ -6106,13 +6113,33 @@
       "name": "renderFilter",
       "comment": {
        "raw": [
-        "Renders column filter.",
+        "Render callback for column filter.",
         " If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.",
         " You can use this prop to render a custom filter component."
        ]
       },
       "typeValue": {
        "raw": "(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderTooltip",
+      "name": "renderTooltip",
+      "comment": {
+       "raw": [
+        "Render callback for column header tooltip.",
+        " This tooltip will appear on cell hover with 600ms delay.",
+        "",
+        " If omitted, default implementation with column.caption + column.info will be rendered.",
+        " Pass `() => null` to disable tooltip rendering."
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -13853,6 +13880,7 @@
       "     * recovery - service trying to restore connection and recover latest requests",
       "     * */",
       "    readonly status: ApiStatus;",
+      "    /** Reason of why api trying to recover connection */",
       "    readonly recoveryReason: ApiRecoveryReason | null;",
       "    /** Returns currently processing or failed requests */",
       "    getActiveCalls(status?: ApiCallStatus): ApiCallInfo[];",
@@ -13896,6 +13924,11 @@
      {
       "uid": "recoveryReason",
       "name": "recoveryReason",
+      "comment": {
+       "raw": [
+        "Reason of why api trying to recover connection"
+       ]
+      },
       "typeValue": {
        "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance'"
       },
@@ -24301,7 +24334,10 @@
        "raw": [
         "Indicates what functions can be performed when a dragged object is released on the drop target.",
         " @deprecated in ARIA 1.1"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
@@ -24386,7 +24422,10 @@
        "raw": [
         "Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
         " @deprecated in ARIA 1.1"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "boolean | 'true' | 'false'"
@@ -27763,7 +27802,9 @@
      "raw": "ModalOperation",
      "print": [
       "interface ModalOperation {",
+      "    /** Modal component that should be rendered */",
       "    component?: React.ComponentType<any>;",
+      "    /** Modal component props */",
       "    props: IModal<any>;",
       "}"
      ]
@@ -27772,6 +27813,11 @@
      {
       "uid": "component",
       "name": "component",
+      "comment": {
+       "raw": [
+        "Modal component that should be rendered"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentClass<any, any> | React.FunctionComponent<any>"
       },
@@ -27780,6 +27826,11 @@
      {
       "uid": "props",
       "name": "props",
+      "comment": {
+       "raw": [
+        "Modal component props"
+       ]
+      },
       "typeValue": {
        "raw": "IModal<any, any>"
       },
@@ -27933,8 +27984,11 @@
      "raw": "NotificationOperation",
      "print": [
       "interface NotificationOperation {",
+      "    /** Notification component that should be rendered */",
       "    component: React.ComponentType<any>;",
+      "    /** Notification component props */",
       "    props: INotification;",
+      "    /** Notification config */",
       "    config: NotificationParams;",
       "}"
      ]
@@ -27943,6 +27997,11 @@
      {
       "uid": "component",
       "name": "component",
+      "comment": {
+       "raw": [
+        "Notification component that should be rendered"
+       ]
+      },
       "typeValue": {
        "raw": "React.ComponentType<any>"
       },
@@ -27952,6 +28011,11 @@
      {
       "uid": "props",
       "name": "props",
+      "comment": {
+       "raw": [
+        "Notification component props"
+       ]
+      },
       "typeValue": {
        "raw": "INotification"
       },
@@ -27960,6 +28024,11 @@
      {
       "uid": "config",
       "name": "config",
+      "comment": {
+       "raw": [
+        "Notification config"
+       ]
+      },
       "typeValue": {
        "raw": "NotificationParams"
       },
@@ -28097,6 +28166,7 @@
       "    isFoldedByDefault?(item: TItem): boolean;",
       "    /** Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field. */",
       "    getSearchFields?(item: TItem): string[];",
+      "    /** Component ref */",
       "    ref?: React.Ref<HTMLElement>;",
       "};"
      ]
@@ -28332,6 +28402,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
       },
@@ -28604,6 +28679,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
       },
@@ -29769,6 +29849,7 @@
      "raw": "RangeDatePickerPresets",
      "print": [
       "type RangeDatePickerPresets = {",
+      "    /** Preset config */",
       "    [key: string]: {",
       "        /** Name of the preset to display in rangeDatePicker body */",
       "        name: ReactNode;",
@@ -29782,6 +29863,11 @@
      {
       "uid": "[key: string]",
       "name": "[key: string]",
+      "comment": {
+       "raw": [
+        "Preset config"
+       ]
+      },
       "typeValue": {
        "raw": "{ name: React.ReactNode; getRange: () => RangeDatePickerPresetValue; }"
       },
@@ -30105,6 +30191,9 @@
       "    rowProps: DataRowProps<TItem, TId>;",
       "    /** Cell mode signal the editor component to adapt it's visuals to cell editor */",
       "    mode: 'cell';",
+      "    /** Ref to pass to the editor component.",
+      "     * It's required for correct focus/blur behavior.",
+      "     * */",
       "    ref?: ForwardedRef<HTMLElement>;",
       "}"
      ]
@@ -30146,6 +30235,12 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Ref to pass to the editor component.",
+        " It's required for correct focus/blur behavior."
+       ]
+      },
       "typeValue": {
        "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
       },
@@ -30443,41 +30538,6 @@
         "top",
         "nearest"
        ]
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:SearchResultItem": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "SearchResultItem",
-     "nameFull": "SearchResultItem<TItem>"
-    },
-    "src": "uui-core/src/data/processing/views/LazyListView.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "SearchResultItem<TItem>",
-     "print": [
-      "type SearchResultItem<TItem> = TItem & {",
-      "    parents?: [",
-      "        TItem",
-      "    ];",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "parents",
-      "name": "parents",
-      "typeValue": {
-       "raw": "[TItem]"
       },
       "required": false
      }
@@ -30876,68 +30936,6 @@
        "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:StatefulProps": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "StatefulProps",
-     "nameFull": "StatefulProps<T>"
-    },
-    "src": "uui-core/src/data/Stateful.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "StatefulProps<T>",
-     "print": [
-      "interface StatefulProps<T> {",
-      "    initialState: Partial<T>;",
-      "    render(props: IEditable<T>): React.ReactNode;",
-      "    storage?: StatefulStorageSettings;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "initialState",
-      "name": "initialState",
-      "typeValue": {
-       "raw": "Partial<T>"
-      },
-      "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Partial",
-      "required": true
-     },
-     {
-      "uid": "render",
-      "name": "render",
-      "typeValue": {
-       "raw": "(props: IEditable<T>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": true
-     },
-     {
-      "uid": "storage",
-      "name": "storage",
-      "typeValue": {
-       "raw": "'state' | 'query'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "state",
-        "query"
-       ]
-      },
       "required": false
      }
     ],
@@ -35510,7 +35508,10 @@
        "raw": [
         "Avatar onClick.",
         "  @deprecated Property onClick is deprecated and will be removed in future release."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "Property onClick is deprecated and will be removed in future release."
+       }
       },
       "typeValue": {
        "raw": "() => void"
@@ -38651,7 +38652,7 @@
       "name": "renderDropdown",
       "comment": {
        "raw": [
-        "Renders column header dropdown.",
+        "Render callback for column header dropdown.",
         " Usually, this prop is filled automatically by the useTableState hook.",
         " If you use the useTableState hook, you don't need to specify it manually."
        ]
@@ -38670,13 +38671,34 @@
       "name": "renderFilter",
       "comment": {
        "raw": [
-        "Renders column filter.",
+        "Render callback for column filter.",
         " If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.",
         " You can use this prop to render a custom filter component."
        ]
       },
       "typeValue": {
        "raw": "(lens: ILens<any>, dropdownProps: IDropdownBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataColumnProps",
+      "required": false
+     },
+     {
+      "uid": "renderTooltip",
+      "name": "renderTooltip",
+      "comment": {
+       "raw": [
+        "Render callback for column header tooltip.",
+        " This tooltip will appear on cell hover with 600ms delay.",
+        "",
+        " If omitted, default implementation with column.caption + column.info will be rendered.",
+        " Pass `() => null` to disable tooltip rendering."
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnProps<any, any, any>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -42500,7 +42522,10 @@
        "raw": [
         "Indicates what functions can be performed when a dragged object is released on the drop target.",
         " @deprecated in ARIA 1.1"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
@@ -42585,7 +42610,10 @@
        "raw": [
         "Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
         " @deprecated in ARIA 1.1"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "boolean | 'true' | 'false'"
@@ -48543,6 +48571,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
@@ -49642,6 +49675,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
@@ -54918,7 +54956,10 @@
        "raw": [
         "Indicates what functions can be performed when a dragged object is released on the drop target.",
         " @deprecated in ARIA 1.1"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "'link' | 'none' | 'copy' | 'execute' | 'move' | 'popup'"
@@ -55003,7 +55044,10 @@
        "raw": [
         "Indicates an element's \"grabbed\" state in a drag-and-drop operation.",
         " @deprecated in ARIA 1.1"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in ARIA 1.1"
+       }
       },
       "typeValue": {
        "raw": "boolean | 'true' | 'false'"
@@ -58034,7 +58078,10 @@
         " @deprecated 16.3, use componentDidMount or the constructor instead; will stop working in React 17",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "16.3, use componentDidMount or the constructor instead; will stop working in React 17"
+       }
       },
       "typeValue": {
        "raw": "() => void"
@@ -58061,7 +58108,10 @@
         " @deprecated 16.3, use componentDidMount or the constructor instead",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#initializing-state",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "16.3, use componentDidMount or the constructor instead"
+       }
       },
       "typeValue": {
        "raw": "() => void"
@@ -58089,7 +58139,10 @@
         " @deprecated 16.3, use static getDerivedStateFromProps instead; will stop working in React 17",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "16.3, use static getDerivedStateFromProps instead; will stop working in React 17"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextContext: any) => void"
@@ -58119,7 +58172,10 @@
         " @deprecated 16.3, use static getDerivedStateFromProps instead",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "16.3, use static getDerivedStateFromProps instead"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextContext: any) => void"
@@ -58145,7 +58201,10 @@
         " @deprecated 16.3, use getSnapshotBeforeUpdate instead; will stop working in React 17",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "16.3, use getSnapshotBeforeUpdate instead; will stop working in React 17"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextState: Readonly<{}>, nextContext: any) => void"
@@ -58173,7 +58232,10 @@
         " @deprecated 16.3, use getSnapshotBeforeUpdate instead",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#reading-dom-properties-before-an-update",
         " @see https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path"
-       ]
+       ],
+       "tags": {
+        "@deprecated": "16.3, use getSnapshotBeforeUpdate instead"
+       }
       },
       "typeValue": {
        "raw": "(nextProps: Readonly<ReactCustomScrollbars.ScrollbarProps>, nextState: Readonly<{}>, nextContext: any) => void"
@@ -61774,6 +61836,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
@@ -62896,6 +62963,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
@@ -63602,6 +63674,11 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
        "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
@@ -67754,1155 +67831,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:CompletePickerInputProps": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "CompletePickerInputProps",
-     "nameFull": "CompletePickerInputProps<TItem, TId>"
-    },
-    "src": "uui/components/pickers/PickerInput.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
-     "print": [
-      "type CompletePickerInputProps<TItem, TId> = PickerInputProps & PickerInputBaseProps<TItem, TId>;"
-     ]
-    },
-    "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     },
-     {
-      "uid": "entityName",
-      "name": "entityName",
-      "comment": {
-       "raw": [
-        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "entityPluralName",
-      "name": "entityPluralName",
-      "comment": {
-       "raw": [
-        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "dataSource",
-      "name": "dataSource",
-      "comment": {
-       "raw": [
-        "Datasource to get data for the picker"
-       ]
-      },
-      "typeValue": {
-       "raw": "IDataSource<TItem, TId, any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": true
-     },
-     {
-      "uid": "getName",
-      "name": "getName",
-      "comment": {
-       "raw": [
-        "A pure function that gets entity name from entity object.",
-        "     Default: (item) => item.name."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "renderRow",
-      "name": "renderRow",
-      "comment": {
-       "raw": [
-        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "getRowOptions",
-      "name": "getRowOptions",
-      "comment": {
-       "raw": [
-        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "renderNotFound",
-      "name": "renderNotFound",
-      "comment": {
-       "raw": [
-        "Overrides the default 'no records found' banner.",
-        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "emptyValue",
-      "name": "emptyValue",
-      "comment": {
-       "raw": [
-        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | []"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "sortBy",
-      "name": "sortBy",
-      "comment": {
-       "raw": [
-        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, sorting: SortingOption<any>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "filter",
-      "name": "filter",
-      "comment": {
-       "raw": [
-        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "sorting",
-      "name": "sorting",
-      "comment": {
-       "raw": [
-        "Defines sorting to pass to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "SortingOption<any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "cascadeSelection",
-      "name": "cascadeSelection",
-      "comment": {
-       "raw": [
-        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
-        " - false: All nodes are selected independently (default).",
-        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-        " - 'implicit': Selecting a parent node means that all children are considered checked.",
-        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
-        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
-        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
-        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean | 'implicit' | 'explicit'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        false,
-        true,
-        "implicit",
-        "explicit"
-       ]
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "isFoldedByDefault",
-      "name": "isFoldedByDefault",
-      "comment": {
-       "raw": [
-        "You can return true for all, or some items to fold them."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "getSearchFields",
-      "name": "getSearchFields",
-      "comment": {
-       "raw": [
-        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string[]"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "ref",
-      "name": "ref",
-      "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "selectionMode",
-      "name": "selectionMode",
-      "comment": {
-       "raw": [
-        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
-       ]
-      },
-      "typeValue": {
-       "raw": "'single'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "single"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": true
-     },
-     {
-      "uid": "valueType",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TId) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationMessage",
-      "name": "validationMessage",
-      "comment": {
-       "raw": [
-        "Message describing why the value is invalid"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "validationProps",
-      "name": "validationProps",
-      "comment": {
-       "raw": [
-        "If T is a complex value (object or array), this property contains validation states of inner items"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ [key: string]: ICanBeInvalid; }"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": "getValueChangeAnalyticsEvent",
-      "name": "getValueChangeAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "Given a value, returns an analytics event to send when component is edited.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: any, oldValue: any) => AnalyticsEvent"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "placeholder",
-      "name": "placeholder",
-      "comment": {
-       "raw": [
-        "Placeholder to display when empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasPlaceholder",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "iconPosition",
-      "name": "iconPosition",
-      "comment": {
-       "raw": [
-        "Position of the icon (left of right)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "onIconClick",
-      "name": "onIconClick",
-      "comment": {
-       "raw": [
-        "Click handler for the icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "editMode",
-      "name": "editMode",
-      "comment": {
-       "raw": [
-        "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
-       ]
-      },
-      "typeValue": {
-       "raw": "'dropdown' | 'modal'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "dropdown",
-        "modal"
-       ]
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "maxItems",
-      "name": "maxItems",
-      "comment": {
-       "raw": [
-        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "minBodyWidth",
-      "name": "minBodyWidth",
-      "comment": {
-       "raw": [
-        "Minimum width of dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "isSingleLine",
-      "name": "isSingleLine",
-      "comment": {
-       "raw": [
-        "Prevents selected items tags to occupy multiple lines"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownPlacement",
-      "name": "dropdownPlacement",
-      "comment": {
-       "raw": [
-        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right",
-        "auto",
-        "auto-start",
-        "auto-end",
-        "top",
-        "bottom",
-        "top-start",
-        "top-end",
-        "bottom-start",
-        "bottom-end",
-        "right-start",
-        "right-end",
-        "left-start",
-        "left-end"
-       ]
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "renderToggler",
-      "name": "renderToggler",
-      "comment": {
-       "raw": [
-        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "searchPosition",
-      "name": "searchPosition",
-      "comment": {
-       "raw": [
-        "Defines where search field is:",
-        " 'input' - try to place search inside the toggler (default for single-select),",
-        " 'body' - put search inside the dropdown (default for multi-select)",
-        " 'none' - disables search completely",
-        "",
-        " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
-       ]
-      },
-      "typeValue": {
-       "raw": "'none' | 'input' | 'body'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "none",
-        "input",
-        "body"
-       ]
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disallow to clear Picker value (cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "minCharsToSearch",
-      "name": "minCharsToSearch",
-      "comment": {
-       "raw": [
-        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
-        " By default search triggers after input value is changed.",
-        "",
-        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownHeight",
-      "name": "dropdownHeight",
-      "comment": {
-       "raw": [
-        "Overrides default height of the dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "autoFocus",
-      "name": "autoFocus",
-      "comment": {
-       "raw": [
-        "Sets focus to component when it's mounted"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "HTML attributes to put directly to the PickerInput parts"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "renderFooter",
-      "name": "renderFooter",
-      "comment": {
-       "raw": [
-        "Adds custom footer to the dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "fixedBodyPosition",
-      "name": "fixedBodyPosition",
-      "comment": {
-       "raw": [
-        "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "portalTarget",
-      "name": "portalTarget",
-      "comment": {
-       "raw": [
-        "Node of portal target, where to render the dropdown body.",
-        " By default, will be used global portal node."
-       ]
-      },
-      "typeValue": {
-       "raw": "HTMLElement"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "inputCx",
-      "name": "inputCx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "bodyCx",
-      "name": "bodyCx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "highlightSearchMatches",
-      "name": "highlightSearchMatches",
-      "comment": {
-       "raw": [
-        "Enables highlighting of the items' text with search-matching results."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "searchDebounceDelay",
-      "name": "searchDebounceDelay",
-      "comment": {
-       "raw": [
-        "Search input debounce delay in ms. Default value is 500ms"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "HTML ID attribute for the input in toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "valueType_2",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'entity'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "entity"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": true
-     },
-     {
-      "uid": "value_2",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TItem"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange_2",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TItem) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "selectionMode_3",
-      "name": "selectionMode",
-      "comment": {
-       "raw": [
-        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
-       ]
-      },
-      "typeValue": {
-       "raw": "'multi'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "multi"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": true
-     },
-     {
-      "uid": "valueType_3",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": false
-     },
-     {
-      "uid": "value_3",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId[]"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange_3",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TId[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "valueType_4",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'entity'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "entity"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": true
-     },
-     {
-      "uid": "value_4",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TItem[]"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     },
-     {
-      "uid": "onValueChange_4",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TItem[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IEditable",
-      "required": true
-     }
-    ],
-    "propsFromUnion": true
-   }
-  },
   "@epam/uui:ConfirmationModalWindowProps": {
    "summary": {
     "module": "@epam/uui",
@@ -68919,8 +67847,11 @@
      "raw": "ConfirmationModalWindowProps",
      "print": [
       "interface ConfirmationModalWindowProps extends IModal<any> {",
+      "    /** Confirmation modal title */",
       "    caption: any;",
+      "    /** Confirmation modal content */",
       "    bodyContent?: any;",
+      "    /** Pass true, to hide cancel button */",
       "    hideCancelButton?: boolean;",
       "}"
      ]
@@ -68929,6 +67860,11 @@
      {
       "uid": "caption",
       "name": "caption",
+      "comment": {
+       "raw": [
+        "Confirmation modal title"
+       ]
+      },
       "typeValue": {
        "raw": "any"
       },
@@ -68937,6 +67873,11 @@
      {
       "uid": "bodyContent",
       "name": "bodyContent",
+      "comment": {
+       "raw": [
+        "Confirmation modal content"
+       ]
+      },
       "typeValue": {
        "raw": "any"
       },
@@ -68945,6 +67886,11 @@
      {
       "uid": "hideCancelButton",
       "name": "hideCancelButton",
+      "comment": {
+       "raw": [
+        "Pass true, to hide cancel button"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -69863,14 +68809,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "bottom",
         "center",
+        "bottom",
         "stretch"
        ]
       },
@@ -70914,8 +69860,13 @@
      "raw": "DataTableMods",
      "print": [
       "interface DataTableMods {",
+      "    /** Min height of table rows and header */",
       "    size?: ControlSize;",
+      "    /** Pass true, to turn row bottom border */",
       "    border?: boolean;",
+      "    /** Configure column header text case",
+      "     * @default 'normal'",
+      "     * */",
       "    headerTextCase?: 'upper' | 'normal';",
       "}"
      ]
@@ -70924,6 +69875,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Min height of table rows and header"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
       },
@@ -70942,6 +69898,11 @@
      {
       "uid": "border",
       "name": "border",
+      "comment": {
+       "raw": [
+        "Pass true, to turn row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -70953,6 +69914,15 @@
      {
       "uid": "headerTextCase",
       "name": "headerTextCase",
+      "comment": {
+       "raw": [
+        "Configure column header text case",
+        " @default 'normal'"
+       ],
+       "tags": {
+        "@default": "normal"
+       }
+      },
       "typeValue": {
        "raw": "'upper' | 'normal'"
       },
@@ -71932,7 +70902,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -71940,10 +70910,10 @@
         "left",
         "right",
         "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "bottom",
+        "auto-start",
+        "auto-end",
         "top-start",
         "top-end",
         "bottom-start",
@@ -72675,7 +71645,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -72683,10 +71653,10 @@
         "left",
         "right",
         "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "bottom",
+        "auto-start",
+        "auto-end",
         "top-start",
         "top-end",
         "bottom-start",
@@ -73009,7 +71979,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -73017,10 +71987,10 @@
         "left",
         "right",
         "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "bottom",
+        "auto-start",
+        "auto-end",
         "top-start",
         "top-end",
         "bottom-start",
@@ -73078,19 +72048,19 @@
      "raw": "DropSpotProps",
      "print": [
       "interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {",
-      "    /*",
+      "    /**",
       "    * Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea.",
       "    */",
       "    infoText?: string;",
-      "    /*",
-      "    * Called when uploading files.",
+      "    /**",
+      "    * Called when files was added to the DropSpot.",
       "    */",
       "    onUploadFiles(files: File[]): any;",
-      "    /*",
+      "    /**",
       "    * Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details",
       "    */",
       "    accept?: string;",
-      "    /*",
+      "    /**",
       "    * Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details",
       "    */",
       "    single?: boolean;",
@@ -73101,6 +72071,11 @@
      {
       "uid": "infoText",
       "name": "infoText",
+      "comment": {
+       "raw": [
+        "Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -73112,6 +72087,11 @@
      {
       "uid": "onUploadFiles",
       "name": "onUploadFiles",
+      "comment": {
+       "raw": [
+        "Called when files was added to the DropSpot."
+       ]
+      },
       "typeValue": {
        "raw": "(files: File[]) => any"
       },
@@ -73123,6 +72103,11 @@
      {
       "uid": "accept",
       "name": "accept",
+      "comment": {
+       "raw": [
+        "Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -73134,6 +72119,11 @@
      {
       "uid": "single",
       "name": "single",
+      "comment": {
+       "raw": [
+        "Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -73191,11 +72181,11 @@
      "raw": "FileCardItem",
      "print": [
       "interface FileCardItem extends Partial<File & FileUploadResponse> {",
-      "    /*",
-      "    * Defines upload progress. It should be number value in range from 0 to 100', where 100 means that file fully loaded.",
+      "    /**",
+      "    * Defines upload progress. It should be numbered value in range from 0 to 100', where 100 means that file fully loaded.",
       "    */",
       "    progress?: number;",
-      "    /*",
+      "    /**",
       "    * Callback to handle aborted event which fired when a request has been aborted.",
       "    * See {@link https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort_event} for details",
       "    */",
@@ -73207,6 +72197,11 @@
      {
       "uid": "progress",
       "name": "progress",
+      "comment": {
+       "raw": [
+        "Defines upload progress. It should be numbered value in range from 0 to 100', where 100 means that file fully loaded."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -73218,6 +72213,12 @@
      {
       "uid": "abortXHR",
       "name": "abortXHR",
+      "comment": {
+       "raw": [
+        "Callback to handle aborted event which fired when a request has been aborted.",
+        " See {@link https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort_event} for details"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -73427,13 +72428,11 @@
      "raw": "FileCardProps",
      "print": [
       "interface FileCardProps extends IClickable, IHasCX {",
-      "    /*",
-      "    * Defines file card item",
-      "    */",
+      "    /** Defines file card item */",
       "    file: FileCardItem;",
-      "    /*",
-      "    * Defines component width.",
-      "    */",
+      "    /** Defines card width",
+      "     * @default 100%",
+      "     */",
       "    width?: number;",
       "}"
      ]
@@ -73442,6 +72441,11 @@
      {
       "uid": "file",
       "name": "file",
+      "comment": {
+       "raw": [
+        "Defines file card item"
+       ]
+      },
       "typeValue": {
        "raw": "FileCardItem"
       },
@@ -73450,6 +72454,12 @@
      {
       "uid": "width",
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines card width",
+        " @default 100%"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -73510,9 +72520,13 @@
      "raw": "FiltersPanelProps<TFilter>",
      "print": [
       "interface FiltersPanelProps<TFilter> {",
+      "    /** Filters config to get data how to render filters */",
       "    filters: TableFiltersConfig<TFilter>[];",
+      "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
+      "    /** Called when state needs to be changed */",
       "    setTableState: (newState: DataTableState) => void;",
+      "    /** Defines size(height) of filter panel and filters */",
       "    size?: '24' | '30' | '36' | '42' | '48';",
       "}"
      ]
@@ -73521,6 +72535,11 @@
      {
       "uid": "filters",
       "name": "filters",
+      "comment": {
+       "raw": [
+        "Filters config to get data how to render filters"
+       ]
+      },
       "typeValue": {
        "raw": "TableFiltersConfig<TFilter>[]"
       },
@@ -73529,6 +72548,11 @@
      {
       "uid": "tableState",
       "name": "tableState",
+      "comment": {
+       "raw": [
+        "Current state value of the table(list)"
+       ]
+      },
       "typeValue": {
        "raw": "DataTableState<any, any>"
       },
@@ -73537,6 +72561,11 @@
      {
       "uid": "setTableState",
       "name": "setTableState",
+      "comment": {
+       "raw": [
+        "Called when state needs to be changed"
+       ]
+      },
       "typeValue": {
        "raw": "(newState: DataTableState<any, any>) => void"
       },
@@ -73548,6 +72577,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines size(height) of filter panel and filters"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
       },
@@ -73887,14 +72921,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "bottom",
         "center",
+        "bottom",
         "stretch"
        ]
       },
@@ -73904,6 +72938,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -73924,6 +72963,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -73936,6 +72980,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -73945,6 +72994,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -73961,6 +73015,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -73979,6 +73038,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -73988,6 +73052,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -74005,6 +73074,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -74017,6 +73091,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -74036,6 +73115,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -74166,66 +73250,6 @@
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:HighlightRange": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "HighlightRange",
-     "nameFull": "HighlightRange"
-    },
-    "src": "uui/components/pickers/highlight.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "HighlightRange",
-     "print": [
-      "interface HighlightRange {",
-      "    from: number;",
-      "    to: number;",
-      "    isHighlighted: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "from",
-      "name": "from",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "to",
-      "name": "to",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "isHighlighted",
-      "name": "isHighlighted",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -75576,6 +74600,7 @@
      "raw": "IndeterminateBarMods",
      "print": [
       "interface IndeterminateBarMods extends IHasCX {",
+      "    /** Component size */",
       "    size?: '12' | '18' | '24';",
       "}"
      ]
@@ -75584,6 +74609,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Component size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24'"
       },
@@ -75655,7 +74685,9 @@
      "raw": "ITextPlaceholderProps",
      "print": [
       "interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {",
+      "    /** Number of placeholder worlds to render in block */",
       "    wordsCount?: number;",
+      "    /** Pass true, to turn off the placeholder animation */",
       "    isNotAnimated?: boolean;",
       "}"
      ]
@@ -75664,6 +74696,11 @@
      {
       "uid": "wordsCount",
       "name": "wordsCount",
+      "comment": {
+       "raw": [
+        "Number of placeholder worlds to render in block"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -75675,6 +74712,11 @@
      {
       "uid": "isNotAnimated",
       "name": "isNotAnimated",
+      "comment": {
+       "raw": [
+        "Pass true, to turn off the placeholder animation"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79148,6 +78190,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -79168,6 +78215,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79180,6 +78232,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -79189,6 +78246,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -79205,6 +78267,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -79223,6 +78290,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -79232,6 +78304,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -79249,6 +78326,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79261,6 +78343,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -79280,6 +78367,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -79380,6 +78472,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -79400,6 +78497,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79412,6 +78514,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -79421,6 +78528,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -79437,6 +78549,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -79455,6 +78572,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -79464,6 +78586,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -79481,6 +78608,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -79493,6 +78625,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -79512,6 +78649,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -81496,7 +80638,7 @@
     "module": "@epam/uui",
     "typeName": {
      "name": "PickerInputProps",
-     "nameFull": "PickerInputProps"
+     "nameFull": "PickerInputProps<TItem, TId>"
     },
     "src": "uui/components/pickers/PickerInput.tsx",
     "exported": true
@@ -81504,9 +80646,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "PickerInputProps",
+     "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
      "print": [
-      "type PickerInputProps = SizeMod & IHasEditMode & {};"
+      "type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId>;"
      ]
     },
     "props": [
@@ -81558,9 +80700,1091 @@
       },
       "from": "@epam/uui:IHasEditMode",
       "required": false
+     },
+     {
+      "uid": "entityName",
+      "name": "entityName",
+      "comment": {
+       "raw": [
+        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "entityPluralName",
+      "name": "entityPluralName",
+      "comment": {
+       "raw": [
+        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "dataSource",
+      "name": "dataSource",
+      "comment": {
+       "raw": [
+        "Datasource to get data for the picker"
+       ]
+      },
+      "typeValue": {
+       "raw": "IDataSource<TItem, TId, any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": true
+     },
+     {
+      "uid": "getName",
+      "name": "getName",
+      "comment": {
+       "raw": [
+        "A pure function that gets entity name from entity object.",
+        "     Default: (item) => item.name."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderRow",
+      "name": "renderRow",
+      "comment": {
+       "raw": [
+        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "getRowOptions",
+      "name": "getRowOptions",
+      "comment": {
+       "raw": [
+        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderNotFound",
+      "name": "renderNotFound",
+      "comment": {
+       "raw": [
+        "Overrides the default 'no records found' banner.",
+        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "emptyValue",
+      "name": "emptyValue",
+      "comment": {
+       "raw": [
+        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | []"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "sortBy",
+      "name": "sortBy",
+      "comment": {
+       "raw": [
+        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, sorting: SortingOption<any>) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "sorting",
+      "name": "sorting",
+      "comment": {
+       "raw": [
+        "Defines sorting to pass to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "SortingOption<any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "cascadeSelection",
+      "name": "cascadeSelection",
+      "comment": {
+       "raw": [
+        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+        " - false: All nodes are selected independently (default).",
+        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+        " - 'implicit': Selecting a parent node means that all children are considered checked.",
+        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "isFoldedByDefault",
+      "name": "isFoldedByDefault",
+      "comment": {
+       "raw": [
+        "You can return true for all, or some items to fold them."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "getSearchFields",
+      "name": "getSearchFields",
+      "comment": {
+       "raw": [
+        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string[]"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "ref",
+      "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "selectionMode",
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'single'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "single"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": "valueType",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TId) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "validationProps",
+      "name": "validationProps",
+      "comment": {
+       "raw": [
+        "If T is a complex value (object or array), this property contains validation states of inner items"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: ICanBeInvalid; }"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: any, oldValue: any) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "placeholder",
+      "name": "placeholder",
+      "comment": {
+       "raw": [
+        "Placeholder to display when empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconPosition",
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Position of the icon (left of right)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "onIconClick",
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Click handler for the icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "editMode",
+      "name": "editMode",
+      "comment": {
+       "raw": [
+        "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
+       ]
+      },
+      "typeValue": {
+       "raw": "'dropdown' | 'modal'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "dropdown",
+        "modal"
+       ]
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "maxItems",
+      "name": "maxItems",
+      "comment": {
+       "raw": [
+        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "minBodyWidth",
+      "name": "minBodyWidth",
+      "comment": {
+       "raw": [
+        "Minimum width of dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "isSingleLine",
+      "name": "isSingleLine",
+      "comment": {
+       "raw": [
+        "Prevents selected items tags to occupy multiple lines"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownPlacement",
+      "name": "dropdownPlacement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right",
+        "auto",
+        "top",
+        "bottom",
+        "auto-start",
+        "auto-end",
+        "top-start",
+        "top-end",
+        "bottom-start",
+        "bottom-end",
+        "right-start",
+        "right-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderToggler",
+      "name": "renderToggler",
+      "comment": {
+       "raw": [
+        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "searchPosition",
+      "name": "searchPosition",
+      "comment": {
+       "raw": [
+        "Defines where search field is:",
+        " 'input' - try to place search inside the toggler (default for single-select),",
+        " 'body' - put search inside the dropdown (default for multi-select)",
+        " 'none' - disables search completely",
+        "",
+        " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
+       ]
+      },
+      "typeValue": {
+       "raw": "'none' | 'input' | 'body'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "none",
+        "input",
+        "body"
+       ]
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value (cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownHeight",
+      "name": "dropdownHeight",
+      "comment": {
+       "raw": [
+        "Overrides default height of the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "autoFocus",
+      "name": "autoFocus",
+      "comment": {
+       "raw": [
+        "Sets focus to component when it's mounted"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "HTML attributes to put directly to the PickerInput parts"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Adds custom footer to the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "fixedBodyPosition",
+      "name": "fixedBodyPosition",
+      "comment": {
+       "raw": [
+        "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "portalTarget",
+      "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
+      "typeValue": {
+       "raw": "HTMLElement"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "inputCx",
+      "name": "inputCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "bodyCx",
+      "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "searchDebounceDelay",
+      "name": "searchDebounceDelay",
+      "comment": {
+       "raw": [
+        "Search input debounce delay in ms. Default value is 500ms"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID attribute for the input in toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "valueType_2",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "entity"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": "value_2",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange_2",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TItem) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "selectionMode_3",
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'multi'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "multi"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": "valueType_3",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": false
+     },
+     {
+      "uid": "value_3",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange_3",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TId[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "valueType_4",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "entity"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": "value_4",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem[]"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
+     },
+     {
+      "uid": "onValueChange_4",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TItem[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IEditable",
+      "required": true
      }
     ],
-    "propsFromUnion": false
+    "propsFromUnion": true
    }
   },
   "@epam/uui:PickerItemProps": {
@@ -81579,10 +81803,21 @@
      "raw": "PickerItemProps<TItem, TId>",
      "print": [
       "interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {",
+      "    /** Path to the user avatar.",
+      "     * If omitted, no avatar will be rendered.",
+      "     * * */",
       "    avatarUrl?: string;",
+      "    /** Icon to render in picker row.",
+      "     * If omitted, nothing will be rendered.",
+      "     * */",
       "    icon?: Icon;",
+      "    /** Row title */",
       "    title?: string;",
+      "    /** Row subtitle. Will be rendered as a second line, below the title */",
       "    subtitle?: string;",
+      "    /** DataSourceState of the Picker.",
+      "     * Usually provided via renderItem callback params",
+      "     * */",
       "    dataSourceState?: DataSourceState;",
       "    /**",
       "     * Enables highlighting of the items' text with search-matching results.",
@@ -81596,6 +81831,13 @@
      {
       "uid": "avatarUrl",
       "name": "avatarUrl",
+      "comment": {
+       "raw": [
+        "Path to the user avatar.",
+        " If omitted, no avatar will be rendered.",
+        " *"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -81607,6 +81849,12 @@
      {
       "uid": "icon",
       "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon to render in picker row.",
+        " If omitted, nothing will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "Icon"
       },
@@ -81618,6 +81866,11 @@
      {
       "uid": "title",
       "name": "title",
+      "comment": {
+       "raw": [
+        "Row title"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -81629,6 +81882,11 @@
      {
       "uid": "subtitle",
       "name": "subtitle",
+      "comment": {
+       "raw": [
+        "Row subtitle. Will be rendered as a second line, below the title"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -81640,6 +81898,12 @@
      {
       "uid": "dataSourceState",
       "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "DataSourceState of the Picker.",
+        " Usually provided via renderItem callback params"
+       ]
+      },
       "typeValue": {
        "raw": "DataSourceState<Record<string, any>, any>"
       },
@@ -81744,14 +82008,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "bottom",
         "center",
+        "bottom",
         "stretch"
        ]
       },
@@ -82422,6 +82686,9 @@
      "raw": "PickerListItemProps<TItem, TId>",
      "print": [
       "interface PickerListItemProps<TItem, TId> extends DataRowProps<TItem, TId> {",
+      "    /** A pure function that gets entity name from entity object.",
+      "     Default: (item) => item.name.",
+      "     */",
       "    getName(item: TItem): string;",
       "}"
      ]
@@ -82430,6 +82697,12 @@
      {
       "uid": "getName",
       "name": "getName",
+      "comment": {
+       "raw": [
+        "A pure function that gets entity name from entity object.",
+        "     Default: (item) => item.name."
+       ]
+      },
       "typeValue": {
        "raw": "(item: TItem) => string"
       },
@@ -82517,14 +82790,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "bottom",
         "center",
+        "bottom",
         "stretch"
        ]
       },
@@ -83550,8 +83823,13 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -84281,8 +84559,13 @@
      {
       "uid": "ref",
       "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
       "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -84787,6 +85070,7 @@
      "raw": "PresetsPanelProps",
      "print": [
       "interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
       "}"
      ]
@@ -84795,6 +85079,11 @@
      {
       "uid": "tableState",
       "name": "tableState",
+      "comment": {
+       "raw": [
+        "Current state value of the table(list)"
+       ]
+      },
       "typeValue": {
        "raw": "DataTableState<any, any>"
       },
@@ -86596,7 +86885,7 @@
        }
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -86604,10 +86893,10 @@
         "left",
         "right",
         "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "bottom",
+        "auto-start",
+        "auto-end",
         "top-start",
         "top-end",
         "bottom-start",
@@ -87093,45 +87382,25 @@
      "raw": "RowMods",
      "print": [
       "type RowMods = {",
-      "    /*",
-      "    * Defines row size.",
-      "    */",
+      "    /** Defines row size */",
       "    size?: null | '24' | '30' | '36' | '42' | '48';",
-      "    /*",
-      "    * Defines row border bottom.",
-      "    */",
+      "    /** Pass true, to enable row bottom border */",
       "    borderBottom?: boolean;",
-      "    /*",
-      "    * Defines row column gap.",
-      "    */",
+      "    /** Defines row column gap */",
       "    columnGap?: number | '6' | '12' | '18' | '24' | '36';",
-      "    /*",
-      "    * Defines row margin.",
-      "    */",
+      "    /** Defines row margin */",
       "    margin?: '12' | '24';",
-      "    /*",
-      "    * Defines horizontal row padding.",
-      "    */",
+      "    /** Defines horizontal row padding */",
       "    padding?: '6' | '12' | '18' | '24';",
-      "    /*",
-      "    * Defines row gap.",
-      "    */",
+      "    /** Defines row gap */",
       "    rowGap?: number | '6' | '12' | '18' | '24' | '36';",
-      "    /*",
-      "    * Defines row spacing.",
-      "    */",
+      "    /** Defines row spacing */",
       "    spacing?: '6' | '12' | '18';",
-      "    /*",
-      "    * Pass true to show a top shadow.",
-      "    */",
+      "    /** Pass true, to show a top shadow */",
       "    topShadow?: boolean;",
-      "    /*",
-      "    * Defines vertical row padding.",
-      "    */",
+      "    /** Defines vertical row padding */",
       "    vPadding?: '12' | '18' | '24' | '36' | '48';",
-      "    /*",
-      "    * Defines row background.",
-      "    */",
+      "    /** Defines row background */",
       "    background?: 'surface-main';",
       "};"
      ]
@@ -87140,6 +87409,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -87159,6 +87433,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -87170,6 +87449,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -87178,6 +87462,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -87193,6 +87482,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -87210,6 +87504,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -87218,6 +87517,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -87234,6 +87538,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -87245,6 +87554,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -87263,6 +87577,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -91408,6 +91727,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '30'"
       },
@@ -91426,6 +91750,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
       },
@@ -92228,6 +92557,11 @@
      {
       "uid": "wordsCount",
       "name": "wordsCount",
+      "comment": {
+       "raw": [
+        "Number of placeholder worlds to render in block"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -92240,6 +92574,11 @@
      {
       "uid": "isNotAnimated",
       "name": "isNotAnimated",
+      "comment": {
+       "raw": [
+        "Pass true, to turn off the placeholder animation"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -92489,6 +92828,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '30'"
       },
@@ -92507,6 +92851,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
       },
@@ -92576,7 +92925,9 @@
      "raw": "TextSettings",
      "print": [
       "interface TextSettings {",
+      "    /** Defines text line-height */",
       "    lineHeight?: '12' | '18' | '24' | '30';",
+      "    /** Defines text font-size */",
       "    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';",
       "}"
      ]
@@ -92585,6 +92936,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '30'"
       },
@@ -92602,6 +92958,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
       },
@@ -93297,7 +93658,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -93305,10 +93666,10 @@
         "left",
         "right",
         "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "bottom",
+        "auto-start",
+        "auto-end",
         "top-start",
         "top-end",
         "bottom-start",
@@ -93746,7 +94107,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -93754,10 +94115,10 @@
         "left",
         "right",
         "auto",
-        "auto-start",
-        "auto-end",
         "top",
         "bottom",
+        "auto-start",
+        "auto-end",
         "top-start",
         "top-end",
         "bottom-start",
@@ -97266,6 +97627,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -97286,6 +97652,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -97295,6 +97666,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -97350,6 +97726,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -97362,6 +97743,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'24' | '12'"
       },
@@ -97378,6 +97764,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '6'"
       },
@@ -97396,6 +97787,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '12' | '6'"
       },
@@ -97413,6 +97809,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -97425,6 +97826,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '18' | '24' | '12'"
       },
@@ -98189,7 +98595,8 @@
         "  @default 'gray60'"
        ],
        "tags": {
-        "@default": "gray60"
+        "@default": "gray60",
+        "@deprecated": "Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop."
        }
       },
       "typeValue": {
@@ -100994,6 +101401,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '30' | '12'"
       },
@@ -101012,6 +101424,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
       },
@@ -105849,6 +106266,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -105869,6 +106291,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -105881,6 +106308,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'24' | '12'"
       },
@@ -105897,6 +106329,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '6'"
       },
@@ -105915,6 +106352,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -105927,6 +106369,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '18' | '24' | '12'"
       },
@@ -106672,7 +107119,8 @@
         " @default 'night600'"
        ],
        "tags": {
-        "@default": "night600"
+        "@default": "night600",
+        "@deprecated": "Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop."
        }
       },
       "typeValue": {
@@ -107296,124 +107744,6 @@
      }
     ],
     "propsFromUnion": true
-   }
-  },
-  "@epam/loveship:MakeMeItemProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MakeMeItemProps",
-     "nameFull": "MakeMeItemProps"
-    },
-    "src": "loveship/components/dev/MakeMeItem.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MakeMeItemProps",
-     "print": [
-      "interface MakeMeItemProps {",
-      "    api: LazyDataSourceApi<MakeMeUser, number | string, any>;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "api",
-      "name": "api",
-      "typeValue": {
-       "raw": "LazyDataSourceApi<MakeMeUser, string | number, any>"
-      },
-      "typeValueRef": "@epam/uui-core:LazyDataSourceApi",
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:MakeMeUser": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "MakeMeUser",
-     "nameFull": "MakeMeUser"
-    },
-    "src": "loveship/components/dev/MakeMeItem.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "MakeMeUser",
-     "print": [
-      "interface MakeMeUser {",
-      "    externalId: number | string;",
-      "    name: string;",
-      "    avatarUrl: string;",
-      "    jobTitle?: string;",
-      "    email?: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "externalId",
-      "name": "externalId",
-      "typeValue": {
-       "raw": "string | number"
-      },
-      "required": true
-     },
-     {
-      "uid": "name",
-      "name": "name",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "avatarUrl",
-      "name": "avatarUrl",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "jobTitle",
-      "name": "jobTitle",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "email",
-      "name": "email",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/loveship:ModalWindowProps": {
@@ -109072,6 +109402,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -109092,6 +109427,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -109104,6 +109444,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -109113,6 +109458,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'24' | '12'"
       },
@@ -109129,6 +109479,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '6'"
       },
@@ -109147,6 +109502,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -109156,6 +109516,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -109168,6 +109533,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '18' | '24' | '12'"
       },
@@ -110664,6 +111034,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '30' | '12'"
       },
@@ -110682,6 +111057,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
       },
@@ -111527,159 +111907,6 @@
     }
    }
   },
-  "@epam/uui-editor:IImageElement": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "IImageElement",
-     "nameFull": "IImageElement"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IImageElement",
-     "print": [
-      "interface IImageElement extends TElement, PlateProps, SlateProps {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "children",
-      "name": "children",
-      "typeValue": {
-       "raw": "TDescendant[]"
-      },
-      "from": "node_modules/@udecode/slate/dist/index.d.ts:TElement",
-      "required": true
-     },
-     {
-      "uid": "type",
-      "name": "type",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "node_modules/@udecode/slate/dist/index.d.ts:TElement",
-      "required": true
-     },
-     {
-      "uid": "url",
-      "name": "url",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-editor:PlateProps",
-      "required": true
-     },
-     {
-      "uid": "align",
-      "name": "align",
-      "typeValue": {
-       "raw": "'left' | 'center' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "center",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-editor:PlateProps",
-      "required": false
-     },
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-editor:PlateProps",
-      "required": false
-     },
-     {
-      "uid": "data",
-      "name": "data",
-      "typeValue": {
-       "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
-      },
-      "typeValueRef": "@epam/uui-editor:SlateImageData",
-      "from": "@epam/uui-editor:SlateProps",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:LinkElement": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "LinkElement",
-     "nameFull": "LinkElement"
-    },
-    "src": "uui-editor/src/plugins/linkPlugin/linkPlugin.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "LinkElement",
-     "print": [
-      "interface LinkElement extends TElement {",
-      "    href: string;",
-      "    type: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "href",
-      "name": "href",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "type",
-      "name": "type",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "typeValue": {
-       "raw": "TDescendant[]"
-      },
-      "from": "node_modules/@udecode/slate/dist/index.d.ts:TElement",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-editor:PlaceholderPluginParams": {
    "summary": {
     "module": "@epam/uui-editor",
@@ -111696,6 +111923,7 @@
      "raw": "PlaceholderPluginParams",
      "print": [
       "interface PlaceholderPluginParams {",
+      "    /** Placeholder items */",
       "    items: {",
       "        name: string;",
       "        [key: string]: any;",
@@ -111707,6 +111935,11 @@
      {
       "uid": "items",
       "name": "items",
+      "comment": {
+       "raw": [
+        "Placeholder items"
+       ]
+      },
       "typeValue": {
        "raw": "{ [key: string]: any; name: string; }[]"
       },
@@ -111714,201 +111947,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:PlateImgAlign": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "PlateImgAlign",
-     "nameFull": "PlateImgAlign"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'left' | 'center' | 'right'",
-     "print": [
-      "type PlateImgAlign = 'left' | 'center' | 'right';"
-     ]
-    }
-   }
-  },
-  "@epam/uui-editor:PlateProps": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "PlateProps",
-     "nameFull": "PlateProps"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "PlateProps",
-     "print": [
-      "interface PlateProps {",
-      "    url: string;",
-      "    align?: PlateImgAlign;",
-      "    width?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "url",
-      "name": "url",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "align",
-      "name": "align",
-      "typeValue": {
-       "raw": "'left' | 'center' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "center",
-        "right"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:SlateImageSize": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateImageSize",
-     "nameFull": "SlateImageSize"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "SlateImageSize",
-     "print": [
-      "type SlateImageSize = {",
-      "    width: number;",
-      "    height: number | string;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "height",
-      "name": "height",
-      "typeValue": {
-       "raw": "string | number"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:SlateImgAlign": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateImgAlign",
-     "nameFull": "SlateImgAlign"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'align-left' | 'align-right' | 'align-center'",
-     "print": [
-      "type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';"
-     ]
-    }
-   }
-  },
-  "@epam/uui-editor:SlateProps": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateProps",
-     "nameFull": "SlateProps"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SlateProps",
-     "print": [
-      "interface SlateProps {",
-      "    data: SlateImageData;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "data",
-      "name": "data",
-      "typeValue": {
-       "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
-      },
-      "typeValueRef": "@epam/uui-editor:SlateImageData",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:SlateImageData": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateImageData",
-     "nameFull": "SlateImageData"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": false
    }
   },
   "@types/react:AllHTMLAttributes": {
@@ -112093,24 +112131,6 @@
     "exported": false
    }
   },
-  "node_modules/@udecode/slate/dist/index.d.ts:TElement": {
-   "summary": {
-    "module": "node_modules/@udecode/slate/dist/index.d.ts",
-    "typeName": {
-     "name": "TElement",
-     "nameFull": "TElement"
-    },
-    "src": "node_modules/@udecode/slate/dist/index.d.ts",
-    "comment": {
-     "raw": [
-      "`Element` objects are a type of node in a Slate document that contain other",
-      " element nodes or text nodes. They can be either \"blocks\" or \"inlines\"",
-      " depending on the Slate editor's configuration."
-     ]
-    },
-    "exported": false
-   }
-  },
   "node_modules/react-custom-scrollbars-2/index.d.ts:positionValues": {
    "summary": {
     "module": "node_modules/react-custom-scrollbars-2/index.d.ts",
@@ -112170,17 +112190,6 @@
       " [MDN Reference](https://developer.mozilla.org/docs/Web/API/File)"
      ]
     },
-    "exported": false
-   }
-  },
-  "node_modules/typescript/lib/lib.es5.d.ts:Partial": {
-   "summary": {
-    "module": "node_modules/typescript/lib/lib.es5.d.ts",
-    "typeName": {
-     "name": "Partial",
-     "nameFull": "Partial<T>"
-    },
-    "src": "node_modules/typescript/lib/lib.es5.d.ts",
     "exported": false
    }
   },
