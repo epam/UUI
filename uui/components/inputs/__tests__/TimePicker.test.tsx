@@ -118,12 +118,37 @@ describe('TimePicker', () => {
         expect(dom.input.value).toEqual('05:00 PM');
     });
 
-    it('should stay a previous value', async () => {
+    it('should reset invalid value onBlur', async () => {
         const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
         expect(dom.input.value).toEqual('06:23 PM');
         fireEvent.change(dom.input, { target: { value: 'fhghg' } });
         expect(dom.input.value).toEqual('fhghg');
         fireEvent.blur(dom.input);
         expect(dom.input.value).toEqual('06:23 PM');
+    });
+
+    it('should open picker on field focus', async () => {
+        const { dom } = await setupTestComponent({ value: null });
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        fireEvent.focus(dom.input);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+    });
+
+    it('should close picker on field blur', async () => {
+        const { dom } = await setupTestComponent({ value: null });
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        fireEvent.focus(dom.input);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        fireEvent.blur(dom.input);
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    it('should clear input when clear button is clicked', async () => {
+        const { dom, mocks } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
+        const clear = screen.getByRole<HTMLButtonElement>('button');
+        expect(dom.input.value).toEqual('06:23 PM');
+        fireEvent.click(clear);
+        expect(dom.input.value).toEqual('');
+        expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
 });

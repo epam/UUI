@@ -8,7 +8,7 @@ import {
 import { Dropdown, DropdownContainer } from '../../overlays';
 import { TextInput } from '../TextInput';
 import { TimePickerBody } from '../timePicker';
-import { IHasEditMode, SizeMod, EditMode } from '../../types';
+import { EditMode, IHasEditMode, SizeMod } from '../../types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
 
@@ -73,21 +73,23 @@ export function TimePicker(props: TimePickerProps) {
         {
             isOpen: false,
             value: valueToTimeString(props.value, props.format),
-            result: valueToTimeString(props.value, props.format),
         },
     );
 
     useEffect(() => {
+        saveValueFromProps();
+    }, [props.value, props.format]);
+
+    const saveValueFromProps = () => {
         setState((prevState) => ({
             ...prevState,
             value: valueToTimeString(props.value, props.format),
-            result: valueToTimeString(props.value, props.format),
         }));
-    }, [props.value, props.format]);
-
-    const getFormat = () => {
-        return props.format === 24 ? 'HH:mm' : 'hh:mm A';
     };
+
+    const getFormat = () => props.format === 24 ? 'HH:mm' : 'hh:mm A';
+
+    const checkTimeFormat = (newValue: string) => dayjs(newValue, getFormat(), true).isValid();
 
     const onClear = () => {
         props.onValueChange(null);
@@ -98,39 +100,21 @@ export function TimePicker(props: TimePickerProps) {
         setState((prevState) => ({ ...prevState, isOpen: value }));
     };
 
-    const setTimeValue = (value: string) => {
-        setState((prevState) => ({ ...prevState, value: value }));
-    };
-
-    const setTimeResult = (result: string) => {
-        setState((prevState) => ({ ...prevState, result: result }));
-    };
-
-    const saveTime = () => {
-        const value = dayjs(state.result, getFormat(), true);
+    const saveTime = (newTime: string) => {
+        const value = dayjs(newTime, getFormat(), true);
         props.onValueChange({ hours: value.hour(), minutes: value.minute() });
-        setTimeValue(state.result);
     };
 
-    const checkTimeFormat = (newValue: string) => {
-        return dayjs(newValue, getFormat(), true).isValid();
+    const getTimeFromValue = () => {
+        const trimmedNewValue = state.value.trimStart();
+        const separator = trimmedNewValue.search(/\D/);
+        const meridian = getMeridian(trimmedNewValue, getFormat());
+        const { hours, minutes } = parseTimeNumbers(trimmedNewValue, separator);
+        return formatTime(hours, minutes, meridian);
     };
 
     const handleInputChange = (newValue: string) => {
-        const trimmedNewValue = newValue.trimStart();
-
-        if (trimmedNewValue.length <= 8) {
-            const separator = trimmedNewValue.search(/\D/);
-            const meridian = getMeridian(trimmedNewValue, getFormat());
-            
-            const { hours, minutes } = parseTimeNumbers(trimmedNewValue, separator);
-            const result = formatTime(hours, minutes, meridian);
-            setTimeValue(trimmedNewValue);
-
-            if (checkTimeFormat(result)) {
-                setTimeResult(result);
-            }
-        }
+        setState((prevState) => ({ ...prevState, value: newValue }));
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLElement>) => {
@@ -145,12 +129,15 @@ export function TimePicker(props: TimePickerProps) {
 
         if (state.value === '') {
             props.onValueChange(null);
-            setState((prevState) => ({ ...prevState, result: null, value: null }));
-        } else if (checkTimeFormat(state.result)) {
-            saveTime();
-        } else if (state.result === null) {
-            setTimeValue(null);
+            setState((prevState) => ({ ...prevState, value: null }));
         }
+
+        if (!state.value) return;
+
+        const result = getTimeFromValue();
+        if (checkTimeFormat(result)) {
+            saveTime(result);
+        } else { saveValueFromProps(); }
     };
 
     const renderInput = (inputProps: IDropdownToggler) => {
