@@ -73,53 +73,72 @@ export function TimePicker(props: TimePickerProps) {
         {
             isOpen: false,
             value: valueToTimeString(props.value, props.format),
+            inputValue: valueToTimeString(props.value, props.format),
         },
     );
 
     useEffect(() => {
-        saveValueFromProps();
+        if (valueToTimeString(props.value, props.format) !== state.value) {
+            setState((prevState) => ({
+                ...prevState,
+                value: valueToTimeString(props.value, props.format),
+                inputValue: valueToTimeString(props.value, props.format),
+            }));
+        }
     }, [props.value, props.format]);
-
-    const saveValueFromProps = () => {
-        setState((prevState) => ({
-            ...prevState,
-            value: valueToTimeString(props.value, props.format),
-        }));
-    };
 
     const getFormat = () => props.format === 24 ? 'HH:mm' : 'hh:mm A';
 
     const checkTimeFormat = (newValue: string) => dayjs(newValue, getFormat(), true).isValid();
 
+    const formatStringTimeToObject = (stringTime: string | null) => {
+        if (stringTime) {
+            const value = dayjs(stringTime, getFormat(), true);
+            return { hours: value.hour(), minutes: value.minute() };
+        }
+        return { hours: null, minutes: null };
+    };
+
     const onClear = () => {
         props.onValueChange(null);
-        setState((prevState) => ({ ...prevState, result: '' }));
     };
 
     const onToggle = (value: boolean) => {
         setState((prevState) => ({ ...prevState, isOpen: value }));
     };
 
-    const saveTime = (newTime: string) => {
-        const value = dayjs(newTime, getFormat(), true);
-        props.onValueChange({ hours: value.hour(), minutes: value.minute() });
+    const saveTimeToProps = (newTime: string) => {
+        setState((prevState) => ({ ...prevState, inputValue: newTime }));
+        props.onValueChange(formatStringTimeToObject(newTime));
     };
 
-    const getTimeFromValue = () => {
-        const trimmedNewValue = state.value.trimStart();
+    const getTimeFromInputValue = (newValue: string) => {
+        const trimmedNewValue = newValue.trimStart();
         const separator = trimmedNewValue.search(/\D/);
         const meridian = getMeridian(trimmedNewValue, getFormat());
         const { hours, minutes } = parseTimeNumbers(trimmedNewValue, separator);
         return formatTime(hours, minutes, meridian);
     };
 
-    const handleInputChange = (newValue: string) => {
-        setState((prevState) => ({ ...prevState, value: newValue }));
+    const handleBodyValueChange = (newValue: TimePickerValue) => {
+        const inputValue = valueToTimeString(newValue, props.format);
+        saveTimeToProps(inputValue);
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLElement>) => {
         onToggle(true);
         props.onFocus?.(e);
+    };
+
+    const handleInputChange = (newValue: string) => {
+        setState((prevState) => ({ ...prevState, inputValue: newValue }));
+
+        if (newValue) {
+            const result = getTimeFromInputValue(newValue);
+            if (checkTimeFormat(result)) {
+                setState((prevState) => ({ ...prevState, value: result }));
+            }
+        }
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -129,15 +148,15 @@ export function TimePicker(props: TimePickerProps) {
 
         if (state.value === '') {
             props.onValueChange(null);
-            setState((prevState) => ({ ...prevState, value: null }));
+            setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
         }
 
-        if (!state.value) return;
+        if (!state.value) {
+            setState((prevState) => ({ ...prevState, inputValue: null }));
+            return;
+        }
 
-        const result = getTimeFromValue();
-        if (checkTimeFormat(result)) {
-            saveTime(result);
-        } else { saveValueFromProps(); }
+        saveTimeToProps(state.value);
     };
 
     const renderInput = (inputProps: IDropdownToggler) => {
@@ -161,7 +180,7 @@ export function TimePicker(props: TimePickerProps) {
                 isReadonly={ props.isReadonly }
                 isInvalid={ props.isInvalid }
                 cx={ [css.root, css.timepickerInput, props.inputCx] }
-                value={ state.value }
+                value={ state.inputValue }
                 onValueChange={ handleInputChange }
                 onCancel={ onClear }
                 onFocus={ handleFocus }
@@ -175,14 +194,15 @@ export function TimePicker(props: TimePickerProps) {
     };
 
     const renderBody = (bodyProps: DropdownBodyProps) => {
-        const { forwardedRef, ...timePickerBodyProps } = props;
+        const { forwardedRef, onValueChange, ...timePickerBodyProps } = props;
 
         return (
             !props.isDisabled && !props.isReadonly && (
                 <DropdownContainer { ...bodyProps } focusLock={ false }>
                     <TimePickerBody
                         { ...timePickerBodyProps }
-                        value={ props.value !== null ? props.value : { hours: null, minutes: null } }
+                        onValueChange={ handleBodyValueChange }
+                        value={ formatStringTimeToObject(state.value) }
                         rawProps={ props.rawProps?.body }
                         cx={ props.bodyCx }
                     />

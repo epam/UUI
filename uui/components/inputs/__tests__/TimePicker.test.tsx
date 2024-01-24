@@ -151,4 +151,35 @@ describe('TimePicker', () => {
         expect(dom.input.value).toEqual('');
         expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
+
+    it('should increase and decrease hours when icon-button-up/down is clicked', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
+        expect(dom.input.value).toEqual('06:23 PM');
+        fireEvent.focus(dom.input);
+        const picker = await screen.findByRole('dialog');
+        expect(picker).toBeDefined();
+
+        const increaseHoursButton = screen.getByLabelText('Increment hours');
+        fireEvent.click(increaseHoursButton);
+        expect(dom.input.value).toEqual('07:23 PM');
+        const decreaseHoursButton = screen.getByLabelText('Decrement hours');
+        fireEvent.click(decreaseHoursButton);
+        expect(dom.input.value).toEqual('06:23 PM');
+    });
+
+    it('should increase and decrease minutes when icon-button-up/down is clicked', async () => {
+        const { dom, setProps } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
+        expect(dom.input.value).toEqual('06:23 PM');
+        fireEvent.focus(dom.input);
+        const picker = await screen.findByRole('dialog');
+        expect(picker).toBeDefined();
+
+        setProps({ minutesStep: 1 });
+        const increaseMinutesButton = screen.getByLabelText('Increment minutes');
+        fireEvent.click(increaseMinutesButton);
+        expect(dom.input.value).toEqual('06:24 PM');
+        const decreaseMinutesButton = screen.getByLabelText('Decrement minutes');
+        fireEvent.click(decreaseMinutesButton);
+        expect(dom.input.value).toEqual('06:23 PM');
+    });
 });
