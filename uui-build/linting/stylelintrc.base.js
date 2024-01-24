@@ -91,7 +91,12 @@ module.exports = {
         },
         {
             extends: ['stylelint-config-sass-guidelines'],
-            files: ['**/epam-assets/theme/*.scss'],
+            files: [
+                '**/epam-assets/theme/theme_promo.scss',
+                '**/epam-assets/theme/theme_electric.scss',
+                '**/epam-assets/theme/theme_loveship.scss',
+                '**/epam-assets/theme/theme_loveship_dark.scss',
+            ],
             rules: {
                 ...SCSS_COMMON_RULES,
                 'uui-custom-rules/theme-tokens-validation': [
