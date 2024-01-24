@@ -7,9 +7,10 @@ const { RULE_NAMES } = require('../constants');
 
 const { report, ruleMessages, validateOptions } = stylelint.utils;
 
-const ruleName = RULE_NAMES.NO_UNKNOWN_THEME_TOKENS;
+const ruleName = RULE_NAMES.THEME_TOKENS_VALIDATION;
 const messages = ruleMessages(ruleName, {
-    reportUnknown: (property) => `Unknown custom property: ${property}`,
+    reportUnknownVar: (property) => `CSS variable is not declared: ${property}`,
+    reportDoubleDeclarationOfCssProp: (property) => `This CSS property is declared more than once: ${property}`,
     reportCantCompileScss: (fullPath, reason) => `Cannot compile ${fullPath}, Reason: ${reason}`,
 });
 
@@ -40,15 +41,49 @@ function getReferencedCustomPropsFromDecl(decl) {
     return result;
 }
 
+function isDeclInRootThemeSelectorScope(decl) {
+    const selector = decl.parent.selector;
+    return selector && selector.split(' ').length === 1 && selector.indexOf('.uui-theme-') === 0;
+}
+
+function isDeclInRootThemeMixinScope(decl) {
+    const p = decl.parent;
+    if (p && p.type === 'atrule' && p.name === 'mixin' && p.params.indexOf('theme-') === 0) {
+        return true;
+    }
+}
+
+function isIgnoredUnknownVar(params) {
+    const { secondaryOptions, varToCheck } = params;
+    const arr = secondaryOptions?.ignoredUnknownVars || [];
+    return arr.indexOf(varToCheck) !== -1;
+}
+
+function isIgnoredRedeclaredVar(params) {
+    const { secondaryOptions, varToCheck } = params;
+    const arr = secondaryOptions?.ignoredRedeclaredVars || [];
+    return arr.indexOf(varToCheck) !== -1;
+}
+
 const isString = (v) => typeof v === 'string';
 
 async function getCustomPropsInfo(scssFullPath) {
     const compiled = await compileScss(scssFullPath);
     const declared = new Set();
+
+    const declaredInRootThemeSelector = new Set();
+    const declaredInRootThemeSelectorMoreThanOnce = new Set();
+
     const used = new Set();
     compiled.root.walkDecls((decl) => {
         const prop = decl.prop;
         if (prop.startsWith('--')) {
+            if (isDeclInRootThemeSelectorScope(decl)) {
+                if (declaredInRootThemeSelector.has(prop)) {
+                    declaredInRootThemeSelectorMoreThanOnce.add(prop);
+                }
+                declaredInRootThemeSelector.add(prop);
+            }
             declared.add(prop);
         }
         const res = Array.from(getReferencedCustomPropsFromDecl(decl));
@@ -56,7 +91,14 @@ async function getCustomPropsInfo(scssFullPath) {
             res.forEach((m) => used.add(m));
         }
     });
-    return { declared, used };
+    const usedButNotDeclared = new Set();
+    [...used].forEach((p) => {
+        if (!declared.has(p)) {
+            usedButNotDeclared.add(p);
+        }
+    });
+
+    return { declared, used, usedButNotDeclared, declaredInRootThemeSelectorMoreThanOnce };
 }
 
 function rule(primaryOptions, secondaryOptions) {
@@ -68,7 +110,8 @@ function rule(primaryOptions, secondaryOptions) {
             {
                 actual: secondaryOptions,
                 possible: {
-                    ignored: [isString],
+                    ignoredUnknownVars: [isString],
+                    ignoredRedeclaredVars: [isString],
                 },
                 optional: true,
             },
@@ -76,8 +119,6 @@ function rule(primaryOptions, secondaryOptions) {
         if (!isRuleConfigValid) {
             return;
         }
-
-        const arrOfIgnoredTokens = secondaryOptions?.ignored || [];
 
         const srcFullPath = result.opts.from;
         let info;
@@ -94,16 +135,37 @@ function rule(primaryOptions, secondaryOptions) {
 
         if (info) {
             root.walkDecls((decl) => {
+                if (decl.prop.startsWith('--')) {
+                    const isIgnored = isIgnoredRedeclaredVar({ secondaryOptions, varToCheck: decl.prop });
+                    if (isIgnored) {
+                        return;
+                    }
+                    if (info.declaredInRootThemeSelectorMoreThanOnce.has(decl.prop)) {
+                        if (!isDeclInRootThemeMixinScope(decl)) {
+                            // it's OK to redeclare anywhere but directly in root selector scope
+                            return;
+                        }
+                        report({
+                            message: messages.reportDoubleDeclarationOfCssProp(decl.prop),
+                            node: decl,
+                            word: decl.prop,
+                            result,
+                            ruleName,
+                        });
+                    }
+                }
+
                 const usedCustomProps = getReferencedCustomPropsFromDecl(decl);
                 if (usedCustomProps.size) {
                     usedCustomProps.forEach((p) => {
-                        if (!info.declared.has(p)) {
-                            const isPropIgnored = arrOfIgnoredTokens.indexOf(p) !== -1;
-                            if (isPropIgnored) {
-                                return;
-                            }
+                        const isIgnored = isIgnoredUnknownVar({ secondaryOptions, varToCheck: p });
+                        if (isIgnored) {
+                            return;
+                        }
+
+                        if (info.usedButNotDeclared.has(p)) {
                             report({
-                                message: messages.reportUnknown(p),
+                                message: messages.reportUnknownVar(p),
                                 node: decl,
                                 word: p,
                                 result,

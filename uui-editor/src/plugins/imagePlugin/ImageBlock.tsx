@@ -10,7 +10,7 @@ import invert from 'lodash.invert';
 
 import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
-import { IImageElement, PlateImgAlign, SlateImgAlign } from '../../types';
+import { IImageElement, PlateImgAlign, SlateImgAlign } from './types';
 
 interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
 

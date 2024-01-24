@@ -11,7 +11,13 @@ import { ErrorPage } from './ErrorPage';
 import css from './ErrorHandler.module.scss';
 
 export interface ErrorHandlerProps extends IHasCX, IHasChildren {
+    /** Pure function to get error info for display based on error.
+     * If omitted, error info from default config will be used.
+     */
     getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;
+    /** Callback to handle notification error.
+     * If omitted, default implementation with ErrorNotification will be used.
+     * */
     onNotificationError?: (errors: ApiCallInfo) => void;
 }
 
