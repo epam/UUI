@@ -71,6 +71,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
         <div className={ cx(css.root, uuiTimePicker.container, props.cx) } ref={ props.forwardedRef } { ...props.rawProps }>
             <div className={ uuiTimePicker.elementContainer }>
                 <IconContainer
+                    rawProps={ { 'aria-label': 'Increment hours' } }
                     cx={ uuiTimePicker.iconUp }
                     icon={ ArrowIcon }
                     onClick={ () => onHoursChange(dayjs().set(props.value).add(1, 'h').hour()) }
@@ -87,6 +88,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                     max={ MAX_HOURS }
                 />
                 <IconContainer
+                    rawProps={ { 'aria-label': 'Decrement hours' } }
                     cx={ uuiTimePicker.iconDown }
                     icon={ ArrowIcon }
                     onClick={ () => onHoursChange(dayjs().set(props.value).subtract(1, 'h').hour()) }
@@ -94,6 +96,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
             </div>
             <div className={ uuiTimePicker.elementContainer }>
                 <IconContainer
+                    rawProps={ { 'aria-label': 'Increment minutes' } }
                     cx={ uuiTimePicker.iconUp }
                     icon={ ArrowIcon }
                     onClick={ handleMinutesUpClick }
@@ -106,6 +109,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                     max={ MAX_MINUTES }
                 />
                 <IconContainer
+                    rawProps={ { 'aria-label': 'Decrement minutes' } }
                     cx={ uuiTimePicker.iconDown }
                     icon={ ArrowIcon }
                     onClick={ handleMinutesDownClick }
