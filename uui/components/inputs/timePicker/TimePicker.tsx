@@ -69,18 +69,17 @@ const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['form
 };
 
 export function TimePicker(props: TimePickerProps) {
-    const stringValue = valueToTimeString(props.value, props.format);
-
     const [state, setState] = useState(
         {
             isOpen: false,
-            value: stringValue,
-            inputValue: stringValue,
+            value: valueToTimeString(props.value, props.format),
+            inputValue: valueToTimeString(props.value, props.format),
         },
     );
 
     useEffect(() => {
         if (valueToTimeString(props.value, props.format) !== state.value) {
+            const stringValue = valueToTimeString(props.value, props.format);
             setState((prevState) => ({
                 ...prevState,
                 value: stringValue,
