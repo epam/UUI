@@ -8,6 +8,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -53,6 +54,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -66,6 +68,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -111,6 +114,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -171,6 +175,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -216,6 +221,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -229,6 +235,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -274,6 +281,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
