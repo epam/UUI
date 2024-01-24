@@ -10,8 +10,10 @@ import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
-import { IFRAME_PLUGIN_KEY, IFRAME_PLUGIN_TYPE } from '../../types';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { IHasToolbarButton } from "../../implementation/Toolbars";
+
+export const IFRAME_PLUGIN_KEY = 'iframe';
+export const IFRAME_PLUGIN_TYPE = 'iframe';
 
 export const iframePlugin = () => {
     const createIframePlugin = createPluginFactory<IHasToolbarButton>({

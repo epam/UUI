@@ -13,8 +13,11 @@ import { TImageElement } from '@udecode/plate-media';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
-import { IMAGE_PLUGIN_TYPE, IMAGE_PLUGIN_KEY, IImageElement } from '../../types';
+import { IImageElement } from './types';
 import { IHasToolbarButton } from '../../implementation/Toolbars';
+
+export const IMAGE_PLUGIN_KEY = 'image';
+export const IMAGE_PLUGIN_TYPE = 'image';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory<IHasToolbarButton>({

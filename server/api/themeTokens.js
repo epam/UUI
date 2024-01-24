@@ -17,9 +17,9 @@ function readThemeTokensJson() {
  * Returns array of supported tokens
  */
 router.get('/theme-tokens', (req, res) => {
-    const { supportedTokens } = readThemeTokensJson();
+    const { exposedTokens } = readThemeTokensJson();
     res.send({
-        content: supportedTokens,
+        content: exposedTokens,
     });
 });
 

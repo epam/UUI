@@ -5,6 +5,9 @@ import { TextPlaceholder } from '../typography';
 import css from './PickerListItem.module.scss';
 
 export interface PickerListItemProps<TItem, TId> extends DataRowProps<TItem, TId> {
+    /** A pure function that gets entity name from entity object.
+     Default: (item) => item.name.
+     */
     getName(item: TItem): string;
 }
 

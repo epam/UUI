@@ -16,6 +16,7 @@ import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-
 import { UUI_PRESETS_PANEL_ADD_BUTTON, UUI_PRESETS_PANEL_MORE_BUTTON } from './constants';
 
 export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /** Current state value of the table(list) */
     tableState: DataTableState;
 }
 
