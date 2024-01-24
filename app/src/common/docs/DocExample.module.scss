@@ -1,18 +1,18 @@
 @use '~@epam/promo/assets/styles/index' as *;
-@import '../../themes/themeVariables.module';
 
 .container {
+    --uui-docs-bg: var(--uui-surface-main);
     margin: 24px 0;
     max-width: 100%;
 }
 
 .container-footer {
     justify-content: space-between;
-    background-color: var(--uui-surface-higher);
+    background-color: var(--uui-surface-main);
 }
 
 .preview-container {
-    background: var(--uui-surface-higher);
+    background: var(--uui-docs-bg);
     border: 1px solid var(--uui-divider);
     width: 960px;
     max-width: 100%;

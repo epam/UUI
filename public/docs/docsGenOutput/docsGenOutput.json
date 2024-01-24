@@ -64733,8 +64733,13 @@
      "raw": "DataTableMods",
      "print": [
       "interface DataTableMods {",
+      "    /** Min height of table rows and header */",
       "    size?: ControlSize;",
+      "    /** Pass true, to turn row bottom border */",
       "    border?: boolean;",
+      "    /** Configure column header text case",
+      "     * @default 'normal'",
+      "     * */",
       "    headerTextCase?: 'upper' | 'normal';",
       "}"
      ]
@@ -64743,6 +64748,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Min height of table rows and header"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
       },
@@ -64761,6 +64771,11 @@
      {
       "uid": "border",
       "name": "border",
+      "comment": {
+       "raw": [
+        "Pass true, to turn row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -64772,6 +64787,15 @@
      {
       "uid": "headerTextCase",
       "name": "headerTextCase",
+      "comment": {
+       "raw": [
+        "Configure column header text case",
+        " @default 'normal'"
+       ],
+       "tags": {
+        "@default": "normal"
+       }
+      },
       "typeValue": {
        "raw": "'upper' | 'normal'"
       },
@@ -66897,19 +66921,19 @@
      "raw": "DropSpotProps",
      "print": [
       "interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {",
-      "    /*",
+      "    /**",
       "    * Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea.",
       "    */",
       "    infoText?: string;",
-      "    /*",
-      "    * Called when uploading files.",
+      "    /**",
+      "    * Called when files was added to the DropSpot.",
       "    */",
       "    onUploadFiles(files: File[]): any;",
-      "    /*",
+      "    /**",
       "    * Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details",
       "    */",
       "    accept?: string;",
-      "    /*",
+      "    /**",
       "    * Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details",
       "    */",
       "    single?: boolean;",
@@ -66920,6 +66944,11 @@
      {
       "uid": "infoText",
       "name": "infoText",
+      "comment": {
+       "raw": [
+        "Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea."
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -66931,6 +66960,11 @@
      {
       "uid": "onUploadFiles",
       "name": "onUploadFiles",
+      "comment": {
+       "raw": [
+        "Called when files was added to the DropSpot."
+       ]
+      },
       "typeValue": {
        "raw": "(files: File[]) => any"
       },
@@ -66942,6 +66976,11 @@
      {
       "uid": "accept",
       "name": "accept",
+      "comment": {
+       "raw": [
+        "Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -66953,6 +66992,11 @@
      {
       "uid": "single",
       "name": "single",
+      "comment": {
+       "raw": [
+        "Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -67010,11 +67054,11 @@
      "raw": "FileCardItem",
      "print": [
       "interface FileCardItem extends Partial<File & FileUploadResponse> {",
-      "    /*",
-      "    * Defines upload progress. It should be number value in range from 0 to 100', where 100 means that file fully loaded.",
+      "    /**",
+      "    * Defines upload progress. It should be numbered value in range from 0 to 100', where 100 means that file fully loaded.",
       "    */",
       "    progress?: number;",
-      "    /*",
+      "    /**",
       "    * Callback to handle aborted event which fired when a request has been aborted.",
       "    * See {@link https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort_event} for details",
       "    */",
@@ -67026,6 +67070,11 @@
      {
       "uid": "progress",
       "name": "progress",
+      "comment": {
+       "raw": [
+        "Defines upload progress. It should be numbered value in range from 0 to 100', where 100 means that file fully loaded."
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -67037,6 +67086,12 @@
      {
       "uid": "abortXHR",
       "name": "abortXHR",
+      "comment": {
+       "raw": [
+        "Callback to handle aborted event which fired when a request has been aborted.",
+        " See {@link https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort_event} for details"
+       ]
+      },
       "typeValue": {
        "raw": "() => void"
       },
@@ -67246,13 +67301,11 @@
      "raw": "FileCardProps",
      "print": [
       "interface FileCardProps extends IClickable, IHasCX {",
-      "    /*",
-      "    * Defines file card item",
-      "    */",
+      "    /** Defines file card item */",
       "    file: FileCardItem;",
-      "    /*",
-      "    * Defines component width.",
-      "    */",
+      "    /** Defines card width",
+      "     * @default 100%",
+      "     */",
       "    width?: number;",
       "}"
      ]
@@ -67261,6 +67314,11 @@
      {
       "uid": "file",
       "name": "file",
+      "comment": {
+       "raw": [
+        "Defines file card item"
+       ]
+      },
       "typeValue": {
        "raw": "FileCardItem"
       },
@@ -67269,6 +67327,12 @@
      {
       "uid": "width",
       "name": "width",
+      "comment": {
+       "raw": [
+        "Defines card width",
+        " @default 100%"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -67329,9 +67393,13 @@
      "raw": "FiltersPanelProps<TFilter>",
      "print": [
       "interface FiltersPanelProps<TFilter> {",
+      "    /** Filters config to get data how to render filters */",
       "    filters: TableFiltersConfig<TFilter>[];",
+      "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
+      "    /** Called when state needs to be changed */",
       "    setTableState: (newState: DataTableState) => void;",
+      "    /** Defines size(height) of filter panel and filters */",
       "    size?: '24' | '30' | '36' | '42' | '48';",
       "}"
      ]
@@ -67340,6 +67408,11 @@
      {
       "uid": "filters",
       "name": "filters",
+      "comment": {
+       "raw": [
+        "Filters config to get data how to render filters"
+       ]
+      },
       "typeValue": {
        "raw": "TableFiltersConfig<TFilter>[]"
       },
@@ -67348,6 +67421,11 @@
      {
       "uid": "tableState",
       "name": "tableState",
+      "comment": {
+       "raw": [
+        "Current state value of the table(list)"
+       ]
+      },
       "typeValue": {
        "raw": "DataTableState<any, any>"
       },
@@ -67356,6 +67434,11 @@
      {
       "uid": "setTableState",
       "name": "setTableState",
+      "comment": {
+       "raw": [
+        "Called when state needs to be changed"
+       ]
+      },
       "typeValue": {
        "raw": "(newState: DataTableState<any, any>) => void"
       },
@@ -67367,6 +67450,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines size(height) of filter panel and filters"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
       },
@@ -67723,6 +67811,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -67743,6 +67836,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -67755,6 +67853,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -67764,6 +67867,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -67780,6 +67888,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -67798,6 +67911,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -67807,6 +67925,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -67824,6 +67947,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -67836,6 +67964,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -67855,6 +67988,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -67985,66 +68123,6 @@
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:HighlightRange": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "HighlightRange",
-     "nameFull": "HighlightRange"
-    },
-    "src": "uui/components/pickers/highlight.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "HighlightRange",
-     "print": [
-      "interface HighlightRange {",
-      "    from: number;",
-      "    to: number;",
-      "    isHighlighted: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "from",
-      "name": "from",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "to",
-      "name": "to",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "isHighlighted",
-      "name": "isHighlighted",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -69127,6 +69205,7 @@
      "raw": "IndeterminateBarMods",
      "print": [
       "interface IndeterminateBarMods extends IHasCX {",
+      "    /** Component size */",
       "    size?: '12' | '18' | '24';",
       "}"
      ]
@@ -69135,6 +69214,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Component size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24'"
       },
@@ -69206,7 +69290,9 @@
      "raw": "ITextPlaceholderProps",
      "print": [
       "interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {",
+      "    /** Number of placeholder worlds to render in block */",
       "    wordsCount?: number;",
+      "    /** Pass true, to turn off the placeholder animation */",
       "    isNotAnimated?: boolean;",
       "}"
      ]
@@ -69215,6 +69301,11 @@
      {
       "uid": "wordsCount",
       "name": "wordsCount",
+      "comment": {
+       "raw": [
+        "Number of placeholder worlds to render in block"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -69226,6 +69317,11 @@
      {
       "uid": "isNotAnimated",
       "name": "isNotAnimated",
+      "comment": {
+       "raw": [
+        "Pass true, to turn off the placeholder animation"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -72777,6 +72873,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -72797,6 +72898,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -72809,6 +72915,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -72818,6 +72929,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -72834,6 +72950,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -72852,6 +72973,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -72861,6 +72987,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -72878,6 +73009,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -72890,6 +73026,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -72909,6 +73050,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -73009,6 +73155,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -73029,6 +73180,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -73041,6 +73197,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -73050,6 +73211,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -73066,6 +73232,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -73084,6 +73255,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -73093,6 +73269,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -73110,6 +73291,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -73122,6 +73308,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -73141,6 +73332,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -76290,10 +76486,21 @@
      "raw": "PickerItemProps<TItem, TId>",
      "print": [
       "interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {",
+      "    /** Path to the user avatar.",
+      "     * If omitted, no avatar will be rendered.",
+      "     * * */",
       "    avatarUrl?: string;",
+      "    /** Icon to render in picker row.",
+      "     * If omitted, nothing will be rendered.",
+      "     * */",
       "    icon?: Icon;",
+      "    /** Row title */",
       "    title?: string;",
+      "    /** Row subtitle. Will be rendered as a second line, below the title */",
       "    subtitle?: string;",
+      "    /** DataSourceState of the Picker.",
+      "     * Usually provided via renderItem callback params",
+      "     * */",
       "    dataSourceState?: DataSourceState;",
       "    /**",
       "     * Enables highlighting of the items' text with search-matching results.",
@@ -76307,6 +76514,13 @@
      {
       "uid": "avatarUrl",
       "name": "avatarUrl",
+      "comment": {
+       "raw": [
+        "Path to the user avatar.",
+        " If omitted, no avatar will be rendered.",
+        " *"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -76318,6 +76532,12 @@
      {
       "uid": "icon",
       "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon to render in picker row.",
+        " If omitted, nothing will be rendered."
+       ]
+      },
       "typeValue": {
        "raw": "Icon"
       },
@@ -76329,6 +76549,11 @@
      {
       "uid": "title",
       "name": "title",
+      "comment": {
+       "raw": [
+        "Row title"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -76340,6 +76565,11 @@
      {
       "uid": "subtitle",
       "name": "subtitle",
+      "comment": {
+       "raw": [
+        "Row subtitle. Will be rendered as a second line, below the title"
+       ]
+      },
       "typeValue": {
        "raw": "string"
       },
@@ -76351,6 +76581,12 @@
      {
       "uid": "dataSourceState",
       "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "DataSourceState of the Picker.",
+        " Usually provided via renderItem callback params"
+       ]
+      },
       "typeValue": {
        "raw": "DataSourceState<Record<string, any>, any>"
       },
@@ -77133,6 +77369,9 @@
      "raw": "PickerListItemProps<TItem, TId>",
      "print": [
       "interface PickerListItemProps<TItem, TId> extends DataRowProps<TItem, TId> {",
+      "    /** A pure function that gets entity name from entity object.",
+      "     Default: (item) => item.name.",
+      "     */",
       "    getName(item: TItem): string;",
       "}"
      ]
@@ -77141,6 +77380,12 @@
      {
       "uid": "getName",
       "name": "getName",
+      "comment": {
+       "raw": [
+        "A pure function that gets entity name from entity object.",
+        "     Default: (item) => item.name."
+       ]
+      },
       "typeValue": {
        "raw": "(item: TItem) => string"
       },
@@ -79508,6 +79753,7 @@
      "raw": "PresetsPanelProps",
      "print": [
       "interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
       "}"
      ]
@@ -79516,6 +79762,11 @@
      {
       "uid": "tableState",
       "name": "tableState",
+      "comment": {
+       "raw": [
+        "Current state value of the table(list)"
+       ]
+      },
       "typeValue": {
        "raw": "DataTableState<any, any>"
       },
@@ -81814,45 +82065,25 @@
      "raw": "RowMods",
      "print": [
       "type RowMods = {",
-      "    /*",
-      "    * Defines row size.",
-      "    */",
+      "    /** Defines row size */",
       "    size?: null | '24' | '30' | '36' | '42' | '48';",
-      "    /*",
-      "    * Defines row border bottom.",
-      "    */",
+      "    /** Pass true, to enable row bottom border */",
       "    borderBottom?: boolean;",
-      "    /*",
-      "    * Defines row column gap.",
-      "    */",
+      "    /** Defines row column gap */",
       "    columnGap?: number | '6' | '12' | '18' | '24' | '36';",
-      "    /*",
-      "    * Defines row margin.",
-      "    */",
+      "    /** Defines row margin */",
       "    margin?: '12' | '24';",
-      "    /*",
-      "    * Defines horizontal row padding.",
-      "    */",
+      "    /** Defines horizontal row padding */",
       "    padding?: '6' | '12' | '18' | '24';",
-      "    /*",
-      "    * Defines row gap.",
-      "    */",
+      "    /** Defines row gap */",
       "    rowGap?: number | '6' | '12' | '18' | '24' | '36';",
-      "    /*",
-      "    * Defines row spacing.",
-      "    */",
+      "    /** Defines row spacing */",
       "    spacing?: '6' | '12' | '18';",
-      "    /*",
-      "    * Pass true to show a top shadow.",
-      "    */",
+      "    /** Pass true, to show a top shadow */",
       "    topShadow?: boolean;",
-      "    /*",
-      "    * Defines vertical row padding.",
-      "    */",
+      "    /** Defines vertical row padding */",
       "    vPadding?: '12' | '18' | '24' | '36' | '48';",
-      "    /*",
-      "    * Defines row background.",
-      "    */",
+      "    /** Defines row background */",
       "    background?: 'surface-main';",
       "};"
      ]
@@ -81861,6 +82092,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -81880,6 +82116,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -81891,6 +82132,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -81899,6 +82145,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '24'"
       },
@@ -81914,6 +82165,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18' | '24'"
       },
@@ -81931,6 +82187,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
@@ -81939,6 +82200,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'6' | '12' | '18'"
       },
@@ -81955,6 +82221,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -81966,6 +82237,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '36' | '48' | '24'"
       },
@@ -81984,6 +82260,11 @@
      {
       "uid": "background",
       "name": "background",
+      "comment": {
+       "raw": [
+        "Defines row background"
+       ]
+      },
       "typeValue": {
        "raw": "'surface-main'"
       },
@@ -85926,6 +86207,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '30'"
       },
@@ -85944,6 +86230,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
       },
@@ -86683,6 +86974,11 @@
      {
       "uid": "wordsCount",
       "name": "wordsCount",
+      "comment": {
+       "raw": [
+        "Number of placeholder worlds to render in block"
+       ]
+      },
       "typeValue": {
        "raw": "number"
       },
@@ -86695,6 +86991,11 @@
      {
       "uid": "isNotAnimated",
       "name": "isNotAnimated",
+      "comment": {
+       "raw": [
+        "Pass true, to turn off the placeholder animation"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -86944,6 +87245,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '30'"
       },
@@ -86962,6 +87268,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
       },
@@ -87031,7 +87342,9 @@
      "raw": "TextSettings",
      "print": [
       "interface TextSettings {",
+      "    /** Defines text line-height */",
       "    lineHeight?: '12' | '18' | '24' | '30';",
+      "    /** Defines text font-size */",
       "    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';",
       "}"
      ]
@@ -87040,6 +87353,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '30'"
       },
@@ -87057,6 +87375,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
       },
@@ -91628,6 +91951,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -91648,6 +91976,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -91657,6 +91990,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -91743,6 +92081,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -91755,6 +92098,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'24' | '12'"
       },
@@ -91771,6 +92119,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '6'"
       },
@@ -91789,6 +92142,11 @@
      {
       "uid": "spacing",
       "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '12' | '6'"
       },
@@ -91806,6 +92164,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -91818,6 +92181,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '18' | '24' | '12'"
       },
@@ -95104,6 +95472,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '30' | '12'"
       },
@@ -95122,6 +95495,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
       },
@@ -99854,6 +100232,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -99874,6 +100257,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -99886,6 +100274,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'24' | '12'"
       },
@@ -99902,6 +100295,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '6'"
       },
@@ -99920,6 +100318,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -99932,6 +100335,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '18' | '24' | '12'"
       },
@@ -102724,6 +103132,11 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines row size"
+       ]
+      },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
       },
@@ -102744,6 +103157,11 @@
      {
       "uid": "borderBottom",
       "name": "borderBottom",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row bottom border"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -102756,6 +103174,11 @@
      {
       "uid": "columnGap",
       "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Defines row column gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -102765,6 +103188,11 @@
      {
       "uid": "margin",
       "name": "margin",
+      "comment": {
+       "raw": [
+        "Defines row margin"
+       ]
+      },
       "typeValue": {
        "raw": "'24' | '12'"
       },
@@ -102781,6 +103209,11 @@
      {
       "uid": "padding",
       "name": "padding",
+      "comment": {
+       "raw": [
+        "Defines horizontal row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '6'"
       },
@@ -102799,6 +103232,11 @@
      {
       "uid": "rowGap",
       "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Defines row gap"
+       ]
+      },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
@@ -102808,6 +103246,11 @@
      {
       "uid": "topShadow",
       "name": "topShadow",
+      "comment": {
+       "raw": [
+        "Pass true, to show a top shadow"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -102820,6 +103263,11 @@
      {
       "uid": "vPadding",
       "name": "vPadding",
+      "comment": {
+       "raw": [
+        "Defines vertical row padding"
+       ]
+      },
       "typeValue": {
        "raw": "'36' | '48' | '18' | '24' | '12'"
       },
@@ -104268,6 +104716,11 @@
      {
       "uid": "lineHeight",
       "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '30' | '12'"
       },
@@ -104286,6 +104739,11 @@
      {
       "uid": "fontSize",
       "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
       "typeValue": {
        "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
       },
@@ -105131,159 +105589,6 @@
     }
    }
   },
-  "@epam/uui-editor:IImageElement": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "IImageElement",
-     "nameFull": "IImageElement"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "IImageElement",
-     "print": [
-      "interface IImageElement extends TElement, PlateProps, SlateProps {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "children",
-      "name": "children",
-      "typeValue": {
-       "raw": "TDescendant[]"
-      },
-      "from": "node_modules/@udecode/slate/dist/index.d.ts:TElement",
-      "required": true
-     },
-     {
-      "uid": "type",
-      "name": "type",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "node_modules/@udecode/slate/dist/index.d.ts:TElement",
-      "required": true
-     },
-     {
-      "uid": "url",
-      "name": "url",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-editor:PlateProps",
-      "required": true
-     },
-     {
-      "uid": "align",
-      "name": "align",
-      "typeValue": {
-       "raw": "'left' | 'center' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "center",
-        "right"
-       ]
-      },
-      "from": "@epam/uui-editor:PlateProps",
-      "required": false
-     },
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-editor:PlateProps",
-      "required": false
-     },
-     {
-      "uid": "data",
-      "name": "data",
-      "typeValue": {
-       "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
-      },
-      "typeValueRef": "@epam/uui-editor:SlateImageData",
-      "from": "@epam/uui-editor:SlateProps",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:LinkElement": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "LinkElement",
-     "nameFull": "LinkElement"
-    },
-    "src": "uui-editor/src/plugins/linkPlugin/linkPlugin.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "LinkElement",
-     "print": [
-      "interface LinkElement extends TElement {",
-      "    href: string;",
-      "    type: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "href",
-      "name": "href",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "type",
-      "name": "type",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "typeValue": {
-       "raw": "TDescendant[]"
-      },
-      "from": "node_modules/@udecode/slate/dist/index.d.ts:TElement",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-editor:PlaceholderPluginParams": {
    "summary": {
     "module": "@epam/uui-editor",
@@ -105300,6 +105605,7 @@
      "raw": "PlaceholderPluginParams",
      "print": [
       "interface PlaceholderPluginParams {",
+      "    /** Placeholder items */",
       "    items: {",
       "        name: string;",
       "        [key: string]: any;",
@@ -105311,6 +105617,11 @@
      {
       "uid": "items",
       "name": "items",
+      "comment": {
+       "raw": [
+        "Placeholder items"
+       ]
+      },
       "typeValue": {
        "raw": "{ [key: string]: any; name: string; }[]"
       },
@@ -105318,201 +105629,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:PlateImgAlign": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "PlateImgAlign",
-     "nameFull": "PlateImgAlign"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'left' | 'center' | 'right'",
-     "print": [
-      "type PlateImgAlign = 'left' | 'center' | 'right';"
-     ]
-    }
-   }
-  },
-  "@epam/uui-editor:PlateProps": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "PlateProps",
-     "nameFull": "PlateProps"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "PlateProps",
-     "print": [
-      "interface PlateProps {",
-      "    url: string;",
-      "    align?: PlateImgAlign;",
-      "    width?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "url",
-      "name": "url",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "align",
-      "name": "align",
-      "typeValue": {
-       "raw": "'left' | 'center' | 'right'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "center",
-        "right"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:SlateImageSize": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateImageSize",
-     "nameFull": "SlateImageSize"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "SlateImageSize",
-     "print": [
-      "type SlateImageSize = {",
-      "    width: number;",
-      "    height: number | string;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "width",
-      "name": "width",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "height",
-      "name": "height",
-      "typeValue": {
-       "raw": "string | number"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:SlateImgAlign": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateImgAlign",
-     "nameFull": "SlateImgAlign"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "'align-left' | 'align-right' | 'align-center'",
-     "print": [
-      "type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';"
-     ]
-    }
-   }
-  },
-  "@epam/uui-editor:SlateProps": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateProps",
-     "nameFull": "SlateProps"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 263,
-    "typeValue": {
-     "raw": "SlateProps",
-     "print": [
-      "interface SlateProps {",
-      "    data: SlateImageData;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "data",
-      "name": "data",
-      "typeValue": {
-       "raw": "{ imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<File> | { imageSize: SlateImageSize; align: SlateImgAlign; } & Partial<FileUploadResponse>"
-      },
-      "typeValueRef": "@epam/uui-editor:SlateImageData",
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-editor:SlateImageData": {
-   "summary": {
-    "module": "@epam/uui-editor",
-    "typeName": {
-     "name": "SlateImageData",
-     "nameFull": "SlateImageData"
-    },
-    "src": "uui-editor/src/types.ts",
-    "exported": false
    }
   },
   "@types/react:AllHTMLAttributes": {
@@ -105672,24 +105788,6 @@
      "nameFull": "ReactNode"
     },
     "src": "node_modules/@types/react/index.d.ts",
-    "exported": false
-   }
-  },
-  "node_modules/@udecode/slate/dist/index.d.ts:TElement": {
-   "summary": {
-    "module": "node_modules/@udecode/slate/dist/index.d.ts",
-    "typeName": {
-     "name": "TElement",
-     "nameFull": "TElement"
-    },
-    "src": "node_modules/@udecode/slate/dist/index.d.ts",
-    "comment": {
-     "raw": [
-      "`Element` objects are a type of node in a Slate document that contain other",
-      " element nodes or text nodes. They can be either \"blocks\" or \"inlines\"",
-      " depending on the Slate editor's configuration."
-     ]
-    },
     "exported": false
    }
   },

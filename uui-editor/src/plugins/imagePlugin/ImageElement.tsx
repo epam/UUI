@@ -12,8 +12,7 @@ import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import cx from 'classnames';
 import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
-import { IImageElement, PlateImgAlign } from '../../types';
-import { useResizableStore } from '@udecode/plate-resizable';
+import { IImageElement, PlateImgAlign } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
 
 interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
