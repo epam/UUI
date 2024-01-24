@@ -9,7 +9,8 @@ const { report, ruleMessages, validateOptions } = stylelint.utils;
 
 const ruleName = RULE_NAMES.NO_UNKNOWN_THEME_TOKENS;
 const messages = ruleMessages(ruleName, {
-    reportUnknown: (property) => `Unknown custom property: ${property}`,
+    reportUsedButNotDeclaredCssProp: (property) => `Unable to find CSS property declaration: ${property}`,
+    reportDoubleDeclarationOfCssProp: (property) => `This CSS property is declared more than once: ${property}`,
     reportCantCompileScss: (fullPath, reason) => `Cannot compile ${fullPath}, Reason: ${reason}`,
 });
 
@@ -45,10 +46,14 @@ const isString = (v) => typeof v === 'string';
 async function getCustomPropsInfo(scssFullPath) {
     const compiled = await compileScss(scssFullPath);
     const declared = new Set();
+    const declaredMoreThanOnce = new Set();
     const used = new Set();
     compiled.root.walkDecls((decl) => {
         const prop = decl.prop;
         if (prop.startsWith('--')) {
+            if (declared.has(prop)) {
+                declaredMoreThanOnce.add(prop);
+            }
             declared.add(prop);
         }
         const res = Array.from(getReferencedCustomPropsFromDecl(decl));
@@ -56,7 +61,14 @@ async function getCustomPropsInfo(scssFullPath) {
             res.forEach((m) => used.add(m));
         }
     });
-    return { declared, used };
+    const usedButNotDeclared = new Set();
+    [...used].forEach((p) => {
+        if (!declared.has(p)) {
+            usedButNotDeclared.add(p);
+        }
+    });
+
+    return { declared, used, usedButNotDeclared, declaredMoreThanOnce };
 }
 
 function rule(primaryOptions, secondaryOptions) {
@@ -92,18 +104,37 @@ function rule(primaryOptions, secondaryOptions) {
             });
         }
 
+        const isPropIgnored = (propToCheck) => {
+            return arrOfIgnoredTokens.indexOf(propToCheck) !== -1;
+        };
+
         if (info) {
             root.walkDecls((decl) => {
+                /*                 if (decl.prop.startsWith('--')) {
+                    if (isPropIgnored(decl.prop)) {
+                        return;
+                    }
+                    if (info.declaredMoreThanOnce.has(decl.prop)) {
+                        report({
+                            message: messages.reportDoubleDeclarationOfCssProp(decl.prop),
+                            node: decl,
+                            word: decl.prop,
+                            result,
+                            ruleName,
+                        });
+                    }
+                } */
+
                 const usedCustomProps = getReferencedCustomPropsFromDecl(decl);
                 if (usedCustomProps.size) {
                     usedCustomProps.forEach((p) => {
-                        if (!info.declared.has(p)) {
-                            const isPropIgnored = arrOfIgnoredTokens.indexOf(p) !== -1;
-                            if (isPropIgnored) {
-                                return;
-                            }
+                        if (isPropIgnored(p)) {
+                            return;
+                        }
+
+                        if (info.usedButNotDeclared.has(p)) {
                             report({
-                                message: messages.reportUnknown(p),
+                                message: messages.reportUsedButNotDeclaredCssProp(p),
                                 node: decl,
                                 word: p,
                                 result,

@@ -60,7 +60,7 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
         getDocsGenExports(): Promise<{ content: Record<string, string[]> }> {
             return processRequest(origin.concat('/api/docs-gen/exports'), 'GET');
         },
-        getThemeTokens(): Promise<{ content: IUuiTokensCollection['supportedTokens'] }> {
+        getThemeTokens(): Promise<{ content: IUuiTokensCollection['exposedTokens'] }> {
             return processRequest(origin.concat('/api/theme-tokens'), 'GET');
         },
         presets: {

@@ -21,7 +21,8 @@ export function AliasChain(props: { resolved: TResolvedValueNorm }) {
     };
 
     const arrStr = resolved.alias.map((item) => {
-        const { id, supported } = item;
+        const { id, cssVarSupport } = item;
+        const supported = cssVarSupport !== 'notSupported';
         return `${id}${supported ? ` (css: ${item.cssVar})` : ''}`;
     });
     arrStr.push(String(resolved.value));

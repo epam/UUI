@@ -5,8 +5,13 @@ interface BaseRowMods {
 }
 
 export interface DataTableMods {
+    /** Min height of table rows and header */
     size?: ControlSize;
+    /** Pass true, to turn row bottom border */
     border?: boolean;
+    /** Configure column header text case
+     * @default 'normal'
+     * */
     headerTextCase?: 'upper' | 'normal';
 }
 

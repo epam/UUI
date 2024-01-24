@@ -12,6 +12,7 @@ import { IHasToolbarButton } from '../../implementation/Toolbars';
 const KEY = 'placeholder';
 
 export interface PlaceholderPluginParams {
+    /** Placeholder items */
     items: {
         name: string;
         [key: string]: any;
