@@ -1,5 +1,9 @@
-import { TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
+import { IThemeVar, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
 import { PATH } from '../themeTokensGen/constants';
+
+export type TVar = { token: IThemeVar, name: string, value: string };
+export type TVarGroup = { title: string, items: TVar[] };
+export type TMainGroupConfig = { title: string, condition: string[] | undefined, showInnerGroupTitle: boolean, getInnerGroupId: (v: TVar) => string };
 
 export const TOKENS_MIXIN_NAME = 'theme-tokens';
 
@@ -26,17 +30,34 @@ export const coreThemeMixinsConfig: Record<TFigmaThemeName, { themeFile: string,
     },
 };
 
-export const GROUPS_CONFIG: Record<string, { title: string, condition: string[] | undefined }> = {
+const getInnerGroupIdGeneric = (v: TVar) => {
+    const idSplit = v.token.id.split('/');
+    return idSplit.length >= 3 ? idSplit.slice(0, 2).join('/') : '';
+};
+
+export const GROUPS_CONFIG: Record<string, TMainGroupConfig> = {
     palette: {
-        title: 'Palette variables',
+        title: 'Palette',
         condition: ['palette/', 'palette-additional/'],
+        showInnerGroupTitle: true,
+        getInnerGroupId: getInnerGroupIdGeneric,
     },
     core: {
-        title: 'Core variables',
+        title: 'Core',
         condition: ['core/'],
+        showInnerGroupTitle: true,
+        getInnerGroupId: (v) => {
+            if (v.token.id.indexOf('core/semantic/') === 0) {
+                const suffix = v.token.id.split('/')[2].split('-')[0];
+                return `core/semantic/${suffix}-`;
+            }
+            return getInnerGroupIdGeneric(v);
+        },
     },
     others: {
-        title: 'Other variables',
+        title: 'Others',
         condition: undefined, // fallback
+        showInnerGroupTitle: true,
+        getInnerGroupId: getInnerGroupIdGeneric,
     },
 };
