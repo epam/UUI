@@ -1,4 +1,3 @@
-export * from './BaseTimePicker';
 export * from './Checkbox';
 export * from './DatePicker';
 export * from './NumericInput';
@@ -8,5 +7,4 @@ export * from './Slider';
 export * from './Switch';
 export * from './TextArea';
 export * from './TextInput';
-export * from './TimePickerBody';
 export * from './InputAddon';
