@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
-import { DataSourceState, ItemsMap, Metadata, useDataRows, useTree, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { DataSourceState, ItemsMap, Metadata, useCascadeSelectionService, useDataRows, useTree, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -55,7 +55,7 @@ export function ProductsTableDemo() {
         });
     }, [setValue]);
 
-    const { tree, ...restProps } = useTree({ 
+    const { tree, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree({ 
         type: 'lazy',
         api: svc.api.demo.products,
         patchItems: updatedRows.items,
@@ -66,7 +66,15 @@ export function ProductsTableDemo() {
         backgroundReload: true,
     }, []);
 
-    const { rows, listProps } = useDataRows({ tree, ...restProps });
+    const cascadeSelectionService = useCascadeSelectionService({
+        tree: selectionTree,
+        cascadeSelection: restProps.cascadeSelection,
+        getRowOptions: restProps.getRowOptions,
+        rowOptions: restProps.rowOptions,
+        loadMissingRecordsOnCheck,
+    });
+
+    const { rows, listProps } = useDataRows({ tree, ...restProps, ...cascadeSelectionService });
 
     return (
         <Panel cx={ [css.container, css.uuiThemeLoveship] }>

@@ -2,10 +2,11 @@ import { DataRowPathItem, IMap } from '../../../../../../types';
 import { TreeNodeInfo, TreeParams, ItemsAccessor } from './types';
 import { PureTreeStructure } from './PureTreeStructure';
 import { newMap } from './helpers';
-import { NOT_FOUND_RECORD } from '../constants';
+import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
 import { ItemsMap } from '../../ItemsMap';
+import { ITree, ItemsInfo, TreeNodeStatus } from '../ITree';
 
-export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
+export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> implements ITree<TItem, TId> {
     constructor(
         _params: TreeParams<TItem, TId>,
         protected readonly _itemsAccessor: ItemsAccessor<TItem, TId>,
@@ -44,6 +45,22 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
     public getChildren(item: TItem) {
         const id = this.params.getId(item);
         return this.getChildrenByParentId(id);
+    }
+
+    public getById(id: TId) {
+        return this.itemsAccessor.get(id);
+    }
+
+    public getItems(parentId?: TId): ItemsInfo<TId> {
+        const ids = this.byParentId.get(parentId) ?? [];
+        const { count } = this.getNodeInfo(parentId);
+
+        let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
+        if (count !== 0 && ids.length === count) {
+            status = FULLY_LOADED;
+        }
+
+        return { ids, count, status };
     }
 
     public getChildrenByParentId(parentId: TId) {
@@ -121,11 +138,11 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
         return this.byParentId.size <= 1;
     }
 
-    public getTotalRecursiveCount() {
+    public getTotalCount() {
         let count = undefined;
         for (const [, info] of this.nodeInfoById) {
             if (info.count == null) {
-                // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
+                // TBD: getTotalCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 return null;
             } else {
                 if (count === undefined) {
@@ -148,7 +165,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> {
         );
     }
 
-    public forEach(
+    private forEach(
         action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
         options?: {
             direction?: 'bottom-up' | 'top-down';

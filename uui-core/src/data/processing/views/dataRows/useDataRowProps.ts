@@ -3,7 +3,7 @@ import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { CheckingService, FocusService, SelectingService } from './services';
 import { idToKey } from '../helpers';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
-import { TreeState } from '../tree/newTree';
+import { ITree, Tree } from '../tree';
 
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
@@ -13,7 +13,7 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
     > {
 
-    tree: TreeState<TItem, TId>;
+    tree: ITree<TItem, TId>;
 
     isFlattenSearch: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
@@ -82,7 +82,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
     const getRowProps = useCallback((item: TItem, index: number): DataRowProps<TItem, TId> => {
         const id = getId(item);
         const key = idToKey(id);
-        const path = tree.visible.getPathById(id);
+        const path = Tree.getPathById(id, tree);
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
         const rowProps = {
             id,
@@ -96,7 +96,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         } as DataRowProps<TItem, TId>;
 
         return updateRowOptions(rowProps);
-    }, [getId, tree.visible, updateRowOptions]);
+    }, [getId, tree, updateRowOptions]);
 
     const getEmptyRowProps = useCallback((id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> => {
         const checked = dataSourceState?.checked ?? [];

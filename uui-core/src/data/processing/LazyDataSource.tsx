@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { LazyListViewProps, useDataRows, useTree } from './views';
+import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState } from '../../types';
@@ -53,7 +53,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { tree, reload, ...restProps } = useTree({
+        const { tree, selectionTree, reload, loadMissingRecordsOnCheck, ...restProps } = useTree({
             type: 'lazy',
             ...this.props,
             itemsMap,
@@ -86,9 +86,19 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         }, [tree, reload]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const cascadeSelectionService = useCascadeSelectionService({
+            tree: selectionTree,
+            cascadeSelection: restProps.cascadeSelection,
+            getRowOptions: restProps.getRowOptions,
+            rowOptions: restProps.rowOptions,
+            loadMissingRecordsOnCheck,
+        });
+                
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const { rows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
+            ...cascadeSelectionService,
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks

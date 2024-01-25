@@ -1,10 +1,10 @@
 import { ItemsStorage } from '../../ItemsStorage';
 import {
-    CascadeSelectionOptions, FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
+    FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
 import { PureTreeState } from './PureTreeState';
-import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, CheckingHelper, PatchHelper } from '../treeStructure';
+import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
@@ -138,11 +138,6 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
         }
 
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
-    }
-
-    public cascadeSelection(options: CascadeSelectionOptions<TItem, TId>) {
-        const treeStructure = this.getTreeStructure('full');
-        return CheckingHelper.cascadeSelection<TItem, TId>({ treeStructure, itemsMap: this.itemsMap, ...options });
     }
 
     public patch({ using, ...options }: PatchOptions<TItem>): TreeState<TItem, TId> {

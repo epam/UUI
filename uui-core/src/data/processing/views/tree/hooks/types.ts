@@ -1,4 +1,4 @@
-import { PureTreeState } from '../newTree/exposed';
+import { ITree } from '../newTree/exposed';
 import { CommonDataSourceConfig, LoadMissingRecords, TreeActions, TreeLoadingState } from './strategies/types';
 
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
@@ -7,5 +7,6 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     TreeActions,
     LoadMissingRecords<TItem, TId> {
 
-    tree: PureTreeState<TItem, TId>;
+    tree: ITree<TItem, TId>;
+    selectionTree: ITree<TItem, TId>;
 }

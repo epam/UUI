@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useTree, useDataRows } from '@epam/uui-core';
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useTree, useDataRows, useCascadeSelectionService } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text, SearchInput } from '@epam/loveship';
@@ -74,7 +74,7 @@ export function DbDemoImpl() {
     dbRef.jobTitlesLoader.load({});
     dbRef.departmentsLoader.load({});
 
-    const tree = useTree(
+    const { tree, selectionTree, reload, loadMissingRecordsOnCheck, ...restProps } = useTree(
         {
             type: 'lazy',
             dataSourceState: value,
@@ -89,7 +89,15 @@ export function DbDemoImpl() {
         [],
     );
 
-    const { rows, listProps } = useDataRows(tree);
+    const cascadeSelectionService = useCascadeSelectionService({
+        tree: selectionTree,
+        cascadeSelection: restProps.cascadeSelection,
+        getRowOptions: restProps.getRowOptions,
+        rowOptions: restProps.rowOptions,
+        loadMissingRecordsOnCheck,
+    });
+
+    const { rows, listProps } = useDataRows({ tree, ...restProps, ...cascadeSelectionService });
 
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>
@@ -105,7 +113,7 @@ export function DbDemoImpl() {
                     <Button caption="Revert" onClick={ () => dbRef.revert() } size="30" />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Reload" onClick={ () => tree.reload() } size="30" />
+                    <Button caption="Reload" onClick={ () => reload() } size="30" />
                 </FlexCell>
             </FlexRow>
             <PersonsTable { ...lens.toProps() } rows={ rows } listProps={ listProps } />

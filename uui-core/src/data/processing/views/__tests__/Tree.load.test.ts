@@ -90,7 +90,7 @@ describe('Tree - load', () => {
             },
         );
 
-        // expect(tree.getTotalRecursiveCount()).toBe(undefined);
+        // expect(tree.getTotalCount()).toBe(undefined);
     });
 
     it('Can load items (unfolded)', async () => {
@@ -115,7 +115,7 @@ describe('Tree - load', () => {
                 300: { count: 3 },
             },
         );
-        expect(tree.getTotalRecursiveCount()).toBe(10);
+        expect(tree.getTotalCount()).toBe(10);
 
         const tree2 = await tree.load(loadParams, value);
 

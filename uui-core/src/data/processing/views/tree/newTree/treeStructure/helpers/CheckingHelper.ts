@@ -1,12 +1,12 @@
 import { CascadeSelectionTypes } from '../../../../../../../types';
-import { ROOT_ID } from '../../constants';
+import { Tree } from '../../Tree';
+import { NOT_FOUND_RECORD, ROOT_ID } from '../../constants';
 import { newMap } from './map';
 import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, SelectionOptions } from './types';
 
 export class CheckingHelper {
     public static cascadeSelection<TItem, TId>({
-        treeStructure,
-        itemsMap,
+        tree,
         currentCheckedIds,
         checkedId,
         isChecked,
@@ -14,7 +14,7 @@ export class CheckingHelper {
         cascadeSelectionType,
     }: CascadeSelectionOptions<TItem, TId>) {
         const isImplicitMode = cascadeSelectionType === CascadeSelectionTypes.IMPLICIT;
-        let checkedIdsMap = newMap<TId, boolean>(treeStructure.params);
+        let checkedIdsMap = newMap<TId, boolean>(tree.params);
         if (!(checkedId === ROOT_ID && isImplicitMode)) {
             currentCheckedIds.forEach((id) => checkedIdsMap.set(id, true));
         }
@@ -22,8 +22,7 @@ export class CheckingHelper {
         const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType: cascadeSelectionType ?? true };
         if (!optionsWithDefaults.cascadeSelectionType) {
             checkedIdsMap = this.simpleSelection({
-                treeStructure,
-                itemsMap,
+                tree,
                 checkedIdsMap,
                 checkedId,
                 isChecked,
@@ -33,8 +32,7 @@ export class CheckingHelper {
 
         if (optionsWithDefaults.cascadeSelectionType === true || optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.EXPLICIT) {
             checkedIdsMap = this.explicitCascadeSelection({
-                treeStructure,
-                itemsMap,
+                tree,
                 checkedIdsMap,
                 checkedId,
                 isChecked,
@@ -44,8 +42,7 @@ export class CheckingHelper {
 
         if (optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.IMPLICIT) {
             checkedIdsMap = this.implicitCascadeSelection({
-                treeStructure,
-                itemsMap,
+                tree,
                 checkedIdsMap,
                 checkedId,
                 isChecked,
@@ -62,7 +59,7 @@ export class CheckingHelper {
     }
 
     private static simpleSelection<TItem, TId>({
-        itemsMap,
+        tree,
         checkedIdsMap,
         checkedId,
         isChecked,
@@ -72,11 +69,11 @@ export class CheckingHelper {
             if (checkedId !== ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             } else {
-                itemsMap.forEach((item, id) => {
-                    if (isCheckable(item)) {
-                        checkedIdsMap.set(id, true);
-                    }
-                });
+                Tree.forEachChildren<TItem, TId>(
+                    tree,
+                    (id) => { checkedIdsMap.set(id, true); },
+                    isCheckable,
+                );
             }
             return checkedIdsMap;
         }
@@ -87,7 +84,7 @@ export class CheckingHelper {
             for (const [checkedItemId, isItemChecked] of checkedIdsMap) {
                 if (isItemChecked) {
                     this.actForCheckable({
-                        itemsMap,
+                        tree,
                         action: (id) => checkedIdsMap.delete(id),
                         isCheckable,
                         id: checkedItemId,
@@ -101,19 +98,19 @@ export class CheckingHelper {
     }
 
     private static actForCheckable<TItem, TId>({
-        itemsMap,
+        tree,
         action,
         isCheckable,
         id,
     }: ActForCheckableOptions<TItem, TId>) {
-        const item = itemsMap.get(id);
-        if (itemsMap.has(id) && isCheckable(item)) {
+        const item = tree.getById(id);
+        if (item !== NOT_FOUND_RECORD && isCheckable(item)) {
             action(id);
         }
     }
 
     private static explicitCascadeSelection<TItem, TId>({
-        treeStructure,
+        tree,
         checkedIdsMap,
         checkedId,
         isChecked,
@@ -124,8 +121,13 @@ export class CheckingHelper {
                 checkedIdsMap.set(checkedId, true);
             }
             // check all children recursively
-            treeStructure.forEachChildren((id) => id !== ROOT_ID && checkedIdsMap.set(id, true), isCheckable, checkedId);
-            return this.checkParentsWithFullCheck({ treeStructure, checkedIdsMap, checkedId, isCheckable });
+            Tree.forEachChildren<TItem, TId>(
+                tree,
+                (id) => id !== ROOT_ID && checkedIdsMap.set(id, true),
+                isCheckable,
+                checkedId,
+            );
+            return this.checkParentsWithFullCheck({ tree, checkedIdsMap, checkedId, isCheckable });
         }
 
         if (checkedId !== ROOT_ID) {
@@ -133,16 +135,20 @@ export class CheckingHelper {
         }
 
         // uncheck all children recursively
-        treeStructure.forEachChildren((id) => checkedIdsMap.delete(id), isCheckable, checkedId);
+        Tree.forEachChildren<TItem, TId>(
+            tree,
+            (id) => checkedIdsMap.delete(id),
+            isCheckable,
+            checkedId,
+        );
 
-        treeStructure.getParentIdsRecursive(checkedId).forEach((parentId) => checkedIdsMap.delete(parentId));
+        Tree.getParents(checkedId, tree).forEach((parentId) => checkedIdsMap.delete(parentId));
 
         return checkedIdsMap;
     }
 
     private static implicitCascadeSelection<TItem, TId>({
-        treeStructure,
-        itemsMap,
+        tree,
         checkedIdsMap,
         checkedId,
         isChecked,
@@ -154,16 +160,23 @@ export class CheckingHelper {
             }
             // for implicit mode, it is required to remove explicit check from children,
             // if parent is checked
-            treeStructure.forEachChildren((id) => checkedIdsMap.delete(id), isCheckable, checkedId, false);
+            Tree.forEachChildren<TItem, TId>(
+                tree,
+                (id) => checkedIdsMap.delete(id),
+                isCheckable,
+                checkedId,
+                false,
+            );
+
             if (checkedId === ROOT_ID) {
-                const childrenIds = treeStructure.getChildrenIdsByParentId(checkedId);
+                const { ids: childrenIds } = tree.getItems(checkedId);
 
                 // if selectedId is undefined and it is selected, that means selectAll
                 childrenIds.forEach((id) => checkedIdsMap.set(id, true));
             }
             // check parents if all children are checked
             return this.checkParentsWithFullCheck({
-                treeStructure,
+                tree,
                 checkedIdsMap,
                 checkedId,
                 isCheckable,
@@ -176,16 +189,17 @@ export class CheckingHelper {
         }
 
         const selectNeighboursOnly = (itemId: TId) => {
-            if (!itemsMap.has(itemId)) {
+            const item = tree.getById(itemId);
+            if (item === NOT_FOUND_RECORD) {
                 return;
             }
-            const item = itemsMap.get(itemId);
-            const parentId = treeStructure.params.getParentId?.(item);
-            const parents = treeStructure.getParentIdsRecursive(itemId);
+
+            const parentId = tree.params.getParentId?.(item);
+            const parents = Tree.getParents(itemId, tree);
             // if some parent is checked, it is required to check all children explicitly,
             // except unchecked one.
             const someParentIsChecked = parents.some((parent) => checkedIdsMap.get(parent));
-            treeStructure.getChildrenIdsByParentId(parentId).forEach((id) => {
+            tree.getItems(parentId).ids.forEach((id) => {
                 if (itemId !== id && someParentIsChecked) {
                     checkedIdsMap.set(id, true);
                 }
@@ -194,29 +208,35 @@ export class CheckingHelper {
         };
 
         if (checkedId !== ROOT_ID) {
-            const parents = treeStructure.getParentIdsRecursive(checkedId);
+            const parents = Tree.getParents(checkedId, tree);
             [checkedId, ...parents.reverse()].forEach(selectNeighboursOnly);
         }
         return checkedIdsMap;
     }
 
     private static checkParentsWithFullCheck<TItem, TId>({
-        treeStructure,
+        tree,
         checkedIdsMap,
         checkedId,
         isCheckable,
         removeExplicitChildrenSelection,
     }: CheckParentsWithFullCheckOptions<TItem, TId>) {
-        treeStructure.getParentIdsRecursive(checkedId)
+        Tree.getParents(checkedId, tree)
             .reverse()
             .forEach((parentId) => {
-                const childrenIds = treeStructure.getChildrenIdsByParentId(parentId);
+                const { ids: childrenIds } = tree.getItems(parentId);
                 if (childrenIds && childrenIds.every((childId) => checkedIdsMap.has(childId))) {
                     if (parentId !== ROOT_ID) {
                         checkedIdsMap.set(parentId, true);
                     }
                     if (removeExplicitChildrenSelection) {
-                        treeStructure.forEachChildren((id) => checkedIdsMap.delete(id), isCheckable, parentId, false);
+                        Tree.forEachChildren(
+                            tree,
+                            (id) => checkedIdsMap.delete(id),
+                            isCheckable,
+                            parentId,
+                            false,
+                        );
                     }
                 }
             });

@@ -1,8 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
-import { NOT_FOUND_RECORD } from '../../tree';
-import { CommonDataSourceConfig, LoadMissingRecords } from '../../tree/hooks/strategies/types';
-import { TreeState } from '../../tree/newTree';
+import { ITree, NOT_FOUND_RECORD, Tree } from '../../tree';
+import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
+import { CascadeSelectionService } from './useCascadeSelectionService';
+import { CheckingHelper } from '../../tree/newTree';
 
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -10,8 +11,8 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     'getParentId' | 'dataSourceState' | 'setDataSourceState'
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,
-    LoadMissingRecords<TItem, TId> {
-    tree: TreeState<TItem, TId>;
+    CascadeSelectionService<TId> {
+    tree: ITree<TItem, TId>;
 }
 
 export interface CheckingService<TItem, TId> {
@@ -26,7 +27,7 @@ export interface CheckingService<TItem, TId> {
 
 const idToKey = <TId, >(id: TId) => typeof id === 'object' ? JSON.stringify(id) : `${id}`;
 
-const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: TreeState<TItem, TId>, getParentId?: (item: TItem) => TId) => {
+const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: ITree<TItem, TId>, getParentId?: (item: TItem) => TId) => {
     const checkedByKey: Record<string, boolean> = {};
     const someChildCheckedByKey: Record<string, boolean> = {};
     const checkedItems = checked ?? [];
@@ -44,7 +45,7 @@ const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: TreeState<TItem,
 
         const parentId = getParentId(item);
         if (!someChildCheckedByKey[idToKey(parentId)]) {
-            const parents = tree.visible.getParentIdsRecursive(id).reverse();
+            const parents = Tree.getParents(id, tree).reverse();
             for (const parent of parents) {
                 if (someChildCheckedByKey[idToKey(parent)]) {
                     break;
@@ -65,13 +66,13 @@ export function useCheckingService<TItem, TId>(
         cascadeSelection,
         getRowOptions,
         rowOptions,
-        loadMissingRecords = async () => tree,
+        handleCascadeSelection,
     }: UseCheckingServiceProps<TItem, TId>,
 ): CheckingService<TItem, TId> {
     const checked = dataSourceState.checked ?? [];
     const checkingInfoById = useMemo(
         () => getCheckingInfo(checked, tree, getParentId),
-        [tree, tree.visible, getParentId, checked],
+        [tree, tree, getParentId, checked],
     );
 
     const { checkedByKey, someChildCheckedByKey } = checkingInfoById;
@@ -101,15 +102,19 @@ export function useCheckingService<TItem, TId>(
     }, [getRowProps]);
 
     const handleCheck = useCallback(async (isChecked: boolean, checkedId?: TId, isRoot?: boolean) => {
-        const completedTree = await loadMissingRecords(tree, checkedId, isChecked, isRoot);
-
-        const updatedChecked = completedTree.cascadeSelection({
-            currentCheckedIds: checked,
-            checkedId,
-            isChecked,
-            cascadeSelectionType: cascadeSelection,
-            isCheckable: (item: TItem) => isItemCheckable(item),
-        });
+        let updatedChecked: TId[] = [];
+        if (handleCascadeSelection) {
+            updatedChecked = await handleCascadeSelection?.(isChecked, checkedId, isRoot, checked);
+        } else {
+            updatedChecked = CheckingHelper.cascadeSelection({
+                tree,
+                currentCheckedIds: checked,
+                checkedId,
+                isChecked,
+                isCheckable: isItemCheckable,
+                cascadeSelectionType: cascadeSelection,
+            });
+        }
 
         setDataSourceState((dsState) => ({ ...dsState, checked: updatedChecked }));
     }, [tree, checked, setDataSourceState, isItemCheckable, cascadeSelection]);

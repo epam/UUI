@@ -7,7 +7,6 @@ import { useSortTree } from './useSortTree';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
 import { useItemsStorage } from '../useItemsStorage';
-import { TreeState } from '../../../newTree';
 
 export function usePlainTree<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, items, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
@@ -67,11 +66,10 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         resetTree();
     }, [resetTree]);
 
-    const pureTree = useMemo(() => TreeState.toPureTreeState(tree), [tree]);
-
     return useMemo(
         () => ({
-            tree: pureTree,
+            tree: tree.visible,
+            selectionTree: tree.full,
             rowOptions,
             getRowOptions,
             getChildCount,
@@ -82,7 +80,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             reload,
         }),
         [
-            pureTree,
+            tree,
             dataSourceState,
             setDataSourceState,
             rowOptions,

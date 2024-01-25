@@ -20912,7 +20912,7 @@
       "    load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren?: boolean): Promise<ITree<TItem, TId>>;",
       "    loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;",
       "    loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;",
-      "    getTotalRecursiveCount(): number;",
+      "    getTotalCount(): number;",
       "    forEach(action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void, options?: {",
       "        direction?: 'bottom-up' | 'top-down';",
       "        parentId?: TId;",
@@ -21137,8 +21137,8 @@
       "required": true
      },
      {
-      "uid": "getTotalRecursiveCount",
-      "name": "getTotalRecursiveCount",
+      "uid": "getTotalCount",
+      "name": "getTotalCount",
       "typeValue": {
        "raw": "() => number"
       },
