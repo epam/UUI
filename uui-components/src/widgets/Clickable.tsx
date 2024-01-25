@@ -1,64 +1,68 @@
 import React, { ForwardedRef, PropsWithChildren } from 'react';
 import {
     cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext,
-    IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, IHasRawProps, Link, ICanRedirect,
+    IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, Link, ICanRedirect,
 } from '@epam/uui-core';
 
-export type HrefRawProps = {
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
+export type HrefNavigationProps = {
     /** The URL that the hyperlink points to. */
     href: string | never;
     /** Defines location within SPA application */
     link?: never;
 };
 
-export type LinkButtonRawProps = {
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
+export type LinkButtonNavigationProps = {
     /** The URL that the hyperlink points to. */
     href?: never;
     /** Defines location within SPA application */
     link: Link;
 };
 
-export type ButtonRawProps = {
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>['rawProps'];
+export type ButtonNavigationProps = {
     /** The URL that the hyperlink points to. */
     href?: never;
     /** Defines location within SPA application */
     link?: never;
 };
 
-export type SpanRawProps = {
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: IHasRawProps<React.HTMLAttributes<HTMLSpanElement>>['rawProps'];
+export type SpanNavigationProps = {
     /** The URL that the hyperlink points to. */
     href?: never;
     /** Defines location within SPA application */
     link?: never;
 };
 
-export type AnchorRawProps = {
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];
+export type AnchorNavigationProps = {
     /** The URL that the hyperlink points to. */
     href: string;
     /** Defines location within SPA application */
     link: Link;
 };
 
-export type UnionRawProps = HrefRawProps | LinkButtonRawProps | ButtonRawProps | SpanRawProps | AnchorRawProps;
+export type UnionNavigationProps =
+    | HrefNavigationProps
+    | LinkButtonNavigationProps
+    | ButtonNavigationProps
+    | SpanNavigationProps
+    | AnchorNavigationProps;
+
+export type ClickableRawProps =
+    | (React.AnchorHTMLAttributes<HTMLAnchorElement>
+    | React.ButtonHTMLAttributes<HTMLButtonElement>
+    | React.HTMLAttributes<HTMLSpanElement>)
+    & Record<`data-${string}`, string>;
 
 export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
-& ICanRedirect & UnionRawProps & {};
+& Omit<ICanRedirect, 'href' | 'link'> & UnionNavigationProps & {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
+    rawProps?: ClickableRawProps;
+};
 
 export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, PropsWithChildren<ClickableComponentProps>>((props, ref) => {
     const context = useUuiContext();
     const isAnchor = Boolean(props.href || props.link);
-    const isButton = Boolean(!isAnchor && props.onClick);
-    const isClickable = Boolean(!props.isDisabled && (isAnchor || props.onClick));
+    const isButton = Boolean(!isAnchor && ((props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement>)?.type || props.onClick));
+    const isClickable = Boolean(!props.isDisabled && (props.link || props.onClick));
     const getIsLinkActive = () => {
         if (props.isLinkActive !== undefined) {
             return props.isLinkActive;
@@ -74,6 +78,11 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
             }
 
             if (!!props.link) {
+                if (props.target) {
+                    e.stopPropagation();
+                    return;
+                }
+
                 e.preventDefault();
                 context.uuiRouter.redirect(props.link);
             }
@@ -136,7 +145,6 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
     if (isButton) {
         return (
             <button
-                type="button"
                 ref={ ref as ForwardedRef<HTMLButtonElement> }
                 { ...commonProps }
                 { ...props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement> }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers } from '@epam/uui-core';
-import { Clickable, ClickableComponentProps, IconContainer, UnionRawProps } from '@epam/uui-components';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
 import { CountIndicator } from '../widgets';
 import { systemIcons } from '../../icons/icons';
@@ -66,7 +66,7 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
                 role: 'tab',
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
-                ...props.rawProps as UnionRawProps,
+                ...props.rawProps,
             } }
             cx={ styles }
             ref={ ref }

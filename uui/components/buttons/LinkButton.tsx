@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
-import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
+import { CX, cx, devLogger, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDisableable, IDropdownToggler,
+    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement,
+} from '@epam/uui-core';
+import {
+    AnchorNavigationProps, ButtonNavigationProps, Clickable, HrefNavigationProps, IconContainer, LinkButtonNavigationProps,
+} from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
@@ -17,22 +21,30 @@ interface LinkButtonMods {
     color?: 'primary' | 'secondary' | 'contrast';
 }
 
+export type UnionLinkButtonNavigationProps = HrefNavigationProps | LinkButtonNavigationProps | ButtonNavigationProps | AnchorNavigationProps;
+
+export type LinkButtonRawProps =
+    | (React.AnchorHTMLAttributes<HTMLAnchorElement>
+    | React.ButtonHTMLAttributes<HTMLButtonElement>)
+    & Record<`data-${string}`, string>;
+
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
+& Omit<ICanRedirect, 'href' | 'link'> & IDropdownToggler & IHasIcon & IHasCaption & UnionLinkButtonNavigationProps & {
     /**
      * CSS classes to put on the caption
      * @deprecated
      * */
     captionCX?: CX;
-
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-
     /**
      * Defines component size.
      * @default '36'
      */
     size?: types.ControlSize | '42';
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
+    rawProps?: LinkButtonRawProps;
 };
 
 /** Represents the properties of the LinkButton component. */
@@ -58,7 +70,15 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[props.size || DEFAULT_SIZE].foldingArrow;
 
     return (
-        <Clickable { ...props } cx={ styles } ref={ ref }>
+        <Clickable
+            { ...props }
+            cx={ styles }
+            ref={ ref }
+            rawProps={ {
+                type: props.rawProps?.type || 'button',
+                ...props.rawProps,
+            } }
+        >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
                     icon={ props.icon }

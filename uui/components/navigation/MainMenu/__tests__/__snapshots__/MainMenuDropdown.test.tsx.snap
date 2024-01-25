@@ -8,7 +8,6 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
   onClick={[Function]}
   role="menuitem"
   tabIndex={0}
-  type="button"
 >
   <div
     className="uui-caption"
@@ -34,7 +33,6 @@ exports[`MainMenuDropdown should be rendered correctly with minimum props 1`] = 
   onClick={[Function]}
   role="menuitem"
   tabIndex={0}
-  type="button"
 >
   <div
     className="container uui-icon uui-enabled"

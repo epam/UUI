@@ -4,7 +4,7 @@ import { Anchor } from '../Anchor';
 
 describe('Anchor', () => {
     it('should rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<Anchor>Test Anchor</Anchor>);
+        const tree = await renderSnapshotWithContextAsync(<Anchor href="#">Test Anchor</Anchor>);
         expect(tree).toMatchSnapshot();
     });
 

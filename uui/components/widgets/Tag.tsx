@@ -1,6 +1,6 @@
 import React from 'react';
 import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers } from '@epam/uui-core';
-import { Clickable, ClickableComponentProps, IconContainer, UnionRawProps } from '@epam/uui-components';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Tag.module.scss';
@@ -91,7 +91,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             rawProps={ {
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
-                ...props.rawProps as UnionRawProps,
+                ...props.rawProps,
             } }
             cx={ styles }
             ref={ ref }
