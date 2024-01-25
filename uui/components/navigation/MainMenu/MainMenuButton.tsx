@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     CX, cx, devLogger, IAdaptiveItem, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDropdownToggler,
-    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement,
+    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement, IHasRawProps,
 } from '@epam/uui-core';
 import { Clickable, IconContainer, ClickableRawProps, UnionNavigationProps } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets';
@@ -16,7 +16,7 @@ interface MainMenuButtonMods {
 }
 
 export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex
-& IHasCX & ICanRedirect & IDropdownToggler & IHasIcon & IHasCaption & UnionNavigationProps & {
+& IHasCX & ICanRedirect & IDropdownToggler & IHasIcon & IHasCaption & UnionNavigationProps & IHasRawProps<ClickableRawProps> & {
     /**
      * CSS classes to put on the caption
      * @deprecated
@@ -26,8 +26,6 @@ export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IClickabl
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
     count?: React.ReactNode;
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: ClickableRawProps;
 };
 
 export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {

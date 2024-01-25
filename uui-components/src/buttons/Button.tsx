@@ -1,35 +1,18 @@
 import * as React from 'react';
 import {
-    Icon,
-    uuiElement,
-    uuiMarkers,
-    CX,
-    cx,
-    IHasIcon,
-    IDropdownToggler,
-    IHasCaption,
-    devLogger,
-    IClickable, IAnalyticableClick, IHasTabIndex, IDisableable, IHasCX, ICanRedirect,
+    Icon, uuiElement, uuiMarkers, CX, cx, IHasIcon, IDropdownToggler, IHasCaption, devLogger, IClickable,
+    IAnalyticableClick, IHasTabIndex, IDisableable, IHasCX, ICanRedirect, IHasRawProps,
 } from '@epam/uui-core';
-import {
-    AnchorNavigationProps,
-    ButtonNavigationProps,
-    Clickable,
-    HrefNavigationProps,
-    LinkButtonNavigationProps,
-} from '../widgets';
+import { AnchorNavigationProps, ButtonNavigationProps, Clickable, HrefNavigationProps, LinkButtonNavigationProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './Button.module.scss';
 
 export type UnionButtonNavigationProps = HrefNavigationProps | LinkButtonNavigationProps | ButtonNavigationProps | AnchorNavigationProps;
 
-export type ButtonRawProps =
-    | (React.AnchorHTMLAttributes<HTMLAnchorElement>
-    | React.ButtonHTMLAttributes<HTMLButtonElement>)
-    & Record<`data-${string}`, string>;
+export type ButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect
-& IDropdownToggler & IHasIcon & IHasCaption & UnionButtonNavigationProps & {
+& IDropdownToggler & IHasIcon & IHasCaption & UnionButtonNavigationProps & IHasRawProps<ButtonRawProps> & {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
@@ -41,8 +24,6 @@ export type ButtonProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisa
     captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: ButtonRawProps;
 };
 
 export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
