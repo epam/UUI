@@ -2,7 +2,7 @@
 
 exports[`Anchor should rendered correctly 1`] = `
 <a
-  className="uui-button-box uui-enabled uui-anchor container root"
+  className="uui-button-box uui-enabled -clickable uui-anchor container root"
   href="#"
   tabIndex={0}
 >
@@ -13,7 +13,7 @@ exports[`Anchor should rendered correctly 1`] = `
 exports[`Anchor should rendered with props correctly 1`] = `
 <a
   aria-disabled={true}
-  className="uui-button-box uui-disabled uui-anchor container root"
+  className="uui-button-box uui-disabled -clickable uui-anchor container root"
   tabIndex={-1}
 >
   Test Anchor

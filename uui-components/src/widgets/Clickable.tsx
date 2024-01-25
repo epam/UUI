@@ -1,60 +1,21 @@
 import React, { ForwardedRef, PropsWithChildren } from 'react';
 import {
     cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext, IHasRawProps,
-    IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, Link, ICanRedirect,
+    IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, ICanRedirect,
 } from '@epam/uui-core';
 
-export type HrefNavigationProps = {
-    /** The URL that the hyperlink points to. */
-    href: string | never;
-    /** Defines location within SPA application */
-    link?: never;
-};
-
-export type LinkButtonNavigationProps = {
-    /** The URL that the hyperlink points to. */
-    href?: never;
-    /** Defines location within SPA application */
-    link: Link;
-};
-
-export type ButtonNavigationProps = {
-    /** The URL that the hyperlink points to. */
-    href?: never;
-    /** Defines location within SPA application */
-    link?: never;
-};
-
-export type SpanNavigationProps = {
-    /** The URL that the hyperlink points to. */
-    href?: never;
-    /** Defines location within SPA application */
-    link?: never;
-};
-
-export type AnchorNavigationProps = {
-    /** The URL that the hyperlink points to. */
-    href: string;
-    /** Defines location within SPA application */
-    link: Link;
-};
-
-export type UnionNavigationProps =
-    | HrefNavigationProps
-    | LinkButtonNavigationProps
-    | ButtonNavigationProps
-    | SpanNavigationProps
-    | AnchorNavigationProps;
+type ClickableType = { clickableType?: 'button' | 'anchor' };
+type ClickableForwardedRef = HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
 
 export type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>;
 
 export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
-& Omit<ICanRedirect, 'href' | 'link'> & UnionNavigationProps & IHasRawProps<ClickableRawProps> & {};
+& ICanRedirect & IHasRawProps<ClickableRawProps> & {};
 
-export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, PropsWithChildren<ClickableComponentProps>>((props, ref) => {
+export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
     const context = useUuiContext();
-    const isAnchor = Boolean(props.href || props.link);
-    const isButton = Boolean(!isAnchor && ((props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement>)?.type || props.onClick));
+    const isAnchor = Boolean(props.href || props.link || props.clickableType === 'anchor');
+    const isButton = Boolean(!isAnchor && (props.onClick || props.clickableType === 'button'));
     const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick));
     const getIsLinkActive = () => {
         if (props.isLinkActive !== undefined) {
@@ -71,8 +32,7 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
             }
 
             if (!!props.link) {
-                if (props.target) {
-                    e.stopPropagation();
+                if (props.target) { // if target _blank we should not invoke redirect
                     return;
                 }
 
@@ -139,6 +99,7 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
         return (
             <button
                 ref={ ref as ForwardedRef<HTMLButtonElement> }
+                type={ (props.rawProps as any)?.type || 'button' }
                 { ...commonProps }
                 { ...props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement> }
             >

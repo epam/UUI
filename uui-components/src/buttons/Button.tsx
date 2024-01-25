@@ -1,18 +1,10 @@
 import * as React from 'react';
-import {
-    Icon, uuiElement, uuiMarkers, CX, cx, IHasIcon, IDropdownToggler, IHasCaption, devLogger, IClickable,
-    IAnalyticableClick, IHasTabIndex, IDisableable, IHasCX, ICanRedirect, IHasRawProps,
-} from '@epam/uui-core';
-import { AnchorNavigationProps, ButtonNavigationProps, Clickable, HrefNavigationProps, LinkButtonNavigationProps } from '../widgets';
+import { Icon, uuiElement, uuiMarkers, CX, cx, IHasIcon, IDropdownToggler, IHasCaption, devLogger } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './Button.module.scss';
 
-export type UnionButtonNavigationProps = HrefNavigationProps | LinkButtonNavigationProps | ButtonNavigationProps | AnchorNavigationProps;
-
-export type ButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-export type ButtonProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect
-& IDropdownToggler & IHasIcon & IHasCaption & UnionButtonNavigationProps & IHasRawProps<ButtonRawProps> & {
+export type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
@@ -34,14 +26,13 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
     return (
         <Clickable
             { ...props }
-            href={ props.href }
             rawProps={ {
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
-                type: props.rawProps?.type || 'button',
-                ...props.rawProps as UnionButtonNavigationProps,
+                ...props.rawProps,
             } }
             cx={ [css.container, props.cx] }
+            clickableType="button"
             ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (

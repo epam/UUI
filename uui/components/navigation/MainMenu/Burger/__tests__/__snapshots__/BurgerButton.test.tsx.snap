@@ -4,12 +4,11 @@ exports[`BurgerButton should be rendered correctly 1`] = `
 <a
   aria-expanded={false}
   aria-haspopup={true}
-  className="uui-button-box uui-enabled uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
+  className="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
   href="#"
   rel="noopener noreferrer"
   tabIndex={0}
   target="_blank"
-  type="button"
 >
   <div
     className="container uui-icon uui-enabled"
