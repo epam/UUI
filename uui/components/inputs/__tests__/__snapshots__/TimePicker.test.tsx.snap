@@ -21,7 +21,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`TimePicker should be rendered correctly 2`] = `
+exports[`TimePicker should be rendered correctly with full props 1`] = `
 <div
   className="container uui-input-box uui-disabled root size-36 mode-form root timepickerInput"
   onClick={null}

@@ -1,8 +1,8 @@
-const noUnknownThemeTokens = require('./rules/noUnknownThemeTokens');
+const themeTokensValidation = require('./rules/themeTokensValidation');
 const stylelint = require('stylelint');
 
 const allRules = {
-    [noUnknownThemeTokens.ruleName]: noUnknownThemeTokens,
+    [themeTokensValidation.ruleName]: themeTokensValidation,
 };
 
 const rulesPlugins = Object.keys(allRules).map((ruleName) => {
