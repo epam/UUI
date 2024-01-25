@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CX, cx, devLogger, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDisableable, IDropdownToggler,
-    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement,
+    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement, IHasRawProps,
 } from '@epam/uui-core';
 import {
     AnchorNavigationProps, ButtonNavigationProps, Clickable, HrefNavigationProps, IconContainer, LinkButtonNavigationProps,
@@ -23,14 +23,11 @@ interface LinkButtonMods {
 
 export type UnionLinkButtonNavigationProps = HrefNavigationProps | LinkButtonNavigationProps | ButtonNavigationProps | AnchorNavigationProps;
 
-export type LinkButtonRawProps =
-    | (React.AnchorHTMLAttributes<HTMLAnchorElement>
-    | React.ButtonHTMLAttributes<HTMLButtonElement>)
-    & Record<`data-${string}`, string>;
+export type LinkButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
-& Omit<ICanRedirect, 'href' | 'link'> & IDropdownToggler & IHasIcon & IHasCaption & UnionLinkButtonNavigationProps & {
+export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & Omit<ICanRedirect, 'href' | 'link'>
+& IDropdownToggler & IHasIcon & IHasCaption & UnionLinkButtonNavigationProps & IHasRawProps<LinkButtonRawProps> & {
     /**
      * CSS classes to put on the caption
      * @deprecated
@@ -43,8 +40,6 @@ export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex
      * @default '36'
      */
     size?: types.ControlSize | '42';
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: LinkButtonRawProps;
 };
 
 /** Represents the properties of the LinkButton component. */

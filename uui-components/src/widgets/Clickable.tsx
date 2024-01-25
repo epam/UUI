@@ -1,6 +1,6 @@
 import React, { ForwardedRef, PropsWithChildren } from 'react';
 import {
-    cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext,
+    cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext, IHasRawProps,
     IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, Link, ICanRedirect,
 } from '@epam/uui-core';
 
@@ -46,23 +46,16 @@ export type UnionNavigationProps =
     | SpanNavigationProps
     | AnchorNavigationProps;
 
-export type ClickableRawProps =
-    | (React.AnchorHTMLAttributes<HTMLAnchorElement>
-    | React.ButtonHTMLAttributes<HTMLButtonElement>
-    | React.HTMLAttributes<HTMLSpanElement>)
-    & Record<`data-${string}`, string>;
+export type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>;
 
 export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
-& Omit<ICanRedirect, 'href' | 'link'> & UnionNavigationProps & {
-    /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: ClickableRawProps;
-};
+& Omit<ICanRedirect, 'href' | 'link'> & UnionNavigationProps & IHasRawProps<ClickableRawProps> & {};
 
 export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, PropsWithChildren<ClickableComponentProps>>((props, ref) => {
     const context = useUuiContext();
     const isAnchor = Boolean(props.href || props.link);
     const isButton = Boolean(!isAnchor && ((props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement>)?.type || props.onClick));
-    const isClickable = Boolean(!props.isDisabled && (props.link || props.onClick));
+    const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick));
     const getIsLinkActive = () => {
         if (props.isLinkActive !== undefined) {
             return props.isLinkActive;
@@ -107,7 +100,7 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
             [uuiMod.enabled]: !props.isDisabled,
             [uuiMod.disabled]: props.isDisabled,
             [uuiMod.active]: getIsLinkActive(),
-            [uuiMarkers.clickable]: isClickable,
+            [uuiMarkers.clickable]: isAnchor || hasClick,
             [uuiElement.anchor]: isAnchor,
         },
         props.cx,
@@ -115,7 +108,7 @@ export const Clickable = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
 
     const commonProps = {
         className,
-        onClick: isClickable ? clickHandler : undefined,
+        onClick: hasClick ? clickHandler : undefined,
         tabIndex: getTabIndex(),
         'aria-disabled': props.isDisabled,
         // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least

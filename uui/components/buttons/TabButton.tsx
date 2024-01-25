@@ -22,19 +22,15 @@ interface TabButtonMods {
 export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
-
     /** Icon for clear value button (usually cross) */
     clearIcon?: Icon;
-
     /**
      * CSS classes to put on the caption
      * @deprecated
      * */
     captionCX?: CX;
-
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-
     /** Count value to be placed in component */
     count?: React.ReactNode;
 };
