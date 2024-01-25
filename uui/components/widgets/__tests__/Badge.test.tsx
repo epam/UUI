@@ -19,6 +19,7 @@ describe('Badge', () => {
                 count={ 12 }
                 onIconClick={ () => {} }
                 onClick={ () => {} }
+                isDropdown={ true }
                 size="36"
             />,
         );
