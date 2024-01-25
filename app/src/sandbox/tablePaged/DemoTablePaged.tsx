@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cx from 'classnames';
 import { Person } from '@epam/uui-docs';
 import { FlexCell } from '@epam/uui-components';
-import { DataRowOptions, LazyDataSourceApi, useTableState, useTree, useDataRows } from '@epam/uui-core';
+import { DataRowOptions, LazyDataSourceApi, useTableState, useTree, useDataRows, useCascadeSelectionService } from '@epam/uui-core';
 import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/promo';
 import { svc } from '../../services';
 import { getFilters } from './filters';
@@ -54,7 +54,7 @@ export function DemoTablePaged() {
         },
     };
 
-    const { tree, reload, ...restProps } = useTree(
+    const { tree, reload, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree(
         {
             type: 'lazy',
             dataSourceState: tableState,
@@ -68,8 +68,16 @@ export function DemoTablePaged() {
         [],
     );
 
+    const cascadeSelectionService = useCascadeSelectionService({
+        tree: selectionTree,
+        cascadeSelection: restProps.cascadeSelection,
+        getRowOptions: restProps.getRowOptions,
+        rowOptions: restProps.rowOptions,
+        loadMissingRecordsOnCheck,
+    });
+
     const { rows, listProps, getById } = useDataRows({
-        tree, ...restProps,
+        tree, ...restProps, ...cascadeSelectionService,
     });
 
     const panelInfo = tableState.selectedId && (getById(tableState.selectedId, 0).value);

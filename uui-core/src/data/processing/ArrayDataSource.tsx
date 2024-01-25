@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
-import { ArrayListViewProps, useDataRows } from './views';
+import { ArrayListViewProps, useCascadeSelectionService, useDataRows } from './views';
 import { PureTreeState, useTree } from './views/tree';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 
@@ -56,7 +56,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { tree, reload, ...restProps } = useTree({
+        const { tree, selectionTree, reload, ...restProps } = useTree({
             type: 'plain',
             ...this.props,
             ...options,
@@ -91,9 +91,18 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         }, [tree, reload]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const cascadeSelectionService = useCascadeSelectionService({
+            tree: selectionTree,
+            cascadeSelection: restProps.cascadeSelection,
+            getRowOptions: restProps.getRowOptions,
+            rowOptions: restProps.rowOptions,
+        });
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const { rows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
+            ...cascadeSelectionService,
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks

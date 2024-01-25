@@ -7,22 +7,23 @@ import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
-import { NOT_FOUND_RECORD, PureTreeState } from '../tree';
-import { LoadMissingRecords } from '../tree/hooks/strategies/types';
-import { ConvertableTreeState } from '../tree/newTree';
+import { NOT_FOUND_RECORD, ITree } from '../tree';
+import { FULLY_LOADED } from '../tree/newTree';
+import { CascadeSelectionService } from './services/useCascadeSelectionService';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
-    LoadMissingRecords<TItem, TId> {
+    Partial<CascadeSelectionService<TId>> {
 
-    tree: PureTreeState<TItem, TId>;
+    tree: ITree<TItem, TId>;
 }
 
 export function useDataRows<TItem, TId, TFilter = any>(
     props: UseDataRowsProps<TItem, TId, TFilter>,
 ) {
     const {
+        tree,
         getId,
         getParentId,
         getChildCount,
@@ -37,29 +38,26 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isFetching,
         setDataSourceState,
         isFoldedByDefault,
-        loadMissingRecords,
+        handleCascadeSelection,
     } = props;
 
-    const tree = useMemo(() => ConvertableTreeState.toTreeState(props.tree), [props.tree]);
-
     const { completeFlatListRowsCount, totalCount } = useMemo(() => {
-        const rootInfo = tree.visible.getNodeInfo(undefined);
-        const rootCount = rootInfo.count;
+        const { totalCount: rootTotalCount, count } = tree.getItems(undefined);
 
         return {
-            completeFlatListRowsCount: !getChildCount && rootCount != null ? rootCount : undefined,
-            totalCount: rootInfo.totalCount ?? tree.visible.getTotalRecursiveCount() ?? 0,
+            completeFlatListRowsCount: !getChildCount && count != null ? count : undefined,
+            totalCount: rootTotalCount ?? tree.getTotalCount() ?? 0,
         };
-    }, [getChildCount, tree.visible]);
+    }, [getChildCount, tree]);
 
     const lastRowIndex = useMemo(
         () => {
-            const actualCount = tree.visible.getTotalRecursiveCount();
+            const actualCount = tree.getTotalCount();
             const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
             if (actualCount != null && actualCount < currentLastIndex) return actualCount;
             return currentLastIndex;
         },
-        [tree.visible, dataSourceState.topIndex, dataSourceState.visibleCount],
+        [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
     );
     const isFlattenSearch = useMemo(
         () => dataSourceState.search && flattenSearchResults,
@@ -75,24 +73,24 @@ export function useDataRows<TItem, TId, TFilter = any>(
         const childCount = props.getChildCount?.(item) ?? undefined;
         if (childCount === undefined) return undefined;
 
-        const nodeInfo = tree.visible.getNodeInfo(id);
-        if (nodeInfo?.count !== undefined) {
+        const { count, status } = tree.getItems(id);
+        if (count !== undefined && status === FULLY_LOADED) {
             // nodes are already loaded, and we know the actual count
-            return nodeInfo.count;
+            return count;
         }
 
         return childCount;
-    }, [props.getChildCount, tree.visible]);
+    }, [props.getChildCount, tree]);
 
     const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
-        const nodeInfo = tree.visible.getNodeInfo(id);
+        const { count } = tree.getItems(id);
 
         const estimatedChildCount = getEstimatedChildrenCount(id);
 
         // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
-        if (nodeInfo.count !== undefined) {
+        if (count !== undefined) {
             // Exact count known
-            return nodeInfo.count - loadedChildrenCount;
+            return count - loadedChildrenCount;
         }
 
         // estimatedChildCount = undefined for top-level rows only.
@@ -109,7 +107,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
         // let's guess we have at least 1 item more than loaded
         return 1;
-    }, [lastRowIndex, tree.visible, getEstimatedChildrenCount]);
+    }, [lastRowIndex, tree, getEstimatedChildrenCount]);
 
     const { handleOnCheck, isRowChecked, isRowChildrenChecked, isItemCheckable, handleSelectAll } = useCheckingService({
         tree,
@@ -119,7 +117,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getParentId,
         rowOptions,
         getRowOptions,
-        loadMissingRecords,
+        handleCascadeSelection,
     });
 
     const foldingService = useFoldingService({
