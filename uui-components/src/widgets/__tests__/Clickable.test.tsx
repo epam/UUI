@@ -76,9 +76,9 @@ describe('Clickable', () => {
             },
         }));
         await renderWithContextAsync(<Clickable link={ { pathname: pathname } } />);
-        const aElement = screen.getByRole('link');
-        expect(aElement.getAttribute('href')).toEqual(pathname);
-        fireEvent.click(aElement);
+        const anchorElement = screen.getByRole('link');
+        expect(anchorElement.getAttribute('href')).toEqual(pathname);
+        fireEvent.click(anchorElement);
         expect(mockRedirect).toHaveBeenCalled();
     });
 
@@ -102,8 +102,8 @@ describe('Clickable', () => {
         );
         const checkboxElement = screen.getByTestId('test-checkbox');
         expect(checkboxElement).toBeInTheDocument();
-        const aElement = screen.getByRole('link');
-        expect(aElement.getAttribute('href')).toEqual(pathname);
+        const anchorElement = screen.getByRole('link');
+        expect(anchorElement.getAttribute('href')).toEqual(pathname);
         fireEvent.click(checkboxElement);
         expect(mockRedirect).not.toHaveBeenCalled();
     });
@@ -127,8 +127,8 @@ describe('Clickable', () => {
         );
         const buttonElement = screen.getByTestId('test-button');
         expect(buttonElement).toBeInTheDocument();
-        const aElement = screen.getByRole('link');
-        expect(aElement.getAttribute('href')).toEqual(pathname);
+        const anchorElement = screen.getByRole('link');
+        expect(anchorElement.getAttribute('href')).toEqual(pathname);
         fireEvent.click(buttonElement);
         expect(mockOnClick).toHaveBeenCalled();
         expect(mockRedirect).not.toHaveBeenCalled();
@@ -147,6 +147,53 @@ describe('Clickable', () => {
         fireEvent.click(screen.getByRole('button'));
         expect(mockSendEvent).toHaveBeenCalledTimes(1);
         expect(mockSendEvent).toHaveBeenCalledWith({ name: 'click' });
+    });
+
+    it('triggers form submission when type is "submit"', async () => {
+        const mockOnSubmit = jest.fn();
+        await renderWithContextAsync(
+            <form onSubmit={ mockOnSubmit }>
+                <Clickable rawProps={ { type: 'submit' } } />
+            </form>,
+        );
+
+        fireEvent.submit(screen.getByRole('button'));
+        expect(mockOnSubmit).toHaveBeenCalled();
+    });
+
+    it('should add rel attribute to anchor element when href is provided & target equal _blank', async () => {
+        await renderWithContextAsync(<Clickable href="test" target="_blank" />);
+
+        const anchorElement = screen.getByRole('link');
+        expect(anchorElement).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+
+    it('should applies any rel attribute via rawProps to anchor element when href is provided & target equal _blank (issue: https://github.com/epam/UUI/issues/1421)', async () => {
+        await renderWithContextAsync(<Clickable href="test" target="_blank" rawProps={ { rel: 'nofollow' } } />);
+
+        const anchorElement = screen.getByRole('link');
+        expect(anchorElement).toHaveAttribute('rel', 'nofollow');
+    });
+
+    it('stopPropagation behavior when target is provided and link is not null', async () => {
+        const pathname = '/test';
+        const mockRedirect = jest.fn();
+        const mockCreateHref = jest.fn().mockReturnValue(pathname);
+        jest.spyOn(React, 'useContext').mockImplementation(() => ({
+            uuiRouter: {
+                redirect: mockRedirect,
+                isActive: jest.fn(),
+                createHref: mockCreateHref,
+            },
+            uuiAnalytics: {
+                sendEvent: jest.fn(),
+            },
+        }));
+
+        await renderWithContextAsync(<Clickable link={ { pathname } } target="_blank" />);
+        const anchorElement = screen.getByRole('link');
+        fireEvent.click(anchorElement);
+        expect(mockRedirect).not.toHaveBeenCalled();
     });
 
     it('should add active class when isLinkActive is true', async () => {

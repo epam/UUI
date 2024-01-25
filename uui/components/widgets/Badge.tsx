@@ -1,6 +1,6 @@
 import React from 'react';
 import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
-import { Clickable, ClickableComponentProps, IconContainer, UnionRawProps } from '@epam/uui-components';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
@@ -100,7 +100,7 @@ export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HT
             rawProps={ {
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
-                ...props.rawProps as UnionRawProps,
+                ...props.rawProps,
             } }
             cx={ styles }
             ref={ ref }

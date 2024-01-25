@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LinkButton should be rendered correctly 1`] = `
-<span
+<button
   className="uui-button-box uui-enabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
   tabIndex={-1}
+  type="button"
 />
 `;
 

@@ -1,19 +1,37 @@
 import * as React from 'react';
-import { IDropdownToggler, Icon } from '@epam/uui-core';
+import { IDropdownToggler, Icon, IClickable, IAnalyticableClick, IHasTabIndex, IDisableable, IHasCX, ICanRedirect } from '@epam/uui-core';
+import { AnchorNavigationProps, ButtonNavigationProps, Clickable, HrefNavigationProps, LinkButtonNavigationProps } from '../widgets';
 import { IconContainer } from '../layout';
-import { Clickable, ClickableComponentProps } from '../widgets';
 import css from './IconButton.module.scss';
 
-export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
+export type UnionIconButtonNavigationProps = HrefNavigationProps | LinkButtonNavigationProps | ButtonNavigationProps | AnchorNavigationProps;
+
+export type IconButtonRawProps =
+    | (React.AnchorHTMLAttributes<HTMLAnchorElement>
+    | React.ButtonHTMLAttributes<HTMLButtonElement>)
+    & Record<`data-${string}`, string>;
+
+export type IconButtonProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
+& Omit<ICanRedirect, 'href' | 'link'> & IDropdownToggler & UnionIconButtonNavigationProps & {
     /** Icon can be a React element (usually an SVG element) */
     icon?: Icon;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
+    rawProps?: IconButtonRawProps;
 };
 
 export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
     return (
-        <Clickable { ...props } cx={ [css.container, props.cx] } ref={ ref }>
+        <Clickable
+            { ...props }
+            cx={ [css.container, props.cx] }
+            ref={ ref }
+            rawProps={ {
+                type: props.rawProps?.type || 'button',
+                ...props.rawProps,
+            } }
+        >
             <IconContainer icon={ props.icon } />
         </Clickable>
     );

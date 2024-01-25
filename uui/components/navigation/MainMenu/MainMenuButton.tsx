@@ -3,7 +3,7 @@ import {
     CX, cx, devLogger, IAdaptiveItem, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDropdownToggler,
     IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement,
 } from '@epam/uui-core';
-import { Clickable, IconContainer, UnionRawProps } from '@epam/uui-components';
+import { Clickable, IconContainer, ClickableRawProps, UnionNavigationProps } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets';
 import { ReactComponent as SvgTriangle } from '../../../icons/chevron-down-24.svg';
 import css from './MainMenuButton.module.scss';
@@ -16,18 +16,18 @@ interface MainMenuButtonMods {
 }
 
 export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex
-& IHasCX & ICanRedirect & UnionRawProps & IDropdownToggler & IHasIcon & IHasCaption & {
+& IHasCX & ICanRedirect & IDropdownToggler & IHasIcon & IHasCaption & UnionNavigationProps & {
     /**
      * CSS classes to put on the caption
      * @deprecated
      * */
     captionCX?: CX;
-
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-
     /** Count value to be placed in component */
     count?: React.ReactNode;
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
+    rawProps?: ClickableRawProps;
 };
 
 export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {
@@ -42,7 +42,7 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
                 role: 'menuitem',
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
-                ...props.rawProps as UnionRawProps,
+                ...props.rawProps,
             } }
             cx={ [
                 css.root,

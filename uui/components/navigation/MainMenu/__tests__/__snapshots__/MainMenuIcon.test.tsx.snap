@@ -8,6 +8,7 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
   rel="noopener noreferrer"
   tabIndex={0}
   target="_blank"
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled"
@@ -21,9 +22,10 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
 `;
 
 exports[`MainMenuIcon should be rendered correctly with minimum props 1`] = `
-<span
+<button
   className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root container"
   tabIndex={-1}
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled"
@@ -33,5 +35,5 @@ exports[`MainMenuIcon should be rendered correctly with minimum props 1`] = `
       className=""
     />
   </div>
-</span>
+</button>
 `;
