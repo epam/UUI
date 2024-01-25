@@ -12,6 +12,7 @@ exports[`Tag should be rendered correctly with props 1`] = `
   className="uui-button-box uui-enabled -clickable size-36 root uui-color-neutral uui-fill-solid uui-tag"
   onClick={[Function]}
   tabIndex={0}
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled -clickable"

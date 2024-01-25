@@ -8,7 +8,6 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
   rel="noopener noreferrer"
   tabIndex={0}
   target="_blank"
-  type="button"
 >
   <div
     className="container uui-icon uui-enabled"

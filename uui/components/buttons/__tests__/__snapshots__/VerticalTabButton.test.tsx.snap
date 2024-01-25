@@ -15,6 +15,7 @@ exports[`VerticalTabButton should be rendered correctly with props 1`] = `
   onClick={[Function]}
   role="tab"
   tabIndex={0}
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled"

@@ -2,9 +2,7 @@ import * as React from 'react';
 import { CX, cx, devLogger, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDisableable, IDropdownToggler,
     IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement, IHasRawProps,
 } from '@epam/uui-core';
-import {
-    AnchorNavigationProps, ButtonNavigationProps, Clickable, HrefNavigationProps, IconContainer, LinkButtonNavigationProps,
-} from '@epam/uui-components';
+import { Clickable, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
@@ -21,13 +19,11 @@ interface LinkButtonMods {
     color?: 'primary' | 'secondary' | 'contrast';
 }
 
-export type UnionLinkButtonNavigationProps = HrefNavigationProps | LinkButtonNavigationProps | ButtonNavigationProps | AnchorNavigationProps;
-
-export type LinkButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
+type LinkButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & Omit<ICanRedirect, 'href' | 'link'>
-& IDropdownToggler & IHasIcon & IHasCaption & UnionLinkButtonNavigationProps & IHasRawProps<LinkButtonRawProps> & {
+export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect
+& IDropdownToggler & IHasIcon & IHasCaption & IHasRawProps<LinkButtonRawProps> & {
     /**
      * CSS classes to put on the caption
      * @deprecated
@@ -67,12 +63,9 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     return (
         <Clickable
             { ...props }
+            clickableType="button"
             cx={ styles }
             ref={ ref }
-            rawProps={ {
-                type: props.rawProps?.type || 'button',
-                ...props.rawProps,
-            } }
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer

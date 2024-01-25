@@ -12,6 +12,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
   className="uui-button-box uui-enabled -clickable uui-badge root size-36 uui-fill-solid uui-color-success"
   onClick={[Function]}
   tabIndex={0}
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled -clickable"

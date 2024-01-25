@@ -153,7 +153,7 @@ describe('Clickable', () => {
         const mockOnSubmit = jest.fn();
         await renderWithContextAsync(
             <form onSubmit={ mockOnSubmit }>
-                <Clickable rawProps={ { type: 'submit' } } />
+                <Clickable clickableType="button" rawProps={ { type: 'submit' } } />
             </form>,
         );
 
@@ -175,7 +175,7 @@ describe('Clickable', () => {
         expect(anchorElement).toHaveAttribute('rel', 'nofollow');
     });
 
-    it('stopPropagation behavior when target is provided and link is not null', async () => {
+    it('should not redirect when target equal _blank and link is not null', async () => {
         const pathname = '/test';
         const mockRedirect = jest.fn();
         const mockCreateHref = jest.fn().mockReturnValue(pathname);

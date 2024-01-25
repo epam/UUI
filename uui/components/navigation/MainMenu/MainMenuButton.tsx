@@ -3,7 +3,7 @@ import {
     CX, cx, devLogger, IAdaptiveItem, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDropdownToggler,
     IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement, IHasRawProps,
 } from '@epam/uui-core';
-import { Clickable, IconContainer, ClickableRawProps, UnionNavigationProps } from '@epam/uui-components';
+import { Clickable, ClickableRawProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets';
 import { ReactComponent as SvgTriangle } from '../../../icons/chevron-down-24.svg';
 import css from './MainMenuButton.module.scss';
@@ -16,7 +16,7 @@ interface MainMenuButtonMods {
 }
 
 export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex
-& IHasCX & ICanRedirect & IDropdownToggler & IHasIcon & IHasCaption & UnionNavigationProps & IHasRawProps<ClickableRawProps> & {
+& IHasCX & ICanRedirect & IDropdownToggler & IHasIcon & IHasCaption & IHasRawProps<ClickableRawProps> & {
     /**
      * CSS classes to put on the caption
      * @deprecated
