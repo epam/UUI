@@ -1,5 +1,6 @@
 import { figmaVarComparator } from '../../themeTokensGen/utils/sortingUtils';
 import { GROUPS_CONFIG, TMainGroupConfig, TOKENS_MIXIN_NAME, TVar, TVarGroup } from '../constants';
+import { IThemeVar } from '../../themeTokensGen/types/sharedTypes';
 
 export function formatVarsAsMixin(params: { scssVars: TVar[], cssVars: TVar[] }): string {
     const { cssVars, scssVars } = params;
@@ -25,20 +26,17 @@ export function formatVarsAsMixin(params: { scssVars: TVar[], cssVars: TVar[] })
     ].filter((i) => typeof i === 'string').join('\n');
 }
 
-function getVarGroupId(varId: string) {
+function getVarGroupId(token: IThemeVar) {
     return Object.keys(GROUPS_CONFIG).find((key) => {
         const { condition } = GROUPS_CONFIG[key];
-        if (condition) {
-            return condition.some((c) => varId.indexOf(c) === 0);
-        }
-        return true;
+        return condition(token);
     }) as string;
 }
 
 function groupVars(vars: TVar[]): Record<string, TVarGroup> {
     return Object.keys(GROUPS_CONFIG).reduce<Record<string, TVarGroup>>((acc, groupId) => {
         vars.forEach((item) => {
-            const varGroupId = getVarGroupId(item.token.id);
+            const varGroupId = getVarGroupId(item.token);
             if (groupId === varGroupId) {
                 if (!acc[groupId]) {
                     acc[groupId] = { title: GROUPS_CONFIG[groupId].title, items: [] };
@@ -69,7 +67,7 @@ function formatGroupedVars(grouped: Record<string, TVarGroup>, indent: number): 
         const innerGroupsFormatted = Object.values(innerGroups).map((ig) => {
             return formatBlockOfVariables({ arr: ig.items, indent, title: ig.title });
         }).join('\n\n');
-        return acc + (currentIndex === 0 ? '' : '\n\n') + wrapBlockInComments(innerGroupsFormatted, block.title.toUpperCase(), indent);
+        return acc + (currentIndex === 0 ? '' : '\n\n') + wrapBlockInComments({ str: innerGroupsFormatted, groupName: block.title, indent, compact: false });
     }, '');
 }
 
@@ -78,7 +76,7 @@ function formatBlockOfVariables(params: { arr: TVar[], indent: number, title: st
     const group = arr.map(({ name, value }) => {
         return `${getIndent(indent)}${name}: ${value};`;
     }).join('\n');
-    return wrapBlockInComments(group, title, indent);
+    return wrapBlockInComments({ str: group, groupName: title, indent, compact: true });
 }
 
 function getIndent(indent: number): string {
@@ -89,19 +87,23 @@ function sortVariablesArr(arr: TVar[]) {
     return [...arr].sort((e1, e2) => figmaVarComparator(e1.token.cssVar as string, e2.token.cssVar as string));
 }
 
-function wrapBlockInComments(str: string, groupName: string, indent: number) {
+function wrapBlockInComments(params: { str: string, groupName: string, indent: number, compact: boolean }) {
+    const { str, groupName, indent, compact } = params;
     if (str.trim() === '') {
         return '';
     }
-    if (!groupName) {
-        return str;
-    }
     const I = getIndent(indent);
-    const start = `${I}/* START "${groupName}" */`;
-    const end = `${I}/* END "${groupName}" */`;
+    let start;
+    if (compact) {
+        start = `${I}// "${groupName}"`;
+    } else {
+        const line = `/*** ${groupName} ***/`;
+        const padding = `/${Array(line.length - 2).fill('*').join('')}/`;
+        start = [padding, line, padding].map((l) => `${I}${l}`).join('\n') + '\n';
+    }
+
     return [
         start,
         str,
-        end,
     ].join('\n');
 }
