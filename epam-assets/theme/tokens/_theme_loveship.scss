@@ -2,65 +2,63 @@
 
 @mixin theme-tokens {
 
-    /* START "PALETTE" */
+    /***************/
+    /*** Palette ***/
+    /***************/
+
+    // ""
     --black: #000000;
     --white: #FFFFFF;
 
-    /* START "palette-additional/cobalt" */
+    // "palette-additional/cobalt"
     --cobalt-5: #F8FAFF;
     --cobalt-10: #D9E2FC;
     --cobalt-20: #AEC0F5;
     --cobalt-50: #0F98FF;
     --cobalt-60: #006FE5;
     --cobalt-70: #0954A5;
-    /* END "palette-additional/cobalt" */
 
-    /* START "palette-additional/cyan" */
+    // "palette-additional/cyan"
     --cyan-5: #F6FEFE;
     --cyan-10: #D1FAFA;
     --cyan-20: #AAEEEE;
     --cyan-50: #14CCCC;
     --cyan-60: #12B5B5;
     --cyan-70: #0B6F6F;
-    /* END "palette-additional/cyan" */
 
-    /* START "palette/fire" */
+    // "palette/fire"
     --fire-5: #FEF6F6;
     --fire-10: #FDE1E1;
     --fire-20: #FBB6B6;
     --fire-50: #FF4242;
     --fire-60: #E22A2A;
     --fire-70: #AD0000;
-    /* END "palette/fire" */
 
-    /* START "palette-additional/fuchsia" */
+    // "palette-additional/fuchsia"
     --fuchsia-5: #FFF7FB;
     --fuchsia-10: #F9D8E7;
     --fuchsia-20: #EDADC8;
     --fuchsia-50: #EA4386;
     --fuchsia-60: #D61E68;
     --fuchsia-70: #AE1955;
-    /* END "palette-additional/fuchsia" */
 
-    /* START "palette/grass" */
+    // "palette/grass"
     --grass-5: #FCFFF5;
     --grass-10: #EBF3D8;
     --grass-20: #C1E288;
     --grass-50: #67A300;
     --grass-60: #528500;
     --grass-70: #396F1F;
-    /* END "palette/grass" */
 
-    /* START "palette-additional/mint" */
+    // "palette-additional/mint"
     --mint-5: #F2FCF5;
     --mint-10: #DDF3E4;
     --mint-20: #B4DFC4;
     --mint-50: #4FC48C;
     --mint-60: #31AA70;
     --mint-70: #236E4A;
-    /* END "palette-additional/mint" */
 
-    /* START "palette/night" */
+    // "palette/night"
     --night50: #FAFAFC;
     --night100: #F5F6FA;
     --night200: #EBEDF5;
@@ -71,74 +69,128 @@
     --night700: #474A59;
     --night800: #303240;
     --night900: #1D1E26;
-    /* END "palette/night" */
 
-    /* START "palette-additional/orange" */
+    // "palette-additional/orange"
     --orange-5: #FEF8F4;
     --orange-10: #FFE8D7;
     --orange-20: #FFCCA7;
     --orange-50: #FF8B3E;
     --orange-60: #F76B0D;
     --orange-70: #BD4B00;
-    /* END "palette-additional/orange" */
 
-    /* START "palette-additional/purple" */
+    // "palette-additional/purple"
     --purple-5: #FDF6FE;
     --purple-10: #F2CCFA;
     --purple-20: #E79DF5;
     --purple-50: #B114D1;
     --purple-60: #860F9E;
     --purple-70: #5E0B6F;
-    /* END "palette-additional/purple" */
 
-    /* START "palette/sky" */
+    // "palette/sky"
     --sky-5: #F5FDFF;
     --sky-10: #E1F4FA;
     --sky-20: #A0DDEE;
     --sky-50: #009ECC;
     --sky-60: #0086AD;
     --sky-70: #006B8A;
-    /* END "palette/sky" */
 
-    /* START "palette/sun" */
+    // "palette/sun"
     --sun-5: #FFFCF5;
     --sun-10: #FFEDC9;
     --sun-20: #FFD785;
     --sun-50: #FCAA00;
     --sun-60: #FF9000;
     --sun-70: #BD5800;
-    /* END "palette/sun" */
 
-    /* START "palette-additional/violet" */
+    // "palette-additional/violet"
     --violet-5: #F8F6FE;
     --violet-10: #DBCCFA;
     --violet-20: #BB9DF5;
     --violet-50: #773CEC;
     --violet-60: #5514D6;
     --violet-70: #40109E;
-    /* END "palette-additional/violet" */
 
-    /* START "palette-additional/yellow" */
+    // "palette-additional/yellow"
     --yellow-5: #FFFFF5;
     --yellow-10: #FFFFE5;
     --yellow-20: #FFFCA4;
     --yellow-50: #FDD63B;
     --yellow-60: #EDBE02;
     --yellow-70: #BC7E02;
-    /* END "palette-additional/yellow" */
-    /* END "PALETTE" */
 
-    /* START "CORE" */
-    /* START "core/semantic/accent-" */
+    /*********************/
+    /*** Core Semantic ***/
+    /*********************/
+
+    // "core/semantic/accent-"
     --uui-accent-5: var(--grass-5);
     --uui-accent-10: var(--grass-10);
     --uui-accent-20: var(--grass-20);
     --uui-accent-50: var(--grass-50);
     --uui-accent-60: var(--grass-60);
     --uui-accent-70: var(--grass-70);
-    /* END "core/semantic/accent-" */
 
-    /* START "core/surfaces" */
+    // "core/semantic/critical-"
+    --uui-critical-5: var(--fire-5);
+    --uui-critical-10: var(--fire-10);
+    --uui-critical-20: var(--fire-20);
+    --uui-critical-50: var(--fire-50);
+    --uui-critical-60: var(--fire-60);
+    --uui-critical-70: var(--fire-70);
+
+    // "core/semantic/error-"
+    --uui-error-5: var(--fire-5);
+    --uui-error-10: var(--fire-10);
+    --uui-error-20: var(--fire-20);
+    --uui-error-50: var(--fire-50);
+    --uui-error-60: var(--fire-60);
+    --uui-error-70: var(--fire-70);
+
+    // "core/semantic/info-"
+    --uui-info-5: var(--sky-5);
+    --uui-info-10: var(--sky-10);
+    --uui-info-20: var(--sky-20);
+    --uui-info-50: var(--sky-50);
+    --uui-info-60: var(--sky-60);
+    --uui-info-70: var(--sky-70);
+
+    // "core/semantic/primary-"
+    --uui-primary-5: var(--sky-5);
+    --uui-primary-10: var(--sky-10);
+    --uui-primary-20: var(--sky-20);
+    --uui-primary-50: var(--sky-50);
+    --uui-primary-60: var(--sky-60);
+    --uui-primary-70: var(--sky-70);
+
+    // "core/semantic/secondary-"
+    --uui-secondary-5: var(--night100);
+    --uui-secondary-10: var(--night200);
+    --uui-secondary-20: var(--night300);
+    --uui-secondary-50: var(--night600);
+    --uui-secondary-60: var(--night700);
+    --uui-secondary-70: var(--night800);
+
+    // "core/semantic/success-"
+    --uui-success-5: var(--grass-5);
+    --uui-success-10: var(--grass-10);
+    --uui-success-20: var(--grass-20);
+    --uui-success-50: var(--grass-50);
+    --uui-success-60: var(--grass-60);
+    --uui-success-70: var(--grass-70);
+
+    // "core/semantic/warning-"
+    --uui-warning-5: var(--sun-5);
+    --uui-warning-10: var(--sun-10);
+    --uui-warning-20: var(--sun-20);
+    --uui-warning-50: var(--sun-50);
+    --uui-warning-60: var(--sun-60);
+    --uui-warning-70: var(--sun-70);
+
+    /************/
+    /*** Core ***/
+    /************/
+
+    // "core/surfaces"
     --uui-app-bg: var(--uui-neutral-10);
     --uui-divider: var(--uui-neutral-40);
     --uui-divider-light: var(--uui-neutral-30);
@@ -147,11 +199,11 @@
     --uui-surface-highest: var(--uui-neutral-20);
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-sunken: var(--uui-neutral-20);
-    /* END "core/surfaces" */
 
+    // ""
     --uui-border-radius: 3;
 
-    /* START "core/controls" */
+    // "core/controls"
     --uui-control-bg: var(--uui-surface-main);
     --uui-control-bg-disabled: var(--uui-neutral-5);
     --uui-control-bg-hover: var(--uui-neutral-60);
@@ -163,49 +215,19 @@
     --uui-control-placeholder-disabled: var(--uui-text-disabled);
     --uui-control-text: var(--uui-neutral-80);
     --uui-control-text-disabled: var(--uui-text-tertiary);
-    /* END "core/controls" */
 
-    /* START "core/semantic/critical-" */
-    --uui-critical-5: var(--fire-5);
-    --uui-critical-10: var(--fire-10);
-    --uui-critical-20: var(--fire-20);
-    --uui-critical-50: var(--fire-50);
-    --uui-critical-60: var(--fire-60);
-    --uui-critical-70: var(--fire-70);
-    /* END "core/semantic/critical-" */
-
-    /* START "core/semantic/error-" */
-    --uui-error-5: var(--fire-5);
-    --uui-error-10: var(--fire-10);
-    --uui-error-20: var(--fire-20);
-    --uui-error-50: var(--fire-50);
-    --uui-error-60: var(--fire-60);
-    --uui-error-70: var(--fire-70);
-    /* END "core/semantic/error-" */
-
-    /* START "core/icons" */
+    // "core/icons"
     --uui-icon: var(--uui-neutral-60);
     --uui-icon-active: var(--uui-neutral-80);
     --uui-icon-disabled: var(--uui-neutral-50);
     --uui-icon-hover: var(--uui-neutral-70);
-    /* END "core/icons" */
 
-    /* START "core/semantic/info-" */
-    --uui-info-5: var(--sky-5);
-    --uui-info-10: var(--sky-10);
-    --uui-info-20: var(--sky-20);
-    --uui-info-50: var(--sky-50);
-    --uui-info-60: var(--sky-60);
-    --uui-info-70: var(--sky-70);
-    /* END "core/semantic/info-" */
-
-    /* START "core/links" */
+    // "core/links"
     --uui-link: var(--uui-primary-50);
     --uui-link-hover: var(--uui-primary-60);
     --uui-link-visited: #8018A0;
-    /* END "core/links" */
 
-    /* START "core/neutral" */
+    // "core/neutral"
     --uui-neutral-0: var(--white);
     --uui-neutral-5: var(--night50);
     --uui-neutral-10: var(--night100);
@@ -218,41 +240,12 @@
     --uui-neutral-80: var(--night800);
     --uui-neutral-90: var(--night900);
     --uui-neutral-100: var(--black);
-    /* END "core/neutral" */
 
-    /* START "core/other" */
+    // "core/other"
     --uui-outline-focus: #009ECC7F;
     --uui-skeleton: var(--uui-neutral-40);
-    /* END "core/other" */
 
-    /* START "core/semantic/primary-" */
-    --uui-primary-5: var(--sky-5);
-    --uui-primary-10: var(--sky-10);
-    --uui-primary-20: var(--sky-20);
-    --uui-primary-50: var(--sky-50);
-    --uui-primary-60: var(--sky-60);
-    --uui-primary-70: var(--sky-70);
-    /* END "core/semantic/primary-" */
-
-    /* START "core/semantic/secondary-" */
-    --uui-secondary-5: var(--night100);
-    --uui-secondary-10: var(--night200);
-    --uui-secondary-20: var(--night300);
-    --uui-secondary-50: var(--night600);
-    --uui-secondary-60: var(--night700);
-    --uui-secondary-70: var(--night800);
-    /* END "core/semantic/secondary-" */
-
-    /* START "core/semantic/success-" */
-    --uui-success-5: var(--grass-5);
-    --uui-success-10: var(--grass-10);
-    --uui-success-20: var(--grass-20);
-    --uui-success-50: var(--grass-50);
-    --uui-success-60: var(--grass-60);
-    --uui-success-70: var(--grass-70);
-    /* END "core/semantic/success-" */
-
-    /* START "core/text" */
+    // "core/text"
     --uui-text-bg-highlight: var(--uui-warning-10);
     --uui-text-critical: var(--uui-critical-70);
     --uui-text-disabled: var(--uui-neutral-50);
@@ -262,15 +255,4 @@
     --uui-text-success: var(--uui-success-70);
     --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-warning: var(--uui-warning-70);
-    /* END "core/text" */
-
-    /* START "core/semantic/warning-" */
-    --uui-warning-5: var(--sun-5);
-    --uui-warning-10: var(--sun-10);
-    --uui-warning-20: var(--sun-20);
-    --uui-warning-50: var(--sun-50);
-    --uui-warning-60: var(--sun-60);
-    --uui-warning-70: var(--sun-70);
-    /* END "core/semantic/warning-" */
-    /* END "CORE" */
 }
