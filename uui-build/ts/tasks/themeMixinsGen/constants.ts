@@ -60,6 +60,14 @@ export const GROUPS_CONFIG: Record<string, TMainGroupConfig> = {
             return `core/semantic/${suffix}-`;
         },
     },
+    coreNeutral: {
+        title: 'Core Neutral',
+        condition: (token) => {
+            return token.id.indexOf('core/neutral/') === 0;
+        },
+        showInnerGroupTitle: false,
+        getInnerGroupId: () => '',
+    },
     core: {
         title: 'Core',
         condition: (token) => {
