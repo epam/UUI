@@ -9,6 +9,7 @@ exports[`Badge should be rendered correctly 1`] = `
 
 exports[`Badge should be rendered correctly with props 1`] = `
 <button
+  aria-haspopup={true}
   className="uui-button-box uui-enabled -clickable uui-badge root size-36 uui-fill-solid uui-color-success"
   onClick={[Function]}
   tabIndex={0}
@@ -32,6 +33,14 @@ exports[`Badge should be rendered correctly with props 1`] = `
     className="root uui-count_indicator size-18"
   >
     12
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
   </div>
 </button>
 `;
