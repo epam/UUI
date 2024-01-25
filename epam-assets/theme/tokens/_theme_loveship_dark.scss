@@ -186,6 +186,23 @@
     --uui-warning-60: var(--sun-60);
     --uui-warning-70: var(--sun-70);
 
+    /********************/
+    /*** Core Neutral ***/
+    /********************/
+
+    --uui-neutral-0: var(--white);
+    --uui-neutral-5: var(--night50);
+    --uui-neutral-10: var(--night100);
+    --uui-neutral-20: var(--night200);
+    --uui-neutral-30: var(--night300);
+    --uui-neutral-40: var(--night400);
+    --uui-neutral-50: var(--night500);
+    --uui-neutral-60: var(--night600);
+    --uui-neutral-70: var(--night700);
+    --uui-neutral-80: var(--night800);
+    --uui-neutral-90: var(--night900);
+    --uui-neutral-100: var(--black);
+
     /************/
     /*** Core ***/
     /************/
@@ -226,20 +243,6 @@
     --uui-link: var(--sky-60);
     --uui-link-hover: var(--sky-70);
     --uui-link-visited: #9062EC;
-
-    // "core/neutral"
-    --uui-neutral-0: var(--white);
-    --uui-neutral-5: var(--night50);
-    --uui-neutral-10: var(--night100);
-    --uui-neutral-20: var(--night200);
-    --uui-neutral-30: var(--night300);
-    --uui-neutral-40: var(--night400);
-    --uui-neutral-50: var(--night500);
-    --uui-neutral-60: var(--night600);
-    --uui-neutral-70: var(--night700);
-    --uui-neutral-80: var(--night800);
-    --uui-neutral-90: var(--night900);
-    --uui-neutral-100: var(--black);
 
     // "core/other"
     --uui-outline-focus: #008ACE7F;

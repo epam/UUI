@@ -186,6 +186,23 @@
     --uui-warning-60: var(--amber-60);
     --uui-warning-70: var(--amber-70);
 
+    /********************/
+    /*** Core Neutral ***/
+    /********************/
+
+    --uui-neutral-0: var(--white);
+    --uui-neutral-5: var(--gray5);
+    --uui-neutral-10: var(--gray10);
+    --uui-neutral-20: var(--gray20);
+    --uui-neutral-30: var(--gray30);
+    --uui-neutral-40: var(--gray40);
+    --uui-neutral-50: var(--gray50);
+    --uui-neutral-60: var(--gray60);
+    --uui-neutral-70: var(--gray70);
+    --uui-neutral-80: var(--gray80);
+    --uui-neutral-90: var(--gray90);
+    --uui-neutral-100: var(--black);
+
     /************/
     /*** Core ***/
     /************/
@@ -226,20 +243,6 @@
     --uui-link: var(--uui-primary-50);
     --uui-link-hover: var(--uui-primary-60);
     --uui-link-visited: #8018A0;
-
-    // "core/neutral"
-    --uui-neutral-0: var(--white);
-    --uui-neutral-5: var(--gray5);
-    --uui-neutral-10: var(--gray10);
-    --uui-neutral-20: var(--gray20);
-    --uui-neutral-30: var(--gray30);
-    --uui-neutral-40: var(--gray40);
-    --uui-neutral-50: var(--gray50);
-    --uui-neutral-60: var(--gray60);
-    --uui-neutral-70: var(--gray70);
-    --uui-neutral-80: var(--gray80);
-    --uui-neutral-90: var(--gray90);
-    --uui-neutral-100: var(--black);
 
     // "core/other"
     --uui-outline-focus: #007BBD7F;
