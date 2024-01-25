@@ -6,17 +6,15 @@ import { CountIndicator } from '../widgets';
 import { systemIcons } from '../../icons/icons';
 import css from './TabButton.module.scss';
 
-interface TabButtonMods {
+type TabButtonMods = {
     /**
      * Defines component size.
      * @default '48'
      */
     size?: '36' | '48' | '60';
-    /**
-     * Defines is the component showing Notify
-     */
+    /** Defines is the component showing Notify */
     withNotify?: boolean;
-}
+};
 
 /** Represents the properties of a TabButton component. */
 export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
