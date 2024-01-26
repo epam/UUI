@@ -56,8 +56,6 @@ export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon
     captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-    /** CountIndicator component */
-    countIndicator?: React.ComponentType<IHasCaption> ;
     /** Count value to be placed in component */
     count?: React.ReactNode;
 };

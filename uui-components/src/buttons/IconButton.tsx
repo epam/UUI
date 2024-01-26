@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { IDropdownToggler, Icon, IClickable, IAnalyticableClick, IHasTabIndex, IDisableable, IHasCX, ICanRedirect, IHasRawProps } from '@epam/uui-core';
-import { Clickable } from '../widgets';
+import { IDropdownToggler, Icon } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './IconButton.module.scss';
 
-type IconButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-export type IconButtonProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
-& ICanRedirect & IDropdownToggler & IHasRawProps<IconButtonRawProps> & {
+export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
     /** Icon can be a React element (usually an SVG element) */
     icon?: Icon;
     /** Icon for drop-down toggler */
@@ -18,7 +15,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     return (
         <Clickable
             { ...props }
-            clickableType="button"
+            type="button"
             cx={ [css.container, props.cx] }
             ref={ ref }
         >
