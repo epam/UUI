@@ -32,7 +32,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
                 ...props.rawProps,
             } }
             cx={ [css.container, props.cx] }
-            clickableType="button"
+            type="button"
             ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (

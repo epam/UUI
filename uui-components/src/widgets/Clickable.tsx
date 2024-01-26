@@ -4,7 +4,12 @@ import {
     IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, ICanRedirect,
 } from '@epam/uui-core';
 
-type ClickableType = { clickableType?: 'button' | 'anchor' };
+type ClickableType = {
+    /**
+     * Can pass the desired type of Clickable component
+     */
+    type?: 'button' | 'anchor'
+};
 type ClickableForwardedRef = HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
 
 export type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>;
@@ -14,8 +19,8 @@ export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabI
 
 export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
     const context = useUuiContext();
-    const isAnchor = Boolean(props.href || props.link || props.clickableType === 'anchor');
-    const isButton = Boolean(!isAnchor && (props.onClick || props.clickableType === 'button'));
+    const isAnchor = Boolean(props.href || props.link || props.type === 'anchor');
+    const isButton = Boolean(!isAnchor && (props.onClick || props.type === 'button'));
     const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick));
     const getIsLinkActive = () => {
         if (props.isLinkActive !== undefined) {

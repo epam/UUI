@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { CX, cx, devLogger, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDisableable, IDropdownToggler,
-    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement, IHasRawProps,
-} from '@epam/uui-core';
-import { Clickable, IconContainer } from '@epam/uui-components';
+import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
@@ -19,11 +17,8 @@ interface LinkButtonMods {
     color?: 'primary' | 'secondary' | 'contrast';
 }
 
-type LinkButtonRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement>;
-
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect
-& IDropdownToggler & IHasIcon & IHasCaption & IHasRawProps<LinkButtonRawProps> & {
+export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /**
      * CSS classes to put on the caption
      * @deprecated
@@ -63,7 +58,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     return (
         <Clickable
             { ...props }
-            clickableType="button"
+            type="button"
             cx={ styles }
             ref={ ref }
         >
