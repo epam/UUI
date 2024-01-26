@@ -106,7 +106,7 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
             fromRef = getTypeRefFromTypeSummary(fromSummary);
         }
         const name = NodeUtils.getPropertyNodeName(propertyNode);
-        const required = NodeUtils.isPropertyNodeRequired(propertyNode);
+        const required = NodeUtils.isPropertyNodeRequired(propertyNode) && !propertySymbol.isOptional();
         const uid = idGen.getNextId(name);
         prop = {
             // "uid" property is needed because we may have unions where there are props with same name but different type
