@@ -1,5 +1,5 @@
 import { DataRowPathItem, IMap } from '../../../../../../types';
-import { TreeNodeInfo, TreeParams, ItemsAccessor } from './types';
+import { TreeNodeInfo, TreeParams, IItemsAccessor } from './types';
 import { PureTreeStructure } from './PureTreeStructure';
 import { newMap } from './helpers';
 import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
@@ -9,11 +9,23 @@ import { ITree, ItemsInfo, TreeNodeStatus } from '../ITree';
 export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> implements ITree<TItem, TId> {
     constructor(
         _params: TreeParams<TItem, TId>,
-        protected readonly _itemsAccessor: ItemsAccessor<TItem, TId>,
+        protected readonly _itemsAccessor: IItemsAccessor<TItem, TId>,
         _byParentId?: IMap<TId, TId[]>,
         _nodeInfoById?: IMap<TId, TreeNodeInfo>,
     ) {
         super(_params, _byParentId, _nodeInfoById);
+    }
+
+    getMissingParents(): TId[] {
+        const missingIds = new Set<TId>();
+        this.itemsAccessor.forEach((item) => {
+            const parentId = this.params.getParentId(item);
+            if (parentId != null && !this.itemsAccessor.get(parentId)) {
+                missingIds.add(parentId);
+            }
+        });
+
+        return Array.from(missingIds);
     }
 
     public get itemsAccessor() {
@@ -53,14 +65,14 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
 
     public getItems(parentId?: TId): ItemsInfo<TId> {
         const ids = this.byParentId.get(parentId) ?? [];
-        const { count } = this.getNodeInfo(parentId);
+        const { count, totalCount } = this.getNodeInfo(parentId);
 
         let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
         if (count !== 0 && ids.length === count) {
             status = FULLY_LOADED;
         }
 
-        return { ids, count, status };
+        return { ids, count, totalCount, status };
     }
 
     public getChildrenByParentId(parentId: TId) {
@@ -242,14 +254,14 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
 
     public static create<TItem, TId>(
         params: TreeParams<TItem, TId>,
-        itemsAccessor: ItemsAccessor<TItem, TId>,
+        itemsAccessor: IItemsAccessor<TItem, TId>,
         byParentId?: IMap<TId, TId[]>,
         nodeInfoById?: IMap<TId, TreeNodeInfo>,
     ): TreeStructure<TItem, TId> {
         return new TreeStructure(params, itemsAccessor, byParentId, nodeInfoById);
     }
 
-    public static withNewItemsAccessor<TItem, TId>(itemsAccessor: ItemsAccessor<TItem, TId>, treeStructure: TreeStructure<TItem, TId>) {
+    public static withNewItemsAccessor<TItem, TId>(itemsAccessor: IItemsAccessor<TItem, TId>, treeStructure: TreeStructure<TItem, TId>) {
         return TreeStructure.create<TItem, TId>(treeStructure.params, itemsAccessor, treeStructure.byParentId, treeStructure.nodeInfoById);
     }
 
@@ -260,7 +272,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
     }: {
         params: TreeParams<TItem, TId>,
         items: TItem[] | ItemsMap<TId, TItem>,
-        itemsAccessor: ItemsAccessor<TItem, TId>,
+        itemsAccessor: IItemsAccessor<TItem, TId>,
     }) {
         const byParentId = newMap<TId, TId[]>(params);
 
