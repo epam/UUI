@@ -12,7 +12,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AcceptDropParams<TSrcData, TDstData>",
      "print": [
@@ -114,7 +114,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "null | { [key: string]: any; name: string; }",
      "print": [
@@ -139,7 +139,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'permissionDenied' | 'notFound' | 'serverError' | 'serviceUnavailable' | 'default'",
      "print": [
@@ -159,7 +159,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApiCallInfo",
      "print": [
@@ -411,7 +411,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApiCallOptions",
      "print": [
@@ -480,7 +480,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApiContextProps",
      "print": [
@@ -600,7 +600,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApiExtensions<TApi>",
      "print": [
@@ -642,7 +642,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "null | 'auth-lost' | 'connection-lost' | 'server-overload' | 'maintenance'",
      "print": [
@@ -662,7 +662,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'running' | 'error' | 'idle' | 'recovery'",
      "print": [
@@ -682,7 +682,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApplyFilterOptions<TItem, TId, TFilter>",
      "print": [
@@ -734,7 +734,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApplySearchOptions<TItem, TId, TFilter>",
      "print": [
@@ -801,7 +801,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ApplySortOptions<TItem, TId, TFilter>",
      "print": [
@@ -853,7 +853,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ArrayDataSourceProps<TItem, TId, TFilter>",
      "print": [
@@ -1165,7 +1165,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ArrayElement<ArrayType>",
      "print": [
@@ -1185,7 +1185,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ArrayListViewProps<TItem, TId, TFilter>",
      "print": [
@@ -1498,7 +1498,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> | { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]>",
      "print": [
@@ -1766,7 +1766,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AsyncDataSourceProps<TItem, TId, TFilter>",
      "print": [
@@ -2084,7 +2084,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AsyncListViewProps<TItem, TId, TFilter>",
      "print": [
@@ -2407,7 +2407,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BaseArrayListViewProps<TItem, TId, TFilter>",
      "print": [
@@ -2728,7 +2728,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BaseDatePickerProps",
      "print": [
@@ -3188,7 +3188,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BaseListViewProps<TItem, TId, TFilter>",
      "print": [
@@ -3459,7 +3459,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BaseRangeDatePickerProps",
      "print": [
@@ -3945,7 +3945,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BatchPromiseOptions",
      "print": [
@@ -3987,7 +3987,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'attachment' | 'iframe' | 'image'",
      "print": [
@@ -4007,7 +4007,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "boolean | 'implicit' | 'explicit'",
      "print": [
@@ -4027,7 +4027,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "CheckboxCoreProps",
      "print": [
@@ -4309,7 +4309,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "undefined | null | string | number | boolean | ClassDictionary | ClassArray",
      "print": [
@@ -4337,7 +4337,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ColumnsConfig",
      "print": [
@@ -4376,7 +4376,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "CommonContexts<TApi, TAppContext>",
      "print": [
@@ -4592,7 +4592,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ContextProviderProps<TApi, TAppContext>",
      "print": [
@@ -4807,7 +4807,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "undefined | null | string | number | boolean | ClassDictionary | ClassArray",
      "print": [
@@ -4828,7 +4828,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataColumnProps<TItem, TId, TFilter>",
      "print": [
@@ -5344,7 +5344,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataPickerCellProps<TItem, TId>",
      "print": [
@@ -5436,7 +5436,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataQuery<T>",
      "print": [
@@ -5520,7 +5520,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "DataQueryFilter<T>",
      "print": [
@@ -5542,7 +5542,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TField | FilterPredicate<TField>",
      "print": [
@@ -5568,7 +5568,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataRowOptions<TItem, TId>",
      "print": [
@@ -5714,7 +5714,7 @@
        "raw": "TItem"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -5731,7 +5731,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -5832,7 +5832,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataRowPathItem<TId, TItem>",
      "print": [
@@ -5920,7 +5920,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "DataRowProps<TItem, TId>",
      "print": [
@@ -6250,7 +6250,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -6711,7 +6711,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "DataSourceListCounts",
      "print": [
@@ -6817,7 +6817,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataSourceListProps",
      "print": [
@@ -6954,7 +6954,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataSourceState<TFilter, TId>",
      "print": [
@@ -7203,7 +7203,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableCellOptions<TItem, TId>",
      "print": [
@@ -7347,7 +7347,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableCellProps<TItem, TId, TCellValue>",
      "print": [
@@ -7599,7 +7599,7 @@
        "raw": "TCellValue"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -7616,7 +7616,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -7729,7 +7729,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableColumnsConfigOptions",
      "print": [
@@ -7801,7 +7801,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "DataTableConfigModalParams",
      "print": [
@@ -7968,7 +7968,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableHeaderCellProps<TItem, TId>",
      "print": [
@@ -8329,7 +8329,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableHeaderRowProps<TItem, TId>",
      "print": [
@@ -8592,7 +8592,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableRowProps<TItem, TId>",
      "print": [
@@ -8904,7 +8904,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -9388,7 +9388,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableSelectedCellData<TItem, TId, TFilter>",
      "print": [
@@ -9443,7 +9443,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableState<TFilter, TViewState>",
      "print": [
@@ -9730,7 +9730,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DatePickerCoreProps",
      "print": [
@@ -10188,7 +10188,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DndActorProps<TSrcData, TDstData>",
      "print": [
@@ -10294,7 +10294,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DndActorRenderParams",
      "print": [
@@ -10526,7 +10526,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DragGhostProps",
      "print": [
@@ -10547,7 +10547,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownBodyProps",
      "print": [
@@ -10704,7 +10704,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "Placement",
      "print": [
@@ -10724,7 +10724,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownProps",
      "print": [
@@ -11140,7 +11140,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -11157,7 +11157,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -11284,7 +11284,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropParams<TSrcData, TDstData>",
      "print": [
@@ -11410,7 +11410,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'left' | 'right' | 'top' | 'bottom' | 'inside'",
      "print": [
@@ -11430,7 +11430,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "Partial<Record<DropPosition, boolean>>",
      "print": [
@@ -11450,7 +11450,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ErrorPageInfo",
      "print": [
@@ -11560,7 +11560,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FileUploadOptions",
      "print": [
@@ -11620,7 +11620,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FileUploadResponse",
      "print": [
@@ -11777,7 +11777,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FilterPredicate<TField>",
      "print": [
@@ -11984,7 +11984,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'in' | 'nin' | 'isNull' | 'gt' | 'gte' | 'lt' | 'lte' | 'inRange' | 'notInRange' | 'eq' | 'neq' | 'not'",
      "print": [
@@ -12004,7 +12004,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FiltersConfig<TFilter>",
      "print": [
@@ -12026,7 +12026,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FlexCellProps",
      "print": [
@@ -12245,7 +12245,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FlexRowProps",
      "print": [
@@ -12393,7 +12393,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FormProps<T>",
      "print": [
@@ -12642,7 +12642,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FormSaveResponse<T>",
      "print": [
@@ -12696,7 +12696,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IAdaptiveItem",
      "print": [
@@ -12781,7 +12781,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IAnalyticableClick",
      "print": [
@@ -12824,7 +12824,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IAnalyticableOnChange<T>",
      "print": [
@@ -12870,7 +12870,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IAnalyticsContext",
      "print": [
@@ -12930,7 +12930,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IAnalyticsListener",
      "print": [
@@ -12972,7 +12972,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IApiContext",
      "print": [
@@ -13179,7 +13179,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IBaseContext<TState>",
      "print": [
@@ -13264,7 +13264,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IBasicPickerToggler",
      "print": [
@@ -13410,7 +13410,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ICanBeFixed",
      "print": [
@@ -13461,7 +13461,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ICanBeInvalid",
      "print": [
@@ -13542,7 +13542,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ICanBeReadonly",
      "print": [
@@ -13585,7 +13585,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ICanBeRequired",
      "print": [
@@ -13632,7 +13632,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ICanFocus<T>",
      "print": [
@@ -13698,7 +13698,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ICanRedirect",
      "print": [
@@ -13795,7 +13795,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ICheckable",
      "print": [
@@ -13973,7 +13973,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IClickable",
      "print": [
@@ -14016,7 +14016,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IColumnConfig",
      "print": [
@@ -14119,7 +14119,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "Icon",
      "print": [
@@ -14139,7 +14139,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IContextProviderSsrProps<TApi, TAppContext>",
      "print": [
@@ -14287,7 +14287,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDataSource<TItem, TId, TFilter>",
      "print": [
@@ -14383,7 +14383,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IDataSourceView<TItem, TId, TFilter>",
      "print": [
@@ -14581,7 +14581,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IDataSourceViewConfig",
      "print": [
@@ -14676,7 +14676,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDisableable",
      "print": [
@@ -14719,7 +14719,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDndActor<TSrcData, TDstData>",
      "print": [
@@ -14815,7 +14815,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDndContext",
      "print": [
@@ -14953,7 +14953,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDropdownBodyProps",
      "print": [
@@ -15122,7 +15122,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDropdownToggler",
      "print": [
@@ -15183,7 +15183,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDropdownTogglerProps",
      "print": [
@@ -15314,7 +15314,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IEditable<T>",
      "print": [
@@ -15474,7 +15474,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IEditableDebouncerOptions",
      "print": [
@@ -15542,7 +15542,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IEditableDebouncerProps<T>",
      "print": [
@@ -15769,7 +15769,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IErrorContext",
      "print": [
@@ -15931,7 +15931,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IFilterConfig",
      "print": [
@@ -15995,7 +15995,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
@@ -16648,7 +16648,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IFilterPredicate",
      "print": [
@@ -16753,7 +16753,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IFormApi<T>",
      "print": [
@@ -17185,7 +17185,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasCaption",
      "print": [
@@ -17231,7 +17231,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasChildren",
      "print": [
@@ -17282,7 +17282,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasCX",
      "print": [
@@ -17335,7 +17335,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasDirection",
      "print": [
@@ -17382,7 +17382,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasForwardedRef<T>",
      "print": [
@@ -17426,7 +17426,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasIcon",
      "print": [
@@ -17514,7 +17514,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasLabel",
      "print": [
@@ -17555,7 +17555,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasPlaceholder",
      "print": [
@@ -17594,7 +17594,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IHasRawProps<T>",
      "print": [
@@ -17634,7 +17634,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasStyleAttrs",
      "print": [
@@ -17673,7 +17673,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHasTabIndex",
      "print": [
@@ -17716,7 +17716,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IHistory4",
      "print": [
@@ -17809,7 +17809,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ILayoutContext",
      "print": [
@@ -17915,7 +17915,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ILens<TFocused>",
      "print": [
@@ -18091,7 +18091,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ILockContext",
      "print": [
@@ -18191,7 +18191,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IMap<TKey, TValue>",
      "print": [
@@ -18299,7 +18299,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IModal<TResult, TParameters>",
      "print": [
@@ -18446,7 +18446,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IModalContext",
      "print": [
@@ -18593,7 +18593,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "INotification",
      "print": [
@@ -18725,7 +18725,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "INotificationContext",
      "print": [
@@ -18879,7 +18879,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IPickerToggler<TItem, TId>",
      "print": [
@@ -19057,7 +19057,7 @@
        "type": "string"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -19074,7 +19074,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -19201,7 +19201,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IPresetsApi<TFilter, TViewState>",
      "print": [
@@ -19384,7 +19384,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IProcessRequest",
      "print": [
@@ -19414,7 +19414,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IRouter6",
      "print": [
@@ -19517,7 +19517,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IRouterContext",
      "print": [
@@ -19671,7 +19671,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITablePreset<TFilter, TViewState>",
      "print": [
@@ -19846,7 +19846,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITableState<TFilter, TViewState>",
      "print": [
@@ -20107,7 +20107,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ItemsComparator<TItem>",
      "print": [
@@ -20127,7 +20127,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITree<TItem, TId>",
      "print": [
@@ -20475,7 +20475,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IUserSettingsContext",
      "print": [
@@ -20536,7 +20536,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LabeledInputCoreProps",
      "print": [
@@ -20856,7 +20856,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LayoutLayer",
      "print": [
@@ -20939,7 +20939,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LazyDataSourceApi<TItem, TId, TFilter>",
      "print": [
@@ -20964,7 +20964,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LazyDataSourceApiRequest<TItem, TId, TFilter>",
      "print": [
@@ -21119,7 +21119,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LazyDataSourceApiRequestContext<TItem, TId>",
      "print": [
@@ -21183,7 +21183,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LazyDataSourceApiRequestRange",
      "print": [
@@ -21250,7 +21250,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LazyDataSourceApiResponse<TItem>",
      "print": [
@@ -21354,7 +21354,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LazyDataSourceProps<TItem, TId, TFilter>",
      "print": [
@@ -21700,7 +21700,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LazyListViewProps<TItem, TId, TFilter>",
      "print": [
@@ -22096,7 +22096,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LazyLoadedMapLoadCallback<TKey, TValue>",
      "print": [
@@ -22127,7 +22127,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "Link",
      "print": [
@@ -22261,7 +22261,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ListApiResponse<TItem>",
      "print": [
@@ -22300,7 +22300,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ListApiSettings<TItem, TId, TFilter>",
      "print": [
@@ -22379,7 +22379,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "typeof UNKNOWN | typeof LOADING | typeof PENDING | typeof LOADED | typeof FAILED",
      "print": [
@@ -22399,7 +22399,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LoadTreeOptions<TItem, TId, TFilter>",
      "print": [
@@ -22570,7 +22570,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "Metadata<T>",
      "print": [
@@ -22755,7 +22755,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalBlockerProps",
      "print": [
@@ -23010,7 +23010,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalFooterCoreProps",
      "print": [
@@ -23096,7 +23096,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalHeaderCoreProps",
      "print": [
@@ -23198,7 +23198,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalOperation",
      "print": [
@@ -23252,7 +23252,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalWindowProps",
      "print": [
@@ -23380,7 +23380,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NotificationOperation",
      "print": [
@@ -23450,7 +23450,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NotificationParams",
      "print": [
@@ -23518,7 +23518,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId>",
      "print": [
@@ -23828,7 +23828,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any>",
      "print": [
@@ -24465,7 +24465,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> | { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> | { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> | { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]>",
      "print": [
@@ -24843,7 +24843,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'scalar' | 'array'",
      "print": [
@@ -24863,7 +24863,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerFilterConfig<TFilter>",
      "print": [
@@ -25112,7 +25112,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerFooterProps<TItem, TId>",
      "print": [
@@ -25225,7 +25225,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'from' | 'to'",
      "print": [
@@ -25245,7 +25245,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "RangeDatePickerPresets",
      "print": [
@@ -25289,7 +25289,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "RangeDatePickerPresetValue",
      "print": [
@@ -25367,7 +25367,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RangeDatePickerValue",
      "print": [
@@ -25427,7 +25427,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RenderCellProps<TItem, TId>",
      "print": [
@@ -25583,7 +25583,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RenderEditorProps<TItem, TId, TCellValue>",
      "print": [
@@ -25824,7 +25824,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'top' | 'nearest'",
      "print": [
@@ -25849,7 +25849,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ScrollToConfig",
      "print": [
@@ -25957,7 +25957,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> | { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem>",
      "print": [
@@ -26206,7 +26206,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'asc' | 'desc'",
      "print": [
@@ -26226,7 +26226,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SortingOption<T>",
      "print": [
@@ -26287,7 +26287,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SpinnerCoreProps",
      "print": [
@@ -26354,7 +26354,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter> | CustomFilterConfig<TFilter>",
      "print": [
@@ -26744,7 +26744,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextInputCoreProps",
      "print": [
@@ -27307,7 +27307,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TooltipCoreProps",
      "print": [
@@ -27444,7 +27444,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -27461,7 +27461,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -27762,7 +27762,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TreeNodeInfo",
      "print": [
@@ -27810,7 +27810,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TreeParams<TItem, TId>",
      "print": [
@@ -27870,7 +27870,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "UseFormProps<T>",
      "print": [
@@ -28061,7 +28061,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UseTableStateHookParams<TFilter, TViewState>",
      "print": [
@@ -28175,7 +28175,7 @@
        "raw": "DataTableState<TFilter, TViewState>"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -28192,7 +28192,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -28305,7 +28305,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UseUuiErrorOptions",
      "print": [
@@ -28365,7 +28365,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UseUuiErrorProps",
      "print": [
@@ -28425,7 +28425,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UseUuiServicesProps<TApi, TAppContext>",
      "print": [
@@ -28580,7 +28580,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UseVirtualListProps",
      "print": [
@@ -28840,7 +28840,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UuiContexts",
      "print": [
@@ -29035,7 +29035,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "UuiRecoveryErrorInfo",
      "print": [
@@ -29083,7 +29083,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "UuiServicesProps<TApi>",
      "print": [
@@ -29212,7 +29212,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'change' | 'save'",
      "print": [
@@ -29232,7 +29232,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "VirtualListRange",
      "print": [
@@ -29309,7 +29309,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "VirtualListState",
      "print": [
@@ -29417,7 +29417,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "VPanelProps",
      "print": [
@@ -29634,7 +29634,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "GeneralAccordionProps | EditableAccordionProps",
      "print": [
@@ -29911,7 +29911,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "AdaptiveItemProps<T>",
      "print": [
@@ -30012,7 +30012,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AdaptivePanelProps",
      "print": [
@@ -30080,7 +30080,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "AnchorProps",
      "print": [
@@ -30281,7 +30281,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'multi'; valueType: 'id'; emptyValue?: [] | null | undefined; } & IEditable<TId[]> | { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]>",
      "print": [
@@ -30523,7 +30523,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AvatarProps",
      "print": [
@@ -30701,7 +30701,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AvatarStackProps",
      "print": [
@@ -30821,7 +30821,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BaseRatingProps<TValue>",
      "print": [
@@ -31079,7 +31079,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BlockerProps",
      "print": [
@@ -31204,7 +31204,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "BurgerProps",
      "print": [
@@ -31357,7 +31357,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
@@ -31722,7 +31722,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "CalendarPresetsProps",
      "print": [
@@ -31811,7 +31811,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "CalendarProps<TSelection>",
      "print": [
@@ -31968,7 +31968,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "CheckboxProps",
      "print": [
@@ -32348,7 +32348,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ClickableComponentProps",
      "print": [
@@ -32534,7 +32534,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>",
      "print": [
@@ -32554,7 +32554,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ColumnsConfigurationRowProps",
      "print": [
@@ -33129,7 +33129,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ControlGroupProps",
      "print": [
@@ -33211,7 +33211,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ControlIconProps",
      "print": [
@@ -33414,7 +33414,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableFocusContextState<TId>",
      "print": [
@@ -33463,7 +33463,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableFocusProviderProps<TId>",
      "print": [
@@ -33517,7 +33517,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DatePickerBodyBaseOptions",
      "print": [
@@ -33629,7 +33629,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DatePickerBodyBaseProps<TSelection>",
      "print": [
@@ -33774,7 +33774,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DayProps",
      "print": [
@@ -34014,7 +34014,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DragHandleProps",
      "print": [
@@ -34084,7 +34084,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
@@ -34572,7 +34572,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropSpotRenderParams",
      "print": [
@@ -34635,7 +34635,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FlexSpacerProps",
      "print": [
@@ -34719,7 +34719,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "HeaderCellContentProps",
      "print": [
@@ -34975,7 +34975,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
@@ -35232,7 +35232,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "InputAddonProps",
      "print": [
@@ -35287,7 +35287,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IProgressBarProps",
      "print": [
@@ -35376,7 +35376,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IRenderInputProps",
      "print": [
@@ -39354,7 +39354,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IScrollSpyApi",
      "print": [
@@ -39414,7 +39414,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IScrollSpyProps",
      "print": [
@@ -39468,7 +39468,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "LabeledInputProps",
      "print": [
@@ -39810,7 +39810,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "MainMenuCustomElementProps",
      "print": [
@@ -39909,7 +39909,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "MainMenuDropdownProps",
      "print": [
@@ -40141,7 +40141,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "MainMenuLogoProps",
      "print": [
@@ -40373,7 +40373,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "MainMenuProps",
      "print": [
@@ -40699,7 +40699,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NumericInputProps",
      "print": [
@@ -41203,7 +41203,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PaginatorProps",
      "print": [
@@ -41448,7 +41448,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PaginatorRenderParams",
      "print": [
@@ -41595,7 +41595,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'single'; valueType: 'id'; } & IEditable<TId> | { selectionMode: 'single'; valueType?: 'entity' | undefined; } & IEditable<TItem> | { selectionMode: 'multi'; valueType: 'id'; emptyValue?: [] | null | undefined; } & IEditable<TId[]> | { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]>",
      "print": [
@@ -41938,7 +41938,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'scalar' | 'array'",
      "print": [
@@ -41958,7 +41958,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerBodyBaseProps",
      "print": [
@@ -42322,7 +42322,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerBodyValue<TSelection>",
      "print": [
@@ -42382,7 +42382,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
      "print": [
@@ -43530,7 +43530,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
      "print": [
@@ -44256,7 +44256,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> | { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any>",
      "print": [
@@ -44478,7 +44478,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerModalOptions<TItem, TId>",
      "print": [
@@ -44583,7 +44583,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> | { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any>",
      "print": [
@@ -44805,7 +44805,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerTogglerProps<TItem, TId>",
      "print": [
@@ -45185,7 +45185,7 @@
        "type": "string"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -45202,7 +45202,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -45447,7 +45447,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PortalProps",
      "print": [
@@ -45522,7 +45522,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PositionValues",
      "print": [
@@ -45642,7 +45642,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
@@ -45984,7 +45984,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RangeSliderProps",
      "print": [
@@ -46281,7 +46281,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RatingProps",
      "print": [
@@ -46596,7 +46596,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RichTextViewProps",
      "print": [
@@ -46679,7 +46679,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ScrollbarProps",
      "print": [
@@ -51792,7 +51792,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ScrollbarsApi",
      "print": [
@@ -52378,7 +52378,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SelectionContextState<TItem, TId, TFilter>",
      "print": [
@@ -52435,7 +52435,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "{ selectionMode: 'single'; valueType: 'id'; } & IEditable<TId> | { selectionMode: 'single'; valueType?: 'entity' | undefined; } & IEditable<TItem>",
      "print": [
@@ -52665,7 +52665,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SliderProps",
      "print": [
@@ -52965,7 +52965,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SnackbarProps",
      "print": [
@@ -53053,7 +53053,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SpinnerProps",
      "print": [
@@ -53120,7 +53120,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SwitchProps",
      "print": [
@@ -53420,7 +53420,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextAreaProps",
      "print": [
@@ -53793,7 +53793,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextInputProps",
      "print": [
@@ -54434,7 +54434,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TextProps",
      "print": [
@@ -54547,7 +54547,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TooltipProps",
      "print": [
@@ -54678,7 +54678,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -54695,7 +54695,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -54996,7 +54996,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TreeListItem",
      "print": [
@@ -55065,7 +55065,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TreeProps<TItem>",
      "print": [
@@ -55292,7 +55292,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; }",
      "print": [
@@ -56422,7 +56422,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps",
      "print": [
@@ -57133,7 +57133,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any> & PickerModalOptions<TItem, TId>",
      "print": [
@@ -57790,7 +57790,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION'",
      "print": [
@@ -57810,7 +57810,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "YearSelectionProps",
      "print": [
@@ -58074,7 +58074,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "AccordionMods & GeneralAccordionProps | AccordionMods & GeneralAccordionProps & IEditable<boolean>",
      "print": [
@@ -58395,7 +58395,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AlertCoreProps",
      "print": [
@@ -58548,7 +58548,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AlertProps",
      "print": [
@@ -58713,7 +58713,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "BadgeCoreProps",
      "print": [
@@ -59086,7 +59086,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "BadgeProps",
      "print": [
@@ -59525,7 +59525,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
@@ -59888,7 +59888,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
@@ -60330,7 +60330,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "CheckboxGroupProps<TValue>",
      "print": [
@@ -60588,7 +60588,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "CheckboxProps",
      "print": [
@@ -61008,7 +61008,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ColumnsConfigurationModalProps<TItem, TId, TFilter>",
      "print": [
@@ -61200,7 +61200,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ConfirmationModalWindowProps",
      "print": [
@@ -61388,7 +61388,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "CountIndicatorCoreProps",
      "print": [
@@ -61472,7 +61472,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
@@ -61576,7 +61576,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataPickerBodyProps",
      "print": [
@@ -62015,7 +62015,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataPickerRowProps<TItem, TId>",
      "print": [
@@ -62332,7 +62332,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -62821,7 +62821,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataRowAddonsProps<TItem, TId>",
      "print": [
@@ -62908,7 +62908,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataRowsContainerProps<TItem, TId, List>",
      "print": [
@@ -63004,7 +63004,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableCellMods",
      "print": [
@@ -63093,7 +63093,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableHeaderCellMods",
      "print": [
@@ -63153,7 +63153,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableHeaderRowMods",
      "print": [
@@ -63213,7 +63213,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableMods",
      "print": [
@@ -63308,7 +63308,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableProps<TItem, TId, TFilter>",
      "print": [
@@ -63789,7 +63789,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DataTableRowMods",
      "print": [
@@ -63875,7 +63875,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DatePickerBodyProps",
      "print": [
@@ -64060,7 +64060,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DatePickerProps",
      "print": [
@@ -64592,7 +64592,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
@@ -65092,7 +65092,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownMenuContainerProps",
      "print": [
@@ -65401,7 +65401,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropSpotProps",
      "print": [
@@ -65534,7 +65534,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FileCardItem",
      "print": [
@@ -65600,7 +65600,7 @@
        "type": "number"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:File",
-      "required": true
+      "required": false
      },
      {
       "uid": "name",
@@ -65617,7 +65617,7 @@
        "type": "string"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:File",
-      "required": true
+      "required": false
      },
      {
       "uid": "webkitRelativePath",
@@ -65634,7 +65634,7 @@
        "type": "string"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:File",
-      "required": true
+      "required": false
      },
      {
       "uid": "size",
@@ -65646,7 +65646,7 @@
        "type": "number"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "type",
@@ -65663,7 +65663,7 @@
        ]
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "arrayBuffer",
@@ -65672,7 +65672,7 @@
        "raw": "(() => Promise<ArrayBuffer>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "slice",
@@ -65681,7 +65681,7 @@
        "raw": "((start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "stream",
@@ -65690,7 +65690,7 @@
        "raw": "(() => ReadableStream<Uint8Array>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "text",
@@ -65699,7 +65699,7 @@
        "raw": "(() => Promise<string>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "id",
@@ -65716,7 +65716,7 @@
        "type": "number"
       },
       "from": "@epam/uui-core:FileUploadResponse",
-      "required": true
+      "required": false
      },
      {
       "uid": "path",
@@ -65781,7 +65781,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FileCardProps",
      "print": [
@@ -65877,7 +65877,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FiltersPanelProps<TFilter>",
      "print": [
@@ -65979,7 +65979,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FlexCellProps",
      "print": [
@@ -66196,7 +66196,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "FlexRowProps",
      "print": [
@@ -66514,7 +66514,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "GlobalMenuProps",
      "print": [
@@ -66633,7 +66633,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
@@ -66893,7 +66893,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
@@ -67177,7 +67177,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IDropdownMenuItemProps",
      "print": [
@@ -67521,7 +67521,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IndeterminateBarMods",
      "print": [
@@ -67583,7 +67583,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "'from' | 'to'",
      "print": [
@@ -67606,7 +67606,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITextPlaceholderProps",
      "print": [
@@ -67700,7 +67700,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LabeledInputProps",
      "print": [
@@ -68069,7 +68069,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LinkButtonCoreProps",
      "print": [
@@ -68436,7 +68436,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LinkButtonProps",
      "print": [
@@ -68819,7 +68819,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "MainMenuAvatarProps",
      "print": [
@@ -68994,7 +68994,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MainMenuButtonProps",
      "print": [
@@ -69407,7 +69407,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MainMenuIconProps",
      "print": [
@@ -69835,7 +69835,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MainMenuProps",
      "print": [
@@ -70148,7 +70148,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "MainMenuSearchProps",
      "print": [
@@ -70845,7 +70845,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalFooterProps",
      "print": [
@@ -71127,7 +71127,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalHeaderProps",
      "print": [
@@ -71424,7 +71424,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalWindowCoreProps",
      "print": [
@@ -71552,7 +71552,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalWindowProps",
      "print": [
@@ -71727,7 +71727,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MultiSwitchCoreProps<TValue>",
      "print": [
@@ -71940,7 +71940,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
@@ -72169,7 +72169,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NotificationCardCoreProps",
      "print": [
@@ -72372,7 +72372,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NotificationCardProps",
      "print": [
@@ -72601,7 +72601,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "NumericInputProps",
      "print": [
@@ -73141,7 +73141,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PanelProps",
      "print": [
@@ -73311,7 +73311,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
      "print": [
@@ -74465,7 +74465,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerItemProps<TItem, TId>",
      "print": [
@@ -74840,7 +74840,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -75348,7 +75348,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerListItemProps<TItem, TId>",
      "print": [
@@ -75622,7 +75622,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -76106,7 +76106,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode | SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode | SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode | SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & IHasEditMode",
      "print": [
@@ -76974,7 +76974,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'id'; initialValue: TId; } & IModal<TId, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'single'; valueType: 'entity'; initialValue: TItem; } & IModal<TItem, any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'id'; initialValue: TId[]; } & IModal<TId[], any> & PickerModalOptions<TItem, TId> | PickerBaseOptions<TItem, TId> & IHasCaption & { selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[]; } & IModal<TItem[], any> & PickerModalOptions<TItem, TId>",
      "print": [
@@ -77631,7 +77631,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "null | 'from' | 'to'",
      "print": [
@@ -77651,7 +77651,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PickerTogglerMods",
      "print": [
@@ -77732,7 +77732,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PresetsPanelProps",
      "print": [
@@ -77935,7 +77935,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ProgressBarProps",
      "print": [
@@ -78066,7 +78066,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RadioGroupItem<TValue>",
      "print": [
@@ -78424,7 +78424,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RadioGroupProps<TValue>",
      "print": [
@@ -78716,7 +78716,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
@@ -79076,7 +79076,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RangeDatePickerBodyProps<T>",
      "print": [
@@ -79369,7 +79369,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RangeDatePickerProps",
      "print": [
@@ -79888,7 +79888,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RangeDatePickerValue",
      "print": [
@@ -79942,7 +79942,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "RichTextViewProps",
      "print": [
@@ -80049,7 +80049,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "RowMods",
      "print": [
@@ -80285,7 +80285,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SearchInputProps",
      "print": [
@@ -81010,7 +81010,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SliderProps",
      "print": [
@@ -81310,7 +81310,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "SpinnerProps",
      "print": [
@@ -81376,7 +81376,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "StatusIndicatorCoreProps",
      "print": [
@@ -81492,7 +81492,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
@@ -81631,7 +81631,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "SwitchProps",
      "print": [
@@ -81961,7 +81961,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TabButtonProps",
      "print": [
@@ -82391,7 +82391,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TagCoreProps",
      "print": [
@@ -82840,7 +82840,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TagProps",
      "print": [
@@ -83300,7 +83300,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TextAreaProps",
      "print": [
@@ -83717,7 +83717,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextCoreProps",
      "print": [
@@ -83980,7 +83980,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextInputProps",
      "print": [
@@ -84671,7 +84671,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TextPlaceholderProps",
      "print": [
@@ -84767,7 +84767,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextProps",
      "print": [
@@ -85045,7 +85045,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextSettings",
      "print": [
@@ -85119,7 +85119,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TimePickerBodyProps",
      "print": [
@@ -85402,7 +85402,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TimePickerProps",
      "print": [
@@ -85811,7 +85811,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TimePickerValue",
      "print": [
@@ -85871,7 +85871,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TooltipCoreProps",
      "print": [
@@ -86002,7 +86002,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -86019,7 +86019,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -86320,7 +86320,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TooltipProps",
      "print": [
@@ -86451,7 +86451,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -86468,7 +86468,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -86800,7 +86800,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TabButtonProps",
      "print": [
@@ -87216,7 +87216,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "BaseVirtualListProps & { rows?: React.ReactNode[] | undefined; renderRows: (config: VirtualListRenderRowsParams<List>) => React.ReactNode; } | BaseVirtualListProps & { rows: React.ReactNode[]; renderRows?: ((config: VirtualListRenderRowsParams<List>) => React.ReactNode) | undefined; }",
      "print": [
@@ -87499,7 +87499,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "VirtualListRenderRowsParams<ListContainer>",
      "print": [
@@ -87932,7 +87932,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AlertProps",
      "print": [
@@ -88110,7 +88110,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "BadgeProps",
      "print": [
@@ -88571,7 +88571,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
@@ -89024,7 +89024,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
@@ -89139,7 +89139,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
@@ -89664,7 +89664,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ErrorHandlerProps",
      "print": [
@@ -89760,7 +89760,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FlexRowProps",
      "print": [
@@ -90082,7 +90082,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
@@ -90378,7 +90378,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IconContainerProps",
      "print": [
@@ -90620,7 +90620,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LinkButtonProps",
      "print": [
@@ -91009,7 +91009,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalWindowProps",
      "print": [
@@ -91171,7 +91171,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
@@ -91408,7 +91408,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NotificationCardProps",
      "print": [
@@ -91638,7 +91638,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PanelMods",
      "print": [
@@ -91706,7 +91706,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PanelProps",
      "print": [
@@ -91883,7 +91883,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RatingProps",
      "print": [
@@ -92230,7 +92230,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
@@ -92385,7 +92385,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TagProps",
      "print": [
@@ -92853,7 +92853,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextProps",
      "print": [
@@ -93174,7 +93174,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TooltipProps",
      "print": [
@@ -93306,7 +93306,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -93323,7 +93323,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -93884,7 +93884,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "BadgeProps",
      "print": [
@@ -94335,7 +94335,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PromoButtonProps",
      "print": [
@@ -94636,7 +94636,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
@@ -94781,7 +94781,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TagMods",
      "print": [
@@ -94845,7 +94845,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TagProps",
      "print": [
@@ -95341,7 +95341,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AlertProps",
      "print": [
@@ -95519,7 +95519,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "BadgeProps",
      "print": [
@@ -96006,7 +96006,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "ButtonProps",
      "print": [
@@ -96487,7 +96487,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "CountIndicatorProps",
      "print": [
@@ -96602,7 +96602,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
@@ -97123,7 +97123,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ErrorConfig",
      "print": [
@@ -97159,7 +97159,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ErrorPageProps",
      "print": [
@@ -97250,7 +97250,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "FlexRowProps",
      "print": [
@@ -97594,7 +97594,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
@@ -97897,7 +97897,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IconContainerProps",
      "print": [
@@ -98139,7 +98139,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "LinkButtonProps",
      "print": [
@@ -98542,7 +98542,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ModalWindowProps",
      "print": [
@@ -98704,7 +98704,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "MultiSwitchProps<TValue>",
      "print": [
@@ -98941,7 +98941,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "NotificationCardProps",
      "print": [
@@ -99171,7 +99171,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PanelMods",
      "print": [
@@ -99238,7 +99238,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PanelProps",
      "print": [
@@ -99414,7 +99414,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RangeSliderProps",
      "print": [
@@ -99754,7 +99754,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RatingProps",
      "print": [
@@ -100096,7 +100096,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "RowMods",
      "print": [
@@ -100349,7 +100349,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SliderRatingProps<TValue>",
      "print": [
@@ -100678,7 +100678,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "SnackbarCardProps",
      "print": [
@@ -100859,7 +100859,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "StatusIndicatorProps",
      "print": [
@@ -101013,7 +101013,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TagProps",
      "print": [
@@ -101481,7 +101481,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TextProps",
      "print": [
@@ -101804,7 +101804,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "TooltipProps",
      "print": [
@@ -101936,7 +101936,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -101953,7 +101953,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -102532,7 +102532,7 @@
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "null | Value",
      "print": [
@@ -102552,7 +102552,7 @@
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "PlaceholderPluginParams",
      "print": [
