@@ -28,7 +28,7 @@ export interface FileCardProps extends IClickable, IHasCX {
     /** Defines file card item */
     file: FileCardItem;
     /** Defines card width
-     * @default 100%
+     * @default 100
      */
     width?: number;
 }
