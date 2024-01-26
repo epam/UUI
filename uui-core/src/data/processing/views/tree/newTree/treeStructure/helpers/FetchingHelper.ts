@@ -1,9 +1,11 @@
 import isEqual from 'lodash.isequal';
 import { LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap } from './map';
+import { cloneMap, newMap } from './map';
 import { ItemsAccessor } from '../ItemsAccessor';
-import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions } from './types';
+import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
+import { TreeNodeInfo } from '../types';
+import { NOT_FOUND_RECORD } from '../../constants';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
@@ -36,51 +38,44 @@ export class FetchingHelper {
     }
 
     public static async load<TItem, TId, TFilter = any>({
-        treeStructure,
-        itemsMap,
+        tree,
         options,
         dataSourceState,
         withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>) {
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, loadedItems: loadedMissingItems } = await this.loadMissing<TItem, TId, TFilter>({
-            treeStructure,
-            itemsMap,
+        const { loadedItems: loadedMissingItems, loadedItemsMap, byParentId, nodeInfoById } = await this.loadMissing<TItem, TId, TFilter>({
+            tree,
             options,
             dataSourceState,
             withNestedChildren,
         });
 
-        const { itemsMap: updatedItemsMap, loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
-            treeStructure: newTreeStructure,
-            itemsMap: newItemsMap,
+        const { loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
+            tree,
+            newItemsMap: loadedItemsMap,
             options,
             itemsToLoad: dataSourceState.checked,
         });
 
         return {
             loadedItems: loadedMissingItems.concat(loadedMissingItemsAndParents),
-            itemsMap: updatedItemsMap,
-            treeStructure: TreeStructure.create(
-                newTreeStructure.params,
-                ItemsAccessor.toItemsAccessor(updatedItemsMap),
-                newTreeStructure.byParentId,
-                newTreeStructure.nodeInfoById,
-            ),
+            byParentId,
+            nodeInfoById,
         };
     }
 
     private static async loadMissing<TItem, TId, TFilter = any>({
-        treeStructure,
-        itemsMap,
+        tree,
         options,
         dataSourceState,
         withNestedChildren = true,
-    }: LoadOptions<TItem, TId, TFilter>) {
+    }: LoadOptionsMissing<TItem, TId, TFilter>) {
         const requiredRowsCount = dataSourceState.topIndex + dataSourceState.visibleCount;
 
-        let byParentId = treeStructure.byParentId;
-        let nodeInfoById = treeStructure.nodeInfoById;
-        let newItemsMap = itemsMap;
+        const byParentId = newMap<TId, TId[]>(tree.params);
+        const nodeInfoById = newMap<TId, TreeNodeInfo>(tree.params);
+
+        const newItemsMap = newMap<TId, TItem>(tree.params);
         const flatten = dataSourceState.search && options.flattenSearchResults;
 
         let newItems: TItem[] = [];
@@ -88,8 +83,7 @@ export class FetchingHelper {
             let recursiveLoadedCount = 0;
 
             const { ids, nodeInfo, loadedItems } = await this.loadItems<TItem, TId, TFilter>({
-                treeStructure,
-                itemsMap: newItemsMap,
+                tree,
                 options,
                 parentId,
                 parent,
@@ -98,19 +92,22 @@ export class FetchingHelper {
                 loadAll: parentLoadAll,
             });
 
-            const currentNodeInfo = treeStructure.nodeInfoById.get(parentId);
-            const currentIds = byParentId.get(parentId);
+            const { ids: originalIds, ...originalNodeInfo } = tree.getItems(parentId);
+            const currentIds = byParentId.has(parentId) ? byParentId.get(parentId) : originalIds;
 
-            if (ids !== currentIds || nodeInfo !== currentNodeInfo) {
-                byParentId = byParentId === treeStructure.byParentId ? cloneMap(byParentId) : byParentId;
+            // TODO: think how to rewrite to avoid using byParentId and nodeInfoById
+            if (ids !== currentIds || nodeInfo.count !== originalNodeInfo.count || nodeInfo.totalCount !== originalNodeInfo.totalCount) {
                 byParentId.set(parentId, ids);
-                nodeInfoById = nodeInfoById === treeStructure.nodeInfoById ? cloneMap(nodeInfoById) : nodeInfoById;
                 nodeInfoById.set(parentId, nodeInfo);
             }
 
             recursiveLoadedCount += ids.length;
+            // TODO: perform setItems somewhere out of this algorythm
             if (loadedItems.length > 0) {
-                newItemsMap = newItemsMap.setItems(loadedItems);
+                loadedItems.forEach((item) => {
+                    const id = tree.params.getId(item);
+                    newItemsMap.set(id, item);
+                });
                 newItems = newItems.concat(loadedItems);
             }
 
@@ -164,48 +161,43 @@ export class FetchingHelper {
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
-        if (treeStructure.byParentId !== byParentId || treeStructure.nodeInfoById !== nodeInfoById || itemsMap !== newItemsMap || newItems.length) {
-            return {
-                treeStructure: TreeStructure.create<TItem, TId>(
-                    treeStructure.params,
-                    ItemsAccessor.toItemsAccessor<TId, TItem>(newItemsMap),
-                    byParentId,
-                    nodeInfoById,
-                ),
-                itemsMap: newItemsMap,
-                loadedItems: newItems,
-            };
-        }
-        return { treeStructure, itemsMap, loadedItems: newItems };
+        return {
+            tree,
+            loadedItemsMap: newItemsMap,
+            loadedItems: newItems,
+            byParentId, // ?
+            nodeInfoById, // ?
+        };
     }
 
     private static async loadMissingItemsAndParents<TItem, TId, TFilter>({
-        treeStructure,
-        itemsMap,
+        tree,
+        newItemsMap,
         options,
         itemsToLoad,
     }: LoadMissingItemsAndParentsOptions<TItem, TId, TFilter>) {
-        let newItemsMap = itemsMap;
+        const updatedItemsMap = cloneMap(newItemsMap);
         let iteration = 0;
         let prevMissingIds = new Set<TId>();
         let loadedItems: TItem[] = [];
-        while (true) {
-            const missingIds = new Set<TId>();
 
+        const treeMissingParents = tree.getMissingParents();
+        const missingIds = new Set<TId>(treeMissingParents);
+        while (true) {
             if (itemsToLoad && itemsToLoad.length > 0) {
                 itemsToLoad.forEach((id) => {
-                    if (!itemsMap.has(id)) {
+                    if (tree.getById(id) === NOT_FOUND_RECORD && !updatedItemsMap.has(id)) {
                         missingIds.add(id);
                     }
                 });
             }
-            if (treeStructure.params.getParentId) {
-                itemsMap.forEach((item) => {
-                    const parentId = treeStructure.params.getParentId(item);
-                    if (parentId != null && !itemsMap.has(parentId)) {
+            if (tree.params.getParentId) {
+                for (const [, item] of updatedItemsMap) {
+                    const parentId = tree.params.getParentId(item);
+                    if (parentId != null && !updatedItemsMap.has(parentId)) {
                         missingIds.add(parentId);
                     }
-                });
+                }
             }
 
             if (missingIds.size === 0) {
@@ -220,17 +212,22 @@ export class FetchingHelper {
                 }
 
                 const newItems = response.items.filter((item) => {
-                    const id = item ? treeStructure.params.getId(item) : null;
+                    const id = item ? tree.params.getId(item) : null;
                     return id !== null;
                 });
 
-                newItemsMap = newItemsMap.setItems(newItems);
+                newItems.forEach((item) => {
+                    const id = tree.params.getId(item);
+                    updatedItemsMap.set(id, item);
+                });
+
                 loadedItems = loadedItems.concat(newItems);
                 if (prevMissingIds.size === missingIds.size && isEqual(prevMissingIds, missingIds)) {
                     break;
                 }
 
                 prevMissingIds = new Set([...missingIds]);
+                missingIds.clear();
             }
             iteration++;
 
@@ -238,11 +235,11 @@ export class FetchingHelper {
                 throw new Error('LazyTree: More than 1000 iterations are made to load required items and their parents by ID. Check your api implementation');
             }
         }
-        return { itemsMap: newItemsMap, loadedItems };
+        return { itemsMap: updatedItemsMap, loadedItems };
     }
 
     private static async loadItems<TItem, TId, TFilter>({
-        treeStructure,
+        tree,
         options,
         parentId,
         parent,
@@ -250,11 +247,9 @@ export class FetchingHelper {
         remainingRowsCount,
         loadAll,
     }: LoadItemsOptions<TItem, TId, TFilter>) {
-        const inputNodeInfo = treeStructure.nodeInfoById.get(parentId);
-        const inputIds = treeStructure.byParentId.get(parentId);
+        const { ids: inputIds, count: childrenCount, totalCount } = tree.getItems(parentId);
 
-        let ids = inputIds || [];
-        let nodeInfo = inputNodeInfo || {};
+        const ids = inputIds ?? [];
         const loadedItems: TItem[] = [];
 
         const flatten = dataSourceState.search && options.flattenSearchResults;
@@ -266,7 +261,7 @@ export class FetchingHelper {
 
         const missingCount = remainingRowsCount - ids.length;
 
-        const availableCount = nodeInfo.count != null ? nodeInfo.count - ids.length : missingCount;
+        const availableCount = childrenCount != null ? childrenCount - ids.length : missingCount;
 
         const range: LazyDataSourceApiRequestRange = { from: ids.length };
 
@@ -276,62 +271,68 @@ export class FetchingHelper {
             skipRequest = options.isLoadStrict ? true : skipRequest;
         }
 
-        if (missingCount > 0 && availableCount > 0 && !skipRequest) {
-            // Need to load additional items in the current layer
-            const requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
-
-            if (!flatten) {
-                if (parent != null) {
-                    requestContext.parentId = parentId;
-                    requestContext.parent = parent;
-                } else {
-                    // in flatten mode, we don't set parent and parentId even for root - as we don't want to limit results to top-level nodes only
-                    requestContext.parentId = null;
-                    requestContext.parent = null;
-                }
-            }
-
-            const response = await options.api(
-                {
-                    sorting: dataSourceState.sorting,
-                    search: dataSourceState.search,
-                    filter: options.filter,
-                    range,
-                    page: dataSourceState.page,
-                    pageSize: dataSourceState.pageSize,
-                },
-                requestContext,
-            );
-
-            const from = response.from == null ? range.from : response.from;
-
-            if (response.items.length) {
-                ids = [...ids];
-                for (let n = 0; n < response.items.length; n++) {
-                    const item = response.items[n];
-                    loadedItems.push(item);
-                    const id = treeStructure.params.getId(item);
-                    ids[n + from] = id;
-                }
-            }
-
-            let newNodesCount;
-
-            if (response.count !== null && response.count !== undefined) {
-                newNodesCount = response.count;
-            } else if (response.items.length < missingCount) {
-                newNodesCount = from + response.items.length;
-            }
-
-            if (newNodesCount !== nodeInfo.count) {
-                nodeInfo = { ...nodeInfo, count: newNodesCount };
-            }
-
-            nodeInfo = { ...nodeInfo, totalCount: response.totalCount };
+        if (missingCount === 0 || availableCount === 0 || skipRequest) {
+            return {
+                ids,
+                nodeInfo: { count: childrenCount, totalCount },
+                loadedItems,
+            };
         }
 
+        // Need to load additional items in the current layer
+        const requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
+
+        if (!flatten) {
+            if (parent != null) {
+                requestContext.parentId = parentId;
+                requestContext.parent = parent;
+            } else {
+                // in flatten mode, we don't set parent and parentId even for root - as we don't want to limit results to top-level nodes only
+                requestContext.parentId = null;
+                requestContext.parent = null;
+            }
+        }
+
+        const response = await options.api(
+            {
+                sorting: dataSourceState.sorting,
+                search: dataSourceState.search,
+                filter: options.filter,
+                range,
+                page: dataSourceState.page,
+                pageSize: dataSourceState.pageSize,
+            },
+            requestContext,
+        );
+
+        const from = response.from == null ? range.from : response.from;
+
+        const newIds = [];
+        if (response.items.length) {
+            newIds.push(...ids);
+            for (let n = 0; n < response.items.length; n++) {
+                const item = response.items[n];
+                loadedItems.push(item);
+                const id = tree.params.getId(item);
+                newIds[n + from] = id;
+            }
+        }
+
+        let newNodesCount;
+
+        if (response.count !== null && response.count !== undefined) {
+            newNodesCount = response.count;
+        } else if (response.items.length < missingCount) {
+            newNodesCount = from + response.items.length;
+        }
+        let nodeInfo = { count: childrenCount, totalCount };
+        if (newNodesCount !== childrenCount) {
+            nodeInfo = { ...nodeInfo, count: newNodesCount };
+        }
+
+        nodeInfo = { ...nodeInfo, totalCount: response.totalCount ?? totalCount };
         return {
-            ids,
+            ids: newIds,
             nodeInfo,
             loadedItems,
         };

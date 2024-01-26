@@ -1,4 +1,4 @@
-import { CascadeSelection, DataSourceState } from '../../../../../../../types';
+import { CascadeSelection, DataSourceState, IMap } from '../../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from './map';
 import { LazyListViewProps } from '../../../../types';
@@ -49,8 +49,7 @@ export interface LoadAllOptions<TItem, TId, TFilter = any> {
 }
 
 export interface LoadItemsOptions<TItem, TId, TFilter = any> {
-    treeStructure: TreeStructure<TItem, TId>;
-    itemsMap: ItemsMap<TId, TItem>;
+    tree: ITree<TItem, TId>;
     options: LoadTreeOptions<TItem, TId, TFilter>,
     parentId: TId,
     parent: TItem,
@@ -60,15 +59,21 @@ export interface LoadItemsOptions<TItem, TId, TFilter = any> {
 }
 
 export interface LoadMissingItemsAndParentsOptions<TItem, TId, TFilter = any> {
-    treeStructure: TreeStructure<TItem, TId>;
-    itemsMap: ItemsMap<TId, TItem>;
+    tree: ITree<TItem, TId>;
+    newItemsMap: IMap<TId, TItem>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     itemsToLoad: TId[];
 }
 
+export interface LoadOptionsMissing<TItem, TId, TFilter = any> {
+    tree: ITree<TItem, TId>;
+    options: LoadTreeOptions<TItem, TId, TFilter>;
+    dataSourceState: Readonly<DataSourceState>;
+    withNestedChildren: boolean;
+}
+
 export interface LoadOptions<TItem, TId, TFilter = any> {
-    treeStructure: TreeStructure<TItem, TId>;
-    itemsMap: ItemsMap<TId, TItem>;
+    tree: ITree<TItem, TId>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
     withNestedChildren: boolean;

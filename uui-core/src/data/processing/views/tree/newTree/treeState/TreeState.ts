@@ -4,7 +4,7 @@ import {
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
 import { PureTreeState } from './PureTreeState';
-import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper } from '../treeStructure';
+import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
@@ -53,23 +53,38 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
     }: LoadOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, loadedItems } = await FetchingHelper.load<TItem, TId, TFilter>({
-            treeStructure,
-            itemsMap: this.itemsMap,
+        const { loadedItems, byParentId, nodeInfoById } = await FetchingHelper.load<TItem, TId, TFilter>({
+            tree: treeStructure,
             options,
             dataSourceState,
             withNestedChildren,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !loadedItems.length) {
+        if (!loadedItems.length) {
             return this;
         }
 
-        if (loadedItems.length) {
-            this.setItems(loadedItems, { on: 'load' });
+        const itemsMap = loadedItems.length ? this.setItems(loadedItems, { on: 'load' }) : this.itemsMap;
+        const newByParentId = byParentId.size ? cloneMap(treeStructure.byParentId) : treeStructure.byParentId;
+        for (const [id, ids] of byParentId) {
+            newByParentId.set(id, ids);
         }
 
-        return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
+        const newNodeInfoById = nodeInfoById.size ? cloneMap(treeStructure.nodeInfoById) : treeStructure.nodeInfoById;
+        for (const [id, nodeInfo] of newNodeInfoById) {
+            newNodeInfoById.set(id, nodeInfo);
+        }
+
+        return this.withNewTreeStructures({
+            using,
+            treeStructure: TreeStructure.create(
+                treeStructure.params,
+                ItemsAccessor.toItemsAccessor(itemsMap),
+                newByParentId,
+                newNodeInfoById,
+            ),
+            itemsMap,
+        });
     }
 
     public async loadAll<TFilter>({
