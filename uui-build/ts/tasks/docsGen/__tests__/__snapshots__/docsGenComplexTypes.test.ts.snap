@@ -721,6 +721,60 @@ exports[`docsGen:complexTypes should include generic type argument names in full
 }
 `;
 
+exports[`docsGen:complexTypes should mark props as optional when type extends from Partial of another type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:ISecondType": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ISecondType",
+     "nameFull": "ISecondType"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ISecondType",
+     "print": [
+      "interface ISecondType extends Partial<IFirstType> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "test/test.tsx:IFirstType",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:IFirstType": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IFirstType",
+     "nameFull": "IFirstType"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
 exports[`docsGen:complexTypes should not expand props from external type 1`] = `
 {
  "docsGenTypes": {

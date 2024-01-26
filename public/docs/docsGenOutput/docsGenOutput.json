@@ -5714,7 +5714,7 @@
        "raw": "TItem"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -5731,7 +5731,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -6250,7 +6250,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -7599,7 +7599,7 @@
        "raw": "TCellValue"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -7616,7 +7616,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -8904,7 +8904,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -11140,7 +11140,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -11157,7 +11157,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -19057,7 +19057,7 @@
        "type": "string"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -19074,7 +19074,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -27444,7 +27444,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -27461,7 +27461,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -28175,7 +28175,7 @@
        "raw": "DataTableState<TFilter, TViewState>"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -28192,7 +28192,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -45783,7 +45783,7 @@
        "type": "string"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -45800,7 +45800,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -55345,7 +55345,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -55362,7 +55362,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -63574,7 +63574,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -66842,7 +66842,7 @@
        "type": "number"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:File",
-      "required": true
+      "required": false
      },
      {
       "uid": "name",
@@ -66859,7 +66859,7 @@
        "type": "string"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:File",
-      "required": true
+      "required": false
      },
      {
       "uid": "webkitRelativePath",
@@ -66876,7 +66876,7 @@
        "type": "string"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:File",
-      "required": true
+      "required": false
      },
      {
       "uid": "size",
@@ -66888,7 +66888,7 @@
        "type": "number"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "type",
@@ -66905,7 +66905,7 @@
        ]
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "arrayBuffer",
@@ -66914,7 +66914,7 @@
        "raw": "(() => Promise<ArrayBuffer>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "slice",
@@ -66923,7 +66923,7 @@
        "raw": "((start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "stream",
@@ -66932,7 +66932,7 @@
        "raw": "(() => ReadableStream<Uint8Array>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "text",
@@ -66941,7 +66941,7 @@
        "raw": "(() => Promise<string>) | undefined"
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
-      "required": true
+      "required": false
      },
      {
       "uid": "id",
@@ -66958,7 +66958,7 @@
        "type": "number"
       },
       "from": "@epam/uui-core:FileUploadResponse",
-      "required": true
+      "required": false
      },
      {
       "uid": "path",
@@ -76586,7 +76586,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -77368,7 +77368,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -88029,7 +88029,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -88046,7 +88046,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -88478,7 +88478,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -88495,7 +88495,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -95851,7 +95851,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -95868,7 +95868,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
@@ -105097,7 +105097,7 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "onValueChange",
@@ -105114,7 +105114,7 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IEditable",
-      "required": true
+      "required": false
      },
      {
       "uid": "isInvalid",
