@@ -153,7 +153,7 @@ describe('Clickable', () => {
         const mockOnSubmit = jest.fn();
         await renderWithContextAsync(
             <form onSubmit={ mockOnSubmit }>
-                <Clickable clickableType="button" rawProps={ { type: 'submit' } } />
+                <Clickable type="button" rawProps={ { type: 'submit' } } />
             </form>,
         );
 
