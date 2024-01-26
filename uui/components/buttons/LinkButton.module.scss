@@ -24,7 +24,7 @@
                 fill: var(--uui-link_btn-text-hover);
             }
 
-            &:active, &:global(.uui-active) {
+            &:active {
                 color: var(--uui-link_btn-text-active);
                 fill: var(--uui-link_btn-text-active);
             }
