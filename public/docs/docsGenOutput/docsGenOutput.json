@@ -30082,7 +30082,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IHasChildren | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IHasChildren | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IHasChildren | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IHasChildren | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IHasChildren",
+     "raw": "AnchorProps",
      "print": [
       "type AnchorProps = ClickableComponentProps & IHasChildren & {};"
      ]
@@ -30178,7 +30178,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -30246,9 +30246,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -30265,162 +30265,6 @@
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasChildren",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": true
-   }
-  },
-  "@epam/uui-components:AnchorRawProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "AnchorRawProps",
-     "nameFull": "AnchorRawProps"
-    },
-    "src": "uui-components/src/widgets/Clickable.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "AnchorRawProps",
-     "print": [
-      "type AnchorRawProps = {",
-      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
-      "    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];",
-      "    /** The URL that the hyperlink points to. */",
-      "    href: string;",
-      "    /** Defines location within SPA application */",
-      "    link: Link;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -31515,7 +31359,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; }",
+     "raw": "ButtonProps",
      "print": [
       "type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
       "    /** Call to clear toggler value */",
@@ -31623,7 +31467,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -31691,9 +31535,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -31860,159 +31704,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": true
-   }
-  },
-  "@epam/uui-components:ButtonRawProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "ButtonRawProps",
-     "nameFull": "ButtonRawProps"
-    },
-    "src": "uui-components/src/widgets/Clickable.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "ButtonRawProps",
-     "print": [
-      "type ButtonRawProps = {",
-      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
-      "    rawProps?: IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>['rawProps'];",
-      "    /** The URL that the hyperlink points to. */",
-      "    href?: never;",
-      "    /** Defines location within SPA application */",
-      "    link?: never;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
       },
       "required": false
      }
@@ -32659,9 +32350,9 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps",
+     "raw": "ClickableComponentProps",
      "print": [
-      "type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & UnionRawProps & {};"
+      "type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & IHasRawProps<ClickableRawProps> & {};"
      ]
     },
     "props": [
@@ -32755,7 +32446,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -32823,97 +32514,33 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
-      "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-components:ClickableRawProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "ClickableRawProps",
+     "nameFull": "ClickableRawProps"
+    },
+    "src": "uui-components/src/widgets/Clickable.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>",
+     "print": [
+      "type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLSpanElement>;"
+     ]
+    }
    }
   },
   "@epam/uui-components:ColumnsConfigurationRowProps": {
@@ -35337,78 +34964,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:HrefRawProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "HrefRawProps",
-     "nameFull": "HrefRawProps"
-    },
-    "src": "uui-components/src/widgets/Clickable.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "HrefRawProps",
-     "print": [
-      "type HrefRawProps = {",
-      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
-      "    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];",
-      "    /** The URL that the hyperlink points to. */",
-      "    href: string | never;",
-      "    /** Defines location within SPA application */",
-      "    link?: never;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:IconButtonProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -35422,7 +34977,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; }",
+     "raw": "IconButtonProps",
      "print": [
       "type IconButtonProps = ClickableComponentProps & IDropdownToggler & {",
       "    /** Icon can be a React element (usually an SVG element) */",
@@ -35523,7 +35078,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -35591,9 +35146,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -35661,93 +35216,9 @@
        "type": "component"
       },
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui-components:InputAddonProps": {
@@ -40323,75 +39794,6 @@
       },
       "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:LinkButtonRawProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "LinkButtonRawProps",
-     "nameFull": "LinkButtonRawProps"
-    },
-    "src": "uui-components/src/widgets/Clickable.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "LinkButtonRawProps",
-     "print": [
-      "type LinkButtonRawProps = {",
-      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
-      "    rawProps?: IHasRawProps<React.AnchorHTMLAttributes<HTMLAnchorElement>>['rawProps'];",
-      "    /** The URL that the hyperlink points to. */",
-      "    href?: never;",
-      "    /** Defines location within SPA application */",
-      "    link: Link;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "required": true
      }
     ],
     "propsFromUnion": false
@@ -53640,75 +53042,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:SpanRawProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "SpanRawProps",
-     "nameFull": "SpanRawProps"
-    },
-    "src": "uui-components/src/widgets/Clickable.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "SpanRawProps",
-     "print": [
-      "type SpanRawProps = {",
-      "    /** Any HTML attributes (native or 'data-') to put on the underlying component */",
-      "    rawProps?: IHasRawProps<React.HTMLAttributes<HTMLSpanElement>>['rawProps'];",
-      "    /** The URL that the hyperlink points to. */",
-      "    href?: never;",
-      "    /** Defines location within SPA application */",
-      "    link?: never;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:SpinnerProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -55946,245 +55279,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:UnionRawProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "UnionRawProps",
-     "nameFull": "UnionRawProps"
-    },
-    "src": "uui-components/src/widgets/Clickable.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "HrefRawProps | LinkButtonRawProps | ButtonRawProps | SpanRawProps | AnchorRawProps",
-     "print": [
-      "type UnionRawProps = HrefRawProps | LinkButtonRawProps | ButtonRawProps | SpanRawProps | AnchorRawProps;"
-     ]
-    },
-    "props": [
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:HrefRawProps",
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:HrefRawProps",
-      "required": true
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-components:HrefRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": true
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "href_3",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "link_3",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "href_4",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "link_4",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
-     },
-     {
-      "uid": "href_5",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "The URL that the hyperlink points to."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": true
-     },
-     {
-      "uid": "link_5",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Defines location within SPA application"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": true
-     }
-    ],
-    "propsFromUnion": true
    }
   },
   "@epam/uui-components:UsePickerInputProps": {
@@ -59621,7 +58715,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; }",
+     "raw": "BadgeCoreProps",
      "print": [
       "type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
       "    /** Pass true to display an indicator. It shows only if fill = 'outline'. */",
@@ -59734,7 +58828,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -59802,9 +58896,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -59971,93 +59065,9 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:BadgeProps": {
@@ -60078,7 +59088,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods",
+     "raw": "BadgeProps",
      "print": [
       "/** Represents the properties of a Badge component. */",
       "type BadgeProps = BadgeCoreProps & BadgeMods;"
@@ -60175,7 +59185,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -60243,9 +59253,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -60494,93 +59504,9 @@
       },
       "from": "@epam/uui:BadgeMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:ButtonCoreProps": {
@@ -60601,7 +59527,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; }",
+     "raw": "ButtonProps",
      "print": [
       "/** Represents the 'Core properties' for the Button component. */",
       "type ButtonCoreProps = uuiComponents.ButtonProps;"
@@ -60698,7 +59624,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -60766,9 +59692,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -60941,93 +59867,9 @@
       },
       "from": "@epam/uui-components:ButtonProps",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:ButtonProps": {
@@ -61048,7 +59890,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "ButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | ButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | ButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | ButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } | ButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; }",
+     "raw": "ButtonProps",
      "print": [
       "/** Represents the props for a Button component. */",
       "type ButtonProps = ButtonMods & ButtonCoreProps;"
@@ -61229,7 +60071,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -61297,9 +60139,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -61472,93 +60314,9 @@
       },
       "from": "@epam/uui-components:ButtonProps",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:CheckboxGroupProps": {
@@ -67030,8 +65788,9 @@
       "interface FileCardProps extends IClickable, IHasCX {",
       "    /** Defines file card item */",
       "    file: FileCardItem;",
-      "    /** Defines card width",
-      "     * @default 100",
+      "    /**",
+      "     * Defines card width",
+      "     * @default '100%'",
       "     */",
       "    width?: number;",
       "}"
@@ -67057,10 +65816,10 @@
       "comment": {
        "raw": [
         "Defines card width",
-        " @default 100"
+        " @default '100%'"
        ],
        "tags": {
-        "@default": 100
+        "@default": "100%"
        }
       },
       "typeValue": {
@@ -67876,7 +66635,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; }",
+     "raw": "IconButtonProps",
      "print": [
       "/** Represents the Core properties of the IconButton component. */",
       "type IconButtonCoreProps = uuiComponents.IconButtonProps;"
@@ -67973,7 +66732,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -68041,9 +66800,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -68113,93 +66872,9 @@
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:IconButtonProps": {
@@ -68220,7 +66895,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods",
+     "raw": "IconButtonProps",
      "print": [
       "/** Represents the properties of the IconButton component. */",
       "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
@@ -68317,7 +66992,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -68385,9 +67060,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -68486,93 +67161,9 @@
       },
       "from": "@epam/uui:IconButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:IDropdownMenuItemProps": {
@@ -69480,7 +68071,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; }",
+     "raw": "LinkButtonCoreProps",
      "print": [
       "/** Represents the Core properties of the LinkButton component. */",
       "type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
@@ -69590,7 +68181,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -69658,9 +68249,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -69824,93 +68415,9 @@
        ]
       },
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:LinkButtonProps": {
@@ -69931,7 +68438,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods",
+     "raw": "LinkButtonProps",
      "print": [
       "/** Represents the properties of the LinkButton component. */",
       "type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;"
@@ -70028,7 +68535,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -70096,9 +68603,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -70291,93 +68798,9 @@
       },
       "from": "@epam/uui:LinkButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:MainMenuAvatarProps": {
@@ -70573,9 +68996,9 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; }",
+     "raw": "MainMenuButtonProps",
      "print": [
-      "type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex & IHasCX & ICanRedirect & UnionRawProps & IDropdownToggler & IHasIcon & IHasCaption & {",
+      "type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'> & IHasIcon & IHasCaption & {",
       "    /**",
       "     * CSS classes to put on the caption",
       "     * @deprecated",
@@ -70671,6 +69094,85 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": "isDropdown",
+      "name": "isDropdown",
+      "comment": {
+       "raw": [
+        "Shows chevron icon, enabling component to act as dropdown toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -70703,38 +69205,6 @@
       "required": false
      },
      {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
       "uid": "link",
       "name": "link",
       "comment": {
@@ -70743,7 +69213,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -70800,54 +69270,6 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:HrefRawProps",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
       "required": false
      },
      {
@@ -70964,93 +69386,9 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:MainMenuIconProps": {
@@ -71071,7 +69409,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & IAdaptiveItem & { icon: Icon; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & IAdaptiveItem & { icon: Icon; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & IAdaptiveItem & { icon: Icon; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & IAdaptiveItem & { icon: Icon; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & IAdaptiveItem & { icon: Icon; }",
+     "raw": "MainMenuIconProps",
      "print": [
       "/** Represents the properties of the MainMenuIcon component. */",
       "type MainMenuIconProps = ButtonProps & IAdaptiveItem & {",
@@ -71173,7 +69511,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -71241,9 +69579,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -71476,93 +69814,9 @@
       },
       "from": "@epam/uui-core:IAdaptiveItem",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:MainMenuProps": {
@@ -73662,7 +71916,7 @@
        ]
       },
       "typeValue": {
-       "raw": "((IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & SpanRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & ButtonRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }))[]"
+       "raw": "MultiSwitchItem<TValue>[]"
       },
       "required": true
      }
@@ -73870,7 +72124,7 @@
        ]
       },
       "typeValue": {
-       "raw": "((IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & SpanRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & ButtonRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }))[]"
+       "raw": "MultiSwitchItem<TValue>[]"
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
@@ -79908,20 +78162,6 @@
       "required": false
      },
      {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -80023,6 +78263,20 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -83709,7 +81963,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; }",
+     "raw": "TabButtonProps",
      "print": [
       "/** Represents the properties of a TabButton component. */",
       "type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
@@ -83863,7 +82117,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -83931,9 +82185,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -84116,93 +82370,9 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:TagCoreProps": {
@@ -84223,7 +82393,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; }",
+     "raw": "TagCoreProps",
      "print": [
       "/** Represents the Core properties of the Tag component. */",
       "type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
@@ -84248,8 +82418,6 @@
       "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
-      "    /** CountIndicator component */",
-      "    countIndicator?: React.ComponentType<IHasCaption>;",
       "    /** Count value to be placed in component */",
       "    count?: React.ReactNode;",
       "};"
@@ -84346,7 +82514,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -84414,9 +82582,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -84639,19 +82807,6 @@
       "required": false
      },
      {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "required": false
-     },
-     {
       "uid": "count",
       "name": "count",
       "comment": {
@@ -84664,93 +82819,9 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:TagProps": {
@@ -84771,7 +82842,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods",
+     "raw": "TagProps",
      "print": [
       "/** Represents the properties of the Tag component. */",
       "type TagProps = TagCoreProps & TagMods;"
@@ -84868,7 +82939,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -84936,9 +83007,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -85167,20 +83238,6 @@
       "required": false
      },
      {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "count",
       "name": "count",
       "comment": {
@@ -85222,93 +83279,9 @@
       },
       "from": "@epam/uui:TagMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:TextAreaProps": {
@@ -88829,7 +86802,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } | TabButtonMods & IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; }",
+     "raw": "TabButtonProps",
      "print": [
       "/** Represents the properties of a VerticalTabButton component. */",
       "type VerticalTabButtonProps = TabButtonProps;"
@@ -88969,7 +86942,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -89037,9 +87010,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -89227,93 +87200,9 @@
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui:TabButtonProps",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:VirtualListProps": {
@@ -89344,7 +87233,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'form' | 'cell' | string & {} | 'search' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'button' | 'checkbox' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radio' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+       "raw": "'none' | 'form' | 'cell' | string & {} | 'link' | 'search' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'button' | 'checkbox' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radio' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
       },
       "from": "@epam/uui:BaseVirtualListProps",
       "required": false
@@ -90223,7 +88112,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods",
+     "raw": "BadgeProps",
      "print": [
       "/** Represents the properties of a badge component. */",
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
@@ -90320,7 +88209,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -90388,9 +88277,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -90661,93 +88550,9 @@
       },
       "from": "@epam/promo:BadgeMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/promo:ButtonProps": {
@@ -90768,7 +88573,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods",
+     "raw": "ButtonProps",
      "print": [
       "/** Represents the properties of a Button component. */",
       "type ButtonProps = uui.ButtonCoreProps & ButtonMods;"
@@ -90865,7 +88670,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -90933,9 +88738,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -91198,93 +89003,9 @@
       },
       "from": "@epam/promo:ButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/promo:CountIndicatorProps": {
@@ -92048,20 +89769,6 @@
     },
     "props": [
      {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -92166,6 +89873,20 @@
        "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -92363,7 +90084,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods",
+     "raw": "IconButtonProps",
      "print": [
       "/** Represents the properties for the IconButton component. */",
       "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
@@ -92460,7 +90181,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -92528,9 +90249,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -92636,93 +90357,9 @@
       },
       "from": "@epam/promo:IconButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/promo:IconContainerProps": {
@@ -92985,7 +90622,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods",
+     "raw": "LinkButtonProps",
      "print": [
       "/** Represents the properties for the LinkButton component. */",
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
@@ -93082,7 +90719,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -93150,9 +90787,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -93351,93 +90988,9 @@
       },
       "from": "@epam/promo:LinkButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/promo:ModalWindowProps": {
@@ -93802,7 +91355,7 @@
        ]
       },
       "typeValue": {
-       "raw": "((IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & SpanRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & ButtonRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }))[]"
+       "raw": "MultiSwitchItem<TValue>[]"
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
@@ -94834,7 +92387,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods",
+     "raw": "TagProps",
      "print": [
       "/** Represents the properties for the Tag component. */",
       "type TagProps = uui.TagCoreProps & TagMods;"
@@ -94931,7 +92484,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -94999,9 +92552,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -95230,20 +92783,6 @@
       "required": false
      },
      {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "count",
       "name": "count",
       "comment": {
@@ -95293,93 +92832,9 @@
       },
       "from": "@epam/promo:TagMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/promo:TextProps": {
@@ -96431,7 +93886,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods",
+     "raw": "BadgeProps",
      "print": [
       "/** Represents the properties of a Badge component. */",
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
@@ -96528,7 +93983,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -96596,9 +94051,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -96859,93 +94314,9 @@
       },
       "from": "@epam/electric:BadgeMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/electric:PromoButtonProps": {
@@ -96989,20 +94360,6 @@
        "type": "number"
       },
       "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:HrefRawProps",
       "required": false
      },
      {
@@ -97134,6 +94491,20 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -97476,7 +94847,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '24' | '30' | '36' | '42' | '48' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '24' | '30' | '36' | '42' | '48' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '24' | '30' | '36' | '42' | '48' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '24' | '30' | '36' | '42' | '48' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '18' | '24' | '30' | '36' | '42' | '48' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods",
+     "raw": "TagProps",
      "print": [
       "/** Represents the properties of a Tag component. */",
       "type TagProps = uui.TagCoreProps & TagMods;"
@@ -97573,7 +94944,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -97641,9 +95012,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -97872,20 +95243,6 @@
       "required": false
      },
      {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "count",
       "name": "count",
       "comment": {
@@ -97930,93 +95287,9 @@
       },
       "from": "@epam/electric:TagMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/electric:BadgeMods": {
@@ -98248,7 +95521,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { indicator?: boolean | undefined; iconPosition?: 'left' | 'right' | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; count?: React.ReactNode; } & BadgeMods",
+     "raw": "BadgeProps",
      "print": [
       "/** Represents the properties of a Badge component. */",
       "type BadgeProps = uui.BadgeCoreProps & BadgeMods;"
@@ -98345,7 +95618,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -98413,9 +95686,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -98712,93 +95985,9 @@
       },
       "from": "@epam/loveship:BadgeMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/loveship:ButtonProps": {
@@ -98819,7 +96008,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods",
+     "raw": "ButtonProps",
      "print": [
       "/** Represents the properties of a Button component. */",
       "type ButtonProps = uui.ButtonCoreProps & ButtonMods;"
@@ -98916,7 +96105,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -98984,9 +96173,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -99277,93 +96466,9 @@
       },
       "from": "@epam/loveship:ButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/loveship:CountIndicatorProps": {
@@ -100491,7 +97596,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & { icon?: Icon | undefined; dropdownIcon?: Icon | undefined; } & IconButtonMods",
+     "raw": "IconButtonProps",
      "print": [
       "/** Represents the properties of a IconButton component. */",
       "type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;"
@@ -100588,7 +97693,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -100656,9 +97761,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -100771,93 +97876,9 @@
       },
       "from": "@epam/loveship:IconButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/loveship:IconContainerProps": {
@@ -101120,7 +98141,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { captionCX?: ClassValue; dropdownIcon?: Icon | undefined; size?: ControlSize | undefined; } & LinkButtonMods",
+     "raw": "LinkButtonProps",
      "print": [
       "// TODO: leave 3 colors white, blue, gray - more specific colors will be determined later.",
       "/** Represents the properties of a LinkButton component. */",
@@ -101218,7 +98239,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -101286,9 +98307,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -101500,93 +98521,9 @@
       },
       "from": "@epam/loveship:LinkButtonMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/loveship:ModalWindowProps": {
@@ -101951,7 +98888,7 @@
        ]
       },
       "typeValue": {
-       "raw": "((IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & SpanRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & ButtonRawProps & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }) | (IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; } & ButtonMods & { id: TValue; }))[]"
+       "raw": "MultiSwitchItem<TValue>[]"
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
@@ -104078,7 +101015,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & HrefRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & LinkButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & ButtonRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & SpanRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods | IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX & ICanRedirect & AnchorRawProps & IDropdownToggler & IHasIcon & IHasCaption & { size?: '36' | '48' | '18' | '24' | '30' | '42' | undefined; fill?: 'solid' | 'outline' | undefined; onClear?(e?: any): void; clearIcon?: Icon | undefined; captionCX?: ClassValue; dropdownIcon?: Icon | undefined; countIndicator?: React.ComponentType<IHasCaption> | undefined; count?: React.ReactNode; } & TagMods",
+     "raw": "TagProps",
      "print": [
       "/** Represents the properties of a Tag component. */",
       "type TagProps = uui.TagCoreProps & TagMods;"
@@ -104175,7 +101112,7 @@
        ]
       },
       "typeValue": {
-       "raw": "undefined"
+       "raw": "Link"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -104243,9 +101180,9 @@
        ]
       },
       "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
       },
-      "from": "@epam/uui-components:HrefRawProps",
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -104474,20 +101411,6 @@
       "required": false
      },
      {
-      "uid": "countIndicator",
-      "name": "countIndicator",
-      "comment": {
-       "raw": [
-        "CountIndicator component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<IHasCaption, any> | React.FunctionComponent<IHasCaption>"
-      },
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "count",
       "name": "count",
       "comment": {
@@ -104537,93 +101460,9 @@
       },
       "from": "@epam/loveship:TagMods",
       "required": false
-     },
-     {
-      "uid": "link_2",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href_2",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "undefined"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps_2",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:LinkButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_3",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:ButtonRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_4",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:SpanRawProps",
-      "required": false
-     },
-     {
-      "uid": "rawProps_5",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-components:AnchorRawProps",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/loveship:TextProps": {

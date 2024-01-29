@@ -1,11 +1,11 @@
-:local(.uui-typography) {
+:global(.uui-typography) {
     //We need to highlight visited links only in readonly mode
     &:not(:global(.uui-readonly)) {
         a:visited {
-            color: var(--uui-link-visited);
+            color: var(--uui-link);
 
             &:hover {
-                color: var(--uui-link-visited-hover);
+                color: var(--uui-link-hover);
             }
         }
     }
