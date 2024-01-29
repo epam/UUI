@@ -1,10 +1,10 @@
 import dayjs, { Dayjs } from 'dayjs';
-import { useState, useEffect } from 'react';
-import { defaultFormat, toCustomDateFormat, valueFormat, PickerBodyValue, ViewType } from '@epam/uui-components';
-import { DatePickerCoreProps, useUuiContext } from '@epam/uui-core';
+import { useState, useEffect, useCallback } from 'react';
+import { defaultFormat, toCustomDateFormat, valueFormat, PickerBodyValue, ViewType, toValueDateFormat, supportedDateFormats } from '@epam/uui-components';
+import { DatePickerCoreProps, isFocusReceiverInsideFocusLock, useUuiContext } from '@epam/uui-core';
 import { SizeMod, IHasEditMode } from '../types';
 
-const getStateFromValue = (value: string | null, format: string) => {
+export const getStateFromValue = (value: string | null, format: string) => {
     if (!value) {
         return {
             inputValue: '',
@@ -23,7 +23,7 @@ const getStateFromValue = (value: string | null, format: string) => {
     };
 };
 
-interface DatePickerState extends PickerBodyValue<string> {
+export interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
     inputValue: string | null;
 }
@@ -46,30 +46,31 @@ export const useDatePickerState = ({
     ...props
 }: DatePickerProps) => {
     const context = useUuiContext();
-    const [state, _setState] = useState<DatePickerState>({
+
+    const [state, setState] = useState<DatePickerState>({
         isOpen: false,
         view: 'DAY_SELECTION',
         ...getStateFromValue(value, format),
     });
 
-    const getFormat = () => {
-        return format || defaultFormat;
-    };
+    const updateState = useCallback((newState: Partial<DatePickerState>) => {
+        setState((prev) => ({ ...prev, ...newState }));
+    }, [setState]);
 
+    // handles update of value prop
     useEffect(() => {
-        onChange(value);
-        setState({
+        updateState({
             selectedDate: value,
-            inputValue: toCustomDateFormat(value, getFormat()),
+            displayedDate: dayjs(value, valueFormat).isValid()
+                ? dayjs(value, valueFormat)
+                : dayjs().startOf('day'),
+            inputValue: toCustomDateFormat(value, format),
         });
-    }, [value]);
+    }, [value, format, updateState]);
 
-    const setState = (newState: Partial<DatePickerState>) => {
-        _setState((prev) => ({ ...prev, ...newState }));
-    };
-
-    const onChange = (newValue: string | null) => {
-        setState({
+    const handleValueChange = (newValue: string | null) => {
+        onValueChange(newValue);
+        updateState({
             selectedDate: newValue,
             displayedDate: dayjs(newValue, valueFormat).isValid() ? dayjs(newValue, valueFormat) : dayjs().startOf('day'),
         });
@@ -80,54 +81,87 @@ export const useDatePickerState = ({
         }
     };
 
-    const handleValueChange = (newValue: string | null) => {
-        onValueChange(newValue);
-        onChange(newValue);
+    const handleInputChange = (inputValue: string) => {
+        const resultValue = toValueDateFormat(inputValue, format);
+        if (getIsValidDate(inputValue)) {
+            handleValueChange(resultValue);
+            updateState({ inputValue });
+        } else {
+            updateState({ inputValue });
+        }
     };
 
-    const onToggle = (inputValue: boolean) => {
-        _setState((prev) => ({
-            ...prev,
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        handleToggle(true);
+        props.onFocus?.(e);
+    };
+
+    const getIsValidDate = (inputValue: string) => {
+        if (!inputValue) {
+            return false;
+        }
+
+        const parsedDate = dayjs(inputValue, supportedDateFormats(format), true);
+        const isValidDate = parsedDate.isValid();
+        if (!isValidDate) {
+            return false;
+        }
+
+        return filter ? filter(parsedDate) : true;
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (isFocusReceiverInsideFocusLock(e)) return;
+        handleToggle(false);
+        if (getIsValidDate(state.inputValue)) {
+            updateState({ inputValue: toCustomDateFormat(state.inputValue, format) });
+        } else if (state.inputValue !== '' && state.inputValue != null) {
+            handleValueChange(null);
+            updateState({ inputValue: null, selectedDate: null });
+        }
+    };
+
+    const handleCancel = () => {
+        handleValueChange(null);
+        updateState({ inputValue: null, selectedDate: null });
+    };
+
+    const handleToggle = (inputValue: boolean) => {
+        updateState({
             isOpen: inputValue,
             view: 'DAY_SELECTION',
-            displayedDate: prev.selectedDate ? dayjs(prev.selectedDate) : dayjs(),
-        }));
+            displayedDate: state.selectedDate ? dayjs(state.selectedDate) : dayjs(),
+        });
         if (!inputValue) {
             props.onBlur?.();
         }
     };
 
-    const getValue = (): PickerBodyValue<string> => {
-        return {
-            selectedDate: value,
-            displayedDate: state.displayedDate,
-            view: state.view,
-        };
-    };
-
     const setSelectedDate = (inputValue: string) => {
-        if (inputValue !== value) { // ?
+        if (inputValue !== state.selectedDate) {
             handleValueChange(inputValue);
         }
 
-        setState({
+        const cusotmDateFormat = toCustomDateFormat(inputValue, format);
+
+        updateState({
             selectedDate: inputValue,
-            inputValue: toCustomDateFormat(inputValue, getFormat()),
+            inputValue: cusotmDateFormat,
         });
     };
 
-    const setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => {
-        setState({ displayedDate, view });
+    const setDisplayedDateAndView = (dd: Dayjs, v: ViewType) => {
+        updateState({ displayedDate: dd, view: v });
     };
 
     return {
         state,
-        handleValueChange,
-        setState,
-        onToggle,
-        getValue,
+        handleInputChange,
+        handleFocus,
+        handleBlur,
+        handleCancel,
+        handleToggle,
         setSelectedDate,
         setDisplayedDateAndView,
-        getFormat,
     };
 };

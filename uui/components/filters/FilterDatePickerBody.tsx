@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import dayjs from 'dayjs';
 import { i18n } from '../../i18n';
 import { DatePickerCoreProps, IDropdownBodyProps } from '@epam/uui-core';
@@ -11,59 +11,45 @@ import { useDatePickerState } from '../datePickers/useDatePickerState';
 /** Represents the properties of the DatePicker. */
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
-export function FilterDatePickerBody(allProps: DatePickerProps) {
-    const {
-        filter,
-        onClose,
-        renderDay,
-        isHoliday,
-        rawProps,
-    } = allProps;
+export function FilterDatePickerBody(props: DatePickerProps) {
     const {
         state,
-        handleValueChange,
-        setState,
-        onToggle,
-        getValue,
-        setSelectedDate,
+        // handleInputChange,
+        // handleFocus,
+        // handleBlur,
+        handleCancel,
+        handleToggle,
         setDisplayedDateAndView,
-    } = useDatePickerState(allProps);
+        setSelectedDate,
+    } = useDatePickerState(props);
 
-    const onToggleHandler = (val: boolean) => {
-        onToggle(val);
-        onClose();
+    const value = {
+        selectedDate: props.value,
+        displayedDate: state.displayedDate,
+        view: state.view,
     };
 
-    const handleCancel = () => {
-        handleValueChange(undefined);
-        setState({ inputValue: null, selectedDate: null });
-    };
-
-    const renderBody = () => {
-        return (
-            <>
-                <FlexRow borderBottom={ true }>
-                    <DatePickerBody
-                        filter={ filter }
-                        value={ getValue() }
-                        setSelectedDate={ setSelectedDate }
-                        setDisplayedDateAndView={ setDisplayedDateAndView }
-                        changeIsOpen={ onToggleHandler }
-                        renderDay={ renderDay }
-                        isHoliday={ isHoliday }
-                        rawProps={ rawProps?.body }
-                    />
+    return (
+        <Fragment>
+            <FlexRow borderBottom={ true }>
+                <DatePickerBody
+                    filter={ props.filter }
+                    value={ value }
+                    setSelectedDate={ setSelectedDate }
+                    setDisplayedDateAndView={ setDisplayedDateAndView }
+                    changeIsOpen={ handleToggle }
+                    renderDay={ props.renderDay }
+                    isHoliday={ props.isHoliday }
+                    rawProps={ props.rawProps?.body }
+                />
+            </FlexRow>
+            <FlexCell alignSelf="stretch">
+                <FlexRow padding="24" vPadding="12">
+                    <Text>{state.selectedDate ? dayjs(state.selectedDate).format('MMM DD, YYYY') : ''}</Text>
+                    <FlexSpacer />
+                    <LinkButton isDisabled={ !state.selectedDate } caption={ i18n.filterToolbar.datePicker.clearCaption } onClick={ handleCancel } />
                 </FlexRow>
-                <FlexCell alignSelf="stretch">
-                    <FlexRow padding="24" vPadding="12">
-                        <Text>{state.selectedDate ? dayjs(state.selectedDate).format('MMM DD, YYYY') : ''}</Text>
-                        <FlexSpacer />
-                        <LinkButton isDisabled={ !state.selectedDate } caption={ i18n.filterToolbar.datePicker.clearCaption } onClick={ handleCancel } />
-                    </FlexRow>
-                </FlexCell>
-            </>
-        );
-    };
-
-    return renderBody();
+            </FlexCell>
+        </Fragment>
+    );
 }
