@@ -5,11 +5,9 @@ import {
     DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isFocusReceiverInsideFocusLock, BaseRangeDatePickerProps,
     RangeDatePickerInputType, RangeDatePickerValue,
 } from '@epam/uui-core';
-import {
-    defaultFormat, PickerBodyValue, valueFormat, supportedDateFormats,
-} from './DatePickerBodyBase';
 import { Dropdown } from '../../overlays';
-import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
+import { defaultFormat, supportedDateFormats, toCustomDateRangeFormat, toValueDateRangeFormat, valueFormat } from './helpers';
+import { PickerBodyValue } from './types';
 
 dayjs.extend(customParseFormat);
 

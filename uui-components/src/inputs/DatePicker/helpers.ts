@@ -1,8 +1,17 @@
 import dayjs from 'dayjs';
 import { RangeDatePickerValue } from '@epam/uui-core';
-import {
-    defaultFormat, valueFormat, supportedDateFormats,
-} from './DatePickerBodyBase';
+
+export const defaultFormat = 'MMM D, YYYY';
+export const valueFormat = 'YYYY-MM-DD';
+export const supportedDateFormats = (format?: string) => {
+    return [
+        ...(format ? [format] : []), 'MM/DD/YYYY', 'DD-MM-YYYY', 'DD.MM.YYYY', 'YYYY/MM/DD', 'YYYY-MM-DD', 'YYYY.MM.DD', 'MMM D, YYYY', 'D/M/YYYY', 'YYYY/M/D',
+    ];
+};
+
+export const uuiDatePickerBodyBase = {
+    container: 'uui-datepicker-container',
+} as const;
 
 export const toValueDateRangeFormat = (value: RangeDatePickerValue, format?: string): RangeDatePickerValue => {
     const from = value.from;
