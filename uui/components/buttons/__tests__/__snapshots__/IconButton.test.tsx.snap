@@ -1,15 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButton should be rendered correctly 1`] = `
-<span
+<button
   className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root"
   tabIndex={-1}
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled"
     style={Object {}}
   />
-</span>
+</button>
 `;
 
 exports[`IconButton should be rendered correctly with props 1`] = `

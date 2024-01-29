@@ -21,13 +21,13 @@ export function loadedTokensConverter(
         if (filter.published) {
             switch (filter.published) {
                 case 'yes': {
-                    if (!tok.published) {
+                    if (tok.cssVarSupport !== 'supported') {
                         return false;
                     }
                     break;
                 }
                 case 'no': {
-                    if (tok.published) {
+                    if (tok.cssVarSupport === 'supported') {
                         return false;
                     }
                     break;

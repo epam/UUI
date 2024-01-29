@@ -109,4 +109,15 @@ describe('docsGen:complexTypes', () => {
         `;
         expect(generateDocs(input)).toMatchSnapshot();
     });
+
+    test('should mark props as optional when type extends from Partial of another type', () => {
+        const input = `
+            interface IFirstType {
+                value: boolean;
+            }
+            
+            export interface ISecondType extends Partial<IFirstType> {};
+        `;
+        expect(generateDocs(input)).toMatchSnapshot();
+    });
 });
