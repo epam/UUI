@@ -8,15 +8,15 @@ interface UploadFileTogglerRenderParams {
 
 interface UploadFileTogglerProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLInputElement> {
     render(props: UploadFileTogglerRenderParams): React.ReactNode;
-    /*
+    /**
     * Callback to processing added files.
     */
     onFilesAdded(files: File[]): any;
-    /*
+    /**
     * Hint for expected file type in file upload controls. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#accept} for details
     */
     accept?: string;
-    /*
+    /**
     * Whether to allow single or multiple values. See {@link https://developer.mozilla.org/en-US/docs/web/html/element/input#multiple} for details
     */
     single?: boolean;

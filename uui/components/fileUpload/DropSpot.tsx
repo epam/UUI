@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cx, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
 import { FlexRow, IconContainer } from '../layout';
-import { Anchor } from '../navigation';
+import { LinkButton } from '../buttons';
 import { RichTextView, Text } from '../typography';
 import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
 import { i18n } from '../../i18n';
@@ -43,9 +43,7 @@ export class DropSpot extends React.Component<DropSpotProps> {
                             onFilesAdded={ this.props.onUploadFiles }
                             render={ (props) => (
                                 <RichTextView>
-                                    <Anchor { ...props } cx={ css.link }>
-                                        {i18n.fileUpload.browse}
-                                    </Anchor>
+                                    <LinkButton caption={ i18n.fileUpload.browse } { ...props } cx={ css.link } />
                                 </RichTextView>
                             ) }
                             accept={ this.props.accept }
