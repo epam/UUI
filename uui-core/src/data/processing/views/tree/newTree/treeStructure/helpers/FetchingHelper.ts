@@ -116,7 +116,9 @@ export class FetchingHelper {
 
                 for (let n = 0; n < ids.length; n++) {
                     const id = ids[n];
-                    const item = newItemsMap.get(id);
+                    const itemInTree = tree.getById(id);
+
+                    const item = itemInTree !== NOT_FOUND_RECORD ? itemInTree : newItemsMap.get(id);
 
                     let isFolded = false;
                     let hasChildren = false;
