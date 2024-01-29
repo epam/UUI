@@ -43,19 +43,14 @@ jobs:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
-
-      - uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            ./*/node_modules
-          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: v1-npm-deps-
-
+            node-version: '18.x'
+            cache: 'yarn'
+            cache-dependency-path: |
+                ./yarn.lock
+                ./server/yarn.lock
       - name: build
         run: |
           yarn
