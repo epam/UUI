@@ -118,6 +118,15 @@ describe('TimePicker', () => {
         expect(dom.input.value).toEqual('05:00 PM');
     });
 
+    it('should set a right value #9', async () => {
+        const { dom } = await setupTestComponent({ value: { hours: 11, minutes: 23 }, format: 24 });
+        expect(dom.input.value).toEqual('11:23');
+        fireEvent.change(dom.input, { target: { value: '0000' } });
+        expect(dom.input.value).toEqual('0000');
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('00:00');
+    });
+
     it('should reset invalid value onBlur', async () => {
         const { dom } = await setupTestComponent({ value: { hours: 18, minutes: 23 } });
         expect(dom.input.value).toEqual('06:23 PM');

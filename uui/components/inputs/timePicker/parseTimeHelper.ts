@@ -29,7 +29,7 @@ export const formatTime = (hours: number, minutes: number, meridian: 'AM' | 'PM'
     const hoursToString = Number.isNaN(hours) ? '00' : hours.toString().padStart(2, '0');
     const minutesToString = Number.isNaN(minutes) ? '00' : minutes.toString().padStart(2, '0');
 
-    if (hoursToString === '00' && minutesToString === '00') {
+    if (meridian && hoursToString === '00' && minutesToString === '00') {
         return '';
     }
 
