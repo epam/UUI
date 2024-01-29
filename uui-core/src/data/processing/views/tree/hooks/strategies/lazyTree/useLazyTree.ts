@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { LazyTreeProps } from './types';
 import { usePrevious } from '../../../../../../../hooks';
-import { DataSourceState } from '../../../../../../../types';
-
-import isEqual from 'lodash.isequal';
-import { onlySearchWasUnset, isQueryChanged } from './helpers';
+import { onlySearchWasUnset } from './helpers';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
@@ -12,6 +9,7 @@ import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefault
 import { TreeState } from '../../../newTree';
 import { useItemsStorage } from '../useItemsStorage';
 import { usePatchTree } from '../usePatchTree';
+import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -35,7 +33,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
-    const prevFilter = usePrevious(filter);
     const prevDataSourceState = usePrevious(dataSourceState);
 
     const [isFetching, setIsFetching] = useState(false);
@@ -44,16 +41,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     const actualRowsCount = useMemo(() => treeWithData.visible.getTotalCount() ?? 0, [treeWithData.visible]);
 
-    const lastRowIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
-
-    const areMoreRowsNeeded = useCallback((prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
-        const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex
-            || prevValue?.visibleCount !== newValue?.visibleCount;
-
-        return isFetchPositionAndAmountChanged && lastRowIndex > actualRowsCount;
-    }, [lastRowIndex, actualRowsCount]);
-
-    const foldingService = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
+    const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
 
     useEffect(() => {
         setTreeWithData(blankTree);
@@ -63,7 +51,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         api,
         filter,
         dataSourceState,
-        isFolded: foldingService.isFolded,
+        isFolded,
         fetchStrategy: props.fetchStrategy,
         flattenSearchResults: props.flattenSearchResults,
         getChildCount: props.getChildCount,
@@ -79,38 +67,36 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         return newTree.full;
     }, [loadMissingOnCheck, setTreeWithData, treeWithData]);
 
-    useEffect(() => {
-        let completeReset = false;
-        const shouldReloadData = !isEqual(prevFilter, filter)
-            || isQueryChanged(prevDataSourceState, dataSourceState)
-            || isForceReload;
+    const { shouldRefetch, shouldLoad, shouldFetch } = useLazyFetchingAdvisor({
+        dataSourceState,
+        filter,
+        forceReload: isForceReload,
+        backgroundReload,
+        rowsCount: actualRowsCount,
+    });
 
+    useEffect(() => {
         let currentTree = treeWithData;
-        if (prevDataSourceState == null || shouldReloadData) {
+        if (shouldRefetch) {
             setIsFetching(true);
             currentTree = treeWithData.clearStructure();
             if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
                 currentTree = currentTree.reset();
             }
-            completeReset = true;
         }
-        const isFoldingChanged = !prevDataSourceState || dataSourceState.folded !== prevDataSourceState.folded;
-        const shouldShowPlacehodlers = (!shouldReloadData
-            || (shouldReloadData && !backgroundReload)) && !isForceReload;
 
-        const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
-        if ((completeReset && shouldShowPlacehodlers) || isFoldingChanged || moreRowsNeeded) {
+        if (shouldLoad) {
             if (currentTree !== treeWithData) {
                 setTreeWithData(currentTree);
             }
             setIsLoading(true);
         }
 
-        if (completeReset || isFoldingChanged || moreRowsNeeded) {
+        if (shouldFetch) {
             loadMissing({
                 tree: currentTree,
                 using: dataSourceState.search ? 'visible' : undefined,
-                abortInProgress: completeReset,
+                abortInProgress: shouldRefetch,
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
@@ -124,14 +110,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [
-        isForceReload,
-        dataSourceState,
-        filter,
-        treeWithData,
-        setTreeWithData,
-        areMoreRowsNeeded,
-    ]);
+    }, [shouldFetch, shouldLoad, shouldRefetch, treeWithData, setTreeWithData]);
 
     const tree = usePatchTree({
         tree: treeWithData,
