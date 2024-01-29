@@ -52,11 +52,11 @@ describe('TimePicker, formatTime function', () => {
     it('Should return time without meridian', () => {
         expect(formatTime(12, 34, false)).toEqual('12:34');
         expect(formatTime(2, 4, false)).toEqual('02:04');
+        expect(formatTime(0, 0, false)).toEqual('00:00');
     });
 
     it('Should return empty string', () => {
         expect(formatTime(0, 0, 'AM')).toEqual('');
         expect(formatTime(0, 0, 'PM')).toEqual('');
-        expect(formatTime(0, 0, false)).toEqual('');
     });
 });
