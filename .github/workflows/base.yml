@@ -49,8 +49,7 @@ jobs:
             node-version: '18.x'
             cache: 'yarn'
             cache-dependency-path: |
-                ./yarn.lock
-                ./server/yarn.lock
+                **/yarn.lock
       - name: build
         run: |
           yarn
