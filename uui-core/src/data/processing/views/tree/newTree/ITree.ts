@@ -13,6 +13,5 @@ export interface ITree<TItem, TId> {
     get params(): TreeParams<TItem, TId>;
     getItems(parentId?: TId): ItemsInfo<TId>;
     getById(id: TId): TItem | typeof NOT_FOUND_RECORD;
-    getMissingParents(): TId[];
     getTotalCount(): number | null;
 }

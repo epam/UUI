@@ -16,18 +16,6 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         super(_params, _byParentId, _nodeInfoById);
     }
 
-    getMissingParents(): TId[] {
-        const missingIds = new Set<TId>();
-        this.itemsAccessor.forEach((item) => {
-            const parentId = this.params.getParentId(item);
-            if (parentId != null && !this.itemsAccessor.get(parentId)) {
-                missingIds.add(parentId);
-            }
-        });
-
-        return Array.from(missingIds);
-    }
-
     public get itemsAccessor() {
         return this._itemsAccessor;
     }

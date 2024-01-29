@@ -181,9 +181,9 @@ export class FetchingHelper {
         let prevMissingIds = new Set<TId>();
         let loadedItems: TItem[] = [];
 
-        const treeMissingParents = tree.getMissingParents();
-        const missingIds = new Set<TId>(treeMissingParents);
+        // TODO: add looping throunh the root level of tree to find elements, which parent is absent.
         while (true) {
+            const missingIds = new Set<TId>();
             if (itemsToLoad && itemsToLoad.length > 0) {
                 itemsToLoad.forEach((id) => {
                     if (tree.getById(id) === NOT_FOUND_RECORD && !updatedItemsMap.has(id)) {
@@ -227,7 +227,6 @@ export class FetchingHelper {
                 }
 
                 prevMissingIds = new Set([...missingIds]);
-                missingIds.clear();
             }
             iteration++;
 
