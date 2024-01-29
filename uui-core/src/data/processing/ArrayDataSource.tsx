@@ -24,9 +24,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         this.props = props;
         if (props.items && currentItems !== props.items) {
             if (!this.itemsStorage) {
-                this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+                this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
             }
-            this.itemsStorage.setItems(props.items, { reset: true });
         }
     }
 
