@@ -3,6 +3,9 @@
   "private": true,
   "version": "2.1.434",
   "description": "",
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
     "analyzer": "cd app && yarn analyzer",
     "build": "lerna run build",
