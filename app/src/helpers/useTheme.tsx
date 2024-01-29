@@ -17,7 +17,7 @@ export const useTheme = () => {
         const { pathname, query, ...restParams } = uuiRouter.getCurrentLink();
         const currentTheme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[0];
         document.body.classList.replace(currentTheme, `uui-theme-${theme}`);
-        uuiRouter.redirect({ pathname: pathname, query: { ...query, theme: theme }, ...restParams });
+        uuiRouter.transfer({ pathname: pathname, query: { ...query, theme: theme }, ...restParams });
     }, [theme]);
 
     useEffect(() => {

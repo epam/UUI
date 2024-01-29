@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IDropdownToggler, Icon } from '@epam/uui-core';
-import { IconContainer } from '../layout';
 import { Clickable, ClickableComponentProps } from '../widgets';
+import { IconContainer } from '../layout';
 import css from './IconButton.module.scss';
 
 export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
@@ -13,7 +13,12 @@ export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
 
 export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
     return (
-        <Clickable { ...props } cx={ [css.container, props.cx] } ref={ ref }>
+        <Clickable
+            { ...props }
+            type="button"
+            cx={ [css.container, props.cx] }
+            ref={ ref }
+        >
             <IconContainer icon={ props.icon } />
         </Clickable>
     );

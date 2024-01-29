@@ -11,11 +11,6 @@ import { AddLinkModal } from './AddLinkModal';
 import { isUrl } from './isUrl';
 import { IHasToolbarButton } from '../../implementation/Toolbars';
 
-export interface LinkElement extends TElement {
-    href: string;
-    type: string;
-}
-
 const withOurLink = <
     V extends Value = Value,
     E extends PlateEditor<V> = PlateEditor<V>

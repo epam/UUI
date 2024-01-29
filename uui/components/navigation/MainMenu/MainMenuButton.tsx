@@ -1,9 +1,6 @@
 import * as React from 'react';
-import {
-    CX, cx, devLogger, IAdaptiveItem, IAnalyticableClick, ICanRedirect, IClickable, Icon, IDropdownToggler,
-    IHasCaption, IHasCX, IHasIcon, IHasTabIndex, uuiElement,
-} from '@epam/uui-core';
-import { Clickable, IconContainer, UnionRawProps } from '@epam/uui-components';
+import { CX, cx, devLogger, IAdaptiveItem, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets';
 import { ReactComponent as SvgTriangle } from '../../../icons/chevron-down-24.svg';
 import css from './MainMenuButton.module.scss';
@@ -15,17 +12,15 @@ interface MainMenuButtonMods {
     type?: 'primary' | 'secondary';
 }
 
-export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IClickable & IAnalyticableClick & IHasTabIndex
-& IHasCX & ICanRedirect & UnionRawProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'>
+& IHasIcon & IHasCaption & {
     /**
      * CSS classes to put on the caption
      * @deprecated
      * */
     captionCX?: CX;
-
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-
     /** Count value to be placed in component */
     count?: React.ReactNode;
 };
@@ -35,18 +30,20 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
         devLogger.warn('MainMenuButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
     }
 
+    const { type, ...clickableProps } = props;
+
     return (
         <Clickable
-            { ...props }
+            { ...clickableProps }
             rawProps={ {
                 role: 'menuitem',
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
-                ...props.rawProps as UnionRawProps,
+                ...props.rawProps,
             } }
             cx={ [
                 css.root,
-                css['type-' + (props.type || 'primary')],
+                css['type-' + (type || 'primary')],
                 props.cx,
             ] }
             ref={ ref }

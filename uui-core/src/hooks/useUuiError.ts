@@ -14,12 +14,22 @@ export type UuiRecoveryErrorInfo = {
 export type ApiCallErrorType = 'permissionDenied' | 'notFound' | 'serverError' | 'serviceUnavailable' | 'default';
 
 export interface UseUuiErrorOptions {
+    /** Config with information which data will be displayed in case of particular API error.
+     * If omitted, default config will be used.
+     * */
     errorConfig?: Record<ApiCallErrorType, ErrorPageInfo>;
+    /** Config with information which data will be displayed in case recovery errors.
+     * If omitted, default config will be used.
+     * */
     recoveryConfig?: Record<ApiRecoveryReason, UuiRecoveryErrorInfo>;
 }
 
 export interface UseUuiErrorProps {
+    /** Pure function to get error info for display based on error.
+     * If omitted, error info from default config or options.errorConfig will be used.
+     */
     getErrorInfo: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;
+    /** Error handling options */
     options?: UseUuiErrorOptions;
 }
 

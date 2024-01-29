@@ -1,6 +1,5 @@
-export const IGNORED_VAR_PLACEHOLDER = '/* UUI internal variable */';
 export const getHiddenFromPublishingVarPlaceholder = (cssVar: string) => {
-    return `/* UUI internal variable ${cssVar} */`;
+    return `/* UUI internal variable '${cssVar}' */`;
 };
 
 export const PATH = {

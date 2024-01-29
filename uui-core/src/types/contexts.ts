@@ -11,8 +11,11 @@ import { LayoutLayer } from '../services/LayoutContext';
 import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 
 export interface IBaseContext<TState = {}> {
+    /** Add your handler, which will be called on context updates */
     subscribe(handler: (state: TState) => void): void;
+    /** Unsubscribe from context updates */
     unsubscribe(handler: (state: TState) => void): void;
+    /** Manually destroy context and unsubscribe from all listeners  */
     destroyContext: () => void;
 }
 
@@ -210,25 +213,53 @@ export interface IAnalyticsListener {
 }
 
 export interface ApiExtensions<TApi> {
+    /** Allows to specify API options for particular request */
     withOptions(options: ApiCallOptions): TApi;
 }
 
 export interface UuiContexts {
+    /** Api service allows you to process requests with an error handling.
+     * See more here - https://uui.epam.com/documents?id=apiContext&category=contexts
+     * */
     uuiApi: IApiContext;
+    /** Instance of react-router wrapped by UUI adapter */
     uuiRouter: IRouterContext;
+    /** Modals service allows you to show modal windows over the main content.
+     * See more here - https://uui.epam.com/documents?id=modalContext&category=contexts
+     * */
     uuiModals: IModalContext;
+    /** Drag and Drop service for dnd operations.
+     * See more here - https://uui.epam.com/documents?id=dragAndDrop
+     * */
     uuiDnD: IDndContext;
+    /** UserSettings service allows you to store user data in localStorage. */
     uuiUserSettings: IUserSettingsContext;
+    /** Web analytics service allows you to send user interaction events to the analytics systems.
+     * See more here - https://uui.epam.com/documents?id=analyticsContext&category=contexts
+     * */
     uuiAnalytics: IAnalyticsContext;
+    /** Error service allows you to report errors.
+     * See more here - https://uui.epam.com/documents?id=apiContext&category=contexts
+     * */
     uuiErrors: IErrorContext;
+    /** Notifications service allows you to show notifications over the main content.
+     * See more here - https://uui.epam.com/documents?id=notificationContextDoc&category=contexts
+     * */
     uuiNotifications: INotificationContext;
+    /** Layout service. Used to manage layout for overlays like modals, dropdowns, etc. */
     uuiLayout: ILayoutContext;
+    /** Lock service.
+     * See more here - https://uui.epam.com/documents?id=lockContextDoc&category=contexts
+     * */
     uuiLocks: ILockContext;
 }
 
 export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
+    /** Api definitions */
     api: TApi & ApiExtensions<TApi>;
+    /** App context, any app global settings. */
     uuiApp: TAppContext;
+    /** React router history instance */
     history?: IHistory4;
 }
 
