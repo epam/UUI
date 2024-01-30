@@ -15,7 +15,7 @@ interface ApiCall extends ApiCallInfo {
 
 export class ApiCallError extends Error {
     constructor(public call: ApiCall) {
-        super('ApiContext: XHR call failed');
+        super('ApiContext: API call failed');
     }
 }
 
@@ -210,8 +210,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return this.resolveCall(call, null);
             }
 
-            response
-                .json()
+            call.options.parseResponse(response)
                 .then((result) => {
                     call.responseData = result;
                     this.resolveCall(call, result);
@@ -248,9 +247,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             /* Authentication cookies invalidated */ this.handleApiError(call, 'auth-lost');
         } else {
             // Try to parse JSON in response, if there are none - just ignore
-            response
-                .json()
-                .catch(() => null)
+            call.options.parseResponse(response)
                 .then((result) => {
                     call.responseData = result;
                     this.handleApiError(call);
@@ -304,13 +301,21 @@ export class ApiContext extends BaseContext implements IApiContext {
         }
     }
 
+    private defaultParseResponse = (res: Response) => {
+        return res.json();
+    };
+
     public processRequest: IProcessRequest = (url, method, data, options) => {
         let name = url;
         if (data && data.operationName) {
             name += ' ' + data.operationName;
         }
 
-        options = { errorHandling: 'page', ...options };
+        options = {
+            errorHandling: 'page',
+            parseResponse: this.defaultParseResponse,
+            ...options,
+        };
 
         return new Promise((resolve, reject) => {
             const call: ApiCall = {
