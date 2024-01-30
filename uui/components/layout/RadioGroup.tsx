@@ -27,7 +27,7 @@ export interface RadioGroupProps<TValue>
     items: RadioGroupItem<TValue>[];
     /** Defines group components size */
     size?: RadioInputProps['size'];
-    /** Defines the Name property to group radio inputs */
+    /** Defines native HTML name attribute for each group member */
     name?: string;
 }
 

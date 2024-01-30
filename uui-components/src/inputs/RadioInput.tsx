@@ -18,7 +18,7 @@ export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasL
     renderLabel?(): React.ReactNode;
     /** ID to put on 'input' node */
     id?: string;
-    /** Defines the Name property to group member */
+    /** Defines native HTML name attribute for the input */
     name?: string;
 };
 
