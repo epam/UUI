@@ -239,6 +239,7 @@ export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensLoc
                 return (
                     <FlexCell cx={ css.radioGroupFilter } width="auto">
                         <RadioGroup
+                            name="status"
                             items={ items }
                             value={ props.value || STATUS_FILTER.all }
                             onValueChange={ props.onValueChange }

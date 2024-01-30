@@ -13,6 +13,8 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
     const isNone = prop.defaultValue === undefined;
     const name = prop.name;
 
+    console.log('name', name);
+
     return (
         <FlexRow size="36" borderBottom padding="12" spacing="6">
             <FlexCell key="name" width={ 130 }>
@@ -21,6 +23,7 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
             <FlexCell key="default" width={ 110 }>
                 {!prop.isRequired && (
                     <RadioInput
+                        name={ prop.name }
                         label={ isNone ? 'none' : String(prop.defaultValue) }
                         size="18"
                         value={ isNothingSelected }
