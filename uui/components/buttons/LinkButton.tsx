@@ -24,10 +24,8 @@ export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & I
      * @deprecated
      * */
     captionCX?: CX;
-
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-
     /**
      * Defines component size.
      * @default '36'
@@ -58,7 +56,12 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[props.size || DEFAULT_SIZE].foldingArrow;
 
     return (
-        <Clickable { ...props } cx={ styles } ref={ ref }>
+        <Clickable
+            { ...props }
+            type="button"
+            cx={ styles }
+            ref={ ref }
+        >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
                     icon={ props.icon }

@@ -5,25 +5,27 @@ exports[`ControlGroup should be rendered correctly 1`] = `
   className="container root"
   role="group"
 >
-  <span
+  <button
     className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
     tabIndex={-1}
+    type="button"
   >
     <div
       className="uui-caption"
     >
       On
     </div>
-  </span>
-  <span
+  </button>
+  <button
     className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
     tabIndex={-1}
+    type="button"
   >
     <div
       className="uui-caption"
     >
       Off
     </div>
-  </span>
+  </button>
 </div>
 `;

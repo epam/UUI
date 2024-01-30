@@ -46,8 +46,9 @@ exports[`Button should render with maximum props 1`] = `
 `;
 
 exports[`Button should render with minimum props 1`] = `
-<span
+<button
   className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
   tabIndex={-1}
+  type="button"
 />
 `;

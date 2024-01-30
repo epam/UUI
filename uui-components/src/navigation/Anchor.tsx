@@ -5,8 +5,15 @@ import css from './Anchor.module.scss';
 
 export type AnchorProps = ClickableComponentProps & IHasChildren & {};
 
-export const Anchor = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorProps>((props, ref) => {
-    return <Clickable { ...props } cx={ [css.container, props.cx] } ref={ ref } />;
+export const Anchor = React.forwardRef<HTMLAnchorElement, AnchorProps>((props, ref) => {
+    return (
+        <Clickable
+            { ...props }
+            type="anchor"
+            cx={ [css.container, props.cx] }
+            ref={ ref }
+        />
+    );
 });
 
 Anchor.displayName = 'Anchor';

@@ -3,6 +3,9 @@
   "private": true,
   "version": "2.1.434",
   "description": "",
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
     "analyzer": "cd app && yarn analyzer",
     "build": "lerna run build",
@@ -71,7 +74,7 @@
     "husky": "8.0.3",
     "lerna": "3.22.1",
     "lint-staged": "12.5.0",
-    "tslib": "^2.3.1",
+    "tslib": "^2.6.2",
     "typedoc": "0.17.4"
   }
 }
