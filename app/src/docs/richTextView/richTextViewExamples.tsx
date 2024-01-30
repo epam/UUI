@@ -166,7 +166,7 @@ export const children = [
                 </ul>
                 <i>Additional data, unnecessary info, caption or quote.</i>
                 {' '}
-                <Anchor>Links and tags are looks like this.</Anchor>
+                <Anchor href="#">Links and tags are looks like this.</Anchor>
                 <h4>LabeledInput</h4>
                 <FlexRow>
                     <LabeledInput
