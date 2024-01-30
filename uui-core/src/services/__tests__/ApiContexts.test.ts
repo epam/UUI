@@ -111,4 +111,59 @@ describe('ApiContext', () => {
         await context.processRequest('path', 'POST', testData);
         expect(customFetchMock).toBeCalledTimes(1);
     });
+
+    it('should allow to process custom OK response formats with parseResponse', async () => {
+        const fetchMock = jest.fn(() => {
+            return Promise.resolve({
+                blob: () => Promise.resolve(new Blob()),
+                text: () => Promise.resolve('text error message'),
+                ok: true,
+                status: 200,
+            } as any);
+        });
+
+        const parseResponse = (res: Response) => {
+            return res.status === 200 ? res.blob() : res.text();
+        };
+
+        context = new ApiContext({ fetch: fetchMock });
+        const result = await context.processRequest(
+            'path',
+            'POST',
+            testData,
+            { parseResponse },
+        );
+
+        expect(fetchMock).toBeCalledTimes(1);
+        expect(result).toBeInstanceOf(Blob);
+    });
+
+    it('should allow to process custom error response formats with parseResponse', async () => {
+        const fetchMock = jest.fn(() => {
+            return Promise.resolve({
+                blob: () => Promise.resolve(new Blob()),
+                text: () => Promise.resolve('text error message'),
+                ok: false,
+                status: 500,
+            } as any);
+        });
+
+        const parseResponse = (res: Response) => {
+            return res.status === 200 ? res.blob() : res.text();
+        };
+
+        context = new ApiContext({ fetch: fetchMock });
+
+        const error = await (context.processRequest(
+            'path',
+            'POST',
+            testData,
+            { parseResponse },
+        ).catch((e) => e));
+
+        expect(error.call.httpStatus).toBe(500);
+        expect(error.call.responseData).toBe('text error message');
+        expect(fetchMock).toBeCalledTimes(1);
+        expect(context.status).toBe('error');
+    });
 });
