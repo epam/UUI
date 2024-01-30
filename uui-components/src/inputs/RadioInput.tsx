@@ -16,9 +16,10 @@ export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasL
      * If omitted, 'label' prop value will be rendered.
      */
     renderLabel?(): React.ReactNode;
-
     /** ID to put on 'input' node */
     id?: string;
+    /** Defines the Name property to group member */
+    name?: string;
 };
 
 export class RadioInput extends React.Component<RadioInputProps> {
@@ -53,6 +54,7 @@ export class RadioInput extends React.Component<RadioInputProps> {
                     onBlur={ this.props.onBlur }
                 >
                     <input
+                        name={ this.props.name }
                         type="radio"
                         onChange={ !this.props.isReadonly ? this.handleChange : undefined }
                         disabled={ this.props.isDisabled }

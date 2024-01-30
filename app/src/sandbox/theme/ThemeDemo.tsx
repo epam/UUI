@@ -123,6 +123,7 @@ export function ThemeDemo() {
                     <FlexRow vPadding="12">
                         <LabeledInput label="Gender" { ...lens.prop('gender').toProps() }>
                             <RadioGroup
+                                name="gender"
                                 direction="horizontal"
                                 { ...lens.prop('gender').toProps() }
                                 items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }

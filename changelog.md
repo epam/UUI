@@ -19,7 +19,8 @@
 
 
 **What's Fixed**
-* ????
+* [RadiInput]: added property `name` to group RadioInputs.
+* [RadioGroup]: added property `name`. This property sets to each included RadioInput to this group.
 
 # 5.5.0 - 18.01.2024
 
