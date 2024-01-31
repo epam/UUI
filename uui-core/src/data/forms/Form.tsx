@@ -1,15 +1,15 @@
 import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
-import { IEditable, ICanBeInvalid } from '../../types/props';
+import { IEditable } from '../../types/props';
 import { Metadata } from '../../types/validation';
-import { ILens } from '../../data/lenses';
+import { ILens, ValidationState } from '../../data/lenses';
 import { ValidationMode } from '../../data/validation';
 
 export interface FormSaveResponse<T> {
     /** New form value, which will replace previous one */
     form?: T;
     /** Server-side validation state. It's applied in priority over client validation. */
-    validation?: ICanBeInvalid;
+    validation?: ValidationState;
 }
 
 export interface FormProps<T> {
@@ -74,7 +74,7 @@ export interface FormProps<T> {
     validationOn?: ValidationMode;
 }
 
-export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
+export interface IFormApi<T> extends IEditable<T>, ValidationState {
     /**
      * Lens - a helper to split parts of the form state, validation, and setState callbacks, and pass this to components
      */
@@ -122,7 +122,7 @@ export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
      * Validation is usually done automatically, according to validationOn prop.
      * Use this method only in corner cases.
      */
-    validate(): ICanBeInvalid;
+    validate(): ValidationState;
 
     /** True if there are changes to undo */
     canUndo: boolean;

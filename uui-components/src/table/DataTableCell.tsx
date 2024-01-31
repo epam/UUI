@@ -83,7 +83,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             isReadonly: props.isReadonly ?? props.rowProps.isReadonly,
             isRequired: props.isRequired ?? props.rowProps.isRequired,
             validationMessage: props.validationMessage ?? props.rowProps.validationMessage,
-            validationProps: props.validationProps ?? props.rowProps.validationProps,
             onFocus,
             onBlur: () => setState({ ...state, inFocus: false }),
             rowProps: props.rowProps,
