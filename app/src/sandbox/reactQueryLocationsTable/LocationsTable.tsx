@@ -7,6 +7,8 @@ import css from './LocationsTable.module.scss';
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Tree } from './Tree';
 
+const LOCATIONS_QUERY = 'locations';
+
 const blankTree = Tree.blank({
     getId: ({ id }) => id,
     getParentId: ({ parentId }) => parentId,
@@ -74,17 +76,19 @@ export function LocationsTable() {
     });
 
     const queryClient = useQueryClient();
-    
+    const currentTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
+    const rowsCount = useMemo(() => currentTree.getTotalCount(), [currentTree]);
+
     const { shouldFetch, shouldReload, shouldLoad, shouldRefetch } = useLazyFetchingAdvisor({
         dataSourceState: tableState,
         backgroundReload: true,
-        rowsCount: blankTree.getTotalCount(),
+        rowsCount,
     });
-
+    
     useEffect(
         () => {
             if (shouldFetch || shouldLoad || shouldRefetch || shouldReload) {
-                queryClient.invalidateQueries({ queryKey: ['locations'] });
+                queryClient.invalidateQueries({ queryKey: [LOCATIONS_QUERY] });
             }
         },
         [queryClient, shouldFetch, shouldLoad, shouldRefetch, shouldReload],
@@ -97,9 +101,9 @@ export function LocationsTable() {
     [string, DataSourceState<Record<string, any>, any>, (item: Location) => boolean]
     >(
         {
-            queryKey: ['locations', tableState, isFolded], // unique key that identifies the state of the entire tree
+            queryKey: [LOCATIONS_QUERY, tableState, isFolded],
             queryFn: async ({ queryKey: [, dataSourceState] }) => {
-                const prevTree = queryClient.getQueryData<Tree>(['locations']) ?? blankTree;
+                const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
 
                 const { loadedItems, byParentId, nodeInfoById } = await FetchingHelper.load<Location, string, unknown>({
                     tree: prevTree,
@@ -116,7 +120,6 @@ export function LocationsTable() {
                 return prevTree.update(loadedItems, byParentId, nodeInfoById);
             },
             placeholderData: shouldReload ? undefined : keepPreviousData,
-            // initialData: () => queryClient.getQueryData<Tree>(['locations']),
             enabled: shouldFetch || shouldLoad || shouldRefetch || shouldReload,
         });
 
