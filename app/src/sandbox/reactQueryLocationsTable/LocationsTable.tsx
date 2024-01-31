@@ -102,7 +102,7 @@ export function LocationsTable() {
     >(
         {
             queryKey: [LOCATIONS_QUERY, tableState, isFolded],
-            queryFn: async ({ queryKey: [, dataSourceState] }) => {
+            queryFn: async ({ queryKey: [, dataSourceState, _isFolded] }) => {
                 const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
 
                 const { loadedItems, byParentId, nodeInfoById } = await FetchingHelper.load<Location, string, unknown>({
@@ -110,7 +110,7 @@ export function LocationsTable() {
                     options: {
                         api,
                         getChildCount: (l) => l.childCount,
-                        isFolded,
+                        isFolded: _isFolded,
                         filter: dataSourceState?.filter,
                     },
                     dataSourceState,
@@ -126,7 +126,7 @@ export function LocationsTable() {
     const { rows, listProps } = useDataRows({
         isFetching: shouldFetch && !shouldLoad && isFetching,
         isLoading: (shouldLoad || shouldReload) && isFetching,
-        tree: tree ?? blankTree,
+        tree,
         getId: ({ id }) => id,
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
