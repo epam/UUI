@@ -45,13 +45,14 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
 
     const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
 
-    const shouldShowPlaceholders = shouldRefetch && (!backgroundReload || forceReload);
-    const shouldLoad = isFoldingChanged || moreRowsNeeded || shouldShowPlaceholders;
+    const shouldReload = shouldRefetch && (!backgroundReload || forceReload);
+    const shouldLoad = isFoldingChanged || moreRowsNeeded || shouldReload;
     const shouldFetch = shouldRefetch || isFoldingChanged || moreRowsNeeded;
 
     return useMemo(() => ({
         shouldLoad,
-        shouldRefetch,
+        shouldReload,
         shouldFetch,
+        shouldRefetch,
     }), [shouldLoad, shouldRefetch, shouldFetch]);
 }

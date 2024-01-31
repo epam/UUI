@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { DataSourceState, DataColumnProps, useUuiContext, useTree, useDataRows, LazyDataSourceApi,
+import { DataSourceState, DataColumnProps, useUuiContext, useDataRows, LazyDataSourceApi,
     FetchingHelper, useFoldingService, useLazyFetchingAdvisor } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
@@ -75,7 +75,7 @@ export function LocationsTable() {
 
     const queryClient = useQueryClient();
     
-    const { shouldFetch, shouldLoad, shouldRefetch } = useLazyFetchingAdvisor({
+    const { shouldFetch, shouldReload, shouldLoad, shouldRefetch } = useLazyFetchingAdvisor({
         dataSourceState: tableState,
         backgroundReload: true,
         rowsCount: blankTree.getTotalCount(),
@@ -83,66 +83,54 @@ export function LocationsTable() {
 
     useEffect(
         () => {
-            if (shouldFetch || shouldLoad || shouldRefetch) {
+            if (shouldFetch || shouldLoad || shouldRefetch || shouldReload) {
                 queryClient.invalidateQueries({ queryKey: ['locations'] });
             }
         },
-        [queryClient, shouldFetch, shouldLoad, shouldRefetch],
+        [queryClient, shouldFetch, shouldLoad, shouldRefetch, shouldReload],
     );
 
-    const { status, data: tree = blankTree, error } = useQuery<Tree, Error, Tree, [string, DataSourceState<Record<string, any>, any>, (item: Location) => boolean]>({
-        queryKey: ['locations', tableState, isFolded], // unique key that identifies the state of the entire tree
-        queryFn: async ({ queryKey: [, _tableState] }) => {
-            const prevTree = queryClient.getQueryData<Tree>(['locations']) ?? blankTree;
+    const { data: tree = blankTree, isFetching } = useQuery<
+    Tree,
+    Error,
+    Tree,
+    [string, DataSourceState<Record<string, any>, any>, (item: Location) => boolean]
+    >(
+        {
+            queryKey: ['locations', tableState, isFolded], // unique key that identifies the state of the entire tree
+            queryFn: async ({ queryKey: [, dataSourceState] }) => {
+                const prevTree = queryClient.getQueryData<Tree>(['locations']) ?? blankTree;
 
-            const { loadedItems, byParentId, nodeInfoById } = await FetchingHelper.load<Location, string, unknown>({
-                tree: prevTree,
-                options: {
-                    api,
-                    getChildCount: (l) => l.childCount,
-                    isFolded,
-                    filter: _tableState?.filter,
-                },
-                dataSourceState: _tableState,
-                withNestedChildren: true,
-            });
-            return prevTree.update(loadedItems, byParentId, nodeInfoById);
-        },
-        placeholderData: shouldRefetch ? undefined : keepPreviousData,
-        enabled: shouldFetch || shouldLoad || shouldRefetch,
-    });
+                const { loadedItems, byParentId, nodeInfoById } = await FetchingHelper.load<Location, string, unknown>({
+                    tree: prevTree,
+                    options: {
+                        api,
+                        getChildCount: (l) => l.childCount,
+                        isFolded,
+                        filter: dataSourceState?.filter,
+                    },
+                    dataSourceState,
+                    withNestedChildren: true,
+                });
 
-    // const { tree, ...restProps } = useTree<Location, string, unknown>({
-    //     type: 'lazy',
-    //     api: (request, ctx) => {
-    //         const filter = { parentId: ctx?.parentId };
-    //         return svc.api.demo.locations({ ...request, filter });
-    //     },
-    //     getId: ({ id }) => id,
-    //     getParentId: ({ parentId }) => parentId,
-    //     getChildCount: (l) => l.childCount,
-    //     backgroundReload: true,
-    //     cascadeSelection: 'implicit',
-    //     dataSourceState: tableState,
-    //     setDataSourceState: setTableState,
-    //     rowOptions: {
-    //         checkbox: { isVisible: true },
-    //         // To make some row `pinned`, it is required to define `pin` function.
-    //         // Parents and elements of the same level can be pinned.
-    //         pin: (location) => location.value.type !== 'city',
-    //     },
-    // }, []);
+                return prevTree.update(loadedItems, byParentId, nodeInfoById);
+            },
+            placeholderData: shouldReload ? undefined : keepPreviousData,
+            // initialData: () => queryClient.getQueryData<Tree>(['locations']),
+            enabled: shouldFetch || shouldLoad || shouldRefetch || shouldReload,
+        });
 
     const { rows, listProps } = useDataRows({
-        tree,
+        isFetching: shouldFetch && !shouldLoad && isFetching,
+        isLoading: (shouldLoad || shouldReload) && isFetching,
+        tree: tree ?? blankTree,
         getId: ({ id }) => id,
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
-        cascadeSelection: 'implicit',
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         rowOptions: {
-            checkbox: { isVisible: true },
+            // checkbox: { isVisible: true },
             // To make some row `pinned`, it is required to define `pin` function.
             // Parents and elements of the same level can be pinned.
             pin: (location) => location.value.type !== 'city',
