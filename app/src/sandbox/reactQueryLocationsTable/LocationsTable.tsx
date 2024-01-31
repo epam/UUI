@@ -1,18 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useDataRows, LazyDataSourceApi,
-    FetchingHelper, useFoldingService, useLazyFetchingAdvisor } from '@epam/uui-core';
+    FetchingHelper, useFoldingService, useLazyFetchingAdvisor, DataRowOptions, TreeParams, CascadeSelection } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './LocationsTable.module.scss';
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Tree } from './Tree';
+import { useCascadeSelection } from './useCascadeSelection';
 
 const LOCATIONS_QUERY = 'locations';
 
-const blankTree = Tree.blank({
+const treeParams: TreeParams<Location, string> = {
     getId: ({ id }) => id,
     getParentId: ({ parentId }) => parentId,
-});
+};
 
 export function LocationsTable() {
     const svc = useUuiContext();
@@ -64,6 +65,9 @@ export function LocationsTable() {
         [],
     );
     
+    const itemsMap = useMemo(() => new Map(), []);
+    const blankTree = useMemo(() => Tree.blank(treeParams, itemsMap), []);
+
     const api: LazyDataSourceApi<Location, string, unknown> = (request, ctx) => {
         const filter = { parentId: ctx?.parentId };
         return svc.api.demo.locations({ ...request, filter });
@@ -123,21 +127,36 @@ export function LocationsTable() {
             enabled: shouldFetch || shouldLoad || shouldRefetch || shouldReload,
         });
 
+    const rowOptions: DataRowOptions<Location, string> = {
+        // checkbox: { isVisible: true },
+        // To make some row `pinned`, it is required to define `pin` function.
+        // Parents and elements of the same level can be pinned.
+        pin: (location) => location.value.type !== 'city',
+        checkbox: { isVisible: true },
+    };
+
+    const cascadeSelection: CascadeSelection = 'implicit';
+    const cascadeSelectionService = useCascadeSelection({
+        api,
+        dataSourceState: tableState,
+        rowOptions,
+        isFolded,
+        cascadeSelection,
+        itemsMap,
+        ...treeParams,
+    });
+
     const { rows, listProps } = useDataRows({
-        isFetching: shouldFetch && !shouldLoad && isFetching,
-        isLoading: (shouldLoad || shouldReload) && isFetching,
         tree,
-        getId: ({ id }) => id,
-        getParentId: ({ parentId }) => parentId,
+        cascadeSelection,
         getChildCount: (l) => l.childCount,
         dataSourceState: tableState,
         setDataSourceState: setTableState,
-        rowOptions: {
-            // checkbox: { isVisible: true },
-            // To make some row `pinned`, it is required to define `pin` function.
-            // Parents and elements of the same level can be pinned.
-            pin: (location) => location.value.type !== 'city',
-        },
+        rowOptions,
+        isFetching: shouldFetch && !shouldLoad && isFetching,
+        isLoading: (shouldLoad || shouldReload) && isFetching,
+        ...treeParams,
+        ...cascadeSelectionService,
     });
 
     return (

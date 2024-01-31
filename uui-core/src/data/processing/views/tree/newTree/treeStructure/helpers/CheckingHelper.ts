@@ -66,7 +66,7 @@ export class CheckingHelper {
         isCheckable,
     }: SelectionOptions<TItem, TId>) {
         if (isChecked) {
-            if (checkedId !== ROOT_ID) {
+            if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             } else {
                 Tree.forEachChildren<TItem, TId>(
@@ -78,7 +78,7 @@ export class CheckingHelper {
             return checkedIdsMap;
         }
 
-        if (checkedId !== ROOT_ID) {
+        if (checkedId != ROOT_ID) {
             checkedIdsMap.delete(checkedId);
         } else {
             for (const [checkedItemId, isItemChecked] of checkedIdsMap) {
@@ -117,20 +117,20 @@ export class CheckingHelper {
         isCheckable,
     }: SelectionOptions<TItem, TId>) {
         if (isChecked) {
-            if (checkedId !== ROOT_ID) {
+            if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             }
             // check all children recursively
             Tree.forEachChildren<TItem, TId>(
                 tree,
-                (id) => id !== ROOT_ID && checkedIdsMap.set(id, true),
+                (id) => id != ROOT_ID && checkedIdsMap.set(id, true),
                 isCheckable,
                 checkedId,
             );
             return this.checkParentsWithFullCheck({ tree, checkedIdsMap, checkedId, isCheckable });
         }
 
-        if (checkedId !== ROOT_ID) {
+        if (checkedId != ROOT_ID) {
             checkedIdsMap.delete(checkedId);
         }
 
@@ -155,7 +155,7 @@ export class CheckingHelper {
         isCheckable,
     }: SelectionOptions<TItem, TId>) {
         if (isChecked) {
-            if (checkedId !== ROOT_ID) {
+            if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             }
             // for implicit mode, it is required to remove explicit check from children,
@@ -184,7 +184,7 @@ export class CheckingHelper {
             });
         }
 
-        if (checkedId !== ROOT_ID) {
+        if (checkedId != ROOT_ID) {
             checkedIdsMap.delete(checkedId);
         }
 
@@ -207,7 +207,7 @@ export class CheckingHelper {
             checkedIdsMap.delete(parentId);
         };
 
-        if (checkedId !== ROOT_ID) {
+        if (checkedId != ROOT_ID) {
             const parents = Tree.getParents(checkedId, tree);
             [checkedId, ...parents.reverse()].forEach(selectNeighboursOnly);
         }
@@ -226,7 +226,7 @@ export class CheckingHelper {
             .forEach((parentId) => {
                 const { ids: childrenIds } = tree.getItems(parentId);
                 if (childrenIds && childrenIds.every((childId) => checkedIdsMap.has(childId))) {
-                    if (parentId !== ROOT_ID) {
+                    if (parentId != ROOT_ID) {
                         checkedIdsMap.set(parentId, true);
                     }
                     if (removeExplicitChildrenSelection) {
