@@ -14,7 +14,7 @@ export type TreeStructureId = 'full' | 'visible';
 export interface LoadOptions<TItem, TId, TFilter> {
     using?: TreeStructureId;
     options: LoadTreeOptions<TItem, TId, TFilter>,
-    dataSourceState: Readonly<DataSourceState>,
+    dataSourceState: Readonly<DataSourceState<TFilter, TId>>,
     withNestedChildren: boolean,
 }
 

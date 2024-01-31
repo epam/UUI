@@ -1,6 +1,32 @@
-import { DataRowPathItem } from '../../../../../types';
+import isEqual from 'lodash.isequal';
+import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../../types';
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD } from './constants';
+import { FetchingHelper } from './treeStructure';
+import { TreeNodeInfo } from './exposed';
+
+export interface LoadOptions<TItem, TId, TFilter = any> {
+    tree: ITree<TItem, TId>;
+    api: LazyDataSourceApi<TItem, TId, TFilter>;
+    getChildCount?(item: TItem): number;
+    isFolded?: (item: TItem) => boolean;
+    dataSourceState: DataSourceState<TFilter, TId>;
+    filter?: TFilter;
+    withNestedChildren?: boolean;
+}
+
+export interface LoadMissingOnCheckOptions<TItem, TId, TFilter = any> extends Omit<LoadOptions<TItem, TId, TFilter>, 'withNestedChildren'> {
+    cascadeSelection?: CascadeSelection;
+    checkedId?: TId;
+    isRoot: boolean;
+    isChecked: boolean;
+}
+
+export interface TreeLoadResult<TItem, TId> {
+    loadedItems: TItem[];
+    byParentId: IMap<TId, TId[]>;
+    nodeInfoById: IMap<TId, TreeNodeInfo>;
+}
 
 export class Tree {
     public static getParents<TItem, TId>(id: TId, tree: ITree<TItem, TId>) {
@@ -116,5 +142,74 @@ export class Tree {
             },
             { parentId: parentId, includeParent },
         );
+    }
+
+    public static async load<TItem, TId, TFilter = any>({
+        tree,
+        dataSourceState,
+        api,
+        getChildCount,
+        isFolded,
+        filter,
+        withNestedChildren = true,
+    }: LoadOptions<TItem, TId, TFilter>): Promise<TreeLoadResult<TItem, TId>> {
+        return await FetchingHelper.load<TItem, TId, TFilter>({
+            tree,
+            options: {
+                api,
+                getChildCount,
+                isFolded,
+                filter: { ...dataSourceState?.filter, ...filter },
+            },
+            dataSourceState,
+            withNestedChildren,
+        });
+    }
+
+    public static async loadMissingOnCheck<TItem, TId, TFilter = any>({
+        tree,
+        dataSourceState,
+        api,
+        getChildCount,
+        isFolded,
+        filter,
+        cascadeSelection,
+        isRoot,
+        isChecked,
+        checkedId,
+    }: LoadMissingOnCheckOptions<TItem, TId, TFilter>): Promise<ITree<TItem, TId> | TreeLoadResult<TItem, TId>> {
+        const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
+
+        if (!cascadeSelection && !isRoot) {
+            return tree;
+        }
+
+        const loadNestedLayersChildren = !isImplicitMode;
+        const parents = this.getParents(checkedId, tree);
+        return await FetchingHelper.load<TItem, TId, TFilter>({
+            tree,
+            options: {
+                api,
+                getChildCount,
+                isFolded,
+                filter: { ...dataSourceState?.filter, ...filter },
+                loadAllChildren: (itemId) => {
+                    if (!cascadeSelection) {
+                        return isChecked && isRoot;
+                    }
+
+                    if (isImplicitMode) {
+                        return itemId === undefined || parents.some((parent) => isEqual(parent, itemId));
+                    }
+
+                    // `isEqual` is used, because complex ids can be recreated after fetching of parents.
+                    // So, they should be compared not by reference, but by value.
+                    return isRoot || isEqual(itemId, checkedId) || (dataSourceState.search && parents.some((parent) => isEqual(parent, itemId)));
+                },
+                isLoadStrict: true,
+            },
+            dataSourceState: { ...dataSourceState, search: null },
+            withNestedChildren: loadNestedLayersChildren,
+        });
     }
 }

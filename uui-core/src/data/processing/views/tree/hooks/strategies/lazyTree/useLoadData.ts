@@ -52,24 +52,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
         const loadingTree = tree;
         const completeDsState = { ...props.dataSourceState, ...dataSourceState };
         try {
-            console.log({
-                using,
-                options: {
-                    ...props,
-                    loadAllChildren,
-                    isLoadStrict,
-                    isFolded,
-                    api,
-                    filter: {
-                        ...filter,
-                        ...props.dataSourceState?.filter,
-                        ...dataSourceState?.filter,
-                    },
-                },
-                dataSourceState: completeDsState,
-                withNestedChildren,
-            });
-
             const newTreePromise = tree.load({
                 using,
                 options: {
