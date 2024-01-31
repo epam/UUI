@@ -76,7 +76,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     }
 
     public cascadeSelection(
-        currentSelection: TId[],
+        currentSelection: TId[] | null,
         selectedId: TId,
         isSelected: boolean,
         options: {
@@ -87,7 +87,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
         let selectedIdsMap = this.newMap<TId, boolean>();
         if (!(selectedId === ROOT_ID && isImplicitMode)) {
-            currentSelection.forEach((id) => selectedIdsMap.set(id, true));
+            (currentSelection ?? []).forEach((id) => selectedIdsMap.set(id, true));
         }
 
         const optionsWithDefaults = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
