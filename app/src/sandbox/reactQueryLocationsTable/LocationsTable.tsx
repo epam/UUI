@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useDataRows, LazyDataSourceApi,
-    FetchingHelper, useFoldingService, useLazyFetchingAdvisor, DataRowOptions, TreeParams, CascadeSelection } from '@epam/uui-core';
+    useFoldingService, useLazyFetchingAdvisor, DataRowOptions, TreeParams,
+    CascadeSelection, Tree as UUITree } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './LocationsTable.module.scss';
@@ -8,6 +9,7 @@ import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-quer
 import { Tree } from './Tree';
 import { useCascadeSelection } from './useCascadeSelection';
 
+type LocationsQueryKey = [string, DataSourceState<Record<string, any>, any>, (item: Location) => boolean];
 const LOCATIONS_QUERY = 'locations';
 
 const treeParams: TreeParams<Location, string> = {
@@ -98,34 +100,24 @@ export function LocationsTable() {
         [queryClient, shouldFetch, shouldLoad, shouldRefetch, shouldReload],
     );
 
-    const { data: tree = blankTree, isFetching } = useQuery<
-    Tree,
-    Error,
-    Tree,
-    [string, DataSourceState<Record<string, any>, any>, (item: Location) => boolean]
-    >(
-        {
-            queryKey: [LOCATIONS_QUERY, tableState, isFolded],
-            queryFn: async ({ queryKey: [, dataSourceState, _isFolded] }) => {
-                const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
+    const { data: tree = blankTree, isFetching } = useQuery<Tree, Error, Tree, LocationsQueryKey>({
+        queryKey: [LOCATIONS_QUERY, tableState, isFolded],
+        queryFn: async ({ queryKey: [, dataSourceState, _isFolded] }) => {
+            const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
 
-                const { loadedItems, byParentId, nodeInfoById } = await FetchingHelper.load<Location, string, unknown>({
-                    tree: prevTree,
-                    options: {
-                        api,
-                        getChildCount: (l) => l.childCount,
-                        isFolded: _isFolded,
-                        filter: dataSourceState?.filter,
-                    },
-                    dataSourceState,
-                    withNestedChildren: true,
-                });
+            const { loadedItems, byParentId, nodeInfoById } = await UUITree.load<Location, string>({
+                tree: prevTree,
+                api,
+                getChildCount: (l) => l.childCount,
+                isFolded: _isFolded,
+                dataSourceState,
+            });
 
-                return prevTree.update(loadedItems, byParentId, nodeInfoById);
-            },
-            placeholderData: shouldReload ? undefined : keepPreviousData,
-            enabled: shouldFetch || shouldLoad || shouldRefetch || shouldReload,
-        });
+            return prevTree.update(loadedItems, byParentId, nodeInfoById);
+        },
+        placeholderData: shouldReload ? undefined : keepPreviousData,
+        enabled: shouldFetch || shouldLoad || shouldRefetch || shouldReload,
+    });
 
     const rowOptions: DataRowOptions<Location, string> = {
         // checkbox: { isVisible: true },
