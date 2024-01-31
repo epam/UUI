@@ -11,21 +11,30 @@ import * as React from 'react';
 export interface ICanBeInvalid {
     /** True if component contains invalid input */
     isInvalid?: boolean;
-
-    /** Message describing why the value is invalid */
-    validationMessage?: ReactNode;
-    /** If T is a complex value (object or array), this property contains validation states of inner items */
-    validationProps?: { [key: string]: ICanBeInvalid };
 }
 
-/** Component displays an editable value. Text Input is a basic example. */
-export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired {
+export interface IHasValidationMessage {
+    /** Message describing why the value is invalid */
+    validationMessage?: ReactNode;
+}
+
+export interface IControlled<T> {
     /** The current value of component */
     value: T;
 
     /** Called when value needs to be changed (usually due to user interaction) */
     onValueChange(newValue: T): void;
 }
+// IControlled
+// IChangeable
+// ICanBeChanged
+// IHasChangeableValue
+// IModifiable
+// IChangeValue
+// IHasEditableValue
+
+/** Component displays an editable value. Text Input is a basic example. */
+export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, IControlled<T> { }
 
 /** Component supports click action */
 export interface IClickable {

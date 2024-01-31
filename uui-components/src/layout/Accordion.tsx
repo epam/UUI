@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef,
+    IHasCX, IDisableable, uuiMod, IHasChildren, Icon, cx, IHasRawProps, IHasForwardedRef, IControlled,
 } from '@epam/uui-core';
 import { IconContainer } from './IconContainer';
 import css from './Accordion.module.scss';
@@ -16,7 +16,7 @@ interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHas
     renderAdditionalItems?: (isOpen: boolean) => React.ReactNode;
 }
 
-type EditableAccordionProps = GeneralAccordionProps & IEditable<boolean>;
+type EditableAccordionProps = GeneralAccordionProps & IControlled<boolean>;
 
 export type AccordionProps = GeneralAccordionProps | EditableAccordionProps;
 

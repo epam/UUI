@@ -32,7 +32,17 @@ export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & 
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
-        <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
+        <ControlGroup 
+            ref={ ref } 
+            rawProps={ { 
+                ...props.rawProps,
+                role: 'tablist',
+                'aria-invalid': props.isInvalid,
+                'aria-required': props.isRequired,
+                'aria-disabled': props.isDisabled,
+                'aria-readonly': props.isReadonly, 
+            } }
+        >
             {props.items.map((item, index) => (
                 <Button
                     { ...props }
