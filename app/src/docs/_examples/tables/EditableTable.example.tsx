@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { DataColumnProps, DataTableRowProps, FULLY_LOADED, Metadata, useArrayDataSource, useDataRows } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
@@ -25,20 +25,20 @@ const blankItem: Partial<ToDoItem> = {
 };
 
 // To store the last item id used
-let id = 1;
+let lastId = 1;
 
 // Prepare mock data for the demo. Usually, you'll get initial data from server API call
 const demoItems: ToDoItem[] = [
     {
-        ...blankItem, id: id++, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook',
+        ...blankItem, id: lastId++, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook',
     }, {
-        ...blankItem, id: id++, name: 'Implement editable cells', isDone: true,
+        ...blankItem, id: lastId++, name: 'Implement editable cells', isDone: true,
     }, {
-        ...blankItem, id: id++, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2,
+        ...blankItem, id: lastId++, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2,
     }, {
-        ...blankItem, id: id++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop',
-    }, { ...blankItem, id: id++, name: 'Complete cells replication' }, {
-        ...blankItem, id: id++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support',
+        ...blankItem, id: lastId++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop',
+    }, { ...blankItem, id: lastId++, name: 'Complete cells replication' }, {
+        ...blankItem, id: lastId++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support',
     },
 ];
 
@@ -81,7 +81,7 @@ export default function EditableTableExample() {
     const handleNewItem = useCallback(() => {
         // We can manipulate form state directly with the setValue
         // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: [...current.items, { ...blankItem, id: id++ }] }));
+        setValue((current) => ({ ...current, items: [...current.items, { ...blankItem, id: lastId++ }] }));
     }, []);
 
     // Use state to hold DataTable state - current sorting, filtering, etc.
@@ -148,7 +148,7 @@ export default function EditableTableExample() {
                     ),
                     width: 120,
                     grow: 1,
-                }, 
+                },
                 {
                     key: 'actions',
                     render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="secondary" />,
@@ -160,19 +160,20 @@ export default function EditableTableExample() {
         [],
     );
 
-    // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
-    // DataSources describe the way to extract some list/tree-structured data.
-    // Here we'll use ArrayDataSource - which gets data from an array, which we obtain from our Form
-    const dataSource = useArrayDataSource<ToDoItem, number, unknown>(
-        {
-            items: value.items,
+    const { rows, listProps } = useDataRows<ToDoItem, number>({
+        dataSourceState: tableState,
+        setDataSourceState: setTableState,
+        getId: (i) => i.id,
+        tree: {
+            getById: (id: number) => value.items.find((i) => i.id === id),
+            getItems: () => ({ ids: value.items.map((i) => i.id), count: value.items.length, status: FULLY_LOADED }),
+            getTotalCount: () => value.items.length,
+            get params() {
+                return {
+                    getId: (i: ToDoItem) => i?.id,
+                };
+            },
         },
-        [],
-    );
-
-    // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
-    // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
-    const view = dataSource.useView(tableState, setTableState, {
         getRowOptions: (item: ToDoItem, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
         }),
@@ -204,8 +205,8 @@ export default function EditableTableExample() {
             <FlexRow>
                 {/* Render the data table */}
                 <DataTable
-                    { ...view.getListProps() }
-                    getRows={ view.getVisibleRows }
+                    rows={ rows }
+                    { ...listProps }
                     value={ tableState }
                     onValueChange={ setTableState }
                     columns={ columns }
