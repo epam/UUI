@@ -6,7 +6,7 @@ export interface IItemsAccessor<TItem, TId> {
 }
 
 export interface TreeParams<TItem, TId> {
-    getId?(item: TItem): TId;
+    getId(item: TItem): TId;
     getParentId?(item: TItem): TId | undefined;
     complexIds?: boolean;
 }
