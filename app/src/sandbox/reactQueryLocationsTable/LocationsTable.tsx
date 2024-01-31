@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useDataRows, LazyDataSourceApi,
-    useFoldingService, useLazyFetchingAdvisor, DataRowOptions, TreeParams,
-    CascadeSelection, Tree as UUITree } from '@epam/uui-core';
+    useFoldingService, DataRowOptions, TreeParams,
+    CascadeSelection, Tree as UUITree, DataTableState } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './LocationsTable.module.scss';
-import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Tree } from './Tree';
 import { useCascadeSelection } from './useCascadeSelection';
 
-type LocationsQueryKey = [string, DataSourceState<Record<string, any>, any>, (item: Location) => boolean];
+type LocationsQueryKey = [string, DataTableState];
+type LoadedTreeState = { tree: Tree, isStale: boolean };
 const LOCATIONS_QUERY = 'locations';
 
 const treeParams: TreeParams<Location, string> = {
@@ -66,7 +67,7 @@ export function LocationsTable() {
         ],
         [],
     );
-    
+
     const itemsMap = useMemo(() => new Map(), []);
     const blankTree = useMemo(() => Tree.blank(treeParams, itemsMap), []);
 
@@ -74,49 +75,61 @@ export function LocationsTable() {
         const filter = { parentId: ctx?.parentId };
         return svc.api.demo.locations({ ...request, filter });
     };
-    
+
     const { isFolded } = useFoldingService<Location, string>({
         getId: ({ id }) => id,
-        dataSourceState: tableState, 
-        setDataSourceState: setTableState, 
+        dataSourceState: tableState,
+        setDataSourceState: setTableState,
     });
 
     const queryClient = useQueryClient();
-    const currentTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
-    const rowsCount = useMemo(() => currentTree.getTotalCount(), [currentTree]);
+    // const currentTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
+    // const rowsCount = useMemo(() => currentTree.getTotalCount(), [currentTree]);
 
-    const { shouldFetch, shouldReload, shouldLoad, shouldRefetch } = useLazyFetchingAdvisor({
-        dataSourceState: tableState,
-        backgroundReload: true,
-        rowsCount,
-    });
-    
-    useEffect(
-        () => {
-            if (shouldFetch || shouldLoad || shouldRefetch || shouldReload) {
-                queryClient.invalidateQueries({ queryKey: [LOCATIONS_QUERY] });
-            }
-        },
-        [queryClient, shouldFetch, shouldLoad, shouldRefetch, shouldReload],
-    );
+    // const { shouldFetch, shouldReload, shouldLoad, shouldRefetch } = useLazyFetchingAdvisor({
+    //     dataSourceState: tableState,
+    //     backgroundReload: true,
+    //     rowsCount,
+    // });
 
-    const { data: tree = blankTree, isFetching } = useQuery<Tree, Error, Tree, LocationsQueryKey>({
-        queryKey: [LOCATIONS_QUERY, tableState, isFolded],
-        queryFn: async ({ queryKey: [, dataSourceState, _isFolded] }) => {
+    // useEffect(
+    //     () => {
+    //         if (shouldFetch || shouldLoad || shouldRefetch || shouldReload) {
+    //             queryClient.invalidateQueries({ queryKey: [LOCATIONS_QUERY] });
+    //         }
+    //     },
+    //     [queryClient, shouldFetch, shouldLoad, shouldRefetch, shouldReload],
+    // );
+
+    const shouldReloadTree = (prevState: DataTableState, newState: DataTableState) => {
+        // TBD: move to a helper in uui-core?
+        return prevState?.sorting !== newState?.sorting;
+    };
+
+    const { data: { tree, isStale }, isFetching } = useQuery<LoadedTreeState, Error, LoadedTreeState, LocationsQueryKey>({
+        queryKey: [LOCATIONS_QUERY, tableState],
+        queryFn: async ({ queryKey: [, dataSourceState] }) => {
             const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
 
             const { loadedItems, byParentId, nodeInfoById } = await UUITree.load<Location, string>({
                 tree: prevTree,
                 api,
                 getChildCount: (l) => l.childCount,
-                isFolded: _isFolded,
+                isFolded,
                 dataSourceState,
             });
 
-            return prevTree.update(loadedItems, byParentId, nodeInfoById);
+            const newTree = prevTree.update(loadedItems, byParentId, nodeInfoById);
+
+            return {
+                tree: newTree,
+                isStale: false,
+            };
         },
-        placeholderData: shouldReload ? undefined : keepPreviousData,
-        enabled: shouldFetch || shouldLoad || shouldRefetch || shouldReload,
+        placeholderData: (prevData, prevQuery) => ({
+            tree: prevData?.tree ?? blankTree,
+            isStale: shouldReloadTree(tableState, prevQuery?.queryKey[1]),
+        }),
     });
 
     const rowOptions: DataRowOptions<Location, string> = {
@@ -145,8 +158,8 @@ export function LocationsTable() {
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         rowOptions,
-        isFetching: shouldFetch && !shouldLoad && isFetching,
-        isLoading: (shouldLoad || shouldReload) && isFetching,
+        isFetching: isStale && isFetching,
+        isLoading: isStale && isFetching,
         ...treeParams,
         ...cascadeSelectionService,
     });
