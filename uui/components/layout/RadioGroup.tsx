@@ -3,7 +3,7 @@ import { RadioInput, RadioInputProps } from '../inputs';
 import css from './RadioGroup.module.scss';
 import * as React from 'react';
 
-export interface RadioGroupItem<TValue> extends IDisableable, Omit<RadioInputProps, 'id' | 'onValueChange' | 'value'> {
+export interface RadioGroupItem<TValue> extends IDisableable, Omit<RadioInputProps, 'id' | 'onValueChange' | 'value' | 'name'> {
     /** RadioInput label. Can be a string, or React.ReactNode */
     name?: React.ReactNode;
     /** Render callback for checkbox label
@@ -27,6 +27,8 @@ export interface RadioGroupProps<TValue>
     items: RadioGroupItem<TValue>[];
     /** Defines group components size */
     size?: RadioInputProps['size'];
+    /** Defines native HTML name attribute for each group member */
+    name?: string;
 }
 
 export function RadioGroup<TValue>(props: RadioGroupProps<TValue>) {
@@ -50,6 +52,7 @@ export function RadioGroup<TValue>(props: RadioGroupProps<TValue>) {
                 const { id, name, renderName, ...restItemProps } = i;
                 return (
                     <RadioInput
+                        name={ props.name }
                         renderLabel={ i.renderName ? i.renderName : () => i.name }
                         value={ props.value === i.id }
                         onValueChange={ () => handleChange(i.id) }

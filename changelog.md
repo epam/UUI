@@ -20,7 +20,8 @@
 
 
 **What's Fixed**
-* ????
+* [RadiInput]: added native HTML `name` attribute for the input.
+* [RadioGroup]: added native HTML `name` attribute for each group member.
 
 # 5.5.0 - 18.01.2024
 

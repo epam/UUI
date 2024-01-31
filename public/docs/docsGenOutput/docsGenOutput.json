@@ -45657,6 +45657,8 @@
       "    renderLabel?(): React.ReactNode;",
       "    /** ID to put on 'input' node */",
       "    id?: string;",
+      "    /** Defines the Name property to group member */",
+      "    name?: string;",
       "};"
      ]
     },
@@ -45959,6 +45961,22 @@
       "comment": {
        "raw": [
         "ID to put on 'input' node"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "name",
+      "name": "name",
+      "comment": {
+       "raw": [
+        "Defines the Name property to group member"
        ]
       },
       "typeValue": {
@@ -78070,7 +78088,7 @@
     "typeValue": {
      "raw": "RadioGroupItem<TValue>",
      "print": [
-      "interface RadioGroupItem<TValue> extends IDisableable, Omit<RadioInputProps, 'id' | 'onValueChange' | 'value'> {",
+      "interface RadioGroupItem<TValue> extends IDisableable, Omit<RadioInputProps, 'id' | 'onValueChange' | 'value' | 'name'> {",
       "    /** RadioInput label. Can be a string, or React.ReactNode */",
       "    name?: React.ReactNode;",
       "    /** Render callback for checkbox label",
@@ -78433,6 +78451,8 @@
       "    items: RadioGroupItem<TValue>[];",
       "    /** Defines group components size */",
       "    size?: RadioInputProps['size'];",
+      "    /** Defines the Name property to group radio inputs */",
+      "    name?: string;",
       "}"
      ]
     },
@@ -78467,6 +78487,22 @@
         "12",
         "18"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "name",
+      "name": "name",
+      "comment": {
+       "raw": [
+        "Defines the Name property to group radio inputs"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      },
@@ -79050,6 +79086,23 @@
       "comment": {
        "raw": [
         "ID to put on 'input' node"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     },
+     {
+      "uid": "name",
+      "name": "name",
+      "comment": {
+       "raw": [
+        "Defines the Name property to group member"
        ]
       },
       "typeValue": {

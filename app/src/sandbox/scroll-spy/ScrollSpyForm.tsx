@@ -140,6 +140,7 @@ export function ScrollSpyForm() {
                         <FlexCell grow={ 1 }>
                             <LabeledInput label="Sex" { ...lens.prop('sex').toProps() }>
                                 <RadioGroup
+                                    name="gender"
                                     items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
                                     { ...lens.prop('sex').toProps() }
                                     direction="horizontal"
