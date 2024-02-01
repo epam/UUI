@@ -13,6 +13,7 @@
     * [MainMenuButton]: removed `onClear`, `clearIcon`, `isDisabled`, `dropdownIconPosition` props.
     * [Badge]: removed `dropdownIconPosition` prop.
     * [Tag]: removed `dropdownIconPosition` prop.
+    * [Text]: removed color `brand`, and removed `--uui-color-brand` token from themes, use `--uui-color-primary` instead.
 * Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
 * [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
 * [TimePicker]: added ability to parse many variants of time as string. Examples: `1.23pm` -> `01:23 PM`, `12/2` -> `12:02 AM`, if format equals 24: `.25` -> `00:25`, `2350` -> `23:50` etc.
