@@ -30,22 +30,6 @@ export class Tree implements ITree<Location, string> {
         return this.itemsMap.has(id) ? this.itemsMap.get(id) : NOT_FOUND_RECORD;
     }
 
-    public getTotalCount() {
-        let count = undefined;
-        for (const [, info] of this._nodeInfoById) {
-            if (info.count == null) {
-                // TBD: getTotalCount() is used for totalCount, but we can't have correct count until all branches are loaded
-                return null;
-            } else {
-                if (count === undefined) {
-                    count = 0;
-                }
-                count += info.count;
-            }
-        }
-        return count;
-    }
-
     public static blank(params: TreeParams<Location, string>, itemsMap?: IMap<string, Location>) {
         return new Tree(params, itemsMap);
     }

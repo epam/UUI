@@ -9,4 +9,5 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
 
     tree: ITree<TItem, TId>;
     selectionTree: ITree<TItem, TId>;
+    totalCount?: number;
 }

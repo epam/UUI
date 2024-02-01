@@ -45,7 +45,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
         
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { tree, reload, selectionTree, ...restProps } = useTree({
+        const { tree, reload, selectionTree, totalCount, ...restProps } = useTree({
             type: 'async',
             ...this.props,
             api: this.api,
@@ -95,7 +95,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
             getVisibleRows: () => rows,
-            getListProps: () => listProps,
+            getListProps: () => ({ ...listProps, totalCount }),
             selectAll,
             getConfig: () => restProps,
             reload,
@@ -112,6 +112,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             listProps,
             selectAll,
             restProps,
+            totalCount,
             reload,
             getById,
             getSelectedRows,

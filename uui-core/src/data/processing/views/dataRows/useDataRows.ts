@@ -41,20 +41,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
         handleCascadeSelection,
     } = props;
 
-    const { completeFlatListRowsCount, totalCount } = useMemo(() => {
-        const { totalCount: rootTotalCount, count } = tree.getItems(undefined);
-
-        return {
-            completeFlatListRowsCount: !getChildCount && count != null ? count : undefined,
-            totalCount: rootTotalCount ?? tree.getTotalCount() ?? 0,
-        };
-    }, [getChildCount, tree]);
-
     const lastRowIndex = useMemo(
         () => {
-            const actualCount = tree.getTotalCount();
             const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
-            if (actualCount != null && actualCount < currentLastIndex) return actualCount;
             return currentLastIndex;
         },
         [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
@@ -192,6 +181,9 @@ export function useDataRows<TItem, TId, TFilter = any>(
     };
 
     const listProps = useMemo((): DataSourceListProps => {
+        const { count } = tree.getItems(undefined);
+
+        const completeFlatListRowsCount = !getChildCount && count != null ? count : undefined;
         let rowsCount;
         if (completeFlatListRowsCount !== undefined) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
@@ -216,11 +208,10 @@ export function useDataRows<TItem, TId, TFilter = any>(
             rowsCount,
             knownRowsCount: updatedRows.length,
             exactRowsCount: updatedRows.length,
-            totalCount,
             selectAll,
             isReloading: isFetching,
         };
-    }, [updatedRows.length, selectAll, completeFlatListRowsCount, totalCount, stats.hasMoreRows, lastRowIndex, isFetching]);
+    }, [updatedRows.length, selectAll, stats.hasMoreRows, lastRowIndex, getChildCount, tree, isFetching]);
 
     const rows = useMemo(
         () => {
