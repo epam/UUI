@@ -1,4 +1,4 @@
-import { EMPTY, FULLY_LOADED, ITree, NOT_FOUND_RECORD, PARTIALLY_LOADED,
+import { ITree, NOT_FOUND_RECORD,
     TreeNodeInfo, TreeParams, ItemsInfo, TreeNodeStatus, IMap } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
@@ -18,9 +18,9 @@ export class Tree implements ITree<Location, string> {
         const ids = this._byParentId.get(parentId) ?? [];
         const { count, totalCount } = this._nodeInfoById.get(parentId) ?? {};
 
-        let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
+        let status: TreeNodeStatus = count === undefined ? 'PARTIALLY_LOADED' : 'EMPTY';
         if (count !== 0 && ids.length === count) {
-            status = FULLY_LOADED;
+            status = 'FULLY_LOADED';
         }
 
         return { ids, count, totalCount, status };
