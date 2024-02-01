@@ -9,6 +9,7 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     filter?: TFilter;
     forceReload?: boolean;
     backgroundReload?: boolean;
+    // rowsCount?: number;
 }
 
 export function useLazyFetchingAdvisor<TId, TFilter = any>({
@@ -16,6 +17,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
     filter,
     forceReload,
     backgroundReload,
+    // rowsCount,
 }: UseLazyFetchingAdvisorProps<TId, TFilter>) {
     const areMoreRowsNeeded = useCallback((
         prevValue?: DataSourceState<TFilter, TId>,
@@ -48,8 +50,8 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
 
     return useMemo(() => ({
         shouldLoad,
-        shouldReload,
-        shouldFetch,
         shouldRefetch,
+        shouldFetch,
+        shouldReload,
     }), [shouldLoad, shouldRefetch, shouldFetch]);
 }

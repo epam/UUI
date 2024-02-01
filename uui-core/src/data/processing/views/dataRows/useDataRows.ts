@@ -41,11 +41,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
         handleCascadeSelection,
     } = props;
 
-    const lastRowIndex = useMemo(
-        () => {
-            const currentLastIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
-            return currentLastIndex;
-        },
+    const maxVisibleRowIndex = useMemo(
+        () => dataSourceState.topIndex + dataSourceState.visibleCount,
         [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
     );
     const isFlattenSearch = useMemo(
@@ -54,7 +51,10 @@ export function useDataRows<TItem, TId, TFilter = any>(
     );
 
     const getEstimatedChildrenCount = useCallback((id: TId) => {
-        if (id === undefined) return undefined;
+        if (id === undefined) {
+            const { count, status } = tree.getItems(id);
+            return count !== undefined && status === FULLY_LOADED ? count : undefined;
+        }
 
         const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) return undefined;
@@ -74,17 +74,16 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
         const { count } = tree.getItems(id);
 
-        const estimatedChildCount = getEstimatedChildrenCount(id);
-
         // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
         if (count !== undefined) {
             // Exact count known
             return count - loadedChildrenCount;
         }
 
+        const estimatedChildCount = getEstimatedChildrenCount(id);
         // estimatedChildCount = undefined for top-level rows only.
-        if (id === undefined && totalRowsCount < lastRowIndex) {
-            return lastRowIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
+        if (id === undefined && totalRowsCount < maxVisibleRowIndex) {
+            return maxVisibleRowIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
         }
 
         if (estimatedChildCount > loadedChildrenCount) {
@@ -96,7 +95,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
         // let's guess we have at least 1 item more than loaded
         return 1;
-    }, [lastRowIndex, tree, getEstimatedChildrenCount]);
+    }, [maxVisibleRowIndex, tree, getEstimatedChildrenCount]);
 
     const { handleOnCheck, isRowChecked, isRowChildrenChecked, isItemCheckable, handleSelectAll } = useCheckingService({
         tree,
@@ -142,7 +141,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         dataSourceState,
         cascadeSelection,
         isFlattenSearch,
-        lastRowIndex,
+        maxVisibleRowIndex,
         getEstimatedChildrenCount,
         getMissingRecordsCount,
         getRowProps,
@@ -201,7 +200,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             // Probably, we'll move this const to props later if needed;
             const rowsToAddBelowLastKnown = 20;
 
-            rowsCount = Math.max(updatedRows.length, lastRowIndex + rowsToAddBelowLastKnown);
+            rowsCount = Math.max(updatedRows.length, maxVisibleRowIndex + rowsToAddBelowLastKnown);
         }
 
         return {
@@ -211,7 +210,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             selectAll,
             isReloading: isFetching,
         };
-    }, [updatedRows.length, selectAll, stats.hasMoreRows, lastRowIndex, getChildCount, tree, isFetching]);
+    }, [updatedRows.length, selectAll, stats.hasMoreRows, maxVisibleRowIndex, getChildCount, tree, isFetching]);
 
     const rows = useMemo(
         () => {

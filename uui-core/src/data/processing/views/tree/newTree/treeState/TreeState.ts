@@ -60,7 +60,15 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
             withNestedChildren,
         });
 
-        if (!loadedItems.length) {
+        if (!loadedItems.length && !byParentId.size && !nodeInfoById.size) {
+            if (using === undefined && treeStructure !== this.getTreeStructure('visible')) {
+                return this.withNewTreeStructures({
+                    using,
+                    treeStructure,
+                    itemsMap: this.itemsMap,
+                });
+            }
+
             return this;
         }
 
