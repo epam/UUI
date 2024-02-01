@@ -186,7 +186,7 @@ export class PatchHelper {
         const parentId = treeStructure.getParams().getParentId?.(newItem);
         const prevParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
 
-        if (!children || children === treeStructure.getChildrenIdsByParentId(parentId)) {
+        if (!children || children === treeStructure.getItems(parentId).ids) {
             children = children ? [...children] : [];
         }
 

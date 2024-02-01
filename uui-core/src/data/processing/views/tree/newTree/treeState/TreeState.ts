@@ -3,27 +3,19 @@ import {
     FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
-import { PureTreeState } from './PureTreeState';
 import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
 import { TreeParams } from '../treeStructure/types';
 
-export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
+export class TreeState<TItem, TId> {
     protected constructor(
         private _fullTreeStructure: TreeStructure<TItem, TId> | null,
         private _visibleTreeStructure: TreeStructure<TItem, TId> | null,
         protected _itemsMap: ItemsMap<TId, TItem>,
         protected _setItems: ItemsStorage<TItem, TId>['setItems'],
-    ) {
-        super(
-            TreeStructure.toPureTreeStructure(_fullTreeStructure),
-            TreeStructure.toPureTreeStructure(_visibleTreeStructure),
-            _itemsMap,
-            _setItems,
-        );
-    }
+    ) {}
 
     public get itemsMap() {
         return this._itemsMap;
@@ -242,15 +234,6 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
             : TreeStructure.withNewItemsAccessor(itemsAccessor, this._fullTreeStructure);
 
         return TreeState.create(fullTree, visibleTree, itemsMap, this._setItems);
-    }
-
-    public static toPureTreeState<TItem, TId>(treeState: TreeState<TItem, TId>) {
-        return new PureTreeState(
-            treeState._fullTree,
-            treeState._visibleTree,
-            treeState._itemsMap,
-            treeState._setItems,
-        );
     }
 
     public static create<TItem, TId>(

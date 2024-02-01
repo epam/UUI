@@ -29,12 +29,12 @@ export class SearchHelper {
             let isSomeMatching: number | boolean = false;
             items.forEach((item) => {
                 const isItemMatching = search(item);
-                const isSomeChildMatching = applySearchRec(treeStructure.getChildren(item));
+                const id = treeStructure.getParams().getId(item);
+                const isSomeChildMatching = applySearchRec(treeStructure.getChildren(id));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching !== false) {
                     matchedItems.push(item);
                     if (typeof isMatching !== 'boolean') {
-                        const id = treeStructure.getParams().getId(item);
                         const rank = ranks.has(id) ? Math.max(ranks.get(id), isMatching) : isMatching;
                         ranks.set(treeStructure.getParams().getId(item), rank);
                     }

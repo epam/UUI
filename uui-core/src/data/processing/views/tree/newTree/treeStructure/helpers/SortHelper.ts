@@ -9,7 +9,8 @@ export class SortHelper {
         const sortRec = (items: TItem[]) => {
             sortedItems.push(...sort(items));
             items.forEach((item) => {
-                const children = treeStructure.getChildren(item);
+                const id = treeStructure.getParams().getId(item);
+                const children = treeStructure.getChildren(id);
                 sortRec(children);
             });
         };
