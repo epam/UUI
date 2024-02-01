@@ -1,4 +1,3 @@
-export * from './treeState/exposed';
 export * from './treeStructure/exposed';
 export type { ITree, ItemsInfo, TreeNodeStatus } from './ITree';
 export { Tree } from './Tree';

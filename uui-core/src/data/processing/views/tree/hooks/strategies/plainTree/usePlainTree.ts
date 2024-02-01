@@ -57,9 +57,9 @@ export function usePlainTree<TItem, TId, TFilter = any>(
 
     const getChildCount = useCallback((item: TItem): number | undefined => {
         if (props.getChildCount) {
-            return props.getChildCount(item) ?? tree.visible.getChildrenByParentId(getId(item)).length;
+            return props.getChildCount(item) ?? tree.visible.getChildren(getId(item)).length;
         }
-        return tree.visible.getChildrenByParentId(getId(item)).length;
+        return tree.visible.getChildren(getId(item)).length;
     }, [tree.visible, getId, props.getChildCount]);
 
     const reload = useCallback(() => {

@@ -15,7 +15,8 @@ export class FilterHelper {
             let isSomeMatching: number | boolean = false;
             items.forEach((item) => {
                 const isItemMatching = filter(item);
-                const isSomeChildMatching = applyFilterRec(treeStructure.getChildren(item));
+                const id = treeStructure.getParams().getId(item);
+                const isSomeChildMatching = applyFilterRec(treeStructure.getChildren(id));
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching) {
                     matchedItems.push(item);

@@ -4,6 +4,7 @@ import isEqual from 'lodash.isequal';
 import { CommonDataSourceConfig } from '../types';
 import { ROOT_ID, TreeState } from '../../../newTree';
 import { TreeStructureId } from '../../../newTree/treeState/types';
+import { Tree } from '../../../newTree/Tree';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -113,7 +114,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         const loadNestedLayersChildren = !isImplicitMode;
-        const parents = currentTree.full.getParentIdsRecursive(id);
+        const parents = Tree.getParents(id, currentTree.full);
         const { tree: treeWithMissingRecords } = await loadMissing({
             tree: currentTree,
             // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children

@@ -1,20 +1,18 @@
-import { DataRowPathItem, IMap } from '../../../../../../types';
+import { IMap } from '../../../../../../types';
 import { TreeNodeInfo, TreeParams, IItemsAccessor } from './types';
-import { PureTreeStructure } from './PureTreeStructure';
 import { newMap } from './helpers';
 import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
 import { ItemsMap } from '../../ItemsMap';
 import { ITree, ItemsInfo, TreeNodeStatus } from '../ITree';
+import { Tree } from '../Tree';
 
-export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> implements ITree<TItem, TId> {
+export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
     constructor(
-        _params: TreeParams<TItem, TId>,
-        protected readonly _itemsAccessor: IItemsAccessor<TItem, TId>,
-        _byParentId?: IMap<TId, TId[]>,
-        _nodeInfoById?: IMap<TId, TreeNodeInfo>,
-    ) {
-        super(_params, _byParentId, _nodeInfoById);
-    }
+        private _params: TreeParams<TItem, TId>,
+        private readonly _itemsAccessor: IItemsAccessor<TItem, TId>,
+        protected readonly _byParentId: IMap<TId, TId[]> = newMap(_params),
+        protected readonly _nodeInfoById: IMap<TId, TreeNodeInfo> = newMap(_params),
+    ) {}
 
     public get itemsAccessor() {
         return this._itemsAccessor;
@@ -32,19 +30,10 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         return this._nodeInfoById;
     }
 
-    public getRootIds(): TId[] {
-        return this.byParentId.get(undefined) || [];
-    }
-
     public getRootItems() {
-        return this.getRootIds()
+        return this.getItems(undefined).ids
             .map((id) => this.itemsAccessor.get(id)!)
             .filter<TItem>((item): item is TItem => item !== NOT_FOUND_RECORD);
-    }
-
-    public getChildren(item: TItem) {
-        const id = this.getParams().getId(item);
-        return this.getChildrenByParentId(id);
     }
 
     public getById(id: TId) {
@@ -53,7 +42,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
 
     public getItems(parentId?: TId): ItemsInfo<TId> {
         const ids = this.byParentId.get(parentId) ?? [];
-        const { count, totalCount } = this.getNodeInfo(parentId);
+        const { count, totalCount } = this.nodeInfoById.get(parentId) || {};
 
         let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
         if (count !== 0 && ids.length === count) {
@@ -63,79 +52,10 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         return { ids, count, totalCount, status };
     }
 
-    public getChildrenByParentId(parentId: TId) {
-        const ids = this.getChildrenIdsByParentId(parentId);
+    public getChildren(parentId: TId) {
+        const { ids } = this.getItems(parentId);
         const children = ids.map((id) => this.itemsAccessor.get(id));
         return children.filter<TItem>((item): item is TItem => item !== NOT_FOUND_RECORD);
-    }
-
-    public getChildrenIdsByParentId(parentId: TId) {
-        return this.byParentId.get(parentId) || [];
-    }
-
-    public getParentIdsRecursive(id: TId) {
-        const parentIds: TId[] = [];
-        let parentId = id;
-        while (true) {
-            const item = this.itemsAccessor.get(parentId);
-            if (item === NOT_FOUND_RECORD) {
-                break;
-            }
-            parentId = this.getParams().getParentId?.(item);
-            if (!parentId) {
-                break;
-            }
-            parentIds.unshift(parentId);
-        }
-        return parentIds;
-    }
-
-    public getParents(id: TId) {
-        const parentIds = this.getParentIdsRecursive(id);
-        const parents: TItem[] = [];
-        parentIds.forEach((parentId) => {
-            const item = this.itemsAccessor.get(parentId);
-            if (item !== NOT_FOUND_RECORD) {
-                parents.push(item);
-            }
-        });
-
-        return parents;
-    }
-
-    public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
-        const foundParents = this.getParents(id);
-        const path: DataRowPathItem<TId, TItem>[] = [];
-        foundParents.forEach((parent) => {
-            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
-            path.push(pathItem);
-        });
-        return path;
-    }
-
-    public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
-        const parentId = this.getParams().getParentId?.(item);
-        const id = this.getParams().getId?.(item);
-
-        const ids = this.getChildrenIdsByParentId(parentId);
-        const nodeInfo = this.getNodeInfo(parentId);
-        const lastId = ids[ids.length - 1];
-
-        const isLastChild = lastId !== undefined && lastId === id && nodeInfo.count === ids.length;
-
-        return {
-            id: this.getParams().getId(item),
-            value: item,
-            isLastChild,
-        };
-    }
-
-    public getNodeInfo(id: TId) {
-        return this.nodeInfoById.get(id) || {};
-    }
-
-    public isFlatList() {
-        return this.byParentId.size <= 1;
     }
 
     public getTotalCount() {
@@ -154,67 +74,11 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         return count;
     }
 
-    public forEachChildren(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, parentId?: TId, includeParent: boolean = true) {
-        this.forEach(
-            (item, id) => {
-                if (item && isSelectable(item)) {
-                    action(id);
-                }
-            },
-            { parentId: parentId, includeParent },
-        );
-    }
-
-    private forEach(
-        action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
-        options?: {
-            direction?: 'bottom-up' | 'top-down';
-            parentId?: TId;
-            includeParent?: boolean;
-        },
-    ) {
-        let shouldStop = false;
-        const stop = () => {
-            shouldStop = true;
-        };
-
-        options = { direction: 'top-down', parentId: undefined, ...options };
-        if (options.includeParent == null) {
-            options.includeParent = options.parentId != null;
-        }
-
-        const iterateNodes = (ids: TId[]) => {
-            if (shouldStop) return;
-            ids.forEach((id) => {
-                if (shouldStop) return;
-                const item = this.itemsAccessor.get(id);
-                const parentId = item !== NOT_FOUND_RECORD ? this.getParams().getParentId?.(item) : undefined;
-                walkChildrenRec(item === NOT_FOUND_RECORD ? undefined : item, id, parentId);
-            });
-        };
-
-        const walkChildrenRec = (item: TItem, id: TId, parentId: TId) => {
-            if (options.direction === 'top-down') {
-                action(item, id, parentId, stop);
-            }
-            const childrenIds = this.byParentId.get(id);
-            childrenIds && iterateNodes(childrenIds);
-            if (options.direction === 'bottom-up') {
-                action(item, id, parentId, stop);
-            }
-        };
-
-        if (options.includeParent) {
-            iterateNodes([options.parentId]);
-        } else {
-            iterateNodes(this.getChildrenIdsByParentId(options.parentId));
-        }
-    }
-
     public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
         const subtotalsMap = newMap<TId | undefined, TSubtotals>(this.getParams());
 
-        this.forEach(
+        Tree.forEach(
+            this,
             (item, id, parentId) => {
                 let itemSubtotals = get(item, this.byParentId.has(id));
 
@@ -282,9 +146,5 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         }
 
         return this.create<TItem, TId>(params, itemsAccessor, byParentId, newNodeInfoById);
-    }
-
-    public static toPureTreeStructure<TItem, TId>(treeStructure: TreeStructure<TItem, TId>): PureTreeStructure<TItem, TId> {
-        return new PureTreeStructure(treeStructure.getParams(), treeStructure.byParentId, treeStructure.nodeInfoById);
     }
 }

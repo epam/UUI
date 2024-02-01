@@ -2,14 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListViewProps, useCascadeSelectionService, useDataRows } from './views';
-import { PureTreeState, useTree } from './views/tree';
+import { ITree, useTree } from './views/tree';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
 export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
-    tree: PureTreeState<TItem, TId>;
+    tree: ITree<TItem, TId>;
 
     itemsStorage: ItemsStorage<TItem, TId>;
     
