@@ -85064,7 +85064,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'brand' | 'disabled'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -85076,7 +85076,6 @@
         "primary",
         "secondary",
         "white",
-        "brand",
         "disabled"
        ]
       },
@@ -93151,7 +93150,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'disabled'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -93172,7 +93171,6 @@
         "gray5",
         "gray80",
         "gray90",
-        "brand",
         "disabled"
        ]
       },
@@ -101779,7 +101777,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'disabled'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'disabled'"
       },
       "typeValueRef": "@epam/loveship:TextColors",
       "editor": {
@@ -101804,7 +101802,6 @@
         "night400",
         "night800",
         "night900",
-        "brand",
         "disabled"
        ]
       },

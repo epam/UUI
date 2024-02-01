@@ -30,8 +30,6 @@
 
     /* Surfaces Figma - https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/Loveship-aka-UUI3-(Components)?type=design&node-id=20044%3A300925&mode=design&t=R433dqGrpXDGoFli-1 */
 
-    --uui-text-brand: var(--uui-neutral-0);
-
     /* not accepted part */
 
     /* control specific */
@@ -473,8 +471,8 @@
     /* MainMenu */
 
     .uui-main_menu {
-        --uui-main_menu-text: var(--uui-text-brand);
-        --uui-main_menu-text-active: var(--uui-text-brand);
+        --uui-main_menu-text: var(--uui-neutral-0);
+        --uui-main_menu-text-active: var(--uui-neutral-0);
         --uui-main_menu-bg: var(--uui-neutral-70);
 
         --uui-main_menu-search-bg: var(--uui-neutral-5);
@@ -489,8 +487,8 @@
     }
 
     .uui-main_menu-dropdown {
-        --uui-main_menu-text: var(--uui-text-brand);
-        --uui-main_menu-text-active: var(--uui-text-brand);
+        --uui-main_menu-text: var(--uui-neutral-0);
+        --uui-main_menu-text-active: var(--uui-neutral-0);
         --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-70);
     }
 
@@ -506,7 +504,7 @@
 
     /* BurgerButton */
     .uui-main_menu-burger-button {
-        --uui-burger_btn_caption: var(--uui-text-brand);
+        --uui-burger_btn_caption: var(--uui-neutral-0);
         --uui-burger_btn_caption-hover: var(--uui-primary-50);
         --uui-burger_btn_caption-active: var(--uui-primary-50);
         --uui-burger_btn-border: var(--uui-neutral-40);
@@ -515,7 +513,7 @@
     /* BurgerSearch */
 
     .uui-main_menu-burger-search {
-        --uui-burger_search: var(--uui-text-brand);
+        --uui-burger_search: var(--uui-neutral-0);
         --uui-burger_search-fill: var(--uui-neutral-70);
         --uui-burger_search-bg: var(--uui-neutral-40);
         --uui-burger_search-placeholder: var(--uui-text-tertiary);
@@ -658,7 +656,7 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-caption: var(--uui-text-brand);
+                --uui-tag-caption: var(--uui-neutral-0);
                 --uui-tag-fill: var(--uui-neutral-0);
                 --uui-tag-bg: color-mix(in srgb, var(--white) 5%, transparent);
                 --uui-tag-bg-hover: color-mix(in srgb, var(--white) 10%, transparent);
@@ -672,7 +670,7 @@
 
         &.uui-color-night100 {
             &.uui-fill-solid {
-                --uui-tag-caption: var(--uui-text-brand);
+                --uui-tag-caption: var(--uui-neutral-0);
                 --uui-tag-fill: var(--uui-neutral-0);
                 --uui-tag-bg: var(--uui-neutral-40);
                 --uui-tag-border: var(--uui-neutral-40);
@@ -704,7 +702,7 @@
 
         &.uui-color-night700 {
             &.uui-fill-solid {
-                --uui-tag-caption: var(--uui-text-brand);
+                --uui-tag-caption: var(--uui-neutral-0);
                 --uui-tag-fill: var(--uui-neutral-0);
                 --uui-tag-bg: var(--uui-neutral-80);
                 --uui-tag-border: var(--uui-neutral-80);
