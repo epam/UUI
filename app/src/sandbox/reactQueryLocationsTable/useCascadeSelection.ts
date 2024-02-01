@@ -38,8 +38,6 @@ export function useCascadeSelection({
     const blankTree = useMemo(() => Tree.blank({ getId, getParentId, complexIds }, itemsMap), []);
 
     const loadMissingRecordsOnCheck = useCallback(async (id: string, isChecked: boolean, isRoot: boolean) => {
-        queryClient.invalidateQueries({ queryKey: [LOCATIONS_SELECTION_QUERY] });
-
         return await queryClient.fetchQuery<Tree, Error, Tree, LocationsSelectionKey>({
             queryKey: [LOCATIONS_SELECTION_QUERY, dataSourceState, isFolded, cascadeSelection],
             queryFn: async ({ queryKey: [, _dataSourceState, _isFolded, _cascadeSelection] }) => {
