@@ -170,14 +170,27 @@ export interface ApiCallInfo {
 }
 
 export interface ApiCallOptions {
+
     /** Native fetch method options  */
     fetchOptions?: RequestInit;
+
     /** Defines how to handle request errors:
      * 'page' - displays an error splash screen.
      * 'notification' - shows the error using a notification card without blocking the application.
      * 'manual' - means the API context won't handle the error; you should manage it yourself.
      */
     errorHandling?: 'manual' | 'page' | 'notification';
+
+    /**
+     * By default, all responses are parsed as JSON.
+     * This option allows to extract response data in non-json formats.
+     * The callback is passed with response object, and should return a promise to result to return from the processRequest call.
+     * Examples:
+     * (res) => res.text() // parse all responses as text
+     * (res) => res.status === 200 ? res.json() : res.text() // parse OK response as json, and errors as text
+     * (res) => res.blob() // get response as Blob object
+     */
+    parseResponse?: (response: Response) => Promise<any>;
 }
 
 export interface IApiContext extends IBaseContext {

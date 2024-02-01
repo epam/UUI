@@ -15,7 +15,6 @@
     * [Tag]: removed `dropdownIconPosition` prop.
     * [Text]: removed color `brand`, and removed `--uui-color-brand` token from themes, use `--uui-color-primary` instead.
 * Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
-* [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
 * [TimePicker]: added ability to parse many variants of time as string. Examples: `1.23pm` -> `01:23 PM`, `12/2` -> `12:02 AM`, if format equals 24: `.25` -> `00:25`, `2350` -> `23:50` etc.
 * [ApiContext]: added `parseResponse` callback to the `ApiCallOptions`. It can be used to define custom way of how to parse the response of the request.
 
@@ -24,6 +23,14 @@
 * [RadiInput]: added native HTML `name` attribute for the input.
 * [RadioGroup]: added native HTML `name` attribute for each group member.
 * [Tooltip]: fixed vertical paddings according to the design.
+
+# 5.5.1 - 01.02.2024
+
+**What's New**
+* [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
+
+**What's Fixed**
+* [PickerInput]: fixed clear selection for single mode picker with lazy datasource
 
 # 5.5.0 - 18.01.2024
 
