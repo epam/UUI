@@ -10,7 +10,7 @@ export interface ItemsInfo<TId> {
 }
 
 export interface ITree<TItem, TId> {
-    get params(): TreeParams<TItem, TId>;
+    getParams(): TreeParams<TItem, TId>;
     getItems(parentId?: TId): ItemsInfo<TId>;
     getById(id: TId): TItem | typeof NOT_FOUND_RECORD;
     getTotalCount(): number | null;

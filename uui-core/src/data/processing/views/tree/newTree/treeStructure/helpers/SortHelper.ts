@@ -16,7 +16,7 @@ export class SortHelper {
 
         sortRec(treeStructure.getRootItems());
         return TreeStructure.createFromItems({
-            params: treeStructure.params,
+            params: treeStructure.getParams(),
             itemsAccessor: treeStructure.itemsAccessor,
             items: sortedItems,
         });

@@ -34,9 +34,9 @@ export class SearchHelper {
                 if (isMatching !== false) {
                     matchedItems.push(item);
                     if (typeof isMatching !== 'boolean') {
-                        const id = treeStructure.params.getId(item);
+                        const id = treeStructure.getParams().getId(item);
                         const rank = ranks.has(id) ? Math.max(ranks.get(id), isMatching) : isMatching;
-                        ranks.set(treeStructure.params.getId(item), rank);
+                        ranks.set(treeStructure.getParams().getId(item), rank);
                     }
                 }
 
@@ -54,11 +54,11 @@ export class SearchHelper {
 
         applySearchRec(treeStructure.getRootItems());
 
-        const searchItems = sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks, treeStructure.params.getId) : matchedItems;
+        const searchItems = sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks, treeStructure.getParams().getId) : matchedItems;
 
         return TreeStructure.createFromItems({
             itemsAccessor: treeStructure.itemsAccessor,
-            params: treeStructure.params,
+            params: treeStructure.getParams(),
             items: searchItems,
         });
     }

@@ -4,11 +4,15 @@ import { Location } from '@epam/uui-docs';
 
 export class Tree implements ITree<Location, string> {
     constructor(
-        public params: TreeParams<Location, string>,
+        protected _params: TreeParams<Location, string>,
         protected _itemsMap: IMap<string, Location> = new Map(),
         protected _byParentId: IMap<string, string[]> = new Map(),
         protected _nodeInfoById: IMap<string, TreeNodeInfo> = new Map(),
     ) {}
+
+    public getParams() {
+        return this._params;
+    }
 
     public getItems(parentId?: string): ItemsInfo<string> {
         const ids = this._byParentId.get(parentId) ?? [];
@@ -52,7 +56,7 @@ export class Tree implements ITree<Location, string> {
 
     public update(items: Location[], newByParentId: IMap<string, string[]>, newNodeInfoById: IMap<string, TreeNodeInfo>) {
         items.forEach((item) => {
-            const id = this.params.getId(item);
+            const id = this.getParams().getId(item);
             this._itemsMap.set(id, item);
         });
 
@@ -70,6 +74,6 @@ export class Tree implements ITree<Location, string> {
             return this;
         }
 
-        return new Tree(this.params, this._itemsMap, byParentId, nodeInfoById);
+        return new Tree(this.getParams(), this._itemsMap, byParentId, nodeInfoById);
     }
 }

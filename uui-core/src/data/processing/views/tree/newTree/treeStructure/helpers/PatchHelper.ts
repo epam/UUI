@@ -19,9 +19,9 @@ export class PatchHelper {
         const newItems: TItem[] = [];
 
         items.forEach((item) => {
-            const id = treeStructure.params.getId(item);
+            const id = treeStructure.getParams().getId(item);
             const existingItem = newItemsMap.get(id);
-            const parentId = treeStructure.params.getParentId?.(item);
+            const parentId = treeStructure.getParams().getParentId?.(item);
 
             if (isDeletedProp && item[isDeletedProp]) {
                 const children = [...(newByParentId.get(parentId) ?? [])];
@@ -34,7 +34,7 @@ export class PatchHelper {
             if (!existingItem || existingItem !== item) {
                 newItemsMap = itemsMap.set(id, item);
                 newItems.push(item);
-                const existingItemParentId = existingItem ? treeStructure.params.getParentId?.(existingItem) : undefined;
+                const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
                 if (!existingItem || parentId !== existingItemParentId) {
                     const children = newByParentId.get(parentId) ?? [];
 
@@ -53,7 +53,7 @@ export class PatchHelper {
             return { treeStructure, itemsMap };
         }
 
-        const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.params);
+        const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.getParams());
 
         for (const [parentId, ids] of newByParentId) {
             newNodeInfoById.set(parentId, { count: ids.length });
@@ -61,7 +61,7 @@ export class PatchHelper {
 
         return {
             treeStructure: TreeStructure.create(
-                treeStructure.params,
+                treeStructure.getParams(),
                 ItemsAccessor.toItemsAccessor(newItemsMap),
                 newByParentId,
                 newNodeInfoById,
@@ -82,7 +82,7 @@ export class PatchHelper {
         let newItemsMap = itemsMap;
         const newItems: TItem[] = [];
         patchItems.forEach((item, id) => {
-            const parentId = treeStructure.params.getParentId?.(item);
+            const parentId = treeStructure.getParams().getParentId?.(item);
 
             if (isDeletedProp && item[isDeletedProp]) {
                 const children = [...(newByParentId.get(parentId) ?? [])];
@@ -95,10 +95,10 @@ export class PatchHelper {
             const existingItem = newItemsMap.get(id);
             newItemsMap = newItemsMap.set(id, item);
             newItems.push(item);
-            const existingItemParentId = existingItem ? treeStructure.params.getParentId?.(existingItem) : undefined;
+            const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
             const children = newByParentId.get(parentId) ?? [];
 
-            newByParentId.set(parentId, this.insertIntoPosition({ params: treeStructure.params, item, ids: children, position: getPosition(item) }));
+            newByParentId.set(parentId, this.insertIntoPosition({ params: treeStructure.getParams(), item, ids: children, position: getPosition(item) }));
 
             if (existingItem && existingItemParentId !== parentId) {
                 const prevParentChildren = treeStructure.byParentId.get(existingItemParentId) ?? [];
@@ -111,7 +111,7 @@ export class PatchHelper {
             return { treeStructure, itemsMap };
         }
 
-        const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.params);
+        const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.getParams());
 
         for (const [parentId, ids] of newByParentId) {
             if (treeStructure.nodeInfoById.has(parentId)) {
@@ -126,7 +126,7 @@ export class PatchHelper {
 
         return {
             treeStructure: TreeStructure.create(
-                treeStructure.params,
+                treeStructure.getParams(),
                 ItemsAccessor.toItemsAccessor(newItemsMap),
                 newByParentId,
                 newNodeInfoById,
@@ -182,9 +182,9 @@ export class PatchHelper {
     private static patchChildren<TItem, TId>({
         treeStructure, children, existingItem, newItem, comparator, itemsMap,
     }: PatchChildrenOptions<TItem, TId>) {
-        const id = treeStructure.params.getId(newItem);
-        const parentId = treeStructure.params.getParentId?.(newItem);
-        const prevParentId = existingItem ? treeStructure.params.getParentId?.(existingItem) : undefined;
+        const id = treeStructure.getParams().getId(newItem);
+        const parentId = treeStructure.getParams().getParentId?.(newItem);
+        const prevParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
 
         if (!children || children === treeStructure.getChildrenIdsByParentId(parentId)) {
             children = children ? [...children] : [];
@@ -192,7 +192,7 @@ export class PatchHelper {
 
         if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
             return this.pasteItemIntoChildrenList({
-                id: treeStructure.params.getId(newItem),
+                id: treeStructure.getParams().getId(newItem),
                 item: newItem,
                 children,
                 comparator,

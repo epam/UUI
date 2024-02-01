@@ -33,7 +33,7 @@ export class FilterHelper {
 
         return TreeStructure.createFromItems({
             itemsAccessor: treeStructure.itemsAccessor,
-            params: treeStructure.params,
+            params: treeStructure.getParams(),
             items: matchedItems,
         });
     }

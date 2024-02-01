@@ -29,7 +29,7 @@ export class FetchingHelper {
         return {
             itemsMap: newItemsMap,
             treeStructure: TreeStructure.createFromItems({
-                params: treeStructure.params,
+                params: treeStructure.getParams(),
                 items: response.items,
                 itemsAccessor: ItemsAccessor.toItemsAccessor(newItemsMap),
             }),
@@ -72,10 +72,10 @@ export class FetchingHelper {
     }: LoadOptionsMissing<TItem, TId, TFilter>) {
         const requiredRowsCount = dataSourceState.topIndex + dataSourceState.visibleCount;
 
-        const byParentId = newMap<TId, TId[]>(tree.params);
-        const nodeInfoById = newMap<TId, TreeNodeInfo>(tree.params);
+        const byParentId = newMap<TId, TId[]>(tree.getParams());
+        const nodeInfoById = newMap<TId, TreeNodeInfo>(tree.getParams());
 
-        const newItemsMap = newMap<TId, TItem>(tree.params);
+        const newItemsMap = newMap<TId, TItem>(tree.getParams());
         const flatten = dataSourceState.search && options.flattenSearchResults;
 
         let newItems: TItem[] = [];
@@ -105,7 +105,7 @@ export class FetchingHelper {
             // TODO: perform setItems somewhere out of this algorythm
             if (loadedItems.length > 0) {
                 loadedItems.forEach((item) => {
-                    const id = tree.params.getId(item);
+                    const id = tree.getParams().getId(item);
                     newItemsMap.set(id, item);
                 });
                 newItems = newItems.concat(loadedItems);
@@ -193,9 +193,9 @@ export class FetchingHelper {
                     }
                 });
             }
-            if (tree.params.getParentId) {
+            if (tree.getParams().getParentId) {
                 for (const [, item] of updatedItemsMap) {
-                    const parentId = tree.params.getParentId(item);
+                    const parentId = tree.getParams().getParentId(item);
                     if (parentId != null && !updatedItemsMap.has(parentId)) {
                         missingIds.add(parentId);
                     }
@@ -214,12 +214,12 @@ export class FetchingHelper {
                 }
 
                 const newItems = response.items.filter((item) => {
-                    const id = item ? tree.params.getId(item) : null;
+                    const id = item ? tree.getParams().getId(item) : null;
                     return id !== null;
                 });
 
                 newItems.forEach((item) => {
-                    const id = tree.params.getId(item);
+                    const id = tree.getParams().getId(item);
                     updatedItemsMap.set(id, item);
                 });
 
@@ -314,7 +314,7 @@ export class FetchingHelper {
             for (let n = 0; n < response.items.length; n++) {
                 const item = response.items[n];
                 loadedItems.push(item);
-                const id = tree.params.getId(item);
+                const id = tree.getParams().getId(item);
                 newIds[n + from] = id;
             }
         }
