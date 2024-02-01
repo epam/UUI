@@ -37,7 +37,7 @@ export class Tree {
             if (item === NOT_FOUND_RECORD) {
                 break;
             }
-            parentId = tree.params.getParentId?.(item);
+            parentId = tree.getParams().getParentId?.(item);
             if (parentId === undefined) {
                 break;
             }
@@ -61,8 +61,8 @@ export class Tree {
     }
 
     public static getPathItem<TItem, TId>(item: TItem, tree: ITree<TItem, TId>): DataRowPathItem<TId, TItem> {
-        const parentId = tree.params.getParentId?.(item);
-        const id = tree.params.getId?.(item);
+        const parentId = tree.getParams().getParentId?.(item);
+        const id = tree.getParams().getId(item);
 
         const { ids, count, status } = tree.getItems(parentId);
         const lastId = ids[ids.length - 1];
@@ -73,7 +73,7 @@ export class Tree {
             && count === ids.length;
 
         return {
-            id: tree.params.getId(item),
+            id: tree.getParams().getId(item),
             value: item,
             isLastChild,
         };
@@ -103,7 +103,7 @@ export class Tree {
             ids.forEach((id) => {
                 if (shouldStop) return;
                 const item = tree.getById(id);
-                const parentId = item !== NOT_FOUND_RECORD ? tree.params.getParentId?.(item) : undefined;
+                const parentId = item !== NOT_FOUND_RECORD ? tree.getParams().getParentId?.(item) : undefined;
                 walkChildrenRec(item === NOT_FOUND_RECORD ? undefined : item, id, parentId);
             });
         };

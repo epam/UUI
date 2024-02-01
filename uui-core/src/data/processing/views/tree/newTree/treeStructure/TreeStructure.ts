@@ -20,7 +20,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         return this._itemsAccessor;
     }
 
-    public get params() {
+    public getParams() {
         return this._params;
     }
 
@@ -43,7 +43,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
     }
 
     public getChildren(item: TItem) {
-        const id = this.params.getId(item);
+        const id = this.getParams().getId(item);
         return this.getChildrenByParentId(id);
     }
 
@@ -81,7 +81,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
             if (item === NOT_FOUND_RECORD) {
                 break;
             }
-            parentId = this.params.getParentId?.(item);
+            parentId = this.getParams().getParentId?.(item);
             if (!parentId) {
                 break;
             }
@@ -114,8 +114,8 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
     }
 
     public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
-        const parentId = this.params.getParentId?.(item);
-        const id = this.params.getId?.(item);
+        const parentId = this.getParams().getParentId?.(item);
+        const id = this.getParams().getId?.(item);
 
         const ids = this.getChildrenIdsByParentId(parentId);
         const nodeInfo = this.getNodeInfo(parentId);
@@ -124,7 +124,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
         const isLastChild = lastId !== undefined && lastId === id && nodeInfo.count === ids.length;
 
         return {
-            id: this.params.getId(item),
+            id: this.getParams().getId(item),
             value: item,
             isLastChild,
         };
@@ -188,7 +188,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
             ids.forEach((id) => {
                 if (shouldStop) return;
                 const item = this.itemsAccessor.get(id);
-                const parentId = item !== NOT_FOUND_RECORD ? this.params.getParentId?.(item) : undefined;
+                const parentId = item !== NOT_FOUND_RECORD ? this.getParams().getParentId?.(item) : undefined;
                 walkChildrenRec(item === NOT_FOUND_RECORD ? undefined : item, id, parentId);
             });
         };
@@ -212,7 +212,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
     }
 
     public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
-        const subtotalsMap = newMap<TId | undefined, TSubtotals>(this.params);
+        const subtotalsMap = newMap<TId | undefined, TSubtotals>(this.getParams());
 
         this.forEach(
             (item, id, parentId) => {
@@ -250,7 +250,7 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
     }
 
     public static withNewItemsAccessor<TItem, TId>(itemsAccessor: IItemsAccessor<TItem, TId>, treeStructure: TreeStructure<TItem, TId>) {
-        return TreeStructure.create<TItem, TId>(treeStructure.params, itemsAccessor, treeStructure.byParentId, treeStructure.nodeInfoById);
+        return TreeStructure.create<TItem, TId>(treeStructure.getParams(), itemsAccessor, treeStructure.byParentId, treeStructure.nodeInfoById);
     }
 
     public static createFromItems<TItem, TId>({
@@ -285,6 +285,6 @@ export class TreeStructure<TItem, TId> extends PureTreeStructure<TItem, TId> imp
     }
 
     public static toPureTreeStructure<TItem, TId>(treeStructure: TreeStructure<TItem, TId>): PureTreeStructure<TItem, TId> {
-        return new PureTreeStructure(treeStructure.params, treeStructure.byParentId, treeStructure.nodeInfoById);
+        return new PureTreeStructure(treeStructure.getParams(), treeStructure.byParentId, treeStructure.nodeInfoById);
     }
 }

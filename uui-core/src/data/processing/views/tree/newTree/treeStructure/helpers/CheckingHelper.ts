@@ -14,7 +14,7 @@ export class CheckingHelper {
         cascadeSelectionType,
     }: CascadeSelectionOptions<TItem, TId>) {
         const isImplicitMode = cascadeSelectionType === CascadeSelectionTypes.IMPLICIT;
-        let checkedIdsMap = newMap<TId, boolean>(tree.params);
+        let checkedIdsMap = newMap<TId, boolean>(tree.getParams());
         if (!(checkedId === ROOT_ID && isImplicitMode)) {
             currentCheckedIds.forEach((id) => checkedIdsMap.set(id, true));
         }
@@ -66,6 +66,7 @@ export class CheckingHelper {
         isCheckable,
     }: SelectionOptions<TItem, TId>) {
         if (isChecked) {
+            // eslint-disable-next-line eqeqeq
             if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             } else {
@@ -78,6 +79,7 @@ export class CheckingHelper {
             return checkedIdsMap;
         }
 
+        // eslint-disable-next-line eqeqeq
         if (checkedId != ROOT_ID) {
             checkedIdsMap.delete(checkedId);
         } else {
@@ -117,12 +119,14 @@ export class CheckingHelper {
         isCheckable,
     }: SelectionOptions<TItem, TId>) {
         if (isChecked) {
+            // eslint-disable-next-line eqeqeq
             if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             }
             // check all children recursively
             Tree.forEachChildren<TItem, TId>(
                 tree,
+                // eslint-disable-next-line eqeqeq
                 (id) => id != ROOT_ID && checkedIdsMap.set(id, true),
                 isCheckable,
                 checkedId,
@@ -130,6 +134,7 @@ export class CheckingHelper {
             return this.checkParentsWithFullCheck({ tree, checkedIdsMap, checkedId, isCheckable });
         }
 
+        // eslint-disable-next-line eqeqeq
         if (checkedId != ROOT_ID) {
             checkedIdsMap.delete(checkedId);
         }
@@ -155,6 +160,7 @@ export class CheckingHelper {
         isCheckable,
     }: SelectionOptions<TItem, TId>) {
         if (isChecked) {
+            // eslint-disable-next-line eqeqeq
             if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             }
@@ -184,6 +190,7 @@ export class CheckingHelper {
             });
         }
 
+        // eslint-disable-next-line eqeqeq
         if (checkedId != ROOT_ID) {
             checkedIdsMap.delete(checkedId);
         }
@@ -194,7 +201,7 @@ export class CheckingHelper {
                 return;
             }
 
-            const parentId = tree.params.getParentId?.(item);
+            const parentId = tree.getParams().getParentId?.(item);
             const parents = Tree.getParents(itemId, tree);
             // if some parent is checked, it is required to check all children explicitly,
             // except unchecked one.
@@ -207,6 +214,7 @@ export class CheckingHelper {
             checkedIdsMap.delete(parentId);
         };
 
+        // eslint-disable-next-line eqeqeq
         if (checkedId != ROOT_ID) {
             const parents = Tree.getParents(checkedId, tree);
             [checkedId, ...parents.reverse()].forEach(selectNeighboursOnly);
@@ -226,6 +234,7 @@ export class CheckingHelper {
             .forEach((parentId) => {
                 const { ids: childrenIds } = tree.getItems(parentId);
                 if (childrenIds && childrenIds.every((childId) => checkedIdsMap.has(childId))) {
+                    // eslint-disable-next-line eqeqeq
                     if (parentId != ROOT_ID) {
                         checkedIdsMap.set(parentId, true);
                     }

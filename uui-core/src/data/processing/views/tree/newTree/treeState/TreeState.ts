@@ -78,7 +78,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
         return this.withNewTreeStructures({
             using,
             treeStructure: TreeStructure.create(
-                treeStructure.params,
+                treeStructure.getParams(),
                 ItemsAccessor.toItemsAccessor(itemsMap),
                 newByParentId,
                 newNodeInfoById,
@@ -201,7 +201,7 @@ export class TreeState<TItem, TId> extends PureTreeState<TItem, TId> {
     public clearStructure(): TreeState<TItem, TId> {
         return TreeState.create(
             this.full,
-            TreeStructure.create(this.visible.params, ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap)),
             this.itemsMap,
             this.setItems,
         );
