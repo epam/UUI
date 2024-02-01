@@ -2,6 +2,7 @@ import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from './const
 import { TreeParams } from './treeStructure/types';
 
 export type TreeNodeStatus = typeof FULLY_LOADED | typeof PARTIALLY_LOADED | typeof EMPTY;
+
 export interface ItemsInfo<TId> {
     ids: TId[];
     count: null | number;
