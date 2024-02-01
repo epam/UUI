@@ -66,10 +66,17 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         resetTree();
     }, [resetTree]);
 
+    const totalCount = useMemo(() => {
+        const { totalCount: rootTotalCount } = tree.visible.getItems(undefined);
+
+        return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
+    }, [tree.visible]);
+
     return useMemo(
         () => ({
             tree: tree.visible,
             selectionTree: tree.full,
+            totalCount,
             rowOptions,
             getRowOptions,
             getChildCount,

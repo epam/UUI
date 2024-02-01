@@ -82,13 +82,10 @@ export function LocationsTable() {
     });
 
     const queryClient = useQueryClient();
-    const currentTree = queryClient.getQueryData<Tree>([LOCATIONS_QUERY]) ?? blankTree;
-    const rowsCount = useMemo(() => currentTree.getTotalCount(), [currentTree]);
 
     const { shouldFetch, shouldReload, shouldLoad, shouldRefetch } = useLazyFetchingAdvisor({
         dataSourceState: tableState,
         backgroundReload: true,
-        rowsCount,
     });
 
     const { data: tree = blankTree, isFetching } = useQuery<Tree, Error, Tree, LocationsQueryKey>({

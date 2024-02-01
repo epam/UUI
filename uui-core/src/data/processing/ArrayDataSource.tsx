@@ -55,7 +55,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { tree, selectionTree, reload, ...restProps } = useTree({
+        const { tree, selectionTree, reload, totalCount, ...restProps } = useTree({
             type: 'plain',
             ...this.props,
             ...options,
@@ -107,7 +107,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
             getVisibleRows: () => rows,
-            getListProps: () => listProps,
+            getListProps: () => ({ ...listProps, totalCount }),
             selectAll,
             getConfig: () => restProps,
             reload,
@@ -124,6 +124,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             listProps,
             selectAll,
             restProps,
+            totalCount,
             reload,
             getById,
             getSelectedRows,

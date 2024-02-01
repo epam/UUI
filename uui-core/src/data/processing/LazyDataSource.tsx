@@ -53,7 +53,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { tree, selectionTree, reload, loadMissingRecordsOnCheck, ...restProps } = useTree({
+        const { tree, selectionTree, reload, totalCount, loadMissingRecordsOnCheck, ...restProps } = useTree({
             type: 'lazy',
             ...this.props,
             itemsMap,
@@ -104,7 +104,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
             getVisibleRows: () => rows,
-            getListProps: () => listProps,
+            getListProps: () => ({ ...listProps, totalCount }),
             selectAll,
             getConfig: () => restProps,
             reload,
@@ -121,6 +121,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             listProps,
             selectAll,
             restProps,
+            totalCount,
             reload,
             getById,
             getSelectedRows,

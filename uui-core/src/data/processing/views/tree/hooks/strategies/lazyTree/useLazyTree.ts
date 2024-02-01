@@ -39,8 +39,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isForceReload, setIsForceReload] = useState(false);
 
-    const actualRowsCount = useMemo(() => treeWithData.visible.getTotalCount() ?? 0, [treeWithData.visible]);
-
     const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
 
     useEffect(() => {
@@ -72,7 +70,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         filter,
         forceReload: isForceReload,
         backgroundReload,
-        rowsCount: actualRowsCount,
     });
 
     useEffect(() => {
@@ -121,9 +118,16 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         setIsForceReload(true);
     }, [props, setTreeWithData]);
 
+    const totalCount = useMemo(() => {
+        const { totalCount: rootTotalCount } = tree.visible.getItems(undefined);
+
+        return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
+    }, [tree.visible]);
+
     return {
         tree: tree.visible,
         selectionTree: tree.full,
+        totalCount,
         dataSourceState,
         setDataSourceState,
         isFoldedByDefault,

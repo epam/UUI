@@ -9,7 +9,6 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     filter?: TFilter;
     forceReload?: boolean;
     backgroundReload?: boolean;
-    rowsCount?: number;
 }
 
 export function useLazyFetchingAdvisor<TId, TFilter = any>({
@@ -17,18 +16,16 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
     filter,
     forceReload,
     backgroundReload,
-    rowsCount,
 }: UseLazyFetchingAdvisorProps<TId, TFilter>) {
     const areMoreRowsNeeded = useCallback((
         prevValue?: DataSourceState<TFilter, TId>,
         newValue?: DataSourceState<TFilter, TId>,
     ) => {
-        const lastRowIndex = dataSourceState.topIndex + dataSourceState.visibleCount;
         const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex
             || prevValue?.visibleCount !== newValue?.visibleCount;
 
-        return isFetchPositionAndAmountChanged && lastRowIndex > rowsCount;
-    }, [rowsCount]);
+        return isFetchPositionAndAmountChanged;
+    }, []);
 
     const prevFilter = useSimplePrevious(filter);
     const prevDataSourceState = useSimplePrevious(dataSourceState);
