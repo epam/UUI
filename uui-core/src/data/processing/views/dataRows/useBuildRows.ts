@@ -17,7 +17,7 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
 
     getEstimatedChildrenCount: (id: TId) => number;
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
-    lastRowIndex: number;
+    maxVisibleRowIndex: number;
 
     isFlattenSearch?: boolean;
 
@@ -33,7 +33,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     getEstimatedChildrenCount,
     getMissingRecordsCount,
     cascadeSelection,
-    lastRowIndex,
+    maxVisibleRowIndex,
     isFolded,
     handleOnFold,
     isFlattenSearch,
@@ -92,7 +92,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                         } else if (!dataSourceState.search && !row.isFolded && appendRows) {
                         // children are not loaded
                             const parentsWithRow = [...row.path, Tree.getPathItem(item, tree)];
-                            for (let m = 0; m < estimatedChildrenCount && rows.length < lastRowIndex; m++) {
+                            for (let m = 0; m < estimatedChildrenCount && rows.length < maxVisibleRowIndex; m++) {
                                 const loadingRow = getLoadingRowProps('_loading_' + rows.length, rows.length, parentsWithRow);
                                 loadingRow.indent = parentsWithRow.length + 1;
                                 loadingRow.isLastChild = m === estimatedChildrenCount - 1;
@@ -122,8 +122,8 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 if (missingCount > 0) {
                     stats.hasMoreRows = true;
                 }
-                // Append loading rows, stop at lastRowIndex (last row visible)
-                while (rows.length < lastRowIndex && missingCount > 0) {
+                // Append loading rows, stop at maxVisibleRowIndex (maximum assumed row visible)
+                while (rows.length < maxVisibleRowIndex && missingCount > 0) {
                     const row = getLoadingRowProps('_loading_' + rows.length, rows.length, path);
                     rows.push(row);
                     layerRows.push(row);

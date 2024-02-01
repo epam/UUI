@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { DataSourceState, DataColumnProps, useUuiContext, useTree, useDataRows } from '@epam/uui-core';
+import { DataSourceState, DataColumnProps, useUuiContext, useTree, useDataRows, useCascadeSelectionService } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -76,7 +76,7 @@ export default function TableWithPinnedRows() {
     //     }, 
     // });
 
-    const { tree, ...restProps } = useTree<Location, string, unknown>({
+    const { tree, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree<Location, string, unknown>({
         type: 'lazy',
         api: (request, ctx) => {
             const filter = { parentId: ctx?.parentId };
@@ -86,7 +86,7 @@ export default function TableWithPinnedRows() {
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
         backgroundReload: true,
-        cascadeSelection: 'implicit',
+        cascadeSelection: 'explicit',
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         rowOptions: {
@@ -97,7 +97,15 @@ export default function TableWithPinnedRows() {
         },
     }, []);
 
-    const { rows, listProps } = useDataRows({ tree, ...restProps });
+    const cascadeSelectionService = useCascadeSelectionService({
+        tree: selectionTree,
+        cascadeSelection: restProps.cascadeSelection,
+        getRowOptions: restProps.getRowOptions,
+        rowOptions: restProps.rowOptions,
+        loadMissingRecordsOnCheck,
+    });
+
+    const { rows, listProps } = useDataRows({ tree, ...restProps, ...cascadeSelectionService });
 
     return (
         <Panel shadow cx={ css.container }>
