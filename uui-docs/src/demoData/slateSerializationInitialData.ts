@@ -28,46 +28,11 @@ export const slateSerializationInitialData = [
                 'uui-richTextEditor-span-mark': true,
             },
             {
-                data: {
-                    url: 'https://www.slatejs.org/',
-                },
                 type: 'link',
                 url: 'https://www.slatejs.org/',
                 children: [
                     {
-                        text: '',
-                        'uui-richTextEditor-span-mark': true,
-                    },
-                ],
-            },
-            {
-                text: '',
-            },
-            {
-                data: {
-                    url: 'https://www.slatejs.org/',
-                },
-                type: 'link',
-                url: 'https://www.slatejs.org/',
-                children: [
-                    {
-                        text: '',
-                    },
-                    {
-                        data: {
-                            url: 'https://www.slatejs.org/',
-                        },
-                        type: 'link',
-                        url: 'https://www.slatejs.org/',
-                        children: [
-                            {
-                                text: 'slate',
-                                'uui-richTextEditor-span-mark': true,
-                            },
-                        ],
-                    },
-                    {
-                        text: '.js',
+                        text: 'slate.js',
                         'uui-richTextEditor-span-mark': true,
                     },
                 ],
