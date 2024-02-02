@@ -1,6 +1,6 @@
 import { IDndActor } from './dnd';
 import { Link } from './objects';
-import { FlexRowProps, ICanBeInvalid, IDisableable, IEditable } from './props';
+import { FlexRowProps, IEditable, IHasValidationMessage, IDisableable, ICanBeInvalid } from './props';
 
 /** DataRowProps is a base shape of props, passed to items in various lists or trees.
  *
@@ -122,8 +122,8 @@ export interface DataRowPathItem<TId, TItem> {
 /** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
  * Other props in DataRowProps are computed when generating rows.
  */
-export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEditable<TItem>> {
-    /** If row needs a checkbox, this field should be specified and it props can be configured here */
+export interface DataRowOptions<TItem, TId> extends Partial<IEditable<TItem>>, IHasValidationMessage {
+    /** If row needs a checkbox, this field should be specified, and it props can be configured here */
     checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
 
     /** True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop) */
