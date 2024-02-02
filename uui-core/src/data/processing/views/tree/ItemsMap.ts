@@ -44,8 +44,10 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
 
         let updated = false;
         if (options?.reset) {
-            itemsLink = new Map();
-            updated = true;
+            if (itemsLink.size !== items.length) {
+                itemsLink = new Map();
+                updated = true;
+            }
         }
 
         items.forEach((item) => {

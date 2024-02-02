@@ -27,14 +27,17 @@ export class ItemsStorage<TItem, TId> {
 
     subscribe(onUpdate: OnUpdate<TId, TItem>) {
         this.subs.set(onUpdate);
-
+        onUpdate(this._itemsMap);
         return () => this.subs.delete(onUpdate);
     }
 
     setItems = (items: TItem[], options?: ModificationOptions) => {
-        this._itemsMap = this._itemsMap.setItems(items, options);
+        const itemsMap = this._itemsMap.setItems(items, options);
 
-        this.subs.forEach((_, onUpdate) => onUpdate(this._itemsMap));
+        if (itemsMap !== this._itemsMap) {
+            this._itemsMap = itemsMap;
+            this.subs.forEach((_, onUpdate) => onUpdate(itemsMap));
+        }
 
         return this._itemsMap;
     };

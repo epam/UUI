@@ -26,7 +26,11 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         getId: restProps.getId,
     });
 
-    const fullTree = useCreateTree({ ...props, itemsMap, setItems }, [...deps, trigger]);
+    const fullTree = useCreateTree(
+        { ...props, items, itemsMap, setItems },
+        [...deps, items, itemsMap, trigger],
+    );
+
     const {
         getId,
         getParentId,
