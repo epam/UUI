@@ -25,13 +25,6 @@ export interface IControlled<T> {
     /** Called when value needs to be changed (usually due to user interaction) */
     onValueChange(newValue: T): void;
 }
-// IControlled
-// IChangeable
-// ICanBeChanged
-// IHasChangeableValue
-// IModifiable
-// IChangeValue
-// IHasEditableValue
 
 /** Component displays an editable value. Text Input is a basic example. */
 export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, IControlled<T> { }
