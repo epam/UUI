@@ -74,9 +74,13 @@ export class TreeState<TItem, TId> {
         for (const [id, nodeInfo] of nodeInfoById) {
             newNodeInfoById.set(id, nodeInfo);
         }
+        let treeToUpdate: TreeStructureId = using;
+        if (treeToUpdate === 'visible') {
+            treeToUpdate = dataSourceState.search ? 'visible' : undefined;
+        }
 
         return this.withNewTreeStructures({
-            using,
+            using: treeToUpdate,
             treeStructure: TreeStructure.create(
                 treeStructure.getParams(),
                 ItemsAccessor.toItemsAccessor(itemsMap),

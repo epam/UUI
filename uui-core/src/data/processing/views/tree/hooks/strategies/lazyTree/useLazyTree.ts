@@ -92,7 +92,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         if (shouldFetch) {
             loadMissing({
                 tree: currentTree,
-                using: dataSourceState.search ? 'visible' : undefined,
+                using: 'visible',
                 abortInProgress: shouldRefetch,
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
