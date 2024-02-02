@@ -195,8 +195,12 @@ IClickable &
 Attributes &
 IHasChildren &
 IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
-    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
+    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+     * @default center
+     * */
     alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
+    /** Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
+    justifyContent?: 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end';
     /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
     columnGap?: number | '6' | '12' | '18' | '24' | '36';
     /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
