@@ -14,7 +14,7 @@ exports[`docsGen:union should convert union of simple types 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "boolean | 'one' | 'two' | 'three' | 'four'",
      "print": [
@@ -41,7 +41,7 @@ exports[`docsGen:union should convert union of two anonymous object types 1`] = 
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "{ sameProp: string; n1Prop: string; } | { sameProp: string; n2Prop: string; }",
      "print": [
@@ -110,7 +110,7 @@ exports[`docsGen:union should convert union of two object types 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "N1 | N2",
      "print": [
@@ -210,7 +210,7 @@ exports[`docsGen:union should not expand ReactNode type of property 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "TTestOptional",
      "print": [
@@ -244,7 +244,7 @@ exports[`docsGen:union should not expand ReactNode type of property 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "TTestRequired",
      "print": [
@@ -296,7 +296,7 @@ exports[`docsGen:union should not try to expand props if union contains an exter
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "{ a: string; b: string; } | HTMLElement",
      "print": [
