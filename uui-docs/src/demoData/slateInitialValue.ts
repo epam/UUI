@@ -62,53 +62,7 @@ export const slateInitialValue = {
                         nodes: [
                             {
                                 object: 'text',
-                                text: '',
-                                marks: [
-                                    {
-                                        object: 'mark',
-                                        type: 'uui-richTextEditor-span-mark',
-                                        data: {},
-                                    },
-                                ],
-                            },
-                        ],
-                    }, {
-                        object: 'text',
-                        text: '',
-                        marks: [],
-                    }, {
-                        object: 'inline',
-                        type: 'link',
-                        data: {
-                            url: 'https://www.slatejs.org/',
-                        },
-                        nodes: [
-                            {
-                                object: 'text',
-                                text: '',
-                                marks: [],
-                            }, {
-                                object: 'inline',
-                                type: 'link',
-                                data: {
-                                    url: 'https://www.slatejs.org/',
-                                },
-                                nodes: [
-                                    {
-                                        object: 'text',
-                                        text: 'slate',
-                                        marks: [
-                                            {
-                                                object: 'mark',
-                                                type: 'uui-richTextEditor-span-mark',
-                                                data: {},
-                                            },
-                                        ],
-                                    },
-                                ],
-                            }, {
-                                object: 'text',
-                                text: '.js',
+                                text: 'slate.js',
                                 marks: [
                                     {
                                         object: 'mark',
