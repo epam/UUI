@@ -14,6 +14,7 @@ export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, re
             css.container,
             props.onClick && uuiMarkers.clickable,
             css['align-items-' + (props.alignItems === undefined ? 'center' : props.alignItems)],
+            props?.justifyContent && css[`justify-content-${props.justifyContent}`],
         ) }
         { ...props.rawProps }
         style={ {
