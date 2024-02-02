@@ -14,7 +14,7 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "IInterface",
      "print": [
@@ -80,7 +80,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "ITestA",
      "print": [
@@ -233,7 +233,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "ITestB",
      "print": [
@@ -294,7 +294,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "AcceptDropParams<TSrcData, TDstData>",
      "print": [
@@ -391,7 +391,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TPrimitives",
      "print": [
@@ -596,7 +596,7 @@ exports[`docsGen:complexTypes should expand props if internal type is wrapped in
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TTest",
      "print": [
@@ -649,7 +649,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "IA<T>",
      "print": [
@@ -683,7 +683,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TA<S>",
      "print": [
@@ -735,7 +735,7 @@ exports[`docsGen:complexTypes should not expand props from external type 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "HTMLElement",
      "print": [
