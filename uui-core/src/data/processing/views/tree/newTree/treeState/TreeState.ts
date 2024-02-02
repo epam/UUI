@@ -11,8 +11,8 @@ import { TreeParams } from '../treeStructure/types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
-        private _fullTreeStructure: TreeStructure<TItem, TId> | null,
-        private _visibleTreeStructure: TreeStructure<TItem, TId> | null,
+        private _fullTree: TreeStructure<TItem, TId> | null,
+        private _visibleTree: TreeStructure<TItem, TId> | null,
         protected _itemsMap: ItemsMap<TId, TItem>,
         protected _setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {}
@@ -26,11 +26,11 @@ export class TreeState<TItem, TId> {
     }
 
     public get visible() {
-        return this._visibleTreeStructure;
+        return this._visibleTree;
     }
 
     public get full() {
-        return this._fullTreeStructure;
+        return this._fullTree;
     }
 
     public getById(id: TId) {
@@ -195,7 +195,7 @@ export class TreeState<TItem, TId> {
     }
 
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
-        return (treeStructureId ?? 'full') === 'full' ? this._fullTreeStructure : this._visibleTreeStructure;
+        return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
 
     public clearStructure(): TreeState<TItem, TId> {
@@ -227,11 +227,11 @@ export class TreeState<TItem, TId> {
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
         const visibleTree = using === 'visible'
             ? treeStructure
-            : TreeStructure.withNewItemsAccessor(itemsAccessor, this._visibleTreeStructure);
+            : TreeStructure.withNewItemsAccessor(itemsAccessor, this._visibleTree);
 
         const fullTree = using === 'full'
             ? treeStructure
-            : TreeStructure.withNewItemsAccessor(itemsAccessor, this._fullTreeStructure);
+            : TreeStructure.withNewItemsAccessor(itemsAccessor, this._fullTree);
 
         return TreeState.create(fullTree, visibleTree, itemsMap, this._setItems);
     }
