@@ -34,7 +34,7 @@ const metadata: Metadata<FormState> = {
 
 let lastId = -1;
 
-let savedValue: FormState = { items: ItemsMap.fromObject(getDemoTasks(), (item) => item.id) };
+let savedValue: FormState = { items: ItemsMap.fromObject(getDemoTasks(), { getId: (item) => item.id }) };
 
 export function ProjectTableDemo() {
     const {

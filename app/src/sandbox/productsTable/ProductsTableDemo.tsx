@@ -28,7 +28,7 @@ const metadata: Metadata<FormState> = {
     },
 };
 
-let savedValue: FormState = { items: ItemsMap.fromObject<number, Product>({}, (product) => product.ProductID) };
+let savedValue: FormState = { items: ItemsMap.fromObject<number, Product>({}, { getId: (product) => product.ProductID }) };
 let lastId = -1;
 
 export function ProductsTableDemo() {

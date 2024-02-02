@@ -31,7 +31,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     reload() {
         this.setProps({ ...this.props, items: [] });
-        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+        this.itemsStorage = new ItemsStorage({ items: [], params: { getId: this.getId, complexIds: this.props.complexIds } });
         super.reload();
     }
 

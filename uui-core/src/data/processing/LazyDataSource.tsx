@@ -18,7 +18,10 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             ...props,
             flattenSearchResults: props.flattenSearchResults ?? true,
         };
-        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+        this.itemsStorage = new ItemsStorage({
+            items: [],
+            params: { getId: this.getId, complexIds: this.props.complexIds },
+        });
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
@@ -39,7 +42,10 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     }
 
     public clearCache() {
-        this.itemsStorage = new ItemsStorage({ items: [], getId: this.getId });
+        this.itemsStorage = new ItemsStorage({
+            items: [],
+            params: { getId: this.getId, complexIds: this.props.complexIds },
+        });
         super.reload();
     }
 

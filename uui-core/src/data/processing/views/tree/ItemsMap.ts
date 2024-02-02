@@ -1,4 +1,5 @@
-import { IBaseMap } from '../../../../types';
+import { IBaseMap, IMap } from '../../../../types';
+import { cloneMap, newMap } from './newTree';
 
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 
@@ -7,14 +8,19 @@ interface ModificationOptions {
     reset?: boolean;
 }
 
+export interface ItemsMapParams<TItem, TId> {
+    getId: (item: TItem) => TId;
+    complexIds?: boolean;
+}
+
 export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
-    private _itemsMap: Map<TId, TItem>;
+    private _itemsMap: IMap<TId, TItem>;
 
     constructor(
-        itemsMap: Map<TId, TItem>,
-        private getId: (item: TItem) => TId,
+        itemsMap: IMap<TId, TItem>,
+        private params: ItemsMapParams<TItem, TId>,
     ) {
-        this._itemsMap = new Map(itemsMap);
+        this._itemsMap = itemsMap ? cloneMap(itemsMap) : newMap(params);
     }
 
     get(id: TId) {
@@ -26,41 +32,40 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
     }
 
     set(id: TId, item?: TItem): ItemsMap<TId, TItem> {
-        const itemsMap = new Map(this._itemsMap);
+        const itemsMap = cloneMap(this._itemsMap);
 
         itemsMap.set(id, item);
-        return new ItemsMap(itemsMap, this.getId);
+        return new ItemsMap(itemsMap, this.params);
     }
 
     forEach(action: (item: TItem, id: TId) => void) {
-        const keys = new Set(this._itemsMap.keys());
-        keys.forEach((id) => {
+        for (const [id] of this._itemsMap) {
             action(this.get(id), id);
-        });
+        }
     }
 
     setItems(items: TItem[], options?: ModificationOptions) {
-        let itemsLink = new Map(this._itemsMap);
+        let itemsLink = cloneMap(this._itemsMap);
 
         let updated = false;
         if (options?.reset) {
             if (itemsLink.size !== items.length) {
-                itemsLink = new Map();
+                itemsLink = newMap(this.params);
                 updated = true;
             }
         }
 
         items.forEach((item) => {
-            const isExistingItem = itemsLink.has(this.getId(item));
+            const isExistingItem = itemsLink.has(this.params.getId(item));
 
-            if (!isExistingItem || (isExistingItem && item !== itemsLink.get(this.getId(item)))) {
-                itemsLink.set(this.getId(item), item);
+            if (!isExistingItem || (isExistingItem && item !== itemsLink.get(this.params.getId(item)))) {
+                itemsLink.set(this.params.getId(item), item);
                 updated = true;
             }
         });
 
         if (updated) {
-            return new ItemsMap(itemsLink, this.getId);
+            return new ItemsMap(itemsLink, this.params);
         }
 
         return this;
@@ -76,13 +81,13 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
 
     public static fromObject<TId extends symbol | string | number, TItem>(
         obj: Record<TId, TItem>,
-        getId: (item: TItem) => TId,
+        params: ItemsMapParams<TItem, TId>,
     ) {
-        const itemsMap = new Map();
+        const itemsMap = newMap<TId, TItem>(params);
         for (const [, value] of Object.entries<TItem>(obj)) {
-            itemsMap.set(getId(value), value);
+            itemsMap.set(params.getId(value), value);
         }
 
-        return new ItemsMap<TId, TItem>(itemsMap, getId);
+        return new ItemsMap<TId, TItem>(itemsMap, params);
     }
 }
