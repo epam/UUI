@@ -1,101 +1,59 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "File Upload is a",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "set of utilities and components",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "for file uploading.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          }
-        ]
+        "text": "File Upload is a",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#303240",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "set of utilities and components",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#303240",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "for file uploading.",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#303240",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
       }
     ]
   }
-}
+]
