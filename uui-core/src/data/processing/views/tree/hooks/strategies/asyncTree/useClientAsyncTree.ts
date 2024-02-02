@@ -14,7 +14,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         itemsMap: props.itemsMap,
         items: props.items,
         setItems: props.setItems,
-        getId: props.getId,
+        params: { getId: props.getId, complexIds: props.complexIds },
     });
 
     const baseTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);

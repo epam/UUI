@@ -268,7 +268,7 @@ export class TreeState<TItem, TId> {
         if (itemsMap) {
             treeItemsMap = items ? itemsMap.setItems(items) : itemsMap;
         } else {
-            treeItemsMap = new ItemsMap(new Map(), params.getId).setItems(items);
+            treeItemsMap = new ItemsMap(new Map(), params).setItems(items);
         }
 
         const itemsAccessor = ItemsAccessor.toItemsAccessor(treeItemsMap);

@@ -1,4 +1,4 @@
-import { ItemsMap, OnUpdate } from './ItemsMap';
+import { ItemsMap, ItemsMapParams, OnUpdate } from './ItemsMap';
 
 export interface ModificationOptions {
     isDirty?: boolean;
@@ -8,17 +8,17 @@ export interface ModificationOptions {
 
 interface ItemsStorageParams<TItem, TId> {
     items?: TItem[];
-    getId: (item: TItem) => TId;
+    params: ItemsMapParams<TItem, TId>;
 }
 
 export class ItemsStorage<TItem, TId> {
     private subs: Map<OnUpdate<TId, TItem>, void> = new Map();
     private _itemsMap: ItemsMap<TId, TItem>;
 
-    constructor({ items, getId }: ItemsStorageParams<TItem, TId>) {
+    constructor({ items, params }: ItemsStorageParams<TItem, TId>) {
         this._itemsMap = new ItemsMap(
             null,
-            getId,
+            params,
         );
         if (items?.length) {
             this.setItems(items);

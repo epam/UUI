@@ -23,7 +23,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         itemsMap: restProps.itemsMap,
         items,
         setItems: restProps.setItems,
-        getId: restProps.getId,
+        params: { getId: restProps.getId, complexIds: restProps.complexIds },
     });
 
     const fullTree = useCreateTree(

@@ -15,7 +15,7 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         setItems: props.setItems,
-        getId: props.getId,
+        params: { getId: props.getId, complexIds: props.complexIds },
     });
 
     const prevIsForceReload = useSimplePrevious(isForceReload);

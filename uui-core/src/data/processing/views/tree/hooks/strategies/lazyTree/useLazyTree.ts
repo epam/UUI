@@ -27,7 +27,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         setItems: props.setItems,
-        getId: props.getId,
+        params: { getId, complexIds: props.complexIds },
     });
 
     const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
