@@ -2,6 +2,7 @@
 
 **What's New**
 * [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
+* [ApiContext]: added parseResponse callback to the ApiCallOptions. It can be used to define custom way of how to parse the response of the request.
 
 **What's Fixed**
 * [PickerInput]: fixed clear selection for single mode picker with lazy datasource
