@@ -41,6 +41,16 @@ export function useItemsStorage<TItem, TId>({ itemsMap: outerItemsMap, setItems,
         }
     }, []);
 
+    useEffect(() => {
+        if (Array.isArray(items)) {
+            if (itemsStorage) {
+                itemsStorage.setItems(items);
+            } else {
+                setItems(items);
+            }
+        }
+    }, [items]);
+
     const currentItemsMap = outerItemsMap ?? itemsMap;
     return {
         itemsMap: currentItemsMap,

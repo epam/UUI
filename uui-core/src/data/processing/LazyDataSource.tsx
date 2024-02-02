@@ -68,14 +68,16 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.itemsStorage.subscribe(() => {
-                setItemsMap(this.itemsStorage.getItemsMap());
+            const unsubscribe = this.itemsStorage.subscribe((newItemsMap) => {
+                if (itemsMap !== newItemsMap) {
+                    setItemsMap(newItemsMap);
+                }
             });
-            
+
             return () => {
                 unsubscribe();
             };
-        }, []);
+        }, [this.itemsStorage]);
         
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {

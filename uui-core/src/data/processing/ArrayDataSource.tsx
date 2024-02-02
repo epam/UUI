@@ -20,11 +20,12 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         const currentItems = this.props?.items;
-
         this.props = props;
         if (props.items && currentItems !== props.items) {
             if (!this.itemsStorage) {
                 this.itemsStorage = new ItemsStorage({ items: props.items, getId: this.getId });
+            } else {
+                this.itemsStorage.setItems(props.items, { reset: true });
             }
         }
     }
@@ -53,11 +54,12 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
+        const { items, ...restDSProps } = this.props;
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, selectionTree, reload, totalCount, ...restProps } = useTree({
             type: 'plain',
-            ...this.props,
+            ...restDSProps,
             ...options,
             
             itemsMap,
@@ -72,14 +74,16 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.itemsStorage.subscribe(() => {
-                setItemsMap(this.itemsStorage.getItemsMap());
+            const unsubscribe = this.itemsStorage.subscribe((newItemsMap) => {
+                if (itemsMap !== newItemsMap) {
+                    setItemsMap(newItemsMap);
+                }
             });
             
             return () => {
                 unsubscribe();
             };
-        }, []);
+        }, [this.itemsStorage]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {

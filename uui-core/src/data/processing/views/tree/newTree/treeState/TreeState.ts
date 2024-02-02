@@ -251,20 +251,28 @@ export class TreeState<TItem, TId> {
     }
 
     public static createFromItems<TItem, TId>(
+        items: TItem[] | undefined,
+        itemsMap: ItemsMap<TId, TItem> | undefined,
         params: TreeParams<TItem, TId>,
-        items: TItem[] | ItemsMap<TId, TItem>,
         setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {
-        const itemsMap = items instanceof ItemsMap
-            ? items
-            : new ItemsMap(new Map(), params.getId).setItems(items);
+        if (items === undefined && itemsMap === undefined) {
+            throw Error('At least one of the following args should be defined: `items` or `itemsMap`.');
+        }
 
-        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
-        const treeStructure = TreeStructure.createFromItems({ params, items: itemsMap, itemsAccessor });
+        let treeItemsMap: ItemsMap<TId, TItem>;
+        if (itemsMap) {
+            treeItemsMap = items ? itemsMap.setItems(items) : itemsMap;
+        } else {
+            treeItemsMap = new ItemsMap(new Map(), params.getId).setItems(items);
+        }
+
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(treeItemsMap);
+        const treeStructure = TreeStructure.createFromItems({ params, items: items ?? treeItemsMap, itemsAccessor });
         return new TreeState(
             treeStructure,
             treeStructure,
-            itemsMap,
+            treeItemsMap,
             setItems,
         );
     }
