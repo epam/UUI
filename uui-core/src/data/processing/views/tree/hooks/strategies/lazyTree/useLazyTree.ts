@@ -96,7 +96,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 abortInProgress: shouldRefetch,
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
-                    if (isUpdated && !isOutdated) {
+                    if (!isOutdated && (isUpdated || newTree !== treeWithData)) {
                         setTreeWithData(newTree);
                     }
                 }).finally(() => {
