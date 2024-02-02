@@ -29,11 +29,9 @@ exports[`DropSpot should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 dropCaption container"
       >
-         
         Drop files to attach or
-         
       </div>
       <div>
         <input
@@ -93,11 +91,9 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         />
       </div>
       <div
-        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 dropCaption container"
       >
-         
         Drop files to attach or
-         
       </div>
       <div>
         <input
@@ -125,7 +121,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
       </div>
     </div>
     <div
-      className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
+      className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
     >
       Test info
     </div>

@@ -45657,7 +45657,7 @@
       "    renderLabel?(): React.ReactNode;",
       "    /** ID to put on 'input' node */",
       "    id?: string;",
-      "    /** Defines the Name property to group member */",
+      "    /** Defines native HTML name attribute for the input */",
       "    name?: string;",
       "};"
      ]
@@ -45976,7 +45976,7 @@
       "name": "name",
       "comment": {
        "raw": [
-        "Defines the Name property to group member"
+        "Defines native HTML name attribute for the input"
        ]
       },
       "typeValue": {
@@ -65427,7 +65427,7 @@
       "    /**",
       "    * Defines the infoText. InfoText is additional information that can be rendered at the bottom of the AttachmentArea.",
       "    */",
-      "    infoText?: string;",
+      "    infoText?: React.ReactNode;",
       "    /**",
       "    * Called when files was added to the DropSpot.",
       "    */",
@@ -65453,11 +65453,9 @@
        ]
       },
       "typeValue": {
-       "raw": "string"
+       "raw": "React.ReactNode"
       },
-      "editor": {
-       "type": "string"
-      },
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      },
      {
@@ -78451,7 +78449,7 @@
       "    items: RadioGroupItem<TValue>[];",
       "    /** Defines group components size */",
       "    size?: RadioInputProps['size'];",
-      "    /** Defines the Name property to group radio inputs */",
+      "    /** Defines native HTML name attribute for each group member */",
       "    name?: string;",
       "}"
      ]
@@ -78495,7 +78493,7 @@
       "name": "name",
       "comment": {
        "raw": [
-        "Defines the Name property to group radio inputs"
+        "Defines native HTML name attribute for each group member"
        ]
       },
       "typeValue": {
@@ -79102,7 +79100,7 @@
       "name": "name",
       "comment": {
        "raw": [
-        "Defines the Name property to group member"
+        "Defines native HTML name attribute for the input"
        ]
       },
       "typeValue": {
