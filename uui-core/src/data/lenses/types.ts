@@ -1,6 +1,11 @@
-import { IEditable } from '../../types';
+import { ICanBeInvalid, IEditable, IHasValidationMessage } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
+
+export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
+    /** If T is a complex value (object or array), this property contains validation states of inner items */
+    validationProps?: { [key: string]: ValidationState };
+}
 
 export interface ILens<TFocused> {
     /** Get lens value */
@@ -23,5 +28,5 @@ export interface ILens<TFocused> {
     default(value: TFocused): ILens<TFocused>;
     /** Return IEditable interface, which accepted by UUI form components.
      * Usually you just need to spread it to the component, e.g. { ...lens.prop('name').toProps() }  */
-    toProps(): IEditable<TFocused>;
+    toProps(): IEditable<TFocused> & ValidationState;
 }

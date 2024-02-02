@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps,
-    CX, cx, ICanFocus,
+import {
+    IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps,
+    CX, cx, ICanFocus, IHasForwardedRef,
 } from '@epam/uui-core';
 import css from './TextArea.module.scss';
 
@@ -10,7 +11,8 @@ export interface TextAreaProps
     IHasPlaceholder,
     IDisableable,
     ICanBeReadonly,
-    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
+    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, 
+    IHasForwardedRef<HTMLDivElement>,
     ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
@@ -28,8 +30,6 @@ export interface TextAreaProps
     maxLength?: number;
     /** HTML id attribute to put on the HTML Input element */
     id?: string;
-    /** A forwarded ref for an HTML input element. */
-    forwardedRef?: React.ForwardedRef<HTMLInputElement>;
 }
 
 interface TextAreaState {
@@ -140,7 +140,6 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                     readOnly={ this.props.isReadonly }
                     aria-readonly={ this.props.isReadonly }
                     required={ this.props.isRequired }
-                    aria-required={ this.props.isRequired }
                     disabled={ this.props.isDisabled }
                     aria-disabled={ this.props.isDisabled }
                     onChange={ this.handleChange }

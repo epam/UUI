@@ -7,7 +7,7 @@ import css from './Switch.module.scss';
 export interface SwitchProps
     extends IHasCX,
     IDisableable,
-    IEditable<boolean>,
+    Omit<IEditable<boolean>, 'isInvalid'>,
     IHasLabel,
     IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
@@ -59,7 +59,6 @@ export class Switch extends React.Component<SwitchProps> {
                         checked={ this.props.value || false }
                         aria-checked={ this.props.value || false }
                         required={ this.props.isRequired }
-                        aria-required={ this.props.isRequired || undefined }
                         tabIndex={ this.props.tabIndex }
                         id={ this.props.id }
                     />

@@ -160,6 +160,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                 isVisible: true,
                 isDisabled: item.isAlwaysVisible,
             },
+
         }),
         [],
     );
