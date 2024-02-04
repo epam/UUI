@@ -4,13 +4,10 @@
     --uui-dropspot-background-dropstart: var(--uui-primary-10);
     --uui-dropspot-icon: var(--uui-primary-50);
     //
-    position: relative;
-    min-height: 104px;
     border: 2px dashed var(--uui-dropspot-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    white-space: pre;
 
     &.drop-start {
         border: 2px dashed var(--uui-dropspot-border-dropstart);
@@ -29,15 +26,17 @@
     }
 
     .drop-area {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        flex-basis: 100%;
+        padding: 27px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
+    }
+
+    .drop-caption {
+        margin-right: 6px;
     }
 
     .icon-blue {

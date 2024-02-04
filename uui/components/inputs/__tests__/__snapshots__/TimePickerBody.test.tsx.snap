@@ -142,7 +142,6 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-readonly={true}
         className="uui-input"
         onBlur={[Function]}
         onChange={[Function]}
@@ -309,7 +308,6 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-readonly={true}
         className="uui-input"
         onBlur={[Function]}
         onChange={[Function]}

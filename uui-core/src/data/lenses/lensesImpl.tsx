@@ -1,13 +1,13 @@
-import { ICanBeInvalid, Metadata } from '../../types';
+import { Metadata } from '../../types';
 import { blankValidationState } from '../validation';
+import { ValidationState } from './types';
 
 export interface ILensImpl<TBig, TSmall> {
     get(big: TBig | null): TSmall | null;
     set(big: TBig | null, small: TSmall): TBig;
-    getValidationState?(big?: ICanBeInvalid): ICanBeInvalid | undefined;
+    getValidationState?(big?: ValidationState): ValidationState | undefined;
     getMetadata?(big?: Metadata<TBig>): Metadata<TSmall> | undefined;
 }
-
 export const identityLens: ILensImpl<any, any> = {
     get(big: any) {
         return big;
@@ -15,7 +15,7 @@ export const identityLens: ILensImpl<any, any> = {
     set(big: any, small: any) {
         return small;
     },
-    getValidationState(big: ICanBeInvalid) {
+    getValidationState(big: ValidationState) {
         return big;
     },
     getMetadata(big: Metadata<any>) {
@@ -43,7 +43,7 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             };
             return newObject;
         },
-        getValidationState(big: ICanBeInvalid) {
+        getValidationState(big: ValidationState) {
             const validationStateProps = (big || blankValidationState).validationProps || { [name]: { isInvalid: false } };
             return validationStateProps[name as string];
         },
@@ -72,7 +72,7 @@ export function index<TItem>(num: number): ILensImpl<TItem[], TItem> {
             newArray[num] = small;
             return newArray;
         },
-        getValidationState(big: ICanBeInvalid) {
+        getValidationState(big: ValidationState) {
             const validationStateProps = (big || blankValidationState).validationProps || {};
             return validationStateProps[num];
         },

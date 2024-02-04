@@ -20,7 +20,6 @@ exports[`PresetInput should render correctly 1`] = `
     tabIndex={-1}
   >
     <input
-      aria-readonly={false}
       autoFocus={true}
       className="uui-input"
       maxLength={50}
