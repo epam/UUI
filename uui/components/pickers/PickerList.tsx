@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder } from '@epam/uui-core';
 import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
-import { IHasEditMode, SizeMod } from '../types';
+import { SizeMod } from '../types';
 import { Text } from '../typography';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
@@ -12,7 +12,7 @@ IHasPlaceholder &
 PickerModalOptions<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
-} & PickerListBaseProps<TItem, TId> & IHasEditMode;
+} & PickerListBaseProps<TItem, TId>;
 
 export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     const {

@@ -131,6 +131,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
         return (
             <ComponentEditorWrapper
+                key={ `${theme}${isSkin ? '-skin' : ''}` }
                 onRedirectBackToDocs={ () => this.handleChangeMode(TMode.doc) }
                 config={ this.config }
                 title={ this.title }

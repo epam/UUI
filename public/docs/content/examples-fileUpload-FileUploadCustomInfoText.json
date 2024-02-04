@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To render your custom content provide "
+      },
+      {
+        "text": "ReactNode",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " with your implementation of the "
+      },
+      {
+        "text": "infoText",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]

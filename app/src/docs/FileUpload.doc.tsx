@@ -9,6 +9,7 @@ export class FileUploadDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="file-upload-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="File Upload" path="./_examples/fileUpload/FileUpload.example.tsx" />
+                <DocExample title="With custom infoText" path="./_examples/fileUpload/FileUploadCustomInfoText.example.tsx" />
             </>
         );
     }

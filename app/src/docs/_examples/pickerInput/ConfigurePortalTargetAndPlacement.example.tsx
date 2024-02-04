@@ -27,7 +27,7 @@ export default function ConfigurePortalTargetAndPlacement() {
             <Panel background="surface-main">
                 <FlexRow alignItems="top" padding="18" vPadding="24">
                     <FlexCell grow={ 1 } ref={ portalTargetRef }>
-                        <Text fontSize="18" lineHeight="24" color="brand">
+                        <Text fontSize="18" lineHeight="24" color="primary">
                             Reporting to
                         </Text>
                         <PickerInput
