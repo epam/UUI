@@ -1,22 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuButton should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled root type-primary"
-  onClick={[Function]}
-  tabIndex={-1}
-  type="button"
-/>
-`;
-
-exports[`MainMenuButton should be rendered correctly 2`] = `
 <a
   aria-expanded={false}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root type-primary"
+  className="uui-button-box uui-enabled -clickable uui-anchor root type-primary"
+  href=""
   onClick={[Function]}
   rel="noopener noreferrer"
-  role="link"
+  role="menuitem"
   tabIndex={0}
   target="_blank"
 >
@@ -34,4 +26,12 @@ exports[`MainMenuButton should be rendered correctly 2`] = `
     />
   </div>
 </a>
+`;
+
+exports[`MainMenuButton should be rendered correctly with minimum props 1`] = `
+<span
+  className="uui-button-box uui-enabled root type-primary"
+  role="menuitem"
+  tabIndex={-1}
+/>
 `;

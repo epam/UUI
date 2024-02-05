@@ -14,7 +14,7 @@ exports[`docsGen:complexTypes should convert interface when it extends another i
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IInterface",
      "print": [
@@ -80,7 +80,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITestA",
      "print": [
@@ -233,7 +233,7 @@ exports[`docsGen:complexTypes should convert interface which extends other inter
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITestB",
      "print": [
@@ -294,7 +294,7 @@ exports[`docsGen:complexTypes should convert interface with generics 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "AcceptDropParams<TSrcData, TDstData>",
      "print": [
@@ -391,7 +391,7 @@ exports[`docsGen:complexTypes should convert object type with different types of
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TPrimitives",
      "print": [
@@ -596,7 +596,7 @@ exports[`docsGen:complexTypes should expand props if internal type is wrapped in
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TTest",
      "print": [
@@ -649,7 +649,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "IA<T>",
      "print": [
@@ -683,7 +683,7 @@ exports[`docsGen:complexTypes should include generic type argument names in full
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "TA<S>",
      "print": [
@@ -721,6 +721,60 @@ exports[`docsGen:complexTypes should include generic type argument names in full
 }
 `;
 
+exports[`docsGen:complexTypes should mark props as optional when type extends from Partial of another type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:ISecondType": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ISecondType",
+     "nameFull": "ISecondType"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ISecondType",
+     "print": [
+      "interface ISecondType extends Partial<IFirstType> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "test/test.tsx:IFirstType",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:IFirstType": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IFirstType",
+     "nameFull": "IFirstType"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
 exports[`docsGen:complexTypes should not expand props from external type 1`] = `
 {
  "docsGenTypes": {
@@ -735,7 +789,7 @@ exports[`docsGen:complexTypes should not expand props from external type 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 265,
     "typeValue": {
      "raw": "HTMLElement",
      "print": [

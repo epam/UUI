@@ -2,12 +2,13 @@
 
 exports[`TimePickerBody should be rendered with maximum props 1`] = `
 <div
-  className="uui-timepicker-container root"
+  className="root uui-timepicker-container"
 >
   <div
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -53,6 +54,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -66,6 +68,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -111,6 +114,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -138,7 +142,6 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-readonly={true}
         className="uui-input"
         onBlur={[Function]}
         onChange={[Function]}
@@ -165,12 +168,13 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
 
 exports[`TimePickerBody should be rendered with minimum props 1`] = `
 <div
-  className="uui-timepicker-container root"
+  className="root uui-timepicker-container"
 >
   <div
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -216,6 +220,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -229,6 +234,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     className="uui-timepicker-item"
   >
     <div
+      aria-label="Increment minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
       style={Object {}}
@@ -274,6 +280,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       </div>
     </div>
     <div
+      aria-label="Decrement minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
       style={Object {}}
@@ -301,7 +308,6 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-readonly={true}
         className="uui-input"
         onBlur={[Function]}
         onChange={[Function]}

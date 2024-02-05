@@ -31,10 +31,8 @@ describe('MainMenu', () => {
                 renderBurger={ () => <BurgerButton /> }
                 logoLink={ { pathname: '/' } }
                 appLogoUrl=""
-                logoWidth={ 120 }
                 isTransparent
                 serverBadge="Dev"
-                tooltipTechInfo="Tech Info"
             >
                 <MainMenuButton />
             </MainMenu>,

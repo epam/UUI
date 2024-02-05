@@ -1,14 +1,14 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    --uui-filters_toggler-bg: var(--uui-surface-main);
-    --uui-filters_toggler-bg-hover: var(--uui-surface-sunken);
+    --uui-filters_toggler-bg: var(--uui-control-bg);
+    --uui-filters_toggler-bg-hover: var(--uui-neutral-5);
     --uui-filters_toggler-border: var(--uui-control-border);
     --uui-filters_toggler-border-hover: var(--uui-control-border-hover);
     --uui-filters_toggler-icon: var(--uui-icon);
     --uui-filters_toggler-label: var(--uui-text-tertiary);
     --uui-filters_toggler-shadow: none;
-    --uui-filters_toggler-text: var(--uui-text-brand);
+    --uui-filters_toggler-text: var(--uui-text-primary);
 
     --uui-filters_toggler-border-radius: var(--uui-border-radius);
 

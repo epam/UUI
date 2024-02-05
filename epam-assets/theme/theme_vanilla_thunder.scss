@@ -2,6 +2,7 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 .uui-theme-vanilla_thunder {
     --uui-font: var(--font-inter);
+    --uui-font-mono: 'Roboto Mono', monospace;
 
     --blue-0: #F0F7FC;
     --blue-50: #E1F4FA;
@@ -150,7 +151,6 @@
     --uui-divider: var(--chromatic-200);
     --uui-divider-light: var(--chromatic-150);
 
-    --uui-text-brand: var(--chromatic-500);
     --uui-text-primary: var(--chromatic-500);
     --uui-text-secondary: var(--chromatic-300);
     --uui-text-tertiary: var(--chromatic-300);
@@ -160,6 +160,7 @@
     --uui-text-warning: var(--uui-warning-50);
     --uui-text-critical: var(--uui-critical-50);
     --uui-text-success: var(--uui-success-50);
+    --uui-text-bg-highlight: var(--uui-warning-10);
 
     /* not accepted part */
 
@@ -310,7 +311,7 @@
         --uui-filters_toggler-bg: var(--uui-surface-main);
         --uui-filters_toggler-bg-hover: var(--blue-0);
         --uui-filters_toggler-text: var(--uui-text-secondary);
-        --uui-filters_toggler-label: var(--uui-text-brand);
+        --uui-filters_toggler-label: var(--chromatic-500);
         --uui-filters_toggler-icon: var(--uui-icon);
         --uui-filters_toggler-shadow: var(--uui-shadow-level-1);
 
@@ -321,7 +322,7 @@
     /* MainMenu */
 
     .uui-main_menu {
-        --uui-main_menu-text: var(--uui-text-brand);
+        --uui-main_menu-text: var(--chromatic-500);
         --uui-main_menu-text-active: var(--uui-info-50);
         --uui-main_menu-bg: var(--uui-info-5);
         --uui-main_menu-hover: var(--uui-neutral-0);
@@ -334,14 +335,14 @@
         --uui-main_menu-search-text: var(--uui-text-primary);
         --uui-main_menu-search-icon: var(--uui-neutral-70);
 
-        --uui-main_menu-icon: var(--uui-text-brand);
-        --uui-main_menu-icon-hover: var(--uui-text-brand);
-        --uui-main_menu-icon-active: var(--uui-text-brand);
+        --uui-main_menu-icon: var(--chromatic-500);
+        --uui-main_menu-icon-hover: var(--chromatic-500);
+        --uui-main_menu-icon-active: var(--chromatic-500);
     }
 
     .uui-main_menu-dropdown {
-        --uui-main_menu-text: var(--uui-text-brand);
-        --uui-main_menu-text-active: var(--uui-text-brand);
+        --uui-main_menu-text: var(--chromatic-500);
+        --uui-main_menu-text-active: var(--chromatic-500);
         --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-70);
     }
 
@@ -350,14 +351,14 @@
     .uui-burger {
         --uui-burger_menu-bg: var(--uui-info-5);
         --uui-burger_menu-bg-hover: var(--uui-neutral-0);
-        --uui-burger_menu-caption: var(--uui-text-brand);
-        --uui-burger_menu-icon: var(--uui-text-brand);
+        --uui-burger_menu-caption: var(--chromatic-500);
+        --uui-burger_menu-icon: var(--chromatic-500);
         --uui-burger_menu-item: var(--uui-info-5);
     }
 
     /* BurgerButton */
     .uui-main_menu-burger-button {
-        --uui-burger_btn_caption: var(--uui-text-brand);
+        --uui-burger_btn_caption: var(--chromatic-500);
         --uui-burger_btn_caption-hover: var(--uui-primary-50);
         --uui-burger_btn_caption-active: var(--uui-primary-50);
         --uui-burger_btn-border: var(--uui-neutral-40);
@@ -366,15 +367,15 @@
     /* BurgerSearch */
 
     .uui-main_menu-burger-search {
-        --uui-burger_search: var(--uui-text-brand);
+        --uui-burger_search: var(--chromatic-500);
         --uui-burger_search-fill: var(--uui-neutral-70);
         --uui-burger_search-bg: var(--uui-neutral-40);
         --uui-burger_search-placeholder: var(--uui-text-tertiary);
     }
 
     .uui-main_menu-dropdown {
-        --uui-main_menu-text: var(--uui-text-brand);
-        --uui-main_menu-text-active: var(--uui-text-brand);
+        --uui-main_menu-text: var(--chromatic-500);
+        --uui-main_menu-text-active: var(--chromatic-500);
 
         --uui-main_menu-dropdown-bg: var(--chromatic-0);
         --uui-main_menu-dropdown-bg-hover: var(--chromatic-150);

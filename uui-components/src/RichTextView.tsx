@@ -4,6 +4,7 @@ import {
 } from '@epam/uui-core';
 
 export interface RichTextViewProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    /** HTML content to be rendered */
     htmlContent?: any;
 }
 

@@ -74,7 +74,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const toggleDropdownOpening = (newOpened: boolean) => {
         if (isMobile()) {
-            document.body.style.overflow = newOpened ? 'hidden' : '';
+            const modals = context.uuiModals.getOperations();
+            document.body.style.overflow = !newOpened && modals.length === 0 ? '' : 'hidden';
         }
 
         setDataSourceState({
@@ -281,8 +282,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             maxItems,
             minCharsToSearch,
             inputCx,
-            validationMessage,
-            validationProps,
             disableClear: propDisableClear,
             icon,
             iconPosition,
@@ -302,8 +301,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             maxItems,
             minCharsToSearch,
             isInvalid,
-            validationProps,
-            validationMessage,
             isReadonly,
             isDisabled,
             autoFocus,

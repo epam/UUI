@@ -15,7 +15,7 @@ interface ApiCall extends ApiCallInfo {
 
 export class ApiCallError extends Error {
     constructor(public call: ApiCall) {
-        super('ApiContext: XHR call failed');
+        super('ApiContext: API call failed');
     }
 }
 
@@ -65,6 +65,12 @@ export interface ApiContextProps {
      * @default ''
      * */
     apiServerUrl?: string;
+
+    /**
+     * Allows to replace fetch implementation, for adding auth headers, mocking for testing, etc.
+     * By default, standard fetch will be used.
+     */
+    fetch?: typeof fetch;
 }
 
 export class ApiContext extends BaseContext implements IApiContext {
@@ -160,7 +166,8 @@ export class ApiContext extends BaseContext implements IApiContext {
         call.attemptsCount += 1;
         call.status = 'running';
         call.startedAt = new Date();
-        fetch(this.props.apiServerUrl + call.url, {
+        const fetcher = this.props.fetch || fetch;
+        fetcher(this.props.apiServerUrl + call.url, {
             headers,
             method: call.method,
             body: call.requestData && JSON.stringify(call.requestData),
@@ -203,8 +210,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return this.resolveCall(call, null);
             }
 
-            response
-                .json()
+            call.options.parseResponse(response)
                 .then((result) => {
                     call.responseData = result;
                     this.resolveCall(call, result);
@@ -241,9 +247,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             /* Authentication cookies invalidated */ this.handleApiError(call, 'auth-lost');
         } else {
             // Try to parse JSON in response, if there are none - just ignore
-            response
-                .json()
-                .catch(() => null)
+            call.options.parseResponse(response)
                 .then((result) => {
                     call.responseData = result;
                     this.handleApiError(call);
@@ -273,7 +277,8 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     private recoverConnection() {
         const retry = () => setTimeout(() => this.recoverConnection(), 2000);
-        fetch(this.props.apiPingPath, {
+        const fetcher = this.props.fetch || fetch;
+        fetcher(this.props.apiPingPath, {
             method: 'GET',
             credentials: 'include',
         })
@@ -296,13 +301,21 @@ export class ApiContext extends BaseContext implements IApiContext {
         }
     }
 
+    private defaultParseResponse = (res: Response) => {
+        return res.json();
+    };
+
     public processRequest: IProcessRequest = (url, method, data, options) => {
         let name = url;
         if (data && data.operationName) {
             name += ' ' + data.operationName;
         }
 
-        options = { errorHandling: 'page', ...options };
+        options = {
+            errorHandling: 'page',
+            parseResponse: this.defaultParseResponse,
+            ...options,
+        };
 
         return new Promise((resolve, reject) => {
             const call: ApiCall = {
@@ -361,12 +374,18 @@ export class ApiContext extends BaseContext implements IApiContext {
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
+                let response;
+                try {
+                    response = JSON.parse(xhr.response);
+                } catch {
+                    reject({ error: { isError: true, message: 'File upload error' } });
+                }
                 if (!new RegExp('^2[0-9][0-9]').test(xhr.status.toString())) {
-                    reject({ error: { isError: true, message: xhr.response && JSON.parse(xhr.response)?.error?.message } });
+                    reject({ error: { isError: true, message: response?.error?.message } });
                 }
 
                 removeAllListeners();
-                resolve((xhr.response && { ...JSON.parse(xhr.response) }) || null);
+                resolve(response);
             };
             xhr.send(formData);
         });

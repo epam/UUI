@@ -57,7 +57,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -111,7 +111,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       <button
         aria-expanded={false}
         aria-haspopup={false}
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary uui-size-30"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-30"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -171,18 +171,16 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               Displayed in table
             </div>
-            <button
-              className="container uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
-              onClick={[Function]}
+            <span
+              className="uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
               tabIndex={-1}
-              type="button"
             >
               <div
                 className="uui-caption"
               >
                 2
               </div>
-            </button>
+            </span>
           </div>
           <div
             className="uui-flex-row root size-30 groupItems container align-items-center"
@@ -256,7 +254,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 >
                   <button
                     aria-disabled={false}
-                    className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+                    className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -336,7 +334,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 >
                   <button
                     aria-disabled={false}
-                    className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+                    className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -395,7 +393,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       }
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
+        className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -418,7 +416,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -431,7 +429,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </button>
       <button
         aria-disabled={false}
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -504,7 +502,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       >
         <button
           aria-label="Close modal"
-          className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -558,7 +556,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       <button
         aria-expanded={false}
         aria-haspopup={false}
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary uui-size-30"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-30"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -618,18 +616,16 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
             >
               Hidden in table
             </div>
-            <button
-              className="container uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
-              onClick={[Function]}
+            <span
+              className="uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
               tabIndex={-1}
-              type="button"
             >
               <div
                 className="uui-caption"
               >
                 2
               </div>
-            </button>
+            </span>
           </div>
           <div
             className="uui-flex-row root size-30 groupItems container align-items-center"
@@ -694,7 +690,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 >
                   <button
                     aria-disabled={false}
-                    className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+                    className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -765,7 +761,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 >
                   <button
                     aria-disabled={false}
-                    className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+                    className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -824,7 +820,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       }
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
+        className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -847,7 +843,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         className="flexSpacer"
       />
       <button
-        className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-none uui-color-secondary uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -860,8 +856,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       </button>
       <button
         aria-disabled={true}
-        className="container uui-button-box uui-disabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
-        onClick={[Function]}
+        className="uui-button-box uui-disabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         tabIndex={-1}
         type="button"
       >

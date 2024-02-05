@@ -8,7 +8,7 @@ import css from './DataPickerRow.module.scss';
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
     renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
     padding?: '12' | '24';
-    size?: 'none' | '24' | '30' | '36' | '42' | '48' | '60';
+    size?: '24' | '30' | '36' | '42' | '48' | '60';
     alignActions?: 'top' | 'center';
 }
 

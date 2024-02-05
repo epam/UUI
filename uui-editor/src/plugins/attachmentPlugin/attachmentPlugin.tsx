@@ -2,8 +2,8 @@ import { AttachmentBlock } from './AttachmentBlock';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { createPluginFactory, insertEmptyElement } from '@udecode/plate-common';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
-import { AttachFileButton } from "./AttachFileButton";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { AttachFileButton } from './AttachFileButton';
 
 export const ATTACHMENT_PLUGIN_KEY = 'attachment';
 export const ATTACHMENT_PLUGIN_TYPE = 'attachment';

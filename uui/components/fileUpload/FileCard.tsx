@@ -4,20 +4,20 @@ import { i18n } from '../../i18n';
 import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
 import { SvgCircleProgress } from './SvgCircleProgress';
 import { IconContainer } from '@epam/uui-components';
-import { FlexCell, FlexRow } from '../../components/layout';
-import { IconButton } from '../../components/buttons';
-import { Text } from '../../components/typography';
-import { Tooltip } from '../../components/overlays';
+import { FlexCell, FlexRow } from '../layout';
+import { IconButton } from '../buttons';
+import { Text } from '../typography';
+import { Tooltip } from '../overlays';
 import { fileIcons } from '../../icons/icons';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-10.svg';
 
 export interface FileCardItem extends Partial<File & FileUploadResponse> {
-    /*
-    * Defines upload progress. It should be number value in range from 0 to 100', where 100 means that file fully loaded.
+    /**
+    * Defines upload progress. It should be numbered value in range from 0 to 100', where 100 means that file fully loaded.
     */
     progress?: number;
-    /*
+    /**
     * Callback to handle aborted event which fired when a request has been aborted.
     * See {@link https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort_event} for details
     */
@@ -25,13 +25,12 @@ export interface FileCardItem extends Partial<File & FileUploadResponse> {
 }
 
 export interface FileCardProps extends IClickable, IHasCX {
-    /*
-    * Defines file card item
-    */
+    /** Defines file card item */
     file: FileCardItem;
-    /*
-    * Defines component width.
-    */
+    /**
+     * Defines card width
+     * @default '100%'
+     */
     width?: number;
 }
 

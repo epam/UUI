@@ -7,7 +7,7 @@ import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/
 export default function TypesExample() {
     return (
         <>
-            <Panel background="surface-main" style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
+            <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow spacing="18" key="01">
                     <Badge icon={ mediaIcon } color="warning" fill="outline" caption="Video" />
                     <Text fontSize="14">Use as an attribute or label</Text>
@@ -21,7 +21,7 @@ export default function TypesExample() {
                     <Text fontSize="14">Status with indicator</Text>
                 </FlexRow>
             </Panel>
-            <Panel background="surface-main" style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
+            <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow spacing="18" key="04">
                     <Badge count={ 25 } color="critical" fill="solid" caption="Rejected" onClick={ () => {} } />
                     <Text fontSize="14">Quick filters selection with informer</Text>
@@ -33,7 +33,6 @@ export default function TypesExample() {
                             <Badge
                                 { ...props }
                                 dropdownIcon={ navigationDownIcon }
-                                dropdownIconPosition="right"
                                 color="neutral"
                                 fill="outline"
                                 caption="In Progress"

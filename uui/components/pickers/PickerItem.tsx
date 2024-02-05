@@ -11,10 +11,21 @@ import { getHighlightedSearchMatches } from './highlight';
 const defaultSize = '36';
 
 export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {
+    /** Path to the user avatar.
+     * If omitted, no avatar will be rendered.
+     * * */
     avatarUrl?: string;
+    /** Icon to render in picker row.
+     * If omitted, nothing will be rendered.
+     * */
     icon?: Icon;
+    /** Row title */
     title?: string;
+    /** Row subtitle. Will be rendered as a second line, below the title */
     subtitle?: string;
+    /** DataSourceState of the Picker.
+     * Usually provided via renderItem callback params
+     * */
     dataSourceState?: DataSourceState;
     /**
      * Enables highlighting of the items' text with search-matching results.
@@ -35,7 +46,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
         const {
             size, avatarUrl, isLoading, isDisabled, icon, highlightSearchMatches, cx,
         } = this.props;
-        const itemSize = size && size !== 'none' ? size : defaultSize;
+        const itemSize = size || defaultSize;
         const isMultiline = !!(this.props.title && this.props.subtitle);
 
         const { search } = this.props.dataSourceState ?? {};

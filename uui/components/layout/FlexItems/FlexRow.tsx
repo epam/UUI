@@ -3,45 +3,25 @@ import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import css from './FlexRow.module.scss';
 
 export type RowMods = {
-    /*
-    * Defines row size.
-    */
+    /** Defines row size */
     size?: null | '24' | '30' | '36' | '42' | '48';
-    /*
-    * Defines row border bottom.
-    */
+    /** Pass true, to enable row bottom border */
     borderBottom?: boolean;
-    /*
-    * Defines row column gap.
-    */
+    /** Defines row column gap */
     columnGap?: number | '6' | '12' | '18' | '24' | '36';
-    /*
-    * Defines row margin.
-    */
+    /** Defines row margin */
     margin?: '12' | '24';
-    /*
-    * Defines horizontal row padding.
-    */
+    /** Defines horizontal row padding */
     padding?: '6' | '12' | '18' | '24';
-    /*
-    * Defines row gap.
-    */
+    /** Defines row gap */
     rowGap?: number | '6' | '12' | '18' | '24' | '36';
-    /*
-    * Defines row spacing.
-    */
+    /** Defines row spacing */
     spacing?: '6' | '12' | '18';
-    /*
-    * Pass true to show a top shadow.
-    */
+    /** Pass true, to show a top shadow */
     topShadow?: boolean;
-    /*
-    * Defines vertical row padding.
-    */
+    /** Defines vertical row padding */
     vPadding?: '12' | '18' | '24' | '36' | '48';
-    /*
-    * Defines row background.
-    */
+    /** Defines row background */
     background?: 'surface-main';
 };
 

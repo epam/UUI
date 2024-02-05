@@ -10,7 +10,7 @@ import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 export const noteTypes = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 

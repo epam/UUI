@@ -5,7 +5,7 @@ Array [
   <button
     aria-expanded={true}
     aria-haspopup={true}
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-solid uui-color-primary uui-size-36"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -74,8 +74,7 @@ Array [
           tabIndex={0}
         >
           <button
-            className="container uui-button-box uui-enabled uui-icon_button uui-color-info root root icon iconBefore"
-            onClick={[Function]}
+            className="uui-button-box uui-enabled container uui-icon_button uui-color-info root root icon iconBefore"
             tabIndex={-1}
             type="button"
           >
@@ -108,8 +107,7 @@ Array [
           tabIndex={0}
         >
           <button
-            className="container uui-button-box uui-enabled uui-icon_button uui-color-neutral root root icon iconBefore"
-            onClick={[Function]}
+            className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root root icon iconBefore"
             tabIndex={-1}
             type="button"
           >

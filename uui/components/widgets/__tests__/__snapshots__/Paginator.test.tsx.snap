@@ -9,8 +9,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 >
   <button
     aria-disabled={true}
-    className="container uui-button-box uui-disabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-24 navigation-size-24"
-    onClick={[Function]}
+    className="uui-button-box uui-disabled container root uui-button uui-fill-outline uui-color-secondary uui-size-24 navigation-size-24"
     tabIndex={-1}
     type="button"
   >
@@ -24,7 +23,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -36,7 +35,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -48,7 +47,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -60,7 +59,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -72,7 +71,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -84,8 +83,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled root uui-button uui-fill-ghost uui-color-secondary uui-size-24 size-24 spacer"
-    onClick={[Function]}
+    className="uui-button-box uui-enabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 size-24 spacer"
     tabIndex={-1}
     type="button"
   >
@@ -96,7 +94,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -109,7 +107,7 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-secondary uui-size-24 navigation-size-24"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-24 navigation-size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"

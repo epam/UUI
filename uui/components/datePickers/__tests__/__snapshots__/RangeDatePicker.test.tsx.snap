@@ -22,7 +22,6 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
     <input
       aria-disabled={true}
       aria-invalid={true}
-      aria-readonly={true}
       className="uui-input"
       disabled={true}
       onBlur={[Function]}
@@ -47,7 +46,6 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
     <input
       aria-disabled={true}
       aria-invalid={true}
-      aria-readonly={true}
       className="uui-input"
       disabled={true}
       onBlur={[Function]}

@@ -1,6 +1,6 @@
-import { ICanBeInvalid } from '../../types/props';
+import { ValidationState } from '../lenses';
 
-export function mergeValidation(clientValidation: ICanBeInvalid, serverValidation: ICanBeInvalid) {
+export function mergeValidation(clientValidation: ValidationState, serverValidation: ValidationState) {
     const result = serverValidation.isInvalid ? serverValidation : clientValidation;
 
     if (clientValidation.isInvalid) mergeValidationProps(clientValidation.validationProps, result);
@@ -8,7 +8,7 @@ export function mergeValidation(clientValidation: ICanBeInvalid, serverValidatio
     return result;
 }
 
-function mergeValidationProps(validationProps: ICanBeInvalid['validationProps'], resultPart: ICanBeInvalid) {
+function mergeValidationProps(validationProps: ValidationState['validationProps'], resultPart: ValidationState) {
     if (!validationProps) return;
     if (!resultPart.validationProps) resultPart.validationProps = {};
 
