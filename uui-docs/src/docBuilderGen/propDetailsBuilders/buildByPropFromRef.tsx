@@ -12,7 +12,7 @@ import {
     IHasCX,
     IHasForwardedRef,
     IHasPlaceholder,
-    IHasRawProps,
+    IHasRawProps, IHasValidationMessage,
     TextInputCoreProps, UuiContexts,
 } from '@epam/uui-core';
 import { pickerBaseOptionsDoc } from '../../commonDocs';
@@ -23,7 +23,7 @@ import {
     getReactRefExamples,
     getTextExamplesNoUndefined,
 } from './shared/reusableExamples';
-import { iCanRedirectDoc, iEditable, iHasLabelDoc } from '../../commonDocs';
+import { iCanRedirectDoc, IControlled, iHasLabelDoc } from '../../commonDocs';
 
 const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx: Pick<UuiContexts, 'uuiNotifications'> }) => DocBuilder<any> } = {
     '@epam/uui-components:ButtonProps': () => {
@@ -103,21 +103,10 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx:
             });
     },
     '@epam/uui-core:ICanBeInvalid': () => new DocBuilder<ICanBeInvalid>({ name: 'isInvalid' })
-        .prop('isInvalid', { examples: [true] })
-        .prop('validationProps', {
-            editorType: 'JsonEditor',
-            examples: [
-                {
-                    name: 'Inner props',
-                    value: {
-                        prop_1: { isInvalid: true, validationMessage: 'Msg' },
-                        prop_2: { isInvalid: false },
-                    },
-                },
-            ],
-        })
+        .prop('isInvalid', { examples: [true] }),
+    '@epam/uui-core:IHasValidationMessage': () => new DocBuilder<IHasValidationMessage>({ name: 'IHasValidationMessage' })
         .prop('validationMessage', {
-            examples: getReactNodeExamples('Err msg'),
+            examples: getReactNodeExamples('Error message'),
         }),
     '@epam/uui-core:IAnalyticableClick': () => new DocBuilder<IAnalyticableClick>({ name: '' })
         .prop('clickAnalyticsEvent', {
@@ -137,8 +126,8 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx:
         }),
     '@epam/uui-core:ICanRedirect': () => iCanRedirectDoc,
     '@epam/uui-core:PickerBaseOptions': () => pickerBaseOptionsDoc,
-    '@epam/uui-core:IEditable': () => {
-        return new DocBuilder<any>({ name: '' }).implements([iEditable]);
+    '@epam/uui-core:IControlled': () => {
+        return new DocBuilder<any>({ name: '' }).implements([IControlled]);
     },
 };
 
