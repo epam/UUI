@@ -1,3 +1,25 @@
+import { IBaseMap } from '../../types';
+
+const getKeys = (a: Object | Array<any> | IBaseMap<string, any>) => {
+    if (Symbol.iterator in a && typeof a[Symbol.iterator] === 'function') {
+        const keys = [];
+        for (const [key] of a) {
+            keys.push(key);
+        }
+        return keys;
+    }
+
+    return Object.keys(a);
+};
+
+const getValue = (a: Object | Array<any> | IBaseMap<string, any>, key: keyof Object) => {
+    if (('get' in a && typeof a.get === 'function')) {
+        return a.get(key);
+    }
+
+    return a[key];
+};
+
 /**
  * Determines if useForm should create a new undo checkpoint.
  * c is the new change, a and b are previous checkpoints.
@@ -23,8 +45,8 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
         a = a || {};
         b = b || {};
         c = c || {};
-        const keys: any[] = Object.keys({ ...a, ...b, ...c });
-        return keys.some((key) => shouldCreateUndoCheckpoint(a[key], b[key], c[key]));
+        const keys: any[] = Array.from(new Set([...getKeys(a), ...getKeys(b), ...getKeys(c)]));
+        return keys.some((key) => shouldCreateUndoCheckpoint(getValue(a, key), getValue(b, key), getValue(c, key)));
     }
 
     // The field is scalar (null, undefined, boolean, string, number, NaN)
