@@ -28,6 +28,7 @@
 * [RadiInput]: added native HTML `name` attribute for the input.
 * [RadioGroup]: added native HTML `name` attribute for each group member.
 * [Tooltip]: fixed vertical paddings according to the design.
+* [SearchInput]: fixed onCancel prop. Now component can use provided callback, not only default implementation
 
 # 5.5.1 - 01.02.2024
 
