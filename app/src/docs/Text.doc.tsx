@@ -32,6 +32,7 @@ export class TextDoc extends BaseDocsBlock {
                 editorType: getColorPickerComponent({
                     ...COLOR_MAP,
                     disabled: 'var(--uui-text-disabled)',
+                    tertiary: 'var(--uui-text-tertiary)',
                 }),
             });
         },
