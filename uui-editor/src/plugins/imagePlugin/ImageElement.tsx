@@ -12,8 +12,7 @@ import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import cx from 'classnames';
 import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
-import { IImageElement, PlateImgAlign } from '../../types';
-import { useResizableStore } from '@udecode/plate-resizable';
+import { IImageElement, PlateImgAlign } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
 
 interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
@@ -37,15 +36,11 @@ export function ImageElement({
     useMediaState();
 
     const imageRef = useRef(null);
-    const [currentWidth, setWidth] = useResizableStore().use.width();
 
     const isCaptionEnabled = useMemo(() => {
-        return typeof currentWidth === 'number' && currentWidth >= MIN_CAPTION_WIDTH;
-    }, [currentWidth]);
-
-    const imageUpdated = () => {
-        setWidth(imageRef.current.width);
-    };
+        const imageWidth = imageRef.current?.width;
+        return typeof imageWidth === 'number' && imageWidth >= MIN_CAPTION_WIDTH;
+    }, [imageRef.current?.width]);
 
     const aligns = [
         align === 'center' && css.alignCenter,
@@ -83,7 +78,6 @@ export function ImageElement({
                             nodeProps?.className,
                         ) }
                         ref={ imageRef }
-                        onLoad={ imageUpdated }
                     />
                     <ResizeHandle
                         options={ { direction: 'right' } }
@@ -92,7 +86,7 @@ export function ImageElement({
                 </Resizable>
 
                 {isCaptionEnabled && (
-                    <Caption style={ { width: currentWidth } } className={ cx(css.imageCaption, ...aligns) }>
+                    <Caption style={ { width: imageRef.current?.width } } className={ cx(css.imageCaption, ...aligns) }>
                         <CaptionTextarea
                             className={ cx(css.caption) }
                             placeholder="Write a caption..."

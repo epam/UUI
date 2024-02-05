@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as uui from '@epam/uui';
 
-type TRenderTogglerParam = Parameters<uui.CompletePickerInputProps<any, any>['renderToggler']>[0];
+type TRenderTogglerParam = Parameters<uui.PickerInputProps<any, any>['renderToggler']>[0];
 
 export const renderTogglerExamples = [
     {

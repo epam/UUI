@@ -1,32 +1,84 @@
-# 5.x.x - xx.xx.xxxx
+# 5.x.x - xx.xx.2024
 
 **What's New**
-* Added semantic values to color props 'Loveship' & 'Promo' skins
-* [NumericInput]: size `48` is deprecated and will be removed in future release. Please, use size `42` instead.
+* [Badge]: can become a `span` tag if the `onClick` is not passed to the props, consider this point when writing tests.
+* [Tag]: can become a `span` tag if the `onClick` is not passed to the props, consider this point when writing tests.
+* [PickerInput]: in `selectionMode: multi` `Tag` rendered as a `span`, consider this point when writing tests.
+* prop `captionCX` is deprecated for components `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class.
+* [Breaking changes]:
+    * [Button]: removed `count`, `dropdownIconPosition` props.
+    * [TabButton]: removed `dropdownIconPosition` prop.
+    * [VerticalTabButton]: removed `dropdownIconPosition` prop.
+    * [LinkButton]: removed `onClear`, `clearIcon`, `count`, `dropdownIconPosition` props.
+    * [MainMenuButton]: removed `onClear`, `clearIcon`, `isDisabled`, `dropdownIconPosition` props.
+    * [Badge]: removed `dropdownIconPosition` prop.
+    * [Tag]: removed `dropdownIconPosition` prop.
+    * [Text]: removed color `brand`, and removed `--uui-color-brand` token from themes, use `--uui-color-primary` instead.
+* Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
+* [TimePicker]: added ability to parse many variants of time as string. Examples: `1.23pm` -> `01:23 PM`, `12/2` -> `12:02 AM`, if format equals 24: `.25` -> `00:25`, `2350` -> `23:50` etc.
+* [ApiContext]: added `parseResponse` callback to the `ApiCallOptions`. It can be used to define custom way of how to parse the response of the request.
+* [Text]: added `tertiary` color.
+* [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`, see more in Flexbox Guide(https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+* [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
+
+ 
+**What's Fixed**
+* [RadiInput]: added native HTML `name` attribute for the input.
+* [RadioGroup]: added native HTML `name` attribute for each group member.
+* [Tooltip]: fixed vertical paddings according to the design.
+
+# 5.5.1 - 01.02.2024
+
+**What's New**
+* [DataTable]: added `renderTooltip` prop to `DataColumnProps`, to be able to customize or disable table header tooltip
+
+**What's Fixed**
+* [PickerInput]: fixed clear selection for single mode picker with lazy datasource
+
+# 5.5.0 - 18.01.2024
+
+**What's New**
+* Added support of React 18 with concurrent rendering mode(i.e. react mounting via `createRoot`).
+* Added semantic colors for components in 'Loveship' & 'Promo' skins. They can duplicate skin specific colors, so you can use both on your choose.
 * [Pickers]: turn on flatten search results by default for all Pickers. Now for pickers with tree structure and in search mode, results will be shown as a flat tree, each item will have a subtitle with parents path.
-* [RadioInput]: in Loveship skin removed property 'theme'.
-* [DataTable]: Focus manager.
-  * Added ability to change focus on different cells using a keyboard in editable tables.
-  * See the example [here](https://uui.epam.com/demo?id=editableTable).
-* [Badge]: in Loveship property `shape: square` was deprecated and will be removed in future release. Please pay attention to the `sguare` value set by default now, and we recommend changing it to `round` in this case.
+* [DataTable]: Introduced focus manager api.
+  Added ability to change focus on different cells using a keyboard in editable tables.
+  See the example [here](https://uui.epam.com/demo?id=editableTable).
+* [RadioInput]: removed 'theme' prop in loveship skin.
+* [NumericInput]: size `48` is deprecated and will be removed in future releases. Please, use size `42` instead.
+* [Badge]: in Loveship property `shape: square` was deprecated and will be removed in future releases. Please pay attention that `sguare` is default now. Use Tag component instead if you need 'square' appearance or use "round" value.
 * [Badge]: in Loveship `size 12` is deprecated and will be removed in future release. Please, use size `18` instead.
-* [Dropdown]: improve close on click outside dropdown logic
-* [FilteredTable]: in range numeric filter set `isInvalid = true` if value `from` bigger than value `to`.
+* [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
+* [Dropdown]: improve close on click outside dropdown logic.
+* [FiltersPanel]: added `maxBodyHeight` prop for picker filters.
+* [DataTable]: added `allowResizing` field for `DataColumnProps`, to be able to configure resizing for each column
+* [ApiContext]: added possibility to provide your own fetcher for requests
+* [PickerInput]: added `id` prop to add HTML ID attribute for the input.
+* [DatePicker]: added `id` prop to add HTML ID attribute for the toggler input.
+* [RangeDatePicker]: added `id` prop to add HTML ID attribute for the first input into toggler.
 * [CountIndicator]: set color `info` by default.
-* [FiltersPanel]: added 'maxBodyHeight' prop for picker filters
-* [DataTable]: added allowResizing field in DataColumnProps, to be able to configure resizing for each column
+* [FilterPanel]: in range numeric filter set mark 'from' input as invalid in case if value `from` bigger than value `to`.
+* [Modals]: fixed `overflow: hidden` body style removing after closing first modals in case when multiple modals was opened. Now this style will be removed only when the last modal in stack was closed. 
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
-* [NotificationCard]: color `gray60` in promo, and `night600` in loveship are deprecated and will be removed in future release.
 * [VirtualList]: fixed `onScroll` prop typing
 * [PickerInput]: fixed closing picker body by checking some item in 'Show only selected' mode
 * [ErrorHandling]: fixed notification errors handling for recovery status. Now notification will be shown only after recovery will be completed and request failed.
 * [PresetPanel]: fixed the problem of creating duplicates of the new preset when clicking the accept button quickly.
-* [CheckboxGroup]: added property `size` to set it for all group components. Shared checkbox props into CheckboxGroup, now you can use them for group components. 
-* [PickerInput]: added an HTML ID attribute for the input.
-* [DatePicker]: added an HTML ID attribute for the toggler input.
-* [RangeDatePicker]: added an HTML ID attribute for the first input into toggler.
+* [CheckboxGroup]: added property `size` to set it for all group components. Added possibility to provide CheckboxProps for each item of group.
+* [ApiContext]: file upload now handle JSON.parse errors.
+* [useUUIError]: fixed subscribing for the contexts with React strict mode
+* [NumericInput]: removed 'none' from size type. 
+* [DataPickerRow]: removed 'none' from size type. 
+* [RangeDatePicker]: fixed mounth/year selection blocker styles
+* [NumericInput]: fixed placeholder appearing after removing value, if props.min > 0.
+* [PickerInput]: clip selected value with ellipsis while overflow.
+* [StatusIndicator]: small visual tweaks according to the design.
+* [Tag]: small visual tweaks according to the design.
+* [Badge]: small visual tweaks according to the design.
+* [RTE]: extend clickable aria for the full height of editor.
+* [RTE]: improve the link replacement logic
 
 # 5.4.3 - 19.12.2023
 

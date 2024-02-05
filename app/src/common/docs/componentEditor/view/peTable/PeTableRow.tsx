@@ -21,6 +21,7 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
             <FlexCell key="default" width={ 110 }>
                 {!prop.isRequired && (
                     <RadioInput
+                        name={ prop.name }
                         label={ isNone ? 'none' : String(prop.defaultValue) }
                         size="18"
                         value={ isNothingSelected }

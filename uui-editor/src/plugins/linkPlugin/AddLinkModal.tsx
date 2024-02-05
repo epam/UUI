@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ELEMENT_LINK, TLinkElement, unwrapLink, upsertLink } from '@udecode/plate-link';
-import { PlateEditor, getPluginType, getSelectionText, findNode, getEditorString } from '@udecode/plate-common';
+import { PlateEditor, getPluginType, findNode, getAboveNode } from '@udecode/plate-common';
 import { IModal } from '@epam/uui-core';
 import { FlexRow, FlexSpacer, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
 
@@ -12,7 +12,29 @@ interface AddLinkModalProps extends IModal<any> {
 
 export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
     const { success, abort } = modalProps;
-    const [link, setLink] = useState('');
+    const [link, setLink] = useState(() => {
+        const type = getPluginType(editor, ELEMENT_LINK);
+        const linkNode = getAboveNode(editor, {
+            match: { type },
+        });
+        if (linkNode) {
+            return linkNode[0].url as string;
+        }
+
+        if (!editor.selection) {
+            return '';
+        }
+
+        // selection contains at one edge edge or between the edges
+        const linkEntry = findNode<TLinkElement>(editor, {
+            at: editor.selection,
+            match: { type: getPluginType(editor, ELEMENT_LINK) },
+        });
+        if (linkEntry) {
+            return linkEntry[0].url;
+        }
+        return '';
+    });
 
     return (
         <ModalBlocker { ...modalProps }>
@@ -44,17 +66,7 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
                         color="accent"
                         caption="Save"
                         onClick={ () => {
-                            const entry = findNode<TLinkElement>(editor, {
-                                match: { type: getPluginType(editor, ELEMENT_LINK) },
-                            });
-
-                            let text = getSelectionText(editor);
-                            if (entry) {
-                                // edit
-                                const [, path] = entry;
-                                text = getEditorString(editor, path);
-                            }
-                            upsertLink(editor, { url: link, text, target: '_blank' });
+                            upsertLink(editor, { url: link, target: '_blank' });
                             success(true);
                         } }
                     />

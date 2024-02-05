@@ -29,14 +29,9 @@ export function ColorRectangle(props: { color: string, hex: string }) {
     return (
         <Panel style={ style } cx={ [css.root] } shadow={ true }>
             &nbsp;
-            { tooltipContent && (
-                <Tooltip content={ tooltipContent } closeOnMouseLeave="boundary" color="neutral">
-                    {tag}
-                </Tooltip>
-            )}
-            {
-                !tooltipContent && tag
-            }
+            <Tooltip content={ tooltipContent } closeOnMouseLeave="boundary" color="neutral">
+                {tag}
+            </Tooltip>
         </Panel>
     );
 }

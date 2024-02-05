@@ -6,8 +6,11 @@ import { ModalBlocker, ModalWindow, ModalHeader, ModalFooter } from './Modals';
 import { i18n } from '../../i18n';
 
 export interface ConfirmationModalWindowProps extends IModal<any> {
+    /** Confirmation modal title */
     caption: any;
+    /** Confirmation modal content */
     bodyContent?: any;
+    /** Pass true, to hide cancel button */
     hideCancelButton?: boolean;
 }
 

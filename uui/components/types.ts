@@ -1,7 +1,7 @@
 /**
  * Defines the size of a control.
  */
-export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
+export type ControlSize = '24' | '30' | '36' | '42' | '48';
 
 export interface SizeMod {
     /**

@@ -1,27 +1,6 @@
 @use '~@epam/promo/assets/styles/index' as *;
 @use '../contrast' as *;
 
-@each $name, $color in $epam-basic-color-names {
-    .basic-color-#{$name} {
-        background-color: $color;
-        color: contrast($color, $gray90, #FFFFFF);
-    }
-}
-
-@each $name, $color in $epam-grayscale-color-names {
-    .grayscale-color-#{$name} {
-        background-color: $color;
-        color: contrast($color, $gray70, #FFFFFF);
-    }
-}
-
-@each $name, $color in $epam-additional-color-names {
-    .additional-color-#{$name} {
-        background-color: $color;
-        color: contrast($color, $gray90, #FFFFFF);
-    }
-}
-
 .title {
     font-family: $font-museo-sans;
     color: $gray80;

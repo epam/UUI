@@ -2,7 +2,9 @@ import css from './text-layout.module.scss';
 import { ControlSize } from '../components/types';
 
 export interface TextSettings {
+    /** Defines text line-height */
     lineHeight?: '12' | '18' | '24' | '30';
+    /** Defines text font-size */
     fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
 }
 
@@ -16,7 +18,7 @@ const defaultTextSettings = {
     60: { lineHeight: 30, fontSize: 24 },
 };
 
-export function getTextClasses(props: TextSettings & { size: '18' | ControlSize | '60' }, border: boolean) {
+export function getTextClasses(props: TextSettings & { size: 'none' | '18' | ControlSize | '60' }, border: boolean) {
     if (props.size === 'none') {
         return [css['line-height-' + props.lineHeight], css['font-size-' + props.fontSize]];
     }

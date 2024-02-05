@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimePickerBody } from '../../TimePickerBody';
+import { TimePickerBody } from '../../timePicker/TimePickerBody';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import MockDate from 'mockdate';
 import { systemIcons } from '../../../../icons/icons';

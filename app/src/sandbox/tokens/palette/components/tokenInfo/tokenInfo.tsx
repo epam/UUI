@@ -7,8 +7,8 @@ import { AliasChain } from './aliasChain';
 
 export function TokenInfo(props: { token: IThemeVarUI }) {
     const { token } = props;
-    const expected = token.value.expected;
-    const actual = token.value.actual;
+    const expected = token.value.figma;
+    const actual = token.value.browser;
     const hasErrors = token.value.errors.length > 0;
 
     const iconNode = useMemo(() => {

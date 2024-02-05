@@ -11,7 +11,7 @@ export function getIconClass(props: ButtonProps) {
     }
 
     if (props.isDropdown) {
-        classList[props.dropdownIconPosition === 'left' ? 'has-left-icon' : 'has-right-icon'] = true;
+        classList['has-right-icon'] = true;
     }
 
     if (props.icon) {

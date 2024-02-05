@@ -1,7 +1,7 @@
 import * as React from 'react';
 import range from 'lodash.range';
 import {
-    IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts,
+    IAnalyticableOnChange, IControlled, IHasRawProps, UuiContext, UuiContexts,
 } from '@epam/uui-core';
 
 export interface PaginatorRenderParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {
@@ -33,7 +33,7 @@ interface PaginatorItem {
     onClick?(): void;
 }
 
-export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+export interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     /** Defines component size */
     size: '24' | '30';
 

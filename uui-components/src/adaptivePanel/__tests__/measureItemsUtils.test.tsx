@@ -1,5 +1,5 @@
 import { measureAdaptiveItems } from '../measureItemsUtils';
-import type { AdaptiveItemProps } from '../AdaptivePanel';
+import type { AdaptiveItemProps } from '../types';
 
 const items = [
     { id: 'container2', priority: 100, collapsedContainer: true }, { id: '1', priority: 10 }, { id: '2', priority: 2 }, { id: '3', priority: 2 }, { id: '4', priority: 3 }, { id: 'container1', priority: 4, collapsedContainer: true }, { id: '5', priority: 5 },

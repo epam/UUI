@@ -5,7 +5,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
   className="notificationWrapper clearButton"
 >
   <button
-    className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -46,7 +46,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -92,7 +92,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -126,7 +126,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -172,7 +172,7 @@ exports[`NotificationCard should render with maximum props 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -218,7 +218,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -264,7 +264,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root closeIcon"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
         onClick={[Function]}
         tabIndex={0}
         type="button"

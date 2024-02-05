@@ -14,12 +14,12 @@ export class PickerInputDoc extends BaseDocsBlock {
         name: 'PickerInput',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form],
         bySkin: {
-            [TSkin.UUI]: { type: '@epam/uui:CompletePickerInputProps', component: uui.PickerInput },
-            [TSkin.Electric]: { type: '@epam/uui:CompletePickerInputProps', component: electric.PickerInput },
-            [TSkin.Loveship]: { type: '@epam/uui:CompletePickerInputProps', component: loveship.PickerInput },
-            [TSkin.Promo]: { type: '@epam/uui:CompletePickerInputProps', component: promo.PickerInput },
+            [TSkin.UUI]: { type: '@epam/uui:PickerInputProps', component: uui.PickerInput },
+            [TSkin.Electric]: { type: '@epam/uui:PickerInputProps', component: electric.PickerInput },
+            [TSkin.Loveship]: { type: '@epam/uui:PickerInputProps', component: loveship.PickerInput },
+            [TSkin.Promo]: { type: '@epam/uui:PickerInputProps', component: promo.PickerInput },
         },
-        doc: (doc: DocBuilder<uui.CompletePickerInputProps<any, any>>) => {
+        doc: (doc: DocBuilder<uui.PickerInputProps<any, any>>) => {
             doc.merge('renderToggler', { examples: renderTogglerExamples });
             doc.merge('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] });
             doc.merge('size', { defaultValue: '36' });

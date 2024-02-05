@@ -28,7 +28,7 @@ export default function BasicScrollSpy() {
             <FlexCell grow={ 4 }>
                 <section ref={ setRef }>
                     <Text size="48" cx={ css.content } lineHeight="30">
-                        <Text rawProps={ { 'data-spy': 'a' } } cx={ css.header } color="brand">
+                        <Text rawProps={ { 'data-spy': 'a' } } cx={ css.header } color="primary">
                             Section 1
                         </Text>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id
@@ -43,7 +43,7 @@ export default function BasicScrollSpy() {
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id
                         dolor consectetur quas optio vero possimus quae accusamus rerum quod! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates
                         veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
-                        <Text rawProps={ { 'data-spy': 'b' } } cx={ css.header } color="brand">
+                        <Text rawProps={ { 'data-spy': 'b' } } cx={ css.header } color="primary">
                             Section 2
                         </Text>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id

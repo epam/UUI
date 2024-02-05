@@ -15,7 +15,7 @@ import {
 } from '@epam/uui';
 import css from './FormContext.module.scss';
 
-type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
+type ControlSize = '24' | '30' | '36' | '42' | '48';
 
 interface FormContextState {
     textValue: string;
@@ -51,6 +51,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                     <FlexCell grow={ 1 } width="auto">
                         <LabeledInput label="Form size:" labelPosition="left" size="36">
                             <RadioGroup
+                                name="sizes"
                                 onValueChange={ (value: ControlSize) => this.setState({ size: value }) }
                                 items={ [
                                     { name: '36', id: '36' }, { name: '30', id: '30' }, { name: '24', id: '24' },

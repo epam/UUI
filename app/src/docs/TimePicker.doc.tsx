@@ -29,6 +29,7 @@ export class TimePickerDoc extends BaseDocsBlock {
                 examples: [
                     { name: '6:20', value: { hours: 6, minutes: 20 }, isDefault: true },
                     { name: 'undefined', value: undefined },
+                    { name: 'null', value: null },
                 ],
             });
             doc.merge('rawProps', {

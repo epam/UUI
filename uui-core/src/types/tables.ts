@@ -1,6 +1,7 @@
 import React, { Attributes, Dispatch, ForwardedRef, ReactNode, SetStateAction } from 'react';
 import {
-    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps, IDropdownToggler,
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
+    IDropdownToggler, IHasValidationMessage,
 } from './props';
 import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
@@ -98,18 +99,26 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     renderCell?(cellProps: RenderCellProps<TItem, TId>): any;
 
     /**
-     * Renders column header dropdown.
+     *  Render callback for column header dropdown.
      * Usually, this prop is filled automatically by the useTableState hook.
      * If you use the useTableState hook, you don't need to specify it manually.
      */
     renderDropdown?(): React.ReactNode;
 
     /**
-     * Renders column filter.
+     *  Render callback for column filter.
      * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.
      * You can use this prop to render a custom filter component.
      */
     renderFilter?(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps): React.ReactNode;
+
+    /** Render callback for column header tooltip.
+     * This tooltip will appear on cell hover with 600ms delay.
+     *
+     * If omitted, default implementation with column.caption + column.info will be rendered.
+     * Pass `() => null` to disable tooltip rendering.
+     */
+    renderTooltip?(column: DataColumnProps<TItem, TId, TFilter>): React.ReactNode;
 }
 
 export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
@@ -164,11 +173,14 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }
 
-export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
+export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {
     /** DataRowProps object of rendered row */
     rowProps: DataRowProps<TItem, TId>;
     /** Cell mode signal the editor component to adapt it's visuals to cell editor */
     mode: 'cell';
+    /** Ref to pass to the editor component.
+     * It's required for correct focus/blur behavior.
+     * */
     ref?: ForwardedRef<HTMLElement>;
 }
 
@@ -195,7 +207,8 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
-export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends
+    DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>>, IHasValidationMessage {
     /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
 

@@ -1,0 +1,27 @@
+@mixin clickable-styles() {
+    text-decoration: none;
+    outline: none;
+    border: 0;
+    background: none;
+    box-sizing: border-box;
+    appearance: none;
+    align-items: unset;
+    padding: unset;
+    margin: unset;
+    justify-content: unset;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:global(.-clickable) {
+        cursor: pointer;
+    }
+
+    &:global(.uui-disabled) {
+        cursor: default;
+    }
+}

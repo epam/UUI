@@ -4,18 +4,21 @@ import { TokenExample } from '../tokenExample/tokenExample';
 import React from 'react';
 import { TruncText } from '../truncText/truncText';
 import {
-    COL_NAMES, isTokenRowGroup,
-    IThemeVarUI, ITokenRow,
+    COL_NAMES,
+    isTokenRowGroup,
+    IThemeVarUI,
+    ITokenRow,
     STATUS_FILTER,
-    TExpectedValueType,
-    TThemeVarUiErr,
-    TTokensFilter,
+    TLoadThemeTokensParams,
+    TThemeTokenValueType,
+    TTokensLocalFilter,
     TTotals,
 } from '../../types/types';
 import { TokenInfo } from '../tokenInfo/tokenInfo';
-import { TFigmaThemeName } from '../../types/sharedTypes';
 //
 import css from './paletteTable.module.scss';
+import { TTheme } from '../../../../../common/docs/docsConstants';
+import { getFigmaTheme } from '../../utils/themeVarUtils';
 
 const WIDTH = {
     [COL_NAMES.path]: 250, // E.g: core/surfaces/surface-main
@@ -26,6 +29,7 @@ const WIDTH = {
     [COL_NAMES.actualValue]: 125,
     [COL_NAMES.expectedValue]: 125,
     [COL_NAMES.status]: 120,
+    [COL_NAMES.published]: 100,
 };
 
 export const getSortBy = () => {
@@ -44,11 +48,11 @@ export const getSortBy = () => {
                 return String(item.id);
             }
             case COL_NAMES.expectedValue: {
-                const expected = item.value.expected;
+                const expected = item.value.figma;
                 return String(expected?.value);
             }
             case COL_NAMES.actualValue: {
-                return String(item.value.actual);
+                return String(item.value.browser);
             }
             case COL_NAMES.status: {
                 const hasErrors = item.value.errors.length > 0;
@@ -61,11 +65,15 @@ export const getSortBy = () => {
     };
 };
 
-export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValueType: TExpectedValueType): DataColumnProps<ITokenRow>[] {
-    const expectedValueColumnsArr: DataColumnProps<ITokenRow, string, TTokensFilter>[] = [];
+export function getColumns(
+    params: { uuiTheme: TTheme, valueType: TThemeTokenValueType, filter: TLoadThemeTokensParams['filter'] },
+): DataColumnProps<ITokenRow>[] {
+    const { uuiTheme, filter, valueType } = params;
+    const figmaTheme = getFigmaTheme(uuiTheme);
+    const expectedValueColumnsArr: DataColumnProps<ITokenRow, string, TTokensLocalFilter>[] = [];
 
     if (figmaTheme) {
-        const info = expectedValueType === TExpectedValueType.chain
+        const info = valueType === TThemeTokenValueType.chain
             ? 'This is what Figma expects. The value is taken from the chain of aliases (valuesByMode)'
             : 'This is what Figma expects. The value is taken directly from resolvedValuesByMode';
         expectedValueColumnsArr.push({
@@ -84,13 +92,13 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
                 return <Text>N/A</Text>;
             },
             width: WIDTH.expectedValue,
-            isSortable: true,
+            isSortable: false,
             textAlign: 'center',
             alignSelf: 'center',
         });
     }
 
-    const arr: DataColumnProps<ITokenRow, string, TTokensFilter>[] = [
+    const arr: DataColumnProps<ITokenRow, string, TTokensLocalFilter>[] = [
         {
             key: COL_NAMES.path,
             caption: 'Path',
@@ -103,6 +111,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             isSortable: true,
             textAlign: 'left',
             alignSelf: 'center',
+            isFilterActive: () => !!filter.path?.trim(),
         },
         {
             key: COL_NAMES.cssVar,
@@ -133,7 +142,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
                 );
             },
             width: WIDTH.actualValue,
-            isSortable: true,
+            isSortable: false,
             textAlign: 'center',
             alignSelf: 'center',
         },
@@ -154,6 +163,23 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
             isAlwaysVisible: true,
             textAlign: 'center',
             isFilterActive: (f) => !!f.status && f.status !== STATUS_FILTER.all,
+        },
+        {
+            key: COL_NAMES.published,
+            caption: 'Published',
+            render: (item) => {
+                if (isTokenRowGroup(item)) {
+                    return '';
+                }
+                return (
+                    <Text color="primary">
+                        {item.cssVarSupport === 'supported' ? 'y' : 'n'}
+                    </Text>
+                );
+            },
+            textAlign: 'center',
+            alignSelf: 'center',
+            width: WIDTH[COL_NAMES.published],
         },
         {
             key: COL_NAMES.description,
@@ -193,32 +219,7 @@ export function getColumns(figmaTheme: TFigmaThemeName | undefined, expectedValu
     });
 }
 
-export function getFilter(filter: TTokensFilter) {
-    return (item: ITokenRow) => {
-        if (filter) {
-            if (isTokenRowGroup(item)) {
-                return true;
-            }
-            switch (filter.status) {
-                case STATUS_FILTER.absent: {
-                    return !!item.value.errors.find(({ type }) => type === TThemeVarUiErr.VAR_ABSENT);
-                }
-                case STATUS_FILTER.mismatched: {
-                    return !!item.value.errors.find(({ type }) => type === TThemeVarUiErr.VALUE_MISMATCHED);
-                }
-                case STATUS_FILTER.ok: {
-                    return !item.value.errors.length;
-                }
-                default: {
-                    return true;
-                }
-            }
-        }
-        return true;
-    };
-}
-
-export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFilter>[] {
+export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensLocalFilter>[] {
     return [
         {
             field: COL_NAMES.status,
@@ -238,6 +239,7 @@ export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensFil
                 return (
                     <FlexCell cx={ css.radioGroupFilter } width="auto">
                         <RadioGroup
+                            name="status"
                             items={ items }
                             value={ props.value || STATUS_FILTER.all }
                             onValueChange={ props.onValueChange }

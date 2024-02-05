@@ -12,26 +12,30 @@ export enum TFigmaThemeName {
     PROMO = 'Promo',
     EPAM = 'EPAM'
 }
-export type TFloatValue = number;
-export type THexaValue = `#${string}`;
+export type TVariableValue = unknown;
+
 export type TUuiCssVarName = `--${string}`;
 export enum TVarType {
     COLOR = 'COLOR',
     FLOAT = 'FLOAT'
 }
 
+export type TCssVarSupport = 'supported' | 'notSupported' | 'notDecided' | 'supportedExceptFigma';
+
 export type TCssVarRef = {
     id: IThemeVar['id'],
-} & (
-    { cssVar: IThemeVar['cssVar'], supported: true } | { supported: false }
-);
+    cssVar: TUuiCssVarName | undefined;
+    cssVarSupport: TCssVarSupport
+};
+
 export type TResolvedValueNorm = {
-    value: THexaValue | TFloatValue
+    /* it's always final resolved value, like HEX or etc. */
+    value: TVariableValue,
     alias: TCssVarRef[],
 };
 export type TValueByThemeValue = {
-    valueChain: TResolvedValueNorm,
-    valueDirect: TResolvedValueNorm,
+    valueChain: TResolvedValueNorm | undefined,
+    valueDirect: TResolvedValueNorm | undefined,
 };
 
 export interface IThemeVar {
@@ -40,12 +44,13 @@ export interface IThemeVar {
     type: TVarType,
     description: string,
     useCases: string,
-    cssVar: TUuiCssVarName,
+    cssVar: TUuiCssVarName | undefined,
+    cssVarSupport: TCssVarSupport,
     /** resolvedValue in this map is taken from Figma. It can be used to compare with actual rendered value in browser */
     valueByTheme: {
         [themeName in TFigmaThemeName]?: TValueByThemeValue
     },
 }
 export interface IUuiTokensCollection {
-    supportedTokens: IThemeVar[]
+    exposedTokens: IThemeVar[]
 }

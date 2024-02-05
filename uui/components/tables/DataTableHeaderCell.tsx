@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui-core';
+import {
+    DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps,
+} from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
 import { DataTableHeaderCellMods } from './types';
@@ -31,21 +33,23 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         return css['font-size-14'];
     };
 
-    getTooltipContent = () => (
+    getTooltipContent = (column: DataColumnProps<TItem, TId>) => (
         <div className={ css.cellTooltipWrapper }>
-            <Text fontSize="14" fontWeight="600" cx={ css.cellTooltipText }>{ this.props.column.caption }</Text>
-            { this.props.column.info && <Text fontSize="12" cx={ css.cellTooltipText }>{ this.props.column.info }</Text> }
+            <Text fontSize="14" fontWeight="600" cx={ css.cellTooltipText }>{ column.caption }</Text>
+            { column.info && <Text fontSize="12" cx={ css.cellTooltipText }>{ column.info }</Text> }
         </div>
     );
 
     getColumnCaption = () => {
+        const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
+
         return (
             <div className={ css.tooltipWrapper }>
                 <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
                     <Tooltip
                         placement="top"
                         color="inverted"
-                        renderContent={ this.getTooltipContent }
+                        content={ renderTooltip(this.props.column) }
                         cx={ css.cellTooltip }
                         openDelay={ 600 }
                     >
@@ -89,7 +93,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         );
 
     renderResizeMark = (props: HeaderCellContentProps) => <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />;
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => {
+    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
         return (
             <FlexCell

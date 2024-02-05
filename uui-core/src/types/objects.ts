@@ -2,11 +2,21 @@ import { ClassValue } from '../helpers/cx';
 
 /** Defines location within SPA application */
 export interface Link {
+    /** A URL pathname, beginning with a '/' */
     pathname: string;
+    /** Object that will be parsed to the URL search params */
     query?: any;
+    /** A URL search string, beginning with a '?' */
     search?: string;
+    /** A unique string associated with this location. May be used to safely store
+     * and retrieve data in some other storage API, like `localStorage`.
+     *
+     * Note: This value is always "default" on the initial location.
+     */
     key?: string;
+    /** A URL fragment identifier, beginning with a '#' */
     hash?: string;
+    /** A value of arbitrary data associated with this location */
     state?: any;
 }
 

@@ -8,8 +8,11 @@ import { INotification } from '../types/props';
 let idCounter = 0;
 
 export interface NotificationOperation {
+    /** Notification component that should be rendered */
     component: React.ComponentType<any>;
+    /** Notification component props */
     props: INotification;
+    /** Notification config */
     config: NotificationParams;
 }
 

@@ -26,7 +26,7 @@ export interface UseUuiServicesProps<TApi, TAppContext> extends UuiServicesProps
 
 function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TAppContext>) {
     const {
-        router, appContext, apiDefinition, apiReloginPath, apiServerUrl, apiPingPath,
+        router, appContext, apiDefinition, apiReloginPath, apiServerUrl, apiPingPath, fetch,
     } = props;
 
     const uuiLayout = new LayoutContext();
@@ -35,7 +35,7 @@ function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TApp
     const uuiAnalytics = new AnalyticsContext({ router });
     const uuiLocks = new LockContext(router);
     const uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);
-    const uuiApi = new ApiContext({ apiPingPath, apiReloginPath, apiServerUrl }, uuiAnalytics);
+    const uuiApi = new ApiContext({ apiPingPath, apiReloginPath, apiServerUrl, fetch }, uuiAnalytics);
 
     const rawApi = apiDefinition ? apiDefinition(uuiApi.processRequest.bind(uuiApi)) : ({} as TApi);
     const withOptions = (options: ApiCallOptions) => apiDefinition((url, method, data) => uuiApi.processRequest(url, method, data, options));

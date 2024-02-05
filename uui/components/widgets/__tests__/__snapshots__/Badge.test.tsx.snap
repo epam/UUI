@@ -1,17 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Badge should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled uui-badge root size-36 uui-fill-solid uui-color-info"
-  onClick={[Function]}
+<span
+  className="uui-button-box uui-enabled uui-badge root size-36 uui-fill-solid uui-color-info"
   tabIndex={-1}
-  type="button"
 />
 `;
 
 exports[`Badge should be rendered correctly with props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable uui-badge root size-36 uui-fill-semitransparent uui-color-success"
+  aria-haspopup={true}
+  className="uui-button-box uui-enabled -clickable uui-badge root size-36 uui-fill-solid uui-color-success"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -21,7 +20,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
     onClick={[Function]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -36,8 +35,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
     12
   </div>
   <div
-    className="container uui-icon uui-enabled -clickable -clickable"
-    onClick={[Function]}
+    className="container uui-icon uui-enabled"
     style={Object {}}
   >
     <svg

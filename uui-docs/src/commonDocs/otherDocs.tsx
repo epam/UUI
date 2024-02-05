@@ -16,7 +16,7 @@ export const iCanRedirectDoc = new DocBuilder<ICanRedirect>({ name: 'Icon' })
     .prop('isLinkActive', { examples: [true] })
     .prop('href', {
         examples: [
-            { name: 'EPAM', value: 'https://epam.com' }, { name: 'Google', value: 'https://google.com' },
+            { name: 'EPAM', value: 'https://www.epam.com' }, { name: 'Google', value: 'https://google.com' },
         ],
         editorType: 'StringWithExamplesEditor',
     })
@@ -29,7 +29,6 @@ export const iHasLabelDoc = new DocBuilder<IHasLabel>({ name: 'Label' }).prop('l
     editorType: 'StringWithExamplesEditor',
 });
 
-export const iEditable = new DocBuilder<IEditable<unknown>>({ name: 'onValueChange' }).prop('onValueChange', {
-    examples: (ctx) => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }', isDefault: true }],
-    isRequired: true,
-});
+export const IControlled = new DocBuilder<IEditable<unknown>>({ name: 'onValueChange' })
+    .prop('onValueChange', { examples: (ctx) => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }', isDefault: true }], isRequired: true,
+    });

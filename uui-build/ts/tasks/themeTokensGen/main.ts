@@ -1,13 +1,15 @@
 import { FileUtils } from './utils/fileUtils';
-import { IGNORED_VAR_PLACEHOLDER } from './constants';
+import { getHiddenFromPublishingVarPlaceholder } from './constants';
 import { FigmaScriptsContext } from './context/context';
 import {
-    getCssVarFromFigmaVar,
-    getNormalizedResolvedValueMap, isFigmaVarSupported,
+    convertRawToken,
+    getCssVarFromFigmaVar, getCssVarSupportForToken, canTokenPotentiallyDefineCssVar,
 } from './utils/figmaVarUtils';
-import { IThemeVar, TUuiCssVarName } from './types/sharedTypes';
-import { IFigmaVar } from './types/sourceTypes';
+import { IThemeVar } from './types/sharedTypes';
+import { IFigmaVarRaw, IFigmaVarRawNorm } from './types/sourceTypes';
 import { ITaskConfig } from '../../utils/taskUtils';
+import { normalizeFigmaVarRawMap } from './utils/firmaVarRawNormalizer';
+import { sortSupportedTokens } from './utils/sortingUtils';
 
 export const taskConfig: ITaskConfig = { main };
 
@@ -18,60 +20,54 @@ async function main() {
 function generateTokens() {
     const ctx = new FigmaScriptsContext();
     const source = FileUtils.readFigmaVarCollection();
-    const supportedTokens: IThemeVar[] = [];
+    const exposedTokens: IThemeVar[] = [];
 
     // non-filtered map
-    const figmaVarById = source.variables.reduce<Record<string, IFigmaVar>>((acc, figmaVar) => {
+    const rawVarsById = source.variables.reduce<Record<string, IFigmaVarRaw>>((acc, figmaVar) => {
         acc[figmaVar.id] = figmaVar;
         return acc;
     }, {});
+    const figmaVarByNameNorm = normalizeFigmaVarRawMap({ rawVarsById, modes: source.modes });
 
     const variables = source.variables.map((figmaVar) => {
-        const cssVar = getCssVarFromFigmaVar(figmaVar.name) as TUuiCssVarName;
-        const supported = isFigmaVarSupported({ path: figmaVar.name });
-        if (supported) {
-            supportedTokens.push({
-                id: figmaVar.name,
-                type: figmaVar.type,
-                description: figmaVar.description,
-                useCases: '',
-                cssVar,
-                valueByTheme: getNormalizedResolvedValueMap({ figmaVar, figmaVarById, modes: source.modes }),
-            });
+        const rawTokenNorm = figmaVarByNameNorm[figmaVar.name] as IFigmaVarRawNorm;
+        const canPotentiallyDefineCssVar = canTokenPotentiallyDefineCssVar({ rawTokenNorm, modes: source.modes });
+
+        if (canPotentiallyDefineCssVar) {
+            const converted = convertRawToken({ rawTokenNorm, modes: source.modes, figmaVarByNameNorm });
+            exposedTokens.push(converted);
         }
         return {
             ...figmaVar,
             codeSyntax: {
                 ...figmaVar.codeSyntax,
-                WEB: supported ? `var(${cssVar})` : IGNORED_VAR_PLACEHOLDER,
+                WEB: getFigmaCodeSyntaxValue({ rawTokenNorm, canPotentiallyDefineCssVar }),
             },
         };
     });
 
     // It will mutate the original arr.
-    supportedTokens.sort((t1, t2) => {
-        return figmaVarComparator(t1.id, t2.id);
-    });
+    sortSupportedTokens(exposedTokens);
 
     FileUtils.writeResults({
         newFigmaVarCollection: { ...source, variables },
-        uuiTokensCollection: { supportedTokens },
+        uuiTokensCollection: { exposedTokens },
         ctx,
     });
 }
 
-export function figmaVarComparator(path1: string, path2: string) {
-    const s1 = splitByTrailingNumber(path1);
-    const s2 = splitByTrailingNumber(path2);
-    return s1.first.localeCompare(s2.first) || (Number(s1.second) - Number(s2.second));
-}
+function getFigmaCodeSyntaxValue(params: { rawTokenNorm: IFigmaVarRawNorm, canPotentiallyDefineCssVar: boolean }) {
+    const { rawTokenNorm, canPotentiallyDefineCssVar } = params;
+    if (canPotentiallyDefineCssVar) {
+        const cssVarSupport = getCssVarSupportForToken(rawTokenNorm);
+        const cssVarVisibleInFigma = cssVarSupport !== 'notSupported' && cssVarSupport !== 'supportedExceptFigma';
 
-function splitByTrailingNumber(figmaVarPath: string): { first: string, second: number | undefined } {
-    const reg = /[0-9]+$/;
-    if (reg.test(figmaVarPath)) {
-        const secondStr = figmaVarPath.match(reg)?.[0] || '';
-        const first = figmaVarPath.substring(0, (figmaVarPath.length - secondStr.length));
-        return { first, second: Number(secondStr) };
+        if (cssVarVisibleInFigma) {
+            const cssVarName = getCssVarFromFigmaVar(rawTokenNorm);
+            return cssVarName ? `var(${cssVarName})` : undefined;
+        }
     }
-    return { first: figmaVarPath, second: undefined };
+    // print chain
+    const chain: string[] = [rawTokenNorm.name];
+    return getHiddenFromPublishingVarPlaceholder(chain.join(' inherited from '));
 }

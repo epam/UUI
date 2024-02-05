@@ -29,11 +29,9 @@ exports[`DropSpot should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 dropCaption container"
       >
-         
         Drop files to attach or
-         
       </div>
       <div>
         <input
@@ -45,16 +43,18 @@ exports[`DropSpot should be rendered correctly 1`] = `
         <div
           className="uui-typography uui-typography-size-14"
         >
-          <a
-            className="container uui-anchor uui-enabled -clickable root link"
-            href={null}
+          <button
+            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="link"
             tabIndex={0}
+            type="button"
           >
-            browse
-          </a>
+            <div
+              className="uui-caption"
+            >
+              browse
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -91,11 +91,9 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         />
       </div>
       <div
-        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 dropCaption container"
       >
-         
         Drop files to attach or
-         
       </div>
       <div>
         <input
@@ -107,21 +105,23 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         <div
           className="uui-typography uui-typography-size-14"
         >
-          <a
-            className="container uui-anchor uui-enabled -clickable root link"
-            href={null}
+          <button
+            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="link"
             tabIndex={0}
+            type="button"
           >
-            browse
-          </a>
+            <div
+              className="uui-caption"
+            >
+              browse
+            </div>
+          </button>
         </div>
       </div>
     </div>
     <div
-      className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
+      className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-0 container"
     >
       Test info
     </div>
