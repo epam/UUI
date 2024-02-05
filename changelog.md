@@ -16,7 +16,9 @@
     * [Text]: removed color `brand`, and removed `--uui-color-brand` token from themes, use `--uui-color-primary` instead.
 * Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
 * [TimePicker]: added ability to parse many variants of time as string. Examples: `1.23pm` -> `01:23 PM`, `12/2` -> `12:02 AM`, if format equals 24: `.25` -> `00:25`, `2350` -> `23:50` etc.
-* [ApiContext]: added `parseResponse` callback to the `ApiCallOptions`. It can be used to define custom way of how to parse the response of the request.
+* Changes in `ICanBeInvalid` interface:
+  * Extract `validationMessage` to the `IHasValidationMessage` interface
+  * Extract validationProps into ValidationState interfaces
 * [Text]: added `tertiary` color.
 * [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`, see more in Flexbox Guide(https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 * [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
