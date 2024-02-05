@@ -624,6 +624,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     private mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
         ...parentStats,
+        isSomeSelected: parentStats.isSomeSelected || childStats.isSomeSelected,
         isSomeCheckable: parentStats.isSomeCheckable || childStats.isSomeCheckable,
         isSomeChecked: parentStats.isSomeChecked || childStats.isSomeChecked,
         isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
