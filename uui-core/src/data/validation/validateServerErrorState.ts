@@ -1,7 +1,7 @@
-import { ICanBeInvalid } from '../../types/props';
+import { ValidationState } from '../lenses';
 
-export function validateServerErrorState<T extends any>(currentFormState: T, lastSentFormState: T, serverValidation: ICanBeInvalid) {
-    let result: ICanBeInvalid = { isInvalid: false };
+export function validateServerErrorState<T extends any>(currentFormState: T, lastSentFormState: T, serverValidation: ValidationState) {
+    let result: ValidationState = { isInvalid: false };
 
     if (serverValidation.validationProps) {
         Object.keys(serverValidation.validationProps).forEach((key) => {
@@ -15,7 +15,7 @@ export function validateServerErrorState<T extends any>(currentFormState: T, las
     return result;
 }
 
-function validateValue(newValue: any, oldValue: any, validationProp: ICanBeInvalid): ICanBeInvalid {
+function validateValue(newValue: any, oldValue: any, validationProp: ValidationState): ValidationState {
     if (!validationProp.isInvalid) return { isInvalid: false };
 
     return newValue === oldValue
@@ -28,7 +28,7 @@ function validateValue(newValue: any, oldValue: any, validationProp: ICanBeInval
         };
 }
 
-function validateItem(key: string, currentFormStatePart: any, lastSavedFormStatePart: any, serverValidation: ICanBeInvalid, parentResult: ICanBeInvalid) {
+function validateItem(key: string, currentFormStatePart: any, lastSavedFormStatePart: any, serverValidation: ValidationState, parentResult: ValidationState) {
     const valueResult = validateValue(currentFormStatePart, lastSavedFormStatePart, serverValidation);
     const recursiveResult = validateServerErrorState(currentFormStatePart, lastSavedFormStatePart, serverValidation);
 

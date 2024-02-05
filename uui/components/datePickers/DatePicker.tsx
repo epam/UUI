@@ -64,6 +64,7 @@ export function DatePickerComponent(props: DatePickerProps) {
                 onBlur={ handleBlur }
                 mode={ props.mode || defaultMode }
                 rawProps={ props.rawProps?.input }
+                id={ props.id }
             />
         );
     };

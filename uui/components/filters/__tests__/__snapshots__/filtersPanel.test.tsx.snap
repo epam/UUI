@@ -47,7 +47,7 @@ Array [
           className="textWrapper"
         >
           <div
-            className="root uui-text uui-color-brand uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 selection container"
+            className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 selection container"
           >
             Unknown
           </div>

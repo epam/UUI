@@ -1,6 +1,7 @@
 import React, { Attributes, ForwardedRef, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps, IDropdownToggler,
+    IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
+    IDropdownToggler, IHasValidationMessage,
 } from './props';
 import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
@@ -172,7 +173,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }
 
-export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
+export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {
     /** DataRowProps object of rendered row */
     rowProps: DataRowProps<TItem, TId>;
     /** Cell mode signal the editor component to adapt it's visuals to cell editor */
@@ -206,7 +207,8 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
-export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends
+    DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>>, IHasValidationMessage {
     /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
 
