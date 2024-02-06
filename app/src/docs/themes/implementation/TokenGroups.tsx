@@ -106,10 +106,26 @@ function TokenGroupItems(props: { items: ITokensDocItem[] }) {
 
     const list = items.map((item) => {
         const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
+        const renderTooltipContent = () => (
+            <FlexRow>
+                <p>
+                    Copy
+                    {' '}
+                    <span style={ { color: 'var(--uui-neutral-40)' } }>
+                        var(
+                        {item.cssVar}
+                        )
+                    </span>
+                    {' '}
+                    to clipboard
+                </p>
+            </FlexRow>
+        );
+
         return (
             <FlexRow cx={ css.tokenCard } borderBottom={ true } alignItems="center" key={ item.value }>
                 <FlexCell width="auto">
-                    <Tooltip content={ `Copy var(${item.cssVar}) to clipboard` } placement="top" openDelay={ 200 }>
+                    <Tooltip renderContent={ renderTooltipContent } placement="top" openDelay={ 200 }>
                         <Text cx={ css.var } onClick={ () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar)) }>{ item.cssVar }</Text>
                     </Tooltip>
                     {/* { item.description && <Text>{ item.description }</Text> } */}
