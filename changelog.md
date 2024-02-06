@@ -1,4 +1,4 @@
-# 5.5.2 - 07.02.2024
+# 5.5.3 - 07.02.2024
 
 **What's Fixed**
 * [APIContext]: fixed non-JSON error parsing (broken in 5.5.1)
