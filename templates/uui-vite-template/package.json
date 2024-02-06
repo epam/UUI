@@ -16,12 +16,6 @@
     "@epam/uui": "latest",
     "@epam/uui-components": "latest",
     "@epam/uui-core": "latest",
-    "history": "^4.10.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.4"
-  },
-  "devDependencies": {
     "@epam/uui-test-utils": "latest",
     "@types/react": "18.2.21",
     "@types/react-router-dom": "^5.3.3",
@@ -34,14 +28,18 @@
     "eslint-plugin-react-hooks": "^4",
     "eslint-plugin-testing-library": "^5",
     "eslint-plugin-vitest": "^0.3.21",
+    "history": "^4.10.1",
+    "jsdom": "22.1.0",
     "prettier": "3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
     "sass": "^1.70.0",
     "typescript": "^5.3.3",
     "vite": "5.0.12",
+    "vite-plugin-svgr": "4.2.0",
     "vitest": "1.2.2",
-    "vitest-dom": "0.1.1",
-    "jsdom": "22.1.0",
-    "vite-plugin-svgr": "4.2.0"
+    "vitest-dom": "0.1.1"
   },
   "resolutions": {
     "@types/react": "18.2.21"
