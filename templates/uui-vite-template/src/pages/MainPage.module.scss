@@ -6,10 +6,10 @@
     align-items: flex-start;
     background-image: linear-gradient(
             180deg,
-            #21232e 0%,
+            var(--uui-secondary-70) 0%,
             rgba(57, 61, 74, 0.1) 100%
         ),
-        linear-gradient(270deg, rgba(24, 24, 22, 0) 0%, #000000 100%),
+        linear-gradient(270deg, rgba(24, 24, 22, 0) 0%, var(--uui-neutral-100) 100%),
         url(../icons/pattern.jpg);
 }
 
@@ -19,4 +19,8 @@
         0 3px 10px 0 rgba(44, 47, 60, 0.09);
     margin: -90px auto 60px;
     max-width: 1000px;
+}
+
+.welcome {
+    color: var(--uui-primary-contrast);
 }
