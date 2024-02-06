@@ -57,7 +57,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
-        return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } cx={ css.cell } />;
+        return <DataTableRow key={ rowProps.rowKey } size={ props.size || '36' } borderBottom={ props.border } { ...rowProps } cx={ css.cell } />;
     }, []);
 
     const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });

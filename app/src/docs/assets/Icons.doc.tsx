@@ -81,7 +81,15 @@ export class IconsDoc extends React.Component {
         );
     }
 
-    getImportCode = (icon: IconList<Icon>) => `import { ReactComponent as myIcon } from '${icon.name}';`;
+    getImportCode = (icon: IconList<Icon>) => {
+        const iconName = icon.name.split('/').reverse()[0].split('.')[0];
+        if (iconName.includes('_') || iconName.includes('-')) {
+            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${icon.name}';`;
+        }
+
+        return `import { ReactComponent as ${iconName}Icon } from '${icon.name}';`;
+    };
+
     renderIconCard() {
         return (
             <Panel cx={ css.iconCard }>
@@ -103,7 +111,7 @@ export class IconsDoc extends React.Component {
     renderPreviewIcon() {
         const selectedItem = this.state.selectedIcon;
         const item = this.state.currentIcon;
-        const iconList = this.groupedIcons[item.name].reverse();
+        const iconList = this.groupedIcons[item.name].slice().reverse();
 
         return (
             <FlexCell width="100%" cx={ css.infoBox }>

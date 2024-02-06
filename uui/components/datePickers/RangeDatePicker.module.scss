@@ -14,22 +14,27 @@
 
     &.size-24 {
         @include control-box-layout(22px, 0);
+        @include scalable-icon-size(24);
     }
 
     &.size-30 {
         @include control-box-layout(28px, 0);
+        @include scalable-icon-size(30);
     }
 
     &.size-36 {
         @include control-box-layout(34px, 0);
+        @include scalable-icon-size(36);
     }
 
     &.size-42 {
         @include control-box-layout(40px, 0);
+        @include scalable-icon-size(42);
     }
 
     &.size-48 {
         @include control-box-layout(46px, 0);
+        @include scalable-icon-size(48);
     }
 }
 

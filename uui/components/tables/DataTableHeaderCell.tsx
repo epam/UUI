@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps,
-} from '@epam/uui-core';
+import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
 import { DataTableHeaderCellMods } from './types';
@@ -10,14 +8,14 @@ import { IconButton } from '../buttons';
 import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
-import css from './DataTableHeaderCell.module.scss';
+import { ReactComponent as DefaultSortIcon } from '../../icons/table-swap-24.svg';
+import { ReactComponent as SortIconAsc } from '../../icons/table-sort_asc-24.svg';
+import { ReactComponent as SortIconDesc } from '../../icons/table-sort_desc-24.svg';
+import { ReactComponent as FilterIcon } from '../../icons/content-filtration-24.svg';
+import { ReactComponent as DropdownIcon } from '../../icons/navigation-chevron-down-24.svg';
+import { ReactComponent as OpenedDropdownIcon } from '../../icons/navigation-chevron-up-24.svg';
 import './variables.scss';
-import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
-import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
-import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
-import { ReactComponent as FilterIcon } from '@epam/assets/icons/common/content-filtration-18.svg';
-import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
+import css from './DataTableHeaderCell.module.scss';
 
 interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
@@ -62,7 +60,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                             key="sort"
                             cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
                             color={ this.props.sortDirection ? 'neutral' : 'secondary' }
-                            icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
+                            icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIconAsc : DefaultSortIcon }
                         />
                     )}
                     {this.props.isFilterActive && (

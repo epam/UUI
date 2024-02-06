@@ -11,8 +11,8 @@ import { FlexCell, FlexRow } from '../../layout';
 import { Dropdown, DropdownContainer, DropdownMenuButton } from '../../overlays';
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
-import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
-import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
+import { ReactComponent as DeleteIcon } from '../../../icons/action-deleteforever-24.svg';
+import { ReactComponent as addIcon } from '../../../icons/action-add-24.svg';
 import { UUI_PRESETS_PANEL_ADD_BUTTON, UUI_PRESETS_PANEL_MORE_BUTTON } from './constants';
 
 export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {

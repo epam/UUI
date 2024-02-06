@@ -49,8 +49,8 @@ export const Button = withMods<uuiComponents.ButtonProps, ButtonMods>(
         }
 
         return {
-            dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
-            clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
+            dropdownIcon: systemIcons.foldingArrow,
+            clearIcon: systemIcons.clear,
         };
     },
 );

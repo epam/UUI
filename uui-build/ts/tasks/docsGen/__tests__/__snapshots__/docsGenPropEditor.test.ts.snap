@@ -14,7 +14,7 @@ exports[`docsGen:propEditor should convert prop editor for optional icon prop 1`
     "exported": true
    },
    "details": {
-    "kind": 264,
+    "kind": 263,
     "typeValue": {
      "raw": "TTest",
      "print": [

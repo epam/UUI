@@ -8,7 +8,7 @@ import { ReactComponent as SuccessIcon } from '../../icons/notification-check_ci
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
-import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
+import { ReactComponent as CrossIcon } from '../../icons/btn-cross-24.svg';
 import css from './NotificationCard.module.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
@@ -51,7 +51,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
             <div className={ css.mainPath }>
                 {props.icon && (
                     <div className={ css.iconWrapper }>
-                        <IconContainer icon={ props.icon } cx={ css.actionIcon } />
+                        <IconContainer size={ 24 } icon={ props.icon } />
                     </div>
                 )}
                 <div className={ css.content }>
