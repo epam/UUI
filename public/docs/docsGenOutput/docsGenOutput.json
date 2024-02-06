@@ -1,5 +1,5 @@
 {
- "version": "5.5.0",
+ "version": "5.5.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -424,6 +424,16 @@
       "     * 'manual' - means the API context won't handle the error; you should manage it yourself.",
       "     */",
       "    errorHandling?: 'manual' | 'page' | 'notification';",
+      "    /**",
+      "     * By default, all responses are parsed as JSON.",
+      "     * This option allows to extract response data in non-json formats.",
+      "     * The callback is passed with response object, and should return a promise to result to return from the processRequest call.",
+      "     * Examples:",
+      "     * (res) => res.text() // parse all responses as text",
+      "     * (res) => res.status === 200 ? res.json() : res.text() // parse OK response as json, and errors as text",
+      "     * (res) => res.blob() // get response as Blob object",
+      "     */",
+      "    parseResponse?: (response: Response) => Promise<any>;",
       "}"
      ]
     },
@@ -462,6 +472,28 @@
         "page",
         "notification"
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "parseResponse",
+      "name": "parseResponse",
+      "comment": {
+       "raw": [
+        "By default, all responses are parsed as JSON.",
+        " This option allows to extract response data in non-json formats.",
+        " The callback is passed with response object, and should return a promise to result to return from the processRequest call.",
+        " Examples:",
+        " (res) => res.text() // parse all responses as text",
+        " (res) => res.status === 200 ? res.json() : res.text() // parse OK response as json, and errors as text",
+        " (res) => res.blob() // get response as Blob object"
+       ]
+      },
+      "typeValue": {
+       "raw": "(response: Response) => Promise<any>"
+      },
+      "editor": {
+       "type": "func"
       },
       "required": false
      }
@@ -5952,7 +5984,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -5965,6 +5998,31 @@
         "bottom",
         "center",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-around' | 'space-between' | 'space-evenly' | 'end' | 'start'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-around",
+        "space-between",
+        "space-evenly",
+        "end",
+        "start"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -8493,7 +8551,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -8506,6 +8565,31 @@
         "bottom",
         "center",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-around' | 'space-between' | 'space-evenly' | 'end' | 'start'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-around",
+        "space-between",
+        "space-evenly",
+        "end",
+        "start"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -11870,8 +11954,12 @@
      "raw": "FlexRowProps",
      "print": [
       "type FlexRowProps = IHasCX & IClickable & Attributes & IHasChildren & IHasRawProps<HTMLAttributes<HTMLDivElement>> & {",
-      "    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */",
+      "    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+      "     * @default center",
+      "     * */",
       "    alignItems?: 'top' | 'center' | 'bottom' | 'stretch';",
+      "    /** Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */",
+      "    justifyContent?: 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end';",
       "    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */",
       "    columnGap?: number | '6' | '12' | '18' | '24' | '36';",
       "    /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */",
@@ -11955,7 +12043,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -11968,6 +12057,30 @@
         "bottom",
         "center",
         "stretch"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-around' | 'space-between' | 'space-evenly' | 'end' | 'start'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-around",
+        "space-between",
+        "space-evenly",
+        "end",
+        "start"
        ]
       },
       "required": false
@@ -14933,13 +15046,6 @@
     "typeValue": {
      "raw": "IEditable<T>",
      "print": [
-      "// IControlled",
-      "// IChangeable",
-      "// ICanBeChanged",
-      "// IHasChangeableValue",
-      "// IModifiable",
-      "// IChangeValue",
-      "// IHasEditableValue",
       "/** Component displays an editable value. Text Input is a basic example. */",
       "interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, IControlled<T> {",
       "}"
@@ -60393,7 +60499,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -60406,6 +60513,31 @@
         "center",
         "bottom",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -64436,7 +64568,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -64449,6 +64582,31 @@
         "center",
         "bottom",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -72669,7 +72827,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -72682,6 +72841,31 @@
         "center",
         "bottom",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -73438,7 +73622,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -73451,6 +73636,31 @@
         "center",
         "bottom",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -82658,7 +82868,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'disabled'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'disabled' | 'tertiary'"
       },
       "editor": {
        "type": "oneOf",
@@ -82670,7 +82880,8 @@
         "primary",
         "secondary",
         "white",
-        "disabled"
+        "disabled",
+        "tertiary"
        ]
       },
       "from": "@epam/uui:TextMods",
@@ -87261,7 +87472,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -87274,6 +87486,31 @@
         "bottom",
         "center",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -90407,7 +90644,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'disabled'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'disabled' | 'tertiary'"
       },
       "editor": {
        "type": "oneOf",
@@ -90428,7 +90665,8 @@
         "gray5",
         "gray80",
         "gray90",
-        "disabled"
+        "disabled",
+        "tertiary"
        ]
       },
       "from": "@epam/promo:TextMods",
@@ -94545,7 +94783,8 @@
       "name": "alignItems",
       "comment": {
        "raw": [
-        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default center"
        ]
       },
       "typeValue": {
@@ -94558,6 +94797,31 @@
         "bottom",
         "center",
         "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
        ]
       },
       "from": "@epam/uui-core:FlexRowProps",
@@ -98822,7 +99086,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'disabled'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'disabled' | 'tertiary'"
       },
       "typeValueRef": "@epam/loveship:TextColors",
       "editor": {
@@ -98847,7 +99111,8 @@
         "night400",
         "night800",
         "night900",
-        "disabled"
+        "disabled",
+        "tertiary"
        ]
       },
       "from": "@epam/loveship:TextMods",
