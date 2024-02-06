@@ -14,7 +14,7 @@ const mapSize = {
     30: '30',
     24: '30',
     18: '18',
-};
+} as const;
 
 const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['size']> = {
     18: '12',
@@ -80,8 +80,8 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
 
     const styles = [applyTagMods(props), props.cx];
 
-    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].clear;
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow;
+    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
     return (
         <Clickable

@@ -31,9 +31,9 @@ export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
 export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
 export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, (props) => ({
-    acceptIcon: systemIcons[props.size || DEFAULT_SIZE].accept,
-    cancelIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
-    dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+    acceptIcon: systemIcons.accept,
+    cancelIcon: systemIcons.clear,
+    dropdownIcon: systemIcons.foldingArrow,
 }));
 
 export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
@@ -49,7 +49,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
                 return (
                     <TextInput
-                        icon={ systemIcons[props.size || DEFAULT_SIZE].search }
+                        icon={ systemIcons.search }
                         onCancel={ props.onCancel ?? defaultOnCancel }
                         type="search"
                         inputMode="search"

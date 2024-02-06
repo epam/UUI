@@ -2,11 +2,12 @@ import React from 'react';
 import { uuiElement, uuiMarkers } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
-import { ReactComponent as FoldingArrow } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
+import { ReactComponent as FoldingArrow } from '../../icons/navigation-chevron-down-24.svg';
 import css from './DataRowAddons.module.scss';
 
 import { DataRowProps } from '@epam/uui-core';
 import { ControlSize } from '../types';
+import { getTextWidth } from '@epam/loveship';
 
 /**
  * Props of DataRowAddons.
@@ -25,6 +26,37 @@ export interface DataRowAddonsProps<TItem, TId> {
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;
     const additionalItemSize = +props.size < 30 ? '12' : '18';
+    const getIndent = () => {
+        switch (props.size) {
+            case '24':
+                return (row.indent - 1) * 6;
+            case '30':
+            case '36':
+                return (row.indent - 1) * 12;
+            case '42':
+            case '48':
+            case '60':
+                return (row.indent - 1) * 24;
+            default:
+                return (row.indent - 1) * 24;
+        }
+    };
+
+    const getWidth = () => {
+        switch (props.size) {
+            case '24':
+                return '12px';
+            case '30':
+            case '36':
+                return '18px';
+            case '42':
+            case '48':
+            case '60':
+                return '24px';
+            default:
+                return '12px';
+        }
+    };
 
     return (
         <>
@@ -32,7 +64,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
             {row?.checkbox?.isVisible && (
                 <Checkbox
                     key="cb"
-                    cx={ css.checkbox }
+                    cx="uui-dr_addons-checkbox"
                     tabIndex={ props.tabIndex }
                     size={ additionalItemSize }
                     value={ row.isChecked }
@@ -43,7 +75,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                 />
             )}
             {row.indent > 0 && (
-                <div key="fold" className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
+                <div key="fold" className="uui-dr_addons-indent" style={ { marginLeft: getIndent(), width: getWidth() } }>
                     {row.isFoldable && (
                         <IconContainer
                             rawProps={ {
@@ -53,7 +85,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                             key="icon"
                             icon={ FoldingArrow }
                             cx={ [
-                                uuiElement.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable, css.iconContainer,
+                                uuiElement.foldingArrow, uuiMarkers.clickable, css.iconContainer,
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }

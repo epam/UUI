@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useMemo, useState } from 'react';
-import { ReactComponent as LockIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
-import { ReactComponent as PinOnIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
-import { ReactComponent as PinOffIcon } from '@epam/assets/icons/common/action-pin_off-18.svg';
+import { ReactComponent as LockIcon } from '../../../icons/action-lock-fill-24.svg';
+import { ReactComponent as PinOnIcon } from '../../../icons/action-pin_on-24.svg';
+import { ReactComponent as PinOffIcon } from '../../../icons/action-pin_off-24.svg';
 import { IconButton } from '../../buttons';
 import { Tooltip } from '../../overlays';
 import { i18n } from '../../../i18n';

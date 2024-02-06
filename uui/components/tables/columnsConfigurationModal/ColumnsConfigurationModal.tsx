@@ -4,8 +4,8 @@ import { useCallback, useMemo } from 'react';
 
 import { ColumnsConfig, DataColumnProps, IModal } from '@epam/uui-core';
 import { useColumnsConfiguration } from '@epam/uui-components';
-import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/navigation-refresh-18.svg';
+import { ReactComponent as MenuIcon } from '../../../icons/navigation-more_vert-24.svg';
+import { ReactComponent as ResetIcon } from '../../../icons/navigation-refresh-24.svg';
 
 import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
 import { Button, LinkButton } from '../../buttons';

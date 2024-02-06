@@ -5,12 +5,10 @@ import {
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
-import { Switch } from '../inputs';
+import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
 import css from './DropdownMenu.module.scss';
-
-const icons = systemIcons['36'];
 
 export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {
     isSelected?: boolean;
@@ -154,7 +152,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             { getMenuButtonContent() }
-            { isSelected && <IconContainer icon={ icons.accept } cx={ cx(css.root, css.selectedCheckmark) } /> }
+            { isSelected && <IconContainer icon={ systemIcons.accept } cx={ cx(css.root, css.selectedCheckmark) } /> }
         </FlexRow>
     );
 });
@@ -211,7 +209,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(css.root, css.submenuRootItem) }
-                    icon={ icons.foldingArrow }
+                    icon={ systemIcons.foldingArrow }
                     iconPosition="right"
                     isDropdown={ true }
                     toggleDropdownOpening={ toggleDropdownOpening }
