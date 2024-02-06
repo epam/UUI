@@ -3,7 +3,7 @@ import { BaseDocsBlock, EditableDocContent } from '../../common';
 import { TokenGroups } from './implementation/TokenGroups';
 
 export class Tokens extends BaseDocsBlock {
-    title: 'Tokens';
+    title = 'Tokens';
 
     renderContent() {
         return (
