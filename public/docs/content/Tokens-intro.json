@@ -1,13 +1,5 @@
 [
   {
-    "type": "uui-richTextEditor-header-1",
-    "children": [
-      {
-        "text": "Tokens"
-      }
-    ]
-  },
-  {
     "type": "paragraph",
     "children": [
       {
