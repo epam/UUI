@@ -63,7 +63,7 @@ export interface ITree<TItem, TId> {
         selectedId: TId | undefined,
         isSelected: boolean,
         options?: {
-            isSelectable?: (item: TItem) => boolean;
+            isSelectable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
             cascade?: CascadeSelection;
         }
     ): TId[];
