@@ -59,7 +59,7 @@ export function ErrorHandler(props: ErrorHandlerProps) {
                             <RichTextView>{subtitle}</RichTextView>
                             { isAuthLost && (
                                 <Text color="tertiary">
-                                    We have redirected you to the login page, if the page did not open, please click on this
+                                    We have redirected you to the login page, if the page didn't open, please click on this
                                     { ' ' }
                                     <Anchor href={ uuiApi.apiReloginPath }>
                                         link
