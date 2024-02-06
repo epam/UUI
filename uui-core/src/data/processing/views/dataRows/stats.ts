@@ -20,6 +20,7 @@ export const getDefaultNodeStats = () => ({
 
 export const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
     ...parentStats,
+    isSomeSelected: parentStats.isSomeSelected || childStats.isSomeSelected,
     isSomeCheckable: parentStats.isSomeCheckable || childStats.isSomeCheckable,
     isSomeChecked: parentStats.isSomeChecked || childStats.isSomeChecked,
     isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,

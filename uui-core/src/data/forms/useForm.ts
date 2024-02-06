@@ -95,7 +95,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 removeUnsavedChanges();
             });
         }
-        return null;
+        return Promise.resolve();
     }, [
         props.beforeLeave,
         handleSave,
