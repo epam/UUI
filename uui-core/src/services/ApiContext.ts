@@ -246,8 +246,9 @@ export class ApiContext extends BaseContext implements IApiContext {
         } else if (response.status === 401) {
             /* Authentication cookies invalidated */ this.handleApiError(call, 'auth-lost');
         } else {
-            // Try to parse JSON in response, if there are none - just ignore
+            // Try to parse response
             call.options.parseResponse(response)
+                .catch(() => null) // Ignore parsing errors
                 .then((result) => {
                     call.responseData = result;
                     this.handleApiError(call);

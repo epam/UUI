@@ -1,3 +1,8 @@
+# 5.5.2 - 07.02.2024
+
+**What's Fixed**
+* [APIContext]: fixed non-JSON error parsing (broken in 5.5.1)
+
 # 5.5.1 - 01.02.2024
 
 **What's New**
@@ -30,7 +35,7 @@
 * [RangeDatePicker]: added `id` prop to add HTML ID attribute for the first input into toggler.
 * [CountIndicator]: set color `info` by default.
 * [FilterPanel]: in range numeric filter set mark 'from' input as invalid in case if value `from` bigger than value `to`.
-* [Modals]: fixed `overflow: hidden` body style removing after closing first modals in case when multiple modals was opened. Now this style will be removed only when the last modal in stack was closed. 
+* [Modals]: fixed `overflow: hidden` body style removing after closing first modals in case when multiple modals was opened. Now this style will be removed only when the last modal in stack was closed.
 
 **What's Fixed**
 * [LazyDataSource]: fixed cascade selection with not flatten search.
@@ -41,8 +46,8 @@
 * [CheckboxGroup]: added property `size` to set it for all group components. Added possibility to provide CheckboxProps for each item of group.
 * [ApiContext]: file upload now handle JSON.parse errors.
 * [useUUIError]: fixed subscribing for the contexts with React strict mode
-* [NumericInput]: removed 'none' from size type. 
-* [DataPickerRow]: removed 'none' from size type. 
+* [NumericInput]: removed 'none' from size type.
+* [DataPickerRow]: removed 'none' from size type.
 * [RangeDatePicker]: fixed mounth/year selection blocker styles
 * [NumericInput]: fixed placeholder appearing after removing value, if props.min > 0.
 * [PickerInput]: clip selected value with ellipsis while overflow.
@@ -55,7 +60,7 @@
 # 5.4.3 - 19.12.2023
 
 **What's Fixed**
-* [RTE]: fixed `onBlur` and `onKeyDown` props 
+* [RTE]: fixed `onBlur` and `onKeyDown` props
 * [Button]: fixed 'white' color on loveship
 
 
