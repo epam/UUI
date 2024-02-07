@@ -2,7 +2,7 @@ import isEqual from 'lodash.isequal';
 import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../../types';
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD } from './constants';
-import { FetchingHelper } from './treeStructure';
+import { FetchingHelper, isFound } from './treeStructure';
 import { TreeNodeInfo } from './exposed';
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
@@ -34,7 +34,7 @@ export class Tree {
         let parentId = id;
         while (true) {
             const item = tree.getById(parentId);
-            if (item === NOT_FOUND_RECORD) {
+            if (!isFound(item)) {
                 break;
             }
             parentId = tree.getParams().getParentId?.(item);
@@ -51,7 +51,7 @@ export class Tree {
         const path: DataRowPathItem<TId, TItem>[] = [];
         foundParents.forEach((parentId) => {
             const parent = tree.getById(parentId);
-            if (parent === NOT_FOUND_RECORD) {
+            if (!isFound(parent)) {
                 return;
             }
             const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent, tree);
@@ -103,8 +103,8 @@ export class Tree {
             ids.forEach((id) => {
                 if (shouldStop) return;
                 const item = tree.getById(id);
-                const parentId = item !== NOT_FOUND_RECORD ? tree.getParams().getParentId?.(item) : undefined;
-                walkChildrenRec(item === NOT_FOUND_RECORD ? undefined : item, id, parentId);
+                const parentId = isFound(item) ? tree.getParams().getParentId?.(item) : undefined;
+                walkChildrenRec(isFound(item) ? item : undefined, id, parentId);
             });
         };
 

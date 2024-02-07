@@ -6,6 +6,7 @@ import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparat
 import { ItemsMap } from '../../../ItemsMap';
 import { TreeParams } from '../types';
 import { ITree } from '../../ITree';
+import { RecordStatus } from '../../constants';
 
 export interface ActForCheckableOptions<TItem, TId> {
     tree: ITree<TItem, TId>;
@@ -44,6 +45,7 @@ export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListVi
 export interface LoadAllOptions<TItem, TId, TFilter = any> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
+    itemsStatusMap: IMap<TId, RecordStatus>;
     options: LoadAllTreeOptions<TItem, TId, TFilter>;
     dataSourceState: DataSourceState;
 }
@@ -97,6 +99,7 @@ export type Position = 'initial' | 'top' | 'bottom';
 export interface PatchItemsOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
+    itemsStatusMap: IMap<TId, RecordStatus>;
     patchItems?: ItemsMap<TId, TItem>;
     isDeletedProp?: keyof TItem;
     getPosition?: (item: TItem) => Position | { after: TId };
@@ -129,6 +132,7 @@ export interface PasteItemIntoChildrenListOptions<TItem, TId> {
 export interface PatchOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
+    itemsStatusMap: IMap<TId, RecordStatus>;
     items: TItem[];
     isDeletedProp?: keyof TItem;
     comparator?: ItemsComparator<TItem>;

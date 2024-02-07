@@ -1,8 +1,6 @@
 import { IBaseMap, IMap } from '../../../../types';
 import { cloneMap, newMap } from './newTree';
 
-export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
-
 interface ModificationOptions {
     isDirty?: boolean;
     reset?: boolean;

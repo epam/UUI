@@ -3,13 +3,14 @@ import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from './map';
 import { InsertIntoPositionOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchItemsOptions, PatchOptions } from './types';
+import { LOADING_RECORD } from '../../constants';
 
 export class PatchHelper {
     public static patch<TItem, TId>({
-        treeStructure, itemsMap, items, isDeletedProp, comparator,
+        treeStructure, itemsMap, itemsStatusMap, items, isDeletedProp, comparator,
     }: PatchOptions<TItem, TId>) {
         if (!items || items.length === 0) {
-            return { treeStructure, itemsMap, newItems: [] };
+            return { treeStructure, itemsMap, itemsStatusMap, newItems: [] };
         }
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
@@ -18,6 +19,7 @@ export class PatchHelper {
         let newItemsMap = itemsMap;
         const newItems: TItem[] = [];
 
+        let newItemsStatusMap = itemsStatusMap;
         items.forEach((item) => {
             const id = treeStructure.getParams().getId(item);
             const existingItem = newItemsMap.get(id);
@@ -33,6 +35,12 @@ export class PatchHelper {
 
             if (!existingItem || existingItem !== item) {
                 newItemsMap = itemsMap.set(id, item);
+
+                if (newItemsStatusMap.get(id) === LOADING_RECORD) {
+                    newItemsStatusMap = newItemsStatusMap === itemsStatusMap ? cloneMap(itemsStatusMap) : newItemsStatusMap;
+                    newItemsStatusMap.delete(id);
+                }
+
                 newItems.push(item);
                 const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
                 if (!existingItem || parentId !== existingItemParentId) {
@@ -50,7 +58,7 @@ export class PatchHelper {
         });
 
         if (!isPatched) {
-            return { treeStructure, itemsMap };
+            return { treeStructure, itemsMap, itemsStatusMap };
         }
 
         const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.getParams());
@@ -62,25 +70,27 @@ export class PatchHelper {
         return {
             treeStructure: TreeStructure.create(
                 treeStructure.getParams(),
-                ItemsAccessor.toItemsAccessor(newItemsMap),
+                ItemsAccessor.toItemsAccessor(newItemsMap, newItemsStatusMap),
                 newByParentId,
                 newNodeInfoById,
             ),
             itemsMap: newItemsMap,
+            itemsStatusMap: newItemsStatusMap,
             newItems,
         };
     }
 
     public static patchItems<TItem, TId>({
-        itemsMap, treeStructure, patchItems, isDeletedProp, getPosition = () => 'initial',
+        itemsMap, itemsStatusMap, treeStructure, patchItems, isDeletedProp, getPosition = () => 'initial',
     }: PatchItemsOptions<TItem, TId>) {
-        if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, newItems: [] };
+        if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, itemsStatusMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
 
         let isPatched = false;
         let newItemsMap = itemsMap;
         const newItems: TItem[] = [];
+        let newItemsStatusMap = itemsStatusMap;
         patchItems.forEach((item, id) => {
             const parentId = treeStructure.getParams().getParentId?.(item);
 
@@ -94,6 +104,12 @@ export class PatchHelper {
 
             const existingItem = newItemsMap.get(id);
             newItemsMap = newItemsMap.set(id, item);
+
+            if (newItemsStatusMap.get(id) === LOADING_RECORD) {
+                newItemsStatusMap = newItemsStatusMap === itemsStatusMap ? cloneMap(itemsStatusMap) : newItemsStatusMap;
+                newItemsStatusMap.delete(id);
+            }
+
             newItems.push(item);
             const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
             const children = newByParentId.get(parentId) ?? [];
@@ -127,11 +143,12 @@ export class PatchHelper {
         return {
             treeStructure: TreeStructure.create(
                 treeStructure.getParams(),
-                ItemsAccessor.toItemsAccessor(newItemsMap),
+                ItemsAccessor.toItemsAccessor(newItemsMap, newItemsStatusMap),
                 newByParentId,
                 newNodeInfoById,
             ),
             itemsMap: newItemsMap,
+            itemsStatusMap: newItemsStatusMap,
             newItems,
         };
     }

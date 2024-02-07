@@ -1,7 +1,7 @@
-import { NOT_FOUND_RECORD } from '../constants';
+import { LOADING_RECORD, NOT_FOUND_RECORD } from '../constants';
 
 export interface IItemsAccessor<TItem, TId> {
-    get: (id: TId) => TItem | typeof NOT_FOUND_RECORD;
+    get: (id: TId) => TItem | typeof LOADING_RECORD | typeof NOT_FOUND_RECORD;
     forEach: (action: (item: TItem, id: TId) => void) => void;
 }
 

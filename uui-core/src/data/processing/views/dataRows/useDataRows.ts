@@ -8,7 +8,7 @@ import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
-import { FULLY_LOADED } from '../tree/newTree';
+import { FULLY_LOADED, LOADING_RECORD, isFound } from '../tree/newTree';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
@@ -57,7 +57,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         }
 
         const item = tree.getById(id);
-        if (item === NOT_FOUND_RECORD) return undefined;
+        if (!isFound(item)) return undefined;
 
         const childCount = props.getChildCount?.(item) ?? undefined;
         if (childCount === undefined) return undefined;
@@ -168,11 +168,12 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const getById = (id: TId, index: number) => {
         const item = tree.getById(id);
+        console.log('here');
         if (item === NOT_FOUND_RECORD) {
             return getUnknownRowProps(id, index, []);
         }
 
-        if (item === null) {
+        if (item === LOADING_RECORD) {
             return getLoadingRowProps(id, index, []);
         }
 
