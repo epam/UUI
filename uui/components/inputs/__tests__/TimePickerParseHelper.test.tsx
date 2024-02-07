@@ -5,11 +5,11 @@ describe('TimePicker, getMeridian function', () => {
     const withoutMeridianFormat = 'HH:mm';
 
     it('Should return \'AM\'', () => {
-        expect(getMeridian('2 22sdamsas', withMeridianFormat)).toEqual('AM');
+        expect(getMeridian('2 22ap', withMeridianFormat)).toEqual('AM');
     });
 
     it('Should return \'PM\'', () => {
-        expect(getMeridian('2/12sdapmsas', withMeridianFormat)).toEqual('PM');
+        expect(getMeridian('2/12pa', withMeridianFormat)).toEqual('PM');
     });
 
     it('Should return \'false\'', () => {
@@ -45,18 +45,19 @@ describe('TimePicker, parseTimeNumbers function', () => {
 
 describe('TimePicker, formatTime function', () => {
     it('Should return time with meridian', () => {
-        expect(formatTime(12, 34, 'PM')).toEqual('12:34 PM');
-        expect(formatTime(2, 4, 'AM')).toEqual('02:04 AM');
+        expect(formatTime(12, 34, 'PM', 'hh:mm A')).toEqual('12:34 PM');
+        expect(formatTime(2, 4, 'AM', 'hh:mm A')).toEqual('02:04 AM');
+        expect(formatTime(15, 0, false, 'hh:mm A')).toEqual('03:00 PM');
     });
 
     it('Should return time without meridian', () => {
-        expect(formatTime(12, 34, false)).toEqual('12:34');
-        expect(formatTime(2, 4, false)).toEqual('02:04');
-        expect(formatTime(0, 0, false)).toEqual('00:00');
+        expect(formatTime(12, 34, false, 'HH:mm')).toEqual('12:34');
+        expect(formatTime(2, 4, false, 'HH:mm')).toEqual('02:04');
+        expect(formatTime(0, 0, false, 'HH:mm')).toEqual('00:00');
     });
 
     it('Should return empty string', () => {
-        expect(formatTime(0, 0, 'AM')).toEqual('');
-        expect(formatTime(0, 0, 'PM')).toEqual('');
+        expect(formatTime(0, 0, 'AM', 'hh:mm A')).toEqual('');
+        expect(formatTime(0, 0, 'PM', 'hh:mm A')).toEqual('');
     });
 });
