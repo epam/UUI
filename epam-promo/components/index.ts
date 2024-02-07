@@ -12,6 +12,6 @@ export {
     WarningNotification, SuccessNotification, HintNotification, ErrorNotification, ClearNotification, DatePicker, RangeDatePicker, Checkbox, FlexSpacer, FlexCell,
     Spinner, DataPickerBody, PickerModal, ModalBlocker, ModalHeader, ModalFooter, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuHeader,
     DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, IndicatorBar, ProgressBar, RichTextView,
-    Slider, ScrollBars, VirtualList, TextInput, SearchInput, LabeledInput, ErrorHandler, getRecoveryMessageConfig, getErrorPageConfig, ErrorPage,
+    Slider, ScrollBars, VirtualList, TextInput, SearchInput, LabeledInput, Snackbar, ErrorHandler, getRecoveryMessageConfig, getErrorPageConfig, ErrorPage,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';

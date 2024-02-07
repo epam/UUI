@@ -79260,6 +79260,94 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:SnackbarProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "SnackbarProps",
+     "nameFull": "SnackbarProps"
+    },
+    "src": "uui/components/overlays/Snackbar.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "SnackbarProps",
+     "print": [
+      "interface SnackbarProps extends UuiSnackbarProps {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "closeIcon",
+      "name": "closeIcon",
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:SnackbarProps",
+      "required": false
+     },
+     {
+      "uid": "notifications",
+      "name": "notifications",
+      "typeValue": {
+       "raw": "NotificationOperation[]"
+      },
+      "from": "@epam/uui-components:SnackbarProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:SpinnerProps": {
    "summary": {
     "module": "@epam/uui",
