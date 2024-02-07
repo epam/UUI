@@ -8,14 +8,13 @@ export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
 export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
-    changeIsOpen?(newValue: boolean): void;
     presets?: RangeDatePickerPresets;
     renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
 }
 
 export interface DatePickerBodyBaseProps<TSelection> extends DatePickerBodyBaseOptions {
     value: PickerBodyValue<TSelection>;
-    onValueChange: (value: Partial<PickerBodyValue<TSelection>>) => void;
+    onValueChange: (value: PickerBodyValue<TSelection>) => void;
 }
 
 export interface RangePickerBodyValue<TSelection> extends PickerBodyValue<TSelection> {
@@ -24,6 +23,12 @@ export interface RangePickerBodyValue<TSelection> extends PickerBodyValue<TSelec
 
 export interface PickerBodyValue<TSelection> {
     selectedDate: TSelection | null;
+    month: Dayjs;
+    view: ViewType;
+}
+
+export interface DatePickerState {
+    isOpen: boolean;
     month: Dayjs;
     view: ViewType;
 }

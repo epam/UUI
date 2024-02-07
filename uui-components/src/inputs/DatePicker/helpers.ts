@@ -41,5 +41,15 @@ export const toValueDateFormat = (value: string, format?: string): string => {
 export const toCustomDateFormat = (value: string, format?: string): string => {
     const customFormat = format || defaultFormat;
 
-    return value ? dayjs(value, supportedDateFormats(format), true).format(customFormat) : null;
+    if (value) {
+        const dayjsObj = dayjs(value, supportedDateFormats(format), true);
+
+        if (dayjsObj.isValid()) {
+            return dayjsObj.format(customFormat);
+        } else {
+            return null; // did it to avoid useEffect state syncronization in date picker component
+        }
+    } else {
+        return null;
+    }
 };
