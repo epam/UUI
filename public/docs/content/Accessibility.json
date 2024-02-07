@@ -1,0 +1,328 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI Framework complies with "
+      },
+      {
+        "type": "link",
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "WCAG 2.2"
+          }
+        ]
+      },
+      {
+        "text": ", AA level of accessibility for base UI components. UUI Team is continuously improving coverage & quality, based on clients' demand. Feel free to submit your request via "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/issues/new/choose",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "GitHub"
+          }
+        ]
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "children": [
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_header_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Area"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "table_header_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Support"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "table_header_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Details"
+                  }
+                ]
+              }
+            ],
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ],
+        "size": 52
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Keyboard navigation"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Yes, full support"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "For non-base components, like Tables or Date Pickers - partial support. "
+                  }
+                ]
+              }
+            ],
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Focus state"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Yes, full support"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "For non-base components, like Tables or Date Pickers - partial support. "
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Color contrast"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Yes, full support."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "AA level."
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Color palette is accessible in built-in themes: Loveship, Promo & Electric."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "If custom theme - dependency on particular color palette, used by the application"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ]
+      },
+      {
+        "type": "table_row",
+        "children": [
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Accessible labels for Screen readers"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Yes, partial"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          },
+          {
+            "type": "table_cell",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Some components may have minor/medium gaps"
+                  }
+                ]
+              }
+            ],
+            "colSpan": 1,
+            "rowSpan": 1
+          }
+        ],
+        "size": 76
+      }
+    ],
+    "data": {
+      "cellSizes": [
+        200,
+        200
+      ]
+    },
+    "colSizes": [
+      224,
+      156,
+      540
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "It's also important to acknowledge that UUI Framework cannot make the application fully accessible on its own. The success of the project greatly depends on the accurate use of component properties to ensure full compliance with accessibility (a11y) standards."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Additionally, it's crucial to have proposed solutions reviewed and validated by a11y-experts to ensure its optimal realization."
+      }
+    ]
+  }
+]

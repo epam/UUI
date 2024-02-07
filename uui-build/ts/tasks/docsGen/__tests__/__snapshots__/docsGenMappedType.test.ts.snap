@@ -14,7 +14,7 @@ exports[`docsGen:mappedType should convert mapped type 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TLocal",
      "print": [

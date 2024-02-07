@@ -14,7 +14,7 @@ exports[`docsGen:intersection should convert intersection 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TIntersection",
      "print": [
@@ -114,7 +114,7 @@ exports[`docsGen:intersection should convert top level type with Omit 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TIntersection",
      "print": [
@@ -167,7 +167,7 @@ exports[`docsGen:intersection should convert type intersection with Omit 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
      "raw": "TIntersection",
      "print": [
