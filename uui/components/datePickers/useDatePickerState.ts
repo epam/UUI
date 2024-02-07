@@ -9,7 +9,7 @@ export const getStateFromValue = (value: string | null, format: string) => {
         return {
             inputValue: '',
             selectedDate: value,
-            displayedDate: dayjs().startOf('day'),
+            month: dayjs().startOf('day'),
         };
     }
 
@@ -19,7 +19,7 @@ export const getStateFromValue = (value: string | null, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day'),
+        month: dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day'),
     };
 };
 
@@ -39,7 +39,7 @@ export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditM
 export const useDatePickerState = ({
     value,
     format,
-    onValueChange,
+    onValueChange: _onValueChange,
     filter,
     renderDay,
     renderFooter,
@@ -61,18 +61,56 @@ export const useDatePickerState = ({
     useEffect(() => {
         updateState({
             selectedDate: value,
-            displayedDate: dayjs(value, valueFormat).isValid()
+            month: dayjs(value, valueFormat).isValid()
                 ? dayjs(value, valueFormat)
                 : dayjs().startOf('day'),
             inputValue: toCustomDateFormat(value, format),
         });
     }, [value, format, updateState]);
 
+    const onValueChange = (newValue: Partial<PickerBodyValue<string>>) => {
+        let newState: Partial<PickerBodyValue<string>> = {};
+        if (newValue.selectedDate) {
+            newState = {
+                ...newState,
+                selectedDate: newValue.selectedDate,
+            };
+
+            // should not be called on month change
+            // if (range.from && range.to && props.focusPart === 'to') {
+            //     props.changeIsOpen?.(false);
+            // }
+        }
+
+        if (newValue.month) {
+            newState = {
+                ...newState,
+                month: dayjs(newValue.month, valueFormat).isValid()
+                    ? dayjs(newValue.month, valueFormat)
+                    : dayjs().startOf('day'),
+            };
+        }
+
+        if (newValue.view) {
+            newState = { ...newState, view: newValue.view };
+        }
+
+        updateState(newState);
+
+        if (newValue.selectedDate) {
+            _onValueChange(newValue.selectedDate);
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue.selectedDate, value);
+                context.uuiAnalytics.sendEvent(event);
+            }
+        }
+    };
+
     const handleValueChange = (newValue: string | null) => {
-        onValueChange(newValue);
+        _onValueChange(newValue);
         updateState({
             selectedDate: newValue,
-            displayedDate: dayjs(newValue, valueFormat).isValid() ? dayjs(newValue, valueFormat) : dayjs().startOf('day'),
+            month: dayjs(newValue, valueFormat).isValid() ? dayjs(newValue, valueFormat) : dayjs().startOf('day'),
         });
 
         if (props.getValueChangeAnalyticsEvent) {
@@ -130,7 +168,7 @@ export const useDatePickerState = ({
         updateState({
             isOpen: inputValue,
             view: 'DAY_SELECTION',
-            displayedDate: state.selectedDate ? dayjs(state.selectedDate) : dayjs(),
+            month: state.selectedDate ? dayjs(state.selectedDate) : dayjs(),
         });
         if (!inputValue) {
             props.onBlur?.();
@@ -151,7 +189,14 @@ export const useDatePickerState = ({
     };
 
     const setDisplayedDateAndView = (dd: Dayjs, v: ViewType) => {
-        updateState({ displayedDate: dd, view: v });
+        updateState({
+            month: dd,
+            view: v,
+        });
+    };
+
+    const setMonth = (dd: Dayjs) => {
+        updateState({ month: dd });
     };
 
     return {
@@ -163,5 +208,7 @@ export const useDatePickerState = ({
         handleToggle,
         setSelectedDate,
         setDisplayedDateAndView,
+        setMonth,
+        onValueChange,
     };
 };

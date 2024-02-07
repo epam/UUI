@@ -14,30 +14,23 @@ export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps
 export function FilterDatePickerBody(props: DatePickerProps) {
     const {
         state,
-        // handleInputChange,
-        // handleFocus,
-        // handleBlur,
         handleCancel,
         handleToggle,
-        setDisplayedDateAndView,
-        setSelectedDate,
+        onValueChange,
     } = useDatePickerState(props);
-
-    const value = {
-        selectedDate: props.value,
-        displayedDate: state.displayedDate,
-        view: state.view,
-    };
 
     return (
         <Fragment>
             <FlexRow borderBottom={ true }>
                 <DatePickerBody
                     filter={ props.filter }
-                    value={ value }
-                    setSelectedDate={ setSelectedDate }
-                    setDisplayedDateAndView={ setDisplayedDateAndView }
-                    changeIsOpen={ handleToggle }
+                    value={ {
+                        selectedDate: state.selectedDate,
+                        month: state.month,
+                        view: state.view,
+                    } }
+                    onValueChange={ onValueChange }
+                    changeIsOpen={ handleToggle } // TODO: remove it
                     renderDay={ props.renderDay }
                     isHoliday={ props.isHoliday }
                     rawProps={ props.rawProps?.body }

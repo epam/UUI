@@ -27,8 +27,7 @@ export function DatePickerComponent(props: DatePickerProps) {
         handleBlur,
         handleCancel,
         handleToggle,
-        setDisplayedDateAndView,
-        setSelectedDate,
+        onValueChange,
     } = useDatePickerState(props);
 
     const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
@@ -70,12 +69,6 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const renderBody = (renderProps: DropdownBodyProps) => {
-        const value = {
-            selectedDate: state.selectedDate,
-            displayedDate: state.displayedDate,
-            view: state.view,
-        };
-
         return (
             <DropdownContainer { ...renderProps } focusLock={ false }>
                 <DatePickerBody
@@ -84,10 +77,13 @@ export function DatePickerComponent(props: DatePickerProps) {
                     isHoliday={ props.isHoliday }
                     renderDay={ props.renderDay }
                     rawProps={ props.rawProps?.body }
-                    value={ value }
-                    changeIsOpen={ handleToggle }
-                    setDisplayedDateAndView={ setDisplayedDateAndView }
-                    setSelectedDate={ setSelectedDate }
+                    value={ {
+                        selectedDate: state.selectedDate,
+                        month: state.month,
+                        view: state.view,
+                    } }
+                    onValueChange={ onValueChange }
+                    changeIsOpen={ handleToggle } // TODO: remove
                 />
                 {props.renderFooter?.()}
             </DropdownContainer>

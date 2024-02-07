@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { arrayToMatrix, cx, IEditable, RangeDatePickerPresets } from '@epam/uui-core';
 import {
-    DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valueFormat, ViewType, uuiDaySelection,
+    DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valueFormat, uuiDaySelection,
 } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { DatePickerBody } from './DatePickerBody';
@@ -95,15 +95,13 @@ export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, 
     renderHeader?: (props: IEditable<PickerBodyValue<string>>) => React.ReactNode;
 }
 
-export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProps<RangeDatePickerValue>, RangeDatePickerBodyState> {
-    state: RangeDatePickerBodyState = {
-        activePart: null,
-    };
+export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue>): JSX.Element {
+    const [activePart, setActivePart] = React.useState<PickerPart>(null);
 
-    getDayCX = (day: Dayjs): string[] => {
+    const getDayCX = (day: Dayjs): string[] => {
         const dayValue = day.valueOf();
-        const fromValue = this.props.value.selectedDate?.from ? dayjs(this.props.value.selectedDate.from).valueOf() : null;
-        const toValue = this.props.value.selectedDate?.to ? dayjs(this.props.value.selectedDate.to).valueOf() : null;
+        const fromValue = props.value.selectedDate?.from ? dayjs(props.value.selectedDate.from).valueOf() : null;
+        const toValue = props.value.selectedDate?.to ? dayjs(props.value.selectedDate.to).valueOf() : null;
 
         const inRange = fromValue && toValue && dayValue >= fromValue && dayValue <= toValue && fromValue !== toValue;
         const isFirst = dayValue === fromValue;
@@ -119,12 +117,12 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         )];
     };
 
-    getRange(selectedDate: string) {
+    const getRange = (selectedDate: string) => {
         const newRange: RangeDatePickerValue = { from: null, to: null };
-        const currentRange = this.props.value.selectedDate || { from: null, to: null };
+        const currentRange = props.value.selectedDate || { from: null, to: null };
 
-        if (!this.props.filter || this.props.filter(dayjs(selectedDate))) {
-            if (this.props.focusPart === 'from') {
+        if (!props.filter || props.filter(dayjs(selectedDate))) {
+            if (props.focusPart === 'from') {
                 if (dayjs(selectedDate).valueOf() <= dayjs(currentRange.to).valueOf()) {
                     newRange.from = selectedDate;
                     newRange.to = currentRange.to;
@@ -134,7 +132,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
                 }
             }
 
-            if (this.props.focusPart === 'to') {
+            if (props.focusPart === 'to') {
                 if (!currentRange.from) {
                     newRange.to = selectedDate;
                 } else if (dayjs(selectedDate).valueOf() >= dayjs(currentRange.from).valueOf()) {
@@ -148,60 +146,67 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         }
 
         return newRange;
-    }
+    };
 
-    setSelectedDate(selectedDate: string) {
-        const range = this.getRange(selectedDate);
+    const onValueChange = (value: Partial<PickerBodyValue<string>>, part: 'from' | 'to') => {
+        let newValue: Partial<PickerBodyValue<RangeDatePickerValue>>;
+        if (value.selectedDate) {
+            const range = getRange(value.selectedDate);
+            newValue = { ...newValue, selectedDate: range };
 
-        this.props.onValueChange({
-            ...this.props.value,
-            selectedDate: range,
-        });
-
-        if (range.from && range.to && this.props.focusPart === 'to') {
-            this.props.changeIsOpen?.(false);
+            // should not be called on month change
+            if (range.from && range.to && props.focusPart === 'to') {
+                props.changeIsOpen?.(false);
+            }
         }
-    }
 
-    setDisplayedDateAndView(displayedDate: Dayjs, view: ViewType, part: PickerPart) {
-        this.setState({ activePart: part });
+        if (value.month) {
+            newValue = {
+                ...newValue,
+                month: part === 'from' ? value.month : value.month.subtract(1, 'month'),
+            };
+        }
 
-        this.props.onValueChange({
-            selectedDate: this.props.value.selectedDate,
-            displayedDate: part === 'from' ? displayedDate : displayedDate.subtract(1, 'month'),
-            view: view,
+        if (value.view) {
+            newValue = { ...newValue, view: value.view };
+        }
+
+        setActivePart(part);
+        props.onValueChange({
+            ...props.value,
+            ...newValue,
         });
-    }
+    };
 
-    getFromValue = (): PickerBodyValue<string> => {
+    const getFromValue = (): PickerBodyValue<string> => {
         return {
-            ...this.props.value,
-            view: this.state.activePart === 'from' ? this.props.value.view : 'DAY_SELECTION',
-            selectedDate: this.props.value.selectedDate?.from || null,
+            ...props.value,
+            view: activePart === 'from' ? props.value.view : 'DAY_SELECTION',
+            selectedDate: props.value.selectedDate?.from || null,
         };
     };
 
-    getToValue = (): PickerBodyValue<string> => {
+    const getToValue = (): PickerBodyValue<string> => {
         return {
-            view: this.state.activePart === 'to' ? this.props.value.view : 'DAY_SELECTION',
-            displayedDate: this.props.value.displayedDate.add(1, 'month'),
-            selectedDate: this.props.value.selectedDate?.from || null,
+            view: activePart === 'to' ? props.value.view : 'DAY_SELECTION',
+            month: props.value.month.add(1, 'month'),
+            selectedDate: props.value.selectedDate?.from || null,
         };
     };
 
-    renderPresets = (presets: RangeDatePickerPresets) => {
+    const renderPresets = (presets: RangeDatePickerPresets) => {
         return (
             <>
                 <div className={ uuiRangeDatePickerBody.separator } />
                 <CalendarPresets
-                    forwardedRef={ this.props.forwardedRef }
+                    forwardedRef={ props.forwardedRef }
                     onPresetSet={ (presetVal) => {
-                        this.props.onValueChange({
+                        props.onValueChange({
                             view: 'DAY_SELECTION',
                             selectedDate: { from: dayjs(presetVal.from).format(valueFormat), to: dayjs(presetVal.to).format(valueFormat) },
-                            displayedDate: dayjs(presetVal.from),
+                            month: dayjs(presetVal.from),
                         });
-                        this.props.changeIsOpen?.(false);
+                        props.changeIsOpen?.(false);
                     } }
                     presets={ presets }
                 />
@@ -209,55 +214,64 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         );
     };
 
-    renderDatePicker = () => {
+    const renderDatePicker = () => {
+        const from = getFromValue();
+        const to = getToValue();
         return (
-            <FlexRow cx={ [this.props.value.view === 'DAY_SELECTION' && css.daySelection, css.container] } alignItems="top">
+            <FlexRow
+                cx={ [props.value.view === 'DAY_SELECTION' && css.daySelection, css.container] }
+                alignItems="top"
+            >
                 <FlexCell width="auto">
                     <FlexRow>
                         <FlexRow cx={ css.bodesWrapper } alignItems="top">
                             <DatePickerBody
                                 cx={ cx(css.fromPicker) }
-                                setSelectedDate={ (nv) => this.setSelectedDate(nv) }
-                                value={ this.getFromValue() }
-                                setDisplayedDateAndView={ (displayedDate, view) => this.setDisplayedDateAndView(displayedDate, view, 'from') }
-                                getDayCX={ this.getDayCX }
-                                filter={ this.props.filter }
-                                renderDay={ this.props.renderDay }
-                                isHoliday={ this.props.isHoliday }
+                                value={ {
+                                    selectedDate: from.selectedDate,
+                                    month: from.month,
+                                    view: from.view,
+                                } }
+                                onValueChange={ (v) => onValueChange(v, 'from') }
+                                getDayCX={ getDayCX }
+                                filter={ props.filter }
+                                renderDay={ props.renderDay }
+                                isHoliday={ props.isHoliday }
                             />
                             <DatePickerBody
                                 cx={ cx(css.toPicker) }
-                                setSelectedDate={ (nv) => this.setSelectedDate(nv) }
-                                value={ this.getToValue() }
-                                setDisplayedDateAndView={ (displayedDate, view) => this.setDisplayedDateAndView(displayedDate, view, 'to') }
-                                getDayCX={ this.getDayCX }
-                                filter={ this.props.filter }
-                                renderDay={ this.props.renderDay }
-                                isHoliday={ this.props.isHoliday }
+                                value={ {
+                                    selectedDate: to.selectedDate,
+                                    month: to.month,
+                                    view: to.view,
+                                } }
+                                onValueChange={ (v) => onValueChange(v, 'to') }
+                                getDayCX={ getDayCX }
+                                filter={ props.filter }
+                                renderDay={ props.renderDay }
+                                isHoliday={ props.isHoliday }
                             />
-                            {this.props.value.view !== 'DAY_SELECTION' && (
+                            {props.value.view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
-                                        left: this.state.activePart === 'from' ? '50%' : undefined,
-                                        right: this.state.activePart === 'to' ? '50%' : undefined,
+                                        left: activePart === 'from' ? '50%' : undefined,
+                                        right: activePart === 'to' ? '50%' : undefined,
                                     } }
                                     className={ css.blocker }
                                 />
                             )}
                         </FlexRow>
-                        {this.props.presets && this.renderPresets(this.props.presets)}
+                        {props.presets && renderPresets(props.presets)}
                     </FlexRow>
-                    {this.props.renderFooter && this.props.renderFooter()}
+                    {props.renderFooter && props.renderFooter()}
                 </FlexCell>
             </FlexRow>
         );
     };
 
-    render() {
-        return (
-            <div className={ cx(css.root, uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps }>
-                {this.renderDatePicker()}
-            </div>
-        );
-    }
+    return (
+        <div className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) } { ...props.rawProps }>
+            {renderDatePicker()}
+        </div>
+    );
 }
