@@ -43,14 +43,17 @@ export const migrateTableCell = (element: TTableCellElement): TTableCellElement 
 
 const migrateTable = (oldTable: any) => {
     oldTable.nodes.forEach((row: any) => {
-        const newRowNodes: any[] = [];
+        const newRowCells: any[] = [];
         row.nodes.forEach((cell: any) => {
             if (cell.data?.style !== 'none') {
-                newRowNodes.push(cell);
+                newRowCells.push(cell);
             }
         });
 
-        row.nodes = newRowNodes;
+        if (!newRowCells.length) {
+            newRowCells.push({ object: 'text', text: '' });
+        }
+        row.nodes = newRowCells;
     });
     return oldTable;
 };
