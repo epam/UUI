@@ -1,12 +1,13 @@
+import { IMap } from '../../../../../../types';
 import { ItemsStorage } from '../../ItemsStorage';
 import {
     FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
-import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap } from '../treeStructure';
+import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap, newMap } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
-import { NOT_FOUND_RECORD } from '../constants';
+import { NOT_FOUND_RECORD, RecordStatus } from '../constants';
 import { TreeParams } from '../treeStructure/types';
 
 export class TreeState<TItem, TId> {
@@ -14,15 +15,25 @@ export class TreeState<TItem, TId> {
         private _fullTree: TreeStructure<TItem, TId> | null,
         private _visibleTree: TreeStructure<TItem, TId> | null,
         protected _itemsMap: ItemsMap<TId, TItem>,
+        private _itemsStatusMap: IMap<TId, RecordStatus>,
         protected _setItems: ItemsStorage<TItem, TId>['setItems'],
+        protected _setLoadingStatus?: ItemsStorage<TItem, TId>['setLoadingStatus'],
     ) {}
 
     public get itemsMap() {
         return this._itemsMap;
     }
 
+    public get itemsStatusMap() {
+        return this._itemsStatusMap;
+    }
+
     public get setItems() {
         return this._setItems;
+    }
+
+    public get setLoadingStatus() {
+        return this._setLoadingStatus;
     }
 
     public get visible() {
@@ -58,13 +69,17 @@ export class TreeState<TItem, TId> {
                     using,
                     treeStructure,
                     itemsMap: this.itemsMap,
+                    itemsStatusMap: this._itemsStatusMap,
                 });
             }
 
             return this;
         }
 
-        const itemsMap = loadedItems.length ? this.setItems(loadedItems, { on: 'load' }) : this.itemsMap;
+        const { itemsMap = this.itemsMap, itemsStatusMap = this._itemsStatusMap } = loadedItems.length
+            ? this.setItems(loadedItems, { on: 'load' })
+            : { };
+
         const newByParentId = byParentId.size ? cloneMap(treeStructure.byParentId) : treeStructure.byParentId;
         for (const [id, ids] of byParentId) {
             newByParentId.set(id, ids);
@@ -83,11 +98,12 @@ export class TreeState<TItem, TId> {
             using: treeToUpdate,
             treeStructure: TreeStructure.create(
                 treeStructure.getParams(),
-                ItemsAccessor.toItemsAccessor(itemsMap),
+                ItemsAccessor.toItemsAccessor(itemsMap, itemsStatusMap),
                 newByParentId,
                 newNodeInfoById,
             ),
             itemsMap,
+            itemsStatusMap,
         });
     }
 
@@ -98,22 +114,26 @@ export class TreeState<TItem, TId> {
     }: LoadAllOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, loadedItems } = await FetchingHelper.loadAll({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, itemsStatusMap: newItemsStatusMap, loadedItems } = await FetchingHelper.loadAll({
             treeStructure,
             itemsMap: this.itemsMap,
+            itemsStatusMap: this._itemsStatusMap,
             options,
             dataSourceState,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !loadedItems.length) {
+        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && newItemsStatusMap === this._itemsStatusMap && !loadedItems.length) {
             return this;
         }
 
         if (loadedItems.length) {
             this.setItems(loadedItems, { on: 'load' });
         }
+        const { itemsStatusMap = newMap<TId, RecordStatus>(treeStructure.getParams()) } = loadedItems.length
+            ? this.setItems(loadedItems, { on: 'load' })
+            : {};
 
-        return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
+        return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap, itemsStatusMap });
     }
 
     public filter<TFilter>({
@@ -127,7 +147,7 @@ export class TreeState<TItem, TId> {
             return this;
         }
 
-        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: this.itemsMap });
+        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: this.itemsMap, itemsStatusMap: this._itemsStatusMap });
     }
 
     public sort<TFilter>({
@@ -141,7 +161,7 @@ export class TreeState<TItem, TId> {
             return this;
         }
 
-        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: this.itemsMap });
+        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: this.itemsMap, itemsStatusMap: this._itemsStatusMap });
     }
 
     public search<TFilter>({
@@ -156,18 +176,19 @@ export class TreeState<TItem, TId> {
             return this;
         }
 
-        return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
+        return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap, itemsStatusMap: this._itemsStatusMap });
     }
 
     public patch({ using, ...options }: PatchOptions<TItem>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure(using);
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, itemsStatusMap: newItemsStatusMap, newItems } = PatchHelper.patch<TItem, TId>({
             treeStructure,
             itemsMap: this.itemsMap,
+            itemsStatusMap: this._itemsStatusMap,
             ...options,
         });
 
-        if (newTreeStructure === treeStructure && this.itemsMap === newItemsMap && !newItems.length) {
+        if (newTreeStructure === treeStructure && this.itemsMap === newItemsMap && this._itemsStatusMap === newItemsStatusMap && !newItems.length) {
             return this;
         }
 
@@ -175,19 +196,25 @@ export class TreeState<TItem, TId> {
             this.setItems(newItems, { on: 'patch' });
         }
 
-        return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
+        return this.withNewTreeStructures({
+            using,
+            treeStructure: newTreeStructure,
+            itemsMap: newItemsMap,
+            itemsStatusMap: newItemsStatusMap,
+        });
     }
 
     public patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, itemsStatusMap: newItemsStatusMap, newItems } = PatchHelper.patchItems({
             treeStructure,
             itemsMap: this.itemsMap,
+            itemsStatusMap: this._itemsStatusMap,
             patchItems,
             isDeletedProp,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !newItems.length) {
+        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && newItemsStatusMap === this._itemsStatusMap && !newItems.length) {
             return this;
         }
 
@@ -195,7 +222,40 @@ export class TreeState<TItem, TId> {
             this.setItems(newItems, { on: 'patch' });
         }
 
-        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap });
+        if (newItems.length) {
+            this.setItems(newItems, { on: 'patch' });
+        }
+
+        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap, itemsStatusMap: newItemsStatusMap });
+    }
+
+    public updateLoadingItems(ids: TId[]) {
+        const itemsStatusMap = this.setLoadingStatus(ids);
+        if (itemsStatusMap !== this.itemsStatusMap) {
+            const newFullTree = TreeStructure.create(
+                this.full.getParams(),
+                ItemsAccessor.toItemsAccessor(this.itemsMap, itemsStatusMap),
+                this.full.byParentId,
+                this.full.nodeInfoById,
+            );
+            const newVisibleTree = TreeStructure.create(
+                this.visible.getParams(),
+                ItemsAccessor.toItemsAccessor(this.itemsMap, itemsStatusMap),
+                this.visible.byParentId,
+                this.visible.nodeInfoById,
+            );
+
+            return TreeState.create(
+                newFullTree,
+                newVisibleTree,
+                this.itemsMap,
+                itemsStatusMap,
+                this.setItems,
+                this.setLoadingStatus,
+            );
+        }
+
+        return this;
     }
 
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
@@ -205,9 +265,11 @@ export class TreeState<TItem, TId> {
     public clearStructure(): TreeState<TItem, TId> {
         return TreeState.create(
             this.full,
-            TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap, this._itemsStatusMap)),
             this.itemsMap,
+            this._itemsStatusMap,
             this.setItems,
+            this._setLoadingStatus,
         );
     }
 
@@ -216,7 +278,9 @@ export class TreeState<TItem, TId> {
             this.full,
             this.full,
             this.itemsMap,
+            this._itemsStatusMap,
             this.setItems,
+            this._setLoadingStatus,
         );
     }
 
@@ -224,11 +288,12 @@ export class TreeState<TItem, TId> {
         using,
         treeStructure,
         itemsMap,
+        itemsStatusMap,
     }: UpdateTreeStructuresOptions<TItem, TId>): TreeState<TItem, TId> {
         if (!using) {
-            return TreeState.create(treeStructure, treeStructure, itemsMap, this._setItems);
+            return TreeState.create(treeStructure, treeStructure, itemsMap, itemsStatusMap, this._setItems, this._setLoadingStatus);
         }
-        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap, itemsStatusMap);
         const visibleTree = using === 'visible'
             ? treeStructure
             : TreeStructure.withNewItemsAccessor(itemsAccessor, this._visibleTree);
@@ -237,28 +302,34 @@ export class TreeState<TItem, TId> {
             ? treeStructure
             : TreeStructure.withNewItemsAccessor(itemsAccessor, this._fullTree);
 
-        return TreeState.create(fullTree, visibleTree, itemsMap, this._setItems);
+        return TreeState.create(fullTree, visibleTree, itemsMap, itemsStatusMap, this._setItems, this._setLoadingStatus);
     }
 
     public static create<TItem, TId>(
         fullTree: TreeStructure<TItem, TId>,
         visibleTree: TreeStructure<TItem, TId>,
         itemsMap: ItemsMap<TId, TItem>,
+        itemsStatusMap: IMap<TId, RecordStatus>,
         setItems: ItemsStorage<TItem, TId>['setItems'],
+        setLoadingStatus: ItemsStorage<TItem, TId>['setLoadingStatus'],
     ) {
         return new TreeState(
             fullTree,
             visibleTree,
             itemsMap,
+            itemsStatusMap,
             setItems,
+            setLoadingStatus,
         );
     }
 
     public static createFromItems<TItem, TId>(
         items: TItem[] | undefined,
         itemsMap: ItemsMap<TId, TItem> | undefined,
+        itemsStatusMap: IMap<TId, RecordStatus>,
         params: TreeParams<TItem, TId>,
         setItems: ItemsStorage<TItem, TId>['setItems'],
+        setLoadingStatus?: ItemsStorage<TItem, TId>['setLoadingStatus'],
     ) {
         if (items === undefined && itemsMap === undefined) {
             throw Error('At least one of the following args should be defined: `items` or `itemsMap`.');
@@ -271,24 +342,34 @@ export class TreeState<TItem, TId> {
             treeItemsMap = new ItemsMap(new Map(), params).setItems(items);
         }
 
-        const itemsAccessor = ItemsAccessor.toItemsAccessor(treeItemsMap);
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(treeItemsMap, itemsStatusMap);
         const treeStructure = TreeStructure.createFromItems({ params, items: items ?? treeItemsMap, itemsAccessor });
         return new TreeState(
             treeStructure,
             treeStructure,
             treeItemsMap,
+            itemsStatusMap,
             setItems,
+            setLoadingStatus,
         );
     }
 
-    public static blank<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']): TreeState<TItem, TId> {
-        const treeStructure = TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap));
+    public static blank<TItem, TId>(
+        params: TreeParams<TItem, TId>,
+        itemsMap: ItemsMap<TId, TItem>,
+        itemsStatusMap: IMap<TId, RecordStatus>,
+        setItems: ItemsStorage<TItem, TId>['setItems'],
+        setLoadingStatus: ItemsStorage<TItem, TId>['setLoadingStatus'],
+    ): TreeState<TItem, TId> {
+        const treeStructure = TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap, itemsStatusMap));
 
         return this.create(
             treeStructure,
             treeStructure,
             itemsMap,
+            itemsStatusMap,
             setItems,
+            setLoadingStatus,
         );
     }
 }

@@ -24,13 +24,15 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
-    const { itemsMap, setItems } = useItemsStorage({
+    const { itemsMap, itemsStatusMap, setItems, setLoadingStatus } = useItemsStorage({
         itemsMap: props.itemsMap,
+        itemsStatusMap: props.itemsStatusMap,
         setItems: props.setItems,
+        setLoadingStatus: props.setLoadingStatus,
         params: { getId, complexIds: props.complexIds },
     });
 
-    const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
+    const blankTree = useMemo(() => TreeState.blank(props, itemsMap, itemsStatusMap, setItems, setLoadingStatus), [...deps]);
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
     const prevDataSourceState = usePrevious(dataSourceState);
@@ -73,49 +75,80 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     });
 
     useEffect(() => {
-        if (showOnlySelected) {
-            return;
-        }
-
-        let currentTree = treeWithData;
-        if (shouldRefetch) {
-            setIsFetching(true);
-            currentTree = treeWithData.clearStructure();
-            if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
-                currentTree = currentTree.reset();
+        if (
+            showOnlySelected
+            && dataSourceState?.checked?.length
+            && prevDataSourceState?.checked !== dataSourceState?.checked
+        ) {
+            const treeWithLoading = treeWithData.updateLoadingItems(dataSourceState?.checked ?? []);
+            if (treeWithLoading !== treeWithData) {
+                setTreeWithData(treeWithLoading);
+                console.log('updated tree ----->', treeWithData);
             }
-        }
 
-        if (shouldLoad) {
-            if (currentTree !== treeWithData) {
-                setTreeWithData(currentTree);
-            }
-            setIsLoading(true);
-        }
-
-        if (shouldFetch) {
             loadMissing({
-                tree: currentTree,
-                using: 'visible',
+                tree: treeWithLoading,
+                using: 'full',
                 abortInProgress: shouldRefetch,
+                dataSourceState: {
+                    visibleCount: 0,
+                    topIndex: 0,
+                },
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
-                    if (!isOutdated && (isUpdated || newTree !== treeWithData)) {
+                    if (!isOutdated && (isUpdated || newTree !== treeWithLoading)) {
                         setTreeWithData(newTree);
                     }
                 }).finally(() => {
-                    setIsFetching(false);
-                    setIsLoading(false);
                     if (isForceReload === true) {
                         setIsForceReload(false);
                     }
                 });
         }
-    }, [shouldFetch, shouldLoad, shouldRefetch, treeWithData, setTreeWithData]);
+    }, [showOnlySelected]);
+
+    useEffect(() => {
+        if (!showOnlySelected) {
+            let currentTree = treeWithData;
+            if (shouldRefetch) {
+                setIsFetching(true);
+                currentTree = treeWithData.clearStructure();
+                if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
+                    currentTree = currentTree.reset();
+                }
+            }
+
+            if (shouldLoad) {
+                if (currentTree !== treeWithData) {
+                    setTreeWithData(currentTree);
+                }
+                setIsLoading(true);
+            }
+
+            if (shouldFetch) {
+                loadMissing({
+                    tree: currentTree,
+                    using: 'visible',
+                    abortInProgress: shouldRefetch,
+                })
+                    .then(({ isUpdated, isOutdated, tree: newTree }) => {
+                        if (!isOutdated && (isUpdated || newTree !== treeWithData)) {
+                            setTreeWithData(newTree);
+                        }
+                    }).finally(() => {
+                        setIsFetching(false);
+                        setIsLoading(false);
+                        if (isForceReload === true) {
+                            setIsForceReload(false);
+                        }
+                    });
+            }
+        }
+    }, [showOnlySelected, shouldFetch, shouldLoad, shouldRefetch, treeWithData, setTreeWithData]);
 
     const tree = usePatchTree({
         tree: treeWithData,
-        patchItems: showOnlySelected ? null : patchItems,
+        patchItems,
     });
 
     const reload = useCallback(() => {

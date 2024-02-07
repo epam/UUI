@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
-import { ITree, NOT_FOUND_RECORD, Tree } from '../tree';
+import { ITree, Tree } from '../tree';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
 import { FoldingService } from './services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
+import { isFound } from '../tree/newTree';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     FoldingService<TItem, TId>,
@@ -60,7 +61,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = tree.getById(id);
-                if (item === NOT_FOUND_RECORD) {
+                if (!isFound(item)) {
                     continue;
                 }
 
@@ -115,7 +116,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
             const pathToParent = Tree.getPathById(parentId, tree);
             const parent = tree.getById(parentId);
-            const parentPathItem = parent !== NOT_FOUND_RECORD ? [Tree.getPathItem(parent, tree)] : [];
+            const parentPathItem = isFound(parent) ? [Tree.getPathItem(parent, tree)] : [];
             const path = parentId ? [...pathToParent, ...parentPathItem] : pathToParent;
             if (appendRows) {
                 let missingCount = getMissingRecordsCount(parentId, rows.length, currentLevelRows);

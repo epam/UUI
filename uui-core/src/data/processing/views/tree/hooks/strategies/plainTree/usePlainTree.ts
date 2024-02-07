@@ -19,16 +19,17 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         setTrigger((currentTrigger) => !currentTrigger);
     }, [setTrigger]);
 
-    const { itemsMap, setItems } = useItemsStorage({
+    const { itemsMap, itemsStatusMap, setItems } = useItemsStorage({
         itemsMap: restProps.itemsMap,
+        itemsStatusMap: restProps.itemsStatusMap,
         items,
         setItems: restProps.setItems,
         params: { getId: restProps.getId, complexIds: restProps.complexIds },
     });
 
     const fullTree = useCreateTree(
-        { ...props, items, itemsMap, setItems },
-        [...deps, items, itemsMap, trigger],
+        { ...props, items, itemsMap, itemsStatusMap, setItems },
+        [...deps, items, itemsMap, itemsStatusMap, trigger],
     );
 
     const {

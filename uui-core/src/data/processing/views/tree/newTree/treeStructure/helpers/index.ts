@@ -5,3 +5,4 @@ export * from './PatchHelper';
 export * from './SearchHelper';
 export * from './SortHelper';
 export * from './map';
+export * from './status';

@@ -5,12 +5,14 @@ import { cloneMap, newMap } from './map';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
 import { TreeNodeInfo } from '../types';
-import { NOT_FOUND_RECORD } from '../../constants';
+import { LOADED_RECORD, LOADING_RECORD, NOT_FOUND_RECORD } from '../../constants';
+import { isFound } from './status';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
         treeStructure,
         itemsMap,
+        itemsStatusMap,
         options,
         dataSourceState,
     }: LoadAllOptions<TItem, TId, TFilter>) {
@@ -25,13 +27,21 @@ export class FetchingHelper {
         );
 
         const newItemsMap = itemsMap.setItems(response.items, { reset: true });
+        let newItemsStatusMap = itemsStatusMap;
+        newItemsMap.forEach((_, id) => {
+            if (newItemsStatusMap.get(id) === LOADING_RECORD) {
+                newItemsStatusMap = newItemsStatusMap === itemsStatusMap ? cloneMap(newItemsStatusMap) : newItemsStatusMap;
+                newItemsStatusMap.set(id, LOADED_RECORD);
+            }
+        });
 
         return {
             itemsMap: newItemsMap,
+            itemsStatusMap: newItemsStatusMap,
             treeStructure: TreeStructure.createFromItems({
                 params: treeStructure.getParams(),
                 items: response.items,
-                itemsAccessor: ItemsAccessor.toItemsAccessor(newItemsMap),
+                itemsAccessor: ItemsAccessor.toItemsAccessor(newItemsMap, newItemsStatusMap),
             }),
             loadedItems: response.items,
         };
@@ -118,7 +128,7 @@ export class FetchingHelper {
                     const id = ids[n];
                     const itemInTree = tree.getById(id);
 
-                    const item = itemInTree !== NOT_FOUND_RECORD ? itemInTree : newItemsMap.get(id);
+                    const item = isFound(itemInTree) ? itemInTree : newItemsMap.get(id);
 
                     let isFolded = false;
                     let hasChildren = false;
@@ -188,7 +198,7 @@ export class FetchingHelper {
             const missingIds = new Set<TId>();
             if (itemsToLoad && itemsToLoad.length > 0) {
                 itemsToLoad.forEach((id) => {
-                    if (tree.getById(id) === NOT_FOUND_RECORD && !updatedItemsMap.has(id)) {
+                    if (!isFound(tree.getById(id)) && !updatedItemsMap.has(id)) {
                         missingIds.add(id);
                     }
                 });
