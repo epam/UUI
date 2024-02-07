@@ -15,12 +15,15 @@ export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<React.HT
 
 export interface DatePickerBodyBaseProps<TSelection> extends DatePickerBodyBaseOptions {
     value: PickerBodyValue<TSelection>;
-    setSelectedDate: (newDate: TSelection) => void;
-    setDisplayedDateAndView: (displayedDate: Dayjs, view: ViewType) => void;
+    onValueChange: (value: Partial<PickerBodyValue<TSelection>>) => void;
+}
+
+export interface RangePickerBodyValue<TSelection> extends PickerBodyValue<TSelection> {
+    activePart: 'from' | 'to';
 }
 
 export interface PickerBodyValue<TSelection> {
     selectedDate: TSelection | null;
-    displayedDate: Dayjs;
+    month: Dayjs;
     view: ViewType;
 }

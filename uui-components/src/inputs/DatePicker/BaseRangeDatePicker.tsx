@@ -24,7 +24,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
         return {
             inputValue: defaultValue,
             selectedDate: defaultValue,
-            displayedDate: dayjs().startOf('day'),
+            month: dayjs().startOf('day'),
         };
     }
 
@@ -34,7 +34,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
+        month: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
     };
 };
 
@@ -135,7 +135,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         this.setState((state) => ({ ...state, inputValue: formatInputValue, ...value }));
     };
 
-    getDisplayedDateOnOpening(focus: RangeDatePickerInputType) {
+    getMonthOnOpening(focus: RangeDatePickerInputType) {
         if (this.state.selectedDate?.from && this.state.selectedDate?.to) {
             return dayjs(this.state.selectedDate[focus]);
         } else if (this.state.selectedDate?.from) {
@@ -151,7 +151,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         this.setState({
             isOpen: value,
             view: 'DAY_SELECTION',
-            displayedDate: this.getDisplayedDateOnOpening(focus),
+            month: this.getMonthOnOpening(focus),
             inFocus: value ? focus : null,
         });
 
@@ -182,7 +182,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(dayjs(value)))) {
             this.setValue({
                 selectedDate: toValueDateRangeFormat(inputValue, this.getFormat()),
-                displayedDate: dayjs(value, supportedDateFormats(this.getFormat())),
+                month: dayjs(value, supportedDateFormats(this.getFormat())),
                 view: this.state.view,
             });
         } else {
@@ -206,8 +206,9 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     getValue(): PickerBodyValue<RangeDatePickerValue> {
         return {
             selectedDate: this.props.value || defaultValue,
-            displayedDate: this.state.displayedDate,
+            month: this.state.month,
             view: this.state.view,
+            // activePart:
         };
     }
 

@@ -99,4 +99,6 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
     inputCx?: CX;
     /** CSS class(es) to put on datepicker body */
     bodyCx?: CX;
+
+    // closeOnSelect?: boolean;
 }

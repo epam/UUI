@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import { cx } from '@epam/uui-core';
-import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps } from '@epam/uui-components';
+import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps, defaultFormat } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
@@ -26,29 +26,34 @@ export const uuiDatePickerBody = {
 } as const;
 
 export function DatePickerBody({
+    value,
+    onValueChange,
     getDayCX,
     renderDay,
     isHoliday,
     cx: classes,
-    value,
-    setDisplayedDateAndView,
-    setSelectedDate,
     filter,
     changeIsOpen,
 }: DatePickerBodyProps) {
     const selectedDate = dayjs(value.selectedDate);
 
     const onMonthClick = (newDate: Dayjs) => {
-        setDisplayedDateAndView(newDate, 'DAY_SELECTION');
+        onValueChange({
+            month: newDate,
+            view: 'DAY_SELECTION',
+        });
     };
 
     const onYearClick = (newDate: Dayjs) => {
-        setDisplayedDateAndView(newDate, 'MONTH_SELECTION');
+        onValueChange({
+            month: newDate,
+            view: 'MONTH_SELECTION',
+        });
     };
 
     const onDayClick = (day: Dayjs) => {
         if (!filter || filter(day)) {
-            setSelectedDate(day.format(valueFormat));
+            onValueChange({ selectedDate: day.format(valueFormat) });
         }
         changeIsOpen?.(false);
     };
@@ -59,7 +64,7 @@ export function DatePickerBody({
                 return (
                     <MonthSelection
                         selectedDate={ selectedDate }
-                        value={ value.displayedDate }
+                        value={ value.month }
                         onValueChange={ onMonthClick }
                     />
                 );
@@ -67,7 +72,7 @@ export function DatePickerBody({
                 return (
                     <YearSelection
                         selectedDate={ selectedDate }
-                        value={ value.displayedDate }
+                        value={ value.month }
                         onValueChange={ onYearClick }
                     />
                 );
@@ -75,7 +80,7 @@ export function DatePickerBody({
                 return (
                     <Calendar
                         value={ selectedDate }
-                        displayedDate={ value.displayedDate }
+                        displayedDate={ value.month }
                         onValueChange={ onDayClick }
                         filter={ filter }
                         getDayCX={ getDayCX }
@@ -89,8 +94,14 @@ export function DatePickerBody({
     return (
         <div className={ cx(css.root, uuiDatePickerBody.wrapper, classes) }>
             <DatePickerHeader
-                value={ value }
-                onValueChange={ (newValue) => setDisplayedDateAndView(newValue.displayedDate, newValue.view) }
+                view={ value.view }
+                month={ value.month }
+                onSetView={ (view) => {
+                    onValueChange({ view });
+                } }
+                onSetMonth={ (month) => {
+                    onValueChange({ month });
+                } }
             />
             {getView()}
         </div>

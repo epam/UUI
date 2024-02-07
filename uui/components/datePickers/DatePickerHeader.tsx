@@ -19,7 +19,11 @@ export const uuiHeader = {
     navIconLeft: 'uui-datepickerheader-nav-icon-left',
 };
 
-export interface DatePickerHeaderProps extends IEditable<PickerBodyValue<string>>, IHasCX {
+export interface DatePickerHeaderProps extends IHasCX {
+    view: ViewType;
+    month: Dayjs;
+    onSetMonth: (month: Dayjs) => void;
+    onSetView: (view: ViewType) => void;
     /*
      * Navigation icon for the left navigation icon in header.
      * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon.
@@ -56,38 +60,38 @@ export const getNextListYearFromCurrent = (currentDate: Dayjs) => {
     return currentDate.add(16, 'year');
 };
 
-export function DatePickerHeader(props: DatePickerHeaderProps) {
+export function DatePickerHeader({ navIconLeft, navIconRight, month, view, onSetMonth, onSetView }: DatePickerHeaderProps) {
     const onLeftNavigationArrow = () => {
-        switch (props.value.view) {
+        switch (view) {
             case 'DAY_SELECTION':
-                props.onValueChange({ ...props.value, displayedDate: getPrevMonthFromCurrent(props.value.displayedDate) });
+                onSetMonth(getPrevMonthFromCurrent(month));
                 break;
             case 'MONTH_SELECTION':
-                props.onValueChange({ ...props.value, displayedDate: getPrevYearFromCurrent(props.value.displayedDate) });
+                onSetMonth(getPrevYearFromCurrent(month));
                 break;
             case 'YEAR_SELECTION':
-                props.onValueChange({ ...props.value, displayedDate: getPrevListYearFromCurrent(props.value.displayedDate) });
+                onSetMonth(getPrevListYearFromCurrent(month));
                 break;
         }
     };
 
     const onRightNavigationArrow = () => {
-        switch (props.value.view) {
+        switch (view) {
             case 'DAY_SELECTION':
-                props.onValueChange({ ...props.value, displayedDate: getNextMonthFromCurrent(props.value.displayedDate) });
+                onSetMonth(getNextMonthFromCurrent(month));
                 break;
             case 'MONTH_SELECTION':
-                props.onValueChange({ ...props.value, displayedDate: getNextYearFromCurrent(props.value.displayedDate) });
+                onSetMonth(getNextYearFromCurrent(month));
                 break;
             case 'YEAR_SELECTION':
-                props.onValueChange({ ...props.value, displayedDate: getNextListYearFromCurrent(props.value.displayedDate) });
+                onSetMonth(getNextListYearFromCurrent(month));
                 break;
         }
     };
 
-    const onCaptionClick = (view: ViewType) => {
+    const onCaptionClick = (newView: ViewType) => {
         let nextView: ViewType;
-        switch (view) {
+        switch (newView) {
             case 'DAY_SELECTION':
                 nextView = 'MONTH_SELECTION';
                 break;
@@ -99,27 +103,25 @@ export function DatePickerHeader(props: DatePickerHeaderProps) {
                 break;
         }
 
-        props.onValueChange({
-            ...props.value,
-            view: nextView,
-        });
+        onSetView(nextView);
     };
 
     const title = React.useMemo(
-        () => `${
-            props.value?.view !== 'MONTH_SELECTION'
-                ? dayjs.months()[props.value?.displayedDate.month()]
-                : ''
-        } ${props.value?.displayedDate.year()}`,
-        [props.value?.view, props.value?.displayedDate],
+        () => {
+            const monthSubstr = view !== 'MONTH_SELECTION'
+                ? dayjs.months()[month.month()]
+                : '';
+            return `${monthSubstr} ${month.year()}`;
+        },
+        [view, month],
     );
 
     return (
-        <div className={ cx(css.container, uuiHeader.container, props.cx) }>
+        <div className={ cx(css.container, uuiHeader.container, cx) }>
             <header className={ uuiHeader.header }>
-                <Button icon={ props.navIconLeft || LeftArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
-                <Button caption={ title } fill="ghost" cx={ uuiHeader.navTitle } onClick={ () => onCaptionClick(props.value.view) } />
-                <Button icon={ props.navIconRight || RightArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
+                <Button icon={ navIconLeft || LeftArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
+                <Button caption={ title } fill="ghost" cx={ uuiHeader.navTitle } onClick={ () => onCaptionClick(view) } />
+                <Button icon={ navIconRight || RightArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
             </header>
         </div>
     );
