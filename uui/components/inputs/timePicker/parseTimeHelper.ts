@@ -44,6 +44,10 @@ export const formatTime = (hours: number, minutes: number, meridian: 'AM' | 'PM'
         meridianResult = 'PM';
     }
 
+    if ((format === 'hh:mm A') && hoursResult === 0) {
+        hoursResult = 12;
+    }
+
     const time = `${normalizeHours(hoursResult)}:${normalizeMinutes(minutes)}`;
 
     return meridianResult ? time.concat(` ${meridianResult}`) : time;
