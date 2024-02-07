@@ -41,19 +41,7 @@ export const migrateTableCell = (element: TTableCellElement): TTableCellElement 
     return element;
 };
 
-const sameRowSpans = (cells: any[]) => {
-    const firstRowSpan = cells[0]?.data?.rowSpan || -1;
-    return cells.every((cell) => cell?.data?.rowSpan === firstRowSpan);
-};
-
-const removeRowSpans = (cells: any[]) => {
-    cells.forEach((c) => {
-        delete c.data.rowSpan;
-    });
-};
-
 const migrateTable = (oldTable: any) => {
-    const newRows: any = [];
     oldTable.nodes.forEach((row: any) => {
         const newRowCells: any[] = [];
         row.nodes.forEach((cell: any) => {
@@ -62,15 +50,11 @@ const migrateTable = (oldTable: any) => {
             }
         });
 
-        if (newRowCells.length) {
-            if (sameRowSpans(newRowCells)) {
-                removeRowSpans(newRowCells);
-            }
-            newRows.push({ ...row, nodes: newRowCells });
+        if (!newRowCells.length) {
+            newRowCells.push({ object: 'text', text: '' });
         }
+        row.nodes = newRowCells;
     });
-    oldTable.nodes = newRows;
-
     return oldTable;
 };
 
