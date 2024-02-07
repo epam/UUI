@@ -17,7 +17,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };
     const {
-        api, filter, backgroundReload,
+        api, filter, backgroundReload, showOnlySelected,
         isFoldedByDefault, getId, getParentId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions,
         getChildCount, patchItems,
@@ -73,6 +73,10 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     });
 
     useEffect(() => {
+        if (showOnlySelected) {
+            return;
+        }
+
         let currentTree = treeWithData;
         if (shouldRefetch) {
             setIsFetching(true);
@@ -111,7 +115,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     const tree = usePatchTree({
         tree: treeWithData,
-        patchItems,
+        patchItems: showOnlySelected ? null : patchItems,
     });
 
     const reload = useCallback(() => {

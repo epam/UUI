@@ -199,6 +199,8 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * If reloading is started, `view.getListProps` returns `isReloading` flag, set to `true`.
      */
     backgroundReload?: boolean;
+
+    showOnlySelected?: boolean;
 }
 
 export type IDataSourceViewConfig = {
