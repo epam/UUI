@@ -1,13 +1,10 @@
 import React from 'react';
-import { uuiElement, uuiMarkers } from '@epam/uui-core';
+import { uuiElement, uuiMarkers, DataRowProps } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
+import { ControlSize } from '../types';
 import { ReactComponent as FoldingArrow } from '../../icons/navigation-chevron-down-24.svg';
 import css from './DataRowAddons.module.scss';
-
-import { DataRowProps } from '@epam/uui-core';
-import { ControlSize } from '../types';
-import { getTextWidth } from '@epam/loveship';
 
 /**
  * Props of DataRowAddons.
