@@ -1,4 +1,3 @@
-export * from './BaseRangeDatePicker';
 export * from './Calendar';
 export * from './calendarConstants';
 export * from './CalendarPresets';

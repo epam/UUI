@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import { cx } from '@epam/uui-core';
-import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps, defaultFormat } from '@epam/uui-components';
+import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
@@ -33,12 +33,12 @@ export function DatePickerBody({
     isHoliday,
     cx: classes,
     filter,
-    changeIsOpen,
 }: DatePickerBodyProps) {
     const selectedDate = dayjs(value.selectedDate);
 
     const onMonthClick = (newDate: Dayjs) => {
         onValueChange({
+            ...value,
             month: newDate,
             view: 'DAY_SELECTION',
         });
@@ -46,6 +46,7 @@ export function DatePickerBody({
 
     const onYearClick = (newDate: Dayjs) => {
         onValueChange({
+            ...value,
             month: newDate,
             view: 'MONTH_SELECTION',
         });
@@ -53,9 +54,11 @@ export function DatePickerBody({
 
     const onDayClick = (day: Dayjs) => {
         if (!filter || filter(day)) {
-            onValueChange({ selectedDate: day.format(valueFormat) });
+            onValueChange({
+                ...value,
+                selectedDate: day.format(valueFormat),
+            });
         }
-        changeIsOpen?.(false);
     };
 
     const getView = () => {
@@ -97,10 +100,10 @@ export function DatePickerBody({
                 view={ value.view }
                 month={ value.month }
                 onSetView={ (view) => {
-                    onValueChange({ view });
+                    onValueChange({ ...value, view });
                 } }
                 onSetMonth={ (month) => {
-                    onValueChange({ month });
+                    onValueChange({ ...value, month });
                 } }
             />
             {getView()}

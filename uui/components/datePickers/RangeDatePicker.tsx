@@ -1,13 +1,14 @@
 import * as React from 'react';
 import cx from 'classnames';
 import dayjs from 'dayjs';
-import { uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps, RangeDatePickerInputType, useUuiContext } from '@epam/uui-core';
+import { uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps, RangeDatePickerInputType, useUuiContext, isFocusReceiverInsideFocusLock, RangeDatePickerPresets } from '@epam/uui-core';
 import { RangeDatePickerValue } from '@epam/uui-core';
 import { Dropdown, PickerBodyValue, defaultFormat, supportedDateFormats, toCustomDateRangeFormat, toValueDateRangeFormat, valueFormat } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
+import { CalendarPresets } from './CalendarPresets';
 import { FlexRow } from '../layout';
 import { SizeMod } from '../types';
-import { RangeDatePickerBody } from './RangeDatePickerBody';
+import { RangeDatePickerBody, uuiRangeDatePickerBody } from './RangeDatePickerBody';
 import { TextInput } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
@@ -103,6 +104,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     const onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
         const fromChanged = props.value.from !== value.selectedDate.from;
         const toChanged = props.value.to !== value.selectedDate.to;
+
         if (state.inFocus === 'from' && fromChanged) {
             setState((prev) => ({ ...prev, inFocus: 'to' }));
             setValue(value);
@@ -112,21 +114,28 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         } else {
             setValue(value);
         }
+
+        // if (value.selectedDate.from && value.selectedDate.to && state.inFocus === 'to') {
+        //     toggleIsOpen(false);
+        // }
     };
 
     // why we need this? we close body on range change
-    const handleWrapperBlur = (event: React.FocusEvent<HTMLElement, Element>) => {
-        // if (isFocusReceiverInsideFocusLock(event)) {
-        //     return;
-        // }
-        // toggleIsOpen(false);
-        // if (!state.isOpen && state.inFocus) {
-        //     setState((prev) => ({ ...prev, inFocus: null }));
-        // }
-    };
+    // const handleWrapperBlur = (event: React.FocusEvent<HTMLElement, Element>) => {
+    // if (isFocusReceiverInsideFocusLock(event)) {
+    //     return;
+    // }
+    // toggleIsOpen(false);
+    // if (!state.isOpen && state.inFocus) {
+    //     setState((prev) => ({ ...prev, inFocus: null }));
+    // }
+    // };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>, inputType: InputType) => {
-        toggleIsOpen(true, inputType);
+        if (!state.isOpen) {
+            toggleIsOpen(true, inputType);
+        }
+
         if (props.onFocus) {
             props.onFocus(event, inputType);
         }
@@ -213,16 +222,6 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         }
     };
 
-    const getValue = (): PickerBodyValue<RangeDatePickerValue> => {
-        return {
-            selectedDate: props.value || defaultValue,
-            month: state.month,
-            view: state.view,
-            // activePart:
-        };
-    };
-
-    // why we need this?
     const getMonthOnOpening = (focus: RangeDatePickerInputType) => {
         if (state.selectedDate?.from && state.selectedDate?.to) {
             return dayjs(state.selectedDate[focus]);
@@ -237,13 +236,20 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
 
     const toggleIsOpen = (value: boolean, focus?: RangeDatePickerInputType) => {
         if (!props.isReadonly && !props.isDisabled) {
-            setState((prev) => ({
-                ...prev,
+            const newState: Partial<RangeDatePickerState> = {
                 isOpen: value,
                 view: 'DAY_SELECTION',
-                month: getMonthOnOpening(focus),
                 inFocus: value ? focus : null,
-            }));
+            };
+            if (value) {
+                setState((prev) => ({
+                    ...prev,
+                    ...newState,
+                    month: getMonthOnOpening(focus),
+                }));
+            } else {
+                setState((prev) => ({ ...prev, ...newState }));
+            }
 
             props?.onOpenChange?.(value);
 
@@ -254,6 +260,25 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         }
     };
 
+    const renderPresets = (presets: RangeDatePickerPresets) => {
+        return (
+            <>
+                <div className={ uuiRangeDatePickerBody.separator } />
+                <CalendarPresets
+                    onPresetSet={ (presetVal) => {
+                        onRangeChange({
+                            view: 'DAY_SELECTION',
+                            selectedDate: { from: dayjs(presetVal.from).format(valueFormat), to: dayjs(presetVal.to).format(valueFormat) },
+                            month: dayjs(presetVal.from),
+                        });
+                        toggleIsOpen(false);
+                    } }
+                    presets={ presets }
+                />
+            </>
+        );
+    };
+
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         if (!props.isReadonly && !props.isDisabled) {
             return (
@@ -261,16 +286,20 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     <FlexRow>
                         <RangeDatePickerBody
                             cx={ cx(props.bodyCx) }
-                            value={ getValue() }
+                            value={ {
+                                selectedDate: props.value || defaultValue,
+                                month: state.month,
+                                view: state.view,
+                                activePart: state.inFocus,
+                            } }
                             onValueChange={ onRangeChange }
                             filter={ props.filter }
-                            changeIsOpen={ toggleIsOpen }
                             presets={ props.presets }
-                            focusPart={ state.inFocus }
                             renderDay={ props.renderDay }
                             renderFooter={ () => {
                                 return props.renderFooter?.(props.value || defaultValue);
                             } }
+                            renderPresets={ renderPresets }
                             isHoliday={ props.isHoliday }
                             rawProps={ props.rawProps?.body }
                         />
@@ -303,7 +332,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     state.inFocus && uuiMod.focus,
                 ) }
                 onClick={ !props.isDisabled && renderProps.onClick }
-                onBlur={ handleWrapperBlur }
+                // onBlur={ handleWrapperBlur }
                 ref={ renderProps.ref }
             >
                 <TextInput
