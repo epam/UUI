@@ -1,6 +1,9 @@
 export const getMeridian = (newValue: string, format: 'HH:mm' | 'hh:mm A'): false | 'AM' | 'PM' => {
     if (format === 'hh:mm A') {
-        return newValue.toLowerCase().includes('pm') ? 'PM' : 'AM';
+        if (newValue.toLowerCase().includes('p') && newValue.toLowerCase().includes('a')) {
+            return newValue.toLowerCase().indexOf('p') < newValue.toLowerCase().indexOf('a') ? 'PM' : 'AM';
+        }
+        return newValue.toLowerCase().includes('p') ? 'PM' : 'AM';
     }
     return false;
 };
@@ -25,14 +28,23 @@ export const parseTimeNumbers = (value: string, separator: number): { hours: num
     return { hours, minutes };
 };
 
-export const formatTime = (hours: number, minutes: number, meridian: 'AM' | 'PM' | false): string => {
-    const hoursToString = Number.isNaN(hours) ? '00' : hours.toString().padStart(2, '0');
-    const minutesToString = Number.isNaN(minutes) ? '00' : minutes.toString().padStart(2, '0');
+export const formatTime = (hours: number, minutes: number, meridian: 'AM' | 'PM' | false, format: 'HH:mm' | 'hh:mm A'): string => {
+    const normalizeHours = (h: number) => Number.isNaN(h) ? '00' : h.toString().padStart(2, '0');
+    const normalizeMinutes = (m: number) => Number.isNaN(m) ? '00' : m.toString().padStart(2, '0');
 
-    if (meridian && hoursToString === '00' && minutesToString === '00') {
+    if (meridian && normalizeHours(hours) === '00' && normalizeMinutes(minutes) === '00') {
         return '';
     }
 
-    const time = `${hoursToString}:${minutesToString}`;
-    return meridian ? time.concat(` ${meridian}`) : time;
+    let hoursResult = Number.parseInt(normalizeHours(hours));
+    let meridianResult = meridian;
+
+    if ((format === 'hh:mm A') && hoursResult > 12) {
+        hoursResult -= 12;
+        meridianResult = 'PM';
+    }
+
+    const time = `${normalizeHours(hoursResult)}:${normalizeMinutes(minutes)}`;
+
+    return meridianResult ? time.concat(` ${meridianResult}`) : time;
 };
