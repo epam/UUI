@@ -147,12 +147,12 @@ export function TimePicker(props: TimePickerProps) {
         onToggle(false);
         props.onBlur?.(e);
 
-        if (state.value === '') {
+        if (state.value === '' || state.inputValue === '') {
             props.onValueChange(null);
             setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
         }
 
-        saveTime(state.value);
+        state.value && state.inputValue && saveTime(state.value);
     };
 
     const renderInput = (inputProps: IDropdownToggler) => {
