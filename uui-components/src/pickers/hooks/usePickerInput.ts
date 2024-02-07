@@ -35,6 +35,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const {
         context,
         view,
+        viewWithSelectedOnly,
         handleDataSourceValueChange,
         getEntityName,
         clearSelection,
@@ -42,7 +43,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         isSingleSelect,
         getListProps,
         getName,
-        getSelectedRows,
         handleSelectionValueChange,
     } = picker;
 
@@ -222,14 +222,9 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const getRows = () => {
         if (!shouldShowBody()) return [];
 
-        let preparedRows: DataRowProps<TItem, TId>[];
-
-        if (!showSelected) {
-            preparedRows = view.getVisibleRows();
-        } else {
-            const { topIndex, visibleCount } = dataSourceState;
-            preparedRows = view.getSelectedRows({ topIndex, visibleCount });
-        }
+        const preparedRows = showSelected
+            ? view.getVisibleRows()
+            : viewWithSelectedOnly.getVisibleRows();
 
         return preparedRows.map((rowProps) => {
             const newRowProps = { ...rowProps };
@@ -268,11 +263,17 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
-    const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
-        const selectedRowsCount = view.getSelectedRowsCount();
+    const selectedRows = useMemo(() => {
+        const selectedRowsCount = viewWithSelectedOnly.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        const selectedRows = getSelectedRows(itemsToTake);
+        return (dataSourceState.checked ?? [])
+            .slice(0, itemsToTake)
+            .map((id) => viewWithSelectedOnly.getById(id, null));
+    }, [viewWithSelectedOnly, dataSourceState.checked, props.maxItems]);
+
+    const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
+        const selectedRowsCount = view.getSelectedRowsCount();
         const {
             isDisabled,
             autoFocus,

@@ -17,6 +17,7 @@ export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
     cascadeSelection?: CascadeSelection;
     flattenSearchResults?: boolean;
     selectAll?: boolean;
+    showOnlySelected?: boolean;
 }
 
 export interface TreeLoadingState {
