@@ -7,15 +7,6 @@ import css from './Tag.module.scss';
 
 const DEFAULT_SIZE = '36';
 
-const mapSize = {
-    48: '48',
-    42: '48',
-    36: '36',
-    30: '30',
-    24: '30',
-    18: '18',
-} as const;
-
 const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['size']> = {
     18: '12',
     24: '18',
