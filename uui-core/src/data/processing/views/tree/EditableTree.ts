@@ -80,26 +80,33 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedId: TId,
         isSelected: boolean,
         options: {
-            isSelectable?: (item: TItem) => boolean;
+            isSelectable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
             cascade?: CascadeSelection;
         } = {},
     ) {
-        const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
+        const optionsWithDefaults = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
         let selectedIdsMap = this.newMap<TId, boolean>();
+
+        const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
         if (!(selectedId === ROOT_ID && isImplicitMode)) {
             (currentSelection ?? []).forEach((id) => selectedIdsMap.set(id, true));
         }
 
-        const optionsWithDefaults = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
-        if (!optionsWithDefaults.cascade) {
+        const treeIsLoaded = this.byParentId.size !== 0;
+        // If clear items while tree is not loaded yet (while clearing tags of PickerInput before opening body).
+        if (!treeIsLoaded && !isSelected) {
+            selectedIdsMap = this.clearIfTreeNotLoaded(selectedIdsMap, selectedId, optionsWithDefaults.isSelectable);
+        }
+
+        if (treeIsLoaded && !optionsWithDefaults.cascade) {
             selectedIdsMap = this.simpleSelection(selectedIdsMap, selectedId, isSelected, optionsWithDefaults.isSelectable);
         }
 
-        if (optionsWithDefaults.cascade === true || optionsWithDefaults.cascade === CascadeSelectionTypes.EXPLICIT) {
+        if (treeIsLoaded && (optionsWithDefaults.cascade === true || optionsWithDefaults.cascade === CascadeSelectionTypes.EXPLICIT)) {
             selectedIdsMap = this.explicitCascadeSelection(selectedIdsMap, selectedId, isSelected, optionsWithDefaults.isSelectable);
         }
 
-        if (optionsWithDefaults.cascade === CascadeSelectionTypes.IMPLICIT) {
+        if (treeIsLoaded && optionsWithDefaults.cascade === CascadeSelectionTypes.IMPLICIT) {
             selectedIdsMap = this.implicitCascadeSelection(selectedIdsMap, selectedId, isSelected, optionsWithDefaults.isSelectable);
         }
 
@@ -111,10 +118,36 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         return result;
     }
 
-    private forEachChildren(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, parentId?: TId, includeParent: boolean = true) {
+    private clearIfTreeNotLoaded(
+        selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
+        selectedId: TId,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
+    ) {
+        if (selectedId !== ROOT_ID) {
+            const item = this.getById(selectedId);
+            if (isSelectable(selectedId, item)) {
+                selectedIdsMap.delete(selectedId);
+            }
+        } else {
+            for (const [selectedItemId, isItemSelected] of selectedIdsMap) {
+                const selectedItem = this.getById(selectedItemId);
+                if (isItemSelected && isSelectable(selectedItemId, selectedItem)) {
+                    selectedIdsMap.delete(selectedItemId);
+                }
+            }
+        }
+        return selectedIdsMap;
+    }
+
+    private forEachChildren(
+        action: (id: TId) => void,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
+        parentId?: TId,
+        includeParent: boolean = true,
+    ) {
         this.forEach(
             (item, id) => {
-                if (item && isSelectable(item)) {
+                if (item && isSelectable(id, item)) {
                     action(id);
                 }
             },
@@ -126,14 +159,14 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelected: boolean,
-        isSelectable: (item: TItem) => boolean,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
     ) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
                 selectedIdsMap.set(selectedId, true);
             } else {
                 for (const [id, item] of this.byId) {
-                    if (isSelectable(item)) {
+                    if (isSelectable(id, item)) {
                         selectedIdsMap.set(id, true);
                     }
                 }
@@ -155,9 +188,13 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         return selectedIdsMap;
     }
 
-    private actForSelectable(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, id: TId) {
+    private actForSelectable(
+        action: (id: TId) => void,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
+        id: TId,
+    ) {
         const item = this.getById(id);
-        if (item !== NOT_FOUND_RECORD && isSelectable(item)) {
+        if (item !== NOT_FOUND_RECORD && isSelectable(id, item)) {
             action(id);
         }
     }
@@ -166,7 +203,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelected: boolean,
-        isSelectable: (item: TItem) => boolean,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
     ) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
@@ -193,7 +230,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelected: boolean,
-        isSelectable: (item: TItem) => boolean,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
     ) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
@@ -245,7 +282,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     private checkParentsWithFullCheck(
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
-        isSelectable: (item: TItem) => boolean,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
         removeExplicitChildrenSelection?: boolean,
     ) {
         this.getParentIdsRecursive(selectedId)
