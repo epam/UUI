@@ -42,7 +42,7 @@
     min-height: 36px;
     border-left-width: 3px;
 
-    @include scalable-icon-size(36)
+    @include scalable-icon-size(36);
 }
 
 .icon-wrapper {
