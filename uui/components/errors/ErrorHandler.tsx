@@ -61,7 +61,7 @@ export function ErrorHandler(props: ErrorHandlerProps) {
                                 <Text color="tertiary">
                                     We have redirected you to the login page, if the page didn't open, please click on this
                                     { ' ' }
-                                    <Anchor href={ uuiApi.apiReloginPath }>
+                                    <Anchor href={ uuiApi.apiReloginPath } target="_blank">
                                         link
                                     </Anchor>
                                     .
