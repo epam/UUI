@@ -16,42 +16,10 @@
     ]
   },
   {
-    "type": "paragraph",
+    "type": "note-quote",
     "children": [
       {
-        "text": "```js"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "import 'vitest-dom/extend-expect';"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "import { setupJsDom } from '@epam/uui-test-utils';"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "setupJsDom(global, { mockCommon3rdPartyDeps: true });"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "```"
+        "text": "import 'vitest-dom/extend-expect';\nimport { setupJsDom } from '@epam/uui-test-utils';\n\nsetupJsDom(global, { mockCommon3rdPartyDeps: true });"
       }
     ]
   },
@@ -64,66 +32,53 @@
     ]
   },
   {
-    "type": "paragraph",
+    "type": "note-quote",
     "children": [
       {
-        "text": "```ts"
+        "text": "import '@testing-library/jest-dom';\nimport { setupJsDom } from '@epam/uui-test-utils';\n\nsetupJsDom(global, { mockCommon3rdPartyDeps: true });"
       }
     ]
   },
   {
-    "type": "paragraph",
+    "type": "note-link",
     "children": [
       {
-        "text": "import '@testing-library/jest-dom';"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": "NOTE\nHere, it's recommended to use the "
+      },
       {
-        "text": "import { setupJsDom } from '@epam/uui-test-utils';"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": "setupJsDom",
+        "uui-richTextEditor-code": true
+      },
       {
-        "text": "setupJsDom(global, { mockCommon3rdPartyDeps: true });"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": " function. It mocks some common "
+      },
       {
-        "text": "```"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": "jsdom",
+        "uui-richTextEditor-code": true
+      },
       {
-        "text": ""
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": " properties; and "
+      },
       {
-        "text": ""
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
+        "text": "mockCommon3rdPartyDeps",
+        "uui-richTextEditor-code": true
+      },
       {
-        "text": ""
+        "text": " parameter  automatically enables global mocks of certain 3rd party dependencies (such as "
+      },
+      {
+        "text": "react-popper",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "react-focus-lock",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " etc.)."
       }
     ]
   }
