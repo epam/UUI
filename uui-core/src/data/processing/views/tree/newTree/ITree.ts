@@ -1,4 +1,4 @@
-import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from './constants';
+import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
 import { TreeParams } from './treeStructure/types';
 
 export type TreeNodeStatus = typeof FULLY_LOADED | typeof PARTIALLY_LOADED | typeof EMPTY;

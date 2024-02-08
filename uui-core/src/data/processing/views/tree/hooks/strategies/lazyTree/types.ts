@@ -1,5 +1,6 @@
-import { LazyDataSourceApi } from '../../../../../../../types';
+import { IMap, LazyDataSourceApi } from '../../../../../../../types';
 import { ItemsMap, ItemsStorage } from '../../../../../../processing';
+import { RecordStatus } from '../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
 
@@ -9,6 +10,7 @@ export type LazyTreeProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, T
     setItems?: ItemsStorage<TItem, TId>['setItems'];
 
     patchItems?: ItemsMap<TId, TItem>;
+    itemsStatusMap?: IMap<TId, RecordStatus>;
 
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     filter?: TFilter;

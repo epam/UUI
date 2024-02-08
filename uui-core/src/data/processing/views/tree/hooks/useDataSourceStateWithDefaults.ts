@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { DataSourceState } from '../../../../../../types';
+import { DataSourceState } from '../../../../../types';
 
 interface UseDataSourceStateWithDefaults<TId, TFilter = any> {
     dataSourceState: DataSourceState<TFilter, TId>;

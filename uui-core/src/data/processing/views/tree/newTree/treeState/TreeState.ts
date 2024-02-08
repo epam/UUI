@@ -6,7 +6,7 @@ import {
 import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
-import { NOT_FOUND_RECORD } from '../constants';
+import { NOT_FOUND_RECORD } from '../../constants';
 import { TreeParams } from '../treeStructure/types';
 
 export class TreeState<TItem, TId> {

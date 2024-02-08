@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree } from './views';
-import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
-import { DataSourceState } from '../../types';
+import { DataSourceState, IMap } from '../../types';
 import { ItemsStorage } from './views/tree/ItemsStorage';
+import { RecordStatus } from './views/tree/types';
+import { newMap } from './views/tree/newTree';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
 
 export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;
-    cache: ListApiCache<TItem, TId, TFilter> = null;
+    itemsStatusMap: IMap<TId, RecordStatus> = null;
     itemsStorage: ItemsStorage<TItem, TId>;
 
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
@@ -18,10 +19,9 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             ...props,
             flattenSearchResults: props.flattenSearchResults ?? true,
         };
-        this.itemsStorage = new ItemsStorage({
-            items: [],
-            params: { getId: this.getId, complexIds: this.props.complexIds },
-        });
+        const params = { getId: this.getId, complexIds: this.props.complexIds };
+        this.itemsStorage = new ItemsStorage({ items: [], params });
+        this.itemsStatusMap = newMap(params);
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
@@ -42,10 +42,9 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     }
 
     public clearCache() {
-        this.itemsStorage = new ItemsStorage({
-            items: [],
-            params: { getId: this.getId, complexIds: this.props.complexIds },
-        });
+        const params = { getId: this.getId, complexIds: this.props.complexIds };
+        this.itemsStorage = new ItemsStorage({ items: [], params });
+        this.itemsStatusMap = newMap(params);
         super.reload();
     }
 
@@ -63,6 +62,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             type: 'lazy',
             ...this.props,
             itemsMap,
+            itemsStatusMap: this.itemsStatusMap,
             setItems: this.itemsStorage.setItems,
             dataSourceState: value,
             setDataSourceState: onValueChange as React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>,

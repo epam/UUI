@@ -8,13 +8,16 @@ import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
-import { FULLY_LOADED } from '../tree/newTree';
+import { FULLY_LOADED } from '../tree/constants';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
+import { GetItemStatus } from '../tree/hooks/strategies/types';
+import { isInProgress } from '../helpers';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
-    Partial<CascadeSelectionService<TId>> {
+    Partial<CascadeSelectionService<TId>>,
+    GetItemStatus<TId> {
 
     tree: ITree<TItem, TId>;
 }
@@ -32,6 +35,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         flattenSearchResults,
         getRowOptions,
         rowOptions,
+        getItemStatus,
 
         cascadeSelection,
         isLoading,
@@ -168,12 +172,14 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const getById = (id: TId, index: number) => {
         const item = tree.getById(id);
-        if (item === NOT_FOUND_RECORD) {
-            return getUnknownRowProps(id, index, []);
-        }
 
-        if (item === null) {
-            return getLoadingRowProps(id, index, []);
+        if (item === NOT_FOUND_RECORD) {
+            const itemStatus = getItemStatus?.(id);
+            if (isInProgress(itemStatus)) {
+                return getLoadingRowProps(id, index, []);
+            }
+
+            return getUnknownRowProps(id, index, []);
         }
 
         return getRowProps(item, index);

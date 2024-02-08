@@ -4,6 +4,7 @@ import { LazyTreeProps } from '../lazyTree/types';
 import { PlainTreeProps } from '../../strategies/plainTree/types';
 import { AsyncTreeProps } from '../asyncTree/types';
 import { ITree } from '../../../newTree/ITree';
+import { RecordStatus } from '../../../types';
 
 type PlainTreePropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
 
@@ -28,4 +29,8 @@ export type TreeProps<TItem, TId, TFilter = any> = (
 
 export interface LoadMissingRecords<TItem, TId> {
     loadMissingRecordsOnCheck?: (id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>;
+}
+
+export interface GetItemStatus<TId> {
+    getItemStatus?: (id: TId) => RecordStatus;
 }

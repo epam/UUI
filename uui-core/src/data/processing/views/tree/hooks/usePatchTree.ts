@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { ItemsMap } from '../../../../../../data';
-import { TreeState } from '../../newTree';
+import { ItemsMap } from '../../../..';
+import { TreeState } from '../newTree';
 
 export interface UsePatchTreeProps<TItem, TId> {
     tree: TreeState<TItem, TId>;

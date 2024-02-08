@@ -1,7 +1,7 @@
 import { IMap } from '../../../../../../types';
 import { TreeNodeInfo, TreeParams, IItemsAccessor } from './types';
 import { newMap } from './helpers';
-import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
+import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../../constants';
 import { ItemsMap } from '../../ItemsMap';
 import { ITree, ItemsInfo, TreeNodeStatus } from '../ITree';
 import { Tree } from '../Tree';

@@ -1,5 +1,5 @@
 import { ItemsMap } from '../../ItemsMap';
-import { NOT_FOUND_RECORD } from '../constants';
+import { NOT_FOUND_RECORD } from '../../constants';
 import { IItemsAccessor } from './types';
 
 export class ItemsAccessor<TItem, TId> implements IItemsAccessor<TItem, TId> {

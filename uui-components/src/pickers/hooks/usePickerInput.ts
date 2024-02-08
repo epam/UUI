@@ -28,14 +28,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     });
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged,
-        dataSourceState, setDataSourceState, showSelected, setShowSelected,
+        dataSourceState, setDataSourceState, setShowSelected,
     } = pickerInputState;
 
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
     const {
         context,
         view,
-        viewWithSelectedOnly,
         handleDataSourceValueChange,
         getEntityName,
         clearSelection,
@@ -222,9 +221,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const getRows = () => {
         if (!shouldShowBody()) return [];
 
-        const preparedRows = showSelected
-            ? view.getVisibleRows()
-            : viewWithSelectedOnly.getVisibleRows();
+        const preparedRows = view.getVisibleRows();
 
         return preparedRows.map((rowProps) => {
             const newRowProps = { ...rowProps };
@@ -264,13 +261,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     const selectedRows = useMemo(() => {
-        const selectedRowsCount = viewWithSelectedOnly.getSelectedRowsCount();
+        const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
         return (dataSourceState.checked ?? [])
             .slice(0, itemsToTake)
-            .map((id) => viewWithSelectedOnly.getById(id, null));
-    }, [viewWithSelectedOnly, dataSourceState.checked, props.maxItems]);
+            .map((id) => view.getById(id, null));
+    }, [view, dataSourceState.checked, props.maxItems]);
 
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();

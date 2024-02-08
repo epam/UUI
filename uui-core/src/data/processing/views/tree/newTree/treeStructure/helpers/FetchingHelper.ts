@@ -5,7 +5,7 @@ import { cloneMap, newMap } from './map';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
 import { TreeNodeInfo } from '../types';
-import { NOT_FOUND_RECORD } from '../../constants';
+import { NOT_FOUND_RECORD } from '../../../constants';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
