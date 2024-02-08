@@ -3,7 +3,7 @@ import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
 import { ITree, NOT_FOUND_RECORD, Tree } from '../../tree';
 import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
 import { CascadeSelectionService } from './useCascadeSelectionService';
-import { CheckingHelper, isFound } from '../../tree/newTree';
+import { CheckingHelper } from '../../tree/newTree';
 
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -39,7 +39,7 @@ const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: ITree<TItem, TId
         }
 
         const item = tree.getById(id);
-        if (!isFound(item)) {
+        if (item === NOT_FOUND_RECORD) {
             continue;
         }
 

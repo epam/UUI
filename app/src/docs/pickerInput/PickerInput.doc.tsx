@@ -63,10 +63,10 @@ export class PickerInputDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="pickerInput-descriptions" />
                 { this.renderSectionTitle('Examples') }
-                {/* <DocExample title="Basic" path="./_examples/pickerInput/ArrayPickerInput.example.tsx" />
-                <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" /> */}
+                <DocExample title="Basic" path="./_examples/pickerInput/ArrayPickerInput.example.tsx" />
+                <DocExample title="Lazy list" path="./_examples/pickerInput/LazyPickerInput.example.tsx" />
                 <DocExample title="Lazy tree" path="./_examples/pickerInput/LazyTreeInput.example.tsx" />
-                {/* <DocExample title="Async list" path="./_examples/pickerInput/AsyncPickerInput.example.tsx" />
+                <DocExample title="Async list" path="./_examples/pickerInput/AsyncPickerInput.example.tsx" />
                 <DocExample title="Cascade selection modes" path="./_examples/pickerInput/CascadeSelectionModes.example.tsx" />
                 <DocExample title="Custom picker row" path="./_examples/pickerInput/CustomUserRow.example.tsx" />
                 <DocExample title="Custom picker footer" path="./_examples/pickerInput/PickerInputWithCustomFooter.example.tsx" />
@@ -79,7 +79,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Open picker in modal" path="./_examples/pickerInput/EditMode.example.tsx" />
                 <DocExample title="Picker with changed array of items" path="./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" />
                 <DocExample title="Linked pickers" path="./_examples/pickerInput/LinkedPickers.example.tsx" />
-                <DocExample title="Change portal target and dropdown placement" path="./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" /> */}
+                <DocExample title="Change portal target and dropdown placement" path="./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" />
             </>
         );
     }

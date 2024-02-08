@@ -10,16 +10,14 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
     { mode, ...props }: ClientAsyncTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const { itemsMap, itemsStatusMap, setItems, setLoadingStatus } = useItemsStorage({
+    const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         items: props.items,
         setItems: props.setItems,
-        setLoadingStatus: props.setLoadingStatus,
-        itemsStatusMap: props.itemsStatusMap,
         params: { getId: props.getId, complexIds: props.complexIds },
     });
 
-    const baseTree = useMemo(() => TreeState.blank(props, itemsMap, itemsStatusMap, setItems, setLoadingStatus), deps);
+    const baseTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
     const [isForceReload, setIsForceReload] = useState(false);
     const prevIsForceReload = useSimplePrevious(isForceReload);
 

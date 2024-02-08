@@ -57,17 +57,13 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     ) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [itemsStatusMap, setItemsStatusMap] = useState(this.itemsStorage.getItemsStatusMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, selectionTree, reload, totalCount, loadMissingRecordsOnCheck, ...restProps } = useTree({
             type: 'lazy',
             ...this.props,
             itemsMap,
-            itemsStatusMap,
             setItems: this.itemsStorage.setItems,
-            setLoadingStatus: this.itemsStorage.setLoadingStatus,
             dataSourceState: value,
             setDataSourceState: onValueChange as React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>,
             // These defaults are added for compatibility reasons.
@@ -78,12 +74,9 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.itemsStorage.subscribe((newItemsMap, newItemsStatusMap) => {
+            const unsubscribe = this.itemsStorage.subscribe((newItemsMap) => {
                 if (itemsMap !== newItemsMap) {
                     setItemsMap(newItemsMap);
-                }
-                if (itemsStatusMap !== newItemsStatusMap) {
-                    setItemsStatusMap(newItemsStatusMap);
                 }
             });
 

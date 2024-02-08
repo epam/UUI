@@ -1,8 +1,7 @@
 import { CascadeSelectionTypes } from '../../../../../../../types';
 import { Tree } from '../../Tree';
-import { ROOT_ID } from '../../constants';
+import { NOT_FOUND_RECORD, ROOT_ID } from '../../constants';
 import { newMap } from './map';
-import { isFound } from './status';
 import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, SelectionOptions } from './types';
 
 export class CheckingHelper {
@@ -107,7 +106,7 @@ export class CheckingHelper {
         id,
     }: ActForCheckableOptions<TItem, TId>) {
         const item = tree.getById(id);
-        if (isFound(item) && isCheckable(item)) {
+        if (item !== NOT_FOUND_RECORD && isCheckable(item)) {
             action(id);
         }
     }
@@ -198,7 +197,7 @@ export class CheckingHelper {
 
         const selectNeighboursOnly = (itemId: TId) => {
             const item = tree.getById(itemId);
-            if (!isFound(item)) {
+            if (item === NOT_FOUND_RECORD) {
                 return;
             }
 

@@ -1,9 +1,8 @@
 import { UseTreeResult } from '../../..';
 import { ItemsMap, ItemsStorage } from '../../../../../../processing';
-import { IMap, LazyDataSourceApi, SortingOption } from '../../../../../../../types';
+import { LazyDataSourceApi, SortingOption } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
-import { RecordStatus } from '../../../newTree';
 
 export type Modes = typeof MODES[keyof typeof MODES];
 
@@ -17,9 +16,7 @@ export interface ServerAsyncTreeProps<TItem, TId, TFilter> extends CommonDataSou
     api: LazyDataSourceApi<TItem, TId, TFilter>;
 
     itemsMap?: ItemsMap<TId, TItem>;
-    itemsStatusMap?: IMap<TId, RecordStatus>;
     setItems?: ItemsStorage<TItem, TId>['setItems'];
-    setLoadingStatus?: ItemsStorage<TItem, TId>['setLoadingStatus'];
 }
 
 export interface ClientAsyncTreeProps<TItem, TId, TFilter> extends
@@ -30,9 +27,7 @@ export interface ClientAsyncTreeProps<TItem, TId, TFilter> extends
 
     items?: TItem[];
     itemsMap?: ItemsMap<TId, TItem>;
-    itemsStatusMap?: IMap<TId, RecordStatus>;
     setItems?: ItemsStorage<TItem, TId>['setItems'];
-    setLoadingStatus?: ItemsStorage<TItem, TId>['setLoadingStatus'];
 
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;

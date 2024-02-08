@@ -12,18 +12,15 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
 ) {
     const { api, dataSourceState } = props;
     const [isForceReload, setIsForceReload] = useState(false);
-    const { itemsMap, itemsStatusMap, setItems, setLoadingStatus } = useItemsStorage({
+    const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
-        itemsStatusMap: props.itemsStatusMap,
         setItems: props.setItems,
-        setLoadingStatus: props.setLoadingStatus,
-
         params: { getId: props.getId, complexIds: props.complexIds },
     });
 
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
-    const baseTree = useMemo(() => TreeState.blank(props, itemsMap, itemsStatusMap, setItems, setLoadingStatus), deps);
+    const baseTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
     const [currentTree, setCurrentTree] = useState(baseTree);
 
     const { tree: treeWithData, isLoading, isFetching } = useLoadData({
