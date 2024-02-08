@@ -1,7 +1,7 @@
 # 5.6.0 - 08.02.2024
 
 **What's New**
-* Added 'Tokens' doc page - https://uui.epam.com/documents?id=tokens&category=themes. It contains list of all core tokens with their value and description.
+* Added 'Tokens' doc [page](https://uui.epam.com/documents?id=tokens&category=themes). It contains list of all core tokens with their value and description.
 * prop `captionCX` is deprecated for the following components: `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class.
 * [Breaking changes]:
     * [Badge]: can be a `span` element if `onClick` prop is not passed, consider it for dom manipulation with this component.
