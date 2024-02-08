@@ -132,7 +132,7 @@ export default function BasicExample() {
             </ul>
             <i>Additional data, unnecessary info, caption or quote.</i>
             {' '}
-            <Anchor>Links and tags are looks like this.</Anchor>
+            <Anchor href="#">Links and tags are looks like this.</Anchor>
             <h3>LabeledInput</h3>
             <FlexRow>
                 <LabeledInput

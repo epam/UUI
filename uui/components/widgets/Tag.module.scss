@@ -12,7 +12,9 @@
 
     --uui-tag-font: var(--uui-font);
     --uui-tag-font-weight: 400;
-    //
+
+    @include clickable-styles();
+
     &:global(.uui-button-box) {
         border-radius: var(--uui-tag-border-radius);
         background-color: var(--uui-tag-bg);

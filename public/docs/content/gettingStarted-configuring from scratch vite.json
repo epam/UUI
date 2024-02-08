@@ -1,0 +1,46 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We provide "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/templates/uui-vite-template",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "UUI template"
+          }
+        ]
+      },
+      {
+        "text": " for "
+      },
+      {
+        "type": "link",
+        "url": "https://vitejs.dev/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Vite"
+          }
+        ]
+      },
+      {
+        "text": ". You can create a new project with the following command:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "npx -- degit@latest https://github.com/epam/UUI/templates/uui-vite-template my-app"
+      }
+    ]
+  }
+]

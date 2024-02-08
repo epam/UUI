@@ -4,6 +4,7 @@ import { IHasCX } from '@epam/uui-core';
 import css from './IndeterminateBar.module.scss';
 
 export interface IndeterminateBarMods extends IHasCX {
+    /** Component size */
     size?: '12' | '18' | '24';
 }
 

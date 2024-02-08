@@ -1,13 +1,13 @@
-import { ICanBeInvalid } from '../../types/props';
 import { i18n } from '../../i18n';
 import { Metadata } from '../../types';
+import { ValidationState } from '../lenses';
 
 export type ValidationMode = 'change' | 'save';
-export const blankValidationState: ICanBeInvalid = {};
+export const blankValidationState: ValidationState = {};
 
-export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
-    const validateRec = <U>(innerValue: U, path: U[], innerMeta: Metadata<U>, innerInitValue: U): ICanBeInvalid => {
-        const itemResult: ICanBeInvalid = validateValue(innerValue, path, innerMeta);
+export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ValidationState => {
+    const validateRec = <U>(innerValue: U, path: U[], innerMeta: Metadata<U>, innerInitValue: U): ValidationState => {
+        const itemResult: ValidationState = validateValue(innerValue, path, innerMeta);
         const validateItem = (key: string, validationMeta: Metadata<any>) => {
             const childValue = innerValue && (innerValue as any)[key];
             const newPath = [childValue, ...path];
@@ -50,7 +50,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
     return validateRec(value, [value], meta, initValue);
 };
 
-const validateValue = (value: any, path: any[], meta: Metadata<any>): ICanBeInvalid => {
+const validateValue = (value: any, path: any[], meta: Metadata<any>): ValidationState => {
     if (meta.validators) {
         const customValidationMessages = meta.validators
             .map((validator) => validator.apply(null, path))

@@ -31,8 +31,8 @@ export class TextDoc extends BaseDocsBlock {
             doc.merge('color', {
                 editorType: getColorPickerComponent({
                     ...COLOR_MAP,
-                    brand: 'var(--uui-text-brand)',
                     disabled: 'var(--uui-text-disabled)',
+                    tertiary: 'var(--uui-text-tertiary)',
                 }),
             });
         },

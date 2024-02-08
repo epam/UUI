@@ -6,7 +6,7 @@ import {
 } from '../../data/validation';
 import { useForceUpdate } from '../../hooks';
 import { UuiContexts } from '../../types/contexts';
-import { ICanBeInvalid } from '../../types/props';
+import { ValidationState } from '../lenses';
 import { useUuiContext } from '../../services';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
@@ -17,8 +17,8 @@ import { flushSync } from 'react-dom';
 
 interface FormState<T> {
     form: T;
-    validationState: ICanBeInvalid;
-    serverValidationState: ICanBeInvalid;
+    validationState: ValidationState;
+    serverValidationState: ValidationState;
     lastSentForm?: T;
     isChanged: boolean;
     formHistory: T[];
@@ -95,7 +95,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 removeUnsavedChanges();
             });
         }
-        return null;
+        return Promise.resolve();
     }, [
         props.beforeLeave,
         handleSave,

@@ -4,9 +4,16 @@ import { PeTableRow } from './PeTableRow';
 import { IPeTableProps } from './types';
 import { ReactComponent as ResetIcon } from '../../../../../icons/reset-icon.svg';
 import css from './peTable.module.scss';
+import { PropDoc } from '@epam/uui-docs';
+
+function propsComparator<TProps>(p1: PropDoc<TProps, keyof TProps>, p2: PropDoc<TProps, keyof TProps>) {
+    return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
+}
 
 export function PeTable<TProps>(props: IPeTableProps<TProps>) {
-    const rows = props.propDoc.map((p, index: number) => {
+    const sortedProps = [...props.propDoc].sort((p1, p2) => propsComparator<TProps>(p1, p2));
+
+    const rows = sortedProps.map((p, index: number) => {
         const key = `${p.name}_${index}`;
         const value = props.inputData[p.name]?.value;
         const exampleId = props.inputData[p.name]?.exampleId;
@@ -26,7 +33,7 @@ export function PeTable<TProps>(props: IPeTableProps<TProps>) {
 
     return (
         <div className={ css.container }>
-            <PeTableToolbar title={ props.title } onResetAllProps={ props.onResetAllProps } titleTooltip={ props.titleTooltip } />
+            <PeTableToolbar tooltip={ props.typeRef } title={ props.title } onResetAllProps={ props.onResetAllProps } />
             <PeTableHeader />
             <div className={ css.rowProps }>
                 <ScrollBars>
@@ -40,10 +47,10 @@ export function PeTable<TProps>(props: IPeTableProps<TProps>) {
 PeTable.displayName = 'PeTable';
 
 const PeTableToolbar = React.memo(
-    function PeTableToolbarComponent<TProps>({ titleTooltip, title, onResetAllProps }: Pick<IPeTableProps<TProps>, 'titleTooltip' | 'title' | 'onResetAllProps'>) {
+    function PeTableToolbarComponent<TProps>({ title, onResetAllProps, tooltip }: Pick<IPeTableProps<TProps>, 'title' | 'onResetAllProps'> & { tooltip: string }) {
         return (
             <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
-                <Tooltip content={ titleTooltip }>
+                <Tooltip content={ tooltip }>
                     <Text fontSize="16" lineHeight="24" cx={ css.vPadding } fontWeight="600">
                         {title}
                     </Text>

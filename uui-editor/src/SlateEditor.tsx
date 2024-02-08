@@ -13,7 +13,6 @@ import { defaultPlugins } from './defaultPlugins';
 import { isEditorValueEmpty } from './helpers';
 
 import css from './SlateEditor.module.scss';
-import { RenderPlaceholderProps } from 'slate-react';
 
 const basePlugins: any = [
     baseMarksPlugin(),

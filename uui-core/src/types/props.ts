@@ -11,21 +11,23 @@ import * as React from 'react';
 export interface ICanBeInvalid {
     /** True if component contains invalid input */
     isInvalid?: boolean;
-
-    /** Message describing why the value is invalid */
-    validationMessage?: ReactNode;
-    /** If T is a complex value (object or array), this property contains validation states of inner items */
-    validationProps?: { [key: string]: ICanBeInvalid };
 }
 
-/** Component displays an editable value. Text Input is a basic example. */
-export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired {
+export interface IHasValidationMessage {
+    /** Message describing why the value is invalid */
+    validationMessage?: ReactNode;
+}
+
+export interface IControlled<T> {
     /** The current value of component */
     value: T;
 
     /** Called when value needs to be changed (usually due to user interaction) */
     onValueChange(newValue: T): void;
 }
+
+/** Component displays an editable value. Text Input is a basic example. */
+export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, IControlled<T> { }
 
 /** Component supports click action */
 export interface IClickable {
@@ -195,8 +197,12 @@ IClickable &
 Attributes &
 IHasChildren &
 IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
-    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
+    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+     * @default 'center'
+     * */
     alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
+    /** Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
+    justifyContent?: 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end';
     /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
     columnGap?: number | '6' | '12' | '18' | '24' | '36';
     /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
@@ -273,17 +279,18 @@ export interface IDropdownBodyProps {
 }
 
 /** Component can be used as Toggler control for dropdown menus */
-export interface IDropdownToggler extends IHasCaption, IClickable {
+export interface IDropdownToggler {
     /** When isDropdown=true, indicate that dropdown is open with chevron icon */
     isOpen?: boolean;
     /** Shows chevron icon, enabling component to act as dropdown toggler */
     isDropdown?: boolean;
+}
+
+export interface IDropdownTogglerProps extends IDropdownToggler, IClickable {
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
     /** Called when component is interacted outside, to close the dropdown */
     isInteractedOutside?: (event: Event) => boolean;
-    /** Component's ref */
+    /** Toggler component ref */
     ref?: React.Ref<any>;
-    /** Disables component */
-    isDisabled?: boolean;
 }

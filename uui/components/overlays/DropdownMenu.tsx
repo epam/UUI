@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import {
-    cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps,
+    cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps,
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
@@ -11,7 +11,8 @@ import { systemIcons } from '../../icons/icons';
 import css from './DropdownMenu.module.scss';
 
 const icons = systemIcons['36'];
-export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
+
+export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {
     isSelected?: boolean;
     isActive?: boolean;
     indent?: boolean;
@@ -137,7 +138,6 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             onClick={ handleClick }
             isLinkActive={ isActive }
             isDisabled={ isDisabled }
-            forwardedRef={ ref }
             target={ target }
         >
             { getMenuButtonContent() }

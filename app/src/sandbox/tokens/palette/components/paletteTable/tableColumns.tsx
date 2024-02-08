@@ -173,7 +173,7 @@ export function getColumns(
                 }
                 return (
                     <Text color="primary">
-                        {item.published ? 'y' : 'n'}
+                        {item.cssVarSupport === 'supported' ? 'y' : 'n'}
                     </Text>
                 );
             },
@@ -239,6 +239,7 @@ export function getFiltersConfig(totals: TTotals): TableFiltersConfig<TTokensLoc
                 return (
                     <FlexCell cx={ css.radioGroupFilter } width="auto">
                         <RadioGroup
+                            name="status"
                             items={ items }
                             value={ props.value || STATUS_FILTER.all }
                             onValueChange={ props.onValueChange }

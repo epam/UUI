@@ -61,11 +61,11 @@ export function AppHeader() {
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
-                        <DropdownMenuButton caption="Promo" icon={ theme === TTheme.promo && DoneIcon } isActive={ theme === TTheme.promo } iconPosition="right" onClick={ () => toggleTheme(TTheme.promo) } />
                         <DropdownMenuButton caption="Loveship Light" icon={ theme === TTheme.loveship && DoneIcon } isActive={ theme === TTheme.loveship } iconPosition="right" onClick={ () => toggleTheme(TTheme.loveship) } />
                         <DropdownMenuButton caption="Loveship Dark" icon={ theme === TTheme.loveship_dark && DoneIcon } isActive={ theme === TTheme.loveship_dark } iconPosition="right" onClick={ () => toggleTheme(TTheme.loveship_dark) } />
                         <DropdownMenuButton caption="Electric" icon={ theme === TTheme.electric && DoneIcon } isActive={ theme === TTheme.electric } iconPosition="right" onClick={ () => toggleTheme(TTheme.electric) } />
                         <DropdownMenuButton caption="Vanilla Thunder" icon={ theme === TTheme.vanilla_thunder && DoneIcon } isActive={ theme === TTheme.vanilla_thunder } iconPosition="right" onClick={ () => toggleTheme(TTheme.vanilla_thunder) } />
+                        <DropdownMenuButton caption="Promo" icon={ theme === TTheme.promo && DoneIcon } isActive={ theme === TTheme.promo } iconPosition="right" onClick={ () => toggleTheme(TTheme.promo) } />
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (

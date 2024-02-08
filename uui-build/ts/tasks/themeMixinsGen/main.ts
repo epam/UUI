@@ -1,17 +1,17 @@
 import path from 'path';
 import { logger } from '../../utils/jsBridge';
-import { IUuiTokensCollection, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
-import { coreMixinGenTemplate, coreThemeMixinsConfig } from './constants';
+import { IThemeVar, IUuiTokensCollection, TCssVarSupport, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
+import { coreThemeMixinsConfig } from './constants';
 import { ITaskConfig } from '../../utils/taskUtils';
 import { uuiRoot } from '../../constants';
 import { createFileSync } from '../../utils/fileUtils';
 import { readFigmaTokens } from './utils/tokensFileUtils';
+import { formatVarsAsMixin } from './utils/tokenFormatters';
 
 export const taskConfig: ITaskConfig = { main };
 
 async function main() {
     const tokens = readFigmaTokens();
-
     Object.values(TFigmaThemeName).forEach((figmaTheme) => {
         genForFigmaTheme({
             tokens,
@@ -23,72 +23,47 @@ async function main() {
 function genForFigmaTheme(params: { figmaTheme: TFigmaThemeName, tokens: IUuiTokensCollection }) {
     const { figmaTheme, tokens } = params;
 
-    const scssVars = new Map<string, string>();
+    const scssVars: { token: IThemeVar, name: string, value: string }[] = [];
+    const cssVars: { token: IThemeVar, name: string, value: string }[] = [];
 
-    const cssVarsByGroup: Record<string, Map<string, string>> = {};
+    const themeVarsMapById = tokens.exposedTokens.reduce<Record<string, IThemeVar>>((acc, v) => {
+        acc[v.id] = v;
+        return acc;
+    }, {});
 
-    tokens.supportedTokens.forEach(({ valueByTheme, cssVar, id }) => {
+    tokens.exposedTokens.forEach((token) => {
+        const { valueByTheme, cssVar } = token;
         const valueChain = valueByTheme[figmaTheme]?.valueChain;
-        if (valueChain) {
-            const groupId = id.substring(0, id.lastIndexOf('/'));
+        if (valueChain && canHaveCssVar(token.cssVarSupport)) {
             const valueAliases = valueChain.alias;
             const explicitValue = valueChain.value as string;
             let cssVarValue: string;
             if (valueAliases?.length) {
                 const firstAlias = valueAliases[0];
-                if (firstAlias.supported) {
+                if (canHaveCssVar(firstAlias.cssVarSupport)) {
                     cssVarValue = `var(${firstAlias.cssVar})`;
                 } else {
-                    const scssVarName = '-' + firstAlias.id.replace(/\//g, '_');
-                    cssVarValue = `$${scssVarName}`;
-                    scssVars.set(scssVarName, explicitValue);
+                    cssVarValue = getScssVarNameForToken(themeVarsMapById[firstAlias.id]);
+                    scssVars.push({ token: themeVarsMapById[firstAlias.id], name: cssVarValue, value: explicitValue });
                 }
             } else {
                 cssVarValue = explicitValue;
             }
-            if (!cssVarsByGroup[groupId]) {
-                cssVarsByGroup[groupId] = new Map();
-            }
-            cssVarsByGroup[groupId].set(cssVar, cssVarValue);
+            cssVars.push({ token, name: cssVar as string, value: cssVarValue });
         }
     });
 
-    const errors = '';
-    const content = coreMixinGenTemplate({ cssVarsByGroup, scssVars, errors });
+    const content = formatVarsAsMixin({ cssVars, scssVars });
     const mixinsPath = coreThemeMixinsConfig[figmaTheme].mixinsFile;
     const mixinsPathRes = path.resolve(uuiRoot, mixinsPath);
     createFileSync(mixinsPathRes, content);
     logger.success(`File created: ${mixinsPathRes}`);
 }
 
-/*
-function getAllReferencedCssVars(scssFileContent: string) {
-    const regexpReferenced = /var\((--[a-zA-Z0-9-]+)\);/gim;
-    const resReferenced = [...scssFileContent.matchAll(regexpReferenced)];
-    const referenced = new Set<string>();
-    resReferenced.forEach((m) => {
-        const name = m[1];
-        referenced.add(name);
-    });
-
-    const regexpDefined = /(--[a-zA-Z0-9-]+): .*;/gim;
-    const resDefined = [...scssFileContent.matchAll(regexpDefined)];
-    const defined = new Set<string>();
-    resDefined.forEach((m) => {
-        const name = m[1];
-        defined.add(name);
-    });
-
-    return retainUnique(referenced, defined);
+function getScssVarNameForToken(token: IThemeVar) {
+    return '$-' + token.id.replace(/\//g, '_');
 }
 
-function retainUnique(origSet: Set<string>, setToExclude: Set<string>) {
-    const retained = new Set<string>();
-    origSet.forEach((r) => {
-        if (!setToExclude.has(r)) {
-            retained.add(r);
-        }
-    });
-    return retained;
+function canHaveCssVar(support: TCssVarSupport) {
+    return support === 'supported' || support === 'supportedExceptFigma';
 }
-*/

@@ -67,6 +67,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                                 <LabeledInput label="Sex" { ...lens.prop('sex').toProps() }>
                                     <FlexRow>
                                         <RadioGroup
+                                            name="gender"
                                             items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
                                             { ...lens.prop('sex').toProps() }
                                             direction="horizontal"

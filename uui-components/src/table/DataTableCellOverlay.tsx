@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
 import {
-    blurFocusedElement,
-    cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod,
+    blurFocusedElement, cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod, IHasValidationMessage,
 } from '@epam/uui-core';
 import css from './DataTableCellOverlay.module.scss';
 import { DataTableSelectionContext } from './tableCellsSelection';
 import { PointerEventHandler, useContext } from 'react';
 
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid, IHasValidationMessage {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;

@@ -1,14 +1,12 @@
-import React from 'react';
-import { Button as uuiButton, ButtonProps as uuiButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
+import * as uuiComponents from '@epam/uui-components';
+import { devLogger, withMods } from '@epam/uui-core';
 import { ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
-import { CountIndicator } from '../widgets/CountIndicator';
 import css from './Button.module.scss';
 
 const DEFAULT_SIZE = '36';
 
-interface ButtonMods {
+type ButtonMods = {
     /**
      * Defines component size.
      * @default '36'
@@ -24,13 +22,13 @@ interface ButtonMods {
      * @default 'primary'
      */
     color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
-}
+};
 
-/** Represents the 'Core properties' for the Button component, omitting the 'count' property. */
-export interface ButtonCoreProps extends Omit<uuiButtonProps, 'count'> {}
+/** Represents the 'Core properties' for the Button component. */
+export type ButtonCoreProps = uuiComponents.ButtonProps;
 
 /** Represents the props for a Button component. */
-export interface ButtonProps extends ButtonMods, ButtonCoreProps {}
+export type ButtonProps = ButtonMods & ButtonCoreProps;
 
 function applyButtonMods(mods: ButtonProps) {
     return [
@@ -42,12 +40,17 @@ function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<uuiButtonProps, ButtonMods>(
-    uuiButton,
+export const Button = withMods<uuiComponents.ButtonProps, ButtonMods>(
+    uuiComponents.Button,
     applyButtonMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
-        clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
-        countIndicator: (countIndicatorProps) => <CountIndicator { ...countIndicatorProps } color="white" />,
-    }),
+    (props) => {
+        if (__DEV__ && props.captionCX) {
+            devLogger.warn('Button: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
+        }
+
+        return {
+            dropdownIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+            clearIcon: systemIcons[props.size || DEFAULT_SIZE].clear,
+        };
+    },
 );

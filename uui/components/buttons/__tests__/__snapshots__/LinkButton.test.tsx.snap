@@ -2,8 +2,7 @@
 
 exports[`LinkButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
-  onClick={[Function]}
+  className="uui-button-box uui-enabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
   tabIndex={-1}
   type="button"
 />
@@ -12,8 +11,7 @@ exports[`LinkButton should be rendered correctly 1`] = `
 exports[`LinkButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
-  aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-has-left-icon uui-has-right-icon uui-color-primary"
+  className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-has-left-icon uui-has-right-icon uui-color-primary"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -28,15 +26,6 @@ exports[`LinkButton should be rendered correctly with props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="container uui-icon uui-enabled -clickable -clickable"
-    onClick={[Function]}
     style={Object {}}
   >
     <svg

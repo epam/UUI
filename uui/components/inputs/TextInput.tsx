@@ -44,17 +44,21 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     return (
         <IEditableDebouncer
             { ...props }
-            render={ (iEditable) => (
-                <TextInput
-                    icon={ systemIcons[props.size || DEFAULT_SIZE].search }
-                    onCancel={ !!props.value && (() => iEditable.onValueChange('')) }
-                    type="search"
-                    inputMode="search"
-                    ref={ ref }
-                    { ...textInputProps }
-                    { ...iEditable }
-                />
-            ) }
+            render={ (iEditable) => {
+                const defaultOnCancel = () => iEditable.onValueChange('');
+
+                return (
+                    <TextInput
+                        icon={ systemIcons[props.size || DEFAULT_SIZE].search }
+                        onCancel={ props.onCancel ?? defaultOnCancel }
+                        type="search"
+                        inputMode="search"
+                        ref={ ref }
+                        { ...textInputProps }
+                        { ...iEditable }
+                    />
+                );
+            } }
         />
     );
 });

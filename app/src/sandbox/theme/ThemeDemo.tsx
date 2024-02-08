@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
+import { INotification, useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
 import {
     Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
     FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge, DatePicker,
@@ -80,6 +80,21 @@ export function ThemeDemo() {
     });
 
     const renderDemoForm = () => {
+        const successActionHandler = () => {
+            svc.uuiNotifications
+                .show(
+                    (props: INotification) => (
+                        <SuccessNotification { ...props }>
+                            <Text size="36" fontSize="14">
+                                Success notification
+                            </Text>
+                        </SuccessNotification>
+                    ),
+                    { position: 'bot-right', duration: 'forever' },
+                )
+                .catch(() => null);
+        };
+
         return (
             <FlexRow vPadding="24" padding="24">
                 <FlexCell width={ 600 } minWidth={ 600 }>
@@ -106,6 +121,9 @@ export function ThemeDemo() {
                             </Text>
                         </ErrorNotification>
                     </FlexRow>
+                    <FlexRow vPadding="36">
+                        <Button caption="Show success notification" onClick={ successActionHandler } />
+                    </FlexRow>
                     <FlexRow vPadding="12">
                         <FlexCell grow={ 1 }>
                             <LabeledInput label="First Name" { ...lens.prop('firstName').toProps() }>
@@ -123,6 +141,7 @@ export function ThemeDemo() {
                     <FlexRow vPadding="12">
                         <LabeledInput label="Gender" { ...lens.prop('gender').toProps() }>
                             <RadioGroup
+                                name="gender"
                                 direction="horizontal"
                                 { ...lens.prop('gender').toProps() }
                                 items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }

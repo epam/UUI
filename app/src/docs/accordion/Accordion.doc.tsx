@@ -6,6 +6,7 @@ import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { accordionExamples } from './accordionExamples';
+import { IControlled } from '@epam/uui-core';
 
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
@@ -19,9 +20,11 @@ export class AccordionDoc extends BaseDocsBlock {
             [TSkin.UUI]: { type: '@epam/uui:AccordionProps', component: uui.Accordion },
             [TSkin.Electric]: { type: '@epam/uui:AccordionProps', component: electric.Accordion },
         },
-        doc: (doc: DocBuilder<uui.AccordionProps>) => {
+        doc: (doc: DocBuilder<uui.AccordionProps & IControlled<boolean>>) => {
             doc.merge('children', { examples: accordionExamples });
             doc.merge('title', { examples: [{ value: 'Accordion title', isDefault: true }, 'Additional info'] });
+            doc.merge('value', { isRequired: false });
+            doc.merge('onValueChange', { isRequired: false });
         },
     };
 

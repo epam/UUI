@@ -14,6 +14,7 @@
   },
   "cracoConfig": "./build-config/craco.config.js",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@elastic/apm-rum": "^5.14.0",
     "@epam/assets": "5.5.4",
     "@epam/draft-rte": "5.5.4",
@@ -51,8 +52,7 @@
     "react-router": "6.14.0",
     "react-router-dom": "6.14.0",
     "remark-gfm": "3.0.1",
-    "slate": "0.94.1",
-    "slate-hyperscript": "0.81.3"
+    "slate": "0.94.1"
   },
   "browserslist": {
     "production": [

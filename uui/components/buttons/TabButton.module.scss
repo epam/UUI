@@ -29,6 +29,7 @@ $text-size-count: 24px;
     --uui-tab_btn-font: var(--uui-font);
     --uui-tab_btn-font-weight: 600;
 
+    @include clickable-styles();
     @include link-button-horizontal-layout(36px);
     @include tab-button-color(var(--uui-tab_btn-text), var(--uui-tab_btn-text-active), transparent);
     cursor: pointer;

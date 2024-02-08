@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FileCard should be rendered correctly 1`] = `
+exports[`FileCard should be rendered correctly with Excel file 1`] = `
 <div
   className="flexCell root uui-file_card uui-loading"
   style={
@@ -91,7 +91,7 @@ exports[`FileCard should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`FileCard should be rendered correctly 2`] = `
+exports[`FileCard should be rendered correctly with doc file 1`] = `
 <div
   className="flexCell root uui-file_card uui-loading"
   style={
@@ -182,7 +182,7 @@ exports[`FileCard should be rendered correctly 2`] = `
 </div>
 `;
 
-exports[`FileCard should be rendered correctly 3`] = `
+exports[`FileCard should be rendered correctly with img file 1`] = `
 <div
   className="flexCell root uui-file_card"
   style={
@@ -246,7 +246,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       onMouseLeave={[Function]}
     >
       <button
-        className="container uui-button-box uui-enabled -clickable uui-icon_button uui-color-neutral root"
+        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
         onClick={[Function]}
         tabIndex={0}
         type="button"

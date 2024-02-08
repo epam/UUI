@@ -29,7 +29,7 @@ export class RadioGroupDoc extends BaseDocsBlock {
                 ],
             });
             doc.merge('direction', { defaultValue: 'vertical' });
-            doc.merge('value', { editorType: 'JsonView' });
+            doc.merge('value', { examples: [1, 2, 3] });
         },
     };
 

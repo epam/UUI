@@ -274,7 +274,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         selectedId: TId,
         isSelected: boolean,
         options: {
-            isSelectable: (item: TItem) => boolean;
+            isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
             cascade: boolean;
         }
     ): TId[];

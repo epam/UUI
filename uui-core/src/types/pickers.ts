@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IDropdownToggler, IHasPlaceholder, IHasCX } from './props';
+import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IHasPlaceholder, IHasCX, IDropdownTogglerProps } from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
@@ -23,8 +23,7 @@ export type ArrayPickerProps<TId, TItem> =
         selectionMode: 'multi';
         /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType?: 'id';
-        /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.
-         */
+        /** Defines what to use as an empty value. If other value provided, it will be assumed as selection */
         emptyValue?: [] | null;
     } & IEditable<TId[]>)
     | ({
@@ -32,8 +31,7 @@ export type ArrayPickerProps<TId, TItem> =
         selectionMode: 'multi';
         /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
         valueType: 'entity';
-        /** Defines what to use as an empty value. If other value provided, it will be assumed as selection.
-         */
+        /** Defines what to use as an empty value. If other value provided, it will be assumed as selection */
         emptyValue?: [] | null;
     } & IEditable<TItem[]>);
 
@@ -136,7 +134,7 @@ export interface IPickerToggler<TItem = any, TId = any>
  * This interface is enough for basic pickers.
  * Picker togglers with search or advanced selection display should implement IPickerToggler interface
  */
-export interface IBasicPickerToggler extends IDropdownToggler {
+export interface IBasicPickerToggler extends IDropdownTogglerProps {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
 }
@@ -150,5 +148,5 @@ export interface DataPickerCellProps<TItem = any, TId = any> extends IHasCX {
     rowProps: DataRowProps<TItem, TId>;
 
     /** Render the cell content. The item props is the value of the whole row (TItem). */
-    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
+    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): ReactNode;
 }

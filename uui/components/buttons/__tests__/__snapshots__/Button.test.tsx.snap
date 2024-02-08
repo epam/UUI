@@ -5,7 +5,7 @@ exports[`Button should render with maximum props 1`] = `
   aria-disabled={false}
   aria-expanded={true}
   aria-haspopup={true}
-  className="container uui-button-box uui-enabled -clickable root uui-button uui-fill-outline uui-color-accent uui-size-36"
+  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-accent uui-size-36"
   data-my_attr="value"
   id="123"
   onClick={[Function]}
@@ -16,11 +16,6 @@ exports[`Button should render with maximum props 1`] = `
     className="uui-caption"
   >
     Click me
-  </div>
-  <div
-    className="root uui-count_indicator size-24 uui-color-white"
-  >
-    10
   </div>
   <div
     className="container uui-icon uui-enabled"
@@ -52,8 +47,7 @@ exports[`Button should render with maximum props 1`] = `
 
 exports[`Button should render with minimum props 1`] = `
 <button
-  className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary uui-size-36"
-  onClick={[Function]}
+  className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
   tabIndex={-1}
   type="button"
 />

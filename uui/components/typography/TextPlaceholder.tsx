@@ -5,7 +5,9 @@ import css from './TextPlaceholder.module.scss';
 import { PropsWithChildren } from 'react';
 
 export interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {
+    /** Number of placeholder worlds to render in block */
     wordsCount?: number;
+    /** Pass true, to turn off the placeholder animation */
     isNotAnimated?: boolean;
 }
 
