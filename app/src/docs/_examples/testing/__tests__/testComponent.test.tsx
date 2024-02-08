@@ -1,19 +1,28 @@
+/**
+ *  Note: This example uses  "@epam/uui-test-utils" package to simplify testing.
+ */
 import React from 'react';
 import { setupComponentForTest, screen, fireEvent, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { TextInput } from '@epam/uui';
 
 /** Start: This is some component which we are going to test. It's just an example. */
-export interface SomeComponentProps {
+interface SomeComponentProps {
     value?: string;
     onValueChange?: (value: string) => void;
 }
-export function SomeComponent(props: SomeComponentProps) {
+function SomeComponent(props: SomeComponentProps) {
     return (
         <TextInput value={ props.value } onValueChange={ props.onValueChange } />
     );
 }
 /** End */
 
+/**
+ *  In this specific case, the "setupComponentForTest" method simplifies testing of next use cases:
+ *  - It wraps the component in UUI context;
+ *  - It makes it possible to change component's props from the outside without unmounting the component;
+ *  - It supports testing of "on-change" workflow, when a callback prop (e.g. onValueChange) updates some other props (e.g. value).
+ */
 async function setupTestComponent(params: Partial<SomeComponentProps>) {
     const { mocks, setProps } = await setupComponentForTest<SomeComponentProps>(
         (context) => ({
