@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
-import { arrayToMatrix, cx, IEditable, RangeDatePickerPresets } from '@epam/uui-core';
+import { arrayToMatrix, cx, IEditable, RangeDatePickerInputType, RangeDatePickerPresets } from '@epam/uui-core';
 import {
     DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue,
 } from '@epam/uui-components';
@@ -83,12 +83,20 @@ export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, 
 }
 
 export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue>): JSX.Element {
+    const [activeMonth, setActiveMonth] = React.useState<RangeDatePickerInputType>(null);
+
     const getDayCX = (day: Dayjs): string[] => {
         const dayValue = day.valueOf();
-        const fromValue = props.value.selectedDate?.from ? dayjs(props.value.selectedDate.from).valueOf() : null;
-        const toValue = props.value.selectedDate?.to ? dayjs(props.value.selectedDate.to).valueOf() : null;
+        const fromValue = props.value.selectedDate?.from
+            ? dayjs(props.value.selectedDate.from).valueOf() : null;
+        const toValue = props.value.selectedDate?.to
+            ? dayjs(props.value.selectedDate.to).valueOf() : null;
 
-        const inRange = fromValue && toValue && dayValue >= fromValue && dayValue <= toValue && fromValue !== toValue;
+        const inRange = fromValue
+            && toValue
+            && dayValue >= fromValue
+            && dayValue <= toValue
+            && fromValue !== toValue;
         const isFirst = dayValue === fromValue;
         const isLast = dayValue === toValue;
 
@@ -133,8 +141,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         return newRange;
     };
 
-    // const onValueChange = (value: <PickerBodyValue<string>>, part: 'from' | 'to') => {
-    const onBodyValueChange = (value: PickerBodyValue<string>, part: 'from' | 'to') => {
+    const onBodyValueChange = (value: Partial<PickerBodyValue<string>>, part: 'from' | 'to') => {
         let newValue: Partial<PickerBodyValue<RangeDatePickerValue>>;
         if (value.selectedDate) {
             const range = getRange(value.selectedDate);
@@ -152,29 +159,28 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
             newValue = { ...newValue, view: value.view };
         }
 
+        setActiveMonth(part);
         props.onValueChange({
             ...props.value,
             ...newValue,
-            // activePart: part,
         });
     };
 
     const getFromValue = (): PickerBodyValue<string> => {
         return {
             ...props.value,
-            view: props.value.activePart === 'from' ? props.value.view : 'DAY_SELECTION',
+            view: activeMonth === 'from' ? props.value.view : 'DAY_SELECTION',
             selectedDate: props.value.selectedDate?.from || null,
         };
     };
 
     const getToValue = (): PickerBodyValue<string> => {
         return {
-            view: props.value.activePart === 'to' ? props.value.view : 'DAY_SELECTION',
+            view: activeMonth === 'to' ? props.value.view : 'DAY_SELECTION',
             month: props.value.month.add(1, 'month'),
             selectedDate: props.value.selectedDate?.from || null,
         };
     };
-
 
     const renderDatePicker = () => {
         const from = getFromValue();
@@ -216,8 +222,8 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                             {props.value.view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
-                                        left: props.value.activePart === 'from' ? '50%' : undefined,
-                                        right: props.value.activePart === 'to' ? '50%' : undefined,
+                                        left: activeMonth === 'from' ? '50%' : undefined,
+                                        right: activeMonth === 'to' ? '50%' : undefined,
                                     } }
                                     className={ css.blocker }
                                 />

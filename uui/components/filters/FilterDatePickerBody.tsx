@@ -1,84 +1,35 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment } from 'react';
 import dayjs from 'dayjs';
 import { i18n } from '../../i18n';
-import { DatePickerCoreProps, IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
+import { DatePickerCoreProps, IDropdownBodyProps } from '@epam/uui-core';
 import { FlexSpacer, FlexRow, FlexCell } from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
 import { DatePickerBody } from '../datePickers';
-import { valueFormat, PickerBodyValue, DatePickerState } from '@epam/uui-components';
+import { useDatePickerState } from '../datePickers/useDatePickerState';
 
 /** Represents the properties of the DatePicker. */
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
 export function FilterDatePickerBody(props: DatePickerProps) {
     const { value } = props;
-    const context = useUuiContext();
 
-    const [state, setState] = useState<DatePickerState>({
-        isOpen: false,
-        view: 'DAY_SELECTION',
-        month: dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day'),
-    });
-
-    const updateState = useCallback((newState: Partial<DatePickerState>) => {
-        setState((prev) => ({ ...prev, ...newState }));
-    }, [setState]);
-
-    const onValueChange = (newValue: Partial<PickerBodyValue<string>>) => {
-        let newState: Partial<PickerBodyValue<string>> = {};
-
-        if (newValue.selectedDate) {
-            props.onValueChange(newValue.selectedDate || value);
-            handleToggle(false);
-            if (props.getValueChangeAnalyticsEvent) {
-                const event = props.getValueChangeAnalyticsEvent(newValue.selectedDate, value);
-                context.uuiAnalytics.sendEvent(event);
+    const {
+        view,
+        month,
+        onValueChange,
+        handleCancel,
+        handleToggle,
+    } = useDatePickerState({
+        ...props,
+        onValueChange: (v: string | null) => {
+            props.onValueChange(v);
+            if (v) {
+                handleToggle(false);
+                props.onClose?.();
             }
-        }
-
-        if (newValue.month) {
-            newState = {
-                ...newState,
-                month: dayjs(newValue.month, valueFormat).isValid()
-                    ? dayjs(newValue.month, valueFormat)
-                    : dayjs().startOf('day'),
-            };
-        }
-        if (newValue.view) {
-            newState = { ...newState, view: newValue.view };
-        }
-        updateState(newState);
-    };
-
-    const handleValueChange = (newValue: string | null) => {
-        props.onValueChange(newValue);
-        updateState({
-            month: dayjs(newValue, valueFormat).isValid() ? dayjs(newValue, valueFormat) : dayjs().startOf('day'),
-        });
-
-        if (props.getValueChangeAnalyticsEvent) {
-            const event = props.getValueChangeAnalyticsEvent(newValue, value);
-            context.uuiAnalytics.sendEvent(event);
-        }
-    };
-
-    const handleCancel = () => {
-        handleValueChange(null);
-    };
-
-    const handleToggle = (open: boolean) => {
-        if (open) {
-            updateState({
-                isOpen: open,
-                view: 'DAY_SELECTION',
-                month: value ? dayjs(value) : dayjs(),
-            });
-        } else {
-            updateState({ isOpen: open });
-            props.onBlur?.();
-        }
-    };
+        },
+    });
 
     return (
         <Fragment>
@@ -87,8 +38,8 @@ export function FilterDatePickerBody(props: DatePickerProps) {
                     filter={ props.filter }
                     value={ {
                         selectedDate: value,
-                        month: state.month,
-                        view: state.view,
+                        month,
+                        view,
                     } }
                     onValueChange={ onValueChange }
                     renderDay={ props.renderDay }
