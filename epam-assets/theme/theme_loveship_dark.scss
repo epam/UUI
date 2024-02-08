@@ -663,7 +663,8 @@
         --uui-link_btn-text-active: var(--uui-neutral-10);
     }
 
-    .uui-link_button.uui-color-primary {
+    .uui-link_button.uui-color-primary,
+    .uui-link_button.uui-color-sky {
         --uui-link_btn-text: var(--uui-color-60);
         --uui-link_btn-text-hover: var(--uui-color-70);
         --uui-link_btn-text-disabled: var(--uui-text-disabled);
