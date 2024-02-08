@@ -78,9 +78,10 @@ export class ApiContext extends BaseContext implements IApiContext {
     private isRunScheduled = false;
     public status: ApiStatus = 'idle';
     public recoveryReason: ApiRecoveryReason | null = null;
+    public apiReloginPath: string;
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
-        this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
+        this.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
         this.props.apiServerUrl = this.props.apiServerUrl ?? '';
     }
@@ -145,7 +146,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             }
             this.setStatus('recovery', reason);
             if (reason === 'auth-lost') {
-                window.open(this.props.apiReloginPath);
+                window.open(this.apiReloginPath);
             } else {
                 this.recoverConnection();
             }

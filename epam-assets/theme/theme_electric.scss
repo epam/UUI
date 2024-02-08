@@ -1,8 +1,8 @@
 @use './tokens/_theme_electric.scss' as tokens;
+@import '../scss/electric/font-faces';
+
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
-
-@import '../scss/electric/font-faces';
 
 @mixin theme-electric {
     @include tokens.theme-tokens;
