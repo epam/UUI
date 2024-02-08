@@ -1,7 +1,6 @@
-import { CascadeSelection, DataSourceState, IMap, SortingOption } from '../../../../../../types';
+import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../../types';
 import { LazyListViewProps } from '../../../types';
 import { ItemsMap } from '../../ItemsMap';
-import { RecordStatus } from '../constants';
 import { TreeStructure } from '../treeStructure';
 
 export interface LoadTreeOptions<TItem, TId, TFilter>
@@ -29,9 +28,7 @@ export interface UpdateTreeStructuresOptions<TItem, TId> {
     using?: TreeStructureId;
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
-    itemsStatusMap: IMap<TId, RecordStatus>;
 }
-
 export interface ApplyFilterOptions<TItem, TId, TFilter> {
     filter: DataSourceState<TFilter, TId>['filter'];
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;

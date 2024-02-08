@@ -99,6 +99,13 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
     const getDataSourceState = () => applyValueToDataSourceState(props, dataSourceState, props.value, props.dataSource);
 
+    const getSelectedOnlyDataSourceState = () => applyValueToDataSourceState(
+        props,
+        { topIndex: dataSourceState?.topIndex, visibleCount: dataSourceState?.visibleCount, checked: dataSourceState?.checked ?? [] },
+        props.value,
+        props.dataSource,
+    );
+
     const getRowOptions = () => {
         if (isSingleSelect()) {
             return { isSelectable: true };
@@ -132,7 +139,15 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         ...(cascadeSelection ? { cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         backgroundReload: true,
-        showOnlySelected: props.showOnlySelected,
+    }, [dataSource]);
+
+    const viewWithSelectedOnly = dataSource.useView(getSelectedOnlyDataSourceState(), handleDataSourceValueChange, {
+        rowOptions: getRowOptions(),
+        isFoldedByDefault,
+        ...(cascadeSelection ? { cascadeSelection } : {}),
+        ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
+        backgroundReload: true,
+        onlySelected: true,
     }, [dataSource]);
 
     const getListProps = (): DataSourceListProps => {
@@ -179,6 +194,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         clearSelection,
         hasSelection,
         view,
+        viewWithSelectedOnly,
         getListProps,
         getFooterProps,
         handleDataSourceValueChange,
