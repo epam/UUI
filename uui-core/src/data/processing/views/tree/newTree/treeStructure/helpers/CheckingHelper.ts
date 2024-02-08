@@ -1,6 +1,6 @@
 import { CascadeSelectionTypes } from '../../../../../../../types';
 import { Tree } from '../../Tree';
-import { NOT_FOUND_RECORD, ROOT_ID } from '../../constants';
+import { NOT_FOUND_RECORD, ROOT_ID } from '../../../constants';
 import { newMap } from './map';
 import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, SelectionOptions } from './types';
 

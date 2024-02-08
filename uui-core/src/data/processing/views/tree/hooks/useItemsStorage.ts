@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ItemsStorage, ItemsMap } from '../../../../../processing';
-import { TreeState } from '../../newTree';
-import { ItemsMapParams } from '../../ItemsMap';
+import { ItemsStorage, ItemsMap } from '../../..';
+import { TreeState } from '../newTree';
+import { ItemsMapParams } from '../ItemsMap';
 
 export interface UseItemsStorageProps<TItem, TId> {
     itemsMap?: ItemsMap<TId, TItem>;

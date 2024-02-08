@@ -5,11 +5,12 @@ import { onlySearchWasUnset } from './helpers';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
+import { useDataSourceStateWithDefaults } from '../../useDataSourceStateWithDefaults';
 import { TreeState } from '../../../newTree';
-import { useItemsStorage } from '../useItemsStorage';
-import { usePatchTree } from '../usePatchTree';
+import { useItemsStorage } from '../../useItemsStorage';
+import { usePatchTree } from '../../usePatchTree';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
+import { useItemsStatusCollector } from '../../useItemsStatusCollector';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -17,18 +18,25 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };
     const {
-        api, filter, backgroundReload, showOnlySelected,
+        filter, backgroundReload, showOnlySelected,
         isFoldedByDefault, getId, getParentId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions,
-        getChildCount, patchItems,
+        getChildCount, patchItems, itemsStatusMap, complexIds,
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         setItems: props.setItems,
-        params: { getId, complexIds: props.complexIds },
+        params: { getId, complexIds },
     });
+
+    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, []);
+
+    const api = useMemo(
+        () => itemsStatusCollector.watch(props.api),
+        [itemsStatusCollector, props.api],
+    );
 
     const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
     const [treeWithData, setTreeWithData] = useState(blankTree);
@@ -71,6 +79,31 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         forceReload: isForceReload,
         backgroundReload,
     });
+
+    useEffect(() => {
+        if (
+            showOnlySelected
+            && dataSourceState?.checked?.length
+            && prevDataSourceState?.checked !== dataSourceState?.checked
+        ) {
+            itemsStatusCollector.setPending(dataSourceState.checked);
+
+            loadMissing({
+                tree: treeWithData,
+                using: 'full',
+                abortInProgress: shouldRefetch,
+                dataSourceState: {
+                    visibleCount: 0,
+                    topIndex: 0,
+                },
+            })
+                .then(({ isUpdated, isOutdated, tree: newTree }) => {
+                    if (!isOutdated && (isUpdated || newTree !== treeWithData)) {
+                        setTreeWithData(newTree);
+                    }
+                });
+        }
+    }, [showOnlySelected]);
 
     useEffect(() => {
         if (showOnlySelected) {
@@ -145,6 +178,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         flattenSearchResults,
         isFetching,
         isLoading,
+        getItemStatus: itemsStatusCollector.getItemStatus,
         loadMissingRecordsOnCheck,
     };
 }

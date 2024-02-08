@@ -4,7 +4,7 @@ import { ClientAsyncTreeProps } from './types';
 import { usePlainTree } from '../plainTree';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
-import { useItemsStorage } from '../useItemsStorage';
+import { useItemsStorage } from '../../useItemsStorage';
 
 export function useClientAsyncTree<TItem, TId, TFilter = any>(
     { mode, ...props }: ClientAsyncTreeProps<TItem, TId, TFilter>,

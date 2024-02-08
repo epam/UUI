@@ -5,8 +5,8 @@ import { useFilterTree } from './useFilterTree';
 import { useSearchTree } from './useSearchTree';
 import { useSortTree } from './useSortTree';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults } from '../useDataSourceStateWithDefaults';
-import { useItemsStorage } from '../useItemsStorage';
+import { useDataSourceStateWithDefaults } from '../../useDataSourceStateWithDefaults';
+import { useItemsStorage } from '../../useItemsStorage';
 
 export function usePlainTree<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, items, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
