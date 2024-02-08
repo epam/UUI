@@ -2,11 +2,11 @@
 
 **What's New**
 * Added 'Tokens' doc [page](https://uui.epam.com/documents?id=tokens&category=themes). It contains list of all core tokens with their value and description.
-* prop `captionCX` is deprecated for the following components: `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class.
+* prop `captionCX` is deprecated for the following components: `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use `cx` prop to access caption styles and use cascading to change the styles for the `uui-caption` global class.
 * [Breaking changes]:
-    * [Badge]: can be a `span` element if `onClick` prop is not passed, consider it for dom manipulation with this component.
-    * [Tag]: can be a `span` element if  `onClick` props is not passed, consider it for dom manipulation with this component.
-    * [PickerInput]: in `selectionMode: multi` selected item `Tag` rendered as a `span`, consider it for dom manipulation with this component.
+    * [Badge]: can be a `span` element if `onClick` prop is not passed, consider it for DOM manipulation with this component.
+    * [Tag]: can be a `span` element if  `onClick` props is not passed, consider it for DOM manipulation with this component.
+    * [PickerInput]: in `selectionMode: multi` selected item `Tag` rendered as a `span`, consider it for DOM manipulation with this component.
     * [Button]: removed `count`, `dropdownIconPosition` props.
     * [TabButton]: removed `dropdownIconPosition` prop.
     * [VerticalTabButton]: removed `dropdownIconPosition` prop.
@@ -21,7 +21,7 @@
   * Extract `validationMessage` to the `IHasValidationMessage` interface
   * Extract validationProps into ValidationState interfaces
 * [Text]: added `tertiary` color.
-* [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`, see more in Flexbox Guide(https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+* [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`.
 * [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
 * [Snackbar]: added 'Clear all notification' notification button while 2+ notifications displaying. To enable this behavior, exports Snackbar form @epam/uui package or skins.
  
