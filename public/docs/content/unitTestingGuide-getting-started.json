@@ -1,0 +1,130 @@
+[
+  {
+    "type": "uui-richTextEditor-header-2",
+    "children": [
+      {
+        "text": "Setup test runner"
+      }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Vitest (vitest-setup.js)"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "```js"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "import 'vitest-dom/extend-expect';"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "import { setupJsDom } from '@epam/uui-test-utils';"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "setupJsDom(global, { mockCommon3rdPartyDeps: true });"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "```"
+      }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Jest (setupTests.ts)"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "```ts"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "import '@testing-library/jest-dom';"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "import { setupJsDom } from '@epam/uui-test-utils';"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "setupJsDom(global, { mockCommon3rdPartyDeps: true });"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "```"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  }
+]
