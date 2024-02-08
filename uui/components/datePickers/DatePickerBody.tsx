@@ -38,7 +38,6 @@ export function DatePickerBody({
 
     const onMonthClick = (newDate: Dayjs) => {
         onValueChange({
-            ...value,
             month: newDate,
             view: 'DAY_SELECTION',
         });
@@ -46,7 +45,6 @@ export function DatePickerBody({
 
     const onYearClick = (newDate: Dayjs) => {
         onValueChange({
-            ...value,
             month: newDate,
             view: 'MONTH_SELECTION',
         });
@@ -55,7 +53,6 @@ export function DatePickerBody({
     const onDayClick = (day: Dayjs) => {
         if (!filter || filter(day)) {
             onValueChange({
-                ...value,
                 selectedDate: day.format(valueFormat),
             });
         }
@@ -100,10 +97,10 @@ export function DatePickerBody({
                 view={ value.view }
                 month={ value.month }
                 onSetView={ (view) => {
-                    onValueChange({ ...value, view });
+                    onValueChange({ view });
                 } }
                 onSetMonth={ (month) => {
-                    onValueChange({ ...value, month });
+                    onValueChange({ month });
                 } }
             />
             {getView()}
