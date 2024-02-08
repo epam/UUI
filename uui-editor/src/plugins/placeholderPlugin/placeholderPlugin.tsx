@@ -7,11 +7,12 @@ import { PlaceholderBlock } from './PlaceholderBlock';
 
 import { PlateEditor, createPluginFactory, getPluginOptions, insertElements } from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { IHasToolbarButton } from '../../implementation/Toolbars';
 
 const KEY = 'placeholder';
 
 export interface PlaceholderPluginParams {
+    /** Placeholder items */
     items: {
         name: string;
         [key: string]: any;

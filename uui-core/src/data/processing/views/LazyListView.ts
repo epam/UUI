@@ -375,8 +375,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             // To avoid it, only those items, which are selectable, should be unchecked, avoiding cascading logic.
             const checked = this.fullTree.cascadeSelection(this.value.checked, undefined, value, {
                 cascade: false,
-                isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null);
+                isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+                    let currentItem = item;
+                    if (currentItem === NOT_FOUND_RECORD) {
+                        currentItem = this.cache.byId(id, false);
+                        if (currentItem === null || currentItem === NOT_FOUND_RECORD) {
+                            return false;
+                        }
+                    }
+                    const { isCheckable } = this.getRowProps(currentItem, null);
                     return isCheckable;
                 },
             });
@@ -426,8 +433,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         checked = tree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: isImplicitMode ? this.props.cascadeSelection : (isRoot && isChecked) || this.props.cascadeSelection,
-            isSelectable: (item: TItem) => {
-                const { isCheckable } = this.getRowProps(item, null);
+            isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+                let currentItem = item;
+                if (currentItem === NOT_FOUND_RECORD) {
+                    currentItem = this.cache.byId(id, false);
+                    if (currentItem === null || currentItem === NOT_FOUND_RECORD) {
+                        return false;
+                    }
+                }
+                const { isCheckable } = this.getRowProps(currentItem, null);
                 return isCheckable;
             },
         });

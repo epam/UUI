@@ -1,30 +1,28 @@
 import React from 'react';
 import { Badge } from '../Badge';
-import { renderer } from '@epam/uui-test-utils';
-import CalendarIcon from '../../../icons/calendar-18.svg';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('Badge', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Badge />).toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Badge />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(
-                <Badge
-                    caption="Test badge"
-                    fill="semitransparent"
-                    color="success"
-                    icon={ CalendarIcon }
-                    count={ 12 }
-                    onIconClick={ () => {} }
-                    onClick={ () => {} }
-                    onClear={ () => {} }
-                    size="36"
-                />,
-            )
-            .toJSON();
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Badge
+                caption="Test badge"
+                fill="solid"
+                color="success"
+                icon={ CalendarIcon }
+                count={ 12 }
+                onIconClick={ () => {} }
+                onClick={ () => {} }
+                isDropdown={ true }
+                size="36"
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });

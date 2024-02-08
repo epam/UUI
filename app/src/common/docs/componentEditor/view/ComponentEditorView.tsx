@@ -78,7 +78,7 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
                 propContext={ props.propContext }
                 propDoc={ props.propDoc }
                 title={ props.title }
-                titleTooltip={ props.generatedFromType }
+                typeRef={ props.generatedFromType }
             >
                 <DemoCode
                     demoComponentProps={ demoComponentProps }

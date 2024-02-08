@@ -20,7 +20,6 @@ export class IconButtonDoc extends BaseDocsBlock {
             [TSkin.Promo]: { type: '@epam/promo:IconButtonProps', component: promo.IconButton },
         },
         doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
-            doc.merge('iconPosition', { defaultValue: 'left' });
             doc.merge('color', {
                 editorType: getColorPickerComponent({
                     ...COLOR_MAP,

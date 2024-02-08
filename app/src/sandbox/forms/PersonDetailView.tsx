@@ -63,6 +63,7 @@ export class PersonDetailView extends React.Component<PersonDetailViewProps> {
                             <LabeledInput label="Sex" { ...this.props.lens.prop('sex').toProps() }>
                                 <ControlWrapper size="36">
                                     <RadioGroup
+                                        name="gender"
                                         items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
                                         { ...this.props.lens.prop('sex').toProps() }
                                         direction="horizontal"

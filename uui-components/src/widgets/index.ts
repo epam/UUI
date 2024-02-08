@@ -6,3 +6,4 @@ export * from './Paginator';
 export * from './UploadFileToggler';
 export * from './DropSpot';
 export * from './Loaders';
+export * from './Clickable';

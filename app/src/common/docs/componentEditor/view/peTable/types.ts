@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     IPropSamplesCreationContext,
-    PropDoc,
+    PropDoc, TDocsGenExportedType,
 } from '@epam/uui-docs';
 
 export interface IPeTableProps<TProps> {
@@ -19,7 +19,7 @@ export interface IPeTableProps<TProps> {
     propContext: IPropSamplesCreationContext<TProps>,
     propDoc: PropDoc<TProps, keyof TProps>[]
     title: string;
-    titleTooltip: string | undefined;
+    typeRef: TDocsGenExportedType;
 }
 
 export interface IPeTableRowProps<TProps> {

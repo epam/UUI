@@ -9,7 +9,7 @@ import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import css from './ImageBlock.module.scss';
-import { PlateImgAlign } from '../../types';
+import { PlateImgAlign } from './types';
 
 export function ImgToolbar({
     align,

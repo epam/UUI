@@ -30,8 +30,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
     }
   >
     <button
-      className="container uui-button-box uui-enabled root uui-button uui-fill-solid uui-color-primary uui-size-36"
-      onClick={[Function]}
+      className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
       tabIndex={-1}
       type="button"
     />

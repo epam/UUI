@@ -1,6 +1,6 @@
 import React from 'react';
-import { devLogger, withMods } from '@epam/uui-core';
-import * as uuiComponents from '@epam/uui-components';
+import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
@@ -32,7 +32,7 @@ type BadgeMods = {
     size?: '18' | '24' | '30' | '36' | '42' | '48';
 };
 
-export type BadgeCoreProps = Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon' | 'iconPosition'> & {
+export type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Pass true to display an indicator. It shows only if fill = 'outline'. */
     indicator?: boolean;
     /**
@@ -40,6 +40,15 @@ export type BadgeCoreProps = Omit<uuiComponents.ButtonProps, 'onClear' | 'clearI
      * @default 'left'
      */
     iconPosition?: 'left' | 'right';
+    /**
+     * CSS classes to put on the caption
+     * @deprecated
+     * */
+    captionCX?: CX;
+    /** Icon for drop-down toggler */
+    dropdownIcon?: Icon;
+    /** Count value to be placed in component */
+    count?: React.ReactNode;
 };
 
 /** Represents the properties of a Badge component. */
@@ -66,32 +75,61 @@ const mapCountIndicatorSizes = {
     48: '24',
 } as const;
 
-export const Badge = withMods<Omit<uuiComponents.ButtonProps, 'onClear' | 'clearIcon' | 'iconPosition'>, BadgeProps>(
-    uuiComponents.Button as any,
-    applyBadgeMods,
-    (props) => {
-        if (__DEV__) {
-            devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
-                component: 'Badge',
-                propName: 'size',
-                propValue: props.size,
-                propValueUseInstead: '42',
-                condition: () => ['48'].indexOf(props.size) !== -1,
-            });
-        }
-        return {
-            dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].foldingArrow,
-            clearIcon: systemIcons[(props.size && mapSize[props.size]) || DEFAULT_SIZE].clear,
-            countPosition: 'left',
-            countIndicator: (countIndicatorProps) => (
+export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, BadgeProps>((props, ref) => {
+    if (__DEV__) {
+        devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
+            component: 'Badge',
+            propName: 'size',
+            propValue: props.size,
+            propValueUseInstead: '42',
+            condition: () => ['48'].indexOf(props.size) !== -1,
+        });
+    }
+
+    if (__DEV__ && props.captionCX) {
+        devLogger.warn('Badge: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
+    }
+
+    const styles = [applyBadgeMods(props), props.cx];
+
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow;
+
+    return (
+        <Clickable
+            { ...props }
+            rawProps={ {
+                'aria-haspopup': props.isDropdown,
+                'aria-expanded': props.isOpen,
+                ...props.rawProps,
+            } }
+            cx={ styles }
+            ref={ ref }
+        >
+            { props.icon && props.iconPosition !== 'right' && (
+                <IconContainer
+                    icon={ props.icon }
+                    onClick={ !props.isDisabled ? props.onIconClick : undefined }
+                />
+            ) }
+            { props.caption && (
+                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                    { props.caption }
+                </div>
+            ) }
+            { props.count !== undefined && props.count !== null && (
                 <CountIndicator
-                    { ...countIndicatorProps }
+                    key="count-indicator"
                     color={ null }
                     size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                    caption={ props.count }
                 />
-            ),
-            indicator: props.indicator || false,
-            iconPosition: props.iconPosition || 'left',
-        };
-    },
-);
+            ) }
+            { props.icon && props.iconPosition === 'right' && (
+                <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
+            ) }
+            { props.isDropdown && (
+                <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
+            )}
+        </Clickable>
+    );
+});

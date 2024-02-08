@@ -131,7 +131,7 @@ export default function NotificationContextExample() {
         uuiNotifications
             .show(
                 (props: INotification): ReactNode => (
-                    <Panel style={ { width: '420px' } } shadow>
+                    <Panel style={ { width: '420px' } } background="surface-main" shadow>
                         <ModalHeader title="Custom notification" onClose={ props.onClose } />
                         <FlexRow padding="24" spacing="12">
                             <LabeledInput size="36" label="Promotion Cycle">

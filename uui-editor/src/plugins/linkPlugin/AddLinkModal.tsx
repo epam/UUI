@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ELEMENT_LINK, TLinkElement, unwrapLink, upsertLink } from '@udecode/plate-link';
-import { PlateEditor, getPluginType, getSelectionText, findNode, getEditorString, getAboveNode } from '@udecode/plate-common';
+import { PlateEditor, getPluginType, findNode, getAboveNode } from '@udecode/plate-common';
 import { IModal } from '@epam/uui-core';
 import { FlexRow, FlexSpacer, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
 
@@ -19,6 +19,19 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
         });
         if (linkNode) {
             return linkNode[0].url as string;
+        }
+
+        if (!editor.selection) {
+            return '';
+        }
+
+        // selection contains at one edge edge or between the edges
+        const linkEntry = findNode<TLinkElement>(editor, {
+            at: editor.selection,
+            match: { type: getPluginType(editor, ELEMENT_LINK) },
+        });
+        if (linkEntry) {
+            return linkEntry[0].url;
         }
         return '';
     });
@@ -53,17 +66,11 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
                         color="accent"
                         caption="Save"
                         onClick={ () => {
-                            const entry = findNode<TLinkElement>(editor, {
-                                match: { type: getPluginType(editor, ELEMENT_LINK) },
+                            upsertLink(editor, {
+                                url: link,
+                                target: '_blank',
+                                skipValidation: true,
                             });
-
-                            let text = getSelectionText(editor);
-                            if (entry) {
-                                // edit
-                                const [, path] = entry;
-                                text = getEditorString(editor, path);
-                            }
-                            upsertLink(editor, { url: link, text, target: '_blank' });
                             success(true);
                         } }
                     />

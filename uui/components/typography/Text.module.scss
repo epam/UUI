@@ -32,7 +32,6 @@
             --uui-text: var(--uui-neutral-0);
         }
 
-        @include text-color('brand');
         @include text-color('primary');
         @include text-color('secondary');
         @include text-color('disabled');
@@ -40,6 +39,7 @@
         @include text-color('warning');
         @include text-color('critical');
         @include text-color('success');
+        @include text-color('tertiary');
 
         @include font-weight(200);
         @include font-weight(300);

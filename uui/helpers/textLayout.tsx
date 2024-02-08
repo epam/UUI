@@ -2,7 +2,9 @@ import css from './text-layout.module.scss';
 import { ControlSize } from '../components/types';
 
 export interface TextSettings {
+    /** Defines text line-height */
     lineHeight?: '12' | '18' | '24' | '30';
+    /** Defines text font-size */
     fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
 }
 
