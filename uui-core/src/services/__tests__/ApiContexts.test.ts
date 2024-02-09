@@ -112,6 +112,42 @@ describe('ApiContext', () => {
         expect(customFetchMock).toBeCalledTimes(1);
     });
 
+    it('should parse JSON in errors', async () => {
+        const fetchMock = jest.fn(() => {
+            return Promise.resolve({
+                json: () => Promise.resolve({ error: 'error' }),
+                ok: false,
+                status: 500,
+            } as any);
+        });
+
+        context = new ApiContext({ fetch: fetchMock });
+        await context.processRequest('path', 'POST', testData).catch(() => {});
+        const call = context.getActiveCalls()[0];
+
+        expect(call.status).toEqual('error');
+        expect(call.httpStatus).toEqual(500);
+        expect(call.responseData).toEqual({ error: 'error' });
+    });
+
+    it('should survive non-json error responses', async () => {
+        const fetchMock = jest.fn(() => {
+            return Promise.resolve({
+                json: () => Promise.reject(new Error()),
+                ok: false,
+                status: 500,
+            } as any);
+        });
+
+        context = new ApiContext({ fetch: fetchMock });
+        await context.processRequest('path', 'POST', testData).catch(() => {});
+        const call = context.getActiveCalls()[0];
+
+        expect(call.status).toEqual('error');
+        expect(call.httpStatus).toEqual(500);
+        expect(call.responseData).toEqual(null);
+    });
+
     it('should allow to process custom OK response formats with parseResponse', async () => {
         const fetchMock = jest.fn(() => {
             return Promise.resolve({

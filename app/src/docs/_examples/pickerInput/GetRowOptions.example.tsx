@@ -45,7 +45,7 @@ export default function GetRowOptionsExample() {
                     getRowOptions={ (item) => ({
                         isDisabled: item.MakeFlag === true,
                         checkbox: {
-                            isDisabled: item.MakeFlag === true,
+                            isDisabled: productsIDs.length > 3 && !productsIDs.includes(item.ProductID),
                             isVisible: true,
                         },
                     }) }

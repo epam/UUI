@@ -19,8 +19,9 @@ export class Snackbar extends React.Component<SnackbarProps> {
         if (items.length > 1) {
             const clearOperation: NotificationOperation = {
                 component: ClearNotification,
-                props: { id: null } as any,
+                props: { id: 111555, key: 'clearNotification' },
                 config: { position: items[0].config.position, duration: 'forever' },
+
             };
             items = [clearOperation].concat(items);
         }
