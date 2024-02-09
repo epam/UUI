@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { LazyTreeProps } from './types';
-import { usePrevious } from '../../../../../../../hooks';
+import { useSimplePrevious } from '../../../../../../../hooks';
 import { onlySearchWasUnset } from './helpers';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
@@ -11,6 +11,7 @@ import { useItemsStorage } from '../../useItemsStorage';
 import { usePatchTree } from '../../usePatchTree';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 import { useItemsStatusCollector } from '../../useItemsStatusCollector';
+import isEqual from 'lodash.isequal';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -41,13 +42,14 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
-    const prevDataSourceState = usePrevious(dataSourceState);
+    const prevDataSourceState = useSimplePrevious(dataSourceState);
+    const prevShowOnlySelected = useSimplePrevious(showOnlySelected);
 
     const [isFetching, setIsFetching] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isForceReload, setIsForceReload] = useState(false);
 
-    const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
+    const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState, showOnlySelected });
 
     useEffect(() => {
         setTreeWithData(blankTree);
@@ -83,8 +85,9 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     useEffect(() => {
         if (
             showOnlySelected
-            && dataSourceState?.checked?.length
-            && prevDataSourceState?.checked !== dataSourceState?.checked
+            && (
+                dataSourceState.checked?.length && !isEqual(prevDataSourceState?.checked, dataSourceState.checked)
+            )
         ) {
             itemsStatusCollector.setPending(dataSourceState.checked);
 
@@ -103,13 +106,9 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [showOnlySelected]);
+    }, [showOnlySelected, dataSourceState.checked]);
 
     useEffect(() => {
-        if (showOnlySelected) {
-            return;
-        }
-
         let currentTree = treeWithData;
         if (shouldRefetch) {
             setIsFetching(true);
@@ -146,6 +145,16 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         }
     }, [shouldFetch, shouldLoad, shouldRefetch, treeWithData, setTreeWithData]);
 
+    useEffect(() => {
+        if (
+            showOnlySelected && (prevShowOnlySelected !== showOnlySelected
+            || !isEqual(dataSourceState?.checked, prevDataSourceState?.checked))
+        ) {
+            const newTree = treeWithData.updateSelectedOnly(dataSourceState.checked);
+            setTreeWithData(newTree);
+        }
+    }, [showOnlySelected, dataSourceState.checked, itemsMap]);
+
     const tree = usePatchTree({
         tree: treeWithData,
         patchItems: showOnlySelected ? null : patchItems,
@@ -162,7 +171,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     }, [tree.visible]);
 
     return {
-        tree: tree.visible,
+        tree: showOnlySelected ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,
         totalCount,
         dataSourceState,
@@ -175,10 +184,10 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         rowOptions,
         getChildCount,
         reload,
-        flattenSearchResults,
         isFetching,
         isLoading,
-        getItemStatus: itemsStatusCollector.getItemStatus,
+        getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         loadMissingRecordsOnCheck,
+        showOnlySelected,
     };
 }

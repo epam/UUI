@@ -13,6 +13,7 @@ export class TreeState<TItem, TId> {
     protected constructor(
         private _fullTree: TreeStructure<TItem, TId> | null,
         private _visibleTree: TreeStructure<TItem, TId> | null,
+        private _selectedOnlyTree: TreeStructure<TItem, TId> | null,
         protected _itemsMap: ItemsMap<TId, TItem>,
         protected _setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {}
@@ -27,6 +28,10 @@ export class TreeState<TItem, TId> {
 
     public get visible() {
         return this._visibleTree;
+    }
+
+    public get selectedOnly() {
+        return this._selectedOnlyTree;
     }
 
     public get full() {
@@ -198,6 +203,53 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap });
     }
 
+    public updateSelectedOnly(checkedIds: TId[]) {
+        const foundIds = checkedIds
+            .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
+        let items = new ItemsMap<TId, TItem>(null, this.selectedOnly.getParams());
+        foundIds.forEach((id) => {
+            const parents = this.getParents(id);
+            parents
+                .filter((parentId) => !items.has(parentId) && this.getById(parentId) !== NOT_FOUND_RECORD)
+                .forEach((parentId) => {
+                    items = items.set(parentId, this.getById(parentId) as TItem);
+                });
+
+            items = items.set(id, this.getById(id) as TItem);
+        });
+
+        const newSelectedOnly = TreeStructure.createFromItems({
+            params: this.selectedOnly.getParams(),
+            items,
+            itemsAccessor: ItemsAccessor.toItemsAccessor(this.itemsMap),
+        });
+
+        return TreeState.create(
+            this.full,
+            this.visible,
+            newSelectedOnly,
+            this.itemsMap,
+            this.setItems,
+        );
+    }
+
+    private getParents(id: TId) {
+        const parentIds: TId[] = [];
+        let parentId = id;
+        while (true) {
+            const item = this.getById(parentId);
+            if (item === NOT_FOUND_RECORD) {
+                break;
+            }
+            parentId = this.full.getParams().getParentId?.(item);
+            if (parentId === undefined) {
+                break;
+            }
+            parentIds.unshift(parentId);
+        }
+        return parentIds;
+    }
+
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
@@ -206,6 +258,7 @@ export class TreeState<TItem, TId> {
         return TreeState.create(
             this.full,
             TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            this.selectedOnly,
             this.itemsMap,
             this.setItems,
         );
@@ -215,6 +268,7 @@ export class TreeState<TItem, TId> {
         return TreeState.create(
             this.full,
             this.full,
+            this.selectedOnly,
             this.itemsMap,
             this.setItems,
         );
@@ -225,10 +279,11 @@ export class TreeState<TItem, TId> {
         treeStructure,
         itemsMap,
     }: UpdateTreeStructuresOptions<TItem, TId>): TreeState<TItem, TId> {
-        if (!using) {
-            return TreeState.create(treeStructure, treeStructure, itemsMap, this._setItems);
-        }
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
+        const selectedOnly = TreeStructure.withNewItemsAccessor(itemsAccessor, this._selectedOnlyTree);
+        if (!using) {
+            return TreeState.create(treeStructure, treeStructure, selectedOnly, itemsMap, this._setItems);
+        }
         const visibleTree = using === 'visible'
             ? treeStructure
             : TreeStructure.withNewItemsAccessor(itemsAccessor, this._visibleTree);
@@ -237,18 +292,20 @@ export class TreeState<TItem, TId> {
             ? treeStructure
             : TreeStructure.withNewItemsAccessor(itemsAccessor, this._fullTree);
 
-        return TreeState.create(fullTree, visibleTree, itemsMap, this._setItems);
+        return TreeState.create(fullTree, visibleTree, selectedOnly, itemsMap, this._setItems);
     }
 
     public static create<TItem, TId>(
         fullTree: TreeStructure<TItem, TId>,
         visibleTree: TreeStructure<TItem, TId>,
+        selectedOnlyTree: TreeStructure<TItem, TId>,
         itemsMap: ItemsMap<TId, TItem>,
         setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {
         return new TreeState(
             fullTree,
             visibleTree,
+            selectedOnlyTree,
             itemsMap,
             setItems,
         );
@@ -276,6 +333,7 @@ export class TreeState<TItem, TId> {
         return new TreeState(
             treeStructure,
             treeStructure,
+            TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap)),
             treeItemsMap,
             setItems,
         );
@@ -285,6 +343,7 @@ export class TreeState<TItem, TId> {
         const treeStructure = TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap));
 
         return this.create(
+            treeStructure,
             treeStructure,
             treeStructure,
             itemsMap,
