@@ -2,7 +2,6 @@
   "package": {
     "dependencies": {
       "@epam/assets": "latest",
-      "@epam/promo": "latest",
       "@epam/uui": "latest",
       "@epam/uui-components": "latest",
       "@epam/uui-core": "latest",

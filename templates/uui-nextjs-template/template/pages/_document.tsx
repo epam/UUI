@@ -4,7 +4,7 @@ export default function Document() {
     return (
         <Html>
             <Head />
-            <body className='uui-theme-promo'>
+            <body className='uui-theme-loveship'>
                 <Main />
                 <NextScript />
             </body>
