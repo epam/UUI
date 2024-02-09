@@ -78,7 +78,7 @@ export function LocationsTable() {
     const { isFolded } = useFoldingService<Location, string>({
         getId: ({ id }) => id,
         dataSourceState: tableState, 
-        setDataSourceState: setTableState, 
+        setDataSourceState: setTableState,
     });
 
     const queryClient = useQueryClient();

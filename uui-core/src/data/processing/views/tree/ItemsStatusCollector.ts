@@ -1,4 +1,5 @@
 import { IMap, LazyDataSourceApi } from '../../../../types';
+import { ItemsMap } from './ItemsMap';
 import { FAILED_RECORD, LOADED_RECORD, LOADING_RECORD, NOT_FOUND_RECORD, PENDING_RECORD, newMap } from './newTree';
 import { TreeParams } from './newTree/exposed';
 import { RecordStatus } from './types';
@@ -28,10 +29,18 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
         this.setStatus(ids, FAILED_RECORD);
     }
 
-    public getItemStatus = (id: TId) =>
-        this.itemsStatusMap.has(id)
-            ? this.itemsStatusMap.get(id)
-            : NOT_FOUND_RECORD;
+    public getItemStatus = (itemsMap: ItemsMap<TId, TItem>) => (id: TId) => {
+        if (itemsMap.has(id)) {
+            return LOADED_RECORD;
+        }
+
+        const status = this.itemsStatusMap.get(id) ?? NOT_FOUND_RECORD;
+        if (status === LOADED_RECORD) {
+            return LOADING_RECORD;
+        }
+
+        return status;
+    };
 
     public watch(api: LazyDataSourceApi<TItem, TId, TFilter>): LazyDataSourceApi<TItem, TId, TFilter> {
         return async (request, context) => {

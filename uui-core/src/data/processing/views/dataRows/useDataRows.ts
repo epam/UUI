@@ -8,10 +8,11 @@ import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
-import { FULLY_LOADED } from '../tree/constants';
+import { FULLY_LOADED, LOADED_RECORD } from '../tree/constants';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
 import { GetItemStatus } from '../tree/hooks/strategies/types';
 import { isInProgress } from '../helpers';
+import { RecordStatus } from '../tree/types';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
@@ -43,6 +44,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         setDataSourceState,
         isFoldedByDefault,
         handleCascadeSelection,
+        showOnlySelected,
     } = props;
 
     const maxVisibleRowIndex = useMemo(
@@ -113,7 +115,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     });
 
     const foldingService = useFoldingService({
-        dataSourceState, setDataSourceState, isFoldedByDefault, getId,
+        dataSourceState, setDataSourceState, isFoldedByDefault, getId, showOnlySelected,
     });
 
     const focusService = useFocusService({ setDataSourceState });
@@ -125,6 +127,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getId,
 
         isFlattenSearch,
+        showOnlySelected,
         dataSourceState,
 
         rowOptions,
@@ -145,6 +148,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         dataSourceState,
         cascadeSelection,
         isFlattenSearch,
+        showOnlySelected,
         maxVisibleRowIndex,
         getEstimatedChildrenCount,
         getMissingRecordsCount,
@@ -170,14 +174,20 @@ export function useDataRows<TItem, TId, TFilter = any>(
         handleSelectAll,
     });
 
-    const getById = (id: TId, index: number) => {
-        const item = tree.getById(id);
+    const isItemLoaded = (item: TItem | typeof NOT_FOUND_RECORD, status: RecordStatus): item is TItem => {
+        return item !== NOT_FOUND_RECORD && status === LOADED_RECORD;
+    };
 
-        if (item === NOT_FOUND_RECORD) {
-            const itemStatus = getItemStatus?.(id);
+    const getById = (id: TId, index: number) => {
+        const itemStatus = getItemStatus?.(id);
+        const item = tree.getById(id);
+        if (!isItemLoaded(item, itemStatus)) {
             if (isInProgress(itemStatus)) {
                 return getLoadingRowProps(id, index, []);
             }
+
+            console.log('item', item);
+            console.log('itemStatus', itemStatus);
 
             return getUnknownRowProps(id, index, []);
         }
@@ -242,6 +252,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
             return visibleRowsWithPins;
         },
         [
+            tree,
             updatedRows,
             dataSourceState.topIndex,
             dataSourceState.visibleCount,

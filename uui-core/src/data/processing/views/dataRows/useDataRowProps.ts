@@ -10,7 +10,7 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
     SelectingService<TItem, TId>,
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
-    'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
+    'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'| 'showOnlySelected'
     > {
 
     tree: ITree<TItem, TId>;
@@ -32,6 +32,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         isRowChecked,
         isRowChildrenChecked,
         isFlattenSearch,
+        showOnlySelected,
         getEstimatedChildrenCount,
     }: UseDataRowPropsProps<TItem, TId, TFilter>,
 ) {
@@ -44,7 +45,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
 
         const estimatedChildrenCount = getEstimatedChildrenCount(row.id);
         row.isFoldable = false;
-        if (!isFlattenSearch && estimatedChildrenCount > 0) {
+        if (!isFlattenSearch && !showOnlySelected && estimatedChildrenCount > 0) {
             row.isFoldable = true;
         }
 
@@ -66,9 +67,11 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
 
         return row;
     }, [
+        tree,
         getRowOptions,
         rowOptions,
         isFlattenSearch,
+        showOnlySelected,
         getEstimatedChildrenCount,
         dataSourceState.focusedIndex,
         dataSourceState.selectedId,
