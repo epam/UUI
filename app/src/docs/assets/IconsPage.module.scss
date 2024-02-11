@@ -103,7 +103,8 @@
                 margin-bottom: 12px;
 
                 span {
-                    font-family: var(--font-semibold);
+                    font-family: var(--uui-font);
+                    font-weight: 600;
                 }
             }
         }
@@ -128,26 +129,21 @@
             box-sizing: border-box;
             border: 1px solid var(--uui-divider);
             background-color: var(--uui-surface-main);
-            min-height: 380px;
 
             .icon-card-title {
                 padding: 0;
             }
 
-            .lock-button {
-                :global(.uui-icon) {
-                    fill: var(--uui-icon);
-                }
+            .info-box {
+                padding-bottom: 18px;
+            }
+
+            .info-title {
+                margin-bottom: 18px;
             }
 
             .preview-icon {
-                width: 120px;
-                height: 120px;
-                margin-top: 18px;
-                padding: 9px;
-                box-sizing: border-box;
-                border: 1px solid var(--uui-divider);
-                background: var(--uui-surface-low);
+                margin-right: 12px;
                 fill: var(--uui-icon);
             }
 

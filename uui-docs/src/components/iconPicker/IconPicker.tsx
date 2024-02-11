@@ -26,7 +26,7 @@ export class IconPickerWithInfo extends React.Component<IconPickerInnerProps, Ic
             itemText = (
                 <>
                     <Text size="18" fontSize="14" cx={ css.itemName }>
-                        {item.size}
+                        {/* {item.size} */}
                     </Text>
                     <Text size="18" color="secondary">
                         {item.name}
