@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="12" height="24" version="1.1" viewBox="0 0 12 24" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(0,-290.65)" fill="none" stroke="#000" stroke-width=".05">
-  <rect x="-6" y="284.65" width="36" height="36"/>
-  <circle cx="12" cy="302.65" r="18"/>
- </g>
- <g transform="translate(-7)">
-  <path d="m12 14-4-4h8z" stroke-width=".43644"/>
- </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24"><g stroke-width=".05" transform="translate(0 -290.65)"><path d="M-6 284.65h36v36H-6z"/><circle cx="12" cy="302.65" r="18"/></g><path d="M5 14l-4-4h8z"/></svg>
