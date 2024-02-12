@@ -10,25 +10,30 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
     { mode, ...props }: ClientAsyncTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
+    const { complexIds, getId } = props;
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         items: props.items,
         setItems: props.setItems,
-        params: { getId: props.getId, complexIds: props.complexIds },
+        params: { getId, complexIds },
     });
 
     const baseTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
     const [isForceReload, setIsForceReload] = useState(false);
     const prevIsForceReload = useSimplePrevious(isForceReload);
 
-    const { tree: treeWithData, isLoading, isFetching } = useLoadData({
+    const { tree: treeWithData, itemsStatusCollector, isLoading, isFetching } = useLoadData({
+        getId,
+        complexIds,
         api: () => props.api().then((items) => ({ items })),
         tree: baseTree,
         dataSourceState: {
             visibleCount: props.dataSourceState.visibleCount,
             topIndex: props.dataSourceState.topIndex,
+            checked: props.dataSourceState.checked,
         },
         forceReload: isForceReload,
+        showOnlySelected: props.showOnlySelected,
     }, [...deps, baseTree]);
 
     const prevIsFetching = useSimplePrevious(isFetching);
@@ -54,6 +59,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         reload,
         isLoading,
         isFetching,
+        getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         ...restProps,
     };
 }

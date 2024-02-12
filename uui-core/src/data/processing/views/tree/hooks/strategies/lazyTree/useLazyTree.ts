@@ -150,7 +150,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
             showOnlySelected && (prevShowOnlySelected !== showOnlySelected
             || !isEqual(dataSourceState?.checked, prevDataSourceState?.checked))
         ) {
-            const newTree = treeWithData.updateSelectedOnly(dataSourceState.checked);
+            const newTree = treeWithData.buildSelectedOnly(dataSourceState.checked);
             setTreeWithData(newTree);
         }
     }, [showOnlySelected, dataSourceState.checked, itemsMap]);

@@ -10,7 +10,7 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
     props: ServerAsyncTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const { api, dataSourceState } = props;
+    const { api, dataSourceState, getId, complexIds, showOnlySelected } = props;
     const [isForceReload, setIsForceReload] = useState(false);
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
@@ -23,13 +23,17 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
     const baseTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
     const [currentTree, setCurrentTree] = useState(baseTree);
 
-    const { tree: treeWithData, isLoading, isFetching } = useLoadData({
+    const { tree: treeWithData, itemsStatusCollector, isLoading, isFetching } = useLoadData({
         api,
+        getId,
+        complexIds,
         tree: currentTree,
         dataSourceState,
         forceReload: isForceReload,
+        showOnlySelected,
     }, [
         ...deps,
+        showOnlySelected,
         dataSourceState.search,
         dataSourceState.sorting,
         dataSourceState.filter,
@@ -70,6 +74,7 @@ export function useServerAsyncTree<TItem, TId, TFilter = any>(
         reload,
         isLoading,
         isFetching,
+        getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         ...restProps,
     };
 }

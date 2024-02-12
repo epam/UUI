@@ -7,6 +7,7 @@ export interface ItemsInfo<TId> {
     ids: TId[];
     count: null | number;
     totalCount?: number;
+    assumedCount?: number;
     status: TreeNodeStatus;
 }
 
