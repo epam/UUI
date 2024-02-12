@@ -96,7 +96,10 @@ export class FetchingHelper {
             const currentIds = byParentId.has(parentId) ? byParentId.get(parentId) : originalIds;
 
             // TODO: think how to rewrite to avoid using byParentId and nodeInfoById
-            if (ids !== currentIds || nodeInfo.count !== originalNodeInfo.count || nodeInfo.totalCount !== originalNodeInfo.totalCount) {
+            if (ids !== currentIds
+                    || nodeInfo.count !== originalNodeInfo.count
+                    || nodeInfo.totalCount !== originalNodeInfo.totalCount
+                    || nodeInfo.assumedCount !== originalNodeInfo.assumedCount) {
                 byParentId.set(parentId, ids);
                 nodeInfoById.set(parentId, nodeInfo);
             }
@@ -248,7 +251,7 @@ export class FetchingHelper {
         remainingRowsCount,
         loadAll,
     }: LoadItemsOptions<TItem, TId, TFilter>) {
-        const { ids: inputIds, count: childrenCount, totalCount } = tree.getItems(parentId);
+        const { ids: inputIds, count: childrenCount, totalCount, assumedCount: prevAssumedCount } = tree.getItems(parentId);
 
         const ids = inputIds ?? [];
         const loadedItems: TItem[] = [];
@@ -275,7 +278,7 @@ export class FetchingHelper {
         if (missingCount === 0 || availableCount === 0 || skipRequest) {
             return {
                 ids,
-                nodeInfo: { count: childrenCount, totalCount },
+                nodeInfo: { count: childrenCount, totalCount, assumedCount: prevAssumedCount },
                 loadedItems,
             };
         }
@@ -326,9 +329,14 @@ export class FetchingHelper {
         } else if (response.items.length < missingCount) {
             newNodesCount = from + response.items.length;
         }
-        let nodeInfo = { count: childrenCount, totalCount };
-        if (newNodesCount !== childrenCount) {
-            nodeInfo = { ...nodeInfo, count: newNodesCount };
+        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
+
+        let assumedCount = 0;
+        if (!flatten && parent && options.getChildCount) {
+            assumedCount = options.getChildCount(parent) ?? 0;
+        }
+        if (newNodesCount !== childrenCount || assumedCount !== prevAssumedCount) {
+            nodeInfo = { ...nodeInfo, count: newNodesCount, assumedCount };
         }
 
         nodeInfo = { ...nodeInfo, totalCount: response.totalCount ?? totalCount };

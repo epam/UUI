@@ -74,8 +74,8 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                 stats = getRowStats(row, stats, cascadeSelection);
                 row.isLastChild = n === ids.length - 1 && count === ids.length;
-                row.indent = isFlattenSearch || showOnlySelected ? 0 : row.path.length + 1;
-                const estimatedChildrenCount = getEstimatedChildrenCount(id);
+                row.indent = isFlattenSearch || showOnlySelected ? 0 : row.path.length + 1; // TODO: simplify indent logic.
+                const estimatedChildrenCount = getEstimatedChildrenCount(id); // TODO: move getChildCount to TreeNodeInfo.assumedCount
                 if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
                     const { ids: childrenIds } = tree.getItems(id);
 
