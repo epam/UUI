@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { arrayToMatrix, cx, DayProps, IEditable, RangeDatePickerInputType, RangeDatePickerPresets } from '@epam/uui-core';
 import {
-    DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day, defaultFormat, valueFormat,
+    DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day
 } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { DatePickerBody } from './DatePickerBody';

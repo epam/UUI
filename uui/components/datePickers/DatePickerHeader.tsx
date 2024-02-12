@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Icon, IEditable, IHasCX } from '@epam/uui-core';
+import { Icon, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
 import dayjs, { Dayjs } from 'dayjs';
-import { PickerBodyValue, ViewType } from '@epam/uui-components';
+import { ViewType } from '@epam/uui-components';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/common/navigation-chevron-left-18.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 import { Button } from '../buttons';
@@ -119,9 +119,26 @@ export function DatePickerHeader({ navIconLeft, navIconRight, month, view, onSet
     return (
         <div className={ cx(css.container, uuiHeader.container, cx) }>
             <header className={ uuiHeader.header }>
-                <Button icon={ navIconLeft || LeftArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconLeft } onClick={ () => onLeftNavigationArrow() } />
-                <Button caption={ title } fill="ghost" cx={ uuiHeader.navTitle } onClick={ () => onCaptionClick(view) } />
-                <Button icon={ navIconRight || RightArrowIcon } color="secondary" fill="ghost" cx={ uuiHeader.navIconRight } onClick={ () => onRightNavigationArrow() } />
+                <Button
+                    icon={ navIconLeft || LeftArrowIcon }
+                    color="secondary"
+                    fill="ghost"
+                    cx={ uuiHeader.navIconLeft }
+                    onClick={ () => onLeftNavigationArrow() }
+                />
+                <Button
+                    caption={ title }
+                    fill="ghost"
+                    cx={ uuiHeader.navTitle }
+                    onClick={ () => onCaptionClick(view) }
+                />
+                <Button
+                    icon={ navIconRight || RightArrowIcon }
+                    color="secondary"
+                    fill="ghost"
+                    cx={ uuiHeader.navIconRight }
+                    onClick={ () => onRightNavigationArrow() }
+                />
             </header>
         </div>
     );
