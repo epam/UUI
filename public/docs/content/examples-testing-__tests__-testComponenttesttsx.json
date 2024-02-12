@@ -11,7 +11,7 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " package to simplify testing."
+        "text": " to simplify writing of tests."
       }
     ]
   }

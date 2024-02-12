@@ -1,6 +1,6 @@
 [
   {
-    "type": "uui-richTextEditor-header-2",
+    "type": "uui-richTextEditor-header-3",
     "children": [
       {
         "text": "Setup test runner"
@@ -8,12 +8,14 @@
     ]
   },
   {
-    "type": "uui-richTextEditor-header-3",
+    "type": "paragraph",
     "children": [
       {
-        "text": "Vitest (vitest-setup.js)"
+        "text": "Vitest (vitest-setup.ts)",
+        "uui-richTextEditor-bold": true
       }
-    ]
+    ],
+    "data": {}
   },
   {
     "type": "note-quote",
@@ -24,12 +26,14 @@
     ]
   },
   {
-    "type": "uui-richTextEditor-header-3",
+    "type": "paragraph",
     "children": [
       {
-        "text": "Jest (setupTests.ts)"
+        "text": "Jest (setupTests.ts)",
+        "uui-richTextEditor-bold": true
       }
-    ]
+    ],
+    "data": {}
   },
   {
     "type": "note-quote",
