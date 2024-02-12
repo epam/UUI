@@ -14,4 +14,5 @@ export interface TreeParams<TItem, TId> {
 export interface TreeNodeInfo {
     count?: number;
     totalCount?: number;
+    assumedCount?: number;
 }

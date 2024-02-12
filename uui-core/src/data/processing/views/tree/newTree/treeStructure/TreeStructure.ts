@@ -42,14 +42,14 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
 
     public getItems(parentId?: TId): ItemsInfo<TId> {
         const ids = this.byParentId.get(parentId) ?? [];
-        const { count, totalCount } = this.nodeInfoById.get(parentId) || {};
+        const { count, totalCount, assumedCount } = this.nodeInfoById.get(parentId) || {};
 
         let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
         if (count !== 0 && ids.length === count) {
             status = FULLY_LOADED;
         }
 
-        return { ids, count, totalCount, status };
+        return { ids, count, totalCount, status, assumedCount };
     }
 
     public getChildren(parentId: TId) {
