@@ -48,6 +48,10 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      */
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
     dataTableFocusManager?: DataTableFocusManager<TId>;
+    
+    showFoldAll?: boolean;
+    onFoldAll?(): void;
+    areAllFolded?(state: DataTableState): boolean;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -119,6 +123,9 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
+                        showFoldAll={ props.showFoldAll }
+                        onFoldAll={ props.onFoldAll }
+                        areAllFolded={ props.areAllFolded }
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
                     />

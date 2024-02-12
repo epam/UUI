@@ -10,6 +10,8 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="advanced-tables-descriptions" />
                 {this.renderSectionTitle('Examples')}
 
+                <DocExample cx={ css.appBg } title="Collapse/expand All" path="./_examples/tables/TableCollapse.example.tsx" />
+
                 <DocExample cx={ css.appBg } title="Columns Configuration" path="./_examples/tables/ColumnsConfig.example.tsx" />
 
                 <DocExample cx={ css.appBg } title="Table with rows Drag&Drop" path="./_examples/tables/TableWithDnD.example.tsx" />
