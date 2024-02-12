@@ -203,7 +203,7 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap });
     }
 
-    public updateSelectedOnly(checkedIds: TId[]) {
+    public buildSelectedOnly(checkedIds: TId[]) {
         const foundIds = checkedIds
             .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
         let items = new ItemsMap<TId, TItem>(null, this.selectedOnly.getParams());

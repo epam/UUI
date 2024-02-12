@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
-import { DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { DataSourceState, IMap, LazyDataSourceApi } from '../../../../../../../types';
 import { TreeState } from '../../../newTree';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
+import { RecordStatus } from '../../../types';
+import { useItemsStatusCollector } from '../../useItemsStatusCollector';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -16,10 +18,17 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     dataSourceState?: DataSourceState<TFilter, TId>;
     forceReload?: boolean;
+    showOnlySelected?: boolean;
+    itemsStatusMap?: IMap<TId, RecordStatus>;
+    complexIds?: boolean;
+    getId: (item: TItem) => TId;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
-    { tree, api, dataSourceState, forceReload }: UseLoadDataProps<TItem, TId, TFilter>,
+    {
+        tree, api, dataSourceState, forceReload, showOnlySelected, itemsStatusMap,
+        complexIds, getId,
+    }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevDataSourceState = useSimplePrevious(dataSourceState);
@@ -27,25 +36,32 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const prevForceReload = useSimplePrevious(forceReload);
 
     const [loadedTree, setLoadedTree] = useState(tree);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
+
+    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, []);
+    const watchedApi = useMemo(
+        () => itemsStatusCollector.watch(api),
+        [itemsStatusCollector, api],
+    );
 
     const loadData = useCallback(async (
         sourceTree: TreeState<TItem, TId>,
         dsState: DataSourceState<TFilter, TId> = {},
     ): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = sourceTree;
-
+        const { checked, ...partialDsState } = dsState;
         try {
             const newTreePromise = sourceTree.loadAll<TFilter>({
-                using: dsState.search ? 'visible' : undefined,
+                using: partialDsState.search ? 'visible' : undefined,
                 options: {
-                    api,
+                    api: watchedApi,
                     filter: {
                         ...dsState?.filter,
                     },
                 },
-                dataSourceState: dsState,
+                dataSourceState: partialDsState,
             });
 
             const newTree = await newTreePromise;
@@ -66,16 +82,32 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
+    const shouldLoad = !isLoaded && ((showOnlySelected && dataSourceState.checked?.length) || !showOnlySelected);
+
     useEffect(() => {
         if (isDepsChanged || shouldForceReload) {
+            setIsLoaded(false);
+        }
+    }, [isDepsChanged, shouldForceReload]);
+
+    useEffect(() => {
+        if (shouldLoad) {
             setIsFetching(true);
             if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
                 setIsLoading(true);
             }
+
+            if (dataSourceState.checked?.length) {
+                itemsStatusCollector.setPending(dataSourceState.checked);
+            }
+
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
-                        setLoadedTree(newTree);
+                        const newTreeWithOnlySelected = newTree.buildSelectedOnly(dataSourceState.checked);
+                        setLoadedTree(newTreeWithOnlySelected);
+
+                        setIsLoaded(true);
                     }
                 })
                 .finally(() => {
@@ -83,7 +115,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     setIsLoading(false);
                 });
         }
-    }, [isDepsChanged, shouldForceReload]);
+    }, [shouldLoad, isDepsChanged, shouldForceReload]);
 
-    return { tree: loadedTree, isLoading, isFetching };
+    return { tree: loadedTree, isLoading, isFetching, itemsStatusCollector };
 }

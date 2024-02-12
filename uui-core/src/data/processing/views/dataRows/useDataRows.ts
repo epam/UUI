@@ -8,11 +8,10 @@ import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
-import { FULLY_LOADED, LOADED_RECORD } from '../tree/constants';
+import { FULLY_LOADED } from '../tree/constants';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
 import { GetItemStatus } from '../tree/hooks/strategies/types';
 import { isInProgress } from '../helpers';
-import { RecordStatus } from '../tree/types';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
@@ -174,20 +173,17 @@ export function useDataRows<TItem, TId, TFilter = any>(
         handleSelectAll,
     });
 
-    const isItemLoaded = (item: TItem | typeof NOT_FOUND_RECORD, status: RecordStatus): item is TItem => {
-        return item !== NOT_FOUND_RECORD && status === LOADED_RECORD;
+    const isItemLoaded = (item: TItem | typeof NOT_FOUND_RECORD): item is TItem => {
+        return item !== NOT_FOUND_RECORD;
     };
 
     const getById = (id: TId, index: number) => {
         const itemStatus = getItemStatus?.(id);
         const item = tree.getById(id);
-        if (!isItemLoaded(item, itemStatus)) {
+        if (!isItemLoaded(item)) {
             if (isInProgress(itemStatus)) {
                 return getLoadingRowProps(id, index, []);
             }
-
-            console.log('item', item);
-            console.log('itemStatus', itemStatus);
 
             return getUnknownRowProps(id, index, []);
         }
