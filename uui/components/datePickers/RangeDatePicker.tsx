@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Fragment } from 'react';
 import cx from 'classnames';
 import dayjs from 'dayjs';
 import { uuiMod, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps, RangeDatePickerPresets } from '@epam/uui-core';
@@ -29,7 +29,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
 
     const renderPresets = (presets: RangeDatePickerPresets) => {
         return (
-            <>
+            <Fragment>
                 <div className={ uuiRangeDatePickerBody.separator } />
                 <CalendarPresets
                     onPresetSet={ (presetVal) => {
@@ -42,7 +42,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     } }
                     presets={ presets }
                 />
-            </>
+            </Fragment>
         );
     };
 
@@ -110,11 +110,12 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     placeholder={ props.getPlaceholder ? props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ state.inputValue.from }
                     onValueChange={ getChangeHandler('from') }
+                    onFocus={ (event) => handleFocus(event, 'from') }
+                    onBlur={ (event) => handleBlur(event, 'from') }
+                    ///
                     isInvalid={ props.isInvalid }
                     isDisabled={ props.isDisabled }
                     isReadonly={ props.isReadonly }
-                    onFocus={ (event) => handleFocus(event, 'from') }
-                    onBlur={ (event) => handleBlur(event, 'from') }
                     isDropdown={ false }
                     rawProps={ props.rawProps?.from }
                     id={ props?.id }
@@ -127,11 +128,12 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     value={ state.inputValue.to }
                     onCancel={ clearRange }
                     onValueChange={ getChangeHandler('to') }
+                    onFocus={ (e) => handleFocus(e, 'to') }
+                    onBlur={ (e) => handleBlur(e, 'to') }
+                    ///
                     isInvalid={ props.isInvalid }
                     isDisabled={ props.isDisabled }
                     isReadonly={ props.isReadonly }
-                    onFocus={ (e) => handleFocus(e, 'to') }
-                    onBlur={ (e) => handleBlur(e, 'to') }
                     isDropdown={ false }
                     rawProps={ props.rawProps?.to }
                 />
