@@ -6,55 +6,85 @@ import {
     IDropdownToggler,
 } from '../../props';
 import { CX } from '../../objects';
+import { DayProps } from './Day';
 
-export interface BaseDatePickerProps
-    extends IEditable<string | null>,
-    ICanFocus<HTMLInputElement>,
-    IDisableable,
-    IHasPlaceholder,
+export interface CommonDatePickerProps extends IDisableable,
     ICanBeReadonly,
-    IAnalyticableOnChange<string>,
     IHasForwardedRef<HTMLElement> {
-    /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
+    /**
+     * Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)
+     */
     format?: string;
 
-    /** Filter selectable days. Days, for which this callback returns false - will be disabled */
+    /**
+     * Filter selectable days. Days, for which this callback returns false - will be disabled
+     */
     filter?(day: Dayjs): boolean;
 
-    /** Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons */
+    /**
+     * Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons
+     */
     renderTarget?(props: IDropdownToggler): ReactNode;
-
-    /** Defines where to place calendar icon */
-    iconPosition?: 'left' | 'right';
 
     /**
      * Disable clearing date value (e.g. via cross icon)
-     * @default false
      */
     disableClear?: boolean;
 
-    /** Overrides rendering of the single day. For example, to highlight certain days */
-    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => ReactElement<Element>;
+    /**
+     * Overrides rendering of the single day. For example, to highlight certain days
+     */
+    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
 
-    /** If this function returns true, the day will be highlighted as holiday */
+    /**
+     * Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)
+     */
+    placement?: Placement;
+
+    /**
+     * If this function returns true, the day will be highlighted as holiday
+     */
     isHoliday?: (day: Dayjs) => boolean;
+
+    /**
+     * CSS class(es) to put on datepicker input
+     */
+    inputCx?: CX;
+
+    /**
+     * CSS class(es) to put on datepicker body
+     */
+    bodyCx?: CX;
+}
+
+export interface BaseDatePickerProps
+    extends
+    ICanFocus<HTMLInputElement>,
+    IEditable<string | null>,
+    IAnalyticableOnChange<string>,
+    IHasPlaceholder,
+    CommonDatePickerProps {
 
     /** Called when component lose focus */
     onBlur?: (e?: React.FocusEvent<HTMLInputElement>) => void;
 
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
-    placement?: Placement;
+    /**
+     * Defines where to place calendar icon
+     */
+    iconPosition?: 'left' | 'right';
 
-    /** Any HTML attributes (native or 'data-') to put on date picker parts */
+    /**
+     * Any HTML attributes (native or 'data-') to put on date picker parts
+     */
     rawProps?: {
-        /** Any HTML attributes (native or 'data-') to put on date picker input */
+        /**
+         * Any HTML attributes (native or 'data-') to put on date picker input
+         */
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-        /** Any HTML attributes (native or 'data-') to put on date picker body */
+        /**
+         * Any HTML attributes (native or 'data-') to put on date picker body
+         */
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 
-    /** CSS class(es) to put on datepicker input */
-    inputCx?: CX;
-    /** CSS class(es) to put on datepicker body */
-    bodyCx?: CX;
 }

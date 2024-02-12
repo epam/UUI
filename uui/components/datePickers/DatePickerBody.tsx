@@ -10,10 +10,6 @@ import css from './DatePickerBody.module.scss';
 dayjs.extend(updateLocale);
 
 export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
-    /*
-    * A pure function that gets array of classes for styling a day for each day.
-    */
-    getDayCX?(day: Dayjs): string[];
     /**
      * A pure function that gets whether day is holiday for each day.
      */
@@ -28,7 +24,6 @@ export const uuiDatePickerBody = {
 export function DatePickerBody({
     value,
     onValueChange,
-    getDayCX,
     renderDay,
     isHoliday,
     cx: classes,
@@ -38,6 +33,7 @@ export function DatePickerBody({
 
     const onMonthClick = (newDate: Dayjs) => {
         onValueChange({
+            ...value,
             month: newDate,
             view: 'DAY_SELECTION',
         });
@@ -45,6 +41,7 @@ export function DatePickerBody({
 
     const onYearClick = (newDate: Dayjs) => {
         onValueChange({
+            ...value,
             month: newDate,
             view: 'MONTH_SELECTION',
         });
@@ -53,6 +50,7 @@ export function DatePickerBody({
     const onDayClick = (day: Dayjs) => {
         if (!filter || filter(day)) {
             onValueChange({
+                ...value,
                 selectedDate: day.format(valueFormat),
             });
         }
@@ -80,10 +78,9 @@ export function DatePickerBody({
                 return (
                     <Calendar
                         value={ selectedDate }
-                        displayedDate={ value.month }
+                        month={ value.month }
                         onValueChange={ onDayClick }
                         filter={ filter }
-                        getDayCX={ getDayCX }
                         renderDay={ renderDay }
                         isHoliday={ isHoliday }
                     />
@@ -97,10 +94,10 @@ export function DatePickerBody({
                 view={ value.view }
                 month={ value.month }
                 onSetView={ (view) => {
-                    onValueChange({ view });
+                    onValueChange({ ...value, view });
                 } }
                 onSetMonth={ (month) => {
-                    onValueChange({ month });
+                    onValueChange({ ...value, month });
                 } }
             />
             {getView()}
