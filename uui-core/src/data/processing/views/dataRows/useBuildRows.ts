@@ -10,7 +10,7 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     FoldingService<TItem, TId>,
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
-    'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection' | 'showOnlySelected'
+    'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     > {
 
     tree: ITree<TItem, TId>;
@@ -39,7 +39,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     isFlattenSearch,
     getRowProps,
     getLoadingRowProps,
-    showOnlySelected,
     isLoading = false,
 }: UseBuildRowsProps<TItem, TId, TFilter>) {
     const buildRows = () => {
@@ -66,7 +65,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                 }
 
                 const row = getRowProps(item, rows.length);
-                if (appendRows && (!showOnlySelected || row.isChecked)) {
+                if (appendRows) {
                     rows.push(row);
                     layerRows.push(row);
                     currentLevelRows++;
@@ -74,7 +73,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                 stats = getRowStats(row, stats, cascadeSelection);
                 row.isLastChild = n === ids.length - 1 && count === ids.length;
-                row.indent = isFlattenSearch || showOnlySelected ? 0 : row.path.length + 1; // TODO: simplify indent logic.
+                row.indent = isFlattenSearch ? 0 : row.path.length + 1; // TODO: simplify indent logic.
                 const estimatedChildrenCount = getEstimatedChildrenCount(id); // TODO: move getChildCount to TreeNodeInfo.assumedCount
                 if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
                     const { ids: childrenIds } = tree.getItems(id);
@@ -134,7 +133,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
             }
 
             const isListFlat = path.length === 0 && !layerRows.some((r) => r.isFoldable);
-            if (isListFlat || isFlattenSearch || showOnlySelected) {
+            if (isListFlat || isFlattenSearch) {
                 layerRows.forEach((r) => {
                     r.indent = 0;
                 });
@@ -153,5 +152,5 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading, isFlattenSearch, showOnlySelected]);
+    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading, isFlattenSearch]);
 }

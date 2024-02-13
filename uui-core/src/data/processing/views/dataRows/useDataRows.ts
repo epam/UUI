@@ -43,7 +43,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         setDataSourceState,
         isFoldedByDefault,
         handleCascadeSelection,
-        showOnlySelected,
     } = props;
 
     const maxVisibleRowIndex = useMemo(
@@ -114,7 +113,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     });
 
     const foldingService = useFoldingService({
-        dataSourceState, setDataSourceState, isFoldedByDefault, getId, showOnlySelected,
+        dataSourceState, setDataSourceState, isFoldedByDefault, getId,
     });
 
     const focusService = useFocusService({ setDataSourceState });
@@ -126,7 +125,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getId,
 
         isFlattenSearch,
-        showOnlySelected,
         dataSourceState,
 
         rowOptions,
@@ -147,7 +145,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         dataSourceState,
         cascadeSelection,
         isFlattenSearch,
-        showOnlySelected,
         maxVisibleRowIndex,
         getEstimatedChildrenCount,
         getMissingRecordsCount,
