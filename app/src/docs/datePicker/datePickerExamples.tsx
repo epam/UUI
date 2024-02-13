@@ -5,6 +5,7 @@ import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-1
 import { IPropSamplesCreationContext } from '@epam/uui-docs';
 import { DatePickerProps, FlexRow, LinkButton } from '@epam/uui';
 import css from './datePickerExamples.module.scss';
+import { DayProps } from '@epam/uui-core';
 
 export const renderFooter = (ctx: IPropSamplesCreationContext<DatePickerProps>) => [
     {
@@ -21,7 +22,7 @@ export const renderCustomDayExample = (ctx: IPropSamplesCreationContext<DatePick
     return [
         {
             name: 'Render custom day',
-            value: (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
+            value: (renderProps: DayProps) => {
                 const getCustomDay = (dayInner: Dayjs) => {
                     return (
                         <>
@@ -37,10 +38,9 @@ export const renderCustomDayExample = (ctx: IPropSamplesCreationContext<DatePick
                 };
                 return (
                     <Day
+                        { ...renderProps }
                         renderDayNumber={ getCustomDay }
-                        value={ day }
-                        onValueChange={ onDayClick }
-                        isSelected={ day && day.isSame(ctx.getSelectedProps().value) }
+                        isSelected={ renderProps.value && renderProps.value.isSame(ctx.getSelectedProps().value) }
                         filter={ ctx.getSelectedProps().filter }
                     />
                 );
