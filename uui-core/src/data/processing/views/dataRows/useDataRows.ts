@@ -32,7 +32,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getChildCount,
         dataSourceState,
 
-        flattenSearchResults,
         getRowOptions,
         rowOptions,
         getItemStatus,
@@ -49,10 +48,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         () => dataSourceState.topIndex + dataSourceState.visibleCount,
         [tree, dataSourceState.topIndex, dataSourceState.visibleCount],
     );
-    const isFlattenSearch = useMemo(
-        () => dataSourceState.search && flattenSearchResults,
-        [dataSourceState.search, flattenSearchResults],
-    );
 
     const getEstimatedChildrenCount = useCallback((id: TId) => {
         if (id === undefined) {
@@ -63,16 +58,17 @@ export function useDataRows<TItem, TId, TFilter = any>(
         const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) return undefined;
 
-        const childCount = props.getChildCount?.(item) ?? undefined;
-        if (childCount === undefined) return undefined;
+        const { count, status, assumedCount } = tree.getItems(id);
+        if (assumedCount === undefined) {
+            return undefined;
+        }
 
-        const { count, status } = tree.getItems(id);
         if (count !== undefined && status === FULLY_LOADED) {
             // nodes are already loaded, and we know the actual count
             return count;
         }
 
-        return childCount;
+        return assumedCount;
     }, [props.getChildCount, tree]);
 
     const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
@@ -124,7 +120,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         tree,
         getId,
 
-        isFlattenSearch,
         dataSourceState,
 
         rowOptions,
@@ -144,7 +139,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         tree,
         dataSourceState,
         cascadeSelection,
-        isFlattenSearch,
         maxVisibleRowIndex,
         getEstimatedChildrenCount,
         getMissingRecordsCount,

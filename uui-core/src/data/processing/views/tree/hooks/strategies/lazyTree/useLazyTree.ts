@@ -170,7 +170,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
     }, [tree.visible]);
 
-    console.log('treeWithData---->', treeWithData);
     return {
         tree: showOnlySelected ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,
@@ -190,6 +189,5 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         loadMissingRecordsOnCheck,
         showOnlySelected,
-        flattenSearchResults,
     };
 }

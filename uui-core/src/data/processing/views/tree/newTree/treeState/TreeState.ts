@@ -207,23 +207,6 @@ export class TreeState<TItem, TId> {
         );
     }
 
-    private getParents(id: TId) {
-        const parentIds: TId[] = [];
-        let parentId = id;
-        while (true) {
-            const item = this.getById(parentId);
-            if (item === NOT_FOUND_RECORD) {
-                break;
-            }
-            parentId = this.full.getParams().getParentId?.(item);
-            if (parentId === undefined) {
-                break;
-            }
-            parentIds.unshift(parentId);
-        }
-        return parentIds;
-    }
-
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }

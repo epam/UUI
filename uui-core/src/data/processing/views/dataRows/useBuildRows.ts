@@ -19,8 +19,6 @@ export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     getMissingRecordsCount: (id: TId, totalRowsCount: number, loadedChildrenCount: number) => number;
     maxVisibleRowIndex: number;
 
-    isFlattenSearch?: boolean;
-
     getRowProps: (item: TItem, index: number) => DataRowProps<TItem, TId>;
     getLoadingRowProps: (id: any, index?: number, path?: DataRowPathItem<TId, TItem>[]) => DataRowProps<TItem, TId>;
 
@@ -36,7 +34,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     maxVisibleRowIndex,
     isFolded,
     handleOnFold,
-    isFlattenSearch,
     getRowProps,
     getLoadingRowProps,
     isLoading = false,
@@ -73,9 +70,10 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                 stats = getRowStats(row, stats, cascadeSelection);
                 row.isLastChild = n === ids.length - 1 && count === ids.length;
-                row.indent = isFlattenSearch ? 0 : row.path.length + 1; // TODO: simplify indent logic.
+                const assumedChildrenOfParent = getEstimatedChildrenCount(parentId);
+                row.indent = !assumedChildrenOfParent ? 0 : row.path.length + 1; // TODO: simplify indent logic.
                 const estimatedChildrenCount = getEstimatedChildrenCount(id); // TODO: move getChildCount to TreeNodeInfo.assumedCount
-                if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
+                if (estimatedChildrenCount !== undefined) {
                     const { ids: childrenIds } = tree.getItems(id);
 
                     if (estimatedChildrenCount > 0) {
@@ -133,7 +131,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
             }
 
             const isListFlat = path.length === 0 && !layerRows.some((r) => r.isFoldable);
-            if (isListFlat || isFlattenSearch) {
+            if (isListFlat) {
                 layerRows.forEach((r) => {
                     r.indent = 0;
                 });
@@ -152,5 +150,5 @@ export function useBuildRows<TItem, TId, TFilter = any>({
         };
     };
 
-    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading, isFlattenSearch]);
+    return useMemo(() => buildRows(), [tree, dataSourceState.folded, isLoading]);
 }

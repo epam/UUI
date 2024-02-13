@@ -105,16 +105,18 @@ export class FetchingHelper {
             }
 
             recursiveLoadedCount += ids.length;
-            // TODO: perform setItems somewhere out of this algorythm
             if (loadedItems.length > 0) {
                 loadedItems.forEach((item) => {
                     const id = tree.getParams().getId(item);
+                    const prevNodeInfo = nodeInfoById.get(id) ?? {};
+                    const assumedCount = flatten ? undefined : prevNodeInfo.assumedCount ?? tree.getParams().getChildCount(item);
+                    nodeInfoById.set(id, { ...prevNodeInfo, assumedCount });
                     newItemsMap.set(id, item);
                 });
                 newItems = newItems.concat(loadedItems);
             }
 
-            if (!flatten && options.getChildCount) {
+            if (!flatten && tree.getParams().getChildCount) {
                 const childrenPromises: Promise<any>[] = [];
 
                 for (let n = 0; n < ids.length; n++) {
@@ -126,9 +128,9 @@ export class FetchingHelper {
                     let isFolded = false;
                     let hasChildren = false;
 
-                    if (options.getChildCount) {
+                    if (tree.getParams().getChildCount) {
                         // not a root node
-                        const childrenCount = options.getChildCount(item);
+                        const childrenCount = tree.getParams().getChildCount(item);
                         if (childrenCount) {
                             // foldable
                             isFolded = options.isFolded(item);
@@ -312,7 +314,6 @@ export class FetchingHelper {
         const from = response.from == null ? range.from : response.from;
 
         const newIds = [];
-        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
 
         if (response.items.length) {
             newIds.push(...ids);
@@ -321,10 +322,6 @@ export class FetchingHelper {
                 loadedItems.push(item);
                 const id = tree.getParams().getId(item);
                 newIds[n + from] = id;
-                let assumedCount = 0;
-                if (!flatten && item && options.getChildCount) {
-                    assumedCount = options.getChildCount(item) ?? 0;
-                }
             }
         }
 
@@ -336,10 +333,12 @@ export class FetchingHelper {
             newNodesCount = from + response.items.length;
         }
 
-        let assumedCount = 0;
-        if (!flatten && parent && options.getChildCount) {
-            assumedCount = options.getChildCount(parent) ?? 0;
+        let assumedCount = undefined;
+        if (!flatten && parent && tree.getParams().getChildCount) {
+            assumedCount = tree.getParams().getChildCount(parent);
         }
+
+        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
         if (newNodesCount !== childrenCount || assumedCount !== prevAssumedCount) {
             nodeInfo = { ...nodeInfo, count: newNodesCount, assumedCount };
         }
