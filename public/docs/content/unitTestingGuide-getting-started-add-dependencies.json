@@ -1,0 +1,51 @@
+[
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Add dependencies"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Please make sure that "
+      },
+      {
+        "text": "@epam/uui-test-utils",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is added to the "
+      },
+      {
+        "text": "package.json",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". It is important to keep the package version equal to the version of other UUI packages. "
+      }
+    ],
+    "data": {}
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "While usage of this package is not mandatory, it significantly simplifies testing of UUI components."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ],
+    "data": {}
+  }
+]
