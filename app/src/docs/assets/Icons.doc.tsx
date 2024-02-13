@@ -1,28 +1,30 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import css from './IconsPage.module.scss';
-import { FlexCell, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, Tooltip, NotificationCard, MultiSwitch, ScrollBars, SearchInput, TextInput } from '@epam/uui';
-import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon } from '@epam/uui-core';
+import { FlexCell, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, Tooltip, NotificationCard, MultiSwitch,
+    ScrollBars, SearchInput, TextInput } from '@epam/uui';
+import { ArrayDataSource, cx, Icon } from '@epam/uui-core';
 import { getGroupedIcons, getIconList } from '../../documents/iconListHelpers';
 import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
-import { ReactComponent as NotificationCheckFillIcon } from '@epam/assets/icons/notification-check-fill.svg';
 import { IconList } from '@epam/uui-docs';
+import { ReactComponent as NotificationCheckFillIcon } from '@epam/assets/icons/notification-check-fill.svg';
 
-const SIZE_LIST = [
-    '24', '30', '36', '42', '48',
-];
+const SIZE_LIST: ControlSize[] = ['24', '30', '36', '42', '48'];
 
 type ControlSize = '24' | '30' | '36' | '42' | '48';
 
-interface IconsPageState extends DataSourceState {
-    currentIcon: IconList<Icon>;
-    selectedIcon: IconList<Icon>;
+interface IconsPageState {
+    currentIcon: IconList<Icon> | null;
+    selectedIcon: IconList<Icon> | null;
+    search: string;
     controlSize: ControlSize;
+    topIndex: number;
+    visibleCount: number;
     isLocked: boolean;
 }
 
-export class IconsDoc extends React.Component {
-    state: IconsPageState = {
+export function IconsDoc() {
+    const [state, setState] = useState<IconsPageState>({
         currentIcon: null,
         selectedIcon: null,
         search: '',
@@ -30,170 +32,156 @@ export class IconsDoc extends React.Component {
         topIndex: 0,
         visibleCount: 100500,
         isLocked: true,
-    };
+    });
 
-    typeIcons: IconList<Icon>[] = getIconList(false);
-    groupedIcons: { [key: string]: IconList<Icon>[] } = getGroupedIcons();
-    componentWillUnmount(): void {
-        this.iconsDS.unsubscribeView(this.onDataSourceStateChange);
-    }
+    const typeIcons: IconList<Icon>[] = getIconList(false);
+    const groupedIcons: { [key: string]: IconList<Icon>[] } = getGroupedIcons();
+    const iconsDS = new ArrayDataSource({
+        items: typeIcons,
+    });
 
-    showNotification() {
+    const showNotification = () => {
         svc.uuiNotifications.show(
             (props) => (
                 <NotificationCard { ...props } icon={ NotificationCheckFillIcon } color="info" onClose={ null }>
-                    <Text size="36">
-                        Import was copied to the clipboard
-                    </Text>
+                    <Text size="36">Import was copied to the clipboard</Text>
                 </NotificationCard>
             ),
             { duration: 3 },
-        );
-    }
+        ).catch(() => {});
+    };
 
-    getImportCode = (icon: IconList<Icon>) => {
+    const renderIconCard = () => {
+        return (
+            <Panel cx={ css.iconCard }>
+                <FlexRow padding="24" vPadding="48" borderBottom cx={ css.infoBox }>
+                    {renderPreviewIcon()} 
+                </FlexRow>
+                {renderControlSize()}
+                <FlexRow padding="24" vPadding="48" borderBottom cx={ css.iconCardDemo }>
+                    {renderDemo()}
+                </FlexRow>
+                <FlexRow vPadding="24" padding="24" cx={ css.iconCardImport }>
+                    {renderImport()}
+                </FlexRow>
+            </Panel>
+        );
+    };
+
+    const renderPreviewIcon = () => (
+        <FlexCell width="100%">
+            <FlexRow cx={ css.infoTitle }>
+                <IconContainer icon={ state.selectedIcon.icon } size={ 36 } cx={ css.previewIcon } />
+                <Text fontSize="18" lineHeight="30" fontWeight="600">
+                    {state.currentIcon.name}
+                </Text>
+            </FlexRow>
+            <Text fontSize="16" lineHeight="30" fontWeight="600">
+                Control size
+            </Text>
+            <MultiSwitch
+                size="30"
+                items={ SIZE_LIST.map((size, index) => ({ id: index, caption: size })) }
+                value={ SIZE_LIST.indexOf(state.controlSize) ?? 3 }
+                onValueChange={ (newSize: number) => setState({ ...state, controlSize: SIZE_LIST[newSize] }) }
+            />
+        </FlexCell>
+    );
+
+    const getImportCode = (icon: IconList<Icon>) => {
         const iconName = icon.name.split('/').reverse()[0].split('.')[0];
         if (iconName.includes('_') || iconName.includes('-')) {
             return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${icon.name}';`;
         }
-
         return `import { ReactComponent as ${iconName}Icon } from '${icon.name}';`;
     };
 
-    renderIconCard() {
-        return (
-            <Panel cx={ css.iconCard }>
-                <FlexRow padding="24" vPadding="48" borderBottom cx={ css.infoBox }>
-                    {this.renderPreviewIcon()}
-                </FlexRow>
-                {this.renderControlSize()}
-                <FlexRow padding="24" vPadding="48" borderBottom cx={ css.iconCardDemo }>
-                    {this.renderDemo()}
-                </FlexRow>
-                <FlexRow vPadding="24" padding="24" cx={ css.iconCardImport }>
-                    {this.renderImport()}
-                </FlexRow>
-            </Panel>
-        );
-    }
-
-    renderPreviewIcon() {
-        const selectedItem = this.state.selectedIcon;
-        const item = this.state.currentIcon;
-
-        return (
-            <FlexCell width="100%">
-                <FlexRow cx={ css.infoTitle }>
-                    <IconContainer icon={ selectedItem.icon } size={ 36 } cx={ css.previewIcon } />
-                    <Text fontSize="18" lineHeight="30" cx={ css.iconCardTitle } fontWeight="600">
-                        {item.name}
-                    </Text>
-                </FlexRow>
-                <Text fontSize="16" lineHeight="30" fontWeight="600">
-                    Control size
-                </Text>
-                <MultiSwitch
-                    size="30"
-                    items={ SIZE_LIST.map((size, index) => ({ id: index, caption: size })) }
-                    value={ SIZE_LIST.indexOf(this.state.controlSize) ?? 3 }
-                    onValueChange={ (newSize: number) => this.setState({ controlSize: SIZE_LIST[newSize] }) }
-                />
-            </FlexCell>
-        );
-    }
-
-    renderImport() {
-        const importCode = this.getImportCode(this.state.selectedIcon);
+    const renderImport = () => {
+        const importCode = getImportCode(state.selectedIcon);
         return (
             <Tooltip placement="left" content="Copy code">
-                <button className={ css.importButton } onClick={ () => copyTextToClipboard(importCode, this.showNotification) }>{importCode}</button>
+                <button className={ css.importButton } onClick={ () => copyTextToClipboard(importCode, showNotification) }>
+                    {importCode}
+                </button>
             </Tooltip>
         );
-    }
+    };
 
-    renderDemo() {
-        const icon = this.state.selectedIcon.icon;
+    const renderDemo = () => {
+        const icon = state.selectedIcon.icon;
         return (
             <FlexCell width="100%">
-                <FlexRow size="24" spacing="12" cx={ css.demoExamples }>
+                <FlexRow size="24" spacing="12">
                     <FlexCell width="auto" shrink={ 0 }>
                         <IconButton onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
-                        <Button size={ this.state.controlSize } onClick={ () => {} } icon={ icon } />
+                        <Button size={ state.controlSize } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
-                        <Button caption="Click" size={ this.state.controlSize } onClick={ () => {} } icon={ icon } />
+                        <Button caption="Click" size={ state.controlSize } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
-                        <LinkButton caption="Click" size={ this.state.controlSize } onClick={ () => {} } icon={ icon } />
+                        <LinkButton caption="Click" size={ state.controlSize } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                 </FlexRow>
                 <FlexRow size="24" vPadding="24">
-                    <TextInput value="Some text" size={ this.state.controlSize } onValueChange={ () => {} } icon={ icon } />
+                    <TextInput value="Some text" size={ state.controlSize } onValueChange={ () => {} } icon={ icon } />
                 </FlexRow>
             </FlexCell>
         );
-    }
+    };
 
-    renderControlSize() {
-        return (
-            <div
-                className={ cx(css.controlSizeWrapper, {
-                    [css.hideControlSize]: this.state.isLocked,
-                    [css.showControlSize]: !this.state.isLocked,
-                }) }
-            >
-                <FlexRow padding="24" vPadding="24" spacing="12" size="24" borderBottom cx={ css.controlSizeContent }>
-                    <FlexCell width="auto">
-                        <Text fontWeight="600" size="24" fontSize="14">
-                            Control size:
-                        </Text>
-                    </FlexCell>
-                    <FlexCell width="auto">
-                        <MultiSwitch
-                            size="24"
-                            items={ SIZE_LIST.map((size) => ({ id: size, caption: size })) }
-                            value={ this.state.controlSize }
-                            onValueChange={ (newValue) => this.setState({ controlSize: newValue }) }
-                        />
-                    </FlexCell>
-                </FlexRow>
-            </div>
-        );
-    }
+    const renderControlSize = () => (
+        <div className={ cx(css.controlSizeWrapper, { [css.hideControlSize]: state.isLocked, [css.showControlSize]: !state.isLocked }) }>
+            <FlexRow padding="24" vPadding="24" spacing="12" size="24" borderBottom cx={ css.controlSizeContent }>
+                <FlexCell width="auto">
+                    <Text fontWeight="600" size="24" fontSize="14">
+                        Control size:
+                    </Text>
+                </FlexCell>
+                <FlexCell width="auto">
+                    <MultiSwitch
+                        size="24"
+                        items={ SIZE_LIST.map((size) => ({ id: size, caption: size })) }
+                        value={ state.controlSize }
+                        onValueChange={ (newValue: ControlSize) => setState({ ...state, controlSize: newValue }) }
+                    />
+                </FlexCell>
+            </FlexRow>
+        </div>
+    );
 
-    renderItem(item: IconList<Icon>) {
-        return (
-            <div
-                key={ item.id }
-                className={ cx(css.item, this.state.currentIcon && this.state.currentIcon.id === item.id && css.activeItem) }
-                onClick={ () =>
-                    this.setState({
-                        currentIcon: item,
-                        selectedIcon: this.groupedIcons[item.name][0],
-                        isLocked: true,
-                    }) }
-            >
-                <IconContainer cx={ css.itemIcon } icon={ item.icon } />
-                <Text size="18" color="secondary" cx={ css.itemName }>
-                    {item.name}
-                </Text>
-            </div>
-        );
-    }
+    const renderItem = (item: IconList<Icon>) => (
+        <div
+            key={ item.id }
+            className={ cx(css.item, state.currentIcon && state.currentIcon.id === item.id && css.activeItem) }
+            onClick={ () => setState({
+                ...state,
+                currentIcon: item,
+                selectedIcon: groupedIcons[item.name][0],
+                isLocked: true,
+            }) }
+        >
+            <IconContainer cx={ css.itemIcon } icon={ item.icon } />
+            <Text size="18" color="secondary" cx={ css.itemName }>
+                {item.name}
+            </Text>
+        </div>
+    );
 
-    renderIconsBox(items: DataRowProps<IconList<Icon>, string>[]) {
+    const renderIconsBox = (items: any[]) => {
         if (items.length === 0) {
             return (
                 <div className={ css.unsuccessfulSearch }>
                     <Text fontSize="16" lineHeight="24" cx={ css.unsuccessfulSearchText }>
                         Unfortunately, we did not find
-                        <span>
+                        <span> 
                             {' '}
-                            {this.state.search}
+                            {state.search}
                             {' '}
                         </span>
+                        {' '}
                         icon in our package. But we can add it in the next release.
                     </Text>
                     <FlexRow>
@@ -206,40 +194,33 @@ export class IconsDoc extends React.Component {
                 </div>
             );
         }
+        return <div className={ css.grid }>{items.map((item) => renderItem(item.value))}</div>;
+    };
 
-        return <div className={ css.grid }>{items.map((item) => this.renderItem(item.value))}</div>;
-    }
+    const onDataSourceStateChange = (data: any) => setState(data);
+    const view = iconsDS.getView(state, onDataSourceStateChange, { getSearchFields: (l) => [l.name] });
+    const items = view.getVisibleRows();
 
-    iconsDS = new ArrayDataSource({
-        items: this.typeIcons,
-    });
-
-    onDataSourceStateChange = (data: DataSourceState) => this.setState(data);
-    render() {
-        const view = this.iconsDS.getView(this.state, this.onDataSourceStateChange, { getSearchFields: (l) => [l.name] });
-        const items = view.getVisibleRows();
-
-        return (
-            <div className={ css.container }>
-                <ScrollBars cx={ css.contentContainer }>
-                    <FlexCell width="100%" cx={ css.iconsBlock }>
-                        <div className={ css.title }>Icons</div>
-                        <SearchInput
-                            cx={ css.search }
-                            size="42"
-                            placeholder="Search icon"
-                            value={ this.state.search }
-                            onValueChange={ (value) => this.setState({ search: value }) }
-                        />
-                        <FlexCell>{this.renderIconsBox(items)}</FlexCell>
+    return (
+        <div className={ css.container }>
+            <ScrollBars cx={ css.contentContainer }>
+                <FlexCell width="100%" cx={ css.iconsBlock }>
+                    <div className={ css.title }>Icons</div>
+                    <SearchInput
+                        cx={ css.search }
+                        size="42"
+                        placeholder="Search icon"
+                        value={ state.search }
+                        onValueChange={ (value) => setState({ ...state, search: value }) }
+                    />
+                    <FlexCell>{renderIconsBox(items)}</FlexCell>
+                </FlexCell>
+                {items.length > 0 && (
+                    <FlexCell minWidth={ 380 } cx={ css.stickyPanel }>
+                        {state.currentIcon && renderIconCard()}
                     </FlexCell>
-                    {items.length > 0 && (
-                        <FlexCell minWidth={ 380 } cx={ cx(css.stickyPanel, css[`sticky-panel-height-${this.state.isLocked ? '563' : '612'}`]) }>
-                            {this.state.currentIcon && this.renderIconCard()}
-                        </FlexCell>
-                    )}
-                </ScrollBars>
-            </div>
-        );
-    }
+                )}
+            </ScrollBars>
+        </div>
+    );
 }
