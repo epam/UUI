@@ -30,6 +30,7 @@
 * [Tooltip]: fixed vertical paddings according to the design.
 * [SearchInput]: fixed `onCancel` prop. Now component can use provided callback, not only default implementation
 * [useForm]: fixed `close` method to always return Promise
+* [Paginator]: added `isDisabled` property.
 
 # 5.5.3 - 07.02.2024
 
