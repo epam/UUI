@@ -27,7 +27,7 @@
             background: var(--uui-dt-row-bg-hover);
             box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
 
-            .sort-icon, .dropdown-icon, .infoIcon {
+            .sort-icon, .dropdown-icon, .infoIcon, .fold-all-icon {
                 fill: var(--uui-icon-hover);
             }
         }
@@ -67,6 +67,11 @@
         display: flex;
         flex-shrink: 0;
         cursor: pointer;
+    }
+
+    .fold-all-icon {
+        display: flex;
+        padding-right: 6px;
     }
 
     .icon-cell {

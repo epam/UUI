@@ -19,7 +19,7 @@ exports[`docsGen:comments should convert comments 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITest",
      "print": [
@@ -84,7 +84,7 @@ exports[`docsGen:comments should convert property-level tags 1`] = `
     "exported": true
    },
    "details": {
-    "kind": 263,
+    "kind": 264,
     "typeValue": {
      "raw": "ITest",
      "print": [
