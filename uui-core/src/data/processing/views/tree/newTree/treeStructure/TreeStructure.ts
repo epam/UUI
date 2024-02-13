@@ -128,6 +128,8 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
     }) {
         const byParentId = newMap<TId, TId[]>(params);
 
+        const itemsMap = newMap<TId, TItem>(params);
+
         items.forEach((item) => {
             const parentId = params.getParentId?.(item) ?? undefined;
 
@@ -138,11 +140,13 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
             children.push(params.getId(item));
 
             byParentId.set(parentId, children);
+            itemsMap.set(parentId, item);
         });
 
         const newNodeInfoById = newMap<TId, TreeNodeInfo>(params);
         for (const [parentId, ids] of byParentId) {
-            newNodeInfoById.set(parentId, { count: ids.length });
+            const assumedCount = itemsMap.has(parentId) ? params.getChildCount?.(itemsMap.get(parentId)) : undefined;
+            newNodeInfoById.set(parentId, { count: ids.length, assumedCount });
         }
 
         return this.create<TItem, TId>(params, itemsAccessor, byParentId, newNodeInfoById);

@@ -39,7 +39,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         [itemsStatusCollector, props.api],
     );
 
-    const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), [...deps]);
+    const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
     const prevDataSourceState = useSimplePrevious(dataSourceState);
@@ -49,7 +49,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isForceReload, setIsForceReload] = useState(false);
 
-    const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState, showOnlySelected });
+    const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
 
     useEffect(() => {
         setTreeWithData(blankTree);
@@ -170,6 +170,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
     }, [tree.visible]);
 
+    console.log('treeWithData---->', treeWithData);
     return {
         tree: showOnlySelected ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,

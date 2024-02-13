@@ -5,7 +5,7 @@ import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
 
 export type UseFoldingServiceProps<TItem, TId, TFilter = any> = Pick<
 CommonDataSourceConfig<TItem, TId, TFilter>,
-'getId' | 'dataSourceState' | 'setDataSourceState' | 'isFoldedByDefault' | 'showOnlySelected'
+'getId' | 'dataSourceState' | 'setDataSourceState' | 'isFoldedByDefault'
 >;
 
 export interface FoldingService<TItem, TId> {
@@ -17,12 +17,11 @@ export function useFoldingService<TItem, TId, TFilter = any>({
     dataSourceState,
     setDataSourceState,
     isFoldedByDefault,
-    showOnlySelected,
     getId,
 }: UseFoldingServiceProps<TItem, TId, TFilter>): FoldingService<TItem, TId> {
     const isFolded = useCallback((item: TItem) => {
         const searchIsApplied = !!dataSourceState?.search;
-        if (searchIsApplied || showOnlySelected) {
+        if (searchIsApplied) {
             return false;
         }
 
@@ -37,7 +36,7 @@ export function useFoldingService<TItem, TId, TFilter = any>({
         }
 
         return true;
-    }, [isFoldedByDefault, dataSourceState?.search, dataSourceState.folded, showOnlySelected]);
+    }, [isFoldedByDefault, dataSourceState?.search, dataSourceState.folded]);
 
     const handleOnFold = useCallback((rowProps: DataRowProps<TItem, TId>) => {
         setDataSourceState((dsState) => {

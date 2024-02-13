@@ -2,75 +2,9 @@ import { TreeNodeInfo } from '../types';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from './map';
-import { InsertIntoPositionOptions, PasteItemIntoChildrenListOptions, PatchChildrenOptions, PatchItemsOptions, PatchOptions } from './types';
+import { InsertIntoPositionOptions, PatchItemsOptions } from './types';
 
 export class PatchHelper {
-    public static patch<TItem, TId>({
-        treeStructure, itemsMap, items, isDeletedProp, comparator,
-    }: PatchOptions<TItem, TId>) {
-        if (!items || items.length === 0) {
-            return { treeStructure, itemsMap, newItems: [] };
-        }
-
-        const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
-
-        let isPatched = false;
-        let newItemsMap = itemsMap;
-        const newItems: TItem[] = [];
-
-        items.forEach((item) => {
-            const id = treeStructure.getParams().getId(item);
-            const existingItem = newItemsMap.get(id);
-            const parentId = treeStructure.getParams().getParentId?.(item);
-
-            if (isDeletedProp && item[isDeletedProp]) {
-                const children = [...(newByParentId.get(parentId) ?? [])];
-                newByParentId.set(parentId, this.deleteFromChildren(id, children));
-                newByParentId.delete(id);
-                isPatched = true;
-                return;
-            }
-
-            if (!existingItem || existingItem !== item) {
-                newItemsMap = itemsMap.set(id, item);
-                newItems.push(item);
-                const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
-                if (!existingItem || parentId !== existingItemParentId) {
-                    const children = newByParentId.get(parentId) ?? [];
-
-                    newByParentId.set(parentId, this.patchChildren({ treeStructure, children, existingItem, newItem: item, comparator, itemsMap }));
-
-                    if (existingItem && existingItemParentId !== parentId) {
-                        const prevParentChildren = treeStructure.byParentId.get(existingItemParentId) ?? [];
-                        newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
-                    }
-                }
-                isPatched = true;
-            }
-        });
-
-        if (!isPatched) {
-            return { treeStructure, itemsMap };
-        }
-
-        const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.getParams());
-
-        for (const [parentId, ids] of newByParentId) {
-            newNodeInfoById.set(parentId, { count: ids.length });
-        }
-
-        return {
-            treeStructure: TreeStructure.create(
-                treeStructure.getParams(),
-                ItemsAccessor.toItemsAccessor(newItemsMap),
-                newByParentId,
-                newNodeInfoById,
-            ),
-            itemsMap: newItemsMap,
-            newItems,
-        };
-    }
-
     public static patchItems<TItem, TId>({
         itemsMap, treeStructure, patchItems, isDeletedProp, getPosition = () => 'initial',
     }: PatchItemsOptions<TItem, TId>) {
@@ -117,7 +51,7 @@ export class PatchHelper {
             if (treeStructure.nodeInfoById.has(parentId)) {
                 const prevNodeInfo = treeStructure.nodeInfoById.get(parentId);
                 if (prevNodeInfo.count !== undefined) {
-                    newNodeInfoById.set(parentId, { count: ids.length });
+                    newNodeInfoById.set(parentId, { ...prevNodeInfo, count: ids.length });
                 } else {
                     newNodeInfoById.set(parentId, prevNodeInfo);
                 }
@@ -177,45 +111,5 @@ export class PatchHelper {
         }
 
         return [...ids.slice(0, afterIndex + 1), itemId, ...ids.slice(afterIndex + 1)];
-    }
-
-    private static patchChildren<TItem, TId>({
-        treeStructure, children, existingItem, newItem, comparator, itemsMap,
-    }: PatchChildrenOptions<TItem, TId>) {
-        const id = treeStructure.getParams().getId(newItem);
-        const parentId = treeStructure.getParams().getParentId?.(newItem);
-        const prevParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
-
-        if (!children || children === treeStructure.getItems(parentId).ids) {
-            children = children ? [...children] : [];
-        }
-
-        if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
-            return this.pasteItemIntoChildrenList({
-                id: treeStructure.getParams().getId(newItem),
-                item: newItem,
-                children,
-                comparator,
-                itemsMap,
-            });
-        }
-
-        children.push(id);
-        return children;
-    }
-
-    private static pasteItemIntoChildrenList<TItem, TId>(
-        { id, item, children, comparator, itemsMap }: PasteItemIntoChildrenListOptions<TItem, TId>,
-    ) {
-        if (!children.length) {
-            return [id];
-        }
-
-        // paste item should be the second argument
-        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, itemsMap.get(itemId)) <= 0);
-        const position = lessOrEqualPosition === -1 ? children.length : lessOrEqualPosition;
-
-        children.splice(position, 0, id);
-        return children;
     }
 }

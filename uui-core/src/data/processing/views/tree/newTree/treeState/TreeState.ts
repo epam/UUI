@@ -1,6 +1,6 @@
 import { ItemsStorage } from '../../ItemsStorage';
 import {
-    FilterOptions, LoadAllOptions, LoadOptions, PatchOptions,
+    FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
 import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap } from '../treeStructure';
@@ -164,25 +164,6 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    public patch({ using, ...options }: PatchOptions<TItem>): TreeState<TItem, TId> {
-        const treeStructure = this.getTreeStructure(using);
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
-            treeStructure,
-            itemsMap: this.itemsMap,
-            ...options,
-        });
-
-        if (newTreeStructure === treeStructure && this.itemsMap === newItemsMap && !newItems.length) {
-            return this;
-        }
-
-        if (newItems.length) {
-            this.setItems(newItems, { on: 'patch' });
-        }
-
-        return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
-    }
-
     public patchItems({ patchItems, isDeletedProp }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
@@ -208,18 +189,11 @@ export class TreeState<TItem, TId> {
             .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
         let items = new ItemsMap<TId, TItem>(null, this.selectedOnly.getParams());
         foundIds.forEach((id) => {
-            const parents = this.getParents(id);
-            parents
-                .filter((parentId) => !items.has(parentId) && this.getById(parentId) !== NOT_FOUND_RECORD)
-                .forEach((parentId) => {
-                    items = items.set(parentId, this.getById(parentId) as TItem);
-                });
-
             items = items.set(id, this.getById(id) as TItem);
         });
 
         const newSelectedOnly = TreeStructure.createFromItems({
-            params: this.selectedOnly.getParams(),
+            params: { ...this.selectedOnly.getParams(), getChildCount: () => 0 },
             items,
             itemsAccessor: ItemsAccessor.toItemsAccessor(this.itemsMap),
         });
