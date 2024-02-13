@@ -312,6 +312,8 @@ export class FetchingHelper {
         const from = response.from == null ? range.from : response.from;
 
         const newIds = [];
+        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
+
         if (response.items.length) {
             newIds.push(...ids);
             for (let n = 0; n < response.items.length; n++) {
@@ -319,6 +321,10 @@ export class FetchingHelper {
                 loadedItems.push(item);
                 const id = tree.getParams().getId(item);
                 newIds[n + from] = id;
+                let assumedCount = 0;
+                if (!flatten && item && options.getChildCount) {
+                    assumedCount = options.getChildCount(item) ?? 0;
+                }
             }
         }
 
@@ -329,7 +335,6 @@ export class FetchingHelper {
         } else if (response.items.length < missingCount) {
             newNodesCount = from + response.items.length;
         }
-        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
 
         let assumedCount = 0;
         if (!flatten && parent && options.getChildCount) {

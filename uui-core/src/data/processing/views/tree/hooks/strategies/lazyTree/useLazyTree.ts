@@ -190,5 +190,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         loadMissingRecordsOnCheck,
         showOnlySelected,
+        flattenSearchResults,
     };
 }
