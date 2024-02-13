@@ -28,7 +28,6 @@ export default function TableCollapseExample() {
                 ),
                 render: (location) => <Text>{location.name}</Text>,
                 renderTooltip: () => null,
-                renderFilter: () => 'Column filter can be here',
                 grow: 1,
                 width: 336,
                 isSortable: true,
