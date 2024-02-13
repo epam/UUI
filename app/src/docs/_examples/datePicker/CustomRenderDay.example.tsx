@@ -29,8 +29,14 @@ export default function DatePickerCustomDayExample() {
                 value={ value }
                 onValueChange={ onValueChange }
                 format="MMM D, YYYY"
-                renderDay={ (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
-                    return <Day renderDayNumber={ getCustomDay } value={ day } onValueChange={ onDayClick } isSelected={ day && day.isSame(value) } />;
+                renderDay={ (renderProps) => {
+                    return (
+                        <Day
+                            { ...renderProps }
+                            renderDayNumber={ getCustomDay }
+                            isSelected={ renderProps.value && renderProps.value.isSame(value) }
+                        />
+                    );
                 } }
             />
         </FlexRow>

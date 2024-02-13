@@ -5,6 +5,7 @@ import { IPropSamplesCreationContext } from '@epam/uui-docs';
 import { Text, RangeDatePickerProps, RangeDatePickerValue, rangeDatePickerPresets } from '@epam/uui';
 import css from './rangeDatePickerExamples.module.scss';
 import isBetween from 'dayjs/plugin/isBetween.js';
+import { DayProps } from '@epam/uui-core';
 
 dayjs.extend(isBetween);
 
@@ -78,7 +79,7 @@ export const renderDayExamples = (ctx: IPropSamplesCreationContext<RangeDatePick
     return [
         {
             name: 'Render custom day',
-            value: (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
+            value: (renderProps: DayProps) => {
                 const getCustomDay = (dayInner: Dayjs) => {
                     return (
                         <>
@@ -89,11 +90,17 @@ export const renderDayExamples = (ctx: IPropSamplesCreationContext<RangeDatePick
                 };
                 return (
                     <Day
+                        { ...renderProps }
                         renderDayNumber={ getCustomDay }
-                        value={ day }
-                        onValueChange={ onDayClick }
                         isSelected={
-                            day && ctx.getSelectedProps().value && day.isBetween(ctx.getSelectedProps().value.from, ctx.getSelectedProps().value.to, undefined, '[]')
+                            renderProps.value
+                            && ctx.getSelectedProps().value
+                            && renderProps.value.isBetween(
+                                ctx.getSelectedProps().value.from,
+                                ctx.getSelectedProps().value.to,
+                                undefined,
+                                '[]',
+                            )
                         }
                         filter={ ctx.getSelectedProps().filter }
                     />
