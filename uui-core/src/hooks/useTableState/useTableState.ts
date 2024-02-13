@@ -171,22 +171,6 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
         );
     }, []);
 
-    const areAllFolded = useCallback((state: DataTableState) => {
-        const areAllCollapsed = state?.foldAll === undefined || state?.foldAll;
-        const unfoldedNodes = Object.values(state?.folded ?? {}).filter((folded) => !folded);
-        const areAllNodesFolded = !state?.folded || !unfoldedNodes.length;
-
-        return areAllCollapsed && areAllNodesFolded;
-    }, []);
-
-    const onFoldAll = useCallback(() => {
-        params.onValueChange((value) => ({
-            ...value,
-            folded: {},
-            foldAll: !areAllFolded(value),
-        }));
-    }, [params.onValueChange, areAllFolded]);
-
     const setTableState = useCallback((newValue: DataTableState<TFilter, TViewState>) => {
         params.onValueChange(() => newValue);
     }, []);
@@ -206,8 +190,6 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
         deletePreset,
         updatePreset,
         getPresetLink,
-        onFoldAll,
-        areAllFolded,
     };
 };
 

@@ -146,8 +146,6 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
     columns: DataColumnProps<TItem, TId>[];
     selectAll?: ICheckable;
     showFoldAll?: boolean;
-    onFoldAll?(): void;
-    areAllFolded?(state: DataTableState): boolean;
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
     renderConfigButton?: () => React.ReactNode;
@@ -410,8 +408,6 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     /** Function that updates filters config value */
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    onFoldAll(): void;
-    areAllFolded: (state: DataTableState) => boolean;
 }
 
 export interface DataTableSelectedCellData<TItem = any, TId = any, TFilter = any> {
