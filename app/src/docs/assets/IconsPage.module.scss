@@ -1,5 +1,3 @@
-@use '~@epam/promo/assets/styles/index' as *;
-
 .container {
     display: flex;
     flex-direction: column;
@@ -115,203 +113,22 @@
         top: 30px;
         padding-bottom: 30px;
         padding-right: 30px;
-
-        &.sticky-panel-height-563 {
-            height: 660px;
-            margin-top: 30px;
-        }
-
-        &.sticky-panel-height-612 {
-            height: 710px;
-        }
+        height: fit-content;
 
         .icon-card {
             box-sizing: border-box;
             border: 1px solid var(--uui-divider);
             background-color: var(--uui-surface-main);
 
-            .icon-card-title {
-                padding: 0;
-            }
-
             .info-box {
                 padding-bottom: 18px;
-            }
 
-            .info-title {
-                margin-bottom: 18px;
-            }
+                .info-title {
+                    margin-bottom: 18px;
 
-            .preview-icon {
-                margin-right: 12px;
-                fill: var(--uui-icon);
-            }
-
-            .icon-box {
-                text-align: center;
-
-                .size-icon {
-                    padding: 8px;
-                    border: 1px solid var(--uui-divider);
-                    fill: var(--uui-icon-disabled);
-                }
-
-                .selected-icon {
-                    border-color: var(--uui-control-border-hover);
-                    fill: var(--uui-icon);
-                }
-
-                .selectable-icon {
-                    border-color: var(--uui-control-border-hover);
-                    fill: var(--uui-icon);
-                    cursor: pointer;
-
-                    &:hover {
-                        border-color: var(--uui-info-50);
-                        background-color: var(--uui-info-10);
-                        fill: var(--uui-info-50);
-                    }
-
-                    &:active {
-                        background-color: var(--uui-info-20);
-                    }
-
-                    &.selected-icon {
-                        border-color: var(--uui-info-50);
-                        fill: var(--uui-info-50);
-                    }
-                }
-            }
-
-            .icon-box-label {
-                font-family: var(--uui-font);
-                font-size: 12px;
-                line-height: 18px;
-                color: var(--uui-text-primary);
-            }
-
-            .recommended-size {
-                background-color: var(--uui-surface-main);
-                z-index: 1;
-            }
-
-            .recommended-size-icon {
-                .recommended-size-icon-row {
-                    justify-content: space-between;
-                }
-
-                .recommended-caption {
-                    margin-bottom: 12px;
-                }
-
-                .sizes-captions {
-                    margin-right: 6px;
-                    text-align: right;
-                }
-
-                .sizes {
-                    text-align: center;
-                    cursor: default;
-                }
-
-                .active-sizes {
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: var(--uui-info-10);
-                    }
-                }
-
-                .disabled-sizes {
-                    .sizes-text {
-                        color: var(--uui-text-disabled);
-                    }
-                }
-
-                .selected-sizes {
-                    background-color: var(--uui-info-10);
-
-                    .sizes-text {
-                        color: var(--uui-info-50);
-                    }
-                }
-
-                .warning-wrapper {
-                    display: flex;
-                    width: 60px;
-                    height: 60px;
-                    justify-content: center;
-                    border-radius: 50%;
-                    position: relative;
-
-                    &::after {
-                        position: absolute;
-                        content: '';
-                        width: 60px;
-                        height: 60px;
-                        border-radius: 50%;
-                        background-color: var(--uui-error-10);
-                        animation: pulse-wrapper 3s infinite linear;
-                    }
-
-                    .warning-icon {
-                        width: 36px;
-                        height: 36px;
-                        align-items: center;
-                        align-self: center;
-                        border-radius: 50%;
-                        z-index: 1;
-                        position: relative;
-
-                        &::after {
-                            position: absolute;
-                            content: '';
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background-color: var(--uui-error-20);
-                            z-index: -1;
-                            animation: pulse-icon 3s infinite linear;
-                        }
-                    }
-                }
-
-                .bottom-text {
-                    padding-bottom: 0;
-
-                    :global(.uui-caption) {
-                        padding-bottom: 0;
-                        padding-top: 6px;
-                        font-size: 14px;
-                        line-height: 18px;
-                    }
-                }
-
-                @keyframes pulse-icon {
-                    0% {
-                        transform: scale(0.6, 0.6);
-                    }
-
-                    50% {
-                        transform: scale(1, 1);
-                    }
-
-                    100% {
-                        transform: scale(0.6, 0.6);
-                    }
-                }
-
-                @keyframes pulse-wrapper {
-                    0% {
-                        transform: scale(0.4, 0.4);
-                    }
-
-                    50% {
-                        transform: scale(1, 1);
-                    }
-
-                    100% {
-                        transform: scale(0.4, 0.4);
+                    .preview-icon {
+                        margin-right: 12px;
+                        fill: var(--uui-icon);
                     }
                 }
             }
@@ -341,10 +158,6 @@
 
             .icon-card-demo {
                 padding-bottom: 12px;
-
-                .demo-examples {
-                    flex-wrap: wrap;
-                }
             }
 
             .icon-card-import {
@@ -356,12 +169,4 @@
             }
         }
     }
-
-    .empty-block {
-        height: 1px;
-    }
-}
-
-.icon-red {
-    fill: var(--uui-error-50);
 }
