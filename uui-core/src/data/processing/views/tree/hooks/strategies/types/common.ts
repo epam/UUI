@@ -15,7 +15,6 @@ export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
     getChildCount?(item: TItem): number;
 
     cascadeSelection?: CascadeSelection;
-    flattenSearchResults?: boolean;
     selectAll?: boolean;
     showOnlySelected?: boolean;
 }

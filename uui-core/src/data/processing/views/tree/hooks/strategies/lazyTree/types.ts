@@ -16,4 +16,5 @@ export type LazyTreeProps<TItem, TId, TFilter> = CommonDataSourceConfig<TItem, T
     filter?: TFilter;
     fetchStrategy?: 'sequential' | 'parallel';
     backgroundReload?: boolean;
+    flattenSearchResults?: boolean;
 };

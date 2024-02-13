@@ -15,7 +15,6 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
 
     tree: ITree<TItem, TId>;
 
-    isFlattenSearch: boolean;
     getEstimatedChildrenCount: (id: TId) => number;
 }
 
@@ -31,7 +30,6 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         handleOnFocus,
         isRowChecked,
         isRowChildrenChecked,
-        isFlattenSearch,
         getEstimatedChildrenCount,
     }: UseDataRowPropsProps<TItem, TId, TFilter>,
 ) {
@@ -44,7 +42,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
 
         const estimatedChildrenCount = getEstimatedChildrenCount(row.id);
         row.isFoldable = false;
-        if (!isFlattenSearch && estimatedChildrenCount > 0) {
+        if (estimatedChildrenCount > 0) {
             row.isFoldable = true;
         }
 
@@ -69,7 +67,6 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         tree,
         getRowOptions,
         rowOptions,
-        isFlattenSearch,
         getEstimatedChildrenCount,
         dataSourceState.focusedIndex,
         dataSourceState.selectedId,
