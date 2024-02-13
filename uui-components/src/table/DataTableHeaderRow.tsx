@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, DropParams, getOrderBetween,
+    DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, DropParams, getOrderBetween, DataTableState,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import css from './DataTableHeaderRow.module.scss';
@@ -32,9 +32,27 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         this.props.onValueChange({ ...this.props.value, columnsConfig });
     };
 
+    areAllFolded = (state: DataTableState<any, any>) => {
+        const areAllCollapsed = state?.foldAll === undefined || state?.foldAll;
+        const unfoldedNodes = Object.values(state?.folded ?? {}).filter((folded) => !folded);
+        const areAllNodesFolded = !state?.folded || !unfoldedNodes.length;
+
+        return areAllCollapsed && areAllNodesFolded;
+    };
+
+    onFoldAll = () => {
+        this.props.onValueChange({
+            ...this.props.value,
+            folded: {},
+            foldAll: !this.areAllFolded(this.props.value),
+        });
+    };
+
     renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
         const { field, direction } = this.sortLens.index(0).default({ field: null, direction: 'asc' }).get();
 
+        const isFirstColumn = idx === 0;
+        const isFoldAllEnabled = isFirstColumn && this.props.showFoldAll;
         return this.props.renderCell({
             key: column.key,
             column,
@@ -42,9 +60,9 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             onValueChange: this.props.onValueChange,
             selectAll: this.props.selectAll,
             showFoldAll: this.props.showFoldAll,
-            onFoldAll: this.props.onFoldAll,
-            areAllFolded: this.props.areAllFolded?.(this.props.value),
-            isFirstColumn: idx === 0,
+            onFoldAll: isFoldAllEnabled ? this.onFoldAll : undefined,
+            areAllFolded: isFoldAllEnabled ? this.areAllFolded?.(this.props.value) : undefined,
+            isFirstColumn,
             isLastColumn: idx === this.props.columns.length - 1,
             isFilterActive: column.isFilterActive?.(this.filterLens.default({}).get(), column),
             sortDirection: field === column.key ? direction : null,

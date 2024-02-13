@@ -13,7 +13,7 @@ import css from './TablesExamples.module.scss';
 export default function TableCollapseExample() {
     const svc = useUuiContext();
 
-    const { tableState, setTableState, onFoldAll, areAllFolded } = useTableState<Location, string>({
+    const { tableState, setTableState } = useTableState<Location, string>({
         value: { foldAll: false, sorting: [{ field: 'name', direction: 'asc' }] }, 
     });
 
@@ -127,8 +127,6 @@ export default function TableCollapseExample() {
                 value={ tableState }
                 onValueChange={ (newVal) => setTableState(newVal) }
                 showFoldAll={ true }
-                onFoldAll={ onFoldAll }
-                areAllFolded={ areAllFolded }
                 columns={ locationColumns }
                 headerTextCase="upper"
                 border={ false }
