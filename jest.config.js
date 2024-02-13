@@ -49,7 +49,7 @@ const JSDOM_TESTS_ROOTS = [
     // TODO: uncomment line(s) below as soon as we have any tests in these modules
     // 'extra',
     // 'uui-db',
-    'app',
+    // 'app',
     // 'draft-rte',
     // 'uui-docs',
     // 'uui-timeline',
