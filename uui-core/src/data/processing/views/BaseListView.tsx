@@ -203,6 +203,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
     };
 
+    protected isFoldedByDefault(state: DataSourceState<TFilter, TId>) {
+        return state.foldAll;
+    }
+
     protected isFolded(item: TItem) {
         const searchIsApplied = !!this.value?.search;
         if (searchIsApplied) {
@@ -216,10 +220,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
 
         if (this.props.isFoldedByDefault) {
-            return this.props.isFoldedByDefault(item);
+            return this.props.isFoldedByDefault(item, this.value);
         }
 
-        return true;
+        return this.isFoldedByDefault(this.value) ?? true;
     }
 
     protected getRowProps(item: TItem, index: number): DataRowProps<TItem, TId> {
