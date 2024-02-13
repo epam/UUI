@@ -110,6 +110,10 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     /** The amount of items per page */
     pageSize?: number;
 
+    /**
+     * Provides default folding of nodes if the opposite value is not present in the folded map.
+     * It is used to collapse/expand all nodes.
+     */
     foldAll?: boolean;
 }
 

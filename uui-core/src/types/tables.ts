@@ -127,8 +127,18 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     isFirstColumn: boolean;
     isLastColumn: boolean;
     selectAll?: ICheckable;
+    /**
+     * Enables collapse/expand all functionality.
+     * */
     showFoldAll?: boolean;
+    /**
+     * Fold all click handler.
+     * If `showFoldAll` is not enabled, onFoldAll is not passed.
+     * */
     onFoldAll?(): void;
+    /**
+     * Indicates if all nodes are folded.
+     */
     areAllFolded?: boolean;
     isFilterActive?: boolean;
     sortDirection?: SortDirection;
@@ -145,6 +155,9 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
 export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
     selectAll?: ICheckable;
+    /**
+     * Enables collapse/expand all functionality.
+     * */
     showFoldAll?: boolean;
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;

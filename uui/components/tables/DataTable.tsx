@@ -48,7 +48,9 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      */
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
     dataTableFocusManager?: DataTableFocusManager<TId>;
-    
+    /**
+     * Enables collapse/expand all functionality.
+     * */
     showFoldAll?: boolean;
 }
 
