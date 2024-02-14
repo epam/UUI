@@ -66,6 +66,10 @@ export const i18n = {
             unPinColumnButton: 'Unpin column',
             lockedColumnPinButton: 'You cannot unpin this column',
         },
+        columnHeader: {
+            collapseAllTooltip: 'Collapse All',
+            expandAllTooltip: 'Expand All',
+        },
     },
     pickerFilterHeader: {
         sortAscending: 'Sort Ascending',
