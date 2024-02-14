@@ -2,7 +2,7 @@
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
 <a
-  className="uui-button-box uui-enabled -clickable uui-anchor container uui-icon_button uui-color-neutral root container"
+  className="uui-button-box uui-enabled -clickable uui-anchor root uui-icon_button uui-color-neutral container"
   href=""
   onClick={[Function]}
   rel="noopener noreferrer"
@@ -22,7 +22,7 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
 
 exports[`MainMenuIcon should be rendered correctly with minimum props 1`] = `
 <button
-  className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root container"
+  className="uui-button-box uui-enabled root uui-icon_button uui-color-neutral container"
   tabIndex={-1}
   type="button"
 >

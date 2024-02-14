@@ -71,7 +71,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
       className="flexSpacer"
     />
     <button
-      className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root root icon iconAfter"
+      className="uui-button-box uui-enabled root uui-icon_button uui-color-neutral root icon iconAfter"
       tabIndex={-1}
       type="button"
     >

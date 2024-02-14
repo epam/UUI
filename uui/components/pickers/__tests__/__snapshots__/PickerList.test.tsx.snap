@@ -169,7 +169,7 @@ exports[`PickerList should open body 1`] = `
           >
             <button
               aria-label="Close modal"
-              class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+              class="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral"
               tabindex="0"
               type="button"
             >

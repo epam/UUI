@@ -6,7 +6,24 @@
     --uui-icon_btn-active: var(--uui-color-70);
     --uui-icon_btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
     //
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    margin: unset;
+    padding: unset;
+    outline: none;
+    border: 0;
+    appearance: none;
+    align-items: unset;
+    justify-content: unset;
+    overflow: hidden;
+    background: none;
+    text-decoration: none;
     fill: var(--uui-icon_btn);
+
+    &:hover {
+        text-decoration: none;
+    }
 
     &:global(.uui-icon_button.uui-color-neutral) {
         --uui-icon_btn: var(--uui-icon);
@@ -15,6 +32,8 @@
     }
 
     &:global(.-clickable) {
+        cursor: pointer;
+
         &:hover {
             fill: var(--uui-icon_btn-hover);
         }
@@ -29,6 +48,7 @@
     }
 
     &:global(.uui-disabled) {
+        cursor: default;
         fill: var(--uui-icon_btn-disabled);
 
         &:global(.-clickable) {

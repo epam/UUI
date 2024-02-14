@@ -74,7 +74,7 @@ Array [
           tabIndex={0}
         >
           <button
-            className="uui-button-box uui-enabled container uui-icon_button uui-color-info root root icon iconBefore"
+            className="uui-button-box uui-enabled root uui-icon_button uui-color-info root icon iconBefore"
             tabIndex={-1}
             type="button"
           >
@@ -107,7 +107,7 @@ Array [
           tabIndex={0}
         >
           <button
-            className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root root icon iconBefore"
+            className="uui-button-box uui-enabled root uui-icon_button uui-color-neutral root icon iconBefore"
             tabIndex={-1}
             type="button"
           >

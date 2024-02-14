@@ -57,7 +57,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -488,7 +488,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1853,7 +1853,7 @@ exports[`PickerModal should open body 1`] = `
           >
             <button
               aria-label="Close modal"
-              class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+              class="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral"
               tabindex="0"
               type="button"
             >
