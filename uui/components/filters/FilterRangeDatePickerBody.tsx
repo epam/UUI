@@ -20,7 +20,10 @@ export function FilterRangeDatePickerBody(props: RangeDatePickerProps) {
         handleBlur,
         handleFocus,
         getChangeHandler,
-    } = useRangeDatePickerState({ ...props, initialInFocus: 'from' });
+    } = useRangeDatePickerState({
+        ...props,
+        initialInFocus: 'from',
+    });
 
     return (
         <>

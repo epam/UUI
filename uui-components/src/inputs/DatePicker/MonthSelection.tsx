@@ -1,14 +1,14 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import {
-    IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
-} from '@epam/uui-core';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import localeData from 'dayjs/plugin/localeData.js';
 import css from './MonthSelection.module.scss';
+import { valueFormat } from './helpers';
 
 dayjs.extend(localeData);
 
 const MONTH_ROW_LENGTH = 3;
+const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
 
 export const uuiMonthSelection = {
     container: 'uui-monthselection-container',
@@ -41,10 +41,12 @@ export function MonthSelection(props: MonthSelectionProps): JSX.Element {
         );
     };
 
-    const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
-
     return (
-        <div ref={ props.forwardedRef } className={ cx(css.container, uuiMonthSelection.container, props.cx) } { ...props.rawProps }>
+        <div
+            ref={ props.forwardedRef }
+            className={ cx(css.container, uuiMonthSelection.container, props.cx) }
+            { ...props.rawProps }
+        >
             <div className={ uuiMonthSelection.content }>
                 <div className={ uuiMonthSelection.monthContainer }>
                     {arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) => (
