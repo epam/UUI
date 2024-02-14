@@ -31,7 +31,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> 
             }
             return dsState.checked;
         } else {
-            return props.emptyValue;
+            return 'emptyValue' in props ? props.emptyValue : [];
         }
     }
 
@@ -83,7 +83,7 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId>
         return {
             ...dsState,
             selectedId: id,
-            checked: null,
+            checked: (id === null || id === undefined) ? [] : [id],
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,
         };
