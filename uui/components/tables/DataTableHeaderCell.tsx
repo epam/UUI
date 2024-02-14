@@ -18,8 +18,9 @@ import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-
 import { ReactComponent as FilterIcon } from '@epam/assets/icons/common/content-filtration-18.svg';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
-import { ReactComponent as FoldIcon } from '@epam/assets/icons/common/navigation-unfold-less-18.svg';
-import { ReactComponent as UnfoldIcon } from '@epam/assets/icons/common/navigation-unfold-more-18.svg';
+import { ReactComponent as FoldIcon } from '../../icons/foldAll/navigation-collapse_all-outline.svg';
+import { ReactComponent as UnfoldIcon } from '../../icons/foldAll/navigation-expand_all-outline.svg';
+import { i18n } from '../../i18n';
 
 interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
@@ -99,11 +100,19 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     renderFoldAllIcon = () => {
         if (this.props.isFirstColumn && this.props.showFoldAll) {
             return (
-                <IconButton
-                    cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
-                    icon={ this.props.areAllFolded ? UnfoldIcon : FoldIcon }
-                    onClick={ this.props.onFoldAll }
-                />
+                <Tooltip content={
+                    this.props.areAllFolded
+                        ? i18n.tables.columnHeader.expandAllTooltip
+                        : i18n.tables.columnHeader.collapseAllTooltip
+                }
+                >
+                    <IconButton
+                        color="secondary"
+                        cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
+                        icon={ this.props.areAllFolded ? UnfoldIcon : FoldIcon }
+                        onClick={ this.props.onFoldAll }
+                    />
+                </Tooltip>
             );
         }
     };
