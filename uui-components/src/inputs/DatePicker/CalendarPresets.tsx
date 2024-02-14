@@ -14,33 +14,29 @@ export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.HTMLAtt
     onPresetSet: (nV: RangeDatePickerPresetValue) => void;
 }
 
-export class CalendarPresets extends React.Component<CalendarPresetsProps> {
-    getPresets() {
-        const presets = [];
+const getPresets = (presets: RangeDatePickerPresets) => {
+    return Object.keys(presets).map((key) => ({
+        ...presets[key].getRange(),
+        name: presets[key].name,
+        key,
+    })).sort((a, b) => a.order - b.order);
+};
 
-        for (const key in this.props.presets) {
-            if (this.props.presets[key]) {
-                presets.push({
-                    ...this.props.presets[key].getRange(),
-                    name: this.props.presets[key].name,
-                    key,
-                });
-            }
-        }
-
-        return presets.sort((a, b) => a.order - b.order);
-    }
-
-    render() {
-        return (
-            <div ref={ this.props.forwardedRef } className={ cx(uuiPresets.container, this.props.cx) } { ...this.props.rawProps }>
-                <div className={ uuiPresets.header }>Presets</div>
-                {this.getPresets().map((item) => (
-                    <div key={ item.key } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>
-                        {item.name}
-                    </div>
-                ))}
-            </div>
-        );
-    }
+export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
+    return (
+        <div
+            ref={ props.forwardedRef } className={ cx(uuiPresets.container, props.cx) }
+            { ...props.rawProps }
+        >
+            <div className={ uuiPresets.header }>Presets</div>
+            {getPresets(props.presets).map((item) => (
+                <div
+                    key={ item.key } className={ uuiPresets.item }
+                    onClick={ () => props.onPresetSet(item) }
+                >
+                    {item.name}
+                </div>
+            ))}
+        </div>
+    );
 }

@@ -10,10 +10,9 @@ describe('DataPicker', () => {
                 value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '',
-                    displayedDate: dayjs('2017-01-22').startOf('day'),
+                    month: dayjs('2017-01-22').startOf('day'),
                 } }
-                setDisplayedDateAndView={ jest.fn }
-                setSelectedDate={ jest.fn }
+                onValueChange={ jest.fn }
             />,
         );
         expect(tree).toMatchSnapshot();
@@ -26,16 +25,19 @@ describe('DataPicker', () => {
                 value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '',
-                    displayedDate: dayjs('2017-01-22').startOf('day'),
+                    month: dayjs('2017-01-22').startOf('day'),
                 } }
-                setSelectedDate={ handleChange }
-                setDisplayedDateAndView={ jest.fn() }
+                onValueChange={ handleChange }
             />,
         );
 
         const nextDayElement = screen.getByText('23');
         fireEvent.click(nextDayElement);
-        expect(handleChange).toBeCalledWith('2017-01-23');
+        expect(handleChange).toBeCalledWith({
+            month: dayjs('2017-01-22'),
+            selectedDate: '2017-01-23',
+            view: 'DAY_SELECTION',
+        });
     });
 
     it('should not change selected date if there is filter', async () => {
@@ -45,10 +47,9 @@ describe('DataPicker', () => {
                 value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '2017-01-22',
-                    displayedDate: dayjs('2017-01-22').startOf('day'),
+                    month: dayjs('2017-01-22').startOf('day'),
                 } }
-                setSelectedDate={ handleChange }
-                setDisplayedDateAndView={ jest.fn() }
+                onValueChange={ handleChange }
                 filter={ (day: Dayjs) => {
                     return day.valueOf() >= dayjs('2017-01-22').subtract(0, 'day').valueOf();
                 } }

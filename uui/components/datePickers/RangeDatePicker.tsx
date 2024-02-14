@@ -14,7 +14,10 @@ import css from './RangeDatePicker.module.scss';
 import { defaultValue, useRangeDatePickerState } from './useRangeDatePickerState';
 import { RangeDatePickerProps } from './types';
 
-const modifiers = [{ name: 'offset', options: { offset: [0, 6] } }];
+const modifiers = [{
+    name: 'offset',
+    options: { offset: [0, 6] },
+}];
 
 function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     const {
@@ -27,38 +30,25 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         getChangeHandler,
     } = useRangeDatePickerState(props);
 
-    const renderPresets = (presets: RangeDatePickerPresets) => {
-        return (
-            <Fragment>
-                <div className={ uuiRangeDatePickerBody.separator } />
-                <CalendarPresets
-                    onPresetSet={ (presetVal) => {
-                        onRangeChange({
-                            view: 'DAY_SELECTION',
-                            selectedDate: { from: dayjs(presetVal.from).format(valueFormat), to: dayjs(presetVal.to).format(valueFormat) },
-                            month: dayjs(presetVal.from),
-                        });
-                        toggleIsOpen(false);
-                    } }
-                    presets={ presets }
-                />
-            </Fragment>
-        );
-    };
-
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         if (!props.isReadonly && !props.isDisabled) {
+            const value = {
+                selectedDate: props.value || defaultValue,
+                month: state.month,
+                view: state.view,
+                activePart: state.inFocus,
+            };
+
             return (
-                <DropdownContainer { ...renderProps } cx={ cx(css.dropdownContainer) } focusLock={ false }>
+                <DropdownContainer
+                    { ...renderProps }
+                    cx={ cx(css.dropdownContainer) }
+                    focusLock={ false }
+                >
                     <FlexRow>
                         <RangeDatePickerBody
                             cx={ cx(props.bodyCx) }
-                            value={ {
-                                selectedDate: props.value || defaultValue,
-                                month: state.month,
-                                view: state.view,
-                                activePart: state.inFocus,
-                            } }
+                            value={ value }
                             onValueChange={ onRangeChange }
                             filter={ props.filter }
                             presets={ props.presets }
@@ -66,7 +56,6 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                             renderFooter={ () => {
                                 return props.renderFooter?.(props.value || defaultValue);
                             } }
-                            renderPresets={ renderPresets }
                             isHoliday={ props.isHoliday }
                             rawProps={ props.rawProps?.body }
                         />

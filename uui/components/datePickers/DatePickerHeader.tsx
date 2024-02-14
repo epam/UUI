@@ -19,11 +19,14 @@ export const uuiHeader = {
     navIconLeft: 'uui-datepickerheader-nav-icon-left',
 };
 
-export interface DatePickerHeaderProps extends IHasCX {
+interface DatePickerHeaderValue {
     view: ViewType;
     month: Dayjs;
-    onSetMonth: (month: Dayjs) => void;
-    onSetView: (view: ViewType) => void;
+}
+
+export interface DatePickerHeaderProps extends IHasCX {
+    value: DatePickerHeaderValue;
+    onValueChange: (value: DatePickerHeaderValue) => void;
     /*
      * Navigation icon for the left navigation icon in header.
      * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon.
@@ -60,7 +63,23 @@ export const getNextListYearFromCurrent = (currentDate: Dayjs) => {
     return currentDate.add(16, 'year');
 };
 
-export function DatePickerHeader({ navIconLeft, navIconRight, month, view, onSetMonth, onSetView }: DatePickerHeaderProps) {
+export function DatePickerHeader({
+    navIconLeft, navIconRight, value: { month, view }, onValueChange,
+}: DatePickerHeaderProps) {
+    const onSetMonth = (newMonth: Dayjs) => {
+        onValueChange({
+            view,
+            month: newMonth,
+        });
+    };
+
+    const onSetView = (newView: ViewType) => {
+        onValueChange({
+            view: newView,
+            month,
+        });
+    };
+
     const onLeftNavigationArrow = () => {
         switch (view) {
             case 'DAY_SELECTION':

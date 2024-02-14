@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
-import {
-    renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within, userEvent,
-} from '@epam/uui-test-utils';
+import { RangeDatePicker } from '../RangeDatePicker';
+import { renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent } from '@epam/uui-test-utils';
 import { supportedDateFormats } from '@epam/uui-components';
 import dayjs from 'dayjs';
+import { RangeDatePickerProps } from '../types';
 
 interface TestProps {
     value?: RangeDatePickerProps['value'];
@@ -24,9 +23,15 @@ function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
 async function setupRangeDatePicker(props: TestProps) {
     const { result, mocks } = await setupComponentForTest<RangeDatePickerProps>(
         (context) => ({
-            rawProps: { from: { 'data-testid': 'from' }, to: { 'data-testid': 'to' } },
+            rawProps: {
+                from: { 'data-testid': 'from' },
+                to: { 'data-testid': 'to' },
+            },
             ...props,
-            value: props.value || { from: null, to: null },
+            value: props.value || {
+                from: null,
+                to: null,
+            },
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current?.setProperty('value', newValue);
             }),
@@ -40,14 +45,29 @@ async function setupRangeDatePicker(props: TestProps) {
 
     return {
         result,
-        dom: { from, to },
-        mocks: { onValueChange: mocks.onValueChange, onOpenChange: mocks.onOpenChange },
+        dom: {
+            from,
+            to,
+        },
+        mocks: {
+            onValueChange: mocks.onValueChange,
+            onOpenChange: mocks.onOpenChange,
+        },
     };
 }
 
 describe('RangeDataPicker', () => {
     it('should be rendered if minimum params and custom format defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(<RangeDatePicker format="MMM D, YYYY" value={ { from: null, to: null } } onValueChange={ jest.fn } />);
+        const tree = await renderSnapshotWithContextAsync(
+            <RangeDatePicker
+                format="MMM D, YYYY"
+                value={ {
+                    from: null,
+                    to: null,
+                } }
+                onValueChange={ jest.fn }
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
@@ -55,7 +75,10 @@ describe('RangeDataPicker', () => {
         const tree = await renderSnapshotWithContextAsync(
             <RangeDatePicker
                 format="MMM D, YYYY"
-                value={ { from: null, to: null } }
+                value={ {
+                    from: null,
+                    to: null,
+                } }
                 onValueChange={ jest.fn }
                 renderFooter={ ((value: any) => jest.fn(value)) as any }
                 disableClear={ false }
@@ -69,7 +92,10 @@ describe('RangeDataPicker', () => {
     });
 
     it('should change input value after change props', async () => {
-        const value = { from: '2017-01-22', to: '2017-01-28' };
+        const value = {
+            from: '2017-01-22',
+            to: '2017-01-28',
+        };
         const { dom } = await setupRangeDatePicker({ value });
         expect(dom.from.value).toBe('Jan 22, 2017');
         expect(dom.to.value).toBe('Jan 28, 2017');
@@ -81,61 +107,89 @@ describe('RangeDataPicker', () => {
     });
 
     it('should change state on picker clear', async () => {
-        const value = { from: '2017-01-22', to: '2017-01-28' };
+        const value = {
+            from: '2017-01-22',
+            to: '2017-01-28',
+        };
         const { mocks } = await setupRangeDatePicker({ value });
         const clear = screen.getByRole('button');
-        fireEvent.click(clear);
-        expect(mocks.onValueChange).toBeCalledWith({ from: null, to: null });
+        await userEvent.click(clear);
+        expect(mocks.onValueChange).toBeCalledWith({
+            from: null,
+            to: null,
+        });
     });
 
     it("should open picker on 'from' field focus and close it on blur", async () => {
-        const { dom } = await setupRangeDatePicker({ value: undefined });
-        fireEvent.focus(dom.from);
+        const { dom, result } = await setupRangeDatePicker({ value: undefined });
+        await userEvent.clear(dom.from);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
-        fireEvent.blur(dom.from);
+        await userEvent.click(result.container);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should open picker on "To" field focus and close it on blur', async () => {
-        const { dom } = await setupRangeDatePicker({ value: undefined });
-        fireEvent.focus(dom.to);
+        const { dom, result } = await setupRangeDatePicker({ value: undefined });
+        await userEvent.clear(dom.to);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
-        fireEvent.blur(dom.to);
+        await userEvent.click(result.container);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should reset invalid "From" value onBlur', async () => {
-        const value = { from: '2019-10-47', to: '2019-10-07' };
-        const { dom, mocks } = await setupRangeDatePicker({ value });
-        fireEvent.blur(dom.from);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
+        const value = {
             from: null,
-            to: value.to,
-        });
+            to: '2019-10-07',
+        };
+        const {
+            dom, result,
+        } = await setupRangeDatePicker({ value });
+
+        await userEvent.click(dom.from);
+        expect(dom.from).toHaveFocus();
+        expect(dom.from.value).toBe('');
+        expect(dom.to.value).toBe('Oct 7, 2019');
+
+        await userEvent.type(dom.from, '2019-10-47');
+        await userEvent.click(result.container);
+        expect(dom.from).not.toHaveFocus();
+        expect(dom.from.value).toBe('');
+        expect(dom.to.value).toBe('Oct 7, 2019');
     });
 
     it('should set new value when new value typed in input', async () => {
-        const newValueManualTyping = { from: 'Sep 11, 2019', to: 'Sep 20, 2019' };
-        const value = { from: '2019-09-14', to: '2019-09-15' };
-        const { dom, mocks } = await setupRangeDatePicker({ value });
+        const value = {
+            from: null,
+            to: '2019-10-07',
+        };
+        const {
+            dom, result,
+        } = await setupRangeDatePicker({ value });
 
-        fireEvent.change(dom.from, { target: { value: newValueManualTyping.from } });
-        fireEvent.blur(dom.from);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            from: '2019-09-11',
-            to: '2019-09-15',
-        });
+        await userEvent.click(dom.from);
+        expect(dom.from).toHaveFocus();
+        expect(dom.from.value).toBe('');
+        expect(dom.to.value).toBe('Oct 7, 2019');
+
+        await userEvent.type(dom.from, '2019-10-02');
+        await userEvent.click(result.container);
+        expect(dom.from).not.toHaveFocus();
+        expect(dom.from.value).toBe('Oct 2, 2019');
+        expect(dom.to.value).toBe('Oct 7, 2019');
     });
 
     it('should change range on picker body value change', async () => {
         const newValueManualSel = { from: '2019-09-11' };
-        const value = { from: '2019-09-10', to: '2019-09-12' };
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-12',
+        };
         const { dom, mocks } = await setupRangeDatePicker({ value });
 
-        fireEvent.focus(dom.from);
+        await userEvent.click(dom.from);
         const dialog = screen.getByRole('dialog');
         const [sept11] = await within(dialog).findAllByText('11');
-        fireEvent.click(sept11);
+        await userEvent.click(sept11);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             from: newValueManualSel.from,
             to: '2019-09-12',
@@ -143,7 +197,10 @@ describe('RangeDataPicker', () => {
     });
 
     it('should focus corresponding input on picker value changes starting from start date', async () => {
-        const value = { from: '2019-09-10', to: '2019-09-12' };
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-12',
+        };
         const { dom } = await setupRangeDatePicker({ value });
 
         await userEvent.click(dom.from);
@@ -178,7 +235,10 @@ describe('RangeDataPicker', () => {
     });
 
     it('should focus corresponding input on picker values change starting from end date', async () => {
-        const value = { from: '2019-09-10', to: '2019-09-12' };
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-12',
+        };
         const { dom } = await setupRangeDatePicker({ value });
 
         await userEvent.clear(dom.from);
@@ -188,86 +248,135 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('Sep 12, 2019');
 
         await userEvent.click(dom.to);
-        const dialog = screen.getByRole('dialog');
+        let dialog = screen.getByRole('dialog');
+
+        /**
+         * 'from'
+         */
 
         const [, oct11] = await within(dialog).findAllByText('11');
         await userEvent.click(oct11);
         // should focus 'from' input
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
+        // should set 'to' value
         expect(dom.from.value).toBe('');
         expect(dom.to.value).toBe('Oct 11, 2019');
 
-        const [, oct15] = await within(dialog).findAllByText('15');
+        const [, oct9] = await within(dialog).findAllByText('9');
+        await userEvent.click(oct9);
+        // should not clear 'to' input, when selecting earlier date in 'from' input
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
+        // should set 'from' value, since it earlier then previous 'to' value
+        expect(dom.from.value).toBe('Oct 9, 2019');
+        expect(dom.to.value).toBe('Oct 11, 2019');
+
+        // move focus to 'from' input
+        await userEvent.click(dom.from);
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
+
+        // now we have Oct with Nov
+        const [oct15] = await within(dialog).findAllByText('15');
         await userEvent.click(oct15);
         // should clear and focus 'to' input, when selecting older date
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
+        // should set 'from' value, since it earlier then previous 'to' value
         expect(dom.from.value).toBe('Oct 15, 2019');
         expect(dom.to.value).toBe('');
 
-        const [, oct10] = await within(dialog).findAllByText('10');
+        const [oct10] = await within(dialog).findAllByText('10');
         await userEvent.click(oct10);
         // should not change focus when earlier date selected for 'to' input
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
+        // should set 'from' value once more time, since it earlier then previous 'to' value
         expect(dom.from.value).toBe('Oct 10, 2019');
         expect(dom.to.value).toBe('');
 
-        const [, oct17] = await within(dialog).findAllByText('17');
+        const [oct17] = await within(dialog).findAllByText('17');
         await userEvent.click(oct17);
-        // should cancel focus when two dates selected
+        // should move focus from inputs when two dates selected
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
         expect(dom.from.value).toBe('Oct 10, 2019');
         expect(dom.to.value).toBe('Oct 17, 2019');
-    });
 
-    it('should format value onBlur', async () => {
-        const value = { from: '2019-09-10', to: '2019-10-10' };
-        const newValueInIsoFormat = { from: '2019-09-11', to: '2019-10-11' };
+        /**
+         * 'to'
+         */
+        // set focus on 'to'
+        await userEvent.click(dom.to);
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
 
-        const { dom } = await setupRangeDatePicker({ value });
-        expect(dom.from.value).toBe('Sep 10, 2019');
-        fireEvent.change(dom.from, { target: { value: newValueInIsoFormat.from } });
-        fireEvent.blur(dom.from);
-        expect(dom.from.value).toBe('Sep 11, 2019');
+        dialog = screen.getByRole('dialog');
 
-        fireEvent.change(dom.to, { target: { value: newValueInIsoFormat.to } });
-        fireEvent.blur(dom.to);
-        expect(dom.to.value).toBe('Oct 11, 2019');
+        const [oct5] = await within(dialog).findAllByText('5');
+        await userEvent.click(oct5);
+        // should return focus on 'from' input
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
+        // should clear 'to' when selecting 'to' earlier than 'from'
+        expect(dom.from.value).toBe('Oct 5, 2019');
+        expect(dom.to.value).toBe('');
     });
 
     it('should return format', async () => {
-        const value = { from: '2019-09-10', to: '2019-10-10' };
-        const { dom } = await setupRangeDatePicker({ value, format: 'DD-MM-YYYY' });
+        const value = {
+            from: '2019-09-10',
+            to: '2019-10-10',
+        };
+        const { dom } = await setupRangeDatePicker({
+            value,
+            format: 'DD-MM-YYYY',
+        });
         expect(dom.from.value).toBe('10-09-2019');
         expect(dom.to.value).toBe('10-10-2019');
     });
 
     it('should set the same value on from: & to: input', async () => {
-        const value = { from: '2019-09-10', to: '2019-09-10' };
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-10',
+        };
         const { dom } = await setupRangeDatePicker({ value });
         expect(dom.from.value).toBe('Sep 10, 2019');
         expect(dom.to.value).toBe('Sep 10, 2019');
     });
 
     it('should fire onOpenChange event on open state change', async () => {
-        const value = { from: '2017-01-22', to: '2017-01-28' };
+        const value = {
+            from: '2017-01-22',
+            to: '2017-01-28',
+        };
         const onOpenChange = jest.fn();
-        const { dom } = await setupRangeDatePicker({ value, onOpenChange });
-        fireEvent.focus(dom.from);
+        const { result, dom } = await setupRangeDatePicker({
+            value,
+            onOpenChange,
+        });
+        await userEvent.click(dom.from);
         expect(onOpenChange).toBeCalledWith(true);
-        fireEvent.blur(dom.from);
+        await userEvent.click(result.container);
         expect(onOpenChange).toBeCalledWith(false);
     });
 
     it('should support entering from keyboard', async () => {
-        const value = { from: '2019-09-10', to: '2019-09-15' };
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-15',
+        };
         const onOpenChange = jest.fn();
         const onBlur = jest.fn();
         const onFocus = jest.fn();
-        const { dom, result } = await setupRangeDatePicker({ value, onBlur, onFocus, onOpenChange });
+        const { dom, result } = await setupRangeDatePicker({
+            value,
+            onBlur,
+            onFocus,
+            onOpenChange,
+        });
 
         await userEvent.clear(dom.from);
         expect(onFocus).toBeCalled();
@@ -286,7 +395,10 @@ describe('RangeDataPicker', () => {
     });
 
     it('should support entering from keyboard with custom format', async () => {
-        const value = { from: '2019-09-10', to: '2019-09-15' };
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-15',
+        };
         const onOpenChange = jest.fn();
         const onBlur = jest.fn();
         const onFocus = jest.fn();
@@ -315,8 +427,14 @@ describe('RangeDataPicker', () => {
     });
 
     it.each(supportedDateFormats())('should support custom format %s', async (currentFormat) => {
-        const value = { from: '2019-09-10', to: '2019-09-15' };
-        const { dom } = await setupRangeDatePicker({ value, format: currentFormat });
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-15',
+        };
+        const { dom } = await setupRangeDatePicker({
+            value,
+            format: currentFormat,
+        });
         expect(dom.from.value).toBe(dayjs('2019-09-10').format(currentFormat));
         expect(dom.to.value).toBe(dayjs('2019-09-15').format(currentFormat));
     });

@@ -53,7 +53,9 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                     {props.renderDay ? (
                         props.renderDay({
                             value: day,
-                            onValueChange: props.onValueChange,
+                            onValueChange: (v) => {
+                                props.onValueChange(v);
+                            },
                             filter: props.filter,
                             isHoliday: props.isHoliday ? props.isHoliday(day) : isHoliday(day),
                             isSelected: isSelected(day),
@@ -61,7 +63,9 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                     ) : (
                         <Day
                             value={ day }
-                            onValueChange={ props.onValueChange }
+                            onValueChange={ (v) =>{
+                                props.onValueChange(v);
+                            } }
                             filter={ props.filter }
                             isHoliday={ props.isHoliday ? props.isHoliday(day) : isHoliday(day) }
                             isSelected={ isSelected(day) }
@@ -84,7 +88,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
         const dayOfLastWeekInPrevMonth = getPrevMonthFromCurrent(currentDate).endOf('month').day();
 
         // get days of current month
-        const days = Array.from({ length: dayOfLastWeekInPrevMonth }, (index) => {
+        const days = Array.from({ length: dayOfLastWeekInPrevMonth }, (_, index) => {
             return (
                 <div
                     className={ uuiDaySelection.dayCell }
@@ -107,7 +111,10 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
     };
 
     return (
-        <div ref={ props.forwardedRef } className={ cx(css.container, uuiDaySelection.container, props.cx) } { ...props.rawProps }>
+        <div
+            ref={ props.forwardedRef } className={ cx(css.container, uuiDaySelection.container, props.cx) }
+            { ...props.rawProps }
+        >
             <div className={ uuiDaySelection.content }>
                 <div className={ uuiDaySelection.weekdaysContainer }>
                     {dayjs.weekdaysShort(true).map((weekday, index) => (

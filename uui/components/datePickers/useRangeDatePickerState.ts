@@ -20,7 +20,10 @@ type DatePickerStateReducer = (prev: RangeDatePickerState, newState: Partial<Ran
 /*
 * Defines input type.
 */
-export const defaultValue: RangeDatePickerValue = { from: null, to: null };
+export const defaultValue: RangeDatePickerValue = {
+    from: null,
+    to: null,
+};
 
 const getDefaultValue = () => {
     return {
@@ -48,7 +51,10 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
     const context = useUuiContext();
 
     const [state, setState] = React.useReducer<DatePickerStateReducer>((prev, newState) => {
-        return { ...prev, ...newState };
+        return {
+            ...prev,
+            ...newState,
+        };
     }, {
         isOpen: false,
         view: 'DAY_SELECTION',
@@ -93,7 +99,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
         } else if (state.inFocus === 'to' && toChanged) {
             setState({ inFocus: 'from' });
             setValue(value);
-            if (value.selectedDate.from) {
+            if (value.selectedDate.from && value.selectedDate.to) {
                 toggleIsOpen(false);
             }
         } else {
@@ -148,11 +154,17 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
         if (!valueIsValid(state.inputValue[inputType], inputType) || (props.filter && !props.filter(dayjs(props.value[inputType])))) {
             switch (inputType) {
                 case 'from':
-                    handleValueChange({ ...props.value, from: null });
+                    handleValueChange({
+                        ...props.value,
+                        from: null,
+                    });
                     getChangeHandler('from')(null);
                     break;
                 case 'to':
-                    handleValueChange({ ...props.value, to: null });
+                    handleValueChange({
+                        ...props.value,
+                        to: null,
+                    });
                     getChangeHandler('to')(null);
                     break;
             }
@@ -163,7 +175,10 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
     };
 
     const getChangeHandler = (inputType: InputType) => (value: string) => {
-        const inputValue = { ...state.inputValue, [inputType]: value };
+        const inputValue = {
+            ...state.inputValue,
+            [inputType]: value,
+        };
         if (valueIsValid(value, inputType) && (!props.filter || props.filter(dayjs(value)))) {
             setValue({
                 selectedDate: toValueDateRangeFormat(inputValue, format),
@@ -173,10 +188,22 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
         } else {
             switch (inputType) {
                 case 'from':
-                    setValue({ ...state, selectedDate: { from: null, to: state.selectedDate.to } });
+                    setValue({
+                        ...state,
+                        selectedDate: {
+                            from: null,
+                            to: state.selectedDate.to,
+                        },
+                    });
                     break;
                 case 'to':
-                    setValue({ ...state, selectedDate: { from: state.selectedDate.from, to: null } });
+                    setValue({
+                        ...state,
+                        selectedDate: {
+                            from: state.selectedDate.from,
+                            to: null,
+                        },
+                    });
                     break;
             }
         }
@@ -187,7 +214,10 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
     const clearRange = () => {
         const clearAllowed = !props.disableClear && state.inputValue.from && state.inputValue.to;
         if (clearAllowed) {
-            handleValueChange({ from: null, to: null });
+            handleValueChange({
+                from: null,
+                to: null,
+            });
             const defaultVal = getDefaultValue();
             setState({
                 isOpen: true,

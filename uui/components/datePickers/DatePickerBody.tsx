@@ -91,13 +91,15 @@ export function DatePickerBody({
     return (
         <div className={ cx(css.root, uuiDatePickerBody.wrapper, classes) }>
             <DatePickerHeader
-                view={ value.view }
-                month={ value.month }
-                onSetView={ (view) => {
-                    onValueChange({ ...value, view });
+                value={ {
+                    view: value.view,
+                    month: value.month,
                 } }
-                onSetMonth={ (month) => {
-                    onValueChange({ ...value, month });
+                onValueChange={ (newValue) => {
+                    onValueChange({
+                        ...value,
+                        ...newValue,
+                    });
                 } }
             />
             {getView()}

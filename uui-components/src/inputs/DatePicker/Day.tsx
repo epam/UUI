@@ -7,10 +7,12 @@ import { uuiDaySelection } from './calendarConstants';
 dayjs.extend(isToday);
 
 export function Day(props: DayProps): JSX.Element {
-    if (!props.value) return null;
     const isCurrent = props.value.isToday();
     const isPassedFilter = props.filter ? props.filter(props.value) : true;
 
+    const dayNumber = props.renderDayNumber
+        ? props.renderDayNumber(props.value)
+        : props.value.format('D');
     return (
         <div
             onClick={ isPassedFilter ? () => props.onValueChange(props.value) : undefined }
@@ -28,9 +30,7 @@ export function Day(props: DayProps): JSX.Element {
             { ...props.rawProps }
         >
             <div className={ uuiDaySelection.day }>
-                {props.renderDayNumber
-                    ? props.renderDayNumber(props.value)
-                    : props.value.format('D')}
+                {dayNumber}
             </div>
         </div>
     );
