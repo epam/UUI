@@ -262,7 +262,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             row.isFoldable = true;
         }
 
-        const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
+        const isCheckboxEnabled = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible;
+        const isCheckable = isCheckboxEnabled && !rowOptions.checkbox.isDisabled;
         const isSelectable = rowOptions && rowOptions.isSelectable;
         if (rowOptions != null) {
             const rowValue = row.value;
@@ -277,6 +278,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && this.handleOnFocus;
         row.isChildrenChecked = this.someChildCheckedByKey[this.idToKey(row.id)];
+        const isSingleCheck = this.value.selectedId !== undefined 
+            && this.value.selectedId !== null
+            && this.value.checked?.length === 1
+            && !isCheckboxEnabled;
+
+        row.isChildrenSelected = isSingleCheck && this.someChildCheckedByKey[this.idToKey(row.id)];
     }
 
     private isRowChecked(row: DataRowProps<TItem, TId>) {
@@ -604,7 +611,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             }
         }
 
-        if (row.isSelected) {
+        if (row.isSelected || row.isChildrenSelected) {
             isSomeSelected = true;
         }
 
