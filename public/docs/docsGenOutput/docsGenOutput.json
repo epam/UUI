@@ -1,5 +1,5 @@
 {
- "version": "5.5.1",
+ "version": "5.5.3",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -12736,6 +12736,11 @@
       "    processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any>;",
       "    /** Starts file uploading using FormData */",
       "    uploadFile(url: string, file: File, options: FileUploadOptions): Promise<FileUploadResponse>;",
+      "    /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.",
+      "     * Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.",
+      "     * @default '/auth/login'",
+      "     * */",
+      "    apiReloginPath: string;",
       "}"
      ]
     },
@@ -12852,6 +12857,27 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "apiReloginPath",
+      "name": "apiReloginPath",
+      "comment": {
+       "raw": [
+        "Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.",
+        " Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.",
+        " @default '/auth/login'"
+       ],
+       "tags": {
+        "@default": "/auth/login"
+       }
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": true
      },
@@ -19808,7 +19834,7 @@
       "    patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
       "    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;",
       "    cascadeSelection(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: {",
-      "        isSelectable?: (item: TItem) => boolean;",
+      "        isSelectable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;",
       "        cascade?: CascadeSelection;",
       "    }): TId[];",
       "    load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren?: boolean): Promise<ITree<TItem, TId>>;",
@@ -19998,7 +20024,7 @@
       "uid": "cascadeSelection",
       "name": "cascadeSelection",
       "typeValue": {
-       "raw": "(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: { isSelectable?: ((item: TItem) => boolean) | undefined; cascade?: CascadeSelection | undefined; } | undefined) => TId[]"
+       "raw": "(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: { isSelectable?: ((id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean) | undefined; cascade?: CascadeSelection | undefined; } | undefined) => TId[]"
       },
       "editor": {
        "type": "func"
@@ -34198,263 +34224,6 @@
        "raw": "null | (instance: any) => void | React.RefObject<any>"
       },
       "from": "@epam/uui-core:DndActorRenderParams",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:IconButtonProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "IconButtonProps",
-     "nameFull": "IconButtonProps"
-    },
-    "src": "uui-components/src/buttons/IconButton.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "IconButtonProps",
-     "print": [
-      "type IconButtonProps = ClickableComponentProps & IDropdownToggler & {",
-      "    /** Icon can be a React element (usually an SVG element) */",
-      "    icon?: Icon;",
-      "    /** Icon for drop-down toggler */",
-      "    dropdownIcon?: Icon;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Called when component is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": "clickAnalyticsEvent",
-      "name": "clickAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | { [key: string]: any; name: string; }"
-      },
-      "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "href",
-      "name": "href",
-      "comment": {
-       "raw": [
-        "Href (URL) to redirect to, for non-SPA redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "target",
-      "name": "target",
-      "comment": {
-       "raw": [
-        "Controls where the link should be opened"
-       ]
-      },
-      "typeValue": {
-       "raw": "'_blank'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "_blank"
-       ]
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
       "required": false
      }
     ],
@@ -63824,6 +63593,102 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:ErrorHandlerProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "ErrorHandlerProps",
+     "nameFull": "ErrorHandlerProps"
+    },
+    "src": "uui/components/errors/ErrorHandler.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ErrorHandlerProps",
+     "print": [
+      "interface ErrorHandlerProps extends IHasCX, IHasChildren {",
+      "    /** Pure function to get error info for display based on error.",
+      "     * If omitted, error info from default config will be used.",
+      "     */",
+      "    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
+      "    /** Callback to handle notification error.",
+      "     * If omitted, default implementation with ErrorNotification will be used.",
+      "     * */",
+      "    onNotificationError?: (errors: ApiCallInfo) => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "getErrorInfo",
+      "name": "getErrorInfo",
+      "comment": {
+       "raw": [
+        "Pure function to get error info for display based on error.",
+        " If omitted, error info from default config will be used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onNotificationError",
+      "name": "onNotificationError",
+      "comment": {
+       "raw": [
+        "Callback to handle notification error.",
+        " If omitted, default implementation with ErrorNotification will be used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(errors: ApiCallInfo) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:FileCardItem": {
    "summary": {
     "module": "@epam/uui",
@@ -64963,15 +64828,52 @@
     "exported": true
    },
    "details": {
-    "kind": 265,
+    "kind": 264,
     "typeValue": {
-     "raw": "IconButtonProps",
+     "raw": "IconButtonCoreProps",
      "print": [
       "/** Represents the Core properties of the IconButton component. */",
-      "type IconButtonCoreProps = uuiComponents.IconButtonProps;"
+      "interface IconButtonCoreProps extends ClickableComponentProps, IDropdownToggler {",
+      "    /** Icon can be a React element (usually an SVG element) */",
+      "    icon?: Icon;",
+      "    /** Icon for drop-down toggler */",
+      "    dropdownIcon?: Icon;",
+      "}"
      ]
     },
     "props": [
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "dropdownIcon",
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
      {
       "uid": "onClick",
       "name": "onClick",
@@ -65167,40 +65069,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      }
     ],
@@ -65233,6 +65101,40 @@
     },
     "props": [
      {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownIcon",
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -65427,40 +65329,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -82977,7 +82845,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'disabled' | 'tertiary'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'brand' | 'tertiary' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -82989,8 +82857,9 @@
         "primary",
         "secondary",
         "white",
-        "disabled",
-        "tertiary"
+        "brand",
+        "tertiary",
+        "disabled"
        ]
       },
       "from": "@epam/uui:TextMods",
@@ -87340,102 +87209,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:ErrorHandlerProps": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ErrorHandlerProps",
-     "nameFull": "ErrorHandlerProps"
-    },
-    "src": "epam-promo/components/errors/ErrorHandler.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ErrorHandlerProps",
-     "print": [
-      "interface ErrorHandlerProps extends IHasCX, IHasChildren {",
-      "    /** Pure function to get error info for display based on error.",
-      "     * If omitted, error info from default config will be used.",
-      "     */",
-      "    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
-      "    /** Callback to handle notification error.",
-      "     * If omitted, default implementation with ErrorNotification will be used.",
-      "     * */",
-      "    onNotificationError?: (errors: ApiCallInfo) => void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "getErrorInfo",
-      "name": "getErrorInfo",
-      "comment": {
-       "raw": [
-        "Pure function to get error info for display based on error.",
-        " If omitted, error info from default config will be used."
-       ]
-      },
-      "typeValue": {
-       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "onNotificationError",
-      "name": "onNotificationError",
-      "comment": {
-       "raw": [
-        "Callback to handle notification error.",
-        " If omitted, default implementation with ErrorNotification will be used."
-       ]
-      },
-      "typeValue": {
-       "raw": "(errors: ApiCallInfo) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:FlexRowProps": {
    "summary": {
     "module": "@epam/promo",
@@ -87808,6 +87581,40 @@
     },
     "props": [
      {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownIcon",
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -88002,40 +87809,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -90756,7 +90529,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'disabled' | 'tertiary'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'tertiary' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -90777,8 +90550,9 @@
         "gray5",
         "gray80",
         "gray90",
-        "disabled",
-        "tertiary"
+        "brand",
+        "tertiary",
+        "disabled"
        ]
       },
       "from": "@epam/promo:TextMods",
@@ -94674,133 +94448,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:ErrorConfig": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ErrorConfig",
-     "nameFull": "ErrorConfig"
-    },
-    "src": "loveship/components/app/ErrorHandler.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ErrorConfig",
-     "print": [
-      "interface ErrorConfig {",
-      "    getInfo?: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "getInfo",
-      "name": "getInfo",
-      "typeValue": {
-       "raw": "(error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:ErrorPageProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ErrorPageProps",
-     "nameFull": "ErrorPageProps"
-    },
-    "src": "loveship/components/app/ErrorHandler.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ErrorPageProps",
-     "print": [
-      "interface ErrorPageProps extends IHasCX, IHasChildren {",
-      "    errorPageConfig?: ErrorConfig;",
-      "    theme?: Theme;",
-      "    onNotificationError?: (errors: ApiCallInfo) => void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "errorPageConfig",
-      "name": "errorPageConfig",
-      "typeValue": {
-       "raw": "ErrorConfig"
-      },
-      "required": false
-     },
-     {
-      "uid": "theme",
-      "name": "theme",
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "onNotificationError",
-      "name": "onNotificationError",
-      "typeValue": {
-       "raw": "(errors: ApiCallInfo) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:FlexRowProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -95195,6 +94842,40 @@
     },
     "props": [
      {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownIcon",
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -95389,40 +95070,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -99201,7 +98848,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'disabled' | 'tertiary'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'tertiary' | 'disabled'"
       },
       "typeValueRef": "@epam/loveship:TextColors",
       "editor": {
@@ -99226,8 +98873,9 @@
         "night400",
         "night800",
         "night900",
-        "disabled",
-        "tertiary"
+        "brand",
+        "tertiary",
+        "disabled"
        ]
       },
       "from": "@epam/loveship:TextMods",
