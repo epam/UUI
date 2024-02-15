@@ -1,6 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { LazyListViewProps } from '../LazyListView';
-import { delay } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 import { DataSourceState } from '../../../../types';
 
 interface TItem {
@@ -25,14 +25,14 @@ describe('LazyListView - old tests', () => {
         dataSource = new LazyDataSource(viewProps);
     });
 
-    it('should set value', () => {
-        const view = dataSource.getView({ topIndex: 1, visibleCount: 20, filter: {} }, () => {}, {});
-        expect(view.value).toStrictEqual({ topIndex: 1, visibleCount: 20, filter: {} });
-    });
-
     describe('getById', () => {
         it('should return item by id', async () => {
-            const view = dataSource.getView(initialValue, () => {}, {});
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
+            );
+
+            const view = hookResult.result.current;
             const loadingRow = view.getById(testItems[4].id, 4);
             expect(loadingRow.isLoading).toBe(true);
             expect(loadingRow.id).not.toBeNull();
@@ -47,7 +47,12 @@ describe('LazyListView - old tests', () => {
         });
 
         it("should return loading row if item don't exist in dataSource", () => {
-            const view = dataSource.getView(initialValue, () => {}, {});
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
+            );
+
+            const view = hookResult.result.current;
             const row = view.getById(111, 111);
 
             expect(row.isLoading).toBe(true);
@@ -56,7 +61,12 @@ describe('LazyListView - old tests', () => {
     });
 
     it('should return rows', async () => {
-        const view = dataSource.getView(initialValue, () => {}, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
+        );
+
+        const view = hookResult.result.current;
         let rows = view.getVisibleRows();
 
         // Should return loading rows for first call
