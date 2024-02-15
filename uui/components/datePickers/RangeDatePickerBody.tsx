@@ -2,9 +2,10 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { arrayToMatrix, cx, DayProps, IEditable, RangeDatePickerInputType, RangeDatePickerPresets } from '@epam/uui-core';
-import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day, CalendarPresets, valueFormat } from '@epam/uui-components';
+import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day, valueFormat } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { DatePickerBody } from './DatePickerBody';
+import { CalendarPresets } from './CalendarPresets';
 import css from './RangeDatePickerBody.module.scss';
 
 dayjs.extend(isoWeek);
