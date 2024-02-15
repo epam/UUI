@@ -113,7 +113,8 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
 
     return (
         <div
-            ref={ props.forwardedRef } className={ cx(css.container, uuiDaySelection.container, props.cx) }
+            ref={ props.forwardedRef }
+            className={ cx(css.container, uuiDaySelection.container, props.cx) }
             { ...props.rawProps }
         >
             <div className={ uuiDaySelection.content }>
