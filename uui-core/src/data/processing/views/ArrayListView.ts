@@ -75,6 +75,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         if (this.fullTree && (prevTree !== this.visibleTree || this.isCacheIsOutdated(value, currentValue))) {
             this.updateTree(currentValue, value);
             this.updateCheckedLookup(this.value.checked);
+            this.updateSelectedLookup(this.value.selectedId);
             this.rebuildRows();
         } else {
             if (value.focusedIndex !== currentValue.focusedIndex) {
@@ -161,8 +162,17 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const checked = (this.value && this.value.checked) ?? [];
         const updatedChecked = this.sortedTree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: this.props.cascadeSelection,
-            isSelectable: (item: TItem) => {
-                const { isCheckable } = this.getRowProps(item, null);
+            isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+                let currentItem = item;
+                if (currentItem === NOT_FOUND_RECORD) {
+                    const row = this.getById(id, null);
+                    if (row.isLoading) {
+                        return false;
+                    }
+                    currentItem = row.value;
+                }
+
+                const { isCheckable } = this.getRowProps(currentItem, null);
                 return isCheckable;
             },
         });

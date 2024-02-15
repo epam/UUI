@@ -1,10 +1,9 @@
 import '../styles/globals.css';
 import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
-import '@epam/promo/styles.css';
-//
+import '@epam/assets/theme/theme_loveship.scss';
 import { DragGhost } from "@epam/uui-core";
-import { Blocker, ErrorHandler } from "@epam/promo";
+import { Blocker, ErrorHandler } from "@epam/uui";
 import { AppHeader } from "../components/AppHeader";
 import { Modals, Snackbar } from "@epam/uui-components";
 import type { ComponentType } from "react";

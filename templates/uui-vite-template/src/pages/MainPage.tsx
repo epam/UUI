@@ -1,7 +1,7 @@
 import css from './MainPage.module.scss';
 //
 import { Panel, RichTextView, IconContainer } from '@epam/uui';
-import { ReactComponent as UuiPromoImage } from '../icons/uui-promo-image.svg';
+import { default as UuiPromoImage } from '../icons/uui-promo-image.svg?react';
 
 const links = [
     {
@@ -24,7 +24,7 @@ export const MainPage = () => {
             </div>
             <Panel cx={css.mainPanel}>
                 <RichTextView size="14">
-                    <h3>Welcome to UUI template app</h3>
+                    <h3 className={css.welcome}>Welcome to UUI template app</h3>
                     {links.map((value) => (
                         <p key={value.label}>
                             {value.label}

@@ -23,7 +23,7 @@
     &:global(.-clickable) {
         cursor: pointer;
 
-        &:hover {
+        &:hover:not(:has(:global(.-clickable):hover)) {
             background: var(--uui-dt-row-bg-hover);
             box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
 
@@ -60,13 +60,24 @@
     }
 
     .checkbox {
-        margin-right: 12px;
+        align-self: stretch;
+        padding-right: 12px;
     }
 
     .icon {
         display: flex;
         flex-shrink: 0;
         cursor: pointer;
+    }
+
+    .fold-all-icon {
+        display: flex;
+        padding-right: 12px;
+        align-self: stretch;
+
+        &:hover {
+            fill: var(--uui-icon-hover);
+        }
     }
 
     .icon-cell {

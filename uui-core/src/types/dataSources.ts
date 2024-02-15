@@ -109,6 +109,12 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     page?: number;
     /** The amount of items per page */
     pageSize?: number;
+
+    /**
+     * Provides default folding of nodes if the opposite value is not present in the folded map.
+     * It is used to collapse/expand all nodes.
+     */
+    foldAll?: boolean;
 }
 
 export const CascadeSelectionTypes = {
@@ -168,7 +174,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Can be specified to unfold all or some items at start.
      * If not specified, all rows would be folded.
      */
-    isFoldedByDefault?(item: TItem): boolean;
+    isFoldedByDefault?(item: TItem, state: DataSourceState<TFilter, TId>): boolean;
 
     /**
      * Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.

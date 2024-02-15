@@ -7,7 +7,8 @@ import {
     Router6AdaptedRouter, useUuiServices, DragGhost,
     UuiContext, GAListener, IProcessRequest,
 } from '@epam/uui-core';
-import { Snackbar, Modals, PortalRoot } from '@epam/uui-components';
+import { Modals, PortalRoot } from '@epam/uui-components';
+import { Snackbar } from '@epam/uui';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';

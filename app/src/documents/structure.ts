@@ -15,7 +15,7 @@ import {
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
     DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc, OverviewDoc, StatusIndicatorDoc,
-    Overviews, Tokens,
+    Overview, Tokens, AccessibilityDoc, UtGuideGettingStartedDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -144,17 +144,20 @@ export const items: DocItem[] = [
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
 
     { id: 'themes', name: 'Themes' },
-    { id: 'overview-themes', name: 'Overview', component: Overviews, parentId: 'themes' },
+    { id: 'overview-themes', name: 'Overview', component: Overview, parentId: 'themes' },
     { id: 'tokens', name: 'Tokens', component: Tokens, parentId: 'themes' },
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
+    { id: 'testing-getting-started', name: 'Getting Started', component: UtGuideGettingStartedDoc, parentId: 'testing' },
     { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
     { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
 
     { id: 'advanced', name: 'Advanced' },
     { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
     { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
+
+    { id: 'Accessibility', name: 'Accessibility', component: AccessibilityDoc },
 
     { id: 'projects', name: 'Projects', component: ProjectsDoc },
 

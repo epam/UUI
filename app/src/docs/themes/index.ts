@@ -1,2 +1,2 @@
-export * from './Overviews';
+export * from './Overview';
 export * from './Tokens';
