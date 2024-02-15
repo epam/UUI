@@ -42,10 +42,12 @@ const DATE_FORMAT_CUSTOM = 'DD-MM-YYYY';
 
 describe('DatePicker', () => {
     it('should render with minimum props defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(<DatePicker
-            format={ DATE_FORMAT_DEFAULT } value={ null }
-            onValueChange={ jest.fn }
-        />);
+        const tree = await renderSnapshotWithContextAsync(
+            <DatePicker
+                format={ DATE_FORMAT_DEFAULT } value={ null }
+                onValueChange={ jest.fn }
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 

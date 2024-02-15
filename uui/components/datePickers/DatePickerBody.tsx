@@ -89,6 +89,12 @@ export function DatePickerBody({
     };
 
     return (
+        // TODO: do we need this from DatePickerBodyBase.
+        // props.cx were duplicated for container and wrapper
+        // <div
+        //     ref={ props.forwardedRef } className={ cx(uuiDatePickerBodyBase.container, props.cx) }
+        //     { ...props.rawProps }
+        // >
         <div className={ cx(css.root, uuiDatePickerBody.wrapper, classes) }>
             <DatePickerHeader
                 value={ {
@@ -104,5 +110,6 @@ export function DatePickerBody({
             />
             {getView()}
         </div>
+        // </div>
     );
 }

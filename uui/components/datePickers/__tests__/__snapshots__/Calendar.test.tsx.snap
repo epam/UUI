@@ -13,11 +13,6 @@ exports[`Calendar should be rendered correctly 1`] = `
       <div
         className="uui-calendar-weekday"
       >
-        Sun
-      </div>
-      <div
-        className="uui-calendar-weekday"
-      >
         Mon
       </div>
       <div
@@ -45,12 +40,17 @@ exports[`Calendar should be rendered correctly 1`] = `
       >
         Sat
       </div>
+      <div
+        className="uui-calendar-weekday"
+      >
+        Sun
+      </div>
     </div>
     <div
       className="uui-calendar-days"
       style={
         Object {
-          "height": "0px",
+          "height": 180,
         }
       }
     >

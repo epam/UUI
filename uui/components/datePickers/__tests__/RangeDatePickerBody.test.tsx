@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { RangePickerBodyValue, uuiDaySelection, type ViewType } from '@epam/uui-components';
+import { RangePickerBodyValue, uuiDaySelection } from '@epam/uui-components';
 import { RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets, RangeDatePickerValue } from '../RangeDatePickerBody';
 import { act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
 

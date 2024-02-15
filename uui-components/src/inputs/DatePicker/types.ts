@@ -16,15 +16,14 @@ export interface DatePickerBodyBaseProps<TSelection> extends DatePickerBodyBaseO
     value: PickerBodyValue<TSelection>;
     onValueChange: (value: PickerBodyValue<TSelection>) => void;
 }
-
-export interface RangePickerBodyValue<TSelection> extends PickerBodyValue<TSelection> {
-    activePart: 'from' | 'to';
-}
-
 export interface PickerBodyValue<TSelection> {
     selectedDate: TSelection | null;
     month: Dayjs;
     view: ViewType;
+}
+
+export interface RangePickerBodyValue<TSelection> extends PickerBodyValue<TSelection> {
+    activePart: 'from' | 'to';
 }
 
 export interface DatePickerState {
