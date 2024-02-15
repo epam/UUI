@@ -1,10 +1,10 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { LazyListView } from '../LazyListView';
+import { LazyListView, LazyListViewProps } from '../LazyListView';
 import {
     DataSourceState, LazyDataSourceApi, DataQueryFilter, DataRowProps,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 
 interface TestItem {
     id: number;
@@ -32,9 +32,9 @@ describe('LazyListView', () => {
 
     const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
 
-    let value: DataSourceState;
+    let currentValue: DataSourceState;
     const onValueChanged = (newValue: DataSourceState) => {
-        value = newValue;
+        currentValue = newValue;
     };
 
     const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> = (rq) => {
@@ -51,7 +51,7 @@ describe('LazyListView', () => {
     });
 
     beforeEach(() => {
-        value = { topIndex: 0, visibleCount: 3 };
+        currentValue = { topIndex: 0, visibleCount: 3 };
         testApi.mockClear();
     });
 
@@ -77,8 +77,17 @@ describe('LazyListView', () => {
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
-        const ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, { getParentId: ({ parentId }) => parentId });
+        const viewProps: Partial<LazyListViewProps<TestItem, number, DataQueryFilter<TestItem>>> = {
+            getParentId: ({ parentId }) => parentId,
+        };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
+        );
+
+        const view = hookResult.result.current;
+
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
@@ -94,8 +103,8 @@ describe('LazyListView', () => {
         expect(view.getListProps().rowsCount).toBeGreaterThan(3); // actually read all items, but we don't know if that's the end of the list
 
         // scroll 1 row down
-        value.topIndex = 1;
-        view = ds.getView(value, onValueChanged, {});
+        hookResult.rerender({ value: { ...currentValue, topIndex: 1 }, onValueChange: onValueChanged, props: {} });
+
         expectViewToLookLike(view, [
             { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true }, { isLoading: true },
         ]);
@@ -109,14 +118,12 @@ describe('LazyListView', () => {
         expect(view.getListProps().rowsCount).toBe(3); // now we know that item #4 doesn't exists, so we know count
 
         // scroll top
-        value.topIndex = 0;
-        value.visibleCount = 6;
-        view = ds.getView(value, onValueChanged, {});
+        hookResult.rerender({ value: { ...currentValue, topIndex: 0, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
         const rows = view.getVisibleRows();
 
         // unfold first row
         rows[0].onFold?.(rows[0]);
-        view = ds.getView(value, onValueChanged, {});
+        hookResult.rerender({ value: { ...currentValue, topIndex: 0, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
         expectViewToLookLike(view, [
             { id: 100 }, { isLoading: true }, { isLoading: true }, { id: 200 }, { id: 300 },
         ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
