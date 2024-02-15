@@ -9,7 +9,7 @@ import { Tree } from '../../../newTree/Tree';
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
-    'dataSourceState' | 'getChildCount' | 'flattenSearchResults'
+    'dataSourceState' | 'getChildCount'
     > {
 
     api: LazyDataSourceApi<TItem, TId, TFilter>;
@@ -17,6 +17,7 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     isFolded: (item: TItem) => boolean;
     fetchStrategy?: 'sequential' | 'parallel';
     cascadeSelection?: CascadeSelection;
+    flattenSearchResults?: boolean;
 }
 
 export interface LoadResult<TItem, TId> {

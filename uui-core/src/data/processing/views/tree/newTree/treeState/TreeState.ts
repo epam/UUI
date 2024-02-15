@@ -3,11 +3,12 @@ import {
     FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
 } from './types';
-import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap } from '../treeStructure';
+import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap, newMap } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../../constants';
-import { TreeParams } from '../treeStructure/types';
+import { TreeNodeInfo, TreeParams } from '../treeStructure/types';
+import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -184,19 +185,54 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap });
     }
 
-    public buildSelectedOnly(checkedIds: TId[]) {
+    /**
+     * TODO: Add later `selectedOnlyMode: 'tree' | 'flat'.
+     */
+    private buildSelectedOnlyTree(checkedIds: TId[]) {
         const foundIds = checkedIds
             .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
         let items = new ItemsMap<TId, TItem>(null, this.selectedOnly.getParams());
         foundIds.forEach((id) => {
+            const parents = TreeHelper.getParents(id, this.full);
+            parents
+                .filter((parentId) => !items.has(parentId) && this.getById(parentId) !== NOT_FOUND_RECORD)
+                .forEach((parentId) => {
+                    items = items.set(parentId, this.getById(parentId) as TItem);
+                });
+
             items = items.set(id, this.getById(id) as TItem);
         });
 
         const newSelectedOnly = TreeStructure.createFromItems({
-            params: { ...this.selectedOnly.getParams(), getChildCount: () => 0 },
+            params: this.selectedOnly.getParams(),
             items,
             itemsAccessor: ItemsAccessor.toItemsAccessor(this.itemsMap),
         });
+
+        return TreeState.create(
+            this.full,
+            this.visible,
+            newSelectedOnly,
+            this.itemsMap,
+            this.setItems,
+        );
+    }
+
+    public buildSelectedOnly(checkedIds: TId[]) {
+        const foundIds = checkedIds
+            .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
+
+        const byParentId = newMap<TId, TId[]>(this.selectedOnly.getParams());
+        const nodeInfoById = newMap<TId, TreeNodeInfo>(this.selectedOnly.getParams());
+        byParentId.set(undefined, foundIds);
+        nodeInfoById.set(undefined, { count: foundIds.length });
+
+        const newSelectedOnly = TreeStructure.create(
+            this.selectedOnly.getParams(),
+            ItemsAccessor.toItemsAccessor(this.itemsMap),
+            byParentId,
+            nodeInfoById,
+        );
 
         return TreeState.create(
             this.full,
