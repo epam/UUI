@@ -397,8 +397,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                         if (childrenIds.length > 0) {
                             // some children are loaded
                             const childStats = iterateNode(id, appendRows && !row.isFolded);
-                            // row.isChildrenChecked = row.isChildrenChecked || childStats.isSomeChecked;
-                            // row.isChildrenSelected = childStats.isSomeSelected;
                             stats = this.mergeStats(stats, childStats);
                             // while searching and no children in visible tree, no need to append placeholders.
                         } else if (!this.value.search && !row.isFolded && appendRows) {
