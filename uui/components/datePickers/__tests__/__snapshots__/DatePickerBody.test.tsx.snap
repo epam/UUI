@@ -103,7 +103,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
         className="uui-calendar-days"
         style={
           Object {
-            "height": "216px",
+            "height": 216,
           }
         }
       >

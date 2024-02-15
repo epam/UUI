@@ -8,8 +8,17 @@ import { DropdownContainer } from '../overlays';
 import { DatePickerBody } from './DatePickerBody';
 import dayjs from 'dayjs';
 import { useDatePickerState } from './useDatePickerState';
+import utc from 'dayjs/plugin/utc.js';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
+const modifiers = [{
+    name: 'offset',
+    options: { offset: [0, 6] },
+}];
 
 /** Represents the properties of the DatePicker component. */
 export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
@@ -134,7 +143,7 @@ export function DatePickerComponent(props: DatePickerProps) {
             renderBody={ (renderProps) => !props.isDisabled && !props.isReadonly && renderBody(renderProps) }
             onValueChange={ !props.isDisabled && !props.isReadonly ? handleToggle : null }
             value={ isOpen }
-            modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+            modifiers={ modifiers }
             placement={ props.placement }
             forwardedRef={ props.forwardedRef }
         />

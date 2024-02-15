@@ -1,18 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import dayjs from 'dayjs';
-import { uuiMod, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps, RangeDatePickerPresets } from '@epam/uui-core';
-import { Dropdown, valueFormat } from '@epam/uui-components';
+import { uuiMod, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps } from '@epam/uui-core';
+import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
-import { CalendarPresets } from './CalendarPresets';
 import { FlexRow } from '../layout';
-import { RangeDatePickerBody, uuiRangeDatePickerBody } from './RangeDatePickerBody';
+import { RangeDatePickerBody } from './RangeDatePickerBody';
 import { TextInput } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
 import css from './RangeDatePicker.module.scss';
 import { defaultValue, useRangeDatePickerState } from './useRangeDatePickerState';
 import { RangeDatePickerProps } from './types';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+
+dayjs.extend(customParseFormat);
 
 const modifiers = [{
     name: 'offset',
