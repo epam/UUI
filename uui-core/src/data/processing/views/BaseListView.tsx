@@ -32,6 +32,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
     protected someChildCheckedByKey: Record<string, boolean> = {};
+    protected selectedByKey: Record<string, boolean> = {};
+    protected someChildSelectedByKey: Record<string, boolean> = {};
     protected pinned: Record<string, number> = {};
     protected pinnedByParentId: Record<string, number[]> = {};
     public selectAll?: ICheckable;
@@ -61,6 +63,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;
         this.updateCheckedLookup(this.value && this.value.checked);
+        this.updateSelectedLookup(this.value && this.value.selectedId);
     }
 
     protected updateRowOptions(): void {
@@ -74,29 +77,47 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
     }
 
-    protected updateCheckedLookup(checked: TId[]) {
-        this.checkedByKey = {};
-        this.someChildCheckedByKey = {};
-        const checkedItems = checked ?? [];
-        for (let i = checkedItems.length - 1; i >= 0; i--) {
-            const id = checkedItems[i];
-            this.checkedByKey[this.idToKey(id)] = true;
+    protected buildParentsLookup(ids: TId[]) {
+        const itemIds = ids ?? [];
+        const idsByKey: Record<string, boolean> = {};
+        const someChildInIdsByKey: Record<string, boolean> = {};
+        for (let i = itemIds.length - 1; i >= 0; i--) {
+            const id = itemIds[i];
+            idsByKey[this.idToKey(id)] = true;
             if (this.visibleTree && this.props.getParentId) {
                 const item = this.visibleTree.getById(id);
                 if (item !== NOT_FOUND_RECORD) {
                     const parentId = this.props.getParentId(item);
-                    if (!this.someChildCheckedByKey[this.idToKey(parentId)]) {
+                    if (!someChildInIdsByKey[this.idToKey(parentId)]) {
                         const parents = this.visibleTree.getParentIdsRecursive(id).reverse();
                         for (const parent of parents) {
-                            if (this.someChildCheckedByKey[this.idToKey(parent)]) {
+                            if (someChildInIdsByKey[this.idToKey(parent)]) {
                                 break;
                             }
-                            this.someChildCheckedByKey[this.idToKey(parent)] = true;
+                            someChildInIdsByKey[this.idToKey(parent)] = true;
                         }
                     }
                 }
             }
         }
+        return { idsByKey, someChildInIdsByKey };
+    }
+
+    protected updateCheckedLookup(checked: TId[]) {
+        const { idsByKey, someChildInIdsByKey } = this.buildParentsLookup(checked);
+        this.checkedByKey = idsByKey;
+        this.someChildCheckedByKey = someChildInIdsByKey;
+    }
+
+    protected updateSelectedLookup(selectedId: null | TId) {
+        if (selectedId === null || selectedId === undefined) {
+            this.selectedByKey = {};
+            this.someChildSelectedByKey = {};
+            return;
+        }
+        const { idsByKey, someChildInIdsByKey } = this.buildParentsLookup([selectedId]);
+        this.selectedByKey = idsByKey;
+        this.someChildSelectedByKey = someChildInIdsByKey;
     }
 
     protected handleCheckedChange(checked: TId[]) {
@@ -272,18 +293,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
         row.isFocused = this.value.focusedIndex === row.index;
         row.isChecked = this.isRowChecked(row);
-        row.isSelected = this.value.selectedId === row.id;
+        row.isSelected = !!this.selectedByKey[row.rowKey];
         row.isCheckable = isCheckable;
         row.onCheck = isCheckable && this.handleOnCheck;
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && this.handleOnFocus;
-        row.isChildrenChecked = this.someChildCheckedByKey[this.idToKey(row.id)];
-        const isSingleCheck = this.value.selectedId !== undefined 
-            && this.value.selectedId !== null
-            && this.value.checked?.length === 1
-            && !isCheckboxEnabled;
-
-        row.isChildrenSelected = isSingleCheck && this.someChildCheckedByKey[this.idToKey(row.id)];
+        row.isChildrenChecked = !!this.someChildCheckedByKey[this.idToKey(row.id)];
+        row.isChildrenSelected = !!this.someChildSelectedByKey[this.idToKey(row.id)];
     }
 
     private isRowChecked(row: DataRowProps<TItem, TId>) {
@@ -381,8 +397,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                         if (childrenIds.length > 0) {
                             // some children are loaded
                             const childStats = iterateNode(id, appendRows && !row.isFolded);
-                            row.isChildrenChecked = row.isChildrenChecked || childStats.isSomeChecked;
-                            row.isChildrenSelected = childStats.isSomeSelected;
+                            // row.isChildrenChecked = row.isChildrenChecked || childStats.isSomeChecked;
+                            // row.isChildrenSelected = childStats.isSomeSelected;
                             stats = this.mergeStats(stats, childStats);
                             // while searching and no children in visible tree, no need to append placeholders.
                         } else if (!this.value.search && !row.isFolded && appendRows) {

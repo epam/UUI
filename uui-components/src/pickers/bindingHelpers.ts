@@ -83,7 +83,7 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId>
         return {
             ...dsState,
             selectedId: id,
-            checked: (id === null || id === undefined) ? [] : [id],
+            checked: null,
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,
         };
