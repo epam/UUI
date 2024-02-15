@@ -44,7 +44,8 @@ describe('DatePicker', () => {
     it('should render with minimum props defined', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <DatePicker
-                format={ DATE_FORMAT_DEFAULT } value={ null }
+                format={ DATE_FORMAT_DEFAULT }
+                value={ null }
                 onValueChange={ jest.fn }
             />,
         );
