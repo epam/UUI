@@ -23,13 +23,16 @@
 * [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`, see more in Flexbox Guide(https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 * [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
 
- 
 **What's Fixed**
 * [RadiInput]: added native HTML `name` attribute for the input.
 * [RadioGroup]: added native HTML `name` attribute for each group member.
 * [Tooltip]: fixed vertical paddings according to the design.
 * [SearchInput]: fixed `onCancel` prop. Now component can use provided callback, not only default implementation
 * [useForm]: fixed `close` method to always return Promise
+* [PickerInput]: fixed loading of selectedId with parents.
+  * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
+  * Fixed partially selected with predefined selected value.
+  * Fixed fetching missing parents for selected element in PickerInput.
 
 # 5.5.3 - 07.02.2024
 

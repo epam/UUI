@@ -31,7 +31,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> 
             }
             return dsState.checked;
         } else {
-            return props.emptyValue;
+            return 'emptyValue' in props ? props.emptyValue : [];
         }
     }
 
