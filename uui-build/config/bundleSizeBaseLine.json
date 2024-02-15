@@ -1,62 +1,62 @@
 {
-  "version": "5.4.2",
-  "timestamp": "2023-12-15",
+  "version": "5.5.1",
+  "timestamp": "2024-02-07",
   "sizes": {
     "templateApp": {
-      "css": 265600,
-      "js": 807884
+      "css": 267071,
+      "js": 789910
     },
     "@epam/app": {
-      "css": 1609443,
-      "js": 6083253
+      "css": 1595981,
+      "js": 6105662
     },
     "@epam/draft-rte": {
-      "css": 9761,
-      "js": 45305
+      "css": 9768,
+      "js": 45303
     },
     "@epam/electric": {
-      "css": 12196,
-      "js": 2208
+      "css": 2275,
+      "js": 2298
     },
     "@epam/promo": {
-      "css": 41857,
-      "js": 26321
+      "css": 40458,
+      "js": 20556
     },
     "@epam/uui-extra": {
       "css": 0,
       "js": 213
     },
     "@epam/loveship": {
-      "css": 50870,
-      "js": 85450
+      "css": 49579,
+      "js": 75993
     },
     "@epam/uui-components": {
-      "css": 21742,
-      "js": 262888
+      "css": 22095,
+      "js": 249187
     },
     "@epam/uui-core": {
       "css": 0,
-      "js": 277085
+      "js": 278773
     },
     "@epam/uui-db": {
       "css": 0,
       "js": 43327
     },
     "@epam/uui-docs": {
-      "css": 3548,
-      "js": 172710
+      "css": 3560,
+      "js": 175569
     },
     "@epam/uui-editor": {
-      "css": 12845,
-      "js": 146684
+      "css": 12907,
+      "js": 146790
     },
     "@epam/uui-timeline": {
-      "css": 2258,
-      "js": 46076
+      "css": 2255,
+      "js": 46075
     },
     "@epam/uui": {
-      "css": 248767,
-      "js": 310371
+      "css": 252262,
+      "js": 336545
     }
   }
 }

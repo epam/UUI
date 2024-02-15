@@ -66,3 +66,4 @@ export * from './dropdownContainer/DropdownContainer.doc';
 export * from './AdaptivePanel.doc';
 export * from './CountIndicator.doc';
 export * from './StatusIndicator.doc';
+export * from './Accessibility.doc';

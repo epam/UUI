@@ -131,7 +131,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         props: LazyListViewProps<TItem, TId, TFilter>,
     ): void {
         this.isUpdatePending = true;
-        const { checked: prevChecked } = this.value ?? {};
+        const { checked: prevChecked, selectedId: prevSelectedId } = this.value ?? {};
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
         this.value = { topIndex: 0, visibleCount: 20, ...value };
@@ -139,6 +139,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         if (!isEqual(value?.checked, prevChecked)) {
             this.updateCheckedLookup(value.checked);
+        }
+        if (value?.selectedId !== prevSelectedId) {
+            this.updateSelectedLookup(value.selectedId);
         }
 
         this.props = {
@@ -179,6 +182,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
         if (completeReset || this.shouldRebuildRows(prevValue, this.value)) {
             this.updateCheckedLookup(this.value.checked);
+            this.updateSelectedLookup(this.value.selectedId);
         }
 
         const shouldShowPlacehodlers = !shouldReloadData
@@ -206,6 +210,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
                         this.updateCheckedLookup(this.value.checked);
+                        this.updateSelectedLookup(this.value.selectedId);
                         this.rebuildRows();
                     }
                 }).finally(() => {
@@ -375,8 +380,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             // To avoid it, only those items, which are selectable, should be unchecked, avoiding cascading logic.
             const checked = this.fullTree.cascadeSelection(this.value.checked, undefined, value, {
                 cascade: false,
-                isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null);
+                isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+                    let currentItem = item;
+                    if (currentItem === NOT_FOUND_RECORD) {
+                        currentItem = this.cache.byId(id, false);
+                        if (currentItem === null || currentItem === NOT_FOUND_RECORD) {
+                            return false;
+                        }
+                    }
+                    const { isCheckable } = this.getRowProps(currentItem, null);
                     return isCheckable;
                 },
             });
@@ -426,8 +438,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         checked = tree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: isImplicitMode ? this.props.cascadeSelection : (isRoot && isChecked) || this.props.cascadeSelection,
-            isSelectable: (item: TItem) => {
-                const { isCheckable } = this.getRowProps(item, null);
+            isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+                let currentItem = item;
+                if (currentItem === NOT_FOUND_RECORD) {
+                    currentItem = this.cache.byId(id, false);
+                    if (currentItem === null || currentItem === NOT_FOUND_RECORD) {
+                        return false;
+                    }
+                }
+                const { isCheckable } = this.getRowProps(currentItem, null);
                 return isCheckable;
             },
         });
