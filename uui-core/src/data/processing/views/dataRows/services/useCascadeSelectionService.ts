@@ -1,14 +1,16 @@
 import { useCallback, useMemo } from 'react';
 import { ITree } from '../../tree';
-import { CommonDataSourceConfig, LoadMissingRecords } from '../../tree/hooks/strategies/types';
-import { CheckingHelper } from '../../tree/newTree';
+import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords } from '../../tree/hooks/strategies/types';
+import { CheckingHelper, FAILED_RECORD, NOT_FOUND_RECORD } from '../../tree/newTree';
+import { isInProgress } from '../../helpers';
 
 export interface UseCascadeSelectionServiceProps<TItem, TId, TFilter = any> extends
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,
-    LoadMissingRecords<TItem, TId> {
+    LoadMissingRecords<TItem, TId>,
+    GetItemStatus<TId> {
     tree: ITree<TItem, TId>;
 }
 
@@ -21,6 +23,7 @@ export function useCascadeSelectionService<TItem, TId>({
     cascadeSelection,
     getRowOptions,
     rowOptions,
+    getItemStatus,
     loadMissingRecordsOnCheck = async () => tree,
 }: UseCascadeSelectionServiceProps<TItem, TId>): CascadeSelectionService<TId> {
     const getRowProps = useCallback((item: TItem) => {
@@ -28,7 +31,20 @@ export function useCascadeSelectionService<TItem, TId>({
         return { ...rowOptions, ...externalRowOptions };
     }, [rowOptions, getRowOptions]);
 
-    const isItemCheckable = useCallback((item: TItem) => {
+    const isItemCheckable = useCallback((id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+        if (item === NOT_FOUND_RECORD) {
+            const status = getItemStatus(id);
+            if (isInProgress(status)) {
+                return false;
+            }
+
+            if (item === FAILED_RECORD || item === NOT_FOUND_RECORD) {
+                return true;
+            }
+
+            return false;
+        }
+
         const rowProps = getRowProps(item);
         return rowProps?.checkbox?.isVisible && !rowProps?.checkbox?.isDisabled;
     }, [getRowProps]);
@@ -42,7 +58,7 @@ export function useCascadeSelectionService<TItem, TId>({
             checkedId,
             isChecked,
             cascadeSelectionType: cascadeSelection,
-            isCheckable: (item: TItem) => isItemCheckable(item),
+            isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => isItemCheckable(id, item),
         });
     }, [tree, isItemCheckable, cascadeSelection]);
 

@@ -84,7 +84,7 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                         // some children are loaded
                             const childStats = iterateNode(id, appendRows && !row.isFolded);
                             row.isChildrenChecked = row.isChildrenChecked || childStats.isSomeChecked;
-                            row.isChildrenSelected = childStats.isSomeSelected;
+                            row.isChildrenSelected = row.isChildrenSelected || childStats.isSomeSelected;
                             stats = mergeStats(stats, childStats);
                         // while searching and no children in visible tree, no need to append placeholders.
                         } else if (!dataSourceState.search && !row.isFolded && appendRows) {

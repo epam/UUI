@@ -51,7 +51,7 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
         }
     }
 
-    if (row.isSelected) {
+    if (row.isSelected || row.isChildrenSelected) {
         isSomeSelected = true;
     }
 

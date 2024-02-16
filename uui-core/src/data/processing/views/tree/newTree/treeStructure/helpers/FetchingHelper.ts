@@ -49,12 +49,16 @@ export class FetchingHelper {
             dataSourceState,
             withNestedChildren,
         });
+        const checked = (dataSourceState.checked ?? []);
+        const missing = dataSourceState.selectedId === null || dataSourceState.selectedId === undefined
+            ? checked
+            : checked.concat(dataSourceState.selectedId);
 
         const { loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
             tree,
             newItemsMap: loadedItemsMap,
             options,
-            itemsToLoad: dataSourceState.checked,
+            itemsToLoad: missing,
         });
 
         return {

@@ -1,7 +1,7 @@
 import { DataQueryFilter, DataSourceState, LazyDataSourceApiRequest } from '../../../../types';
 import { runDataQuery } from '../../../querying';
 import { LazyDataSource } from '../../LazyDataSource';
-import { delay } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 
 interface TestItem {
     name: string;
@@ -18,9 +18,13 @@ describe('LazyListView', () => {
         i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     });
 
-    let value: DataSourceState = { visibleCount: 5 };
-    const onValueChanged = (newValue: DataSourceState) => {
-        value = newValue;
+    let currentValue: DataSourceState = { visibleCount: 5 };
+    const onValueChanged = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+        if (typeof newValue === 'function') {
+            currentValue = newValue(currentValue);
+            return;
+        }
+        currentValue = newValue;
     };
 
     const testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)));
@@ -40,12 +44,15 @@ describe('LazyListView', () => {
         api,
     };
 
-    const getView = () => ds.getView(value, onValueChanged, viewProps);
-
-    const view = getView();
-
     it('should search for nested children and build correct path, indent, depth, isLastChild', async () => {
-        view.update({ value: { search: 'ABC5', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged }, viewProps);
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => ds.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
+        );
+
+        hookResult.rerender({ value: { search: 'ABC5', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged, props: viewProps });
+
+        const view = hookResult.result.current;
 
         view.getVisibleRows();
         await delay();
@@ -77,7 +84,14 @@ describe('LazyListView', () => {
     });
 
     it('should detect if found item is last child in parent', async () => {
-        view.update({ value: { search: 'ABC', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged }, viewProps);
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => ds.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
+        );
+
+        hookResult.rerender({ value: { search: 'ABC', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged, props: viewProps });
+
+        const view = hookResult.result.current;
 
         view.getVisibleRows();
         await delay();

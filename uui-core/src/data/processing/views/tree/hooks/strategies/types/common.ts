@@ -11,7 +11,7 @@ export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
     rowOptions?: DataRowOptions<TItem, TId>;
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
 
-    isFoldedByDefault?(item: TItem): boolean;
+    isFoldedByDefault?(item: TItem, dataSourceState: Pick<DataSourceState<TFilter, TId>, 'foldAll'>): boolean;
     getChildCount?(item: TItem): number;
 
     cascadeSelection?: CascadeSelection;

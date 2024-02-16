@@ -106,6 +106,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         rowOptions,
         getRowOptions,
         handleCascadeSelection,
+        getItemStatus,
     });
 
     const foldingService = useFoldingService({
@@ -114,7 +115,12 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const focusService = useFocusService({ setDataSourceState });
 
-    const selectingService = useSelectingService({ setDataSourceState });
+    const selectingService = useSelectingService({
+        tree,
+        getParentId,
+        dataSourceState,
+        setDataSourceState,
+    });
 
     const { getRowProps, getUnknownRowProps, getLoadingRowProps, updateRowOptions } = useDataRowProps<TItem, TId, TFilter>({
         tree,

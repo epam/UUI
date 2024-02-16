@@ -198,7 +198,7 @@ Attributes &
 IHasChildren &
 IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
     /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-     * @default center
+     * @default 'center'
      * */
     alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
     /** Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */

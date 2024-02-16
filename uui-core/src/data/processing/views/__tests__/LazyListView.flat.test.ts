@@ -1,10 +1,9 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { LazyListView } from '../LazyListView';
 import {
-    DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IEditable,
+    DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 
 interface TestItem {
     id: number;
@@ -17,8 +16,14 @@ describe('LazyListView - flat list test', () => {
 
     const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
 
-    let { value, onValueChange }: IEditable<DataSourceState<DataQueryFilter<TestItem>, number>> = {} as any;
-
+    let currentValue: DataSourceState<DataQueryFilter<TestItem>, number>;
+    let onValueChanged = (newValue: React.SetStateAction<DataSourceState<DataQueryFilter<TestItem>, number>>) => {
+        if (typeof newValue === 'function') {
+            currentValue = newValue(currentValue);
+            return;
+        }
+        currentValue = newValue;
+    };
     const testApi = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq));
 
     const flatDataSource = new LazyDataSource({
@@ -26,22 +31,34 @@ describe('LazyListView - flat list test', () => {
     });
 
     beforeEach(() => {
-        value = { topIndex: 0, visibleCount: 3 };
-        onValueChange = (newValue) => {
-            value = newValue;
+        currentValue = { topIndex: 0, visibleCount: 3 };
+        onValueChanged = (newValue) => {
+            if (typeof newValue === 'function') {
+                currentValue = newValue(currentValue);
+                return;
+            }
+            currentValue = newValue;
         };
     });
 
-    function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
+    function expectViewToLookLike(
+        view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
+        rows: Partial<DataRowProps<TestItem, number>>[],
+        rowsCount?: number,
+    ) {
         const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
-    it('can scroll thru plain lists', async () => {
-        const ds = flatDataSource;
-        let view = ds.getView(value, onValueChange, {});
+    it('can scroll through plain lists', async () => {
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
+        );
+        const view = hookResult.result.current;
+
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
@@ -58,7 +75,8 @@ describe('LazyListView - flat list test', () => {
         );
 
         // Scroll down by 1 row
-        view = ds.getView({ topIndex: 1, visibleCount: 3 }, onValueChange, {});
+        hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
+
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ], 10);
@@ -74,7 +92,7 @@ describe('LazyListView - flat list test', () => {
         );
 
         // Scroll down to bottom
-        view = ds.getView({ topIndex: 8, visibleCount: 3 }, onValueChange, {});
+        hookResult.rerender({ value: { topIndex: 8, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
 
         expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }], 10);
 
@@ -88,8 +106,11 @@ describe('LazyListView - flat list test', () => {
     });
 
     it('can reload', async () => {
-        const ds = flatDataSource;
-        let view = ds.getView(value, onValueChange, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
+        );
+        const view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
@@ -122,20 +143,31 @@ describe('LazyListView - flat list test', () => {
         );
 
         // Scroll down by 1 row
-        view = ds.getView({ topIndex: 1, visibleCount: 3 }, onValueChange, {});
+        hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
+
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ], 10);
     });
 
     it('handles concurrent filter updates', async () => {
-        const ds = flatDataSource;
-        let view = ds.getView(value, onValueChange, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
+        );
+        const view = hookResult.result.current;
         view.getVisibleRows();
 
         // immediately set another filter and query again
-        value = { ...value, filter: { id: { gte: 200 } } };
-        view = ds.getView(value, onValueChange, { getRowOptions: () => ({ checkbox: { isVisible: true } }) });
+        currentValue = { ...currentValue, filter: { id: { gte: 200 } } };
+
+        hookResult.rerender({
+            value: currentValue,
+            onValueChange: onValueChanged,
+            props: {
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+            },
+        });
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
@@ -152,7 +184,13 @@ describe('LazyListView - flat list test', () => {
         rows[0].onCheck?.(rows[0]);
         await delay();
 
-        view = ds.getView(value, onValueChange, { getRowOptions: () => ({ checkbox: { isVisible: true } }) });
+        hookResult.rerender({
+            value: currentValue,
+            onValueChange: onValueChanged,
+            props: {
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+            },
+        });
 
         expectViewToLookLike(view, [
             { id: 200, isChecked: true }, { id: 300 }, { id: 310 },
@@ -160,8 +198,11 @@ describe('LazyListView - flat list test', () => {
     });
 
     it('applies the filter from props', async () => {
-        const ds = flatDataSource;
-        const view = ds.getView(value, onValueChange, { filter: { id: { gte: 320 } } });
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: { filter: { id: { gte: 320 } } } } },
+        );
+        const view = hookResult.result.current;
         view.getListProps(); // trigger loading
         await delay();
 
@@ -176,8 +217,12 @@ describe('LazyListView - flat list test', () => {
     });
 
     it('can scroll thru plain lists (no count returned from API)', async () => {
-        const ds = flatDataSourceNoCount;
-        let view = ds.getView(value, onValueChange, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => flatDataSourceNoCount.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
+        );
+        const view = hookResult.result.current;
+
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
@@ -191,7 +236,8 @@ describe('LazyListView - flat list test', () => {
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         // Scroll down by 1 row
-        view = ds.getView({ topIndex: 1, visibleCount: 3 }, onValueChange, {});
+        hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
+
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ]);
@@ -205,7 +251,7 @@ describe('LazyListView - flat list test', () => {
         expect(view.getListProps().rowsCount).toBeGreaterThan(4);
 
         // Scroll down to bottom
-        view = ds.getView({ topIndex: 8, visibleCount: 3 }, onValueChange, {});
+        hookResult.rerender({ value: { topIndex: 8, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
@@ -222,8 +268,11 @@ describe('LazyListView - flat list test', () => {
     });
 
     it('handles empty result', async () => {
-        const ds = flatDataSourceNoCount;
-        const view = ds.getView({ visibleCount: 3, filter: { id: -100500 } }, onValueChange, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => flatDataSourceNoCount.useView(value, onValueChange, props),
+            { initialProps: { value: { visibleCount: 3, filter: { id: -100500 } }, onValueChange: onValueChanged, props: {} } },
+        );
+        const view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);

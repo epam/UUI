@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, ScrollToConfig } from '../../../../../types';
+import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../types';
 import { idToKey, setObjectFlag } from '../../helpers';
 import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
 
@@ -19,6 +19,10 @@ export function useFoldingService<TItem, TId, TFilter = any>({
     isFoldedByDefault,
     getId,
 }: UseFoldingServiceProps<TItem, TId, TFilter>): FoldingService<TItem, TId> {
+    const defaultIsFolded = (state: DataSourceState<TFilter, TId>) => {
+        return state.foldAll;
+    };
+
     const isFolded = useCallback((item: TItem) => {
         const searchIsApplied = !!dataSourceState?.search;
         if (searchIsApplied) {
@@ -32,11 +36,11 @@ export function useFoldingService<TItem, TId, TFilter = any>({
         }
 
         if (isFoldedByDefault) {
-            return isFoldedByDefault(item);
+            return isFoldedByDefault(item, { foldAll: dataSourceState?.foldAll });
         }
 
-        return true;
-    }, [isFoldedByDefault, dataSourceState?.search, dataSourceState.folded]);
+        return defaultIsFolded(dataSourceState) ?? true;
+    }, [isFoldedByDefault, dataSourceState?.search, dataSourceState?.folded]);
 
     const handleOnFold = useCallback((rowProps: DataRowProps<TItem, TId>) => {
         setDataSourceState((dsState) => {

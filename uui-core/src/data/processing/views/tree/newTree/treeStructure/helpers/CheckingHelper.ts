@@ -2,7 +2,7 @@ import { CascadeSelectionTypes } from '../../../../../../../types';
 import { Tree } from '../../Tree';
 import { NOT_FOUND_RECORD, ROOT_ID } from '../../../constants';
 import { newMap } from './map';
-import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, SelectionOptions } from './types';
+import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, ClearIfTreeNotLoadedOptions, SelectionOptions } from './types';
 
 export class CheckingHelper {
     public static cascadeSelection<TItem, TId>({
@@ -18,9 +18,21 @@ export class CheckingHelper {
         if (!(checkedId === ROOT_ID && isImplicitMode)) {
             currentCheckedIds.forEach((id) => checkedIdsMap.set(id, true));
         }
-
         const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType: cascadeSelectionType ?? true };
-        if (!optionsWithDefaults.cascadeSelectionType) {
+
+        const { count } = tree.getItems(undefined);
+        const treeIsLoaded = count !== 0;
+        // If clear items while tree is not loaded yet (while clearing tags of PickerInput before opening body).
+        if (!treeIsLoaded && !isChecked) {
+            checkedIdsMap = this.clearIfTreeNotLoaded({
+                tree,
+                checkedIdsMap,
+                checkedId,
+                isCheckable: optionsWithDefaults.isCheckable,
+            });
+        }
+
+        if (treeIsLoaded && !optionsWithDefaults.cascadeSelectionType) {
             checkedIdsMap = this.simpleSelection({
                 tree,
                 checkedIdsMap,
@@ -30,7 +42,10 @@ export class CheckingHelper {
             });
         }
 
-        if (optionsWithDefaults.cascadeSelectionType === true || optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.EXPLICIT) {
+        if (treeIsLoaded && (
+            optionsWithDefaults.cascadeSelectionType === true
+            || optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.EXPLICIT)
+        ) {
             checkedIdsMap = this.explicitCascadeSelection({
                 tree,
                 checkedIdsMap,
@@ -40,7 +55,7 @@ export class CheckingHelper {
             });
         }
 
-        if (optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.IMPLICIT) {
+        if (treeIsLoaded && optionsWithDefaults.cascadeSelectionType === CascadeSelectionTypes.IMPLICIT) {
             checkedIdsMap = this.implicitCascadeSelection({
                 tree,
                 checkedIdsMap,
@@ -106,7 +121,7 @@ export class CheckingHelper {
         id,
     }: ActForCheckableOptions<TItem, TId>) {
         const item = tree.getById(id);
-        if (item !== NOT_FOUND_RECORD && isCheckable(item)) {
+        if (item !== NOT_FOUND_RECORD && isCheckable(id, item)) {
             action(id);
         }
     }
@@ -249,6 +264,28 @@ export class CheckingHelper {
                     }
                 }
             });
+        return checkedIdsMap;
+    }
+
+    private static clearIfTreeNotLoaded<TItem, TId>({
+        tree,
+        checkedIdsMap,
+        checkedId,
+        isCheckable,
+    }: ClearIfTreeNotLoadedOptions<TItem, TId>) {
+        if (checkedId !== ROOT_ID) {
+            const item = tree.getById(checkedId);
+            if (isCheckable(checkedId, item)) {
+                checkedIdsMap.delete(checkedId);
+            }
+        } else {
+            for (const [selectedItemId, isItemSelected] of checkedIdsMap) {
+                const selectedItem = tree.getById(selectedItemId);
+                if (isItemSelected && isCheckable(selectedItemId, selectedItem)) {
+                    checkedIdsMap.delete(selectedItemId);
+                }
+            }
+        }
         return checkedIdsMap;
     }
 }

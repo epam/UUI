@@ -66,7 +66,11 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
                         color="accent"
                         caption="Save"
                         onClick={ () => {
-                            upsertLink(editor, { url: link, target: '_blank' });
+                            upsertLink(editor, {
+                                url: link,
+                                target: '_blank',
+                                skipValidation: true,
+                            });
                             success(true);
                         } }
                     />
