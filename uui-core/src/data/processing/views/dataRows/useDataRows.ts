@@ -58,17 +58,18 @@ export function useDataRows<TItem, TId, TFilter = any>(
         const item = tree.getById(id);
         if (item === NOT_FOUND_RECORD) return undefined;
 
-        const { count, status, assumedCount } = tree.getItems(id);
-        if (assumedCount === undefined) {
+        const nodeInfo = tree.getItems(id);
+        if ('assumedCount' in nodeInfo && nodeInfo.assumedCount === undefined) {
             return undefined;
         }
 
+        const { count, status } = nodeInfo;
         if (count !== undefined && status === FULLY_LOADED) {
             // nodes are already loaded, and we know the actual count
             return count;
         }
 
-        return assumedCount;
+        return nodeInfo.assumedCount;
     }, [props.getChildCount, tree]);
 
     const getMissingRecordsCount = useCallback((id: TId, totalRowsCount: number, loadedChildrenCount: number) => {
@@ -113,7 +114,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         dataSourceState, setDataSourceState, isFoldedByDefault, getId,
     });
 
-    const focusService = useFocusService({ setDataSourceState });
+    const focusService = useFocusService({ dataSourceState, setDataSourceState });
 
     const selectingService = useSelectingService({
         tree,
@@ -137,6 +138,8 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isRowChecked,
         isRowChildrenChecked,
         isItemCheckable,
+
+        handleOnFold: foldingService.handleOnFold,
         ...selectingService,
         ...focusService,
     });
@@ -151,7 +154,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getRowProps,
         getLoadingRowProps,
         isLoading,
-        ...foldingService,
+        isFolded: foldingService.isFolded,
     });
 
     const updatedRows = useUpdateRowOptions({ rows: allRows, updateRowOptions });

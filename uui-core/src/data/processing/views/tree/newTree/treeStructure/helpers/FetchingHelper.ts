@@ -113,8 +113,8 @@ export class FetchingHelper {
                 loadedItems.forEach((item) => {
                     const id = tree.getParams().getId(item);
                     const prevNodeInfo = nodeInfoById.get(id) ?? {};
-                    const assumedCount = flatten ? undefined : prevNodeInfo.assumedCount ?? tree.getParams().getChildCount(item);
-                    nodeInfoById.set(id, { ...prevNodeInfo, assumedCount });
+                    const assumedCount = flatten ? undefined : prevNodeInfo.assumedCount ?? tree.getParams().getChildCount?.(item);
+                    nodeInfoById.set(id, { ...prevNodeInfo, ...(tree.getParams().getChildCount ? { assumedCount } : {}) });
                     newItemsMap.set(id, item);
                 });
                 newItems = newItems.concat(loadedItems);
@@ -319,7 +319,7 @@ export class FetchingHelper {
 
         const newIds = [];
 
-        if (response.items.length) {
+        if (response.items?.length) {
             newIds.push(...ids);
             for (let n = 0; n < response.items.length; n++) {
                 const item = response.items[n];
@@ -333,7 +333,7 @@ export class FetchingHelper {
 
         if (response.count !== null && response.count !== undefined) {
             newNodesCount = response.count;
-        } else if (response.items.length < missingCount) {
+        } else if (response.items?.length < missingCount) {
             newNodesCount = from + response.items.length;
         }
 

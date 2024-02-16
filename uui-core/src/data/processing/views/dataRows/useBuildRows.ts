@@ -7,7 +7,7 @@ import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
-    FoldingService<TItem, TId>,
+    Pick<FoldingService<TItem, TId>, 'isFolded'>,
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
@@ -33,7 +33,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     cascadeSelection,
     maxVisibleRowIndex,
     isFolded,
-    handleOnFold,
     getRowProps,
     getLoadingRowProps,
     isLoading = false,
@@ -78,7 +77,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                     if (estimatedChildrenCount > 0) {
                         row.isFolded = isFolded(item);
-                        row.onFold = row.isFoldable && handleOnFold;
 
                         if (childrenIds.length > 0) {
                         // some children are loaded
