@@ -1,7 +1,7 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { LazyListView } from '../LazyListView';
+import { LazyListView, LazyListViewProps } from '../LazyListView';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState } from '../../../../types';
 
 interface TestParent {
@@ -25,9 +25,9 @@ describe('LazyListView - can work with id like [string, number]', () => {
         { type: 'parent', id: 1, childrenCount: 1 }, { type: 'child', id: 1, parentId: 1 }, { type: 'child', id: 2, parentId: 1 },
     ];
 
-    let value: DataSourceState<DataQueryFilter<TestItem>, TestItemId>;
-    const onValueChanged = (newValue: typeof value) => {
-        value = newValue;
+    let currentValue: DataSourceState<DataQueryFilter<TestItem>, TestItemId>;
+    const onValueChanged = (newValue: typeof currentValue) => {
+        currentValue = newValue;
     };
 
     const treeDataSource = new LazyDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
@@ -46,7 +46,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
     });
 
     beforeEach(() => {
-        value = { topIndex: 0, visibleCount: 3 };
+        currentValue = { topIndex: 0, visibleCount: 3 };
     });
 
     function expectViewToLookLike(view: LazyListView<TestItem, TestItemId>, rows: Partial<DataRowProps<TestItem, TestItemId>>[], rowsCount?: number) {
@@ -57,8 +57,13 @@ describe('LazyListView - can work with id like [string, number]', () => {
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
-        const ds = treeDataSource;
-        const view = ds.getView(value, onValueChanged, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
+        );
+
+        const view = hookResult.result.current;
+
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
@@ -70,18 +75,23 @@ describe('LazyListView - can work with id like [string, number]', () => {
     });
 
     it('can unfold nodes', async () => {
-        const ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
+        );
+
+        const view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toBeGreaterThan(3);
+
         await delay();
 
         expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
 
         // Unfold a row
         let rows = view.getVisibleRows();
-        value.visibleCount = 6;
-        view = ds.getView(value, onValueChanged, {});
         rows[0].onFold?.(rows[0]);
-        view = ds.getView(value, onValueChanged, {});
+
+        hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
         rows = view.getVisibleRows();
 
@@ -93,16 +103,23 @@ describe('LazyListView - can work with id like [string, number]', () => {
     });
 
     it('Checkboxes works', async () => {
-        const ds = treeDataSource;
-        value.visibleCount = 3;
-        value.checked = [['child', 1]];
-
-        const view = ds.getView(value, onValueChanged, {
+        currentValue = { ...currentValue, visibleCount: 3, checked: [['child', 1]] as TestItemId[] };
+        const viewProps: Partial<LazyListViewProps<TestItem, TestItemId, DataQueryFilter<TestItem>>> = {
             cascadeSelection: true,
             getRowOptions: () => ({ checkbox: { isVisible: true } }),
             isFoldedByDefault: () => false,
-        });
+        };
 
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: viewProps,
+            } },
+        );
+
+        const view = hookResult.result.current;
         view.getVisibleRows(); // load;
         await delay();
 
@@ -118,7 +135,8 @@ describe('LazyListView - can work with id like [string, number]', () => {
         row.onCheck?.(row);
         await delay(); // checkboxes are async in LazyDataSource
 
-        view.update({ value, onValueChange: onValueChanged }, view.props);
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: viewProps });
+
         await delay();
 
         expectViewToLookLike(
@@ -133,7 +151,8 @@ describe('LazyListView - can work with id like [string, number]', () => {
         row.onCheck?.(row);
         await delay(); // checkboxes are async in LazyDataSource
 
-        view.update({ value, onValueChange: onValueChanged }, view.props);
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: viewProps });
+
         await delay();
 
         expectViewToLookLike(
@@ -148,9 +167,15 @@ describe('LazyListView - can work with id like [string, number]', () => {
     // ListApiCache can't work with complex ids.
     // However, it looks we
     it.skip('should receive item by id', async () => {
-        const ds = treeDataSource;
-        const view = ds.getView(value, onValueChanged, {});
-
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
+        const view = hookResult.result.current;
         view.getVisibleRows();
 
         await delay();
