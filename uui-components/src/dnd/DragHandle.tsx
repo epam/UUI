@@ -8,6 +8,9 @@ import css from './DragHandle.module.scss';
 import { IconContainer } from '../layout';
 
 export interface DragHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDisableable {
+    /**
+     * Icon to be used as the drag handle
+     */
     dragHandleIcon?: Icon;
 }
 
