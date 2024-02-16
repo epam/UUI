@@ -5,7 +5,7 @@ import { FilterItemBody } from '../components/filters';
 export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: TableFiltersConfig<TFilter>[] | undefined) => {
     const makeFilterRenderCallback = useCallback<(key: string) => (lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps) => React.ReactNode>
         ((key) => function (filterLens, dropdownProps) {
-            const filter = filters.find((f) => f.columnKey === key);
+            const filter = filters?.find((f) => f.columnKey === key);
             if (!filter) return null;
 
             const props = filterLens.prop(filter.field).toProps();

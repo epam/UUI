@@ -102,6 +102,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             cascadeSelection: restProps.cascadeSelection,
             getRowOptions: restProps.getRowOptions,
             rowOptions: restProps.rowOptions,
+            getItemStatus: restProps.getItemStatus,
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks

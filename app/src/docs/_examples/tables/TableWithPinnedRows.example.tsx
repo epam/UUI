@@ -102,6 +102,7 @@ export default function TableWithPinnedRows() {
         cascadeSelection: restProps.cascadeSelection,
         getRowOptions: restProps.getRowOptions,
         rowOptions: restProps.rowOptions,
+        getItemStatus: restProps.getItemStatus,
         loadMissingRecordsOnCheck,
     });
 

@@ -1,3 +1,4 @@
+@use '../scss/loveship/font-faces';
 @use './tokens/_theme_loveship_dark.scss' as tokens;
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
@@ -426,6 +427,8 @@
         }
 
         &.uui-fill-outline {
+            --uui-badge-bg: var(--uui-neutral-80);
+            --uui-badge-bg-hover: var(--uui-neutral-70);
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
             --uui-badge-caption: var(--uui-neutral-5);

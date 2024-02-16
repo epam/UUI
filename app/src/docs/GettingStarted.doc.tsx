@@ -7,6 +7,8 @@ export class GettingStartedDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName="gettingStarted-intro" />
+                {this.renderSectionTitle('Starting a new Vite project')}
+                <EditableDocContent fileName="gettingStarted-configuring from scratch vite" />
                 {this.renderSectionTitle('Starting a new CRA-based project')}
                 <EditableDocContent fileName="gettingStarted-configuring from scratch" />
                 {this.renderSectionTitle('Starting a new Next.js project')}

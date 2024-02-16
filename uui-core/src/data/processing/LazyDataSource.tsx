@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree } from './views';
 import { BaseDataSource } from './BaseDataSource';
-import { DataSourceState, IMap } from '../../types';
+import { DataSourceState, IDataSourceView, IMap } from '../../types';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { RecordStatus } from './views/tree/types';
 import { newMap } from './views/tree/newTree';
@@ -53,7 +53,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         onValueChange: React.Dispatch<React.SetStateAction<TState>>,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
-    ) {
+    ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
@@ -99,6 +99,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             cascadeSelection: restProps.cascadeSelection,
             getRowOptions: restProps.getRowOptions,
             rowOptions: restProps.rowOptions,
+            getItemStatus: restProps.getItemStatus,
             loadMissingRecordsOnCheck,
         });
                 

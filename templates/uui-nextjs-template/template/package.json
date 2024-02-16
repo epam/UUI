@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@epam/promo": "latest",
+    "@epam/uui": "latest",
     "@epam/uui-core": "latest",
     "@epam/uui-components": "latest",
     "next": "13.1.5",

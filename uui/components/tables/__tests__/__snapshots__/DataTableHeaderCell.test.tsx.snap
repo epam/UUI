@@ -3,7 +3,7 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className="flexCell uui-dt-vars uui-table-header-cell cell size-36 padding-left-24"
+  className="flexCell uui-dt-vars uui-table-header-cell cell size-36 first-column"
   onClick={[Function]}
   role="columnheader"
   style={
@@ -18,16 +18,12 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
   }
 >
   <div
-    className="tooltipWrapper"
+    className="captionWrapper align-undefined uui-table-header-caption-wrapper"
   >
     <div
-      className="iconCell align-undefined uui-table-header-caption-wrapper"
+      className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
     >
-      <div
-        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
-      >
-        Test
-      </div>
+      Test
     </div>
   </div>
 </div>

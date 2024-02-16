@@ -6,11 +6,12 @@ import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparat
 import { ItemsMap } from '../../../ItemsMap';
 import { TreeParams } from '../types';
 import { ITree } from '../../ITree';
+import { NOT_FOUND_RECORD } from '../../exposed';
 
 export interface ActForCheckableOptions<TItem, TId> {
     tree: ITree<TItem, TId>;
     action: (id: TId) => void;
-    isCheckable: (item: TItem) => boolean;
+    isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
     id: TId;
 }
 
@@ -19,7 +20,7 @@ export interface CascadeSelectionOptions<TItem, TId> {
     currentCheckedIds: TId[];
     checkedId: TId;
     isChecked: boolean;
-    isCheckable?: (item: TItem) => boolean;
+    isCheckable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
     cascadeSelectionType?: CascadeSelection;
 }
 
@@ -27,8 +28,15 @@ export interface CheckParentsWithFullCheckOptions<TItem, TId> {
     tree: ITree<TItem, TId>;
     checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
     checkedId: TId;
-    isCheckable: (item: TItem) => boolean;
+    isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
     removeExplicitChildrenSelection?: boolean;
+}
+
+export interface ClearIfTreeNotLoadedOptions<TItem, TId> {
+    tree: ITree<TItem, TId>;
+    checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
+    checkedId: TId;
+    isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
 
 export interface SelectionOptions<TItem, TId> {
@@ -36,7 +44,7 @@ export interface SelectionOptions<TItem, TId> {
     checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
     checkedId: TId;
     isChecked: boolean;
-    isCheckable: (item: TItem) => boolean;
+    isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
 
 export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'> {}

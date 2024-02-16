@@ -129,14 +129,14 @@ export class Tree {
     public static forEachChildren<TItem, TId>(
         tree: ITree<TItem, TId>,
         action: (id: TId) => void,
-        isSelectable: (item: TItem) => boolean,
+        isSelectable: (id: TId, item: TItem) => boolean,
         parentId?: TId,
         includeParent: boolean = true,
     ) {
         this.forEach(
             tree,
             (item, id) => {
-                if (item && isSelectable(item)) {
+                if (item && isSelectable(id, item)) {
                     action(id);
                 }
             },

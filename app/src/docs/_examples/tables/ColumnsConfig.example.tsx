@@ -62,6 +62,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 ),
                 width: 140,
                 isSortable: true,
+                allowResizing: true,
                 textAlign: 'right',
             },
             {

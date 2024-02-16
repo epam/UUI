@@ -28,6 +28,8 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         handleOnCheck,
         handleOnSelect,
         handleOnFocus,
+        isRowSelected,
+        isRowChildSelected,
         isRowChecked,
         isRowChildrenChecked,
         getEstimatedChildrenCount,
@@ -55,12 +57,13 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         }
         row.isFocused = dataSourceState.focusedIndex === row.index;
         row.isChecked = isRowChecked(row);
-        row.isSelected = dataSourceState.selectedId === row.id;
+        row.isSelected = isRowSelected(row);
         row.isCheckable = isCheckable;
         row.onCheck = isCheckable && handleOnCheck;
         row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
         row.isChildrenChecked = isRowChildrenChecked(row);
+        row.isChildrenSelected = isRowChildSelected(row);
 
         return row;
     }, [

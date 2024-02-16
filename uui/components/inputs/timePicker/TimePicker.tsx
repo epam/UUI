@@ -118,7 +118,7 @@ export function TimePicker(props: TimePickerProps) {
         const separator = trimmedNewValue.search(/\D/);
         const meridian = getMeridian(trimmedNewValue, getFormat());
         const { hours, minutes } = parseTimeNumbers(trimmedNewValue, separator);
-        return formatTime(hours, minutes, meridian);
+        return formatTime(hours, minutes, meridian, getFormat());
     };
 
     const handleBodyValueChange = (newValue: TimePickerValue) => {
@@ -147,12 +147,12 @@ export function TimePicker(props: TimePickerProps) {
         onToggle(false);
         props.onBlur?.(e);
 
-        if (state.value === '') {
+        if (state.value === '' || state.inputValue === '') {
             props.onValueChange(null);
             setState((prevState) => ({ ...prevState, value: null, inputValue: null }));
         }
 
-        saveTime(state.value);
+        state.value && state.inputValue && saveTime(state.value);
     };
 
     const renderInput = (inputProps: IDropdownToggler) => {

@@ -1,9 +1,11 @@
 import { useCallback, useMemo } from 'react';
 import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
-import { ITree, NOT_FOUND_RECORD, Tree } from '../../tree';
-import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
+import { ITree, NOT_FOUND_RECORD } from '../../tree';
+import { CommonDataSourceConfig, GetItemStatus } from '../../tree/hooks/strategies/types';
 import { CascadeSelectionService } from './useCascadeSelectionService';
-import { CheckingHelper } from '../../tree/newTree';
+import { CheckingHelper, FAILED_RECORD } from '../../tree/newTree';
+import { isInProgress } from '../../helpers';
+import { buildParentsLookup, idToKey } from './buildParentsLookup';
 
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
@@ -11,7 +13,8 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     'getParentId' | 'dataSourceState' | 'setDataSourceState'
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,
-    CascadeSelectionService<TId> {
+    CascadeSelectionService<TId>,
+    GetItemStatus<TId> {
     tree: ITree<TItem, TId>;
 }
 
@@ -22,40 +25,8 @@ export interface CheckingService<TItem, TId> {
     handleSelectAll: (isChecked: boolean) => void;
 
     clearAllChecked: () => void;
-    isItemCheckable: (item: TItem) => boolean;
+    isItemCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
-
-const idToKey = <TId, >(id: TId) => typeof id === 'object' ? JSON.stringify(id) : `${id}`;
-
-const getCheckingInfo = <TItem, TId>(checked: TId[] = [], tree: ITree<TItem, TId>, getParentId?: (item: TItem) => TId) => {
-    const checkedByKey: Record<string, boolean> = {};
-    const someChildCheckedByKey: Record<string, boolean> = {};
-    const checkedItems = checked ?? [];
-    for (let i = checkedItems.length - 1; i >= 0; i--) {
-        const id = checkedItems[i];
-        checkedByKey[idToKey(id)] = true;
-        if (!tree || !getParentId) {
-            continue;
-        }
-
-        const item = tree.getById(id);
-        if (item === NOT_FOUND_RECORD) {
-            continue;
-        }
-
-        const parentId = getParentId(item);
-        if (!someChildCheckedByKey[idToKey(parentId)]) {
-            const parents = Tree.getParents(id, tree).reverse();
-            for (const parent of parents) {
-                if (someChildCheckedByKey[idToKey(parent)]) {
-                    break;
-                }
-                someChildCheckedByKey[idToKey(parent)] = true;
-            }
-        }
-    }
-    return { checkedByKey, someChildCheckedByKey };
-};
 
 export function useCheckingService<TItem, TId>(
     {
@@ -67,15 +38,16 @@ export function useCheckingService<TItem, TId>(
         getRowOptions,
         rowOptions,
         handleCascadeSelection,
+        getItemStatus,
     }: UseCheckingServiceProps<TItem, TId>,
 ): CheckingService<TItem, TId> {
     const checked = dataSourceState.checked ?? [];
     const checkingInfoById = useMemo(
-        () => getCheckingInfo(checked, tree, getParentId),
-        [tree, tree, getParentId, checked],
+        () => buildParentsLookup(checked, tree, getParentId),
+        [tree, getParentId, checked],
     );
 
-    const { checkedByKey, someChildCheckedByKey } = checkingInfoById;
+    const { idsByKey: checkedByKey, someChildInIdsByKey: someChildCheckedByKey } = checkingInfoById;
 
     const isRowChecked = useCallback((row: DataRowProps<TItem, TId>) => {
         const exactCheck = !!checkedByKey[row.rowKey];
@@ -96,7 +68,20 @@ export function useCheckingService<TItem, TId>(
         return { ...rowOptions, ...externalRowOptions };
     }, [rowOptions, getRowOptions]);
 
-    const isItemCheckable = useCallback((item: TItem) => {
+    const isItemCheckable = useCallback((id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
+        if (item === NOT_FOUND_RECORD) {
+            const status = getItemStatus(id);
+            if (isInProgress(status)) {
+                return false;
+            }
+
+            if (item === FAILED_RECORD || item === NOT_FOUND_RECORD) {
+                return true;
+            }
+
+            return false;
+        }
+
         const rowProps = getRowProps(item);
         return rowProps?.checkbox?.isVisible && !rowProps?.checkbox?.isDisabled;
     }, [getRowProps]);

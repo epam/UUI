@@ -1,5 +1,5 @@
 import logo from "../icons/logo.svg";
-import { BurgerButton, MainMenu, MainMenuButton } from "@epam/promo";
+import { BurgerButton, MainMenu, MainMenuButton } from "@epam/uui";
 import { useCallback } from "react";
 
 export const AppHeader = () => {
