@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
-import { CheckingService, FocusService, SelectingService } from './services';
+import { CheckingService, FocusService, FoldingService, SelectingService } from './services';
 import { idToKey } from '../helpers';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
 import { ITree, Tree } from '../tree';
@@ -8,6 +8,7 @@ import { ITree, Tree } from '../tree';
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
     SelectingService<TItem, TId>,
+    Pick<FoldingService<TItem, TId>, 'handleOnFold'>,
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
@@ -28,6 +29,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         handleOnCheck,
         handleOnSelect,
         handleOnFocus,
+        handleOnFold,
         isRowSelected,
         isRowChildSelected,
         isRowChecked,
@@ -62,6 +64,8 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         row.onCheck = isCheckable && handleOnCheck;
         row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
+        row.onFold = row.isFoldable && handleOnFold;
+
         row.isChildrenChecked = isRowChildrenChecked(row);
         row.isChildrenSelected = isRowChildSelected(row);
 
@@ -78,6 +82,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         handleOnCheck,
         handleOnSelect,
         handleOnFocus,
+        handleOnFold,
     ]);
 
     const getRowProps = useCallback((item: TItem, index: number): DataRowProps<TItem, TId> => {

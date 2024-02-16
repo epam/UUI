@@ -42,14 +42,14 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
 
     public getItems(parentId?: TId): ItemsInfo<TId> {
         const ids = this.byParentId.get(parentId) ?? [];
-        const { count, totalCount, assumedCount } = this.nodeInfoById.get(parentId) || {};
+        const { count, ...restNodeInfo } = this.nodeInfoById.get(parentId) || {};
 
         let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
         if (count !== 0 && ids.length === count) {
             status = FULLY_LOADED;
         }
 
-        return { ids, count, totalCount, status, assumedCount };
+        return { ids, count, status, ...restNodeInfo };
     }
 
     public getChildren(parentId: TId) {
@@ -146,7 +146,7 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
         const newNodeInfoById = newMap<TId, TreeNodeInfo>(params);
         for (const [parentId, ids] of byParentId) {
             const assumedCount = itemsMap.has(parentId) ? params.getChildCount?.(itemsMap.get(parentId)) : undefined;
-            newNodeInfoById.set(parentId, { count: ids.length, assumedCount });
+            newNodeInfoById.set(parentId, { count: ids.length, ...(params.getChildCount ? { assumedCount } : {}) });
         }
 
         return this.create<TItem, TId>(params, itemsAccessor, byParentId, newNodeInfoById);
