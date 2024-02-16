@@ -129,7 +129,7 @@ export class Tree {
     public static forEachChildren<TItem, TId>(
         tree: ITree<TItem, TId>,
         action: (id: TId) => void,
-        isSelectable: (id: TId, item: TItem) => boolean,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
         parentId?: TId,
         includeParent: boolean = true,
     ) {
