@@ -7,7 +7,7 @@ export function isColumnAlwaysPinned(column: DataColumnProps) {
     return Boolean(column.isAlwaysVisible && column.fix);
 }
 
-export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>) {
+export function canAcceptDrop(props: Pick<AcceptDropParams<DndDataType, DndDataType>, 'srcData' | 'dstData'>) {
     const { srcData, dstData } = props;
 
     const DISALLOW = {};
