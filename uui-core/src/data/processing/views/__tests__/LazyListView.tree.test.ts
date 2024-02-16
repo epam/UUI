@@ -477,19 +477,22 @@ describe('LazyListView', () => {
         });
 
         it('Select All', async () => {
-            const getView = () =>
-                ds.getView(currentValue, onValueChanged, {
-                    cascadeSelection: true,
-                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: () => false,
-                });
-
-            let ds = treeDataSource;
             currentValue.visibleCount = 2; // to check that Select All works even if not all rows are loaded
             currentValue.checked = [
                 121, 122, 310, 320,
             ];
-            let view = getView();
+
+            const hookResult = renderHook(
+                ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
+                    cascadeSelection: true,
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
+                }),
+                { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+            );
+
+            const view = hookResult.result.current;
+
             view.getListProps(); // trigger loading
             await delay();
 
@@ -501,7 +504,7 @@ describe('LazyListView', () => {
             await delay();
 
             currentValue.visibleCount = 10;
-            view = getView();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             await delay();
 
             selectAll = view.getListProps().selectAll;
@@ -529,7 +532,7 @@ describe('LazyListView', () => {
             selectAll?.onValueChange(false);
             await delay();
 
-            view = getView();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             await delay();
 
             selectAll = view.getListProps().selectAll;
@@ -556,16 +559,18 @@ describe('LazyListView', () => {
 
     describe('CascadeSelection - implicit mode', () => {
         it('Cascade selection works', async () => {
-            const getView = () =>
-                ds.getView(currentValue, onValueChanged, {
+            currentValue.visibleCount = 6;
+            const hookResult = renderHook(
+                ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
                     getRowOptions: () => ({ checkbox: { isVisible: true } }),
                     isFoldedByDefault: () => false,
                     cascadeSelection: 'implicit',
-                });
+                }),
+                { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+            );
 
-            let ds = treeDataSource;
-            currentValue.visibleCount = 6;
-            let view = getView();
+            const view = hookResult.result.current;
+
             view.getListProps(); // trigger loading
             await delay();
 
@@ -576,7 +581,7 @@ describe('LazyListView', () => {
 
             await delay();
 
-            view = getView();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             await delay();
 
             expectViewToLookLike(view, [
@@ -594,7 +599,7 @@ describe('LazyListView', () => {
             row120.onCheck?.(row120);
             await delay();
 
-            view = getView();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             await delay();
 
             expectViewToLookLike(view, [
@@ -610,24 +615,20 @@ describe('LazyListView', () => {
         });
 
         it('Cascade selection - handles quick (simultaneous) clicks', async () => {
-            const ds = treeDataSource;
-            let view: LazyListView<TestItem, number>;
             currentValue.visibleCount = 10;
 
-            const onValueChangedLocal = (newValue: DataSourceState) => {
-                currentValue = newValue;
-                view = getView();
-            };
-
-            function getView() {
-                return ds.getView(currentValue, onValueChangedLocal, {
+            const hookResult = renderHook(
+                ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
                     getRowOptions: () => ({ checkbox: { isVisible: true } }),
                     isFoldedByDefault: () => false,
                     cascadeSelection: 'implicit',
-                });
-            }
+                }),
+                { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+            );
 
-            view = getView();
+            const view = hookResult.result.current;
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             view.getListProps(); // trigger loading
             await delay();
 
@@ -636,12 +637,14 @@ describe('LazyListView', () => {
             row120.onCheck?.(row120);
 
             await delay();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
             row300.onCheck?.(row300);
 
             await delay();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
             expectViewToLookLike(view, [
                 { id: 100, isChecked: false, isChildrenChecked: true },
@@ -660,19 +663,21 @@ describe('LazyListView', () => {
         });
 
         it('Select All', async () => {
-            const getView = () =>
-                ds.getView(currentValue, onValueChanged, {
-                    cascadeSelection: 'implicit',
-                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: () => false,
-                });
-
-            let ds = treeDataSource;
             currentValue.visibleCount = 2; // to check that Select All works even if not all rows are loaded
             currentValue.checked = [
                 121, 122, 310, 320,
             ];
-            let view = getView();
+            const hookResult = renderHook(
+                ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
+                    cascadeSelection: 'implicit',
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
+                }),
+                { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+            );
+
+            const view = hookResult.result.current;
+
             view.getListProps(); // trigger loading
             await delay();
 
@@ -684,7 +689,7 @@ describe('LazyListView', () => {
             await delay();
 
             currentValue.visibleCount = 10;
-            view = getView();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             await delay();
 
             selectAll = view.getListProps().selectAll;
@@ -715,9 +720,10 @@ describe('LazyListView', () => {
             selectAll?.onValueChange(false);
             await delay();
 
-            view = getView();
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             await delay();
 
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
             selectAll = view.getListProps().selectAll;
             expect(selectAll?.value).toBe(false);
             expect(selectAll?.indeterminate).toBe(false);
@@ -741,24 +747,19 @@ describe('LazyListView', () => {
     });
 
     it('FocusedIndex works', async () => {
-        const ds = treeDataSource;
-        let view: LazyListView<TestItem, number>;
         currentValue.visibleCount = 3;
 
-        const onValueChangedLocal = (newValue: DataSourceState) => {
-            currentValue = newValue;
-            view = getView();
-        };
-
-        function getView() {
-            return ds.getView(currentValue, onValueChangedLocal, {
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
                 getRowOptions: () => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: () => false,
                 cascadeSelection: true,
-            });
-        }
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
 
-        view = getView();
+        const view = hookResult.result.current;
+
         view.getListProps(); // trigger loading
         await delay();
 
@@ -768,7 +769,7 @@ describe('LazyListView', () => {
 
         currentValue.focusedIndex = 0;
 
-        view = getView();
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         await delay();
 
         expectViewToLookLike(view, [
@@ -777,7 +778,7 @@ describe('LazyListView', () => {
 
         currentValue.focusedIndex = 2;
 
-        view = getView();
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         await delay();
 
         expectViewToLookLike(view, [
@@ -786,23 +787,26 @@ describe('LazyListView', () => {
     });
 
     it('Correctly computes path and isLastChild', async () => {
-        const getView = () =>
-            ds.getView(currentValue, onValueChanged, {
+        currentValue.folded = { 120: true };
+        currentValue.visibleCount = 10;
+
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
                 cascadeSelection: true,
                 getRowOptions: () => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: () => false,
-            });
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
 
-        let ds = treeDataSource;
-        currentValue.folded = { 120: true };
-        currentValue.visibleCount = 10;
-        let view = getView();
+        const view = hookResult.result.current;
+
         view.getListProps(); // trigger loading
 
         await delay();
 
         currentValue.folded = { 120: false };
-        view = getView();
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         view.getListProps(); // trigger loading
 
         expectViewToLookLike(
@@ -888,10 +892,7 @@ describe('LazyListView', () => {
             i.childrenCount = testDataLocal.filter((x) => x.parentId === i.id).length;
         });
 
-        let valueLocal: DataSourceState = { visibleCount: 5 };
-        const onValueChangedLocal = (newValue: DataSourceState) => {
-            valueLocal = newValue;
-        };
+        currentValue.visibleCount = 5;
 
         const testApiLocal = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testDataLocal, rq)));
 
@@ -903,22 +904,26 @@ describe('LazyListView', () => {
             getChildCount: (i) => i.childrenCount,
         });
 
-        const getView = () =>
-            ds.getView(valueLocal, onValueChangedLocal, {
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => ds.useView(value, onValueChange, {
                 cascadeSelection: true,
                 getRowOptions: () => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: () => false,
                 getParentId: (i) => i.parentId,
-            });
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
 
-        let view = getView();
+        const view = hookResult.result.current;
+
         view.getListProps(); // trigger loading
         await delay();
 
         // fold row #100
         let rows = view.getVisibleRows();
         rows[0].onFold?.(rows[0]);
-        view = getView();
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         rows = view.getVisibleRows();
 
         expect(rows).toEqual([
@@ -935,23 +940,19 @@ describe('LazyListView', () => {
     });
 
     it('should check/uncheck parents if all/no siblings checked', async () => {
-        const ds = treeDataSource;
         currentValue.visibleCount = 10;
-        let view: LazyListView<TestItem, number>;
 
-        const onValueChangedLocal = (newValue: DataSourceState) => {
-            currentValue = newValue;
-            view = getView();
-        };
-
-        const getView = () =>
-            ds.getView(currentValue, onValueChangedLocal, {
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
                 getRowOptions: () => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: () => false,
                 cascadeSelection: true,
-            });
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
 
-        view = getView();
+        const view = hookResult.result.current;
+
         view.getVisibleRows();
         await delay();
 
@@ -959,10 +960,12 @@ describe('LazyListView', () => {
         row121.onCheck?.(row121);
         await delay();
 
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         const row122 = view.getVisibleRows()[4];
         row122.onCheck?.(row122);
         await delay();
 
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         expectViewToLookLike(view, [
             { id: 100, isChildrenChecked: true },
             { id: 110 },
@@ -980,6 +983,7 @@ describe('LazyListView', () => {
         row121.onCheck?.(row121);
         await delay();
 
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         expectViewToLookLike(view, [
             { id: 100, isChildrenChecked: true },
             { id: 110 },
@@ -995,12 +999,22 @@ describe('LazyListView', () => {
     });
 
     it('should return selected rows in selection order', async () => {
-        const view = treeDataSource.getView({
-            ...currentValue,
-            checked: [
-                320, 310, 121, 122,
-            ],
-        }, onValueChanged, {});
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
+                cascadeSelection: true,
+            }),
+            {
+                initialProps: {
+                    value: { ...currentValue, checked: [320, 310, 121, 122] },
+                    onValueChange: onValueChanged,
+                },
+            },
+        );
+
+        const view = hookResult.result.current;
+
         view.getListProps(); // trigger loading
         await delay();
 
