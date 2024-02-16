@@ -16,17 +16,17 @@ export interface DragHandleProps extends IHasCX, IHasRawProps<React.HTMLAttribut
 
 export class DragHandle extends React.Component<DragHandleProps> {
     render() {
-        const { rawProps, dragHandleIcon } = this.props;
+        const { rawProps, dragHandleIcon, isDisabled } = this.props;
         const classes = cx(
             this.props.cx,
             css.container,
             'uui-drag-handle',
             !dragHandleIcon && css.noIcon,
-            this.props.isDisabled && uuiMod.disabled,
+            isDisabled && uuiMod.disabled,
         );
         return (
             <div className={ classes } { ...rawProps }>
-                { dragHandleIcon && <IconContainer icon={ dragHandleIcon } />}
+                { dragHandleIcon && <IconContainer icon={ dragHandleIcon } isDisabled={ isDisabled } />}
             </div>
         );
     }
