@@ -8,7 +8,7 @@
     touch-action: auto;
     column-gap: 6px;
 
-    &.not-pinned:not(:hover) {
+    &.not-pinned:not(:hover):not(:focus-within) {
         .pin-icon-button {
             visibility: hidden;
         }
@@ -24,10 +24,7 @@
 
     .drag-handle {
         height: 12px;
-        background-position: right;
-        background-repeat: repeat-y;
-        padding: 6px 0 6px 24px;
-        background-position-y: -2px;
+        padding: 0 0 6px 24px;
         opacity: 1;
         touch-action: none;
 
@@ -36,6 +33,9 @@
             touch-action: auto;
         }
 
+        :global(.uui-icon) {
+            fill: var(--uui-control-icon);
+        }
     }
 
     &:global(.uui-drag-ghost) {

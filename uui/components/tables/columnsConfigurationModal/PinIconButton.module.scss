@@ -1,0 +1,14 @@
+.unpin-icon:hover {
+    :global(.uui-icon) {
+        fill: var(--uui-critical-60);
+    }
+}
+
+.icon-18 {
+    :global(.uui-icon) {
+        > svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
