@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { LazyTreeProps } from './types';
 import { useSimplePrevious } from '../../../../../../../hooks';
-import { onlySearchWasUnset } from './helpers';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
@@ -113,9 +112,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         if (shouldRefetch) {
             setIsFetching(true);
             currentTree = treeWithData.clearStructure();
-            if (onlySearchWasUnset(prevDataSourceState, dataSourceState)) {
-                currentTree = currentTree.reset();
-            }
         }
 
         if (shouldLoad) {
