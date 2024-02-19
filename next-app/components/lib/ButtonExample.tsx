@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IDropdownToggler, INotification, useUuiContext } from '@epam/uui-core';
+import { IDropdownToggler, useUuiContext } from '@epam/uui-core';
 import { Badge, Button, Dropdown, FlexCell, FlexRow, LinkButton, NotificationCard, Panel, Text, Tooltip } from '@epam/uui';
 import { MultiSwitch } from '@epam/promo';
 import { BasicModalExample } from '../Modal';
@@ -13,7 +13,7 @@ export const ButtonExample = () => {
 
     const handleSuccess = () => {
         console.log('Success Click');
-        svc.uuiNotifications.show((props: INotification) =>
+        svc.uuiNotifications.show(() =>
             <NotificationCard id={ 1 } key={ 'keyProps' } color='info' onClose={ () => null } onSuccess={ () => null } >
                 <Text>Common notification</Text>
             </NotificationCard>);
@@ -26,7 +26,7 @@ export const ButtonExample = () => {
 
     const renderDropdownBody = () => {
         return (
-            <Panel background shadow={ true }>
+            <Panel shadow={ true }>
             <FlexRow padding='12' vPadding='12'>
                 <Text>
                     Dropdown body content.
@@ -99,7 +99,7 @@ export const ButtonExample = () => {
             <FlexRow cx={ 'withGap' }>
                 <Badge color='info' fill='solid' caption='Status' />
                 <Badge color='success' fill='solid' caption='Status' />
-                <Badge color='error' fill='solid' caption='Status' />
+                <Badge color='critical' fill='solid' caption='Status' />
             </FlexRow>
         </Panel>
     );
