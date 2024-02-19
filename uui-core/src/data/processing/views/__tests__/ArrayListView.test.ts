@@ -84,16 +84,19 @@ describe('ArrayListView', () => {
 
     describe('setValue logic', () => {
         it('should set new value and update rows', () => {
+            const getFilter = (filter) => (item) => filter(item);
+            const filter = (item) => item.parentId === 6;
+
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: initialValue, onValueChange: onValueChangeFn, props: viewProps } },
+                { initialProps: { value: { ...initialValue, filter }, onValueChange: onValueChangeFn, props: { ...viewProps, getFilter } } },
             );
 
             let view = hookResult.result.current;
 
             const rows = view.getVisibleRows();
 
-            hookResult.rerender({ value: { filter: {} }, onValueChange: onValueChangeFn, props: viewProps });
+            hookResult.rerender({ value: { filter: () => true }, onValueChange: onValueChangeFn, props: { ...viewProps, getFilter } });
             view = hookResult.result.current;
 
             const newRows = view.getVisibleRows();
