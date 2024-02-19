@@ -24,7 +24,7 @@ export const InputExample = () => {
     const [value, onValueChange] = useState<string | null>('');
     const [valueText, onValueChangeText] = useState<string | undefined>();
     const [hasBackground, setHasBackground] = useState(true);
-    const [isDisabled, setIsDisabled] = useState(false);
+    const [isDisabled,] = useState(false);
     const [valueBool, onValueChangeBool] = useState<boolean>(false);
     const [valueNumNull, onValueChangeNumNull] = useState<number | null>(0);
     const [valueLazy, onValueChangeLazy] = useState<number[]>([]);
