@@ -1,5 +1,5 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { delayAct, renderHook } from '@epam/uui-test-utils';
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
@@ -55,7 +55,7 @@ describe('LazyListView with flat list', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: {} } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
@@ -63,8 +63,9 @@ describe('LazyListView with flat list', () => {
 
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -76,12 +77,14 @@ describe('LazyListView with flat list', () => {
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChangeFn, props: {} });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ], 11);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -93,12 +96,14 @@ describe('LazyListView with flat list', () => {
         // Scroll down to bottom
         hookResult.rerender({ value: { topIndex: 8, visibleCount: 3 }, onValueChange: onValueChangeFn, props: {} });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ], 11);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -195,7 +200,7 @@ describe('LazyListView with tree table', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         expectViewToLookLike(view, [
             {
                 isLoading: true, depth: 0, indent: 0, path: [],
@@ -207,10 +212,11 @@ describe('LazyListView with tree table', () => {
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
         expect(testApi).toBeCalledTimes(1);
         testApi.mockClear();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -232,6 +238,7 @@ describe('LazyListView with tree table', () => {
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -244,8 +251,9 @@ describe('LazyListView with tree table', () => {
             5,
         ); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -265,6 +273,8 @@ describe('LazyListView with tree table', () => {
         rows[2].onFold?.(rows[2]);
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 5 }, onValueChange: onValueChanged, props: {} });
+
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             {
                 id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
@@ -275,8 +285,9 @@ describe('LazyListView with tree table', () => {
             }, { isLoading: true, depth: 2, indent: 3 }, { isLoading: true, depth: 2, indent: 3 },
         ]);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             {
                 id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
@@ -294,12 +305,14 @@ describe('LazyListView with tree table', () => {
         expect(view.getListProps().rowsCount).toBeGreaterThan(5);
         hookResult.rerender({ value: { ...currentValue, visibleCount: 4, topIndex: 4 }, onValueChange: onValueChanged, props: {} });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 122, depth: 2, isFoldable: false }, { isLoading: true, depth: 2 }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
         ]);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             {
                 id: 122, depth: 2, indent: 3, isFoldable: false,
@@ -310,6 +323,7 @@ describe('LazyListView with tree table', () => {
 
         // // Scroll down to bottom
         hookResult.rerender({ value: { ...currentValue, visibleCount: 4, topIndex: 6 }, onValueChange: onValueChanged, props: {} });
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [{ id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 }],

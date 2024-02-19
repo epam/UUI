@@ -3,7 +3,7 @@ import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { delayAct, renderHook } from '@epam/uui-test-utils';
 import { LazyListViewProps } from '../types';
 
 interface TestItem {
@@ -64,7 +64,7 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true },
             { isLoading: true },
@@ -79,7 +79,9 @@ describe('LazyListView', () => {
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
+
+        view = hookResult.result.current;
 
         expectViewToLookLike(
             view,

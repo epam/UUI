@@ -1,5 +1,5 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataSourceState } from '../../../../types';
 import { LazyListViewProps } from '../types';
 
@@ -32,30 +32,54 @@ describe('LazyListView - old tests', () => {
                 { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
             );
 
-            const view = hookResult.result.current;
+            let view = hookResult.result.current;
             const loadingRow = view.getById(testItems[4].id, 4);
-            expect(loadingRow.isLoading).toBe(true);
+            expect(loadingRow.isUnknown).toBe(true);
             expect(loadingRow.id).not.toBeNull();
 
-            await delay();
+            await waitFor(async () => {
+                view = hookResult.result.current;
+                const row = view.getById(testItems[4].id, 4);
+                expect(row.isUnknown).toBeFalsy();
+            });
 
             const row = view.getById(testItems[4].id, 4);
-
             expect(row.id).toBe(testItems[4].id);
             expect(row.value).toEqual(testItems[4]);
             expect(row.index).toEqual(4);
         });
 
-        it("should return loading row if item don't exist in dataSource", () => {
+        it("should return unknown row if item don't exist in dataSource", async () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
                 { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
             );
 
+            await waitFor(async () => {
+                const view = hookResult.result.current;
+                const row = view.getById(111, 111);
+                expect(row.isUnknown).toBeTruthy();
+            });
+
             const view = hookResult.result.current;
             const row = view.getById(111, 111);
+            expect(row.id).not.toBeNull();
+        });
 
-            expect(row.isLoading).toBe(true);
+        it('should return loading row if item is fetching by dataSource', async () => {
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: { value: { checked: [111], ...initialValue }, onValueChange: () => {}, props: { showOnlySelected: true } } },
+            );
+
+            await waitFor(async () => {
+                const view = hookResult.result.current;
+                const row = view.getById(111, 111);
+                expect(row.isLoading).toBeTruthy();
+            });
+
+            const view = hookResult.result.current;
+            const row = view.getById(111, 111);
             expect(row.id).not.toBeNull();
         });
     });
@@ -66,7 +90,7 @@ describe('LazyListView - old tests', () => {
             { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         let rows = view.getVisibleRows();
 
         // Should return loading rows for first call
@@ -74,8 +98,13 @@ describe('LazyListView - old tests', () => {
         expect(rows[5].isLoading).toBe(true);
         expect(rows[5].id).not.toBeNull();
 
-        await delay();
+        await waitFor(async () => {
+            view = hookResult.result.current;
+            const viewRows = view.getVisibleRows();
+            expect(viewRows[5].isLoading).toBeFalsy();
+        });
 
+        view = hookResult.result.current;
         rows = view.getVisibleRows();
 
         expect(rows[5].id).toEqual(testItems[5].id);
