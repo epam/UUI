@@ -1,4 +1,4 @@
-import { renderHook } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 import { ArrayDataSource } from '../../ArrayDataSource';
 import { CascadeSelection, DataSourceState, SortDirection } from '../../../../types';
 import isEqual from 'lodash.isequal';
@@ -47,11 +47,21 @@ let dataSource: ArrayDataSource<{ id: number; level: string }, number, any>;
 
 let onValueChangeFn: (newValue: DataSourceState<any, number> | ((value: DataSourceState<any, number>) => DataSourceState<any, number>)) => any;
 const initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
+let currentValue = initialValue;
 let viewProps: ArrayListViewProps<TItem, number, any>;
 
 describe('ArrayListView', () => {
     beforeEach(() => {
-        onValueChangeFn = jest.fn();
+        jest.clearAllMocks();
+
+        currentValue = initialValue;
+        onValueChangeFn = jest.fn().mockImplementation((newValue) => {
+            if (typeof newValue === 'function') {
+                currentValue = newValue(currentValue);
+                return;
+            }
+            currentValue = newValue;
+        });
 
         dataSource = new ArrayDataSource<TItem, number>({
             items: testItems,
@@ -69,8 +79,6 @@ describe('ArrayListView', () => {
                 isSelectable: true,
             }),
         };
-
-        jest.clearAllMocks();
     });
 
     it('should create visibleRows on constructor', () => {
@@ -355,24 +363,15 @@ describe('ArrayListView', () => {
         const getFilter = (filter) => (item) => filter(item);
         const filter = (item) => item.parentId === 6;
 
-        let currentValue = initialValue;
-        const currentOnValueChange = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
-            if (typeof newValue === 'function') {
-                currentValue = newValue(currentValue);
-                return;
-            }
-            currentValue = newValue;
-        };
-
         it('should update tree if filter was changed', () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: currentOnValueChange, props: viewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -388,7 +387,7 @@ describe('ArrayListView', () => {
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -405,12 +404,12 @@ describe('ArrayListView', () => {
         it('should update tree if filter and search was changed', () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: currentOnValueChange, props: viewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter, search: 'B1' },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -425,7 +424,7 @@ describe('ArrayListView', () => {
         it('should update tree if filter, search and sorting was changed', () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: currentOnValueChange, props: viewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
             hookResult.rerender({
@@ -437,7 +436,7 @@ describe('ArrayListView', () => {
                     search: 'B',
                     sorting: [{ field: 'level', direction: 'desc' as SortDirection }],
                 },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -465,7 +464,11 @@ describe('ArrayListView', () => {
                 const row = view.getById(6, 6);
                 row.onSelect?.(row);
 
-                expect(onValueChangeFn).toBeCalledWith({ ...initialValue, selectedId: 6 });
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    selectedId: 6,
+                });
             });
 
             it('onCheck handler should set id to checked array in value', async () => {
@@ -476,21 +479,33 @@ describe('ArrayListView', () => {
 
                 let view = hookResult.result.current;
                 const row1 = view.getById(6, 6);
+
                 row1.onCheck?.(row1);
-                expect(onValueChangeFn).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
+                await delay();
+
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6],
+                });
 
                 hookResult.rerender({ value: { ...initialValue, checked: [6] }, onValueChange: onValueChangeFn, props: viewProps });
                 view = hookResult.result.current;
 
                 const row2 = view.getById(7, 7);
                 row2.onCheck?.(row2);
+                await delay();
 
-                expect(onValueChangeFn).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
+                expect(onValueChangeFn).toBeCalledTimes(2);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6, 7],
+                });
             });
         });
 
         describe("cascadeSelection = true | cascadeSelection = 'explicit'", () => {
-            it.each<[CascadeSelection]>([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -507,8 +522,10 @@ describe('ArrayListView', () => {
                 const view = hookResult.result.current;
                 const row1 = view.getById(6, 6);
                 row1.onCheck?.(row1);
+                await delay();
 
-                expect(onValueChangeFn).toBeCalledWith({
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         6, 7, 8, 9,
@@ -516,7 +533,7 @@ describe('ArrayListView', () => {
                 });
             });
 
-            it.each<[CascadeSelection]>([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -534,8 +551,10 @@ describe('ArrayListView', () => {
 
                 const row = view.getById(9, 9);
                 row.onCheck?.(row);
+                await delay();
 
-                expect(onValueChangeFn).toBeCalledWith({
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         7, 8, 9, 6,
@@ -543,7 +562,7 @@ describe('ArrayListView', () => {
                 });
             });
 
-            it.each<[CascadeSelection]>([[true], ['explicit']])('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should select all top items with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -558,8 +577,10 @@ describe('ArrayListView', () => {
 
                 const view = hookResult.result.current;
                 view.selectAll?.onValueChange(true);
+                await delay();
 
-                expect(onValueChangeFn).toBeCalledWith({
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12,
@@ -569,7 +590,7 @@ describe('ArrayListView', () => {
         });
 
         describe("cascadeSelection = 'implicit'", () => {
-            it('should check only parent when parent checked with cascadeSelection = implicit', () => {
+            it('should check only parent when parent checked with cascadeSelection = implicit', async () => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection: 'implicit',
@@ -585,11 +606,16 @@ describe('ArrayListView', () => {
 
                 const row1 = view.getById(6, 6);
                 row1.onCheck?.(row1);
+                await delay();
 
-                expect(onValueChangeFn).toBeCalledWith({ ...initialValue, checked: [6] });
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6],
+                });
             });
 
-            it('should check parent if all siblings checked with cascadeSelection = implicit', () => {
+            it('should check parent if all siblings checked with cascadeSelection = implicit', async () => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection: 'implicit',
@@ -605,11 +631,16 @@ describe('ArrayListView', () => {
 
                 const row = view.getById(9, 9);
                 row.onCheck?.(row);
+                await delay();
 
-                expect(onValueChangeFn).toBeCalledWith({ ...initialValue, checked: [6] });
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6],
+                });
             });
 
-            it('should select all top items with cascadeSelection = implicit', () => {
+            it('should select all top items with cascadeSelection = implicit', async () => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection: 'implicit',
@@ -624,8 +655,10 @@ describe('ArrayListView', () => {
                 const view = hookResult.result.current;
 
                 view.selectAll?.onValueChange(true);
+                await delay();
 
-                expect(onValueChangeFn).toBeCalledWith({
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         2, 5, 1, 3, 4, 6, 10, 11, 12,
@@ -644,7 +677,8 @@ describe('ArrayListView', () => {
         const row = view.getById(6, 6);
         row.onFocus?.(row.index);
 
-        expect(onValueChangeFn).toBeCalledWith({ ...initialValue, focusedIndex: row.index });
+        expect(onValueChangeFn).toBeCalledTimes(1);
+        expect(currentValue).toEqual({ ...initialValue, focusedIndex: row.index });
     });
 
     it('should fold/unfold item', () => {
@@ -656,7 +690,8 @@ describe('ArrayListView', () => {
         const row = view.getVisibleRows()[5];
         row.onFold?.(row);
 
-        expect(onValueChangeFn).toBeCalledWith({ ...initialValue, folded: { [row.id]: !row.isFolded } });
+        expect(onValueChangeFn).toBeCalledTimes(1);
+        expect(currentValue).toEqual({ ...initialValue, folded: { [row.id]: !row.isFolded } });
     });
 
     it('should return selected rows in selection order', () => {

@@ -18,7 +18,7 @@ export class CheckingHelper {
         if (!(checkedId === ROOT_ID && isImplicitMode)) {
             currentCheckedIds.forEach((id) => checkedIdsMap.set(id, true));
         }
-        const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType: cascadeSelectionType ?? true };
+        const optionsWithDefaults = { isCheckable: isCheckable ?? (() => true), cascadeSelectionType };
 
         const { count } = tree.getItems(undefined);
         const treeIsLoaded = count !== 0;

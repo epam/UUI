@@ -8,7 +8,7 @@ import { ITree, Tree } from '../tree';
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
     FocusService,
     SelectingService<TItem, TId>,
-    Pick<FoldingService<TItem, TId>, 'handleOnFold'>,
+    FoldingService<TItem, TId>,
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
@@ -26,6 +26,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         dataSourceState,
         getRowOptions,
         rowOptions,
+        isFolded,
         handleOnCheck,
         handleOnSelect,
         handleOnFocus,
@@ -65,6 +66,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
         row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
         row.onFold = row.isFoldable && handleOnFold;
+        row.isFolded = row.isFoldable && isFolded(row.value);
 
         row.isChildrenChecked = isRowChildrenChecked(row);
         row.isChildrenSelected = isRowChildSelected(row);
@@ -82,6 +84,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         handleOnCheck,
         handleOnSelect,
         handleOnFocus,
+        isFolded,
         handleOnFold,
     ]);
 

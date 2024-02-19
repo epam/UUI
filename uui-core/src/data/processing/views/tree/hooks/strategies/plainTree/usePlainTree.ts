@@ -40,6 +40,9 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         rowOptions,
         getRowOptions,
         setDataSourceState,
+        isFoldedByDefault,
+        cascadeSelection,
+        showOnlySelected,
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
@@ -78,7 +81,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
 
     return useMemo(
         () => ({
-            tree: tree.visible,
+            tree: showOnlySelected ? tree.selectedOnly : tree.visible,
             selectionTree: tree.full,
             totalCount,
             rowOptions,
@@ -88,10 +91,16 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             getId,
             dataSourceState,
             setDataSourceState,
+            isFoldedByDefault,
             reload,
+            cascadeSelection,
+            showOnlySelected,
         }),
         [
             tree,
+            totalCount,
+            reload,
+            showOnlySelected,
             dataSourceState,
             setDataSourceState,
             rowOptions,
@@ -100,6 +109,8 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             getChildCount,
             getParentId,
             getId,
+            isFoldedByDefault,
+            cascadeSelection,
         ],
     );
 }
