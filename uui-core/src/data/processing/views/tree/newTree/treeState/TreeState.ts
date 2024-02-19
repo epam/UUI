@@ -219,7 +219,7 @@ export class TreeState<TItem, TId> {
     }
 
     public buildSelectedOnly(checkedIds: TId[]) {
-        const foundIds = checkedIds
+        const foundIds = (checkedIds ?? [])
             .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
 
         const byParentId = newMap<TId, TId[]>(this.selectedOnly.getParams());

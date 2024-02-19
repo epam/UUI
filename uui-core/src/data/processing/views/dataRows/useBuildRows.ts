@@ -2,12 +2,10 @@ import { useMemo } from 'react';
 import { ITree, NOT_FOUND_RECORD, Tree } from '../tree';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
-import { FoldingService } from './services';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
 import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
-    Pick<FoldingService<TItem, TId>, 'isFolded'>,
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
@@ -32,7 +30,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
     getMissingRecordsCount,
     cascadeSelection,
     maxVisibleRowIndex,
-    isFolded,
     getRowProps,
     getLoadingRowProps,
     isLoading = false,
@@ -76,8 +73,6 @@ export function useBuildRows<TItem, TId, TFilter = any>({
                     const { ids: childrenIds } = tree.getItems(id);
 
                     if (estimatedChildrenCount > 0) {
-                        row.isFolded = isFolded(item);
-
                         if (childrenIds.length > 0) {
                         // some children are loaded
                             const childStats = iterateNode(id, appendRows && !row.isFolded);

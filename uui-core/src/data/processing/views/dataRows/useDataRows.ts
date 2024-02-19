@@ -139,7 +139,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isRowChildrenChecked,
         isItemCheckable,
 
-        handleOnFold: foldingService.handleOnFold,
+        ...foldingService,
         ...selectingService,
         ...focusService,
     });
@@ -154,7 +154,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getRowProps,
         getLoadingRowProps,
         isLoading,
-        isFolded: foldingService.isFolded,
     });
 
     const updatedRows = useUpdateRowOptions({ rows: allRows, updateRowOptions });

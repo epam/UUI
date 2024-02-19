@@ -149,6 +149,11 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
             newNodeInfoById.set(parentId, { count: ids.length, ...(params.getChildCount ? { assumedCount } : {}) });
         }
 
+        // if items is empty, count should be defined, otherwise, loading placeholders will be rendered.
+        if (!newNodeInfoById.size) {
+            newNodeInfoById.set(undefined, { count: 0 });
+        }
+
         return this.create<TItem, TId>(params, itemsAccessor, byParentId, newNodeInfoById);
     }
 }
