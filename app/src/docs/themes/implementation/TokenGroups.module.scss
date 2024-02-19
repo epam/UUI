@@ -1,3 +1,15 @@
+@keyframes semantic-animation {
+    0% {
+        opacity: 0;
+        transform: rotate3d(90, 0, 0, 90deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate3d(90, 0, 0, 90deg);
+    }
+}
+
 .root {
     .group-title {
         margin-bottom: 0;
@@ -5,7 +17,6 @@
 
     .group-info {
         margin-top: 6px;
-        margin-bottom: 18px;
     }
 
     .subgroup {
@@ -51,5 +62,77 @@
             border-radius: 3px;
             text-align: center;
         }
+    }
+
+    .semantic-table-header {
+        position: sticky;
+        z-index: 1000;
+        top: 0;
+        background: var(--uui-surface-main);
+        display: grid;
+        grid-template-columns: 220px repeat(6, 1fr);
+        align-items: center;
+        column-gap: 12px;
+        padding-top: 18px;
+        padding-bottom: 12px;
+    }
+
+    .no-paddings {
+        padding: 0;
+    }
+
+    .header-description {
+        white-space: break-spaces;
+    }
+
+    .semantic-table-rows {
+        display: grid;
+        grid-template-columns: 220px repeat(6, 1fr);
+        align-items: center;
+        column-gap: 12px;
+        row-gap: 24px;
+    }
+
+    .semantic-title-cell {
+        align-self: flex-start;
+    }
+
+    .semantic-title-row {
+        min-height: auto;
+        padding-bottom: 6px;
+    }
+
+    .color-viewer {
+        box-sizing: border-box;
+        width: 100%;
+        height: 36px;
+        border: 1px solid var(--uui-control-border);
+        border-radius: 3px;
+        text-align: center;
+        margin-bottom: 3px;
+        cursor: pointer;
+    }
+
+    .semantic-item {
+        padding-top: 0;
+        padding-bottom: 3px;
+        opacity: 1;
+        transition: 0.3s ease-in-out;
+        animation: semantic-animation;
+        animation-duration: 100ms;
+
+        &:last-of-type {
+            padding-bottom: 0;
+            cursor: pointer;
+        }
+    }
+
+    .hidden-item {
+        transform: rotate3d(90, 0, 0, 90deg);
+        opacity: 0;
+        visibility: hidden;
+        animation: semantic-animation;
+        animation-duration: 100ms;
+        animation-direction: reverse;
     }
 }
