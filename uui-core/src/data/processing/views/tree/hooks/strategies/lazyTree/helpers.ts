@@ -19,11 +19,3 @@ export const isQueryChanged = <TFilter, TId>(prevValue: DataSourceState<TFilter,
     || filterWasChanged(prevValue, newValue)
     || newValue?.page !== prevValue?.page
     || newValue?.pageSize !== prevValue?.pageSize;
-
-export const onlySearchWasUnset = <TFilter, TId>(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
-    searchWasChanged(prevValue, newValue) && !newValue.search
-    && !(
-        sortingWasChanged(prevValue, newValue)
-        || filterWasChanged(prevValue, newValue)
-        || newValue?.page !== prevValue?.page
-        || newValue?.pageSize !== prevValue?.pageSize);
