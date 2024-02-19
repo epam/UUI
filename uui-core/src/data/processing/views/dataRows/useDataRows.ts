@@ -8,7 +8,7 @@ import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
 import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
-import { FULLY_LOADED } from '../tree/constants';
+import { EMPTY, FULLY_LOADED } from '../tree/constants';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
 import { GetItemStatus } from '../tree/hooks/strategies/types';
 import { isInProgress } from '../helpers';
@@ -64,7 +64,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         }
 
         const { count, status } = nodeInfo;
-        if (count !== undefined && status === FULLY_LOADED) {
+        if (count !== undefined && (status === FULLY_LOADED || status === EMPTY)) {
             // nodes are already loaded, and we know the actual count
             return count;
         }
@@ -178,6 +178,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const getById = (id: TId, index: number) => {
         const itemStatus = getItemStatus?.(id);
+        console.log(itemStatus);
         const item = tree.getById(id);
         if (!isItemLoaded(item)) {
             if (isInProgress(itemStatus)) {

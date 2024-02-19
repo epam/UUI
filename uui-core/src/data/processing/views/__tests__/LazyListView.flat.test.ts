@@ -3,7 +3,7 @@ import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { delay, delayAct, renderHook } from '@epam/uui-test-utils';
 
 interface TestItem {
     id: number;
@@ -57,15 +57,16 @@ describe('LazyListView - flat list test', () => {
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -77,12 +78,14 @@ describe('LazyListView - flat list test', () => {
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ], 10);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -94,10 +97,12 @@ describe('LazyListView - flat list test', () => {
         // Scroll down to bottom
         hookResult.rerender({ value: { topIndex: 8, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }], 10);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [{ id: 320, value: testDataById[320] }, { id: 330, value: testDataById[330] }],
@@ -110,30 +115,17 @@ describe('LazyListView - flat list test', () => {
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
-        const view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { isLoading: true }, { isLoading: true }, { isLoading: true },
-        ]);
-        expect(view.getListProps().rowsCount).toBeGreaterThan(3);
-
-        await delay();
-
-        expectViewToLookLike(
-            view,
-            [
-                { id: 100, value: testDataById[100], depth: 0 }, { id: 110, value: testDataById[110], depth: 0 }, { id: 120, value: testDataById[120], depth: 0 },
-            ],
-            10,
-        );
+        let view = hookResult.result.current;
 
         view.reload();
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
+        expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         await delay();
-
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -142,9 +134,13 @@ describe('LazyListView - flat list test', () => {
             10,
         );
 
+        await delayAct();
+
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
 
+        await delay();
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ], 10);
@@ -155,7 +151,7 @@ describe('LazyListView - flat list test', () => {
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         view.getVisibleRows();
 
         // immediately set another filter and query again
@@ -169,20 +165,22 @@ describe('LazyListView - flat list test', () => {
             },
         });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 200 }, { id: 300 }, { id: 310 },
         ], 5);
 
         const rows = view.getVisibleRows();
         rows[0].onCheck?.(rows[0]);
-        await delay();
+        await delayAct();
 
         hookResult.rerender({
             value: currentValue,
@@ -192,6 +190,7 @@ describe('LazyListView - flat list test', () => {
             },
         });
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 200, isChecked: true }, { id: 300 }, { id: 310 },
         ], 5);
@@ -202,10 +201,11 @@ describe('LazyListView - flat list test', () => {
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: { filter: { id: { gte: 320 } } } } },
         );
-        const view = hookResult.result.current;
-        view.getListProps(); // trigger loading
-        await delay();
+        let view = hookResult.result.current;
 
+        await delayAct();
+
+        view = hookResult.result.current;
         expectViewToLookLike(view, [{ id: 320 }, { id: 330 }], 2);
     });
 
@@ -221,15 +221,16 @@ describe('LazyListView - flat list test', () => {
             ({ value, onValueChange, props }) => flatDataSourceNoCount.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 100, value: testDataById[100], depth: 0 }, { id: 110, value: testDataById[110], depth: 0 }, { id: 120, value: testDataById[120], depth: 0 },
         ]);
@@ -237,14 +238,15 @@ describe('LazyListView - flat list test', () => {
 
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
-
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(4);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { id: 121, value: testDataById[121] },
         ]);
@@ -252,14 +254,15 @@ describe('LazyListView - flat list test', () => {
 
         // Scroll down to bottom
         hookResult.rerender({ value: { topIndex: 8, visibleCount: 3 }, onValueChange: onValueChanged, props: {} });
-
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(11);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [{ id: 320, value: testDataById[320] }, { id: 330, value: testDataById[330] }],
@@ -272,14 +275,15 @@ describe('LazyListView - flat list test', () => {
             ({ value, onValueChange, props }) => flatDataSourceNoCount.useView(value, onValueChange, props),
             { initialProps: { value: { visibleCount: 3, filter: { id: -100500 } }, onValueChange: onValueChanged, props: {} } },
         );
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, []);
         expect(view.getListProps().rowsCount).toBe(0);
     });

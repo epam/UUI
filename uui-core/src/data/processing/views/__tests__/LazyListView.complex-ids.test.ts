@@ -1,6 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { delay, delayAct, renderHook } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LazyListViewProps } from '../types';
 
@@ -70,15 +70,16 @@ describe('LazyListView - can work with id like [string, number]', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
 
         expectViewToLookLike(view, [
             { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
     });
 
@@ -88,23 +89,24 @@ describe('LazyListView - can work with id like [string, number]', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
 
         // Unfold a row
-        let rows = view.getVisibleRows();
+        const rows = view.getVisibleRows();
         rows[0].onFold?.(rows[0]);
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
+        view = hookResult.result.current;
 
-        rows = view.getVisibleRows();
+        await delayAct();
 
-        await delay();
-
+        view = hookResult.result.current;
         expectViewToLookLike(view, [
             { id: ['parent', 1] }, { id: ['child', 1] }, { id: ['child', 2] },
         ], 3);
@@ -127,10 +129,11 @@ describe('LazyListView - can work with id like [string, number]', () => {
             } },
         );
 
-        const view = hookResult.result.current;
-        view.getVisibleRows(); // load;
-        await delay();
+        let view = hookResult.result.current;
 
+        await delayAct();
+
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -141,12 +144,13 @@ describe('LazyListView - can work with id like [string, number]', () => {
 
         let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
         row.onCheck?.(row);
-        await delay(); // checkboxes are async in LazyDataSource
+        await delayAct(); // checkboxes are async in LazyDataSource
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: viewProps });
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
@@ -157,12 +161,13 @@ describe('LazyListView - can work with id like [string, number]', () => {
 
         row = view.getVisibleRows()[0];
         row.onCheck?.(row);
-        await delay(); // checkboxes are async in LazyDataSource
+        await delayAct(); // checkboxes are async in LazyDataSource
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: viewProps });
 
-        await delay();
+        await delayAct();
 
+        view = hookResult.result.current;
         expectViewToLookLike(
             view,
             [
