@@ -1,4 +1,4 @@
-# 5.6.1 - 02.19.2024
+# 5.6.1 - 19.02.2024
 
 **What's Fixed**
 [LazyListView]: refetch on search clear.
