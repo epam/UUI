@@ -119,14 +119,18 @@
 
     .resize-mark {
         position: absolute;
-        width: 12px;
         right: 0;
+        width: 12px;
         height: 100%;
         cursor: col-resize;
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
         }
+    }
+
+    &.pinned-right .resize-mark {
+        left: 0;
     }
 
     &.draggable {
