@@ -3,19 +3,12 @@ import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, LinkButton, Panel, Rich
 import { INotificationContext, useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
-import { ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
+import { ISemanticTableProps, ISkinTitleProps, ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
 import css from './TokenGroups.module.scss';
 import { ReactComponent as hideDetailsIcon } from '@epam/assets/icons/common/action-eye-off-outline-18.svg';
 import { ReactComponent as showDetailsIcon } from '@epam/assets/icons/common/action-eye-outline-18.svg';
 
 // The config file with titles and descriptions to data groups and subgroups placed here: ( app/src/sandbox/tokens/docs/config.ts )
-interface ISemanticTableProps {
-    group: { _type: 'group_with_subgroups'; subgroups: ITokensDocGroup[]; subgroupsHeader: string[]; } & { id: string; title: string; description: string; };
-    details: boolean;
-    setDetails: (arg0: (prev: any) => boolean) => void;
-}
-
-type ISkinTitleProps = { _type: 'group_with_items'; items: ITokensDocItem[]; } & { id: string; title: string; description: string; };
 
 const showNotification = (color: string, uuiNotifications: INotificationContext) => {
     uuiNotifications

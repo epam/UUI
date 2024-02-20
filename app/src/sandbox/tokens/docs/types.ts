@@ -4,10 +4,10 @@ type ITokensDocGroupBase = {
     description: string,
 };
 
-export type ITokensDocGroup =
-    ({ _type: 'group_with_subgroups', subgroups: ITokensDocGroup[], subgroupsHeader: string[], } & ITokensDocGroupBase)
-    |
-    ({ _type: 'group_with_items', items: ITokensDocItem[] } & ITokensDocGroupBase);
+export type ISkinTitleProps = { _type: 'group_with_items'; items: ITokensDocItem[]; } & ITokensDocGroupBase;
+export type ISemanticGroup = { _type: 'group_with_subgroups'; subgroups: ITokensDocGroup[]; subgroupsHeader: string[]; } & ITokensDocGroupBase;
+
+export type ITokensDocGroup = ISemanticGroup | ISkinTitleProps;
 
 export interface ITokensDocItem {
     cssVar: string, // use it to render color rectangle
@@ -25,3 +25,9 @@ export type TTokensDocGroupCfgWithItems = { title: string, description: string, 
 export const isGroupCfgWithSubgroups = (cfg: TTokensDocGroupCfg): cfg is TTokensDocGroupCfgWithSubgroups => {
     return (cfg as TTokensDocGroupCfgWithSubgroups).subgroups !== undefined;
 };
+
+export interface ISemanticTableProps {
+    group: ISemanticGroup;
+    details: boolean;
+    setDetails: (arg0: (prev: any) => boolean) => void;
+}
