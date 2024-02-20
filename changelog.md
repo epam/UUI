@@ -9,6 +9,7 @@
     * Fixed partially selected with predefined selected value.
     * Fixed fetching missing parents for selected element in PickerInput.
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
+* [Avatar]: change type of 'img' prop to also accept null value
 
 # 5.6.0 - 08.02.2024
 
