@@ -20,7 +20,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "auto",
+        "height": "90vh",
         "width": "420px",
       }
     }
@@ -451,27 +451,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
-          >
-            <div
-              className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-6 groupTitleText container"
-            >
-              Hidden in table
-            </div>
-            <span
-              className="uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
-              tabIndex={-1}
-            >
-              0
-            </span>
           </div>
         </div>
         <div
