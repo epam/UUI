@@ -2,7 +2,7 @@ import {
     ScrollBars,
     VerticalTabButton,
 } from '@epam/promo';
-import React, { useState } from "react";
+import React from "react";
 import { structure } from "../helpers/structure";
 import { Tree, TreeListItem } from '@epam/uui-components';
 import { useRouter } from "next/router";
