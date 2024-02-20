@@ -178,7 +178,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
 
     const getById = (id: TId, index: number) => {
         const itemStatus = getItemStatus?.(id);
-        console.log(itemStatus);
         const item = tree.getById(id);
         if (!isItemLoaded(item)) {
             if (isInProgress(itemStatus)) {

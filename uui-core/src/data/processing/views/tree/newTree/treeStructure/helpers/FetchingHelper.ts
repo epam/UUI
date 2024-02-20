@@ -49,6 +49,7 @@ export class FetchingHelper {
             dataSourceState,
             withNestedChildren,
         });
+
         const checked = (dataSourceState.checked ?? []);
         const missing = dataSourceState.selectedId === null || dataSourceState.selectedId === undefined
             ? checked
@@ -88,6 +89,7 @@ export class FetchingHelper {
 
             const { ids, nodeInfo, loadedItems } = await this.loadItems<TItem, TId, TFilter>({
                 tree,
+                byParentId,
                 options,
                 parentId,
                 parent,
@@ -105,8 +107,9 @@ export class FetchingHelper {
                     || nodeInfo.totalCount !== originalNodeInfo.totalCount
                     || nodeInfo.assumedCount !== originalNodeInfo.assumedCount) {
                 nodeInfoById.set(parentId, nodeInfo);
-                byParentId.set(parentId, ids);
             }
+
+            byParentId.set(parentId, ids);
 
             recursiveLoadedCount += ids.length;
             if (loadedItems.length > 0) {
@@ -251,15 +254,17 @@ export class FetchingHelper {
     private static async loadItems<TItem, TId, TFilter>({
         tree,
         options,
+        byParentId,
         parentId,
         parent,
         dataSourceState,
         remainingRowsCount,
         loadAll,
     }: LoadItemsOptions<TItem, TId, TFilter>) {
-        const { ids: inputIds, count: childrenCount, totalCount, assumedCount: prevAssumedCount } = tree.getItems(parentId);
+        const { ids: originalIds, count: childrenCount, totalCount, assumedCount: prevAssumedCount } = tree.getItems(parentId);
+        const inputIds = byParentId.has(parentId) ? byParentId.get(parentId) ?? originalIds : originalIds;
 
-        const ids = inputIds ?? [];
+        let ids = inputIds ?? [];
         const loadedItems: TItem[] = [];
 
         const flatten = dataSourceState.search && options.flattenSearchResults;
@@ -317,14 +322,13 @@ export class FetchingHelper {
 
         const from = response.from == null ? range.from : response.from;
 
-        const newIds = [...ids];
-
         if (response.items?.length) {
+            ids = [...ids];
             for (let n = 0; n < response.items.length; n++) {
                 const item = response.items[n];
                 loadedItems.push(item);
                 const id = tree.getParams().getId(item);
-                newIds[n + from] = id;
+                ids[n + from] = id;
             }
         }
 
@@ -348,7 +352,7 @@ export class FetchingHelper {
 
         nodeInfo = { ...nodeInfo, totalCount: response.totalCount ?? totalCount };
         return {
-            ids: newIds,
+            ids,
             nodeInfo,
             loadedItems,
         };

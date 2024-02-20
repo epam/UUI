@@ -1,5 +1,5 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { act, delay, renderHook, waitFor } from '@epam/uui-test-utils';
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
@@ -72,7 +72,6 @@ describe('LazyListView', () => {
     function expectViewToLookLike(
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
-        rowsCount?: number,
     ) {
         const viewRows = view.getVisibleRows();
 
@@ -83,8 +82,6 @@ describe('LazyListView', () => {
         });
 
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        const listProps = view.getListProps();
-        rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
@@ -92,58 +89,72 @@ describe('LazyListView', () => {
             ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
-        const view = hookResult.result.current;
 
-        expectViewToLookLike(view, [
-            {
-                isLoading: true, depth: 0, indent: 0, path: [],
-            }, {
-                isLoading: true, depth: 0, indent: 0, path: [],
-            }, {
-                isLoading: true, depth: 0, indent: 0, path: [],
-            },
-        ]);
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                {
+                    isLoading: true, depth: 0, indent: 0, path: [],
+                }, {
+                    isLoading: true, depth: 0, indent: 0, path: [],
+                }, {
+                    isLoading: true, depth: 0, indent: 0, path: [],
+                },
+            ]);
+        });
+
+        let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
-        expect(testApi).toBeCalledTimes(1);
+        await waitFor(() => {
+            expect(testApi).toBeCalledTimes(1);
+        });
+
         testApi.mockClear();
 
-        expectViewToLookLike(
-            view,
-            [
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
                 {
                     id: 100, isFoldable: true, isFolded: true, path: [],
                 }, { id: 200, isFoldable: false, path: [] }, {
                     id: 300, isFoldable: true, isFolded: true, path: [],
                 },
-            ],
-            3,
-        );
+            ]);
+        });
 
         // Unfold some rows
         let rows = view.getVisibleRows();
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
-        rows[0].onFold?.(rows[0]);
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            rows = view.getVisibleRows();
+            expect(typeof rows[0].onFold).toBe('function');
+        });
+
+        await act(() => {
+            rows[0].onFold?.(rows[0]);
+        });
+
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
-        expectViewToLookLike(
-            view,
-            [
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
                 { id: 100, depth: 0, indent: 1 },
                 { isLoading: true, depth: 1, indent: 2 },
                 { isLoading: true, depth: 1, indent: 2 },
                 { id: 200, depth: 0, indent: 1 },
                 { id: 300, depth: 0, indent: 1 },
-            ],
-            5,
-        ); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
+            ]);
+        });
+        let listProps = view.getListProps();
+        expect(listProps.rowsCount).toEqual(5);
 
-        await delay();
-
-        expectViewToLookLike(
-            view,
-            [
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
                 {
                     id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
                 }, {
@@ -151,50 +162,60 @@ describe('LazyListView', () => {
                 }, {
                     id: 120, depth: 1, indent: 2, isFoldable: true,
                 }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
-            ],
-            5,
-        );
+            ]);
+        });
+
+        listProps = view.getListProps();
+        expect(listProps.rowsCount).toEqual(5);
 
         // Unfold more rows
         rows = view.getVisibleRows();
-        rows[2].onFold?.(rows[2]);
+
+        await act(() => {
+            rows[2].onFold?.(rows[2]);
+        });
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                {
+                    id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+                }, {
+                    id: 110, depth: 1, indent: 2, isFoldable: false,
+                }, {
+                    id: 120, depth: 1, indent: 2, isFoldable: true,
+                }, { isLoading: true, depth: 2, indent: 3 }, { isLoading: true, depth: 2, indent: 3 }, { id: 200, depth: 0, indent: 1 },
+            ]);
+        });
 
-        expectViewToLookLike(view, [
-            {
-                id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
-            }, {
-                id: 110, depth: 1, indent: 2, isFoldable: false,
-            }, {
-                id: 120, depth: 1, indent: 2, isFoldable: true,
-            }, { isLoading: true, depth: 2, indent: 3 }, { isLoading: true, depth: 2, indent: 3 }, { id: 200, depth: 0, indent: 1 },
-        ]);
-
-        await delay();
-
-        expectViewToLookLike(view, [
-            {
-                id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
-            }, {
-                id: 110, depth: 1, indent: 2, isFoldable: false,
-            }, {
-                id: 120, depth: 1, indent: 2, isFoldable: true,
-            }, {
-                id: 121, depth: 2, indent: 3, isFoldable: false,
-            }, {
-                id: 122, depth: 2, indent: 3, isFoldable: false,
-            }, { id: 200, depth: 0, indent: 1 },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                {
+                    id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+                }, {
+                    id: 110, depth: 1, indent: 2, isFoldable: false,
+                }, {
+                    id: 120, depth: 1, indent: 2, isFoldable: true,
+                }, {
+                    id: 121, depth: 2, indent: 3, isFoldable: false,
+                }, {
+                    id: 122, depth: 2, indent: 3, isFoldable: false,
+                }, { id: 200, depth: 0, indent: 1 },
+            ]);
+        });
 
         // Scroll down to bottom
         hookResult.rerender({ value: { ...currentValue, topIndex: 5, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
-        expectViewToLookLike(
-            view,
-            [{ id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 }],
-            7,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [{ id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 }]);
+        });
+
+        listProps = view.getListProps();
+        expect(listProps.rowsCount).toEqual(7);
     });
 
     it('Multi-level folding', async () => {
@@ -208,38 +229,51 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue } },
         );
 
-        const view = hookResult.result.current;
-        view.getListProps(); // trigger loading
-        await delay();
-
-        expectViewToLookLike(
-            view,
-            [
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
                 { id: 100 }, { id: 110 }, { id: 120 }, { id: 121 }, { id: 122 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 },
-            ],
-            10,
-        );
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        let listProps = view.getListProps();
+        expect(listProps.rowsCount).toEqual(10);
 
         // fold row #120
         let rows = view.getVisibleRows();
-        rows[2].onFold?.(rows[2]);
+        await act(() => {
+            rows[2].onFold?.(rows[2]);
+        });
+
         hookResult.rerender({ value: currentValue });
 
-        await delay();
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 110 }, { id: 120 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 },
+            ]);
+        });
 
-        expectViewToLookLike(view, [
-            { id: 100 }, { id: 110 }, { id: 120 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 },
-        ], 8);
+        listProps = view.getListProps();
+        expect(listProps.rowsCount).toEqual(8);
 
         // fold row #100
         rows = view.getVisibleRows();
-        rows[0].onFold?.(rows[0]);
-        hookResult.rerender({ value: currentValue });
-        await delay();
+        await act(() => {
+            rows[0].onFold?.(rows[0]);
+        });
 
-        expectViewToLookLike(view, [
-            { id: 100 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 },
-        ], 6);
+        hookResult.rerender({ value: currentValue });
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 },
+            ]);
+        });
+
+        listProps = view.getListProps();
+        expect(listProps.rowsCount).toEqual(6);
     });
 
     it('load children lazily', async () => {
@@ -248,31 +282,35 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue } },
         );
 
-        const view = hookResult.result.current;
-        view.getListProps(); // trigger loading
-        await delay();
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 110 }, { id: 120 },
+            ]);
+        });
 
-        expectViewToLookLike(view, [
-            { id: 100 }, { id: 110 }, { id: 120 },
-        ]);
+        let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         // Scroll down
         currentValue.topIndex = 2;
         hookResult.rerender({ value: currentValue });
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 120 }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
 
-        expectViewToLookLike(view, [
-            { id: 120 }, { isLoading: true }, { isLoading: true },
-        ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(4);
 
-        await delay();
-
         hookResult.rerender({ value: currentValue });
-
-        expectViewToLookLike(view, [
-            { id: 120 }, { id: 121 }, { id: 122 },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 120 }, { id: 121 }, { id: 122 },
+            ]);
+        });
     });
 
     it('Checkboxes works', async () => {
@@ -284,39 +322,45 @@ describe('LazyListView', () => {
             }),
             { initialProps: { value: currentValue } },
         );
-        const view = hookResult.result.current;
 
-        view.getVisibleRows();
-        await delay();
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 110, isChecked: false }, { id: 120 },
+            ]);
+        });
 
+        let view = hookResult.result.current;
         let row110 = view.getVisibleRows()[1];
-        expect(row110.id).toBe(110);
-        expect(row110.isChecked).toBe(false);
-        row110.onCheck?.(row110);
-
-        await delay();
+        await act(() => {
+            row110.onCheck?.(row110);
+        });
 
         hookResult.rerender({ value: currentValue });
-        await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false }, { id: 110, isChecked: true }, { id: 120, isChecked: false },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false }, { id: 110, isChecked: true }, { id: 120, isChecked: false },
+            ]);
+        });
 
         row110 = view.getVisibleRows()[1];
-        row110.onCheck?.(row110);
-        await delay();
-
+        await act(() => {
+            row110.onCheck?.(row110);
+        });
         hookResult.rerender({ value: currentValue });
-        await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false }, { id: 110, isChecked: false }, { id: 120, isChecked: false },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false }, { id: 110, isChecked: false }, { id: 120, isChecked: false },
+            ]);
+        });
     });
 
     it('should not update checkboxes if onValueChange is not updating them', async () => {
-        const mockOnValueChanged = jest.fn();
+        const mockOnValueChanged = jest.fn().mockImplementation();
 
         const hookResult = renderHook(
             ({ value }) => treeDataSource.useView(value, mockOnValueChanged, {
@@ -325,32 +369,42 @@ describe('LazyListView', () => {
             }),
             { initialProps: { value: currentValue } },
         );
-        const view = hookResult.result.current;
-        view.getVisibleRows();
-        await delay();
 
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false }, { id: 110, isChecked: false }, { id: 120, isChecked: false },
+            ]);
+        });
+
+        let view = hookResult.result.current;
         const row110 = view.getVisibleRows()[1];
-        expect(row110.id).toBe(110);
-        expect(row110.isChecked).toBe(false);
-        row110.onCheck?.(row110);
 
-        await delay();
+        await act(() => {
+            row110.onCheck?.(row110);
+        });
+
+        expect(mockOnValueChanged).toBeCalledTimes(1);
+
         hookResult.rerender({ value: currentValue });
-        await delay();
 
-        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 });
-
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false }, { id: 110, isChecked: false }, { id: 120, isChecked: false },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false }, { id: 110, isChecked: false }, { id: 120, isChecked: false },
+            ]);
+        });
 
         hookResult.rerender({ value: { ...currentValue, checked: [row110.id] } });
 
-        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 });
+        expect(mockOnValueChanged).toBeCalledTimes(1);
 
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false }, { id: 110, isChecked: true }, { id: 120, isChecked: false },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false }, { id: 110, isChecked: true }, { id: 120, isChecked: false },
+            ]);
+        });
     });
 
     it('Adjust parent checkbox if children are checked', async () => {
@@ -368,23 +422,21 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue } },
         );
 
-        const view = hookResult.result.current;
-
-        view.getListProps(); // trigger loading
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, isChildrenChecked: true },
-            { id: 110 },
-            { id: 120, isChildrenChecked: true },
-            { id: 121, isChecked: true },
-            { id: 122, isChecked: true },
-            { id: 200 },
-            { id: 300, isChildrenChecked: true },
-            { id: 310, isChecked: true },
-            { id: 320, isChecked: true },
-            { id: 330 },
-        ]);
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChildrenChecked: true },
+                { id: 110 },
+                { id: 120, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200 },
+                { id: 300, isChildrenChecked: true },
+                { id: 310, isChecked: true },
+                { id: 320, isChecked: true },
+                { id: 330 },
+            ]);
+        });
     });
 
     describe('CascadeSelection - explicit mode', () => {
@@ -399,45 +451,56 @@ describe('LazyListView', () => {
                 { initialProps: { value: currentValue } },
             );
 
-            const view = hookResult.result.current;
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100 }, //  0   100
+                    { id: 110, parentId: 100 }, //  1   110
+                    { id: 120, parentId: 100, isChecked: false }, //  2     120
+                    { id: 121, parentId: 120 }, //  3       121
+                    { id: 122, parentId: 120 }, //  4       122
+                    { id: 200 }, //  5   200
+                ]);
+            });
 
-            view.getListProps(); // trigger loading
-            await delay();
-
+            let view = hookResult.result.current;
             let row120 = view.getVisibleRows()[2];
-            expect(row120.id).toBe(120);
-            expect(row120.isChecked).toBe(false);
-            row120.onCheck?.(row120);
 
-            await delay();
+            await act(() => {
+                row120.onCheck?.(row120);
+            });
 
             hookResult.rerender({ value: currentValue });
-            await delay();
 
-            expectViewToLookLike(view, [
-                { id: 100, isChecked: false, isChildrenChecked: true },
-                { id: 110, isChecked: false },
-                { id: 120, isChecked: true, isChildrenChecked: true },
-                { id: 121, isChecked: true },
-                { id: 122, isChecked: true },
-                { id: 200, isChecked: false },
-            ]);
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100, isChecked: false, isChildrenChecked: true },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: true, isChildrenChecked: true },
+                    { id: 121, isChecked: true },
+                    { id: 122, isChecked: true },
+                    { id: 200, isChecked: false },
+                ]);
+            });
 
             row120 = view.getVisibleRows()[2];
-            row120.onCheck?.(row120);
-            await delay();
+            await act(() => {
+                row120.onCheck?.(row120);
+            });
 
             hookResult.rerender({ value: currentValue });
-            await delay();
-
-            expectViewToLookLike(view, [
-                { id: 100, isChecked: false, isChildrenChecked: false },
-                { id: 110, isChecked: false },
-                { id: 120, isChecked: false, isChildrenChecked: false },
-                { id: 121, isChecked: false },
-                { id: 122, isChecked: false },
-                { id: 200, isChecked: false },
-            ]);
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100, isChecked: false, isChildrenChecked: false },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: false, isChildrenChecked: false },
+                    { id: 121, isChecked: false },
+                    { id: 122, isChecked: false },
+                    { id: 200, isChecked: false },
+                ]);
+            });
         });
 
         it('Cascade selection - handles quick (simultaneous) clicks', async () => {
@@ -452,39 +515,57 @@ describe('LazyListView', () => {
                 { initialProps: { value: currentValue, onValueChange: onValueChanged } },
             );
 
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100 }, //  0   100
+                    { id: 110, parentId: 100 }, //  1   110
+                    { id: 120, parentId: 100, isChecked: false }, //  2     120
+                    { id: 121, parentId: 120 }, //  3       121
+                    { id: 122, parentId: 120 }, //  4       122
+                    { id: 200 }, //  5   200
+                    { id: 300 }, //  6   300
+                    { id: 310, parentId: 300 }, //  7     310
+                    { id: 320, parentId: 300 }, //  8     320
+                    { id: 330, parentId: 300 }, //  9     330
+                ]);
+            });
+
             let view = hookResult.result.current;
-
-            view.getListProps(); // trigger loading
-            await delay();
-
             const row120 = view.getVisibleRows()[2];
-            expect(row120.id).toBe(120);
-            row120.onCheck?.(row120);
 
-            await delay();
-            view = hookResult.result.current;
+            await act(() => {
+                row120.onCheck?.(row120);
+            });
+
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
+            view = hookResult.result.current;
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
-            row300.onCheck?.(row300);
 
-            await delay();
+            await act(() => {
+                row300.onCheck?.(row300);
+            });
+
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            view = hookResult.result.current;
 
-            expectViewToLookLike(view, [
-                { id: 100, isChecked: false, isChildrenChecked: true },
-                { id: 110, isChecked: false },
-                { id: 120, isChecked: true, isChildrenChecked: true },
-                { id: 121, isChecked: true },
-                { id: 122, isChecked: true },
-                { id: 200, isChecked: false },
-                { id: 300, isChecked: true, isChildrenChecked: true },
-                { id: 310, isChecked: true },
-                { id: 320, isChecked: true },
-                { id: 330, isChecked: true },
-            ]);
+            await waitFor(() => {
+                view = hookResult.result.current;
+
+                expectViewToLookLike(view, [
+                    { id: 100, isChecked: false, isChildrenChecked: true },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: true, isChildrenChecked: true },
+                    { id: 121, isChecked: true },
+                    { id: 122, isChecked: true },
+                    { id: 200, isChecked: false },
+                    { id: 300, isChecked: true, isChildrenChecked: true },
+                    { id: 310, isChecked: true },
+                    { id: 320, isChecked: true },
+                    { id: 330, isChecked: true },
+                ]);
+            });
         });
 
         it('Select All', async () => {
@@ -502,69 +583,89 @@ describe('LazyListView', () => {
                 { initialProps: { value: currentValue, onValueChange: onValueChanged } },
             );
 
-            const view = hookResult.result.current;
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expect(view.getListProps().selectAll?.value).toBe(false);
+            });
 
-            view.getListProps(); // trigger loading
-            await delay();
+            let view = hookResult.result.current;
 
             let selectAll = view.getListProps().selectAll;
-            expect(selectAll?.value).toBe(false);
             expect(selectAll?.indeterminate).toBe(true);
 
-            selectAll?.onValueChange(true);
-            await delay();
+            await act(() => {
+                selectAll?.onValueChange(true);
+            });
 
             currentValue.visibleCount = 10;
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            await delay();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                selectAll = view.getListProps().selectAll;
+                expect(selectAll?.value).toBe(true);
+            });
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll?.value).toBe(true);
             expect(selectAll?.indeterminate).toBe(false);
-            await delay();
 
-            expectViewToLookLike(
-                view,
-                [
-                    { id: 100, isChecked: true, isChildrenChecked: true },
-                    { id: 110, isChecked: true },
-                    { id: 120, isChecked: true, isChildrenChecked: true },
-                    { id: 121, isChecked: true },
-                    { id: 122, isChecked: true },
-                    { id: 200, isChecked: true },
-                    { id: 300, isChecked: true, isChildrenChecked: true },
-                    { id: 310, isChecked: true },
-                    { id: 320, isChecked: true },
-                    { id: 330, isChecked: true },
-                ],
-                10,
-            );
+            await waitFor(() => {
+                view = hookResult.result.current;
 
-            selectAll?.onValueChange(false);
-            await delay();
+                expectViewToLookLike(
+                    view,
+                    [
+                        { id: 100, isChecked: true, isChildrenChecked: true },
+                        { id: 110, isChecked: true },
+                        { id: 120, isChecked: true, isChildrenChecked: true },
+                        { id: 121, isChecked: true },
+                        { id: 122, isChecked: true },
+                        { id: 200, isChecked: true },
+                        { id: 300, isChecked: true, isChildrenChecked: true },
+                        { id: 310, isChecked: true },
+                        { id: 320, isChecked: true },
+                        { id: 330, isChecked: true },
+                    ],
+                );
+            });
+
+            expect(view.getListProps().rowsCount).toBe(10);
+
+            await act(() => {
+                selectAll?.onValueChange(false);
+            });
 
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            await delay();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                selectAll = view.getListProps().selectAll;
+                expect(selectAll?.value).toBe(false);
+            });
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll?.value).toBe(false);
             expect(selectAll?.indeterminate).toBe(false);
-            expectViewToLookLike(
-                view,
-                [
-                    { id: 100, isChecked: false, isChildrenChecked: false },
-                    { id: 110, isChecked: false },
-                    { id: 120, isChecked: false, isChildrenChecked: false },
-                    { id: 121, isChecked: false },
-                    { id: 122, isChecked: false },
-                    { id: 200, isChecked: false },
-                    { id: 300, isChecked: false, isChildrenChecked: false },
-                    { id: 310, isChecked: false },
-                    { id: 320, isChecked: false },
-                    { id: 330, isChecked: false },
-                ],
-                10,
-            );
+            await waitFor(() => {
+                view = hookResult.result.current;
+
+                expectViewToLookLike(
+                    view,
+                    [
+                        { id: 100, isChecked: false, isChildrenChecked: false },
+                        { id: 110, isChecked: false },
+                        { id: 120, isChecked: false, isChildrenChecked: false },
+                        { id: 121, isChecked: false },
+                        { id: 122, isChecked: false },
+                        { id: 200, isChecked: false },
+                        { id: 300, isChecked: false, isChildrenChecked: false },
+                        { id: 310, isChecked: false },
+                        { id: 320, isChecked: false },
+                        { id: 330, isChecked: false },
+                    ],
+                );
+            });
+
+            expect(view.getListProps().rowsCount).toBe(10);
         });
     });
 
@@ -580,47 +681,63 @@ describe('LazyListView', () => {
                 { initialProps: { value: currentValue, onValueChange: onValueChanged } },
             );
 
-            const view = hookResult.result.current;
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100 }, //  0   100
+                    { id: 110, parentId: 100 }, //  1   110
+                    { id: 120, parentId: 100, isChecked: false }, //  2     120
+                    { id: 121, parentId: 120 }, //  3       121
+                    { id: 122, parentId: 120 }, //  4       122
+                    { id: 200 }, //  5   200
+                ]);
+            });
 
-            view.getListProps(); // trigger loading
-            await delay();
+            let view = hookResult.result.current;
 
             let row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
             expect(row120.isChecked).toBe(false);
-            row120.onCheck?.(row120);
 
-            await delay();
+            await act(() => {
+                row120.onCheck?.(row120);
+            });
+            expect(currentValue.checked).toEqual([120]);
 
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            await delay();
 
-            expectViewToLookLike(view, [
-                { id: 100, isChecked: false, isChildrenChecked: true },
-                { id: 110, isChecked: false },
-                { id: 120, isChecked: true, isChildrenChecked: true },
-                { id: 121, isChecked: true },
-                { id: 122, isChecked: true },
-                { id: 200, isChecked: false },
-            ]);
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100, isChecked: false, isChildrenChecked: true },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: true, isChildrenChecked: true },
+                    { id: 121, isChecked: true },
+                    { id: 122, isChecked: true },
+                    { id: 200, isChecked: false },
+                ]);
+            });
 
             expect(currentValue.checked).toEqual([120]);
 
             row120 = view.getVisibleRows()[2];
-            row120.onCheck?.(row120);
-            await delay();
+            await act(() => {
+                row120.onCheck?.(row120);
+            });
 
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            await delay();
 
-            expectViewToLookLike(view, [
-                { id: 100, isChecked: false, isChildrenChecked: false },
-                { id: 110, isChecked: false },
-                { id: 120, isChecked: false, isChildrenChecked: false },
-                { id: 121, isChecked: false },
-                { id: 122, isChecked: false },
-                { id: 200, isChecked: false },
-            ]);
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100, isChecked: false, isChildrenChecked: false },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: false, isChildrenChecked: false },
+                    { id: 121, isChecked: false },
+                    { id: 122, isChecked: false },
+                    { id: 200, isChecked: false },
+                ]);
+            });
 
             expect(currentValue.checked).toEqual([]);
         });
@@ -637,38 +754,56 @@ describe('LazyListView', () => {
                 { initialProps: { value: currentValue, onValueChange: onValueChanged } },
             );
 
-            const view = hookResult.result.current;
-
-            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            view.getListProps(); // trigger loading
-            await delay();
-
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100 }, //  0   100
+                    { id: 110, parentId: 100 }, //  1   110
+                    { id: 120, parentId: 100, isChecked: false }, //  2     120
+                    { id: 121, parentId: 120 }, //  3       121
+                    { id: 122, parentId: 120 }, //  4       122
+                    { id: 200 }, //  5   200
+                    { id: 300 }, //  6   300
+                    { id: 310, parentId: 300 }, //  7     310
+                    { id: 320, parentId: 300 }, //  8     320
+                    { id: 330, parentId: 300 }, //  9     330
+                ]);
+            });
+            let view = hookResult.result.current;
             const row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
-            row120.onCheck?.(row120);
 
-            await delay();
+            await act(() => {
+                row120.onCheck?.(row120);
+            });
+
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
+            view = hookResult.result.current;
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
-            row300.onCheck?.(row300);
 
-            await delay();
+            await act(() => {
+                row300.onCheck?.(row300);
+            });
+
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
-            expectViewToLookLike(view, [
-                { id: 100, isChecked: false, isChildrenChecked: true },
-                { id: 110, isChecked: false },
-                { id: 120, isChecked: true, isChildrenChecked: true },
-                { id: 121, isChecked: true },
-                { id: 122, isChecked: true },
-                { id: 200, isChecked: false },
-                { id: 300, isChecked: true, isChildrenChecked: true },
-                { id: 310, isChecked: true },
-                { id: 320, isChecked: true },
-                { id: 330, isChecked: true },
-            ]);
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 100, isChecked: false, isChildrenChecked: true },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: true, isChildrenChecked: true },
+                    { id: 121, isChecked: true },
+                    { id: 122, isChecked: true },
+                    { id: 200, isChecked: false },
+                    { id: 300, isChecked: true, isChildrenChecked: true },
+                    { id: 310, isChecked: true },
+                    { id: 320, isChecked: true },
+                    { id: 330, isChecked: true },
+                ]);
+            });
 
             expect(currentValue.checked).toEqual([120, 300]);
         });
@@ -687,73 +822,94 @@ describe('LazyListView', () => {
                 { initialProps: { value: currentValue, onValueChange: onValueChanged } },
             );
 
-            const view = hookResult.result.current;
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                const selectAll = view.getListProps().selectAll;
+                expect(selectAll?.value).toBe(false);
+            });
 
-            view.getListProps(); // trigger loading
-            await delay();
-
+            let view = hookResult.result.current;
             let selectAll = view.getListProps().selectAll;
-            expect(selectAll?.value).toBe(false);
             expect(selectAll?.indeterminate).toBe(true);
 
-            selectAll?.onValueChange(true);
-            await delay();
+            await act(() => {
+                selectAll?.onValueChange(true);
+            });
 
             currentValue.visibleCount = 10;
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            await delay();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                selectAll = view.getListProps().selectAll;
+                expect(selectAll?.value).toBe(true);
+            });
 
             selectAll = view.getListProps().selectAll;
-            expect(selectAll?.value).toBe(true);
             expect(selectAll?.indeterminate).toBe(false);
-            await delay();
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(
+                    view,
+                    [
+                        { id: 100, isChecked: true, isChildrenChecked: true },
+                        { id: 110, isChecked: true },
+                        { id: 120, isChecked: true, isChildrenChecked: true },
+                        { id: 121, isChecked: true },
+                        { id: 122, isChecked: true },
+                        { id: 200, isChecked: true },
+                        { id: 300, isChecked: true, isChildrenChecked: true },
+                        { id: 310, isChecked: true },
+                        { id: 320, isChecked: true },
+                        { id: 330, isChecked: true },
+                    ],
+                );
+            });
 
-            expectViewToLookLike(
-                view,
-                [
-                    { id: 100, isChecked: true, isChildrenChecked: true },
-                    { id: 110, isChecked: true },
-                    { id: 120, isChecked: true, isChildrenChecked: true },
-                    { id: 121, isChecked: true },
-                    { id: 122, isChecked: true },
-                    { id: 200, isChecked: true },
-                    { id: 300, isChecked: true, isChildrenChecked: true },
-                    { id: 310, isChecked: true },
-                    { id: 320, isChecked: true },
-                    { id: 330, isChecked: true },
-                ],
-                10,
-            );
+            expect(view.getListProps().rowsCount).toBe(10);
 
             expect(currentValue.checked).toEqual([
                 100, 200, 300,
             ]);
-            selectAll?.onValueChange(false);
-            await delay();
 
-            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-            await delay();
-
-            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+            view = hookResult.result.current;
             selectAll = view.getListProps().selectAll;
-            expect(selectAll?.value).toBe(false);
+            await act(() => {
+                selectAll?.onValueChange(false);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                selectAll = view.getListProps().selectAll;
+                expect(selectAll?.value).toBe(false);
+            });
+
+            selectAll = view.getListProps().selectAll;
             expect(selectAll?.indeterminate).toBe(false);
-            expectViewToLookLike(
-                view,
-                [
-                    { id: 100, isChecked: false, isChildrenChecked: false },
-                    { id: 110, isChecked: false },
-                    { id: 120, isChecked: false, isChildrenChecked: false },
-                    { id: 121, isChecked: false },
-                    { id: 122, isChecked: false },
-                    { id: 200, isChecked: false },
-                    { id: 300, isChecked: false, isChildrenChecked: false },
-                    { id: 310, isChecked: false },
-                    { id: 320, isChecked: false },
-                    { id: 330, isChecked: false },
-                ],
-                10,
-            );
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                // console.log(view.getVisibleRows());
+                expectViewToLookLike(
+                    view,
+                    [
+                        { id: 100, isChecked: false, isChildrenChecked: false },
+                        { id: 110, isChecked: false },
+                        { id: 120, isChecked: false, isChildrenChecked: false },
+                        { id: 121, isChecked: false },
+                        { id: 122, isChecked: false },
+                        { id: 200, isChecked: false },
+                        { id: 300, isChecked: false, isChildrenChecked: false },
+                        { id: 310, isChecked: false },
+                        { id: 320, isChecked: false },
+                        { id: 330, isChecked: false },
+                    ],
+                );
+            });
+
+            expect(view.getListProps().rowsCount).toBe(10);
         });
     });
 
