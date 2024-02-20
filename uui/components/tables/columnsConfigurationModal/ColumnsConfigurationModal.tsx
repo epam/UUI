@@ -75,6 +75,9 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
     const renderHidden = () => {
         const items = groupedColumns.hidden;
         const title = renderGroupTitle(i18n.hiddenSectionTitle, items.length);
+        if (!items.length) {
+            return null;
+        }
         return (
             <>
                 { title }
@@ -92,7 +95,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ styles.modal }>
+            <ModalWindow cx={ styles.modal } height="90vh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
                     <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
