@@ -1,5 +1,6 @@
 # 5.x.x - xx.xx.2024
 **What's New**
+* [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
 
