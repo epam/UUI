@@ -1,17 +1,10 @@
 import { DataTable, Panel, Text, defaultPredicates, FiltersPanel, FlexRow } from "@epam/promo";
 import React, { useMemo } from "react";
-import { DataColumnProps, useLazyDataSource, LazyDataSource, DataSourceState, useUuiContext,
+import { DataColumnProps, useLazyDataSource, LazyDataSource, useUuiContext,
     useTableState, TableFiltersConfig,
 } from "@epam/uui-core";
 import {Person} from "@epam/uui-docs";
-import {NextPageContext} from "next";
 import {fetcher, UUI_API_POINT} from "../helpers/apiHelper";
-
-interface PagedTableState extends DataSourceState<{}> {
-    page?: number;
-    pageSize?: number;
-    totalCount?: number;
-}
 
 const personsColumns: DataColumnProps<Person>[] =  [
     {
@@ -114,7 +107,7 @@ const TableExample = () => {
 
 export default TableExample;
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getServerSideProps() {
     const personsInitBody = {
         filter: {},
         range: {from: 0, count: 20},

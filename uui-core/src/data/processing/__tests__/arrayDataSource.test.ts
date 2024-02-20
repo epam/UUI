@@ -1,3 +1,4 @@
+import { renderHook } from '@epam/uui-test-utils';
 import { ArrayDataSource } from '../ArrayDataSource';
 
 type Test_ItemIdType = string;
@@ -82,45 +83,57 @@ function setupArrayDataSource() {
 describe('ArrayDataSource', () => {
     it('should create array data source', () => {
         const ds = setupArrayDataSource();
-        const viewFromDepA = ds.getView(
-            {
-                search: undefined,
-                checked: [],
-                folded: {},
-                filter: { onlyFromDepartment_A: true },
-                sorting: [],
-                selectedId: undefined,
-                focusedIndex: undefined,
-            },
-            () => {},
-            {},
+        const hookResult1 = renderHook(
+            () => ds.useView(
+                {
+                    search: undefined,
+                    checked: [],
+                    folded: {},
+                    filter: { onlyFromDepartment_A: true },
+                    sorting: [],
+                    selectedId: undefined,
+                    focusedIndex: undefined,
+                },
+                () => {},
+                {},
+            ),
         );
-        const viewFromDepAll = ds.getView(
-            {
-                search: undefined,
-                checked: [],
-                folded: {},
-                filter: { onlyFromDepartment_A: false },
-                sorting: [],
-                selectedId: undefined,
-                focusedIndex: undefined,
-            },
-            () => {},
-            {},
+        const viewFromDepA = hookResult1.result.current;
+
+        const hookResult2 = renderHook(
+            () => ds.useView(
+                {
+                    search: undefined,
+                    checked: [],
+                    folded: {},
+                    filter: { onlyFromDepartment_A: false },
+                    sorting: [],
+                    selectedId: undefined,
+                    focusedIndex: undefined,
+                },
+                () => {},
+                {},
+            ),
         );
-        const viewSearchFirst3 = ds.getView(
-            {
-                search: 'First-3',
-                checked: [],
-                folded: {},
-                filter: { onlyFromDepartment_A: false },
-                sorting: [],
-                selectedId: undefined,
-                focusedIndex: undefined,
-            },
-            () => {},
-            {},
+        const viewFromDepAll = hookResult2.result.current;
+
+        const hookResult3 = renderHook(
+            () => ds.useView(
+                {
+                    search: 'First-3',
+                    checked: [],
+                    folded: {},
+                    filter: { onlyFromDepartment_A: false },
+                    sorting: [],
+                    selectedId: undefined,
+                    focusedIndex: undefined,
+                },
+                () => {},
+                {},
+            ),
         );
+
+        const viewSearchFirst3 = hookResult3.result.current;
 
         const depAList = viewFromDepA.getListProps();
         const depAllList = viewFromDepAll.getListProps();
