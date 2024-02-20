@@ -120,7 +120,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     const view = dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
         rowOptions: getRowOptions(),
         getSearchFields: getSearchFields || ((item: TItem) => [getName(item)]),
-        isFoldedByDefault,
+        ...(isFoldedByDefault ? { isFoldedByDefault } : {}),
         ...(sortBy ? { sortBy } : {}),
         ...(cascadeSelection ? { cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),

@@ -2,8 +2,8 @@ import { TTokensDocGroupCfg } from './types';
 
 export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     {
-        title: 'Semantic tokens',
-        description: 'Some description about the colors category.',
+        title: 'Semantic colors',
+        description: 'The theme default semantic palette tokens. These tokens reuses in all components and also can be used for custom content, following their roles',
         subgroups: [
             {
                 title: 'Primary',
@@ -50,12 +50,12 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     },
     {
         title: 'Neutral tokens',
-        description: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
+        description: 'The greyscale, uses most often to define different levels of surfaces, text colors and some components.',
         items: ('core/neutral/'),
     },
     {
         title: 'Controls tokens',
-        description: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
+        description: 'Tokens for control components, like TextInput, PickerInput, Checkboxes and etc.',
         items: ('core/controls/'),
     },
     {

@@ -25,27 +25,25 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": ". It is important to keep the package version equal to the version of other UUI packages. "
+        "text": ". It is important to keep the package "
+      },
+      {
+        "text": "version",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " equal to the version of other UUI packages because this package references one of them. "
       }
     ],
     "data": {}
   },
   {
-    "type": "paragraph",
+    "type": "note-link",
     "data": {},
     "children": [
       {
-        "text": "While usage of this package is not mandatory, it significantly simplifies testing of UUI components."
+        "text": "NOTE\nWhile usage of this package is not mandatory, it significantly simplifies testing of UUI components."
       }
     ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": ""
-      }
-    ],
-    "data": {}
   }
 ]

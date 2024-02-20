@@ -75,6 +75,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         if (this.fullTree && (prevTree !== this.visibleTree || this.isCacheIsOutdated(value, currentValue))) {
             this.updateTree(currentValue, value);
             this.updateCheckedLookup(this.value.checked);
+            this.updateSelectedLookup(this.value.selectedId);
             this.rebuildRows();
         } else {
             if (value.focusedIndex !== currentValue.focusedIndex) {

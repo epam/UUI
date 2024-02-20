@@ -13,6 +13,7 @@ const modulesNameMap = {
     'uui-editor': 'uui-editor',
     'uui-docs': 'uui-docs',
     'uui-core': 'uui-core',
+    'test-utils': 'uui-test-utils',
 };
 
 async function isModuleBuildExist(module) {

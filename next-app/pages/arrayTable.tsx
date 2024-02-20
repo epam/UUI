@@ -63,13 +63,13 @@ const ArrayTable = () => {
                 caption: 'Name',
                 render: item => <Text color='gray80'>{ item.name }</Text>,
                 isSortable: true,
-                grow: 0, minWidth: 150,
+                grow: 0, minWidth: 150, width: 150
             }, {
                 key: 'status',
                 caption: 'Status',
-                render: item => <Badge color={ item.status === 'Alive' ? 'green' : 'red' } fill='transparent' caption={ item.status } />,
+                render: item => <Badge color={ item.status === 'Alive' ? 'green' : 'red' } fill='semitransparent' caption={ item.status } />,
                 isSortable: true,
-                grow: 0, minWidth: 150,
+                grow: 0, minWidth: 150, width: 150
             }, {
                 key: 'description',
                 caption: 'Description',
