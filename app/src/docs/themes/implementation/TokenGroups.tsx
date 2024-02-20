@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, LinkButton, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
+import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
 import { INotificationContext, useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
@@ -92,7 +92,8 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
                             <Text fontSize="12" color="tertiary">Reference token</Text>
                             <Text fontSize="12">{ item.baseToken }</Text>
                             <FlexSpacer />
-                            <LinkButton size="24" caption="Learn more" link={ { pathname: '' } } />
+                            <FlexSpacer />
+                            {/* <LinkButton size="24" caption="Learn more" link={ { pathname: '' } } /> */}
                         </div>
                     </FlexCell>
                     <FlexCell grow={ 1 } textAlign="center" cx={ css.semanticTooltipTitle }>
@@ -169,9 +170,13 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
                 }
             });
 
-            if (rowsRef.current) {
+            if (rowsRef.current instanceof Element) {
                 observer.observe(rowsRef.current);
-                return () => observer.unobserve(rowsRef.current);
+                return () => {
+                    if (rowsRef.current instanceof Element) {
+                        observer.unobserve(rowsRef.current);
+                    }
+                };
             }
         },
         [],
