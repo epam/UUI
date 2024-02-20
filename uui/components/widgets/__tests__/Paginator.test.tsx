@@ -16,4 +16,19 @@ describe('Paginator', () => {
         />);
         expect(tree).toMatchSnapshot();
     });
+
+    it('should be rendered correctly when disabled', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Paginator
+            value={ null }
+            onValueChange={ () => {} }
+            totalPages={ 10 }
+            size="24"
+            rawProps={ {
+                id: '123',
+                'data-my_attr': 'value',
+            } }
+            isDisabled={ true }
+        />);
+        expect(tree).toMatchSnapshot();
+    });
 });
