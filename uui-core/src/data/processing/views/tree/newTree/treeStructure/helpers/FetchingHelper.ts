@@ -104,8 +104,8 @@ export class FetchingHelper {
                     || nodeInfo.count !== originalNodeInfo.count
                     || nodeInfo.totalCount !== originalNodeInfo.totalCount
                     || nodeInfo.assumedCount !== originalNodeInfo.assumedCount) {
-                byParentId.set(parentId, ids);
                 nodeInfoById.set(parentId, nodeInfo);
+                byParentId.set(parentId, ids);
             }
 
             recursiveLoadedCount += ids.length;
@@ -317,10 +317,9 @@ export class FetchingHelper {
 
         const from = response.from == null ? range.from : response.from;
 
-        const newIds = [];
+        const newIds = [...ids];
 
         if (response.items?.length) {
-            newIds.push(...ids);
             for (let n = 0; n < response.items.length; n++) {
                 const item = response.items[n];
                 loadedItems.push(item);
