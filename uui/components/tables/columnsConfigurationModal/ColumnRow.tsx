@@ -5,6 +5,8 @@ import { Checkbox } from '../../inputs';
 import { DropMarker } from '../../dnd';
 import { DragHandle, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
+import { ReactComponent as DragIndicatorIcon } from '@epam/assets/icons/common/action-drag_indicator-18.svg';
+//
 import styles from './ColumnRow.module.scss';
 
 export interface ColumnRowProps<TItem, TId, TFilter> {
@@ -18,7 +20,8 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
         toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways,
     } = column;
     const { isVisible, fix } = columnConfig;
-    const isPinned = fix || isPinnedAlways;
+    const pinPosition = fix || (isPinnedAlways ? 'left' : undefined);
+    const isPinned = !!pinPosition;
     const data = { column, columnConfig };
 
     const renderContent = (dndActorParams: DndActorRenderParams) => {
@@ -36,7 +39,12 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
 
         return (
             <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
-                <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
+                <DragHandle
+                    dragHandleIcon={ DragIndicatorIcon }
+                    rawProps={ dragHandleRawProps }
+                    isDisabled={ !isDndAllowed }
+                    cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) }
+                />
                 <Checkbox
                     key={ column.key }
                     label={ props.renderItem ? props.renderItem(props.column) : column.caption }
@@ -46,7 +54,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                     cx={ styles.checkbox }
                 />
                 <FlexRow size="30" cx={ styles.pinIconButton }>
-                    <PinIconButton id={ column.key } isPinned={ !!isPinned } canUnpin={ !isPinnedAlways } onTogglePin={ togglePin } />
+                    <PinIconButton pinPosition={ pinPosition } canUnpin={ !isPinnedAlways } onTogglePin={ togglePin } />
                 </FlexRow>
                 <DropMarker { ...dndActorPropsWithoutRef } />
             </FlexRow>
