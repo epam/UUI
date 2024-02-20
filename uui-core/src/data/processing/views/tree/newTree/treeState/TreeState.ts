@@ -75,7 +75,6 @@ export class TreeState<TItem, TId> {
         for (const [id, ids] of byParentId) {
             newByParentId.set(id, ids);
         }
-
         const newNodeInfoById = nodeInfoById.size ? cloneMap(treeStructure.nodeInfoById) : treeStructure.nodeInfoById;
         for (const [id, nodeInfo] of nodeInfoById) {
             newNodeInfoById.set(id, nodeInfo);

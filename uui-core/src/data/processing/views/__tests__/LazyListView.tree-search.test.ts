@@ -1,7 +1,7 @@
 import { DataQueryFilter, DataSourceState, LazyDataSourceApiRequest } from '../../../../types';
 import { runDataQuery } from '../../../querying';
 import { LazyDataSource } from '../../LazyDataSource';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { renderHook, waitFor } from '@epam/uui-test-utils';
 
 interface TestItem {
     name: string;
@@ -52,35 +52,35 @@ describe('LazyListView', () => {
 
         hookResult.rerender({ value: { search: 'ABC5', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged, props: viewProps });
 
-        const view = hookResult.result.current;
-
-        view.getVisibleRows();
-        await delay();
-        const rows = view.getVisibleRows();
-
-        expect(rows).toHaveLength(1);
-        expect(rows).toEqual([
-            expect.objectContaining({
-                id: 125,
-                depth: 2,
-                indent: 0,
-                index: 0,
-                parentId: 120,
-                path: [
-                    { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
-                        id: 120,
-                        isLastChild: false,
-                        value: {
-                            childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const rows = view.getVisibleRows();
+            expect(rows).toEqual([
+                expect.objectContaining({
+                    id: 125,
+                    depth: 2,
+                    indent: 0,
+                    index: 0,
+                    parentId: 120,
+                    path: [
+                        { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
+                            id: 120,
+                            isLastChild: false,
+                            value: {
+                                childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
+                            },
                         },
+                    ],
+                    isLastChild: true,
+                    value: {
+                        childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
                     },
-                ],
-                isLastChild: true,
-                value: {
-                    childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
-                },
-            }),
-        ]);
+                }),
+            ]);
+        });
+        const view = hookResult.result.current;
+        const rows = view.getVisibleRows();
+        expect(rows).toHaveLength(1);
     });
 
     it('should detect if found item is last child in parent', async () => {
@@ -90,82 +90,83 @@ describe('LazyListView', () => {
         );
 
         hookResult.rerender({ value: { search: 'ABC', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged, props: viewProps });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const rows = view.getVisibleRows();
+            const path = [
+                { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
+                    id: 120,
+                    isLastChild: false,
+                    value: {
+                        childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
+                    },
+                },
+            ];
+            expect(rows).toEqual(
+                [
+                    {
+                        id: 121,
+                        depth: 2,
+                        indent: 0,
+                        index: 0,
+                        parentId: 120,
+                        path,
+                        isLastChild: false,
+                        value: {
+                            childrenCount: 0, id: 121, name: 'ABC1', parentId: 120,
+                        },
+                    }, {
+                        id: 122,
+                        depth: 2,
+                        indent: 0,
+                        index: 1,
+                        parentId: 120,
+                        path,
+                        isLastChild: false,
+                        value: {
+                            childrenCount: 0, id: 122, name: 'ABC2', parentId: 120,
+                        },
+                    }, {
+                        id: 123,
+                        depth: 2,
+                        indent: 0,
+                        index: 2,
+                        parentId: 120,
+                        path,
+                        isLastChild: false,
+                        value: {
+                            childrenCount: 0, id: 123, name: 'ABC3', parentId: 120,
+                        },
+                    }, {
+                        id: 124,
+                        depth: 2,
+                        indent: 0,
+                        index: 3,
+                        parentId: 120,
+                        path,
+                        isLastChild: false,
+                        value: {
+                            childrenCount: 0, id: 124, name: 'ABC4', parentId: 120,
+                        },
+                    }, {
+                        id: 125,
+                        depth: 2,
+                        indent: 0,
+                        index: 4,
+                        parentId: 120,
+                        path,
+                        isLastChild: true,
+                        value: {
+                            childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
+                        },
+                    },
+                ].map(expect.objectContaining),
+            );
+        });
 
         const view = hookResult.result.current;
-
-        view.getVisibleRows();
-        await delay();
         const rows = view.getVisibleRows();
 
         expect(rows).toHaveLength(5);
-        const path = [
-            { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
-                id: 120,
-                isLastChild: false,
-                value: {
-                    childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
-                },
-            },
-        ];
-        expect(rows).toEqual(
-            [
-                {
-                    id: 121,
-                    depth: 2,
-                    indent: 0,
-                    index: 0,
-                    parentId: 120,
-                    path,
-                    isLastChild: false,
-                    value: {
-                        childrenCount: 0, id: 121, name: 'ABC1', parentId: 120,
-                    },
-                }, {
-                    id: 122,
-                    depth: 2,
-                    indent: 0,
-                    index: 1,
-                    parentId: 120,
-                    path,
-                    isLastChild: false,
-                    value: {
-                        childrenCount: 0, id: 122, name: 'ABC2', parentId: 120,
-                    },
-                }, {
-                    id: 123,
-                    depth: 2,
-                    indent: 0,
-                    index: 2,
-                    parentId: 120,
-                    path,
-                    isLastChild: false,
-                    value: {
-                        childrenCount: 0, id: 123, name: 'ABC3', parentId: 120,
-                    },
-                }, {
-                    id: 124,
-                    depth: 2,
-                    indent: 0,
-                    index: 3,
-                    parentId: 120,
-                    path,
-                    isLastChild: false,
-                    value: {
-                        childrenCount: 0, id: 124, name: 'ABC4', parentId: 120,
-                    },
-                }, {
-                    id: 125,
-                    depth: 2,
-                    indent: 0,
-                    index: 4,
-                    parentId: 120,
-                    path,
-                    isLastChild: true,
-                    value: {
-                        childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
-                    },
-                },
-            ].map(expect.objectContaining),
-        );
     });
 });
