@@ -80,4 +80,11 @@
     }
 }
 
-
+.modal {
+    &:global(.uui-modal-window) {
+        max-height: 90vh;
+        @media (max-width: 640px) {
+            max-height: unset;
+        }
+    }
+}

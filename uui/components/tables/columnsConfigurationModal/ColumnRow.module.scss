@@ -16,6 +16,7 @@
 
     .checkbox {
         flex-grow: 1;
+        height: 30px;
     }
 
     &:hover {
@@ -23,8 +24,7 @@
     }
 
     .drag-handle {
-        height: 12px;
-        padding: 0 0 6px 24px;
+        padding: 6px 0 6px 24px;
         opacity: 1;
         touch-action: none;
 
