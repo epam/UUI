@@ -22,6 +22,8 @@
 * [Text]: added `tertiary` color.
 * [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`, see more in Flexbox Guide(https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 * [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
+* [ColumnsConfigurationModal]
+  * Added the ability to pin columns to the right.
 
 **What's Fixed**
 * [RadiInput]: added native HTML `name` attribute for the input.
