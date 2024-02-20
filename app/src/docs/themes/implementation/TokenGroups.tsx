@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
+import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, LinkButton, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
 import { INotificationContext, useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
@@ -82,35 +82,70 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
     if (subgroup._type === 'group_with_items') {
         return subgroup.items.map((item) => {
             const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
+
             const renderTooltipContent = () => (
-                <span>
-                    Copy
-                    {' '}
-                    <span style={ { color: 'var(--uui-neutral-40)' } }>
-                        var(
-                        {item.cssVar}
-                        )
-                    </span>
-                    {' '}
-                    to clipboard
-                </span>
+                <FlexCell grow={ 1 }>
+                    <FlexCell grow={ 1 } textAlign="center" cx="uui-semantic-tooltip-title">
+                        <Text>
+                            Copy
+                            {' '}
+                            <span>
+                                var(
+                                { item.cssVar }
+                                {' '}
+                                )
+                            </span>
+                            {' '}
+                            to clipboard
+                        </Text>
+                    </FlexCell>
+                    <FlexCell grow={ 1 }>
+                        <div className="uui-semantic-tooltip">
+                            <Text fontSize="12" color="tertiary">Code name</Text>
+                            <Text fontSize="12">{ item.cssVar }</Text>
+                        </div>
+                        <div className="uui-semantic-tooltip-middle">
+                            <Text fontSize="12" color="tertiary">Figma name</Text>
+                            <Text fontSize="12">{ item.cssVar.replace(/^--uui-/, '') }</Text>
+                        </div>
+                        <div className="uui-semantic-tooltip-last">
+                            <Text fontSize="12" color="tertiary">Reference token</Text>
+                            <Text fontSize="12">{ item.baseToken }</Text>
+                            <LinkButton size="24" caption="Learn more" link={ { pathname: '' } } />
+                        </div>
+                    </FlexCell>
+                </FlexCell>
             );
+
+            const semanticClickHandler = () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications));
+
             return (
                 <FlexCell key={ item.cssVar + item.value } grow={ 1 } alignSelf="flex-start">
-                    <Tooltip renderContent={ renderTooltipContent } placement="auto" openDelay={ 200 }>
+                    <Tooltip content={ item.value } placement="top" openDelay={ 200 }>
                         <div
                             className={ css.colorViewer }
                             style={ { backgroundColor: valueBackground } }
-                            onClick={ () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications)) }
                         >
                             { !item.cssVar && <Text color="critical" fontWeight="600">No data...</Text> }
                         </div>
                     </Tooltip>
-                    <Text cx={ css.semanticItem } fontWeight="600">{item.cssVar.replace(/^--uui-/, '')}</Text>
-                    <Text cx={ [css.semanticItem, !details && css.hiddenItem] }>{item.value.toUpperCase()}</Text>
-                    <Tooltip content={ item.baseToken } placement="top" openDelay={ 200 }>
-                        <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary">{item.baseToken}</Text>
-                    </Tooltip>
+                    <div>
+                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeOnMouseLeave="boundary" closeDelay={ 300 } content={ renderTooltipContent() } placement="auto" openDelay={ 1000 } color="neutral">
+                            <Text cx={ [css.var] } onClick={ semanticClickHandler }>
+                                {item.cssVar.replace(/^--uui-/, '')}
+                            </Text>
+                        </Tooltip>
+                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeOnMouseLeave="boundary" closeDelay={ 300 } content={ renderTooltipContent() } placement="auto" openDelay={ 1000 } color="neutral">
+                            <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
+                                { item.value.toUpperCase() }
+                            </Text>
+                        </Tooltip>
+                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeOnMouseLeave="boundary" closeDelay={ 300 } content={ renderTooltipContent() } placement="auto" openDelay={ 1000 } color="neutral">
+                            <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }>
+                                { item.baseToken }
+                            </Text>
+                        </Tooltip>
+                    </div>
                 </FlexCell>
             ); 
         });
@@ -120,6 +155,12 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
 function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
     // to sort semantic table rows in correct order like in the figma
     const RIGHT_ORDER = ['Primary', 'Secondary', 'Accent', 'Critical', 'Info', 'Success', 'Warning', 'Error'];
+    const SKIN_COLOR_TOOLTIP_TEXT = (
+        <React.Fragment>
+            <div>Skin specific color name.</div>
+            <div>Used as legacy in some skins.</div>
+        </React.Fragment>
+    );
 
     const getSkinTitle = (subgroup: ISkinTitleProps) => {
         const stringArray = subgroup.items[0].baseToken?.split('/');
@@ -127,12 +168,13 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
         const rawTitle = stringArray[stringArray?.length - 1];
         return rawTitle.replace(/[^a-zA-Z]/g, '').replace(/^\w/, (c) => c.toUpperCase());
     };
-    
+
     return (
         <React.Fragment>
             <div className={ css.semanticTableHeader }>
                 <FlexCell grow={ 1 }>
                     <Button
+                        cx={ css.hideButton }
                         size="30"
                         fill="none"
                         color="primary"
@@ -154,7 +196,13 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
                             <FlexCell grow={ 1 } cx={ css.semanticTitleCell }>
                                 <FlexRow columnGap="6" cx={ css.semanticTitleRow }>
                                     <Text fontSize="18" fontWeight="600" cx={ css.noPaddings }>{subgroup.title}</Text>
-                                    <Text fontWeight="600" color="disabled" cx={ css.noPaddings }>{skinThemeTitle}</Text>
+                                    <Tooltip
+                                        content={ SKIN_COLOR_TOOLTIP_TEXT }
+                                        placement="top"
+                                        openDelay={ 200 }
+                                    >
+                                        <Text fontWeight="600" color="disabled" cx={ css.noPaddings }>{skinThemeTitle}</Text>
+                                    </Tooltip>
                                 </FlexRow>
                                 <Text cx={ [css.noPaddings, css.headerDescription] }>{subgroup.description}</Text>
                             </FlexCell>
@@ -215,7 +263,7 @@ function TokenGroupItems(props: { items: ITokensDocItem[] }) {
                 <FlexCell width="auto">
                     <Tooltip renderContent={ renderTooltipContent } placement="top" openDelay={ 200 }>
                         <Text cx={ css.var } onClick={ () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications)) }>
-                            { item.cssVar }
+                            { item.cssVar.replace(/^--uui-/, '') }
                         </Text>
                     </Tooltip>
                     {/* { item.description && <Text>{ item.description }</Text> } */}
