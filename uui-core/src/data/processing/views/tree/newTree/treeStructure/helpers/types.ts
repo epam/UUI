@@ -58,6 +58,7 @@ export interface LoadAllOptions<TItem, TId, TFilter = any> {
 
 export interface LoadItemsOptions<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
+    byParentId: IMap<TId, TId[]>;
     options: LoadTreeOptions<TItem, TId, TFilter>,
     parentId: TId,
     parent: TItem,
