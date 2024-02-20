@@ -1,0 +1,16 @@
+.unpin-icon:hover {
+    :global(.uui-icon) {
+        fill: var(--uui-critical-60);
+    }
+}
+
+.pin-toggler-icon {
+    height: 30px;
+
+    :global(.uui-icon) {
+        > svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
