@@ -33,17 +33,17 @@ export function PinIconButton(props: IPinIconButton) {
         const unpinClickHandler = isPinnedAlways ? undefined : () => onTogglePin(undefined);
         pinUnpinNode = (
             <Tooltip content={ iconTooltip } placement="bottom" color="inverted">
-                <IconButton cx={ cx(!isPinnedAlways && css.unpinIcon, css.icon18) } icon={ unpinIcon } onClick={ unpinClickHandler } isDisabled={ isPinnedAlways } color="info" />
+                <IconButton cx={ cx(!isPinnedAlways && css.unpinIcon, css.pinTogglerIcon) } icon={ unpinIcon } onClick={ unpinClickHandler } isDisabled={ isPinnedAlways } color="info" />
             </Tooltip>
         );
     } else {
         pinUnpinNode = (
             <span style={ { display: 'flex', gap: '12px' } }>
                 <Tooltip content={ i18nLocal.pinColumnToTheLeftButton } placement="bottom" color="inverted">
-                    <IconButton cx={ css.icon18 } icon={ PinLeftIcon } onClick={ () => onTogglePin('left') } isDisabled={ isPinnedAlways } color={ undefined } />
+                    <IconButton cx={ css.pinTogglerIcon } icon={ PinLeftIcon } onClick={ () => onTogglePin('left') } isDisabled={ isPinnedAlways } color={ undefined } />
                 </Tooltip>
                 <Tooltip content={ i18nLocal.pinColumnToTheRightButton } placement="bottom" color="inverted">
-                    <IconButton cx={ css.icon18 } icon={ PinRightIcon } onClick={ () => onTogglePin('right') } isDisabled={ isPinnedAlways } color={ undefined } />
+                    <IconButton cx={ css.pinTogglerIcon } icon={ PinRightIcon } onClick={ () => onTogglePin('right') } isDisabled={ isPinnedAlways } color={ undefined } />
                 </Tooltip>
             </span>
         );
