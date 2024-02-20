@@ -8,6 +8,7 @@
     * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
     * Fixed partially selected with predefined selected value.
     * Fixed fetching missing parents for selected element in PickerInput.
+* [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 
 # 5.6.0 - 08.02.2024
 
