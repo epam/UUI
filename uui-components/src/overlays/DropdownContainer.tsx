@@ -78,7 +78,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
     function renderDropdownContainer() {
         return (
             <VPanel
-                forwardedRef={ !focusLock && ref as React.ForwardedRef<HTMLDivElement> }
+                forwardedRef={ !focusLock ? ref as React.ForwardedRef<HTMLDivElement> : undefined }
                 cx={ cx(uuiElement.dropdownBody, uuiMarkers.lockFocus, props.cx) }
                 style={ {
                     ...props.style,
