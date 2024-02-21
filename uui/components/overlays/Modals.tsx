@@ -14,12 +14,12 @@ interface ModalWindowMods {
      * Defines component width.
      * @default '420px'
      */
-    width?: number;
+    width?: number | string;
     /**
      * Defines component height.
      * @default 'auto'
      */
-    height?: number;
+    height?: number | string;
 }
 
 export interface ModalWindowCoreProps extends uuiModalWindowProps {}
@@ -29,13 +29,23 @@ export interface ModalWindowProps extends ModalWindowCoreProps, ModalWindowMods 
 export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowMods>(
     uuiModalWindow,
     () => [css.root, css.modal],
-    (props) => ({
-        style: {
-            ...props.style,
-            width: `${props.width || 420}px`,
-            height: props.height ? `${props.height}px` : 'auto',
-        },
-    }),
+    (props) => {
+        const normalize = (d: number | string | undefined): string | undefined => {
+            if (typeof d === 'number') {
+                return `${d}px`;
+            }
+            return d;
+        };
+        const width = normalize(props.width) || '420px';
+        const height = normalize(props.height) || 'auto';
+        return {
+            style: {
+                ...props.style,
+                width,
+                height,
+            },
+        };
+    },
 );
 
 export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}

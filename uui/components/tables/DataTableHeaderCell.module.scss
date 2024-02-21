@@ -17,7 +17,7 @@
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 6px;
     position: relative;
     width: 0;
 
@@ -26,13 +26,23 @@
     margin-left: -1px;
     background-clip: padding-box;
 
+    &.first-column {
+        padding-left: 18px;
+    }
+
+    &.last-column {
+        padding-right: 18px;
+    }
+
     &:global(.-clickable) {
         cursor: pointer;
 
         &:hover {
             background: var(--uui-dt-row-bg-hover);
             box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
+        }
 
+        &:hover:not(:has(:global(.-clickable):hover)) {
             .sort-icon, .dropdown-icon, .infoIcon {
                 fill: var(--uui-icon-hover);
             }
@@ -55,6 +65,20 @@
 
     &.padding-right-24 { padding-right: 24px; }
 
+    .caption-wrapper {
+        display: flex;
+        overflow: hidden;
+        flex: 1 1 0;
+        min-width: 0;
+
+        &.align-right {
+            flex-direction: row-reverse;
+        }
+
+        &.align-center {
+            justify-content: center;
+        }
+    }
 
     .caption {
         font-family: var(--uui-dt-header-cell-font);
@@ -62,11 +86,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin-right: 6px;
+        margin: 0 6px;
     }
 
     .checkbox {
-        margin-right: 12px;
+        align-self: stretch;
+        padding: 0 6px;
     }
 
     .icon {
@@ -75,27 +100,14 @@
         cursor: pointer;
     }
 
-    .icon-cell {
+    .fold-all-icon {
         display: flex;
-        overflow: hidden;
+        padding: 0 6px;
+        align-self: stretch;
 
-        &.align-right {
-            flex-direction: row-reverse;
-
-            .caption {
-                margin-right: 0;
-                margin-left: 6px;
-            }
+        &:hover {
+            fill: var(--uui-icon-hover);
         }
-
-        &.align-center {
-            justify-content: center;
-        }
-    }
-
-    .tooltip-wrapper {
-        width: 100%;
-        min-width: 0;
     }
 
     .cell-tooltip {
@@ -113,14 +125,18 @@
 
     .resize-mark {
         position: absolute;
-        width: 12px;
         right: 0;
+        width: 12px;
         height: 100%;
         cursor: col-resize;
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
         }
+    }
+
+    &.pinned-right .resize-mark {
+        left: 0;
     }
 
     &.draggable {
