@@ -1,5 +1,5 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { act, delay, renderHook, waitFor } from '@epam/uui-test-utils';
+import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
@@ -630,7 +630,8 @@ describe('LazyListView', () => {
             });
 
             expect(view.getListProps().rowsCount).toBe(10);
-
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll?.indeterminate).toBe(false);
             await act(() => {
                 selectAll?.onValueChange(false);
             });
@@ -925,32 +926,44 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged } },
         );
 
-        const view = hookResult.result.current;
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, isFocused: false }, { id: 110, isFocused: false }, { id: 120, isFocused: false },
+                ],
+            );
+        });
 
-        view.getListProps(); // trigger loading
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, isFocused: false }, { id: 110, isFocused: false }, { id: 120, isFocused: false },
-        ]);
+        let view = hookResult.result.current;
 
         currentValue.focusedIndex = 0;
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-        await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, isFocused: true }, { id: 110, isFocused: false }, { id: 120, isFocused: false },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, isFocused: true }, { id: 110, isFocused: false }, { id: 120, isFocused: false },
+                ],
+            );
+        });
 
         currentValue.focusedIndex = 2;
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, isFocused: false }, { id: 110, isFocused: false }, { id: 120, isFocused: true },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, isFocused: false }, { id: 110, isFocused: false }, { id: 120, isFocused: true },
+                ],
+            );
+        });
     });
 
     it('Correctly computes path and isLastChild', async () => {
@@ -966,67 +979,84 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged } },
         );
 
-        const view = hookResult.result.current;
-
-        view.getListProps(); // trigger loading
-
-        await delay();
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
 
         currentValue.folded = { 120: false };
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-        view.getListProps(); // trigger loading
 
-        expectViewToLookLike(
-            view,
-            [
-                { id: 100, path: [], isLastChild: false },
-                { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
-                { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
-                {
-                    isLoading: true,
-                    path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                    isLastChild: false,
-                },
-                {
-                    isLoading: true,
-                    path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                    isLastChild: true,
-                },
-                { id: 200, path: [], isLastChild: false },
-                { id: 300, path: [], isLastChild: true },
-                { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-                { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-                { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
-            ],
-            10,
-        );
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    {
+                        isLoading: true,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: false,
+                    },
+                    {
+                        isLoading: true,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: true,
+                    },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
 
-        await delay();
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toBe(10);
 
-        expectViewToLookLike(
-            view,
-            [
-                { id: 100, path: [], isLastChild: false },
-                { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
-                { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
-                {
-                    id: 121,
-                    path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                    isLastChild: false,
-                },
-                {
-                    id: 122,
-                    path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                    isLastChild: true,
-                },
-                { id: 200, path: [], isLastChild: false },
-                { id: 300, path: [], isLastChild: true },
-                { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-                { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-                { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
-            ],
-            10,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    {
+                        id: 121,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: false,
+                    },
+                    {
+                        id: 122,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: true,
+                    },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toBe(10);
     });
 
     it('Correctly fold inner children in hierarchy', async () => {
@@ -1080,30 +1110,39 @@ describe('LazyListView', () => {
             }),
             { initialProps: { value: currentValue, onValueChange: onValueChanged } },
         );
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const viewRows = view.getVisibleRows();
 
-        const view = hookResult.result.current;
+            const expectedRows = [
+                { id: 100, isFolded: false },
+                { id: 110, isFolded: false, parentId: 100 }, // we add a lot of row here, to prevent loading some rows on initial load
+                { id: 111, isFolded: false, parentId: 110 },
+                { id: 112, isFolded: false, parentId: 110 },
+                { id: 113, isFolded: false, parentId: 110 },
+            ];
 
-        view.getListProps(); // trigger loading
-        await delay();
+            expect(viewRows).toEqual(expectedRows.map((r) => expect.objectContaining(r)));
+        });
 
+        let view = hookResult.result.current;
         // fold row #100
         let rows = view.getVisibleRows();
-        rows[0].onFold?.(rows[0]);
+
+        await act(() => {
+            rows[0].onFold?.(rows[0]);
+        });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-        rows = view.getVisibleRows();
 
-        expect(rows).toEqual([
-            { id: 100 }, { id: 200 }, { id: 300 }, { id: 400 }, { id: 500 },
-        ].map((r) => expect.objectContaining(r)));
+        await waitFor(() => {
+            view = hookResult.result.current;
+            rows = view.getVisibleRows();
 
-        await delay();
-
-        rows = view.getVisibleRows();
-
-        expect(rows).toEqual([
-            { id: 100 }, { id: 200 }, { id: 300 }, { id: 400 }, { id: 500 },
-        ].map((r) => expect.objectContaining(r)));
+            expect(rows).toEqual([
+                { id: 100 }, { id: 200 }, { id: 300 }, { id: 400 }, { id: 500 },
+            ].map((r) => expect.objectContaining(r)));
+        });
     });
 
     it('should check/uncheck parents if all/no siblings checked', async () => {
@@ -1118,51 +1157,76 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged } },
         );
 
-        const view = hookResult.result.current;
+        await waitFor(() => {
+            const view = hookResult.result.current;
 
-        view.getVisibleRows();
-        await delay();
+            expectViewToLookLike(view, [
+                { id: 100, isChildrenChecked: false, isFolded: false },
+                { id: 110, isChildrenChecked: false, isFolded: false },
+                { id: 120, isFolded: false },
+                { id: 121, isFolded: false },
+                { id: 122, isFolded: false },
+                { id: 200, isFolded: false },
+                { id: 300, isFolded: false },
+                { id: 310, isFolded: false },
+                { id: 320, isFolded: false },
+                { id: 330, isFolded: false },
+            ]);
+        });
 
+        let view = hookResult.result.current;
         let row121 = view.getVisibleRows()[3];
-        row121.onCheck?.(row121);
-        await delay();
+
+        await act(() => {
+            row121.onCheck?.(row121);
+        });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+        view = hookResult.result.current;
         const row122 = view.getVisibleRows()[4];
-        row122.onCheck?.(row122);
-        await delay();
+        await act(() => {
+            row122.onCheck?.(row122);
+        });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-        expectViewToLookLike(view, [
-            { id: 100, isChildrenChecked: true },
-            { id: 110 },
-            { id: 120, isChecked: true, isChildrenChecked: true },
-            { id: 121, isChecked: true },
-            { id: 122, isChecked: true },
-            { id: 200 },
-            { id: 300, isChildrenChecked: false },
-            { id: 310, isChecked: false },
-            { id: 320, isChecked: false },
-            { id: 330 },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChildrenChecked: true },
+                { id: 110 },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200 },
+                { id: 300, isChildrenChecked: false },
+                { id: 310, isChecked: false },
+                { id: 320, isChecked: false },
+                { id: 330 },
+            ]);
+        });
 
+        view = hookResult.result.current;
         row121 = view.getVisibleRows()[3];
-        row121.onCheck?.(row121);
-        await delay();
+        await act(() => {
+            row121.onCheck?.(row121);
+        });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
-        expectViewToLookLike(view, [
-            { id: 100, isChildrenChecked: true },
-            { id: 110 },
-            { id: 120, isChecked: false, isChildrenChecked: true },
-            { id: 121, isChecked: false },
-            { id: 122, isChecked: true },
-            { id: 200 },
-            { id: 300, isChildrenChecked: false },
-            { id: 310, isChecked: false },
-            { id: 320, isChecked: false },
-            { id: 330 },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChildrenChecked: true },
+                { id: 110 },
+                { id: 120, isChecked: false, isChildrenChecked: true },
+                { id: 121, isChecked: false },
+                { id: 122, isChecked: true },
+                { id: 200 },
+                { id: 300, isChildrenChecked: false },
+                { id: 310, isChecked: false },
+                { id: 320, isChecked: false },
+                { id: 330 },
+            ]);
+        });
     });
 
     it('should return selected rows in selection order', async () => {
@@ -1180,14 +1244,13 @@ describe('LazyListView', () => {
             },
         );
 
-        const view = hookResult.result.current;
+        await waitFor(() => {
+            const view = hookResult.result.current;
 
-        view.getListProps(); // trigger loading
-        await delay();
-
-        const selectedRows = view.getSelectedRows();
-        expect(selectedRows.map(({ id }) => id)).toEqual([
-            320, 310, 121, 122,
-        ]);
+            const selectedRows = view.getSelectedRows();
+            expect(selectedRows.map(({ id }) => id)).toEqual([
+                320, 310, 121, 122,
+            ]);
+        });
     });
 });
