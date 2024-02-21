@@ -1106,7 +1106,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -1439,7 +1439,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -1996,7 +1996,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -2319,7 +2319,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -2640,7 +2640,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -3211,7 +3211,7 @@
       "     * Can be specified to unfold all or some items at start.",
       "     * If not specified, all rows would be folded.",
       "     */",
-      "    isFoldedByDefault?(item: TItem): boolean;",
+      "    isFoldedByDefault?(item: TItem, state: DataSourceState<TFilter, TId>): boolean;",
       "    /**",
       "     * Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
       "     * - false: All nodes are selected independently (default).",
@@ -3346,7 +3346,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -6912,6 +6912,11 @@
       "    page?: number;",
       "    /** The amount of items per page */",
       "    pageSize?: number;",
+      "    /**",
+      "     * Provides default folding of nodes if the opposite value is not present in the folded map.",
+      "     * It is used to collapse/expand all nodes.",
+      "     */",
+      "    foldAll?: boolean;",
       "}"
      ]
     },
@@ -7049,6 +7054,23 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "foldAll",
+      "name": "foldAll",
+      "comment": {
+       "raw": [
+        "Provides default folding of nodes if the opposite value is not present in the folded map.",
+        " It is used to collapse/expand all nodes."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -7855,6 +7877,19 @@
       "    isFirstColumn: boolean;",
       "    isLastColumn: boolean;",
       "    selectAll?: ICheckable;",
+      "    /**",
+      "     * Enables collapse/expand all functionality.",
+      "     * */",
+      "    showFoldAll?: boolean;",
+      "    /**",
+      "     * Fold all click handler.",
+      "     * If `showFoldAll` is not enabled, onFoldAll is not passed.",
+      "     * */",
+      "    onFoldAll?(): void;",
+      "    /**",
+      "     * Indicates if all nodes are folded.",
+      "     */",
+      "    areAllFolded?: boolean;",
       "    isFilterActive?: boolean;",
       "    sortDirection?: SortDirection;",
       "    onSort(dir: SortDirection): void;",
@@ -7910,6 +7945,55 @@
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFoldAll",
+      "name": "onFoldAll",
+      "comment": {
+       "raw": [
+        "Fold all click handler.",
+        " If `showFoldAll` is not enabled, onFoldAll is not passed."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "areAllFolded",
+      "name": "areAllFolded",
+      "comment": {
+       "raw": [
+        "Indicates if all nodes are folded."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -8184,6 +8268,10 @@
       "interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {",
       "    columns: DataColumnProps<TItem, TId>[];",
       "    selectAll?: ICheckable;",
+      "    /**",
+      "     * Enables collapse/expand all functionality.",
+      "     * */",
+      "    showFoldAll?: boolean;",
       "    onConfigButtonClick?: (params: DataTableConfigModalParams) => any;",
       "    renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;",
       "    renderConfigButton?: () => React.ReactNode;",
@@ -8204,6 +8292,22 @@
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -9491,6 +9595,24 @@
       },
       "editor": {
        "type": "number"
+      },
+      "from": "@epam/uui-core:DataSourceState",
+      "required": false
+     },
+     {
+      "uid": "foldAll",
+      "name": "foldAll",
+      "comment": {
+       "raw": [
+        "Provides default folding of nodes if the opposite value is not present in the folded map.",
+        " It is used to collapse/expand all nodes."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:DataSourceState",
       "required": false
@@ -21281,7 +21403,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -21672,7 +21794,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -40173,7 +40295,7 @@
     "typeValue": {
      "raw": "PaginatorProps",
      "print": [
-      "interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    /** Defines component size */",
       "    size: '24' | '30';",
       "    /** Total number of pages */",
@@ -40286,6 +40408,23 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -61473,6 +61612,10 @@
       "     */",
       "    renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;",
       "    dataTableFocusManager?: DataTableFocusManager<TId>;",
+      "    /**",
+      "     * Enables collapse/expand all functionality.",
+      "     * */",
+      "    showFoldAll?: boolean;",
       "}"
      ]
     },
@@ -61611,6 +61754,22 @@
       "name": "dataTableFocusManager",
       "typeValue": {
        "raw": "DataTableFocusManager<TId>"
+      },
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },

@@ -16,6 +16,8 @@ export interface HeaderCellContentProps extends DndActorRenderParams {
 
 interface DataTableHeaderCellState {
     isResizing: boolean;
+    resizeStartX?: number;
+    originalWidth?: number;
 }
 
 export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps> {
@@ -44,7 +46,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     }
 
     onResizeStart = (e: React.MouseEvent) => {
-        this.setState({ isResizing: true });
+        this.setState({ isResizing: true, resizeStartX: e.clientX, originalWidth: this.props.column.width });
 
         document.addEventListener('mousemove', this.onResize);
         document.addEventListener('mouseup', this.onResizeEnd);
@@ -63,8 +65,15 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     onResize = (e: MouseEvent) => {
         if (this.state.isResizing) {
             const columnsConfig = { ...(this.props.value.columnsConfig || {}) };
-            const cellRect = this.cellRef.current.getBoundingClientRect();
-            const newWidth = e.clientX - cellRect.left;
+
+            // How much mouse was moved after resize is started
+            let widthDelta = e.clientX - this.state.resizeStartX;
+
+            // Right-pinned columns have resize handle at the left, instead of right.
+            // So moving left should increase column width, instead of decreasing as usual, and vice versa.
+            widthDelta = this.props.column.fix === 'right' ? -widthDelta : widthDelta;
+
+            const newWidth = this.state.originalWidth + widthDelta;
 
             if (newWidth >= (this.props.column.minWidth || 24)) {
                 columnsConfig[this.props.column.key] = {

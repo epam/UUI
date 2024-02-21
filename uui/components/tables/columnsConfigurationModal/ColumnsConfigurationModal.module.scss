@@ -45,11 +45,48 @@
             content: '';
             height: 1px;
             display: block;
-            background: var(--uui-divider);
+            background: var(--uui-divider-light);
         }
     }
 }
 
 .search-area {
     padding-bottom: 6px;
+}
+
+.subgroup-accordion {
+    :global(.uui-accordion-toggler):focus-visible {
+        outline: 2px solid var(--uui-outline-focus);
+        outline-offset: -2px;
+        border-radius: 0;
+    }
+
+    .subgroup-title {
+        cursor: pointer;
+        padding: 3px 24px 3px 24px;
+        text-transform: uppercase;
+        color: var(--uui-text-tertiary);
+        font-family: var(--uui-font);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        :global(.uui-icon) {
+            fill: var(--uui-text-tertiary);
+        }
+    }
+}
+
+.modal {
+    &:global(.uui-modal-window) {
+        @media (min-width: 641px) {
+            max-height: 90vh;
+        }
+        @media (max-width: 640px) {
+            min-height: 100dvh;
+        }
+    }
 }

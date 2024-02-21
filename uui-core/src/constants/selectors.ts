@@ -78,6 +78,7 @@ export const uuiDataTableHeaderCell = {
     uuiTableHeaderSortIcon: 'uui-table-header-sort-icon',
     uuiTableHeaderFilterIcon: 'uui-table-header-filter-icon',
     uuiTableHeaderDropdownIcon: 'uui-table-header-dropdown-icon',
+    uuiTableHeaderFoldAllIcon: 'uui-table-header-fold-all-icon',
 } as const;
 
 export const uuiScrollShadows = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { renderHook, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { ArrayDataSource } from '@epam/uui-core';
 import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import { DataPickerRow } from '../DataPickerRow';
@@ -13,15 +13,19 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('DataPickerBody', () => {
-    const rows = mockDataSource.getView({}, () => {}).getVisibleRows();
+    const hookResult = renderHook(
+        () => mockDataSource.useView({}, () => {}, {}),
+    );
+    const view = hookResult.result.current;
+    const rows = view.getVisibleRows();
     const requiredProps: DataPickerBodyProps = {
-        value: null,
+        value: {},
         onValueChange: jest.fn(),
         rows: rows.map(
-            (props) => <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } />,
+            (props) => <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />,
         ),
         search: {
-            value: null,
+            value: '',
             onValueChange: jest.fn(),
         },
     };
@@ -45,7 +49,7 @@ describe('DataPickerBody', () => {
                 maxHeight={ 800 }
                 searchSize="48"
                 rows={ rows.map((props) => (
-                    <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } />
+                    <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />
                 )) }
                 onKeyDown={ jest.fn }
                 rowsCount={ 7 }

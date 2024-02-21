@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Collapse/expand all functionality can be enabled by passing "
+      },
+      {
+        "text": "showFoldAll",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to the "
+      },
+      {
+        "text": "DataTableProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]

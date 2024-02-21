@@ -1,0 +1,89 @@
+[
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Setup test runner"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Vitest (vitest-setup.ts)",
+        "uui-richTextEditor-bold": true
+      }
+    ],
+    "data": {}
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import 'vitest-dom/extend-expect';\nimport { setupJsDom } from '@epam/uui-test-utils';\n\nsetupJsDom(global, { mockCommon3rdPartyDeps: true });"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Jest (jest.setup.ts)",
+        "uui-richTextEditor-bold": true
+      }
+    ],
+    "data": {}
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import '@testing-library/jest-dom';\nimport { setupJsDom } from '@epam/uui-test-utils';\n\nsetupJsDom(global, { mockCommon3rdPartyDeps: true });"
+      }
+    ]
+  },
+  {
+    "type": "note-link",
+    "children": [
+      {
+        "text": "NOTE\nHere, it's recommended to use the "
+      },
+      {
+        "text": "setupJsDom",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function. It mocks some common "
+      },
+      {
+        "text": "jsdom",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " properties; and "
+      },
+      {
+        "text": "mockCommon3rdPartyDeps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " parameter  automatically enables global mocks of certain 3rd party dependencies (such as "
+      },
+      {
+        "text": "react-popper",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "react-focus-lock",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " etc.)."
+      }
+    ]
+  }
+]

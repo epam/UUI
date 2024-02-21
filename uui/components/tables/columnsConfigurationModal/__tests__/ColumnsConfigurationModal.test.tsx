@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
 import { DataColumnProps, getColumnsConfig } from '@epam/uui-core';
-import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync, renderWithContextAsync, screen } from '@epam/uui-test-utils';
 
 const mockColumns: DataColumnProps[] = [
     {
@@ -64,9 +64,10 @@ describe('ColumnsConfigurationModal', () => {
 
     it('should disable Apply button if all columns are hidden', async () => {
         const defaultConfig = getColumnsConfig(mockHiddenColumns, {});
-        const tree = await renderSnapshotWithContextAsync(
+        await renderWithContextAsync(
             <ColumnsConfigurationModal { ...modalProps } columns={ mockHiddenColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
         );
-        expect(tree).toMatchSnapshot();
+        const applyBtn = await screen.findByRole('button', { name: 'Apply' });
+        expect(applyBtn).toHaveClass('uui-disabled');
     });
 });
