@@ -1,5 +1,5 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { delayAct, renderHook } from '@epam/uui-test-utils';
+import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
@@ -41,12 +41,9 @@ describe('LazyListView with flat list', () => {
     function expectViewToLookLike(
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
-        rowsCount?: number,
     ) {
         const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        const listProps = view.getListProps();
-        rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can scroll thru plain lists', async () => {
@@ -55,62 +52,72 @@ describe('LazyListView with flat list', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: {} } },
         );
 
+        await waitFor(() => {
+            const view = hookResult.result.current;
+
+            expectViewToLookLike(view, [
+                { isLoading: true }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
+
         let view = hookResult.result.current;
-
-        expectViewToLookLike(view, [
-            { isLoading: true }, { isLoading: true }, { isLoading: true },
-        ]);
-
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: 100, value: testDataById[100], depth: 0 }, { id: 110, value: testDataById[110], depth: 0 }, { id: 120, value: testDataById[120], depth: 0 },
-            ],
-            11,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, value: testDataById[100], depth: 0 }, { id: 110, value: testDataById[110], depth: 0 }, { id: 120, value: testDataById[120], depth: 0 },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(11);
 
         // Scroll down by 1 row
         hookResult.rerender({ value: { topIndex: 1, visibleCount: 3 }, onValueChange: onValueChangeFn, props: {} });
 
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
-        ], 11);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true },
+            ]);
+        });
+        expect(view.getListProps().rowsCount).toEqual(11);
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { id: 120, value: testDataById[120] },
-            ],
-            11,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { id: 120, value: testDataById[120] },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(11);
 
         // Scroll down to bottom
         hookResult.rerender({ value: { topIndex: 8, visibleCount: 3 }, onValueChange: onValueChangeFn, props: {} });
 
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { isLoading: true }, { isLoading: true }, { isLoading: true },
-        ], 11);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { isLoading: true }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
 
-        await delayAct();
+        expect(view.getListProps().rowsCount).toEqual(11);
 
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: 310, value: testDataById[310] }, { id: 320, value: testDataById[320] }, { id: 330, value: testDataById[330] },
-            ],
-            11,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 310, value: testDataById[310] }, { id: 320, value: testDataById[320] }, { id: 330, value: testDataById[330] },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(11);
     });
 });
 
@@ -179,7 +186,6 @@ describe('LazyListView with tree table', () => {
     function expectViewToLookLike(
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
-        rowsCount?: number,
     ) {
         const viewRows = view.getVisibleRows();
 
@@ -190,8 +196,6 @@ describe('LazyListView with tree table', () => {
         });
 
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        const listProps = view.getListProps();
-        rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
@@ -199,135 +203,161 @@ describe('LazyListView with tree table', () => {
             ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
-
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                {
+                    isLoading: true, depth: 0, indent: 0, path: [],
+                }, {
+                    isLoading: true, depth: 0, indent: 0, path: [],
+                }, {
+                    isLoading: true, depth: 0, indent: 0, path: [],
+                },
+            ]);
+        });
         let view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            {
-                isLoading: true, depth: 0, indent: 0, path: [],
-            }, {
-                isLoading: true, depth: 0, indent: 0, path: [],
-            }, {
-                isLoading: true, depth: 0, indent: 0, path: [],
-            },
-        ]);
+
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delayAct();
-        expect(testApi).toBeCalledTimes(1);
+        await waitFor(() => {
+            expect(testApi).toBeCalledTimes(1);
+        });
+
         testApi.mockClear();
 
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                {
-                    id: 100, isFoldable: true, isFolded: true, path: [],
-                }, { id: 200, isFoldable: false, path: [] }, {
-                    id: 300, isFoldable: true, isFolded: true, path: [],
-                },
-            ],
-            3,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    {
+                        id: 100, isFoldable: true, isFolded: true, path: [],
+                    }, { id: 200, isFoldable: false, path: [] }, {
+                        id: 300, isFoldable: true, isFolded: true, path: [],
+                    },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(3);
 
         // // Unfold some rows
         let rows = view.getVisibleRows();
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
-        rows[0].onFold?.(rows[0]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            rows = view.getVisibleRows();
+            expect(typeof rows[0].onFold).toBe('function');
+        });
+
+        await act(() => {
+            rows[0].onFold?.(rows[0]);
+        });
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: 100, depth: 0, indent: 1 },
-                { isLoading: true, depth: 1, indent: 2 },
-                { isLoading: true, depth: 1, indent: 2 },
-                { id: 200, depth: 0, indent: 1 },
-                { id: 300, depth: 0, indent: 1 },
-            ],
-            5,
-        ); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, depth: 0, indent: 1 },
+                    { isLoading: true, depth: 1, indent: 2 },
+                    { isLoading: true, depth: 1, indent: 2 },
+                    { id: 200, depth: 0, indent: 1 },
+                    { id: 300, depth: 0, indent: 1 },
+                ],
+            ); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
+        });
+        expect(view.getListProps().rowsCount).toEqual(5);
 
-        await delayAct();
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    {
+                        id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+                    }, {
+                        id: 110, depth: 1, indent: 2, isFoldable: false,
+                    }, {
+                        id: 120, depth: 1, indent: 2, isFoldable: true,
+                    }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(5);
 
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
+        // // Unfold more rows
+        rows = view.getVisibleRows();
+        await act(() => {
+            rows[2].onFold?.(rows[2]);
+        });
+
+        hookResult.rerender({ value: { ...currentValue, visibleCount: 5 }, onValueChange: onValueChanged, props: {} });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
                 {
                     id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
                 }, {
                     id: 110, depth: 1, indent: 2, isFoldable: false,
                 }, {
                     id: 120, depth: 1, indent: 2, isFoldable: true,
-                }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
-            ],
-            5,
-        );
+                }, { isLoading: true, depth: 2, indent: 3 }, { isLoading: true, depth: 2, indent: 3 },
+            ]);
+        });
 
-        // // Unfold more rows
-        rows = view.getVisibleRows();
-        rows[2].onFold?.(rows[2]);
-
-        hookResult.rerender({ value: { ...currentValue, visibleCount: 5 }, onValueChange: onValueChanged, props: {} });
-
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            {
-                id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
-            }, {
-                id: 110, depth: 1, indent: 2, isFoldable: false,
-            }, {
-                id: 120, depth: 1, indent: 2, isFoldable: true,
-            }, { isLoading: true, depth: 2, indent: 3 }, { isLoading: true, depth: 2, indent: 3 },
-        ]);
-
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            {
-                id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
-            }, {
-                id: 110, depth: 1, indent: 2, isFoldable: false,
-            }, {
-                id: 120, depth: 1, indent: 2, isFoldable: true,
-            }, {
-                id: 121, depth: 2, indent: 3, isFoldable: false,
-            }, {
-                id: 122, depth: 2, indent: 3, isFoldable: false,
-            },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                {
+                    id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+                }, {
+                    id: 110, depth: 1, indent: 2, isFoldable: false,
+                }, {
+                    id: 120, depth: 1, indent: 2, isFoldable: true,
+                }, {
+                    id: 121, depth: 2, indent: 3, isFoldable: false,
+                }, {
+                    id: 122, depth: 2, indent: 3, isFoldable: false,
+                },
+            ]);
+        });
 
         expect(view.getListProps().rowsCount).toBeGreaterThan(5);
         hookResult.rerender({ value: { ...currentValue, visibleCount: 4, topIndex: 4 }, onValueChange: onValueChanged, props: {} });
 
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { id: 122, depth: 2, isFoldable: false }, { isLoading: true, depth: 2 }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 122, depth: 2, isFoldable: false }, { isLoading: true, depth: 2 }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
+            ]);
+        });
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            {
-                id: 122, depth: 2, indent: 3, isFoldable: false,
-            }, {
-                id: 122, depth: 2, indent: 3, isFoldable: false,
-            }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                {
+                    id: 122, depth: 2, indent: 3, isFoldable: false,
+                }, {
+                    id: 122, depth: 2, indent: 3, isFoldable: false,
+                }, { id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 },
+            ]);
+        });
 
         // // Scroll down to bottom
         hookResult.rerender({ value: { ...currentValue, visibleCount: 4, topIndex: 6 }, onValueChange: onValueChanged, props: {} });
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [{ id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 }],
-            8,
-        );
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [{ id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 }],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(8);
     });
 });
