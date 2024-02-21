@@ -55,12 +55,18 @@ function isSubstring(s: React.ReactNode, sub: string) {
     return false;
 }
 
-export function isColumnFilteredOut(column: DataColumnProps, searchFields: string[], filter?: string) {
+export function isColumnAlwaysHiddenInTheConfigurationModal(column: DataColumnProps) {
     const caption = column.caption;
-    const hasCaption = !isEmptyCaption(caption);
+    return isEmptyCaption(caption);
+}
+
+export function isColumnFilteredOut(column: DataColumnProps, searchFields: string[], filter?: string) {
     const hasFilter = !isEmptyString(filter);
     const isNotSearchValue = hasFilter && !searchFields.some((searchField) => isSubstring(searchField, filter));
-    return hasCaption ? isNotSearchValue : true;
+    if (isColumnAlwaysHiddenInTheConfigurationModal(column)) {
+        return true;
+    }
+    return isNotSearchValue;
 }
 
 interface IGroupAndFilterSortedColumnsProps<TItem, TId, TFilter> {
