@@ -3,7 +3,7 @@ import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delayAct, renderHook } from '@epam/uui-test-utils';
+import { renderHook, waitFor } from '@epam/uui-test-utils';
 import { LazyListViewProps } from '../types';
 
 interface TestItem {
@@ -64,44 +64,48 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
         );
 
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+                { isLoading: true },
+            ]);
+        });
+
         let view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-        ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delayAct();
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    {
+                        id: 100, depth: 0, isFoldable: true, isFolded: false,
+                    }, //  0   100 // less children than specified
+                    { id: 110, depth: 1, isFoldable: false }, //  1     110
+                    {
+                        id: 120, depth: 1, isFoldable: true, isFolded: false,
+                    }, //  2       120   // more children than specified
+                    { id: 121, depth: 2 }, //  3         121
+                    { id: 122, depth: 2 }, //  4         122
+                    { id: 200, depth: 0, isFoldable: false }, //  5   200 // declared 1 child, but there's none
+                    { id: 300, depth: 0 }, //  6   300
+                    { id: 310, depth: 1 }, //  7     310
+                    { id: 320, depth: 1 }, //  8     320
+                    { id: 330, depth: 1 }, //  9     330
+                ],
+            );
+        });
 
-        view = hookResult.result.current;
-
-        expectViewToLookLike(
-            view,
-            [
-                {
-                    id: 100, depth: 0, isFoldable: true, isFolded: false,
-                }, //  0   100 // less children than specified
-                { id: 110, depth: 1, isFoldable: false }, //  1     110
-                {
-                    id: 120, depth: 1, isFoldable: true, isFolded: false,
-                }, //  2       120   // more children than specified
-                { id: 121, depth: 2 }, //  3         121
-                { id: 122, depth: 2 }, //  4         122
-                { id: 200, depth: 0, isFoldable: false }, //  5   200 // declared 1 child, but there's none
-                { id: 300, depth: 0 }, //  6   300
-                { id: 310, depth: 1 }, //  7     310
-                { id: 320, depth: 1 }, //  8     320
-                { id: 330, depth: 1 }, //  9     330
-            ],
-            10,
-        );
+        expect(view.getListProps().rowsCount).toEqual(10);
     });
 });
