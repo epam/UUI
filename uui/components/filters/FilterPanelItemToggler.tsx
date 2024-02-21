@@ -9,13 +9,12 @@ import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
 
-export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable {
+export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable, IHasCX {
     selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;
     maxWidth?: number;
     size?: '24' | '30' | '36' | '42' | '48';
-    cx?: IHasCX;
     predicateName: string | null;
 }
 

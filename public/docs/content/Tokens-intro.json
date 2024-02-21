@@ -3,9 +3,18 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Core tokens are 2nd level of tokens and recommended to use for every case. Also, core tokens uses in the component level. Core tokens have many categories for every role. Find these categories below."
+        "text": "Core tokens is a required part of each theme, this tokens is a foundation for low-level components variable and color classes."
       }
     ],
     "data": {}
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "This part of tokens assumed as a stable theme API, so you can use them for styling your app parts and components."
+      }
+    ]
   }
 ]

@@ -4,6 +4,7 @@ import {
 import { useThemeTokens } from '../palette/hooks/useThemeTokens/useThemeTokens';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../palette/types/types';
 import { isGroupCfgWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
+import { TTheme } from '../../../common/docs/docsConstants';
 
 const PARAMS: TLoadThemeTokensParams = {
     filter: {
@@ -12,15 +13,17 @@ const PARAMS: TLoadThemeTokensParams = {
     },
     valueType: TThemeTokenValueType.chain,
 };
-export function useTokensDoc(): { loading: boolean, tokens: ITokensDocGroup[] } {
+export function useTokensDoc(): { loading: boolean, tokens: ITokensDocGroup[], uuiTheme: TTheme } {
     const result = useThemeTokens(PARAMS);
     const {
         tokens,
         loading,
+        uuiTheme,
     } = result;
     return {
         loading,
         tokens: convertDocGroup({ tokens, docGroupCfgArr: TOKENS_DOC_CONFIG }),
+        uuiTheme,
     };
 }
 
@@ -37,6 +40,7 @@ function convertDocGroup(params: { docGroupCfgArr: TTokensDocGroupCfg[], tokens:
                 id,
                 title,
                 description,
+                subgroupsHeader: group.subgroupsHeader,
                 subgroups: convertDocGroup({ docGroupCfgArr: group.subgroups, tokens }),
             };
         }
@@ -65,6 +69,7 @@ function convertDocItems(params: { docItemCfg: TTokensDocItemCfg, tokens: ITheme
                 description: tok.description,
                 useCases: tok.useCases,
                 value: tok.value.browser,
+                baseToken: tok.value.figma?.alias[tok.value.figma.alias.length - 1]?.id,
             });
         }
         return acc;
