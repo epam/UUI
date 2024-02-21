@@ -57,7 +57,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -304,7 +304,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       >
                         <button
                           aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral pinTogglerIcon"
                           onClick={[Function]}
                           tabIndex={0}
                           type="button"
@@ -320,7 +320,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         </button>
                         <button
                           aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral pinTogglerIcon"
                           onClick={[Function]}
                           tabIndex={0}
                           type="button"
@@ -415,7 +415,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       >
                         <button
                           aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral pinTogglerIcon"
                           onClick={[Function]}
                           tabIndex={0}
                           type="button"
@@ -431,7 +431,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         </button>
                         <button
                           aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                          className="uui-button-box uui-enabled -clickable root uui-icon_button uui-color-neutral pinTogglerIcon"
                           onClick={[Function]}
                           tabIndex={0}
                           type="button"
