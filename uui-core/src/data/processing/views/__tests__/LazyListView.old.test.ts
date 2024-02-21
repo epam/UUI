@@ -1,6 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { renderHook, waitFor } from '@epam/uui-test-utils';
-import { DataSourceState } from '../../../../types';
+import { DataSourceState, LazyDataSourceApi } from '../../../../types';
 import { LazyListViewProps } from '../types';
 
 interface TItem {
@@ -10,12 +10,29 @@ interface TItem {
 }
 
 const testItems = [
-    { id: 2, level: 'A1' }, { id: 5, level: 'A2+' }, { id: 1, level: 'A0' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 6, level: 'B' }, { id: 7, level: 'B1+', parentId: 6 }, { id: 8, level: 'B2', parentId: 6 }, { id: 9, level: 'B2+', parentId: 6 }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
+    { id: 2, level: 'A1' },
+    { id: 5, level: 'A2+' },
+    { id: 1, level: 'A0' },
+    { id: 3, level: 'A1+' },
+    { id: 4, level: 'A2' },
+    { id: 6, level: 'B' },
+    { id: 7, level: 'B1+', parentId: 6 },
+    { id: 8, level: 'B2', parentId: 6 },
+    { id: 9, level: 'B2+', parentId: 6 },
+    { id: 10, level: 'C1' },
+    { id: 11, level: 'C1+' },
+    { id: 12, level: 'C2' },
 ];
 
 describe('LazyListView - old tests', () => {
     const initialValue: DataSourceState = { topIndex: 0, visibleCount: 20 };
-    const testApi = jest.fn(() => Promise.resolve({ items: testItems }));
+    const testApi: jest.MockedFn<LazyDataSourceApi<TItem, number, any>> = jest.fn().mockImplementation(({ ids }) => {
+        if (ids) {
+            return Promise.resolve({ items: testItems.filter((item) => ids.includes(item.id)) });
+        }
+        return Promise.resolve({ items: testItems });
+    });
+
     let viewProps: LazyListViewProps<TItem, number, any>;
     let dataSource: LazyDataSource<TItem, number>;
 
@@ -69,17 +86,17 @@ describe('LazyListView - old tests', () => {
         it('should return loading row if item is fetching by dataSource', async () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: { checked: [111], ...initialValue }, onValueChange: () => {}, props: { showOnlySelected: true } } },
+                { initialProps: { value: { checked: [11], ...initialValue }, onValueChange: () => {}, props: { showOnlySelected: true } } },
             );
 
             await waitFor(async () => {
                 const view = hookResult.result.current;
-                const row = view.getById(111, 111);
+                const row = view.getById(11, 11);
                 expect(row.isLoading).toBeTruthy();
             });
 
             const view = hookResult.result.current;
-            const row = view.getById(111, 111);
+            const row = view.getById(11, 11);
             expect(row.id).not.toBeNull();
         });
     });
