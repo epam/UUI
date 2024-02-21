@@ -26,12 +26,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const pickerInputState = usePickerInputState({
         dataSourceState: { visibleCount: initialRowsVisible },
     });
+
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged,
         dataSourceState, setDataSourceState, setShowSelected,
     } = pickerInputState;
 
-    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
+    const showOnlySelected = !opened || pickerInputState.showSelected;
+    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showOnlySelected }, pickerInputState);
     const {
         context,
         view,
