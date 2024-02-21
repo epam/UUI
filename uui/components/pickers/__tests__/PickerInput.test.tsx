@@ -7,7 +7,7 @@ import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
-import { TestItemType, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
+import { Item, TestItemType, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
 type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
@@ -16,7 +16,14 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
         (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 return Object.assign({
-                    onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
+                    onValueChange: jest.fn().mockImplementation((newValue) => {
+                        if (typeof newValue === 'function') {
+                            const v = newValue(params.value);
+                            context.current?.setProperty('value', v);
+                            return;
+                        }
+                        context.current?.setProperty('value', newValue);
+                    }),
                     dataSource: mockDataSourceAsync,
                     disableClear: false,
                     searchPosition: 'input',
@@ -28,7 +35,14 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
             }
 
             return Object.assign({
-                onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
+                onValueChange: jest.fn().mockImplementation((newValue) => {
+                    if (typeof newValue === 'function') {
+                        const v = newValue(params.value);
+                        context.current?.setProperty('value', v);
+                        return;
+                    }
+                    context.current?.setProperty('value', newValue);
+                }),
                 dataSource: mockDataSourceAsync,
                 disableClear: false,
                 searchPosition: 'input',
@@ -92,7 +106,7 @@ describe('PickerInput', () => {
     });
 
     it('should open body', async () => {
-        const { dom, result } = await setupPickerInputForTest({
+        const { dom, result } = await setupPickerInputForTest<Item, number>({
             value: undefined,
             selectionMode: 'single',
             dataSource: mockSmallDataSourceAsync,

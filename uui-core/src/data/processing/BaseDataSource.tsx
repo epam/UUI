@@ -37,7 +37,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         this.subscriptions.clear();
     }
 
-    public getId = (item: TItem & { id?: TId }) => {
+    public getId = (item: TItem & { id?: TId }): TId => {
         if (item == null) return null;
 
         const id = this.props.getId?.(item) || item.id;
