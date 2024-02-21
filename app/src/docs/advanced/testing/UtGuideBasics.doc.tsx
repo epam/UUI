@@ -6,7 +6,7 @@ export class UtGuideBasicsDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <EditableDocContent fileName="unitTestingGuide-1-basics" />
+            <EditableDocContent fileName="unitTestingGuide-basics" />
         );
     }
 }

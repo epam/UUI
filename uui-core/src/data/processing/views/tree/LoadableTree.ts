@@ -8,7 +8,9 @@ import { ITree, LoadTreeOptions, TreeNodeInfo } from './ITree';
 export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> {
     public async load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren: boolean = true) {
         let tree = await this.loadMissing(options, value, withNestedChildren);
-        tree = await tree.loadMissingIdsAndParents(options, value.checked);
+        const checked = (value.checked ?? []);
+        const missing = value.selectedId === null || value.selectedId === undefined ? checked : checked.concat(value.selectedId);
+        tree = await tree.loadMissingIdsAndParents(options, missing);
         return tree;
     }
 

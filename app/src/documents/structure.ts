@@ -15,7 +15,7 @@ import {
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
     DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc, OverviewDoc, StatusIndicatorDoc,
-    Overview, Tokens, AccessibilityDoc,
+    Overview, Tokens, AccessibilityDoc, UtGuideGettingStartedDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -149,6 +149,7 @@ export const items: DocItem[] = [
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
+    { id: 'testing-getting-started', name: 'Getting Started', component: UtGuideGettingStartedDoc, parentId: 'testing' },
     { id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing' },
     { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
 

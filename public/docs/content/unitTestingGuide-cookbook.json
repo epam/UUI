@@ -1,0 +1,1955 @@
+[
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#reference-implementation"
+        },
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#reference-implementation",
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": "Reference implementation"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Below is a list of unit tests in UUI codebase which could be used as a reference. They demonstrate common use cases and usage of tools to implement tests."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(fake timers)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui-core/src/helpers/__tests__/IEditableDebouncer.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui-core/src/helpers/__tests__/IEditableDebouncer.test.tsx",
+                "children": [
+                  {
+                    "text": "IEditableDebouncer.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(testability: test extracted state management logic)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/table/columnsConfigurationModal/__tests__/columnsConfigurationActions.test.ts"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/table/columnsConfigurationModal/__tests__/columnsConfigurationActions.test.ts",
+                "children": [
+                  {
+                    "text": "columnsConfigurationActions.test.ts"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(react-popper mock usage)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui/components/datePickers/__tests__/DatePicker.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui/components/datePickers/__tests__/DatePicker.test.tsx",
+                "children": [
+                  {
+                    "text": "DatePicker.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(snapshots)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui/components/inputs/__tests__/NumericInput.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui/components/inputs/__tests__/NumericInput.test.tsx",
+                "children": [
+                  {
+                    "text": "NumericInput.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(complex component)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/__tests__/filtersPanel.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/__tests__/filtersPanel.test.tsx",
+                "children": [
+                  {
+                    "text": "filtersPanel.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(complex component, adaptive panel mock)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/PresetPanel/__tests__/presetsPanel.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/PresetPanel/__tests__/presetsPanel.test.tsx",
+                "children": [
+                  {
+                    "text": "presetsPanel.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "(complex component)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui/components/pickers/__tests__/PickerInput.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui/components/pickers/__tests__/PickerInput.test.tsx",
+                "children": [
+                  {
+                    "text": "PickerInput.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "("
+              },
+              {
+                "text": "data-testid",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " usage)"
+              },
+              {
+                "text": " ",
+                "uui-richTextEditor-span-mark": true
+              },
+              {
+                "data": {
+                  "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx"
+                },
+                "type": "link",
+                "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx",
+                "children": [
+                  {
+                    "text": "adaptivePanel.test.tsx"
+                  }
+                ]
+              },
+              {
+                "text": ""
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#common-mocks"
+        },
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#common-mocks",
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": "Common mocks"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Here is the list of commonly used mocks which can be useful in certain cases."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "react-popper",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "NOTE: this mock is automatically enabled when "
+      },
+      {
+        "text": "mockCommon3rdPartyDeps: true",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is passed to the "
+      },
+      {
+        "text": "setupJsDom",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\nThis 3rd party component is used in "
+      },
+      {
+        "text": "Dropdown",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". As well as in other components which use dropdown internally (e.g. "
+      },
+      {
+        "text": "DatePicker",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", etc.). It heavily relies on \"layout\" features of browser and therefore, we need to mock it in "
+      },
+      {
+        "text": "jsdom",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". This mock needs to be added to the specific test file (feel free to copy/paste it from here). "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "jest."
+      },
+      {
+        "text": "mock",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "'react-popper'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ", () => ({\n    ...jest."
+      },
+      {
+        "text": "requireActual",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "'react-popper'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "),\n    "
+      },
+      {
+        "text": "Popper",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": "
+      },
+      {
+        "text": "function ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "PopperMock",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "({ children }: "
+      },
+      {
+        "text": "any",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ") {\n        "
+      },
+      {
+        "text": "return ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "children({\n            "
+      },
+      {
+        "text": "ref",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": jest."
+      },
+      {
+        "text": "fn",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ",\n            "
+      },
+      {
+        "text": "update",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": jest."
+      },
+      {
+        "text": "fn",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "(),\n            "
+      },
+      {
+        "text": "style",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": {},\n            "
+      },
+      {
+        "text": "arrowProps",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": { "
+      },
+      {
+        "text": "ref",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": jest."
+      },
+      {
+        "text": "fn ",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "},\n            "
+      },
+      {
+        "text": "placement",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": "
+      },
+      {
+        "text": "'bottom-start'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ",\n            "
+      },
+      {
+        "text": "isReferenceHidden",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": "
+      },
+      {
+        "text": "false",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ",\n        });\n    },\n}));"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "react-focus-lock",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "NOTE: this mock is automatically enabled when "
+      },
+      {
+        "text": "mockCommon3rdPartyDeps: true",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is passed to the "
+      },
+      {
+        "text": "setupJsDom",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\nThis 3rd party component is used in "
+      },
+      {
+        "text": "DropdownContainer",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". As well as in other components which use DropdownContainer internally (e.g. "
+      },
+      {
+        "text": "DropdownMenu",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "PickerInput",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " etc.). This mock needs to be added to the specific test file (feel free to copy/paste it from here). "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "jest."
+      },
+      {
+        "text": "mock",
+        "uui-richTextEditor-italic": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "'react-focus-lock'",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ", () => ({\n    ...jest."
+      },
+      {
+        "text": "requireActual",
+        "uui-richTextEditor-italic": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "'react-focus-lock'",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "),\n    "
+      },
+      {
+        "text": "__esModule",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ": "
+      },
+      {
+        "text": "true",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ",\n   "
+      },
+      {
+        "text": "default",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ": ({ children }) => (<>{ children }</>),\n   FreeFocusInside: ({ children }) => (<>{ children }</>),\n}));"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "uui-richTextEditor-bold": true,
+        "text": "react portal (for snapshots only)"
+      },
+      {
+        "text": "\nIt's needed only for snapshots. Use it for components which use React portals internally for snapshot testing."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "{ "
+      },
+      {
+        "text": "mockReactPortalsForSnapshots",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "renderSnapshotWithContextAsync ",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "} "
+      },
+      {
+        "text": "from '@epam/uui-test-utils'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ";\n...\n"
+      },
+      {
+        "text": "it",
+        "font-weight": "bold",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "'should render with maximum props'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "async ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "() => {\n    "
+      },
+      {
+        "text": "const ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "portalMock ",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "= "
+      },
+      {
+        "text": "mockReactPortalsForSnapshots",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "();\n    "
+      },
+      {
+        "text": "const ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "tree ",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "= "
+      },
+      {
+        "text": "await ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "renderSnapshotWithContextAsync",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "<",
+        "background-color": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Test ",
+        "background-color": null,
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "/>",
+        "background-color": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ");\n    "
+      },
+      {
+        "text": "portalMock",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "mockClear",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "();\n    "
+      },
+      {
+        "text": "expect",
+        "font-weight": "bold",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "tree",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ")."
+      },
+      {
+        "text": "toMatchSnapshot",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "();\n});"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "SvgMock",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "It's useful for components which require *.svg as an input"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "import ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "{ "
+      },
+      {
+        "text": "renderSnapshotWithContextAsync",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "SvgMock ",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "} "
+      },
+      {
+        "text": "from '@epam/uui-test-utils'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ";\n...\n"
+      },
+      {
+        "text": "it",
+        "font-weight": "bold",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "'should render with maximum props'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "async ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "() => {\n    "
+      },
+      {
+        "text": "const ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "tree ",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "= "
+      },
+      {
+        "text": "await ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "renderSnapshotWithContextAsync",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "(\n        "
+      },
+      {
+        "text": "<",
+        "background-color": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Test icon=",
+        "background-color": null,
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "{ "
+      },
+      {
+        "text": "SvgMock ",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "}"
+      },
+      {
+        "text": " />",
+        "background-color": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ",\n    );\n    "
+      },
+      {
+        "text": "expect",
+        "font-weight": "bold",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "tree",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ")."
+      },
+      {
+        "text": "toMatchSnapshot",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "();\n});"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#frequent-questions"
+        },
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#frequent-questions",
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": "Frequent questions"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Q-1",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " ",
+        "color": "rgb(31, 35, 40)",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "How to fix errors like this? ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Warning: An update to inside a test was not wrapped in act",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Answer",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-underlined": true
+      },
+      {
+        "text": ": Please check next article: ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "data": {
+          "url": "https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b"
+        },
+        "type": "link",
+        "url": "https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b",
+        "children": [
+          {
+            "text": "https://davidwcai.mediu"
+          },
+          {
+            "data": {
+              "url": "https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b"
+            },
+            "type": "link",
+            "url": "https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b",
+            "children": [
+              {
+                "text": "m.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b"
+              }
+            ]
+          },
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Q-2",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " "
+      },
+      {
+        "text": "How do I test only part of the object/array?",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " "
+      },
+      {
+        "text": "Answer",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-underlined": true
+      },
+      {
+        "text": ": Use partial matchers like ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "objectContaining",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "arrayContaining",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", etc. E.g.",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "expect",
+        "font-weight": "bold",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "mocks",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "setTableState",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ")."
+      },
+      {
+        "text": "lastCalledWith",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "("
+      },
+      {
+        "text": "expect",
+        "font-weight": "bold",
+        "font-style": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "objectContaining",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "({ "
+      },
+      {
+        "text": "filter",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": { "
+      },
+      {
+        "text": "position",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": ["
+      },
+      {
+        "text": "2",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "3",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "] } }));"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Q-3",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Is it OK to"
+      },
+      {
+        "text": " use DOM API (such as ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "querySelectorAll",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ") for testing?",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Answer",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-underlined": true
+      },
+      {
+        "text": ": ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "It's strongly not recommended. Such tests are fragile, e.g. it may fail after some internal changes which doesn't affect functionality of the component (e.g. CSS class renaming). Try other options instead, e.g.: adjust internal implementation of the component (assign role, add title, add label, etc.) or add "
+      },
+      {
+        "text": "data-testid",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " attribute (less preferable)."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Q-4",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " "
+      },
+      {
+        "text": "How to  add ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "data-testid",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " attribute to UUI component?",
+        "uui-richTextEditor-span-mark": true,
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " "
+      },
+      {
+        "text": "Answer",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-underlined": true
+      },
+      {
+        "text": ": ",
+        "font-family": null,
+        "font-size": "16px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Use "
+      },
+      {
+        "text": "rawProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". E.g.:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "<",
+        "background-color": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "Test rawProps=",
+        "background-color": null,
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "{ { "
+      },
+      {
+        "text": "'data-testid'",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": ": "
+      },
+      {
+        "text": "'...' ",
+        "font-weight": "bold",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "} }"
+      },
+      {
+        "text": " />",
+        "background-color": null,
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  }
+]

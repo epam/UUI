@@ -6,7 +6,7 @@ import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpace
 export const BasicModalExample = (modalProps: IModal<string | boolean>) => {
 
     return (
-        <ModalBlocker blockerShadow='dark' { ...modalProps }>
+        <ModalBlocker { ...modalProps }>
             <ModalWindow>
                 <Panel background="white">
                     <ModalHeader title="Simple modal example " onClose={ () => modalProps.abort() } />
