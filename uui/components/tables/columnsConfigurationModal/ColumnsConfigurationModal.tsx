@@ -41,7 +41,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
     const {
-        groupedColumns, searchValue, columnsConfig, reset, checkAll, uncheckAll, setSearchValue,
+        groupedColumns, searchValue, columnsConfig, reset, checkAll, uncheckAll, setSearchValue, hasAnySelectedColumns,
     } = useColumnsConfiguration({
         initialColumnsConfig,
         columns,
@@ -56,14 +56,16 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         const amountPinnedLeft = groupedColumns.displayedPinnedLeft.length;
         const amountPinnedRight = groupedColumns.displayedPinnedRight.length;
         const amountUnPinned = groupedColumns.displayedUnpinned.length;
-        if (!amountPinnedLeft && !amountUnPinned) {
+        const totalAmountOfVisibleColumns = amountPinnedLeft + amountUnPinned + amountPinnedRight;
+
+        if (!totalAmountOfVisibleColumns) {
             return null;
         }
         const hasDividerBelowPinnedLeft = !!(amountPinnedLeft && amountUnPinned);
         const hasDividerAbovePinnedRight = !!(amountPinnedRight && amountUnPinned);
         return (
             <>
-                {renderGroupTitle(i18n.displayedSectionTitle, amountPinnedLeft + amountUnPinned)}
+                {renderGroupTitle(i18n.displayedSectionTitle, totalAmountOfVisibleColumns)}
                 <SubGroup renderItem={ props.renderItem } title={ i18n.pinnedToTheLeftSubgroupTitle } items={ groupedColumns.displayedPinnedLeft } />
                 {hasDividerBelowPinnedLeft && <div className={ styles.hDivider } />}
                 <SubGroup renderItem={ props.renderItem } title={ i18n.notPinnedSubgroupTitle } items={ groupedColumns.displayedUnpinned } />
@@ -86,12 +88,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         );
     };
 
-    const noVisibleColumns = useMemo(
-        () => !groupedColumns.displayedPinnedLeft.length && !groupedColumns.displayedUnpinned.length,
-        [groupedColumns.displayedPinnedLeft, groupedColumns.displayedUnpinned],
-    );
-
-    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ noVisibleColumns } color="primary" onClick={ apply } />;
+    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ !hasAnySelectedColumns } color="primary" onClick={ apply } />;
 
     return (
         <ModalBlocker { ...modalProps }>
@@ -130,7 +127,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <LinkButton icon={ ResetIcon } caption={ i18n.resetToDefaultButton } onClick={ reset } />
                     <FlexSpacer />
                     <Button fill="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
-                    {noVisibleColumns ? (
+                    {!hasAnySelectedColumns ? (
                         <Tooltip content={ i18n.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
                             {applyButton}
                         </Tooltip>
