@@ -124,7 +124,6 @@ export interface PickerState {
     setDataSourceState: Dispatch<SetStateAction<DataSourceState>>;
     showSelected: boolean;
     setShowSelected: Dispatch<SetStateAction<boolean>>;
-    opened?: boolean;
 }
 
 export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {

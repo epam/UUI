@@ -3,7 +3,7 @@ import { delay } from '@epam/uui-test-utils';
 
 export type TestItemType = {
     id: number;
-    level?: string;
+    level: string;
     name: string;
 };
 

@@ -25,6 +25,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         isFoldedByDefault,
         sortBy,
         cascadeSelection,
+        showOnlySelected,
     } = props;
 
     const handleDataSourceValueChange = (newDataSourceState: React.SetStateAction<DataSourceState<any, TId>>) => {
@@ -132,7 +133,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         ...(cascadeSelection ? { cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         backgroundReload: true,
-        showOnlySelected: pickerState.showSelected || (!pickerState.opened),
+        showOnlySelected,
     }, [dataSource]);
 
     const getListProps = (): DataSourceListProps => {
