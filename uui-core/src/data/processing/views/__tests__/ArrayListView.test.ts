@@ -1,4 +1,4 @@
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { act, renderHook } from '@epam/uui-test-utils';
 import { ArrayDataSource } from '../../ArrayDataSource';
 import { CascadeSelection, DataSourceState, SortDirection } from '../../../../types';
 import isEqual from 'lodash.isequal';
@@ -363,7 +363,7 @@ describe('ArrayListView', () => {
         const getFilter = (filter) => (item) => filter(item);
         const filter = (item) => item.parentId === 6;
 
-        it('should update tree if filter was changed', () => {
+        it('should update tree if filter was changed', async () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
                 { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
@@ -383,7 +383,9 @@ describe('ArrayListView', () => {
             expect(rowsIds).toEqual([6]);
 
             const [row] = rows;
-            row.onFold?.(row);
+            await act(() => {
+                row.onFold?.(row);
+            });
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter },
@@ -480,8 +482,9 @@ describe('ArrayListView', () => {
                 let view = hookResult.result.current;
                 const row1 = view.getById(6, 6);
 
-                row1.onCheck?.(row1);
-                await delay();
+                await act(() => {
+                    row1.onCheck?.(row1);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
@@ -493,8 +496,9 @@ describe('ArrayListView', () => {
                 view = hookResult.result.current;
 
                 const row2 = view.getById(7, 7);
-                row2.onCheck?.(row2);
-                await delay();
+                await act(() => {
+                    row2.onCheck?.(row2);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(2);
                 expect(currentValue).toEqual({
@@ -521,8 +525,10 @@ describe('ArrayListView', () => {
 
                 const view = hookResult.result.current;
                 const row1 = view.getById(6, 6);
-                row1.onCheck?.(row1);
-                await delay();
+
+                await act(() => {
+                    row1.onCheck?.(row1);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
@@ -550,8 +556,10 @@ describe('ArrayListView', () => {
                 const view = hookResult.result.current;
 
                 const row = view.getById(9, 9);
-                row.onCheck?.(row);
-                await delay();
+
+                await act(() => {
+                    row.onCheck?.(row);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
@@ -576,8 +584,9 @@ describe('ArrayListView', () => {
                 );
 
                 const view = hookResult.result.current;
-                view.selectAll?.onValueChange(true);
-                await delay();
+                await act(() => {
+                    view.selectAll?.onValueChange(true);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
@@ -605,8 +614,10 @@ describe('ArrayListView', () => {
                 const view = hookResult.result.current;
 
                 const row1 = view.getById(6, 6);
-                row1.onCheck?.(row1);
-                await delay();
+
+                await act(() => {
+                    row1.onCheck?.(row1);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
@@ -630,8 +641,9 @@ describe('ArrayListView', () => {
                 const view = hookResult.result.current;
 
                 const row = view.getById(9, 9);
-                row.onCheck?.(row);
-                await delay();
+                await act(() => {
+                    row.onCheck?.(row);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
@@ -653,9 +665,9 @@ describe('ArrayListView', () => {
                     { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 const view = hookResult.result.current;
-
-                view.selectAll?.onValueChange(true);
-                await delay();
+                await act(() => {
+                    view.selectAll?.onValueChange(true);
+                });
 
                 expect(onValueChangeFn).toBeCalledTimes(1);
                 expect(currentValue).toEqual({
