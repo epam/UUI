@@ -78,7 +78,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         const hasSelection = view.getSelectedRowsCount() > 0;
         const rowsCount = view.getListProps().rowsCount;
         const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
-
         return (
             <>
                 {view.selectAll && (

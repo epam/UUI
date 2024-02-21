@@ -84,11 +84,22 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     useEffect(() => {
         if (
             showOnlySelected
-            && (
+            && ((
                 dataSourceState.checked?.length && !isEqual(prevDataSourceState?.checked, dataSourceState.checked)
+            ) || (dataSourceState.selectedId !== null
+                && dataSourceState.selectedId !== undefined
+                && dataSourceState.selectedId !== prevDataSourceState.selectedId)
             )
         ) {
-            itemsStatusCollector.setPending(dataSourceState.checked);
+            let checked: TId[] = [];
+            if (dataSourceState.checked?.length) {
+                checked = [...dataSourceState.checked];
+            }
+            if (dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined) {
+                checked = [...checked, dataSourceState.selectedId];
+            }
+
+            itemsStatusCollector.setPending(checked);
 
             loadMissing({
                 tree: treeWithData,
@@ -105,7 +116,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [showOnlySelected, dataSourceState.checked]);
+    }, [showOnlySelected, dataSourceState.checked, dataSourceState.selectedId]);
 
     useEffect(() => {
         let currentTree = treeWithData;

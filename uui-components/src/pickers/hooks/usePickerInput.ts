@@ -45,6 +45,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         getListProps,
         getName,
         handleSelectionValueChange,
+        getSelectedRows,
     } = picker;
 
     const lens = useMemo(
@@ -266,15 +267,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        let checked = [];
-        if (props.selectionMode === 'single') {
-            checked = dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined ? [dataSourceState.selectedId] : [];
-        } else {
-            checked = dataSourceState.checked ?? [];
-        }
-        return checked
-            .slice(0, itemsToTake)
-            .map((id) => view.getById(id, null));
+        return getSelectedRows(itemsToTake);
     }, [view, dataSourceState.checked, props.maxItems]);
 
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {

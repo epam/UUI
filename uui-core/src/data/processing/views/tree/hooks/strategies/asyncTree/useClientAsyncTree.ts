@@ -31,6 +31,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
             visibleCount: props.dataSourceState.visibleCount,
             topIndex: props.dataSourceState.topIndex,
             checked: props.dataSourceState.checked,
+            selectedId: props.dataSourceState.selectedId,
         },
         forceReload: isForceReload,
         showOnlySelected: props.showOnlySelected,

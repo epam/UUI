@@ -167,6 +167,19 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         selectionMode,
     });
 
+    const getSelectedRows = (itemsToTake: number) => {
+        const dsState = getDataSourceState();
+        let checked = [];
+        if (props.selectionMode === 'single') {
+            checked = dsState.selectedId !== null && dsState.selectedId !== undefined ? [dsState.selectedId] : [];
+        } else {
+            checked = dsState.checked ?? [];
+        }
+        return checked
+            .slice(0, itemsToTake)
+            .map((id, index) => view.getById(id, index));
+    };
+
     return {
         context,
         dataSourceState,
@@ -175,6 +188,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         getEntityName,
         isSingleSelect,
         getSelectedIdsArray,
+        getSelectedRows,
         getDataSourceState,
         getRowOptions,
         clearSelection,
