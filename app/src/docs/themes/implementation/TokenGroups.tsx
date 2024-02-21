@@ -126,17 +126,17 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
                         </div>
                     </Tooltip>
                     <div>
-                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeDelay={ 1000 } content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
+                        <Tooltip maxWidth={ 360 } closeOnMouseLeave="boundary" content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
                             <Text cx={ [css.var] } onClick={ semanticClickHandler }>
                                 {item.cssVar.replace(/^--uui-/, '')}
                             </Text>
                         </Tooltip>
-                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeDelay={ 1000 } content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
+                        <Tooltip maxWidth={ 360 } closeOnMouseLeave="boundary" content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
                             <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
                                 { item.value.toUpperCase() }
                             </Text>
                         </Tooltip>
-                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeDelay={ 1000 } content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
+                        <Tooltip maxWidth={ 360 } closeOnMouseLeave="boundary" content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
                             <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }>
                                 { item.baseToken }
                             </Text>
