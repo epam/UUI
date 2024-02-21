@@ -131,13 +131,18 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            });
+
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
             expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
             const clear = screen.getByRole('button');
             fireEvent.click(clear);
-            expect(screen.queryByText('C2')).not.toBeInTheDocument();
+            await waitFor(() => {
+                expect(screen.queryByText('C2')).not.toBeInTheDocument();
+            });
         });
 
         it('[valueType entity] should select & clear option', async () => {

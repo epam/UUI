@@ -264,7 +264,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        return (dataSourceState.checked ?? [])
+        let checked = [];
+        if (props.selectionMode === 'single') {
+            checked = dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined ? [dataSourceState.selectedId] : [];
+        } else {
+            checked = dataSourceState.checked ?? [];
+        }
+        return checked
             .slice(0, itemsToTake)
             .map((id) => view.getById(id, null));
     }, [view, dataSourceState.checked, props.maxItems]);
