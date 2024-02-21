@@ -1,7 +1,7 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay, delayAct, renderHook } from '@epam/uui-test-utils';
-import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
+import { act, delayAct, renderHook, waitFor } from '@epam/uui-test-utils';
+import { DataQueryFilter, DataQueryFilterCondition, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LazyListViewProps } from '../types';
 
 interface TestParent {
@@ -35,7 +35,15 @@ describe('LazyListView - can work with id like [string, number]', () => {
     };
 
     const treeDataSource = new LazyDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
-        api: async (_, ctx) => {
+        api: async (request, ctx) => {
+            if (request.ids && request.ids.length) {
+                const data = request.ids.map(([type, id]) => runDataQuery(testData, {
+                    filter: { type: type as DataQueryFilterCondition<'child'>, id },
+                }));
+
+                return { items: data.flatMap(({ items }) => items) };
+            }
+
             if (ctx?.parent) {
                 return runDataQuery(testData, { filter: { type: 'child', parentId: ctx.parent.id } });
             } else {
@@ -56,12 +64,9 @@ describe('LazyListView - can work with id like [string, number]', () => {
     function expectViewToLookLike(
         view: IDataSourceView<TestItem, TestItemId, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, TestItemId>>[],
-        rowsCount?: number,
     ) {
         const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        const listProps = view.getListProps();
-        rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
@@ -70,17 +75,22 @@ describe('LazyListView - can work with id like [string, number]', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
 
-        let view = hookResult.result.current;
+        await waitFor(() => {
+            const view = hookResult.result.current;
 
-        expectViewToLookLike(view, [
-            { isLoading: true }, { isLoading: true }, { isLoading: true },
-        ]);
+            expectViewToLookLike(view, [
+                { isLoading: true }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
+
+        let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }]);
+        });
+        expect(view.getListProps().rowsCount).toEqual(1);
     });
 
     it('can unfold nodes', async () => {
@@ -92,24 +102,30 @@ describe('LazyListView - can work with id like [string, number]', () => {
         let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }]);
+        });
+        expect(view.getListProps().rowsCount).toEqual(1);
 
         // Unfold a row
         const rows = view.getVisibleRows();
-        rows[0].onFold?.(rows[0]);
+        await act(() => {
+            rows[0].onFold?.(rows[0]);
+        });
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
         view = hookResult.result.current;
 
         await delayAct();
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: ['parent', 1] }, { id: ['child', 1] }, { id: ['child', 2] },
+            ]);
+        });
 
-        view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { id: ['parent', 1] }, { id: ['child', 1] }, { id: ['child', 2] },
-        ], 3);
+        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('Checkboxes works', async () => {
@@ -128,75 +144,54 @@ describe('LazyListView - can work with id like [string, number]', () => {
                 props: viewProps,
             } },
         );
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: ['parent', 1], isChildrenChecked: true, isChecked: false }, { id: ['child', 1], isChecked: true }, { id: ['child', 2], isChecked: false },
+                ],
+            );
+        });
 
         let view = hookResult.result.current;
-
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: ['parent', 1], isChildrenChecked: true, isChecked: false }, { id: ['child', 1], isChecked: true }, { id: ['child', 2], isChecked: false },
-            ],
-            3,
-        );
+        expect(view.getListProps().rowsCount).toEqual(3);
 
         let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
-        row.onCheck?.(row);
-        await delayAct(); // checkboxes are async in LazyDataSource
+        await act(() => {
+            row.onCheck?.(row);
+        });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: viewProps });
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: ['parent', 1], isChildrenChecked: true, isChecked: true }, { id: ['child', 1], isChecked: true }, { id: ['child', 2], isChecked: true },
-            ],
-            3,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: ['parent', 1], isChildrenChecked: true, isChecked: true }, { id: ['child', 1], isChecked: true }, { id: ['child', 2], isChecked: true },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(3);
 
         row = view.getVisibleRows()[0];
-        row.onCheck?.(row);
-        await delayAct(); // checkboxes are async in LazyDataSource
+
+        await act(() => {
+            row.onCheck?.(row);
+        });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: viewProps });
 
-        await delayAct();
-
-        view = hookResult.result.current;
-        expectViewToLookLike(
-            view,
-            [
-                { id: ['parent', 1], isChildrenChecked: false, isChecked: false }, { id: ['child', 1], isChecked: false }, { id: ['child', 2], isChecked: false },
-            ],
-            3,
-        );
-    });
-
-    // ListApiCache can't work with complex ids.
-    // However, it looks we
-    it.skip('should receive item by id', async () => {
-        const hookResult = renderHook(
-            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
-            { initialProps: {
-                value: currentValue,
-                onValueChange: onValueChanged,
-                props: {},
-            } },
-        );
-        const view = hookResult.result.current;
-        view.getVisibleRows();
-
-        await delay();
-
-        const firstRow = view.getVisibleRows()[0];
-
-        const item = view.getById(firstRow.id, 0);
-
-        expect(item.value).toEqual(firstRow.value);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: ['parent', 1], isChildrenChecked: false, isChecked: false }, { id: ['child', 1], isChecked: false }, { id: ['child', 2], isChecked: false },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toEqual(3);
     });
 });
