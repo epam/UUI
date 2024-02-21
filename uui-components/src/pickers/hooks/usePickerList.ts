@@ -80,6 +80,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         getDataSourceState,
         isSingleSelect,
         getName,
+        getSelectedRows,
     } = picker;
 
     const getEntityNameForToggler = () => props.entityPluralName || getPluralName();
@@ -151,16 +152,14 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
                 }
             }
         };
-
-        addRows(view.getSelectedRows(), getMaxTotalItems());
-
+        addRows(getSelectedRows(maxTotalItems), maxTotalItems);
         if (visibleIds && result.length < maxTotalItems) {
             const rows = visibleIds.map((id, n) => view.getById(id, n));
             addRows(rows, maxTotalItems);
         }
+
         if (!props.defaultIds && result.length < maxDefaultItems) {
             const rows = view.getVisibleRows();
-
             addRows(rows, maxDefaultItems);
         }
         return sortRows(result);

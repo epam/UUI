@@ -97,16 +97,22 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 setIsLoading(true);
             }
 
+            let checked: TId[] = [];
             if (dataSourceState.checked?.length) {
-                itemsStatusCollector.setPending(dataSourceState.checked);
+                checked = dataSourceState.checked;
+            } else if (dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined) {
+                checked = [dataSourceState.selectedId];
+            }
+
+            if (checked.length) {
+                itemsStatusCollector.setPending(checked);
             }
 
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
-                        const newTreeWithOnlySelected = newTree.buildSelectedOnly(dataSourceState.checked);
+                        const newTreeWithOnlySelected = newTree.buildSelectedOnly(checked);
                         setLoadedTree(newTreeWithOnlySelected);
-
                         setIsLoaded(true);
                     }
                 })
