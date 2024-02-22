@@ -221,7 +221,7 @@ exports[`PickerList should open body 1`] = `
             style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
           >
             <div
-              style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+              style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: hidden; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
             >
               <div
                 class="listContainer"
@@ -709,7 +709,29 @@ exports[`PickerList should open body 1`] = `
             <div
               class="container uui-blocker-container root"
             >
-              <div />
+              <div>
+                <div
+                  class="uui-blocker uui-blocker-enter uui-blocker-enter-active"
+                >
+                  <div
+                    class="container uui-spinner-container root uui-spinner"
+                  >
+                    <div
+                      class="uui-spinner-animation"
+                    >
+                      <div
+                        class="uui-spinner-dot uui-spinner-dot-1"
+                      />
+                      <div
+                        class="uui-spinner-dot uui-spinner-dot-2"
+                      />
+                      <div
+                        class="uui-spinner-dot uui-spinner-dot-3"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               class="uui-track-horizontal"

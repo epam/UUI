@@ -345,15 +345,17 @@ describe('PickerList', () => {
             });
 
             await PickerListTestObject.waitForOptionsToBeReady();
-            const options = PickerListTestObject.getOptions();
-            expect(options).toHaveLength(5);
-            expect(options.map((opt) => opt.textContent?.trim())).toEqual([
-                'C2',
-                'C1+',
-                'C1',
-                'B2+',
-                'B2',
-            ]);
+            
+            await waitFor(() => {
+                const options = PickerListTestObject.getOptions();
+                expect(options.map((opt) => opt.textContent?.trim())).toEqual([
+                    'C2',
+                    'C1+',
+                    'C1',
+                    'B2+',
+                    'B2',
+                ]);
+            });
         });
 
         it('should render defaultIds', async () => {
