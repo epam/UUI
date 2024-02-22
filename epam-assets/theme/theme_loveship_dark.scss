@@ -1,3 +1,4 @@
+@use '../scss/loveship/font-faces';
 @use './tokens/_theme_loveship_dark.scss' as tokens;
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
@@ -457,7 +458,8 @@
         --uui-link_btn-text-active: var(--uui-neutral-10);
     }
 
-    .uui-link_button.uui-color-primary {
+    .uui-link_button.uui-color-primary,
+    .uui-link_button.uui-color-sky {
         --uui-link_btn-text: var(--uui-color-60);
         --uui-link_btn-text-hover: var(--uui-color-70);
         --uui-link_btn-text-disabled: var(--uui-text-disabled);

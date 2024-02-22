@@ -118,7 +118,7 @@ export function TimePicker(props: TimePickerProps) {
         const separator = trimmedNewValue.search(/\D/);
         const meridian = getMeridian(trimmedNewValue, getFormat());
         const { hours, minutes } = parseTimeNumbers(trimmedNewValue, separator);
-        return formatTime(hours, minutes, meridian);
+        return formatTime(hours, minutes, meridian, getFormat());
     };
 
     const handleBodyValueChange = (newValue: TimePickerValue) => {

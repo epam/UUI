@@ -15,7 +15,7 @@ interface MyAppProps<TAppContext> extends AppProps {
 }
 
 function MyApp(props: MyAppProps<AppContextType>) {
-    const { Component, pageProps, appContext, router } = props;
+    const { Component, pageProps, router } = props;
 
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
         apiDefinition, router,

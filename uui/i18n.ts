@@ -53,6 +53,9 @@ export const i18n = {
             checkAllButton: 'Check All',
             uncheckAllButton: 'Uncheck All',
             configureColumnsTitle: 'Configure columns',
+            pinnedToTheLeftSubgroupTitle: 'Pinned to the left',
+            pinnedToTheRightSubgroupTitle: 'Pinned to the right',
+            notPinnedSubgroupTitle: 'Not pinned',
             resetToDefaultButton: 'Reset to Default',
             displayedSectionTitle: 'Displayed in table',
             hiddenSectionTitle: 'Hidden in table',
@@ -62,9 +65,14 @@ export const i18n = {
                 subText: 'We can’t find any item matching your request',
             },
             enableAtLeastOneColumnMessage: 'Please enable at least one column',
-            pinColumnButton: 'Pin column',
+            pinColumnToTheLeftButton: 'Pin column to left',
+            pinColumnToTheRightButton: 'Pin column to right',
             unPinColumnButton: 'Unpin column',
             lockedColumnPinButton: 'You cannot unpin this column',
+        },
+        columnHeader: {
+            collapseAllTooltip: 'Collapse All',
+            expandAllTooltip: 'Expand All',
         },
     },
     pickerFilterHeader: {
@@ -101,5 +109,47 @@ export const i18n = {
     },
     fileCard: {
         fileSizeProgress: ' of ',
+    },
+    errorHandler: {
+        errorPageConfig: {
+            notFound: {
+                title: 'Oooops! We couldn’t find this page',
+                subtitle: 'Sorry for the inconvenience.',
+            },
+            permissionDenied: {
+                title: 'You have no permissions!',
+                subtitle: 'Sorry for the inconvenience.',
+            },
+            serverError: {
+                title: '500 Error! Something went wrong',
+                subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
+            },
+            serviceUnavailable: {
+                title: 'The page request was canceled, because it took too long to complete',
+                subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
+            },
+            default: {
+                title: 'Something went wrong',
+                subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
+            },
+        },
+        recoveryMessageConfig: {
+            'auth-lost': {
+                title: 'Your session has expired.',
+                subtitle: 'Attempting to log you in.',
+            },
+            'connection-lost': {
+                title: 'Network connection down',
+                subtitle: 'Please check your network connection.',
+            },
+            maintenance: {
+                title: 'Server maintenance',
+                subtitle: 'We apologize for the inconvenience. Our site is currently under maintenance. Will come back as soon as possible.',
+            },
+            'server-overload': {
+                title: 'Server overloaded',
+                subtitle: 'We are trying to recover. Please wait.',
+            },
+        },
     },
 };
