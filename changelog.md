@@ -3,6 +3,8 @@
 * [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
+* [RTE]: added `onFocus` prop
+  
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
