@@ -112,7 +112,7 @@ export default function MainMenuResponsiveExample() {
                         caption="More"
                         key={ item.id }
                         renderBody={ (props) => {
-                            return hiddenItems?.map((i) => i.render({ ...item, onClose: props.onClose }));
+                            return hiddenItems?.map((i) => i.render({ ...i, onClose: props.onClose }));
                         } }
                     />
                 ),

@@ -357,7 +357,33 @@
       {
         "text": "react-popper",
         "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "NOTE: this mock is automatically enabled when "
       },
+      {
+        "text": "mockCommon3rdPartyDeps: true",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is passed to the "
+      },
+      {
+        "text": "setupJsDom",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
         "text": "\nThis 3rd party component is used in "
       },
@@ -585,7 +611,33 @@
       {
         "text": "react-focus-lock",
         "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-link",
+    "children": [
+      {
+        "text": "NOTE: this mock is automatically enabled when "
       },
+      {
+        "text": "mockCommon3rdPartyDeps: true",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is passed to the "
+      },
+      {
+        "text": "setupJsDom",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
         "text": "\nThis 3rd party component is used in "
       },

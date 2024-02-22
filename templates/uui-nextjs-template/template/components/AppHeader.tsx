@@ -1,5 +1,5 @@
 import logo from "../icons/logo.svg";
-import { BurgerButton, MainMenu, MainMenuButton } from "@epam/promo";
+import { BurgerButton, MainMenu, MainMenuButton } from "@epam/uui";
 import { useCallback } from "react";
 
 export const AppHeader = () => {
@@ -12,7 +12,7 @@ export const AppHeader = () => {
         );
     }, [handleShowAlert]);
     return (
-        <MainMenu appLogoUrl={ logo.src } logoWidth={ 168 } renderBurger={ handleRenderBurger }>
+        <MainMenu appLogoUrl={ logo.src } renderBurger={ handleRenderBurger }>
             <MainMenuButton caption='Home' link={ { pathname: '/' } } priority={ 1 } estimatedWidth={ 72 } />
         </MainMenu>
     )

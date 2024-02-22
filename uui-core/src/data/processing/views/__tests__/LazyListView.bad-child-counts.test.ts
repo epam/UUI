@@ -1,10 +1,10 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { LazyListView } from '../LazyListView';
+import { LazyListView, LazyListViewProps } from '../LazyListView';
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from '@epam/uui-test-utils';
+import { delay, renderHook } from '@epam/uui-test-utils';
 
 interface TestItem {
     id: number;
@@ -26,10 +26,11 @@ describe('LazyListView', () => {
         { id: 330, parentId: 300 }, //  9     330
     ];
 
-    let value: DataSourceState;
+    let currentValue: DataSourceState;
     const onValueChanged = (newValue: DataSourceState) => {
-        value = newValue;
+        currentValue = newValue;
     };
+    let viewProps: Partial<LazyListViewProps<TestItem, number, DataQueryFilter<TestItem>>>;
 
     const testApi = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq));
 
@@ -40,7 +41,7 @@ describe('LazyListView', () => {
     });
 
     beforeEach(() => {
-        value = { topIndex: 0, visibleCount: 10 };
+        currentValue = { topIndex: 0, visibleCount: 10 };
     });
 
     function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
@@ -52,7 +53,13 @@ describe('LazyListView', () => {
 
     it('can load tree, which has incorrect (probably estimated) childrenCounts', async () => {
         const ds = treeDataSource;
-        const view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false, getParentId: ({ parentId }) => parentId });
+        viewProps = { isFoldedByDefault: () => false, getParentId: ({ parentId }) => parentId };
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => ds.useView(value, onValueChange, props),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
+        );
+
+        const view = hookResult.result.current;
         expectViewToLookLike(view, [
             { isLoading: true },
             { isLoading: true },

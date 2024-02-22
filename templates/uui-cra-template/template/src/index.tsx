@@ -1,7 +1,8 @@
 import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
-import '@epam/promo/styles.css';
+import '@epam/assets/theme/theme_loveship.scss';
 import './index.module.scss';
+
 import logo from "./icons/logo.svg";
 //
 import { StrictMode } from "react";
@@ -9,8 +10,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserHistory } from "history";
 import { Route, Router } from "react-router-dom";
 import { DragGhost, HistoryAdaptedRouter, useUuiServices, UuiContext } from "@epam/uui-core";
-import { MainMenu, MainMenuButton } from "@epam/uui";
-import { ErrorHandler } from "@epam/promo";
+import { MainMenu, MainMenuButton, ErrorHandler } from "@epam/uui";
 import { Modals, Snackbar } from "@epam/uui-components";
 import { svc } from "./services";
 

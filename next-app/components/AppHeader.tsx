@@ -24,7 +24,7 @@ export const AppHeader = () => {
         setTheme(newTheme);
     };
 
-    const renderThemeSwitcher = () => {
+    const renderThemeSwitcher = (): React.ReactNode => {
         return (
             <MainMenuCustomElement priority={ 10 } estimatedWidth={ 84 }>
                 <Dropdown
@@ -79,7 +79,6 @@ export const AppHeader = () => {
             logoLink={ { pathname: `/` } }
             onLogoClick={ () => null }
             appLogoUrl={ '/icons/logo.svg' }
-            logoWidth={ 168 }
             renderBurger={ handleRenderBurger }
         >
             <FlexSpacer priority={ 100500 } />

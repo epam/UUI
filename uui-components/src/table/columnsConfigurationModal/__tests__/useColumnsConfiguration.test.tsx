@@ -117,8 +117,8 @@ describe('useColumnsConfiguration', () => {
 
         expect(result.current.columnsConfig).toEqual(initialColumnsConfig);
 
-        expect(result.current.groupedColumns.displayedPinned.length).toBe(1);
-        expect(result.current.groupedColumns.displayedPinned).toEqual(
+        expect(result.current.groupedColumns.displayedPinnedLeft.length).toBe(1);
+        expect(result.current.groupedColumns.displayedPinnedLeft).toEqual(
             expect.arrayContaining(
                 [expect.objectContaining(
                     {
@@ -127,7 +127,7 @@ describe('useColumnsConfiguration', () => {
                         width: 200,
                         fix: 'left',
                         isSortable: true,
-                        groupKey: 'displayedPinned',
+                        groupKey: 'displayedPinnedLeft',
                         columnConfig: {
                             fix: 'left',
                             isVisible: true,
@@ -136,7 +136,6 @@ describe('useColumnsConfiguration', () => {
                         },
                         isDndAllowed: true,
                         isPinnedAlways: false,
-                        isPinned: true,
                     },
                 )],
             ),
@@ -162,7 +161,7 @@ describe('useColumnsConfiguration', () => {
                             },
                             isDndAllowed: true,
                             isPinnedAlways: false,
-                            isPinned: false,
+                            fix: undefined,
                         },
                     ),
                     expect.objectContaining(
@@ -181,7 +180,7 @@ describe('useColumnsConfiguration', () => {
                             },
                             isDndAllowed: true,
                             isPinnedAlways: false,
-                            isPinned: false,
+                            fix: undefined,
                         },
                     ),
 
@@ -211,7 +210,6 @@ describe('useColumnsConfiguration', () => {
                             },
                             isDndAllowed: true,
                             isPinnedAlways: false,
-                            isPinned: true,
                         },
                     ),
                 ],

@@ -1,5 +1,5 @@
 {
- "version": "5.5.1",
+ "version": "5.5.3",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -1106,7 +1106,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -1439,7 +1439,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -1996,7 +1996,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -2319,7 +2319,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -2640,7 +2640,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -3211,7 +3211,7 @@
       "     * Can be specified to unfold all or some items at start.",
       "     * If not specified, all rows would be folded.",
       "     */",
-      "    isFoldedByDefault?(item: TItem): boolean;",
+      "    isFoldedByDefault?(item: TItem, state: DataSourceState<TFilter, TId>): boolean;",
       "    /**",
       "     * Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
       "     * - false: All nodes are selected independently (default).",
@@ -3346,7 +3346,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -6912,6 +6912,11 @@
       "    page?: number;",
       "    /** The amount of items per page */",
       "    pageSize?: number;",
+      "    /**",
+      "     * Provides default folding of nodes if the opposite value is not present in the folded map.",
+      "     * It is used to collapse/expand all nodes.",
+      "     */",
+      "    foldAll?: boolean;",
       "}"
      ]
     },
@@ -7049,6 +7054,23 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "foldAll",
+      "name": "foldAll",
+      "comment": {
+       "raw": [
+        "Provides default folding of nodes if the opposite value is not present in the folded map.",
+        " It is used to collapse/expand all nodes."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -7855,6 +7877,19 @@
       "    isFirstColumn: boolean;",
       "    isLastColumn: boolean;",
       "    selectAll?: ICheckable;",
+      "    /**",
+      "     * Enables collapse/expand all functionality.",
+      "     * */",
+      "    showFoldAll?: boolean;",
+      "    /**",
+      "     * Fold all click handler.",
+      "     * If `showFoldAll` is not enabled, onFoldAll is not passed.",
+      "     * */",
+      "    onFoldAll?(): void;",
+      "    /**",
+      "     * Indicates if all nodes are folded.",
+      "     */",
+      "    areAllFolded?: boolean;",
       "    isFilterActive?: boolean;",
       "    sortDirection?: SortDirection;",
       "    onSort(dir: SortDirection): void;",
@@ -7910,6 +7945,55 @@
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFoldAll",
+      "name": "onFoldAll",
+      "comment": {
+       "raw": [
+        "Fold all click handler.",
+        " If `showFoldAll` is not enabled, onFoldAll is not passed."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "areAllFolded",
+      "name": "areAllFolded",
+      "comment": {
+       "raw": [
+        "Indicates if all nodes are folded."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -8184,6 +8268,10 @@
       "interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {",
       "    columns: DataColumnProps<TItem, TId>[];",
       "    selectAll?: ICheckable;",
+      "    /**",
+      "     * Enables collapse/expand all functionality.",
+      "     * */",
+      "    showFoldAll?: boolean;",
       "    onConfigButtonClick?: (params: DataTableConfigModalParams) => any;",
       "    renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;",
       "    renderConfigButton?: () => React.ReactNode;",
@@ -8204,6 +8292,22 @@
       "name": "selectAll",
       "typeValue": {
        "raw": "ICheckable"
+      },
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -9491,6 +9595,24 @@
       },
       "editor": {
        "type": "number"
+      },
+      "from": "@epam/uui-core:DataSourceState",
+      "required": false
+     },
+     {
+      "uid": "foldAll",
+      "name": "foldAll",
+      "comment": {
+       "raw": [
+        "Provides default folding of nodes if the opposite value is not present in the folded map.",
+        " It is used to collapse/expand all nodes."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:DataSourceState",
       "required": false
@@ -12736,6 +12858,11 @@
       "    processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any>;",
       "    /** Starts file uploading using FormData */",
       "    uploadFile(url: string, file: File, options: FileUploadOptions): Promise<FileUploadResponse>;",
+      "    /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.",
+      "     * Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.",
+      "     * @default '/auth/login'",
+      "     * */",
+      "    apiReloginPath: string;",
       "}"
      ]
     },
@@ -12852,6 +12979,27 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "apiReloginPath",
+      "name": "apiReloginPath",
+      "comment": {
+       "raw": [
+        "Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.",
+        " Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.",
+        " @default '/auth/login'"
+       ],
+       "tags": {
+        "@default": "/auth/login"
+       }
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": true
      },
@@ -19808,7 +19956,7 @@
       "    patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
       "    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;",
       "    cascadeSelection(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: {",
-      "        isSelectable?: (item: TItem) => boolean;",
+      "        isSelectable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;",
       "        cascade?: CascadeSelection;",
       "    }): TId[];",
       "    load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren?: boolean): Promise<ITree<TItem, TId>>;",
@@ -19998,7 +20146,7 @@
       "uid": "cascadeSelection",
       "name": "cascadeSelection",
       "typeValue": {
-       "raw": "(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: { isSelectable?: ((item: TItem) => boolean) | undefined; cascade?: CascadeSelection | undefined; } | undefined) => TId[]"
+       "raw": "(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: { isSelectable?: ((id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean) | undefined; cascade?: CascadeSelection | undefined; } | undefined) => TId[]"
       },
       "editor": {
        "type": "func"
@@ -21255,7 +21403,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -21646,7 +21794,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(item: TItem) => boolean"
+       "raw": "(item: TItem, state: DataSourceState<TFilter, TId>) => boolean"
       },
       "editor": {
        "type": "func"
@@ -40404,7 +40552,7 @@
     "typeValue": {
      "raw": "PaginatorProps",
      "print": [
-      "interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    /** Defines component size */",
       "    size: '24' | '30';",
       "    /** Total number of pages */",
@@ -40517,6 +40665,23 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
       "required": false
      },
      {
@@ -61704,6 +61869,10 @@
       "     */",
       "    renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;",
       "    dataTableFocusManager?: DataTableFocusManager<TId>;",
+      "    /**",
+      "     * Enables collapse/expand all functionality.",
+      "     * */",
+      "    showFoldAll?: boolean;",
       "}"
      ]
     },
@@ -61842,6 +62011,22 @@
       "name": "dataTableFocusManager",
       "typeValue": {
        "raw": "DataTableFocusManager<TId>"
+      },
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -63818,6 +64003,102 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:ErrorHandlerProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "ErrorHandlerProps",
+     "nameFull": "ErrorHandlerProps"
+    },
+    "src": "uui/components/errors/ErrorHandler.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ErrorHandlerProps",
+     "print": [
+      "interface ErrorHandlerProps extends IHasCX, IHasChildren {",
+      "    /** Pure function to get error info for display based on error.",
+      "     * If omitted, error info from default config will be used.",
+      "     */",
+      "    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
+      "    /** Callback to handle notification error.",
+      "     * If omitted, default implementation with ErrorNotification will be used.",
+      "     * */",
+      "    onNotificationError?: (errors: ApiCallInfo) => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "getErrorInfo",
+      "name": "getErrorInfo",
+      "comment": {
+       "raw": [
+        "Pure function to get error info for display based on error.",
+        " If omitted, error info from default config will be used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onNotificationError",
+      "name": "onNotificationError",
+      "comment": {
+       "raw": [
+        "Callback to handle notification error.",
+        " If omitted, default implementation with ErrorNotification will be used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(errors: ApiCallInfo) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
       "required": false
      }
     ],
@@ -87340,102 +87621,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:ErrorHandlerProps": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "ErrorHandlerProps",
-     "nameFull": "ErrorHandlerProps"
-    },
-    "src": "epam-promo/components/errors/ErrorHandler.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ErrorHandlerProps",
-     "print": [
-      "interface ErrorHandlerProps extends IHasCX, IHasChildren {",
-      "    /** Pure function to get error info for display based on error.",
-      "     * If omitted, error info from default config will be used.",
-      "     */",
-      "    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
-      "    /** Callback to handle notification error.",
-      "     * If omitted, default implementation with ErrorNotification will be used.",
-      "     * */",
-      "    onNotificationError?: (errors: ApiCallInfo) => void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "getErrorInfo",
-      "name": "getErrorInfo",
-      "comment": {
-       "raw": [
-        "Pure function to get error info for display based on error.",
-        " If omitted, error info from default config will be used."
-       ]
-      },
-      "typeValue": {
-       "raw": "(uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "onNotificationError",
-      "name": "onNotificationError",
-      "comment": {
-       "raw": [
-        "Callback to handle notification error.",
-        " If omitted, default implementation with ErrorNotification will be used."
-       ]
-      },
-      "typeValue": {
-       "raw": "(errors: ApiCallInfo) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:FlexRowProps": {
    "summary": {
     "module": "@epam/promo",
@@ -94668,133 +94853,6 @@
        ]
       },
       "from": "@epam/loveship:DropdownContainerMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:ErrorConfig": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ErrorConfig",
-     "nameFull": "ErrorConfig"
-    },
-    "src": "loveship/components/app/ErrorHandler.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ErrorConfig",
-     "print": [
-      "interface ErrorConfig {",
-      "    getInfo?: (error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "getInfo",
-      "name": "getInfo",
-      "typeValue": {
-       "raw": "(error: any, defaultErrorInfo: ErrorPageInfo) => ErrorPageInfo"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:ErrorPageProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "ErrorPageProps",
-     "nameFull": "ErrorPageProps"
-    },
-    "src": "loveship/components/app/ErrorHandler.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "ErrorPageProps",
-     "print": [
-      "interface ErrorPageProps extends IHasCX, IHasChildren {",
-      "    errorPageConfig?: ErrorConfig;",
-      "    theme?: Theme;",
-      "    onNotificationError?: (errors: ApiCallInfo) => void;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "errorPageConfig",
-      "name": "errorPageConfig",
-      "typeValue": {
-       "raw": "ErrorConfig"
-      },
-      "required": false
-     },
-     {
-      "uid": "theme",
-      "name": "theme",
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "onNotificationError",
-      "name": "onNotificationError",
-      "typeValue": {
-       "raw": "(errors: ApiCallInfo) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
       "required": false
      }
     ],
