@@ -1,0 +1,66 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The Base UUI components adhere to the "
+      },
+      {
+        "type": "link",
+        "url": "https://www.w3.org/TR/wai-aria-1.2/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "WAI-ARIA 1.2 standard"
+          }
+        ]
+      },
+      {
+        "text": ", ensuring they are keyboard-accessible by default. This is crucial for users facing challenges with a pointing device and beneficial for those preferring keyboard navigation, expecting web components to behave like native OS controls."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In particular, interactive components can be focused using the "
+      },
+      {
+        "text": "Tab",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " key. List-like components, such as "
+      },
+      {
+        "text": "PickerInput",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "DropdownMenu",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", can be navigated and activated using the "
+      },
+      {
+        "text": "Enter",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "Escape",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", and arrow keys."
+      }
+    ]
+  }
+]
