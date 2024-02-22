@@ -32,7 +32,22 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         dataSourceState, setDataSourceState, setShowSelected,
     } = pickerInputState;
 
-    const showOnlySelected = !opened || pickerInputState.showSelected;
+    const defaultShouldShowBody = () => {
+        const searchPosition = props.searchPosition || 'input';
+        const isOpened = opened && !props.isDisabled;
+
+        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
+            const isEnoughSearchLength = dataSourceState.search
+                ? dataSourceState.search.length >= props.minCharsToSearch
+                : false;
+            return isEnoughSearchLength && isOpened;
+        }
+        return isOpened;
+    };
+
+    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
+
+    const showOnlySelected = !shouldShowBody() || pickerInputState.showSelected;
 
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showOnlySelected }, pickerInputState);
     const {
@@ -128,21 +143,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         toggleDropdownOpening(false);
         clearSelection();
     };
-
-    const defaultShouldShowBody = () => {
-        const searchPosition = props.searchPosition || 'input';
-        const isOpened = opened && !props.isDisabled;
-
-        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
-            const isEnoughSearchLength = dataSourceState.search
-                ? dataSourceState.search.length >= props.minCharsToSearch
-                : false;
-            return isEnoughSearchLength && isOpened;
-        }
-        return isOpened;
-    };
-
-    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
     const handlePickerInputKeyboard = (
         rows: DataRowProps<TItem, TId>[],

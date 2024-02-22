@@ -23,12 +23,21 @@ IEditable<any> & {
     size?: '24' | '30' | '36' | '42' | '48';
 };
 
+function useView(props: FiltersToolbarItemProps) {
+    const forceUpdate = useForceUpdate();
+
+    let useViewFn;
+    if (props.type === 'singlePicker' || props.type === 'multiPicker') {
+        useViewFn = props.dataSource.useView.bind(props.dataSource);
+    }
+    
+    return useViewFn?.({}, forceUpdate);
+}
+
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
-    const forceUpdate = useForceUpdate();
-
     const popperModifiers: Modifier<any>[] = useMemo(() => {
         const modifiers: Modifier<any>[] = [
             {
@@ -170,6 +179,8 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return config.getName ? config.getName(item.value) : item.value.name;
     };
 
+    const view = useView(props);
+
     const getTogglerValue = () => {
         const currentValue = getValue();
         const defaultFormat = 'MMM DD, YYYY';
@@ -177,8 +188,6 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         switch (props.type) {
             case 'multiPicker': {
                 let isLoading = false;
-                
-                const view = props.dataSource.useView({}, forceUpdate);
                 const selection = currentValue
                     ? currentValue?.slice(0, maxCount).map((i: any) => {
                         const item = view.getById(i, null);
@@ -207,7 +216,6 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 if (currentValue === null || currentValue === undefined) {
                     return { selection: undefined };
                 }
-                const view = props.dataSource.useView({}, forceUpdate);
 
                 const item = view.getById(currentValue, null);
                 const selection = getPickerItemName(item, props);
