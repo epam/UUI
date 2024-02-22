@@ -70,7 +70,7 @@ function Groups(props: { group: ITokensDocGroup, level: number }) {
     );
 }
 
-const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
+const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean, openedDropdownId: string, setOpenedDropdownId: React.Dispatch<React.SetStateAction<string>>) => {
     const { uuiNotifications } = useUuiContext();
 
     if (subgroup._type === 'group_with_items') {
@@ -115,9 +115,17 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
 
             const semanticClickHandler = () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications));
 
+            const tooltipOnValueChange = (state: boolean, value: string) => {
+                if (state) {
+                    setOpenedDropdownId(() => value);
+                } else {
+                    setOpenedDropdownId(() => '');
+                }
+            };
+
             return (
                 <FlexCell key={ item.cssVar + item.value } grow={ 1 } alignSelf="flex-start">
-                    <Tooltip content={ item.value } placement="top" openDelay={ 200 }>
+                    <Tooltip value={ undefined } content={ item.value } placement="top" openDelay={ 200 }>
                         <div
                             className={ cx(css.colorViewer, (index < 2) && css.bordered) }
                             style={ { backgroundColor: valueBackground } }
@@ -126,17 +134,47 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
                         </div>
                     </Tooltip>
                     <div>
-                        <Tooltip maxWidth={ 360 } closeOnMouseLeave="boundary" content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
+                        <Tooltip
+                            value={ openedDropdownId === item.cssVar }
+                            onValueChange={ (state) => tooltipOnValueChange(state, item.cssVar) }
+                            closeOnMouseLeave="boundary"
+                            maxWidth={ 360 }
+                            closeDelay={ 200 }
+                            content={ renderTooltipContent() }
+                            placement="top"
+                            openDelay={ 1000 }
+                            color="neutral"
+                        >
                             <Text cx={ [css.var] } onClick={ semanticClickHandler }>
                                 {item.cssVar.replace(/^--uui-/, '')}
                             </Text>
                         </Tooltip>
-                        <Tooltip maxWidth={ 360 } closeOnMouseLeave="boundary" content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
+                        <Tooltip
+                            value={ openedDropdownId === item.cssVar + item.value }
+                            onValueChange={ (state) => tooltipOnValueChange(state, item.cssVar + item.value) }
+                            closeOnMouseLeave="boundary"
+                            maxWidth={ 360 }
+                            closeDelay={ 200 }
+                            content={ renderTooltipContent() }
+                            placement="top"
+                            openDelay={ 1000 }
+                            color="neutral"
+                        >
                             <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
                                 { item.value.toUpperCase() }
                             </Text>
                         </Tooltip>
-                        <Tooltip maxWidth={ 360 } closeOnMouseLeave="boundary" content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
+                        <Tooltip
+                            value={ openedDropdownId === item.baseToken + item.value + item.cssVar }
+                            onValueChange={ (state) => tooltipOnValueChange(state, item.baseToken + item.value + item.cssVar) }
+                            closeOnMouseLeave="boundary"
+                            maxWidth={ 360 }
+                            closeDelay={ 200 }
+                            content={ renderTooltipContent() }
+                            placement="top"
+                            openDelay={ 1000 }
+                            color="neutral"
+                        >
                             <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }>
                                 { item.baseToken }
                             </Text>
@@ -151,6 +189,7 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
 function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
     const rowsRef = useRef(null);
     const [scrolling, setIsScrolling] = useState(false);
+    const [openedDropdownId, setOpenedDropdownId] = useState('');
     // to sort semantic table rows in correct order like in the figma
     const RIGHT_ORDER = ['Primary', 'Secondary', 'Accent', 'Critical', 'Info', 'Success', 'Warning', 'Error'];
     const SKIN_COLOR_TOOLTIP_TEXT = (
@@ -227,7 +266,7 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
                                 </FlexRow>
                                 <Text cx={ [css.smallPaddings, css.headerDescription] }>{subgroup.description}</Text>
                             </FlexCell>
-                            {SemanticBlocks(subgroup, details)}
+                            {SemanticBlocks(subgroup, details, openedDropdownId, setOpenedDropdownId)}
                         </React.Fragment>
                     );
                 })}
