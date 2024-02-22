@@ -10,7 +10,9 @@ import { useItemsStorage } from '../../useItemsStorage';
 import { usePatchTree } from '../../usePatchTree';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 import { useItemsStatusCollector } from '../../useItemsStatusCollector';
-import isEqual from 'lodash.isequal';
+import { getSelectedAndChecked } from '../../../newTree/treeStructure';
+import { isSelectedOrCheckedChanged } from '../checked';
+import { useSelectedOnlyTree } from '../../useSelectedOnlyTree';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -42,7 +44,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
     const prevDataSourceState = useSimplePrevious(dataSourceState);
-    const prevShowOnlySelected = useSimplePrevious(showOnlySelected);
 
     const [isFetching, setIsFetching] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -82,24 +83,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     });
 
     useEffect(() => {
-        if (
-            showOnlySelected
-            && ((
-                dataSourceState.checked?.length && !isEqual(prevDataSourceState?.checked, dataSourceState.checked)
-            ) || (dataSourceState.selectedId !== null
-                && dataSourceState.selectedId !== undefined
-                && dataSourceState.selectedId !== prevDataSourceState.selectedId)
-            )
-        ) {
-            let checked: TId[] = [];
-            if (dataSourceState.checked?.length) {
-                checked = [...dataSourceState.checked];
-            }
-            if (dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined) {
-                checked = [...checked, dataSourceState.selectedId];
-            }
-
-            itemsStatusCollector.setPending(checked);
+        if (showOnlySelected && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
+            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState));
 
             loadMissing({
                 tree: treeWithData,
@@ -119,6 +104,10 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     }, [showOnlySelected, dataSourceState.checked, dataSourceState.selectedId]);
 
     useEffect(() => {
+        if (showOnlySelected) {
+            return;
+        }
+
         let currentTree = treeWithData;
         if (shouldRefetch) {
             setIsFetching(true);
@@ -152,18 +141,14 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         }
     }, [shouldFetch, shouldLoad, shouldRefetch, treeWithData, setTreeWithData]);
 
-    useEffect(() => {
-        if (
-            showOnlySelected && (prevShowOnlySelected !== showOnlySelected
-            || !isEqual(dataSourceState?.checked, prevDataSourceState?.checked))
-        ) {
-            const newTree = treeWithData.buildSelectedOnly(dataSourceState.checked);
-            setTreeWithData(newTree);
-        }
-    }, [showOnlySelected, dataSourceState.checked, itemsMap]);
+    const treeWithSelectedOnly = useSelectedOnlyTree({
+        tree: treeWithData,
+        dataSourceState,
+        isLoading: isLoading || isFetching,
+    }, [treeWithData]);
 
     const tree = usePatchTree({
-        tree: treeWithData,
+        tree: treeWithSelectedOnly,
         patchItems: showOnlySelected ? null : patchItems,
     });
 

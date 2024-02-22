@@ -7,6 +7,7 @@ export type UseSortTreeProps<TItem, TId, TFilter = any> = {
     sortBy?(item: TItem, sorting: SortingOption): any;
     tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
+    isLoading?: boolean;
 };
 
 export function useSortTree<TItem, TId, TFilter = any>(
@@ -14,6 +15,7 @@ export function useSortTree<TItem, TId, TFilter = any>(
         tree,
         dataSourceState: { sorting },
         sortBy,
+        isLoading,
     }: UseSortTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): TreeState<TItem, TId> {
@@ -29,6 +31,10 @@ export function useSortTree<TItem, TId, TFilter = any>(
         }
         return sortedTreeRef.current;
     }, [tree, sorting, ...deps]);
+
+    if (isLoading) {
+        return tree;
+    }
 
     return sortTree;
 }

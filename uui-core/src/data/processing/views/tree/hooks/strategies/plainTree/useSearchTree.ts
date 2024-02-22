@@ -8,6 +8,7 @@ export type UseSearchTreeProps<TItem, TId, TFilter = any> = {
     sortSearchByRelevance?: boolean;
     tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
+    isLoading?: boolean;
 };
 
 export function useSearchTree<TItem, TId, TFilter = any>(
@@ -16,6 +17,7 @@ export function useSearchTree<TItem, TId, TFilter = any>(
         dataSourceState: { search },
         getSearchFields,
         sortSearchByRelevance,
+        isLoading,
     }: UseSearchTreeProps<TItem, TId, TFilter>,
     deps: any[] = [],
 ) {
@@ -31,6 +33,10 @@ export function useSearchTree<TItem, TId, TFilter = any>(
         }
         return searchTreeRef.current;
     }, [tree, search, ...deps]);
+
+    if (isLoading) {
+        return tree;
+    }
 
     return searchTree;
 }

@@ -6,6 +6,7 @@ import { ItemsAccessor } from '../ItemsAccessor';
 import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
 import { TreeNodeInfo } from '../types';
 import { NOT_FOUND_RECORD } from '../../../constants';
+import { getSelectedAndChecked } from './checked';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
@@ -50,10 +51,7 @@ export class FetchingHelper {
             withNestedChildren,
         });
 
-        const checked = (dataSourceState.checked ?? []);
-        const missing = dataSourceState.selectedId === null || dataSourceState.selectedId === undefined
-            ? checked
-            : checked.concat(dataSourceState.selectedId);
+        const missing = getSelectedAndChecked(dataSourceState);
 
         const { loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
             tree,
