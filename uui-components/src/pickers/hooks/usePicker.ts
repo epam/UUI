@@ -46,6 +46,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
         setDataSourceState(dsState);
         const newValue = dataSourceStateToValue(props, dsState, dataSource);
+
         if (!isEqual(value, newValue)) {
             handleSelectionValueChange(newValue);
         }

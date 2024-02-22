@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, IMap, LazyDataSourceApi } from '../../../../../../../types';
-import { TreeState } from '../../../newTree';
+import { TreeState, getSelectedAndChecked } from '../../../newTree';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { RecordStatus } from '../../../types';
@@ -22,11 +22,12 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     itemsStatusMap?: IMap<TId, RecordStatus>;
     complexIds?: boolean;
     getId: (item: TItem) => TId;
+    isLoaded?: boolean;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
     {
-        tree, api, dataSourceState, forceReload, showOnlySelected, itemsStatusMap,
+        tree, api, dataSourceState, forceReload, showOnlySelected, itemsStatusMap, isLoaded: isPrevouslyLoaded,
         complexIds, getId,
     }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
@@ -36,7 +37,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const prevForceReload = useSimplePrevious(forceReload);
 
     const [loadedTree, setLoadedTree] = useState(tree);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(isPrevouslyLoaded);
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
 
@@ -97,22 +98,11 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 setIsLoading(true);
             }
 
-            let checked: TId[] = [];
-            if (dataSourceState.checked?.length) {
-                checked = dataSourceState.checked;
-            } else if (dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined) {
-                checked = [dataSourceState.selectedId];
-            }
-
-            if (checked.length) {
-                itemsStatusCollector.setPending(checked);
-            }
-
+            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState));
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
-                        const newTreeWithOnlySelected = newTree.buildSelectedOnly(checked);
-                        setLoadedTree(newTreeWithOnlySelected);
+                        setLoadedTree(newTree);
                         setIsLoaded(true);
                     }
                 })

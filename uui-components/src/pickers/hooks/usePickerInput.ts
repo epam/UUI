@@ -33,6 +33,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     } = pickerInputState;
 
     const showOnlySelected = !opened || pickerInputState.showSelected;
+
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showOnlySelected }, pickerInputState);
     const {
         context,

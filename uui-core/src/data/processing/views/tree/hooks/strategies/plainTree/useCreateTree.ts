@@ -9,9 +9,11 @@ export interface UseCreateTreeProps<TItem, TId, TFilter = any> extends Omit<Plai
 export function useCreateTree<TItem, TId, TFilter = any>(props: UseCreateTreeProps<TItem, TId, TFilter>, deps: any[]): TreeState<TItem, TId> {
     const { items, itemsMap, setItems } = props;
     const tree = useMemo(() => {
-        return items instanceof TreeState
-            ? items
-            : TreeState.createFromItems<TItem, TId>(items, itemsMap, props, setItems);
+        if (items instanceof TreeState) {
+            return items;
+        }
+
+        return TreeState.createFromItems<TItem, TId>(items, itemsMap, props, setItems);
     }, [...deps, itemsMap]);
 
     return tree;
