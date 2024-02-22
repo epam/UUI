@@ -125,7 +125,7 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean, openedDropd
 
             return (
                 <FlexCell key={ item.cssVar + item.value } grow={ 1 } alignSelf="flex-start">
-                    <Tooltip value={ undefined } content={ item.value } placement="top" openDelay={ 200 }>
+                    <Tooltip content={ item.value } placement="top" openDelay={ 200 }>
                         <div
                             className={ cx(css.colorViewer, (index < 2) && css.bordered) }
                             style={ { backgroundColor: valueBackground } }
