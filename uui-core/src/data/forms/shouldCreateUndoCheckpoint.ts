@@ -1,18 +1,29 @@
 import { IBaseMap } from '../../types';
 
-const getKeys = (a: Object | Array<any> | IBaseMap<string, any>) => {
+type FieldValue = Object | Array<any> | IBaseMap<string, any>;
+
+const getKeys = (a: FieldValue, b: FieldValue, c: FieldValue) => {
+    if (Array.isArray(a)) {
+        return Object.keys({ ...a, ...b, ...c });
+    }
+
+    return Array.from(new Set([...getObjectOrMapKeys(a), ...getObjectOrMapKeys(b), ...getObjectOrMapKeys(c)]));
+};
+
+const getObjectOrMapKeys = (a: Object | IBaseMap<string, any>) => {
     if (Symbol.iterator in a && typeof a[Symbol.iterator] === 'function') {
         const keys = [];
         for (const [key] of a) {
             keys.push(key);
         }
+
         return keys;
     }
 
     return Object.keys(a);
 };
 
-const getValue = (a: Object | Array<any> | IBaseMap<string, any>, key: keyof Object) => {
+const getValue = (a: FieldValue, key: keyof Object) => {
     if (('get' in a && typeof a.get === 'function')) {
         return a.get(key);
     }
@@ -45,7 +56,7 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
         a = a || {};
         b = b || {};
         c = c || {};
-        const keys: any[] = Array.from(new Set([...getKeys(a), ...getKeys(b), ...getKeys(c)]));
+        const keys: any[] = getKeys(a, b, c);
         return keys.some((key) => shouldCreateUndoCheckpoint(getValue(a, key), getValue(b, key), getValue(c, key)));
     }
 
