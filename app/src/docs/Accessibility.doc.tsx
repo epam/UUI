@@ -8,6 +8,8 @@ export class AccessibilityDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="Accessibility" />
                 <DocExample title="Keyboard navigation" path="./_examples/accessibility/KeyboardNavigation.example.tsx" />
+                <EditableDocContent title="Color contrast" fileName="color_contrast" />
+                <DocExample title="Accecable labels" path="./_examples/accessibility/AccessibleLabels.example.tsx" />
             </>
         );
     }
