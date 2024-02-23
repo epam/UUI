@@ -1,0 +1,31 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "As component color styles are determined by "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=overview-themes&category=themes",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Themes"
+          }
+        ]
+      },
+      {
+        "text": ", it is the theme's responsibility to establish a color set that achieves the appropriate level of contrast between text and background. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The majority of themes provided by UUI (e.g., Loveship, Electric) inherently offer AA Level color contrast. However, if you require a higher level of contrast, you can create and utilize your own theme with more contrasting colors."
+      }
+    ]
+  }
+]
