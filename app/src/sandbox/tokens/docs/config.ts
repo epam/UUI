@@ -25,7 +25,7 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
             },
             {
                 title: 'Accent',
-                description: 'Use for accents, call to actions in addition to primary color. Can be used instead of primary in some cases.',
+                description: 'Use for accents, call to actions in addition to primary color. Can be used instead of primary.',
                 items: ('core/semantic/accent-'),
             },
             {
