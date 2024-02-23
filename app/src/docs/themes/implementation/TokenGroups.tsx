@@ -47,15 +47,16 @@ export function TokenGroups() {
 function Groups(props: { group: ITokensDocGroup, level: number }) {
     const { group, level } = props;
     const { title, description } = group;
+    const borderRef = useRef(null);
 
     if (level === 1) {
         return (
             <div>
                 <RichTextView size="16">
                     <h2 className={ css.groupTitle }>{ title }</h2>
-                    <p className={ css.groupInfo }>{ description }</p>
+                    <p ref={ borderRef } className={ css.groupInfo }>{ description }</p>
                 </RichTextView>
-                <TokenGroupChildren group={ group } level={ 2 } />
+                <TokenGroupChildren group={ group } level={ 2 } borderRef={ borderRef } />
             </div>
         );
     }
@@ -172,8 +173,7 @@ function SemanticBlocks(props: SemanticBlocksProps) {
     }
 }
 
-function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
-    const rowsRef = useRef(null);
+function SemanticTable({ group, details, setDetails, borderRef }: ISemanticTableProps) {
     const [isVisible, setIsVisible] = useState(true);
     const [openedDropdownId, setOpenedDropdownId] = useState('');
     // to sort semantic table rows in correct order like in the figma
@@ -189,17 +189,17 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
         () => {
             const observer = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
-                    setIsVisible(() => false);
-                } else {
                     setIsVisible(() => true);
+                } else {
+                    setIsVisible(() => false);
                 }
             });
 
-            if (rowsRef.current instanceof Element) {
-                observer.observe(rowsRef.current);
+            if (borderRef.current instanceof Element) {
+                observer.observe(borderRef.current);
                 return () => {
-                    if (rowsRef.current instanceof Element) {
-                        observer.unobserve(rowsRef.current);
+                    if (borderRef.current instanceof Element) {
+                        observer.unobserve(borderRef.current);
                     }
                 };
             }
@@ -241,7 +241,7 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
 
                     return (
                         <React.Fragment key={ subgroup.description }>
-                            <FlexCell grow={ 1 } cx={ css.semanticTitleCell } ref={ rowsRef }>
+                            <FlexCell grow={ 1 } cx={ css.semanticTitleCell }>
                                 <FlexRow columnGap="6" cx={ css.semanticTitleRow }>
                                     <Text fontSize="18" fontWeight="600" cx={ css.smallPaddings }>{subgroup.title}</Text>
                                     <Tooltip
@@ -263,7 +263,7 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
     );
 }
 
-function TokenGroupChildren(props: { group: ITokensDocGroup, level: number }) {
+function TokenGroupChildren(props: { group: ITokensDocGroup, level: number, borderRef?: React.MutableRefObject<any> }) {
     const { group } = props;
     const { _type } = group;
     const NO_DATA_IN_GROUP = <Text color="info" fontSize="16" fontStyle="italic">The data of this group is in work. It will be soon...</Text>;
@@ -271,7 +271,7 @@ function TokenGroupChildren(props: { group: ITokensDocGroup, level: number }) {
 
     if (_type === 'group_with_subgroups') {
         if (group.subgroups.length) {
-            return <SemanticTable group={ group } details={ details } setDetails={ setDetails } />;
+            return <SemanticTable group={ group } details={ details } setDetails={ setDetails } borderRef={ props.borderRef } />;
         }
         return NO_DATA_IN_GROUP;
     } else {
