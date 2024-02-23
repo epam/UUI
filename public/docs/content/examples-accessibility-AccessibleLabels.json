@@ -1,0 +1,25 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI components ensure the presence of accessibility tags and labels for their internal elements. However, it is also your responsibility to ensure that the components themselves have appropriate names and labels."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For example, for form controls (such as TextInput, NumericInput and PickerInput), this requires adding an associated "
+      },
+      {
+        "text": "LabeledInput",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "  linked to the component. For buttons, their inner text serves as the accessible label. You only need to include an aria-label attribute if the button contains no text (such as an icon button)."
+      }
+    ]
+  }
+]
