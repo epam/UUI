@@ -32,6 +32,7 @@ export interface ISemanticTableProps {
     group: ISemanticGroup;
     details: boolean;
     setDetails: (arg0: (prev: any) => boolean) => void;
+    borderRef?: React.MutableRefObject<any>;
 }
 
 export interface SemanticBlocksProps {
