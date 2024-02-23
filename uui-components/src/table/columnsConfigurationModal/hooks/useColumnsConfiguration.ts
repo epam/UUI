@@ -3,7 +3,11 @@ import { ColumnsConfig, DataColumnProps, DropParams } from '@epam/uui-core';
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
 } from '../columnsConfigurationActions';
-import { canAcceptDrop, isColumnAlwaysPinned } from '../columnsConfigurationUtils';
+import {
+    canAcceptDrop,
+    isColumnAlwaysHiddenInTheConfigurationModal,
+    isColumnAlwaysPinned,
+} from '../columnsConfigurationUtils';
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps, TColumnPinPosition } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
@@ -98,11 +102,19 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
         [sortedColumnsExtended, searchValue, props.getSearchFields],
     );
 
+    const hasAnySelectedColumns = useMemo(() => !!columnsSorted.filter((c) => {
+        if (c.groupKey !== 'hidden') {
+            return !isColumnAlwaysHiddenInTheConfigurationModal(c);
+        }
+        return false;
+    }).length, [columnsSorted]);
+
     return {
         // props
         groupedColumns,
         searchValue,
         columnsConfig,
+        hasAnySelectedColumns,
         // methods
         reset,
         checkAll,
