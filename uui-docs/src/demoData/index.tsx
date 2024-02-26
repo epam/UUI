@@ -7,6 +7,7 @@ import { loremIpsum } from './loremIpsum';
 import { slateInitialValue } from './slateInitialValue';
 import { slateSerializationInitialData } from './slateSerializationInitialData';
 import { workloadItems } from './workload';
+import { locations } from './locationsData';
 
 export const demoData = {
     featureClasses,
@@ -18,4 +19,5 @@ export const demoData = {
     slateInitialValue,
     slateSerializationInitialData,
     workloadItems,
+    locations,
 };
