@@ -58,7 +58,7 @@ module.exports = {
                 'react-hooks/exhaustive-deps': 'off',
             },
         }, {
-            files: ['**/__tests__/**/*', '**/*.{test}.ts?(x)'],
+            files: ['**/__tests__/**/*', '**/*.{test}.ts?(x)', '**/__e2e__/**/*.e2e.ts'],
             extends: require.resolve('./eslintConfigReactApp/allJest.js'),
             env: { 'jest/globals': true },
             rules: {
