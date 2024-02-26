@@ -172,9 +172,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (prevValue == null || prevProps == null || shouldReloadData) {
             this.isReloading = true;
             this.visibleTree = this.visibleTree.clearStructure();
-            if (this.onlySearchWasUnset(prevValue, this.value)) {
-                this.visibleTree = this.fullTree;
-            }
             completeReset = true;
         }
 
