@@ -17,19 +17,21 @@ export function FilterDatePickerBody(props: DatePickerProps) {
     const {
         view,
         month,
-        onValueChange,
-        handleCancel,
-        handleToggle,
+        handleBodyChange,
+        handleValueChange,
     } = useDatePickerState({
         ...props,
         onValueChange: (v: string | null) => {
             props.onValueChange(v);
             if (v) {
-                handleToggle(false);
                 props.onClose?.();
             }
         },
     });
+
+    const onCancel = () => {
+        handleValueChange(null);
+    };
 
     return (
         <Fragment>
@@ -41,7 +43,7 @@ export function FilterDatePickerBody(props: DatePickerProps) {
                         month,
                         view,
                     } }
-                    onValueChange={ onValueChange }
+                    onValueChange={ handleBodyChange }
                     renderDay={ props.renderDay }
                     isHoliday={ props.isHoliday }
                     rawProps={ props.rawProps?.body }
@@ -54,7 +56,7 @@ export function FilterDatePickerBody(props: DatePickerProps) {
                     <LinkButton
                         isDisabled={ !value }
                         caption={ i18n.filterToolbar.datePicker.clearCaption }
-                        onClick={ handleCancel }
+                        onClick={ onCancel }
                     />
                 </FlexRow>
             </FlexCell>
