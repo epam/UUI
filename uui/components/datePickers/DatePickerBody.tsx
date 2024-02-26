@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import { cx } from '@epam/uui-core';
-import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps } from '@epam/uui-components';
+import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps, uuiDatePickerBodyBase } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
@@ -28,6 +28,8 @@ export function DatePickerBody({
     isHoliday,
     cx: classes,
     filter,
+    forwardedRef,
+    rawProps,
 }: DatePickerBodyProps) {
     const selectedDate = dayjs(value.selectedDate);
 
@@ -89,27 +91,25 @@ export function DatePickerBody({
     };
 
     return (
-        // TODO: do we need this from DatePickerBodyBase.
-        // props.cx were duplicated for container and wrapper
-        // <div
-        //     ref={ props.forwardedRef } className={ cx(uuiDatePickerBodyBase.container, props.cx) }
-        //     { ...props.rawProps }
-        // >
-        <div className={ cx(css.root, uuiDatePickerBody.wrapper, classes) }>
-            <DatePickerHeader
-                value={ {
-                    view: value.view,
-                    month: value.month,
-                } }
-                onValueChange={ (newValue) => {
-                    onValueChange({
-                        ...value,
-                        ...newValue,
-                    });
-                } }
-            />
-            {getView()}
+        <div
+            ref={ forwardedRef } className={ cx(uuiDatePickerBodyBase.container, classes) }
+            { ...rawProps }
+        >
+            <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>
+                <DatePickerHeader
+                    value={ {
+                        view: value.view,
+                        month: value.month,
+                    } }
+                    onValueChange={ (newValue) => {
+                        onValueChange({
+                            ...value,
+                            ...newValue,
+                        });
+                    } }
+                />
+                {getView()}
+            </div>
         </div>
-        // </div>
     );
 }

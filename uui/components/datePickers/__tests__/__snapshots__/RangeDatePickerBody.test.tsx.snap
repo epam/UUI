@@ -45,571 +45,575 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
           }
         >
           <div
-            className="root uui-datepickerBody-wrapper fromPicker"
+            className="uui-datepicker-container fromPicker"
           >
             <div
-              className="container uui-datepickerheader-container"
-            >
-              <header
-                className="uui-datepickerheader-header"
-              >
-                <button
-                  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                    />
-                  </div>
-                </button>
-                <button
-                  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <div
-                    className="uui-caption"
-                  >
-                    September 2020
-                  </div>
-                </button>
-                <button
-                  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                    />
-                  </div>
-                </button>
-              </header>
-            </div>
-            <div
-              className="container uui-calendar-container root"
+              className="root uui-datepickerBody-wrapper"
             >
               <div
-                className="uui-calendar-content"
+                className="container uui-datepickerheader-container"
+              >
+                <header
+                  className="uui-datepickerheader-header"
+                >
+                  <button
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                  <button
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="uui-caption"
+                    >
+                      September 2020
+                    </div>
+                  </button>
+                  <button
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                </header>
+              </div>
+              <div
+                className="container uui-calendar-container root"
               >
                 <div
-                  className="uui-calendar-weekdays-container"
+                  className="uui-calendar-content"
                 >
                   <div
-                    className="uui-calendar-weekday"
+                    className="uui-calendar-weekdays-container"
                   >
-                    Mon
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Mon
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Tue
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Wed
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Thu
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Fri
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Sat
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Sun
+                    </div>
                   </div>
                   <div
-                    className="uui-calendar-weekday"
-                  >
-                    Tue
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Wed
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Thu
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Fri
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Sat
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Sun
-                  </div>
-                </div>
-                <div
-                  className="uui-calendar-days"
-                  style={
-                    Object {
-                      "height": 180,
+                    className="uui-calendar-days"
+                    style={
+                      Object {
+                        "height": 180,
+                      }
                     }
-                  }
-                >
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    />
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                  >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      />
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          1
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            1
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            2
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            3
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            4
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            6
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          2
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            7
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            8
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            9
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            10
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            11
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            12
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            13
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          3
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            14
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            15
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            16
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            17
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            18
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            19
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            20
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          4
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            21
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            22
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            23
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            24
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            25
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            26
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            27
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          5
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            28
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          6
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            29
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          7
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          8
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          9
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          10
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          11
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          12
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          13
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          14
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          15
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          16
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          17
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          18
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          19
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          20
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          21
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          22
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          23
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          24
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          25
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          26
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          27
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          28
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          29
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          30
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            30
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -619,594 +623,598 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            className="root uui-datepickerBody-wrapper toPicker"
+            className="uui-datepicker-container toPicker"
           >
             <div
-              className="container uui-datepickerheader-container"
-            >
-              <header
-                className="uui-datepickerheader-header"
-              >
-                <button
-                  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                    />
-                  </div>
-                </button>
-                <button
-                  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <div
-                    className="uui-caption"
-                  >
-                    October 2020
-                  </div>
-                </button>
-                <button
-                  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                    />
-                  </div>
-                </button>
-              </header>
-            </div>
-            <div
-              className="container uui-calendar-container root"
+              className="root uui-datepickerBody-wrapper"
             >
               <div
-                className="uui-calendar-content"
+                className="container uui-datepickerheader-container"
+              >
+                <header
+                  className="uui-datepickerheader-header"
+                >
+                  <button
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                  <button
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="uui-caption"
+                    >
+                      October 2020
+                    </div>
+                  </button>
+                  <button
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                </header>
+              </div>
+              <div
+                className="container uui-calendar-container root"
               >
                 <div
-                  className="uui-calendar-weekdays-container"
+                  className="uui-calendar-content"
                 >
                   <div
-                    className="uui-calendar-weekday"
+                    className="uui-calendar-weekdays-container"
                   >
-                    Mon
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Mon
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Tue
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Wed
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Thu
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Fri
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Sat
+                    </div>
+                    <div
+                      className="uui-calendar-weekday"
+                    >
+                      Sun
+                    </div>
                   </div>
                   <div
-                    className="uui-calendar-weekday"
-                  >
-                    Tue
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Wed
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Thu
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Fri
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Sat
-                  </div>
-                  <div
-                    className="uui-calendar-weekday"
-                  >
-                    Sun
-                  </div>
-                </div>
-                <div
-                  className="uui-calendar-days"
-                  style={
-                    Object {
-                      "height": 180,
+                    className="uui-calendar-days"
+                    style={
+                      Object {
+                        "height": 180,
+                      }
                     }
-                  }
-                >
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    />
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    />
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    />
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                  >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      />
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      />
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      />
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          1
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            1
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            2
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            3
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            4
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          2
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            5
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            6
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            7
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            8
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            9
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            10
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            11
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          3
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            12
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            13
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            14
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            15
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            16
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            17
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            18
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          4
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            19
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            20
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            21
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            22
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            23
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            24
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            25
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
+                    <div>
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          5
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            26
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          6
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            27
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          7
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            28
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          8
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            29
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                          onClick={[Function]}
                         >
-                          9
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            30
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
                       <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
+                        className="uui-calendar-day-cell"
+                        tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-day"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          onClick={[Function]}
                         >
-                          10
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          11
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          12
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          13
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          14
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          15
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          16
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          17
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          18
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          19
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          20
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          21
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          22
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          23
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          24
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          25
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          26
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          27
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          28
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          29
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          30
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="uui-calendar-day-cell"
-                      tabIndex={0}
-                    >
-                      <div
-                        className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="uui-calendar-day"
-                        >
-                          31
+                          <div
+                            className="uui-calendar-day"
+                          >
+                            31
+                          </div>
                         </div>
                       </div>
                     </div>
