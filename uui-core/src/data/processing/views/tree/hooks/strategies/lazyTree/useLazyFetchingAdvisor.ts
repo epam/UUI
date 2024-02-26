@@ -44,7 +44,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
 
     const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);
 
-    const shouldReload = shouldRefetch && (!backgroundReload || forceReload);
+    const shouldReload = shouldRefetch && !backgroundReload;
     const shouldLoad = isFoldingChanged || moreRowsNeeded || shouldReload;
     const shouldFetch = shouldRefetch || isFoldingChanged || moreRowsNeeded;
 

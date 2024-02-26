@@ -1,5 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { act, renderHook, waitFor } from '@epam/uui-test-utils';
+
 import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
