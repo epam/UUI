@@ -15,6 +15,11 @@ import css from './ComponentEditorView.module.scss';
 import { PeTable } from './peTable/PeTable';
 import { buildNormalizedInputValuesMap } from '../propDocUtils';
 
+const LABELS = {
+    componentPreview: 'Component preview',
+    componentPreviewForContext: 'Component preview for context',
+};
+
 type TInputData<TProps> = {
     [name in keyof TProps]: {
         value?: TProps[keyof TProps] | undefined;
@@ -85,16 +90,16 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
                     tagName={ props.tagName }
                 />
             </PeTable>
-            <div className={ css.demoContext }>
+            <section className={ css.demoContext } aria-label={ LABELS.componentPreview }>
                 <ContextSwitcher contexts={ props.contexts } selectedCtxName={ props.selectedCtxName } onChangeSelectedCtx={ props.onChangeSelectedCtx } />
                 <div className={ css.demoContainer }>
-                    <ScrollBars>
+                    <ScrollBars role="region" aria-label={ LABELS.componentPreviewForContext }>
                         <DemoErrorBoundary>
                             <SelectedDemoContext DemoComponent={ props.DemoComponent } props={ demoComponentProps } />
                         </DemoErrorBoundary>
                     </ScrollBars>
                 </div>
-            </div>
+            </section>
         </div>
     );
 }

@@ -14,11 +14,11 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
     const name = prop.name;
 
     return (
-        <FlexRow size="36" borderBottom padding="12" spacing="6">
-            <FlexCell key="name" width={ 130 }>
+        <FlexRow size="36" borderBottom padding="12" spacing="6" rawProps={ { role: 'row' } }>
+            <FlexCell key="name" width={ 130 } rawProps={ { role: 'cell' } }>
                 <Text>{name}</Text>
             </FlexCell>
-            <FlexCell key="default" width={ 110 }>
+            <FlexCell key="default" width={ 110 } rawProps={ { role: 'cell' } }>
                 {!prop.isRequired && (
                     <RadioInput
                         name={ prop.name }
@@ -29,7 +29,7 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
                     />
                 )}
             </FlexCell>
-            <FlexCell key="examples" grow={ 1 }>
+            <FlexCell key="examples" grow={ 1 } rawProps={ { role: 'cell' } }>
                 <PeTableCell<TProps>
                     prop={ prop }
                     name={ name }

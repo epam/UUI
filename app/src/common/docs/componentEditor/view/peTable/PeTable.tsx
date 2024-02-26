@@ -6,6 +6,10 @@ import { ReactComponent as ResetIcon } from '../../../../../icons/reset-icon.svg
 import css from './peTable.module.scss';
 import { PropDoc } from '@epam/uui-docs';
 
+const LABELS = {
+    componentProperties: 'Component properties',
+};
+
 function propsComparator<TProps>(p1: PropDoc<TProps, keyof TProps>, p2: PropDoc<TProps, keyof TProps>) {
     return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
 }
@@ -32,16 +36,18 @@ export function PeTable<TProps>(props: IPeTableProps<TProps>) {
     });
 
     return (
-        <div className={ css.container }>
+        <section aria-label={ LABELS.componentProperties } className={ css.container }>
             <PeTableToolbar tooltip={ props.typeRef } title={ props.title } onResetAllProps={ props.onResetAllProps } />
-            <PeTableHeader />
-            <div className={ css.rowProps }>
-                <ScrollBars>
-                    { rows }
-                </ScrollBars>
+            <div role="table" className={ css.table }>
+                <PeTableHeader />
+                <div className={ css.rowProps } role="rowgroup">
+                    <ScrollBars>
+                        { rows }
+                    </ScrollBars>
+                </div>
             </div>
             { props.children }
-        </div>
+        </section>
     );
 }
 PeTable.displayName = 'PeTable';
@@ -49,7 +55,7 @@ PeTable.displayName = 'PeTable';
 const PeTableToolbar = React.memo(
     function PeTableToolbarComponent<TProps>({ title, onResetAllProps, tooltip }: Pick<IPeTableProps<TProps>, 'title' | 'onResetAllProps'> & { tooltip: string }) {
         return (
-            <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
+            <FlexRow size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
                 <Tooltip content={ tooltip }>
                     <Text fontSize="16" lineHeight="24" cx={ css.vPadding } fontWeight="600">
                         {title}
@@ -69,22 +75,24 @@ const PeTableToolbar = React.memo(
 );
 const PeTableHeader = React.memo(function HeaderComponent() {
     return (
-        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface-main">
-            <FlexCell key="name" width={ 130 }>
-                <Text size="24" fontWeight="600">
-                    NAME
-                </Text>
-            </FlexCell>
-            <FlexCell key="default" width={ 100 }>
-                <Text size="24" fontWeight="600">
-                    DEFAULT
-                </Text>
-            </FlexCell>
-            <FlexCell key="examples" grow={ 1 }>
-                <Text size="24" fontWeight="600">
-                    PRESET
-                </Text>
-            </FlexCell>
-        </FlexRow>
+        <div role="rowgroup">
+            <FlexRow size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface-main" rawProps={ { role: 'row' } }>
+                <FlexCell key="name" width={ 130 } rawProps={ { role: 'columnheader' } }>
+                    <Text size="24" fontWeight="600">
+                        NAME
+                    </Text>
+                </FlexCell>
+                <FlexCell key="default" width={ 100 } rawProps={ { role: 'columnheader' } }>
+                    <Text size="24" fontWeight="600">
+                        DEFAULT
+                    </Text>
+                </FlexCell>
+                <FlexCell key="examples" grow={ 1 } rawProps={ { role: 'columnheader' } }>
+                    <Text size="24" fontWeight="600">
+                        PRESET
+                    </Text>
+                </FlexCell>
+            </FlexRow>
+        </div>
     );
 });

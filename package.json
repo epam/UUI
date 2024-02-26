@@ -20,7 +20,7 @@
     "generate-theme-mixins": "yarn --cwd uui-build generate-theme-mixins",
     "lint-staged": "cross-env LINT_STAGED=true npx lint-staged",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
-    "postinstall": "cd server && yarn",
+    "postinstall": "cd server && yarn && yarn --cwd ../app test-e2e-install-deps",
     "prepare": "husky install",
     "process-icons": "node uui-build/scripts/processIcons.js",
     "release": "lerna publish --force-publish",
@@ -33,6 +33,8 @@
     "test-report": "yarn test --collectCoverage",
     "test-typecheck": "tsc --project ./tsconfig.test.json",
     "test-update": "yarn test --updateSnapshot",
+    "test-e2e": "yarn --cwd app test-e2e",
+    "test-e2e-update": "yarn --cwd app test-e2e-update",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
     "track-bundle-size-override": "yarn track-bundle-size --override-baseline"
   },

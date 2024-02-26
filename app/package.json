@@ -10,7 +10,12 @@
     "build": "craco build",
     "build-dev": "craco build --app-dev",
     "server": "node ../server/app.js",
-    "analyzer": "source-map-explorer 'build/static/**/*.js'"
+    "analyzer": "source-map-explorer 'build/static/**/*.js'",
+    "playwrite-cli": "cd .. && npx playwright",
+    "test-e2e": "yarn playwrite-cli test",
+    "test-e2e-debug": "yarn playwrite-cli test --ui",
+    "test-e2e-update": "yarn playwrite-cli test --update-snapshots",
+    "test-e2e-install-deps": "yarn playwrite-cli install --with-deps chromium"
   },
   "cracoConfig": "./build-config/craco.config.js",
   "dependencies": {
@@ -81,6 +86,7 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
     "@types/webpack-env": "1.18.0",
+    "@playwright/test": "1.41.2",
     "escape-string-regexp": "1.0.5",
     "react-scripts": "5.0.1",
     "source-map-explorer": "2.5.3",
