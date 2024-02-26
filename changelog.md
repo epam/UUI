@@ -15,6 +15,7 @@
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
 * [RTE]: fixed placeholder position in Safari
+* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
 
 # 5.6.0 - 08.02.2024
 
