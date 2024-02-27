@@ -1,5 +1,13 @@
-import { BaseRangeDatePickerProps } from '@epam/uui-core';
-import { SizeMod } from '../types';
+import { BaseRangeDatePickerProps, DatePickerCoreProps } from '@epam/uui-core';
+import { IHasEditMode, SizeMod } from '../types';
+
+/** Represents the properties of the DatePicker component. */
+export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
+    /**
+    * HTML ID attribute for the toggler input
+    */
+    id?: string;
+}
 
 export type InputType = 'from' | 'to';
 

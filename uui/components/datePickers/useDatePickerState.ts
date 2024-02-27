@@ -1,20 +1,12 @@
 import dayjs, { Dayjs } from 'dayjs';
-import { useReducer, useEffect } from 'react';
-import { DatePickerState, PickerBodyValue, defaultFormat, supportedDateFormats, valueFormat } from '@epam/uui-components';
-import { IHasEditMode, SizeMod } from '../types';
-import { DatePickerCoreProps, useUuiContext } from '@epam/uui-core';
-
-/** Represents the properties of the DatePicker component. */
-export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
-    /**
-    * HTML ID attribute for the toggler input
-    */
-    id?: string;
-}
+import { useReducer } from 'react';
+import { DatePickerState, PickerBodyValue, supportedDateFormats, valueFormat } from '@epam/uui-components';
+import { useUuiContext } from '@epam/uui-core';
+import { DatePickerProps } from './types';
 
 type DatePickerStateReducer = (prev: DatePickerState, newState: Partial<DatePickerState>) => DatePickerState;
 
-const getNewMonth = (value: string | Dayjs) => {
+export const getNewMonth = (value: string | Dayjs) => {
     return dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day');
 };
 
@@ -28,7 +20,7 @@ export const isValidDate = (input: string, format: string, filter?:(day: dayjs.D
 };
 
 export const useDatePickerState = (props: DatePickerProps) => {
-    const { format = defaultFormat, value } = props;
+    const { value } = props;
     const context = useUuiContext();
 
     const [state, setState] = useReducer<DatePickerStateReducer>((prev, newState) => {
@@ -43,12 +35,6 @@ export const useDatePickerState = (props: DatePickerProps) => {
         month: getNewMonth(value),
     });
 
-    useEffect(() => {
-        if (isValidDate(value, format, props.filter)) {
-            setState({ month: getNewMonth(value) });
-        }
-    }, [value, setState]);
-
     const handleValueChange = (newValue: string | null) => {
         props.onValueChange(newValue);
 
@@ -59,7 +45,8 @@ export const useDatePickerState = (props: DatePickerProps) => {
     };
 
     const handleBodyChange = (newValue: Partial<PickerBodyValue<string>>) => {
-        if (newValue.selectedDate) {
+        // test
+        if (newValue.selectedDate && value !== newValue.selectedDate) {
             handleValueChange(newValue.selectedDate);
         }
 
@@ -69,22 +56,10 @@ export const useDatePickerState = (props: DatePickerProps) => {
         });
     };
 
-    const toggleIsOpen = (open: boolean) => {
-        if (open) {
-            setState({
-                isOpen: open,
-                view: 'DAY_SELECTION',
-            });
-        } else {
-            setState({ isOpen: open });
-            props.onBlur?.();
-        }
-    };
-
     return {
         ...state,
+        setState,
         handleBodyChange,
         handleValueChange,
-        toggleIsOpen,
     };
 };
