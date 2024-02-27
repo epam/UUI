@@ -40,7 +40,7 @@ export function useFoldingService<TItem, TId, TFilter = any>({
         }
 
         return defaultIsFolded(dataSourceState) ?? true;
-    }, [isFoldedByDefault, dataSourceState?.search, dataSourceState?.folded]);
+    }, [isFoldedByDefault, dataSourceState?.search, dataSourceState?.folded, dataSourceState?.foldAll]);
 
     const handleOnFold = useCallback((rowProps: DataRowProps<TItem, TId>) => {
         setDataSourceState((dsState) => {

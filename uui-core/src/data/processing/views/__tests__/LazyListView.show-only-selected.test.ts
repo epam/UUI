@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
 
-describe('LazyListView - background reload', () => {
+describe('LazyListView - show only selected', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const onValueChanged = (newValue: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
         if (typeof newValue === 'function') {
