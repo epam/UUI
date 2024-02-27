@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown, PickerBodyValue, defaultFormat, toCustomDateFormat, toValueDateFormat } from '@epam/uui-components';
-import { DatePickerCoreProps, DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, uuiMod, withMods } from '@epam/uui-core';
+import { DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, uuiMod, withMods } from '@epam/uui-core';
 import { TextInput } from '../inputs';
-import { EditMode, IHasEditMode, SizeMod } from '../types';
+import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
 import { DatePickerBody } from './DatePickerBody';
 import dayjs from 'dayjs';
-import { isValidDate, useDatePickerState } from './useDatePickerState';
+import { getNewMonth, isValidDate, useDatePickerState } from './useDatePickerState';
 import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+import { DatePickerProps } from './types';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -20,39 +21,53 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
-/** Represents the properties of the DatePicker component. */
-export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
-    /**
-    * HTML ID attribute for the toggler input
-    */
-    id?: string;
-}
-
 export function DatePickerComponent(props: DatePickerProps) {
     const { format = defaultFormat, value } = props;
-    const inputValue = toCustomDateFormat(value, format) || value;
+    const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
 
     const {
         isOpen,
         view,
         month,
+        setState,
         handleBodyChange,
         handleValueChange,
-        toggleIsOpen,
     } = useDatePickerState(props);
 
+    useEffect(() => {
+        setInputValue(toCustomDateFormat(value, format));
+        setState({ month: getNewMonth(value) });
+    }, [value]);
+
+    // check format of the value we send
+    // check value update from props. it should update input value
     const onInputChange = (input: string) => {
         const resultValue = toValueDateFormat(input, format);
         if (isValidDate(input, format, props.filter)) {
             handleValueChange(resultValue);
+            setInputValue(input);
         } else {
-            handleValueChange(input);
+            setInputValue(input);
+        }
+    };
+
+    const toggleIsOpen = (open: boolean) => {
+        if (open) {
+            setState({
+                isOpen: open,
+                view: 'DAY_SELECTION',
+            });
+        } else {
+            setState({ isOpen: open });
+            props.onBlur?.();
         }
     };
 
     const onBodyValueChange = (v: PickerBodyValue<string>) => {
         handleBodyChange(v);
-        if (isValidDate(value, format, props.filter) && value !== v.selectedDate) {
+        setInputValue(toCustomDateFormat(v.selectedDate, format));
+
+        if (v.selectedDate && value !== v.selectedDate) {
             toggleIsOpen(false);
         }
     };
@@ -66,14 +81,17 @@ export function DatePickerComponent(props: DatePickerProps) {
         if (isFocusReceiverInsideFocusLock(e)) return;
         toggleIsOpen(false);
 
-        if (!isValidDate(inputValue, format, props.filter)) {
+        if (isValidDate(inputValue, format, props.filter)) {
+            setInputValue(toCustomDateFormat(inputValue, format));
+        } else if (inputValue !== '' && inputValue !== null) {
             handleValueChange(null);
+            setInputValue(null);
         }
     };
 
     const onCancel = () => {
         handleValueChange(null);
-        toggleIsOpen(false);
+        setInputValue(null);
     };
 
     const onDropDownChange = (newValue: boolean) => {
@@ -125,7 +143,7 @@ export function DatePickerComponent(props: DatePickerProps) {
             <DropdownContainer { ...renderProps } focusLock={ false }>
                 <DatePickerBody
                     value={ {
-                        selectedDate: isValidDate(value, format, props.filter) ? value : null,
+                        selectedDate: value,
                         month,
                         view,
                     } }
