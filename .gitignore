@@ -40,3 +40,6 @@ next-app/yarn-error.log*
 .templates
 .reports
 public/docs/docsGenOutput/docsGenStats.json
+
+#icon source
+/icons/

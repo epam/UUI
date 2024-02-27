@@ -16,7 +16,7 @@ export function Paginator(props: PaginatorProps) {
                 size={ params.size }
                 icon={ params.size === '30' ? ArrowLeftIcon_30 : ArrowLeftIcon_24 }
                 onClick={ params.goToPrev }
-                isDisabled={ params.isFirst }
+                isDisabled={ params.isFirst || props.isDisabled }
                 fill="outline"
                 color="secondary"
             />
@@ -31,6 +31,7 @@ export function Paginator(props: PaginatorProps) {
                             fill="ghost"
                             color="secondary"
                             tabIndex={ -1 }
+                            isDisabled={ props.isDisabled }
                         />
                     );
                 } else {
@@ -44,6 +45,7 @@ export function Paginator(props: PaginatorProps) {
                             rawProps={ { 'aria-current': page.isActive } }
                             fill={ (page.isActive && 'outline') || 'ghost' }
                             color="primary"
+                            isDisabled={ props.isDisabled }
                         />
                     );
                 }
@@ -53,7 +55,7 @@ export function Paginator(props: PaginatorProps) {
                 size={ params.size }
                 icon={ params.size === '30' ? ArrowRightIcon_30 : ArrowRightIcon_24 }
                 onClick={ params.goToNext }
-                isDisabled={ params.isLast }
+                isDisabled={ params.isLast || props.isDisabled }
                 fill="outline"
                 color="secondary"
             />

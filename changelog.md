@@ -1,11 +1,36 @@
 # 5.x.x - xx.xx.2024
+**What's New**
+* [Paginator]: added `isDisabled` property.
+* [ColumnsConfigurationModal]
+    * Added the ability to pin columns to the right.
+* [RTE]: added `onFocus` prop
+  
+
+**What's Fixed**
+* [PickerInput]: fixed loading of selectedId with parents.
+    * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
+    * Fixed partially selected with predefined selected value.
+    * Fixed fetching missing parents for selected element in PickerInput.
+* [DropdownContainer]: fixed warning about incorrect ref in React strict mode
+* [Avatar]: change type of 'img' prop to also accept null value
+* [RTE]: fixed tabled border rendering issues in Firefox
+* [RTE]: fixed placeholder position in Safari
+* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+
+# 5.6.1 - 19.02.2024
+
+**What's Fixed**
+[LazyListView]: refetch on search clear.
+
+# 5.6.0 - 08.02.2024
 
 **What's New**
-* [Badge]: can become a `span` tag if the `onClick` is not passed to the props, consider this point when writing tests.
-* [Tag]: can become a `span` tag if the `onClick` is not passed to the props, consider this point when writing tests.
-* [PickerInput]: in `selectionMode: multi` `Tag` rendered as a `span`, consider this point when writing tests.
-* prop `captionCX` is deprecated for components `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class.
+* Added 'Tokens' doc [page](https://uui.epam.com/documents?id=tokens&category=themes). It contains list of all core tokens with their value and description.
+* prop `captionCX` is deprecated for the following components: `Button`, `LinkButton`, `Badge`, `Tag`, `TabButton`, `VerticalTabButton`, `MainMenuButton` and will be removed in future release. Please use `cx` prop to access caption styles and use cascading to change the styles for the `uui-caption` global class.
 * [Breaking changes]:
+    * [Badge]: can be a `span` element if `onClick` prop is not passed, consider it for DOM manipulation with this component.
+    * [Tag]: can be a `span` element if  `onClick` props is not passed, consider it for DOM manipulation with this component.
+    * [PickerInput]: in `selectionMode: multi` selected item `Tag` rendered as a `span`, consider it for DOM manipulation with this component.
     * [Button]: removed `count`, `dropdownIconPosition` props.
     * [TabButton]: removed `dropdownIconPosition` prop.
     * [VerticalTabButton]: removed `dropdownIconPosition` prop.
@@ -13,26 +38,27 @@
     * [MainMenuButton]: removed `onClear`, `clearIcon`, `isDisabled`, `dropdownIconPosition` props.
     * [Badge]: removed `dropdownIconPosition` prop.
     * [Tag]: removed `dropdownIconPosition` prop.
-    * [Text]: removed color `brand`, and removed `--uui-color-brand` token from themes, use `--uui-color-primary` instead.
+    * [Text]: removed color `brand`; Removed `--uui-text-brand` token from themes, use `--uui-text-primary` instead.
 * Removed deprecated `MakeMeItem` and `InstanceItem` components from loveship.
-* [TimePicker]: added ability to parse many variants of time as string. Examples: `1.23pm` -> `01:23 PM`, `12/2` -> `12:02 AM`, if format equals 24: `.25` -> `00:25`, `2350` -> `23:50` etc.
+* [TimePicker]: improve time picker input value parsing. Added ability to parse value in different formats, e.g.: `1.23pm` -> `01:23 PM`, `12/2` -> `12:02 AM`, `.25` -> `00:25`, `2350` -> `23:50` etc.
 * Changes in `ICanBeInvalid` interface:
   * Extract `validationMessage` to the `IHasValidationMessage` interface
   * Extract validationProps into ValidationState interfaces
 * [Text]: added `tertiary` color.
-* [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`, see more in Flexbox Guide(https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+* [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`.
 * [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
+* [Snackbar]: added 'Clear all notification' notification button while 2+ notifications displaying. To enable this behavior, exports Snackbar form @epam/uui package or skins.
 
 **What's Fixed**
+* [PickerInput]: fixed initialy selected items clear with LazyDatasoruce
+* [PickerInput]: fixed partially selected mark for all chain of parent in single mode
 * [RadiInput]: added native HTML `name` attribute for the input.
 * [RadioGroup]: added native HTML `name` attribute for each group member.
 * [Tooltip]: fixed vertical paddings according to the design.
 * [SearchInput]: fixed `onCancel` prop. Now component can use provided callback, not only default implementation
 * [useForm]: fixed `close` method to always return Promise
-* [PickerInput]: fixed loading of selectedId with parents.
-  * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
-  * Fixed partially selected with predefined selected value.
-  * Fixed fetching missing parents for selected element in PickerInput.
+* [LinkButton]: fixed sky color in loveship dark theme
+* [Badge]: fixed outline night600 color in loveship dark theme
 
 # 5.5.3 - 07.02.2024
 

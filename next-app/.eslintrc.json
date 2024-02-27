@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended", "plugin:jest/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
