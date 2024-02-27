@@ -9,7 +9,7 @@ type Props<TItem, TId, TFilter> = Partial<LazyDataSourceProps<TItem, TId, TFilte
 
 export type LocationItem = Omit<Location, 'children'>;
 
-export function getLazyLocationsDS(props: Props<LocationItem, string, DataQueryFilter<LocationItem>>) {
+export function getLazyLocationsDS(props: Props<LocationItem, string, DataQueryFilter<LocationItem>>, delay?: number) {
     return getLazyDataSourceMock(
         demoData.locations,
         {
@@ -19,6 +19,7 @@ export function getLazyLocationsDS(props: Props<LocationItem, string, DataQueryF
 
             ...props,
         },
+        delay,
     );
 }
 

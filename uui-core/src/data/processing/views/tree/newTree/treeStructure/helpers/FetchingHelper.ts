@@ -217,7 +217,6 @@ export class FetchingHelper {
             } else {
                 const ids = Array.from(missingIds);
                 const response = await options.api({ ids });
-
                 if (response.items.length !== ids.length) {
                     console.error(`LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.
                         Read more here: https://github.com/epam/UUI/issues/89`);
