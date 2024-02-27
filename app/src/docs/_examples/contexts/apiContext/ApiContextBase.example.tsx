@@ -40,12 +40,12 @@ export default function ApiContextBaseExample() {
 
             <FlexRow>
                 <LinkButton onClick={ () => svc.api.errors.authLost() } caption="Auth lost" />
-                <Text>(error occur with 50% probability to be able to recover)</Text>
+                <Text>&nbsp; (error occur with 50% probability to be able to recover)</Text>
             </FlexRow>
 
             <FlexRow>
                 <LinkButton onClick={ () => svc.api.errors.mock() } caption="Connection lost" />
-                <Text>(To check network failure, enable 'offline' mode in Dev Tools)</Text>
+                <Text>&nbsp; (To check network failure, enable 'offline' mode in Dev Tools)</Text>
             </FlexRow>
         </div>
     );
