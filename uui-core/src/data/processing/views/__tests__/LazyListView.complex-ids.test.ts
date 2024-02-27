@@ -1,6 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { act, delayAct, renderHook, waitFor } from '@epam/uui-test-utils';
+import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataQueryFilterCondition, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LazyListViewProps } from '../types';
 
@@ -117,7 +117,6 @@ describe('LazyListView - can work with id like [string, number]', () => {
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
         view = hookResult.result.current;
 
-        await delayAct();
         await waitFor(() => {
             view = hookResult.result.current;
             expectViewToLookLike(view, [
