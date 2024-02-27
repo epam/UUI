@@ -508,6 +508,43 @@ describe('ArrayListView', () => {
             });
         });
 
+        it('should select all top items with cascadeSelection = false', async () => {
+            const currentViewProps: ArrayListViewProps<TItem, number, any> = {
+                getId: (i) => i.id,
+                cascadeSelection: false,
+                getRowOptions: () => ({
+                    checkbox: { isVisible: true },
+                }),
+            };
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+            );
+
+            const view = hookResult.result.current;
+            await act(() => {
+                view.selectAll?.onValueChange(true);
+            });
+
+            expect(onValueChangeFn).toBeCalledTimes(1);
+            expect(currentValue).toEqual({
+                ...initialValue,
+                checked: [
+                    7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12,
+                ],
+            });
+
+            await act(() => {
+                view.selectAll?.onValueChange(false);
+            });
+
+            expect(onValueChangeFn).toBeCalledTimes(2);
+            expect(currentValue).toEqual({
+                ...initialValue,
+                checked: [],
+            });
+        });
+
         describe("cascadeSelection = true | cascadeSelection = 'explicit'", () => {
             it.each<[CascadeSelection]>([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
@@ -595,6 +632,16 @@ describe('ArrayListView', () => {
                         7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12,
                     ],
                 });
+
+                await act(() => {
+                    view.selectAll?.onValueChange(false);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(2);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [],
+                });
             });
         });
 
@@ -675,6 +722,16 @@ describe('ArrayListView', () => {
                     checked: [
                         2, 5, 1, 3, 4, 6, 10, 11, 12,
                     ],
+                });
+
+                await act(() => {
+                    view.selectAll?.onValueChange(false);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(2);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [],
                 });
             });
         });
