@@ -29,7 +29,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Jest (setupTests.ts)",
+        "text": "Jest (jest.setup.ts)",
         "uui-richTextEditor-bold": true
       }
     ],
