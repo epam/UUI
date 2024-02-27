@@ -1,16 +1,15 @@
 import { useMemo } from 'react';
-import { ItemsMap } from '../../../..';
 import { TreeState } from '../newTree';
+import { PatchItemsOptions } from '../newTree/treeState/types';
 
-export interface UsePatchTreeProps<TItem, TId> {
+export interface UsePatchTreeProps<TItem, TId> extends PatchItemsOptions<TItem, TId> {
     tree: TreeState<TItem, TId>;
-    patchItems: ItemsMap<TId, TItem>;
 }
 
 export function usePatchTree<TItem, TId>(
-    { tree, patchItems }: UsePatchTreeProps<TItem, TId>,
+    { tree, patchItems, isDeletedProp, getPosition }: UsePatchTreeProps<TItem, TId>,
 ) {
     return useMemo(() => {
-        return tree.patchItems({ patchItems });
-    }, [tree, patchItems]);
+        return tree.patchItems({ patchItems, isDeletedProp, getPosition });
+    }, [tree, patchItems, isDeletedProp, getPosition]);
 }

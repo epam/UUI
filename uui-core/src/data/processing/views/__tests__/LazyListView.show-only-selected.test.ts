@@ -379,7 +379,7 @@ describe('LazyListView - background reload', () => {
         const { dataSource } = getLazyLocationsDS({
             showOnlySelected: true,
             rowOptions: { checkbox: { isVisible: true } },
-        }, 1000);
+        }, 0);
 
         currentValue.checked = ['BJ', 'c-AF', 'DZ'];
         const hookResult = renderHook(
