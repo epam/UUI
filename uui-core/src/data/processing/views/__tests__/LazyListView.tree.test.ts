@@ -440,6 +440,107 @@ describe('LazyListView', () => {
         });
     });
 
+    it('CascadeSelection = false - Select All', async () => {
+        currentValue.visibleCount = 2; // to check that Select All works even if not all rows are loaded
+        currentValue.checked = [
+            121, 122, 310, 320,
+        ];
+
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
+                cascadeSelection: false,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChanged } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expect(view.getListProps().selectAll?.value).toBe(false);
+        });
+
+        let view = hookResult.result.current;
+
+        let selectAll = view.getListProps().selectAll;
+        expect(selectAll?.indeterminate).toBe(true);
+
+        await act(() => {
+            selectAll?.onValueChange(true);
+        });
+
+        currentValue.visibleCount = 10;
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll?.value).toBe(true);
+        });
+
+        selectAll = view.getListProps().selectAll;
+        expect(selectAll?.indeterminate).toBe(false);
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, isChecked: true, isChildrenChecked: true },
+                    { id: 110, isChecked: true },
+                    { id: 120, isChecked: true, isChildrenChecked: true },
+                    { id: 121, isChecked: true },
+                    { id: 122, isChecked: true },
+                    { id: 200, isChecked: true },
+                    { id: 300, isChecked: true, isChildrenChecked: true },
+                    { id: 310, isChecked: true },
+                    { id: 320, isChecked: true },
+                    { id: 330, isChecked: true },
+                ],
+            );
+        });
+
+        expect(view.getListProps().rowsCount).toBe(10);
+        selectAll = view.getListProps().selectAll;
+        expect(selectAll?.indeterminate).toBe(false);
+        await act(() => {
+            selectAll?.onValueChange(false);
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll?.value).toBe(false);
+        });
+
+        selectAll = view.getListProps().selectAll;
+        expect(selectAll?.indeterminate).toBe(false);
+        await waitFor(() => {
+            view = hookResult.result.current;
+
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, isChecked: false, isChildrenChecked: false },
+                    { id: 110, isChecked: false },
+                    { id: 120, isChecked: false, isChildrenChecked: false },
+                    { id: 121, isChecked: false },
+                    { id: 122, isChecked: false },
+                    { id: 200, isChecked: false },
+                    { id: 300, isChecked: false, isChildrenChecked: false },
+                    { id: 310, isChecked: false },
+                    { id: 320, isChecked: false },
+                    { id: 330, isChecked: false },
+                ],
+            );
+        });
+
+        expect(view.getListProps().rowsCount).toBe(10);
+    });
+
     describe('CascadeSelection - explicit mode', () => {
         it('Cascade selection works', async () => {
             currentValue.visibleCount = 6;
