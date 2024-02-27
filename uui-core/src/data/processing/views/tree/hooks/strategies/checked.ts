@@ -6,7 +6,7 @@ export const isSelectedOrCheckedChanged = (dataSourceState: DataSourceState, pre
         dataSourceState.checked?.length && !isEqual(prevDataSourceState?.checked, dataSourceState.checked)
     ) || (dataSourceState.selectedId !== null
         && dataSourceState.selectedId !== undefined
-        && dataSourceState.selectedId !== prevDataSourceState.selectedId);
+        && dataSourceState.selectedId !== prevDataSourceState?.selectedId);
 };
 
 export const getChecked = (dataSourceState: DataSourceState) => {
