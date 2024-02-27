@@ -197,18 +197,6 @@
     column-gap: 9px;
 
     :global(.uui-text) {
-        padding: 3px 0;
-    }
-}
-
-.semantic-tooltip-block-last {
-    display: grid;
-    grid-template-columns: 86px max-content 1fr max-content;
-    column-gap: 9px;
-    align-items: center;
-
-    :global(.uui-text), a {
-        padding-top: 3px;
-        padding-bottom: 9px;
+        padding: 3px 0 9px;
     }
 }
