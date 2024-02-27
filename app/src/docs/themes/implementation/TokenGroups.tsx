@@ -17,7 +17,7 @@ const showNotification = (color: string, uuiNotifications: INotificationContext)
             (props) => (
                 <SuccessNotification { ...props }>
                     <Text size="36" fontSize="14">
-                        { `(${color}) token copied to clipboard!` }
+                        { `var(${color}) token copied to clipboard!` }
                     </Text>
                 </SuccessNotification>
             ),
@@ -86,16 +86,9 @@ function SemanticBlocks(props: SemanticBlocksProps) {
                             <Text fontSize="12" color="tertiary">CSS variable</Text>
                             <Text fontSize="12">{ item.cssVar }</Text>
                         </div>
-                        <div className={ css.semanticTooltipBlockMiddle }>
+                        <div className={ cx(css.semanticTooltipBlockMiddle, css.withBorder) }>
                             <Text fontSize="12" color="tertiary">Figma variable</Text>
                             <Text fontSize="12">{ item.cssVar.replace(/^--uui-/, '') }</Text>
-                        </div>
-                        <div className={ cx(css.semanticTooltipBlockLast, css.withBorder) }>
-                            <Text fontSize="12" color="tertiary">Reference token</Text>
-                            <Text fontSize="12">{ item.baseToken }</Text>
-                            <FlexSpacer />
-                            <FlexSpacer />
-                            {/* <LinkButton size="24" caption="Learn more" link={ { pathname: '' } } /> */}
                         </div>
                     </FlexCell>
                     <FlexCell grow={ 1 } textAlign="center" cx={ css.semanticTooltipTitle }>
@@ -115,7 +108,7 @@ function SemanticBlocks(props: SemanticBlocksProps) {
                 </FlexCell>
             );
 
-            const semanticClickHandler = () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications));
+            const semanticClickHandler = () => copyTextToClipboard(`var(${item.cssVar})`, () => showNotification(item.cssVar, uuiNotifications));
 
             const tooltipOnValueChange = (state: boolean, value: string) => {
                 if (state) {

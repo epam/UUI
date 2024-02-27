@@ -74,8 +74,9 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             widthDelta = this.props.column.fix === 'right' ? -widthDelta : widthDelta;
 
             const newWidth = this.state.originalWidth + widthDelta;
+            const defaultMinWidth = this.props.isFirstColumn ? 78 : 54;
 
-            if (newWidth >= (this.props.column.minWidth || 24)) {
+            if (newWidth >= (this.props.column.minWidth || defaultMinWidth)) {
                 columnsConfig[this.props.column.key] = {
                     ...columnsConfig[this.props.column.key],
                     width: newWidth,
