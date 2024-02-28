@@ -91,7 +91,7 @@ describe('RangeDataPicker', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should change input value after change props', async () => {
+    it('should display initial range value correctly', async () => {
         const value = {
             from: '2017-01-22',
             to: '2017-01-28',
@@ -104,6 +104,15 @@ describe('RangeDataPicker', () => {
     it('should render with default props', async () => {
         const { result } = await setupRangeDatePicker({ value: undefined });
         expect(result.container).not.toBeFalsy();
+    });
+
+    it('should not clear when range is not filled', async () => {
+        const value = {
+            from: null,
+            to: null,
+        };
+        await setupRangeDatePicker({ value });
+        expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
 
     it('should change state on picker clear', async () => {

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent } from '@epam/uui-test-utils';
-import { DatePicker, DatePickerProps } from '../DatePicker';
+import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent, within } from '@epam/uui-test-utils';
+import { DatePicker } from '../DatePicker';
 import dayjs from 'dayjs';
 import { supportedDateFormats } from '@epam/uui-components';
+import { DatePickerProps } from '../types';
 
 type TestParams = Pick<DatePickerProps, 'value' | 'format' | 'isHoliday'>;
 
@@ -22,6 +23,11 @@ async function setupDatePicker(params: TestParams) {
                 context.current?.setProperty('value', newValue);
             }),
             size: '42',
+            rawProps: {
+                body: {
+                    'data-testid': 'datePickerBody',
+                },
+            },
         }),
         (props) => <DatePicker { ...props } />,
     );
@@ -64,6 +70,93 @@ describe('DatePicker', () => {
             />,
         );
         expect(tree).toMatchSnapshot();
+    });
+
+    it('should update input value on props update', async () => {
+        const { setProps } = await setupDatePicker({
+            value: null,
+            format: DATE_FORMAT_DEFAULT,
+        });
+
+        const input = screen.getByRole<HTMLInputElement>('textbox');
+        expect(input.value).toEqual('');
+        setProps({ value: '2017-01-22' });
+        expect(input.value).toEqual('Jan 22, 2017');
+    });
+
+    it('should update month of date picker body on props update', async () => {
+        const { setProps } = await setupDatePicker({
+            value: '2017-01-22',
+            format: DATE_FORMAT_DEFAULT,
+        });
+
+        await userEvent.click(screen.getByRole('textbox'));
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+        setProps({ value: '2017-02-22' });
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
+    });
+
+    it('should send value change in valid format', async () => {
+        const { dom, mocks } = await setupDatePicker({
+            value: null,
+            format: DATE_FORMAT_DEFAULT,
+        });
+
+        await userEvent.type(dom.input, 'Jan 1, 2020');
+        expect(mocks.onValueChange).toHaveBeenCalledWith('2020-01-01');
+    });
+
+    it('should reopen with selected month when previously selected another one', async () => {
+        const { result } = await setupDatePicker({
+            value: '2017-01-22',
+            format: DATE_FORMAT_DEFAULT,
+        });
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+
+        await userEvent.click(screen.getByText('22')); // select date
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+
+        const datePickerBody = screen.getByTestId('datePickerBody');
+        const [,,nexMonthButton] = within(datePickerBody).queryAllByRole('button');
+
+        await userEvent.click(nexMonthButton); // go to next month
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
+        await userEvent.click(nexMonthButton); // go to next month
+        expect(screen.getByText('March 2017')).toBeInTheDocument();
+
+        await userEvent.click(result.container); // emit blur event
+        expect(screen.queryByText('March 2017')).not.toBeInTheDocument();
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+        // should open month with selected date
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+    });
+
+    it('should change month and year correctly', async () => {
+        await setupDatePicker({
+            value: '2017-01-22',
+            format: DATE_FORMAT_DEFAULT,
+        });
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+
+        const datePickerBody = screen.getByTestId('datePickerBody');
+        const [, titleButton, nextMonthButton] = within(datePickerBody).queryAllByRole('button');
+
+        await userEvent.click(nextMonthButton); // go to next month
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
+
+        await userEvent.click(titleButton);
+        const [, yearButton] = within(datePickerBody).queryAllByRole('button');
+
+        await userEvent.click(yearButton);
+        await userEvent.click(screen.getByText('2024')); // go to 2024
+        await userEvent.click(screen.getByText('Mar'));
+
+        expect(screen.getByText('March 2024')).toBeInTheDocument();
     });
 
     it('should open picker on field focus', async () => {

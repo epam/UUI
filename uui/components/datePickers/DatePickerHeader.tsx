@@ -143,12 +143,18 @@ export function DatePickerHeader({
                     color="secondary"
                     fill="ghost"
                     cx={ uuiHeader.navIconLeft }
+                    rawProps={ {
+                        name: 'prev',
+                    } }
                     onClick={ () => onLeftNavigationArrow() }
                 />
                 <Button
                     caption={ title }
                     fill="ghost"
                     cx={ uuiHeader.navTitle }
+                    rawProps={ {
+                        name: 'title',
+                    } }
                     onClick={ () => onCaptionClick(view) }
                 />
                 <Button
