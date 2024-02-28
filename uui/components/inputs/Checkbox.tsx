@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { ReactComponent as Check } from '../../icons/check-18.svg';
-import { ReactComponent as PartlySelect } from '../../icons/partly-select-18.svg';
+import { ReactComponent as Check } from '@epam/assets/icons/notification-done-outline.svg';
+import { ReactComponent as PartlySelect } from '@epam/assets/icons/content-minus-outline.svg';
 import css from './Checkbox.module.scss';
 
 interface CheckboxMods {

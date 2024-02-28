@@ -4,14 +4,14 @@ import { Dropdown, DropdownMenuButton, SuccessNotification } from '../../overlay
 import { IconButton } from '../../buttons';
 import { Text } from '../../typography';
 import { FlexRow, Panel } from '../../layout';
-import { ReactComponent as MenuIcon } from '../../../icons/navigation-more_vert-24.svg';
-import { ReactComponent as SaveInCurrentIcon } from '../../../icons/navigation-refresh-24.svg';
-import { ReactComponent as SaveAsNewIcon } from '../../../icons/save-outline-24.svg';
-import { ReactComponent as DiscardChangesIcon } from '../../../icons/content-edit_undo-24.svg';
-import { ReactComponent as CopyIcon } from '../../../icons/action-copy_content-24.svg';
-import { ReactComponent as RenameIcon } from '../../../icons/content-edit-24.svg';
-import { ReactComponent as CopyLinkIcon } from '../../../icons/content-link-24.svg';
-import { ReactComponent as DeleteIcon } from '../../../icons/action-deleteforever-24.svg';
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
+import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
+import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/action-save-outline.svg';
+import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
+import { ReactComponent as CopyIcon } from '@epam/assets/icons/action-copy_content-outline.svg';
+import { ReactComponent as RenameIcon } from '@epam/assets/icons/content-edit-fill.svg';
+import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/content-link-outline.svg';
+import { ReactComponent as DeleteIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
 import css from './PresetActionsDropdown.module.scss';
 
 interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {

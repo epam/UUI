@@ -3,8 +3,8 @@ import cx from 'classnames';
 import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps } from '@epam/uui-components';
 import { Button } from '../buttons/Button';
 import css from './Paginator.module.scss';
-import { ReactComponent as ArrowLeftIcon } from '../../icons/navigation-chevron-left-24.svg';
-import { ReactComponent as ArrowRightIcon } from '../../icons/navigation-chevron-right-24.svg';
+import { ReactComponent as ArrowLeftIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
+import { ReactComponent as ArrowRightIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 
 export function Paginator(props: PaginatorProps) {
     const renderPaginator = (params: PaginatorRenderParams) => (
