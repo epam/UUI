@@ -23,6 +23,12 @@ export function FilterRangeDatePickerBody(props: RangeDatePickerProps) {
     } = useRangeDatePickerState({
         ...props,
         initialInFocus: 'from',
+        onOpenChange: (value) => {
+            props.onOpenChange?.(value);
+            if (!value) {
+                props.onClose?.();
+            }
+        },
     });
 
     return (

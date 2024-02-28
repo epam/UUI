@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import { uuiMod, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
@@ -22,6 +22,8 @@ const modifiers = [{
 }];
 
 function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
+
     const {
         state,
         onRangeChange,
@@ -30,7 +32,13 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         handleFocus,
         toggleIsOpen,
         getChangeHandler,
-    } = useRangeDatePickerState(props);
+    } = useRangeDatePickerState({
+        ...props,
+        onOpenChange: (value: boolean) => {
+            setIsOpen(value);
+            props.onOpenChange?.(value);
+        },
+    });
 
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         if (!props.isReadonly && !props.isDisabled) {
@@ -141,7 +149,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
             } }
             renderBody={ (renderProps) => renderBody(renderProps) }
             onValueChange={ toggleIsOpen }
-            value={ state.isOpen }
+            value={ isOpen }
             modifiers={ modifiers }
             placement={ props.placement }
             forwardedRef={ props.forwardedRef }
