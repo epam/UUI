@@ -11,7 +11,7 @@ import { DataTableMods, DataTableRowMods } from './types';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
 import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
 import { DataRowsContainer } from './DataRowsContainer';
-import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
+import { ReactComponent as EmptyTableIcon } from '@epam/assets/icons/pictures/empty-table.svg';
 import { Text } from '../typography';
 import css from './DataTable.module.scss';
 import './variables.scss';

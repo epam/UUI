@@ -4,11 +4,11 @@ import { IconContainer } from '@epam/uui-components';
 import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
-import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
-import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
-import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
-import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
-import { ReactComponent as CrossIcon } from '../../icons/btn-cross-24.svg';
+import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
+import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
+import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
+import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help-fill.svg';
+import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './NotificationCard.module.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {

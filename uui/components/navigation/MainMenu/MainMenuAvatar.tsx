@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX, uuiMarkers, IClickable } from '@epam/uui-core';
 import { IconContainer, Avatar } from '@epam/uui-components';
-import { ReactComponent as FoldingArrow } from '../../../icons/folding-arrow-24.svg';
+import { ReactComponent as FoldingArrow } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './MainMenuAvatar.module.scss';
 
 /** Represents the properties of the MainMenuAvatar component. */

@@ -9,8 +9,8 @@ import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { Tooltip } from '../overlays';
 import { fileIcons } from '../../icons/icons';
-import { ReactComponent as RemoveIcon } from '../../icons/navigation-close-24.svg';
-import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/navigation-close-outline.svg';
+import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
 
 export interface FileCardItem extends Partial<File & FileUploadResponse> {
     /**

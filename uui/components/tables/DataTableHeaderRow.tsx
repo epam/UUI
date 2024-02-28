@@ -4,7 +4,7 @@ import { DataTableHeaderRowProps, withMods } from '@epam/uui-core';
 import { DataTableHeaderRowMods } from './types';
 import { DataTableHeaderCell } from './DataTableHeaderCell';
 import { IconButton } from '../buttons';
-import { ReactComponent as ConfigIcon } from '../../icons/action-settings-24.svg';
+import { ReactComponent as ConfigIcon } from '@epam/assets/icons/action-settings-fill.svg';
 import './variables.scss';
 import css from './DataTableHeaderRow.module.scss';
 

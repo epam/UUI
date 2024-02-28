@@ -3,7 +3,7 @@ import { uuiElement, uuiMarkers, DataRowProps } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
 import { ControlSize } from '../types';
-import { ReactComponent as FoldingArrow } from '../../icons/navigation-chevron-down-24.svg';
+import { ReactComponent as FoldingArrow } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './DataRowAddons.module.scss';
 
 /**

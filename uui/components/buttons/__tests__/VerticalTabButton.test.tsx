@@ -1,7 +1,7 @@
 import React from 'react';
 import { VerticalTabButton } from '../VerticalTabButton';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
-import { ReactComponent as calendarIcon } from '../../../icons/calendar-24.svg';
+import { ReactComponent as calendarIcon } from '@epam/assets/icons/action-calendar-fill.svg';
 
 describe('VerticalTabButton', () => {
     it('should be rendered correctly', async () => {

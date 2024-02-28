@@ -1,6 +1,6 @@
 import React from 'react';
 import { BurgerSearch } from '../BurgerSearch';
-import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-24.svg';
+import { ReactComponent as CalendarIcon } from '@epam/assets/icons/action-calendar-fill.svg';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('BurgerSearch', () => {
