@@ -1,11 +1,13 @@
 @keyframes semantic-animation {
     0% {
         opacity: 0;
+        height: 0;
         transform: rotate3d(90, 0, 0, 90deg);
     }
 
     100% {
         opacity: 1;
+        height: 18px;
         transform: rotate3d(90, 0, 0, 90deg);
     }
 }
@@ -31,12 +33,8 @@
         padding-bottom: 18px;
 
         .var {
+            cursor: pointer;
             padding: 3px 6px;
-
-            &:hover {
-                background-color: var(--uui-surface-highest);
-                cursor: pointer;
-            }
         }
 
         &:last-of-type {
@@ -70,7 +68,10 @@
     background-color: var(--uui-surface-higher);
     padding: 3px 4px;
     border-radius: 3px;
-    cursor: pointer;
+
+    &:hover {
+        background-color: var(--uui-surface-highest);
+    }
 }
 
 .semantic-table-header {
@@ -104,16 +105,15 @@
 
 .header-description {
     white-space: break-spaces;
-    padding: 3px 0;
+    padding: 0 0 3px;
 }
 
 .semantic-table-rows {
     display: grid;
     grid-template-columns: 220px repeat(6, 1fr);
-    grid-auto-rows: minmax(108px, auto);
     align-items: center;
     column-gap: 12px;
-    row-gap: 24px;
+    row-gap: 21px;
     text-overflow: ellipsis;
 }
 
@@ -123,7 +123,6 @@
 
 .semantic-title-row {
     min-height: auto;
-    padding-bottom: 6px;
 }
 
 .color-viewer {
@@ -139,18 +138,21 @@
     }
 }
 
+.semantic-items-wrapper {
+    cursor: pointer;
+}
+
 .semantic-item {
+    height: 18px;
     padding-top: 0;
     padding-bottom: 0;
     opacity: 1;
-    transition: 0.3s ease-in-out;
+    transition: 0.4s ease-in-out;
     animation: semantic-animation;
     animation-duration: 100ms;
-    max-height: 18px;
-    cursor: pointer;
 
     &:nth-of-type(2) {
-        margin: 3px 0;
+        margin: 6px 0 0;
     }
 }
 
@@ -159,6 +161,7 @@
 }
 
 .hidden-item {
+    height: 0;
     transform: rotate3d(90, 0, 0, 90deg);
     opacity: 0;
     visibility: hidden;
@@ -169,7 +172,7 @@
 }
 
 
-.semantic-tooltip {
+.semantic-tooltip-block {
     margin-top: 9px;
     display: grid;
     grid-template-columns: 86px max-content;
@@ -188,24 +191,12 @@
     }
 }
 
-.semantic-tooltip-middle {
+.semantic-tooltip-block-middle {
     display: grid;
     grid-template-columns: 86px max-content;
     column-gap: 9px;
 
     :global(.uui-text) {
-        padding: 3px 0;
-    }
-}
-
-.semantic-tooltip-last {
-    display: grid;
-    grid-template-columns: 86px max-content 1fr max-content;
-    column-gap: 9px;
-    align-items: center;
-
-    :global(.uui-text), a {
-        padding-top: 3px;
-        padding-bottom: 9px;
+        padding: 3px 0 9px;
     }
 }

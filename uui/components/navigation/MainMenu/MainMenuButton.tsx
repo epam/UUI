@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CX, cx, devLogger, IAdaptiveItem, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets';
-import { ReactComponent as SvgTriangle } from '../../../icons/chevron-down-24.svg';
+import { ReactComponent as SvgTriangle } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './MainMenuButton.module.scss';
 
 interface MainMenuButtonMods {

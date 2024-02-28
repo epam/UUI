@@ -25,12 +25,12 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
             },
             {
                 title: 'Accent',
-                description: 'Use for accents, call to actions in addition to primary color. Can be used instead of primary in some cases.',
+                description: 'Use for accents, call to actions in addition to primary color. Can be used instead of primary.',
                 items: ('core/semantic/accent-'),
             },
             {
                 title: 'Info',
-                description: 'Uses in components to deliver information in calm, normal way.',
+                description: 'Uses in components to deliver information in a calm, normal way. Can be the same as primary.',
                 items: ('core/semantic/info-'),
             },
             {
@@ -50,7 +50,7 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
             },
             {
                 title: 'Critical',
-                description: 'Uses in components for destructive or critical actions or information.',
+                description: 'Uses in components for destructive, critical actions or deliver critically important information.',
                 items: ('core/semantic/critical-'),
             },
 

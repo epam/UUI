@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import css from './SortingPanel.module.scss';
-import { ReactComponent as SortIcon } from '../../../icons/table-sort_asc-24.svg';
-import { ReactComponent as SortIconDesc } from '../../../icons/table-sort_desc-24.svg';
+import { ReactComponent as SortIcon } from '@epam/assets/icons/table-sort_asc-outline.svg';
+import { ReactComponent as SortIconDesc } from '@epam/assets/icons/table-sort_desc-outline.svg';
 import { SortDirection } from '@epam/uui-core';
 import { FlexCell } from '../../layout';
 import { i18n } from '../../../i18n';

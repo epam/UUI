@@ -2,8 +2,8 @@ import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { Tooltip } from '../overlays/Tooltip';
-import { ReactComponent as FillInfoIcon } from '../../icons/notification-info-fill-24.svg';
-import { ReactComponent as InfoIcon } from '../../icons/notification-info-outline-24.svg';
+import { ReactComponent as FillInfoIcon } from '@epam/assets/icons/notification-info-fill.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/notification-info-outline.svg';
 import css from './LabeledInput.module.scss';
 
 const DEFAULT_SIZE = '36';
