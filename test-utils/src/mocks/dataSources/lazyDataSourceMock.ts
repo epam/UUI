@@ -8,9 +8,17 @@ type Props<TItem, TId, TFilter> = Omit<LazyDataSourceProps<TItem, TId, TFilter>,
 export function getLazyDataSourceMock<TItem extends { id: string }, TId, TFilter>(data: TItem[], props: Props<TItem, TId, TFilter>, delayTime?: number) {
     const api: LazyDataSourceApi<TItem, TId, TFilter> = props.api === undefined
         ? (request, ctx) => {
-            return Promise.resolve(runDataQuery(data, ctx?.parent
-                ? { ...request, filter: { parentId: ctx.parentId, ...request?.filter } as DataQueryFilter<TItem> }
-                : { ...request, filter: { parentId: { isNull: true }, ...request?.filter } as DataQueryFilter<TItem> }));
+            let query;
+            if (ctx?.parent) {
+                query = { ...request, filter: { parentId: ctx.parentId, ...request?.filter } as DataQueryFilter<TItem> };
+            } else {
+                if (request.search) {
+                    query = request;
+                } else {
+                    query = { ...request, filter: { parentId: { isNull: true }, ...request?.filter } as DataQueryFilter<TItem> };
+                }
+            }
+            return Promise.resolve(runDataQuery(data, query));
         }
         : props.api;
 
