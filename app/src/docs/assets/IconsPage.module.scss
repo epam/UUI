@@ -27,6 +27,7 @@
             line-height: inherit;
             text-align: left;
             color: var(--uui-text-primary);
+            cursor: pointer;
         }
 
         .title {
@@ -165,7 +166,6 @@
                 font-family: var(--font-regular);
                 font-size: 14px;
                 line-height: 24px;
-                cursor: pointer;
             }
         }
     }

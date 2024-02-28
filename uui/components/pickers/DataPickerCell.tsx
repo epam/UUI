@@ -4,8 +4,8 @@ import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { PickerCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { DataRowAddons } from '../widgets';
-import { ReactComponent as BoldTickIcon } from '../../icons/notification-done_bold-24.svg';
-import { ReactComponent as TickIcon } from '../../icons/notification-done-24.svg';
+import { ReactComponent as BoldTickIcon } from '@epam/assets/icons/notification-done-fill.svg';
+import { ReactComponent as TickIcon } from '@epam/assets/icons/notification-done-outline.svg';
 
 import css from './DataPickerCell.module.scss';
 

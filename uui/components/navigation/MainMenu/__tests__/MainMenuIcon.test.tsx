@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { MainMenuIcon } from '../MainMenuIcon';
-import { ReactComponent as CalendarIcon } from '../../../../icons/calendar-24.svg';
+import { ReactComponent as CalendarIcon } from '@epam/assets/icons/action-calendar-fill.svg';
 
 describe('MainMenuIcon', () => {
     it('should be rendered correctly with minimum props', async () => {

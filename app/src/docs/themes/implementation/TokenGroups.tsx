@@ -3,11 +3,11 @@ import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, Su
 import { INotificationContext, useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from '../../../sandbox/tokens/docs/useTokensDoc';
-import { ISemanticTableProps, ISkinTitleProps, ITokensDocGroup, ITokensDocItem } from '../../../sandbox/tokens/docs/types';
+import { ISemanticTableProps, ISkinTitleProps, ITokensDocGroup, ITokensDocItem, SemanticBlocksProps } from '../../../sandbox/tokens/docs/types';
+import cx from 'classnames';
 import css from './TokenGroups.module.scss';
 import { ReactComponent as hideDetailsIcon } from '@epam/assets/icons/common/action-eye-off-outline-18.svg';
 import { ReactComponent as showDetailsIcon } from '@epam/assets/icons/common/action-eye-outline-18.svg';
-import cx from 'classnames';
 
 // The config file with titles and descriptions to data groups and subgroups placed here: ( app/src/sandbox/tokens/docs/config.ts )
 
@@ -17,7 +17,7 @@ const showNotification = (color: string, uuiNotifications: INotificationContext)
             (props) => (
                 <SuccessNotification { ...props }>
                     <Text size="36" fontSize="14">
-                        { `The (${color}) token successfully copied to clipboard!` }
+                        { `var(${color}) token copied to clipboard!` }
                     </Text>
                 </SuccessNotification>
             ),
@@ -47,15 +47,16 @@ export function TokenGroups() {
 function Groups(props: { group: ITokensDocGroup, level: number }) {
     const { group, level } = props;
     const { title, description } = group;
+    const borderRef = useRef(null);
 
     if (level === 1) {
         return (
             <div>
                 <RichTextView size="16">
                     <h2 className={ css.groupTitle }>{ title }</h2>
-                    <p className={ css.groupInfo }>{ description }</p>
+                    <p ref={ borderRef } className={ css.groupInfo }>{ description }</p>
                 </RichTextView>
-                <TokenGroupChildren group={ group } level={ 2 } />
+                <TokenGroupChildren group={ group } level={ 2 } borderRef={ borderRef } />
             </div>
         );
     }
@@ -69,31 +70,25 @@ function Groups(props: { group: ITokensDocGroup, level: number }) {
         </div>
     );
 }
-
-const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
+ 
+function SemanticBlocks(props: SemanticBlocksProps) {
+    const { subgroup, details, openedDropdownId, setOpenedDropdownId } = props;
     const { uuiNotifications } = useUuiContext();
 
     if (subgroup._type === 'group_with_items') {
-        return subgroup.items.map((item, index) => {
+        const subgroupItems = subgroup.items.map((item, index) => {
             const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
 
             const renderTooltipContent = () => (
                 <FlexCell grow={ 1 }>
                     <FlexCell grow={ 1 }>
-                        <div className={ css.semanticTooltip }>
+                        <div className={ css.semanticTooltipBlock }>
                             <Text fontSize="12" color="tertiary">CSS variable</Text>
                             <Text fontSize="12">{ item.cssVar }</Text>
                         </div>
-                        <div className={ css.semanticTooltipMiddle }>
+                        <div className={ cx(css.semanticTooltipBlockMiddle, css.withBorder) }>
                             <Text fontSize="12" color="tertiary">Figma variable</Text>
                             <Text fontSize="12">{ item.cssVar.replace(/^--uui-/, '') }</Text>
-                        </div>
-                        <div className={ cx(css.semanticTooltipLast, css.withBorder) }>
-                            <Text fontSize="12" color="tertiary">Reference token</Text>
-                            <Text fontSize="12">{ item.baseToken }</Text>
-                            <FlexSpacer />
-                            <FlexSpacer />
-                            {/* <LinkButton size="24" caption="Learn more" link={ { pathname: '' } } /> */}
                         </div>
                     </FlexCell>
                     <FlexCell grow={ 1 } textAlign="center" cx={ css.semanticTooltipTitle }>
@@ -113,7 +108,15 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
                 </FlexCell>
             );
 
-            const semanticClickHandler = () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications));
+            const semanticClickHandler = () => copyTextToClipboard(`var(${item.cssVar})`, () => showNotification(item.cssVar, uuiNotifications));
+
+            const tooltipOnValueChange = (state: boolean, value: string) => {
+                if (state) {
+                    setOpenedDropdownId(() => value);
+                } else {
+                    setOpenedDropdownId(() => '');
+                }
+            };
 
             return (
                 <FlexCell key={ item.cssVar + item.value } grow={ 1 } alignSelf="flex-start">
@@ -126,55 +129,70 @@ const SemanticBlocks = (subgroup: ITokensDocGroup, details: boolean) => {
                         </div>
                     </Tooltip>
                     <div>
-                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeDelay={ 1000 } content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
-                            <Text cx={ [css.var] } onClick={ semanticClickHandler }>
-                                {item.cssVar.replace(/^--uui-/, '')}
-                            </Text>
-                        </Tooltip>
-                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeDelay={ 1000 } content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
-                            <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
-                                { item.value.toUpperCase() }
-                            </Text>
-                        </Tooltip>
-                        <Tooltip rawProps={ { style: { width: 'max-content' } } } closeDelay={ 1000 } content={ renderTooltipContent() } placement="left" openDelay={ 1000 } color="neutral">
-                            <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }>
-                                { item.baseToken }
-                            </Text>
+                        <Tooltip
+                            value={ openedDropdownId === item.cssVar }
+                            onValueChange={ (state) => tooltipOnValueChange(state, item.cssVar) }
+                            closeOnMouseLeave="boundary"
+                            maxWidth={ 360 }
+                            closeDelay={ 200 }
+                            content={ renderTooltipContent() }
+                            placement="bottom"
+                            openDelay={ 1000 }
+                            color="neutral"
+                        >
+                            <div className={ css.semanticItemsWrapper }>
+                                <Text cx={ [css.var] } onClick={ semanticClickHandler }>
+                                    {item.cssVar.replace(/^--uui-/, '')}
+                                </Text>
+                                <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
+                                    { item.value.toUpperCase() }
+                                </Text>
+                                <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }>
+                                    { item.baseToken }
+                                </Text>
+                            </div>
                         </Tooltip>
                     </div>
                 </FlexCell>
-            ); 
+            );
         });
-    }
-};
 
-function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
-    const rowsRef = useRef(null);
-    const [scrolling, setIsScrolling] = useState(false);
+        return (
+            // eslint-disable-next-line react/jsx-no-useless-fragment
+            <React.Fragment>
+                {subgroupItems}
+            </React.Fragment>
+        );
+    }
+}
+
+function SemanticTable({ group, details, setDetails, borderRef }: ISemanticTableProps) {
+    const [isVisible, setIsVisible] = useState(true);
+    const [openedDropdownId, setOpenedDropdownId] = useState('');
     // to sort semantic table rows in correct order like in the figma
     const RIGHT_ORDER = ['Primary', 'Secondary', 'Accent', 'Critical', 'Info', 'Success', 'Warning', 'Error'];
     const SKIN_COLOR_TOOLTIP_TEXT = (
         <React.Fragment>
-            <div>Skin specific color name.</div>
-            <div>Used as legacy in some skins.</div>
+            <div>Skin specific color name</div>
+            <div>Used as legacy in some skins</div>
         </React.Fragment>
     );
 
     useEffect(
         () => {
             const observer = new IntersectionObserver((entries) => {
-                if (entries[0].intersectionRatio > 0) {
-                    setIsScrolling(() => true);
-                } else if (entries[0].intersectionRatio <= 0) {
-                    setIsScrolling(() => false);
+                if (entries[0].isIntersecting) {
+                    setIsVisible(() => true);
+                } else {
+                    setIsVisible(() => false);
                 }
             });
 
-            if (rowsRef.current instanceof Element) {
-                observer.observe(rowsRef.current);
+            if (borderRef.current instanceof Element) {
+                observer.observe(borderRef.current);
                 return () => {
-                    if (rowsRef.current instanceof Element) {
-                        observer.unobserve(rowsRef.current);
+                    if (borderRef.current instanceof Element) {
+                        observer.unobserve(borderRef.current);
                     }
                 };
             }
@@ -191,7 +209,7 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
 
     return (
         <div>
-            <div className={ cx(css.semanticTableHeader, scrolling && css.withBorder) }>
+            <div className={ cx(css.semanticTableHeader, !isVisible && css.withBorder) }>
                 <FlexCell grow={ 1 }>
                     <Button
                         cx={ css.hideButton }
@@ -212,9 +230,11 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
                         skinThemeTitle = getSkinTitle(subgroup);
                     }
 
+                    const semanticProps = { subgroup, details, openedDropdownId, setOpenedDropdownId };
+
                     return (
                         <React.Fragment key={ subgroup.description }>
-                            <FlexCell grow={ 1 } cx={ css.semanticTitleCell } ref={ rowsRef }>
+                            <FlexCell grow={ 1 } cx={ css.semanticTitleCell }>
                                 <FlexRow columnGap="6" cx={ css.semanticTitleRow }>
                                     <Text fontSize="18" fontWeight="600" cx={ css.smallPaddings }>{subgroup.title}</Text>
                                     <Tooltip
@@ -222,12 +242,12 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
                                         placement="top"
                                         openDelay={ 200 }
                                     >
-                                        <Text fontWeight="600" color="disabled" cx={ css.smallPaddings }>{skinThemeTitle}</Text>
+                                        <Text fontSize="16" lineHeight="24" fontWeight="600" color="disabled" cx={ css.smallPaddings }>{skinThemeTitle}</Text>
                                     </Tooltip>
                                 </FlexRow>
                                 <Text cx={ [css.smallPaddings, css.headerDescription] }>{subgroup.description}</Text>
                             </FlexCell>
-                            {SemanticBlocks(subgroup, details)}
+                            <SemanticBlocks { ...semanticProps } />
                         </React.Fragment>
                     );
                 })}
@@ -236,7 +256,7 @@ function SemanticTable({ group, details, setDetails }: ISemanticTableProps) {
     );
 }
 
-function TokenGroupChildren(props: { group: ITokensDocGroup, level: number }) {
+function TokenGroupChildren(props: { group: ITokensDocGroup, level: number, borderRef?: React.MutableRefObject<any> }) {
     const { group } = props;
     const { _type } = group;
     const NO_DATA_IN_GROUP = <Text color="info" fontSize="16" fontStyle="italic">The data of this group is in work. It will be soon...</Text>;
@@ -244,7 +264,7 @@ function TokenGroupChildren(props: { group: ITokensDocGroup, level: number }) {
 
     if (_type === 'group_with_subgroups') {
         if (group.subgroups.length) {
-            return <SemanticTable group={ group } details={ details } setDetails={ setDetails } />;
+            return <SemanticTable group={ group } details={ details } setDetails={ setDetails } borderRef={ props.borderRef } />;
         }
         return NO_DATA_IN_GROUP;
     } else {
@@ -263,7 +283,7 @@ function TokenGroupItems(props: { items: ITokensDocItem[] }) {
     const { items } = props;
     const { uuiNotifications } = useUuiContext();
 
-    const list = items.map((item) => {
+    const tokenGroupItemList = items.map((item) => {
         const valueBackground = item.value ? `var(${item.cssVar})` : 'transparent';
         const renderTooltipContent = () => (
             <span>
@@ -301,10 +321,11 @@ function TokenGroupItems(props: { items: ITokensDocItem[] }) {
             </FlexRow>
         );
     });
+
     return (
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <React.Fragment>
-            {list}
+            {tokenGroupItemList}
         </React.Fragment>
     );
 }

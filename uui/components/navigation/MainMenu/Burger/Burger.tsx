@@ -2,6 +2,7 @@ import { withMods } from '@epam/uui-core';
 import cx from 'classnames';
 import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';
 import css from './Burger.module.scss';
+// TODO: needs icons from designers
 import { ReactComponent as BurgerIcon } from '../../../../icons/burger.svg';
 import { ReactComponent as CrossIcon } from '../../../../icons/burger-close.svg';
 

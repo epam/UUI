@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkButton } from '../LinkButton';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
-import { ReactComponent as CalendarIcon } from '../../../icons/calendar-24.svg';
+import { ReactComponent as CalendarIcon } from '@epam/assets/icons/action-calendar-fill.svg';
 
 describe('LinkButton', () => {
     it('should be rendered correctly', async () => {

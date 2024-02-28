@@ -3,6 +3,8 @@
 * [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
+* [RTE]: added `onFocus` prop
+  
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
@@ -11,6 +13,14 @@
     * Fixed fetching missing parents for selected element in PickerInput.
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
+* [RTE]: fixed tabled border rendering issues in Firefox
+* [RTE]: fixed placeholder position in Safari
+* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+
+# 5.6.1 - 19.02.2024
+
+**What's Fixed**
+[LazyListView]: refetch on search clear.
 
 # 5.6.0 - 08.02.2024
 
@@ -38,7 +48,7 @@
 * [FlexRow]: added property `justify-content` it can be equals `'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'`.
 * [DropSpot]: changed type of the property `infoText` from string into ReactNode. Now you can pass your own realization of it, or pass string and use our.
 * [Snackbar]: added 'Clear all notification' notification button while 2+ notifications displaying. To enable this behavior, exports Snackbar form @epam/uui package or skins.
- 
+
 **What's Fixed**
 * [PickerInput]: fixed initialy selected items clear with LazyDatasoruce
 * [PickerInput]: fixed partially selected mark for all chain of parent in single mode
@@ -48,7 +58,7 @@
 * [SearchInput]: fixed `onCancel` prop. Now component can use provided callback, not only default implementation
 * [useForm]: fixed `close` method to always return Promise
 * [LinkButton]: fixed sky color in loveship dark theme
-* [Badge]: fixed outline night600 color in loveship dark theme 
+* [Badge]: fixed outline night600 color in loveship dark theme
 
 # 5.5.3 - 07.02.2024
 

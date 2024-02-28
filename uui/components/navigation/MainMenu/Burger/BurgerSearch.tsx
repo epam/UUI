@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TextInput, TextInputProps } from '@epam/uui-components';
-import { ReactComponent as LensIcon } from '../../../../icons/search-24.svg';
-import { ReactComponent as CancelIcon } from '../../../../icons/menu_input_cancel.svg';
+import { ReactComponent as LensIcon } from '@epam/assets/icons/action-search-outline.svg';
+import { ReactComponent as CancelIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './BurgerSearch.module.scss';
 import cx from 'classnames';
 

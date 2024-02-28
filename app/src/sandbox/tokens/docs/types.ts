@@ -1,3 +1,5 @@
+import React from 'react';
+
 type ITokensDocGroupBase = {
     id: string,
     title: string,
@@ -30,4 +32,12 @@ export interface ISemanticTableProps {
     group: ISemanticGroup;
     details: boolean;
     setDetails: (arg0: (prev: any) => boolean) => void;
+    borderRef?: React.MutableRefObject<any>;
+}
+
+export interface SemanticBlocksProps {
+    subgroup: ITokensDocGroup;
+    details: boolean;
+    openedDropdownId: string;
+    setOpenedDropdownId: React.Dispatch<React.SetStateAction < string >>;
 }

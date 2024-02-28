@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { EditableDocContent, BaseDocsBlock } from '../../common';
 
-export class Overview extends BaseDocsBlock {
+export class ThemingOverview extends BaseDocsBlock {
     title = 'Overview';
 
     renderContent() {

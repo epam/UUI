@@ -10,7 +10,7 @@ import {
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
-import { ReactComponent as addIcon } from '../../icons/action-add-24.svg';
+import { ReactComponent as addIcon } from '@epam/assets/icons/action-add-outline.svg';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
 
 export interface FiltersPanelProps<TFilter> {

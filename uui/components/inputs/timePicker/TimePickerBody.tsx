@@ -4,7 +4,7 @@ import objectSupport from 'dayjs/plugin/objectSupport';
 import { cx, Icon, IEditable, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 import { IconContainer, NumericInput, TextInput } from '@epam/uui-components';
 import { TimePickerProps, TimePickerValue } from './TimePicker';
-import { ReactComponent as ArrowIcon } from '../../../icons/folding-arrow-24.svg';
+import { ReactComponent as ArrowIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './TimePicker.module.scss';
 
 dayjs.extend(objectSupport);
