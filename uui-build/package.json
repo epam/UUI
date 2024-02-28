@@ -11,6 +11,7 @@
     "generate-theme-mixins": "ts-node ts/scripts/themeMixinsGen.ts",
     "compile-theme-scss": "ts-node ts/scripts/compileThemeScss.ts",
     "track-bundle-size": "ts-node ts/scripts/trackBundleSize.ts",
+    "patch-playwrite": "ts-node ts/scripts/patchPlaywrite/patchPlaywrite.ts",
     "prepublish": "yarn build",
     "lint": "node ../uui-build/scripts/lint"
   },
