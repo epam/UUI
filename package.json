@@ -20,7 +20,7 @@
     "generate-theme-mixins": "yarn --cwd uui-build generate-theme-mixins",
     "lint-staged": "cross-env LINT_STAGED=true npx lint-staged",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
-    "postinstall": "cd server && yarn && yarn --cwd ../app test-e2e-install-deps",
+    "postinstall": "cd server && yarn && yarn --cwd ../app test-e2e-install-deps && yarn --cwd ../uui-build patch-playwrite",
     "prepare": "husky install",
     "process-icons": "node uui-build/scripts/processIcons.js",
     "release": "lerna publish --force-publish",
