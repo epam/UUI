@@ -27,6 +27,7 @@ export default function LazyTreeSearch() {
         {
             api: (request, ctx) => {
                 const { search } = request;
+
                 if (search && ctx.parentId) { // >1 level, search
                     return Promise.resolve({ items: ctx.parent.children });
                 } else if (search) {
