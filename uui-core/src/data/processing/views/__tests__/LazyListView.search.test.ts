@@ -555,5 +555,186 @@ describe('LazyListView - search', () => {
                 ]);
             });
         });
+
+        it('should work correctly with cascadeSelection = false', async () => {
+            const { dataSource } = getLazyLocationsDS({
+                flattenSearchResults: true,
+                cascadeSelection: false,
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.visibleCount = 50;
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined },
+                    { id: 'c-EU', parentId: undefined },
+                ]);
+            });
+
+            currentValue.search = 'Alge';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'DZ', parentId: 'c-AF' },
+                ]);
+            });
+
+            let view = hookResult.result.current;
+            let rows = view.getVisibleRows();
+            const rowDZ = rows[0];
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'DZ', parentId: 'c-AF', isChecked: true, isChildrenChecked: false },
+                ]);
+            });
+
+            await waitFor(() => {
+                expect(currentValue.checked).toEqual([
+                    'DZ',
+                ]);
+            });
+
+            currentValue.search = 'Afr';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', isChecked: false, isChildrenChecked: true },
+                ]);
+            });
+
+            currentValue.search = 'Zeralda';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: '2474583', parentId: 'DZ', isChecked: false },
+                ]);
+            });
+
+            rows = view.getVisibleRows();
+            const rowZeralda = rows[0];
+
+            await act(() => {
+                rowZeralda.onCheck?.(rowZeralda);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: '2474583', parentId: 'DZ', isChecked: true },
+                ]);
+            });
+
+            await waitFor(() => {
+                expect(currentValue.checked).toEqual([
+                    'DZ',
+                    '2474583',
+                ]);
+            });
+
+            currentValue.search = 'Alge';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'DZ', parentId: 'c-AF', isChecked: true, isChildrenChecked: true },
+                ]);
+            });
+
+            currentValue.search = 'Afr';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', isChecked: false, isChildrenChecked: true },
+                ]);
+            });
+
+            currentValue.search = 'Tlemcen';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: '2475687', isChecked: false },
+                ]);
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expect(view.getListProps().isReloading).toBeFalsy();
+            });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isChecked: false, isChildrenChecked: true },
+                    { id: 'c-EU', parentId: undefined },
+                ]);
+            });
+        });
     });
 });
