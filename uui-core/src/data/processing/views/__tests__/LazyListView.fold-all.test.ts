@@ -212,4 +212,48 @@ describe('LazyListView - fold all', () => {
             ]);
         });
     });
+
+    it('should fold all nodes on foldAll: true', async () => {
+        const { dataSource } = getLazyLocationsDS({});
+
+        currentValue.visibleCount = 50;
+        currentValue.folded = { 'c-AF': false };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expect(view.getListProps().isReloading).toBeFalsy();
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF', parentId: undefined },
+                { id: 'DZ', parentId: 'c-AF' },
+                { id: 'BJ', parentId: 'c-AF' },
+                { id: 'GM', parentId: 'c-AF' },
+                { id: 'c-EU', parentId: undefined },
+            ]);
+        });
+
+        currentValue.foldAll = true;
+        currentValue.folded = {};
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF', parentId: undefined },
+                { id: 'c-EU', parentId: undefined },
+            ]);
+        });
+    });
 });
