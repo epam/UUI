@@ -1,7 +1,7 @@
 import { RangeDatePickerInputType, RangeDatePickerValue, useUuiContext } from '@epam/uui-core';
 import { PickerBodyValue, defaultFormat, supportedDateFormats, toCustomDateRangeFormat, toValueDateRangeFormat, valueFormat } from '@epam/uui-components';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { InputType, RangeDatePickerProps } from './types';
 
 interface UseRangeDatePickerStateProps extends RangeDatePickerProps {
@@ -37,10 +37,8 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     if (!value) {
         return getDefaultValue();
     }
-
-    const inputFormat = format || defaultFormat;
     return {
-        inputValue: toCustomDateRangeFormat(value, inputFormat),
+        inputValue: toCustomDateRangeFormat(value, format),
         selectedDate: value,
         month: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
     };
@@ -59,8 +57,14 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
         isOpen: false,
         view: 'DAY_SELECTION',
         inFocus: props.initialInFocus || null,
-        ...getStateFromValue(props.value, props.format),
+        ...getStateFromValue(props.value, format),
     });
+
+    useEffect(() => {
+        setState({
+            inputValue: props.value ? toCustomDateRangeFormat(props.value, format) : defaultValue,
+        });
+    }, [format, props.value, setState]);
 
     const handleValueChange = (newValue: RangeDatePickerValue) => {
         const fromChanged = props.value?.from !== newValue.from;
@@ -212,21 +216,18 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
     };
 
     const clearRange = () => {
-        const clearAllowed = !props.disableClear && state.inputValue.from && state.inputValue.to;
-        if (clearAllowed) {
-            handleValueChange({
-                from: null,
-                to: null,
-            });
-            const defaultVal = getDefaultValue();
-            setState({
-                isOpen: true,
-                view: 'DAY_SELECTION',
-                inFocus: 'to',
-                selectedDate: defaultVal.selectedDate,
-                inputValue: defaultVal.inputValue,
-            });
-        }
+        handleValueChange({
+            from: null,
+            to: null,
+        });
+        const defaultVal = getDefaultValue();
+        setState({
+            isOpen: true,
+            view: 'DAY_SELECTION',
+            inFocus: 'to',
+            selectedDate: defaultVal.selectedDate,
+            inputValue: defaultVal.inputValue,
+        });
     };
 
     const getMonthOnOpening = (focus: RangeDatePickerInputType) => {

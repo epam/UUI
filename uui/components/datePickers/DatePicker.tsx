@@ -36,11 +36,8 @@ export function DatePickerComponent(props: DatePickerProps) {
 
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
-        setState({ month: getNewMonth(value) });
     }, [value]);
 
-    // check format of the value we send
-    // check value update from props. it should update input value
     const onInputChange = (input: string) => {
         const resultValue = toValueDateFormat(input, format);
         if (isValidDate(input, format, props.filter)) {
@@ -56,6 +53,7 @@ export function DatePickerComponent(props: DatePickerProps) {
             setState({
                 isOpen: open,
                 view: 'DAY_SELECTION',
+                month: getNewMonth(value),
             });
         } else {
             setState({ isOpen: open });

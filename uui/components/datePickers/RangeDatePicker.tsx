@@ -80,6 +80,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
             }
         }
 
+        const clearAllowed = !props.disableClear && state.inputValue.from && state.inputValue.to;
+
         return (
             <div
                 className={ cx(
@@ -117,7 +119,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     placeholder={ props.getPlaceholder ? props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     size={ props.size || '36' }
                     value={ state.inputValue.to }
-                    onCancel={ clearRange }
+                    onCancel={ clearAllowed && clearRange }
                     onValueChange={ getChangeHandler('to') }
                     onFocus={ (e) => handleFocus(e, 'to') }
                     onBlur={ (e) => handleBlur(e, 'to') }

@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { DatePickerState, PickerBodyValue, supportedDateFormats, valueFormat } from '@epam/uui-components';
 import { useUuiContext } from '@epam/uui-core';
 import { DatePickerProps } from './types';
@@ -35,6 +35,10 @@ export const useDatePickerState = (props: DatePickerProps) => {
         month: getNewMonth(value),
     });
 
+    useEffect(() => {
+        setState({ month: getNewMonth(value) });
+    }, [value]);
+
     const handleValueChange = (newValue: string | null) => {
         props.onValueChange(newValue);
 
@@ -45,7 +49,6 @@ export const useDatePickerState = (props: DatePickerProps) => {
     };
 
     const handleBodyChange = (newValue: Partial<PickerBodyValue<string>>) => {
-        // test
         if (newValue.selectedDate && value !== newValue.selectedDate) {
             handleValueChange(newValue.selectedDate);
         }
