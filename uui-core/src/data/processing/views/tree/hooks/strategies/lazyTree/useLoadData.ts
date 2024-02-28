@@ -129,10 +129,16 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 if (isImplicitMode) {
                     return itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId));
                 }
+                const { ids } = currentTree.full.getItems(undefined);
+                const rootIsNotLoaded = ids.length === 0;
 
                 // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                 // So, they should be compared not by reference, but by value.
-                return isRoot || isEqual(itemId, id) || (props.dataSourceState.search && parents.some((parent) => isEqual(parent, itemId)));
+                return isRoot
+                    || isEqual(itemId, id)
+                    || (props.dataSourceState.search
+                        && (parents.some((parent) => isEqual(parent, itemId))
+                            || (itemId === ROOT_ID && rootIsNotLoaded)));
             },
             isLoadStrict: true,
             dataSourceState: { search: null },
