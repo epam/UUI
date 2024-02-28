@@ -60,8 +60,12 @@ export function useCheckingService<TItem, TId>(
     }, [checkedByKey]);
 
     const isRowChildrenChecked = useCallback((row: DataRowProps<TItem, TId>) => {
+        if (cascadeSelection === CascadeSelectionTypes.IMPLICIT) {
+            return isRowChecked(row) || someChildCheckedByKey[row.rowKey] || false;
+        }
+
         return someChildCheckedByKey[row.rowKey] ?? false;
-    }, [someChildCheckedByKey]);
+    }, [someChildCheckedByKey, isRowChecked, tree]);
 
     const getRowProps = useCallback((item: TItem) => {
         const externalRowOptions = getRowOptions ? getRowOptions(item) : {};
