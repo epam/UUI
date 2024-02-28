@@ -6,11 +6,9 @@ import { InputType, RangeDatePickerProps } from './types';
 
 interface UseRangeDatePickerStateProps extends RangeDatePickerProps {
     initialInFocus?: RangeDatePickerInputType;
-    onClose?: () => void;
 }
 
 interface RangeDatePickerState extends PickerBodyValue<RangeDatePickerValue> {
-    isOpen: boolean;
     inputValue: RangeDatePickerValue;
     inFocus: RangeDatePickerInputType;
 }
@@ -54,7 +52,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
             ...newState,
         };
     }, {
-        isOpen: false,
         view: 'DAY_SELECTION',
         inFocus: props.initialInFocus || null,
         ...getStateFromValue(props.value, format),
@@ -222,9 +219,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
         });
         const defaultVal = getDefaultValue();
         setState({
-            isOpen: true,
             view: 'DAY_SELECTION',
-            inFocus: 'to',
             selectedDate: defaultVal.selectedDate,
             inputValue: defaultVal.inputValue,
         });
@@ -245,7 +240,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
     const toggleIsOpen = (value: boolean, focus?: RangeDatePickerInputType) => {
         if (!props.isReadonly && !props.isDisabled) {
             const newState: Partial<RangeDatePickerState> = {
-                isOpen: value,
                 view: 'DAY_SELECTION',
                 inFocus: value ? focus : null,
             };
@@ -256,15 +250,9 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerStateProps) => 
                 });
             } else {
                 setState(newState);
-                props.onClose?.();
             }
 
-            props?.onOpenChange?.(value);
-
-            // if (props.getValueChangeAnalyticsEvent) {
-            //     const event = props.getValueChangeAnalyticsEvent(value, state.isOpen);
-            //     context.uuiAnalytics.sendEvent(event);
-            // }
+            props.onOpenChange?.(value);
         }
     };
 
