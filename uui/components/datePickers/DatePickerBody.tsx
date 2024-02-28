@@ -92,7 +92,8 @@ export function DatePickerBody({
 
     return (
         <div
-            ref={ forwardedRef } className={ cx(uuiDatePickerBodyBase.container, classes) }
+            ref={ forwardedRef }
+            className={ cx(uuiDatePickerBodyBase.container, classes) }
             { ...rawProps }
         >
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>
