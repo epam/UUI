@@ -93,6 +93,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             props.onClear();
             props.onValueChange('');
         }
+        toggleContainer.current?.focus();
         e.stopPropagation();
     };
 
