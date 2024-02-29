@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20" height="20" version="1.1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="4.4" cy="10" r="1.35">
+    <animateTransform
+       attributeName="transform"
+       begin="-0.7"
+       calcMode="spline"
+       dur="0.8s"
+       keySplines=".42,0,.58,1; 0,0,.58,1"
+       keyTimes="0; 0.5; 1"
+       repeatCount="indefinite"
+       type="translate"
+       values="0 2.2 ;0 -2.2; 0 2.2" />
+  </circle>
+  <circle cx="10" cy="10" r="1.35">
+    <animateTransform
+       attributeName="transform"
+       begin="-0.55"
+       calcMode="spline"
+       dur="0.8s"
+       keySplines=".42,0,.58,1; 0,0,.58,1"
+       keyTimes="0; 0.5; 1"
+       repeatCount="indefinite"
+       type="translate"
+       values="0 2.2 ;0 -2.2; 0 2.2" />
+  </circle>
+  <circle cx="15.6" cy="10" r="1.35">
+    <animateTransform
+       attributeName="transform"
+       begin="-0.4"
+       calcMode="spline"
+       dur="0.8s"
+       keySplines=".42,0,.58,1; 0,0,.58,1"
+       keyTimes="0; 0.5; 1"
+       repeatCount="indefinite"
+       type="translate"
+       values="0 2.2 ;0 -2.2; 0 2.2" />
+  </circle>
+</svg>

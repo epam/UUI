@@ -62,32 +62,26 @@
     &:global {
         &.uui-size-18 {
             @include link-button-layout(18px);
-            @include scalable-icon-size(18);
         }
 
         &.uui-size-24 {
             @include link-button-layout(24px);
-            @include scalable-icon-size(24);
         }
 
         &.uui-size-30 {
             @include link-button-layout(30px);
-            @include scalable-icon-size(30);
         }
 
         &.uui-size-36 {
             @include link-button-layout(36px);
-            @include scalable-icon-size(36);
         }
 
         &.uui-size-42 {
             @include link-button-layout(42px);
-            @include scalable-icon-size(42);
         }
 
         &.uui-size-48 {
             @include link-button-layout(48px);
-            @include scalable-icon-size(48);
         }
     }
 }
