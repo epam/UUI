@@ -9,7 +9,9 @@ import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../../constants';
 import { TreeNodeInfo, TreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
-import { PatchItemsOptions } from '../treeStructure/helpers/types';
+import { PatchItemsOptions as PatchItemsTreeStructureOptions } from '../treeStructure/helpers/types';
+
+import { PatchItemsOptions } from '../../../../../../types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -165,7 +167,7 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeletedProp, getPosition }: PatchItemsOptions<TItem, TId>) {
+    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeletedProp, getPosition }: PatchItemsTreeStructureOptions<TItem, TId>) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
             treeStructure,
             itemsMap: itemsMap,
