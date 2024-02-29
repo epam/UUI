@@ -1,13 +1,20 @@
-import { act, renderHook } from '@epam/uui-test-utils';
-import { ArrayDataSource } from '../../ArrayDataSource';
-import { CascadeSelection, DataSourceState, SortDirection } from '../../../../types';
+import { act, renderHook, waitFor } from '@epam/uui-test-utils';
+import { ArrayDataSource, ArrayDataSourceProps } from '../../ArrayDataSource';
+import { CascadeSelection, DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView, SortDirection } from '../../../../types';
 import isEqual from 'lodash.isequal';
 import { ArrayListViewProps } from '../types';
+import { LocationItem, getArrayLocationsDS } from '../../__tests__/mocks';
 
 interface TItem {
     id: number;
     level: string;
     parentId?: number;
+}
+
+interface TestItem {
+    id: number;
+    parentId?: number;
+    childrenCount?: number;
 }
 
 const testItems: TItem[] = [
@@ -43,7 +50,7 @@ const countries: Country[] = [
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
-let dataSource: ArrayDataSource<{ id: number; level: string }, number, any>;
+let dataSource: ArrayDataSource<TItem, number, any>;
 
 let onValueChangeFn: (newValue: DataSourceState<any, number> | ((value: DataSourceState<any, number>) => DataSourceState<any, number>)) => any;
 const initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
@@ -51,6 +58,46 @@ let currentValue = initialValue;
 let viewProps: ArrayListViewProps<TItem, number, any>;
 
 describe('ArrayListView', () => {
+    const testData: TestItem[] = [
+        { id: 100 }, //  0   100
+        { id: 110, parentId: 100 }, //  1   110
+        { id: 120, parentId: 100 }, //  2     120
+        { id: 121, parentId: 120 }, //  3       121
+        { id: 122, parentId: 120 }, //  4       122
+        { id: 200 }, //  5   200
+        { id: 300 }, //  6   300
+        { id: 310, parentId: 300 }, //  7     310
+        { id: 320, parentId: 300 }, //  8     320
+        { id: 330, parentId: 300 }, //  9     330
+    ];
+
+    testData.forEach((i) => {
+        i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
+    });
+
+    const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
+
+    function expectViewToLookLike(
+        view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
+        rows: Partial<DataRowProps<TestItem, number>>[],
+    ) {
+        const viewRows = view.getVisibleRows();
+
+        rows.forEach((r) => {
+            if (r.id) {
+                r.value = testDataById[r.id];
+            }
+        });
+
+        expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+    }
+
+    const treeDataSource = new ArrayDataSource({
+        items: testData,
+        getId: (i) => i.id,
+        getParentId: (i) => i.parentId,
+    });
+
     beforeEach(() => {
         jest.clearAllMocks();
 
@@ -63,7 +110,7 @@ describe('ArrayListView', () => {
             currentValue = newValue;
         });
 
-        dataSource = new ArrayDataSource<TItem, number>({
+        dataSource = new ArrayDataSource<TItem, number, any>({
             items: testItems,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
@@ -356,6 +403,363 @@ describe('ArrayListView', () => {
 
             expect(rows).toHaveLength(0);
             expect(rowsIds).toEqual([]);
+        });
+    });
+
+    describe('tree-search', () => {
+        const onValueChanged = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                currentValue = newValue(currentValue);
+                return;
+            }
+            currentValue = newValue;
+        };
+
+        beforeEach(() => {
+            currentValue = { visibleCount: 5 };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
+        it('should show unfolded tree results', async () => {
+            const locationsDS = getArrayLocationsDS({
+                getSearchFields: ({ name }) => [name],
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+        });
+
+        it.each<CascadeSelection>([true, 'explicit'])('should check all children for search results with cascadeSelection = %s', async (cascadeSelection) => {
+            const locationsDS = getArrayLocationsDS({
+                cascadeSelection,
+                getSearchFields: ({ name }) => [name],
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            view = hookResult.result.current;
+            expectRows(
+                view,
+                [
+                    { id: 'c-AF', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 1, depth: 0 },
+                    { id: 'DZ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                    { id: '2474583', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 3, depth: 2 },
+                ],
+            );
+
+            const rows = view.getVisibleRows();
+            const rowDZ = rows[1];
+
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            expect(currentValue.checked).toEqual([
+                'DZ',
+                '2474141',
+                '2475744',
+                '2475740',
+                '2475752',
+                '2475687',
+                '2475612',
+                '2475475',
+                '2474638',
+                '2474583',
+                '2474506',
+            ]);
+
+            currentValue.search = 'Touggourt';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rowTouggourt = view.getVisibleRows()[2];
+
+            await act(() => {
+                rowTouggourt.onCheck?.(rowTouggourt);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: true, indent: 1, depth: 0 },
+                        { id: 'c-EU', isChecked: false, isChildrenChecked: false, isFolded: true, indent: 1, depth: 0 },
+                    ],
+                );
+            });
+        });
+
+        it('should check all children for search results with cascadeSelection = implicit', async () => {
+            const locationsDS = getArrayLocationsDS({
+                cascadeSelection: 'implicit',
+                getSearchFields: ({ name }) => [name],
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rows = view.getVisibleRows();
+            const rowDZ = rows[1];
+
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            expect(currentValue.checked).toEqual(['DZ']);
+
+            currentValue.search = 'Touggourt';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rowTouggourt = view.getVisibleRows()[2];
+
+            await act(() => {
+                rowTouggourt.onCheck?.(rowTouggourt);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: true, indent: 1, depth: 0 },
+                        { id: 'c-EU', isChecked: false, isChildrenChecked: false, isFolded: true, indent: 1, depth: 0 },
+                    ],
+                );
+            });
+        });
+
+        it('should check all children for search results with cascadeSelection = false', async () => {
+            const locationsDS = getArrayLocationsDS({
+                cascadeSelection: false,
+                getSearchFields: ({ name }) => [name],
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rows = view.getVisibleRows();
+            const rowDZ = rows[1];
+
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            expect(currentValue.checked).toEqual(['DZ']);
+
+            currentValue.search = 'Benin';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'BJ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                    ],
+                );
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: true, indent: 1, depth: 0 },
+                        { id: 'c-EU', isChecked: false, isChildrenChecked: false, isFolded: true, indent: 1, depth: 0 },
+                    ],
+                );
+            });
         });
     });
 
@@ -776,5 +1180,90 @@ describe('ArrayListView', () => {
         expect(selectedRows.map(({ id }) => id)).toEqual([
             6, 5, 4,
         ]);
+    });
+
+    it('Correctly computes path and isLastChild', async () => {
+        currentValue.folded = { 120: true };
+        currentValue.visibleCount = 10;
+
+        const hookResult = renderHook(
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
+                cascadeSelection: true,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChangeFn } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
+
+        currentValue.folded = { 120: false };
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChangeFn });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toBe(10);
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    {
+                        id: 121,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: false,
+                    },
+                    {
+                        id: 122,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: true,
+                    },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toBe(10);
+    });
+
+    it('handles empty result', async () => {
+        const props: Partial<ArrayDataSourceProps<TestItem, number, any>> = {
+            getFilter: () => (item) => item.id === -100500,
+        };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: { visibleCount: 3, filter: { id: -100500 } }, onValueChange: onValueChangeFn, props } },
+        );
+
+        let view = hookResult.result.current;
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, []);
+        });
+
+        expect(view.getListProps().rowsCount).toBe(0);
     });
 });
