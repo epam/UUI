@@ -4,7 +4,7 @@ import { TreeState, getSelectedAndChecked } from '../../../newTree';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { RecordStatus } from '../../../types';
-import { useItemsStatusCollector } from '../../useItemsStatusCollector';
+import { useItemsStatusCollector } from '../../common';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;

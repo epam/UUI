@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
-import { useSimplePrevious } from '../../../../../../../hooks';
-import { DataSourceState } from '../../../../../../../types';
-import { TreeState } from '../../../newTree';
+import { useSimplePrevious } from '../../../../../../hooks';
+import { DataSourceState } from '../../../../../../types';
+import { TreeState } from '../../newTree';
 
 export type UseFilterTreeProps<TItem, TId, TFilter = any> = {
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;

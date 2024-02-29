@@ -1,7 +1,6 @@
 import {
     SortingOption, BaseListViewProps, LazyDataSourceApi,
 } from '../../../types';
-import { PatchItemsOptions } from './tree/newTree/treeState/types';
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /** A pure function that gets search value for each item.
@@ -49,7 +48,7 @@ export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
-export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter>, PatchItemsOptions<TItem, TId> {
+export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /**
      * A function to retrieve the data, asynchronously.
      * This function usually performs a REST API call.

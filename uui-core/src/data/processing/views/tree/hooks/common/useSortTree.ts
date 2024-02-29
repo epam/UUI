@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
-import { useSimplePrevious } from '../../../../../../../hooks';
-import { DataSourceState, SortingOption } from '../../../../../../../types';
-import { TreeState } from '../../../newTree';
+import { useSimplePrevious } from '../../../../../../hooks';
+import { DataSourceState, SortingOption } from '../../../../../../types';
+import { TreeState } from '../../newTree';
 
 export type UseSortTreeProps<TItem, TId, TFilter = any> = {
     sortBy?(item: TItem, sorting: SortingOption): any;

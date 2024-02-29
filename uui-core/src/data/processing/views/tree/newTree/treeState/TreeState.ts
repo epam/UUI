@@ -1,7 +1,7 @@
 import { ItemsStorage } from '../../ItemsStorage';
 import {
     FilterOptions, LoadAllOptions, LoadOptions,
-    SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions, PatchItemsOptions,
+    SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions,
 } from './types';
 import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap, newMap } from '../treeStructure';
 import { ItemsMap } from '../../ItemsMap';
@@ -9,6 +9,7 @@ import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../../constants';
 import { TreeNodeInfo, TreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
+import { PatchItemsOptions } from '../treeStructure/helpers/types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -164,25 +165,50 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    public patchItems({ patchItems, isDeletedProp, getPosition }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
-        const treeStructure = this.getTreeStructure('full');
+    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeletedProp, getPosition }: PatchItemsOptions<TItem, TId>) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
             treeStructure,
-            itemsMap: this.itemsMap,
+            itemsMap: itemsMap,
             patchItems,
             isDeletedProp,
             getPosition,
         });
 
-        if (newTreeStructure === treeStructure && newItemsMap === this.itemsMap && !newItems.length) {
-            return this;
+        if (newTreeStructure === treeStructure && newItemsMap === itemsMap && !newItems.length) {
+            return { treeStructure, itemsMap };
         }
 
         if (newItems.length) {
             this.setItems(newItems, { on: 'patch' });
         }
 
-        return this.withNewTreeStructures({ treeStructure: newTreeStructure, itemsMap: newItemsMap });
+        return { treeStructure: newTreeStructure, itemsMap: newItemsMap };
+    }
+
+    public patchItems({ patchItems, isDeletedProp, getPosition }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
+        const { treeStructure: newFull, itemsMap: newItemsMap } = this.patchItemsTreeStructure({
+            treeStructure: this.getTreeStructure('full'),
+            itemsMap: this.itemsMap,
+            patchItems,
+            isDeletedProp,
+            getPosition,
+        });
+
+        const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchItemsTreeStructure({
+            treeStructure: this.getTreeStructure('visible'),
+            itemsMap: newItemsMap,
+            patchItems,
+            isDeletedProp,
+            getPosition,
+        });
+
+        if (this.getTreeStructure('full') === newFull && this.getTreeStructure('visible') === newVisible) {
+            return this;
+        }
+
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(updatedItemsMap);
+        const selectedOnly = TreeStructure.withNewItemsAccessor(itemsAccessor, this._selectedOnlyTree);
+        return TreeState.create(newFull, newVisible, selectedOnly, updatedItemsMap, this._setItems);
     }
 
     /**

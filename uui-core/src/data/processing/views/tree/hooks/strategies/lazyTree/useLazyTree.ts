@@ -4,15 +4,11 @@ import { useSimplePrevious } from '../../../../../../../hooks';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults } from '../../useDataSourceStateWithDefaults';
+import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector } from '../../common';
 import { TreeState } from '../../../newTree';
-import { useItemsStorage } from '../../useItemsStorage';
-import { usePatchTree } from '../../usePatchTree';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
-import { useItemsStatusCollector } from '../../useItemsStatusCollector';
 import { getSelectedAndChecked } from '../../../newTree/treeStructure';
 import { isSelectedOrCheckedChanged } from '../checked';
-import { useSelectedOnlyTree } from '../../useSelectedOnlyTree';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,

@@ -1,6 +1,6 @@
-import { CascadeSelection, DataRowOptions, DataSourceState } from '../../../../../../../types';
+import { CascadeSelection, DataRowOptions, DataSourceState, PatchItemsOptions } from '../../../../../../../types';
 
-export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
+export interface CommonDataSourceConfig<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId> {
     dataSourceState: DataSourceState<TFilter, TId>;
     setDataSourceState: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 
