@@ -10,6 +10,7 @@
 @mixin link-button-layout($size) {
     @include link-button-horizontal-layout($size);
     @include button-vertical-layout($size, 0);
+    @include scalable-icon-size($size);
 }
 
 @mixin button-vertical-layout($size, $borderWidth) {

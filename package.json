@@ -23,7 +23,6 @@
     "postinstall": "cd server && yarn",
     "prepare": "husky install",
     "process-icons": "node uui-build/scripts/processIcons.js icons",
-    "process-system-icons": "node uui-build/scripts/processIcons.js system-icons",
     "release": "lerna publish --force-publish",
     "start": "cd ./app && yarn start",
     "start-server": "cd ./app && yarn server",
