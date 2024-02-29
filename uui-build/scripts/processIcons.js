@@ -97,10 +97,6 @@ switch (iconType) {
         inputFolder = 'icons/process_icons';
         outputFolder = 'epam-assets/icons';
         break;
-    case 'system-icons':
-        inputFolder = 'icons/process_system_icons';
-        outputFolder = 'uui/icons';
-        break;
 }
 
 function getNewFilePath(filePath, fileName) {
