@@ -35,23 +35,25 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
     });
 
     const [isForceReload, setIsForceReload] = useState(false);
-    const isLoaded = itemsMap.size > 0;
+    const isSomethingLoaded = itemsMap.size > 0;
 
     const baseTree = useMemo(() => {
-        if (isLoaded) {
+        if (isSomethingLoaded) {
             return TreeState.createFromItems(undefined, itemsMap, props, setItems);
         }
         return TreeState.blank(props, itemsMap, setItems);
-    }, [...deps, isLoaded]);
+    }, [...deps, isSomethingLoaded]);
+
+    const [incommingTree, setIncommingTree] = useState(baseTree);
 
     const prevIsForceReload = useSimplePrevious(isForceReload);
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
-    const { tree: treeWithData, itemsStatusCollector, isLoading, isFetching } = useLoadData({
+    const { tree: treeWithData, itemsStatusCollector, isLoaded: isTreeLoaded, isLoading, isFetching } = useLoadData({
         getId,
         complexIds,
         api: () => props.api().then((items) => ({ items })),
-        tree: baseTree,
+        tree: incommingTree,
         dataSourceState: {
             visibleCount: dataSourceState.visibleCount,
             topIndex: dataSourceState.topIndex,
@@ -60,8 +62,8 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         },
         forceReload: isForceReload,
         showOnlySelected,
-        isLoaded,
-    }, [...deps, baseTree]);
+        isLoaded: isSomethingLoaded,
+    }, [...deps, incommingTree]);
 
     const prevIsFetching = useSimplePrevious(isFetching);
 
@@ -73,16 +75,18 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
     }, [treeWithData]);
 
     const reload = useCallback(() => {
+        setIncommingTree(TreeState.blank(props, itemsMap, setItems));
         setIsForceReload(true);
     }, [setIsForceReload]);
 
+    const isTreeLoading = !isTreeLoaded || isLoading || isFetching;
     const filteredTree = useFilterTree(
-        { tree: treeWithData, getFilter, dataSourceState, isLoading: isLoading || isFetching },
+        { tree: treeWithData, getFilter, dataSourceState, isLoading: isTreeLoading },
         [treeWithData],
     );
 
     const sortTree = useSortTree(
-        { tree: filteredTree, sortBy, dataSourceState, isLoading: isLoading || isFetching },
+        { tree: filteredTree, sortBy, dataSourceState, isLoading: isTreeLoading },
         [filteredTree],
     );
 
@@ -92,7 +96,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
             getSearchFields,
             sortSearchByRelevance,
             dataSourceState,
-            isLoading: isLoading || isFetching,
+            isLoading: isTreeLoading,
         },
         [sortTree],
     );
@@ -100,7 +104,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
     const tree = useSelectedOnlyTree({
         tree: searchTree,
         dataSourceState,
-        isLoading: isLoading || isFetching,
+        isLoading: isTreeLoading,
     }, [searchTree]);
 
     const getChildCount = useCallback((item: TItem): number | undefined => {

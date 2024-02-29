@@ -87,9 +87,10 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
     useEffect(() => {
         if (isDepsChanged || shouldForceReload) {
+            setLoadedTree(tree);
             setIsLoaded(false);
         }
-    }, [isDepsChanged, shouldForceReload]);
+    }, [isDepsChanged, shouldForceReload, tree]);
 
     useEffect(() => {
         if (shouldLoad) {
@@ -103,15 +104,15 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setLoadedTree(newTree);
-                        setIsLoaded(true);
                     }
                 })
                 .finally(() => {
+                    setIsLoaded(true);
                     setIsFetching(false);
                     setIsLoading(false);
                 });
         }
     }, [shouldLoad, isDepsChanged, shouldForceReload]);
 
-    return { tree: loadedTree, isLoading, isFetching, itemsStatusCollector };
+    return { tree: loadedTree, isLoading, isFetching, isLoaded, itemsStatusCollector };
 }
