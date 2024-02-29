@@ -4,7 +4,7 @@ import { ServerAsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { TreeState } from '../../../newTree';
-import { useItemsStorage } from '../../useItemsStorage';
+import { useItemsStorage } from '../../common';
 
 export function useServerAsyncTree<TItem, TId, TFilter = any>(
     props: ServerAsyncTreeProps<TItem, TId, TFilter>,

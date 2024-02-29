@@ -66,10 +66,3 @@ export interface PatchOptions<TItem> {
     isDeletedProp?: keyof TItem;
     comparator?: ItemsComparator<TItem>;
 }
-
-export type Position = 'initial' | 'top' | 'bottom';
-export interface PatchItemsOptions<TItem, TId> {
-    patchItems?: ItemsMap<TId, TItem>;
-    isDeletedProp?: keyof TItem;
-    getPosition?: (item: TItem) => Position | { after: TId };
-}

@@ -1,12 +1,11 @@
 import { useCallback, useMemo, useState } from 'react';
 import { PlainTreeProps } from './types';
 import { useCreateTree } from './useCreateTree';
-import { useFilterTree } from './useFilterTree';
-import { useSearchTree } from './useSearchTree';
-import { useSortTree } from './useSortTree';
+import {
+    useFilterTree, useSearchTree, useSortTree, useDataSourceStateWithDefaults,
+    useItemsStorage, usePatchTree, useSelectedOnlyTree,
+} from '../../common';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults } from '../../useDataSourceStateWithDefaults';
-import { useItemsStorage } from '../../useItemsStorage';
 
 export function usePlainTree<TItem, TId, TFilter = any>(
     { sortSearchByRelevance = true, items, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
@@ -57,10 +56,22 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         [filteredTree],
     );
 
-    const tree = useSearchTree(
+    const searchTree = useSearchTree(
         { tree: sortTree, getSearchFields, sortSearchByRelevance, dataSourceState },
         [sortTree],
     );
+
+    const treeWithSelectedOnly = useSelectedOnlyTree({
+        tree: searchTree,
+        dataSourceState,
+    }, [searchTree]);
+
+    const tree = usePatchTree({
+        tree: treeWithSelectedOnly,
+        patchItems: showOnlySelected ? null : restProps.patchItems,
+        isDeletedProp: restProps.isDeletedProp,
+        getPosition: restProps.getPosition,
+    });
 
     const getChildCount = useCallback((item: TItem): number | undefined => {
         if (props.getChildCount) {

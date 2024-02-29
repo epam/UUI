@@ -1,17 +1,17 @@
 import { useMemo, useRef } from 'react';
-import { useSimplePrevious } from '../../../../../hooks';
-import { DataSourceState } from '../../../../../types';
-import { TreeState } from '../newTree';
-import { getChecked, isSelectedOrCheckedChanged } from './strategies/checked';
+import { useSimplePrevious } from '../../../../../../hooks';
+import { DataSourceState } from '../../../../../../types';
+import { TreeState } from '../../newTree';
+import { getChecked, isSelectedOrCheckedChanged } from '../strategies/checked';
 
-export type UseFilterTreeProps<TItem, TId, TFilter = any> = {
+export type UseSelectedOnlyTreeProps<TItem, TId, TFilter = any> = {
     tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
     isLoading?: boolean;
 };
 
 export function useSelectedOnlyTree<TItem, TId, TFilter = any>(
-    { tree, dataSourceState, isLoading }: UseFilterTreeProps<TItem, TId, TFilter>,
+    { tree, dataSourceState, isLoading }: UseSelectedOnlyTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevTree = useSimplePrevious(tree);

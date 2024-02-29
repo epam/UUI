@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { TreeState } from '../newTree';
-import { PatchItemsOptions } from '../newTree/treeState/types';
+import { TreeState } from '../../newTree';
+import { PatchItemsOptions } from '../../../../../../types';
 
 export interface UsePatchTreeProps<TItem, TId> extends PatchItemsOptions<TItem, TId> {
     tree: TreeState<TItem, TId>;

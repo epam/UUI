@@ -65,6 +65,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             ...restDSProps,
             ...options,
             
+            items,
             itemsMap,
             setItems: this.itemsStorage.setItems,
             dataSourceState: value,

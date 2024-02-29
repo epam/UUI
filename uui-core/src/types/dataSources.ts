@@ -1,5 +1,6 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
+import { ItemsMap } from '../data';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -128,8 +129,14 @@ export const CascadeSelectionTypes = {
 
 export type CascadeSelection = boolean | typeof CascadeSelectionTypes.EXPLICIT | typeof CascadeSelectionTypes.IMPLICIT;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface BaseListViewProps<TItem, TId, TFilter> {
+export type Position = 'initial' | 'top' | 'bottom';
+export interface PatchItemsOptions<TItem, TId> {
+    patchItems?: ItemsMap<TId, TItem>;
+    isDeletedProp?: keyof TItem;
+    getPosition?: (item: TItem) => Position | { after: TId };
+}
+
+export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
     /**
      * Should return unique ID of the TItem
      * If omitted, we assume that every TItem has and unique id in its 'id' field.
