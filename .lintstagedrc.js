@@ -1,4 +1,4 @@
 module.exports = {
-    '!(templates/**)*.{js,ts,tsx}': ['eslint --fix'],
-    '!(templates/**)*.{scss}': ['stylelint'],
+    '!((templates/**)|(next-app/**))*.{js,ts,tsx}': ['eslint --fix'],
+    '!((templates/**)|(next-app/**))*.scss': ['stylelint'],
 };

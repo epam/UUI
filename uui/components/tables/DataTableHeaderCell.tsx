@@ -116,7 +116,14 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         }
     };
 
-    renderResizeMark = (props: HeaderCellContentProps) => <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />;
+    renderResizeMark = (props: HeaderCellContentProps) => (
+        <div
+            role="separator"
+            onMouseDown={ props.onResizeStart }
+            className={ cx(css.resizeMark, uuiMarkers.draggable, uuiMarkers.clickable) }
+        />
+    );
+
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
         return (
@@ -136,6 +143,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     this.props.isFirstColumn && css['first-column'],
                     this.props.isLastColumn && css['last-column'],
                     this.props.column.cx,
+                    this.props.column.fix && css['pinned-' + this.props.column.fix],
                     isResizable && css.resizable,
                     props.isDraggable && css.draggable,
                     props.isDragGhost && css.ghost,

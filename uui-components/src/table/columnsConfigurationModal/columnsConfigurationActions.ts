@@ -1,10 +1,10 @@
 import {
-    ColumnsConfig, DataColumnProps, DropPosition, ICanBeFixed, IColumnConfig,
+    ColumnsConfig, DataColumnProps, DropPosition, IColumnConfig,
 } from '@epam/uui-core';
 import {
     getNewColumnOrder, findFirstByGroupKey, findLastByGroupKey, isEmptyCaption,
 } from './columnsConfigurationUtils';
-import { GroupedDataColumnProps } from './types';
+import { GroupedDataColumnProps, TColumnPinPosition } from './types';
 
 export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig; columns: DataColumnProps[]; value: boolean }) {
     const { prevConfig, columns, value } = props;
@@ -51,32 +51,56 @@ export function moveColumnRelativeToAnotherColumn(props: {
     };
 }
 
-export function toggleSingleColumnPin(props: { prevConfig: ColumnsConfig; columnsSorted: DataColumnProps[]; columnKey: string }) {
-    const { prevConfig, columnKey, columnsSorted } = props;
+export function toggleSingleColumnPin(props: { prevConfig: ColumnsConfig; columnsSorted: DataColumnProps[]; columnKey: string; fix: TColumnPinPosition }) {
+    const { prevConfig, columnKey, columnsSorted, fix } = props;
     const prevColumn = prevConfig[columnKey];
-    const prevFix = prevColumn.fix;
-    let order = prevConfig[columnKey].order;
 
-    // on pin: move before first item of unpinned list
-    // on unpin: do the same
-    const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
-    if (column) {
-        const targetOrder = prevConfig[column.key]?.order;
-        const targetPrevOrder = prevConfig[prev?.key]?.order;
-        const targetNextOrder = prevConfig[next?.key]?.order;
-        order = getNewColumnOrder({
-            targetOrder, targetPrevOrder, targetNextOrder, position: 'top',
-        });
+    if (fix === prevColumn.fix) {
+        return prevConfig;
     }
 
-    const { fix, ...restProps } = prevConfig[columnKey];
-    const fixLeft: ICanBeFixed = { fix: 'left' };
+    let order = prevConfig[columnKey].order;
+
+    const isPinOrUnpinLeft = fix === 'left' || (!fix && prevColumn.fix === 'left');
+    const isPinOrUnpinRight = fix === 'right' || (!fix && prevColumn.fix === 'right');
+
+    if (isPinOrUnpinLeft) {
+        /**
+         * on pin LEFT or unpin from LEFT: move before first item of unpinned list
+         */
+        const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
+        if (column) {
+            const targetOrder = prevConfig[column.key]?.order;
+            const targetPrevOrder = prevConfig[prev?.key]?.order;
+            const targetNextOrder = prevConfig[next?.key]?.order;
+            order = getNewColumnOrder({
+                targetOrder, targetPrevOrder, targetNextOrder, position: 'top',
+            });
+        }
+    } else if (isPinOrUnpinRight) {
+        /**
+         * on pin RIGHT or unpin from RIGHT: move after last item of unpinned list
+         */
+        const { column, prev, next } = findLastByGroupKey(columnsSorted, 'displayedUnpinned');
+        if (column) {
+            const targetOrder = prevConfig[column.key]?.order;
+            const targetPrevOrder = prevConfig[prev?.key]?.order;
+            const targetNextOrder = prevConfig[next?.key]?.order;
+            order = getNewColumnOrder({
+                targetOrder, targetPrevOrder, targetNextOrder, position: 'bottom',
+            });
+        }
+    } else {
+        // If 'fix' is not changed, prev config is returned
+        return prevConfig;
+    }
+
     return {
         ...prevConfig,
         [columnKey]: {
-            ...restProps,
+            ...prevColumn,
             order,
-            ...(prevFix ? {} : fixLeft),
+            fix,
             isVisible: true,
         },
     };

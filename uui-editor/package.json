@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-editor",
-  "version": "5.5.3",
+  "version": "5.6.1",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -11,11 +11,11 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@braintree/sanitize-url": "4.0.1",
-    "@epam/assets": "5.5.3",
-    "@epam/uui": "5.5.3",
-    "@epam/uui-components": "5.5.3",
-    "@epam/uui-core": "5.5.3",
+    "@braintree/sanitize-url": "7.0.0",
+    "@epam/assets": "5.6.1",
+    "@epam/uui": "5.6.1",
+    "@epam/uui-components": "5.6.1",
+    "@epam/uui-core": "5.6.1",
     "@udecode/plate-basic-marks": "25.0.1",
     "@udecode/plate-block-quote": "25.0.1",
     "@udecode/plate-break": "25.0.1",
@@ -41,8 +41,8 @@
     "react-popper": "2.3.0",
     "slate": "0.94.1",
     "slate-history": "0.93.0",
-    "slate-react": "0.98.1",
-    "slate-hyperscript": "0.81.3"
+    "slate-hyperscript": "0.81.3",
+    "slate-react": "0.99.0"
   },
   "devDependencies": {
     "@types/lodash.debounce": "4.0.7",

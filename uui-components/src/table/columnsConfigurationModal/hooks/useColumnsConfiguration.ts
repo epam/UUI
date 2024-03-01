@@ -3,8 +3,12 @@ import { ColumnsConfig, DataColumnProps, DropParams } from '@epam/uui-core';
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
 } from '../columnsConfigurationActions';
-import { canAcceptDrop, isColumnAlwaysPinned } from '../columnsConfigurationUtils';
-import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from '../types';
+import {
+    canAcceptDrop,
+    isColumnAlwaysHiddenInTheConfigurationModal,
+    isColumnAlwaysPinned,
+} from '../columnsConfigurationUtils';
+import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps, TColumnPinPosition } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
 interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
@@ -27,7 +31,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
     );
 
     const togglePin = useCallback(
-        (columnKey: string) => setColumnsConfig((prevConfig) => toggleSingleColumnPin({ prevConfig, columnsSorted, columnKey })),
+        (columnKey: string, fix: TColumnPinPosition) => setColumnsConfig((prevConfig) => toggleSingleColumnPin({ prevConfig, columnsSorted, columnKey, fix })),
         [columnsSorted],
     );
 
@@ -70,14 +74,14 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                     });
                 };
                 const isPinnedAlways = isColumnAlwaysPinned(column);
-                const isPinned = !!(columnConfig.fix || isPinnedAlways);
+                const fix = columnConfig.fix || (isPinnedAlways ? 'left' : undefined);
                 return {
                     ...column,
                     columnConfig,
                     isDndAllowed,
                     isPinnedAlways,
-                    isPinned,
-                    togglePin: () => togglePin(column.key),
+                    fix,
+                    togglePin: (_fix: TColumnPinPosition) => togglePin(column.key, _fix),
                     toggleVisibility: () => toggleVisibility(column.key),
                     onCanAcceptDrop: canAcceptDrop,
                     onDrop: handleDrop,
@@ -98,11 +102,19 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
         [sortedColumnsExtended, searchValue, props.getSearchFields],
     );
 
+    const hasAnySelectedColumns = useMemo(() => !!columnsSorted.filter((c) => {
+        if (c.groupKey !== 'hidden') {
+            return !isColumnAlwaysHiddenInTheConfigurationModal(c);
+        }
+        return false;
+    }).length, [columnsSorted]);
+
     return {
         // props
         groupedColumns,
         searchValue,
         columnsConfig,
+        hasAnySelectedColumns,
         // methods
         reset,
         checkAll,

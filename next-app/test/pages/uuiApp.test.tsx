@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
-import { screen } from '@testing-library/react';
+
+import { screen } from '@epam/uui-test-utils';
 import { render} from '../test-utils';
 import UuiAppPage from '../../pages/arrayTable';
 
