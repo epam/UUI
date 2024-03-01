@@ -27,13 +27,13 @@
         fill: transparent;
 
         &:focus {
-            fill: var(--uui-icon-btn);
+            fill: var(--uui-link);
         }
     }
 
     &:hover {
         .anchor {
-            fill: var(--uui-link);
+            fill: var(--uui-link-hover);
         }
     }
 }

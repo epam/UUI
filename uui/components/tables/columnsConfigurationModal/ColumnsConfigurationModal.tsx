@@ -1,11 +1,13 @@
 import styles from './ColumnsConfigurationModal.module.scss';
 import * as React from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-import { ColumnsConfig, DataColumnProps, IModal } from '@epam/uui-core';
-import { useColumnsConfiguration } from '@epam/uui-components';
+import { ColumnsConfig, cx, DataColumnProps, IModal } from '@epam/uui-core';
+import { Accordion, ColumnsConfigurationRowProps, IconContainer, useColumnsConfiguration } from '@epam/uui-components';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/navigation-refresh-18.svg';
+import { ReactComponent as ExpandedIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
+import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 
 import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
 import { Button, LinkButton } from '../../buttons';
@@ -39,7 +41,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
     const {
-        groupedColumns, searchValue, columnsConfig, reset, checkAll, uncheckAll, setSearchValue,
+        groupedColumns, searchValue, columnsConfig, reset, checkAll, uncheckAll, setSearchValue, hasAnySelectedColumns,
     } = useColumnsConfiguration({
         initialColumnsConfig,
         columns,
@@ -51,60 +53,46 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
     const isNoData = useMemo(() => Object.values(groupedColumns).every((v) => !v.length), [groupedColumns]);
 
     const renderVisible = () => {
-        const amountPinned = groupedColumns.displayedPinned.length;
+        const amountPinnedLeft = groupedColumns.displayedPinnedLeft.length;
+        const amountPinnedRight = groupedColumns.displayedPinnedRight.length;
         const amountUnPinned = groupedColumns.displayedUnpinned.length;
-        if (!amountPinned && !amountUnPinned) {
+        const totalAmountOfVisibleColumns = amountPinnedLeft + amountUnPinned + amountPinnedRight;
+
+        if (!totalAmountOfVisibleColumns) {
             return null;
         }
-        const hasDivider = !!(amountPinned && amountUnPinned);
+        const hasDividerBelowPinnedLeft = !!(amountPinnedLeft && amountUnPinned);
+        const hasDividerAbovePinnedRight = !!(amountPinnedRight && amountUnPinned);
         return (
             <>
-                {renderGroupTitle(i18n.displayedSectionTitle, amountPinned + amountUnPinned)}
-                {!!amountPinned && (
-                    <FlexRow cx={ styles.groupItems } size="30">
-                        {groupedColumns.displayedPinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem } />
-                        ))}
-                    </FlexRow>
-                )}
-                {hasDivider && <div className={ styles.hDivider } />}
-                {!!amountUnPinned && (
-                    <FlexRow cx={ styles.groupItems } size="30">
-                        {groupedColumns.displayedUnpinned.map((c) => (
-                            <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem } />
-                        ))}
-                    </FlexRow>
-                )}
+                {renderGroupTitle(i18n.displayedSectionTitle, totalAmountOfVisibleColumns)}
+                <SubGroup renderItem={ props.renderItem } title={ i18n.pinnedToTheLeftSubgroupTitle } items={ groupedColumns.displayedPinnedLeft } />
+                {hasDividerBelowPinnedLeft && <div className={ styles.hDivider } />}
+                <SubGroup renderItem={ props.renderItem } title={ i18n.notPinnedSubgroupTitle } items={ groupedColumns.displayedUnpinned } />
+                {hasDividerAbovePinnedRight && <div className={ styles.hDivider } />}
+                <SubGroup renderItem={ props.renderItem } title={ i18n.pinnedToTheRightSubgroupTitle } items={ groupedColumns.displayedPinnedRight } />
             </>
         );
     };
     const renderHidden = () => {
-        const amountHidden = groupedColumns.hidden.length;
-        if (!amountHidden) {
+        const items = groupedColumns.hidden;
+        const title = renderGroupTitle(i18n.hiddenSectionTitle, items.length);
+        if (!items.length) {
             return null;
         }
         return (
             <>
-                {renderGroupTitle(i18n.hiddenSectionTitle, amountHidden)}
-                <FlexRow cx={ styles.groupItems } size="30">
-                    {groupedColumns.hidden.map((c) => (
-                        <ColumnRow column={ c } key={ c.key } renderItem={ props.renderItem } />
-                    ))}
-                </FlexRow>
+                { title }
+                <SubGroup renderItem={ props.renderItem } items={ items } />
             </>
         );
     };
 
-    const noVisibleColumns = useMemo(
-        () => !groupedColumns.displayedPinned.length && !groupedColumns.displayedUnpinned.length,
-        [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned],
-    );
-
-    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ noVisibleColumns } color="primary" onClick={ apply } />;
+    const applyButton = <Button caption={ i18n.applyButton } isDisabled={ !hasAnySelectedColumns } color="primary" onClick={ apply } />;
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow height={ 700 }>
+            <ModalWindow cx={ styles.modal } height="90vh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
                     <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
@@ -139,7 +127,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <LinkButton icon={ ResetIcon } caption={ i18n.resetToDefaultButton } onClick={ reset } />
                     <FlexSpacer />
                     <Button fill="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
-                    {noVisibleColumns ? (
+                    {!hasAnySelectedColumns ? (
                         <Tooltip content={ i18n.enableAtLeastOneColumnMessage } placement="top-end" color="critical">
                             {applyButton}
                         </Tooltip>
@@ -150,4 +138,38 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
             </ModalWindow>
         </ModalBlocker>
     );
+}
+
+function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (column: DataColumnProps) => React.ReactNode; title?: React.ReactNode }) {
+    const [isExpanded, setIsExpanded] = useState<boolean>(true);
+    const { title, items, renderItem } = props;
+    const isCollapsible = !!title;
+
+    if (items.length) {
+        const content = (
+            <FlexRow cx={ styles.groupItems } size="30">
+                {items.map((c) => (
+                    <ColumnRow column={ c } key={ c.key } renderItem={ renderItem } />
+                ))}
+            </FlexRow>
+        );
+        if (isCollapsible) {
+            const renderTitle = (isOpened: boolean) => {
+                const toggleIcon = isOpened ? ExpandedIcon : CollapsedIcon;
+                return (
+                    <span className={ cx(styles.subgroupTitle) }>
+                        <IconContainer icon={ toggleIcon } flipY={ false } />
+                        { title }
+                    </span>
+                );
+            };
+            return (
+                <Accordion value={ isExpanded } onValueChange={ setIsExpanded } renderTitle={ renderTitle } cx={ styles.subgroupAccordion }>
+                    { content }
+                </Accordion>
+            );
+        }
+        return content;
+    }
+    return null;
 }

@@ -26,10 +26,29 @@ const parseQuery = (link: Link): Link => {
     };
 };
 
+/**
+ * Source: https://github.com/vercel/next.js/blob/031cf7009239be5ebccd8f72418adfd2bb4af5c8/packages/next/src/shared/lib/router/router.ts#L657
+ * This type is compatible with both versions of Next.js: v13 and v14.
+ */
+type TNext14Router = {
+    pathname: string,
+    basePath: string,
+    query: any,
+    push(...args: any[]): void,
+    replace(...args: any[]): void,
+    events: {
+        on(type: any, handler: (...evts: any[]) => void): void;
+        off(type: any, handler: (...evts: any[]) => void): void;
+        emit(type: any): void;
+    }
+};
+
 export class NextRouterAdapter implements IRouterContext {
     private isBlockRun: boolean;
     private blockedUrl: Link | null;
-    constructor(private router: any) {
+    constructor(
+        private router: TNext14Router,
+    ) {
         this.isBlockRun = false;
         this.blockedUrl = null;
     }
@@ -82,7 +101,9 @@ export class NextRouterAdapter implements IRouterContext {
     };
 
     public listen(listener: (link: Link) => void) {
-        return this.router.events.on('beforeHistoryChange', (url: Link) => this.handleBeforeHistoryChange(url, listener));
+        const localHandler = (url: Link) => this.handleBeforeHistoryChange(url, listener);
+        this.router.events.on('beforeHistoryChange', localHandler);
+        return () => this.router.events.off('beforeHistoryChange', localHandler);
     }
 
     private handleRouterChangeError = (listener: (link: Link) => void) => {
@@ -91,17 +112,14 @@ export class NextRouterAdapter implements IRouterContext {
     };
 
     public block(listener: (link: Link) => void) {
-        this.router.events.on('routeChangeError', () => this.handleRouterChangeError(listener));
+        const localHandler = () => this.handleRouterChangeError(listener);
+        this.router.events.on('routeChangeError', localHandler);
         this.isBlockRun = true;
 
         return () => {
             this.isBlockRun = false;
             this.blockedUrl = null;
+            this.router.events.off('routeChangeError', localHandler);
         };
-    }
-
-    public unSubscribe() {
-        this.router.events.off('routeChangeError', this.handleRouterChangeError);
-        this.router.events.off('beforeHistoryChange', this.handleBeforeHistoryChange);
     }
 }

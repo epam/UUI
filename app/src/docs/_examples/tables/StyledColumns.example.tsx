@@ -63,6 +63,7 @@ export default function StyledColumnsExample() {
                 render: (r) => <Text>{r.jobTitle}</Text>,
                 width: 200,
                 grow: 1,
+                allowResizing: false, // Columns with grow can't be resizable
                 isSortable: true,
                 info: 'Job full description',
             },

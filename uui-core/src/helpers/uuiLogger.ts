@@ -34,7 +34,7 @@ class UuiLogger {
             return;
         }
         this.msgAddToHistory(msg, args);
-        let method = window.console[severity];
+        let method = console[severity];
         // @ts-ignore
         const origMethodReplaced = method.__REACT_DEVTOOLS_STRICT_MODE_ORIGINAL_METHOD__;
 
