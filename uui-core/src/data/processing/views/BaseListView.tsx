@@ -328,6 +328,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return {
             ...emptyRowProps,
             checkbox,
+            onCheck: checkbox?.isVisible ? this.handleOnCheck : undefined,
             isUnknown: true,
         };
     }

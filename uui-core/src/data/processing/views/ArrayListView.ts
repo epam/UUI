@@ -169,6 +169,10 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                     if (row.isLoading) {
                         return false;
                     }
+                    if (row.isUnknown) {
+                        return true;
+                    }
+
                     currentItem = row.value;
                 }
 
