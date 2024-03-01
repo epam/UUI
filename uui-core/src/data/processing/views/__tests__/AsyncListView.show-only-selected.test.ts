@@ -1,8 +1,8 @@
 import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
-import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
+import { LocationItem, getAsyncLocationsDS } from '../../__tests__/mocks';
 
-describe('LazyListView - show only selected', () => {
+describe('AsyncListView - show only selected', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const onValueChanged = (newValue: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
         if (typeof newValue === 'function') {
@@ -24,8 +24,8 @@ describe('LazyListView - show only selected', () => {
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
-    it('should load only checked items if showOnlySelected = true', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+    it('should load items if showOnlySelected = true', async () => {
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: true,
         });
 
@@ -42,6 +42,12 @@ describe('LazyListView - show only selected', () => {
         await waitFor(() => {
             const view = hookResult.result.current;
             const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const listProps = view.getListProps();
             expect(listProps.isReloading).toBeFalsy();
         });
 
@@ -49,14 +55,12 @@ describe('LazyListView - show only selected', () => {
             expect(apiMock).toBeCalledTimes(1);
         });
 
-        expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ'] }, undefined);
-
         const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(0);
+        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('should load only selected item if showOnlySelected = true', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: true,
         });
 
@@ -73,21 +77,25 @@ describe('LazyListView - show only selected', () => {
         await waitFor(() => {
             const view = hookResult.result.current;
             const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const listProps = view.getListProps();
             expect(listProps.isReloading).toBeFalsy();
         });
 
         await waitFor(() => {
             expect(apiMock).toBeCalledTimes(1);
         });
-
-        expect(apiMock).toBeCalledWith({ ids: ['c-EU'] }, undefined);
 
         const view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toEqual(0);
     });
 
     it('should load checked and selected items if showOnlySelected = true', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: true,
         });
 
@@ -105,6 +113,12 @@ describe('LazyListView - show only selected', () => {
         await waitFor(() => {
             const view = hookResult.result.current;
             const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const listProps = view.getListProps();
             expect(listProps.isReloading).toBeFalsy();
         });
 
@@ -112,14 +126,12 @@ describe('LazyListView - show only selected', () => {
             expect(apiMock).toBeCalledTimes(1);
         });
 
-        expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ', 'c-EU'] }, undefined);
-
         const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(0);
+        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('should load checked and selected items and their parents if showOnlySelected = false', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: false,
         });
 
@@ -141,18 +153,14 @@ describe('LazyListView - show only selected', () => {
         });
 
         await waitFor(() => {
-            expect(apiMock).toBeCalledTimes(3);
+            const view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeTruthy();
         });
 
-        expect(apiMock).toHaveBeenCalledWith(
-            {
-                filter: {}, page: undefined, pageSize: undefined, range: { count: 3, from: 0 }, search: undefined, sorting: undefined,
-            },
-            { parent: null, parentId: null },
-        );
-
-        expect(apiMock).toHaveBeenCalledWith({ ids: ['BJ', '2392308', '2474506'] }, undefined);
-        expect(apiMock).toHaveBeenCalledWith({ ids: ['DZ'] }, undefined);
+        await waitFor(() => {
+            expect(apiMock).toBeCalledTimes(1);
+        });
 
         await waitFor(() => {
             const view = hookResult.result.current;
@@ -167,7 +175,7 @@ describe('LazyListView - show only selected', () => {
     });
 
     it('should show only selected rows in order of selection', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: false,
         });
 
@@ -182,7 +190,12 @@ describe('LazyListView - show only selected', () => {
         );
 
         await waitFor(() => {
-            expect(apiMock).toBeCalledTimes(2);
+            expect(apiMock).toBeCalledTimes(1);
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expect(view.getListProps().isReloading).toBeTruthy();
         });
 
         await waitFor(() => {
@@ -209,7 +222,7 @@ describe('LazyListView - show only selected', () => {
     });
 
     it('should show only selected rows if on init showOnlySelected = true', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: true,
         });
 
@@ -229,6 +242,12 @@ describe('LazyListView - show only selected', () => {
 
         await waitFor(() => {
             const view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
             expect(view.getListProps().isReloading).toBeFalsy();
         });
 
@@ -241,7 +260,7 @@ describe('LazyListView - show only selected', () => {
     });
 
     it('should remove items from showOnlySelected rows on uncheck with cascadeSelection = explicit', async () => {
-        const { dataSource } = getLazyLocationsDS({
+        const { dataSource } = getAsyncLocationsDS({
             showOnlySelected: false,
             cascadeSelection: 'explicit',
             rowOptions: { checkbox: { isVisible: true } },
@@ -255,6 +274,18 @@ describe('LazyListView - show only selected', () => {
                 props: {},
             } },
         );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeTruthy();
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+        });
 
         await waitFor(() => {
             const view = hookResult.result.current;
@@ -379,10 +410,10 @@ describe('LazyListView - show only selected', () => {
     });
 
     it('should not clear loading checked items if showOnlySelected = true', async () => {
-        const { dataSource } = getLazyLocationsDS({
+        const { dataSource } = getAsyncLocationsDS({
             showOnlySelected: true,
             rowOptions: { checkbox: { isVisible: true } },
-        }, 0);
+        });
 
         currentValue.checked = ['BJ', 'c-AF', 'DZ'];
         const hookResult = renderHook(
@@ -412,10 +443,10 @@ describe('LazyListView - show only selected', () => {
     });
 
     it('should clear loaded checked items if showOnlySelected = true', async () => {
-        const { apiMock, dataSource } = getLazyLocationsDS({
+        const { apiMock, dataSource } = getAsyncLocationsDS({
             showOnlySelected: true,
             rowOptions: { checkbox: { isVisible: true } },
-        }, 0);
+        });
 
         currentValue.checked = [
             'BJ',
@@ -441,22 +472,8 @@ describe('LazyListView - show only selected', () => {
         );
 
         await waitFor(() => {
-            expect(apiMock).toBeCalledTimes(2);
+            expect(apiMock).toBeCalledTimes(1);
         });
-
-        expect(apiMock).toBeCalledWith({ ids: [
-            'BJ',
-            'DZ',
-            '2392505',
-            '2392308',
-            '2392204',
-            '2392108',
-            '2392087',
-            '2392009',
-            '2391895',
-            '2391893',
-            '2391455',
-        ] }, undefined);
 
         await waitFor(() => {
             const view = hookResult.result.current;
@@ -465,7 +482,7 @@ describe('LazyListView - show only selected', () => {
                 { id: 'DZ', isChecked: true },
                 { id: '2392505', isChecked: true },
             ]);
-        }, { timeout: 1000 });
+        });
 
         const view = hookResult.result.current;
         await act(() => {
