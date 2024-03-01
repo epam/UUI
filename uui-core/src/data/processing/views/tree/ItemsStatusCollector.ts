@@ -48,6 +48,7 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
                 try {
                     this.setLoading(request.ids);
                     const result = await api(request, context);
+                    // @TODO: exclude not found ids to be added to UNKNOWN
                     this.setLoaded((result.items ?? []).map(this.params.getId));
 
                     return result;
