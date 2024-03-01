@@ -12,6 +12,7 @@ export function getAsyncLocationsDS(props: Props<LocationItem, string, DataQuery
         {
             getId: ({ id }) => id,
             getParentId: ({ parentId }) => parentId,
+            getSearchFields: ({ name }) => [name],
 
             ...props,
         },
