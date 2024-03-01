@@ -17,6 +17,7 @@
 * [RTE]: fixed tabled border rendering issues in Firefox
 * [RTE]: fixed placeholder position in Safari
 * [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+* [Blocker]: changed the exit animation duration from 1000ms to 200ms
 
 # 5.6.1 - 19.02.2024
 
