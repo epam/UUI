@@ -1,36 +1,66 @@
-import React, { Fragment } from 'react';
-import dayjs from 'dayjs';
+import React, {
+    Fragment, useEffect, useState,
+} from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import { i18n } from '../../i18n';
-import { DatePickerCoreProps, IDropdownBodyProps } from '@epam/uui-core';
-import { FlexSpacer, FlexRow, FlexCell } from '../layout';
+import {
+    DatePickerCoreProps, IDropdownBodyProps, useUuiContext,
+} from '@epam/uui-core';
+import {
+    FlexSpacer, FlexRow, FlexCell,
+} from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
 import { DatePickerBody } from '../datePickers';
-import { useDatePickerState } from '../datePickers/useDatePickerState';
+import { PickerBodyValue, ViewType } from '@epam/uui-components';
+import { getNewMonth } from '../datePickers/helpers';
 
 /** Represents the properties of the DatePicker. */
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
 export function FilterDatePickerBody(props: DatePickerProps) {
     const { value } = props;
+    const context = useUuiContext();
 
-    const {
+    const [{
         view,
         month,
-        handleBodyChange,
-        handleValueChange,
-    } = useDatePickerState({
-        ...props,
-        onValueChange: (v: string | null) => {
-            props.onValueChange(v);
-            if (v) {
-                props.onClose?.();
-            }
-        },
+    }, setState] = useState<{
+        month: Dayjs;
+        view: ViewType;
+    }>({
+        view: 'DAY_SELECTION',
+        month: getNewMonth(value),
     });
 
-    const onCancel = () => {
-        handleValueChange(null);
+    useEffect(() => {
+        setState((prev) => ({
+            ...prev,
+            month: getNewMonth(value),
+        }));
+    }, [value]);
+
+    const handleValueChange = (newValue: string | null) => {
+        props.onValueChange(newValue);
+
+        if (props.getValueChangeAnalyticsEvent) {
+            const event = props.getValueChangeAnalyticsEvent(newValue, value);
+            context.uuiAnalytics.sendEvent(event);
+        }
+        if (newValue) {
+            props.onClose?.();
+        }
+    };
+
+    const handleBodyChange = (newValue: PickerBodyValue<string>) => {
+        if (newValue.selectedDate && value !== newValue.selectedDate) {
+            handleValueChange(newValue.selectedDate);
+        }
+
+        setState({
+            month: getNewMonth(newValue.month),
+            view: newValue.view,
+        });
     };
 
     return (
@@ -56,7 +86,9 @@ export function FilterDatePickerBody(props: DatePickerProps) {
                     <LinkButton
                         isDisabled={ !value }
                         caption={ i18n.filterToolbar.datePicker.clearCaption }
-                        onClick={ onCancel }
+                        onClick={ () => {
+                            handleValueChange(null);
+                        } }
                     />
                 </FlexRow>
             </FlexCell>

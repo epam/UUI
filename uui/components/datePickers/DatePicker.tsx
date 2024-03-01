@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown, PickerBodyValue, defaultFormat, toCustomDateFormat, toValueDateFormat } from '@epam/uui-components';
-import { DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, uuiMod, withMods } from '@epam/uui-core';
+import {
+    Dropdown, PickerBodyValue, ViewType, defaultFormat, supportedDateFormats, toCustomDateFormat, toValueDateFormat,
+} from '@epam/uui-components';
+import {
+    DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod, withMods,
+} from '@epam/uui-core';
 import { TextInput } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
 import { DatePickerBody } from './DatePickerBody';
-import dayjs from 'dayjs';
-import { getNewMonth, isValidDate, useDatePickerState } from './useDatePickerState';
+import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { DatePickerProps } from './types';
+import { getNewMonth } from './helpers';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -21,21 +25,42 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
+export const isValidDate = (input: string, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
+    if (!input) {
+        return false;
+    }
+
+    const parsedDate = dayjs(input, supportedDateFormats(format), true);
+    return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
+};
+
+export interface DatePickerState {
+    isOpen: boolean;
+    month: Dayjs;
+    view: ViewType;
+}
+
 export function DatePickerComponent(props: DatePickerProps) {
     const { format = defaultFormat, value } = props;
+    const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
 
-    const {
+    const [{
         isOpen,
         view,
         month,
-        setState,
-        handleBodyChange,
-        handleValueChange,
-    } = useDatePickerState(props);
+    }, setState] = useState<DatePickerState>({
+        isOpen: false,
+        view: 'DAY_SELECTION',
+        month: getNewMonth(value),
+    });
 
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
+        setState((prev) => ({
+            ...prev,
+            month: getNewMonth(value),
+        }));
     }, [value]);
 
     const onInputChange = (input: string) => {
@@ -56,18 +81,35 @@ export function DatePickerComponent(props: DatePickerProps) {
                 month: getNewMonth(value),
             });
         } else {
-            setState({ isOpen: open });
+            setState((prev) =>({
+                ...prev,
+                isOpen: open,
+            }));
             props.onBlur?.();
         }
     };
 
-    const onBodyValueChange = (v: PickerBodyValue<string>) => {
-        handleBodyChange(v);
-        setInputValue(toCustomDateFormat(v.selectedDate, format));
+    const handleValueChange = (newValue: string | null) => {
+        props.onValueChange(newValue);
 
-        if (v.selectedDate && value !== v.selectedDate) {
+        if (props.getValueChangeAnalyticsEvent) {
+            const event = props.getValueChangeAnalyticsEvent(newValue, value);
+            context.uuiAnalytics.sendEvent(event);
+        }
+    };
+
+    const onBodyValueChange = (newValue: PickerBodyValue<string>) => {
+        if (newValue.selectedDate && value !== newValue.selectedDate) {
+            handleValueChange(newValue.selectedDate);
             toggleIsOpen(false);
         }
+
+        setState((prev) => ({
+            ...prev,
+            month: getNewMonth(newValue.month),
+            view: newValue.view,
+        }));
+        setInputValue(toCustomDateFormat(newValue.selectedDate, format));
     };
 
     const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
