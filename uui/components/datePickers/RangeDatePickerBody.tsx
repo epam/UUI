@@ -1,8 +1,12 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
-import { arrayToMatrix, cx, DayProps, IEditable, RangeDatePickerInputType, RangeDatePickerPresets } from '@epam/uui-core';
-import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day, valueFormat } from '@epam/uui-components';
+import {
+    arrayToMatrix, cx, DayProps, IEditable, RangeDatePickerInputType, RangeDatePickerPresets,
+} from '@epam/uui-core';
+import {
+    DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day, valueFormat,
+} from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { DatePickerBody } from './DatePickerBody';
 import { CalendarPresets } from './CalendarPresets';
@@ -126,7 +130,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         };
 
         if (!props.filter || props.filter(dayjs(selectedDate))) {
-            if (props.value.activePart === 'from') {
+            if (props.value.inFocus === 'from') {
                 if (dayjs(selectedDate).valueOf() <= dayjs(currentRange.to).valueOf()) {
                     newRange.from = selectedDate;
                     newRange.to = currentRange.to;
@@ -136,7 +140,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                 }
             }
 
-            if (props.value.activePart === 'to') {
+            if (props.value.inFocus === 'to') {
                 if (!currentRange.from) {
                     newRange.to = selectedDate;
                 } else if (dayjs(selectedDate).valueOf() >= dayjs(currentRange.from).valueOf()) {
@@ -152,34 +156,26 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         return newRange;
     };
 
-    const onBodyValueChange = (value: PickerBodyValue<string>, part: 'from' | 'to') => {
-        let newValue: Partial<PickerBodyValue<RangeDatePickerValue>>;
-        if (value.selectedDate) {
-            const range = getRange(value.selectedDate);
-            newValue = {
-                ...newValue,
-                selectedDate: range,
-            };
-        }
+    const onBodyValueChange = (v: PickerBodyValue<string>, part: 'from' | 'to') => {
+        // selectedDate can be null, other params should always have values
+        const newRange = v.selectedDate ? getRange(v.selectedDate) : props.value.selectedDate;
+        const fromChanged = props.value.selectedDate?.from !== newRange.from;
+        const toChanged = props.value.selectedDate?.to !== newRange.to;
 
-        if (value.month) {
-            newValue = {
-                ...newValue,
-                month: part === 'from' ? value.month : value.month.subtract(1, 'month'),
-            };
-        }
-
-        if (value.view) {
-            newValue = {
-                ...newValue,
-                view: value.view,
-            };
+        let newInFocus: 'from' | 'to' = null;
+        if (props.value.inFocus === 'from' && fromChanged) {
+            newInFocus = 'to';
+        } else if (props.value.inFocus === 'to' && toChanged) {
+            newInFocus = 'from';
         }
 
         setActiveMonth(part);
         props.onValueChange({
             ...props.value,
-            ...newValue,
+            view: props.value.view,
+            month: part === 'from' ? v.month : v.month.subtract(1, 'month'),
+            selectedDate: newRange,
+            inFocus: newInFocus ?? props.value.inFocus,
         });
     };
 

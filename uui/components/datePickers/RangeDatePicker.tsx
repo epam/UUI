@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
-import { uuiMod, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps } from '@epam/uui-core';
-import { Dropdown } from '@epam/uui-components';
+import {
+    uuiMod, DropdownBodyProps, withMods, useUuiContext, RangeDatePickerInputType, RangeDatePickerValue,
+} from '@epam/uui-core';
+import {
+    Dropdown, RangePickerBodyValue, ViewType, defaultFormat, toCustomDateRangeFormat, toValueDateRangeFormat, valueFormat,
+} from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
-import { TextInput } from '../inputs';
-import { systemIcons } from '../../icons/icons';
-import { i18n } from '../../i18n';
 import css from './RangeDatePicker.module.scss';
-import { defaultValue, useRangeDatePickerState } from './useRangeDatePickerState';
 import { RangeDatePickerProps } from './types';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+import { defaultRangeValue, getMonthOnOpening } from './helpers';
+import { RangeDatePickerInput } from './RangeDatePickerInput';
 
 dayjs.extend(customParseFormat);
 
@@ -22,33 +24,75 @@ const modifiers = [{
 }];
 
 function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
-    const [isOpen, setIsOpen] = useState(false);
+    const { value = defaultRangeValue, format = defaultFormat } = props;
+    const context = useUuiContext();
 
-    const {
-        state,
-        onRangeChange,
-        clearRange,
-        handleBlur,
-        handleFocus,
-        toggleIsOpen,
-        getChangeHandler,
-    } = useRangeDatePickerState({
-        ...props,
-        onOpenChange: (value: boolean) => {
-            setIsOpen(value);
-            props.onOpenChange?.(value);
-        },
+    const [isOpen, setIsOpen] = useState(false);
+    const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
+        toCustomDateRangeFormat(value, format),
+    );
+
+    // use omit here
+    const [bodyState, setBodyState] = useState<{
+        view: ViewType;
+        month: Dayjs;
+        inFocus: RangeDatePickerInputType
+    }>({
+        view: 'DAY_SELECTION',
+        month: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
+        inFocus: null,
     });
+
+    useEffect(() => {
+        setInputValue(value ? toCustomDateRangeFormat(props.value, format) : defaultRangeValue);
+    }, [format, value, setInputValue]);
+
+    const onValueChange = (newValue: RangeDatePickerValue) => {
+        const fromChanged = value?.from !== newValue.from;
+        const toChanged = value?.to !== newValue.to;
+        if (fromChanged || toChanged) {
+            props.onValueChange(newValue);
+
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue, value);
+                context.uuiAnalytics.sendEvent(event);
+            }
+        }
+    };
+
+    const onBodyValueChange = (newValue: RangePickerBodyValue<RangeDatePickerValue>) => {
+        setInputValue(toCustomDateRangeFormat(newValue.selectedDate, format));
+        setBodyState((prev) => ({
+            view: newValue.view ?? prev.view,
+            month: newValue.month ?? prev.month,
+            inFocus: newValue.inFocus ?? prev.inFocus,
+        }));
+        onValueChange(newValue.selectedDate);
+
+        const toChanged = value.to !== newValue.selectedDate.to;
+        const closeBody = newValue.selectedDate.from
+         && newValue.selectedDate.to
+          && bodyState.inFocus === 'to'
+           && toChanged;
+        if (closeBody) {
+            toggleIsOpen(false);
+        }
+    };
+
+    const toggleIsOpen = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
+        if (!props.isReadonly && !props.isDisabled) {
+            setBodyState({
+                view: 'DAY_SELECTION',
+                month: getMonthOnOpening(focus, value),
+                inFocus: newIsOpen ? focus : null,
+            });
+            setIsOpen(newIsOpen);
+            props.onOpenChange?.(newIsOpen);
+        }
+    };
 
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         if (!props.isReadonly && !props.isDisabled) {
-            const value = {
-                selectedDate: props.value || defaultValue,
-                month: state.month,
-                view: state.view,
-                activePart: state.inFocus,
-            };
-
             return (
                 <DropdownContainer
                     { ...renderProps }
@@ -58,13 +102,18 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     <FlexRow>
                         <RangeDatePickerBody
                             cx={ cx(props.bodyCx) }
-                            value={ value }
-                            onValueChange={ onRangeChange }
+                            value={ {
+                                selectedDate: value,
+                                month: bodyState.month,
+                                view: bodyState.view,
+                                inFocus: bodyState.inFocus,
+                            } }
+                            onValueChange={ onBodyValueChange }
                             filter={ props.filter }
                             presets={ props.presets }
                             renderDay={ props.renderDay }
                             renderFooter={ () => {
-                                return props.renderFooter?.(props.value || defaultValue);
+                                return props.renderFooter?.(props.value || defaultRangeValue);
                             } }
                             isHoliday={ props.isHoliday }
                             rawProps={ props.rawProps?.body }
@@ -75,77 +124,50 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         }
     };
 
-    const renderInput = (renderProps: IDropdownTogglerProps): JSX.Element => {
-        if (__DEV__) {
-            if (props.size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<RangeDatePickerProps, 'size'>({
-                    component: 'RangeDatePicker',
-                    propName: 'size',
-                    propValue: props.size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(props.size) !== -1,
-                });
-            }
-        }
-
-        const clearAllowed = !props.disableClear && state.inputValue.from && state.inputValue.to;
-
-        return (
-            <div
-                className={ cx(
-                    props.inputCx,
-                    css.dateInputGroup,
-                    props.isDisabled && uuiMod.disabled,
-                    props.isReadonly && uuiMod.readonly,
-                    props.isInvalid && uuiMod.invalid,
-                    state.inFocus && uuiMod.focus,
-                ) }
-                onClick={ !props.isDisabled && renderProps.onClick }
-                // onBlur={ handleWrapperBlur }
-                ref={ renderProps.ref }
-            >
-                <TextInput
-                    icon={ systemIcons[props.size || '36'].calendar }
-                    cx={ cx(css.dateInput, css['size-' + (props.size || 36)], state.inFocus === 'from' && uuiMod.focus) }
-                    size={ props.size || '36' }
-                    placeholder={ props.getPlaceholder ? props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
-                    value={ state.inputValue.from }
-                    onValueChange={ getChangeHandler('from') }
-                    onFocus={ (event) => handleFocus(event, 'from') }
-                    onBlur={ (event) => handleBlur(event, 'from') }
-                    ///
-                    isInvalid={ props.isInvalid }
-                    isDisabled={ props.isDisabled }
-                    isReadonly={ props.isReadonly }
-                    isDropdown={ false }
-                    rawProps={ props.rawProps?.from }
-                    id={ props?.id }
-                />
-                <div className={ css.separator } />
-                <TextInput
-                    cx={ cx(css.dateInput, css['size-' + (props.size || 36)], state.inFocus === 'to' && uuiMod.focus) }
-                    placeholder={ props.getPlaceholder ? props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
-                    size={ props.size || '36' }
-                    value={ state.inputValue.to }
-                    onCancel={ clearAllowed && clearRange }
-                    onValueChange={ getChangeHandler('to') }
-                    onFocus={ (e) => handleFocus(e, 'to') }
-                    onBlur={ (e) => handleBlur(e, 'to') }
-                    ///
-                    isInvalid={ props.isInvalid }
-                    isDisabled={ props.isDisabled }
-                    isReadonly={ props.isReadonly }
-                    isDropdown={ false }
-                    rawProps={ props.rawProps?.to }
-                />
-            </div>
-        );
-    };
-
     return (
         <Dropdown
             renderTarget={ (renderProps) => {
-                return props.renderTarget?.(renderProps) || renderInput(renderProps);
+                return props.renderTarget?.(renderProps) || (
+                    <RangeDatePickerInput
+                        ref={ renderProps.ref }
+                        cx={ [
+                            props.inputCx,
+                            css.dateInputGroup,
+                            props.isDisabled && uuiMod.disabled,
+                            props.isReadonly && uuiMod.readonly,
+                            props.isInvalid && uuiMod.invalid,
+                            bodyState.inFocus && uuiMod.focus,
+                        ] }
+                        isDisabled={ props.isDisabled }
+                        isInvalid={ props.isInvalid }
+                        isReadonly={ props.isReadonly }
+                        size={ props.size }
+                        getPlaceholder={ props.getPlaceholder }
+                        disableClear={ props.disableClear }
+                        rawPropsFrom={ props.rawProps?.from }
+                        rawPropsTo={ props.rawProps?.to }
+                        inFocus={ bodyState.inFocus }
+                        onClick={ !props.isDisabled && renderProps.onClick }
+                        value={ inputValue }
+                        onValueChange={ (v) => {
+                            setInputValue(v);
+                        } }
+                        onFocus={ (event, inputType) => {
+                            if (props.onFocus) {
+                                props.onFocus(event, inputType);
+                            }
+                            toggleIsOpen(true, inputType);
+                        } }
+                        onBlur={ (event, inputType, v) => {
+                            if (props.onBlur) {
+                                props.onBlur(event, inputType);
+                            }
+
+                            setInputValue(toCustomDateRangeFormat(v, format));
+                            onValueChange(toValueDateRangeFormat(v, format));
+                        } }
+                    />
+                );
             } }
             renderBody={ (renderProps) => renderBody(renderProps) }
             onValueChange={ toggleIsOpen }
