@@ -172,7 +172,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         setActiveMonth(part);
         props.onValueChange({
             ...props.value,
-            view: props.value.view,
+            view: v.view,
             month: part === 'from' ? v.month : v.month.subtract(1, 'month'),
             selectedDate: newRange,
             inFocus: newInFocus ?? props.value.inFocus,
