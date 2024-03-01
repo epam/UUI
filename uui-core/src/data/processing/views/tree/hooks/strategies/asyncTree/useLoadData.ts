@@ -83,7 +83,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
-    const shouldLoad = !isLoaded && ((showOnlySelected && dataSourceState.checked?.length) || !showOnlySelected);
+    const selectedAndChecked = getSelectedAndChecked(dataSourceState);
+    const shouldLoad = !isLoading && !isFetching && !isLoaded && ((showOnlySelected && selectedAndChecked.length) || !showOnlySelected);
 
     useEffect(() => {
         if (isDepsChanged || shouldForceReload) {
