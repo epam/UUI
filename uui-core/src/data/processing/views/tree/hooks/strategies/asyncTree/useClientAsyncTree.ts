@@ -19,7 +19,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         getFilter,
         getSearchFields,
         sortBy,
-        sortSearchByRelevance,
+        sortSearchByRelevance = true,
         rowOptions,
         getRowOptions,
         setDataSourceState,
