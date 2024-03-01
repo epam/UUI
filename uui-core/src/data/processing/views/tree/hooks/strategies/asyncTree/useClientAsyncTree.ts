@@ -5,7 +5,7 @@ import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import {
     useItemsStorage, useDataSourceStateWithDefaults, useFilterTree, useSortTree,
-    useSearchTree, useSelectedOnlyTree,
+    useSearchTree, useSelectedOnlyTree, usePatchTree,
 } from '../../common';
 
 export function useClientAsyncTree<TItem, TId, TFilter = any>(
@@ -26,6 +26,9 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         isFoldedByDefault,
         cascadeSelection,
         showOnlySelected,
+        patchItems,
+        isDeletedProp,
+        getPosition,
     } = props;
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
@@ -101,11 +104,18 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         [sortTree],
     );
 
-    const tree = useSelectedOnlyTree({
+    const treeWithSelectedOnly = useSelectedOnlyTree({
         tree: searchTree,
         dataSourceState,
         isLoading: isTreeLoading,
     }, [searchTree]);
+
+    const tree = usePatchTree({
+        tree: treeWithSelectedOnly,
+        patchItems: showOnlySelected ? null : patchItems,
+        isDeletedProp,
+        getPosition,
+    });
 
     const getChildCount = useCallback((item: TItem): number | undefined => {
         if (props.getChildCount) {
