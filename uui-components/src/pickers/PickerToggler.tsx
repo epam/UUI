@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
@@ -88,13 +88,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         }
     };
 
-    const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
+    const handleCrossIconClick = () => {
         if (props.onClear) {
             props.onClear();
             props.onValueChange('');
         }
+        // When we click on the cross it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
         toggleContainer.current?.focus();
-        e.stopPropagation();
     };
 
     const renderItems = () => {
@@ -151,23 +151,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (props.isDisabled || props.isReadonly) return;
+        if (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e)) return;
         e.preventDefault();
         if (inFocus && props.value && props.minCharsToSearch) return;
 
         toggleContainer.current.focus();
         props.onClick?.();
     };
-
-    const closeOpenedPickerBody = useCallback(
-        (e: React.MouseEvent<HTMLDivElement>) => {
-            if (props.isOpen) {
-                props.closePickerBody();
-                e.stopPropagation();
-            }
-        },
-        [props.isOpen, props.closePickerBody],
-    );
 
     const icon = props.icon && (
         <IconContainer
@@ -214,7 +204,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
                     )}
-                    {props.isDropdown && !props?.minCharsToSearch && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
+                    {props.isDropdown && !props?.minCharsToSearch && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
                 </div>
             )}
         </div>
