@@ -24,7 +24,7 @@ exports[`PickerInput should open body 1`] = `
         class="actions"
       >
         <div
-          class="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+          class="container uui-icon uui-enabled uui-icon-dropdown"
         >
           <svg
             class="flipY"
@@ -242,8 +242,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -290,8 +289,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -338,8 +336,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -378,8 +375,7 @@ exports[`PickerInput should render input as invalid 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -488,8 +484,7 @@ exports[`PickerInput should render with minimum props 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -528,8 +523,7 @@ exports[`PickerInput should render with mode = cell 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -568,8 +562,7 @@ exports[`PickerInput should render with mode = form 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -608,8 +601,7 @@ exports[`PickerInput should render with mode = inline 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -648,8 +640,7 @@ exports[`PickerInput should render with mode = undefined 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -688,8 +679,7 @@ exports[`PickerInput should support single line 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
