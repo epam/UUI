@@ -28,8 +28,8 @@ router.post('/get-code', async (req, res) => {
             highlighted,
             gitUrl,
         });
-    } catch {
-        res.sendStatus(500);
+    } catch (error) {
+        res.status(500).json({ error: error });
     }
 });
 
