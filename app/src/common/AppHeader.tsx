@@ -93,7 +93,7 @@ export function AppHeader() {
                 priority: 100499,
                 render: () => (
                     <MainMenuCustomElement key="logo">
-                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') } key="logo">
+                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') }>
                             <IconContainer icon={ LogoIcon } cx={ css.logoIcon } />
                         </Anchor>
                     </MainMenuCustomElement>
@@ -172,7 +172,7 @@ export function AppHeader() {
                 priority: 2,
                 render: () => (
                     <MainMenuButton
-                        captionCX={ css.themeCaption }
+                        cx={ css.themeCaption }
                         caption="Theme"
                         showInBurgerMenu
                         key="themeCaption"
@@ -196,6 +196,7 @@ export function AppHeader() {
                 priority: 0,
                 render: () => (
                     <Anchor
+                        key="survey"
                         rawProps={ { style: { height: '60px' } } }
                         target="_blank"
                         href="https://forms.office.com/e/9iEvJUKdeM"
