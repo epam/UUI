@@ -269,4 +269,67 @@ describe('ArrayListView - show only selected', () => {
             );
         });
     });
+
+    it('should show tree after clearing checked values with showOnlySelected = true', async () => {
+        const dataSource = getArrayLocationsDS({
+            showOnlySelected: true,
+            rowOptions: { checkbox: { isVisible: true } },
+        });
+
+        currentValue.checked = [
+            'SOME_UNKNONW_ITEM',
+            'BJ',
+            'DZ',
+            '2392505',
+            '2392308',
+            '2392204',
+            '2392108',
+            '2392087',
+            '2392009',
+            '2391895',
+            '2391893',
+            '2391455',
+        ];
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'BJ', isChecked: true },
+                { id: 'DZ', isChecked: true },
+                { id: '2392505', isChecked: true },
+            ]);
+        }, {});
+
+        let view = hookResult.result.current;
+        await act(() => {
+            view.clearAllChecked();
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+        await waitFor(() => {
+            expect(currentValue).toEqual(
+                expect.objectContaining({ checked: [], topIndex: 0, visibleCount: 3 }),
+            );
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showOnlySelected: false } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+            ]);
+        }, {});
+    });
 });

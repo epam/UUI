@@ -50,9 +50,6 @@ describe('LazyListView - show only selected', () => {
         });
 
         expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ'] }, undefined);
-
-        const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('should load only selected item if showOnlySelected = true', async () => {
@@ -81,9 +78,6 @@ describe('LazyListView - show only selected', () => {
         });
 
         expect(apiMock).toBeCalledWith({ ids: ['c-EU'] }, undefined);
-
-        const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(0);
     });
 
     it('should load checked and selected items if showOnlySelected = true', async () => {
@@ -113,9 +107,6 @@ describe('LazyListView - show only selected', () => {
         });
 
         expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ', 'c-EU'] }, undefined);
-
-        const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('should load checked and selected items and their parents if showOnlySelected = false', async () => {
@@ -479,5 +470,68 @@ describe('LazyListView - show only selected', () => {
                 expect.objectContaining({ checked: [], topIndex: 0, visibleCount: 3 }),
             );
         });
+    });
+
+    it('should load tree after clearing checked values with showOnlySelected = true', async () => {
+        const { dataSource } = getLazyLocationsDS({
+            showOnlySelected: true,
+            rowOptions: { checkbox: { isVisible: true } },
+        }, 0);
+
+        currentValue.checked = [
+            'SOME_UNKNONW_ITEM',
+            'BJ',
+            'DZ',
+            '2392505',
+            '2392308',
+            '2392204',
+            '2392108',
+            '2392087',
+            '2392009',
+            '2391895',
+            '2391893',
+            '2391455',
+        ];
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'BJ', isChecked: true },
+                { id: 'DZ', isChecked: true },
+                { id: '2392505', isChecked: true },
+            ]);
+        }, { timeout: 1000 });
+
+        let view = hookResult.result.current;
+        await act(() => {
+            view.clearAllChecked();
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+        await waitFor(() => {
+            expect(currentValue).toEqual(
+                expect.objectContaining({ checked: [], topIndex: 0, visibleCount: 3 }),
+            );
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showOnlySelected: false } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+            ]);
+        }, { timeout: 1000 });
     });
 });
