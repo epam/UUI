@@ -33,12 +33,16 @@ export function useCascadeSelectionService<TItem, TId>({
 
     const isItemCheckable = useCallback((id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
         if (item === NOT_FOUND_RECORD) {
+            if (!getItemStatus) {
+                return true;
+            }
+
             const status = getItemStatus(id);
             if (isInProgress(status)) {
                 return false;
             }
 
-            if (item === FAILED_RECORD || item === NOT_FOUND_RECORD) {
+            if (status === FAILED_RECORD || status === NOT_FOUND_RECORD) {
                 return true;
             }
 
@@ -47,7 +51,20 @@ export function useCascadeSelectionService<TItem, TId>({
 
         const rowProps = getRowProps(item);
         return rowProps?.checkbox?.isVisible && !rowProps?.checkbox?.isDisabled;
-    }, [getRowProps]);
+    }, [getRowProps, getItemStatus]);
+
+    const isItemUnknown = useCallback((id: TId) => {
+        const item = tree.getById(id);
+        if (item !== NOT_FOUND_RECORD) {
+            return false;
+        }
+        if (!getItemStatus) {
+            return true;
+        }
+
+        const status = getItemStatus(id);
+        return status === FAILED_RECORD || status === NOT_FOUND_RECORD;
+    }, [tree, getItemStatus]);
 
     const handleCascadeSelection = useCallback(async (isChecked: boolean, checkedId?: TId, isRoot?: boolean, checked: TId[] = []) => {
         const completedTree = await loadMissingRecordsOnCheck(checkedId, isChecked, isRoot);
@@ -59,8 +76,9 @@ export function useCascadeSelectionService<TItem, TId>({
             isChecked,
             cascadeSelectionType: cascadeSelection,
             isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => isItemCheckable(id, item),
+            isUnknown: isItemUnknown,
         });
-    }, [tree, isItemCheckable, cascadeSelection]);
+    }, [tree, isItemCheckable, isItemUnknown, cascadeSelection]);
 
     return useMemo(() => ({ handleCascadeSelection }), [handleCascadeSelection]);
 }

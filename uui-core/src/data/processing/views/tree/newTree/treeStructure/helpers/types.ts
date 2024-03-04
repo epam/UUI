@@ -21,6 +21,7 @@ export interface CascadeSelectionOptions<TItem, TId> {
     checkedId: TId;
     isChecked: boolean;
     isCheckable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
+    isUnknown?: (id: TId) => boolean;
     cascadeSelectionType?: CascadeSelection;
 }
 
@@ -37,6 +38,11 @@ export interface ClearIfTreeNotLoadedOptions<TItem, TId> {
     checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
     checkedId: TId;
     isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
+}
+
+export interface ClearUnknownItemsOptions<TId> {
+    checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
+    isUnknown: (id: TId) => boolean;
 }
 
 export interface SelectionOptions<TItem, TId> {
