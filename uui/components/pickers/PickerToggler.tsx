@@ -63,7 +63,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
             onClear={ (e) => {
                 row.onCheck?.(row);
-                e.stopPropagation();
+                e.preventDefault();
             } }
             isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
         />
