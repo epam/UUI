@@ -64,9 +64,10 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
             selectedId: dataSourceState.selectedId,
         },
         forceReload: isForceReload,
+        onForceReloadComplete: () => setIsForceReload(false),
         showOnlySelected,
         isLoaded: isSomethingLoaded,
-    }, [...deps, incommingTree]);
+    }, [...deps, isForceReload, incommingTree]);
 
     const prevIsFetching = useSimplePrevious(isFetching);
 

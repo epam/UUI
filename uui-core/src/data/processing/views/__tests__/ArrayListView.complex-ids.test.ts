@@ -1,7 +1,6 @@
 import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
-import { AsyncDataSourceProps } from '../../AsyncDataSource';
-import { ArrayDataSource } from '../../ArrayDataSource';
+import { ArrayDataSource, ArrayDataSourceProps } from '../../ArrayDataSource';
 
 interface TestParent {
     type: 'parent';
@@ -19,7 +18,7 @@ interface TestChild {
 type TestItem = TestParent | TestChild;
 type TestItemId = [TestItem['type'], number];
 
-describe('AsyncListView - can work with id like [string, number]', () => {
+describe('ArrayListView - can work with id like [string, number]', () => {
     const testData: TestItem[] = [
         { type: 'parent', id: 1, childrenCount: 1 }, { type: 'child', id: 1, parentId: 1 }, { type: 'child', id: 2, parentId: 1 },
     ];
@@ -103,7 +102,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
 
     it('Checkboxes works', async () => {
         currentValue = { ...currentValue, visibleCount: 3, checked: [['child', 1]] as TestItemId[] };
-        const viewProps: Partial<AsyncDataSourceProps<TestItem, TestItemId, DataQueryFilter<TestItem>>> = {
+        const viewProps: Partial<ArrayDataSourceProps<TestItem, TestItemId, DataQueryFilter<TestItem>>> = {
             cascadeSelection: true,
             getRowOptions: () => ({ checkbox: { isVisible: true } }),
             isFoldedByDefault: () => false,

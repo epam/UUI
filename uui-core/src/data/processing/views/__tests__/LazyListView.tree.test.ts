@@ -5,6 +5,7 @@ import {
     DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
+import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
 
 interface TestItem {
     id: number;
@@ -541,7 +542,235 @@ describe('LazyListView', () => {
         expect(view.getListProps().rowsCount).toBe(10);
     });
 
+    describe('CascadeSelection - false', () => {
+        const initialValue: DataSourceState = { topIndex: 0, visibleCount: 5 };
+        let updatedValue = { ...initialValue };
+        const onValueChangeFn = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                updatedValue = newValue(updatedValue);
+                return;
+            }
+            updatedValue = newValue;
+        };
+
+        beforeEach(() => {
+            updatedValue = { ...initialValue };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
+        it('should clear specific unknown record', async () => {
+            const unknownId = '-10000';
+            updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+            const { dataSource: locationsDS } = getLazyLocationsDS({
+                cascadeSelection: false,
+                showOnlySelected: true,
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: updatedValue,
+                    onValueChange: onValueChangeFn,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'BJ', isChecked: true },
+                    ],
+                );
+            });
+            const view = hookResult.result.current;
+            const unknownRow = view.getById(unknownId, -1000);
+
+            expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+            await act(() => {
+                unknownRow.onCheck?.(unknownRow);
+            });
+
+            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+            expect(updatedValue.checked).toEqual(['BJ']);
+        });
+
+        it('should clear unknown record via clearAll', async () => {
+            const unknownId = '-10000';
+            updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+            const { dataSource: locationsDS } = getLazyLocationsDS({
+                cascadeSelection: false,
+                showOnlySelected: true,
+                rowOptions: {
+                    checkbox: {
+                        isVisible: true,
+                        isDisabled: false,
+                    },
+                },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: updatedValue,
+                    onValueChange: onValueChangeFn,
+                    props: {},
+                } },
+            );
+
+            expect(updatedValue.checked).toEqual([unknownId, 'BJ']);
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'BJ', isChecked: true },
+                    ],
+                );
+            });
+            const view = hookResult.result.current;
+            const unknownRow = view.getById(unknownId, -1000);
+
+            expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+            await act(() => {
+                view.clearAllChecked();
+            });
+
+            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+            await waitFor(() => {
+                expect(updatedValue.checked).toEqual([]);
+            });
+        });
+    });
+
     describe('CascadeSelection - explicit mode', () => {
+        const initialValue: DataSourceState = { topIndex: 0, visibleCount: 5 };
+        let updatedValue = { ...initialValue };
+        const onValueChangeFn = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                updatedValue = newValue(updatedValue);
+                return;
+            }
+            updatedValue = newValue;
+        };
+
+        beforeEach(() => {
+            updatedValue = { ...initialValue };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
+        it('should clear specific unknown record', async () => {
+            const unknownId = '-10000';
+            updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+            const { dataSource: locationsDS } = getLazyLocationsDS({
+                cascadeSelection: true,
+                showOnlySelected: true,
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: updatedValue,
+                    onValueChange: onValueChangeFn,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'BJ', isChecked: true },
+                    ],
+                );
+            });
+            const view = hookResult.result.current;
+            const unknownRow = view.getById(unknownId, -1000);
+
+            expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+            await act(() => {
+                unknownRow.onCheck?.(unknownRow);
+            });
+
+            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+            expect(updatedValue.checked).toEqual(['BJ']);
+        });
+
+        it('should clear unknown record via clearAll', async () => {
+            const unknownId = '-10000';
+            updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+            const { dataSource: locationsDS } = getLazyLocationsDS({
+                cascadeSelection: true,
+                showOnlySelected: true,
+                rowOptions: {
+                    checkbox: {
+                        isVisible: true,
+                        isDisabled: false,
+                    },
+                },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: updatedValue,
+                    onValueChange: onValueChangeFn,
+                    props: {},
+                } },
+            );
+
+            expect(updatedValue.checked).toEqual([unknownId, 'BJ']);
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'BJ', isChecked: true },
+                    ],
+                );
+            });
+            const view = hookResult.result.current;
+            const unknownRow = view.getById(unknownId, -1000);
+
+            expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+            await act(() => {
+                view.clearAllChecked();
+            });
+
+            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+            await waitFor(() => {
+                expect(updatedValue.checked).toEqual([]);
+            });
+        });
+
         it('Cascade selection works', async () => {
             currentValue.visibleCount = 6;
             const hookResult = renderHook(
@@ -773,6 +1002,119 @@ describe('LazyListView', () => {
     });
 
     describe('CascadeSelection - implicit mode', () => {
+        const initialValue: DataSourceState = { topIndex: 0, visibleCount: 5 };
+        let updatedValue = { ...initialValue };
+        const onValueChangeFn = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                updatedValue = newValue(updatedValue);
+                return;
+            }
+            updatedValue = newValue;
+        };
+
+        beforeEach(() => {
+            updatedValue = { ...initialValue };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
+        it('should clear specific unknown record', async () => {
+            const unknownId = '-10000';
+            updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+            const { dataSource: locationsDS } = getLazyLocationsDS({
+                cascadeSelection: 'implicit',
+                showOnlySelected: true,
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: updatedValue,
+                    onValueChange: onValueChangeFn,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'BJ', isChecked: true },
+                    ],
+                );
+            });
+            const view = hookResult.result.current;
+            const unknownRow = view.getById(unknownId, -1000);
+
+            expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+            await act(() => {
+                unknownRow.onCheck?.(unknownRow);
+            });
+
+            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+            expect(updatedValue.checked).toEqual(['BJ']);
+        });
+
+        it('should clear unknown record via clearAll', async () => {
+            const unknownId = '-10000';
+            updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+            const { dataSource: locationsDS } = getLazyLocationsDS({
+                cascadeSelection: 'implicit',
+                showOnlySelected: true,
+                rowOptions: {
+                    checkbox: {
+                        isVisible: true,
+                        isDisabled: false,
+                    },
+                },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: updatedValue,
+                    onValueChange: onValueChangeFn,
+                    props: {},
+                } },
+            );
+
+            expect(updatedValue.checked).toEqual([unknownId, 'BJ']);
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'BJ', isChecked: true },
+                    ],
+                );
+            });
+            const view = hookResult.result.current;
+            const unknownRow = view.getById(unknownId, -1000);
+
+            expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+            await act(() => {
+                view.clearAllChecked();
+            });
+
+            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+            await waitFor(() => {
+                expect(updatedValue.checked).toEqual([]);
+            });
+        });
+
         it('Cascade selection works', async () => {
             currentValue.visibleCount = 6;
             const hookResult = renderHook(

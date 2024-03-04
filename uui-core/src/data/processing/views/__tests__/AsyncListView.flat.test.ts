@@ -9,7 +9,7 @@ interface TestItem {
     id: number;
 }
 
-describe('LazyListView - flat list test', () => {
+describe('AsyncListView - flat list test', () => {
     const testData: TestItem[] = [
         { id: 100 }, { id: 110 }, { id: 120 }, { id: 121 }, { id: 122 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 },
     ];
@@ -26,7 +26,7 @@ describe('LazyListView - flat list test', () => {
     };
     const testApi = () => Promise.resolve(runDataQuery(testData, {}).items);
 
-    const flatDataSource = new AsyncDataSource({
+    const getDataSource = () => new AsyncDataSource({
         api: testApi,
         getId: ({ id }) => id,
         getFilter: (filter) => ({ id }) => {
@@ -58,6 +58,7 @@ describe('LazyListView - flat list test', () => {
     }
 
     it('can scroll through plain lists', async () => {
+        const flatDataSource = getDataSource();
         const hookResult = renderHook(
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
@@ -137,11 +138,14 @@ describe('LazyListView - flat list test', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
 
-        let view = hookResult.result.current;
-        expectViewToLookLike(view, [
-            { isLoading: true }, { isLoading: true }, { isLoading: true },
-        ]);
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { isLoading: true }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
 
+        let view = hookResult.result.current;
         await waitFor(() => {
             view = hookResult.result.current;
             expectViewToLookLike(
@@ -190,6 +194,7 @@ describe('LazyListView - flat list test', () => {
     });
 
     it('handles concurrent filter updates', async () => {
+        const flatDataSource = getDataSource();
         const hookResult = renderHook(
             ({ value, onValueChange, props }) => flatDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },

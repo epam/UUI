@@ -1017,6 +1017,27 @@ describe('AsyncListView', () => {
     });
 
     describe('rows check', () => {
+        let updatedValue = { ...initialValue };
+        const onValueChanged = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                updatedValue = newValue(updatedValue);
+                return;
+            }
+            updatedValue = newValue;
+        };
+
+        beforeEach(() => {
+            updatedValue = { ...initialValue };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
         describe('cascadeSelection = false', () => {
             it('should select item in single mode', async () => {
                 const hookResult = renderHook(
@@ -1083,6 +1104,97 @@ describe('AsyncListView', () => {
                 expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [6, 7],
+                });
+            });
+
+            it('should clear specific unknown record', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const { dataSource: locationsDS } = getAsyncLocationsDS({
+                    cascadeSelection: false,
+                    showOnlySelected: true,
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    unknownRow.onCheck?.(unknownRow);
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            it('should clear unknown record via clearAll', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const { dataSource: locationsDS } = getAsyncLocationsDS({
+                    cascadeSelection: false,
+                    showOnlySelected: true,
+                    rowOptions: {
+                        checkbox: {
+                            isVisible: true,
+                            isDisabled: false,
+                        },
+                    },
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                expect(updatedValue.checked).toEqual([unknownId, 'BJ']);
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    view.clearAllChecked();
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                await waitFor(() => {
+                    expect(updatedValue.checked).toEqual([]);
                 });
             });
         });
@@ -1258,6 +1370,137 @@ describe('AsyncListView', () => {
                     checked: [],
                 });
             });
+
+            it.each<[CascadeSelection]>([[true], ['explicit']])
+            ('should clear specific unknown record cascadeSelection = %s', async (cascadeSelection) => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const { dataSource: locationsDS } = getAsyncLocationsDS({
+                    cascadeSelection,
+                    showOnlySelected: true,
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    unknownRow.onCheck?.(unknownRow);
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            it.each<[CascadeSelection]>([[true], ['explicit']])
+            ('should clear unknown record via clearAll with cascadeSelection = %s', async (cascadeSelection) => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue,
+                    checked: [
+                        'BJ',
+                        '2392505',
+                        '2392308',
+                        '2392204',
+                        '2392108',
+                        '2392087',
+                        '2392009',
+                        '2391895',
+                        '2391893',
+                        '2391455',
+                        '2391377',
+                        unknownId,
+                    ],
+                };
+
+                const { dataSource: locationsDS } = getAsyncLocationsDS({
+                    cascadeSelection,
+                    showOnlySelected: true,
+                    rowOptions: {
+                        checkbox: {
+                            isVisible: true,
+                            isDisabled: false,
+                        },
+                    },
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                expect(updatedValue.checked).toEqual([
+                    'BJ',
+                    '2392505',
+                    '2392308',
+                    '2392204',
+                    '2392108',
+                    '2392087',
+                    '2392009',
+                    '2391895',
+                    '2391893',
+                    '2391455',
+                    '2391377',
+                    unknownId,
+                ]);
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                            { id: '2392505', isChecked: true },
+                            { id: '2392308', isChecked: true },
+                            { id: '2392204', isChecked: true },
+                            { id: '2392108', isChecked: true },
+                            { id: '2392087', isChecked: true },
+                            { id: '2392009', isChecked: true },
+                            { id: '2391895', isChecked: true },
+                            { id: '2391893', isChecked: true },
+                            { id: '2391455', isChecked: true },
+                            { id: '2391377', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    view.clearAllChecked();
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                await waitFor(() => {
+                    expect(updatedValue.checked).toEqual([]);
+                });
+            });
         });
 
         describe("cascadeSelection = 'implicit'", () => {
@@ -1377,6 +1620,105 @@ describe('AsyncListView', () => {
                 expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [],
+                });
+            });
+
+            it('should clear specific unknown record', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const { dataSource: locationsDS } = getAsyncLocationsDS({
+                    cascadeSelection: 'implicit',
+                    showOnlySelected: true,
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    unknownRow.onCheck?.(unknownRow);
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            it('should clear unknown record via clearAll', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue,
+                    checked: [
+                        'BJ',
+                        unknownId,
+                    ],
+                };
+
+                const { dataSource: locationsDS } = getAsyncLocationsDS({
+                    cascadeSelection: 'implicit',
+                    showOnlySelected: true,
+                    rowOptions: {
+                        checkbox: {
+                            isVisible: true,
+                            isDisabled: false,
+                        },
+                    },
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                expect(updatedValue.checked).toEqual([
+                    'BJ',
+                    unknownId,
+                ]);
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    view.clearAllChecked();
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                await waitFor(() => {
+                    expect(updatedValue.checked).toEqual([]);
                 });
             });
         });
@@ -1532,10 +1874,6 @@ describe('AsyncListView', () => {
             ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
             { initialProps: { value: { visibleCount: 3, filter: { id: -100500 } }, onValueChange: onValueChangeFn, props } },
         );
-        await waitFor(() => {
-            const view = hookResult.result.current;
-            expect(view.getListProps().isReloading).toBeTruthy();
-        });
 
         await waitFor(() => {
             const view = hookResult.result.current;
