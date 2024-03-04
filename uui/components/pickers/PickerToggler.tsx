@@ -61,9 +61,8 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             caption={ getCaption(row) }
             tabIndex={ -1 }
             size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
-            onClear={ (e) => {
+            onClear={ () => {
                 row.onCheck?.(row);
-                e.preventDefault();
             } }
             isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
         />
