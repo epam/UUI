@@ -79,7 +79,7 @@ export function useCheckingService<TItem, TId>(
                 return false;
             }
 
-            if (item === FAILED_RECORD || item === NOT_FOUND_RECORD) {
+            if (status === FAILED_RECORD || status === NOT_FOUND_RECORD) {
                 return true;
             }
 

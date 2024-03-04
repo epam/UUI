@@ -121,7 +121,7 @@ export class CheckingHelper {
         id,
     }: ActForCheckableOptions<TItem, TId>) {
         const item = tree.getById(id);
-        if (item !== NOT_FOUND_RECORD && isCheckable(id, item)) {
+        if (isCheckable(id, item)) {
             action(id);
         }
     }

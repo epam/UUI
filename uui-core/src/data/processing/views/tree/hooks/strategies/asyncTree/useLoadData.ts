@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, IMap, LazyDataSourceApi } from '../../../../../../../types';
-import { TreeState, getSelectedAndChecked } from '../../../newTree';
+import { NOT_FOUND_RECORD, TreeState, getSelectedAndChecked } from '../../../newTree';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { RecordStatus } from '../../../types';
@@ -86,12 +86,10 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const selectedAndChecked = getSelectedAndChecked(dataSourceState);
     const shouldLoad = !isLoading && !isFetching && !isLoaded && ((showOnlySelected && selectedAndChecked.length) || !showOnlySelected);
 
-    useEffect(() => {
-        if (isDepsChanged || shouldForceReload) {
-            setLoadedTree(tree);
-            setIsLoaded(false);
-        }
-    }, [isDepsChanged, shouldForceReload, tree]);
+    if (!isLoaded) {
+        const checked = getSelectedAndChecked(dataSourceState);
+        itemsStatusCollector.setPending(checked);
+    }
 
     useEffect(() => {
         if (shouldLoad) {
@@ -99,13 +97,18 @@ export function useLoadData<TItem, TId, TFilter = any>(
             if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
                 setIsLoading(true);
             }
-
-            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState));
+            const checked = getSelectedAndChecked(dataSourceState);
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setLoadedTree(newTree);
+                        const notLoaded = checked.filter((id) => newTree.getById(id) === NOT_FOUND_RECORD);
+                        itemsStatusCollector.setNotFound(notLoaded);
                     }
+                })
+                .catch((e) => {
+                    itemsStatusCollector.setFailed(checked);
+                    throw e;
                 })
                 .finally(() => {
                     setIsLoaded(true);
