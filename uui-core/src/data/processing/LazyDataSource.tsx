@@ -102,7 +102,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             getItemStatus: restProps.getItemStatus,
             loadMissingRecordsOnCheck,
         });
-                
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { rows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,

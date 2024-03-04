@@ -1,5 +1,5 @@
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { act, renderHook, waitFor } from '@epam/uui-test-utils';
+import { act, delay, renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { AsyncDataSource, AsyncDataSourceProps } from '../../AsyncDataSource';
 
@@ -33,8 +33,9 @@ describe('AsyncListView - can work with id like [string, number]', () => {
         currentValue = newValue;
     };
 
-    const treeDataSource = new AsyncDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
+    const getDataSource = () => new AsyncDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
         api: async () => {
+            await delay(100);
             return runDataQuery(testData, {}).items;
         },
 
@@ -57,6 +58,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
+        const treeDataSource = getDataSource();
         const hookResult = renderHook(
             ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
@@ -81,13 +83,17 @@ describe('AsyncListView - can work with id like [string, number]', () => {
     });
 
     it('can unfold nodes', async () => {
+        const treeDataSource = getDataSource();
         const hookResult = renderHook(
             ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: {} } },
         );
 
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expect(view.getListProps().isReloading).toBeTruthy();
+        });
         let view = hookResult.result.current;
-        expect(view.getListProps().isReloading).toBeTruthy();
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -115,6 +121,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
     });
 
     it('Checkboxes works', async () => {
+        const treeDataSource = getDataSource();
         currentValue = { ...currentValue, visibleCount: 3, checked: [['child', 1]] as TestItemId[] };
         const viewProps: Partial<AsyncDataSourceProps<TestItem, TestItemId, DataQueryFilter<TestItem>>> = {
             cascadeSelection: true,

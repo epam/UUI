@@ -23,12 +23,13 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     complexIds?: boolean;
     getId: (item: TItem) => TId;
     isLoaded?: boolean;
+    onForceReloadComplete?: () => void;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
     {
-        tree, api, dataSourceState, forceReload, showOnlySelected, itemsStatusMap, isLoaded: isPrevouslyLoaded,
-        complexIds, getId,
+        tree, api, dataSourceState, showOnlySelected, itemsStatusMap, isLoaded: isPrevouslyLoaded,
+        complexIds, getId, onForceReloadComplete, forceReload,
     }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
@@ -84,12 +85,18 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
     const selectedAndChecked = getSelectedAndChecked(dataSourceState);
-    const shouldLoad = !isLoading && !isFetching && !isLoaded && ((showOnlySelected && selectedAndChecked.length) || !showOnlySelected);
+    const shouldLoad = (!isFetching && !isLoaded && ((showOnlySelected && selectedAndChecked.length) || !showOnlySelected)) || forceReload;
 
     if (!isLoaded) {
         const checked = getSelectedAndChecked(dataSourceState);
         itemsStatusCollector.setPending(checked);
     }
+
+    useEffect(() => {
+        if (shouldForceReload) {
+            setLoadedTree(tree);
+        }
+    }, [shouldForceReload]);
 
     useEffect(() => {
         if (shouldLoad) {
@@ -102,8 +109,12 @@ export function useLoadData<TItem, TId, TFilter = any>(
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {
                         setLoadedTree(newTree);
+
                         const notLoaded = checked.filter((id) => newTree.getById(id) === NOT_FOUND_RECORD);
                         itemsStatusCollector.setNotFound(notLoaded);
+                        if (forceReload) {
+                            onForceReloadComplete();
+                        }
                     }
                 })
                 .catch((e) => {

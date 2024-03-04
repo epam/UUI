@@ -52,7 +52,7 @@ describe('LazyListView - show only selected', () => {
         expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ'] }, undefined);
 
         const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(0);
+        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('should load only selected item if showOnlySelected = true', async () => {
@@ -115,7 +115,7 @@ describe('LazyListView - show only selected', () => {
         expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ', 'c-EU'] }, undefined);
 
         const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(0);
+        expect(view.getListProps().rowsCount).toEqual(3);
     });
 
     it('should load checked and selected items and their parents if showOnlySelected = false', async () => {
