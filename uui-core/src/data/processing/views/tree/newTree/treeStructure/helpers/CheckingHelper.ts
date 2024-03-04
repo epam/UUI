@@ -2,7 +2,7 @@ import { CascadeSelectionTypes } from '../../../../../../../types';
 import { Tree } from '../../Tree';
 import { NOT_FOUND_RECORD, ROOT_ID } from '../../../constants';
 import { newMap } from './map';
-import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, ClearIfTreeNotLoadedOptions, SelectionOptions } from './types';
+import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, ClearIfTreeNotLoadedOptions, ClearUnknownItemsOptions, SelectionOptions } from './types';
 
 export class CheckingHelper {
     public static cascadeSelection<TItem, TId>({
@@ -11,6 +11,7 @@ export class CheckingHelper {
         checkedId,
         isChecked,
         isCheckable,
+        isUnknown,
         cascadeSelectionType,
     }: CascadeSelectionOptions<TItem, TId>) {
         const isImplicitMode = cascadeSelectionType === CascadeSelectionTypes.IMPLICIT;
@@ -63,6 +64,10 @@ export class CheckingHelper {
                 isChecked,
                 ...optionsWithDefaults,
             });
+        }
+
+        if (!isChecked && checkedId === ROOT_ID && checkedIdsMap.size > 0) {
+            checkedIdsMap = this.clearUnknownItems({ checkedIdsMap, isUnknown });
         }
 
         const result = [];
@@ -284,6 +289,18 @@ export class CheckingHelper {
                 if (isItemSelected && isCheckable(selectedItemId, selectedItem)) {
                     checkedIdsMap.delete(selectedItemId);
                 }
+            }
+        }
+        return checkedIdsMap;
+    }
+
+    private static clearUnknownItems<TId>({
+        checkedIdsMap,
+        isUnknown,
+    }: ClearUnknownItemsOptions<TId>) {
+        for (const [selectedItemId, isItemSelected] of checkedIdsMap) {
+            if (isItemSelected && isUnknown(selectedItemId)) {
+                checkedIdsMap.delete(selectedItemId);
             }
         }
         return checkedIdsMap;

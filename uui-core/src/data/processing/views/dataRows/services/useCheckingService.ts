@@ -74,6 +74,10 @@ export function useCheckingService<TItem, TId>(
 
     const isItemCheckable = useCallback((id: TId, item: TItem | typeof NOT_FOUND_RECORD) => {
         if (item === NOT_FOUND_RECORD) {
+            if (!getItemStatus) {
+                return true;
+            }
+
             const status = getItemStatus(id);
             if (isInProgress(status)) {
                 return false;
@@ -90,6 +94,19 @@ export function useCheckingService<TItem, TId>(
         return rowProps?.checkbox?.isVisible && !rowProps?.checkbox?.isDisabled;
     }, [getRowProps]);
 
+    const isItemUnknown = useCallback((id: TId) => {
+        const item = tree.getById(id);
+        if (item !== NOT_FOUND_RECORD) {
+            return false;
+        }
+        if (!getItemStatus) {
+            return true;
+        }
+
+        const status = getItemStatus(id);
+        return status === FAILED_RECORD || status === NOT_FOUND_RECORD;
+    }, [tree, getItemStatus]);
+
     const handleCheck = useCallback(async (isChecked: boolean, checkedId?: TId, isRoot?: boolean) => {
         let updatedChecked: TId[] = [];
         if (handleCascadeSelection) {
@@ -101,12 +118,13 @@ export function useCheckingService<TItem, TId>(
                 checkedId,
                 isChecked,
                 isCheckable: isItemCheckable,
+                isUnknown: isItemUnknown,
                 cascadeSelectionType: cascadeSelection,
             });
         }
 
         setDataSourceState((dsState) => ({ ...dsState, checked: updatedChecked }));
-    }, [tree, checked, setDataSourceState, isItemCheckable, cascadeSelection]);
+    }, [tree, checked, setDataSourceState, isItemCheckable, isItemUnknown, cascadeSelection]);
 
     const handleSelectAll = useCallback((isChecked: boolean) => {
         handleCheck(isChecked, undefined, true);

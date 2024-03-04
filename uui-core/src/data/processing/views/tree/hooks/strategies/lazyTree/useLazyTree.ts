@@ -76,6 +76,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         filter,
         forceReload: isForceReload,
         backgroundReload,
+        showOnlySelected,
     });
 
     useEffect(() => {
