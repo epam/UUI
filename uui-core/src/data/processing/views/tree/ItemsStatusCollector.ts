@@ -29,6 +29,10 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
         this.setStatus(ids, FAILED_RECORD);
     }
 
+    public setNotFound(ids: TId[]) {
+        this.setStatus(ids, NOT_FOUND_RECORD);
+    }
+
     public getItemStatus = (itemsMap: ItemsMap<TId, TItem>) => (id: TId) => {
         if (itemsMap.has(id)) {
             return LOADED_RECORD;
@@ -48,8 +52,17 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
                 try {
                     this.setLoading(request.ids);
                     const result = await api(request, context);
-                    // @TODO: exclude not found ids to be added to UNKNOWN
-                    this.setLoaded((result.items ?? []).map(this.params.getId));
+                    const loadedIds: Array<[TId, TId]> = (result.items ?? []).map((item) => {
+                        const id = this.params.getId(item);
+                        return [id, id];
+                    });
+
+                    this.setLoaded(loadedIds.map(([id]) => id));
+
+                    const loadedIdsMap = new Map<TId, TId>(loadedIds);
+                    const notLoadedIds = request.ids.filter((id) => !loadedIdsMap.has(id));
+
+                    this.setNotFound(notLoadedIds);
 
                     return result;
                 } catch (e) {

@@ -137,12 +137,14 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
             ? { isVisible: true, isDisabled: false }
             : undefined;
 
+        const isCheckable = checkbox && checkbox.isVisible && !checkbox.isDisabled;
         return {
             ...emptyRowProps,
             checkbox,
             isUnknown: true,
+            onCheck: isCheckable && handleOnCheck,
         };
-    }, [getEmptyRowProps, rowOptions]);
+    }, [getEmptyRowProps, rowOptions, handleOnCheck]);
 
     return useMemo(
         () => ({ getRowProps, getEmptyRowProps, getLoadingRowProps, getUnknownRowProps, updateRowOptions }),
