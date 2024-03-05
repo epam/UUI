@@ -16,8 +16,14 @@
         "text": "We use the "
       },
       {
-        "text": "Lenses",
-        "uui-richTextEditor-bold": true
+        "type": "link",
+        "url": "/documents?id=lenses",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Lenses"
+          }
+        ]
       },
       {
         "text": " approach for form state management and "

@@ -1,0 +1,17 @@
+[
+  {
+    "children": [
+      {
+        "text": "For creating a lens on an array item, you need to use the "
+      },
+      {
+        "text": ".index()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, providing the appropriate index of the expected item."
+      }
+    ],
+    "type": "paragraph"
+  }
+]

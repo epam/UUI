@@ -1,0 +1,52 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In the context of using lenses with forms, it's a common scenario when you need to define "
+      },
+      {
+        "text": "value",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "onValueChange",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and also provide the validation state to the form component. For this case, lenses have the "
+      },
+      {
+        "text": ".toProps()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, which returns the "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=%40epam%2Fuui-core%3AIEditable&category=%40epam%2Fuui-core",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "IEditable"
+          }
+        ]
+      },
+      {
+        "text": " interface."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You just need to spread it to your component, and that's all."
+      }
+    ]
+  }
+]

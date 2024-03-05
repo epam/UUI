@@ -1,154 +1,116 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The Form component handles the state of the form. It performs such functions:",
-            "marks": []
-          }
-        ]
-      },
+        "text": "The Form component handles the state of the form. It performs such functions:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Declarative binding components to the form state.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Validation (you can choose when validation is performed: 'onchange' or 'save'; by default, 'save'.)",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Revert/Undo/Redo actions.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Signaling a user that they are leaving with unsaved changes.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Saving the form state to localStorage.",
-                    "marks": []
-                  }
-                ]
+                "text": "Declarative binding components to the form state."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "See the Form ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/demo?id=form"
-            },
-            "nodes": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "text",
-                "text": "demo﻿",
-                "marks": []
+                "text": "Validation (you can choose when validation is performed: 'onchange' or 'save'; by default, 'save'.)"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": " to learn about the real potential of the Form Component and others.",
-            "marks": []
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Revert/Undo/Redo actions."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Signaling a user that they are leaving with unsaved changes."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Saving the form state to localStorage."
+              }
+            ]
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "See the Form "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/demo?id=form"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/demo?id=form",
+        "children": [
+          {
+            "text": "demo﻿"
+          }
+        ]
+      },
+      {
+        "text": " to learn about the real potential of the Form Component and others."
+      }
+    ]
   }
-}
+]

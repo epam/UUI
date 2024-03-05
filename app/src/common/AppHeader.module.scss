@@ -30,7 +30,9 @@
     }
 
     .theme-caption {
-        font-size: 14px;
+        :global(.uui-caption) {
+            font-size: 14px;
+        }
     }
 }
 

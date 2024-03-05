@@ -15,7 +15,7 @@ import {
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
     DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, useTableStateDoc, CountIndicatorDoc, OverviewDoc, StatusIndicatorDoc,
-    ThemingOverview, Tokens, AccessibilityDoc, UtGuideGettingStartedDoc,
+    ThemingOverview, Tokens, AccessibilityDoc, UtGuideGettingStartedDoc, LensesDoc,
 
 } from '../docs';
 import sortBy from 'lodash.sortby';
@@ -157,6 +157,7 @@ export const items: DocItem[] = [
     { id: 'advanced', name: 'Advanced' },
     { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
     { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
+    { id: 'lenses', name: 'Lenses', component: LensesDoc, parentId: 'advanced' },
 
     { id: 'Accessibility', name: 'Accessibility', component: AccessibilityDoc },
 
