@@ -104,7 +104,8 @@ describe('PickerList', () => {
         fireEvent.click(toggler);
 
         await PickerListTestObject.waitForOptionsToBeReady('modal');
-
+        await PickerListTestObject.waitForSpinnerToHide('modal');
+        
         expect(result.baseElement).toMatchSnapshot();
     });
 
