@@ -92,36 +92,34 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     };
 
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
-        if (!props.isReadonly && !props.isDisabled) {
-            return (
-                <DropdownContainer
-                    { ...renderProps }
-                    cx={ cx(css.dropdownContainer) }
-                    focusLock={ false }
-                >
-                    <FlexRow>
-                        <RangeDatePickerBody
-                            cx={ cx(props.bodyCx) }
-                            value={ {
-                                selectedDate: value,
-                                month: bodyState.month,
-                                view: bodyState.view,
-                                inFocus: bodyState.inFocus,
-                            } }
-                            onValueChange={ onBodyValueChange }
-                            filter={ props.filter }
-                            presets={ props.presets }
-                            renderDay={ props.renderDay }
-                            renderFooter={ () => {
-                                return props.renderFooter?.(value);
-                            } }
-                            isHoliday={ props.isHoliday }
-                            rawProps={ props.rawProps?.body }
-                        />
-                    </FlexRow>
-                </DropdownContainer>
-            );
-        }
+        return (
+            <DropdownContainer
+                { ...renderProps }
+                cx={ cx(css.dropdownContainer) }
+                focusLock={ false }
+            >
+                <FlexRow>
+                    <RangeDatePickerBody
+                        cx={ cx(props.bodyCx) }
+                        value={ {
+                            selectedDate: value,
+                            month: bodyState.month,
+                            view: bodyState.view,
+                            inFocus: bodyState.inFocus,
+                        } }
+                        onValueChange={ onBodyValueChange }
+                        filter={ props.filter }
+                        presets={ props.presets }
+                        renderDay={ props.renderDay }
+                        renderFooter={ () => {
+                            return props.renderFooter?.(value);
+                        } }
+                        isHoliday={ props.isHoliday }
+                        rawProps={ props.rawProps?.body }
+                    />
+                </FlexRow>
+            </DropdownContainer>
+        );
     };
 
     return (
@@ -146,7 +144,11 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                         disableClear={ props.disableClear }
                         rawProps={ props.rawProps }
                         inFocus={ bodyState.inFocus }
-                        onClick={ !props.isDisabled && renderProps.onClick }
+                        onClick={ (event) => {
+                            if (!props.isDisabled) {
+                                renderProps.onClick(event);
+                            }
+                        } }
                         value={ inputValue }
                         format={ format }
                         onValueChange={ setInputValue }
@@ -164,9 +166,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                             setInputValue(v.inputValue);
                             onValueChange(v.selectedDate);
                         } }
-                        onClear={ (s) => {
-                            onValueChange(s);
-                        } }
+                        onClear={ onValueChange }
                     />
                 );
             } }
