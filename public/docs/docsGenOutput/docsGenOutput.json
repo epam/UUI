@@ -1,5 +1,5 @@
 {
- "version": "5.5.3",
+ "version": "5.6.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -30006,7 +30006,7 @@
       "    /** HTML alt attribute value */",
       "    alt?: string;",
       "    /** Image URL */",
-      "    img: string;",
+      "    img: string | null;",
       "    /** Size  */",
       "    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144';",
       "    /** True to show placeholder */",
@@ -30044,12 +30044,12 @@
        ]
       },
       "typeValue": {
-       "raw": "string"
+       "raw": "null | string"
       },
       "editor": {
        "type": "string"
       },
-      "required": true
+      "required": false
      },
      {
       "uid": "size",
@@ -31977,12 +31977,19 @@
      "print": [
       "interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {",
       "    toggleVisibility: () => void;",
-      "    togglePin: () => void;",
+      "    /**",
+      "     * Pins column to the specified position. If 'fix' parameter is absent, the column is unpinned.",
+      "     * @param fix - The position to which the column should be pinned. Omit to unpin the column.",
+      "     */",
+      "    togglePin: (fix: TColumnPinPosition) => void;",
       "    onCanAcceptDrop: (props: AcceptDropParams<DndDataType, DndDataType>) => DropPositionOptions | null;",
       "    onDrop: (params: DropParams<DndDataType, DndDataType>) => void;",
       "    columnConfig: IColumnConfig;",
       "    isDndAllowed: boolean;",
-      "    isPinned: boolean;",
+      "    /**",
+      "     * The position at which the column is pinned. If the value is undefined, it means the column is not pinned.",
+      "     */",
+      "    fix: TColumnPinPosition;",
       "    isPinnedAlways: boolean;",
       "}"
      ]
@@ -32002,8 +32009,14 @@
      {
       "uid": "togglePin",
       "name": "togglePin",
+      "comment": {
+       "raw": [
+        "Pins column to the specified position. If 'fix' parameter is absent, the column is unpinned.",
+        " @param fix - The position to which the column should be pinned. Omit to unpin the column."
+       ]
+      },
       "typeValue": {
-       "raw": "() => void"
+       "raw": "(fix: TColumnPinPosition) => void"
       },
       "editor": {
        "type": "func"
@@ -32053,15 +32066,25 @@
       "required": true
      },
      {
-      "uid": "isPinned",
-      "name": "isPinned",
+      "uid": "fix",
+      "name": "fix",
+      "comment": {
+       "raw": [
+        "The position at which the column is pinned. If the value is undefined, it means the column is not pinned."
+       ]
+      },
       "typeValue": {
-       "raw": "boolean"
+       "raw": "'right' | 'left'"
       },
+      "typeValueRef": "@epam/uui-components:TColumnPinPosition",
       "editor": {
-       "type": "bool"
+       "type": "oneOf",
+       "options": [
+        "right",
+        "left"
+       ]
       },
-      "required": true
+      "required": false
      },
      {
       "uid": "isPinnedAlways",
@@ -32078,14 +32101,14 @@
       "uid": "groupKey",
       "name": "groupKey",
       "typeValue": {
-       "raw": "'hidden' | 'displayedUnpinned' | 'displayedPinned' | 'displayedPinnedRight'"
+       "raw": "'hidden' | 'displayedUnpinned' | 'displayedPinnedLeft' | 'displayedPinnedRight'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "hidden",
         "displayedUnpinned",
-        "displayedPinned",
+        "displayedPinnedLeft",
         "displayedPinnedRight"
        ]
       },
@@ -32462,27 +32485,6 @@
        "type": "component"
       },
       "from": "@epam/uui-core:DataColumnProps",
-      "required": false
-     },
-     {
-      "uid": "fix",
-      "name": "fix",
-      "comment": {
-       "raw": [
-        "If specified, will make column fixed - it would not scroll horizontally"
-       ]
-      },
-      "typeValue": {
-       "raw": "'right' | 'left'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "right",
-        "left"
-       ]
-      },
-      "from": "@epam/uui-core:ICanBeFixed",
       "required": false
      },
      {
@@ -33407,10 +33409,30 @@
      "raw": "DragHandleProps",
      "print": [
       "interface DragHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDisableable {",
+      "    /**",
+      "     * Icon to be used as the drag handle",
+      "     */",
+      "    dragHandleIcon?: Icon;",
       "}"
      ]
     },
     "props": [
+     {
+      "uid": "dragHandleIcon",
+      "name": "dragHandleIcon",
+      "comment": {
+       "raw": [
+        "Icon to be used as the drag handle"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
      {
       "uid": "cx",
       "name": "cx",
@@ -56735,6 +56757,17 @@
     "exported": false
    }
   },
+  "@epam/uui-components:TColumnPinPosition": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "TColumnPinPosition",
+     "nameFull": "TColumnPinPosition"
+    },
+    "src": "uui-components/src/table/columnsConfigurationModal/types.ts",
+    "exported": false
+   }
+  },
   "@epam/uui:AccordionProps": {
    "summary": {
     "module": "@epam/uui",
@@ -70246,10 +70279,7 @@
        }
       },
       "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
+       "raw": "string | number"
       },
       "from": "@epam/uui:ModalWindowMods",
       "required": false
@@ -70267,10 +70297,7 @@
        }
       },
       "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
+       "raw": "string | number"
       },
       "from": "@epam/uui:ModalWindowMods",
       "required": false
@@ -91985,7 +92012,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night600'"
       },
       "editor": {
        "type": "oneOf",
@@ -92000,6 +92027,9 @@
         "purple",
         "cyan",
         "mint",
+        "cobalt",
+        "violet",
+        "fuchsia",
         "white",
         "night100",
         "night600"
@@ -92489,7 +92519,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'fuchsia' | 'violet' | 'cobalt'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral' | 'yellow' | 'orange' | 'purple' | 'cyan' | 'mint' | 'cobalt' | 'violet' | 'fuchsia' | 'white'"
       },
       "editor": {
        "type": "oneOf",
@@ -92504,10 +92534,10 @@
         "purple",
         "cyan",
         "mint",
-        "white",
-        "fuchsia",
+        "cobalt",
         "violet",
-        "cobalt"
+        "fuchsia",
+        "white"
        ]
       },
       "from": "@epam/electric:StatusIndicatorMods",
