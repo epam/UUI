@@ -1,12 +1,17 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { RangePickerBodyValue, uuiDaySelection } from '@epam/uui-components';
-import { RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets, RangeDatePickerValue } from '../RangeDatePickerBody';
-import { act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, within } from '@epam/uui-test-utils';
+import {
+    RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets,
+} from '../RangeDatePickerBody';
+import {
+    act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, within,
+} from '@epam/uui-test-utils';
+import { RangeDatePickerValue } from '../types';
 
 type RangePickerSetupProps = {
     selectedDate: RangePickerBodyValue<RangeDatePickerValue>['selectedDate'];
-    activePart: RangePickerBodyValue<RangeDatePickerValue>['activePart'];
+    inFocus: RangePickerBodyValue<RangeDatePickerValue>['inFocus'];
     presets?: RangeDatePickerBodyProps<RangeDatePickerValue>['presets'];
     filter?: RangeDatePickerBodyProps<RangeDatePickerValue>['filter'];
     isHoliday?: RangeDatePickerBodyProps<RangeDatePickerValue>['isHoliday'];
@@ -20,7 +25,7 @@ function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
 
 async function setupRangePickerBody(params: RangePickerSetupProps) {
     const {
-        selectedDate, activePart, presets, filter, isHoliday,
+        selectedDate, inFocus, presets, filter, isHoliday,
     } = params;
 
     const { result, mocks } = await setupComponentForTest<RangeDatePickerBodyProps<RangeDatePickerValue>>(
@@ -30,7 +35,7 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
                     view: 'DAY_SELECTION',
                     selectedDate,
                     month: dayjs('2019-10-12').startOf('day'),
-                    activePart: activePart,
+                    inFocus,
                 },
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
                 presets,
@@ -65,7 +70,7 @@ describe('RangeDatePickerBody', () => {
                 to: null,
             },
             month: dayjs('2020-09-03'),
-            activePart: 'from',
+            inFocus: 'from',
         };
         const tree = await renderSnapshotWithContextAsync(
             <RangeDatePickerBody
@@ -76,21 +81,19 @@ describe('RangeDatePickerBody', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('[focusPart:from] should clear "To" only when user selects "From" which is bigger than "To"', async () => {
+    it('should not clear "to" when user selects "form" earlier than "to"', async () => {
         const { mocks } = await setupRangePickerBody({
-            activePart: 'from',
+            inFocus: 'from',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-17',
             },
         });
 
-        // "To" is not cleared when user selects "From" earlier than "To"
-        // case-1
         const [oct13] = screen.getAllByText('13');
         fireEvent.click(oct13);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'from',
+            inFocus: 'to',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
@@ -98,24 +101,33 @@ describe('RangeDatePickerBody', () => {
                 to: '2019-10-17',
             },
         });
-        // case-2
-        const [oct17] = screen.getAllByText('17');
-        fireEvent.click(oct17);
+
+        const [_oct13] = screen.getAllByText('13');
+        fireEvent.click(_oct13);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'from',
+            inFocus: 'from',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
-                from: '2019-10-17',
+                from: '2019-10-13',
+                to: '2019-10-13',
+            },
+        });
+    });
+
+    it('should clear "to" when user selects "from" later than "to"', async () => {
+        const { mocks } = await setupRangePickerBody({
+            inFocus: 'from',
+            selectedDate: {
+                from: '2019-10-12',
                 to: '2019-10-17',
             },
         });
 
-        // "To" is cleared when user tries to select "From" later than "To"
         const [oct18] = screen.getAllByText('18');
         fireEvent.click(oct18);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'from',
+            inFocus: 'to',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
@@ -125,21 +137,19 @@ describe('RangeDatePickerBody', () => {
         });
     });
 
-    it('[focusPart:to] should select "From" when user selects "To" which is less than "From"', async () => {
+    it('should not clear "from" when user selects "to" bigger than "from"', async () => {
         const { mocks } = await setupRangePickerBody({
-            activePart: 'to',
+            inFocus: 'to',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-17',
             },
         });
 
-        // "From" is not cleared user selects "To" equal or bigger than "From"
-        // case-1
         const [oct16] = screen.getAllByText('16');
         fireEvent.click(oct16);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'to',
+            inFocus: 'from',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
@@ -147,24 +157,21 @@ describe('RangeDatePickerBody', () => {
                 to: '2019-10-16',
             },
         });
-        // case-2
-        const [oct12] = screen.getAllByText('12');
-        fireEvent.click(oct12);
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'to',
-            month: expect.anything(),
-            view: expect.anything(),
+    });
+
+    it('should clear "to" when user selects it earlier than "from"', async () => {
+        const { mocks } = await setupRangePickerBody({
+            inFocus: 'to',
             selectedDate: {
                 from: '2019-10-12',
-                to: '2019-10-12',
+                to: '2019-10-17',
             },
         });
 
-        // "From" is selected when user selects "To" less than "From" (This is different from how focusPart: from works)
         const [oct11] = screen.getAllByText('11');
         fireEvent.click(oct11);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'to',
+            inFocus: 'from',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
@@ -176,7 +183,7 @@ describe('RangeDatePickerBody', () => {
 
     it('should change view by click on title', async () => {
         const { dom } = await setupRangePickerBody({
-            activePart: 'from',
+            inFocus: 'from',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-17',
@@ -196,14 +203,14 @@ describe('RangeDatePickerBody', () => {
 
     it('should have special class names for selected days', async () => {
         const useCase1 = await setupRangePickerBody({
-            activePart: 'from',
+            inFocus: 'from',
             selectedDate: null,
         });
         expect(useCase1.result.container.querySelectorAll('.uui-calendar-selected-day').length).toBe(0);
         useCase1.result.unmount();
 
         const useCase2 = await setupRangePickerBody({
-            activePart: 'from',
+            inFocus: 'from',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-14',
@@ -222,7 +229,7 @@ describe('RangeDatePickerBody', () => {
 
     it('should work with presets', async () => {
         const { result } = await setupRangePickerBody({
-            activePart: 'from',
+            inFocus: 'from',
             selectedDate: null,
             presets: rangeDatePickerPresets,
         });
@@ -243,14 +250,14 @@ describe('RangeDatePickerBody', () => {
 
     it('should start selection from start date', async () => {
         const { mocks } = await setupRangePickerBody({
-            activePart: 'from',
+            inFocus: 'from',
             selectedDate: null,
         });
 
         const [oct13] = screen.getAllByText('13');
         fireEvent.click(oct13);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'from',
+            inFocus: 'to',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
@@ -262,14 +269,14 @@ describe('RangeDatePickerBody', () => {
 
     it('should start selection from end date', async () => {
         const { mocks } = await setupRangePickerBody({
-            activePart: 'to',
+            inFocus: 'to',
             selectedDate: null,
         });
 
         const [oct17] = screen.getAllByText('17');
         fireEvent.click(oct17);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            activePart: 'to',
+            inFocus: 'from',
             month: expect.anything(),
             view: expect.anything(),
             selectedDate: {
@@ -281,7 +288,7 @@ describe('RangeDatePickerBody', () => {
 
     it('should not change date range if there is filter', async () => {
         const { mocks } = await setupRangePickerBody({
-            activePart: 'to',
+            inFocus: 'to',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-14',
@@ -299,7 +306,7 @@ describe('RangeDatePickerBody', () => {
 
     it('should mark weekends', async () => {
         await setupRangePickerBody({
-            activePart: 'to',
+            inFocus: 'to',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-14',
@@ -319,7 +326,7 @@ describe('RangeDatePickerBody', () => {
 
     it('should mark holidays', async () => {
         await setupRangePickerBody({
-            activePart: 'to',
+            inFocus: 'to',
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-14',

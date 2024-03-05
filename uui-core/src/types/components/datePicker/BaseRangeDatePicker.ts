@@ -5,12 +5,12 @@ import {
 import * as React from 'react';
 import { CommonDatePickerProps } from './BaseDatePicker';
 
-export interface RangeDatePickerValue {
+export type RangeDatePickerValue = {
     /** RangeDatePicker 'from' value */
     from: string | null;
     /** RangeDatePicker 'to' value */
     to: string | null;
-}
+};
 
 export type RangeDatePickerInputType = 'from' | 'to';
 
@@ -33,7 +33,7 @@ export type RangeDatePickerPresetValue = {
     order?: number;
 };
 
-export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>,
+export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue | null>,
     IAnalyticableOnChange<RangeDatePickerValue>,
     CommonDatePickerProps {
     /**

@@ -1,27 +1,31 @@
 import React, { useEffect } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import {
-    IEditable, IHasCX, IClickable, IHasRawProps, RangeDatePickerInputType, devLogger, cx, uuiMod,
+    IEditable, IHasCX, IClickable, RangeDatePickerInputType, devLogger, cx, uuiMod,
 } from '@epam/uui-core';
+import { toCustomDateRangeFormat, toValueDateRangeFormat } from '@epam/uui-components';
 import { TextInput } from '../inputs';
 import { SizeMod } from '../types';
-import { RangeDatePickerValue } from './RangeDatePickerBody';
-import { defaultRangeValue } from './helpers';
-import { InputType, RangeDatePickerProps } from './types';
+import {
+    InputType, RangeDatePickerProps, RangeDatePickerValue,
+} from './types';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
 import css from './RangeDatePicker.module.scss';
+import { defaultRangeValue, isValidRange } from './helpers';
 
-interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, SizeMod {
-    getPlaceholder?(type: InputType): string;
-    disableClear?: boolean;
-    rawPropsFrom?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps']
-    rawPropsTo?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps']
+interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>,
+    IHasCX,
+    IClickable,
+    SizeMod,
+    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'rawProps'> {
     inFocus: RangeDatePickerInputType,
     onFocus: (event: React.FocusEvent<HTMLInputElement>, inputType: InputType) => void;
-    onBlur: (event: React.FocusEvent<HTMLInputElement>, inputType: InputType, newValue: RangeDatePickerValue) => void;
-    filter?(day: Dayjs): boolean;
-    id?: string;
+    onBlur: (event: React.FocusEvent<HTMLInputElement>, inputType: InputType, newValues: {
+        selectedDate: RangeDatePickerValue;
+        inputValue: RangeDatePickerValue;
+    }) => void;
+    onClear: (value: RangeDatePickerValue) => void;
 }
 
 export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
@@ -31,14 +35,15 @@ export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePi
     isReadonly,
     size,
     disableClear,
-    rawPropsFrom,
-    rawPropsTo,
+    rawProps,
     value: inputValue,
     inFocus,
+    format,
     onClick,
     onValueChange,
     onFocus,
     onBlur,
+    onClear,
     getPlaceholder,
     filter,
     id,
@@ -71,12 +76,23 @@ export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePi
     };
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: InputType) => {
-        if (!filter || filter(dayjs(inputValue[inputType]))) {
-            onBlur(event, inputType, inputValue);
+        const selectedDate = toValueDateRangeFormat(inputValue, format);
+
+        if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
+            onBlur(event, inputType, {
+                inputValue: toCustomDateRangeFormat(selectedDate, format),
+                selectedDate,
+            });
         } else {
             onBlur(event, inputType, {
-                ...inputValue,
-                [inputType]: null,
+                inputValue: {
+                    ...inputValue,
+                    [inputType]: null,
+                },
+                selectedDate: {
+                    ...selectedDate,
+                    [inputType]: null,
+                },
             });
         }
     };
@@ -102,7 +118,7 @@ export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePi
                 isDisabled={ isDisabled }
                 isReadonly={ isReadonly }
                 isDropdown={ false }
-                rawProps={ rawPropsFrom }
+                rawProps={ rawProps?.from }
                 id={ id }
             />
             <div className={ css.separator } />
@@ -111,7 +127,11 @@ export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePi
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                 size={ size || '36' }
                 value={ inputValue.to }
-                onCancel={ clearAllowed && (() => onValueChange(defaultRangeValue)) }
+                onCancel={ () => {
+                    if (clearAllowed) {
+                        onClear(defaultRangeValue);
+                    }
+                } }
                 onValueChange={ (v) => onInputChange(v, 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
                 onBlur={ (e) => handleBlur(e, 'to') }
@@ -119,7 +139,7 @@ export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePi
                 isDisabled={ isDisabled }
                 isReadonly={ isReadonly }
                 isDropdown={ false }
-                rawProps={ rawPropsTo }
+                rawProps={ rawProps?.to }
             />
         </div>
     );

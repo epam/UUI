@@ -23,11 +23,5 @@ export interface PickerBodyValue<TSelection> {
 }
 
 export interface RangePickerBodyValue<TSelection> extends PickerBodyValue<TSelection> {
-    activePart: 'from' | 'to';
-}
-
-export interface DatePickerState {
-    isOpen: boolean;
-    month: Dayjs;
-    view: ViewType;
+    inFocus: 'from' | 'to';
 }

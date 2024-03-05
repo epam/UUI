@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { RangeDatePicker } from '../RangeDatePicker';
-import { renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent } from '@epam/uui-test-utils';
+import {
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent,
+} from '@epam/uui-test-utils';
 import { supportedDateFormats } from '@epam/uui-components';
 import dayjs from 'dayjs';
 import { RangeDatePickerProps } from '../types';
 
 interface TestProps {
-    value?: RangeDatePickerProps['value'];
+    value: RangeDatePickerProps['value'];
     format?: RangeDatePickerProps['format'];
     onBlur?: RangeDatePickerProps['onBlur'];
     onFocus?: RangeDatePickerProps['onFocus'];
@@ -20,18 +22,18 @@ function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
     return classesArr.every((c: string) => actualList.indexOf(c) !== -1);
 }
 
+const getRawTestIdProps = () => {
+    return {
+        from: { 'data-testid': 'from' },
+        to: { 'data-testid': 'to' },
+    };
+};
+
 async function setupRangeDatePicker(props: TestProps) {
     const { result, mocks } = await setupComponentForTest<RangeDatePickerProps>(
         (context) => ({
-            rawProps: {
-                from: { 'data-testid': 'from' },
-                to: { 'data-testid': 'to' },
-            },
+            rawProps: getRawTestIdProps(),
             ...props,
-            value: props.value || {
-                from: null,
-                to: null,
-            },
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current?.setProperty('value', newValue);
             }),
@@ -101,11 +103,6 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('Jan 28, 2017');
     });
 
-    it('should render with default props', async () => {
-        const { result } = await setupRangeDatePicker({ value: undefined });
-        expect(result.container).not.toBeFalsy();
-    });
-
     it('should not clear when range is not filled', async () => {
         const value = {
             from: null,
@@ -113,6 +110,40 @@ describe('RangeDataPicker', () => {
         };
         await setupRangeDatePicker({ value });
         expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    });
+
+    it('should rerender with updated value prop', async () => {
+        const value = {
+            from: '2017-01-22',
+            to: '2017-01-28',
+        };
+        const { dom, result } = await setupRangeDatePicker({ value });
+        expect(dom.from.value).toBe('Jan 22, 2017');
+        expect(dom.to.value).toBe('Jan 28, 2017');
+
+        const newValue = {
+            from: '2017-01-29',
+            to: '2017-01-30',
+        };
+
+        result.rerender(<RangeDatePicker
+            format="MMM D, YYYY"
+            value={ newValue }
+            onValueChange={ jest.fn }
+            rawProps={ getRawTestIdProps() }
+        />);
+
+        const from = within(screen.getByTestId('from')).getByRole<HTMLInputElement>('textbox');
+        const to = within(screen.getByTestId('to')).getByRole<HTMLInputElement>('textbox');
+
+        expect(from.value).toBe('Jan 29, 2017');
+        expect(to.value).toBe('Jan 30, 2017');
+    });
+
+    it('should init with null value correctly', async () => {
+        const { dom } = await setupRangeDatePicker({ value: null });
+        expect(dom.from.value).toBe('');
+        expect(dom.to.value).toBe('');
     });
 
     it('should change state on picker clear', async () => {
@@ -129,23 +160,23 @@ describe('RangeDataPicker', () => {
         });
     });
 
-    it("should open picker on 'from' field focus and close it on blur", async () => {
-        const { dom, result } = await setupRangeDatePicker({ value: undefined });
+    it('should open picker on "from" field focus and close it on blur', async () => {
+        const { dom, result } = await setupRangeDatePicker({ value: null });
         await userEvent.clear(dom.from);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
         await userEvent.click(result.container);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
-    it('should open picker on "To" field focus and close it on blur', async () => {
-        const { dom, result } = await setupRangeDatePicker({ value: undefined });
+    it('should open picker on "to" field focus and close it on blur', async () => {
+        const { dom, result } = await setupRangeDatePicker({ value: null });
         await userEvent.clear(dom.to);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
         await userEvent.click(result.container);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
-    it('should reset invalid "From" value onBlur', async () => {
+    it('should reset invalid "from" value onBlur', async () => {
         const value = {
             from: null,
             to: '2019-10-07',
@@ -164,6 +195,27 @@ describe('RangeDataPicker', () => {
         expect(dom.from).not.toHaveFocus();
         expect(dom.from.value).toBe('');
         expect(dom.to.value).toBe('Oct 7, 2019');
+    });
+
+    it('should reset invalid "to" value onBlur', async () => {
+        const value = {
+            from: '2019-10-07',
+            to: null,
+        };
+        const {
+            dom, result,
+        } = await setupRangeDatePicker({ value });
+
+        await userEvent.click(dom.to);
+        expect(dom.to).toHaveFocus();
+        expect(dom.from.value).toBe('Oct 7, 2019');
+        expect(dom.to.value).toBe('');
+
+        await userEvent.type(dom.to, '2019-10-47');
+        await userEvent.click(result.container);
+        expect(dom.to).not.toHaveFocus();
+        expect(dom.from.value).toBe('Oct 7, 2019');
+        expect(dom.to.value).toBe('');
     });
 
     it('should set new value when new value typed in input', async () => {

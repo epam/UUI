@@ -11,6 +11,10 @@ import { FlexCell, FlexRow } from '../layout';
 import { DatePickerBody } from './DatePickerBody';
 import { CalendarPresets } from './CalendarPresets';
 import css from './RangeDatePickerBody.module.scss';
+import {
+    defaultRangeValue, getWithFrom, getWithTo,
+} from './helpers';
+import { RangeDatePickerValue } from './types';
 
 dayjs.extend(isoWeek);
 
@@ -99,17 +103,6 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     },
 };
 
-export interface RangeDatePickerValue {
-    /*
-    * Defines DatePicker value 'from'.
-    */
-    from: string | null;
-    /*
-    * Defines DatePicker value 'to'.
-    */
-    to: string | null;
-}
-
 export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, IEditable<RangePickerBodyValue<T>> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
@@ -117,50 +110,26 @@ export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, 
 }
 
 export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue>): JSX.Element {
+    const { value: { selectedDate = defaultRangeValue } } = props;
     const [activeMonth, setActiveMonth] = React.useState<RangeDatePickerInputType>(null);
 
-    const getRange = (selectedDate: string) => {
-        const newRange: RangeDatePickerValue = {
-            from: null,
-            to: null,
-        };
-        const currentRange = props.value.selectedDate || {
-            from: null,
-            to: null,
-        };
-
-        if (!props.filter || props.filter(dayjs(selectedDate))) {
+    const getRange = (newValue: string) => {
+        if (!props.filter || props.filter(dayjs(newValue))) {
             if (props.value.inFocus === 'from') {
-                if (dayjs(selectedDate).valueOf() <= dayjs(currentRange.to).valueOf()) {
-                    newRange.from = selectedDate;
-                    newRange.to = currentRange.to;
-                } else {
-                    newRange.from = selectedDate;
-                    newRange.to = null;
-                }
+                return getWithFrom(selectedDate, newValue);
             }
-
             if (props.value.inFocus === 'to') {
-                if (!currentRange.from) {
-                    newRange.to = selectedDate;
-                } else if (dayjs(selectedDate).valueOf() >= dayjs(currentRange.from).valueOf()) {
-                    newRange.from = currentRange.from;
-                    newRange.to = selectedDate;
-                } else {
-                    newRange.from = selectedDate;
-                    newRange.to = null;
-                }
+                return getWithTo(selectedDate, newValue);
             }
         }
-
-        return newRange;
+        return defaultRangeValue;
     };
 
     const onBodyValueChange = (v: PickerBodyValue<string>, part: 'from' | 'to') => {
         // selectedDate can be null, other params should always have values
-        const newRange = v.selectedDate ? getRange(v.selectedDate) : props.value.selectedDate;
-        const fromChanged = props.value.selectedDate?.from !== newRange.from;
-        const toChanged = props.value.selectedDate?.to !== newRange.to;
+        const newRange = v.selectedDate ? getRange(v.selectedDate) : selectedDate;
+        const fromChanged = selectedDate?.from !== newRange.from;
+        const toChanged = selectedDate?.to !== newRange.to;
 
         let newInFocus: 'from' | 'to' = null;
         if (props.value.inFocus === 'from' && fromChanged) {
@@ -183,7 +152,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         return (
             <Day
                 { ...renderProps }
-                cx={ getDayCX(renderProps.value, props.value.selectedDate) }
+                cx={ getDayCX(renderProps.value, selectedDate) }
             />
         );
     };

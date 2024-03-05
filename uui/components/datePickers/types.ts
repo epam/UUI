@@ -21,3 +21,14 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
     */
     id?: string;
 }
+
+export interface RangeDatePickerValue {
+    /*
+    * Defines DatePicker value 'from'.
+    */
+    from: string | null;
+    /*
+    * Defines DatePicker value 'to'.
+    */
+    to: string | null;
+}
