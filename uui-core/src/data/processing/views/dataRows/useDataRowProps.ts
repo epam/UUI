@@ -51,7 +51,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
             row.isFoldable = true;
         }
 
-        const isCheckable = fullRowOptions && fullRowOptions.checkbox && fullRowOptions.checkbox.isVisible && !fullRowOptions.checkbox.isDisabled;
+        const isCheckable = !!(fullRowOptions?.checkbox && fullRowOptions?.checkbox?.isVisible && !fullRowOptions?.checkbox?.isDisabled);
         const isSelectable = fullRowOptions && fullRowOptions.isSelectable;
         if (fullRowOptions != null) {
             const rowValue = row.value;
@@ -62,10 +62,11 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         row.isChecked = isRowChecked(row);
         row.isSelected = isRowSelected(row);
         row.isCheckable = isCheckable;
-        row.onCheck = isCheckable && handleOnCheck;
-        row.onSelect = fullRowOptions?.isSelectable && handleOnSelect;
-        row.onFocus = (isSelectable || isCheckable || row.isFoldable) && handleOnFocus;
-        row.onFold = row.isFoldable && handleOnFold;
+        row.onCheck = isCheckable ? handleOnCheck : undefined;
+
+        row.onSelect = fullRowOptions?.isSelectable ? handleOnSelect : undefined;
+        row.onFocus = (isSelectable || isCheckable || row.isFoldable) ? handleOnFocus : undefined;
+        row.onFold = row.isFoldable ? handleOnFold : undefined;
         row.isFolded = row.isFoldable && isFolded(row.value);
 
         row.isChildrenChecked = row.isChildrenChecked || isRowChildrenChecked(row);
@@ -142,7 +143,7 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
             ...emptyRowProps,
             checkbox,
             isUnknown: true,
-            onCheck: isCheckable && handleOnCheck,
+            onCheck: isCheckable ? handleOnCheck : undefined,
         };
     }, [getEmptyRowProps, rowOptions, handleOnCheck]);
 
