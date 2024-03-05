@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Lens } from '@epam/uui-core';
+import { useForm } from '@epam/uui';
 
 interface User {
     name: string;
@@ -11,8 +10,10 @@ const initialData: User = {
 };
 
 export default function LensCompositionExample() {
-    const [value, onValueChange] = useState<User>(initialData);
-    const lens = Lens.onEditable<User>({ value, onValueChange });
+    const { lens } = useForm<User>({
+        value: initialData,
+        onSave: (user) => Promise.resolve({ form: user }),
+    });
 
     lens.prop('languages').default([]).get().map((i) => i);
 }
