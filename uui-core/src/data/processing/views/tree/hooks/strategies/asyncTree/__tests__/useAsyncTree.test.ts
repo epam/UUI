@@ -17,13 +17,14 @@ describe('useAsyncTree', () => {
 
     const api = jest.fn().mockImplementation(() => Promise.resolve(demoData.locations));
     const getId = ({ id }: LocationItem) => id;
+    const getParentId = ({ parentId }: LocationItem) => parentId;
 
     beforeEach(() => {
         jest.clearAllMocks();
         dataSourceState = { topIndex: 0, visibleCount: 3 };
     });
 
-    it('should be rendered with minimal props', async () => {
+    it('should path through minimal props', async () => {
         const hookResult = renderHook(
             (props) => useAsyncTree({
                 type: 'async',
@@ -62,6 +63,60 @@ describe('useAsyncTree', () => {
             cascadeSelection: undefined,
             selectAll: undefined,
             showOnlySelected: undefined,
+
+            isFetching: false,
+            isLoading: false,
+        }));
+
+        expect(tree.tree instanceof TreeStructure).toBeTruthy();
+        expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
+        expect(typeof tree.getItemStatus).toBe('function');
+        expect(typeof tree.reload).toBe('function');
+        expect(typeof tree.getChildCount).toBe('function');
+    });
+
+    it('should path through maximum props', async () => {
+        const rowOptions = { checkbox: { isVisible: true } };
+        const getRowOptions = () => ({ isReadonly: true });
+        const cascadeSelection = 'explicit';
+        const isFoldedByDefault = () => true;
+        const selectAll = true;
+        const showOnlySelected = true;
+
+        const hookResult = renderHook(
+            (props) => useAsyncTree({
+                type: 'async',
+                api,
+                getId,
+                getParentId,
+                rowOptions,
+                getRowOptions,
+                cascadeSelection,
+                isFoldedByDefault,
+                showOnlySelected,
+                selectAll,
+                mode: 'client',
+                dataSourceState,
+                setDataSourceState,
+                ...props,
+            }, []),
+            { initialProps: {} },
+        );
+
+        const tree = hookResult.result.current;
+
+        expect(tree).toEqual(expect.objectContaining({
+            dataSourceState,
+            setDataSourceState,
+            totalCount: 0,
+            getId,
+            getParentId,
+            rowOptions,
+            getRowOptions,
+            isFoldedByDefault,
+            cascadeSelection,
+            showOnlySelected,
+            selectAll,
 
             isFetching: false,
             isLoading: false,

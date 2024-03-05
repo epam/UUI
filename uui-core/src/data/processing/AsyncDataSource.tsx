@@ -4,6 +4,7 @@ import { DataSourceState, IDataSourceView } from '../../types';
 import { useCascadeSelectionService, useDataRows, useTree } from './views';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { AsyncListViewProps } from './views/types';
+import { newMap } from './views/tree/newTree';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
@@ -31,7 +32,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     reload() {
         this.setProps({ ...this.props, items: [] });
-        this.itemsStorage = new ItemsStorage({ items: [], params: { getId: this.getId, complexIds: this.props.complexIds } });
+        const params = { getId: this.getId, complexIds: this.props.complexIds };
+        this.itemsStorage = new ItemsStorage({ items: [], params });
+        this.itemsStatusMap = newMap(params);
         super.reload();
     }
 
@@ -52,6 +55,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             ...options,
             itemsMap,
             setItems: this.itemsStorage.setItems,
+            itemsStatusMap: this.itemsStatusMap,
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
             dataSourceState: value,
