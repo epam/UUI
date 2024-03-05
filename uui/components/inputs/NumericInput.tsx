@@ -44,8 +44,8 @@ export const NumericInput = withMods<uuiNumericInputProps, NumericInputMods>(
             });
         }
         return {
-            upIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
-            downIcon: systemIcons[props.size || DEFAULT_SIZE].foldingArrow,
+            upIcon: systemIcons.foldingArrow,
+            downIcon: systemIcons.foldingArrow,
             align: props.align ?? (props.mode === 'cell' ? 'right' : 'left'),
             disableArrows: props.disableArrows ?? props.mode === 'cell',
         };

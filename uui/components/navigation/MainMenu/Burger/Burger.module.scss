@@ -16,6 +16,9 @@
 
     :global(.uui-burger-button) {
         width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
         cursor: pointer;
         fill: var(--uui-burger_menu-icon);
         background: transparent;
@@ -35,8 +38,8 @@
         }
 
         :global(.uui-icon) svg {
-            width: 60px;
-            height: 60px;
+            width: 24px;
+            height: 24px;
         }
     }
 

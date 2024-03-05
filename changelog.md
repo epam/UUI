@@ -11,11 +11,14 @@
     * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
     * Fixed partially selected with predefined selected value.
     * Fixed fetching missing parents for selected element in PickerInput.
+    * Fixed focus reset after clicking outside.
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
 * [RTE]: fixed placeholder position in Safari
 * [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+* [Blocker]: changed the exit animation duration from 1000ms to 200ms
+* [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
 
 # 5.6.1 - 19.02.2024
 

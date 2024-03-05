@@ -4,8 +4,8 @@ import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
 import dayjs, { Dayjs } from 'dayjs';
 import { ViewType } from '@epam/uui-components';
-import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/common/navigation-chevron-left-18.svg';
-import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
+import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
+import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { Button } from '../buttons';
 import localeData from 'dayjs/plugin/localeData';
 

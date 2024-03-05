@@ -1,5 +1,5 @@
 import React, {
-    useEffect, Fragment, useState, useMemo,
+    useEffect, Fragment, useState,
 } from 'react';
 import cx from 'classnames';
 import {
@@ -14,7 +14,7 @@ import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
 import dayjs, { Dayjs } from 'dayjs';
 import {
-    toCustomDateRangeFormat, ViewType, valueFormat, RangePickerBodyValue, defaultFormat, toValueDateRangeFormat,
+    toCustomDateRangeFormat, ViewType, valueFormat, RangePickerBodyValue, defaultFormat,
 } from '@epam/uui-components';
 import { defaultRangeValue } from '../datePickers/helpers';
 import css from '../datePickers/RangeDatePicker.module.scss';

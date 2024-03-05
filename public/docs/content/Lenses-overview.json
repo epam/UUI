@@ -1,0 +1,18 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The Lens Pattern is a structural design pattern widely used in functional programming to provide a clean and composable way to access and manipulate deeply nested data structures. It helps in maintaining immutability and readability of code."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In UUI, we leverage Lenses within Forms to deliver form value and validation state to specific components and facilitate drilling down into deeply nested properties."
+      }
+    ]
+  }
+]

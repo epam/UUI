@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ReactComponent as LockIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
-import { ReactComponent as PinLeftIcon } from '../../../icons/table-group_column_left.svg';
-import { ReactComponent as PinRightIcon } from '../../../icons/table-group_column_right.svg';
+import { ReactComponent as LockIcon } from '@epam/assets/icons/action-lock-fill.svg';
+import { ReactComponent as PinLeftIcon } from '@epam/assets/icons/table-group_column_left-fill.svg';
+import { ReactComponent as PinRightIcon } from '@epam/assets/icons/table-group_column_right-fill.svg';
 import { IconButton } from '../../buttons';
 import { Tooltip } from '../../overlays';
 import { i18n } from '../../../i18n';

@@ -17,7 +17,7 @@ const showNotification = (color: string, uuiNotifications: INotificationContext)
             (props) => (
                 <SuccessNotification { ...props }>
                     <Text size="36" fontSize="14">
-                        { `(${color}) token copied to clipboard!` }
+                        { `var(${color}) token copied to clipboard!` }
                     </Text>
                 </SuccessNotification>
             ),
@@ -108,7 +108,7 @@ function SemanticBlocks(props: SemanticBlocksProps) {
                 </FlexCell>
             );
 
-            const semanticClickHandler = () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications));
+            const semanticClickHandler = () => copyTextToClipboard(`var(${item.cssVar})`, () => showNotification(item.cssVar, uuiNotifications));
 
             const tooltipOnValueChange = (state: boolean, value: string) => {
                 if (state) {

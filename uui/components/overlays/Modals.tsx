@@ -4,7 +4,7 @@ import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '
 import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout/FlexItems';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
-import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
+import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './Modals.module.scss';
 
 export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);

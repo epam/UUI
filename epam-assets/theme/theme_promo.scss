@@ -343,6 +343,8 @@
         }
 
         &.uui-fill-outline {
+            --uui-badge-bg: var(--uui-neutral-10);
+            --uui-badge-bg-hover: var(--uui-neutral-20);
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
             --uui-badge-caption: var(--uui-neutral-80);
@@ -352,6 +354,7 @@
 
     .uui-badge.uui-color-gray60 {
         &.uui-fill-outline {
+            --uui-badge-bg-hover: var(--uui-neutral-30);
             --uui-badge-border: var(--uui-neutral-60);
             --uui-badge-border-hover: var(--uui-neutral-60);
             --uui-badge-caption: var(--uui-neutral-80);

@@ -31,11 +31,13 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="iconWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
+        className="container uui-icon uui-enabled"
         style={Object {}}
       >
         <svg
           className=""
+          height={24}
+          width={24}
         />
       </div>
     </div>
@@ -77,11 +79,13 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="iconWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
+        className="container uui-icon uui-enabled"
         style={Object {}}
       >
         <svg
           className=""
+          height={24}
+          width={24}
         />
       </div>
     </div>
@@ -157,11 +161,13 @@ exports[`NotificationCard should render with maximum props 1`] = `
       className="iconWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
+        className="container uui-icon uui-enabled"
         style={Object {}}
       >
         <svg
           className=""
+          height={24}
+          width={24}
         />
       </div>
     </div>
@@ -203,11 +209,13 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="iconWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
+        className="container uui-icon uui-enabled"
         style={Object {}}
       >
         <svg
           className=""
+          height={24}
+          width={24}
         />
       </div>
     </div>
@@ -249,11 +257,13 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="iconWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
+        className="container uui-icon uui-enabled"
         style={Object {}}
       >
         <svg
           className=""
+          height={24}
+          width={24}
         />
       </div>
     </div>

@@ -3,10 +3,8 @@ import cx from 'classnames';
 import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps } from '@epam/uui-components';
 import { Button } from '../buttons/Button';
 import css from './Paginator.module.scss';
-import { ReactComponent as ArrowLeftIcon_24 } from '@epam/assets/icons/common/navigation-chevron-left-12.svg';
-import { ReactComponent as ArrowRightIcon_24 } from '@epam/assets/icons/common/navigation-chevron-right-12.svg';
-import { ReactComponent as ArrowLeftIcon_30 } from '@epam/assets/icons/common/navigation-chevron-left-18.svg';
-import { ReactComponent as ArrowRightIcon_30 } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
+import { ReactComponent as ArrowLeftIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
+import { ReactComponent as ArrowRightIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 
 export function Paginator(props: PaginatorProps) {
     const renderPaginator = (params: PaginatorRenderParams) => (
@@ -14,7 +12,7 @@ export function Paginator(props: PaginatorProps) {
             <Button
                 cx={ css[`navigation-size-${params.size ?? '30'}`] }
                 size={ params.size }
-                icon={ params.size === '30' ? ArrowLeftIcon_30 : ArrowLeftIcon_24 }
+                icon={ ArrowLeftIcon }
                 onClick={ params.goToPrev }
                 isDisabled={ params.isFirst || props.isDisabled }
                 fill="outline"
@@ -53,7 +51,7 @@ export function Paginator(props: PaginatorProps) {
             <Button
                 cx={ css[`navigation-size-${params.size ?? '30'}`] }
                 size={ params.size }
-                icon={ params.size === '30' ? ArrowRightIcon_30 : ArrowRightIcon_24 }
+                icon={ ArrowRightIcon }
                 onClick={ params.goToNext }
                 isDisabled={ params.isLast || props.isDisabled }
                 fill="outline"

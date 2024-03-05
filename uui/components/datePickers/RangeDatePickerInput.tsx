@@ -106,7 +106,7 @@ export const RangeDatePickerInput = React.forwardRef<HTMLDivElement, RangeDatePi
             onClick={ onClick }
         >
             <TextInput
-                icon={ systemIcons[size || '36'].calendar }
+                icon={ systemIcons.calendar }
                 cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'from' && uuiMod.focus) }
                 size={ size || '36' }
                 placeholder={ getPlaceholder ? getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }

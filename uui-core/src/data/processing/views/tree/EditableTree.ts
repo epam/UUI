@@ -194,7 +194,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         id: TId,
     ) {
         const item = this.getById(id);
-        if (item !== NOT_FOUND_RECORD && isSelectable(id, item)) {
+        if (isSelectable(id, item)) {
             action(id);
         }
     }

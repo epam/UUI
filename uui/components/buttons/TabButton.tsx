@@ -50,8 +50,8 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
 
     const styles = [applyTabButtonMods(props), props.cx];
 
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons['36'].foldingArrow;
-    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons['36'].clear;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
+    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
 
     return (
         <Clickable

@@ -1,0 +1,39 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To get or set the lens value, simply use the respective methods "
+      },
+      {
+        "text": ".get()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " or "
+      },
+      {
+        "text": ".set()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " on the lens."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Additionally, lenses can be composed to navigate through nested structures. Composing lenses allows you to drill down into deeply nested properties. To create a new lens for a specific field, you can use the "
+      },
+      {
+        "text": ".prop()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, providing the name of the desired field."
+      }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-@use  '../../assets/styles/effects' as *;
+@use  '../../assets/styles' as *;
 
 @mixin padding($size) {
     padding-left: $size + px;
@@ -55,6 +55,8 @@
             font-size: 18px;
             padding: 0 18px;
             border-radius: var(--uui-accordion-border-radius);
+
+            @include icon-size(24);
 
             :global(.uui-accordion-toggle-container) {
                 min-height: 48px;
@@ -117,6 +119,8 @@
             line-height: 18px;
             font-size: 14px;
             padding: 8px 12px 8px;
+
+            @include icon-size(18);
 
             :global(.uui-accordion-toggle-container) {
                 min-height: 24px;

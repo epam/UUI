@@ -381,8 +381,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     let currentItem = item;
                     if (currentItem === NOT_FOUND_RECORD) {
                         currentItem = this.cache.byId(id, false);
-                        if (currentItem === null || currentItem === NOT_FOUND_RECORD) {
+                        if (currentItem === null) {
                             return false;
+                        }
+
+                        if (currentItem === NOT_FOUND_RECORD) {
+                            return true;
                         }
                     }
                     const { isCheckable } = this.getRowProps(currentItem, null);
@@ -439,8 +443,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 let currentItem = item;
                 if (currentItem === NOT_FOUND_RECORD) {
                     currentItem = this.cache.byId(id, false);
-                    if (currentItem === null || currentItem === NOT_FOUND_RECORD) {
+                    if (currentItem === null) {
                         return false;
+                    }
+
+                    if (currentItem === NOT_FOUND_RECORD) {
+                        return true;
                     }
                 }
                 const { isCheckable } = this.getRowProps(currentItem, null);
