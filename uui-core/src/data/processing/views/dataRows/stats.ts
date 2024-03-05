@@ -33,7 +33,7 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
         isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
     } = actualStats;
 
-    if (row.checkbox) {
+    if (row.checkbox && row.checkbox.isVisible) {
         isSomeCheckable = true;
         if (row.isChecked || row.isChildrenChecked) {
             isSomeChecked = true;
