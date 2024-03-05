@@ -179,6 +179,33 @@ describe('LazyListView - row options', () => {
             expect(view.selectAll!.indeterminate).toBeUndefined();
         });
 
+        it('should selectAll be null, if selectAll = false', async () => {
+            const { dataSource } = getLazyLocationsDS({
+                rowOptions: { checkbox: { isVisible: true, isDisabled: false } },
+                selectAll: false,
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isCheckable: true },
+                    { id: 'c-EU', parentId: undefined, isCheckable: true },
+                ]);
+            });
+
+            const view = hookResult.result.current;
+            expect(view.selectAll).toBeNull();
+        });
+
         it('should return indeterminate = false for selectAll, if checkbox is visible and disabled at rowOptions and some item is checked', async () => {
             const checkbox = { isVisible: true, isDisabled: true };
             const { dataSource } = getLazyLocationsDS({
@@ -705,6 +732,33 @@ describe('LazyListView - row options', () => {
             expect(view.selectAll!.value).toBeFalsy();
             expect(typeof view.selectAll!.onValueChange).toBe('function');
             expect(view.selectAll!.indeterminate).toBeUndefined();
+        });
+
+        it('should selectAll be null, if selectAll = false', async () => {
+            const { dataSource } = getLazyLocationsDS({
+                getRowOptions: () => ({ checkbox: { isVisible: true, isDisabled: false } }),
+                selectAll: false,
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isCheckable: true },
+                    { id: 'c-EU', parentId: undefined, isCheckable: true },
+                ]);
+            });
+
+            const view = hookResult.result.current;
+            expect(view.selectAll).toBeNull();
         });
 
         it('should return indeterminate = false for selectAll, if checkbox is visible and disabled at getRowOptions and some item is checked', async () => {

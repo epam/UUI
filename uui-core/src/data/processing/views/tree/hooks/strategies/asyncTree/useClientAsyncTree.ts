@@ -149,5 +149,6 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         isFoldedByDefault,
         cascadeSelection,
         showOnlySelected,
+        selectAll: props.selectAll,
     };
 }

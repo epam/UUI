@@ -167,6 +167,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const selectAll = useSelectAll({
         tree,
         checked: dataSourceState.checked,
+        selectAll: props.selectAll,
         stats,
         areCheckboxesVisible: rowOptions?.checkbox?.isVisible,
         handleSelectAll,
