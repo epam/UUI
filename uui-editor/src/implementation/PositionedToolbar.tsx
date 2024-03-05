@@ -51,7 +51,12 @@ export function PositionedToolbar(props: ToolbarProps): any {
         },
     });
 
-    const isToolbarVisible = (props.isImage && isImageSelected(editor)) || !!props.isTable || isTextSelected(editor, inFocus);
+    let isToolbarVisible: boolean;
+    if (props.isImage) {
+        isToolbarVisible = isImageSelected(editor);
+    } else {
+        isToolbarVisible = !!props.isTable || isTextSelected(editor, inFocus);
+    }
 
     return (
         <Portal>
