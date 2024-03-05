@@ -1,21 +1,20 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Tooltip is a text description related to a particular UI element. Tooltips appear near the \"hovered\" element and doesn't support complex texts, tables, and interactions.",
-            "marks": []
-          }
-        ]
+        "text": "Tooltip is a text description related to a particular UI element. Tooltips appear near the \"hovered\" element and doesn't support complex texts, tables, and interactions."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-error",
+    "children": [
+      {
+        "text": "Pay attention that the root element of the Tooltip children should be able to accept a React ref. This is required for proper body positioning. \n\nDo: <Tooltip><Text>My text</Text></Tooltip>\nDon't: <Tooltip>My text</Tooltip>"
       }
     ]
   }
-}
+]
