@@ -110,7 +110,8 @@ export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, 
 }
 
 export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue>): JSX.Element {
-    const { value: { selectedDate = defaultRangeValue } } = props;
+    const { value: { selectedDate: _selectedDate } } = props;
+    const selectedDate = _selectedDate || defaultRangeValue;
     const [activeMonth, setActiveMonth] = React.useState<RangeDatePickerInputType>(null);
 
     const getRange = (newValue: string) => {
