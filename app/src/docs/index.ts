@@ -67,3 +67,4 @@ export * from './AdaptivePanel.doc';
 export * from './CountIndicator.doc';
 export * from './StatusIndicator.doc';
 export * from './Accessibility.doc';
+export * from './Lenses.doc';

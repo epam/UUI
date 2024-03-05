@@ -41,7 +41,7 @@ export class ListApiCache<TItem, TId, TFilter> {
      */
     public byId(id: TId, fetchIfAbsent: boolean = true): TItem | typeof NOT_FOUND_RECORD {
         const item = this.itemsById.get(JSON.stringify(id), fetchIfAbsent);
-        if ((item.status === UNKNOWN && !fetchIfAbsent) || (fetchIfAbsent && item.status === FAILED)) {
+        if ((item.status === UNKNOWN && !fetchIfAbsent) || item.status === FAILED) {
             return NOT_FOUND_RECORD;
         }
 

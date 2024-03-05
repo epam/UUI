@@ -9,7 +9,7 @@ export default function BasicAdaptivePanelExample() {
     const renderItem = (item: AdaptiveItemProps<{ data?: { caption: string } }>) => {
         return (
             <div>
-                <Button cx={ css.itemWithMargins } caption={ item.data.caption } onClick={ () => {} } />
+                <Button key={ item.id } cx={ css.itemWithMargins } caption={ item.data.caption } onClick={ () => {} } />
             </div>
         );
     };

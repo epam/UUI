@@ -1,0 +1,39 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To get or set the lens value, simply use the respective methods "
+      },
+      {
+        "text": ".get()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " or "
+      },
+      {
+        "text": ".set()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " on the lens."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Additionally, the "
+      },
+      {
+        "text": ".update() ",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "method allows you to modify the lens value based on the current one. It accepts a callback that receives the current lens value and should return the new value."
+      }
+    ]
+  }
+]
