@@ -20,7 +20,7 @@
         :global(.uui-blocker-exit) {
             background-color: var(--uui-blocker-bg-with-opacity);
             pointer-events: none;
-            transition: opacity 1000ms ease-out, background-color 200ms ease-out;
+            transition: opacity 200ms ease-out, background-color 200ms ease-out;
         }
 
         :global(.uui-blocker-exit-active) {

@@ -61,9 +61,8 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             caption={ getCaption(row) }
             tabIndex={ -1 }
             size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
-            onClear={ (e) => {
+            onClear={ () => {
                 row.onCheck?.(row);
-                e.stopPropagation();
             } }
             isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
         />
@@ -76,8 +75,8 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
             getName={ (item) => (props.getName ? props.getName(item) : item) }
-            cancelIcon={ systemIcons[props.size || defaultSize].clear }
-            dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
+            cancelIcon={ systemIcons.clear }
+            dropdownIcon={ systemIcons.foldingArrow }
         />
     );
 }

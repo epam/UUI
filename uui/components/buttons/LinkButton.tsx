@@ -53,7 +53,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
 
     const styles = [applyLinkButtonMods(props), props.cx];
 
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[props.size || DEFAULT_SIZE].foldingArrow;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
     return (
         <Clickable

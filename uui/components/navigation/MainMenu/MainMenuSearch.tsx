@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TextInputProps, TextInput } from '@epam/uui-components';
-import { ReactComponent as LensIcon } from '../../../icons/search-18.svg';
-import { ReactComponent as CancelIcon } from '../../../icons/menu_input_cancel.svg';
+import { ReactComponent as LensIcon } from '@epam/assets/icons/action-search-outline.svg';
+import { ReactComponent as CancelIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import { cx, IAdaptiveItem, IEditableDebouncer } from '@epam/uui-core';
 import css from './MainMenuSearch.module.scss';
 

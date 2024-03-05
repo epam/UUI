@@ -1,12 +1,12 @@
 import { Portal } from '@epam/uui-components';
-import { findNode, isEditorFocused, toDOMNode, useEditorState } from '@udecode/plate-common';
+import { findNode, toDOMNode, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from 'classnames';
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
 import { Range } from 'slate';
 
-import { isImageSelected, isTextSelected } from '../helpers';
+import { isImageSelected, isTextSelected, SelectionUtils } from '../helpers';
 import css from './PositionedToolbar.module.scss';
 import { useLayer } from '@epam/uui-core';
 
@@ -21,7 +21,7 @@ interface ToolbarProps {
 export function PositionedToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = useEditorState();
-    const inFocus = isEditorFocused(editor);
+    const inFocus = useEventEditorSelectors.focus() === editor.id;
     const zIndex = useLayer()?.zIndex;
 
     const virtualReferenceElement = (): any => ({
@@ -36,13 +36,31 @@ export function PositionedToolbar(props: ToolbarProps): any {
                 return domNode.getBoundingClientRect();
             }
 
-            return getSelectionBoundingClientRect();
+            const shadowRoot = (() => {
+                if (ref.current) {
+                    const rootNode = ref.current.getRootNode();
+                    const isShadow = rootNode instanceof ShadowRoot;
+
+                    if (isShadow) {
+                        return rootNode;
+                    }
+                }
+            })();
+
+            return getSelectionBoundingClientRect({ shadowRoot });
         },
     });
 
+    let isToolbarVisible: boolean;
+    if (props.isImage) {
+        isToolbarVisible = isImageSelected(editor);
+    } else {
+        isToolbarVisible = !!props.isTable || isTextSelected(editor, inFocus);
+    }
+
     return (
         <Portal>
-            { (props.isImage ? isImageSelected(editor) : props.isTable || isTextSelected(editor, inFocus)) && (
+            { isToolbarVisible && (
                 <Popper
                     referenceElement={ virtualReferenceElement() }
                     placement={ props.placement || 'top' }
@@ -81,14 +99,15 @@ const getDefaultBoundingClientRect = () => ({
 /**
  * Get bounding client rect of the window selection
  */
-const getSelectionBoundingClientRect = (): DOMRect => {
-    const domSelection = window.getSelection();
+const getSelectionBoundingClientRect = (params: { shadowRoot: ShadowRoot | undefined }): DOMRect => {
+    const { shadowRoot } = params;
+    const selection = SelectionUtils.getSelection({ shadowRoot });
 
-    if (!domSelection || domSelection.rangeCount < 1) {
+    if (!selection || selection.rangeCount < 1) {
         return getDefaultBoundingClientRect();
     }
 
-    const domRange = domSelection.getRangeAt(0);
+    const domRange = SelectionUtils.getSelectionRange0({ selection, shadowRoot });
 
     return domRange.getBoundingClientRect();
 };

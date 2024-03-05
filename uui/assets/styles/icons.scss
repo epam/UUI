@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:meta';
 
 @mixin icon-layout($size) {
     :global(.uui-icon) {
@@ -10,10 +11,45 @@
 }
 
 @mixin icon-size($size) {
+    $striped-size: strip-unit($size);
+
     :global(.uui-icon) {
         svg {
-            height: $size;
-            max-width: $size;
+            height: #{$striped-size}px;
+            width: #{$striped-size}px;
+        }
+    }
+}
+
+@function strip-unit($number) {
+    @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+        @return math.div($number, $number * 0 + 1);
+    }
+
+    @return $number;
+}
+
+@mixin scalable-icon-size($size, $additionalClass: '') {
+    $striped-size: strip-unit($size);
+
+    #{$additionalClass}:global(.uui-icon) {
+        svg {
+            @if ($striped-size == 18) {
+                height: 12px;
+            } @else if ($striped-size == 24) {
+                height: 12px;
+            } @else if ($striped-size == 30) {
+                height: 18px;
+            } @else if ($striped-size == 36) {
+                height: 18px;
+            } @else if ($striped-size == 42) {
+                height: 18px;
+            } @else if ($striped-size == 48) {
+                height: 24px;
+            } @else if ($striped-size == 60) {
+                height: 24px;
+            }
+            width: inherit;
         }
     }
 }

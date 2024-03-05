@@ -158,7 +158,7 @@ export function DatePickerComponent(props: DatePickerProps) {
                 onClick={ null }
                 isDropdown={ false }
                 cx={ cx(props.inputCx, isOpen && uuiMod.focus) }
-                icon={ props.mode !== EditMode.CELL && systemIcons[props.size || '36'].calendar }
+                icon={ props.mode !== EditMode.CELL && systemIcons.calendar }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
                 size={ props.size || '36' }

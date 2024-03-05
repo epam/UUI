@@ -166,6 +166,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                 priority: 100499,
                 render: () => (
                     <MainMenuLogo
+                        key="customerLogo"
                         logoUrl={ this.props.customerLogoUrl }
                         logoBgColor={ this.props.customerLogoBgColor }
                         link={ this.props.customerLogoLink || this.props.logoLink }
