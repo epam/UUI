@@ -32,8 +32,7 @@ export function getMarkDeserializer(marks: Record<string, string>) {
 
 export function isTextSelected(editor: any, inFocus: boolean) {
     const { selection } = editor;
-
-    return !(!selection || !inFocus || Range.isCollapsed(selection) || Editor.string(editor, selection) === '');
+    return (selection && inFocus && !Range.isCollapsed(selection) && Editor.string(editor, selection) !== '');
 }
 
 export function isImageSelected(editor: any) {
@@ -55,3 +54,28 @@ export const isEditorValueEmpty = (value: EditorValue) => {
         || (value.length === 1 && value[0].type === 'paragraph' && value[0].children[0].text === ''))
     );
 };
+
+export class SelectionUtils {
+    static getSelection(params: { shadowRoot: ShadowRoot | undefined }) {
+        const { shadowRoot } = params;
+        if (shadowRoot) {
+            if ((shadowRoot as any).getSelection) {
+                // Chrome/Edge. See details here: https://caniuse.com/mdn-api_shadowroot_getselection
+                return (shadowRoot as any).getSelection();
+            }
+        }
+        // Works fine in other cases
+        return window.getSelection();
+    }
+
+    static getSelectionRange0(params: { selection: Selection; shadowRoot: ShadowRoot | undefined }) {
+        const { selection, shadowRoot } = params;
+        if (shadowRoot) {
+            if ((selection as any).getComposedRanges) {
+                // Webkit. https://w3c.github.io/selection-api/#dom-selection-getcomposedranges
+                return (selection as any).getComposedRanges(shadowRoot)[0];
+            }
+        }
+        return selection.getRangeAt(0);
+    }
+}
