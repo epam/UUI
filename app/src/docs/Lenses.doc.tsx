@@ -7,8 +7,7 @@ export class LensesDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName="Lenses-overview" />
-                <DocExample title="Get and Set value" onlyCode={ true } path="./_examples/lenses/LensBasicGetSet.example.tsx" />
-                <DocExample title="Composition" onlyCode={ true } path="./_examples/lenses/LensComposition.example.tsx" />
+                <DocExample title="Basic usage" onlyCode={ true } path="./_examples/lenses/LensBasicGetSet.example.tsx" />
                 <DocExample title="Spread lens value to form components" onlyCode={ true } path="./_examples/lenses/LensToProps.example.tsx" />
                 <DocExample title="Work with arrays" onlyCode={ true } path="./_examples/lenses/LensWorkWithArrays.example.tsx" />
                 <DocExample title="Provide your own setter" onlyCode={ true } path="./_examples/lenses/LensOnChange.example.tsx" />

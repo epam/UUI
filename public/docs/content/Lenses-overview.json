@@ -11,7 +11,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "In UUI, we leverage Lenses within Forms to deliver form value and validation state to specific components and facilitate drilling down into deeply nested properties. However, Lenses can be utilized for various other purposes in your code as well."
+        "text": "In UUI, we leverage Lenses within Forms to deliver form value and validation state to specific components and facilitate drilling down into deeply nested properties."
       }
     ]
   }
