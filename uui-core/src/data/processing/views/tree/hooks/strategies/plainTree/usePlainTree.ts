@@ -106,6 +106,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             reload,
             cascadeSelection,
             showOnlySelected,
+            selectAll: props.selectAll,
         }),
         [
             tree,
@@ -122,6 +123,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
             getId,
             isFoldedByDefault,
             cascadeSelection,
+            props.selectAll,
         ],
     );
 }
