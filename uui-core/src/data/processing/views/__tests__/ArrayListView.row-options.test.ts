@@ -274,5 +274,281 @@ describe('ArrayListView - row options', () => {
                 ]);
             });
         });
+
+        it('should disable rows if isDisabled is passed to rowOptions', async () => {
+            const dataSource = getArrayLocationsDS({
+                rowOptions: { isDisabled: true },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isDisabled: true },
+                    { id: 'c-EU', parentId: undefined, isDisabled: true },
+                ]);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { rowOptions: { isDisabled: false } } });
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isDisabled: false },
+                    { id: 'c-EU', parentId: undefined, isDisabled: false },
+                ]);
+            });
+        });
+
+        it('should allow row to be selectable if isSelectable is passed to rowOptions', async () => {
+            const dataSource = getArrayLocationsDS({
+                rowOptions: { isSelectable: true },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isSelectable: true },
+                    { id: 'c-EU', parentId: undefined, isSelectable: true },
+                ]);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { rowOptions: { isSelectable: false } } });
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isSelectable: false },
+                    { id: 'c-EU', parentId: undefined, isSelectable: false },
+                ]);
+            });
+        });
+
+        it('should pass onClick to rows if is specified at rowOptions', async () => {
+            const onClick = jest.fn();
+            const dataSource = getArrayLocationsDS({
+                rowOptions: { onClick },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, onClick },
+                    { id: 'c-EU', parentId: undefined, onClick },
+                ]);
+            });
+
+            const view = hookResult.result.current;
+            const afRow = view.getVisibleRows()[0];
+
+            await act(() => {
+                afRow.onClick?.(afRow);
+            });
+
+            expect(onClick).toBeCalledTimes(1);
+            expect(onClick).toBeCalledWith(afRow);
+        });
+
+        it('should pass link to rows if is specified at rowOptions', async () => {
+            const link = {
+                pathname: '/some-link',
+            };
+
+            const dataSource = getArrayLocationsDS({
+                rowOptions: { link },
+            });
+
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, link },
+                    { id: 'c-EU', parentId: undefined, link },
+                ]);
+            });
+        });
+
+        it('should pass value/onValueChange to rows if is specified at rowOptions', async () => {
+            const value = { id: 'someID' } as LocationItem;
+            const onValueChange = jest.fn();
+            const rowOptions = { value, onValueChange };
+
+            const dataSource = getArrayLocationsDS({
+                rowOptions,
+            });
+
+            const hookResult = renderHook(
+                ({ dataSourceState, setDataSourceState, props }) => dataSource.useView(dataSourceState, setDataSourceState, props),
+                { initialProps: {
+                    dataSourceState: currentValue,
+                    setDataSourceState: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, ...rowOptions },
+                    { id: 'c-EU', parentId: undefined, ...rowOptions },
+                ]);
+            });
+        });
+
+        it('should pass isReadonly to rows if is specified at rowOptions', async () => {
+            const rowOptions = { isReadonly: true };
+
+            const dataSource = getArrayLocationsDS({
+                rowOptions,
+            });
+
+            const hookResult = renderHook(
+                ({ dataSourceState, setDataSourceState, props }) => dataSource.useView(dataSourceState, setDataSourceState, props),
+                { initialProps: {
+                    dataSourceState: currentValue,
+                    setDataSourceState: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, ...rowOptions },
+                    { id: 'c-EU', parentId: undefined, ...rowOptions },
+                ]);
+            });
+        });
+
+        it('should pass isInvalid to rows if is specified at rowOptions', async () => {
+            const rowOptions = { isInvalid: true };
+
+            const dataSource = getArrayLocationsDS({
+                rowOptions,
+            });
+
+            const hookResult = renderHook(
+                ({ dataSourceState, setDataSourceState, props }) => dataSource.useView(dataSourceState, setDataSourceState, props),
+                { initialProps: {
+                    dataSourceState: currentValue,
+                    setDataSourceState: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, ...rowOptions },
+                    { id: 'c-EU', parentId: undefined, ...rowOptions },
+                ]);
+            });
+        });
+
+        it('should pin rows if pin function is specified at rowOptions', async () => {
+            const rowOptions = { pin: (item) => item.id === 'c-AF' };
+
+            const dataSource = getArrayLocationsDS({
+                rowOptions,
+            });
+
+            const hookResult = renderHook(
+                ({ dataSourceState, setDataSourceState, props }) => dataSource.useView(dataSourceState, setDataSourceState, props),
+                { initialProps: {
+                    dataSourceState: currentValue,
+                    setDataSourceState: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isPinned: true },
+                    { id: 'c-EU', parentId: undefined, isPinned: false },
+                ]);
+            });
+
+            let view = hookResult.result.current;
+            const euRow = view.getVisibleRows()[1];
+
+            await act(() => {
+                euRow.onFold?.(euRow);
+            });
+
+            hookResult.rerender({ dataSourceState: currentValue, setDataSourceState: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isPinned: true },
+                    { id: 'c-EU', parentId: undefined, isPinned: false },
+                    { id: 'GB', parentId: 'c-EU', isPinned: false },
+                ]);
+            });
+
+            const afRow = view.getVisibleRows()[0];
+
+            await act(() => {
+                afRow.onFold?.(afRow);
+            });
+            hookResult.rerender({ dataSourceState: currentValue, setDataSourceState: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isPinned: true },
+                    { id: 'DZ', parentId: 'c-AF', isPinned: false },
+                    { id: 'BJ', parentId: 'c-AF', isPinned: false },
+                ]);
+            });
+
+            currentValue.topIndex = 3;
+            hookResult.rerender({ dataSourceState: currentValue, setDataSourceState: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectViewToLookLike(view, [
+                    { id: 'c-AF', parentId: undefined, isPinned: true },
+                    { id: 'GM', parentId: 'c-AF', isPinned: false },
+                    { id: 'c-EU', parentId: undefined, isPinned: false },
+                    { id: 'GB', parentId: 'c-EU', isPinned: false },
+                ]);
+            });
+        });
     });
 });
