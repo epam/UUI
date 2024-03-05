@@ -42,7 +42,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                     <FlexRow padding="24" vPadding="12">
                         <div className={ cx(css.dateInputGroup, this.state.inFocus && uuiMod.focus) }>
                             <TextInput
-                                icon={ systemIcons['30'].calendar }
+                                icon={ systemIcons.calendar }
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'from' && uuiMod.focus) }
                                 size="30"
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderFrom }

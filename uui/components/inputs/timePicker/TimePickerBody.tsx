@@ -3,8 +3,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import objectSupport from 'dayjs/plugin/objectSupport';
 import { cx, Icon, IEditable, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 import { IconContainer, NumericInput, TextInput } from '@epam/uui-components';
-import { TimePickerProps, TimePickerValue } from '../timePicker';
-import { ReactComponent as ArrowIcon } from '../../../icons/folding-arrow-18.svg';
+import { TimePickerProps, TimePickerValue } from './TimePicker';
+import { ReactComponent as ArrowIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './TimePicker.module.scss';
 
 dayjs.extend(objectSupport);
@@ -71,6 +71,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
         <div className={ cx(css.root, uuiTimePicker.container, props.cx) } ref={ props.forwardedRef } { ...props.rawProps }>
             <div className={ uuiTimePicker.elementContainer }>
                 <IconContainer
+                    size={ 18 }
                     rawProps={ { 'aria-label': 'Increment hours' } }
                     cx={ uuiTimePicker.iconUp }
                     icon={ ArrowIcon }
@@ -88,6 +89,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                     max={ MAX_HOURS }
                 />
                 <IconContainer
+                    size={ 18 }
                     rawProps={ { 'aria-label': 'Decrement hours' } }
                     cx={ uuiTimePicker.iconDown }
                     icon={ ArrowIcon }
@@ -96,6 +98,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
             </div>
             <div className={ uuiTimePicker.elementContainer }>
                 <IconContainer
+                    size={ 18 }
                     rawProps={ { 'aria-label': 'Increment minutes' } }
                     cx={ uuiTimePicker.iconUp }
                     icon={ ArrowIcon }
@@ -109,6 +112,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                     max={ MAX_MINUTES }
                 />
                 <IconContainer
+                    size={ 18 }
                     rawProps={ { 'aria-label': 'Decrement minutes' } }
                     cx={ uuiTimePicker.iconDown }
                     icon={ ArrowIcon }
@@ -117,7 +121,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
             </div>
             { MAX_HOURS === FORMAT_12H && (
                 <div className={ uuiTimePicker.elementContainer }>
-                    <IconContainer cx={ uuiTimePicker.iconUp } icon={ ArrowIcon } onClick={ onTimeTypeChange } />
+                    <IconContainer size={ 18 } cx={ uuiTimePicker.iconUp } icon={ ArrowIcon } onClick={ onTimeTypeChange } />
                     <TextInput
                         cx={ uuiTimePicker.input }
                         onValueChange={ () => {
@@ -125,7 +129,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                         isReadonly={ true }
                         value={ dayjs().set(props.value).format('A') }
                     />
-                    <IconContainer cx={ uuiTimePicker.iconDown } icon={ ArrowIcon } onClick={ onTimeTypeChange } />
+                    <IconContainer size={ 18 } cx={ uuiTimePicker.iconDown } icon={ ArrowIcon } onClick={ onTimeTypeChange } />
                 </div>
             ) }
         </div>

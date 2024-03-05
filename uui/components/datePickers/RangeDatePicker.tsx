@@ -79,7 +79,7 @@ class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps>
                 ref={ props.ref }
             >
                 <TextInput
-                    icon={ systemIcons[this.props.size || '36'].calendar }
+                    icon={ systemIcons.calendar }
                     cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
                     size={ this.props.size || '36' }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }

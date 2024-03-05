@@ -1,8 +1,6 @@
 import React from 'react';
 import { NumericInput } from '../NumericInput';
-import {
-    renderSnapshotWithContextAsync,
-} from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('NumericInput', () => {
     describe('snapshots', () => {

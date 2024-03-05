@@ -5,7 +5,7 @@ import {
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { systemIcons } from '../../../icons/icons';
 
-const { accept: icon } = systemIcons['30'];
+const { accept: icon } = systemIcons;
 
 describe('DropdownMenu', () => {
     it('should be rendered DropdownMenuBody correctly', async () => {

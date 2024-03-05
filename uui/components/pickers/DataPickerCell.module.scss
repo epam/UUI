@@ -1,3 +1,20 @@
+@use '../../assets/styles/index' as *;
+
+@mixin data-picker-icon-size($size) {
+    :global(.uui-folding-arrow) {
+        &:global(.uui-icon) {
+            svg {
+                height: #{$size}px;
+                width: #{$size}px;
+            }
+        }
+    }
+
+    .icon-wrapper:global(.uui-selected) {
+        @include icon-size($size);
+    }
+}
+
 .cell {
     position: relative;
     box-sizing: border-box;
@@ -19,26 +36,62 @@
         }
 
         &.size-42 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+            :global(.uui-checkbox) {
                 margin-top: 12px;
+            }
+
+            :global(.uui-folding-arrow) {
+                margin-top: 9px;
             }
         }
 
         &.size-48 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+            :global(.uui-checkbox) {
                 margin-top: 15px;
+            }
+
+            :global(.uui-folding-arrow) {
+                margin-top: 12px;
             }
         }
 
         &.size-60 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+            :global(.uui-checkbox) {
                 margin-top: 21px;
+            }
+
+            :global(.uui-folding-arrow) {
+                margin-top: 18px;
             }
         }
     }
 
     &.align-widgets-center :global(.uui-checkbox-container) {
         align-self: center;
+    }
+
+    &.size-24 {
+        @include data-picker-icon-size(12);
+    }
+
+    &.size-30 {
+        @include data-picker-icon-size(18);
+    }
+
+    &.size-36 {
+        @include data-picker-icon-size(18);
+    }
+
+    &.size-42 {
+        @include data-picker-icon-size(24);
+    }
+
+    &.size-48 {
+        @include data-picker-icon-size(24);
+    }
+
+    &.size-60 {
+        @include data-picker-icon-size(24);
     }
 
     &.padding-12 { padding: 0 12px; }

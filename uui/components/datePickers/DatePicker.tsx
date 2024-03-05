@@ -36,7 +36,7 @@ class DatePickerComponent extends BaseDatePicker<DatePickerProps> {
                 onClick={ null }
                 isDropdown={ false }
                 cx={ cx(this.props.inputCx, this.state.isOpen && uuiMod.focus) }
-                icon={ this.props.mode !== EditMode.CELL && systemIcons[this.props.size || '36'].calendar }
+                icon={ this.props.mode !== EditMode.CELL && systemIcons.calendar }
                 iconPosition={ this.props.iconPosition || 'left' }
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
                 size={ this.props.size || '36' }
