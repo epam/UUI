@@ -17,9 +17,12 @@ export const toValueDateRangeFormat = (value: RangeDatePickerValue, format?: str
     const from = value.from;
     const to = value.to;
 
+    const fromObj = dayjs(from, supportedDateFormats(format), true);
+    const toObj = dayjs(to, supportedDateFormats(format), true);
+
     return {
-        from: from ? dayjs(from, supportedDateFormats(format), true).format(valueFormat) : null,
-        to: to ? dayjs(to, supportedDateFormats(format), true).format(valueFormat) : to,
+        from: from && fromObj.isValid() ? dayjs(from, supportedDateFormats(format), true).format(valueFormat) : null,
+        to: to && toObj.isValid() ? dayjs(to, supportedDateFormats(format), true).format(valueFormat) : null,
     };
 };
 
@@ -28,9 +31,12 @@ export const toCustomDateRangeFormat = (value: RangeDatePickerValue, format?: st
     const to = value.to;
     const customFormat = format || defaultFormat;
 
+    const fromObj = dayjs(from, supportedDateFormats(format), true);
+    const toObj = dayjs(to, supportedDateFormats(format), true);
+
     return {
-        from: from ? dayjs(from, supportedDateFormats(format), true).format(customFormat) : null,
-        to: to ? dayjs(to, supportedDateFormats(format), true).format(customFormat) : to,
+        from: from && fromObj.isValid() ? dayjs(from, supportedDateFormats(format), true).format(customFormat) : null,
+        to: to && toObj.isValid() ? dayjs(to, supportedDateFormats(format), true).format(customFormat) : null,
     };
 };
 

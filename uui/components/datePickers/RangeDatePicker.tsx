@@ -4,7 +4,7 @@ import {
     uuiMod, DropdownBodyProps, withMods, useUuiContext, RangeDatePickerInputType, RangeDatePickerValue,
 } from '@epam/uui-core';
 import {
-    Dropdown, RangePickerBodyValue, ViewType, defaultFormat, toCustomDateRangeFormat, toValueDateRangeFormat, valueFormat,
+    Dropdown, RangePickerBodyValue, ViewType, defaultFormat, toCustomDateRangeFormat, valueFormat,
 } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
@@ -24,7 +24,8 @@ const modifiers = [{
 }];
 
 function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
-    const { value = defaultRangeValue, format = defaultFormat } = props;
+    const { value: _value, format = defaultFormat } = props;
+    const value = _value || defaultRangeValue;
     const context = useUuiContext();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,10 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         toCustomDateRangeFormat(value, format),
     );
 
-    // use omit here
+    useEffect(() => {
+        setInputValue(toCustomDateRangeFormat(value, format));
+    }, [format, value, setInputValue]);
+
     const [bodyState, setBodyState] = useState<{
         view: ViewType;
         month: Dayjs;
@@ -43,13 +47,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         inFocus: null,
     });
 
-    useEffect(() => {
-        setInputValue(value ? toCustomDateRangeFormat(props.value, format) : defaultRangeValue);
-    }, [format, value, setInputValue]);
-
     const onValueChange = (newValue: RangeDatePickerValue) => {
-        const fromChanged = value?.from !== newValue.from;
-        const toChanged = value?.to !== newValue.to;
+        const fromChanged = value.from !== newValue.from;
+        const toChanged = value.to !== newValue.to;
         if (fromChanged || toChanged) {
             props.onValueChange(newValue);
 
@@ -113,7 +113,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                             presets={ props.presets }
                             renderDay={ props.renderDay }
                             renderFooter={ () => {
-                                return props.renderFooter?.(props.value || defaultRangeValue);
+                                return props.renderFooter?.(value);
                             } }
                             isHoliday={ props.isHoliday }
                             rawProps={ props.rawProps?.body }
@@ -144,14 +144,12 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                         size={ props.size }
                         getPlaceholder={ props.getPlaceholder }
                         disableClear={ props.disableClear }
-                        rawPropsFrom={ props.rawProps?.from }
-                        rawPropsTo={ props.rawProps?.to }
+                        rawProps={ props.rawProps }
                         inFocus={ bodyState.inFocus }
                         onClick={ !props.isDisabled && renderProps.onClick }
                         value={ inputValue }
-                        onValueChange={ (v) => {
-                            setInputValue(v);
-                        } }
+                        format={ format }
+                        onValueChange={ setInputValue }
                         onFocus={ (event, inputType) => {
                             if (props.onFocus) {
                                 props.onFocus(event, inputType);
@@ -163,8 +161,11 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                                 props.onBlur(event, inputType);
                             }
 
-                            setInputValue(toCustomDateRangeFormat(v, format));
-                            onValueChange(toValueDateRangeFormat(v, format));
+                            setInputValue(v.inputValue);
+                            onValueChange(v.selectedDate);
+                        } }
+                        onClear={ (s) => {
+                            onValueChange(s);
                         } }
                     />
                 );

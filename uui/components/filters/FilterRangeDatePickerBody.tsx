@@ -1,5 +1,5 @@
 import React, {
-    useEffect, Fragment, useState,
+    useEffect, Fragment, useState, useMemo,
 } from 'react';
 import cx from 'classnames';
 import {
@@ -14,15 +14,16 @@ import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
 import dayjs, { Dayjs } from 'dayjs';
 import {
-    toCustomDateRangeFormat, ViewType, valueFormat, RangePickerBodyValue, toValueDateRangeFormat, defaultFormat,
+    toCustomDateRangeFormat, ViewType, valueFormat, RangePickerBodyValue, defaultFormat, toValueDateRangeFormat,
 } from '@epam/uui-components';
-import { defaultRangeValue, getMonthOnOpening } from '../datePickers/helpers';
+import { defaultRangeValue } from '../datePickers/helpers';
 import css from '../datePickers/RangeDatePicker.module.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, IDropdownBodyProps {}
 
 export function FilterRangeDatePickerBody(props: RangeDatePickerProps) {
-    const { value = defaultRangeValue, format = defaultFormat } = props;
+    const { value: _value, format = defaultFormat } = props;
+    const value = _value || defaultRangeValue;
     const context = useUuiContext();
 
     const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
@@ -72,22 +73,7 @@ export function FilterRangeDatePickerBody(props: RangeDatePickerProps) {
           && bodyState.inFocus === 'to'
            && toChanged;
         if (closeBody) {
-            toggleIsOpen(false);
-        }
-    };
-
-    const toggleIsOpen = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
-        if (!props.isReadonly && !props.isDisabled) {
-            setBodyState({
-                view: 'DAY_SELECTION',
-                month: getMonthOnOpening(focus, value),
-                inFocus: newIsOpen ? focus : null,
-            });
-
-            props.onOpenChange?.(newIsOpen);
-            if (!newIsOpen) {
-                props.onClose?.();
-            }
+            props.onClose?.();
         }
     };
 
@@ -114,27 +100,30 @@ export function FilterRangeDatePickerBody(props: RangeDatePickerProps) {
                             bodyState.inFocus && uuiMod.focus,
                         ) }
                         size="30"
-                        onClick={ () => {} }
                         disableClear={ props.disableClear }
                         inFocus={ bodyState.inFocus }
+                        format={ format }
                         value={ inputValue }
-                        onValueChange={ (v) => {
-                            setInputValue(v);
-                        } }
+                        onValueChange={ setInputValue }
                         onFocus={ (event, inputType) => {
                             if (props.onFocus) {
                                 props.onFocus(event, inputType);
                             }
-                            toggleIsOpen(true, inputType);
+
+                            setBodyState((prev) => ({
+                                ...prev,
+                                inFocus: inputType,
+                            }));
                         } }
                         onBlur={ (event, inputType, v) => {
                             if (props.onBlur) {
                                 props.onBlur(event, inputType);
                             }
 
-                            setInputValue(toCustomDateRangeFormat(v, format));
-                            onValueChange(toValueDateRangeFormat(v, format));
+                            setInputValue(v.inputValue);
+                            onValueChange(v.selectedDate);
                         } }
+                        onClear={ onValueChange }
                     />
                     <FlexSpacer />
                     <LinkButton
