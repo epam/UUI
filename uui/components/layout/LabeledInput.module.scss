@@ -103,6 +103,8 @@
 
     // Sizes
     &.size-24 {
+        @include icon-size(12);
+
         :global(.uui-label) {
             font-size: 12px;
             line-height: 18px;
@@ -110,6 +112,8 @@
     }
 
     &.size-30 {
+        @include icon-size(12);
+
         :global(.uui-label) {
             font-size: 12px;
             line-height: 18px;
@@ -117,6 +121,8 @@
     }
 
     &.size-36 {
+        @include icon-size(18);
+
         :global(.uui-label) {
             font-size: 14px;
             line-height: 18px;
@@ -124,6 +130,8 @@
     }
 
     &.size-42 {
+        @include icon-size(18);
+
         :global(.uui-label) {
             font-size: 14px;
             line-height: 18px;
@@ -131,6 +139,8 @@
     }
 
     &.size-48 {
+        @include icon-size(18);
+
         :global(.uui-label) {
             font-size: 14px;
             line-height: 18px;

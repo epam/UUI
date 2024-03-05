@@ -81,7 +81,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <div
-          className="iconWrapper"
+          className="iconWrapper uui-selected"
         >
           <div
             aria-label="Selected"

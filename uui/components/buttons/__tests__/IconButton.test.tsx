@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from '../IconButton';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
-import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '@epam/assets/icons/action-calendar-fill.svg';
 
 describe('IconButton', () => {
     it('should be rendered correctly', async () => {

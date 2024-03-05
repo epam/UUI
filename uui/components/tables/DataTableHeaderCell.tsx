@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps,
-} from '@epam/uui-core';
+import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
 import { DataTableHeaderCellMods } from './types';
@@ -10,17 +8,17 @@ import { IconButton } from '../buttons';
 import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
-import css from './DataTableHeaderCell.module.scss';
-import './variables.scss';
-import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/common/table-swap-18.svg';
-import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
-import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
-import { ReactComponent as FilterIcon } from '@epam/assets/icons/common/content-filtration-18.svg';
-import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
-import { ReactComponent as FoldIcon } from '../../icons/foldAll/navigation-collapse_all-outline.svg';
-import { ReactComponent as UnfoldIcon } from '../../icons/foldAll/navigation-expand_all-outline.svg';
+import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/table-swap-outline.svg';
+import { ReactComponent as SortIcon } from '@epam/assets/icons/table-sort_asc-outline.svg';
+import { ReactComponent as SortIconDesc } from '@epam/assets/icons/table-sort_desc-outline.svg';
+import { ReactComponent as FilterIcon } from '@epam/assets/icons/content-filtration-fill.svg';
+import { ReactComponent as DropdownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
+import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/navigation-chevron_up-outline.svg';
+import { ReactComponent as FoldIcon } from '@epam/assets/icons/navigation-collapse_all-outline.svg';
+import { ReactComponent as UnfoldIcon } from '@epam/assets/icons/navigation-expand_all-outline.svg';
 import { i18n } from '../../i18n';
+import './variables.scss';
+import css from './DataTableHeaderCell.module.scss';
 
 interface DataTableHeaderCellState {
     isDropdownOpen: boolean;

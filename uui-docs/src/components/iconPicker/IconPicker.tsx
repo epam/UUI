@@ -26,7 +26,7 @@ export class IconPickerWithInfo extends React.Component<IconPickerInnerProps, Ic
             itemText = (
                 <>
                     <Text size="18" fontSize="14" cx={ css.itemName }>
-                        {item.size}
+                        {/* {item.size} */}
                     </Text>
                     <Text size="18" color="secondary">
                         {item.name}
@@ -40,7 +40,7 @@ export class IconPickerWithInfo extends React.Component<IconPickerInnerProps, Ic
         return (
             <div key={ item.id } className={ css.item }>
                 <IconContainer icon={ item.icon } cx={ cx(css.itemIcon, !item.parentId && css.customSize) } />
-                <div className={ css.itemText } onClick={ (e) => e.stopPropagation() }>
+                <div className={ css.itemText }>
                     {itemText}
                 </div>
             </div>
@@ -106,6 +106,7 @@ export class IconPickerWithInfo extends React.Component<IconPickerInnerProps, Ic
                                 color="primary"
                                 size="24"
                                 onClear={ this.props.value && this.handleClear }
+                                cx={ css.toggler }
                             />
                         ) }
                         renderRow={ (props) => <DataPickerRow { ...props } key={ props.id } size="48" renderItem={ this.renderItem } /> }

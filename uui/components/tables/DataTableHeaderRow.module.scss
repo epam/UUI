@@ -4,7 +4,7 @@
     background: none;
 }
 
-.config-icon {
+:global(.config-icon) {
     position: absolute;
     height: 100%;
     right: 24px;

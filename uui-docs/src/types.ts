@@ -106,7 +106,6 @@ type IconBase<TIcon> = {
     icon: TIcon;
     name: string;
     groupName: string;
-    size: number;
 };
 export type IconGroup<TIcon> = { [key: string]: IconBase<TIcon>[] };
 export type IconList<TIcon> = IconBase<TIcon> & {

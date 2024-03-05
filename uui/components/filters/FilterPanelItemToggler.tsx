@@ -84,7 +84,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                     )
                 }
             </FlexRow>
-            {!props.isDisabled && <IconContainer icon={ systemIcons[props.size || defaultSize].foldingArrow } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
+            {!props.isDisabled && <IconContainer icon={ systemIcons.foldingArrow } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
         </FlexRow>
     );
 });
