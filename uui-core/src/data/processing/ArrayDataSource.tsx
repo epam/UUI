@@ -4,6 +4,9 @@ import { BaseDataSource } from './BaseDataSource';
 import { ArrayListViewProps, useCascadeSelectionService, useDataRows } from './views';
 import { ITree, useTree } from './views/tree';
 import { ItemsStorage } from './views/tree/ItemsStorage';
+import { newMap } from './views/tree/newTree';
+import { IMap } from '../../types';
+import { RecordStatus } from './views/tree/types';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
@@ -12,10 +15,13 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     tree: ITree<TItem, TId>;
 
     itemsStorage: ItemsStorage<TItem, TId>;
+    itemsStatusMap: IMap<TId, RecordStatus>;
     
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.setProps(props);
+        const params = { getId: this.getId, complexIds: props.complexIds };
+        this.itemsStatusMap = newMap(params);
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {

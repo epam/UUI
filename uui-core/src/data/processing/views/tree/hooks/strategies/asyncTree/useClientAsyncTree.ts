@@ -29,7 +29,9 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         patchItems,
         isDeletedProp,
         getPosition,
+        itemsStatusMap,
     } = props;
+
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
         items: props.items,
@@ -67,6 +69,7 @@ export function useClientAsyncTree<TItem, TId, TFilter = any>(
         onForceReloadComplete: () => setIsForceReload(false),
         showOnlySelected,
         isLoaded: isSomethingLoaded,
+        itemsStatusMap,
     }, [...deps, isForceReload, incommingTree]);
 
     const prevIsFetching = useSimplePrevious(isFetching);
