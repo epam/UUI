@@ -1,5 +1,5 @@
 import { Portal } from '@epam/uui-components';
-import { findNode, isEditorFocused, toDOMNode, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
+import { findNode, toDOMNode, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from 'classnames';
 import React, { useRef } from 'react';
