@@ -6,7 +6,7 @@ type BadgeMods = {
      * Defines component color.
      * @default 'info'
      */
-    color?: uui.BadgeProps['color'] | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'white' | 'night100' | 'night600';
+    color?: uui.BadgeProps['color'] | 'yellow'| 'orange' | 'purple' | 'cyan' | 'mint' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night600';
     /**
      * Defines component fill style.
      * @default 'solid'
