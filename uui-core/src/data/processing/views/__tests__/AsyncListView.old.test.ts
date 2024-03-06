@@ -103,7 +103,7 @@ describe('AsyncListView - old tests', () => {
         );
 
         let view = hookResult.result.current;
-        let rows = view.getVisibleRows();
+        let rows = view.getRows();
 
         // Should return loading rows for first call
         expect(rows).toHaveLength(20);
@@ -112,12 +112,12 @@ describe('AsyncListView - old tests', () => {
 
         await waitFor(async () => {
             view = hookResult.result.current;
-            const viewRows = view.getVisibleRows();
+            const viewRows = view.getRows();
             expect(viewRows[5].isLoading).toBeFalsy();
         });
 
         view = hookResult.result.current;
-        rows = view.getVisibleRows();
+        rows = view.getRows();
 
         expect(rows[5].id).toEqual(testItems[5].id);
         expect(rows).toHaveLength(9);

@@ -117,7 +117,7 @@ export default function FiltersPanelExample() {
     return (
         <Panel background="surface-main" shadow style={ { height: '400px' } }>
             <DataTable
-                getRows={ view.getVisibleRows }
+                getRows={ view.getRows }
                 columns={ personColumns }
                 value={ tableState }
                 onValueChange={ setTableState }

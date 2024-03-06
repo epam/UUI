@@ -30,7 +30,7 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
         getSearchFields: props.getSearchFields || ((i) => [i.name]),
     });
 
-    const rows = view.getVisibleRows();
+    const rows = view.getRows();
 
     if (rows.length === 0) return null;
 

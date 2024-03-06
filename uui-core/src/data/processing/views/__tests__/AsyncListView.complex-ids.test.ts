@@ -53,7 +53,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
         view: IDataSourceView<TestItem, TestItemId, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, TestItemId>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -102,7 +102,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
         expect(view.getListProps().rowsCount).toEqual(1);
 
         // Unfold a row
-        const rows = view.getVisibleRows();
+        const rows = view.getRows();
         await act(() => {
             rows[0].onFold?.(rows[0]);
         });
@@ -150,7 +150,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
         let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toEqual(3);
 
-        let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
+        let row = view.getRows()[2]; // -> all children checked = parent checked
         await act(() => {
             row.onCheck?.(row);
         });
@@ -168,7 +168,7 @@ describe('AsyncListView - can work with id like [string, number]', () => {
         });
         expect(view.getListProps().rowsCount).toEqual(3);
 
-        row = view.getVisibleRows()[0];
+        row = view.getRows()[0];
 
         await act(() => {
             row.onCheck?.(row);

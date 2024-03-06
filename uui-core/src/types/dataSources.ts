@@ -232,7 +232,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getConfig(): IDataSourceViewConfig;
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
-    getVisibleRows(): DataRowProps<TItem, TId>[];
+    getRows(): DataRowProps<TItem, TId>[];
     getSelectedRowsCount(): number;
     reload(): void;
     clearAllChecked(): void;

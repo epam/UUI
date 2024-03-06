@@ -71,7 +71,7 @@ export default function WithTableExample() {
 
     return (
         <Panel background="surface-main" style={ { height: '400px' } }>
-            <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
+            <DataTable getRows={ view.getRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
         </Panel>
     );
 }

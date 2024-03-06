@@ -17,7 +17,7 @@ describe('DataPickerBody', () => {
         () => mockDataSource.useView({}, () => {}, {}),
     );
     const view = hookResult.result.current;
-    const rows = view.getVisibleRows();
+    const rows = view.getRows();
     const requiredProps: DataPickerBodyProps = {
         value: {},
         onValueChange: jest.fn(),

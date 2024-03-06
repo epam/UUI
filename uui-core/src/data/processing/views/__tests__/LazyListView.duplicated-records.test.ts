@@ -42,7 +42,7 @@ describe('LazyListView with flat list', () => {
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -187,7 +187,7 @@ describe('LazyListView with tree table', () => {
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
 
         rows.forEach((r) => {
             if (r.id) {
@@ -241,13 +241,13 @@ describe('LazyListView with tree table', () => {
         expect(view.getListProps().rowsCount).toEqual(3);
 
         // // Unfold some rows
-        let rows = view.getVisibleRows();
+        let rows = view.getRows();
 
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
         await waitFor(() => {
             view = hookResult.result.current;
-            rows = view.getVisibleRows();
+            rows = view.getRows();
             expect(typeof rows[0].onFold).toBe('function');
         });
 
@@ -290,7 +290,7 @@ describe('LazyListView with tree table', () => {
         expect(view.getListProps().rowsCount).toEqual(5);
 
         // // Unfold more rows
-        rows = view.getVisibleRows();
+        rows = view.getRows();
         await act(() => {
             rows[2].onFold?.(rows[2]);
         });

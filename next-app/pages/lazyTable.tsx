@@ -93,7 +93,7 @@ const TableExample = () => {
             } }>
                 <DataTable
                     { ...view.getListProps() }
-                    getRows={ view.getVisibleRows }
+                    getRows={ view.getRows }
                     value={ tableState }
                     filters={ filters }
                     onValueChange={ setTableState }

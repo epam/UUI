@@ -148,7 +148,7 @@ export function PaletteTable(props: PaletteTableProps) {
                                 onValueChange={ setTableState }
                             />
                         </div>
-                        { tokensDsView.getVisibleRows().map(renderRow) }
+                        { tokensDsView.getRows().map(renderRow) }
                     </div>
                 </ScrollBars>
             </div>

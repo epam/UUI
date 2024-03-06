@@ -14277,7 +14277,7 @@
       "    getConfig(): IDataSourceViewConfig;",
       "    getById(id: TId, index: number): DataRowProps<TItem, TId>;",
       "    getListProps(): DataSourceListProps;",
-      "    getVisibleRows(): DataRowProps<TItem, TId>[];",
+      "    getRows(): DataRowProps<TItem, TId>[];",
       "    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];",
       "    getSelectedRowsCount(): number;",
       "    reload(): void;",
@@ -14333,8 +14333,8 @@
       "required": true
      },
      {
-      "uid": "getVisibleRows",
-      "name": "getVisibleRows",
+      "uid": "getRows",
+      "name": "getRows",
       "typeValue": {
        "raw": "() => DataRowProps<TItem, TId>[]"
       },
@@ -21275,7 +21275,7 @@
       "comment": {
        "raw": [
         "This option is added for the purpose of supporting legacy behavior of fetching data",
-        " on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
+        " on `getRows` and `getListProps`, not to break users' own implementation of dataSources.",
         " @default true"
        ],
        "tags": {
@@ -21546,7 +21546,7 @@
       "    flattenSearchResults?: boolean;",
       "    /**",
       "     * This option is added for the purpose of supporting legacy behavior of fetching data",
-      "     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
+      "     * on `getRows` and `getListProps`, not to break users' own implementation of dataSources.",
       "     * @default true",
       "     */",
       "    legacyLoadDataBehavior?: boolean;",
@@ -21667,7 +21667,7 @@
       "comment": {
        "raw": [
         "This option is added for the purpose of supporting legacy behavior of fetching data",
-        " on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
+        " on `getRows` and `getListProps`, not to break users' own implementation of dataSources.",
         " @default true"
        ],
        "tags": {

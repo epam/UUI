@@ -75,7 +75,7 @@ describe('LazyListView', () => {
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
 
         rows.forEach((r) => {
             if (r.id) {
@@ -126,12 +126,12 @@ describe('LazyListView', () => {
         });
 
         // Unfold some rows
-        let rows = view.getVisibleRows();
+        let rows = view.getRows();
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
 
         await waitFor(() => {
             view = hookResult.result.current;
-            rows = view.getVisibleRows();
+            rows = view.getRows();
             expect(typeof rows[0].onFold).toBe('function');
         });
 
@@ -171,7 +171,7 @@ describe('LazyListView', () => {
         expect(listProps.rowsCount).toEqual(5);
 
         // Unfold more rows
-        rows = view.getVisibleRows();
+        rows = view.getRows();
 
         await act(() => {
             rows[2].onFold?.(rows[2]);
@@ -243,7 +243,7 @@ describe('LazyListView', () => {
         expect(listProps.rowsCount).toEqual(10);
 
         // fold row #120
-        let rows = view.getVisibleRows();
+        let rows = view.getRows();
         await act(() => {
             rows[2].onFold?.(rows[2]);
         });
@@ -261,7 +261,7 @@ describe('LazyListView', () => {
         expect(listProps.rowsCount).toEqual(8);
 
         // fold row #100
-        rows = view.getVisibleRows();
+        rows = view.getRows();
         await act(() => {
             rows[0].onFold?.(rows[0]);
         });
@@ -333,7 +333,7 @@ describe('LazyListView', () => {
         });
 
         let view = hookResult.result.current;
-        let row110 = view.getVisibleRows()[1];
+        let row110 = view.getRows()[1];
         await act(() => {
             row110.onCheck?.(row110);
         });
@@ -347,7 +347,7 @@ describe('LazyListView', () => {
             ]);
         });
 
-        row110 = view.getVisibleRows()[1];
+        row110 = view.getRows()[1];
         await act(() => {
             row110.onCheck?.(row110);
         });
@@ -380,7 +380,7 @@ describe('LazyListView', () => {
         });
 
         let view = hookResult.result.current;
-        const row110 = view.getVisibleRows()[1];
+        const row110 = view.getRows()[1];
 
         await act(() => {
             row110.onCheck?.(row110);
@@ -561,7 +561,7 @@ describe('LazyListView', () => {
             view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
             rows: Partial<DataRowProps<LocationItem, string>>[],
         ) {
-            const viewRows = view.getVisibleRows();
+            const viewRows = view.getRows();
             expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         }
 
@@ -676,7 +676,7 @@ describe('LazyListView', () => {
             view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
             rows: Partial<DataRowProps<LocationItem, string>>[],
         ) {
-            const viewRows = view.getVisibleRows();
+            const viewRows = view.getRows();
             expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         }
 
@@ -795,7 +795,7 @@ describe('LazyListView', () => {
             });
 
             let view = hookResult.result.current;
-            let row120 = view.getVisibleRows()[2];
+            let row120 = view.getRows()[2];
 
             await act(() => {
                 row120.onCheck?.(row120);
@@ -815,7 +815,7 @@ describe('LazyListView', () => {
                 ]);
             });
 
-            row120 = view.getVisibleRows()[2];
+            row120 = view.getRows()[2];
             await act(() => {
                 row120.onCheck?.(row120);
             });
@@ -863,7 +863,7 @@ describe('LazyListView', () => {
             });
 
             let view = hookResult.result.current;
-            const row120 = view.getVisibleRows()[2];
+            const row120 = view.getRows()[2];
 
             await act(() => {
                 row120.onCheck?.(row120);
@@ -872,7 +872,7 @@ describe('LazyListView', () => {
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
             view = hookResult.result.current;
-            const row300 = view.getVisibleRows()[6];
+            const row300 = view.getRows()[6];
             expect(row300.id).toBe(300);
 
             await act(() => {
@@ -1020,7 +1020,7 @@ describe('LazyListView', () => {
             view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
             rows: Partial<DataRowProps<LocationItem, string>>[],
         ) {
-            const viewRows = view.getVisibleRows();
+            const viewRows = view.getRows();
             expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         }
 
@@ -1140,7 +1140,7 @@ describe('LazyListView', () => {
 
             let view = hookResult.result.current;
 
-            let row120 = view.getVisibleRows()[2];
+            let row120 = view.getRows()[2];
             expect(row120.id).toBe(120);
             expect(row120.isChecked).toBe(false);
 
@@ -1165,7 +1165,7 @@ describe('LazyListView', () => {
 
             expect(currentValue.checked).toEqual([120]);
 
-            row120 = view.getVisibleRows()[2];
+            row120 = view.getRows()[2];
             await act(() => {
                 row120.onCheck?.(row120);
             });
@@ -1215,7 +1215,7 @@ describe('LazyListView', () => {
                 ]);
             });
             let view = hookResult.result.current;
-            const row120 = view.getVisibleRows()[2];
+            const row120 = view.getRows()[2];
             expect(row120.id).toBe(120);
 
             await act(() => {
@@ -1225,7 +1225,7 @@ describe('LazyListView', () => {
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
 
             view = hookResult.result.current;
-            const row300 = view.getVisibleRows()[6];
+            const row300 = view.getRows()[6];
             expect(row300.id).toBe(300);
 
             await act(() => {
@@ -1336,7 +1336,7 @@ describe('LazyListView', () => {
 
             await waitFor(() => {
                 view = hookResult.result.current;
-                // console.log(view.getVisibleRows());
+                // console.log(view.getRows());
                 expectViewToLookLike(
                     view,
                     [
@@ -1556,7 +1556,7 @@ describe('LazyListView', () => {
         );
         await waitFor(() => {
             const view = hookResult.result.current;
-            const viewRows = view.getVisibleRows();
+            const viewRows = view.getRows();
 
             const expectedRows = [
                 { id: 100, isFolded: false },
@@ -1571,7 +1571,7 @@ describe('LazyListView', () => {
 
         let view = hookResult.result.current;
         // fold row #100
-        let rows = view.getVisibleRows();
+        let rows = view.getRows();
 
         await act(() => {
             rows[0].onFold?.(rows[0]);
@@ -1581,7 +1581,7 @@ describe('LazyListView', () => {
 
         await waitFor(() => {
             view = hookResult.result.current;
-            rows = view.getVisibleRows();
+            rows = view.getRows();
 
             expect(rows).toEqual([
                 { id: 100 }, { id: 200 }, { id: 300 }, { id: 400 }, { id: 500 },
@@ -1619,7 +1619,7 @@ describe('LazyListView', () => {
         });
 
         let view = hookResult.result.current;
-        let row121 = view.getVisibleRows()[3];
+        let row121 = view.getRows()[3];
 
         await act(() => {
             row121.onCheck?.(row121);
@@ -1627,7 +1627,7 @@ describe('LazyListView', () => {
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         view = hookResult.result.current;
-        const row122 = view.getVisibleRows()[4];
+        const row122 = view.getRows()[4];
         await act(() => {
             row122.onCheck?.(row122);
         });
@@ -1650,7 +1650,7 @@ describe('LazyListView', () => {
         });
 
         view = hookResult.result.current;
-        row121 = view.getVisibleRows()[3];
+        row121 = view.getRows()[3];
         await act(() => {
             row121.onCheck?.(row121);
         });
