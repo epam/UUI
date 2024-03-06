@@ -154,7 +154,6 @@ export function IconsDoc() {
     );
 
     const renderItem = (item: IconBase<Icon>) => {
-        // console.log(item.id);
         return (
             <div
                 key={ item.id }
