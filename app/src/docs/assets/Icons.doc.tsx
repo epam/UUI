@@ -3,10 +3,10 @@ import css from './IconsPage.module.scss';
 import { FlexCell, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, Tooltip, NotificationCard, MultiSwitch,
     ScrollBars, SearchInput, TextInput } from '@epam/uui';
 import { ArrayDataSource, cx, Icon } from '@epam/uui-core';
-import { getGroupedIcons, getIconList } from '../../documents/iconListHelpers';
+import { getAllIcons } from '../../documents/iconListHelpers';
 import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
-import { IconList } from '@epam/uui-docs';
+import { IconBase } from '@epam/uui-docs';
 import { ReactComponent as NotificationCheckFillIcon } from '@epam/assets/icons/notification-check-fill.svg';
 
 const SIZE_LIST: ControlSize[] = ['24', '30', '36', '42', '48'];
@@ -14,8 +14,8 @@ const SIZE_LIST: ControlSize[] = ['24', '30', '36', '42', '48'];
 type ControlSize = '24' | '30' | '36' | '42' | '48';
 
 interface IconsPageState {
-    currentIcon: IconList<Icon> | null;
-    selectedIcon: IconList<Icon> | null;
+    currentIcon: IconBase<Icon> | null;
+    selectedIcon: IconBase<Icon> | null;
     search: string;
     controlSize: ControlSize;
     topIndex: number;
@@ -34,10 +34,9 @@ export function IconsDoc() {
         isLocked: true,
     });
 
-    const typeIcons: IconList<Icon>[] = getIconList(false);
-    const groupedIcons: { [key: string]: IconList<Icon>[] } = getGroupedIcons();
+    const allIcons: IconBase<Icon>[] = getAllIcons<Icon>();
     const iconsDS = new ArrayDataSource({
-        items: typeIcons,
+        items: allIcons,
     });
 
     const showNotification = () => {
@@ -88,12 +87,14 @@ export function IconsDoc() {
         </FlexCell>
     );
 
-    const getImportCode = (icon: IconList<Icon>) => {
+    const getImportCode = (icon: IconBase<Icon>) => {
+        const sourcePath = '@epam/assets/icons/';
         const iconName = icon.name.split('/').reverse()[0].split('.')[0];
+
         if (iconName.includes('_') || iconName.includes('-')) {
-            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${icon.name}';`;
+            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${sourcePath}${icon.name}';`;
         }
-        return `import { ReactComponent as ${iconName}Icon } from '${icon.name}';`;
+        return `import { ReactComponent as ${iconName}Icon } from '${sourcePath}${icon.name}';`;
     };
 
     const renderImport = () => {
@@ -152,23 +153,26 @@ export function IconsDoc() {
         </div>
     );
 
-    const renderItem = (item: IconList<Icon>) => (
-        <div
-            key={ item.id }
-            className={ cx(css.item, state.currentIcon && state.currentIcon.id === item.id && css.activeItem) }
-            onClick={ () => setState({
-                ...state,
-                currentIcon: item,
-                selectedIcon: groupedIcons[item.name][0],
-                isLocked: true,
-            }) }
-        >
-            <IconContainer cx={ css.itemIcon } icon={ item.icon } />
-            <Text size="18" color="secondary" cx={ css.itemName }>
-                {item.name}
-            </Text>
-        </div>
-    );
+    const renderItem = (item: IconBase<Icon>) => {
+        // console.log(item.id);
+        return (
+            <div
+                key={ item.id }
+                className={ cx(css.item, state.currentIcon && state.currentIcon.id === item.id && css.activeItem) }
+                onClick={ () => setState({
+                    ...state,
+                    currentIcon: item,
+                    selectedIcon: item,
+                    isLocked: true,
+                }) }
+            >
+                <IconContainer cx={ css.itemIcon } icon={ item.icon } />
+                <Text size="18" color="secondary" cx={ css.itemName }>
+                    {item.name}
+                </Text>
+            </div>
+        );
+    };
 
     const renderIconsBox = (items: any[]) => {
         if (items.length === 0) {
