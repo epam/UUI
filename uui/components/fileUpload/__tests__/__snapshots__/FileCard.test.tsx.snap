@@ -47,12 +47,12 @@ exports[`FileCard should be rendered correctly with Excel file 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
+        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
       >
         Test
       </div>
       <div
-        className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
       >
         XLS, 
         0 Bytes of 
@@ -138,12 +138,12 @@ exports[`FileCard should be rendered correctly with doc file 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
+        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
       >
         Test
       </div>
       <div
-        className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
       >
         DOC, 
         0 Bytes of 
@@ -234,7 +234,7 @@ exports[`FileCard should be rendered correctly with img file 1`] = `
         Test
       </div>
       <div
-        className="root uui-text uui-color-secondary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
+        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
       >
         GIF, 
         12.25 KB

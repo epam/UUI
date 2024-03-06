@@ -9,7 +9,7 @@ import {
     ModalBlocker, ModalWindow, ModalHeader, ModalFooter,
 } from '../overlays';
 import { LinkButton, Button } from '../buttons';
-import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
+import { ReactComponent as SearchIcon } from '../../icons/pictures/search-with-background.svg';
 
 import css from './PickerModal.module.scss';
 import { SearchInput, Switch } from '../inputs';

@@ -1,0 +1,32 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Sometimes you would like not just to set the new lens value but also to make some manipulations with the value or add your own logic. For such reasons, you can use the "
+      },
+      {
+        "text": ".onChange()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, where you can pass your own setter callback. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In the example below, we need to reset the street on a city change. For this, we are creating the "
+      },
+      {
+        "text": "cityLens",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", where we define a setter that will set an empty string to the street field when city is changed."
+      }
+    ]
+  }
+]

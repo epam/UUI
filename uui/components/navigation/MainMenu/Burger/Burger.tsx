@@ -2,8 +2,8 @@ import { withMods } from '@epam/uui-core';
 import cx from 'classnames';
 import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';
 import css from './Burger.module.scss';
-import { ReactComponent as BurgerIcon } from '../../../../icons/burger.svg';
-import { ReactComponent as CrossIcon } from '../../../../icons/burger-close.svg';
+import { ReactComponent as BurgerIcon } from '@epam/assets/icons/navigation-open_side_menu-outline.svg';
+import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 
 interface BurgerMods {}
 

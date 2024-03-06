@@ -142,7 +142,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         if (typeof value === 'string') {
             return value;
         } else if (value == null) {
-            return 'none';
+            return 'null';
         } else if (value.displayName) {
             return value.displayName;
         } else if (value.type?.displayName) {

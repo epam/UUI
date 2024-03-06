@@ -9,8 +9,8 @@ import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { Tooltip } from '../overlays';
 import { fileIcons } from '../../icons/icons';
-import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
-import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-10.svg';
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/navigation-close-outline.svg';
+import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
 
 export interface FileCardItem extends Partial<File & FileUploadResponse> {
     /**
@@ -102,14 +102,14 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     const renderErrorContent = () => (
         <Tooltip content={ file.error.message } placement="bottom-start">
             <div className={ css.errorBlock }>
-                <ErrorIcon />
+                <IconContainer icon={ ErrorIcon } size={ 12 } cx={ css.defaultColor } />
                 Upload failed
             </div>
         </Tooltip>
     );
 
     const renderSuccessfulContent = () => (
-        <Text size="18" fontSize="14" lineHeight="18" color="secondary">
+        <Text size="18" fontSize="14" lineHeight="18" color="tertiary">
             {fileExtension && `${fileExtension.toUpperCase()}, `}
             {isLoading && formatBytes((size / 100) * progress, 2, false) + i18n.fileCard.fileSizeProgress}
             {formatBytes(size)}
@@ -131,7 +131,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
             <FlexRow size="36" alignItems="top" spacing="6">
                 {fileExtension && getIcon(fileExtension)}
                 <FlexCell width="100%">
-                    <Text size="18" fontSize="14" lineHeight="18" color={ progress < 100 ? 'secondary' : 'primary' } cx={ css.fileName }>
+                    <Text size="18" fontSize="14" lineHeight="18" color={ (progress < 100 || error?.isError) ? 'tertiary' : 'primary' } cx={ css.fileName }>
                         {fileName}
                     </Text>
                     {error?.isError ? renderErrorContent() : renderSuccessfulContent()}

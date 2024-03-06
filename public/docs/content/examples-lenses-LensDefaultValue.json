@@ -1,0 +1,31 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can set a default value for an "
+      },
+      {
+        "text": "undefined",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " or "
+      },
+      {
+        "text": "null",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " lens using the "
+      },
+      {
+        "text": ".default(",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ") method on the lens."
+      }
+    ]
+  }
+]

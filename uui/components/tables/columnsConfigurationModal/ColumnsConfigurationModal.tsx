@@ -4,10 +4,10 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { ColumnsConfig, cx, DataColumnProps, IModal } from '@epam/uui-core';
 import { Accordion, ColumnsConfigurationRowProps, IconContainer, useColumnsConfiguration } from '@epam/uui-components';
-import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/navigation-refresh-18.svg';
-import { ReactComponent as ExpandedIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
+import { ReactComponent as ResetIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
+import { ReactComponent as ExpandedIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
+import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 
 import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
 import { Button, LinkButton } from '../../buttons';

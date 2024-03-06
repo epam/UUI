@@ -7,15 +7,6 @@ import css from './Tag.module.scss';
 
 const DEFAULT_SIZE = '36';
 
-const mapSize = {
-    48: '48',
-    42: '48',
-    36: '36',
-    30: '30',
-    24: '30',
-    18: '18',
-};
-
 const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['size']> = {
     18: '12',
     24: '18',
@@ -80,8 +71,8 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
 
     const styles = [applyTagMods(props), props.cx];
 
-    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].clear;
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow;
+    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
     return (
         <Clickable

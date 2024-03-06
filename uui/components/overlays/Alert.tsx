@@ -3,11 +3,11 @@ import cx from 'classnames';
 import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton, LinkButton } from '../buttons';
-import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
-import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
-import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
-import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
-import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
+import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
+import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
+import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
+import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help-fill.svg';
+import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './Alert.module.scss';
 
 interface AlertNotificationAction {
