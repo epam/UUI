@@ -12,27 +12,16 @@ export function usePlainTree<TItem, TId, TFilter = any>(
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { ...restProps, sortSearchByRelevance };
-    const [trigger, setTrigger] = useState(false);
+    const [triggerValue, trigger] = useState(false);
 
     const resetTree = useCallback(() => {
-        setTrigger((currentTrigger) => !currentTrigger);
-    }, [setTrigger]);
-
-    const { itemsMap, setItems } = useItemsStorage({
-        itemsMap: restProps.itemsMap,
-        items,
-        setItems: restProps.setItems,
-        params: { getId: restProps.getId, complexIds: restProps.complexIds },
-    });
-
-    const fullTree = useCreateTree(
-        { ...props, items, itemsMap, setItems },
-        [...deps, items, itemsMap, trigger],
-    );
+        trigger((currentTriggerValue) => !currentTriggerValue);
+    }, [trigger]);
 
     const {
         getId,
         getParentId,
+        complexIds,
         getFilter,
         getSearchFields,
         sortBy,
@@ -42,7 +31,20 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         isFoldedByDefault,
         cascadeSelection,
         showOnlySelected,
+        selectAll,
     } = props;
+
+    const { itemsMap, setItems } = useItemsStorage({
+        itemsMap: restProps.itemsMap,
+        items,
+        setItems: restProps.setItems,
+        params: { getId, complexIds },
+    });
+
+    const fullTree = useCreateTree(
+        { items, itemsMap, setItems, getId, getParentId, complexIds },
+        [...deps, items, itemsMap, triggerValue],
+    );
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
@@ -74,11 +76,8 @@ export function usePlainTree<TItem, TId, TFilter = any>(
     });
 
     const getChildCount = useCallback((item: TItem): number | undefined => {
-        if (props.getChildCount) {
-            return props.getChildCount(item) ?? tree.visible.getChildren(getId(item)).length;
-        }
         return tree.visible.getChildren(getId(item)).length;
-    }, [tree.visible, getId, props.getChildCount]);
+    }, [tree.visible, getId]);
 
     const reload = useCallback(() => {
         resetTree();
@@ -105,6 +104,6 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         reload,
         cascadeSelection,
         showOnlySelected,
-        selectAll: props.selectAll,
+        selectAll,
     };
 }

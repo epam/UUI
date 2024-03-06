@@ -136,6 +136,10 @@ export interface PatchItemsOptions<TItem, TId> {
     getPosition?: (item: TItem) => Position | { after: TId };
 }
 
+export interface GetChildCount<TItem> {
+    getChildCount?(item: TItem): number;
+}
+
 export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
     /**
      * Should return unique ID of the TItem

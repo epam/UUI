@@ -1,10 +1,13 @@
 import { ItemsMap, ItemsStorage } from '../../../../../../processing';
-import { IMap, SortingOption } from '../../../../../../../types';
+import { IMap, PatchItemsOptions, SortingOption } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
 import { RecordStatus } from '../../../types';
 
-export interface AsyncTreeProps<TItem, TId, TFilter> extends CommonDataSourceConfig<TItem, TId, TFilter> {
+export interface AsyncTreeProps<TItem, TId, TFilter> extends
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    PatchItemsOptions<TItem, TId> {
+
     type: typeof STRATEGIES.async;
     api(): Promise<TItem[]>;
 

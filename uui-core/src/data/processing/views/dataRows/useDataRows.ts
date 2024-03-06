@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceListProps, VirtualListRange } from '../../../../types';
+import { DataRowProps, DataSourceListProps, GetChildCount, VirtualListRange } from '../../../../types';
 import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
@@ -17,7 +17,8 @@ export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
     Partial<CascadeSelectionService<TId>>,
-    GetItemStatus<TId> {
+    GetItemStatus<TId>,
+    GetChildCount<TItem> {
 
     tree: ITree<TItem, TId>;
 }

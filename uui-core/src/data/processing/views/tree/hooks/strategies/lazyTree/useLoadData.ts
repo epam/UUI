@@ -1,18 +1,15 @@
 import { useCallback, useRef } from 'react';
-import { CascadeSelection, CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
+import { CascadeSelection, CascadeSelectionTypes, DataSourceState, GetChildCount, LazyDataSourceApi } from '../../../../../../../types';
 import isEqual from 'lodash.isequal';
-import { CommonDataSourceConfig } from '../types';
 import { ROOT_ID, TreeState } from '../../../newTree';
 import { TreeStructureId } from '../../../newTree/treeState/types';
 import { Tree } from '../../../newTree/Tree';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
-    Pick<
-    CommonDataSourceConfig<TItem, TId, TFilter>,
-    'dataSourceState' | 'getChildCount'
-    > {
+    GetChildCount<TItem> {
 
     api: LazyDataSourceApi<TItem, TId, TFilter>;
+    dataSourceState: DataSourceState<TFilter, TId>;
     filter?: TFilter;
     isFolded: (item: TItem) => boolean;
     fetchStrategy?: 'sequential' | 'parallel';

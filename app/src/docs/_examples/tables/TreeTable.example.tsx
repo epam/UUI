@@ -100,7 +100,6 @@ export default function TreeTableExample() {
         api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
         getId: (item) => item.id,
         getParentId: (item) => item.parentId,
-        getChildCount: (item) => item.childCount,
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         getSearchFields: (item) => [item.name],
