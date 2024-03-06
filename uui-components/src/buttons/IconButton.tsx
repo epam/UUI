@@ -20,6 +20,9 @@ export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             ref={ ref }
         >
             <IconContainer icon={ props.icon } />
+            { props.isDropdown && (
+                <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } />
+            ) }
         </Clickable>
     );
 });

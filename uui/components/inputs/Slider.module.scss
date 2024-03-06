@@ -6,6 +6,8 @@
     --uui-slider-line-active-bg: var(--uui-primary-50);
     --uui-slider-dot-bg: var(--uui-surface-main);
     --uui-slider-dot-bg-hover: var(--uui-primary-20);
+    --uui-slider-dot-border: var(--uui-neutral-30);
+    --uui-slider-dot-border-hover: var(--uui-primary-20);
     --uui-slider-handle-bg: var(--uui-primary-50);
     --uui-slider-shadow: var(--uui-shadow-level-1);
     --uui-slider-scale-text: var(--uui-text-primary);
@@ -76,7 +78,7 @@
 
         :global(.uui-slider-scale-dot) {
             background-color: var(--uui-slider-dot-bg);
-            border: 1px var(--uui-neutral-30) solid;
+            border: 1px var(--uui-slider-dot-border) solid;
         }
 
         &:hover {
@@ -85,8 +87,8 @@
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-slider-dot-bg-hover);
                 background-color: var(--uui-slider-dot-bg-hover);
+                border-color: var(--uui-slider-dot-border-hover);
             }
         }
 

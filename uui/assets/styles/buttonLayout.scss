@@ -1,13 +1,16 @@
 @use './text-size' as *;
+@use './icons' as *;
 
 @mixin button-layout($size, $borderWidth) {
     @include button-horizontal-layout($size, $borderWidth);
     @include button-vertical-layout($size, $borderWidth);
+    @include scalable-icon-size($size);
 }
 
 @mixin link-button-layout($size) {
     @include link-button-horizontal-layout($size);
     @include button-vertical-layout($size, 0);
+    @include scalable-icon-size($size);
 }
 
 @mixin button-vertical-layout($size, $borderWidth) {

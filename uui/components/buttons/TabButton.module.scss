@@ -83,13 +83,16 @@ $text-size-count: 24px;
     // Sizes
     &.size-36 {
         height: 36px;
+        @include scalable-icon-size(36);
     }
 
     &.size-48 {
         height: 48px;
+        @include scalable-icon-size(48);
     }
 
     &.size-60 {
         height: 60px;
+        @include scalable-icon-size(60);
     }
 }

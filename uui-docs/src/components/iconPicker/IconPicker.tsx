@@ -1,119 +1,91 @@
 import * as React from 'react';
-import { IconList } from '../../types';
+import { IconBase } from '../../types';
 import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
-import { Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip } from '@epam/uui';
-import { SizeInfo } from './SizeInfo';
+import { Button, DataPickerRow, FlexRow, PickerInput, Text } from '@epam/uui';
 import css from './IconPicker.module.scss';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
+import { useEffect, useState } from 'react';
 
 interface IconPickerInnerProps extends IEditable<IHasIcon> {
-    icons: IconList<Icon>[];
+    icons: IconBase<Icon>[];
     enableInfo?: boolean;
 }
 
 interface IconPickerInnerState {
     iconId?: string;
     iconName?: string;
+    icon?: Icon;
 }
 
-export class IconPickerWithInfo extends React.Component<IconPickerInnerProps, IconPickerInnerState> {
-    state: IconPickerInnerState = {};
-    renderItem(item: IconList<Icon>) {
-        let itemText;
-
-        if (item.parentId) {
-            itemText = (
-                <>
-                    <Text size="18" fontSize="14" cx={ css.itemName }>
-                        {item.size}
-                    </Text>
-                    <Text size="18" color="secondary">
-                        {item.name}
-                    </Text>
-                </>
-            );
-        } else {
-            itemText = <Text cx={ css.itemName }>{item.name}</Text>;
-        }
-
-        return (
-            <div key={ item.id } className={ css.item }>
-                <IconContainer icon={ item.icon } cx={ cx(css.itemIcon, !item.parentId && css.customSize) } />
-                <div className={ css.itemText } onClick={ (e) => e.stopPropagation() }>
-                    {itemText}
-                </div>
-            </div>
-        );
-    }
-
-    renderTooltip() {
-        return (
-            <div className={ css.contentTooltip }>
-                <SizeInfo size={ (this.props as any).size || '36' } caption={ (this.props as any).caption || '' } showHorizontalHighlight={ true } />
-            </div>
-        );
-    }
-
-    renderInfo() {
-        return (
-            <div className={ css.infoContainer }>
-                <Tooltip maxWidth={ 600 } placement="top" content={ this.renderTooltip() }>
-                    <IconButton icon={ InfoIcon } color="neutral" />
-                </Tooltip>
-            </div>
-        );
-    }
-
-    dataSource = new ArrayDataSource({
-        items: this.props.icons,
+export function IconPickerWithInfo(props: IconPickerInnerProps) {
+    const [state, setState] = useState<IconPickerInnerState>({
+        iconId: null,
+        iconName: null,
+        icon: null,
     });
 
-    handleClear = () => {
-        this.props.onValueChange(undefined);
-        this.setState({ iconId: null });
-    };
+    const icons: { [key: string]: IconBase<Icon> } = {};
 
-    render() {
-        const icons: { [key: string]: IconList<Icon> } = {};
-        this.props.icons.forEach((icon) => {
+    useEffect(() => {
+        props.icons.forEach((icon) => {
             icons[icon.id] = icon;
         });
+    }, [props.icons]);
 
+    const renderItem = (item: IconBase<Icon>) => {
         return (
-            <div className={ css.container }>
-                <div className={ css.selectContainer }>
-                    <PickerInput<any, string>
-                        selectionMode="single"
-                        value={ this.state.iconId }
-                        onValueChange={ (id: string | undefined) => {
-                            if (typeof id === 'undefined') {
-                                this.handleClear();
-                                return;
-                            }
-
-                            this.props.onValueChange(icons[id].icon as IHasIcon);
-                            this.setState({ iconId: id, iconName: icons[id].parentId });
-                        } }
-                        dataSource={ this.dataSource }
-                        searchPosition="body"
-                        renderToggler={ (props) => (
-                            <Button
-                                { ...props }
-                                caption={ this.props.value ? this.state.iconName : 'Select icon' }
-                                icon={ this.props.value as any }
-                                fill="none"
-                                color="primary"
-                                size="24"
-                                onClear={ this.props.value && this.handleClear }
-                            />
-                        ) }
-                        renderRow={ (props) => <DataPickerRow { ...props } key={ props.id } size="48" renderItem={ this.renderItem } /> }
-                        getRowOptions={ (item) => ({ isSelectable: item.parentId }) }
-                    />
-                    {this.props.enableInfo && this.renderInfo()}
+            <FlexRow key={ item.id } cx={ css.item }>
+                <IconContainer icon={ item.icon } size={ 18 } cx={ cx(css.itemIcon) } />
+                <div className={ css.itemText }>
+                    <Text size="18" color="secondary">
+                        {item.name.replace('.svg', '')}
+                    </Text>
                 </div>
-            </div>
+            </FlexRow>
         );
-    }
+    };
+
+    const dataSource = new ArrayDataSource({
+        items: props.icons,
+    });
+
+    const handleClear = () => {
+        props.onValueChange(undefined);
+        setState((prevState) => ({ ...prevState, iconId: null }));
+    };
+
+    return (
+        <div className={ css.container }>
+            <div className={ css.selectContainer }>
+                <PickerInput
+                    selectionMode="single"
+                    value={ state.iconId }
+                    onValueChange={ (id: string | undefined) => {
+                        if (typeof id === 'undefined') {
+                            handleClear();
+                            return;
+                        }
+
+                        props.onValueChange(icons[id].icon as IHasIcon);
+                        setState(() => ({ iconId: id, iconName: icons[id].name, icon: icons[id].icon }));
+                    } }
+                    dataSource={ dataSource }
+                    searchPosition="body"
+                    renderToggler={ (props) => (
+                        <Button
+                            { ...props }
+                            caption={ state.iconName?.replace('.svg', '') || 'Select icon' }
+                            icon={ state.icon }
+                            fill="none"
+                            color="primary"
+                            size="24"
+                            onClear={ props.value && handleClear }
+                            cx={ css.toggler }
+                        />
+                    ) }
+                    renderRow={ (props) => <DataPickerRow { ...props } key={ props.id } size="48" renderItem={ renderItem } /> }
+                />
+            </div>
+        </div>
+    );
 }
