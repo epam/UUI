@@ -1,53 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "If it is necessary to highlight the row as invalid, simply bypass the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "isInvalid",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " property as a part of ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "rowOptions",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props.",
-            "marks": []
-          }
-        ]
+        "text": "If it is necessary to highlight the row as invalid, simply bypass the "
+      },
+      {
+        "text": "isInvalid",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property as a part of "
+      },
+      {
+        "text": "rowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props."
       }
     ]
   }
-}
+]
