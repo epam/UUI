@@ -21,4 +21,5 @@ export interface AsyncTreeProps<TItem, TId, TFilter> extends
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 
     sortSearchByRelevance?: boolean;
+    isLoaded?: boolean;
 }

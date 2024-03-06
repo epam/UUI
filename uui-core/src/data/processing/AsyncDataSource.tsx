@@ -56,6 +56,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             itemsMap,
             setItems: this.itemsStorage.setItems,
             itemsStatusMap: this.itemsStatusMap,
+            isLoaded: this.props.items.length > 0,
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
             dataSourceState: value,

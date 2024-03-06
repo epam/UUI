@@ -32,6 +32,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         getPosition,
         itemsStatusMap,
         selectAll,
+        isLoaded,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -42,14 +43,13 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     });
 
     const [isForceReload, setIsForceReload] = useState(false);
-    const isSomethingLoaded = itemsMap.size > 0;
 
     const baseTree = useMemo(() => {
-        if (isSomethingLoaded) {
+        if (isLoaded) {
             return TreeState.createFromItems(undefined, itemsMap, props, setItems);
         }
         return TreeState.blank(props, itemsMap, setItems);
-    }, [...deps, isSomethingLoaded]);
+    }, [...deps, isLoaded]);
 
     const [incommingTree, setIncommingTree] = useState(baseTree);
 
@@ -70,7 +70,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         forceReload: isForceReload,
         onForceReloadComplete: () => setIsForceReload(false),
         showOnlySelected,
-        isLoaded: isSomethingLoaded,
+        isLoaded,
         itemsStatusMap,
     }, [...deps, isForceReload, incommingTree]);
 
