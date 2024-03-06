@@ -8,6 +8,11 @@
         margin-left: 12px;
         display: flex;
         align-items: center;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
     }
 
     .infoText {
