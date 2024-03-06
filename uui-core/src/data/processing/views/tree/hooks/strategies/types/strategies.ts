@@ -6,10 +6,7 @@ import { AsyncTreeProps } from '../asyncTree/types';
 import { ITree } from '../../../newTree/ITree';
 import { RecordStatus } from '../../../types';
 
-type PlainTreePropsWithOptionalType<TItem, TId, TFilter = any> = Omit<PlainTreeProps<TItem, TId, TFilter>, 'type'> & { type?: 'plain' };
-
-export type UseTreeProps<TItem, TId, TFilter = any> = Exclude<TreeProps<TItem, TId, TFilter>, { type: 'plain' }>
-| PlainTreePropsWithOptionalType<TItem, TId, TFilter>;
+export type UseTreeProps<TItem, TId, TFilter = any> = TreeProps<TItem, TId, TFilter>;
 
 export type Strategies = typeof STRATEGIES[keyof typeof STRATEGIES];
 

@@ -8,6 +8,7 @@ export default function ArrayDataTableExample() {
     const [dataSourceState, setDataSourceState] = useState({});
 
     const { tree, ...dataRowProps } = useTree({
+        type: 'plain',
         getId: (item) => item.id,
         dataSourceState,
         setDataSourceState,

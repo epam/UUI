@@ -45,16 +45,5 @@ export function useSelectingService<TItem, TId, TFilter = any>({
         }));
     }, [setDataSourceState]);
 
-    return useMemo(
-        () => ({
-            handleOnSelect,
-            isRowSelected,
-            isRowChildSelected,
-        }),
-        [
-            handleOnSelect,
-            isRowSelected,
-            isRowChildSelected,
-        ],
-    );
+    return { handleOnSelect, isRowSelected, isRowChildSelected };
 }
