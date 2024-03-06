@@ -31,6 +31,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
     } = useRangeDatePickerState({
         value,
         format,
+        inFocusInitial: 'from',
         getValueChangeAnalyticsEvent: props.getValueChangeAnalyticsEvent,
         onValueChange: props.onValueChange,
         onOpenChange: (newIsOpen: boolean) => {
