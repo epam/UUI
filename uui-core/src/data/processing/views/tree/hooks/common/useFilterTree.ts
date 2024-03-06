@@ -21,7 +21,7 @@ export function useFilterTree<TItem, TId, TFilter = any>(
         update: (currentTree) => currentTree.filter({ filter, getFilter }),
     }, [filter, ...deps]);
 
-    if (isLoading) {
+    if (isLoading || filteredTree === null) {
         return tree;
     }
 

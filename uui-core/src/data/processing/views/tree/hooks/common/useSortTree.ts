@@ -27,7 +27,7 @@ export function useSortTree<TItem, TId, TFilter = any>(
         update: (currentTree) => currentTree.sort({ sorting, sortBy }),
     }, [sorting, ...deps]);
 
-    if (isLoading) {
+    if (isLoading || sortTree === null) {
         return tree;
     }
 
