@@ -1,11 +1,12 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { Day } from '@epam/uui-components';
+import { Day, DayProps } from '@epam/uui-components';
 import { IPropSamplesCreationContext } from '@epam/uui-docs';
-import { Text, RangeDatePickerProps, RangeDatePickerValue, rangeDatePickerPresets } from '@epam/uui';
+import {
+    Text, RangeDatePickerProps, RangeDatePickerValue, rangeDatePickerPresets,
+} from '@epam/uui';
 import css from './rangeDatePickerExamples.module.scss';
 import isBetween from 'dayjs/plugin/isBetween.js';
-import { DayProps } from '@epam/uui-core';
 
 dayjs.extend(isBetween);
 
@@ -33,7 +34,10 @@ export const filterExamples = () => {
     ];
 };
 export const presetsExamples = () => [
-    { name: 'default', value: rangeDatePickerPresets },
+    {
+        name: 'default',
+        value: rangeDatePickerPresets,
+    },
     {
         name: 'custom',
         value: {
@@ -42,7 +46,11 @@ export const presetsExamples = () => [
             last3Days: {
                 name: 'Last 3 days (custom)',
                 getRange: () => {
-                    return { from: dayjs().subtract(2, 'day').toString(), to: dayjs().toString(), order: 11 };
+                    return {
+                        from: dayjs().subtract(2, 'day').toString(),
+                        to: dayjs().toString(),
+                        order: 11,
+                    };
                 },
             },
         },
