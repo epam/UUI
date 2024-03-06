@@ -11,6 +11,8 @@ exports[`GlobalMenu should be rendered correctly 1`] = `
   >
     <svg
       className=""
+      height={36}
+      width={36}
     />
   </div>
 </button>

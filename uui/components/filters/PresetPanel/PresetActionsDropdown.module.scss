@@ -12,6 +12,14 @@
     }
 }
 
+.add-button {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .targetOpen {
     &:global(.uui-button-box) {
         :global(.uui-icon) {
