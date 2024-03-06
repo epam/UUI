@@ -101,7 +101,7 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
 
     /**
      * This option is added for the purpose of supporting legacy behavior of fetching data
-     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.
+     * on `getRows` and `getListProps`, not to break users' own implementation of dataSources.
      * @default true
      */
     legacyLoadDataBehavior?: boolean;

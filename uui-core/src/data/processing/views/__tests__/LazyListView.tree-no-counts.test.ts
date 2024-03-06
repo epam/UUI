@@ -70,7 +70,7 @@ describe('LazyListView', () => {
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
 
         rows.forEach((r) => {
             if (r.id) {
@@ -140,11 +140,11 @@ describe('LazyListView', () => {
 
         await waitFor(() => {
             view = hookResult.result.current;
-            const rows = view.getVisibleRows();
+            const rows = view.getRows();
             expect(typeof rows[0].onFold).toEqual('function');
         });
         view = hookResult.result.current;
-        const rows = view.getVisibleRows();
+        const rows = view.getRows();
 
         // unfold first row
         rows[0].onFold(rows[0]);

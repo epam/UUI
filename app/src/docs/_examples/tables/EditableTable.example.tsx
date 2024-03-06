@@ -185,7 +185,7 @@ export default function EditableTableExample() {
         [],
     );
 
-    // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
+    // Render the table, passing the prepared data to it in form of getRows callback, list props (e.g. items counts)
     return (
         <Panel background="surface-main" shadow>
             {/* Render a panel with Save/Revert buttons to control the form */}
@@ -205,7 +205,7 @@ export default function EditableTableExample() {
                 {/* Render the data table */}
                 <DataTable
                     { ...view.getListProps() }
-                    getRows={ view.getVisibleRows }
+                    getRows={ view.getRows }
                     value={ tableState }
                     onValueChange={ setTableState }
                     columns={ columns }

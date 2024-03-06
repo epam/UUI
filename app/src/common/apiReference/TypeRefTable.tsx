@@ -97,7 +97,7 @@ export function TypeRefTable(props: TypeRefTableProps) {
                     onValueChange={ setTableState }
                 />
             </div>
-            { view.getVisibleRows().map(renderRow) }
+            { view.getRows().map(renderRow) }
         </div>
     );
 }

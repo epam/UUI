@@ -118,7 +118,7 @@ export default function ColumnsConfigurationDataTableExample() {
     return (
         <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
-                getRows={ view.getVisibleRows }
+                getRows={ view.getRows }
                 columns={ personColumns }
                 value={ value }
                 onValueChange={ onValueChange }

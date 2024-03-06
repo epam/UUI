@@ -110,7 +110,7 @@ export function ProjectTasksDemo() {
             <DataTable
                 headerTextCase="upper"
                 showColumnsConfig
-                getRows={ dataView.getVisibleRows }
+                getRows={ dataView.getRows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }

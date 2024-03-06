@@ -112,7 +112,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
-            getVisibleRows: () => rows,
+            getRows: () => rows,
             getListProps: () => ({ ...listProps, totalCount }),
             selectAll,
             getConfig: () => restProps,

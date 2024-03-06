@@ -21,7 +21,7 @@ export default function AdvancedVirtualList() {
     });
 
     const citiesDataSource = useLazyDataSource<City, string, string>({ api: svc.api.demo.cities }, []);
-    const { getVisibleRows, getListProps } = citiesDataSource.useView(value, onValueChange, {});
+    const { getRows, getListProps } = citiesDataSource.useView(value, onValueChange, {});
     const {
         listContainerRef, offsetY, handleScroll, scrollContainerRef, estimatedHeight,
     } = useVirtualList({
@@ -35,7 +35,7 @@ export default function AdvancedVirtualList() {
             <Header />
             <div className={ css.mainContainerWrapper } style={ { minHeight: `${estimatedHeight}px` } }>
                 <ul ref={ listContainerRef } style={ { marginTop: `${offsetY}px` } } className={ css.mainContainerList }>
-                    {getVisibleRows().map((row) => (
+                    {getRows().map((row) => (
                         <li className={ css.mainContainerListItem } key={ row.key + String(row.index) } role="row">
                             {row.value ? (
                                 <>

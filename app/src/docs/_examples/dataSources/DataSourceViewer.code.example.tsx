@@ -49,7 +49,7 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
         [view.selectAll],
     );
 
-    const renderedRows = view.getVisibleRows().map(renderRow);
+    const renderedRows = view.getRows().map(renderRow);
     const hasSelection = view.getSelectedRowsCount() > 0;
     const listProps = view.getListProps();
 

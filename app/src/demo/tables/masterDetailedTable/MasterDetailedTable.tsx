@@ -110,7 +110,7 @@ export function MasterDetailedTable() {
                 <FlexRow borderBottom cx={ cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened }) }></FlexRow>
                 <DataTable
                     headerTextCase="upper"
-                    getRows={ view.getVisibleRows }
+                    getRows={ view.getRows }
                     columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId[], PersonTableFilter>[] }
                     filters={ filters }
                     value={ tableStateApi.tableState }

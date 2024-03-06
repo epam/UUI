@@ -22,7 +22,7 @@ describe('LazyListView - patch items', () => {
         view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
         rows: Partial<DataRowProps<LocationItem, string>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -237,7 +237,7 @@ describe('LazyListView - patch items', () => {
             ]);
         });
 
-        const rows = view.getVisibleRows();
+        const rows = view.getRows();
         const rowAF = rows[0];
         await act(() => {
             rowAF.onFold?.(rowAF);
@@ -311,7 +311,7 @@ describe('LazyListView - patch items', () => {
             ]);
         });
 
-        const rows = view.getVisibleRows();
+        const rows = view.getRows();
         const rowAF = rows[0];
         await act(() => {
             rowAF.onFold?.(rowAF);

@@ -21,7 +21,7 @@ describe('AsyncListView - row options', () => {
         view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
         rows: Partial<DataRowProps<LocationItem, string>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
     describe('rowOptions', () => {
@@ -236,7 +236,7 @@ describe('AsyncListView - row options', () => {
             expect(typeof view.selectAll!.onValueChange).toBe('function');
             expect(view.selectAll!.indeterminate).toBeFalsy();
 
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onFold?.(afRow);
@@ -284,7 +284,7 @@ describe('AsyncListView - row options', () => {
             expect(typeof view.selectAll!.onValueChange).toBe('function');
             expect(view.selectAll!.indeterminate).toBeTruthy();
 
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onFold?.(afRow);
@@ -392,7 +392,7 @@ describe('AsyncListView - row options', () => {
             });
 
             const view = hookResult.result.current;
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onClick?.(afRow);
@@ -531,7 +531,7 @@ describe('AsyncListView - row options', () => {
             });
 
             let view = hookResult.result.current;
-            const euRow = view.getVisibleRows()[1];
+            const euRow = view.getRows()[1];
 
             await act(() => {
                 euRow.onFold?.(euRow);
@@ -548,7 +548,7 @@ describe('AsyncListView - row options', () => {
                 ]);
             });
 
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onFold?.(afRow);
@@ -791,7 +791,7 @@ describe('AsyncListView - row options', () => {
             expect(typeof view.selectAll!.onValueChange).toBe('function');
             expect(view.selectAll!.indeterminate).toBeFalsy();
 
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onFold?.(afRow);
@@ -839,7 +839,7 @@ describe('AsyncListView - row options', () => {
             expect(typeof view.selectAll!.onValueChange).toBe('function');
             expect(view.selectAll!.indeterminate).toBeTruthy();
 
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onFold?.(afRow);
@@ -954,7 +954,7 @@ describe('AsyncListView - row options', () => {
             });
 
             const view = hookResult.result.current;
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onClick?.(afRow);
@@ -1093,7 +1093,7 @@ describe('AsyncListView - row options', () => {
             });
 
             let view = hookResult.result.current;
-            const euRow = view.getVisibleRows()[1];
+            const euRow = view.getRows()[1];
 
             await act(() => {
                 euRow.onFold?.(euRow);
@@ -1110,7 +1110,7 @@ describe('AsyncListView - row options', () => {
                 ]);
             });
 
-            const afRow = view.getVisibleRows()[0];
+            const afRow = view.getRows()[0];
 
             await act(() => {
                 afRow.onFold?.(afRow);

@@ -172,7 +172,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         }
 
         if (!props.defaultIds && result.length < maxDefaultItems) {
-            const rows = view.getVisibleRows();
+            const rows = view.getRows();
             addRows(rows, maxDefaultItems);
         }
         return sortRows(result);

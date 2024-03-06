@@ -20,7 +20,7 @@ describe('AsyncListView - show only selected', () => {
         view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
         rows: Partial<DataRowProps<LocationItem, string>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -296,7 +296,7 @@ describe('AsyncListView - show only selected', () => {
         });
 
         let view = hookResult.result.current;
-        let rows = view.getVisibleRows();
+        let rows = view.getRows();
         const rowAF = rows[0];
         await act(() => {
             rowAF.onCheck?.(rowAF);
@@ -363,7 +363,7 @@ describe('AsyncListView - show only selected', () => {
             ]);
         });
 
-        rows = view.getVisibleRows();
+        rows = view.getRows();
         const checkedRowDZ = rows[1];
 
         await act(() => {

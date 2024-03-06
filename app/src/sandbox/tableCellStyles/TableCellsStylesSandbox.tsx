@@ -306,7 +306,7 @@ export default function TableCellsStylesSandbox() {
         [skinName],
     );
 
-    // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
+    // Render the table, passing the prepared data to it in form of getRows callback, list props (e.g. items counts)
     return (
         <skin.Panel key={ skinName } cx={ [css.wrapper, skinName !== 'uui' && css[`uui-theme-${skinName}`]] }>
             <skin.FlexRow>

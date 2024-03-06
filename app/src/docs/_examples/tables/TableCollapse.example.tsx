@@ -115,7 +115,7 @@ export default function TableCollapseExample() {
             rawProps={ { role: 'tree_grid' } }
         >
             <DataTable
-                getRows={ view.getVisibleRows }
+                getRows={ view.getRows }
                 { ...view.getListProps() }
                 value={ tableState }
                 onValueChange={ (newVal) => setTableState(newVal) }

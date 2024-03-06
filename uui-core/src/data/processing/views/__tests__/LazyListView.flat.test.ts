@@ -45,7 +45,7 @@ describe('LazyListView - flat list test', () => {
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -208,7 +208,7 @@ describe('LazyListView - flat list test', () => {
         });
         expect(view.getListProps().rowsCount).toEqual(5);
 
-        const rows = view.getVisibleRows();
+        const rows = view.getRows();
         await act(() => {
             rows[0].onCheck?.(rows[0]);
         });

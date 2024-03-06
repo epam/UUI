@@ -107,7 +107,7 @@ export default function ColumnsConfigurationDataTableExample() {
             <DataTable
                 value={ tableState }
                 onValueChange={ handleTableStateChange }
-                getRows={ view.getVisibleRows }
+                getRows={ view.getRows }
                 columns={ citiesColumns }
                 headerTextCase="upper"
                 showColumnsConfig={ true }

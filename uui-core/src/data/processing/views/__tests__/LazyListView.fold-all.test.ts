@@ -20,7 +20,7 @@ describe('LazyListView - fold all', () => {
         view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
         rows: Partial<DataRowProps<LocationItem, string>>[],
     ) {
-        const viewRows = view.getVisibleRows();
+        const viewRows = view.getRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 

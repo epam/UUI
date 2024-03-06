@@ -119,10 +119,10 @@ export default function CitiesTable() {
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
-                // Spread ListProps and provide getVisibleRows function from view to DataTable component.
+                // Spread ListProps and provide getRows function from view to DataTable component.
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
-                getRows={ view.getVisibleRows }
+                getRows={ view.getRows }
                 showColumnsConfig={ false }
                 headerTextCase="upper"
                 columns={ citiesColumns }

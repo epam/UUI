@@ -115,7 +115,7 @@ export function TableContext(contextProps: DemoComponentProps) {
             <Panel style={ { width: '100%', paddingLeft: '3px' } }>
                 <DataTable
                     headerTextCase="upper"
-                    getRows={ dataView.getVisibleRows }
+                    getRows={ dataView.getRows }
                     columns={ personColumns }
                     value={ tableState }
                     onValueChange={ setTableState }
