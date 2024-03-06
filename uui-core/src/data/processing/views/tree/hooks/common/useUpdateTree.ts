@@ -1,6 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { TreeState } from '../../newTree';
 import { useSimplePrevious } from '../../../../../../hooks';
+import { useDepsChanged } from './useDepsChanged';
 
 export interface UseUpdateTreeProps<TItem, TId> {
     tree: TreeState<TItem, TId>;
@@ -17,18 +18,15 @@ export function useUpdateTree<TItem, TId>(
     deps: any[],
 ) {
     const treeRef = useRef<TreeState<TItem, TId>>(null);
-    const prevDeps = useSimplePrevious(deps);
     const prevTree = useSimplePrevious(tree);
+    const depsChanged = useDepsChanged(deps);
 
     const updatedTree = useMemo(() => {
-        const isDepsChanged = prevDeps?.length !== deps.length
-            || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
-
-        if (treeRef.current === null || prevTree !== tree || shouldUpdate || isDepsChanged) {
+        if (treeRef.current === null || prevTree !== tree || shouldUpdate || depsChanged) {
             treeRef.current = update(tree);
         }
         return treeRef.current;
-    }, [tree, ...deps]);
+    }, [tree, depsChanged, ...deps]);
 
     return updatedTree;
 }

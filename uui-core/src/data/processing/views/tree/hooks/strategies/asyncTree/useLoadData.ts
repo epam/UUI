@@ -5,6 +5,7 @@ import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { RecordStatus } from '../../../types';
 import { useItemsStatusCollector } from '../../common';
+import { useDepsChanged } from '../../common/useDepsChanged';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -34,7 +35,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
     deps: any[],
 ) {
     const prevDataSourceState = useSimplePrevious(dataSourceState);
-    const prevDeps = useSimplePrevious(deps);
     const prevForceReload = useSimplePrevious(forceReload);
 
     const [loadedTree, setLoadedTree] = useState(tree);
@@ -42,7 +42,11 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
 
-    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, [itemsStatusMap]);
+    const itemsStatusCollector = useItemsStatusCollector(
+        { itemsStatusMap, complexIds, getId },
+        [itemsStatusMap],
+    );
+
     const watchedApi = useMemo(
         () => itemsStatusCollector.watch(api),
         [itemsStatusCollector, api],
@@ -81,7 +85,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
     }, [api]);
 
-    const isDepsChanged = prevDeps?.length !== deps.length || (prevDeps ?? []).some((devVal, index) => devVal !== deps[index]);
+    const depsChanged = useDepsChanged(deps);
+
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
     const selectedAndChecked = getSelectedAndChecked(dataSourceState);
@@ -127,7 +132,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     setIsLoading(false);
                 });
         }
-    }, [shouldLoad, isDepsChanged, shouldForceReload]);
+    }, [shouldLoad, depsChanged, shouldForceReload]);
 
     return { tree: loadedTree, isLoading, isFetching, isLoaded, itemsStatusCollector };
 }

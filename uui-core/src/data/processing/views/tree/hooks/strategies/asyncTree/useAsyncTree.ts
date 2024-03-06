@@ -31,6 +31,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isDeletedProp,
         getPosition,
         itemsStatusMap,
+        selectAll,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -90,12 +91,12 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     const isTreeLoading = !isTreeLoaded || isLoading || isFetching;
     const filteredTree = useFilterTree(
         { tree: treeWithData, getFilter, dataSourceState, isLoading: isTreeLoading },
-        [treeWithData],
+        [treeWithData, isTreeLoading],
     );
 
     const sortTree = useSortTree(
         { tree: filteredTree, sortBy, dataSourceState, isLoading: isTreeLoading },
-        [filteredTree],
+        [filteredTree, isTreeLoading],
     );
 
     const searchTree = useSearchTree(
@@ -106,14 +107,14 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
             dataSourceState,
             isLoading: isTreeLoading,
         },
-        [sortTree],
+        [sortTree, isTreeLoading],
     );
 
     const treeWithSelectedOnly = useSelectedOnlyTree({
         tree: searchTree,
         dataSourceState,
         isLoading: isTreeLoading,
-    }, [searchTree]);
+    }, [searchTree, isTreeLoading]);
 
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
@@ -133,12 +134,10 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     }, [tree.visible]);
 
     return {
-        tree: props.showOnlySelected ? tree.selectedOnly : tree.visible,
+        tree: showOnlySelected ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,
         reload,
         totalCount,
-        isLoading,
-        isFetching,
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         rowOptions,
         getRowOptions,
@@ -150,6 +149,9 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isFoldedByDefault,
         cascadeSelection,
         showOnlySelected,
-        selectAll: props.selectAll,
+        selectAll,
+
+        isLoading,
+        isFetching,
     };
 }
