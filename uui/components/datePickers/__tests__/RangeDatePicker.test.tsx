@@ -3,18 +3,13 @@ import { RangeDatePicker } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent,
 } from '@epam/uui-test-utils';
-import { supportedDateFormats } from '@epam/uui-components';
 import dayjs from 'dayjs';
 import { RangeDatePickerProps } from '../types';
+import { supportedDateFormats } from '../helpers';
 
-interface TestProps {
+type TestProps = Pick<RangeDatePickerProps, 'format' | 'onBlur' | 'onFocus' |'isHoliday' | 'onOpenChange'> & {
     value: RangeDatePickerProps['value'];
-    format?: RangeDatePickerProps['format'];
-    onBlur?: RangeDatePickerProps['onBlur'];
-    onFocus?: RangeDatePickerProps['onFocus'];
-    isHoliday?: RangeDatePickerProps['isHoliday'];
-    onOpenChange?: RangeDatePickerProps['onOpenChange'];
-}
+};
 
 function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
     // @ts-ignore

@@ -2,8 +2,9 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 
 import { fireEvent, setupComponentForTest, screen, within, userEvent } from '@epam/uui-test-utils';
-import { DatePickerHeader, DatePickerHeaderProps, getNextListYearFromCurrent, getNextMonthFromCurrent, getNextYearFromCurrent } from '../DatePickerHeader';
-import { ViewType } from '@epam/uui-components';
+import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
+import { getNextMonthFromCurrent, getNextYearFromCurrent, getNextListYearFromCurrent } from '../helpers';
+import { ViewType } from '../types';
 
 async function setupDatePickerHeader(params: { initialDate: string, viewType?: ViewType, onValueChange?: jest.Mock }) {
     const value = {

@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, {
+    HTMLAttributes, ReactElement, useState,
+} from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import localeData from 'dayjs/plugin/localeData.js';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
-import { arrayToMatrix, cx, CalendarProps } from '@epam/uui-core';
-import { Day } from './Day';
+import {
+    arrayToMatrix, cx, CX, IHasCX, IHasForwardedRef, IHasRawProps,
+} from '@epam/uui-core';
+import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
 import { i18n } from '../../i18n';
 import css from './Calendar.module.scss';
+
+/**
+ * Represents the properties of the Calendar component
+ */
+export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    value?: TSelection;
+    onValueChange: (day: Dayjs) => void;
+    month: Dayjs;
+    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
+    filter?(day: Dayjs): boolean;
+    hideAnotherMonths?: boolean;
+    cx?: CX;
+    isHoliday?: (day: Dayjs) => boolean;
+}
 
 dayjs.extend(localeData);
 dayjs.extend(updateLocale);

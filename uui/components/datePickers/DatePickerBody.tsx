@@ -1,20 +1,22 @@
 import React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
-import { cx } from '@epam/uui-core';
-import { MonthSelection, YearSelection, valueFormat, DatePickerBodyBaseProps, uuiDatePickerBodyBase } from '@epam/uui-components';
+import {
+    IControlled,
+    cx,
+} from '@epam/uui-core';
+import { MonthSelection, YearSelection } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
+import { CommonDatePickerBodyProps, DatePickerBodyValue } from './types';
+import { uuiDatePickerBodyBase, valueFormat } from './helpers';
 
-dayjs.extend(updateLocale);
-
-export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
-    /**
-     * A pure function that gets whether day is holiday for each day.
-     */
+export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<DatePickerBodyValue<string>> {
     isHoliday?: (day: Dayjs) => boolean;
 }
+
+dayjs.extend(updateLocale);
 
 export const uuiDatePickerBody = {
     wrapper: 'uui-datepickerBody-wrapper',

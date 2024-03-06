@@ -3,22 +3,23 @@ import React, {
 } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { i18n } from '../../i18n';
-import {
-    DatePickerCoreProps, IDropdownBodyProps, useUuiContext,
-} from '@epam/uui-core';
+import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
     FlexSpacer, FlexRow, FlexCell,
 } from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
-import { DatePickerBody } from '../datePickers';
-import { PickerBodyValue, ViewType } from '@epam/uui-components';
+import {
+    DatePickerBody, DatePickerProps, DatePickerBodyValue, ViewType,
+} from '../datePickers';
 import { getNewMonth } from '../datePickers/helpers';
 
-/** Represents the properties of the DatePicker. */
-export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
+/**
+ * Represents the properties of the FiterDatePicker
+ */
+export interface FilterDatePickerProps extends DatePickerProps, IDropdownBodyProps {}
 
-export function FilterDatePickerBody(props: DatePickerProps) {
+export function FilterDatePickerBody(props: FilterDatePickerProps) {
     const { value } = props;
     const context = useUuiContext();
 
@@ -52,7 +53,7 @@ export function FilterDatePickerBody(props: DatePickerProps) {
         }
     };
 
-    const handleBodyChange = (newValue: PickerBodyValue<string>) => {
+    const handleBodyChange = (newValue: DatePickerBodyValue<string>) => {
         if (newValue.selectedDate && value !== newValue.selectedDate) {
             handleValueChange(newValue.selectedDate);
         }

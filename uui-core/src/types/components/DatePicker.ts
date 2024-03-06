@@ -1,16 +1,19 @@
-import React, { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IEditable, IHasForwardedRef, IHasPlaceholder, IHasRawProps,
-    IDropdownToggler,
-} from '../../props';
-import { CX } from '../../objects';
-import { DayProps } from './Day';
+    ICanBeReadonly, IDisableable, IHasForwardedRef, IDropdownToggler,
+} from '../props';
+import { CX } from '../objects';
 
 export interface CommonDatePickerProps extends IDisableable,
     ICanBeReadonly,
     IHasForwardedRef<HTMLElement> {
+    /**
+     * HTML ID attribute for the toggler input
+     */
+    id?: string;
+
     /**
      * Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)
      */
@@ -30,11 +33,6 @@ export interface CommonDatePickerProps extends IDisableable,
      * Disable clearing date value (e.g. via cross icon)
      */
     disableClear?: boolean;
-
-    /**
-     * Overrides rendering of the single day. For example, to highlight certain days
-     */
-    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
 
     /**
      * Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)
@@ -57,34 +55,33 @@ export interface CommonDatePickerProps extends IDisableable,
     bodyCx?: CX;
 }
 
-export interface BaseDatePickerProps
-    extends
-    ICanFocus<HTMLInputElement>,
-    IEditable<string | null>,
-    IAnalyticableOnChange<string>,
-    IHasPlaceholder,
-    CommonDatePickerProps {
-
-    /** Called when component lose focus */
-    onBlur?: (e?: React.FocusEvent<HTMLInputElement>) => void;
-
+export type RangeDatePickerPresets = {
     /**
-     * Defines where to place calendar icon
+     * Preset config
      */
-    iconPosition?: 'left' | 'right';
-
-    /**
-     * Any HTML attributes (native or 'data-') to put on date picker parts
-     */
-    rawProps?: {
+    [key: string]: {
         /**
-         * Any HTML attributes (native or 'data-') to put on date picker input
+         * Name of the preset to display in rangeDatePicker body
          */
-        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        name: ReactNode;
         /**
-         * Any HTML attributes (native or 'data-') to put on date picker body
+         * A pure function that gets range value which will be applied by preset selection
          */
-        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        getRange: () => RangeDatePickerPresetValue;
     };
+};
 
+export interface RangeDatePickerPresetValue {
+    /**
+     * Range from value
+     */
+    from?: string;
+    /**
+     * Range to value
+     */
+    to?: string;
+    /**
+     * Preset order in presets list
+     */
+    order?: number;
 }
