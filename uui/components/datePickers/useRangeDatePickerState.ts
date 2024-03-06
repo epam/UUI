@@ -9,7 +9,7 @@ import {
 export type UseRangeDatePickerState =
     IControlled<RangeDatePickerValue> &
     Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'getValueChangeAnalyticsEvent'> & {
-        inFocusInitial: RangeDatePickerInputType;
+        inFocusInitial: RangeDatePickerInputType | null;
     };
 
 export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
