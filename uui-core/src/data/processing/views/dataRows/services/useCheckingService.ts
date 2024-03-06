@@ -141,22 +141,12 @@ export function useCheckingService<TItem, TId>(
         handleCheck(isChecked, id);
     }, [handleCheck]);
 
-    return useMemo(
-        () => ({
-            isRowChecked,
-            isRowChildrenChecked,
-            handleOnCheck,
-            handleSelectAll,
-            clearAllChecked,
-            isItemCheckable,
-        }),
-        [
-            isRowChecked,
-            isRowChildrenChecked,
-            handleOnCheck,
-            handleSelectAll,
-            clearAllChecked,
-            isItemCheckable,
-        ],
-    );
+    return {
+        isRowChecked,
+        isRowChildrenChecked,
+        handleOnCheck,
+        handleSelectAll,
+        clearAllChecked,
+        isItemCheckable,
+    };
 }

@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { DataSourceState } from '../../../../../types';
 
 export interface UseFocusServiceProps<TId, TFilter = any> {
@@ -18,8 +18,5 @@ export function useFocusService<TId, TFilter = any>({
         setDataSourceState({ ...dataSourceState, focusedIndex: focusIndex });
     }, [setDataSourceState, dataSourceState]);
 
-    return useMemo(
-        () => ({ handleOnFocus }),
-        [handleOnFocus],
-    );
+    return { handleOnFocus };
 }

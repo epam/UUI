@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../types';
 import { idToKey, setObjectFlag } from '../../helpers';
 import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
@@ -58,8 +58,5 @@ export function useFoldingService<TItem, TId, TFilter = any>({
         });
     }, [setDataSourceState]);
 
-    return useMemo(
-        () => ({ handleOnFold, isFolded }),
-        [handleOnFold, isFolded],
-    );
+    return { handleOnFold, isFolded };
 }

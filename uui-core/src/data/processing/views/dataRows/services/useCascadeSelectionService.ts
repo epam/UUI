@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { ITree } from '../../tree';
 import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords } from '../../tree/hooks/strategies/types';
 import { CheckingHelper, FAILED_RECORD, NOT_FOUND_RECORD } from '../../tree/newTree';
@@ -80,5 +80,5 @@ export function useCascadeSelectionService<TItem, TId>({
         });
     }, [tree, isItemCheckable, isItemUnknown, cascadeSelection]);
 
-    return useMemo(() => ({ handleCascadeSelection }), [handleCascadeSelection]);
+    return { handleCascadeSelection };
 }
