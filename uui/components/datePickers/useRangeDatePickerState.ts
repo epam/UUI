@@ -8,10 +8,14 @@ import {
 
 export type UseRangeDatePickerState =
     IControlled<RangeDatePickerValue> &
-    Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'getValueChangeAnalyticsEvent'>;
+    Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'getValueChangeAnalyticsEvent'> & {
+        inFocusInitial: RangeDatePickerInputType;
+    };
 
 export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
-    const { value, format } = props;
+    const {
+        value, format, inFocusInitial = null,
+    } = props;
     const context = useUuiContext();
 
     const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
@@ -29,7 +33,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     }>({
         view: 'DAY_SELECTION',
         month: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
-        inFocus: null,
+        inFocus: inFocusInitial,
     });
 
     const onValueChange = (newValue: RangeDatePickerValue) => {
