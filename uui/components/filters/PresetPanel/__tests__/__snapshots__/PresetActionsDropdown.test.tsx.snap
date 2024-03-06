@@ -15,5 +15,13 @@ exports[`PresetActionsDropdown should render correctly 1`] = `
       className=""
     />
   </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
 </button>
 `;
