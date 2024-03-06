@@ -29,7 +29,7 @@ export function useSearchTree<TItem, TId, TFilter = any>(
         update: (currentTree) => currentTree.search({ search, getSearchFields, sortSearchByRelevance }),
     }, [search, ...deps]);
 
-    if (isLoading) {
+    if (isLoading || searchTree === null) {
         return tree;
     }
 
