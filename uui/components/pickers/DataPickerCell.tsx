@@ -1,31 +1,15 @@
 import * as React from 'react';
-import { DataPickerCellProps } from '@epam/uui-core';
+import { DataPickerCellProps, uuiMod, cx } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { PickerCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { DataRowAddons } from '../widgets';
-import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
-import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
-import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';
+import { ReactComponent as BoldTickIcon } from '@epam/assets/icons/notification-done-fill.svg';
+import { ReactComponent as TickIcon } from '@epam/assets/icons/notification-done-outline.svg';
 
 import css from './DataPickerCell.module.scss';
 
 import { FlexCell } from '../layout';
-
-const getIcon = (size: string) => {
-    switch (size) {
-        case '24':
-            return TickIcon_12;
-        case '30':
-            return TickIcon_18;
-        case '36':
-            return TickIcon_18;
-        case '42':
-            return TickIcon_24;
-        default:
-            return TickIcon_18;
-    }
-};
 
 export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId> & PickerCellMods) {
     const ref = React.useRef<HTMLDivElement>();
@@ -51,9 +35,9 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 {props.renderItem(props.rowProps.value, props.rowProps)}
                 <FlexSpacer />
                 {(props.rowProps.isChildrenSelected || props.rowProps.isSelected) && (
-                    <div className={ css.iconWrapper }>
+                    <div className={ cx(css.iconWrapper, uuiMod.selected) }>
                         <IconContainer 
-                            icon={ getIcon(props.size) } 
+                            icon={ props.size === '24' ? BoldTickIcon : TickIcon }
                             cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary }
                             rawProps={ { 'aria-label': props.rowProps.isChildrenSelected 
                                 ? 'Child is selected' 

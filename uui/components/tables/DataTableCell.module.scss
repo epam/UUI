@@ -1,3 +1,16 @@
+@use '../../assets/styles/index' as *;
+
+@mixin data-table-icon-size($size) {
+    :global(.uui-folding-arrow) {
+        &:global(.uui-icon) {
+            svg {
+                height: #{$size}px;
+                width: #{$size}px;
+            }
+        }
+    }
+}
+
 .cell {
     &.wrapper {
         display: flex;
@@ -18,26 +31,70 @@
         }
 
         &.size-42 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+            :global(.uui-checkbox) {
                 margin-top: 12px;
+            }
+
+            :global(.uui-folding-arrow) {
+                margin-top: 9px;
             }
         }
 
         &.size-48 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+            :global(.uui-checkbox) {
                 margin-top: 15px;
+            }
+
+            :global(.uui-folding-arrow) {
+                margin-top: 12px;
             }
         }
 
         &.size-60 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
+            :global(.uui-checkbox) {
                 margin-top: 21px;
+            }
+
+            :global(.uui-folding-arrow) {
+                margin-top: 18px;
             }
         }
     }
 
+    &.size-24 {
+        @include data-table-icon-size(12);
+    }
+
+    &.size-30 {
+        @include data-table-icon-size(18);
+    }
+
+    &.size-36 {
+        @include data-table-icon-size(18);
+    }
+
+    &.size-42 {
+        @include data-table-icon-size(24);
+    }
+
+    &.size-48 {
+        @include data-table-icon-size(24);
+    }
+
+    &.size-60 {
+        @include data-table-icon-size(24);
+    }
+
     &.align-widgets-center :global(.uui-checkbox-container) {
         align-self: center;
+    }
+
+    :global(.uui-dr_addons-checkbox) {
+        padding-right: 12px;
+    }
+
+    :global(.uui-dr_addons-indent) {
+        padding-right: 12px;
     }
 
     &.padding-12 { padding: 0 12px; }

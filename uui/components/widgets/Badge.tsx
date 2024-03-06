@@ -5,15 +5,6 @@ import { CountIndicator } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './Badge.module.scss';
 
-const mapSize = {
-    48: '48',
-    42: '48',
-    36: '36',
-    30: '30',
-    24: '30',
-    18: '18',
-};
-
 const DEFAULT_SIZE = '36';
 const DEFAULT_FILL = 'solid';
 
@@ -92,7 +83,7 @@ export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HT
 
     const styles = [applyBadgeMods(props), props.cx];
 
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons[mapSize[props.size] || DEFAULT_SIZE].foldingArrow;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
     return (
         <Clickable

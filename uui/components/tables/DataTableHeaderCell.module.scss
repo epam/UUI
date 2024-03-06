@@ -1,9 +1,15 @@
 @use  '../../assets/styles/index' as *;
 
-@mixin icon() {
-    flex: 0 0 16px;
-    width: 16px;
-    cursor: pointer;
+@mixin cell-size($size) {
+    &.size-#{$size} {
+        height: #{$size}px;
+
+        @include scalable-icon-size($size);
+
+        ~ :global(.config-icon) {
+            @include scalable-icon-size($size);
+        }
+    }
 }
 
 .cell {
@@ -49,11 +55,11 @@
         }
     }
 
-    &.size-24 { height: 24px; }
-    &.size-30 { height: 30px; }
-    &.size-36 { height: 36px; }
-    &.size-42 { height: 42px; }
-    &.size-48 { height: 48px; }
+    @include cell-size(24);
+    @include cell-size(30);
+    @include cell-size(36);
+    @include cell-size(42);
+    @include cell-size(48);
 
     &.padding-left-24 { padding-left: 24px; }
 

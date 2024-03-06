@@ -1,0 +1,25 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Lenses can be composed to navigate through nested structures. Composing lenses allows you to drill down into deeply nested properties."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To create a new lens for a specific field based on an initial lens, you can use the "
+      },
+      {
+        "text": ".prop()",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method, providing the name of the desired field."
+      }
+    ]
+  }
+]

@@ -70,7 +70,7 @@
         "type": "note-quote",
         "children": [
           {
-            "text": "import '@epam/uui-components/styles.css';\nimport '@epam/uui/styles.css';\n\n// Import your skin styles (if needed):\nimport '@epam/electric/styles.css';\n// or\nimport '@epam/loveship/styles.css';\n// or \nimport '@epam/promo/styles.css';",
+            "text": "import '@epam/uui-components/styles.css';\nimport '@epam/uui/styles.css';\n\n// Import your skin styles (if needed):\nimport '@epam/electric/styles.css';\nimport '@epam/assets/css/theme/theme_electric.css';  // only for electric\n// or\nimport '@epam/loveship/styles.css';\n// or \nimport '@epam/promo/styles.css';",
             "uui-richTextEditor-span-mark": true
           }
         ]

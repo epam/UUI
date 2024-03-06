@@ -4,7 +4,7 @@ import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from
 import { FlexRow, IconContainer } from '../layout';
 import { LinkButton } from '../buttons';
 import { RichTextView, Text } from '../typography';
-import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
+import { ReactComponent as ShapeIcon } from '@epam/assets/icons/file-cloud_upload-fill.svg';
 import { i18n } from '../../i18n';
 import css from './DropSpot.module.scss';
 

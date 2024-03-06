@@ -4,7 +4,7 @@ import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import MockDate from 'mockdate';
 import { systemIcons } from '../../../icons/icons';
 
-const arrowIcon = systemIcons[30].foldingArrow;
+const arrowIcon = systemIcons.foldingArrow;
 
 beforeEach(() => {
     MockDate.set(new Date('2020-12-09T01:02:03+00:00'));

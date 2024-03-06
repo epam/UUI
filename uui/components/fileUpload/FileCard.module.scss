@@ -1,3 +1,5 @@
+@use '../../assets/styles/index' as *;
+
 .root {
     --uui-file_card-border: var(--uui-control-border);
     --uui-file_card-border-error: var(--uui-error-50);
@@ -74,15 +76,12 @@
         align-items: center;
         padding: 0;
         cursor: pointer;
-
-        svg {
-            margin-right: 4px;
-            fill: var(--uui-file_card-icon-error);
-        }
     }
 
     .icons-block {
         min-width: 18px;
         flex-basis: 0;
+
+        @include icon-size(18);
     }
 }

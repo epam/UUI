@@ -5,8 +5,8 @@ import { DataRowAddons } from '../widgets';
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Tooltip } from '../overlays';
-import css from './DataTableCell.module.scss';
 import './variables.scss';
+import css from './DataTableCell.module.scss';
 
 export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     props = { ...props };

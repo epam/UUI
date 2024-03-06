@@ -80,6 +80,8 @@
             line-height: 14px;
             font-size: 12px;
         }
+
+        @include scalable-icon-size(18);
     }
 
     &.size-24 {
@@ -92,6 +94,8 @@
             line-height: 18px;
             font-size: 12px;
         }
+        @include scalable-icon-size(24);
+
     }
 
     &.size-30 {
@@ -104,6 +108,8 @@
             line-height: 18px;
             font-size: 14px;
         }
+
+        @include scalable-icon-size(30);
     }
 
     &.size-36 {
@@ -116,6 +122,8 @@
             line-height: 18px;
             font-size: 14px;
         }
+
+        @include scalable-icon-size(36);
     }
 
     &.size-42 {
@@ -128,6 +136,8 @@
             line-height: 24px;
             font-size: 16px;
         }
+
+        @include scalable-icon-size(42);
     }
 
     &.size-48 {
@@ -140,5 +150,7 @@
             line-height: 24px;
             font-size: 16px;
         }
+
+        @include scalable-icon-size(48);
     }
 }

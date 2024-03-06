@@ -1,7 +1,6 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
 import * as uui from '@epam/uui';
 import { createSkinComponent, devLogger } from '@epam/uui-core';
-import { systemIcons } from '../icons/icons';
 import css from './Button.module.scss';
 
 const defaultSize = '36';
@@ -62,8 +61,6 @@ export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
             });
         }
         return {
-            dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-            clearIcon: systemIcons[props.size || defaultSize].clear,
             fill: mapFill[props.fill] || mapFill.solid as any,
         };
     },

@@ -9,7 +9,7 @@ svgPrefix.toString = () => `${uniqueId()}_`;
 const isModule = process.env.IS_MODULE === 'true';
 const appDirectory = fs.realpathSync(process.cwd());
 
-const resolveRoot = (relativePath) => (isModule ? path.resolve(appDirectory, '..', relativePath) : path.resolve(appDirectory, relativePath));
+const resolveRoot = (relativePath) => isModule ? path.resolve(appDirectory, '..', relativePath) : path.resolve(appDirectory, relativePath);
 
 const svgo = new SVGO({
     plugins: [
@@ -87,21 +87,27 @@ const svgo = new SVGO({
     ],
 });
 
-function getNewFileName(filePath) {
-    filePath = filePath.replace(/\s/g, '');
-    const fullFileName = filePath.split('icon-sources' + path.sep)[1].replace(/[\\,\/,&]/g, '-');
+const [,, iconType] = process.argv;
 
-    // move icon size from the start of the path to the end
-    const [fileName, extension] = fullFileName.split('.');
-    const fileNameParts = fileName.split('-');
-    const temp = fileNameParts[0];
-    fileNameParts.shift();
-    fileNameParts.push(temp);
+let inputFolder = '';
+let outputFolder = '';
 
-    return `${fileNameParts.join('-')}.${extension}`;
+switch (iconType) {
+    case 'icons':
+        inputFolder = 'icons/process_icons';
+        outputFolder = 'epam-assets/icons';
+        break;
 }
-function getNewFilePath(fileName) {
-    return resolveRoot(path.join('epam-assets', 'icons', 'common', fileName));
+
+function getNewFilePath(filePath, fileName) {
+    const relativePath = path.relative(resolveRoot(inputFolder), filePath);
+    const newPath = path.join(outputFolder, relativePath);
+
+    if (!fs.existsSync(resolveRoot(newPath))) {
+        fs.mkdirSync(resolveRoot(newPath), { recursive: true });
+    }
+
+    return resolveRoot(path.join(newPath, fileName));
 }
 
 function iterateFolder(folder) {
@@ -109,7 +115,9 @@ function iterateFolder(folder) {
         if (folder.indexOf('.svg') > 0) {
             const data = fs.readFileSync(folder);
             svgo.optimize(data).then((result) => {
-                fs.writeFileSync(getNewFilePath(getNewFileName(folder)), result.data);
+                const fileName = path.basename(folder);
+                const newFilePath = getNewFilePath(path.dirname(folder), fileName);
+                fs.writeFileSync(newFilePath, result.data);
                 console.log(`file ${folder} has been optimized`);
             });
         }
@@ -121,4 +129,4 @@ function iterateFolder(folder) {
     });
 }
 
-iterateFolder(resolveRoot(path.join('epam-assets', 'icon-sources')));
+iterateFolder(resolveRoot(inputFolder));
