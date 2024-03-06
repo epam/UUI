@@ -54,28 +54,6 @@ export default function TableWithPinnedRows() {
         [],
     );
 
-    // const locationsDS = useLazyDataSource<Location, string, unknown>({
-    //     api: (request, ctx) => {
-    //         const filter = { parentId: ctx?.parentId };
-    //         return svc.api.demo.locations({ ...request, filter });
-    //     },
-    //     getParentId: ({ parentId }) => parentId,
-    //     getChildCount: (l) => l.childCount,
-    //     backgroundReload: true,
-    // }, []);
-
-    // useEffect(() => {
-    //     return () => locationsDS.unsubscribeView(setTableState);
-    // }, [locationsDS]);
-
-    // const view = locationsDS.useView(tableState, setTableState, {
-    //     rowOptions: {
-    //         // To make some row `pinned`, it is required to define `pin` function.
-    //         // Parents and elements of the same level can be pinned.
-    //         pin: (location) => location.value.type !== 'city',
-    //     }, 
-    // });
-
     const { tree, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree<Location, string, unknown>({
         type: 'lazy',
         api: (request, ctx) => {

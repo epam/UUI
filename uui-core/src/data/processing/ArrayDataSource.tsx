@@ -113,7 +113,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { rows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
+        const { rows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
             ...cascadeSelectionService,
@@ -127,13 +127,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             getConfig: () => restProps,
             reload,
             getById,
-            getSelectedRows,
             getSelectedRowsCount,
             clearAllChecked,
-            activate: () => {},
-            deactivate: () => {},
-            loadData: () => {},
-            _forceUpdate: () => {},
         }), [
             rows,
             listProps,
@@ -142,7 +137,6 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             totalCount,
             reload,
             getById,
-            getSelectedRows,
             getSelectedRowsCount,
             clearAllChecked,
         ]);

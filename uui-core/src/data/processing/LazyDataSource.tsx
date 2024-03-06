@@ -104,7 +104,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { rows, listProps, selectAll, getById, getSelectedRows, getSelectedRowsCount, clearAllChecked } = useDataRows({
+        const { rows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
             ...cascadeSelectionService,
@@ -118,13 +118,8 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             getConfig: () => restProps,
             reload,
             getById,
-            getSelectedRows,
             getSelectedRowsCount,
             clearAllChecked,
-            activate: () => {},
-            deactivate: () => {},
-            loadData: () => {},
-            _forceUpdate: () => {},
         }), [
             rows,
             listProps,
@@ -133,7 +128,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             totalCount,
             reload,
             getById,
-            getSelectedRows,
             getSelectedRowsCount,
             clearAllChecked,
         ]);

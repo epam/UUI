@@ -1672,29 +1672,4 @@ describe('LazyListView', () => {
             ]);
         });
     });
-
-    it('should return selected rows in selection order', async () => {
-        const hookResult = renderHook(
-            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
-                getRowOptions: () => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: () => false,
-                cascadeSelection: true,
-            }),
-            {
-                initialProps: {
-                    value: { ...currentValue, checked: [320, 310, 121, 122] } as DataSourceState,
-                    onValueChange: onValueChanged,
-                },
-            },
-        );
-
-        await waitFor(() => {
-            const view = hookResult.result.current;
-
-            const selectedRows = view.getSelectedRows();
-            expect(selectedRows.map(({ id }) => id)).toEqual([
-                320, 310, 121, 122,
-            ]);
-        });
-    });
 });

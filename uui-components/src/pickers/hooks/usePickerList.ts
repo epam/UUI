@@ -81,7 +81,20 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         isSingleSelect,
         getName,
         getSelectedRows,
+        handleDataSourceValueChange,
+        getRowOptions,
     } = picker;
+
+    const onlySelectedView = props.dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
+        rowOptions: getRowOptions(),
+        getSearchFields: props.getSearchFields || ((item: TItem) => [getName(item)]),
+        ...(props.isFoldedByDefault ? { isFoldedByDefault: props.isFoldedByDefault } : {}),
+        ...(props.sortBy ? { sortBy: props.sortBy } : {}),
+        ...(props.cascadeSelection ? { cascadeSelection: props.cascadeSelection } : {}),
+        ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
+        backgroundReload: true,
+        showOnlySelected: true,
+    }, [props.dataSource]);
 
     const getEntityNameForToggler = () => props.entityPluralName || getPluralName();
 
@@ -173,6 +186,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         appendLastSelected,
         getSelectedIdsArray,
         view,
+        onlySelectedView,
         buildRowsList,
         getMaxDefaultItems,
         getModalTogglerCaption,

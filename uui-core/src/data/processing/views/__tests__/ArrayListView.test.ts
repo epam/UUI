@@ -1507,21 +1507,6 @@ describe('ArrayListView', () => {
         expect(currentValue).toEqual({ ...initialValue, folded: { [row.id]: !row.isFolded } });
     });
 
-    it('should return selected rows in selection order', () => {
-        const hookResult = renderHook(
-            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-            { initialProps: { value: initialValue, onValueChange: onValueChangeFn, props: viewProps } },
-        );
-
-        hookResult.rerender({ value: { ...initialValue, checked: [6, 5, 4] }, onValueChange: onValueChangeFn, props: viewProps });
-        const view = hookResult.result.current;
-
-        const selectedRows = view.getSelectedRows();
-        expect(selectedRows.map(({ id }) => id)).toEqual([
-            6, 5, 4,
-        ]);
-    });
-
     it('Correctly computes path and isLastChild', async () => {
         currentValue.folded = { 120: true };
         currentValue.visibleCount = 10;
