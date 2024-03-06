@@ -200,9 +200,11 @@ describe('AsyncListView', () => {
                 expect(view.getListProps().isReloading).toBeFalsy();
             });
 
-            const view = hookResult.result.current;
+            let view = hookResult.result.current;
 
             hookResult.rerender({ value: { ...initialValue, focusedIndex: 1 }, onValueChange: onValueChangeFn, props: viewProps });
+
+            view = hookResult.result.current;
 
             const rows = view.getVisibleRows();
             const focusedRows = rows.filter((row) => row.isFocused);
