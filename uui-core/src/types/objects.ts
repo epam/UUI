@@ -43,7 +43,7 @@ export type AnalyticsEvent = {
 export interface IBaseMap<TKey, TValue> {
     constructor: Function;
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
-    get(key: TKey): TValue;
+    get(key: TKey): TValue | undefined;
     set(key: TKey, value?: TValue): IBaseMap<TKey, TValue>;
     has(key: TKey): boolean;
 }

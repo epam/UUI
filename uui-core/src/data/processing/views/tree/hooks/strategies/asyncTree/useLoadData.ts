@@ -42,7 +42,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
 
-    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, []);
+    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, [itemsStatusMap]);
     const watchedApi = useMemo(
         () => itemsStatusCollector.watch(api),
         [itemsStatusCollector, api],
