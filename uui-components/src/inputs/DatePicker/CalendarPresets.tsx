@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue } from '@epam/uui-core';
+import {
+    IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue,
+} from '@epam/uui-core';
 
 export const uuiPresets = {
     container: 'uui-presets-container',

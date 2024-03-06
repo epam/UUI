@@ -2,19 +2,23 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import {
-    arrayToMatrix, cx, DayProps, IEditable, RangeDatePickerInputType, RangeDatePickerPresets,
+    arrayToMatrix, cx, IControlled, RangeDatePickerPresets,
 } from '@epam/uui-core';
 import {
-    DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, uuiDaySelection, RangePickerBodyValue, Day, valueFormat,
+    uuiDaySelection, Day, DayProps,
 } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { DatePickerBody } from './DatePickerBody';
 import { CalendarPresets } from './CalendarPresets';
 import css from './RangeDatePickerBody.module.scss';
 import {
-    defaultRangeValue, getWithFrom, getWithTo,
+    defaultRangeValue, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
-import { RangeDatePickerValue } from './types';
+import {
+    CommonDatePickerBodyProps,
+    DatePickerBodyValue,
+    RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue,
+} from './types';
 
 dayjs.extend(isoWeek);
 
@@ -103,10 +107,9 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     },
 };
 
-export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, IEditable<RangePickerBodyValue<T>> {
+export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, IControlled<RangeDatePickerBodyValue<T>> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
-    renderHeader?: (props: IEditable<RangePickerBodyValue<string>>) => React.ReactNode; // Do we need this?
 }
 
 export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue>): JSX.Element {
@@ -126,7 +129,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         return defaultRangeValue;
     };
 
-    const onBodyValueChange = (v: PickerBodyValue<string>, part: 'from' | 'to') => {
+    const onBodyValueChange = (v: DatePickerBodyValue<string>, part: 'from' | 'to') => {
         // selectedDate can be null, other params should always have values
         const newRange = v.selectedDate ? getRange(v.selectedDate) : selectedDate;
         const fromChanged = selectedDate?.from !== newRange.from;
@@ -158,13 +161,13 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         );
     };
 
-    const from: PickerBodyValue<string> = {
+    const from: DatePickerBodyValue<string> = {
         ...props.value,
         view: activeMonth === 'from' ? props.value.view : 'DAY_SELECTION',
         selectedDate: null,
     };
 
-    const to: PickerBodyValue<string> = {
+    const to: DatePickerBodyValue<string> = {
         view: activeMonth === 'to' ? props.value.view : 'DAY_SELECTION',
         month: props.value.month.add(1, 'month'),
         selectedDate: null,

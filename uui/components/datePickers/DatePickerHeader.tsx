@@ -3,11 +3,12 @@ import { Icon, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
 import dayjs, { Dayjs } from 'dayjs';
-import { ViewType } from '@epam/uui-components';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { Button } from '../buttons';
 import localeData from 'dayjs/plugin/localeData';
+import { ViewType } from './types';
+import { getPrevMonthFromCurrent, getPrevYearFromCurrent, getPrevListYearFromCurrent, getNextMonthFromCurrent, getNextYearFromCurrent, getNextListYearFromCurrent } from './helpers';
 
 dayjs.extend(localeData);
 
@@ -38,30 +39,6 @@ export interface DatePickerHeaderProps extends IHasCX {
      */
     navIconRight?: Icon;
 }
-
-const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.subtract(1, 'month');
-};
-
-export const getNextMonthFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.add(1, 'month');
-};
-
-const getPrevYearFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.subtract(1, 'year');
-};
-
-export const getNextYearFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.add(1, 'year');
-};
-
-const getPrevListYearFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.subtract(16, 'year');
-};
-
-export const getNextListYearFromCurrent = (currentDate: Dayjs) => {
-    return currentDate.add(16, 'year');
-};
 
 export function DatePickerHeader({
     navIconLeft, navIconRight, value: { month, view }, onValueChange,

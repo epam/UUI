@@ -1,21 +1,17 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { RangePickerBodyValue, uuiDaySelection } from '@epam/uui-components';
+import { uuiDaySelection } from '@epam/uui-components';
 import {
     RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets,
 } from '../RangeDatePickerBody';
 import {
     act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, within,
 } from '@epam/uui-test-utils';
-import { RangeDatePickerValue } from '../types';
+import { RangeDatePickerValue, RangeDatePickerBodyValue } from '../types';
 
-type RangePickerSetupProps = {
-    selectedDate: RangePickerBodyValue<RangeDatePickerValue>['selectedDate'];
-    inFocus: RangePickerBodyValue<RangeDatePickerValue>['inFocus'];
-    presets?: RangeDatePickerBodyProps<RangeDatePickerValue>['presets'];
-    filter?: RangeDatePickerBodyProps<RangeDatePickerValue>['filter'];
-    isHoliday?: RangeDatePickerBodyProps<RangeDatePickerValue>['isHoliday'];
-};
+type RangePickerSetupProps =
+    Pick<RangeDatePickerBodyValue<RangeDatePickerValue>, 'selectedDate' | 'inFocus'> &
+    Pick<RangeDatePickerBodyProps<RangeDatePickerValue>, 'presets' | 'filter' | 'isHoliday'>;
 
 function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
     // @ts-ignore
@@ -63,7 +59,7 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
 
 describe('RangeDatePickerBody', () => {
     it('should be rendered correctly', async () => {
-        const value: RangePickerBodyValue<RangeDatePickerValue> = {
+        const value: RangeDatePickerBodyValue<RangeDatePickerValue> = {
             view: 'DAY_SELECTION',
             selectedDate: {
                 from: null,

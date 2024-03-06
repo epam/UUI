@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Dropdown, PickerBodyValue, ViewType, defaultFormat, supportedDateFormats, toCustomDateFormat, toValueDateFormat,
-} from '@epam/uui-components';
+import { Dropdown } from '@epam/uui-components';
 import {
     DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod, withMods,
 } from '@epam/uui-core';
@@ -13,8 +11,12 @@ import { DatePickerBody } from './DatePickerBody';
 import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import { DatePickerProps } from './types';
-import { getNewMonth } from './helpers';
+import {
+    DatePickerProps, DatePickerBodyValue, ViewType,
+} from './types';
+import {
+    defaultFormat, getNewMonth, supportedDateFormats, toCustomDateFormat, toValueDateFormat,
+} from './helpers';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -25,7 +27,7 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
-export const isValidDate = (input: string, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
+const isValidDate = (input: string, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
     if (!input) {
         return false;
     }
@@ -34,7 +36,7 @@ export const isValidDate = (input: string, format: string, filter?:(day: dayjs.D
     return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
 };
 
-export interface DatePickerState {
+interface DatePickerState {
     isOpen: boolean;
     month: Dayjs;
     view: ViewType;
@@ -85,7 +87,6 @@ export function DatePickerComponent(props: DatePickerProps) {
                 ...prev,
                 isOpen: open,
             }));
-            props.onBlur?.();
         }
     };
 
@@ -98,7 +99,7 @@ export function DatePickerComponent(props: DatePickerProps) {
         }
     };
 
-    const onBodyValueChange = (newValue: PickerBodyValue<string>) => {
+    const onBodyValueChange = (newValue: DatePickerBodyValue<string>) => {
         if (newValue.selectedDate && value !== newValue.selectedDate) {
             handleValueChange(newValue.selectedDate);
             toggleIsOpen(false);
