@@ -99,7 +99,6 @@ export class FetchingHelper {
             const { ids: originalIds, ...originalNodeInfo } = tree.getItems(parentId);
             const currentIds = byParentId.has(parentId) ? byParentId.get(parentId) : originalIds;
 
-            // TODO: think how to rewrite to avoid using byParentId and nodeInfoById
             if (ids !== currentIds
                     || nodeInfo.count !== originalNodeInfo.count
                     || nodeInfo.totalCount !== originalNodeInfo.totalCount
@@ -195,7 +194,6 @@ export class FetchingHelper {
         let prevMissingIds = new Set<TId>();
         let loadedItems: TItem[] = [];
 
-        // TODO: add looping throunh the root level of tree to find elements, which parent is absent.
         while (true) {
             const missingIds = new Set<TId>();
             if (itemsToLoad && itemsToLoad.length > 0) {
