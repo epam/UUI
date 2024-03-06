@@ -90,40 +90,21 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
     }, [tree.visible]);
 
-    return useMemo(
-        () => ({
-            tree: showOnlySelected ? tree.selectedOnly : tree.visible,
-            selectionTree: tree.full,
-            totalCount,
-            rowOptions,
-            getRowOptions,
-            getChildCount,
-            getParentId,
-            getId,
-            dataSourceState,
-            setDataSourceState,
-            isFoldedByDefault,
-            reload,
-            cascadeSelection,
-            showOnlySelected,
-            selectAll: props.selectAll,
-        }),
-        [
-            tree,
-            totalCount,
-            reload,
-            showOnlySelected,
-            dataSourceState,
-            setDataSourceState,
-            rowOptions,
-            getRowOptions,
-            dataSourceState,
-            getChildCount,
-            getParentId,
-            getId,
-            isFoldedByDefault,
-            cascadeSelection,
-            props.selectAll,
-        ],
-    );
+    return {
+        tree: showOnlySelected ? tree.selectedOnly : tree.visible,
+        selectionTree: tree.full,
+        totalCount,
+        rowOptions,
+        getRowOptions,
+        getChildCount,
+        getParentId,
+        getId,
+        dataSourceState,
+        setDataSourceState,
+        isFoldedByDefault,
+        reload,
+        cascadeSelection,
+        showOnlySelected,
+        selectAll: props.selectAll,
+    };
 }
