@@ -25,7 +25,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Additionally, lenses can be composed to navigate through nested structures. Composing lenses allows you to drill down into deeply nested properties. To create a new lens for a specific field based on an initial lens, you can use the "
+        "text": "Additionally, lenses can be composed to navigate through nested structures. Composing lenses allows you to drill down into deeply nested properties. To create a new lens for a specific field, you can use the "
       },
       {
         "text": ".prop()",
