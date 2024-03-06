@@ -17,7 +17,7 @@ const THEME_TOKENS_DIR = './epam-assets/theme/tokens';
 
 export const tokensFile = PATH.FIGMA_VARS_COLLECTION_OUT_TOKENS;
 export const coreThemeMixinsConfig: Record<TFigmaThemeName, { themeFile: string, mixinsFile: string }> = {
-    [TFigmaThemeName.EPAM]: {
+    [TFigmaThemeName.ELECTRIC]: {
         themeFile: `${THEME_DIR}/theme_electric.scss`,
         mixinsFile: `${THEME_TOKENS_DIR}/_theme_electric.scss`,
     },
