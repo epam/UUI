@@ -278,6 +278,37 @@ describe('LazyListView', () => {
         expect(listProps.rowsCount).toEqual(6);
     });
 
+    it('should clear cache', async () => {
+        const hookResult = renderHook(
+            ({ value }) => treeDataSource.useView(value, onValueChanged, { isFoldedByDefault: () => false, backgroundReload: false }),
+            { initialProps: { value: currentValue } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 110 }, { id: 120 },
+            ]);
+        });
+
+        treeDataSource.clearCache();
+
+        hookResult.rerender({ value: currentValue });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { isLoading: true }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 110 }, { id: 120 },
+            ]);
+        });
+    });
+
     it('load children lazily', async () => {
         const hookResult = renderHook(
             ({ value }) => treeDataSource.useView(value, onValueChanged, { isFoldedByDefault: () => false }),

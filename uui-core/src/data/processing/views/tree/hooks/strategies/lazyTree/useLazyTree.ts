@@ -141,7 +141,12 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [shouldFetch, shouldLoad, shouldRefetch, treeWithData, setTreeWithData]);
+    }, [
+        showOnlySelected,
+        shouldFetch,
+        shouldLoad,
+        shouldRefetch,
+    ]);
 
     const treeWithSelectedOnly = useSelectedOnlyTree({
         tree: treeWithData,

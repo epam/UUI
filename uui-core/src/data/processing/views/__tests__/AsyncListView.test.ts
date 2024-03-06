@@ -50,6 +50,7 @@ const countries: Country[] = [
 const totalRowsCount = 12;
 
 let dataSource: AsyncDataSource<TItem, number, any>;
+let treeDataSource: AsyncDataSource<TestItem, number, any>;
 
 let onValueChangeFn: (newValue: DataSourceState<any, number> | ((value: DataSourceState<any, number>) => DataSourceState<any, number>)) => any;
 const initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
@@ -93,12 +94,6 @@ describe('AsyncListView', () => {
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
-    const treeDataSource = new AsyncDataSource({
-        api: treeTestApi,
-        getId: (i) => i.id,
-        getParentId: (i) => i.parentId,
-    });
-
     beforeEach(() => {
         jest.clearAllMocks();
 
@@ -117,6 +112,12 @@ describe('AsyncListView', () => {
             getParentId: (i) => i.parentId,
         });
 
+        treeDataSource = new AsyncDataSource({
+            api: treeTestApi,
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+        });
+
         viewProps = {
             getId: (i) => i.id,
             api: testApi,
@@ -128,6 +129,37 @@ describe('AsyncListView', () => {
                 isSelectable: true,
             }),
         };
+    });
+
+    it('should reload datasource', async () => {
+        currentValue = { ...initialValue, visibleCount: 3 };
+        const hookResult = renderHook(
+            ({ value }) => treeDataSource.useView(value, onValueChangeFn, {}),
+            { initialProps: { value: currentValue } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 200 }, { id: 300 },
+            ]);
+        });
+
+        treeDataSource.reload();
+
+        hookResult.rerender({ value: currentValue });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { isLoading: true }, { isLoading: true }, { isLoading: true },
+            ]);
+        });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { id: 200 }, { id: 300 },
+            ]);
+        });
     });
 
     describe('setValue logic', () => {
@@ -1030,6 +1062,7 @@ describe('AsyncListView', () => {
 
         beforeEach(() => {
             updatedValue = { ...initialValue };
+            currentValue = initialValue;
         });
 
         function expectRows(
@@ -1749,6 +1782,7 @@ describe('AsyncListView', () => {
     });
 
     it('should fold/unfold item', async () => {
+        currentValue.visibleCount = 10;
         const hookResult = renderHook(
             ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
             { initialProps: { value: initialValue, onValueChange: onValueChangeFn, props: viewProps } },
