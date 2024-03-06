@@ -5,8 +5,12 @@ type Props<TItem, TId, TFilter> = Omit<LazyDataSourceProps<TItem, TId, TFilter>,
     api?: LazyDataSourceProps<TItem, TId, TFilter>['api'];
 };
 
-export function getLazyDataSourceMock<TItem extends { id: string }, TId, TFilter>(data: TItem[], props: Props<TItem, TId, TFilter>, delayTime?: number) {
-    const api: LazyDataSourceApi<TItem, TId, TFilter> = props.api === undefined
+export const getApiMock = <TItem extends { id: string }, TId, TFilter>(
+    data: TItem[],
+    api?: LazyDataSourceApi<TItem, TId, TFilter> | undefined,
+    delayTime: number = undefined,
+) => {
+    const currentApi: LazyDataSourceApi<TItem, TId, TFilter> = api === undefined
         ? (request, ctx) => {
             let query;
             if (ctx?.parent) {
@@ -20,16 +24,21 @@ export function getLazyDataSourceMock<TItem extends { id: string }, TId, TFilter
             }
             return Promise.resolve(runDataQuery(data, query));
         }
-        : props.api;
+        : api;
 
     const apiMock = jest.fn().mockImplementation(
         delayTime === undefined
-            ? api
+            ? currentApi
             : async (request, ctx) => {
                 await delay(delayTime);
-                return await api(request, ctx);
+                return await currentApi(request, ctx);
             },
     );
 
+    return apiMock;
+};
+
+export function getLazyDataSourceMock<TItem extends { id: string }, TId, TFilter>(data: TItem[], props: Props<TItem, TId, TFilter>, delayTime?: number) {
+    const apiMock = getApiMock(data, props.api, delayTime);
     return { dataSource: new LazyDataSource({ ...props, api: apiMock }), apiMock };
 }

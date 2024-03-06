@@ -1,5 +1,5 @@
-import { renderHook, waitFor } from '@epam/uui-test-utils';
-import { useAsyncTree } from '../useAsyncTree';
+import { getApiMock, renderHook, waitFor } from '@epam/uui-test-utils';
+import { useLazyTree } from '../useLazyTree';
 import { DataQueryFilter, DataSourceState } from '../../../../../../../../types';
 import { LocationItem } from '../../../../../../__tests__/mocks';
 import { demoData } from '@epam/uui-docs';
@@ -7,7 +7,7 @@ import { FAILED_RECORD, NOT_FOUND_RECORD, TreeStructure, newMap } from '../../..
 import { ItemsStorage } from '../../../../ItemsStorage';
 import { RecordStatus } from '../../../../types';
 
-describe('useAsyncTree', () => {
+describe('useLazyTree', () => {
     let dataSourceState: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const setDataSourceState = (newDsState: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
         if (typeof newDsState === 'function') {
@@ -17,7 +17,7 @@ describe('useAsyncTree', () => {
         dataSourceState = newDsState;
     };
 
-    const api = jest.fn().mockImplementation(() => Promise.resolve(demoData.locations));
+    const api = getApiMock(demoData.locations);
     const getId = ({ id }: LocationItem) => id;
     const getParentId = ({ parentId }: LocationItem) => parentId;
 
@@ -28,11 +28,10 @@ describe('useAsyncTree', () => {
 
     it('should path through minimal props', async () => {
         const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
+            (props) => useLazyTree({
+                type: 'lazy',
                 api,
                 getId,
-                mode: 'client',
                 dataSourceState,
                 setDataSourceState,
                 ...props,
@@ -56,7 +55,7 @@ describe('useAsyncTree', () => {
         expect(tree).toEqual(expect.objectContaining({
             dataSourceState,
             setDataSourceState,
-            totalCount: 42,
+            totalCount: 0,
             getId,
             getParentId: undefined,
             rowOptions: undefined,
@@ -74,7 +73,8 @@ describe('useAsyncTree', () => {
         expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
         expect(typeof tree.getItemStatus).toBe('function');
         expect(typeof tree.reload).toBe('function');
-        expect(typeof tree.getChildCount).toBe('function');
+        expect(typeof tree.loadMissingRecordsOnCheck).toBe('function');
+        expect(tree.getChildCount).toBeUndefined();
     });
 
     it('should path through maximum props', async () => {
@@ -82,12 +82,13 @@ describe('useAsyncTree', () => {
         const getRowOptions = () => ({ isReadonly: true });
         const cascadeSelection = 'explicit';
         const isFoldedByDefault = () => true;
+        const getChildCount = ({ childCount }) => childCount;
         const selectAll = true;
         const showOnlySelected = true;
 
         const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
+            (props) => useLazyTree({
+                type: 'lazy',
                 api,
                 getId,
                 getParentId,
@@ -96,8 +97,8 @@ describe('useAsyncTree', () => {
                 cascadeSelection,
                 isFoldedByDefault,
                 showOnlySelected,
+                getChildCount,
                 selectAll,
-                mode: 'client',
                 dataSourceState,
                 setDataSourceState,
                 ...props,
@@ -119,6 +120,7 @@ describe('useAsyncTree', () => {
             cascadeSelection,
             showOnlySelected,
             selectAll,
+            getChildCount,
 
             isFetching: false,
             isLoading: false,
@@ -128,16 +130,15 @@ describe('useAsyncTree', () => {
         expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
         expect(typeof tree.getItemStatus).toBe('function');
         expect(typeof tree.reload).toBe('function');
-        expect(typeof tree.getChildCount).toBe('function');
+        expect(typeof tree.loadMissingRecordsOnCheck).toBe('function');
     });
 
     it('should defined itemsMap/setItems inside hook if not passed to props', async () => {
         const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
+            (props) => useLazyTree({
+                type: 'lazy',
                 api,
                 getId,
-                mode: 'client',
                 dataSourceState,
                 setDataSourceState,
                 ...props,
@@ -153,11 +154,11 @@ describe('useAsyncTree', () => {
 
         const tree = hookResult.result.current;
 
-        const itemFromVisibleTree = tree.tree.getById('BJ');
-        expect(itemFromVisibleTree).toEqual(expect.objectContaining({ id: 'BJ', parentId: 'c-AF' }));
+        const itemFromVisibleTree = tree.tree.getById('c-AF');
+        expect(itemFromVisibleTree).toEqual(expect.objectContaining({ id: 'c-AF', parentId: null }));
 
-        const itemFromSelectionTree = tree.selectionTree.getById('BJ');
-        expect(itemFromSelectionTree).toEqual(expect.objectContaining({ id: 'BJ', parentId: 'c-AF' }));
+        const itemFromSelectionTree = tree.selectionTree.getById('c-AF');
+        expect(itemFromSelectionTree).toEqual(expect.objectContaining({ id: 'c-AF', parentId: null }));
 
         const unknownItemFromVisibleTree = tree.tree.getById('GW');
         expect(unknownItemFromVisibleTree).toBe(NOT_FOUND_RECORD);
@@ -182,11 +183,10 @@ describe('useAsyncTree', () => {
         });
 
         const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
+            (props) => useLazyTree({
+                type: 'lazy',
                 api,
                 getId,
-                mode: 'client',
                 dataSourceState,
                 setDataSourceState,
                 itemsMap: itemsStorage.getItemsMap(),
@@ -213,11 +213,10 @@ describe('useAsyncTree', () => {
     it('should use inner itemsStatusMap if not passed to props', async () => {
         dataSourceState.checked = ['GW'];
         const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
+            (props) => useLazyTree({
+                type: 'lazy',
                 api,
                 getId,
-                mode: 'client',
                 dataSourceState,
                 setDataSourceState,
                 ...props,
@@ -247,11 +246,10 @@ describe('useAsyncTree', () => {
         itemsStatusMap.set('GW', FAILED_RECORD);
 
         const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
+            (props) => useLazyTree({
+                type: 'lazy',
                 api,
                 getId,
-                mode: 'client',
                 dataSourceState,
                 setDataSourceState,
                 itemsStatusMap,
