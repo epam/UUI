@@ -2,10 +2,8 @@ import * as React from 'react';
 import { IconBase } from '../../types';
 import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
-import { Button, DataPickerRow, FlexRow, IconButton, PickerInput, Text, Tooltip } from '@epam/uui';
-import { SizeInfo } from './SizeInfo';
+import { Button, DataPickerRow, FlexRow, PickerInput, Text } from '@epam/uui';
 import css from './IconPicker.module.scss';
-import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import { useEffect, useState } from 'react';
 
 interface IconPickerInnerProps extends IEditable<IHasIcon> {
@@ -44,24 +42,6 @@ export function IconPickerWithInfo(props: IconPickerInnerProps) {
                     </Text>
                 </div>
             </FlexRow>
-        );
-    };
-
-    const renderTooltip = () => {
-        return (
-            <div className={ css.contentTooltip }>
-                <SizeInfo size={ (props as any).size || '36' } caption={ (props as any).caption || '' } showHorizontalHighlight={ true } />
-            </div>
-        );
-    };
-
-    const renderInfo = () => {
-        return (
-            <div className={ css.infoContainer }>
-                <Tooltip maxWidth={ 600 } placement="top" content={ renderTooltip() }>
-                    <IconButton icon={ InfoIcon } color="neutral" />
-                </Tooltip>
-            </div>
         );
     };
 
@@ -105,7 +85,6 @@ export function IconPickerWithInfo(props: IconPickerInnerProps) {
                     ) }
                     renderRow={ (props) => <DataPickerRow { ...props } key={ props.id } size="48" renderItem={ renderItem } /> }
                 />
-                {props.enableInfo && renderInfo()}
             </div>
         </div>
     );
