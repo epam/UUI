@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import {
-    arrayToMatrix, cx, IControlled, RangeDatePickerPresets,
+    cx, IControlled, RangeDatePickerPresets,
 } from '@epam/uui-core';
 import {
     uuiDaySelection, Day, DayProps,
@@ -21,15 +21,6 @@ import {
 } from './types';
 
 dayjs.extend(isoWeek);
-
-export function weekCount(displayedDate: Dayjs) {
-    let days: Dayjs[] = [];
-    const dayOfLastWeekInPrevMonth = displayedDate.subtract(1, 'month').endOf('month').day();
-    days = days.concat(new Array(dayOfLastWeekInPrevMonth).fill(undefined));
-    // get days of current month
-    days = days.concat(new Array(displayedDate.endOf('month').date()).fill(undefined));
-    return arrayToMatrix(days, 7).length;
-}
 
 export const uuiRangeDatePickerBody = {
     inRange: 'uui-range-datepicker-in-range',
