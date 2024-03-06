@@ -18,7 +18,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const {
         filter, backgroundReload, showOnlySelected,
         isFoldedByDefault, getId, getParentId, setDataSourceState,
-        cascadeSelection, getRowOptions, rowOptions,
+        cascadeSelection, getRowOptions, rowOptions, selectAll,
         getChildCount, itemsStatusMap, complexIds, patchItems, isDeletedProp, getPosition,
     } = props;
 
@@ -45,7 +45,12 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const [isLoading, setIsLoading] = useState(false);
     const [isForceReload, setIsForceReload] = useState(false);
 
-    const { isFolded } = useFoldingService({ dataSourceState, isFoldedByDefault, getId, setDataSourceState });
+    const { isFolded } = useFoldingService({
+        getId,
+        isFoldedByDefault,
+        dataSourceState,
+        setDataSourceState,
+    });
 
     useEffect(() => {
         setTreeWithData(blankTree);
@@ -180,6 +185,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         loadMissingRecordsOnCheck,
         showOnlySelected,
-        selectAll: props.selectAll,
+        selectAll,
     };
 }
