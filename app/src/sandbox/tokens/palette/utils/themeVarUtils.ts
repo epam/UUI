@@ -4,7 +4,7 @@ import { TFigmaThemeName, TVarType } from '../types/sharedTypes';
 import { normalizeColor } from './colorUtils';
 
 const THEME_MAP: Record<TTheme, TFigmaThemeName | undefined> = {
-    [TTheme.electric]: TFigmaThemeName.EPAM,
+    [TTheme.electric]: TFigmaThemeName.ELECTRIC,
     [TTheme.promo]: TFigmaThemeName.PROMO,
     [TTheme.loveship]: TFigmaThemeName.LOVESHIP_LIGHT,
     [TTheme.loveship_dark]: TFigmaThemeName.LOVESHIP_DARK,
