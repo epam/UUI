@@ -123,11 +123,8 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     });
 
     const getChildCount = useCallback((item: TItem): number | undefined => {
-        if (props.getChildCount) {
-            return props.getChildCount(item) ?? tree.visible.getChildren(getId(item)).length;
-        }
         return tree.visible.getChildren(getId(item)).length;
-    }, [tree.visible, getId, props.getChildCount]);
+    }, [tree.visible, getId]);
 
     const totalCount = useMemo(() => {
         const { totalCount: rootTotalCount } = tree.visible.getItems(undefined);

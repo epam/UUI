@@ -1,13 +1,14 @@
 import { ITree } from '../newTree/exposed';
 import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords, TreeActions, TreeLoadingState } from './strategies/types';
-import { PatchItemsOptions } from '../../../../../types';
+import { GetChildCount } from '../../../../../types';
 
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
-    Omit<CommonDataSourceConfig<TItem, TId, TFilter>, keyof PatchItemsOptions<TItem, TId>>,
+    CommonDataSourceConfig<TItem, TId, TFilter>,
     TreeLoadingState,
     TreeActions,
     LoadMissingRecords<TItem, TId>,
-    GetItemStatus<TId> {
+    GetItemStatus<TId>,
+    GetChildCount<TItem> {
 
     tree: ITree<TItem, TId>;
     selectionTree: ITree<TItem, TId>;

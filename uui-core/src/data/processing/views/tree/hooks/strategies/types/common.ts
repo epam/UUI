@@ -1,6 +1,6 @@
-import { CascadeSelection, DataRowOptions, DataSourceState, PatchItemsOptions } from '../../../../../../../types';
+import { CascadeSelection, DataRowOptions, DataSourceState } from '../../../../../../../types';
 
-export interface CommonDataSourceConfig<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId> {
+export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
     dataSourceState: DataSourceState<TFilter, TId>;
     setDataSourceState: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
 
@@ -12,7 +12,6 @@ export interface CommonDataSourceConfig<TItem, TId, TFilter = any> extends Patch
     getRowOptions?(item: TItem, index?: number): DataRowOptions<TItem, TId>;
 
     isFoldedByDefault?(item: TItem, dataSourceState: Pick<DataSourceState<TFilter, TId>, 'foldAll'>): boolean;
-    getChildCount?(item: TItem): number;
 
     cascadeSelection?: CascadeSelection;
     selectAll?: boolean;
