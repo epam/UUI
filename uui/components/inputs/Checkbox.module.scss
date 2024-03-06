@@ -8,6 +8,7 @@
 
         :global(.uui-icon) {
             svg {
+                height: $size;
                 width: $size;
             }
         }

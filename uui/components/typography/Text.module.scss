@@ -34,12 +34,12 @@
 
         @include text-color('primary');
         @include text-color('secondary');
+        @include text-color('tertiary');
         @include text-color('disabled');
         @include text-color('info');
         @include text-color('warning');
         @include text-color('critical');
         @include text-color('success');
-        @include text-color('tertiary');
 
         @include font-weight(200);
         @include font-weight(300);

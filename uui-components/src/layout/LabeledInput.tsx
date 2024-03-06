@@ -1,10 +1,10 @@
 import * as React from 'react';
-import css from './LabeledInput.module.scss';
 import { Icon, uuiElement, labelMod, LabeledInputCoreProps, cx } from '@epam/uui-core';
 import { TooltipProps } from '../overlays/Tooltip';
 import { FlexRow, FlexSpacer } from './flexItems';
-import { Svg } from '../widgets/Svg';
+import { IconContainer } from './IconContainer';
 import { i18n } from '../i18n';
+import css from './LabeledInput.module.scss';
 
 export interface LabeledInputProps extends LabeledInputCoreProps {
     /** Overrides the default Tooltip component to use for info tooltip */
@@ -77,7 +77,7 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                                 {this.props.isRequired && <span className={ uuiLabeledInput.asterisk }>*</span>}
                                 {this.props.info && Tooltip && (
                                     <Tooltip content={ this.props.info }>
-                                        <Svg svg={ this.props.infoIcon } cx={ uuiLabeledInput.infoIcon } />
+                                        <IconContainer icon={ this.props.infoIcon } cx={ uuiLabeledInput.infoIcon } />
                                     </Tooltip>
                                 )}
                                 {isCanBeOptional && (

@@ -8,9 +8,7 @@
     --uui-font: 'Source Sans Pro', sans-serif;
     --uui-font-mono: 'Roboto Mono', monospace;
 
-    /* core variables start */
-
-    /* brand colors */
+    /* contrast colors */
     --uui-primary-contrast: var(--white);
 
     --uui-accent-contrast: var(--white);
@@ -18,8 +16,6 @@
     --uui-secondary-contrast: var(--white);
 
     --uui-critical-contrast: var(--white);
-
-    /* semantic colors */
 
     --uui-info-contrast: var(--white);
 
@@ -29,16 +25,7 @@
 
     --uui-error-contrast: var(--white);
 
-    /* Surfaces Figma - https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/Loveship-aka-UUI3-(Components)?type=design&node-id=20044%3A300925&mode=design&t=R433dqGrpXDGoFli-1 */
-
-    /* not accepted part */
-
-    /* control specific */
-    --uui-link-visited-hover: #A884F0;
-
-    --uui-control-border-focus: var(--uui-primary-60);
-    --uui-control-border-disabled: var(--uui-neutral-40);
-
+    /* shadows */
     --uui-shadow-level-1: 0 0 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
     --uui-shadow-level-2: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 22px 3px rgba(0, 0, 0, 0.26);
     --uui-shadow-level-3: 0 1px 2px rgba(0, 0, 0, 0.2), 0 3px 25px 3px rgba(0, 0, 0, 0.56);

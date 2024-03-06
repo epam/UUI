@@ -1,20 +1,18 @@
 import React, { useCallback } from 'react';
-import css from './PresetActionsDropdown.module.scss';
-import {
-    IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState,
-} from '@epam/uui-core';
+import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState } from '@epam/uui-core';
 import { Dropdown, DropdownMenuButton, SuccessNotification } from '../../overlays';
 import { IconButton } from '../../buttons';
 import { Text } from '../../typography';
-import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { FlexRow, Panel } from '../../layout';
-import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/common/navigation-refresh-18.svg';
-import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/common/save-outline-18.svg';
-import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
-import { ReactComponent as CopyIcon } from '@epam/assets/icons/common/action-copy_content-18.svg';
-import { ReactComponent as RenameIcon } from '@epam/assets/icons/common/content-edit-18.svg';
-import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/common/content-link-18.svg';
-import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
+import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
+import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/action-save-outline.svg';
+import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
+import { ReactComponent as CopyIcon } from '@epam/assets/icons/action-copy_content-outline.svg';
+import { ReactComponent as RenameIcon } from '@epam/assets/icons/content-edit-fill.svg';
+import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/content-link-outline.svg';
+import { ReactComponent as DeleteIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
+import css from './PresetActionsDropdown.module.scss';
 
 interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
@@ -127,7 +125,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                 cx={ dropdownProps.isOpen && css.targetOpen }
                 color={ props.preset.id === props.activePresetId ? 'info' : 'neutral' }
                 { ...dropdownProps }
-                icon={ menuIcon }
+                icon={ MenuIcon }
             />
         );
     }, []);

@@ -1,6 +1,6 @@
 import { withMods, IHasIcon, IDropdownToggler } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
-import { ReactComponent as SvgTriangle } from '../../../../icons/triangle.svg';
+import { ReactComponent as SvgTriangle } from '@epam/assets/icons/navigation-arrow_down-outline.svg';
 import css from './BurgerButton.module.scss';
 
 interface BurgerButtonMods extends IHasIcon, IDropdownToggler {

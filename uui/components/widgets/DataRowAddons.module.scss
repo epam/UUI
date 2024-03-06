@@ -1,5 +1,5 @@
-.checkbox {
-    padding-right: 12px;
+:global(.uui-dr_addons-checkbox) {
+    padding-right: 6px;
 }
 
 .drag-handle {
@@ -16,13 +16,12 @@
     }
 }
 
-.indent {
+:global(.uui-dr_addons-indent) {
     display: flex;
     justify-content: flex-start;
     flex-grow: 0;
     flex-shrink: 0;
-    width: 12px;
-    padding-right: 12px;
+    padding-right: 6px;
     box-sizing: content-box; // to fix reset css like *, *::before, *::after { box-sizing: border-box; }
 }
 
@@ -31,24 +30,6 @@
 
     &:global(.uui-icon) {
         position: relative;
-    }
-}
-
-.folding-arrow-12 {
-    &:global(.uui-icon) {
-        left: -2px;
-        flex: 0 0 12px;
-        width: 12px;
-        height: 12px;
-    }
-}
-
-.folding-arrow-18 {
-    &:global(.uui-icon) {
-        left: -4px;
-        flex: 0 0 18px;
-        width: 18px;
-        height: 18px;
     }
 }
 

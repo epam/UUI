@@ -1,25 +1,31 @@
-import { useState } from 'react';
-import { Lens } from '@epam/uui-core';
+/* eslint-disable  @typescript-eslint/no-unused-vars */
+import { useForm } from '@epam/uui';
 
 interface User {
-    firstName: string;
-    lastName: string;
+    name?: string;
+    address?: {
+        city: string;
+        street: string;
+    }
 }
 
 const initialData: User = {
-    firstName: 'John',
-    lastName: 'Smith',
+    name: 'John',
+    address: {
+        city: 'London',
+        street: 'Abbey Road',
+    },
 };
 
-export default function LensBasicGetSet() {
-    const [value, onValueChange] = useState<User>(initialData);
-    const lens = Lens.onEditable<User>({ value, onValueChange });
+export default function LensBasic() {
+    const { lens, value, onValueChange } = useForm<User>({
+        value: initialData,
+        onSave: (user) => Promise.resolve({ form: user }),
+    });
 
-    lens.get(); // => { firstName: 'John', lastName: 'Smith' }
+    lens.get(); // return form value. Equal to value
+    lens.set({}); // set form value. Equal to onValueChange({}) call;
 
-    lens.set({ firstName: 'Max', lastName: 'Brown' });
-
-    lens.get(); // => { firstName: 'Max', lastName: 'Brown' }
-
-    lens.update((current) => ({ ...current, lastName: 'Welber' })); // => { firstName: 'Max', lastName: 'Welber' }
+    lens.prop('address').prop('city').get(); // Get city field value. Eq: value.address.city.
+    lens.prop('address').prop('city').set('Paris'); // Set city field value. Eq: onValueChange({...value, address: {...value.address, city: 'Paris'}})
 }
