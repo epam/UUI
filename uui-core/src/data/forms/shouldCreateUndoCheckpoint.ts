@@ -11,7 +11,7 @@ const getKeys = (a: FieldValue, b: FieldValue, c: FieldValue) => {
 };
 
 const getObjectOrMapKeys = (a: Object | IBaseMap<string, any>) => {
-    if (Symbol.iterator in a && typeof a[Symbol.iterator] === 'function') {
+    if (!Array.isArray(a) && Symbol.iterator in a && typeof a[Symbol.iterator] === 'function') {
         const keys = [];
         for (const [key] of a) {
             keys.push(key);
@@ -57,7 +57,13 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
         b = b || {};
         c = c || {};
         const keys: any[] = getKeys(a, b, c);
-        return keys.some((key) => shouldCreateUndoCheckpoint(getValue(a, key), getValue(b, key), getValue(c, key)));
+        return keys.some((key) => {
+            if (shouldCreateUndoCheckpoint(getValue(a, key), getValue(b, key), getValue(c, key))) {
+                console.log(key, a, b, c);
+            }
+
+            return shouldCreateUndoCheckpoint(getValue(a, key), getValue(b, key), getValue(c, key));
+        });
     }
 
     // The field is scalar (null, undefined, boolean, string, number, NaN)

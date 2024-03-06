@@ -31,10 +31,16 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
         return this._itemsMap.has(id);
     }
 
-    set(id: TId, item?: TItem): ItemsMap<TId, TItem> {
+    set(...args: [TId, TItem] | [TId]): ItemsMap<TId, TItem> {
+        const [id, item] = args;
         const itemsMap = cloneMap(this._itemsMap);
 
-        itemsMap.set(id, item);
+        if (args.length > 1) {
+            itemsMap.set(id, item);
+        } else {
+            itemsMap.delete(id);
+        }
+
         return new ItemsMap(itemsMap, this.params);
     }
 
