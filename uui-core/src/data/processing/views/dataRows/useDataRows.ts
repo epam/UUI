@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceListProps, GetChildCount, VirtualListRange } from '../../../../types';
+import { DataSourceListProps, GetChildCount } from '../../../../types';
 import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
@@ -259,34 +259,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
         ],
     );
 
-    const getSelectedRows = ({ topIndex = 0, visibleCount }: VirtualListRange = {}) => {
-        let checked: TId[] = [];
-        if (dataSourceState.selectedId !== null && dataSourceState.selectedId !== undefined) {
-            checked = [dataSourceState.selectedId];
-        } else if (dataSourceState.checked) {
-            checked = dataSourceState.checked;
-        }
-
-        if (visibleCount !== undefined) {
-            checked = checked.slice(topIndex, topIndex + visibleCount);
-        }
-        const selectedRows: Array<DataRowProps<TItem, TId>> = [];
-        const missingIds: TId[] = [];
-        checked.forEach((id, n) => {
-            const row = getById(id, topIndex + n);
-            if (row.isUnknown) {
-                missingIds.push(id);
-            }
-            selectedRows.push(row);
-        });
-        if (missingIds.length) {
-            console.error(`DataSource can't find selected/checked items with following IDs: ${missingIds.join(', ')}.
-                Read more here: https://github.com/epam/UUI/issues/89`);
-        }
-
-        return selectedRows;
-    };
-
     const getSelectedRowsCount = () => {
         const count = dataSourceState.checked?.length ?? 0;
         if (!count) {
@@ -301,7 +273,6 @@ export function useDataRows<TItem, TId, TFilter = any>(
     return {
         listProps,
         rows,
-        getSelectedRows,
         getSelectedRowsCount,
         getById,
         clearAllChecked,

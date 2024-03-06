@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo, SetStateAction } from 'react';
+import React, { useCallback, useState, useMemo, SetStateAction } from 'react';
 import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Text, DataTable, Panel, IconButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
@@ -97,12 +97,6 @@ export default function ColumnsConfigurationDataTableExample() {
         svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, updatedState.columnsConfig || {});
         setTableState(updatedState);
     }, [svc.uuiUserSettings, tableState]);
-
-    useEffect(() => {
-        return () => {
-            citiesDS.unsubscribeView(handleTableStateChange);
-        };
-    }, []);
 
     const view = citiesDS.useView(tableState, handleTableStateChange, {
         getRowOptions: useCallback(() => ({ checkbox: { isVisible: true } }), []),

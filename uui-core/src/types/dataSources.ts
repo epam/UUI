@@ -1,6 +1,6 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
-import { ItemsMap } from '../data';
+import { ItemsMap } from '../data/processing/views/tree/ItemsMap';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -76,7 +76,6 @@ export interface IDataSource<TItem, TId, TFilter> {
         options?: any,
         deps?: any[],
     ): IDataSourceView<TItem, TId, TFilter>;
-    unsubscribeView(onValueChange: (val: DataSourceState<any, TId>) => any): void;
 }
 
 /** Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc. */
@@ -234,22 +233,9 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];
     getSelectedRowsCount(): number;
     reload(): void;
-    /**
-     * Activates IDataSourceView.
-     * After view activation, it becomes able to listen to updates.
-     */
-    activate(): void;
-    /**
-     * Deactivates IDataSourceView.
-     * After view deactivation, it becomes impossible to listen to updates.
-     */
-    deactivate(): void;
-    loadData(): void;
     clearAllChecked(): void;
-    _forceUpdate(): void;
 
     selectAll?: ICheckable;
 };

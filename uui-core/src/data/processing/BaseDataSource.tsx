@@ -4,8 +4,6 @@ import {
 import { ITree } from './views';
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
-    protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
-    private subscriptions = new Map<IDataSourceView<TItem, TId, TFilter>, () => void>();
     protected trees = new Map<ITree<TItem, TId>, () => void>();
 
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
@@ -20,21 +18,10 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         deps?: any[],
     ): IDataSourceView<TItem, TId, TFilter>;
 
-    protected updateViews = () => {
-        this.views.forEach((view) => view._forceUpdate());
-        this.subscriptions.forEach((onUpdate) => onUpdate());
-    };
-
     public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
-    public unsubscribeView(onValueChange: (val: any) => void) {
-        this.views.delete(onValueChange);
-    }
 
     public destroy() {
-        this.views.forEach((view) => view.deactivate());
-        this.views.clear();
-        this.subscriptions.forEach((_, view) => view.deactivate());
-        this.subscriptions.clear();
+        this.trees.clear();
     }
 
     public getId = (item: TItem & { id?: TId }): TId => {
@@ -48,19 +35,8 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
         return id;
     };
-    
-    protected subscribe(view: IDataSourceView<TItem, TId, TFilter>) {
-        view.activate();
-        this.subscriptions.set(view, view._forceUpdate);
-        return () => {
-            this.subscriptions.delete(view);
-            view.deactivate();
-        };
-    }
-    
+
     protected reload() { 
-        this.views.forEach((view) => view.reload());
-        this.subscriptions.forEach((_, view) => view.reload());
         this.trees.forEach((reload) => reload());
     }
 }

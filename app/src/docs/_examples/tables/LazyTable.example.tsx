@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Text, DataTable, Panel, IconButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
@@ -101,12 +101,6 @@ export default function CitiesTable() {
     const citiesDS = useLazyDataSource<City, string, unknown>({
         api: svc.api.demo.cities,
         backgroundReload: true,
-    }, []);
-
-    // IMPORTANT! Unsubscribe view from DataSource when you don't need it more.
-    // Pass this.handleTableStateChange function which you provided to getView as a second argument
-    useEffect(() => {
-        return () => citiesDS.unsubscribeView(setTableState);
     }, []);
 
     // Create View according to your tableState and options
