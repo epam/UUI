@@ -42,6 +42,14 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
             className=""
           />
         </div>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
       </button>
     </div>
   </span>
@@ -82,6 +90,14 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
         tabIndex={0}
         type="button"
       >
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
         <div
           className="container uui-icon uui-enabled"
           style={Object {}}
