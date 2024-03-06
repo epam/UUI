@@ -10,7 +10,7 @@ export enum TFigmaThemeName {
     LOVESHIP_LIGHT = 'Loveship-Light',
     LOVESHIP_DARK = 'Loveship-Dark',
     PROMO = 'Promo',
-    EPAM = 'EPAM'
+    ELECTRIC = 'Electric'
 }
 export type TVariableValue = unknown;
 
