@@ -18,6 +18,6 @@ function applyLabeledInputMods(mods: LabeledInputMods) {
 }
 
 export const LabeledInput = withMods<uuiComponents.LabeledInputProps, LabeledInputMods>(uuiComponents.LabeledInput, applyLabeledInputMods, (props) => ({
-    Tooltip,
+    Tooltip: props.Tooltip || Tooltip,
     infoIcon: props.infoIcon || (['24', '30'].includes(props.size) ? FillInfoIcon : InfoIcon),
 }));
