@@ -65847,12 +65847,8 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size.",
-        " @default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
+        "Defines component size."
+       ]
       },
       "typeValue": {
        "raw": "'18' | '36' | '24' | '30'"

@@ -68,8 +68,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
           >
             <svg
               className=""
-              height={18}
-              width={18}
             />
           </div>
         </button>
@@ -501,8 +499,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           >
             <svg
               className=""
-              height={18}
-              width={18}
             />
           </div>
         </button>
@@ -1866,8 +1862,6 @@ exports[`PickerModal should open body 1`] = `
               >
                 <svg
                   class=""
-                  height="18"
-                  width="18"
                 />
               </div>
             </button>

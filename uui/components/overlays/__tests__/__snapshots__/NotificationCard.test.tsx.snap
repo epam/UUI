@@ -59,8 +59,6 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>
@@ -109,8 +107,6 @@ exports[`HintNotification should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>
@@ -145,8 +141,6 @@ exports[`NotificationCard should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>
@@ -195,8 +189,6 @@ exports[`NotificationCard should render with maximum props 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>
@@ -245,8 +237,6 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>
@@ -295,8 +285,6 @@ exports[`WarningNotification should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>

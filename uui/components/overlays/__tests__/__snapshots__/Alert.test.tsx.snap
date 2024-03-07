@@ -52,8 +52,6 @@ exports[`Alert should render with maximum props 1`] = `
       >
         <svg
           className=""
-          height={18}
-          width={18}
         />
       </div>
     </button>
