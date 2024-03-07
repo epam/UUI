@@ -56,7 +56,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-bg",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -194,7 +194,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-bg-disabled",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -312,7 +312,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-bg-hover",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -430,7 +430,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-border",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -902,7 +902,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-icon",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1020,7 +1020,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-icon-disabled",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1138,7 +1138,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-placeholder",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1261,7 +1261,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-placeholder-disabled",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1399,7 +1399,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-text",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {
@@ -1527,7 +1527,7 @@
       "description": "",
       "useCases": "",
       "cssVar": "--uui-control-text-disabled",
-      "cssVarSupport": "notDecided",
+      "cssVarSupport": "supported",
       "valueByTheme": {
         "Loveship-Light": {
           "valueChain": {

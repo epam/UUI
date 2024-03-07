@@ -8329,7 +8329,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-bg)"
       }
@@ -8402,7 +8402,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-bg-hover)"
       }
@@ -8475,7 +8475,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-border)"
       }
@@ -8621,7 +8621,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-placeholder)"
       }
@@ -8694,7 +8694,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-placeholder-disabled)"
       }
@@ -8767,7 +8767,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-text)"
       }
@@ -8840,7 +8840,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-text-disabled)"
       }
@@ -8913,7 +8913,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-icon)"
       }
@@ -8986,7 +8986,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-icon-disabled)"
       }
@@ -63810,7 +63810,7 @@
       "scopes": [
         "ALL_SCOPES"
       ],
-      "hiddenFromPublishing": true,
+      "hiddenFromPublishing": false,
       "codeSyntax": {
         "WEB": "var(--uui-control-bg-disabled)"
       }

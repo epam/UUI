@@ -13,6 +13,7 @@ import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
 import { getApi, TApi, TAppContext } from './data';
+import { getAppRootNode } from './helpers/appRootUtils';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import '@epam/assets/theme/theme_loveship_dark.scss';
@@ -71,7 +72,8 @@ function UuiEnhancedApp() {
 }
 
 function initApp() {
-    const root = createRoot(document.getElementById('root'));
+    const rootNode = getAppRootNode();
+    const root = createRoot(rootNode);
     root.render(
         <React.StrictMode>
             <UuiEnhancedApp />
