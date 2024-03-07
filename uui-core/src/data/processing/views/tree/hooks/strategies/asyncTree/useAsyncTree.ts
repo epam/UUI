@@ -123,10 +123,6 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         getPosition,
     });
 
-    const getChildCount = useCallback((item: TItem): number | undefined => {
-        return tree.visible.getChildren(getId(item)).length;
-    }, [tree.visible, getId]);
-
     const totalCount = useMemo(() => {
         const { totalCount: rootTotalCount } = tree.visible.getItems(undefined);
 
@@ -141,7 +137,6 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         rowOptions,
         getRowOptions,
-        getChildCount,
         getParentId,
         getId,
         dataSourceState,

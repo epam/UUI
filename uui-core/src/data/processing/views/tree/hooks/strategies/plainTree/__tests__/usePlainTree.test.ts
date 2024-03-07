@@ -58,7 +58,6 @@ describe('usePlainTree', () => {
         expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
         expect(tree.getItemStatus).toBeUndefined();
         expect(typeof tree.reload).toBe('function');
-        expect(typeof tree.getChildCount).toBe('function');
     });
 
     it('should path through maximum props', async () => {
@@ -108,7 +107,6 @@ describe('usePlainTree', () => {
         expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
         expect(tree.getItemStatus).toBeUndefined();
         expect(typeof tree.reload).toBe('function');
-        expect(typeof tree.getChildCount).toBe('function');
     });
 
     it('should defined itemsMap/setItems inside hook if not passed to props', async () => {

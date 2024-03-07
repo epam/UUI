@@ -73,7 +73,6 @@ describe('useAsyncTree', () => {
         expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
         expect(typeof tree.getItemStatus).toBe('function');
         expect(typeof tree.reload).toBe('function');
-        expect(typeof tree.getChildCount).toBe('function');
     });
 
     it('should path through maximum props', async () => {
@@ -126,7 +125,6 @@ describe('useAsyncTree', () => {
         expect(tree.selectionTree instanceof TreeStructure).toBeTruthy();
         expect(typeof tree.getItemStatus).toBe('function');
         expect(typeof tree.reload).toBe('function');
-        expect(typeof tree.getChildCount).toBe('function');
     });
 
     it('should defined itemsMap/setItems inside hook if not passed to props', async () => {

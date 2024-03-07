@@ -74,7 +74,6 @@ describe('useLazyTree', () => {
         expect(typeof tree.getItemStatus).toBe('function');
         expect(typeof tree.reload).toBe('function');
         expect(typeof tree.loadMissingRecordsOnCheck).toBe('function');
-        expect(tree.getChildCount).toBeUndefined();
     });
 
     it('should path through maximum props', async () => {
@@ -120,7 +119,6 @@ describe('useLazyTree', () => {
             cascadeSelection,
             showOnlySelected,
             selectAll,
-            getChildCount,
 
             isFetching: false,
             isLoading: false,
