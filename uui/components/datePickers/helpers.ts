@@ -116,20 +116,10 @@ export const toValueDateFormat = (value: string, format?: string): string => {
     return value ? dayjs(value, supportedDateFormats(format), true).format(valueFormat) : null;
 };
 
-export const toCustomDateFormat = (value: string, format?: string): string => {
+export const toCustomDateFormat = (value: string | null, format?: string): string => {
     const customFormat = format || defaultFormat;
-
-    if (value) {
-        const dayjsObj = dayjs(value, supportedDateFormats(format), true);
-
-        if (dayjsObj.isValid()) {
-            return dayjsObj.format(customFormat);
-        } else {
-            return null;
-        }
-    } else {
-        return null;
-    }
+    const dayjsObj = dayjs(value, supportedDateFormats(format), true);
+    return dayjsObj.isValid() ? dayjsObj.format(customFormat) : null;
 };
 
 export const getPrevMonth = (currentDate: Dayjs) => {
