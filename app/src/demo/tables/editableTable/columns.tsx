@@ -127,6 +127,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                         <PickerInput
                             valueType="id"
                             selectionMode="multi"
+                            emptyValue={ undefined }
                             dataSource={ resourceDataSource }
                             renderRow={ (props) => (
                                 <DataPickerRow
