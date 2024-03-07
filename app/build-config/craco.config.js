@@ -23,6 +23,14 @@ function getIsUseBuildFolderOfDeps() {
     whenDev(() => { flag = false; });
     return flag;
 }
+
+/**
+ * NOTE:
+ *     isWrapUuiAppInShadowDom=true makes the entire app to be wrapped in Shadow DOM.
+ *     It's supposed to be used in local DEV server to reproduce bugs related to Shadow DOM.
+ * @type {boolean}
+ */
+const isWrapUuiAppInShadowDom = process.env.isWrapUuiAppInShadowDom === 'true';
 const isUseBuildFolderOfDeps = getIsUseBuildFolderOfDeps();
 
 const headCommitHash = require('../../uui-build/utils/gitUtils').getHeadCommitHash();
@@ -79,18 +87,34 @@ function configureWebpack(config, { paths }) {
     // Fix for the issue when some modules have no source maps. see this discussion for details https://github.com/facebook/create-react-app/discussions/11767
     changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx|css)$/, (r) => Object.assign(r, { exclude: [r.exclude, ...LIBS_WITHOUT_SOURCE_MAPS] }));
 
+    changeRuleByTestAttr(config, /\.(scss|sass)$/, (prev) => {
+        normalizeUse(prev);
+        addShadowRootSupportToUse(prev);
+        return prev;
+    });
+    changeRuleByTestAttr(config, /\.css$/, (prev) => {
+        normalizeUse(prev);
+        addShadowRootSupportToUse(prev);
+        return prev;
+    });
     // Reason: see below.
     changeRuleByTestAttr(config, /\.module\.(scss|sass)$/, (prev) => {
-        prev.use && prev.use.forEach((u) => {
-            if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/resolve-url-loader/')) !== -1) {
-                // Set css root for "resolve-url-loader". So that url('...') statements in .scss are resolved correctly.
-                u.options.root = CSS_URL_ROOT_PATH;
-            }
-            if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/css-loader/')) !== -1) {
-                // Need camelCase export to keep existing UUI code working
-                u.options.modules.exportLocalsConvention = 'camelCase';
-            }
-        });
+        if (prev.use) {
+            normalizeUse(prev);
+            addShadowRootSupportToUse(prev);
+            prev.use.forEach((u) => {
+                if (u.loader) {
+                    if (u.loader.indexOf(makeSlashesPlatformSpecific('/resolve-url-loader/')) !== -1) {
+                        // Set css root for "resolve-url-loader". So that url('...') statements in .scss are resolved correctly.
+                        u.options.root = CSS_URL_ROOT_PATH;
+                    }
+                    if (u.loader.indexOf(makeSlashesPlatformSpecific('/css-loader/')) !== -1) {
+                        // Need camelCase export to keep existing UUI code working
+                        u.options.modules.exportLocalsConvention = 'camelCase';
+                    }
+                }
+            });
+        }
         return prev;
     });
 
@@ -106,6 +130,9 @@ function configureWebpack(config, { paths }) {
         plugin.definitions.__DEV__ = process.env.NODE_ENV !== 'production';
     });
 
+    changePluginByName(config, 'HtmlWebpackPlugin', (plugin) => {
+        plugin.userOptions.isWrapUuiAppInShadowDom = isWrapUuiAppInShadowDom;
+    });
     changePluginByName(config, 'ForkTsCheckerWebpackPlugin', (plugin) => {
         // custom formatter can be removed when next bug is fixed:
         // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/789
@@ -116,4 +143,33 @@ function configureWebpack(config, { paths }) {
     });
 
     return config;
+}
+
+function normalizeUse(prev) {
+    if (prev.use) {
+        prev.use = prev.use.map((u) => {
+            if (typeof u === 'string') {
+                return { loader: u };
+            }
+            return u;
+        });
+    }
+}
+
+function addShadowRootSupportToUse(prev) {
+    if (isWrapUuiAppInShadowDom && prev.use) {
+        prev.use.forEach((u) => {
+            if (u.loader) {
+                if (u.loader.indexOf(makeSlashesPlatformSpecific('/style-loader/')) !== -1) {
+                    u.options = {
+                        ...u.options,
+                        insert: (linkTag) => {
+                            const target = document.querySelector('#root').shadowRoot || document.head;
+                            target.appendChild(linkTag);
+                        },
+                    };
+                }
+            }
+        });
+    }
 }
