@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useUuiContext } from '@epam/uui-core';
 import { getCurrentTheme } from './';
 import { TTheme } from '../common/docs/docsConstants';
+import { setThemeCssClass } from './appRootUtils';
 
 export const useTheme = () => {
     const { uuiRouter } = useUuiContext();
@@ -15,8 +16,7 @@ export const useTheme = () => {
     // Apply the current theme to the body element
     useEffect(() => {
         const { pathname, query, ...restParams } = uuiRouter.getCurrentLink();
-        const currentTheme = document.body.classList.value.match(/uui-theme-(\S+)\s*/)[0];
-        document.body.classList.replace(currentTheme, `uui-theme-${theme}`);
+        setThemeCssClass(theme);
         uuiRouter.transfer({ pathname: pathname, query: { ...query, theme: theme }, ...restParams });
     }, [theme]);
 

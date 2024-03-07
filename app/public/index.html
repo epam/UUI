@@ -37,6 +37,14 @@
     You need to enable JavaScript to run this app.
 </noscript>
 <div id="root"></div>
+<% if (htmlWebpackPlugin.options.isWrapUuiAppInShadowDom) { %>
+<script>
+    const hostElem = document.querySelector("#root");
+    hostElem.style.position = 'absolute';
+    hostElem.style.inset = '0px 0px 0px 0px';
+    hostElem.attachShadow({ mode: 'open' });
+</script>
+<% } %>
 <!--
   This HTML file is a template.
   If you open it directly in the browser, you will see an empty page.
