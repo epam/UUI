@@ -75,10 +75,6 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         getPosition: restProps.getPosition,
     });
 
-    const getChildCount = useCallback((item: TItem): number | undefined => {
-        return tree.visible.getChildren(getId(item)).length;
-    }, [tree.visible, getId]);
-
     const reload = useCallback(() => {
         resetTree();
     }, [resetTree]);
@@ -95,7 +91,6 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         totalCount,
         rowOptions,
         getRowOptions,
-        getChildCount,
         getParentId,
         getId,
         dataSourceState,
