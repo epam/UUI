@@ -25,6 +25,7 @@
     "process-icons": "node uui-build/scripts/processIcons.js icons",
     "release": "lerna publish --force-publish",
     "start": "cd ./app && yarn start",
+    "start-sd": "cd ./app && yarn start-sd",
     "start-server": "cd ./app && yarn server",
     "stylelint": "yarn --cwd uui-build lint --stylelint",
     "stylelint-fix": "yarn stylelint --fix",
