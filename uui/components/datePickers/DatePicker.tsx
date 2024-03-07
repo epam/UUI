@@ -29,7 +29,7 @@ const modifiers = [{
 
 const isValidDate = (input: string, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
     const parsedDate = dayjs(input, supportedDateFormats(format), true);
-    return parsedDate.isValid() ?? filter?.(parsedDate);
+    return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
 };
 
 interface DatePickerState {
@@ -62,9 +62,10 @@ export function DatePickerComponent(props: DatePickerProps) {
     }, [value]);
 
     const onValueChange = (newValue: string | null) => {
+        setInputValue(toCustomDateFormat(newValue, format));
+
         if (value !== newValue) {
             props.onValueChange(newValue);
-            toggleIsOpen(false);
 
             if (props.getValueChangeAnalyticsEvent) {
                 const event = props.getValueChangeAnalyticsEvent(newValue, value);
@@ -74,14 +75,12 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const onBodyValueChange = (newValue: DatePickerBodyValue<string>) => {
-        setState((prev) => ({
-            ...prev,
+        setState({
             month: getNewMonth(newValue.month),
             view: newValue.view,
-            open: false,
-        }));
+            isOpen: value === newValue.selectedDate,
+        });
 
-        setInputValue(toCustomDateFormat(newValue.selectedDate, format));
         onValueChange(newValue.selectedDate);
     };
 
@@ -97,12 +96,11 @@ export function DatePickerComponent(props: DatePickerProps) {
         if (isFocusReceiverInsideFocusLock(e)) return;
 
         if (isValidDate(inputValue, format, props.filter)) {
-            setInputValue(toCustomDateFormat(inputValue, format));
             onValueChange(toValueDateFormat(inputValue, format));
         } else {
             onValueChange(null);
-            setInputValue(null);
         }
+        toggleIsOpen(false);
     };
 
     const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
@@ -128,11 +126,12 @@ export function DatePickerComponent(props: DatePickerProps) {
                 placeholder={ props.placeholder ? props.placeholder : format }
                 size={ props.size || '36' }
                 value={ inputValue }
-                onValueChange={ setInputValue }
+                onValueChange={ (v) => {
+                    setInputValue(v);
+                } }
                 onCancel={ () => {
-                    if (!props.disableClear && !!value) {
+                    if (!props.disableClear && !!inputValue) {
                         onValueChange(null);
-                        setInputValue(null);
                     }
                 } }
                 isInvalid={ props.isInvalid }
