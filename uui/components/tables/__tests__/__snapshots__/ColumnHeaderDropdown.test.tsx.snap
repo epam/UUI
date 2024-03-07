@@ -84,6 +84,8 @@ Array [
             >
               <svg
                 className=""
+                height={18}
+                width={18}
               />
             </div>
           </button>
@@ -117,6 +119,8 @@ Array [
             >
               <svg
                 className=""
+                height={18}
+                width={18}
               />
             </div>
           </button>

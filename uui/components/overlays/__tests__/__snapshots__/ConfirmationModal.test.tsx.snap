@@ -68,6 +68,8 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           >
             <svg
               className=""
+              height={18}
+              width={18}
             />
           </div>
         </button>
@@ -247,6 +249,8 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
           >
             <svg
               className=""
+              height={18}
+              width={18}
             />
           </div>
         </button>

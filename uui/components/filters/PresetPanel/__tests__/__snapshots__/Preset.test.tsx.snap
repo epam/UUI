@@ -40,6 +40,8 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
         >
           <svg
             className=""
+            height={18}
+            width={18}
           />
         </div>
         <div
@@ -48,6 +50,8 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
         >
           <svg
             className=""
+            height={18}
+            width={18}
           />
         </div>
       </button>
@@ -96,6 +100,8 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
         >
           <svg
             className=""
+            height={18}
+            width={18}
           />
         </div>
         <div
@@ -104,6 +110,8 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
         >
           <svg
             className=""
+            height={18}
+            width={18}
           />
         </div>
       </button>

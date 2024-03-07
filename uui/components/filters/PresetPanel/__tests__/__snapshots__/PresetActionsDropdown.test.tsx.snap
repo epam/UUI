@@ -13,6 +13,8 @@ exports[`PresetActionsDropdown should render correctly 1`] = `
   >
     <svg
       className=""
+      height={18}
+      width={18}
     />
   </div>
   <div
@@ -21,6 +23,8 @@ exports[`PresetActionsDropdown should render correctly 1`] = `
   >
     <svg
       className=""
+      height={18}
+      width={18}
     />
   </div>
 </button>
