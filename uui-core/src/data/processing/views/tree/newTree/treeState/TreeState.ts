@@ -118,7 +118,7 @@ export class TreeState<TItem, TId> {
         }
 
         if (loadedItems.length) {
-            this.setItems(loadedItems, { on: 'load' });
+            this.setItems(loadedItems, { reset: true });
         }
 
         return this.withNewTreeStructures({ using, treeStructure: newTreeStructure, itemsMap: newItemsMap });
