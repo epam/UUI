@@ -12,10 +12,7 @@
     --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     --font-museo-slab: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
 
-    /* core variables start */
-
-    /* brand colors */
-
+    /* contrast colors */
     --uui-primary-contrast: var(--white);
 
     --uui-accent-contrast: var(--white);
@@ -23,8 +20,6 @@
     --uui-secondary-contrast: var(--white);
 
     --uui-critical-contrast: var(--white);
-
-    /* semantic colors */
 
     --uui-info-contrast: var(--white);
 
@@ -34,17 +29,7 @@
 
     --uui-error-contrast: var(--white);
 
-    /* Surfaces Figma - https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/Promo-aka-UUI4-(Components)?type=design&node-id=39112-321568&mode=dev */
-
-    /* not accepted part */
-
-    /* control specific */
-
-    --uui-link-visited-hover: #601278;
-
-    --uui-control-border-focus: var(--uui-primary-50);
-    --uui-control-border-disabled: var(--uui-neutral-30);
-
+    /* shadows */
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);

@@ -1,6 +1,7 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import css from './IconButton.module.scss';
+import { systemIcons } from '../../icons/icons';
 
 interface IconButtonMods {
     /**
@@ -20,4 +21,10 @@ function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return ['uui-icon_button', `uui-color-${mods.color || 'neutral'}`, css.root];
 }
 
-export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiComponents.IconButton, applyIconButtonMods);
+export const IconButton = withMods<IconButtonProps, IconButtonMods>(
+    uuiComponents.IconButton,
+    applyIconButtonMods,
+    (props) => ({
+        dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
+    }),
+);

@@ -10,6 +10,6 @@ export interface GlobalMenuProps extends IAdaptiveItem, IHasCX, IHasRawProps<Rea
 
 export const GlobalMenu = React.forwardRef<HTMLButtonElement, GlobalMenuProps>((props, ref) => (
     <button ref={ ref } id="global_menu_toggle" className={ cx(css.globalMenuBtn, props.cx) } { ...props.rawProps }>
-        <IconContainer icon={ GlobalMenuIcon } cx={ css.globalMenuIcon } />
+        <IconContainer size={ 36 } icon={ GlobalMenuIcon } cx={ css.globalMenuIcon } />
     </button>
 ));

@@ -1,6 +1,7 @@
 import { getCurrentTheme } from '../../../../helpers';
 import { TTheme } from '../../../../common/docs/docsConstants';
 import { useEffect, useState } from 'react';
+import { getUuiThemeRoot } from '../../../../helpers/appRootUtils';
 
 export function useCurrentTheme(): TTheme {
     const [theme, setTheme] = useState<TTheme>(() => getCurrentTheme());
@@ -11,7 +12,8 @@ export function useCurrentTheme(): TTheme {
                 setTheme(getCurrentTheme());
             });
         });
-        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        const themeRoot = getUuiThemeRoot();
+        observer.observe(themeRoot, { attributes: true, attributeFilter: ['class'] });
         return () => {
             observer.disconnect();
         };
