@@ -9,9 +9,14 @@ export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
     icon?: Icon;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
+    /**
+     * Defines component size.
+     */
+    size?: number;
 };
 
 export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
+    const size = props.size && Number(props.size);
     return (
         <Clickable
             { ...props }
@@ -19,9 +24,9 @@ export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             cx={ [css.container, props.cx] }
             ref={ ref }
         >
-            <IconContainer icon={ props.icon } />
+            <IconContainer icon={ props.icon } size={ size } />
             { props.isDropdown && (
-                <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } />
+                <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } size={ size } />
             ) }
         </Clickable>
     );
