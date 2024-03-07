@@ -42,13 +42,5 @@
     .icon-blue {
         fill: var(--uui-dropspot-icon);
         margin-right: 6px;
-
-        &:global(.uui-icon) {
-            svg {
-                height: 24px;
-                width: 24px;
-            }
-        }
-
     }
 }
