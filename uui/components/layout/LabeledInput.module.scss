@@ -1,5 +1,16 @@
 @use '../../assets/styles/index' as *;
 
+@mixin label-icon-size($size) {
+    $striped-size: strip-unit($size);
+
+    &:global(.uui-icon) {
+        svg {
+            height: #{$striped-size}px;
+            width: #{$striped-size}px;
+        }
+    }
+}
+
 .root {
     --uui-labeled_input: var(--uui-text-primary);
     --uui-labeled_input-disabled: var(--uui-text-disabled);
@@ -103,7 +114,9 @@
 
     // Sizes
     &.size-24 {
-        @include icon-size(12);
+        :global(.uui-labeled-input-info-icon) {
+            @include label-icon-size(12);
+        }
 
         :global(.uui-label) {
             font-size: 12px;
@@ -112,7 +125,9 @@
     }
 
     &.size-30 {
-        @include icon-size(12);
+        :global(.uui-labeled-input-info-icon) {
+            @include label-icon-size(12);
+        }
 
         :global(.uui-label) {
             font-size: 12px;
@@ -121,7 +136,9 @@
     }
 
     &.size-36 {
-        @include icon-size(18);
+        :global(.uui-labeled-input-info-icon) {
+            @include label-icon-size(18);
+        }
 
         :global(.uui-label) {
             font-size: 14px;
@@ -130,7 +147,9 @@
     }
 
     &.size-42 {
-        @include icon-size(18);
+        :global(.uui-labeled-input-info-icon) {
+            @include label-icon-size(18);
+        }
 
         :global(.uui-label) {
             font-size: 14px;
@@ -139,7 +158,9 @@
     }
 
     &.size-48 {
-        @include icon-size(18);
+        :global(.uui-labeled-input-info-icon) {
+            @include label-icon-size(18);
+        }
 
         :global(.uui-label) {
             font-size: 14px;
