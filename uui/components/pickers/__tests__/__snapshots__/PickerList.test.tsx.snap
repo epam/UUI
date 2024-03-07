@@ -178,8 +178,6 @@ exports[`PickerList should open body 1`] = `
               >
                 <svg
                   class=""
-                  height="18"
-                  width="18"
                 />
               </div>
             </button>

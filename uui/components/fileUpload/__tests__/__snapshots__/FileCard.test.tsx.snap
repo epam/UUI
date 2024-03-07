@@ -257,8 +257,6 @@ exports[`FileCard should be rendered correctly with img file 1`] = `
         >
           <svg
             className=""
-            height={18}
-            width={18}
           />
         </div>
       </button>

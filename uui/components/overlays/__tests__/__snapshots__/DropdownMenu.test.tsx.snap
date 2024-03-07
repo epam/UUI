@@ -81,8 +81,6 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
       >
         <svg
           className=""
-          height={18}
-          width={18}
         />
       </div>
     </button>

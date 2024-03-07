@@ -11,12 +11,9 @@ interface IconButtonMods {
     color?: 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'neutral';
     /**
      * Defines component size.
-     * @default '18'
      */
     size?: '18' | '24' | '30' | '36';
 }
-
-const DEFAULT_SIZE: IconButtonMods['size'] = '18';
 
 /** Represents the Core properties of the IconButton component. */
 export type IconButtonCoreProps = uuiComponents.IconButtonProps;
@@ -32,10 +29,9 @@ export const IconButton = withMods<Omit<IconButtonCoreProps, 'size'>, IconButton
     uuiComponents.IconButton,
     applyIconButtonMods,
     (props) => {
-        const size = props.size ? Number(props.size) : Number(DEFAULT_SIZE);
         return {
             dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
-            size,
+            size: props.size && Number(props.size),
         };
     },
 );
