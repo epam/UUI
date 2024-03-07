@@ -22,8 +22,12 @@ export class Tree implements ITree<Location, string> {
         if (count !== 0 && ids.length === count) {
             status = 'FULLY_LOADED';
         }
-
-        return { ids, count, totalCount, status };
+        const parent = this._itemsMap.get(parentId);
+        let assumedCountInfo: { assumedCount?: number } = {};
+        if (parent && 'childCount' in parent) {
+            assumedCountInfo = { assumedCount: parent.childCount };
+        }
+        return { ids, count, totalCount, status, ...assumedCountInfo };
     }
 
     getById(id: string): Location | typeof NOT_FOUND_RECORD {
