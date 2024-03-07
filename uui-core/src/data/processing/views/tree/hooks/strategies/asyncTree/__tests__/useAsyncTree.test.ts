@@ -163,7 +163,7 @@ describe('useAsyncTree', () => {
         expect(unknownItemFromSelectionTree).toBe(NOT_FOUND_RECORD);
     });
 
-    it('should use outer itemsMap/setItems inside hook if passed to props', async () => {
+    it('should reset outer itemsMap/setItems inside hook on load if passed to props', async () => {
         const newItem: LocationItem = {
             id: 'GW',
             parentId: 'c-AF',
@@ -202,8 +202,11 @@ describe('useAsyncTree', () => {
 
         const itemFromVisibleTree = tree.tree.getById('GW');
         const itemFromSelectionTree = tree.selectionTree.getById('GW');
-        expect(itemFromVisibleTree).toEqual(newItem);
-        expect(itemFromSelectionTree).toEqual(newItem);
+        expect(itemFromVisibleTree).toEqual(NOT_FOUND_RECORD);
+        expect(itemFromSelectionTree).toEqual(NOT_FOUND_RECORD);
+        const itemsMap = itemsStorage.getItemsMap();
+        expect(itemsMap.has('GW')).toBeFalsy();
+        expect(itemsStorage.getItemsMap().get('c-AF')).toEqual(expect.objectContaining({ id: 'c-AF' }));
     });
 
     it('should use inner itemsStatusMap if not passed to props', async () => {

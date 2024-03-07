@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import {
-    setupComponentForTest, fireEvent, PickerListTestObject, screen, within, waitFor,
+    setupComponentForTest, fireEvent, PickerListTestObject, screen, within, waitFor, delay,
 } from '@epam/uui-test-utils';
 import { Modals } from '@epam/uui-components';
 import { PickerList, PickerListProps } from '../PickerList';
@@ -105,7 +105,7 @@ describe('PickerList', () => {
 
         await PickerListTestObject.waitForOptionsToBeReady('modal');
         await PickerListTestObject.waitForSpinnerToHide('modal');
-        
+        await delay(2000);
         expect(result.baseElement).toMatchSnapshot();
     });
 
