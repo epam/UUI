@@ -15,6 +15,7 @@ const LOCATIONS_QUERY = 'locations';
 const treeParams: TreeParams<Location, string> = {
     getId: ({ id }) => id,
     getParentId: ({ parentId }) => parentId,
+    getChildCount: ({ childCount }) => childCount,
 };
 
 export function LocationsTable() {
@@ -127,7 +128,6 @@ export function LocationsTable() {
     const { rows, listProps } = useDataRows({
         tree,
         cascadeSelection,
-        getChildCount: (l) => l.childCount,
         dataSourceState: tableState,
         setDataSourceState: setTableState,
         rowOptions,
