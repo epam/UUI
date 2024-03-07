@@ -8,7 +8,9 @@ import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-
 import { Button } from '../buttons';
 import localeData from 'dayjs/plugin/localeData';
 import { ViewType } from './types';
-import { getPrevMonthFromCurrent, getPrevYearFromCurrent, getPrevListYearFromCurrent, getNextMonthFromCurrent, getNextYearFromCurrent, getNextListYearFromCurrent } from './helpers';
+import {
+    getPrevMonth, getPrevYear, getPrevYearsList, getNextMonth, getNextYear, getNextYearsList,
+} from './helpers';
 
 dayjs.extend(localeData);
 
@@ -40,6 +42,10 @@ export interface DatePickerHeaderProps extends IHasCX {
     navIconRight?: Icon;
 }
 
+const isSoberYear = (value: Dayjs) => {
+    return value.year() >= 1990 && value.year() <= 2099;
+};
+
 export function DatePickerHeader({
     navIconLeft, navIconRight, value: { month, view }, onValueChange,
 }: DatePickerHeaderProps) {
@@ -60,13 +66,13 @@ export function DatePickerHeader({
     const onLeftNavigationArrow = () => {
         switch (view) {
             case 'DAY_SELECTION':
-                onSetMonth(getPrevMonthFromCurrent(month));
+                onSetMonth(getPrevMonth(month));
                 break;
             case 'MONTH_SELECTION':
-                onSetMonth(getPrevYearFromCurrent(month));
+                onSetMonth(getPrevYear(month));
                 break;
             case 'YEAR_SELECTION':
-                onSetMonth(getPrevListYearFromCurrent(month));
+                onSetMonth(getPrevYearsList(month));
                 break;
         }
     };
@@ -74,13 +80,13 @@ export function DatePickerHeader({
     const onRightNavigationArrow = () => {
         switch (view) {
             case 'DAY_SELECTION':
-                onSetMonth(getNextMonthFromCurrent(month));
+                onSetMonth(getNextMonth(month));
                 break;
             case 'MONTH_SELECTION':
-                onSetMonth(getNextYearFromCurrent(month));
+                onSetMonth(getNextYear(month));
                 break;
             case 'YEAR_SELECTION':
-                onSetMonth(getNextListYearFromCurrent(month));
+                onSetMonth(getNextYearsList(month));
                 break;
         }
     };
@@ -112,6 +118,9 @@ export function DatePickerHeader({
         [view, month],
     );
 
+    const disablePrev = view === 'YEAR_SELECTION' && !isSoberYear(getPrevYearsList(month));
+    const disableNext = view === 'YEAR_SELECTION' && !isSoberYear(getNextYearsList(month));
+
     return (
         <div className={ cx(css.container, uuiHeader.container, cx) }>
             <header className={ uuiHeader.header }>
@@ -121,6 +130,7 @@ export function DatePickerHeader({
                     fill="ghost"
                     cx={ uuiHeader.navIconLeft }
                     onClick={ () => onLeftNavigationArrow() }
+                    isDisabled={ disablePrev }
                 />
                 <Button
                     caption={ title }
@@ -134,6 +144,7 @@ export function DatePickerHeader({
                     fill="ghost"
                     cx={ uuiHeader.navIconRight }
                     onClick={ () => onRightNavigationArrow() }
+                    isDisabled={ disableNext }
                 />
             </header>
         </div>

@@ -132,26 +132,26 @@ export const toCustomDateFormat = (value: string, format?: string): string => {
     }
 };
 
-export const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
+export const getPrevMonth = (currentDate: Dayjs) => {
     return currentDate.subtract(1, 'month');
 };
 
-export const getNextMonthFromCurrent = (currentDate: Dayjs) => {
+export const getNextMonth = (currentDate: Dayjs) => {
     return currentDate.add(1, 'month');
 };
 
-export const getPrevYearFromCurrent = (currentDate: Dayjs) => {
+export const getPrevYear = (currentDate: Dayjs) => {
     return currentDate.subtract(1, 'year');
 };
 
-export const getNextYearFromCurrent = (currentDate: Dayjs) => {
+export const getNextYear = (currentDate: Dayjs) => {
     return currentDate.add(1, 'year');
 };
 
-export const getPrevListYearFromCurrent = (currentDate: Dayjs) => {
+export const getPrevYearsList = (currentDate: Dayjs) => {
     return currentDate.subtract(16, 'year');
 };
 
-export const getNextListYearFromCurrent = (currentDate: Dayjs) => {
+export const getNextYearsList = (currentDate: Dayjs) => {
     return currentDate.add(16, 'year');
 };
