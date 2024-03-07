@@ -68,6 +68,8 @@ exports[`Modals should be rendered correctly 1`] = `
           >
             <svg
               className=""
+              height={18}
+              width={18}
             />
           </div>
         </button>
