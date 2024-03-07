@@ -34394,6 +34394,10 @@
       "    icon?: Icon;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: number;",
       "};"
      ]
     },
@@ -34624,6 +34628,22 @@
       },
       "editor": {
        "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
       },
       "required": false
      }
@@ -65516,6 +65536,23 @@
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -65542,42 +65579,10 @@
      "raw": "IconButtonProps",
      "print": [
       "/** Represents the properties of the IconButton component. */",
-      "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
+      "type IconButtonProps = Omit<IconButtonCoreProps, 'size'> & IconButtonMods;"
      ]
     },
     "props": [
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Called when component is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": "clickAnalyticsEvent",
-      "name": "clickAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | { [key: string]: any; name: string; }"
-      },
-      "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
      {
       "uid": "tabIndex",
       "name": "tabIndex",
@@ -65613,6 +65618,20 @@
       "required": false
      },
      {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -65623,8 +65642,39 @@
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "clickAnalyticsEvent",
+      "name": "clickAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "An analytics event to send (via AnalyticsContext) when component is clicked.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
       "required": false
      },
      {
@@ -65693,20 +65743,6 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -65801,6 +65837,33 @@
         "error",
         "neutral",
         "secondary"
+       ]
+      },
+      "from": "@epam/uui:IconButtonMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '18'"
+       ],
+       "tags": {
+        "@default": "18"
+       }
+      },
+      "typeValue": {
+       "raw": "'18' | '36' | '24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36"
        ]
       },
       "from": "@epam/uui:IconButtonMods",
@@ -76723,6 +76786,24 @@
       "required": false
      },
      {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon for radio input selected state.",
+        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:RadioInputProps",
+      "required": false
+     },
+     {
       "uid": "label",
       "name": "label",
       "comment": {
@@ -76800,24 +76881,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon for radio input selected state.",
-        " Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:RadioInputProps",
       "required": false
      },
      {
@@ -83285,7 +83348,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'disabled' | 'tertiary'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'brand' | 'tertiary' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -83297,8 +83360,9 @@
         "primary",
         "secondary",
         "white",
-        "disabled",
-        "tertiary"
+        "brand",
+        "tertiary",
+        "disabled"
        ]
       },
       "from": "@epam/uui:TextMods",
@@ -88251,6 +88315,23 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -90968,7 +91049,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'disabled' | 'tertiary'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'tertiary' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -90989,8 +91070,9 @@
         "gray5",
         "gray80",
         "gray90",
-        "disabled",
-        "tertiary"
+        "brand",
+        "tertiary",
+        "disabled"
        ]
       },
       "from": "@epam/promo:TextMods",
@@ -95514,6 +95596,23 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -99289,7 +99388,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'disabled' | 'tertiary'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'tertiary' | 'disabled'"
       },
       "typeValueRef": "@epam/loveship:TextColors",
       "editor": {
@@ -99314,8 +99413,9 @@
         "night400",
         "night800",
         "night900",
-        "disabled",
-        "tertiary"
+        "brand",
+        "tertiary",
+        "disabled"
        ]
       },
       "from": "@epam/loveship:TextMods",
