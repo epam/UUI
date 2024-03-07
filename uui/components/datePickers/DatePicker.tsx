@@ -75,11 +75,13 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const onBodyValueChange = (newValue: DatePickerBodyValue<string>) => {
-        setState({
+        setState((prev) => ({
+            ...prev,
             month: getNewMonth(newValue.month),
             view: newValue.view,
-            isOpen: value === newValue.selectedDate,
-        });
+            // isOpen: value === newValue.selectedDate,
+            // TODO: improve this. when the same date is clicked it should close body
+        }));
 
         onValueChange(newValue.selectedDate);
     };
