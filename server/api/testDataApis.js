@@ -206,4 +206,9 @@ router.post('/offices', async (req, res) => {
     res.json(result);
 });
 
+router.post('/todos', async (req, res) => {
+    const data = await helpers.getData('todos');
+    res.json(data);
+});
+
 module.exports = router;
