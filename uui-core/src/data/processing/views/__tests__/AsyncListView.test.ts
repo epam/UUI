@@ -1148,7 +1148,7 @@ describe('AsyncListView', () => {
 
                 const { dataSource: locationsDS } = getAsyncLocationsDS({
                     cascadeSelection: false,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                 });
 
                 const hookResult = renderHook(
@@ -1189,7 +1189,7 @@ describe('AsyncListView', () => {
 
                 const { dataSource: locationsDS } = getAsyncLocationsDS({
                     cascadeSelection: false,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                     rowOptions: {
                         checkbox: {
                             isVisible: true,
@@ -1413,7 +1413,7 @@ describe('AsyncListView', () => {
 
                 const { dataSource: locationsDS } = getAsyncLocationsDS({
                     cascadeSelection,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                 });
 
                 const hookResult = renderHook(
@@ -1470,7 +1470,7 @@ describe('AsyncListView', () => {
 
                 const { dataSource: locationsDS } = getAsyncLocationsDS({
                     cascadeSelection,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                     rowOptions: {
                         checkbox: {
                             isVisible: true,
@@ -1664,7 +1664,7 @@ describe('AsyncListView', () => {
 
                 const { dataSource: locationsDS } = getAsyncLocationsDS({
                     cascadeSelection: 'implicit',
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                 });
 
                 const hookResult = renderHook(
@@ -1710,7 +1710,7 @@ describe('AsyncListView', () => {
 
                 const { dataSource: locationsDS } = getAsyncLocationsDS({
                     cascadeSelection: 'implicit',
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                     rowOptions: {
                         checkbox: {
                             isVisible: true,

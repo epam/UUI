@@ -36,7 +36,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
 
     const pickerProps: PickerProps<TItem, TId> = {
         ...props,
-        showOnlySelected: pickerListState.showSelected,
+        showSelectedOnly: pickerListState.showSelected,
         value: selection,
         onValueChange: setSelection,
     } as PickerProps<TItem, TId>;

@@ -938,7 +938,7 @@ describe('ArrayListView', () => {
 
                 const locationsDS = getArrayLocationsDS({
                     cascadeSelection: false,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                 });
 
                 const hookResult = renderHook(
@@ -979,7 +979,7 @@ describe('ArrayListView', () => {
 
                 const locationsDS = getArrayLocationsDS({
                     cascadeSelection: false,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                     rowOptions: {
                         checkbox: {
                             isVisible: true,
@@ -1166,7 +1166,7 @@ describe('ArrayListView', () => {
 
                 const locationsDS = getArrayLocationsDS({
                     cascadeSelection,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                 });
 
                 const hookResult = renderHook(
@@ -1222,7 +1222,7 @@ describe('ArrayListView', () => {
 
                 const locationsDS = getArrayLocationsDS({
                     cascadeSelection,
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                     rowOptions: {
                         checkbox: {
                             isVisible: true,
@@ -1386,7 +1386,7 @@ describe('ArrayListView', () => {
 
                 const locationsDS = getArrayLocationsDS({
                     cascadeSelection: 'implicit',
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                 });
 
                 const hookResult = renderHook(
@@ -1432,7 +1432,7 @@ describe('ArrayListView', () => {
 
                 const locationsDS = getArrayLocationsDS({
                     cascadeSelection: 'implicit',
-                    showOnlySelected: true,
+                    showSelectedOnly: true,
                     rowOptions: {
                         checkbox: {
                             isVisible: true,

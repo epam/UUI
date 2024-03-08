@@ -47,9 +47,9 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
-    const showOnlySelected = !shouldShowBody() || pickerInputState.showSelected;
+    const showSelectedOnly = !shouldShowBody() || pickerInputState.showSelected;
 
-    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showOnlySelected }, pickerInputState);
+    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showSelectedOnly }, pickerInputState);
     const {
         context,
         view,

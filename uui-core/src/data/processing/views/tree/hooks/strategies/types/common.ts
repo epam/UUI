@@ -15,7 +15,7 @@ export interface CommonDataSourceConfig<TItem, TId, TFilter = any> {
 
     cascadeSelection?: CascadeSelection;
     selectAll?: boolean;
-    showOnlySelected?: boolean;
+    showSelectedOnly?: boolean;
 }
 
 export interface TreeLoadingState {

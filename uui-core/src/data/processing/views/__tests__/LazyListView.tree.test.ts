@@ -602,7 +602,7 @@ describe('LazyListView', () => {
 
             const { dataSource: locationsDS } = getLazyLocationsDS({
                 cascadeSelection: false,
-                showOnlySelected: true,
+                showSelectedOnly: true,
             });
 
             const hookResult = renderHook(
@@ -643,7 +643,7 @@ describe('LazyListView', () => {
 
             const { dataSource: locationsDS } = getLazyLocationsDS({
                 cascadeSelection: false,
-                showOnlySelected: true,
+                showSelectedOnly: true,
                 rowOptions: {
                     checkbox: {
                         isVisible: true,
@@ -717,7 +717,7 @@ describe('LazyListView', () => {
 
             const { dataSource: locationsDS } = getLazyLocationsDS({
                 cascadeSelection: true,
-                showOnlySelected: true,
+                showSelectedOnly: true,
             });
 
             const hookResult = renderHook(
@@ -758,7 +758,7 @@ describe('LazyListView', () => {
 
             const { dataSource: locationsDS } = getLazyLocationsDS({
                 cascadeSelection: true,
-                showOnlySelected: true,
+                showSelectedOnly: true,
                 rowOptions: {
                     checkbox: {
                         isVisible: true,
@@ -1061,7 +1061,7 @@ describe('LazyListView', () => {
 
             const { dataSource: locationsDS } = getLazyLocationsDS({
                 cascadeSelection: 'implicit',
-                showOnlySelected: true,
+                showSelectedOnly: true,
             });
 
             const hookResult = renderHook(
@@ -1102,7 +1102,7 @@ describe('LazyListView', () => {
 
             const { dataSource: locationsDS } = getLazyLocationsDS({
                 cascadeSelection: 'implicit',
-                showOnlySelected: true,
+                showSelectedOnly: true,
                 rowOptions: {
                     checkbox: {
                         isVisible: true,

@@ -9,7 +9,7 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     filter?: TFilter;
     forceReload?: boolean;
     backgroundReload?: boolean;
-    showOnlySelected?: boolean;
+    showSelectedOnly?: boolean;
 }
 
 export function useLazyFetchingAdvisor<TId, TFilter = any>({
@@ -17,7 +17,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
     filter,
     forceReload,
     backgroundReload,
-    showOnlySelected,
+    showSelectedOnly,
 }: UseLazyFetchingAdvisorProps<TId, TFilter>) {
     const areMoreRowsNeeded = useCallback((
         prevValue?: DataSourceState<TFilter, TId>,
@@ -31,7 +31,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
 
     const prevFilter = useSimplePrevious(filter);
     const prevDataSourceState = useSimplePrevious(dataSourceState);
-    const prevShowOnlySelected = useSimplePrevious(showOnlySelected);
+    const prevShowSelectedOnly = useSimplePrevious(showSelectedOnly);
 
     const isFoldingChanged = !prevDataSourceState || dataSourceState.folded !== prevDataSourceState.folded;
 
@@ -39,7 +39,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
         () => !prevDataSourceState
             || !isEqual(prevFilter, filter)
             || isQueryChanged(prevDataSourceState, dataSourceState)
-            || (prevShowOnlySelected !== showOnlySelected && !showOnlySelected)
+            || (prevShowSelectedOnly !== showSelectedOnly && !showSelectedOnly)
             || forceReload,
         [dataSourceState, filter, forceReload],
     );

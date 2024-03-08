@@ -86,7 +86,7 @@ describe('LazyListView - old tests', () => {
         it('should return loading row if item is fetching by dataSource', async () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: { checked: [11], ...initialValue }, onValueChange: () => {}, props: { showOnlySelected: true } } },
+                { initialProps: { value: { checked: [11], ...initialValue }, onValueChange: () => {}, props: { showSelectedOnly: true } } },
             );
 
             await waitFor(async () => {

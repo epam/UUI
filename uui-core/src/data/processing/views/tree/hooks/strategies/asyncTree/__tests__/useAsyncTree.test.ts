@@ -63,7 +63,7 @@ describe('useAsyncTree', () => {
             isFoldedByDefault: undefined,
             cascadeSelection: undefined,
             selectAll: undefined,
-            showOnlySelected: undefined,
+            showSelectedOnly: undefined,
 
             isFetching: false,
             isLoading: false,
@@ -81,7 +81,7 @@ describe('useAsyncTree', () => {
         const cascadeSelection = 'explicit';
         const isFoldedByDefault = () => true;
         const selectAll = true;
-        const showOnlySelected = true;
+        const showSelectedOnly = true;
 
         const hookResult = renderHook(
             (props) => useAsyncTree({
@@ -93,7 +93,7 @@ describe('useAsyncTree', () => {
                 getRowOptions,
                 cascadeSelection,
                 isFoldedByDefault,
-                showOnlySelected,
+                showSelectedOnly,
                 selectAll,
                 dataSourceState,
                 setDataSourceState,
@@ -114,7 +114,7 @@ describe('useAsyncTree', () => {
             getRowOptions,
             isFoldedByDefault,
             cascadeSelection,
-            showOnlySelected,
+            showSelectedOnly,
             selectAll,
 
             isFetching: false,

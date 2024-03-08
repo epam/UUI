@@ -30,7 +30,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         setDataSourceState,
         isFoldedByDefault,
         cascadeSelection,
-        showOnlySelected,
+        showSelectedOnly,
         selectAll,
     } = props;
 
@@ -70,7 +70,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
 
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
-        patchItems: showOnlySelected ? null : restProps.patchItems,
+        patchItems: showSelectedOnly ? null : restProps.patchItems,
         isDeletedProp: restProps.isDeletedProp,
         getPosition: restProps.getPosition,
     });
@@ -86,7 +86,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
     }, [tree.visible]);
 
     return {
-        tree: showOnlySelected ? tree.selectedOnly : tree.visible,
+        tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,
         totalCount,
         rowOptions,
@@ -98,7 +98,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         isFoldedByDefault,
         reload,
         cascadeSelection,
-        showOnlySelected,
+        showSelectedOnly,
         selectAll,
     };
 }
