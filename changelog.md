@@ -9,10 +9,11 @@
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
-    * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
+    * Fixed returning checked = [] if emptyValue is not passed to PickerInput.(!!!need to revert!!!)
     * Fixed partially selected with predefined selected value.
     * Fixed fetching missing parents for selected element in PickerInput.
-    * Fixed focus reset after clicking outside.
+* [PickerInput]: fixed 'unknown records' removing
+* [PickerInput]: Fixed focus reset after clicking outside
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
