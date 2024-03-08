@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cx from 'classnames';
 import { Person } from '@epam/uui-docs';
 import { FlexCell } from '@epam/uui-components';
-import { DataRowOptions, LazyDataSourceApi, useTableState, useTree, useDataRows, useCascadeSelectionService } from '@epam/uui-core';
+import { DataRowOptions, LazyDataSourceApi, useTableState, useLazyDataSource } from '@epam/uui-core';
 import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/promo';
 import { svc } from '../../services';
 import { getFilters } from './filters';
@@ -54,41 +54,25 @@ export function DemoTablePaged() {
         },
     };
 
-    const { tree, reload, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree(
-        {
-            type: 'lazy',
-            dataSourceState: tableState,
-            setDataSourceState: setTableState,
-            api,
-            rowOptions,
-            getId: ({ id }) => id,
-            isFoldedByDefault: () => true,
-            backgroundReload: true,
-        },
-        [],
-    );
+    const dataSource = useLazyDataSource({
+        api,
+        rowOptions,
+        getId: ({ id }) => id,
+        isFoldedByDefault: () => true,
+        backgroundReload: true, 
+    }, []);
 
-    const cascadeSelectionService = useCascadeSelectionService({
-        tree: selectionTree,
-        cascadeSelection: restProps.cascadeSelection,
-        getRowOptions: restProps.getRowOptions,
-        rowOptions: restProps.rowOptions,
-        getItemStatus: restProps.getItemStatus,
-        loadMissingRecordsOnCheck,
-    });
+    const view = dataSource.useView(tableState, setTableState, {});
 
-    const { rows, listProps, getById } = useDataRows({
-        tree, ...restProps, ...cascadeSelectionService,
-    });
+    const panelInfo = tableState.selectedId && (view.getById(tableState.selectedId, 0).value);
 
-    const panelInfo = tableState.selectedId && (getById(tableState.selectedId, 0).value);
-
+    const listProps = view.getListProps();
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>
             <div className={ cx(css.wrapper) }>
                 <DataTable
                     headerTextCase="upper"
-                    rows={ rows }
+                    getRows={ view.getVisibleRows }
                     columns={ personColumns }
                     filters={ filters }
                     showColumnsConfig
@@ -115,7 +99,7 @@ export function DemoTablePaged() {
                 data={ panelInfo }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
-                onSave={ async () => { reload(); } }
+                onSave={ async () => { view.reload(); } }
             />
         </div>
     );
