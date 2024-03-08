@@ -220,7 +220,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOption
      */
     backgroundReload?: boolean;
 
-    showOnlySelected?: boolean;
+    showSelectedOnly?: boolean;
 }
 
 export type IDataSourceViewConfig = {

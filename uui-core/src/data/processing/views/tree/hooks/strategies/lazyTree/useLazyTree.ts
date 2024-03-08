@@ -16,7 +16,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { flattenSearchResults, ...restProps };
     const {
-        filter, backgroundReload, showOnlySelected,
+        filter, backgroundReload, showSelectedOnly,
         isFoldedByDefault, getId, getParentId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions, selectAll, fetchStrategy,
         getChildCount, itemsStatusMap, complexIds, patchItems, isDeletedProp, getPosition,
@@ -81,11 +81,11 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         filter,
         forceReload: isForceReload,
         backgroundReload,
-        showOnlySelected,
+        showSelectedOnly,
     });
 
     useEffect(() => {
-        if (showOnlySelected && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
+        if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
             itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState));
 
             loadMissing({
@@ -103,10 +103,10 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [showOnlySelected, dataSourceState.checked, dataSourceState.selectedId]);
+    }, [showSelectedOnly, dataSourceState.checked, dataSourceState.selectedId]);
 
     useEffect(() => {
-        if (showOnlySelected) {
+        if (showSelectedOnly) {
             return;
         }
 
@@ -142,7 +142,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 });
         }
     }, [
-        showOnlySelected,
+        showSelectedOnly,
         shouldFetch,
         shouldLoad,
         shouldRefetch,
@@ -156,7 +156,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
-        patchItems: showOnlySelected ? null : patchItems,
+        patchItems: showSelectedOnly ? null : patchItems,
         isDeletedProp,
         getPosition,
     });
@@ -172,7 +172,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     }, [tree.visible]);
 
     return {
-        tree: showOnlySelected ? tree.selectedOnly : tree.visible,
+        tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,
         totalCount,
         dataSourceState,
@@ -188,7 +188,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isLoading,
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
         loadMissingRecordsOnCheck,
-        showOnlySelected,
+        showSelectedOnly,
         selectAll,
     };
 }

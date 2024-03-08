@@ -19,7 +19,7 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     dataSourceState?: DataSourceState<TFilter, TId>;
     forceReload?: boolean;
-    showOnlySelected?: boolean;
+    showSelectedOnly?: boolean;
     itemsStatusMap?: IMap<TId, RecordStatus>;
     complexIds?: boolean;
     getId: (item: TItem) => TId;
@@ -29,7 +29,7 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
 
 export function useLoadData<TItem, TId, TFilter = any>(
     {
-        tree, api, dataSourceState, showOnlySelected, itemsStatusMap, isLoaded: isPrevouslyLoaded,
+        tree, api, dataSourceState, showSelectedOnly, itemsStatusMap, isLoaded: isPrevouslyLoaded,
         complexIds, getId, onForceReloadComplete, forceReload,
     }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
@@ -90,7 +90,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
     const selectedAndChecked = getSelectedAndChecked(dataSourceState);
-    const shouldLoad = (!isFetching && !isLoaded && ((showOnlySelected && selectedAndChecked.length) || !showOnlySelected)) || forceReload;
+    const shouldLoad = (!isFetching && !isLoaded && ((showSelectedOnly && selectedAndChecked.length) || !showSelectedOnly)) || forceReload;
 
     if (!isLoaded) {
         const checked = getSelectedAndChecked(dataSourceState);

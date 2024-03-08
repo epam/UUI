@@ -71,7 +71,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
 
     const { dataSourceState, visibleIds } = pickerListState;
 
-    const pickerProps = { ...props, showOnlySelected: pickerListState.showSelected };
+    const pickerProps = { ...props, showSelectedOnly: pickerListState.showSelected };
     const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(pickerProps, pickerListState);
     const {
         view,
@@ -93,7 +93,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         ...(props.cascadeSelection ? { cascadeSelection: props.cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         backgroundReload: true,
-        showOnlySelected: true,
+        showSelectedOnly: true,
     }, [props.dataSource]);
 
     const getEntityNameForToggler = () => props.entityPluralName || getPluralName();

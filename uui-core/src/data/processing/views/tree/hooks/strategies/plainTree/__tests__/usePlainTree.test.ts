@@ -51,7 +51,7 @@ describe('usePlainTree', () => {
             isFoldedByDefault: undefined,
             cascadeSelection: undefined,
             selectAll: undefined,
-            showOnlySelected: undefined,
+            showSelectedOnly: undefined,
         }));
 
         expect(tree.tree instanceof TreeStructure).toBeTruthy();
@@ -66,7 +66,7 @@ describe('usePlainTree', () => {
         const cascadeSelection = 'explicit';
         const isFoldedByDefault = () => true;
         const selectAll = true;
-        const showOnlySelected = true;
+        const showSelectedOnly = true;
 
         const hookResult = renderHook(
             (props) => usePlainTree({
@@ -78,7 +78,7 @@ describe('usePlainTree', () => {
                 getRowOptions,
                 cascadeSelection,
                 isFoldedByDefault,
-                showOnlySelected,
+                showSelectedOnly,
                 selectAll,
                 dataSourceState,
                 setDataSourceState,
@@ -99,7 +99,7 @@ describe('usePlainTree', () => {
             getRowOptions,
             isFoldedByDefault,
             cascadeSelection,
-            showOnlySelected,
+            showSelectedOnly,
             selectAll,
         }));
 

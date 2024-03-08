@@ -63,7 +63,7 @@ describe('useLazyTree', () => {
             isFoldedByDefault: undefined,
             cascadeSelection: undefined,
             selectAll: undefined,
-            showOnlySelected: undefined,
+            showSelectedOnly: undefined,
 
             isFetching: false,
             isLoading: false,
@@ -83,7 +83,7 @@ describe('useLazyTree', () => {
         const isFoldedByDefault = () => true;
         const getChildCount = ({ childCount }) => childCount;
         const selectAll = true;
-        const showOnlySelected = true;
+        const showSelectedOnly = true;
 
         const hookResult = renderHook(
             (props) => useLazyTree({
@@ -95,7 +95,7 @@ describe('useLazyTree', () => {
                 getRowOptions,
                 cascadeSelection,
                 isFoldedByDefault,
-                showOnlySelected,
+                showSelectedOnly,
                 getChildCount,
                 selectAll,
                 dataSourceState,
@@ -117,7 +117,7 @@ describe('useLazyTree', () => {
             getRowOptions,
             isFoldedByDefault,
             cascadeSelection,
-            showOnlySelected,
+            showSelectedOnly,
             selectAll,
 
             isFetching: false,

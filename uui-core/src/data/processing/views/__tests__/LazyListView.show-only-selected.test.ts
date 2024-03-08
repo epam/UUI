@@ -24,9 +24,9 @@ describe('LazyListView - show only selected', () => {
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
-    it('should load only checked items if showOnlySelected = true', async () => {
+    it('should load only checked items if showSelectedOnly = true', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
         });
 
         currentValue.checked = ['BJ', 'c-AF', 'DZ'];
@@ -52,9 +52,9 @@ describe('LazyListView - show only selected', () => {
         expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ'] }, undefined);
     });
 
-    it('should load only selected item if showOnlySelected = true', async () => {
+    it('should load only selected item if showSelectedOnly = true', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
         });
 
         currentValue.selectedId = 'c-EU';
@@ -80,9 +80,9 @@ describe('LazyListView - show only selected', () => {
         expect(apiMock).toBeCalledWith({ ids: ['c-EU'] }, undefined);
     });
 
-    it('should load checked and selected items if showOnlySelected = true', async () => {
+    it('should load checked and selected items if showSelectedOnly = true', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
         });
 
         currentValue.checked = ['BJ', 'c-AF', 'DZ'];
@@ -109,9 +109,9 @@ describe('LazyListView - show only selected', () => {
         expect(apiMock).toBeCalledWith({ ids: ['BJ', 'c-AF', 'DZ', 'c-EU'] }, undefined);
     });
 
-    it('should load checked and selected items and their parents if showOnlySelected = false', async () => {
+    it('should load checked and selected items and their parents if showSelectedOnly = false', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: false,
+            showSelectedOnly: false,
         });
 
         currentValue.checked = ['BJ', '2392308'];
@@ -159,7 +159,7 @@ describe('LazyListView - show only selected', () => {
 
     it('should show only selected rows in order of selection', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: false,
+            showSelectedOnly: false,
         });
 
         currentValue.checked = ['BJ', '2392308', 'c-AF'];
@@ -187,7 +187,7 @@ describe('LazyListView - show only selected', () => {
             { id: 'c-EU' },
         ]);
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showOnlySelected: true } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showSelectedOnly: true } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -199,9 +199,9 @@ describe('LazyListView - show only selected', () => {
         });
     });
 
-    it('should show only selected rows if on init showOnlySelected = true', async () => {
+    it('should show only selected rows if on init showSelectedOnly = true', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
         });
 
         currentValue.checked = ['BJ', '2392308', 'c-AF'];
@@ -231,9 +231,9 @@ describe('LazyListView - show only selected', () => {
         ]);
     });
 
-    it('should remove items from showOnlySelected rows on uncheck with cascadeSelection = explicit', async () => {
+    it('should remove items from showSelectedOnly rows on uncheck with cascadeSelection = explicit', async () => {
         const { dataSource } = getLazyLocationsDS({
-            showOnlySelected: false,
+            showSelectedOnly: false,
             cascadeSelection: 'explicit',
             rowOptions: { checkbox: { isVisible: true } },
         });
@@ -310,7 +310,7 @@ describe('LazyListView - show only selected', () => {
         );
 
         currentValue.visibleCount = 5;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showOnlySelected: true } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showSelectedOnly: true } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -330,7 +330,7 @@ describe('LazyListView - show only selected', () => {
             checkedRowDZ.onCheck?.(checkedRowDZ);
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showOnlySelected: true } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showSelectedOnly: true } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -369,9 +369,9 @@ describe('LazyListView - show only selected', () => {
         );
     });
 
-    it('should not clear loading checked items if showOnlySelected = true', async () => {
+    it('should not clear loading checked items if showSelectedOnly = true', async () => {
         const { dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
             rowOptions: { checkbox: { isVisible: true } },
         }, 0);
 
@@ -402,9 +402,9 @@ describe('LazyListView - show only selected', () => {
         );
     });
 
-    it('should clear loaded checked items if showOnlySelected = true', async () => {
+    it('should clear loaded checked items if showSelectedOnly = true', async () => {
         const { apiMock, dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
             rowOptions: { checkbox: { isVisible: true } },
         }, 0);
 
@@ -472,9 +472,9 @@ describe('LazyListView - show only selected', () => {
         });
     });
 
-    it('should load tree after clearing checked values with showOnlySelected = true', async () => {
+    it('should load tree after clearing checked values with showSelectedOnly = true', async () => {
         const { dataSource } = getLazyLocationsDS({
-            showOnlySelected: true,
+            showSelectedOnly: true,
             rowOptions: { checkbox: { isVisible: true } },
         }, 0);
 
@@ -524,7 +524,7 @@ describe('LazyListView - show only selected', () => {
             );
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showOnlySelected: false } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showSelectedOnly: false } });
 
         await waitFor(() => {
             view = hookResult.result.current;

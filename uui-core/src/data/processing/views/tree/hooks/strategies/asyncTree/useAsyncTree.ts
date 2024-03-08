@@ -26,7 +26,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         setDataSourceState,
         isFoldedByDefault,
         cascadeSelection,
-        showOnlySelected,
+        showSelectedOnly,
         patchItems,
         isDeletedProp,
         getPosition,
@@ -69,7 +69,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         },
         forceReload: isForceReload,
         onForceReloadComplete: () => setIsForceReload(false),
-        showOnlySelected,
+        showSelectedOnly,
         isLoaded,
         itemsStatusMap,
     }, [...deps, isForceReload, incommingTree]);
@@ -118,7 +118,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
-        patchItems: showOnlySelected ? null : patchItems,
+        patchItems: showSelectedOnly ? null : patchItems,
         isDeletedProp,
         getPosition,
     });
@@ -130,7 +130,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     }, [tree.visible]);
 
     return {
-        tree: showOnlySelected ? tree.selectedOnly : tree.visible,
+        tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
         selectionTree: tree.full,
         reload,
         totalCount,
@@ -143,7 +143,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         setDataSourceState,
         isFoldedByDefault,
         cascadeSelection,
-        showOnlySelected,
+        showSelectedOnly,
         selectAll,
 
         isLoading,

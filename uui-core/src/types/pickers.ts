@@ -110,15 +110,15 @@ export type PickerFooterProps<TItem, TId> = {
     disableClear?: boolean;
 };
 
-export interface PickerShowOnlySelected {
-    showOnlySelected?: boolean;
+export interface PickerShowSelectedOnly {
+    showSelectedOnly?: boolean;
 }
 
 export type PickerBaseProps<TItem, TId> =
 PickerBaseOptions<TItem, TId>
 & PickerBindingProps<TItem, TId>
 & IAnalyticableOnChange<any>
-& PickerShowOnlySelected;
+& PickerShowSelectedOnly;
 
 /**
  * Component can be used as Toggler control for pickers.
