@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
-import { DataSourceState } from '../../../../../types';
+import { SetDataSourceState } from '../../../../../types';
 
 export interface UseFocusServiceProps<TId, TFilter = any> {
-    dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
+    setDataSourceState?: SetDataSourceState<TFilter, TId>;
 }
 
 export interface FocusService {
@@ -11,12 +10,11 @@ export interface FocusService {
 }
 
 export function useFocusService<TId, TFilter = any>({
-    dataSourceState,
     setDataSourceState,
 }: UseFocusServiceProps<TId, TFilter>): FocusService {
     const handleOnFocus = useCallback((focusIndex: number) => {
-        setDataSourceState({ ...dataSourceState, focusedIndex: focusIndex });
-    }, [setDataSourceState, dataSourceState]);
+        setDataSourceState((dataSourceState) => ({ ...dataSourceState, focusedIndex: focusIndex }));
+    }, [setDataSourceState]);
 
     return { handleOnFocus };
 }

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceState } from '../../../../../types';
+import { DataRowProps, DataSourceState, SetDataSourceState } from '../../../../../types';
 import { buildParentsLookup, idToKey } from './buildParentsLookup';
 import { ITree } from '../../tree';
 
@@ -7,7 +7,7 @@ export interface UseSelectingServiceProps<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     getParentId?: (item: TItem) => TId;
     dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState?: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>;
+    setDataSourceState: SetDataSourceState<TFilter, TId>;
 }
 
 export interface SelectingService<TItem, TId> {

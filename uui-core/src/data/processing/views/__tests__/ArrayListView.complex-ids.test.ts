@@ -49,7 +49,7 @@ describe('ArrayListView - can work with id like [string, number]', () => {
         view: IDataSourceView<TestItem, TestItemId, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, TestItemId>>[],
     ) {
-        const viewRows = view.getRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -82,7 +82,7 @@ describe('ArrayListView - can work with id like [string, number]', () => {
         expect(view.getListProps().rowsCount).toEqual(1);
 
         // Unfold a row
-        const rows = view.getRows();
+        const rows = view.getVisibleRows();
         await act(() => {
             rows[0].onFold?.(rows[0]);
         });
@@ -129,7 +129,7 @@ describe('ArrayListView - can work with id like [string, number]', () => {
         let view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toEqual(3);
 
-        let row = view.getRows()[2]; // -> all children checked = parent checked
+        let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
         await act(() => {
             row.onCheck?.(row);
         });
@@ -147,7 +147,7 @@ describe('ArrayListView - can work with id like [string, number]', () => {
         });
         expect(view.getListProps().rowsCount).toEqual(3);
 
-        row = view.getRows()[0];
+        row = view.getVisibleRows()[0];
 
         await act(() => {
             row.onCheck?.(row);

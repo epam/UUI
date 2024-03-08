@@ -20,7 +20,7 @@ describe('LazyListView - show only selected', () => {
         view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
         rows: Partial<DataRowProps<LocationItem, string>>[],
     ) {
-        const viewRows = view.getRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
@@ -256,7 +256,7 @@ describe('LazyListView - show only selected', () => {
         });
 
         let view = hookResult.result.current;
-        let rows = view.getRows();
+        let rows = view.getVisibleRows();
         const rowAF = rows[0];
         await act(() => {
             rowAF.onCheck?.(rowAF);
@@ -323,7 +323,7 @@ describe('LazyListView - show only selected', () => {
             ]);
         });
 
-        rows = view.getRows();
+        rows = view.getVisibleRows();
         const checkedRowDZ = rows[1];
 
         await act(() => {

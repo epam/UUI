@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { IDataSourceView, DataSourceState } from '../../types/dataSources';
+import { IDataSourceView, DataSourceState, SetDataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListViewProps, useCascadeSelectionService, useDataRows } from './views';
 import { ITree, useTree } from './views/tree';
@@ -57,7 +57,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     useView(
         value: DataSourceState<TFilter, TId>,
-        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
+        onValueChange: SetDataSourceState<TFilter, TId>,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
