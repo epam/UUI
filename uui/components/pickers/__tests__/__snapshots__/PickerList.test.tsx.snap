@@ -5,7 +5,9 @@ exports[`PickerList should open body 1`] = `
   style="overflow: hidden;"
 >
   <div>
-    <div>
+    <div
+      class="uui-picker-list root"
+    >
       <div
         aria-posinset="1"
         aria-selected="false"
@@ -767,7 +769,9 @@ exports[`PickerList should open body 1`] = `
 exports[`PickerList should render with maximum props 1`] = `
 <body>
   <div>
-    <div>
+    <div
+      class="uui-picker-list root"
+    >
       <div
         aria-checked="true"
         aria-posinset="2"
@@ -842,7 +846,9 @@ exports[`PickerList should render with maximum props 1`] = `
 exports[`PickerList should render with minimum props 1`] = `
 <body>
   <div>
-    <div>
+    <div
+      class="uui-picker-list root"
+    >
       <div
         aria-posinset="1"
         aria-selected="false"
