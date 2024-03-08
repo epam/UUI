@@ -1,11 +1,15 @@
 # 5.x.x - xx.xx.2024
 **What's New**
+* Scaling icons
+* Added possibility to pin columns to the right side of the table via columns config dialog
+* [DataTable]: added Expand All/Collapse All
 * [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
 * [RTE]: added `onFocus` prop
 * [IconButton]: added property size?: '18' | '24' | '30' | '36';
-  
+
+
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
