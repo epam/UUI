@@ -171,11 +171,6 @@ export default function EditableTableExample() {
         [],
     );
 
-    const getPosition = useCallback(
-        (item: TodoTask) => newItems.get(item.id) ? 'bottom' : 'initial',
-        [newItems],
-    );
-
     // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
     // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
     const view = dataSource.useView(tableState, setTableState, {
@@ -183,7 +178,7 @@ export default function EditableTableExample() {
             ...lens.prop('items').getItem(item.id).default(item).toProps(),
         }),
         patchItems: value.items,
-        getPosition,
+        getPosition: (item: TodoTask) => newItems.get(item.id) ? 'bottom' : 'initial',
         isDeletedProp: 'isDeleted',
     });
 

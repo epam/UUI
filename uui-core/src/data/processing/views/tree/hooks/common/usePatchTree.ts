@@ -11,5 +11,5 @@ export function usePatchTree<TItem, TId>(
 ) {
     return useMemo(() => {
         return tree.patchItems({ patchItems, isDeletedProp, getPosition });
-    }, [tree, patchItems, isDeletedProp, getPosition]);
+    }, [tree, patchItems, isDeletedProp]);
 }
