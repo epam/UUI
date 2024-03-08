@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useTree, useDataRows, useCascadeSelectionService } from '@epam/uui-core';
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useLazyDataSource } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text, SearchInput } from '@epam/loveship';
@@ -74,31 +74,16 @@ export function DbDemoImpl() {
     dbRef.jobTitlesLoader.load({});
     dbRef.departmentsLoader.load({});
 
-    const { tree, selectionTree, reload, loadMissingRecordsOnCheck, ...restProps } = useTree(
-        {
-            type: 'lazy',
-            dataSourceState: value,
-            setDataSourceState: onValueChange,
-            api,
-            getId: ({ id }) => id,
-            getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonEmploymentGroup' ? item.count : null),
-            getRowOptions: () => ({ checkbox: { isVisible: true } }),
-            isFoldedByDefault: () => false,
-            backgroundReload: true,
-        },
-        [],
-    );
+    const dataSource = useLazyDataSource({
+        api,
+        getId: ({ id }) => id,
+        getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonEmploymentGroup' ? item.count : null),
+        getRowOptions: () => ({ checkbox: { isVisible: true } }),
+        isFoldedByDefault: () => false,
+        backgroundReload: true,
+    }, []);
 
-    const cascadeSelectionService = useCascadeSelectionService({
-        tree: selectionTree,
-        cascadeSelection: restProps.cascadeSelection,
-        getRowOptions: restProps.getRowOptions,
-        rowOptions: restProps.rowOptions,
-        getItemStatus: restProps.getItemStatus,
-        loadMissingRecordsOnCheck,
-    });
-
-    const { rows, listProps } = useDataRows({ tree, ...restProps, ...cascadeSelectionService });
+    const view = dataSource.useView(value, onValueChange, {});
 
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>
@@ -114,10 +99,10 @@ export function DbDemoImpl() {
                     <Button caption="Revert" onClick={ () => dbRef.revert() } size="30" />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Reload" onClick={ () => reload() } size="30" />
+                    <Button caption="Reload" onClick={ () => view.reload() } size="30" />
                 </FlexCell>
             </FlexRow>
-            <PersonsTable { ...lens.toProps() } rows={ rows } listProps={ listProps } />
+            <PersonsTable { ...lens.toProps() } rows={ view.getVisibleRows() } listProps={ view.getListProps() } />
         </div>
     );
 }

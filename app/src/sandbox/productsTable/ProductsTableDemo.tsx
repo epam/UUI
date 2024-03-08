@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
-import { DataSourceState, ItemsMap, Metadata, useCascadeSelectionService, useDataRows, useTree, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { DataSourceState, ItemsMap, Metadata, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -55,27 +55,15 @@ export function ProductsTableDemo() {
         });
     }, [setValue]);
 
-    const { tree, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree({ 
-        type: 'lazy',
+    const dataSource = useLazyDataSource({
         api: svc.api.demo.products,
         patchItems: updatedRows.items,
         getId: (i) => i.ProductID,
         getRowOptions: (product) => ({ ...lens.prop('items').getItem(product.ProductID).default(product).toProps() }),
-        dataSourceState: tableState,
-        setDataSourceState: setTableState,
         backgroundReload: true,
     }, []);
-
-    const cascadeSelectionService = useCascadeSelectionService({
-        tree: selectionTree,
-        cascadeSelection: restProps.cascadeSelection,
-        getRowOptions: restProps.getRowOptions,
-        rowOptions: restProps.rowOptions,
-        getItemStatus: restProps.getItemStatus,
-        loadMissingRecordsOnCheck,
-    });
-
-    const { rows, listProps } = useDataRows({ tree, ...restProps, ...cascadeSelectionService });
+    
+    const view = dataSource.useView(tableState, setTableState, {});
 
     return (
         <Panel cx={ [css.container, css.uuiThemeLoveship] }>
@@ -86,14 +74,14 @@ export function ProductsTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                rows={ rows }
+                getRows={ view.getVisibleRows }
                 columns={ productColumns }
-                value={ restProps.dataSourceState }
+                value={ tableState }
                 onValueChange={ setTableState }
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
-                { ...listProps }
+                { ...view.getListProps() }
 
             />
             {isChanged && (

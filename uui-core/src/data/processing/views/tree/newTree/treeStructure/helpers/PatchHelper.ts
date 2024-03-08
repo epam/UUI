@@ -83,14 +83,15 @@ export class PatchHelper {
         params, ids, item, position,
     }: InsertIntoPositionOptions<TItem, TId>) {
         const itemId = params.getId(item);
-        const currentItemIndex = ids.findIndex((id) => params.getId(item) === id);
         if (position === 'initial') {
+            const currentItemIndex = ids.findIndex((id) => params.getId(item) === id);
             if (currentItemIndex === -1) {
                 return [itemId, ...ids];
             }
             return ids;
         }
 
+        const currentItemIndex = ids.findIndex((id) => params.getId(item) === id);
         const withoutCurrentItem = [...ids.slice(0, currentItemIndex), ...ids.slice(currentItemIndex + 1)];
         if (position === 'top') {
             if (currentItemIndex === -1) {
