@@ -6,9 +6,10 @@ import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 
 import css from './TablesExamples.module.scss';
+import { TApi } from '../../../data';
 
 export default function CitiesTable() {
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi>();
     const [tableState, setTableState] = useState<DataSourceState>({});
 
     const renderMenu = (dropdownProps: DropdownBodyProps): ReactNode => (
