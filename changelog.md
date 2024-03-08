@@ -7,7 +7,7 @@
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
 * [RTE]: added `onFocus` prop
-* [IconButton]: added property size?: '18' | '24' | '30' | '36';
+* [IconButton]: added property `size`;
 
 
 **What's Fixed**
