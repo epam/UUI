@@ -6,6 +6,8 @@ import { Text } from '../typography';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
+import css from './PickerList.module.scss';
+import cx from 'classnames';
 
 export type PickerListProps<TItem, TId> = SizeMod &
 IHasPlaceholder &
@@ -61,7 +63,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     const renderRow = props.renderRow || defaultRenderRow;
 
     return (
-        <div>
+        <div className={ cx('uui-picker-list', css.root) }>
             {!rows.length
                 && (props.noOptionsMessage || (
                     <Text color="secondary" size={ props.size }>
