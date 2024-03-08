@@ -133,7 +133,7 @@ export default function FiltersPanelExample() {
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable
-                getRows={ view.getRows }
+                getRows={ view.getVisibleRows }
                 columns={ personColumns }
                 value={ tableState }
                 onValueChange={ setTableState }

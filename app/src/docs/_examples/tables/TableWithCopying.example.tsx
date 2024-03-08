@@ -140,7 +140,7 @@ export default function ProjectTimeReportDemo() {
             <DataTable
                 headerTextCase="upper"
                 onCopy={ onCopy }
-                getRows={ dataView.getRows }
+                getRows={ dataView.getVisibleRows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }

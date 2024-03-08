@@ -203,7 +203,7 @@ export function IconsDoc() {
 
     const onDataSourceStateChange = (data: any) => setState(data);
     const view = iconsDS.useView(state, onDataSourceStateChange, { getSearchFields: (l) => [l.name] });
-    const items = view.getRows();
+    const items = view.getVisibleRows();
 
     return (
         <div className={ css.container }>

@@ -225,7 +225,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const getRows = () => {
         if (!shouldShowBody()) return [];
 
-        const preparedRows = view.getRows();
+        const preparedRows = view.getVisibleRows();
 
         return preparedRows.map((rowProps) => {
             const newRowProps = { ...rowProps };
