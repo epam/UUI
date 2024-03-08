@@ -1,5 +1,5 @@
 import {
-    BaseListViewProps, DataSourceState, IDataSource, IDataSourceView,
+    BaseListViewProps, DataSourceState, IDataSource, IDataSourceView, SetDataSourceState,
 } from '../../types/dataSources';
 import { ITree } from './views';
 
@@ -13,7 +13,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     abstract useView(
         value: DataSourceState<TFilter, TId>,
-        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
+        onValueChange: SetDataSourceState<TFilter, TId>,
         options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
         deps?: any[],
     ): IDataSourceView<TItem, TId, TFilter>;

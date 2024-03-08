@@ -114,7 +114,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         dataSourceState, setDataSourceState, isFoldedByDefault, getId,
     });
 
-    const focusService = useFocusService({ dataSourceState, setDataSourceState });
+    const focusService = useFocusService({ setDataSourceState });
 
     const selectingService = useSelectingService({
         tree,

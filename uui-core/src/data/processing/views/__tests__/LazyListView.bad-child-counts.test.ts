@@ -50,7 +50,7 @@ describe('LazyListView', () => {
     });
 
     function expectViewToLookLike(view: IDataSourceView<TestItem, number, any>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
-        const viewRows = view.getRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);

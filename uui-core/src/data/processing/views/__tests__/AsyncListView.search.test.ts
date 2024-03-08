@@ -7,7 +7,7 @@ describe('AsyncListView - search', () => {
         view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
         rows: Partial<DataRowProps<LocationItem, string>>[],
     ) {
-        const viewRows = view.getRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
     let currentValue: DataSourceState = { visibleCount: 5 };
@@ -114,7 +114,7 @@ describe('AsyncListView - search', () => {
             );
         });
 
-        const rows = view.getRows();
+        const rows = view.getVisibleRows();
         const rowDZ = rows[1];
 
         await act(() => {
@@ -164,7 +164,7 @@ describe('AsyncListView - search', () => {
             );
         });
 
-        const rowTouggourt = view.getRows()[2];
+        const rowTouggourt = view.getVisibleRows()[2];
 
         await act(() => {
             rowTouggourt.onCheck?.(rowTouggourt);
@@ -243,7 +243,7 @@ describe('AsyncListView - search', () => {
             );
         });
 
-        const rows = view.getRows();
+        const rows = view.getVisibleRows();
         const rowDZ = rows[1];
 
         await act(() => {
@@ -281,7 +281,7 @@ describe('AsyncListView - search', () => {
             );
         });
 
-        const rowTouggourt = view.getRows()[2];
+        const rowTouggourt = view.getVisibleRows()[2];
 
         await act(() => {
             rowTouggourt.onCheck?.(rowTouggourt);
@@ -360,7 +360,7 @@ describe('AsyncListView - search', () => {
             );
         });
 
-        const rows = view.getRows();
+        const rows = view.getVisibleRows();
         const rowDZ = rows[1];
 
         await act(() => {

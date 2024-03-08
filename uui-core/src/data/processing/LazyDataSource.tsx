@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree } from './views';
 import { BaseDataSource } from './BaseDataSource';
-import { DataSourceState, IDataSourceView, IMap } from '../../types';
+import { DataSourceState, IDataSourceView, IMap, SetDataSourceState } from '../../types';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { RecordStatus } from './views/tree/types';
 import { newMap } from './views/tree/newTree';
@@ -50,7 +50,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
-        onValueChange: React.Dispatch<React.SetStateAction<TState>>,
+        onValueChange: SetDataSourceState<any, TId>,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {

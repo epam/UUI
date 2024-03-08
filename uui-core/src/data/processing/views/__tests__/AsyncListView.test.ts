@@ -83,7 +83,7 @@ describe('AsyncListView', () => {
         view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
         rows: Partial<DataRowProps<TestItem, number>>[],
     ) {
-        const viewRows = view.getRows();
+        const viewRows = view.getVisibleRows();
 
         rows.forEach((r) => {
             if (r.id) {
@@ -184,12 +184,12 @@ describe('AsyncListView', () => {
 
             let view = hookResult.result.current;
 
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
 
             hookResult.rerender({ value: { filter: () => true }, onValueChange: onValueChangeFn, props: { ...viewProps, getFilter } });
             view = hookResult.result.current;
 
-            const newRows = view.getRows();
+            const newRows = view.getVisibleRows();
             expect(isEqual(rows, newRows)).toBeFalsy();
         });
 
@@ -209,10 +209,10 @@ describe('AsyncListView', () => {
             });
 
             const view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
 
             hookResult.rerender({ value: initialValue, onValueChange: onValueChangeFn, props: viewProps });
-            const newRows = view.getRows();
+            const newRows = view.getVisibleRows();
             expect(isEqual(rows, newRows)).toBeTruthy();
         });
 
@@ -238,7 +238,7 @@ describe('AsyncListView', () => {
 
             view = hookResult.result.current;
 
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const focusedRows = rows.filter((row) => row.isFocused);
             expect(focusedRows).toHaveLength(1);
             expect(focusedRows[0].index).toBe(1);
@@ -284,10 +284,10 @@ describe('AsyncListView', () => {
         hookResult.rerender({ value: { ...initialValue, topIndex, visibleCount: 15 }, onValueChange: onValueChangeFn, props: viewProps });
 
         view = hookResult.result.current;
-        const rows = view.getRows();
+        const rows = view.getVisibleRows();
         const rootTestItems = testItems.filter((i) => i.parentId == null).slice(topIndex);
         expect(rows).toMatchObject(rootTestItems.map((i) => ({ id: i.id, value: i })));
-        expect(view.getRows()).toHaveLength(rootTestItems.length);
+        expect(view.getVisibleRows()).toHaveLength(rootTestItems.length);
     });
 
     it('should return all nodes, if isFoldedByDefault is false', async () => {
@@ -312,9 +312,9 @@ describe('AsyncListView', () => {
         });
         const view = hookResult.result.current;
 
-        const rows = view.getRows();
+        const rows = view.getVisibleRows();
         expect(rows).toMatchObject(testItems.map((i) => ({ id: i.id, value: i })));
-        expect(view.getRows()).toHaveLength(testItems.length);
+        expect(view.getVisibleRows()).toHaveLength(testItems.length);
     });
 
     describe('sorting', () => {
@@ -341,7 +341,7 @@ describe('AsyncListView', () => {
             });
 
             view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             expect(rows[0].id).toEqual(2);
             expect(rows[4].id).toEqual(4);
         });
@@ -369,7 +369,7 @@ describe('AsyncListView', () => {
             });
 
             view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             expect(rows[0].id).toEqual(1);
             expect(rows[4].id).toEqual(5);
         });
@@ -426,7 +426,7 @@ describe('AsyncListView', () => {
             });
 
             const countriesView = hookResult.result.current;
-            const rows = countriesView.getRows();
+            const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(2);
@@ -456,7 +456,7 @@ describe('AsyncListView', () => {
             });
 
             const countriesView = hookResult.result.current;
-            const rows = countriesView.getRows();
+            const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(1);
@@ -486,7 +486,7 @@ describe('AsyncListView', () => {
             });
 
             const countriesView = hookResult.result.current;
-            const rows = countriesView.getRows();
+            const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(3);
@@ -516,7 +516,7 @@ describe('AsyncListView', () => {
             });
 
             const countriesView = hookResult.result.current;
-            const rows = countriesView.getRows();
+            const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(3);
@@ -545,7 +545,7 @@ describe('AsyncListView', () => {
             });
 
             const countriesView = hookResult.result.current;
-            const rows = countriesView.getRows();
+            const rows = countriesView.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(0);
@@ -570,7 +570,7 @@ describe('AsyncListView', () => {
             view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
             rows: Partial<DataRowProps<LocationItem, string>>[],
         ) {
-            const viewRows = view.getRows();
+            const viewRows = view.getVisibleRows();
             expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         }
 
@@ -647,7 +647,7 @@ describe('AsyncListView', () => {
                 ],
             );
 
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const rowDZ = rows[1];
 
             await act(() => {
@@ -697,7 +697,7 @@ describe('AsyncListView', () => {
                 );
             });
 
-            const rowTouggourt = view.getRows()[2];
+            const rowTouggourt = view.getVisibleRows()[2];
 
             await act(() => {
                 rowTouggourt.onCheck?.(rowTouggourt);
@@ -770,7 +770,7 @@ describe('AsyncListView', () => {
             });
 
             let view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const rowDZ = rows[1];
 
             await act(() => {
@@ -808,7 +808,7 @@ describe('AsyncListView', () => {
                 );
             });
 
-            const rowTouggourt = view.getRows()[2];
+            const rowTouggourt = view.getVisibleRows()[2];
 
             await act(() => {
                 rowTouggourt.onCheck?.(rowTouggourt);
@@ -880,7 +880,7 @@ describe('AsyncListView', () => {
             });
 
             let view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const rowDZ = rows[1];
 
             await act(() => {
@@ -957,7 +957,7 @@ describe('AsyncListView', () => {
             });
 
             let view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(1);
@@ -976,7 +976,7 @@ describe('AsyncListView', () => {
 
             view = hookResult.result.current;
 
-            const unfoldedRows = view.getRows();
+            const unfoldedRows = view.getVisibleRows();
             const unfoldedRowsIds = unfoldedRows.map((i) => i.id);
             expect(unfoldedRows).toHaveLength(4);
             expect(unfoldedRowsIds).toEqual([
@@ -1005,7 +1005,7 @@ describe('AsyncListView', () => {
             });
 
             const view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(2);
@@ -1040,7 +1040,7 @@ describe('AsyncListView', () => {
             });
 
             const view = hookResult.result.current;
-            const rows = view.getRows();
+            const rows = view.getVisibleRows();
             const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(4);
@@ -1069,7 +1069,7 @@ describe('AsyncListView', () => {
             view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
             rows: Partial<DataRowProps<LocationItem, string>>[],
         ) {
-            const viewRows = view.getRows();
+            const viewRows = view.getVisibleRows();
             expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         }
 
@@ -1797,7 +1797,7 @@ describe('AsyncListView', () => {
             expect(view.getListProps().isReloading).toBeFalsy();
         });
         const view = hookResult.result.current;
-        const row = view.getRows()[5];
+        const row = view.getVisibleRows()[5];
         row.onFold?.(row);
 
         expect(onValueChangeFn).toBeCalledTimes(1);

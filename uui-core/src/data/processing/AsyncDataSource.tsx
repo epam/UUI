@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
-import { DataSourceState, IDataSourceView } from '../../types';
+import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
 import { useCascadeSelectionService, useDataRows, useTree } from './views';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { AsyncListViewProps } from './views/types';
@@ -40,7 +40,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     useView(
         value: DataSourceState<TFilter, TId>,
-        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>,
+        onValueChange: SetDataSourceState<any, TId>,
         options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {

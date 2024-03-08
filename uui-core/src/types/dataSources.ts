@@ -72,7 +72,7 @@ export interface IDataSource<TItem, TId, TFilter> {
     setItem(item: TItem): void;
     useView(
         value: DataSourceState<any, TId>,
-        onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<TFilter, TId>>>,
+        onValueChange: SetDataSourceState<TFilter, TId>,
         options?: any,
         deps?: any[],
     ): IDataSourceView<TItem, TId, TFilter>;
@@ -120,6 +120,10 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
      */
     foldAll?: boolean;
 }
+
+export type SetDataSourceState<TFilter = Record<string, any>, TId = any> = (
+    updateState: (prevState: DataSourceState<TFilter, TId>) => DataSourceState<TFilter, TId>
+) => void;
 
 export const CascadeSelectionTypes = {
     IMPLICIT: 'implicit',
