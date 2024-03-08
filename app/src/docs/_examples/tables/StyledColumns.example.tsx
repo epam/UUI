@@ -84,7 +84,7 @@ export default function StyledColumnsExample() {
         <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
-                getRows={ view.getRows }
+                getRows={ view.getVisibleRows }
                 value={ value }
                 onValueChange={ onValueChange }
                 columns={ productColumns }

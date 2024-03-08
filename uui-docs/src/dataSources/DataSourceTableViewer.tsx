@@ -23,7 +23,7 @@ export function DataSourceTableViewer<TItem, TId>(props: Props<TItem, TId>) {
             <Text fontSize="14" cx={ css.title }>{exampleTitle}</Text>
             <DataTable
                 { ...view.getListProps() }
-                getRows={ view.getRows }
+                getRows={ view.getVisibleRows }
                 value={ value }
                 onValueChange={ onValueChange }
                 columns={ columns }

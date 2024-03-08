@@ -121,7 +121,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
-            getRows: () => rows,
+            getVisibleRows: () => rows,
             getListProps: () => ({ ...listProps, totalCount }),
             selectAll,
             getConfig: () => restProps,

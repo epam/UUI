@@ -100,7 +100,7 @@ export function TableColumnConfigModalTest() {
             <Panel shadow cx={ css.tableContainer }>
                 <DataTable
                     { ...view.getListProps() }
-                    getRows={ view.getRows }
+                    getRows={ view.getVisibleRows }
                     value={ value }
                     onValueChange={ onValueChange }
                     columns={ productColumns }

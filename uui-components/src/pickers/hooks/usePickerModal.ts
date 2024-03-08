@@ -71,7 +71,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         }
     }, [props.initialValue]);
 
-    const getRows = () => view.getRows();
+    const getRows = () => view.getVisibleRows();
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> & Partial<IModal<any>> => {
         const footerProps = picker.getFooterProps();

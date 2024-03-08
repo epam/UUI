@@ -122,7 +122,7 @@ export default function CitiesTable() {
                 // Spread ListProps and provide getRows function from view to DataTable component.
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
-                getRows={ view.getRows }
+                getRows={ view.getVisibleRows }
                 showColumnsConfig={ false }
                 headerTextCase="upper"
                 columns={ citiesColumns }

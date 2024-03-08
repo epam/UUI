@@ -78,7 +78,7 @@ export default function PagedTableWithSelectAll() {
         <Panel background="surface-main" shadow cx={ css.container }>
             <DataTable
                 { ...listProps }
-                getRows={ view.getRows }
+                getRows={ view.getVisibleRows }
                 value={ state }
                 onValueChange={ setState }
                 columns={ columns }

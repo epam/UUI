@@ -205,7 +205,7 @@ export default function EditableTableExample() {
                 {/* Render the data table */}
                 <DataTable
                     { ...view.getListProps() }
-                    getRows={ view.getRows }
+                    getRows={ view.getVisibleRows }
                     value={ tableState }
                     onValueChange={ setTableState }
                     columns={ columns }
