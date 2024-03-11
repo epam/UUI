@@ -7,7 +7,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 import { IHasToolbarButton } from '../../implementation/Toolbars';
 
-const SUPERSCRIPT_TYPE = 'uui-richTextEditor-superscript';
+export const SUPERSCRIPT_TYPE = 'uui-richTextEditor-superscript';
 
 export const superscriptPlugin = () => createSuperscriptPlugin<IHasToolbarButton>({
     type: SUPERSCRIPT_TYPE,

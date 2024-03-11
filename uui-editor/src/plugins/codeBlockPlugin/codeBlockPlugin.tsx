@@ -8,7 +8,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 import { IHasToolbarButton } from '../../implementation/Toolbars';
 
-const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
+export const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
 
 const Code: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
