@@ -133,11 +133,7 @@
         }
     }
 
-    &:global(.uui-disabled) {
-        :global(.uui-input-label) {
-            color: var(--uui-switch-label-disabled);
-        }
-
+    &:global(.uui-readonly), &:global(.uui-disabled) {
         &,
         :global(.uui-switch-toggler),
         :global(.uui-switch-body),
@@ -167,6 +163,12 @@
                 background-color: var(--uui-switch-toggler-bg-disabled);
                 border-color: var(--uui-switch-toggler-border-checked-disabled);
             }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-input-label) {
+            color: var(--uui-switch-label-disabled);
         }
     }
 }
