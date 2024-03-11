@@ -1,6 +1,9 @@
 import { Range, Editor } from 'slate';
-import { getPlugins, useEditorState } from '@udecode/plate-common';
+import {
+    PlatePlugin, createPlateEditor, createPlugins, getPlugins, useEditorState,
+} from '@udecode/plate-common';
 import { EditorValue } from './types';
+import { createPlateUI } from './components';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -79,3 +82,11 @@ export class SelectionUtils {
         return selection.getRangeAt(0);
     }
 }
+
+export const createTempEditor = (plugins: PlatePlugin[]) => {
+    return createPlateEditor({
+        plugins: createPlugins((plugins).flat(), {
+            components: createPlateUI(),
+        }),
+    });
+};

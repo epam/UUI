@@ -1,12 +1,10 @@
 import {
     PlatePlugin,
-    createPlateEditor,
-    createPlugins,
+    Value,
     deserializeHtml,
     parseHtmlDocument,
 } from '@udecode/plate-common';
 import { serializeHtml } from '@udecode/plate-serializer-html';
-import { createPlateUI } from './components';
 import { EditorValue } from './types';
 import { migrateSchema } from './migration';
 import {
@@ -21,11 +19,17 @@ import {
     iframePlugin,
     codeBlockPlugin,
     paragraphPlugin,
+    separatorPlugin,
 } from './plugins';
+import { deserializeMd } from '@udecode/plate-serializer-md';
+import { remarkNodeTypesMap, serialize } from './remark-slate';
+import { createTempEditor } from './helpers';
 
-const workingPlugins = [
+export type SerializerType = 'html' | 'md';
+
+export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
+    ...baseMarksPlugin(),
     paragraphPlugin(),
-    baseMarksPlugin(),
     headerPlugin(),
     superscriptPlugin(),
     listPlugin(),
@@ -37,29 +41,56 @@ const workingPlugins = [
     codeBlockPlugin(),
 ];
 
-export const createTempEditor = (plugins?: PlatePlugin[]) => {
-    return createPlateEditor({
-        plugins: createPlugins((plugins || workingPlugins).flat(), {
-            components: createPlateUI(),
-        }),
-    });
+export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
+    ...baseMarksPlugin(),
+    quotePlugin(),
+    paragraphPlugin(),
+    linkPlugin(),
+    listPlugin(),
+    headerPlugin(),
+    imagePlugin(),
+    separatorPlugin(),
+    codeBlockPlugin(),
+    // underline
+    // strikethrough
+    // superscript
+    // subscript
+    // code blocks
+    // tables
+];
+
+export const createDeserializer = (type: SerializerType = 'html') => {
+    if (type === 'html') {
+        const editor = createTempEditor(htmlSerializationsWorkingPlugins);
+        return (data: string) => {
+            const document = parseHtmlDocument(data);
+            return deserializeHtml(editor, { element: document.body }) as EditorValue;
+        };
+    } else {
+        const editor = createTempEditor(mdSerializationsWorkingPlugins);
+        return (data: string) => {
+            return deserializeMd<Value>(editor, data);
+        };
+    }
 };
 
-export const createDeserializer = () => {
-    const editor = createTempEditor();
-
-    return (data: string) => {
-        const document = parseHtmlDocument(data);
-        return deserializeHtml(editor, { element: document.body }) as EditorValue;
-    };
-};
-
-export const createSerializer = () => {
-    const editor = createTempEditor();
-
-    return (value: EditorValue) => {
-        return serializeHtml(editor, {
-            nodes: migrateSchema(value),
-        });
-    };
+export const createSerializer = (type: SerializerType = 'html') => {
+    if (type === 'html') {
+        const editor = createTempEditor(htmlSerializationsWorkingPlugins);
+        return (value: EditorValue) => {
+            return serializeHtml(editor, {
+                nodes: migrateSchema(value),
+            });
+        };
+    } else {
+        return (value: EditorValue) => {
+            return value?.map((v) => serialize(
+                v,
+                {
+                    nodeTypes: remarkNodeTypesMap,
+                    ignoreParagraphNewline: true,
+                },
+            )).join('');
+        };
+    }
 };

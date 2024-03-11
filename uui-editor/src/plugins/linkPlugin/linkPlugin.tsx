@@ -10,7 +10,7 @@ import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { IHasToolbarButton } from '../../implementation/Toolbars';
 
-const LINK_ELEMENT = 'link';
+export const LINK_ELEMENT = 'link';
 
 export const linkPlugin = () => createLinkPlugin<IHasToolbarButton & LinkPlugin>({
     type: LINK_ELEMENT,
