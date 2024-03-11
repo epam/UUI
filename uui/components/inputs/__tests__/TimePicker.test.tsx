@@ -37,6 +37,14 @@ describe('TimePicker', () => {
         expect(tree).toMatchSnapshot();
     });
 
+    it('should be rendered correctly with hideCross property', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <TimePicker value={ { hours: 1, minutes: 5 } } onValueChange={ jest.fn } format={ 24 } minutesStep={ 5 } size="36" hideCross={ true } />,
+        );
+
+        expect(tree).toMatchSnapshot();
+    });
+
     it('should set a value', async () => {
         const { dom } = await setupTestComponent({ value: null });
         expect(dom.input.value).toEqual('');

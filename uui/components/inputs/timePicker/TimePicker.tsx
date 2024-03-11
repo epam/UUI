@@ -52,6 +52,10 @@ export interface TimePickerProps extends SizeMod, IHasEditMode, IEditable<TimePi
     inputCx?: CX;
     /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
+    /**
+     * Indicates that inputs' clear cross is hidden
+     */
+    hideCross?: boolean;
 }
 
 export interface TimePickerValue {
@@ -178,7 +182,7 @@ export function TimePicker(props: TimePickerProps) {
                 cx={ [css.root, css.timepickerInput, props.inputCx] }
                 value={ state.inputValue }
                 onValueChange={ handleInputChange }
-                onCancel={ onClear }
+                onCancel={ !props.hideCross && onClear }
                 onFocus={ handleFocus }
                 onBlur={ handleBlur }
                 isDropdown={ false }
