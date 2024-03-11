@@ -27,6 +27,7 @@
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
 * [IconButton]: fixed property `isDropdown`;
+* [Switch]: fixed property `isReadonly`;
 
 # 5.6.1 - 19.02.2024
 
