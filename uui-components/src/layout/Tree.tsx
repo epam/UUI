@@ -13,7 +13,15 @@ export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChild
     renderRow(row: DataRowProps<TItem, string>): void;
     getSearchFields?(item: TItem): string[];
     search?: string;
+
+    /**
+     * DataSource state.
+     */
     value: DataSourceState<any, TItem['id']>;
+    
+    /**
+     * DataSource state update handler.
+     */
     onValueChange: SetDataSourceState<any, TItem['id']>;
 }
 

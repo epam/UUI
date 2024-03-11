@@ -5,10 +5,27 @@ export interface IItemsAccessor<TItem, TId> {
     forEach: (action: (item: TItem, id: TId) => void) => void;
 }
 
+/**
+ * ITree configuration.
+ */
 export interface ITreeParams<TItem, TId> {
+    /**
+     * Item ID getter.
+     */
     getId(item: TItem): TId;
+    /**
+     * Item parent ID getter.
+     */
     getParentId?(item: TItem): TId | undefined;
+    /**
+     * Item child count getter.
+     * @param item - item, which children count should be returned.
+     * @returns assumed children count. If unknown, it is better to return 1.
+     */
     getChildCount?(item: TItem): number;
+    /**
+     * Enables support of ids of types Object, Array, etc.
+     */
     complexIds?: boolean;
 }
 /**
