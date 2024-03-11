@@ -1,6 +1,9 @@
 import { ICanBeInvalid, IEditable, IHasValidationMessage, IBaseMap } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
+/**
+ * IMap element, supported by ILens.
+ */
 export type IMapElement<MapType> = MapType extends IBaseMap<any, infer Item> ? Item : never;
 
 export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
@@ -11,6 +14,7 @@ export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
 export interface ILens<TFocused> {
     /** Get lens value */
     get(): TFocused;
+    /** Get lens value of the IBaseMap by provided id. */
     getItem<TId>(id: TId): ILens<NonNullable<IMapElement<TFocused>>>;
 
     /** Set new lens value */

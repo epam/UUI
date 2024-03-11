@@ -1,20 +1,22 @@
 import { useCallback, useRef } from 'react';
-import { CascadeSelection, CascadeSelectionTypes, DataSourceState, GetChildCount, LazyDataSourceApi } from '../../../../../../../types';
+import { CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
 import isEqual from 'lodash.isequal';
 import { ROOT_ID, TreeState } from '../../../newTree';
 import { TreeStructureId } from '../../../newTree/treeState/types';
 import { Tree } from '../../../newTree/Tree';
+import { GetChildCount } from './types';
+import { CommonDataSourceConfig } from '../types';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
-    GetChildCount<TItem> {
+    GetChildCount<TItem>,
+    Pick<CommonDataSourceConfig<TItem, TId, TFilter>, 'dataSourceState' | 'cascadeSelection'> {
 
     api: LazyDataSourceApi<TItem, TId, TFilter>;
-    dataSourceState: DataSourceState<TFilter, TId>;
     filter?: TFilter;
     isFolded: (item: TItem) => boolean;
     fetchStrategy?: 'sequential' | 'parallel';
-    cascadeSelection?: CascadeSelection;
     flattenSearchResults?: boolean;
+    getChildCount?(item: TItem): number;
 }
 
 export interface LoadResult<TItem, TId> {

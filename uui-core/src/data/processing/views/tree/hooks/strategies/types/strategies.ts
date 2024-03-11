@@ -24,10 +24,28 @@ export type TreeProps<TItem, TId, TFilter = any> = (
     | LazyTreeProps<TItem, TId, TFilter>
 );
 
+/**
+ * Load missing records getter.
+ */
 export interface LoadMissingRecords<TItem, TId> {
+    /**
+     * Loads missing records and provides a fulfilled tree.
+     * @param id - id of an item, which is checked and records should be loaded for.
+     * @param isChecked - checking status of the record.
+     * @param isRoot - a flag, which marks if all records should be checked/unchecked.
+     * @returns fulfilled tree with missing records, those required to be loaded for checking.
+     */
     loadMissingRecordsOnCheck?: (id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>;
 }
 
+/**
+ * Item status getter.
+ */
 export interface GetItemStatus<TId> {
+    /**
+     * Provides a status of the given item.
+     * @param id - id of an item, status to be provided for.
+     * @returns status of the item.
+     */
     getItemStatus?: (id: TId) => RecordStatus;
 }

@@ -46,8 +46,6 @@ export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
     api(): Promise<TItem[]>;
 }
 
-export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
-
 export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /**
      * A function to retrieve the data, asynchronously.
@@ -98,4 +96,11 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * See more here: https://github.com/epam/UUI/issues/8
      */
     flattenSearchResults?: boolean;
+
+    /**
+     * This option is added for the purpose of supporting legacy behavior of fetching data
+     * on `getRows` and `getListProps`, not to break users' own implementation of dataSources.
+     * @default true
+     */
+    legacyLoadDataBehavior?: boolean;
 }

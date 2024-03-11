@@ -7,6 +7,9 @@ import { CheckingHelper, FAILED_RECORD } from '../../tree/newTree';
 import { isInProgress } from '../../helpers';
 import { buildParentsLookup, idToKey } from './buildParentsLookup';
 
+/**
+ * Checking service configuration.
+ */
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
@@ -15,19 +18,60 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     >,
     CascadeSelectionService<TId>,
     GetItemStatus<TId> {
+    /**
+     * Tree-like data, selection should be performed on.
+     */
     tree: ITree<TItem, TId>;
 }
 
+/**
+ * Service, which provides checking functionality and checking/parially checking info.
+ */
 export interface CheckingService<TItem, TId> {
+    /**
+     * Provides knowledge about checked state of the row.
+     * @param row - row, which checked state info should be returned.
+     * @returns if row is checked.
+     */
     isRowChecked: (row: DataRowProps<TItem, TId>) => boolean;
-    isRowChildrenChecked: (row: DataRowProps<TItem, TId>) => boolean;
-    handleOnCheck: (rowProps: DataRowProps<TItem, TId>) => void;
-    handleSelectAll: (isChecked: boolean) => void;
 
+    /**
+     * Provides knowledge about children checked state of the row.
+     * @param row - row, which children checked state info should be returned.
+     * @returns if row children are checked.
+     */
+    isRowChildrenChecked: (row: DataRowProps<TItem, TId>) => boolean;
+
+    /**
+     * Checking handler of a row.
+     * @param row - row, which should be checked.
+     */
+    handleOnCheck: (row: DataRowProps<TItem, TId>) => void;
+
+    /**
+     * Select all handler of a row.
+     * @param selectAll - specifies, if select all or clear all should be performed.
+     */
+    handleSelectAll: (selectAll: boolean) => void;
+
+    /**
+     * Clears all checked.
+     */
     clearAllChecked: () => void;
+
+    /**
+     * Provides info about the ability to check and item.
+     * @param id - id of the item to check if checkable.
+     * @param item - record, if it is present or not found record symbol.
+     * @returns if item with some id is checkable.
+     */
     isItemCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
 
+/**
+ * Service, which provides checking functionality.
+ * @returns checking service.
+ */
 export function useCheckingService<TItem, TId>(
     {
         tree,

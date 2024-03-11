@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { IMap } from '../../../../../../types';
-import { TreeParams } from '../../newTree/exposed';
+import { ITreeParams } from '../../newTree/exposed';
 import { RecordStatus } from '../../types';
 import { ItemsStatusCollector } from '../../ItemsStatusCollector';
 
-export interface UseItemsStatusCollectorProps<TItem, TId> extends TreeParams<TItem, TId> {
+export interface UseItemsStatusCollectorProps<TItem, TId> extends ITreeParams<TItem, TId> {
     itemsStatusMap: IMap<TId, RecordStatus>;
 }
 

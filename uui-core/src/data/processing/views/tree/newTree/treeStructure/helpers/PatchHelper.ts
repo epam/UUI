@@ -1,13 +1,13 @@
-import { TreeNodeInfo } from '../types';
+import { ITreeNodeInfo } from '../types';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from './map';
-import { InsertIntoPositionOptions, PatchItemsOptions } from './types';
+import { InsertIntoPositionOptions, PatchItemsIntoTreeStructureOptions } from './types';
 
 export class PatchHelper {
     public static patchItems<TItem, TId>({
         itemsMap, treeStructure, patchItems, isDeletedProp, getPosition = () => 'initial',
-    }: PatchItemsOptions<TItem, TId>) {
+    }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
         if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
@@ -45,7 +45,7 @@ export class PatchHelper {
             return { treeStructure, itemsMap };
         }
 
-        const newNodeInfoById = newMap<TId, TreeNodeInfo>(treeStructure.getParams());
+        const newNodeInfoById = newMap<TId, ITreeNodeInfo>(treeStructure.getParams());
 
         for (const [parentId, ids] of newByParentId) {
             if (treeStructure.nodeInfoById.has(parentId)) {

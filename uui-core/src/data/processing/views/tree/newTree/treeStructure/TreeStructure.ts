@@ -1,17 +1,17 @@
 import { IMap } from '../../../../../../types';
-import { TreeNodeInfo, TreeParams, IItemsAccessor } from './types';
+import { ITreeNodeInfo, ITreeParams, IItemsAccessor } from './types';
 import { newMap } from './helpers';
 import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../../constants';
 import { ItemsMap } from '../../ItemsMap';
-import { ITree, ItemsInfo, TreeNodeStatus } from '../ITree';
+import { ITree, ITreeItemsInfo, ITreeNodeStatus } from '../ITree';
 import { Tree } from '../Tree';
 
 export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
     constructor(
-        private _params: TreeParams<TItem, TId>,
+        private _params: ITreeParams<TItem, TId>,
         private readonly _itemsAccessor: IItemsAccessor<TItem, TId>,
         protected readonly _byParentId: IMap<TId, TId[]> = newMap(_params),
-        protected readonly _nodeInfoById: IMap<TId, TreeNodeInfo> = newMap(_params),
+        protected readonly _nodeInfoById: IMap<TId, ITreeNodeInfo> = newMap(_params),
     ) {}
 
     public get itemsAccessor() {
@@ -40,11 +40,11 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
         return this.itemsAccessor.get(id);
     }
 
-    public getItems(parentId?: TId): ItemsInfo<TId> {
+    public getItems(parentId?: TId): ITreeItemsInfo<TId> {
         const ids = this.byParentId.get(parentId) ?? [];
         const { count, ...restNodeInfo } = this.nodeInfoById.get(parentId) || {};
 
-        let status: TreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
+        let status: ITreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
         if (count !== 0 && ids.length === count) {
             status = FULLY_LOADED;
         }
@@ -105,10 +105,10 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public static create<TItem, TId>(
-        params: TreeParams<TItem, TId>,
+        params: ITreeParams<TItem, TId>,
         itemsAccessor: IItemsAccessor<TItem, TId>,
         byParentId?: IMap<TId, TId[]>,
-        nodeInfoById?: IMap<TId, TreeNodeInfo>,
+        nodeInfoById?: IMap<TId, ITreeNodeInfo>,
     ): TreeStructure<TItem, TId> {
         return new TreeStructure(params, itemsAccessor, byParentId, nodeInfoById);
     }
@@ -122,7 +122,7 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
         items,
         itemsAccessor,
     }: {
-        params: TreeParams<TItem, TId>,
+        params: ITreeParams<TItem, TId>,
         items: TItem[] | ItemsMap<TId, TItem>,
         itemsAccessor: IItemsAccessor<TItem, TId>,
     }) {
@@ -143,7 +143,7 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
             itemsMap.set(parentId, item);
         });
 
-        const newNodeInfoById = newMap<TId, TreeNodeInfo>(params);
+        const newNodeInfoById = newMap<TId, ITreeNodeInfo>(params);
         for (const [parentId, ids] of byParentId) {
             const assumedCount = itemsMap.has(parentId) ? params.getChildCount?.(itemsMap.get(parentId)) : undefined;
             newNodeInfoById.set(parentId, { count: ids.length, ...(params.getChildCount ? { assumedCount } : {}) });

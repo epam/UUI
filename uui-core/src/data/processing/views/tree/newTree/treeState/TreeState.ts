@@ -7,9 +7,9 @@ import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, 
 import { ItemsMap } from '../../ItemsMap';
 import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../../constants';
-import { TreeNodeInfo, TreeParams } from '../treeStructure/types';
+import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
-import { PatchItemsOptions as PatchItemsTreeStructureOptions } from '../treeStructure/helpers/types';
+import { PatchItemsIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
 import { PatchItemsOptions } from '../../../../../../types';
 
@@ -167,7 +167,7 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeletedProp, getPosition }: PatchItemsTreeStructureOptions<TItem, TId>) {
+    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeletedProp, getPosition }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
             treeStructure,
             itemsMap: itemsMap,
@@ -251,7 +251,7 @@ export class TreeState<TItem, TId> {
             .filter((id) => this.getById(id) !== NOT_FOUND_RECORD);
 
         const byParentId = newMap<TId, TId[]>(this.selectedOnly.getParams());
-        const nodeInfoById = newMap<TId, TreeNodeInfo>(this.selectedOnly.getParams());
+        const nodeInfoById = newMap<TId, ITreeNodeInfo>(this.selectedOnly.getParams());
         byParentId.set(undefined, foundIds);
         nodeInfoById.set(undefined, { count: foundIds.length });
 
@@ -335,7 +335,7 @@ export class TreeState<TItem, TId> {
     public static createFromItems<TItem, TId>(
         items: TItem[] | undefined,
         itemsMap: ItemsMap<TId, TItem> | undefined,
-        params: TreeParams<TItem, TId>,
+        params: ITreeParams<TItem, TId>,
         setItems: ItemsStorage<TItem, TId>['setItems'],
     ) {
         if (items === undefined && itemsMap === undefined) {
@@ -360,7 +360,7 @@ export class TreeState<TItem, TId> {
         );
     }
 
-    public static blank<TItem, TId>(params: TreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']): TreeState<TItem, TId> {
+    public static blank<TItem, TId>(params: ITreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']): TreeState<TItem, TId> {
         const treeStructure = TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap));
 
         return this.create(

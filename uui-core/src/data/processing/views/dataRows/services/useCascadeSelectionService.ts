@@ -4,6 +4,9 @@ import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords } from '../..
 import { CheckingHelper, FAILED_RECORD, NOT_FOUND_RECORD } from '../../tree/newTree';
 import { isInProgress } from '../../helpers';
 
+/**
+ * Cascade selection service configuration.
+ */
 export interface UseCascadeSelectionServiceProps<TItem, TId, TFilter = any> extends
     Pick<
     CommonDataSourceConfig<TItem, TId, TFilter>,
@@ -11,13 +14,31 @@ export interface UseCascadeSelectionServiceProps<TItem, TId, TFilter = any> exte
     >,
     LoadMissingRecords<TItem, TId>,
     GetItemStatus<TId> {
+    /**
+     * Tree-like data, cascade selection should be performed on.
+     */
     tree: ITree<TItem, TId>;
 }
 
+/**
+ * A service which provides cascade selection functionality with loading missing records.
+ */
 export interface CascadeSelectionService<TId> {
+    /**
+     * Provides a cascade selection functionality.
+     * @param isChecked - checking state of the item.
+     * @param checkedId - ID of the item to be checked. If `undefined` - root is checked.
+     * @param isRoot - marks if cascade selection should be performed on all the items.
+     * @param checked - current state of checked items.
+     * @returns new checked items.
+     */
     handleCascadeSelection: (isChecked: boolean, checkedId?: TId, isRoot?: boolean, checked?: TId[]) => Promise<TId[]>;
 }
 
+/**
+ * Service, which provides cascade selection functionality with support of loading missing records as needed.
+ * @returns cascade selection service.
+ */
 export function useCascadeSelectionService<TItem, TId>({
     tree,
     cascadeSelection,

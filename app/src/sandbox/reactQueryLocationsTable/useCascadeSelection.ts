@@ -1,11 +1,11 @@
-import { CascadeSelection, DataRowOptions, DataSourceState, IMap, ITree, LazyDataSourceApi, TreeLoadResult,
-    TreeParams, useCascadeSelectionService, Tree as UUITree } from '@epam/uui-core';
+import { CascadeSelection, DataRowOptions, DataSourceState, IMap, ITree, LazyDataSourceApi, ITreeLoadResult,
+    ITreeParams, useCascadeSelectionService, Tree as UUITree } from '@epam/uui-core';
 import { useQueryClient } from '@tanstack/react-query';
 import { Location } from '@epam/uui-docs';
 import { Tree } from './Tree';
 import { useCallback, useMemo } from 'react';
 
-export interface UseCascadeSelectionProps<TItem, TId> extends TreeParams<Location, string> {
+export interface UseCascadeSelectionProps<TItem, TId> extends ITreeParams<Location, string> {
     api: LazyDataSourceApi<Location, string, unknown>,
     cascadeSelection?: CascadeSelection;
     getRowOptions?: (item: TItem, index?: number) => DataRowOptions<TItem, TId>;
@@ -18,7 +18,7 @@ type LocationsSelectionKey = [string, DataSourceState<Record<string, any>, any>,
 
 const LOCATIONS_SELECTION_QUERY = 'locations-selection';
 
-const isTree = <TItem, TId>(tree: ITree<TItem, TId> | TreeLoadResult<TItem, TId>): tree is ITree<TItem, TId> => {
+const isTree = <TItem, TId>(tree: ITree<TItem, TId> | ITreeLoadResult<TItem, TId>): tree is ITree<TItem, TId> => {
     return tree instanceof Tree;
 };
 

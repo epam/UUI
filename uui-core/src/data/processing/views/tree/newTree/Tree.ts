@@ -3,7 +3,7 @@ import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceSta
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD } from '../constants';
 import { FetchingHelper } from './treeStructure';
-import { TreeNodeInfo } from './exposed';
+import { ITreeNodeInfo } from './exposed';
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
@@ -22,10 +22,22 @@ export interface LoadMissingOnCheckOptions<TItem, TId, TFilter = any> extends Om
     isChecked: boolean;
 }
 
-export interface TreeLoadResult<TItem, TId> {
+/**
+ * Structured result of tree records loading.
+ */
+export interface ITreeLoadResult<TItem, TId> {
+    /**
+     * Loaded records.
+     */
     loadedItems: TItem[];
+    /**
+     * Loaded records, structured by parents IDs.
+     */
     byParentId: IMap<TId, TId[]>;
-    nodeInfoById: IMap<TId, TreeNodeInfo>;
+    /**
+     * Loading node info, like count/assumedCount/totalCount, by IDs.
+     */
+    nodeInfoById: IMap<TId, ITreeNodeInfo>;
 }
 
 export class Tree {
@@ -152,7 +164,7 @@ export class Tree {
         isFolded,
         filter,
         withNestedChildren = true,
-    }: LoadOptions<TItem, TId, TFilter>): Promise<TreeLoadResult<TItem, TId>> {
+    }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeLoadResult<TItem, TId>> {
         return await FetchingHelper.load<TItem, TId, TFilter>({
             tree,
             options: {
@@ -177,7 +189,7 @@ export class Tree {
         isRoot,
         isChecked,
         checkedId,
-    }: LoadMissingOnCheckOptions<TItem, TId, TFilter>): Promise<ITree<TItem, TId> | TreeLoadResult<TItem, TId>> {
+    }: LoadMissingOnCheckOptions<TItem, TId, TFilter>): Promise<ITree<TItem, TId> | ITreeLoadResult<TItem, TId>> {
         const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (!cascadeSelection && !isRoot) {

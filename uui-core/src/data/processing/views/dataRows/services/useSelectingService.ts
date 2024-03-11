@@ -1,21 +1,52 @@
 import { useCallback, useMemo } from 'react';
-import { DataRowProps, DataSourceState, SetDataSourceState } from '../../../../../types';
+import { DataRowProps } from '../../../../../types';
 import { buildParentsLookup, idToKey } from './buildParentsLookup';
 import { ITree } from '../../tree';
+import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
 
-export interface UseSelectingServiceProps<TItem, TId, TFilter = any> {
+/**
+ * Checking service configuration.
+ */
+export interface UseSelectingServiceProps<TItem, TId, TFilter = any> extends
+    Pick<
+    CommonDataSourceConfig<TItem, TId, TFilter>,
+    'getParentId' | 'dataSourceState' | 'setDataSourceState'
+    > {
+    /**
+     * Tree-like data, selection should be performed on.
+     */
     tree: ITree<TItem, TId>;
-    getParentId?: (item: TItem) => TId;
-    dataSourceState: DataSourceState<TFilter, TId>;
-    setDataSourceState: SetDataSourceState<TFilter, TId>;
 }
 
+/**
+ * Service, which provides selecting functionality and seleting info.
+ */
 export interface SelectingService<TItem, TId> {
-    handleOnSelect: (rowProps: DataRowProps<TItem, TId>) => void;
+    /**
+     * Selecting handler of a row.
+     * @param row - row, which should be selected.
+     */
+    handleOnSelect: (row: DataRowProps<TItem, TId>) => void;
+
+    /**
+     * Provides knowledge about selection state of the row.
+     * @param row - row, which selection state info should be returned.
+     * @returns if row is selected.
+     */
     isRowSelected: (row: DataRowProps<TItem, TId>) => boolean;
+
+    /**
+     * Provides knowledge about children selection state of the row.
+     * @param row - row, which children selection state info should be returned.
+     * @returns if row is selected.
+     */
     isRowChildSelected: (row: DataRowProps<TItem, TId>) => boolean;
 }
 
+/**
+ * Service, which provides selection functionality.
+ * @returns selecting service.
+ */
 export function useSelectingService<TItem, TId, TFilter = any>({
     tree,
     getParentId,

@@ -1,10 +1,10 @@
-import { CascadeSelection, DataSourceState, IMap } from '../../../../../../../types';
+import { CascadeSelection, DataSourceState, IMap, Position } from '../../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from './map';
 import { LazyListViewProps } from '../../../../types';
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../../ItemsMap';
-import { TreeParams } from '../types';
+import { ITreeParams } from '../types';
 import { ITree } from '../../ITree';
 import { NOT_FOUND_RECORD } from '../../exposed';
 
@@ -108,20 +108,19 @@ export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<T
     treeStructure: TreeStructure<TItem, TId>;
 }
 
-export type Position = 'initial' | 'top' | 'bottom';
-export interface PatchItemsOptions<TItem, TId> {
+export interface PatchItemsIntoTreeStructureOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     patchItems?: ItemsMap<TId, TItem>;
     isDeletedProp?: keyof TItem;
-    getPosition?: (item: TItem) => Position | { after: TId };
+    getPosition?: (item: TItem) => Position<TId>;
 }
 
 export interface InsertIntoPositionOptions<TItem, TId> {
-    params: TreeParams<TItem, TId>;
+    params: ITreeParams<TItem, TId>;
     ids: TId[];
     item: TItem;
-    position: Position | { after: TId };
+    position: Position<TId>;
 }
 
 export interface PatchChildrenOptions<TItem, TId> {
