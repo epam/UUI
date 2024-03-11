@@ -83743,7 +83743,7 @@
       "    /**",
       "     * Indicates that inputs' clear cross is hidden",
       "     */",
-      "    hideCross?: boolean;",
+      "    disableClear?: boolean;",
       "}"
      ]
     },
@@ -83867,8 +83867,8 @@
       "required": false
      },
      {
-      "uid": "hideCross",
-      "name": "hideCross",
+      "uid": "disableClear",
+      "name": "disableClear",
       "comment": {
        "raw": [
         "Indicates that inputs' clear cross is hidden"

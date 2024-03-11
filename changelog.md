@@ -8,7 +8,7 @@
     * Added the ability to pin columns to the right.
 * [RTE]: added `onFocus` prop
 * [IconButton]: added property `size`;
-* [TimePicker]: added property `hideCross` to hide inputs' cross if it needs;
+* [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
 
 
 **What's Fixed**

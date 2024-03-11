@@ -37,9 +37,9 @@ describe('TimePicker', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with hideCross property', async () => {
+    it('should be rendered correctly with disableClear property', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <TimePicker value={ { hours: 1, minutes: 5 } } onValueChange={ jest.fn } format={ 24 } minutesStep={ 5 } size="36" hideCross={ true } />,
+            <TimePicker value={ { hours: 1, minutes: 5 } } onValueChange={ jest.fn } format={ 24 } minutesStep={ 5 } size="36" disableClear={ true } />,
         );
 
         expect(tree).toMatchSnapshot();
