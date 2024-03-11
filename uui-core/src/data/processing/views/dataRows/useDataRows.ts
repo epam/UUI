@@ -13,6 +13,9 @@ import { CascadeSelectionService } from './services/useCascadeSelectionService';
 import { GetItemStatus } from '../tree/hooks/strategies/types';
 import { isInProgress } from '../helpers';
 
+/**
+ * `useDataRows` configuration.
+ */
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
     ITreeLoadingState,
