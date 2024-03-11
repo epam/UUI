@@ -166,7 +166,7 @@ export default function EditableTableExample() {
 
     // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
     // DataSources describe the way to extract some list/tree-structured data.
-    // Here we'll use ArrayDataSource - which gets data from an array, which we obtain from our Form
+    // Here we'll use ArrayDataSource - which gets data from an array, which we obtain from our Form.
     const dataSource = useAsyncDataSource<TodoTask, number, unknown>(
         {
             api: svc.api.demo.todos,
