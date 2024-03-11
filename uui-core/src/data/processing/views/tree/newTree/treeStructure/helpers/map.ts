@@ -1,11 +1,11 @@
 import { IMap } from '../../../../../../../types';
-import { TreeParams } from '../types';
+import { ITreeParams } from '../types';
 
 export function cloneMap<TKey, TValue>(map: IMap<TKey, TValue>) {
     return new (map.constructor as any)(map) as IMap<TKey, TValue>;
 }
 
-export function newMap<TKey, TValue>(params: Partial<TreeParams<any, any>>) {
+export function newMap<TKey, TValue>(params: Partial<ITreeParams<any, any>>) {
     if (params.complexIds) {
         return new CompositeKeysMap<TKey, TValue>();
     } else {

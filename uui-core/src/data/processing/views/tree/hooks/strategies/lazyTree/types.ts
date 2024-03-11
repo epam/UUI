@@ -1,8 +1,12 @@
-import { GetChildCount, IMap, LazyDataSourceApi, PatchItemsOptions } from '../../../../../../../types';
+import { IMap, LazyDataSourceApi, PatchItemsOptions } from '../../../../../../../types';
 import { ItemsMap, ItemsStorage } from '../../../../../../processing';
 import { RecordStatus } from '../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig } from '../types/common';
+
+export interface GetChildCount<TItem> {
+    getChildCount?(item: TItem): number;
+}
 
 export type LazyTreeProps<TItem, TId, TFilter> =
     CommonDataSourceConfig<TItem, TId, TFilter>

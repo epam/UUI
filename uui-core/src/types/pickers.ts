@@ -110,7 +110,13 @@ export type PickerFooterProps<TItem, TId> = {
     disableClear?: boolean;
 };
 
+/**
+ * Show selected rows only in Picker.
+ */
 export interface PickerShowSelectedOnly {
+    /**
+     * Enables/disables selected rows only in Picker.
+     */
     showSelectedOnly?: boolean;
 }
 

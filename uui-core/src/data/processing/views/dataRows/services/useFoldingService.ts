@@ -3,16 +3,35 @@ import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../ty
 import { idToKey, setObjectFlag } from '../../helpers';
 import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
 
+/**
+ * Folding service configuration.
+ */
 export type UseFoldingServiceProps<TItem, TId, TFilter = any> = Pick<
 CommonDataSourceConfig<TItem, TId, TFilter>,
 'getId' | 'dataSourceState' | 'setDataSourceState' | 'isFoldedByDefault'
 >;
 
+/**
+ * Service, which provides folding functionality and folding info.
+ */
 export interface FoldingService<TItem, TId> {
-    handleOnFold: (rowProps: DataRowProps<TItem, TId>) => void;
+    /**
+     * Folding event handler.
+     * @param row - row, which should be folded.
+     */
+    handleOnFold: (row: DataRowProps<TItem, TId>) => void;
+    /**
+     * Provides knowledge about folding state of the row.
+     * @param row - row, which folding state info should be returned.
+     * @returns if row is folded.
+     */
     isFolded: (item: TItem) => boolean
 }
 
+/**
+ * Service, which provides folding functionality.
+ * @returns folding service.
+ */
 export function useFoldingService<TItem, TId, TFilter = any>({
     dataSourceState,
     setDataSourceState,

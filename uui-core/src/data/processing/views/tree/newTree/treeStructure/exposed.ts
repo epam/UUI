@@ -1,2 +1,2 @@
 export { FetchingHelper, CompositeKeysMap } from './helpers';
-export type { TreeNodeInfo, TreeParams } from './types';
+export type { ITreeNodeInfo, ITreeParams } from './types';

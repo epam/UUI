@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from 'react';
-import { DataSourceListProps, GetChildCount } from '../../../../types';
+import { DataSourceListProps } from '../../../../types';
 import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
-import { CommonDataSourceConfig, TreeLoadingState } from '../tree/hooks/strategies/types/common';
+import { CommonDataSourceConfig, ITreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
 import { EMPTY, FULLY_LOADED } from '../tree/constants';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
@@ -15,14 +15,20 @@ import { isInProgress } from '../helpers';
 
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
-    TreeLoadingState,
+    ITreeLoadingState,
     Partial<CascadeSelectionService<TId>>,
-    GetItemStatus<TId>,
-    GetChildCount<TItem> {
+    GetItemStatus<TId> {
 
+    /**
+     * Tree-like data, rows to be built from.
+     */
     tree: ITree<TItem, TId>;
 }
 
+/**
+ * Hook, which builds rows, based on the tree.
+ * @returns rows and other IDataSourceView fields.
+ */
 export function useDataRows<TItem, TId, TFilter = any>(
     props: UseDataRowsProps<TItem, TId, TFilter>,
 ) {
@@ -88,12 +94,12 @@ export function useDataRows<TItem, TId, TFilter = any>(
         }
 
         if (estimatedChildCount > loadedChildrenCount) {
-            // According to getChildCount (put into estimatedChildCount), there are more rows on this level
+            // According to assumedCount (put into estimatedChildCount), there are more rows on this level
             return estimatedChildCount - loadedChildrenCount;
         }
 
         // We have a bad estimate - it even less that actual items we have
-        // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
+        // This would happen is assumedCount provides a guess count, and we scroll thru children past this count
         // let's guess we have at least 1 item more than loaded
         return 1;
     }, [maxVisibleRowIndex, tree, getEstimatedChildrenCount]);

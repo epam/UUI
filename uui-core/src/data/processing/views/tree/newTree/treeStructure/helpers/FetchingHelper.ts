@@ -4,7 +4,7 @@ import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from './map';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
-import { TreeNodeInfo } from '../types';
+import { ITreeNodeInfo } from '../types';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { getSelectedAndChecked } from './checked';
 
@@ -76,7 +76,7 @@ export class FetchingHelper {
         const requiredRowsCount = dataSourceState.topIndex + dataSourceState.visibleCount;
 
         const byParentId = newMap<TId, TId[]>(tree.getParams());
-        const nodeInfoById = newMap<TId, TreeNodeInfo>(tree.getParams());
+        const nodeInfoById = newMap<TId, ITreeNodeInfo>(tree.getParams());
 
         const newItemsMap = newMap<TId, TItem>(tree.getParams());
         const flatten = dataSourceState.search && options.flattenSearchResults;

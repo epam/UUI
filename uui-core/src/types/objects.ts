@@ -25,11 +25,24 @@ export type CX = ClassValue;
 
 export type Icon = React.FC<any>;
 
+/**
+ * Map interface.
+ */
 export interface IMap<TKey, TValue> extends IBaseMap<TKey, TValue> {
-    constructor: Function;
-    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    /**
+     * IMap setter.
+     * @param key - key of the map.
+     * @param value - value of the map, to be set by key.
+     */
     set(key: TKey, value: TValue): IMap<TKey, TValue>;
+    /**
+     * Removes item with provided key from the map.
+     * @param key - key of an item.
+     */
     delete(key: TKey): boolean;
+    /**
+     * Size of the map.
+     */
     size: number;
 }
 
@@ -40,10 +53,32 @@ export type AnalyticsEvent = {
     [key: string]: any;
 } | null;
 
+/**
+ * Base map interface.
+ */
 export interface IBaseMap<TKey, TValue> {
+    /**
+     * IBaseMap contructor.
+     */
     constructor: Function;
+    /**
+     * Iterator through items.
+     */
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    /**
+     * IBaseMap getter.
+     * @param key - key of an item.
+     */
     get(key: TKey): TValue | undefined;
+    /**
+     * IBaseMap setter.
+     * @param key - key of the map.
+     * @param value - value of the map, to be set by key.
+     */
     set(key: TKey, value?: TValue): IBaseMap<TKey, TValue>;
+    /**
+     * Checks if item with provided key is present in the map.
+     * @param key - key of an item.
+     */
     has(key: TKey): boolean;
 }

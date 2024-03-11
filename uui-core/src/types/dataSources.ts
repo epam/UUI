@@ -121,6 +121,9 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     foldAll?: boolean;
 }
 
+/**
+ * DataSource state update handler.
+ */
 export type SetDataSourceState<TFilter = Record<string, any>, TId = any> = (
     updateState: (prevState: DataSourceState<TFilter, TId>) => DataSourceState<TFilter, TId>
 ) => void;
@@ -132,15 +135,36 @@ export const CascadeSelectionTypes = {
 
 export type CascadeSelection = boolean | typeof CascadeSelectionTypes.EXPLICIT | typeof CascadeSelectionTypes.IMPLICIT;
 
-export type Position = 'initial' | 'top' | 'bottom';
-export interface PatchItemsOptions<TItem, TId> {
-    patchItems?: ItemsMap<TId, TItem>;
-    isDeletedProp?: keyof TItem;
-    getPosition?: (item: TItem) => Position | { after: TId };
-}
+/**
+ * Type of the position an item to be placed to.
+ */
+export type PositionType = 'initial' | 'top' | 'bottom';
 
-export interface GetChildCount<TItem> {
-    getChildCount?(item: TItem): number;
+/**
+ * Position an item should be placed to.
+ */
+export type Position<TId> = PositionType | { after: TId };
+
+/**
+ * Patching tree configuration.
+ */
+export interface PatchItemsOptions<TItem, TId> {
+    /**
+     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
+     */
+    patchItems?: ItemsMap<TId, TItem>;
+    /**
+     * To enable deleting of the items, it is required to specify the property, which declares that an item is deleted.
+     */
+    isDeletedProp?: keyof TItem;
+    /**
+     * To specify the position an item to be moved, it is required to provide a `getPosition` function.
+     * @returns `initial` - doesn't move an element, only updates its content;
+     * @returns `top` - moves an element to the top of the children list;
+     * @returns `bottom` - moves an element to the bottom of the children list;
+     * @returns `{ after: TId }` - moves an element after an element with id === `after`.
+     */
+    getPosition?: (item: TItem) => Position<TId>;
 }
 
 export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
@@ -220,6 +244,10 @@ export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOption
      */
     backgroundReload?: boolean;
 
+    /**
+     * Enables show selected only mode of the dataSource.
+     * If enabled, `useView` returns only selected rows from `IDataSourceView.getVisibleRows`.
+     */
     showSelectedOnly?: boolean;
 }
 

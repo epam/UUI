@@ -1,14 +1,14 @@
 import { IMap, LazyDataSourceApi } from '../../../../types';
 import { ItemsMap } from './ItemsMap';
 import { FAILED_RECORD, LOADED_RECORD, LOADING_RECORD, NOT_FOUND_RECORD, PENDING_RECORD, newMap } from './newTree';
-import { TreeParams } from './newTree/exposed';
+import { ITreeParams } from './newTree/exposed';
 import { RecordStatus } from './types';
 
 export class ItemsStatusCollector<TItem, TId, TFilter = any> {
     private itemsStatusMap: IMap<TId, RecordStatus>;
     constructor(
         itemsStatusMap: IMap<TId, RecordStatus>,
-        private params: TreeParams<TItem, TId>,
+        private params: ITreeParams<TItem, TId>,
     ) {
         this.itemsStatusMap = itemsStatusMap ?? newMap(params);
     }

@@ -19951,7 +19951,7 @@
       "    getParents(id: TId): TItem[];",
       "    getPathById(id: TId): DataRowPathItem<TId, TItem>[];",
       "    getPathItem(item: TItem): DataRowPathItem<TId, TItem>;",
-      "    getNodeInfo(id: TId): TreeNodeInfo;",
+      "    getNodeInfo(id: TId): ITreeNodeInfo;",
       "    isFlatList(): boolean;",
       "    patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
       "    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;",
@@ -20102,7 +20102,7 @@
       "uid": "getNodeInfo",
       "name": "getNodeInfo",
       "typeValue": {
-       "raw": "(id: TId) => TreeNodeInfo"
+       "raw": "(id: TId) => ITreeNodeInfo"
       },
       "editor": {
        "type": "func"
@@ -27319,12 +27319,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:TreeNodeInfo": {
+  "@epam/uui-core:ITreeNodeInfo": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
-     "name": "TreeNodeInfo",
-     "nameFull": "TreeNodeInfo"
+     "name": "ITreeNodeInfo",
+     "nameFull": "ITreeNodeInfo"
     },
     "src": "uui-core/src/data/processing/views/tree/ITree.ts",
     "exported": true
@@ -27332,9 +27332,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TreeNodeInfo",
+     "raw": "ITreeNodeInfo",
      "print": [
-      "interface TreeNodeInfo {",
+      "interface ITreeNodeInfo {",
       "    count?: number;",
       "    totalCount?: number;",
       "}"
@@ -27367,12 +27367,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:TreeParams": {
+  "@epam/uui-core:ITreeParams": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
-     "name": "TreeParams",
-     "nameFull": "TreeParams<TItem, TId>"
+     "name": "ITreeParams",
+     "nameFull": "ITreeParams<TItem, TId>"
     },
     "src": "uui-core/src/data/processing/views/tree/ITree.ts",
     "exported": true
@@ -27380,9 +27380,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TreeParams<TItem, TId>",
+     "raw": "ITreeParams<TItem, TId>",
      "print": [
-      "interface TreeParams<TItem, TId> {",
+      "interface ITreeParams<TItem, TId> {",
       "    getId?(item: TItem): TId;",
       "    getParentId?(item: TItem): TId | undefined;",
       "    complexIds?: boolean;",

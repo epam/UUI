@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useDataRows, LazyDataSourceApi,
-    useFoldingService, useLazyFetchingAdvisor, DataRowOptions, TreeParams,
+    useFoldingService, useLazyFetchingAdvisor, DataRowOptions, ITreeParams,
     CascadeSelection, Tree as UUITree } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
@@ -12,7 +12,7 @@ import { useCascadeSelection } from './useCascadeSelection';
 type LocationsQueryKey = [string, DataSourceState<Record<string, any>, any>];
 const LOCATIONS_QUERY = 'locations';
 
-const treeParams: TreeParams<Location, string> = {
+const treeParams: ITreeParams<Location, string> = {
     getId: ({ id }) => id,
     getParentId: ({ parentId }) => parentId,
     getChildCount: ({ childCount }) => childCount,

@@ -13,7 +13,9 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
     CommonDataSourceConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
     > {
-
+    /**
+     * Tree-like data, rows to be built from.
+     */
     tree: ITree<TItem, TId>;
 
     getEstimatedChildrenCount: (id: TId) => number;

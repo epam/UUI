@@ -1,24 +1,24 @@
 import { ITree, NOT_FOUND_RECORD,
-    TreeNodeInfo, TreeParams, ItemsInfo, TreeNodeStatus, IMap } from '@epam/uui-core';
+    ITreeNodeInfo, ITreeParams, ITreeItemsInfo, ITreeNodeStatus, IMap } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export class Tree implements ITree<Location, string> {
     constructor(
-        protected _params: TreeParams<Location, string>,
+        protected _params: ITreeParams<Location, string>,
         protected _itemsMap: IMap<string, Location> = new Map(),
         protected _byParentId: IMap<string, string[]> = new Map(),
-        protected _nodeInfoById: IMap<string, TreeNodeInfo> = new Map(),
+        protected _nodeInfoById: IMap<string, ITreeNodeInfo> = new Map(),
     ) {}
 
     public getParams() {
         return this._params;
     }
 
-    public getItems(parentId?: string): ItemsInfo<string> {
+    public getItems(parentId?: string): ITreeItemsInfo<string> {
         const ids = this._byParentId.get(parentId) ?? [];
         const { count, totalCount } = this._nodeInfoById.get(parentId) ?? {};
 
-        let status: TreeNodeStatus = count === undefined ? 'PARTIALLY_LOADED' : 'EMPTY';
+        let status: ITreeNodeStatus = count === undefined ? 'PARTIALLY_LOADED' : 'EMPTY';
         if (count !== 0 && ids.length === count) {
             status = 'FULLY_LOADED';
         }
@@ -34,7 +34,7 @@ export class Tree implements ITree<Location, string> {
         return this.itemsMap.has(id) ? this.itemsMap.get(id) : NOT_FOUND_RECORD;
     }
 
-    public static blank(params: TreeParams<Location, string>, itemsMap?: IMap<string, Location>) {
+    public static blank(params: ITreeParams<Location, string>, itemsMap?: IMap<string, Location>) {
         return new Tree(params, itemsMap);
     }
 
@@ -42,7 +42,7 @@ export class Tree implements ITree<Location, string> {
         return this._itemsMap;
     }
 
-    public update(items: Location[], newByParentId: IMap<string, string[]>, newNodeInfoById: IMap<string, TreeNodeInfo>) {
+    public update(items: Location[], newByParentId: IMap<string, string[]>, newNodeInfoById: IMap<string, ITreeNodeInfo>) {
         items.forEach((item) => {
             const id = this.getParams().getId(item);
             this._itemsMap.set(id, item);

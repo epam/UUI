@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IHasChildren, IEditable, useArrayDataSource, DataSourceState, DataRowProps } from '@epam/uui-core';
+import { IHasCX, IHasChildren, useArrayDataSource, DataSourceState, DataRowProps, SetDataSourceState } from '@epam/uui-core';
 
 export interface TreeListItem {
     id: string;
@@ -8,12 +8,13 @@ export interface TreeListItem {
     name?: string;
 }
 
-export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChildren, IEditable<DataSourceState> {
+export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChildren {
     items: TreeListItem[];
     renderRow(row: DataRowProps<TItem, string>): void;
     getSearchFields?(item: TItem): string[];
     search?: string;
-    onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TItem['id']>>>;
+    value: DataSourceState<any, TItem['id']>;
+    onValueChange: SetDataSourceState<any, TItem['id']>;
 }
 
 export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
