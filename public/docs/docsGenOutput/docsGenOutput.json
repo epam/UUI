@@ -83740,6 +83740,10 @@
       "    inputCx?: CX;",
       "    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */",
       "    bodyCx?: CX;",
+      "    /**",
+      "     * Indicates that inputs' clear cross is hidden",
+      "     */",
+      "    disableClear?: boolean;",
       "}"
      ]
     },
@@ -83860,6 +83864,22 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Indicates that inputs' clear cross is hidden"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
       "required": false
      },
      {
