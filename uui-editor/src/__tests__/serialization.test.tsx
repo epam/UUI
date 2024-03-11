@@ -85,7 +85,7 @@ describe('serialization', () => {
         expect(editor.children).toMatchSnapshot();
     });
 
-    it.only('should serialize markdown', async () => {
+    it('should serialize markdown', async () => {
         const serializeMd = createSerializer('md');
         const serializedMd = serializeMd(editorValueMock);
         expect(serializedMd).toMatchSnapshot();
