@@ -6,6 +6,7 @@ import { TodoTask } from '@epam/uui-docs';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.module.scss';
 import { TApi } from '../../../data';
+import { useDataTableFocusManager } from '@epam/uui-components';
 
 // Define a blank item - for use as a new item, and to simplify mock data definition below
 const blankItem: Partial<TodoTask> = {
@@ -62,6 +63,7 @@ export default function EditableTableExample() {
         },
         getMetadata: () => metadata,
     });
+    const dataTableFocusManager = useDataTableFocusManager<TodoTask['id']>({}, []);
 
     const newItems = useMemo(() => new Map<number, boolean>(), []);
 
@@ -73,7 +75,8 @@ export default function EditableTableExample() {
         // We can manipulate form state directly with the setValue
         // - pretty much like we do with the setState of React.useState.
         setValue((current) => ({ ...current, items: current.items.set(newItem.id, newItem) }));
-    }, [setValue, newItems]);
+        dataTableFocusManager?.focusRow(newItem.id);
+    }, [setValue, newItems, dataTableFocusManager]);
 
     const handleDeleteItem = useCallback((item: TodoTask) => {
         setValue((current) => ({ ...current, items: current.items.set(item.id, { ...item, isDeleted: true }) }));
@@ -215,6 +218,7 @@ export default function EditableTableExample() {
                     columns={ columns }
                     headerTextCase="upper"
                     renderRow={ renderRow }
+                    dataTableFocusManager={ dataTableFocusManager }
                 />
             </FlexRow>
         </Panel>
