@@ -12,12 +12,11 @@
     }
 }
 
-.add-button {
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.tab-button {
+    :global(.uui-icon) {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .targetOpen {
