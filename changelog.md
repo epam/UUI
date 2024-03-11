@@ -5,10 +5,38 @@
 * [DataTable]: added Expand All/Collapse All
 * [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
-    * Added the ability to pin columns to the right.
+  * Added the ability to pin columns to the right.
 * [RTE]: added `onFocus` prop
 * [IconButton]: added property `size`;
-
+* [useTree]: useTree hook is added.
+  * [Features]:
+    * [BaseListViewProps.showSelectedOnly]: The flow of rendering selected rows was changed. Previously, there was a separate flow of rendering selected rows, with using the `IDataSourceView.getSelectedRows` method. Currently, a new property, `showSelectedOnly`, was added. If this feature is turned on, selected rows are returned from `IDataSourceView.getVisibleRows`.
+    * [Patch items in Lazy/Async/Array dataSources]: the possibility to add/move/delete items from Array/Async/Lazy DataSources was added. To provide this functionality, three options were added:
+      * [BaseListViewProps.patchItems]: To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
+      * [BaseListViewProps.isDeletedProp]: To enable deleting of the items, it is required to specify the property, which declares that an item is deleted.
+      * [BaseListViewProps.getPosition]: To specify the position an item to be moved, it is required to provide a `getPosition` function. It can return a various of position configurations:
+        * `initial` - doesn't move an element, only updates its content;
+        * `top` - moves an element to the top of the children list;
+        * `bottom` - moves an element to the bottom of the children list;
+        * `{ after: TId }` - moves an element after an element with id === `after`.
+    * [ItemsMap]: immutable map with support of complex Ids was added. It should be used as an input of `patchItems` property, described above.
+    * [DataTableProps]: `rows` prop was added, along with `getRows`.
+  * [Required actions]:
+    * [IDataSource.useView]: `onValueChange` type was changed. Currently, it should support a state update callback, instead of a new state value.
+    * [ITableState.setTableState]: `setTableState` should handle both, a new state value and a state update callback.
+  * [Breaking changes]:
+    * `IDataSource.getView` is deprecated. Use `IDataSource.useView` instead.
+    * `useList` is deprecated. Use `IDataSource.useView` instead.
+    * `ArrayListView` is deprecated. Use `ArrayDataSource.useView` instead.
+    * `AsyncListView` is deprecated. Use `AsyncDataSource.useView` instead.
+    * `LazyListView` is deprecated. Use `LazyDataSource.useView` instead.
+    * `IDataSource.unsubscribeView` is deprecated. This functionality is built in `IDataSourceView.useView` hook.
+    * `IDataSourceView.activate` is deprecated. This functionality is built in `IDataSourceView.useView` hook.
+    * `IDataSourceView.deactivate` is deprecated. This functionality is built in `IDataSourceView.useView` hook.
+    * `IDataSourceView.getSelectedRows` is deprecated. Pass `showSelectedOnly = true` to `IDataSourceView.useView` options and access selected rows via `IDataSourceView.getVisibleRows()`.
+    * `IDataSourceView.loadData` is deprecated.
+    * `IDataSourceView._forceUpdate` is deprecated.
+    * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
