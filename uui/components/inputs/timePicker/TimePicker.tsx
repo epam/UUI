@@ -55,7 +55,7 @@ export interface TimePickerProps extends SizeMod, IHasEditMode, IEditable<TimePi
     /**
      * Indicates that inputs' clear cross is hidden
      */
-    hideCross?: boolean;
+    disableClear?: boolean;
 }
 
 export interface TimePickerValue {
@@ -182,7 +182,7 @@ export function TimePicker(props: TimePickerProps) {
                 cx={ [css.root, css.timepickerInput, props.inputCx] }
                 value={ state.inputValue }
                 onValueChange={ handleInputChange }
-                onCancel={ !props.hideCross && onClear }
+                onCancel={ !props.disableClear && onClear }
                 onFocus={ handleFocus }
                 onBlur={ handleBlur }
                 isDropdown={ false }
