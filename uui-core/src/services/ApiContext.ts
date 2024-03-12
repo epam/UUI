@@ -179,7 +179,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 this.handleResponse(call, response);
             })
             .catch((e: Error) => {
-                if (e.name === 'AbortError') {
+                if (e?.name === 'AbortError') {
                     this.removeFromQueue(call);
                     return;
                 }
