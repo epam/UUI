@@ -28,6 +28,7 @@
 * [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
 * [IconButton]: fixed property `isDropdown`;
 * [Switch]: fixed property `isReadonly`;
+* [TextArea]: fixed ability to scroll when `readonly` or `disable`;
 
 # 5.6.1 - 19.02.2024
 
