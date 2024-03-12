@@ -105,4 +105,5 @@ export type IconBase<TIcon> = {
     id: string;
     icon: TIcon;
     name: string;
+    path: string;
 };
