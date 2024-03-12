@@ -14,6 +14,8 @@ export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IH
     disableCloseByEsc?: boolean;
     /** Pass true to disabled modal closing by click outside modal window */
     disallowClickOutside?: boolean;
+    /** Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes. */
+    disableUrlChangeHandler?: boolean;
 }
 
 export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
