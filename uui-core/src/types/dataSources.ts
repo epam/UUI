@@ -163,6 +163,7 @@ export interface PatchItemsOptions<TItem, TId> {
      * @returns `top` - moves an element to the top of the children list;
      * @returns `bottom` - moves an element to the bottom of the children list;
      * @returns `{ after: TId }` - moves an element after an element with id === `after`.
+     * @default 'initial'
      */
     getPosition?: (item: TItem) => Position<TId>;
 }

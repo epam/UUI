@@ -15,6 +15,7 @@ const blankItem: Partial<TodoTask> = {
     priority: null,
     comments: '',
     dueDate: '',
+    isNew: true,
 };
 
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
@@ -181,7 +182,7 @@ export default function EditableTableExample() {
             ...lens.prop('items').getItem(item.id).default(item).toProps(),
         }),
         patchItems: value.items,
-        getPosition: (item: TodoTask) => newItems.get(item.id) ? 'bottom' : 'initial',
+        getPosition: (item: TodoTask) => item.isNew ? 'bottom' : 'initial',
         isDeletedProp: 'isDeleted',
     });
 
