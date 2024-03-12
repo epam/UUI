@@ -1,18 +1,3 @@
-@keyframes semantic-animation {
-    0% {
-        opacity: 0;
-        height: 0;
-        transform: rotate3d(90, 0, 0, 90deg);
-    }
-
-    100% {
-        opacity: 1;
-        height: 18px;
-        transform: rotate3d(90, 0, 0, 90deg);
-    }
-}
-
-
 .group-title {
     margin-bottom: 0;
 }
@@ -147,9 +132,7 @@
     padding-top: 0;
     padding-bottom: 0;
     opacity: 1;
-    transition: 0.4s ease-in-out;
-    animation: semantic-animation;
-    animation-duration: 100ms;
+    transition: 0.3s ease-in-out;
 
     &:nth-of-type(2) {
         margin: 6px 0 0;
@@ -165,10 +148,6 @@
     transform: rotate3d(90, 0, 0, 90deg);
     opacity: 0;
     visibility: hidden;
-    animation: semantic-animation;
-    animation-duration: 100ms;
-    animation-direction: reverse;
-
 }
 
 
