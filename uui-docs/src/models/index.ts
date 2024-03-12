@@ -289,4 +289,5 @@ export interface TodoTask {
     dueDate?: string;
     comments?: string;
     isDeleted?: boolean;
+    isNew?: boolean;
 }
