@@ -13,7 +13,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
         document.body.style.overflow = 'hidden';
         !this.props.disableCloseByEsc && window.addEventListener('keydown', this.keydownHandler);
 
-        if (!this.props.disableUrlChangeHandler) {
+        if (!this.props.disableCloseOnRouterChange) {
             this.unsubscribeFromRouter = this.context.uuiRouter.listen(() => {
                 this.urlChangeHandler();
             });
@@ -33,7 +33,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
     }
 
     urlChangeHandler = () => {
-        !this.props.disableUrlChangeHandler && this.context.uuiModals.closeAll();
+        !this.props.disableCloseOnRouterChange && this.context.uuiModals.closeAll();
     };
 
     keydownHandler = (e: KeyboardEvent) => {
