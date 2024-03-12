@@ -130,6 +130,22 @@ describe('ApiContext', () => {
         expect(call.responseData).toEqual({ error: 'error' });
     });
 
+    it('should handler non valid json parsing error with ok status', async () => {
+        const fetchMock = jest.fn(() => {
+            return Promise.resolve({
+                json: () => Promise.reject(),
+                ok: true,
+                status: 200,
+            } as any);
+        });
+
+        context = new ApiContext({ fetch: fetchMock });
+        await context.processRequest('path', 'POST', testData).catch(() => {});
+        const call = context.getActiveCalls()[0];
+
+        expect(call.status).toEqual('error');
+    });
+
     it('should survive non-json error responses', async () => {
         const fetchMock = jest.fn(() => {
             return Promise.resolve({
