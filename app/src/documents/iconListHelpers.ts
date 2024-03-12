@@ -6,6 +6,8 @@ declare let require: any;
 const iconsLoader: { ctx: any; iPath: string; delimiter?: string }[] = [
     { ctx: require.context('@epam/assets/icons/loaders', true, /^.*\.svg$/), iPath: '@epam/assets/icons/loaders' },
     { ctx: require.context('@epam/assets/icons', false, /^.*\.svg$/), iPath: '@epam/assets/icons' },
+    { ctx: require.context('@epam/assets/icons/external_logo', true, /^.*\.svg$/), iPath: '@epam/assets/icons/external_logo' },
+    { ctx: require.context('@epam/assets/icons/internal_logo', true, /^.*\.svg$/), iPath: '@epam/assets/icons/internal_logo' },
 ];
 
 export function getAllIcons<TIcon>(): IconBase<TIcon>[] {
@@ -17,7 +19,7 @@ export function getAllIcons<TIcon>(): IconBase<TIcon>[] {
             const { ReactComponent: icon } = ctx(file);
             const name = file.replace('.', iPath).split('/').pop();
             const i = {
-                id: name, icon, name,
+                id: name, icon, name, path: iPath,
             };
             acc.push(i);
         });
