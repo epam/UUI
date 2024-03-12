@@ -37,7 +37,6 @@ export const FlexRow = withMods<Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, R
         props.margin && css['margin-' + props.margin],
         props.topShadow && css.topShadow,
         props.borderBottom && css.borderBottom,
-        props.spacing && css['spacing-' + props.spacing],
         props.background && css[`uui-${props.background}`],
     ];
 });
