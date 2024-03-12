@@ -7,3 +7,9 @@ export const strategies = {
     async: useAsyncTree,
     lazy: useLazyTree,
 };
+
+export type {
+    UseTreeProps,
+    LoadMissingRecords,
+    GetItemStatus,
+} from './types';

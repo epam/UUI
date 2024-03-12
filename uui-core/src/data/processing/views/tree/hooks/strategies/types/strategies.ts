@@ -6,11 +6,9 @@ import { AsyncTreeProps } from '../asyncTree/types';
 import { ITree } from '../../../newTree/ITree';
 import { RecordStatus } from '../../../types';
 
-export type UseTreeProps<TItem, TId, TFilter = any> = TreeProps<TItem, TId, TFilter>;
-
 export type Strategies = typeof STRATEGIES[keyof typeof STRATEGIES];
 
-export type ExtractTreeProps<T extends Strategies, TItem, TId, TFilter = any> = Extract<TreeProps< TItem, TId, TFilter>, { type: T }>;
+export type ExtractTreeProps<T extends Strategies, TItem, TId, TFilter = any> = Extract<UseTreeProps< TItem, TId, TFilter>, { type: T }>;
 
 export type TreeHook<T extends Strategies> =
     <TItem, TId, TFilter = any>(
@@ -18,7 +16,10 @@ export type TreeHook<T extends Strategies> =
         deps: any[],
     ) => UseTreeResult<TItem, TId, TFilter>;
 
-export type TreeProps<TItem, TId, TFilter = any> = (
+/**
+ * useTree hook configuration.
+ */
+export type UseTreeProps<TItem, TId, TFilter = any> = (
     PlainTreeProps<TItem, TId, TFilter>
     | AsyncTreeProps<TItem, TId, TFilter>
     | LazyTreeProps<TItem, TId, TFilter>
