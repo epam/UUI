@@ -22562,6 +22562,8 @@
       "    disableCloseByEsc?: boolean;",
       "    /** Pass true to disabled modal closing by click outside modal window */",
       "    disallowClickOutside?: boolean;",
+      "    /** Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes. */",
+      "    disableUrlChangeHandler?: boolean;",
       "}"
      ]
     },
@@ -22605,6 +22607,22 @@
       "comment": {
        "raw": [
         "Pass true to disabled modal closing by click outside modal window"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "disableUrlChangeHandler",
+      "name": "disableUrlChangeHandler",
+      "comment": {
+       "raw": [
+        "Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes."
        ]
       },
       "typeValue": {
