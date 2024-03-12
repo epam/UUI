@@ -51,7 +51,7 @@ function UuiEnhancedApp() {
 
     React.useEffect(() => {
         Object.assign(svc, services);
-        services.uuiAnalytics.addListener(new GAListener(GA_CODE));
+        isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
         services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
         setIsLoaded(true);
     }, [services]);
