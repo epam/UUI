@@ -207,6 +207,8 @@ IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
     columnGap?: number | '6' | '12' | '18' | '24' | '36';
     /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
     rowGap?: number | '6' | '12' | '18' | '24' | '36';
+    /** Defines row spacing */
+    spacing?: '6' | '12' | '18';
 };
 
 export type FlexCellProps = IHasCX &

@@ -9,6 +9,7 @@
 * [RTE]: added `onFocus` prop
 * [IconButton]: added property `size`;
 * [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
+* [FlexRow]: updated property `spacing`, now it works as `columnGup` instead margin in the previous realization;
 
 
 **What's Fixed**
