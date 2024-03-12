@@ -94,11 +94,12 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             <div className={ css.editorWrapper } onClick={ handleEditableCellClick }>
                 {props.renderEditor(editorProps)}
                 <DataTableCellOverlay
-                    { ...editorProps }
                     renderTooltip={ props.renderTooltip }
                     inFocus={ state.inFocus }
                     rowIndex={ row.index }
                     columnIndex={ props.index }
+                    isInvalid={ props.isInvalid ?? props.rowProps.isInvalid }
+                    validationMessage={ props.validationMessage ?? props.rowProps.validationMessage }
                 />
             </div>
         );
