@@ -203,11 +203,12 @@ export function useDataRows<TItem, TId, TFilter = any>(
     const listProps = useMemo((): DataSourceListProps => {
         const itemsInfo = tree.getItems(undefined);
         const { count, ids } = itemsInfo;
-        const isFlatList = ids.every((id) => {
+        const isTreeLikeStructure = ids.some((id) => {
             const info = tree.getItems(id);
-            return !('assumedCount' in info) && info.ids.length === 0;
+            return ('assumedCount' in info) || info.ids.length > 0;
         });
 
+        const isFlatList = !isTreeLikeStructure;
         const completeFlatListRowsCount = isFlatList && count != null ? count : undefined;
         let rowsCount;
         if (completeFlatListRowsCount !== undefined) {
