@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IMap, ItemsMap, Metadata, PositionType, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IMap, ITree, ItemsMap, Metadata, Position, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -12,15 +12,15 @@ import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg
 
 import { Task } from './types';
 import { getColumns } from './columns';
-import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
+import { deleteTaskWithChildren } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
 import { TApi } from '../../data';
 import { ProjectTask } from '@epam/uui-docs';
 
 interface FormState {
-    items: ItemsMap<number, Task>;
-    positions: IMap<number, number | PositionType>;
+    items: ItemsMap<number, ProjectTask>;
+    positions: IMap<number, Position<number>>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -57,15 +57,21 @@ export function ProjectTableDemo() {
     });
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
-    const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
+    const dataTableFocusManager = useDataTableFocusManager<ProjectTask['id']>({}, []);
+
+    const currentTreeRef = useRef<ITree<ProjectTask, number>>(null);
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         let tempRelativeTask = relativeTask;
+        let newItemPosition: Position<number>;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
+        console.log('relativeTask, position', relativeTask, position);
+
         if (position === 'inside') {
             task.parentId = relativeTask.id;
             tempRelativeTask = null; // just insert as the first child
+            newItemPosition = 'top';
         }
 
         if (tempRelativeTask) {
@@ -73,20 +79,32 @@ export function ProjectTableDemo() {
         }
 
         setValue((currentValue) => {
-            const orders: string[] = [];
-            currentValue.items.forEach((item) => {
-                if (item.parentId === task.parentId) {
-                    orders.push(item.order);
-                }
-            });
-        
-            task.order = getInsertionOrder(
-                orders,
-                position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-                tempRelativeTask?.order,
-            );
+            // task.order = getInsertionOrder(
+            //     orders,
+            //     position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+            //     tempRelativeTask?.order,
+            // );
 
-            return { ...currentValue, items: currentValue.items.set(task.id, task) };
+            if (tempRelativeTask) {
+                if (position === 'bottom') {
+                    newItemPosition = { after: tempRelativeTask.id };
+                }
+
+                if (position === 'top') {
+                    const { ids } = currentTreeRef.current.getItems(tempRelativeTask.parentId);
+                    const index = ids.findIndex((id) => id === tempRelativeTask.id);
+                    if (index <= 0) {
+                        newItemPosition = 'top';
+                    } else {
+                        const afterId = ids[index - 1];
+                        newItemPosition = { after: afterId };
+                    }
+                }
+            }
+
+            const newPositions = new Map(currentValue.positions);
+            newPositions.set(task.id, newItemPosition);
+            return { ...currentValue, items: currentValue.items.set(task.id, task), positions: newPositions };
         });
 
         setTableState((currentTableState) => {
@@ -108,7 +126,7 @@ export function ProjectTableDemo() {
         }));
     }, [setValue]);
 
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<ProjectTask & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
             return null;
         } else {
@@ -117,7 +135,7 @@ export function ProjectTableDemo() {
     }, []);
 
     const handleDrop = useCallback(
-        (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
+        (params: DropParams<ProjectTask, Task>) => insertTask(params.position, params.dstData, params.srcData),
         [insertTask],
     );
 
@@ -143,7 +161,7 @@ export function ProjectTableDemo() {
             getChildCount: (task) => task.childCount,
             backgroundReload: true,
             patchItems: value.items,
-            getPosition: (item: ProjectTask) => item.isNew ? 'bottom' : 'initial',
+            getPosition: (item: ProjectTask) => value.positions.has(item.id) ? value.positions.get(item.id) : 'initial',
             isDeletedProp: 'isDeleted',
             getRowOptions: (task) => ({
                 ...lens.prop('items').getItem(task.id).toProps(), // pass IEditable to ezach row to allow editing
@@ -159,6 +177,8 @@ export function ProjectTableDemo() {
         },
         [],
     );
+
+    currentTreeRef.current = tree;
 
     const { rows, listProps } = useDataRows({
         tree, ...restProps,

@@ -3,14 +3,18 @@ import { IBaseMap } from '../../types';
 type FieldValue = Object | Array<any> | IBaseMap<string, any>;
 
 const getKeys = (a: FieldValue, b: FieldValue, c: FieldValue) => {
-    if (Array.isArray(a)) {
+    if (Array.isArray(a) && Array.isArray(b) && Array.isArray(c)) {
         return Object.keys({ ...a, ...b, ...c });
     }
 
     return Array.from(new Set([...getObjectOrMapKeys(a), ...getObjectOrMapKeys(b), ...getObjectOrMapKeys(c)]));
 };
 
-const getObjectOrMapKeys = (a: Object | IBaseMap<string, any>) => {
+const getObjectOrMapKeys = (a: Object | IBaseMap<string, any> | any) => {
+    if (typeof a !== 'object') {
+        return [];
+    }
+
     if (!Array.isArray(a) && Symbol.iterator in a && typeof a[Symbol.iterator] === 'function') {
         const keys = [];
         for (const [key] of a) {

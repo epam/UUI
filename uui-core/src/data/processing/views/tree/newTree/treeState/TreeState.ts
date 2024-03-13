@@ -180,15 +180,11 @@ export class TreeState<TItem, TId> {
             return { treeStructure, itemsMap };
         }
 
-        if (newItems.length) {
-            this.setItems(newItems, { on: 'patch' });
-        }
-
         return { treeStructure: newTreeStructure, itemsMap: newItemsMap };
     }
 
     public patchItems({ patchItems, isDeletedProp, getPosition }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
-        const { treeStructure: newFull, itemsMap: newItemsMap } = this.patchItemsTreeStructure({
+        const { treeStructure: newFull } = this.patchItemsTreeStructure({
             treeStructure: this.getTreeStructure('full'),
             itemsMap: this.itemsMap,
             patchItems,
@@ -198,7 +194,7 @@ export class TreeState<TItem, TId> {
 
         const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchItemsTreeStructure({
             treeStructure: this.getTreeStructure('visible'),
-            itemsMap: newItemsMap,
+            itemsMap: this.itemsMap,
             patchItems,
             isDeletedProp,
             getPosition,

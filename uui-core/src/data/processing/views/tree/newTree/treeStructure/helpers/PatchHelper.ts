@@ -73,7 +73,9 @@ export class PatchHelper {
     private static deleteFromChildren<TId>(id: TId, children: TId[]) {
         const foundIndex = children.findIndex((childId) => childId === id);
         if (foundIndex !== -1) {
-            children.splice(foundIndex, 1);
+            const newChildren = [...children];
+            newChildren.splice(foundIndex, 1);
+            return newChildren;
         }
 
         return children;
