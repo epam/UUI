@@ -29,7 +29,7 @@ export default function FlexSpacerExample() {
 
             <FlexSpacer />
 
-            <FlexRow padding="12" vPadding="12" spacing="12">
+            <FlexRow padding="12" vPadding="12" columnGap="12">
                 <FlexSpacer />
 
                 <Button caption="Create notification" onClick={ () => null } color="accent" />

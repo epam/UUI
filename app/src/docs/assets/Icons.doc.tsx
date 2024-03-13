@@ -111,7 +111,7 @@ export function IconsDoc() {
         const icon = state.selectedIcon.icon;
         return (
             <FlexCell width="100%">
-                <FlexRow size="24" spacing="12">
+                <FlexRow size="24" columnGap="12">
                     <FlexCell width="auto" shrink={ 0 }>
                         <IconButton size={ state.controlSize as any } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
@@ -134,7 +134,7 @@ export function IconsDoc() {
 
     const renderControlSize = () => (
         <div className={ cx(css.controlSizeWrapper, { [css.hideControlSize]: state.isLocked, [css.showControlSize]: !state.isLocked }) }>
-            <FlexRow padding="24" vPadding="24" spacing="12" size="24" borderBottom cx={ css.controlSizeContent }>
+            <FlexRow padding="24" vPadding="24" columnGap="12" size="24" borderBottom cx={ css.controlSizeContent }>
                 <FlexCell width="auto">
                     <Text fontWeight="600" size="24" fontSize="14">
                         Control size:

@@ -133,18 +133,18 @@ export default function NotificationContextExample() {
                 (props: INotification): ReactNode => (
                     <Panel style={ { width: '420px' } } background="surface-main" shadow>
                         <ModalHeader title="Custom notification" onClose={ props.onClose } />
-                        <FlexRow padding="24" spacing="12">
+                        <FlexRow padding="24" columnGap="12">
                             <LabeledInput size="36" label="Promotion Cycle">
                                 <TextInput value="" size="36" onValueChange={ () => {} } />
                             </LabeledInput>
                         </FlexRow>
-                        <FlexRow padding="24" spacing="12">
+                        <FlexRow padding="24" columnGap="12">
                             <LabeledInput size="36" label="Discipline">
                                 <TextInput value="" size="36" onValueChange={ () => {} } />
                             </LabeledInput>
                         </FlexRow>
                         <FlexSpacer />
-                        <FlexRow padding="24" vPadding="24" spacing="12">
+                        <FlexRow padding="24" vPadding="24" columnGap="12">
                             <FlexSpacer />
                             <Button color="accent" onClick={ props.onClose } caption="Cancel" />
                             <Button color="accent" caption="Confirm" onClick={ props.onSuccess } />
@@ -159,38 +159,38 @@ export default function NotificationContextExample() {
 
     return (
         <div>
-            <FlexRow size="48" padding="12" spacing="12">
+            <FlexRow size="48" padding="12" columnGap="12">
                 <Button caption="Click" size="24" color="accent" fill="outline" onClick={ handleSuccess } />
                 <Text size="36" fontWeight="600">
                     Simple notification
                 </Text>
             </FlexRow>
-            <FlexRow size="48" padding="12" spacing="12">
+            <FlexRow size="48" padding="12" columnGap="12">
                 <Button caption="Click" size="24" color="primary" fill="outline" onClick={ handleWarning } />
                 <Text size="36" fontWeight="600">
                     Notification with additional buttons
                 </Text>
             </FlexRow>
-            <FlexRow size="48" padding="12" spacing="12">
+            <FlexRow size="48" padding="12" columnGap="12">
                 <Button caption="Click" size="24" color="critical" fill="outline" onClick={ handleError } />
                 <Text size="36" fontWeight="600">
                     Huge notification with long title and several rows with buttons
                 </Text>
             </FlexRow>
-            <FlexRow size="48" padding="12" spacing="12">
+            <FlexRow size="48" padding="12" columnGap="12">
                 <Button caption="Click" size="24" color="accent" fill="outline" onClick={ customNotificationHandler } />
                 <Text size="36" fontWeight="600">
                     All custom notification
                 </Text>
             </FlexRow>
-            <FlexRow size="48" padding="12" spacing="12">
+            <FlexRow size="48" padding="12" columnGap="12">
                 <Button caption="Click" size="24" color="secondary" fill="outline" onClick={ handleSnackWithRichText } />
                 <Text size="36" fontWeight="600">
                     Notification with RichTextView
                 </Text>
             </FlexRow>
 
-            <FlexRow size="48" padding="12" spacing="12">
+            <FlexRow size="48" padding="12" columnGap="12">
                 <Text size="36" fontWeight="600">
                     Position of pop-up:
                 </Text>

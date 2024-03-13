@@ -8,7 +8,7 @@ export default function CloseOpenModifiersExample() {
     const renderDropdownBody = (props: DropdownContainerProps) => {
         return (
             <DropdownContainer vPadding="24" padding="18" { ...props }>
-                <FlexRow alignItems="center" spacing="12">
+                <FlexRow alignItems="center" columnGap="12">
                     <Avatar size="48" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
 
                     <FlexCell width="100%">
@@ -26,7 +26,7 @@ export default function CloseOpenModifiersExample() {
 
     return (
         <div>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <Dropdown
                     renderBody={ (props) => renderDropdownBody({ ...props, focusLock: false }) }
                     renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (toggler mode)" { ...props } /> }
@@ -47,7 +47,7 @@ export default function CloseOpenModifiersExample() {
                 />
             </FlexRow>
 
-            <FlexRow vPadding="12" spacing="12">
+            <FlexRow vPadding="12" columnGap="12">
                 <Dropdown
                     renderBody={ (props) => renderDropdownBody(props) }
                     renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open(Don't close on click outside)" { ...props } /> }
