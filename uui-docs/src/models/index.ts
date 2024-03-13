@@ -291,3 +291,19 @@ export interface TodoTask {
     isDeleted?: boolean;
     isNew?: boolean;
 }
+
+export interface ProjectTask {
+    id: number;
+    parentId?: number;
+    name: string;
+    estimate?: number;
+    resources?: number[];
+    startDate?: string;
+    dueDate?: string;
+    status?: string;
+    description?: string;
+    order?: string;
+    isNew?: boolean;
+    isDeleted?: boolean;
+    childCount?: number;
+}

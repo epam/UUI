@@ -1,7 +1,7 @@
 import { ITreeNodeInfo } from '../types';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap, newMap } from './map';
+import { cloneMap } from './map';
 import { InsertIntoPositionOptions, PatchItemsIntoTreeStructureOptions } from './types';
 
 export class PatchHelper {
@@ -16,7 +16,7 @@ export class PatchHelper {
         let newItemsMap = itemsMap;
         const newItems: TItem[] = [];
         patchItems.forEach((item, id) => {
-            const parentId = treeStructure.getParams().getParentId?.(item);
+            const parentId = treeStructure.getParams().getParentId?.(item) ?? undefined;
 
             if (isDeletedProp && item[isDeletedProp]) {
                 const children = [...(newByParentId.get(parentId) ?? [])];
@@ -29,7 +29,7 @@ export class PatchHelper {
             const existingItem = newItemsMap.get(id);
             newItemsMap = newItemsMap.set(id, item);
             newItems.push(item);
-            const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) : undefined;
+            const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) ?? undefined : undefined;
             const children = newByParentId.get(parentId) ?? [];
 
             newByParentId.set(parentId, this.insertIntoPosition({ params: treeStructure.getParams(), item, ids: children, position: getPosition(item) }));
@@ -45,7 +45,7 @@ export class PatchHelper {
             return { treeStructure, itemsMap };
         }
 
-        const newNodeInfoById = newMap<TId, ITreeNodeInfo>(treeStructure.getParams());
+        const newNodeInfoById = cloneMap<TId, ITreeNodeInfo>(treeStructure.nodeInfoById);
 
         for (const [parentId, ids] of newByParentId) {
             if (treeStructure.nodeInfoById.has(parentId)) {
