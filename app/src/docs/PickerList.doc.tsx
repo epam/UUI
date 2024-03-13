@@ -52,7 +52,7 @@ export class PickerListDoc extends BaseDocsBlock {
                 examples: [
                     {
                         value: (
-                            <uui.FlexRow spacing="12">
+                            <uui.FlexRow columnGap="12">
                                 <uui.Text>No results found</uui.Text>
                                 <uui.Button onClick={ () => {} } size="24" caption="Search" />
                             </uui.FlexRow>

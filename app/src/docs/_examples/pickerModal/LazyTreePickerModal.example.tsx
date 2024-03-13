@@ -44,7 +44,7 @@ export default function LazyTreePickerModal() {
 
     return (
         <FlexCell width={ 612 }>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <Button color="primary" caption="Show locations" onClick={ handleModalOpening } />
             </FlexRow>
         </FlexCell>

@@ -5,7 +5,7 @@ import css from './WithIconExample.module.scss';
 
 export default function IconTooltipExample() {
     const renderIconMarkup = () => (
-        <FlexRow spacing="6" alignItems="top" cx={ css.container }>
+        <FlexRow columnGap="6" alignItems="top" cx={ css.container }>
             <IconContainer icon={ myIcon } style={ { marginTop: '3px', justifyContent: 'start' } } cx={ css.iconBlue } />
             <FlexCell width="auto">
                 <Text cx={ css.header } fontSize="14" lineHeight="18" fontWeight="600">

@@ -10,7 +10,7 @@ const componentAsDemoContent = (
             {' '}
             {demoData.loremIpsum}
         </Text>
-        <FlexRow spacing="12">
+        <FlexRow columnGap="12">
             <FlexSpacer />
             <Button fill="outline" color="secondary" caption="Cancel" onClick={ () => {} } />
             <Button color="accent" caption="Accept" onClick={ () => {} } />

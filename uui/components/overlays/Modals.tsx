@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
-import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout/FlexItems';
+import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
@@ -58,7 +58,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
                 vPadding="12"
                 borderBottom={ this.props.borderBottom }
                 cx={ [css.root, css.modalHeader, this.props.cx] }
-                spacing="12"
+                columnGap="12"
                 rawProps={ this.props.rawProps }
             >
                 {this.props.title && (
@@ -78,13 +78,13 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
     }
 }
 
-export interface ModalFooterProps extends RowMods, ModalFooterCoreProps {}
+export interface ModalFooterProps extends FlexRowProps, ModalFooterCoreProps {}
 
 export class ModalFooter extends React.Component<ModalFooterProps> {
     render() {
         return (
             <FlexRow
-                spacing={ this.props.spacing || '12' }
+                columnGap={ this.props.columnGap || '12' }
                 cx={ [
                     css.root,
                     css.modalFooter,
