@@ -9,7 +9,6 @@
 * [RTE]: added `onFocus` prop
 * [IconButton]: added property `size`;
 * [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
-* [FlexRow]: updated property `spacing`, now it works as `columnGup` instead margin in the previous realization;
 
 
 **What's Fixed**
@@ -30,6 +29,7 @@
 * [IconButton]: fixed property `isDropdown`;
 * [Switch]: fixed property `isReadonly`;
 * [TextArea]: fixed ability to scroll when `readonly` or `disable`;
+* [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead;
 
 # 5.6.1 - 19.02.2024
 
