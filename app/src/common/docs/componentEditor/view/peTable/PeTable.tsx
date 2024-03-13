@@ -3,6 +3,7 @@ import { FlexCell, FlexRow, FlexSpacer, IconButton, ScrollBars, Text, Tooltip } 
 import { PeTableRow } from './PeTableRow';
 import { IPeTableProps } from './types';
 import { ReactComponent as ResetIcon } from '../../../../../icons/reset-icon.svg';
+import { ReactComponent as PreviewIcon } from '@epam/assets/icons/content-photo-fill.svg';
 import css from './peTable.module.scss';
 import { PropDoc } from '@epam/uui-docs';
 
@@ -33,7 +34,12 @@ export function PeTable<TProps>(props: IPeTableProps<TProps>) {
 
     return (
         <div className={ css.container }>
-            <PeTableToolbar tooltip={ props.typeRef } title={ props.title } onResetAllProps={ props.onResetAllProps } />
+            <PeTableToolbar
+                previewLink={ props.previewLink }
+                tooltip={ props.typeRef }
+                title={ props.title }
+                onResetAllProps={ props.onResetAllProps }
+            />
             <PeTableHeader />
             <div className={ css.rowProps }>
                 <ScrollBars>
@@ -47,7 +53,7 @@ export function PeTable<TProps>(props: IPeTableProps<TProps>) {
 PeTable.displayName = 'PeTable';
 
 const PeTableToolbar = React.memo(
-    function PeTableToolbarComponent<TProps>({ title, onResetAllProps, tooltip }: Pick<IPeTableProps<TProps>, 'title' | 'onResetAllProps'> & { tooltip: string }) {
+    function PeTableToolbarComponent<TProps>({ title, onResetAllProps, tooltip, previewLink }: Pick<IPeTableProps<TProps>, 'title' | 'onResetAllProps' | 'previewLink'> & { tooltip: string }) {
         return (
             <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
                 <Tooltip content={ tooltip }>
@@ -56,6 +62,16 @@ const PeTableToolbar = React.memo(
                     </Text>
                 </Tooltip>
                 <FlexSpacer />
+                { previewLink && (
+                    <Tooltip placement="auto" content="Open Preview">
+                        <IconButton
+                            target="_blank"
+                            icon={ PreviewIcon }
+                            href={ previewLink }
+                            color="info"
+                        />
+                    </Tooltip>
+                )}
                 <Tooltip placement="auto" content="Reset setting">
                     <IconButton
                         icon={ ResetIcon }

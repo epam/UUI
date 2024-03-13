@@ -1,0 +1,22 @@
+.root {
+    :global(.uui-icon) {
+        fill: var(--uui-text-info);
+    }
+
+    &.has-error {
+        :global(.uui-icon) {
+            fill: var(--uui-text-critical);
+        }
+    }
+}
+
+.button {
+    max-width: 150px;
+}
+
+.textarea {
+    position: absolute;
+    top: 36px;
+    max-width: 300px;
+    z-index: 1;
+}

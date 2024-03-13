@@ -1,0 +1,26 @@
+.root {
+    flex-direction: column;
+
+    & > div {
+        width: 100%;
+        flex-basis: auto;
+    }
+}
+
+.toolbar {
+    background-color: var(--uui-surface-main);
+
+    & > div {
+        padding: 0 24px;
+    }
+}
+
+.list {
+    padding-top: 24px;
+    flex-direction: column;
+
+    & > div {
+        width: 100%;
+        flex-basis: auto;
+    }
+}

@@ -3,14 +3,14 @@ import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as uui from '@epam/uui';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { AvatarProps } from '@epam/uui-components';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class AvatarDoc extends BaseDocsBlock {
     title = 'Avatar';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Avatar',
         bySkin: {
             [TSkin.Loveship]: { type: '@epam/uui-components:AvatarProps', component: loveship.Avatar },
@@ -29,6 +29,14 @@ export class AvatarDoc extends BaseDocsBlock {
                         isDefault: true,
                     },
                 ],
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<AvatarProps>) => {
+            docPreview.add({
+                id: 'default',
+                matrix: {
+                    size: { examples: '*' },
+                },
             });
         },
     };

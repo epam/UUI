@@ -1,0 +1,10 @@
+.label {
+    & > div {
+        padding: 0 24px 0 24px;
+
+        :global(.uui-text) {
+            display: inline-block;
+            padding: 0;
+        }
+    }
+}

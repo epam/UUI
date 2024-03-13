@@ -9,7 +9,7 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 export class TextDoc extends BaseDocsBlock {
     title = 'Text';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Text',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

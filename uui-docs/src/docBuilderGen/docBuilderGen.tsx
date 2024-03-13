@@ -1,5 +1,5 @@
 import { TSkin } from '../types';
-import { DocBuilder } from '../DocBuilder';
+import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
 import { TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
@@ -60,6 +60,12 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
                 docs.merge(prop.name, { editorType: 'CantResolve' });
             }
         });
+
+        if (config.preview) {
+            const previewBuilder = new DocPreviewBuilder();
+            config.preview(previewBuilder);
+            docs.setDocPreview(previewBuilder);
+        }
 
         return docs;
     }

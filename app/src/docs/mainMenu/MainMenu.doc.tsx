@@ -12,7 +12,7 @@ import css from './../styles.module.scss';
 export class MainMenuDoc extends BaseDocsBlock {
     title = 'Main Menu';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'MainMenu',
         contexts: [TDocContext.Resizable],
         bySkin: {

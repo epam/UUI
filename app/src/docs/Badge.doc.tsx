@@ -3,14 +3,22 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    COLOR_MAP,
+    DocBuilder,
+    DocPreviewBuilder,
+    getColorPickerComponent,
+    TDocConfig,
+    TDocContext,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Badge',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
@@ -34,6 +42,15 @@ export class BadgeDoc extends BaseDocsBlock {
                     ...COLOR_MAP,
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-40' : 'neutral-30'})`,
                 }),
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
+            docPreview.add({
+                id: 'default',
+                matrix: {
+                    color: { examples: '*' },
+                    size: { examples: '*' },
+                },
             });
         },
     };

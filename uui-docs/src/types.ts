@@ -5,6 +5,7 @@ import { Icon } from '@epam/uui-core';
 export interface DemoComponentProps<TProps = PropDocPropsUnknown> {
     DemoComponent: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
     props: TProps;
+    isPreview?: boolean;
 }
 
 export interface IComponentDocs<TProps> {
@@ -12,6 +13,7 @@ export interface IComponentDocs<TProps> {
     component?: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
     props?: PropDoc<TProps, keyof TProps>[];
     contexts?: DemoContext<TProps>[];
+    getPropExamplesMap?: <TProp extends keyof TProps>(propName: TProp) => { [exampleName: string] : PropExampleObject<TProp> }
 }
 
 export interface DemoContext<TProps> {
@@ -107,3 +109,37 @@ export type IconBase<TIcon> = {
     name: string;
     path: string;
 };
+
+type TPreviewPropsItemMatrixValues<TProps = any, TProp extends keyof TProps = any> = {
+    /** Array of values to be directly passed to the component */
+    values: TProps[TProp][];
+    examples?: never;
+};
+type TPreviewPropsItemMatrixExamples = {
+    /** Array of example names or "*" which means all examples */
+    examples: string[] | '*';
+    values?: never;
+};
+
+export type TPreviewPropsItemUseCases = {
+    id: string;
+    context: TDocContext;
+    props: Record<string, unknown>[];
+};
+export type TPreviewPropsItem<TProps> = {
+    /** A unique ID of the preview props which can be referenced by test automation */
+    id: string;
+    /**  TDocContext.Default will be used is nothing is passed */
+    context?: TDocContext;
+    /**
+     * A map of prop names to prop values/examples.
+     * The component will be repeated more than once in order to render all possible combinations: all-props/all-values/all-examples.
+     */
+    matrix: {
+        /**
+         * Property name
+         */
+        [prop in keyof TProps]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples;
+    }
+};
+export type TPreviewProps<TProps> = TPreviewPropsItem<TProps>[];

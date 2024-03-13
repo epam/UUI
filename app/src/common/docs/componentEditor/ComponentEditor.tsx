@@ -21,6 +21,7 @@ import {
     rebuildInputDataExamples,
     updatePropInputData,
 } from './propDocUtils';
+import { useQuery } from '../../../helpers';
 
 export function ComponentEditorWrapper(props: {
     theme: TTheme,
@@ -36,9 +37,11 @@ export function ComponentEditorWrapper(props: {
         config,
         onRedirectBackToDocs,
     } = props;
+    const componentId = useQuery('id');
     const skin = getSkin(theme, isSkin);
     const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, loadDocsGenType });
-
+    const supportsPreview = !!docs?.docPreview;
+    const previewLink = supportsPreview ? `/preview?theme=${theme}&isSkin=${isSkin}&componentId=${componentId}` : undefined;
     React.useEffect(() => {
         if (!config) {
             onRedirectBackToDocs();
@@ -53,6 +56,7 @@ export function ComponentEditorWrapper(props: {
             title={ title }
             skin={ skin }
             generatedFromType={ generatedFromType }
+            previewLink={ previewLink }
         />
     );
 }
@@ -61,6 +65,7 @@ interface ComponentEditorProps {
     docs?: IComponentDocs<PropDocPropsUnknown>;
     skin: TSkin;
     title: string;
+    previewLink: string | undefined;
     isLoaded: boolean;
     onRedirectBackToDocs: () => void;
     generatedFromType?: TDocsGenExportedType;
@@ -222,7 +227,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
     };
 
     render() {
-        const { title, docs, isLoaded, onRedirectBackToDocs, generatedFromType } = this.props;
+        const { title, docs, isLoaded, onRedirectBackToDocs, generatedFromType, previewLink } = this.props;
         const { inputData, selectedContext, isInited, componentKey } = this.state;
         const { component: DemoComponent, name: tagName, contexts, props } = docs || {};
         const selectedCtxName = selectedContext || (contexts?.length > 0 ? contexts[0].name : undefined);
@@ -230,6 +235,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
 
         return (
             <ComponentEditorView
+                previewLink={ previewLink }
                 contexts={ contexts }
                 componentKey={ componentKey }
                 DemoComponent={ DemoComponent }

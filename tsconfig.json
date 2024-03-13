@@ -35,6 +35,8 @@
     "**/node_modules",
     "**/build",
     "**/__tests__",
-    "**/globals.d.ts"
+    "**/__e2e__",
+    "**/globals.d.ts",
+    "playwright.config.ts"
   ]
 }

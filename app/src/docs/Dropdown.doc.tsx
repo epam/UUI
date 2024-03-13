@@ -4,13 +4,13 @@ import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { DropdownProps } from '@epam/uui-core';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class DropdownDoc extends BaseDocsBlock {
     title = 'Dropdown';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Dropdown',
         bySkin: {
             [TSkin.Loveship]: { type: '@epam/uui-core:DropdownProps', component: loveship.Dropdown },
@@ -65,6 +65,19 @@ export class DropdownDoc extends BaseDocsBlock {
                         isDefault: true,
                     },
                 ],
+            });
+        },
+
+        preview: (docPreview: DocPreviewBuilder<DropdownProps>) => {
+            docPreview.add({
+                id: 'default',
+                matrix: {
+                    openOnClick: { values: [true] },
+                    closeOnClickOutside: { values: [false] },
+                    closeOnMouseLeave: { values: [false] },
+                    placement: { examples: '*' },
+                    value: { examples: '*' },
+                },
             });
         },
     };

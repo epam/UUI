@@ -20,6 +20,7 @@ export interface IPeTableProps<TProps> {
     propDoc: PropDoc<TProps, keyof TProps>[]
     title: string;
     typeRef: TDocsGenExportedType;
+    previewLink: string | undefined;
 }
 
 export interface IPeTableRowProps<TProps> {

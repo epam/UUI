@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { accordionExamples } from './accordionExamples';
 import { IControlled } from '@epam/uui-core';
@@ -11,7 +11,7 @@ import { IControlled } from '@epam/uui-core';
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Accordion',
         contexts: [TDocContext.Resizable],
         bySkin: {
@@ -25,6 +25,28 @@ export class AccordionDoc extends BaseDocsBlock {
             doc.merge('title', { examples: [{ value: 'Accordion title', isDefault: true }, 'Additional info'] });
             doc.merge('value', { isRequired: false });
             doc.merge('onValueChange', { isRequired: false });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.AccordionProps & IControlled<boolean>>) => {
+            docPreview.add({
+                id: 'expanded',
+                context: TDocContext.Resizable,
+                matrix: {
+                    value: { values: [true] },
+                    mode: { examples: '*' },
+                    padding: { examples: '*' },
+                    renderTitle: { examples: '*' },
+                },
+            });
+            docPreview.add({
+                id: 'collapsed',
+                context: TDocContext.Resizable,
+                matrix: {
+                    value: { values: [false] },
+                    mode: { examples: '*' },
+                    padding: { examples: '*' },
+                    renderTitle: { examples: '*' },
+                },
+            });
         },
     };
 
