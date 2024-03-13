@@ -183,7 +183,7 @@ export default function EditableTableExample() {
         }),
         patchItems: value.items,
         getPosition: (item: TodoTask) => item.isNew ? 'bottom' : 'initial',
-        isDeletedProp: 'isDeleted',
+        isDeleted: (item) => item.isDeleted,
     });
 
     // Render row callback. In simple cases, you don't need, as default implementation would work ok.

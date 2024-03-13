@@ -12,7 +12,6 @@ import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg
 
 import { Task } from './types';
 import { getColumns } from './columns';
-import { deleteTaskWithChildren } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
 import { TApi } from '../../data';
@@ -66,7 +65,6 @@ export function ProjectTableDemo() {
         let tempRelativeTask = relativeTask;
         let newItemPosition: Position<number>;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-        console.log('relativeTask, position', relativeTask, position);
 
         if (position === 'inside') {
             task.parentId = relativeTask.id;
@@ -103,7 +101,24 @@ export function ProjectTableDemo() {
             }
 
             const newPositions = new Map(currentValue.positions);
+            if (existingTask) {
+                let newRelativeTasksPosition: Position<number>;
+                const { ids } = currentTreeRef.current.getItems(existingTask.parentId);
+                const index = ids.findIndex((id) => id === existingTask.id);
+                if (index <= 0) {
+                    newRelativeTasksPosition = 'top';
+                } else {
+                    const afterId = ids[index - 1];
+                    newRelativeTasksPosition = { after: afterId };
+                }
+                for (const [id, prevPosition] of currentValue.positions) {
+                    if (typeof prevPosition === 'object' && 'after' in prevPosition && prevPosition.after === existingTask.id) {
+                        newPositions.set(id, newRelativeTasksPosition);
+                    }
+                }
+            }
             newPositions.set(task.id, newItemPosition);
+
             return { ...currentValue, items: currentValue.items.set(task.id, task), positions: newPositions };
         });
 
@@ -122,7 +137,7 @@ export function ProjectTableDemo() {
 
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => ({
-            ...currentValue, items: deleteTaskWithChildren(currentValue.items, task),
+            ...currentValue, items: currentValue.items.set(task.id, { ...task, isDeleted: true }),
         }));
     }, [setValue]);
 
@@ -162,7 +177,7 @@ export function ProjectTableDemo() {
             backgroundReload: true,
             patchItems: value.items,
             getPosition: (item: ProjectTask) => value.positions.has(item.id) ? value.positions.get(item.id) : 'initial',
-            isDeletedProp: 'isDeleted',
+            isDeleted: (item) => item.isDeleted,
             getRowOptions: (task) => ({
                 ...lens.prop('items').getItem(task.id).toProps(), // pass IEditable to ezach row to allow editing
                 // checkbox: { isVisible: true },

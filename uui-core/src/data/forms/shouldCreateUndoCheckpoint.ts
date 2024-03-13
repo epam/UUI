@@ -52,7 +52,7 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
     }
 
     // The field is an object of array - need to recurse thru it
-    if (typeof c === 'object') {
+    if (typeof c === 'object' && typeof b === 'object' && typeof c === 'object') {
         // Ignore that a, b, or c might be an empty array or object and has different structure.
         // If it's type changed, we already exited with 'true' on the first step
         // If some there's a difference between keys, values, array length

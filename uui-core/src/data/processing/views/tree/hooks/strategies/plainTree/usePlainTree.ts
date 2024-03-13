@@ -71,7 +71,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
         patchItems: showSelectedOnly ? null : restProps.patchItems,
-        isDeletedProp: restProps.isDeletedProp,
+        isDeleted: restProps.isDeleted,
         getPosition: restProps.getPosition,
     });
 

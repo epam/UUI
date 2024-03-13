@@ -7,9 +7,9 @@ export interface UsePatchTreeProps<TItem, TId> extends PatchItemsOptions<TItem, 
 }
 
 export function usePatchTree<TItem, TId>(
-    { tree, patchItems, isDeletedProp, getPosition }: UsePatchTreeProps<TItem, TId>,
+    { tree, patchItems, isDeleted, getPosition }: UsePatchTreeProps<TItem, TId>,
 ) {
     return useMemo(() => {
-        return tree.patchItems({ patchItems, isDeletedProp, getPosition });
-    }, [tree, patchItems, isDeletedProp]);
+        return tree.patchItems({ patchItems, isDeleted, getPosition });
+    }, [tree, patchItems]);
 }

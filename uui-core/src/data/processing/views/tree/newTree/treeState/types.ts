@@ -63,6 +63,6 @@ export interface CascadeSelectionOptions<TItem, TId> {
 export interface PatchOptions<TItem> {
     using?: TreeStructureId;
     items: TItem[];
-    isDeletedProp?: keyof TItem;
+    isDeleted?: () => boolean;
     comparator?: ItemsComparator<TItem>;
 }

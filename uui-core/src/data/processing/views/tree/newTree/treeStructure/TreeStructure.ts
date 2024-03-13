@@ -41,8 +41,9 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public getItems(parentId?: TId): ITreeItemsInfo<TId> {
-        const ids = this.byParentId.get(parentId) ?? [];
-        const { count, ...restNodeInfo } = this.nodeInfoById.get(parentId) || {};
+        const currentParentId = parentId ?? undefined;
+        const ids = this.byParentId.get(currentParentId) ?? [];
+        const { count, ...restNodeInfo } = this.nodeInfoById.get(currentParentId) || {};
 
         let status: ITreeNodeStatus = count === undefined ? PARTIALLY_LOADED : EMPTY;
         if (count !== 0 && ids.length === count) {
