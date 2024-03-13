@@ -14,7 +14,7 @@ export default function DataSourceStateVisibleCountExample() {
 
     return (
         <Panel>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <NumericInput
                     placeholder="Type index"
                     value={ tempScrollTo }

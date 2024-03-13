@@ -8,7 +8,7 @@ export default function BasicExample() {
     return (
         <FlexCell width="100%">
             <RichTextView><h6>Solid</h6></RichTextView>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <Tag key={ 1 } icon={ MyIcon } color="neutral" caption="Color neutral" count={ value } onClick={ () => {} } />
                 <Tag key={ 2 } icon={ MyIcon } color="info" caption="Color info" count={ value } onClick={ () => {} } />
                 <Tag key={ 3 } icon={ MyIcon } color="success" caption="Color success" count={ value } onClick={ () => {} } />
@@ -16,7 +16,7 @@ export default function BasicExample() {
                 <Tag key={ 5 } icon={ MyIcon } color="critical" caption="Color critical" count={ value } onClick={ () => {} } />
             </FlexRow>
             <RichTextView><h6>Outline</h6></RichTextView>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <Tag fill="outline" key={ 6 } icon={ MyIcon } color="neutral" caption="Color neutral" count={ value } onClick={ () => {} } />
                 <Tag fill="outline" key={ 7 } icon={ MyIcon } color="info" caption="Color info" count={ value } onClick={ () => {} } />
                 <Tag fill="outline" key={ 8 } icon={ MyIcon } color="success" caption="Color success" count={ value } onClick={ () => {} } />
