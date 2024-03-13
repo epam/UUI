@@ -133,7 +133,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     private handleApiError(call: ApiCall, reason?: ApiRecoveryReason) {
         const error = new ApiCallError(call);
 
-        if (call.options?.errorHandling === 'manual') {
+        if (call.options?.errorHandling === 'manual' && !(reason === 'auth-lost' || reason === 'connection-lost')) {
             this.removeFromQueue(call);
             call.reject(error);
             return;
