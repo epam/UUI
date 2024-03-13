@@ -6,7 +6,7 @@ import { InsertIntoPositionOptions, PatchItemsIntoTreeStructureOptions } from '.
 
 export class PatchHelper {
     public static patchItems<TItem, TId>({
-        itemsMap, treeStructure, patchItems, isDeletedProp, getPosition = () => 'initial',
+        itemsMap, treeStructure, patchItems, isDeleted, getPosition = () => 'initial',
     }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
         if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, newItems: [] };
 
@@ -18,7 +18,7 @@ export class PatchHelper {
         patchItems.forEach((item, id) => {
             const parentId = treeStructure.getParams().getParentId?.(item) ?? undefined;
 
-            if (isDeletedProp && item[isDeletedProp]) {
+            if (isDeleted?.(item)) {
                 const children = [...(newByParentId.get(parentId) ?? [])];
                 newByParentId.set(parentId, this.deleteFromChildren(id, children));
                 newByParentId.delete(id);
@@ -32,8 +32,8 @@ export class PatchHelper {
             const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) ?? undefined : undefined;
             const children = newByParentId.get(parentId) ?? [];
 
-            newByParentId.set(parentId, this.insertIntoPosition({ params: treeStructure.getParams(), item, ids: children, position: getPosition(item) }));
-
+            const newChildren = this.insertIntoPosition({ params: treeStructure.getParams(), item, ids: children, position: getPosition(item) });
+            newByParentId.set(parentId, newChildren);
             if (existingItem && existingItemParentId !== parentId) {
                 const prevParentChildren = treeStructure.byParentId.get(existingItemParentId) ?? [];
                 newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
@@ -94,7 +94,7 @@ export class PatchHelper {
         }
 
         const currentItemIndex = ids.findIndex((id) => params.getId(item) === id);
-        const withoutCurrentItem = [...ids.slice(0, currentItemIndex), ...ids.slice(currentItemIndex + 1)];
+        const withoutCurrentItem = currentItemIndex === -1 ? ids : [...ids.slice(0, currentItemIndex), ...ids.slice(currentItemIndex + 1)];
         if (position === 'top') {
             if (currentItemIndex === -1) {
                 return [itemId, ...ids];
@@ -108,11 +108,11 @@ export class PatchHelper {
             }
             return [...withoutCurrentItem, itemId];
         }
-        const afterIndex = ids.findIndex((id) => id === position.after);
+        const afterIndex = withoutCurrentItem.findIndex((id) => id === position.after);
         if (afterIndex === -1) {
-            return [itemId, ...ids];
+            return [itemId, ...withoutCurrentItem];
         }
 
-        return [...ids.slice(0, afterIndex + 1), itemId, ...ids.slice(afterIndex + 1)];
+        return [...withoutCurrentItem.slice(0, afterIndex + 1), itemId, ...withoutCurrentItem.slice(afterIndex + 1)];
     }
 }

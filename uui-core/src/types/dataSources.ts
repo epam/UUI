@@ -154,9 +154,9 @@ export interface PatchItemsOptions<TItem, TId> {
      */
     patchItems?: ItemsMap<TId, TItem>;
     /**
-     * To enable deleting of the items, it is required to specify the property, which declares that an item is deleted.
+     * To enable deleting of the items, it is required to specify getter for deleted state.
      */
-    isDeletedProp?: keyof TItem;
+    isDeleted?: (item: TItem) => boolean;
     /**
      * To specify the position an item to be moved, it is required to provide a `getPosition` function.
      * @returns `initial` - doesn't move an element, only updates its content;

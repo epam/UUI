@@ -19953,7 +19953,7 @@
       "    getPathItem(item: TItem): DataRowPathItem<TId, TItem>;",
       "    getNodeInfo(id: TId): ITreeNodeInfo;",
       "    isFlatList(): boolean;",
-      "    patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
+      "    patch(items: TItem[], isDeleted?: () => boolean, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
       "    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;",
       "    cascadeSelection(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: {",
       "        isSelectable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;",
@@ -20124,7 +20124,7 @@
       "uid": "patch",
       "name": "patch",
       "typeValue": {
-       "raw": "(items: TItem[], isDeletedProp?: keyof TItem | undefined, comparator?: ItemsComparator<TItem> | undefined) => ITree<TItem, TId>"
+       "raw": "(items: TItem[], isDeleted?: () => boolean, comparator?: ItemsComparator<TItem> | undefined) => ITree<TItem, TId>"
       },
       "editor": {
        "type": "func"

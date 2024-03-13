@@ -13,7 +13,7 @@
     * [BaseListViewProps.showSelectedOnly]: The flow of rendering selected rows was changed. Previously, there was a separate flow of rendering selected rows, with using the `IDataSourceView.getSelectedRows` method. Currently, a new property, `showSelectedOnly`, was added. If this feature is turned on, selected rows are returned from `IDataSourceView.getVisibleRows`.
     * [Patch items in Lazy/Async/Array dataSources]: the possibility to add/move/delete items from Array/Async/Lazy DataSources was added. To provide this functionality, three options were added:
       * [BaseListViewProps.patchItems]: To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
-      * [BaseListViewProps.isDeletedProp]: To enable deleting of the items, it is required to specify the property, which declares that an item is deleted.
+      * [BaseListViewProps.isDeleted]: To enable deleting of the items, it is required to specify getter of deleting state.
       * [BaseListViewProps.getPosition]: To specify the position an item to be moved, it is required to provide a `getPosition` function. It can return a various of position configurations:
         * `initial` - doesn't move an element, only updates its content;
         * `top` - moves an element to the top of the children list;

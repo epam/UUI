@@ -167,12 +167,12 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeletedProp, getPosition }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
+    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeleted, getPosition }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
             treeStructure,
             itemsMap: itemsMap,
             patchItems,
-            isDeletedProp,
+            isDeleted,
             getPosition,
         });
 
@@ -183,12 +183,12 @@ export class TreeState<TItem, TId> {
         return { treeStructure: newTreeStructure, itemsMap: newItemsMap };
     }
 
-    public patchItems({ patchItems, isDeletedProp, getPosition }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
+    public patchItems({ patchItems, isDeleted, getPosition }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
         const { treeStructure: newFull } = this.patchItemsTreeStructure({
             treeStructure: this.getTreeStructure('full'),
             itemsMap: this.itemsMap,
             patchItems,
-            isDeletedProp,
+            isDeleted,
             getPosition,
         });
 
@@ -196,7 +196,7 @@ export class TreeState<TItem, TId> {
             treeStructure: this.getTreeStructure('visible'),
             itemsMap: this.itemsMap,
             patchItems,
-            isDeletedProp,
+            isDeleted,
             getPosition,
         });
 

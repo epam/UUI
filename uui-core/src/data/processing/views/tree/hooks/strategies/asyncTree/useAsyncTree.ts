@@ -28,7 +28,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         cascadeSelection,
         showSelectedOnly,
         patchItems,
-        isDeletedProp,
+        isDeleted,
         getPosition,
         itemsStatusMap,
         selectAll,
@@ -119,7 +119,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
         patchItems: showSelectedOnly ? null : patchItems,
-        isDeletedProp,
+        isDeleted,
         getPosition,
     });
 

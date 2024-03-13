@@ -112,7 +112,7 @@ export interface PatchItemsIntoTreeStructureOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     patchItems?: ItemsMap<TId, TItem>;
-    isDeletedProp?: keyof TItem;
+    isDeleted?: (item: TItem) => boolean;
     getPosition?: (item: TItem) => Position<TId>;
 }
 
@@ -144,7 +144,7 @@ export interface PatchOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
     items: TItem[];
-    isDeletedProp?: keyof TItem;
+    isDeleted?: () => boolean;
     comparator?: ItemsComparator<TItem>;
 }
 
