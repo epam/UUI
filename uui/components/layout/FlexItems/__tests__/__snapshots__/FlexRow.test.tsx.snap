@@ -14,11 +14,11 @@ exports[`FlexRow should be rendered correctly 1`] = `
 
 exports[`FlexRow should be rendered correctly with props 1`] = `
 <div
-  className="uui-flex-row root size-24 padding-12 vPadding-12 margin-12 topShadow borderBottom container -clickable align-items-top"
+  className="uui-flex-row root size-24 padding-12 vPadding-12 margin-12 topShadow borderBottom spacing-12 container -clickable align-items-top"
   onClick={[Function]}
   style={
     Object {
-      "columnGap": "12px",
+      "columnGap": undefined,
       "rowGap": undefined,
     }
   }

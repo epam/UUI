@@ -15,10 +15,10 @@ exports[`FileCard should be rendered correctly with Excel file 1`] = `
   }
 >
   <div
-    className="uui-flex-row root size-36 container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 container align-items-top"
     style={
       Object {
-        "columnGap": "6px",
+        "columnGap": undefined,
         "rowGap": undefined,
       }
     }
@@ -106,10 +106,10 @@ exports[`FileCard should be rendered correctly with doc file 1`] = `
   }
 >
   <div
-    className="uui-flex-row root size-36 container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 container align-items-top"
     style={
       Object {
-        "columnGap": "6px",
+        "columnGap": undefined,
         "rowGap": undefined,
       }
     }
@@ -197,10 +197,10 @@ exports[`FileCard should be rendered correctly with img file 1`] = `
   }
 >
   <div
-    className="uui-flex-row root size-36 container align-items-top"
+    className="uui-flex-row root size-36 spacing-6 container align-items-top"
     style={
       Object {
-        "columnGap": "6px",
+        "columnGap": undefined,
         "rowGap": undefined,
       }
     }

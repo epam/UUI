@@ -6060,28 +6060,6 @@
       "required": false
      },
      {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
       "uid": "checkbox",
       "name": "checkbox",
       "comment": {
@@ -8751,28 +8729,6 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -12136,8 +12092,6 @@
       "    columnGap?: number | '6' | '12' | '18' | '24' | '36';",
       "    /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */",
       "    rowGap?: number | '6' | '12' | '18' | '24' | '36';",
-      "    /** Defines row spacing */",
-      "    spacing?: '6' | '12' | '18';",
       "};"
      ]
     },
@@ -12285,27 +12239,6 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
-      },
-      "required": false
-     },
-     {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
       },
       "required": false
      }
@@ -60869,28 +60802,6 @@
       "required": false
      },
      {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
       "uid": "checkbox",
       "name": "checkbox",
       "comment": {
@@ -65081,28 +64992,6 @@
       "required": false
      },
      {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
       "uid": "size",
       "name": "size",
       "comment": {
@@ -65183,6 +65072,28 @@
         "12",
         "18",
         "24"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "spacing",
+      "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
+      "typeValue": {
+       "raw": "'6' | '12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18"
        ]
       },
       "from": "@epam/uui:RowMods",
@@ -73320,28 +73231,6 @@
       "required": false
      },
      {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
       "uid": "checkbox",
       "name": "checkbox",
       "comment": {
@@ -74135,28 +74024,6 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'6' | '12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -87970,28 +87837,6 @@
       "required": false
      },
      {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
       "uid": "borderBottom",
       "name": "borderBottom",
       "comment": {
@@ -88047,6 +87892,28 @@
         "12",
         "18",
         "24"
+       ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "spacing",
+      "name": "spacing",
+      "comment": {
+       "raw": [
+        "Defines row spacing"
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '12' | '6'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18"
        ]
       },
       "from": "@epam/uui:RowMods",
@@ -95206,28 +95073,6 @@
       "required": false
      },
      {
-      "uid": "spacing",
-      "name": "spacing",
-      "comment": {
-       "raw": [
-        "Defines row spacing"
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui-core:FlexRowProps",
-      "required": false
-     },
-     {
       "uid": "background",
       "name": "background",
       "comment": {
@@ -95248,6 +95093,24 @@
         "night100",
         "none",
         "night50"
+       ]
+      },
+      "from": "@epam/loveship:RowMods",
+      "required": false
+     },
+     {
+      "uid": "spacing",
+      "name": "spacing",
+      "typeValue": {
+       "raw": "null | '18' | '12' | '6'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        null
        ]
       },
       "from": "@epam/loveship:RowMods",

@@ -155,8 +155,7 @@ exports[`PickerList should open body 1`] = `
         style="width: 600px; height: 700px;"
       >
         <div
-          class="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
-          style="column-gap: 12px;"
+          class="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
         >
           <div
             class="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
@@ -255,8 +254,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -299,8 +297,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -343,8 +340,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -387,8 +383,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -431,8 +426,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -475,8 +469,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -519,8 +512,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -563,8 +555,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -607,8 +598,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -651,8 +641,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -695,8 +684,7 @@ exports[`PickerList should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root size-36 spacing-12 container align-items-center"
                             >
                               <div
                                 class="flexCell"
@@ -744,8 +732,7 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
-          style="column-gap: 12px;"
+          class="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
         >
           <div
             class="flexSpacer"

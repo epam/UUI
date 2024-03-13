@@ -1,4 +1,4 @@
-import { FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
+import { devLogger, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import css from './FlexRow.module.scss';
 
@@ -25,6 +25,12 @@ export type RowMods = {
 export interface FlexRowProps extends uuiFlexRowProps, RowMods {}
 
 export const FlexRow = withMods<uuiFlexRowProps, RowMods>(uuiFlexRow, (props) => {
+    if (__DEV__) {
+        if (props.spacing) {
+            devLogger.warn('[FlexRow]: The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.');
+        }
+    }
+
     return [
         css.root,
         props.size !== null && css['size-' + (props.size || '36')],
@@ -33,6 +39,7 @@ export const FlexRow = withMods<uuiFlexRowProps, RowMods>(uuiFlexRow, (props) =>
         props.margin && css['margin-' + props.margin],
         props.topShadow && css.topShadow,
         props.borderBottom && css.borderBottom,
+        props.spacing && css['spacing-' + props.spacing],
         props.background && css[`uui-${props.background}`],
     ];
 });
