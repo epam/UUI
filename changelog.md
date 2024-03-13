@@ -19,6 +19,7 @@
 * [PickerInput]: fixed 'unknown records' removing
 * [PickerInput]: Fixed focus reset after clicking outside
 * [PickerList]: aligned caption by the left side in the footer.
+* [DropdownContainer]: disable scroll to the focused element after dropdown close
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
