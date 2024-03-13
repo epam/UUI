@@ -8,19 +8,21 @@ import { Image, toPlateAlign } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes } from '@udecode/plate-common';
+import {
+    PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes,
+} from '@udecode/plate-common';
 import { TImageElement } from '@udecode/plate-media';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
 import { IImageElement } from './types';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 export const IMAGE_PLUGIN_TYPE = 'image';
 
 export const imagePlugin = () => {
-    const createImagePlugin = createPluginFactory<IHasToolbarButton>({
+    const createImagePlugin = createPluginFactory<WithToolbarButton>({
         key: IMAGE_PLUGIN_KEY,
         type: IMAGE_PLUGIN_TYPE,
         isElement: true,
@@ -31,7 +33,10 @@ export const imagePlugin = () => {
             const align = toPlateAlign(imageElement.data?.align);
             return (
                 <div style={ { textAlign: align || 'center' } }>
-                    <img src={ element.url as string } style={ { width: imageElement.width } } alt="" />
+                    <img
+                        src={ element.url as string } style={ { width: imageElement.width } }
+                        alt=""
+                    />
                 </div>
             );
         },
@@ -40,7 +45,10 @@ export const imagePlugin = () => {
                 rules: [{ validNodeName: 'IMG' }],
                 getNode: (el) => {
                     const url = el.getAttribute('src');
-                    return { type, url };
+                    return {
+                        type,
+                        url,
+                    };
                 },
             },
         }),
@@ -65,6 +73,7 @@ export const imagePlugin = () => {
         ],
         options: {
             bottomBarButton: ImageButton,
+            name: 'image-button',
         },
     });
 

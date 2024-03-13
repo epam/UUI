@@ -1,5 +1,9 @@
-import { PlateEditor, PlateElement, focusEditor, withProps } from '@udecode/plate-common';
-import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList } from '@udecode/plate-list';
+import {
+    PlateEditor, PlateElement, focusEditor, withProps,
+} from '@udecode/plate-common';
+import {
+    ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList,
+} from '@udecode/plate-list';
 import React, { Fragment } from 'react';
 
 import { isPluginActive } from '../../helpers';
@@ -7,10 +11,12 @@ import { ReactComponent as UnorderedList } from '../../icons/bullet-list.svg';
 import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ListElement } from './ListElement';
-import { ELEMENT_OL_CUSTOM, ELEMENT_UL_CUSTOM, ELEMENT_LI_CUSTOM, ELEMENT_LI_TEXT_CUSTOM } from './constants';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import {
+    ELEMENT_OL_CUSTOM, ELEMENT_UL_CUSTOM, ELEMENT_LI_CUSTOM, ELEMENT_LI_TEXT_CUSTOM,
+} from './constants';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
-export const listPlugin = () => createListPlugin<IHasToolbarButton>({
+export const listPlugin = () => createListPlugin<WithToolbarButton>({
     overrideByKey: {
         [ELEMENT_OL]: {
             type: ELEMENT_OL_CUSTOM,
@@ -37,6 +43,7 @@ export const listPlugin = () => createListPlugin<IHasToolbarButton>({
     },
     options: {
         bottomBarButton: ListButton,
+        name: 'list-button',
     },
 });
 

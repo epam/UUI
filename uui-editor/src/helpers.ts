@@ -1,6 +1,8 @@
-import { Range, Editor } from 'slate';
 import {
-    PlatePlugin, createPlateEditor, createPlugins, getPlugins, useEditorState,
+    Range, Editor, Node,
+} from 'slate';
+import {
+    PlatePlugin, TElement, createPlateEditor, createPlugins, getPlugins, useEditorState,
 } from '@udecode/plate-common';
 import { EditorValue } from './types';
 import { createPlateUI } from './components';
@@ -89,4 +91,8 @@ export const createTempEditor = (plugins: PlatePlugin[]) => {
             components: createPlateUI(),
         }),
     });
+};
+
+export const getPlainText = (nodes: TElement[]) => {
+    return nodes.map((n) => Node.string(n)).join('\n');
 };

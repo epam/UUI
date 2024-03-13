@@ -7,13 +7,15 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { HeaderBar } from '../../implementation/HeaderBar';
 
 import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
-import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6, createHeadingPlugin } from '@udecode/plate-heading';
+import {
+    ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6, createHeadingPlugin,
+} from '@udecode/plate-heading';
 import { PlateEditor } from '@udecode/plate-common';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 const KEY = 'heading';
 
-export const headerPlugin = () => createHeadingPlugin<IHasToolbarButton>({
+export const headerPlugin = () => createHeadingPlugin<WithToolbarButton>({
     overrideByKey: {
         [ELEMENT_H1]: {
             type: 'uui-richTextEditor-header-1',
@@ -36,6 +38,7 @@ export const headerPlugin = () => createHeadingPlugin<IHasToolbarButton>({
     },
     options: {
         bottomBarButton: HeaderButton,
+        name: 'header-button',
     },
 });
 
@@ -56,7 +59,10 @@ export function HeaderButton({ editor }: IToolbarButton): any {
             ) }
             renderBody={ (props) => <HeaderBar editor={ editor } { ...props } /> }
             placement="top-start"
-            modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
+            modifiers={ [{
+                name: 'offset',
+                options: { offset: [0, 3] },
+            }] }
         />
     );
 }

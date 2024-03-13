@@ -1,5 +1,7 @@
 import React from 'react';
-import { PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType } from '@udecode/plate-common';
+import {
+    PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType,
+} from '@udecode/plate-common';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
@@ -7,12 +9,12 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const SEPARATOR_KEY = 'separatorBLock';
 
 export const separatorPlugin = () => {
-    const createSeparatorPlugin = createPluginFactory<IHasToolbarButton>({
+    const createSeparatorPlugin = createPluginFactory<WithToolbarButton>({
         key: SEPARATOR_KEY,
         type: SEPARATOR_KEY,
         isElement: true,
@@ -36,6 +38,7 @@ export const separatorPlugin = () => {
         },
         options: {
             bottomBarButton: SeparatorButton,
+            name: 'separator-plugin',
         },
     });
 

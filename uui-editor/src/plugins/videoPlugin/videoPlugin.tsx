@@ -7,17 +7,20 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 
-import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
+import {
+    PlateEditor, createPluginFactory, getBlockAbove,
+} from '@udecode/plate-common';
 import { AddVideoModal } from './AddVideoModal';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const VIDEO_PLUGIN_KEY = 'video';
 
-export const videoPlugin = createPluginFactory<IHasToolbarButton>({
+export const videoPlugin = createPluginFactory<WithToolbarButton>({
     key: VIDEO_PLUGIN_KEY,
     type: 'video',
     options: {
         bottomBarButton: VideoButton,
+        name: 'video-plugin',
     },
 });
 

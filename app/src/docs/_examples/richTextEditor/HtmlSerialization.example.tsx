@@ -29,8 +29,8 @@ const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
 };
 
 const plugins = [
+    ...baseMarksPlugin(),
     paragraphPlugin(),
-    baseMarksPlugin(),
     headerPlugin(),
     superscriptPlugin(),
     listPlugin(),

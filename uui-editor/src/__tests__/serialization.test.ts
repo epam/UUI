@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { createSerializer } from '../serialization';
+import { createDeserializer, createSerializer } from '../serialization';
 import {
     baseMarksPlugin,
     headerPlugin,
@@ -22,8 +22,9 @@ import {
 } from '../plugins';
 import { defaultPlugins } from '../defaultPlugins';
 import { createPlateEditor } from '@udecode/plate-core';
-import { editorValueMock } from './data/md-serialization-content';
+import { editorValueMock } from './data/md-serialization';
 import { createTempEditor } from '../helpers';
+import { expectedSlateValue, inputMarkdowValue } from './data/md-deserialization';
 
 export const readTestFile = (filepath: string): string => {
     const absoluteFilepath = path.resolve(__dirname, filepath);
@@ -79,7 +80,7 @@ describe('serialization', () => {
     it('should paste data with tables', async () => {
         const editor = initEditor();
 
-        const data = createClipboardData(readTestFile('./data/html-tables-serialization.html'));
+        const data = createClipboardData(readTestFile('./data/serialization.html'));
         editor.insertData(data);
 
         expect(editor.children).toMatchSnapshot();
@@ -89,5 +90,11 @@ describe('serialization', () => {
         const serializeMd = createSerializer('md');
         const serializedMd = serializeMd(editorValueMock);
         expect(serializedMd).toMatchSnapshot();
+    });
+
+    it('should deserialize markdown', async () => {
+        const deserializeMd = createDeserializer('md');
+        const deserializedMd = deserializeMd(inputMarkdowValue);
+        expect(deserializedMd).toEqual(expectedSlateValue);
     });
 });

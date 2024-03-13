@@ -6,7 +6,7 @@ import React from 'react';
 import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 import {
     MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin,
@@ -44,7 +44,7 @@ const Underline: PlatePluginComponent = (props) => {
     );
 };
 
-const boldPlugin = createBoldPlugin<IHasToolbarButton>({
+export const boldPlugin = createBoldPlugin<WithToolbarButton>({
     type: BOLD_KEY,
     component: Bold,
     options: {
@@ -53,7 +53,7 @@ const boldPlugin = createBoldPlugin<IHasToolbarButton>({
     },
 });
 
-const italicPlugin = createItalicPlugin<IHasToolbarButton>({
+export const italicPlugin = createItalicPlugin<WithToolbarButton>({
     type: ITALIC_KEY,
     component: Italic,
     options: {
@@ -62,7 +62,7 @@ const italicPlugin = createItalicPlugin<IHasToolbarButton>({
     },
 });
 
-const underlinePlugin = createUnderlinePlugin<IHasToolbarButton>({
+const underlinePlugin = createUnderlinePlugin<WithToolbarButton>({
     type: UNDERLINE_KEY,
     component: Underline,
     options: {
