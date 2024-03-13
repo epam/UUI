@@ -13,14 +13,6 @@ const SIZE_LIST: ControlSize[] = ['24', '30', '36', '42', '48'];
 
 type ControlSize = '24' | '30' | '36' | '42' | '48';
 
-const controlToIconSize = {
-    24: '12',
-    30: '18',
-    36: '18',
-    42: '18',
-    48: '24',
-};
-
 interface IconsPageState {
     currentIcon: IconBase<Icon> | null;
     selectedIcon: IconBase<Icon> | null;
@@ -121,7 +113,7 @@ export function IconsDoc() {
             <FlexCell width="100%">
                 <FlexRow size="24" spacing="12">
                     <FlexCell width="auto" shrink={ 0 }>
-                        <IconButton size={ controlToIconSize[state.controlSize] as any } onClick={ () => {} } icon={ icon } />
+                        <IconButton size={ state.controlSize as any } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
                         <Button size={ state.controlSize } onClick={ () => {} } icon={ icon } />
