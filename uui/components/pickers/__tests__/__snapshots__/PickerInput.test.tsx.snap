@@ -86,8 +86,7 @@ exports[`PickerInput should open body 1`] = `
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root size-36 container align-items-center"
-                            style="column-gap: 12px;"
+                            class="uui-flex-row root size-36 spacing-12 container align-items-center"
                           >
                             <div
                               class="flexCell"
@@ -130,8 +129,7 @@ exports[`PickerInput should open body 1`] = `
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root size-36 container align-items-center"
-                            style="column-gap: 12px;"
+                            class="uui-flex-row root size-36 spacing-12 container align-items-center"
                           >
                             <div
                               class="flexCell"
