@@ -88,13 +88,12 @@ export function IconsDoc() {
     );
 
     const getImportCode = (icon: IconBase<Icon>) => {
-        const sourcePath = '@epam/assets/icons/';
         const iconName = icon.name.split('/').reverse()[0].split('.')[0];
 
         if (iconName.includes('_') || iconName.includes('-')) {
-            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${sourcePath}${icon.name}';`;
+            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${icon.path}/${icon.name}';`;
         }
-        return `import { ReactComponent as ${iconName}Icon } from '${sourcePath}${icon.name}';`;
+        return `import { ReactComponent as ${iconName}Icon } from '${icon.path}/${icon.name}';`;
     };
 
     const renderImport = () => {

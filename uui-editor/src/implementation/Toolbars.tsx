@@ -36,7 +36,7 @@ export function MainToolbar() {
         <StickyToolbar isReadonly={ false }>
             { editor?.plugins.map((p: WithPlatePlugin<IHasToolbarButton>) => {
                 const Button = p.options?.bottomBarButton;
-                return Button && <Button key={ p.options.name } editor={ editor } />;
+                return Button && <Button key={ p.key } editor={ editor } />;
             }) }
         </StickyToolbar>
     );

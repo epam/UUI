@@ -38,6 +38,7 @@ export class Switch extends React.Component<SwitchProps> {
                     css.container,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
+                    this.props.isReadonly && uuiMod.readonly,
                     !this.props.isReadonly && !this.props.isDisabled && uuiMarkers.clickable,
                 ) }
                 ref={ this.props.forwardedRef }
