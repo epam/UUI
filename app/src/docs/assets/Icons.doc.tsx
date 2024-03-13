@@ -28,7 +28,7 @@ export function IconsDoc() {
         currentIcon: null,
         selectedIcon: null,
         search: '',
-        controlSize: '30',
+        controlSize: '36',
         topIndex: 0,
         visibleCount: 100500,
         isLocked: true,
@@ -113,7 +113,7 @@ export function IconsDoc() {
             <FlexCell width="100%">
                 <FlexRow size="24" spacing="12">
                     <FlexCell width="auto" shrink={ 0 }>
-                        <IconButton onClick={ () => {} } icon={ icon } />
+                        <IconButton size={ state.controlSize as any } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
                         <Button size={ state.controlSize } onClick={ () => {} } icon={ icon } />
