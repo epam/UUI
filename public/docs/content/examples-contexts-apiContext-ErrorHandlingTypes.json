@@ -50,7 +50,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "manual - you need to handle the error by yourself. UUI will do nothing and reject the promise with an error."
+                "text": "manual - you need to handle the error by yourself. UUI will do nothing(except auth and connection lost cases) and reject the promise with an error."
               }
             ]
           }
