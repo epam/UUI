@@ -17,7 +17,7 @@ import { createInitialTable, selectFirstCell } from './utils';
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 const noop = () => {};
 
@@ -74,7 +74,7 @@ const createGetNodeFunc = (type: string) => {
     return getNode;
 };
 
-export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlugin>({
+export const tablePlugin = () => createTablePlugin<WithToolbarButton & TablePlugin>({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',

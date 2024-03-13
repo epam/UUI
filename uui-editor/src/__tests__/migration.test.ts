@@ -1,6 +1,6 @@
 import { TTableCellElement } from '@udecode/plate-table';
 import { migrateSchema, migrateTableCell } from '../migration';
-import { initialValue } from './table-migration-data';
+import { initialValue } from './data/migration';
 
 describe('migrate', () => {
     it('should migrate content correctly', () => {

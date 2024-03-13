@@ -1,23 +1,13 @@
 import {
-    PlateEditor,
     createInsertDataPlugin,
-    Value,
     select,
     findEventRange,
+    PlatePlugin,
 } from '@udecode/plate-common';
 import {
     UploadFileOptions,
-    UploadType,
     createFileUploader,
 } from './file_uploader';
-
-interface UploadFilePluginOptions {
-    uploadFiles: (
-        editor: PlateEditor,
-        files: File[],
-        overriddenAction?: UploadType
-    ) => Promise<void>;
-}
 
 const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
     const text = dataTransfer.getData('text/plain');
@@ -29,7 +19,7 @@ const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
 };
 
 export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
-    createInsertDataPlugin<UploadFilePluginOptions, Value, PlateEditor<Value>>({
+    createInsertDataPlugin({
         options: { uploadFiles: createFileUploader(uploadOptions) },
         handlers: {
             onDrop: (editor, plugin) => {

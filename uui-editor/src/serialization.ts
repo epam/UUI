@@ -20,8 +20,10 @@ import {
     codeBlockPlugin,
     paragraphPlugin,
     separatorPlugin,
+    boldPlugin,
+    italicPlugin,
 } from './plugins';
-import { deserializeMd } from '@udecode/plate-serializer-md';
+import { createDeserializeMdPlugin, deserializeMd } from '@udecode/plate-serializer-md';
 import { remarkNodeTypesMap, serialize } from './remark-slate';
 import { createTempEditor } from './helpers';
 
@@ -42,7 +44,11 @@ export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
 ];
 
 export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
-    ...baseMarksPlugin(),
+    createDeserializeMdPlugin(),
+    boldPlugin,
+    italicPlugin,
+    // ...baseMarksPlugin(),
+    // underlinePlugin,
     quotePlugin(),
     paragraphPlugin(),
     linkPlugin(),
