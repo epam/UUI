@@ -1,4 +1,4 @@
-import { FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
+import { devLogger, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import css from './FlexRow.module.scss';
 
@@ -7,14 +7,10 @@ export type RowMods = {
     size?: null | '24' | '30' | '36' | '42' | '48';
     /** Pass true, to enable row bottom border */
     borderBottom?: boolean;
-    /** Defines row column gap */
-    columnGap?: number | '6' | '12' | '18' | '24' | '36';
     /** Defines row margin */
     margin?: '12' | '24';
     /** Defines horizontal row padding */
     padding?: '6' | '12' | '18' | '24';
-    /** Defines row gap */
-    rowGap?: number | '6' | '12' | '18' | '24' | '36';
     /** Defines row spacing */
     spacing?: '6' | '12' | '18';
     /** Pass true, to show a top shadow */
@@ -26,9 +22,15 @@ export type RowMods = {
 };
 
 /** Represents the properties of the FlexRow component. */
-export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods {}
+export interface FlexRowProps extends uuiFlexRowProps, RowMods {}
 
-export const FlexRow = withMods<Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'>, RowMods>(uuiFlexRow, (props) => {
+export const FlexRow = withMods<uuiFlexRowProps, RowMods>(uuiFlexRow, (props) => {
+    if (__DEV__) {
+        if (props.spacing) {
+            devLogger.warn('[FlexRow]: The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.');
+        }
+    }
+
     return [
         css.root,
         props.size !== null && css['size-' + (props.size || '36')],

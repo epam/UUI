@@ -1,11 +1,15 @@
 # 5.x.x - xx.xx.2024
 **What's New**
+* Scaling icons
+* Added possibility to pin columns to the right side of the table via columns config dialog
+* [DataTable]: added Expand All/Collapse All
 * [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
 * [RTE]: added `onFocus` prop
-* [IconButton]: added property size?: '18' | '24' | '30' | '36';
-  
+* [IconButton]: added property `size`;
+* [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
+
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
@@ -14,6 +18,7 @@
     * Fixed fetching missing parents for selected element in PickerInput.
 * [PickerInput]: fixed 'unknown records' removing
 * [PickerInput]: Fixed focus reset after clicking outside
+* [PickerList]: aligned caption by the left side in the footer.
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
@@ -22,6 +27,10 @@
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
+* [IconButton]: fixed property `isDropdown`;
+* [Switch]: fixed property `isReadonly`;
+* [TextArea]: fixed ability to scroll when `readonly` or `disable`;
+* [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead. See more: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
 
 # 5.6.1 - 19.02.2024
 
