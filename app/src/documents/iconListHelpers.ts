@@ -2,9 +2,9 @@ import { IconBase } from '@epam/uui-docs';
 
 declare let require: any;
 
-// exclude folders common|legacy|templates from @epam/assets/icons
+// exclude folders common|legacy|templates from @epam/assets/icons and exclude old loaders icons with numbers in the end of name
 const iconsLoader: { ctx: any; iPath: string; delimiter?: string }[] = [
-    { ctx: require.context('@epam/assets/icons/loaders', true, /^.*\.svg$/), iPath: '@epam/assets/icons/loaders' },
+    { ctx: require.context('@epam/assets/icons/loaders', true, /^.*(?<!\d)\.svg$/), iPath: '@epam/assets/icons/loaders' },
     { ctx: require.context('@epam/assets/icons', false, /^.*\.svg$/), iPath: '@epam/assets/icons' },
     { ctx: require.context('@epam/assets/icons/external_logo', true, /^.*\.svg$/), iPath: '@epam/assets/icons/external_logo' },
     { ctx: require.context('@epam/assets/icons/internal_logo', true, /^.*\.svg$/), iPath: '@epam/assets/icons/internal_logo' },

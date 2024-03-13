@@ -32,6 +32,8 @@ exports[`MainMenuAvatar should be rendered correctly 2`] = `
     >
       <svg
         className=""
+        height={18}
+        width={18}
       />
     </div>
   </div>
