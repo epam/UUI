@@ -109,7 +109,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
         ? (
             <FocusLock
                 ref={ ref }
-                returnFocus={ returnFocus }
+                returnFocus={ returnFocus && { preventScroll: true } }
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...({ onKeyDown: handleEscape }), ...props.lockProps } }
                 shards={ props.shards }
