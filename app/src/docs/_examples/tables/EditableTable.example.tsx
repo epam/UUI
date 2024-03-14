@@ -179,7 +179,7 @@ export default function EditableTableExample() {
     // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
     const view = dataSource.useView(tableState, setTableState, {
         getRowOptions: (item: TodoTask) => ({
-            ...lens.prop('items').getItem(item.id).default(item).toProps(),
+            ...lens.prop('items').key(item.id).default(item).toProps(),
         }),
         patchItems: value.items,
         getPosition: (item: TodoTask) => item.isNew ? 'bottom' : 'initial',

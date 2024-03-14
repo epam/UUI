@@ -179,7 +179,7 @@ export function ProjectTableDemo() {
             getPosition: (item: ProjectTask) => value.positions.has(item.id) ? value.positions.get(item.id) : 'initial',
             isDeleted: (item) => item.isDeleted,
             getRowOptions: (task) => ({
-                ...lens.prop('items').getItem(task.id).toProps(), // pass IEditable to ezach row to allow editing
+                ...lens.prop('items').key(task.id).toProps(), // pass IEditable to ezach row to allow editing
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {

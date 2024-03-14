@@ -59,7 +59,7 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
     };
 }
 
-export function getItem<TItem, TId>(id: TId): ILensImpl<IMap<TId, TItem> | IImmutableMap<TId, TItem>, TItem> {
+export function key<TItem, TId>(id: TId): ILensImpl<IMap<TId, TItem> | IImmutableMap<TId, TItem>, TItem> {
     return {
         get(big: IMap<TId, TItem> | IImmutableMap<TId, TItem>) {
             if (big == null) {
