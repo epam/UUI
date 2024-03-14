@@ -87,9 +87,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             if (props.searchPosition === 'input') {
                 inputContainer.current?.focus();
             }
-            // if (props.searchPosition === 'none') {
-            //     blur(e);
-            // }
         } else {
             // If picker closed, we perform blur event as usual.
             blur(e);
