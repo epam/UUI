@@ -1,0 +1,92 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default, "
+      },
+      {
+        "text": "ErrorHandler",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " handle errors by itself, but you can customize it via options for the "
+      },
+      {
+        "text": "processRequese",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method. There are three types of handling errors:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "page - default behavior, ErrorHandler will replace children with an error screen."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "manual - you need to handle the error by yourself. UUI will do nothing(except auth and connection lost cases) and reject the promise with an error."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "notification - shows content from API response "
+              },
+              {
+                "text": "errorMessage",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " field into notification card. It's often used to handle some non-critical, expected errors."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In this example, we demonstrate errors handling with different error-hanging types."
+      }
+    ]
+  }
+]
