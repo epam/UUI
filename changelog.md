@@ -29,6 +29,7 @@
 * [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
+* [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
 * [IconButton]: fixed property `isDropdown`;
 * [Switch]: fixed property `isReadonly`;
 * [TextArea]: fixed ability to scroll when `readonly` or `disable`;
