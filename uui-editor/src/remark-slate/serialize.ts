@@ -1,7 +1,9 @@
-import escapeHtml from 'escape-html';
 import {
     BlockType, LeafType, NodeTypes,
-} from './ast-types';
+} from './types';
+import {
+    BOLD_KEY, INLINE_CODE_KEY, ITALIC_KEY,
+} from '../plugins';
 
 interface Options {
     nodeTypes: NodeTypes;
@@ -84,12 +86,12 @@ export function serialize(
                         // of whitespace. If we're parallel to a link we also don't want
                         // to respect neighboring paragraphs
                         ignoreParagraphNewline:
-              (ignoreParagraphNewline
-                || isList
-                || selfIsList
-                || childrenHasLink)
-              // if we have c.break, never ignore empty paragraph new line
-              && !(c as BlockType).break,
+                          (ignoreParagraphNewline
+                            || isList
+                            || selfIsList
+                            || childrenHasLink)
+                          // if we have c.break, never ignore empty paragraph new line
+                          && !(c as BlockType).break,
 
                         // track depth of nested lists so we can add proper spacing
                         listDepth: (LIST_TYPES as string[]).includes(
@@ -99,15 +101,14 @@ export function serialize(
                             : listDepth,
                     },
                 );
-            })
-            .join('');
+            }).join('');
     }
 
     // This is pretty fragile code, check the long comment where we iterate over children
     if (
         !ignoreParagraphNewline
-    && (text === '' || text === '\n')
-    && chunk.parentType === nodeTypes.paragraph
+         && (text === '' || text === '\n')
+          && chunk.parentType === nodeTypes.paragraph
     ) {
         type = nodeTypes.paragraph;
         children = BREAK_TAG;
@@ -123,16 +124,16 @@ export function serialize(
     // "Text foo bar **baz**" resulting in "**Text foo bar **baz****"
     // which is invalid markup and can mess everything up
     if (children !== BREAK_TAG && isLeafNode(chunk)) {
-        if (chunk.strikeThrough && chunk['uui-richTextEditor-bold'] && chunk['uui-richTextEditor-italic']) {
+        if (chunk.strikeThrough && chunk[BOLD_KEY] && chunk[ITALIC_KEY]) {
             children = retainWhitespaceAndFormat(children, '~~***');
-        } else if (chunk['uui-richTextEditor-bold'] && chunk['uui-richTextEditor-italic']) {
+        } else if (chunk[BOLD_KEY] && chunk[ITALIC_KEY]) {
             children = retainWhitespaceAndFormat(children, '***');
         } else {
-            if (chunk['uui-richTextEditor-bold']) {
+            if (chunk[BOLD_KEY]) {
                 children = retainWhitespaceAndFormat(children, '**');
             }
 
-            if (chunk['uui-richTextEditor-italic']) {
+            if (chunk[ITALIC_KEY]) {
                 children = retainWhitespaceAndFormat(children, '_');
             }
 
@@ -140,7 +141,7 @@ export function serialize(
                 children = retainWhitespaceAndFormat(children, '~~');
             }
 
-            if (chunk['uui-richTextEditor-code']) {
+            if (chunk[INLINE_CODE_KEY]) {
                 children = retainWhitespaceAndFormat(children, '`');
             }
         }
@@ -188,8 +189,8 @@ export function serialize(
 
         case nodeTypes.listItem:
             const isOL = chunk && chunk.parentType === nodeTypes.ol_list;
-            const treatAsLeaf = (chunk as BlockType).children.length === 1
-        && isLeafNode((chunk as BlockType).children[0]);
+            //     const treatAsLeaf = (chunk as BlockType).children.length === 1
+            // && isLeafNode((chunk as BlockType).children[0]);
 
             let spacer = '';
             for (let k = 0; listDepth > k; k++) {
@@ -200,9 +201,7 @@ export function serialize(
                     spacer += '  ';
                 }
             }
-            return `${spacer}${isOL ? '1.' : '-'} ${children}${
-                treatAsLeaf ? '\n' : ''
-            }`;
+            return `${spacer}${isOL ? '1.' : '-'} ${children}\n`;
 
         case nodeTypes.paragraph:
             return `${children}\n`;
@@ -211,7 +210,7 @@ export function serialize(
             return '\n---\n';
 
         default:
-            return escapeHtml(children);
+            return children;
     }
 }
 

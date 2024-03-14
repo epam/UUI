@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType,
+    PlateEditor, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType,
 } from '@udecode/plate-common';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
@@ -10,15 +10,14 @@ import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { createHorizontalRulePlugin } from '@udecode/plate-horizontal-rule';
 
 export const SEPARATOR_KEY = 'separatorBLock';
 
 export const separatorPlugin = () => {
-    const createSeparatorPlugin = createPluginFactory<WithToolbarButton>({
+    return createHorizontalRulePlugin<WithToolbarButton>({
         key: SEPARATOR_KEY,
         type: SEPARATOR_KEY,
-        isElement: true,
-        isVoid: true,
         component: Separator,
         handlers: {
             onKeyDown: (editor) => (event) => {
@@ -29,20 +28,11 @@ export const separatorPlugin = () => {
                 }
             },
         },
-        deserializeHtml: {
-            rules: [
-                {
-                    validNodeName: 'HR',
-                },
-            ],
-        },
         options: {
             bottomBarButton: SeparatorButton,
             name: 'separator-plugin',
         },
     });
-
-    return createSeparatorPlugin();
 };
 
 interface ToolbarButtonProps {

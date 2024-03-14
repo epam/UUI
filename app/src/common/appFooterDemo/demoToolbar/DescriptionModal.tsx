@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { IModal } from '@epam/uui-core';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
     notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
-    codeBlockPlugin,
+    inlineCodePlugin,
 } from '@epam/uui-editor';
 
 interface IDemoItemDescriptionModal {
@@ -51,7 +51,7 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
         notePlugin(),
         separatorPlugin(),
         tablePlugin(),
-        codeBlockPlugin(),
+        inlineCodePlugin(),
     ];
 
     return (

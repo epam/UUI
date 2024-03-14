@@ -1,5 +1,5 @@
 import {
-    PlateEditor, PlateElement, focusEditor, withProps,
+    PlateEditor, PlateElementProps, focusEditor,
 } from '@udecode/plate-common';
 import {
     ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList,
@@ -33,7 +33,9 @@ export const listPlugin = () => createListPlugin<WithToolbarButton>({
         [ELEMENT_LI]: {
             type: ELEMENT_LI_CUSTOM,
             isElement: true,
-            component: withProps(PlateElement, { as: 'li' }),
+            component: ({ children, attributes }: PlateElementProps) => {
+                return <li { ...attributes }>{children}</li>;
+            },
             deserializeHtml: { rules: [{ validNodeName: 'LI' }] },
         },
         [ELEMENT_LIC]: {

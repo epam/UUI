@@ -3,19 +3,14 @@
  */
 
 import {
-    BOLD_KEY, CODE_BLOCK_KEY, IMAGE_PLUGIN_TYPE, ITALIC_KEY, LINK_ELEMENT, PARAGRAPH_TYPE, QUOTE_PLUGIN_KEY, SEPARATOR_KEY,
+    BOLD_KEY, ITALIC_KEY, LINK_ELEMENT, PARAGRAPH_TYPE,
 } from '../plugins';
 import {
     ELEMENT_UL_CUSTOM, ELEMENT_OL_CUSTOM, ELEMENT_LI_CUSTOM,
 } from '../plugins/listPlugin/constants';
 
-export interface NodeTypes {
+export type NodeTypes = {
     paragraph: string;
-    block_quote: string;
-    link: string;
-    ul_list: string;
-    ol_list: string;
-    listItem: string;
     heading: {
         1: string;
         2: string;
@@ -24,14 +19,20 @@ export interface NodeTypes {
         5: string;
         6: string;
     };
+    link: string;
+    ul_list: string;
+    ol_list: string;
+    listItem: string;
     emphasis_mark: string;
     strong_mark: string;
+} & Partial<{
+    block_quote: string;
     inline_code_mark: string;
     thematic_break: string;
     image: string;
-    code_block?: string;
-    delete_mark?: string;
-}
+    code_block: string;
+    delete_mark: string;
+}>;
 
 export interface LeafType {
     text: string;
@@ -54,7 +55,6 @@ export interface BlockType {
 
 export const remarkNodeTypesMap: NodeTypes = {
     paragraph: PARAGRAPH_TYPE,
-    block_quote: QUOTE_PLUGIN_KEY,
     link: LINK_ELEMENT,
     ul_list: ELEMENT_UL_CUSTOM,
     ol_list: ELEMENT_OL_CUSTOM,
@@ -69,9 +69,10 @@ export const remarkNodeTypesMap: NodeTypes = {
     },
     emphasis_mark: ITALIC_KEY,
     strong_mark: BOLD_KEY,
-    inline_code_mark: CODE_BLOCK_KEY,
-    thematic_break: SEPARATOR_KEY,
-    image: IMAGE_PLUGIN_TYPE,
+    // block_quote: QUOTE_PLUGIN_KEY,
+    // thematic_break: SEPARATOR_KEY,
+    // inline_code_mark: INLINE_CODE_KEY,
+    // image: IMAGE_PLUGIN_TYPE,
     // code_block
     // delete_mark
 };
