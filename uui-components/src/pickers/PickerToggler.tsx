@@ -81,7 +81,12 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.isOpen) {
             // If picker opened and search inside input, we lock focus on toggler.
             // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
-            return props.searchPosition === 'input' && inputContainer.current?.focus();
+            if (props.searchPosition === 'input') {
+                inputContainer.current?.focus();
+            }
+            if (props.searchPosition === 'none') {
+                blur(e);
+            }
         } else {
             // If picker closed, we perform blur event as usual.
             blur(e);
