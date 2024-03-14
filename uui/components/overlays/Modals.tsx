@@ -88,9 +88,9 @@ export class ModalFooter extends React.Component<ModalFooterProps> {
                 cx={ [
                     css.root,
                     css.modalFooter,
-                    this.props.borderTop && css.borderTop,
                     this.props.cx,
                 ] }
+                borderTop={ this.props.borderTop }
                 padding={ this.props.padding || '24' }
                 vPadding={ this.props.vPadding || '24' }
                 rawProps={ this.props.rawProps }
