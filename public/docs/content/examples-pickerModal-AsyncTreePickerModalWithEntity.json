@@ -13,8 +13,14 @@
         "text": " usage with "
       },
       {
-        "text": "AsyncDataSource",
-        "uui-richTextEditor-code": true
+        "type": "link",
+        "url": "/documents?id=dataSources-async-dataSource",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "AsyncDataSource"
+          }
+        ]
       },
       {
         "text": " and "

@@ -4,8 +4,17 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "LazyDataSource",
-        "uui-richTextEditor-code": true
+        "text": ""
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=dataSources-lazy-dataSource",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "LazyDataSource"
+          }
+        ]
       },
       {
         "text": " allows you to load hierarchical data lazily. "
