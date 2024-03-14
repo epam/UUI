@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
     Panel, FlexRow, Switch,
 } from '@epam/promo';
@@ -8,16 +8,15 @@ import {
     createSerializer,
     createDeserializer,
     mdSerializationsWorkingPlugins,
-    SlateEditorProps,
 } from '@epam/uui-editor';
 import css from './SlateEditorBasicExample.module.scss';
-import { mdInitialValue } from './md-initial-value';
+import { demoData } from '@epam/uui-docs';
 
 const serializeMd = createSerializer('md');
 const deserializeMd = createDeserializer('md');
 
 export default function SlateEditorBasicExample() {
-    const [value, setValue] = useState<EditorValue>(deserializeMd(mdInitialValue));
+    const [value, setValue] = useState<EditorValue>(demoData.slateMdSerializationInitialData);
 
     const [serializedMd, setSerializedMd] = useState('');
     const [type, setType] = React.useState<'view' | 'edit'>('edit');
@@ -28,7 +27,8 @@ export default function SlateEditorBasicExample() {
 
     const onToggleViewMode = () => {
         if (type === 'edit') {
-            setSerializedMd(serializeMd(value));
+            const x = serializeMd(value);
+            setSerializedMd(x);
             setType('view');
         } else {
             setValue(deserializeMd(serializedMd));
@@ -36,39 +36,31 @@ export default function SlateEditorBasicExample() {
         }
     };
 
-    const slateProps: SlateEditorProps = {
-        value: value,
-        onValueChange: onChangeEditorValue,
-        isReadonly: false,
-        mode: 'form',
-        placeholder: 'Add description',
-        minHeight: 300,
-        fontSize: '14',
-    };
+    const deserialized = useMemo(() => {
+        return deserializeMd(serializedMd);
+    }, [serializedMd]);
 
     return (
         <Panel cx={ css.root }>
             <FlexRow spacing="18" vPadding="12">
                 <Switch
-                    value={ type === 'view' } onValueChange={ onToggleViewMode }
+                    value={ type === 'view' }
+                    onValueChange={ onToggleViewMode }
                     label="View mode"
                 />
             </FlexRow>
 
-            {type === 'view'
-                ? (
-                    <SlateEditor
-                        { ...slateProps }
-                        value={ deserializeMd(serializedMd) }
-                        isReadonly
-                    />
-                )
-                : (
-                    <SlateEditor
-                        { ...slateProps }
-                        plugins={ mdSerializationsWorkingPlugins }
-                    />
-                )}
+            <SlateEditor
+                key={ type }
+                value={ type === 'view' ? deserialized : value }
+                isReadonly={ type === 'view' }
+                onValueChange={ onChangeEditorValue }
+                mode="form"
+                placeholder="Add description"
+                minHeight={ 300 }
+                fontSize="14"
+                plugins={ mdSerializationsWorkingPlugins }
+            />
         </Panel>
     );
 }

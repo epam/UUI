@@ -1,5 +1,7 @@
 import { createCodePlugin } from '@udecode/plate-basic-marks';
-import { PlateEditor, PlatePluginComponent, isMarkActive } from '@udecode/plate-common';
+import {
+    PlateEditor, PlateElementProps, isMarkActive,
+} from '@udecode/plate-common';
 import React from 'react';
 
 import { isPluginActive } from '../../helpers';
@@ -8,18 +10,18 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 
-export const CODE_BLOCK_KEY = 'uui-richTextEditor-code';
+export const INLINE_CODE_KEY = 'uui-richTextEditor-code';
 
-const Code: PlatePluginComponent = (props) => {
+function Code(props: PlateElementProps) {
     const { attributes, children } = props;
     return (
         <span { ...attributes }><code>{ children }</code></span>
     );
-};
+}
 
-export const codeBlockPlugin = () => createCodePlugin<WithToolbarButton>({
-    key: CODE_BLOCK_KEY,
-    type: CODE_BLOCK_KEY,
+export const inlineCodePlugin = () => createCodePlugin<WithToolbarButton>({
+    key: INLINE_CODE_KEY,
+    type: INLINE_CODE_KEY,
     component: Code,
     options: {
         floatingBarButton: CodeButton,
@@ -32,12 +34,12 @@ interface IToolbarButton {
 }
 
 export function CodeButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(CODE_BLOCK_KEY)) return null;
+    if (!isPluginActive(INLINE_CODE_KEY)) return null;
     return (
         <ToolbarButton
-            onClick={ handleMarkButtonClick(editor, CODE_BLOCK_KEY) }
+            onClick={ handleMarkButtonClick(editor, INLINE_CODE_KEY) }
             icon={ CodeIcon }
-            isActive={ !!editor?.selection && isMarkActive(editor, CODE_BLOCK_KEY) }
+            isActive={ !!editor?.selection && isMarkActive(editor, INLINE_CODE_KEY) }
         />
     );
 }

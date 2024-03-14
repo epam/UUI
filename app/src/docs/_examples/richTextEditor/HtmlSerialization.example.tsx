@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Panel, FlexRow, RichTextView, Switch } from '@epam/promo';
+import {
+    Panel, FlexRow, RichTextView, Switch,
+} from '@epam/promo';
 import {
     SlateEditor,
     imagePlugin,
@@ -12,7 +14,7 @@ import {
     headerPlugin,
     listPlugin,
     EditorValue,
-    codeBlockPlugin,
+    inlineCodePlugin,
     createSerializer,
     createDeserializer,
     paragraphPlugin,
@@ -40,7 +42,7 @@ const plugins = [
     imagePlugin(),
     videoPlugin(),
     iframePlugin(),
-    codeBlockPlugin(),
+    inlineCodePlugin(),
 ];
 
 const serializeHTML = createSerializer();
@@ -69,7 +71,11 @@ export default function SlateEditorBasicExample() {
     return (
         <Panel cx={ css.root }>
             <FlexRow spacing="18" vPadding="12">
-                <Switch value={ type === 'view' } onValueChange={ onToggleViewMode } label="View mode" />
+                <Switch
+                    value={ type === 'view' }
+                    onValueChange={ onToggleViewMode }
+                    label="View mode"
+                />
             </FlexRow>
             {
                 type === 'view'

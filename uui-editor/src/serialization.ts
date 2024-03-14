@@ -17,9 +17,8 @@ import {
     imagePlugin,
     videoPlugin,
     iframePlugin,
-    codeBlockPlugin,
+    inlineCodePlugin,
     paragraphPlugin,
-    separatorPlugin,
     boldPlugin,
     italicPlugin,
 } from './plugins';
@@ -40,24 +39,22 @@ export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
     imagePlugin(),
     videoPlugin(),
     iframePlugin(),
-    codeBlockPlugin(),
+    inlineCodePlugin(),
 ];
 
 export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
     createDeserializeMdPlugin(),
-    boldPlugin,
-    italicPlugin,
-    // ...baseMarksPlugin(),
-    // underlinePlugin,
-    quotePlugin(),
+    boldPlugin(),
+    italicPlugin(),
     paragraphPlugin(),
     linkPlugin(),
     listPlugin(),
     headerPlugin(),
-    imagePlugin(),
-    separatorPlugin(),
-    codeBlockPlugin(),
+    // quotePlugin,
+    // separatorPlugin,
+    // inlineCodePlugin
     // underline
+    // image
     // strikethrough
     // superscript
     // subscript
@@ -92,10 +89,7 @@ export const createSerializer = (type: SerializerType = 'html') => {
         return (value: EditorValue) => {
             return value?.map((v) => serialize(
                 v,
-                {
-                    nodeTypes: remarkNodeTypesMap,
-                    ignoreParagraphNewline: true,
-                },
+                { nodeTypes: remarkNodeTypesMap },
             )).join('');
         };
     }

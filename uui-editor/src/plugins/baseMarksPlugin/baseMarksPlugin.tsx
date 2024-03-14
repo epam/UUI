@@ -44,7 +44,7 @@ const Underline: PlatePluginComponent = (props) => {
     );
 };
 
-export const boldPlugin = createBoldPlugin<WithToolbarButton>({
+export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
     type: BOLD_KEY,
     component: Bold,
     options: {
@@ -53,7 +53,7 @@ export const boldPlugin = createBoldPlugin<WithToolbarButton>({
     },
 });
 
-export const italicPlugin = createItalicPlugin<WithToolbarButton>({
+export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
     type: ITALIC_KEY,
     component: Italic,
     options: {
@@ -62,7 +62,7 @@ export const italicPlugin = createItalicPlugin<WithToolbarButton>({
     },
 });
 
-const underlinePlugin = createUnderlinePlugin<WithToolbarButton>({
+const underlinePlugin = () => createUnderlinePlugin<WithToolbarButton>({
     type: UNDERLINE_KEY,
     component: Underline,
     options: {
@@ -109,7 +109,7 @@ export function UnderlineButton({ editor }: IToolbarButton) {
 }
 
 export const baseMarksPlugin = () => ([
-    boldPlugin,
-    underlinePlugin,
-    italicPlugin,
+    boldPlugin(),
+    underlinePlugin(),
+    italicPlugin(),
 ]);
