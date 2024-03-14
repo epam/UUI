@@ -97,7 +97,7 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
         return new ItemsMap<TId, TItem>(itemsMap, params);
     }
 
-    public static blank<TId extends symbol | string | number, TItem>(
+    public static blank<TId, TItem>(
         params: ItemsMapParams<TItem, TId>,
     ) {
         return new ItemsMap<TId, TItem>(newMap<TId, TItem>(params), params);
