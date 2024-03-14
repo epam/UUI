@@ -1,7 +1,6 @@
 import { ItemsMap, ItemsMapParams, OnUpdate } from './ItemsMap';
 
 export interface ModificationOptions {
-    isDirty?: boolean;
     reset?: boolean;
     on?: 'load' | 'patch'
 }
@@ -32,7 +31,9 @@ export class ItemsStorage<TItem, TId> {
     }
 
     setItems = (items: TItem[], options?: ModificationOptions) => {
-        const itemsMap = this._itemsMap.setItems(items, options);
+        const itemsMap = options?.reset
+            ? this._itemsMap.clear().setItems(items)
+            : this._itemsMap.setItems(items);
 
         if (itemsMap !== this._itemsMap) {
             this._itemsMap = itemsMap;

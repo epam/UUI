@@ -200,8 +200,8 @@ describe('useAsyncTree', () => {
 
         const itemFromVisibleTree = tree.tree.getById('GW');
         const itemFromSelectionTree = tree.selectionTree.getById('GW');
-        expect(itemFromVisibleTree).toEqual(NOT_FOUND_RECORD);
-        expect(itemFromSelectionTree).toEqual(NOT_FOUND_RECORD);
+        expect(itemFromVisibleTree).toEqual(newItem);
+        expect(itemFromSelectionTree).toEqual(newItem);
         const itemsMap = itemsStorage.getItemsMap();
         expect(itemsMap.has('GW')).toBeFalsy();
         expect(itemsStorage.getItemsMap().get('c-AF')).toEqual(expect.objectContaining({ id: 'c-AF' }));

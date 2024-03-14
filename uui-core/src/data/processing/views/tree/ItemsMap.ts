@@ -3,11 +3,6 @@ import { cloneMap, newMap } from './newTree';
 
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 
-interface ModificationOptions {
-    isDirty?: boolean;
-    reset?: boolean;
-}
-
 export interface ItemsMapParams<TItem, TId> {
     getId: (item: TItem) => TId;
     complexIds?: boolean;
@@ -50,16 +45,13 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
         }
     }
 
-    setItems(items: TItem[], options?: ModificationOptions) {
-        let itemsLink = cloneMap(this._itemsMap);
+    clear() {
+        return new ItemsMap(newMap<TId, TItem>(this.params), this.params);
+    }
 
+    setItems(items: TItem[]) {
         let updated = false;
-        if (options?.reset) {
-            if (itemsLink.size !== items.length) {
-                itemsLink = newMap(this.params);
-                updated = true;
-            }
-        }
+        const itemsLink = cloneMap(this._itemsMap);
 
         items.forEach((item) => {
             const isExistingItem = itemsLink.has(this.params.getId(item));
