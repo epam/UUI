@@ -37,7 +37,20 @@
         "uui-richTextEditor-span-mark": true
       },
       {
-        "text": " with DataSource approach, provides the following functionality: "
+        "text": " with "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=dataSources-getting-started",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "DataSource"
+          }
+        ]
+      },
+      {
+        "text": " approach, provides the following functionality: "
       }
     ]
   },

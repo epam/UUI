@@ -43,7 +43,20 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "DataSources can be used to manage the list of displayed, including folding/sorting/filtering/etc."
+                "text": ""
+              },
+              {
+                "type": "link",
+                "url": "/documents?id=dataSources-getting-started",
+                "target": "_blank",
+                "children": [
+                  {
+                    "text": "DataSources"
+                  }
+                ]
+              },
+              {
+                "text": " can be used to manage the list of displayed, including folding/sorting/filtering/etc."
               }
             ]
           }
