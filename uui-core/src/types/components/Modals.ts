@@ -14,7 +14,10 @@ export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IH
     disableCloseByEsc?: boolean;
     /** Pass true to disabled modal closing by click outside modal window */
     disallowClickOutside?: boolean;
-    /** Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes. */
+    /**
+     * Pass true to disable modal close by router change.
+     * If omitted, modal window will be closed on any router change.
+     */
     disableCloseOnRouterChange?: boolean;
 }
 
