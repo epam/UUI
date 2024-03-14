@@ -19,7 +19,7 @@ import {
     headerPlugin,
     listPlugin,
     placeholderPlugin,
-    inlineCodePlugin,
+    codeBlockPlugin,
     EditorValue,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
@@ -75,7 +75,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
                 },
             ],
         }),
-        inlineCodePlugin(),
+        codeBlockPlugin(),
     ];
 
     render() {
