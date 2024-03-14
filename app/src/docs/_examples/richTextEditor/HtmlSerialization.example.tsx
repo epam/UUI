@@ -14,7 +14,7 @@ import {
     headerPlugin,
     listPlugin,
     EditorValue,
-    inlineCodePlugin,
+    codeBlockPlugin,
     createSerializer,
     createDeserializer,
     paragraphPlugin,
@@ -42,7 +42,7 @@ const plugins = [
     imagePlugin(),
     videoPlugin(),
     iframePlugin(),
-    inlineCodePlugin(),
+    codeBlockPlugin(),
 ];
 
 const serializeHTML = createSerializer();

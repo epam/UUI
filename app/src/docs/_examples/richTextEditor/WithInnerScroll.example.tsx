@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel } from '@epam/promo';
-import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin, superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, EditorValue, inlineCodePlugin } from '@epam/uui-editor';
+import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin, superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, EditorValue, codeBlockPlugin } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
 export default function WithInnerScrollExample() {
@@ -45,7 +45,7 @@ export default function WithInnerScrollExample() {
                 },
             ],
         }),
-        inlineCodePlugin(),
+        codeBlockPlugin(),
     ];
 
     return (

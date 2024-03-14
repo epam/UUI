@@ -3,7 +3,7 @@ import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/uui';
 import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin, linkPlugin,
     iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin, superscriptPlugin,
-    headerPlugin, listPlugin, placeholderPlugin, EditorValue, inlineCodePlugin } from '@epam/uui-editor';
+    headerPlugin, listPlugin, placeholderPlugin, EditorValue, codeBlockPlugin } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
 
@@ -53,7 +53,7 @@ export default function SlateEditorBasicExample() {
                 },
             ],
         }),
-        inlineCodePlugin(),
+        codeBlockPlugin(),
     ];
 
     return (

@@ -19,7 +19,7 @@ function Code(props: PlateElementProps) {
     );
 }
 
-export const inlineCodePlugin = () => createCodePlugin<WithToolbarButton>({
+export const codeBlockPlugin = () => createCodePlugin<WithToolbarButton>({
     key: INLINE_CODE_KEY,
     type: INLINE_CODE_KEY,
     component: Code,
