@@ -1,33 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ItemsStorage, ItemsMap } from '../../../..';
-import { TreeState } from '../../newTree';
+import { ItemsStorage } from '../../../..';
 import { ItemsMapParams } from '../../ItemsMap';
+import { SharedItemsState } from '../strategies/types';
 
-export interface UseItemsStorageProps<TItem, TId> {
-    itemsMap?: ItemsMap<TId, TItem>;
-    setItems?: ItemsStorage<TItem, TId>['setItems'];
-
-    items?: TItem[] | TreeState<TItem, TId>;
+export interface UseItemsStorageProps<TItem, TId> extends SharedItemsState<TItem, TId> {
+    items?: TItem[];
     params: ItemsMapParams<TItem, TId>;
 }
 
 export function useItemsStorage<TItem, TId>({ itemsMap: outerItemsMap, setItems, items, params }: UseItemsStorageProps<TItem, TId>) {
-    const treeOrItems = useMemo(
-        () => items instanceof TreeState ? items : items,
-        [items],
-    );
     const itemsStorage = useMemo(() => {
-        if (!outerItemsMap && !(treeOrItems instanceof TreeState)) {
-            return new ItemsStorage({ items: treeOrItems, params });
+        if (!outerItemsMap) {
+            return new ItemsStorage({ items, params });
         }
         return null;
-    }, [outerItemsMap]);
+    }, [outerItemsMap, items]);
 
-    const [itemsMap, setItemsMap] = useState(outerItemsMap ?? (
-        treeOrItems instanceof TreeState
-            ? treeOrItems.itemsMap
-            : itemsStorage.getItemsMap()
-    ));
+    const [itemsMap, setItemsMap] = useState(outerItemsMap ?? itemsStorage?.getItemsMap());
 
     useEffect(() => {
         if (itemsStorage) {
@@ -45,19 +34,14 @@ export function useItemsStorage<TItem, TId>({ itemsMap: outerItemsMap, setItems,
         if (Array.isArray(items)) {
             if (itemsStorage) {
                 itemsStorage.setItems(items);
-            } else {
-                setItems(items);
             }
+            setItems?.(items);
         }
     }, [items]);
 
     const currentItemsMap = outerItemsMap ?? itemsMap;
     return {
         itemsMap: currentItemsMap,
-        setItems: setItems ?? (
-            treeOrItems instanceof TreeState
-                ? treeOrItems.setItems
-                : itemsStorage?.setItems ?? currentItemsMap.setItems
-        ),
+        setItems: setItems ?? (itemsStorage?.setItems ?? currentItemsMap.setItems),
     };
 }

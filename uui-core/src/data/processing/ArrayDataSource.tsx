@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState, SetDataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListViewProps, useCascadeSelectionService, useDataRows } from './views';
@@ -30,11 +30,9 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         if (props.items && currentItems !== props.items) {
             if (!this.itemsStorage) {
                 this.itemsStorage = new ItemsStorage({
-                    items: props.items,
+                    items: [],
                     params: { getId: this.getId, complexIds: this.props.complexIds },
                 });
-            } else {
-                this.itemsStorage.setItems(props.items, { reset: true });
             }
         }
     }
@@ -61,8 +59,6 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
         const { items, ...restDSProps } = this.props;
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -72,7 +68,6 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             ...options,
             
             items,
-            itemsMap,
             setItems: this.itemsStorage.setItems,
             dataSourceState: value,
             setDataSourceState: onValueChange,
@@ -81,19 +76,6 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         }, [...deps, this]);
-
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        useEffect(() => {
-            const unsubscribe = this.itemsStorage.subscribe((newItemsMap) => {
-                if (itemsMap !== newItemsMap) {
-                    setItemsMap(newItemsMap);
-                }
-            });
-            
-            return () => {
-                unsubscribe();
-            };
-        }, [this.itemsStorage]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {

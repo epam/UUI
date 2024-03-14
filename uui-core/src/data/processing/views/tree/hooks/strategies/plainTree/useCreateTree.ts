@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 import { PlainTreeProps } from './types';
 import { TreeState } from '../../../newTree';
+import { SharedItemsState } from '../types';
 
-export interface UseCreateTreeProps<TItem, TId, TFilter = any> extends Pick<
-PlainTreeProps<TItem, TId, TFilter>,
-'itemsMap' | 'setItems' | 'complexIds' | 'getId' | 'getParentId'
-> {
+export interface UseCreateTreeProps<TItem, TId, TFilter = any> extends
+    Pick<
+    PlainTreeProps<TItem, TId, TFilter>,
+    'complexIds' | 'getId' | 'getParentId'
+    >,
+    SharedItemsState<TItem, TId> {
     items?: TItem[] | TreeState<TItem, TId>;
 }
 

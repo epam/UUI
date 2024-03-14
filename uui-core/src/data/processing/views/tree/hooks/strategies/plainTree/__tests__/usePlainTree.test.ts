@@ -143,20 +143,12 @@ describe('usePlainTree', () => {
         expect(unknownItemFromSelectionTree).toBe(NOT_FOUND_RECORD);
     });
 
-    it('should use outer itemsMap/setItems inside hook if passed to props', async () => {
-        const newItem: LocationItem = {
-            id: 'GW',
-            parentId: 'c-AF',
-            childCount: 0,
-            type: 'country',
-            __typename: 'Location',
-            name: 'Guinea-Bissau',
-        };
-
+    it('should use setItems inside hook if passed to props', async () => {
         const itemsStorage = new ItemsStorage({
-            items: [newItem],
+            items: [],
             params: { getId },
         });
+        expect(itemsStorage.getItemsMap().get('GM')).toBeUndefined();
 
         const hookResult = renderHook(
             (props) => usePlainTree({
@@ -165,7 +157,6 @@ describe('usePlainTree', () => {
                 getId,
                 dataSourceState,
                 setDataSourceState,
-                itemsMap: itemsStorage.getItemsMap(),
                 setItems: itemsStorage.setItems,
                 ...props,
             }, []),
@@ -180,9 +171,12 @@ describe('usePlainTree', () => {
 
         const tree = hookResult.result.current;
 
-        const itemFromVisibleTree = tree.tree.getById('GW');
-        const itemFromSelectionTree = tree.selectionTree.getById('GW');
-        expect(itemFromVisibleTree).toEqual(newItem);
-        expect(itemFromSelectionTree).toEqual(newItem);
+        const itemFromVisibleTree = tree.tree.getById('GM');
+        const itemFromSelectionTree = tree.selectionTree.getById('GM');
+        const gmItem = { __typename: 'Location', childCount: 6, id: 'GM', name: 'Gambia', parentId: 'c-AF', type: 'country' };
+        expect(itemFromVisibleTree).toEqual(gmItem);
+        expect(itemFromSelectionTree).toEqual(gmItem);
+
+        expect(itemsStorage.getItemsMap().get('GM')).toEqual(gmItem);
     });
 });

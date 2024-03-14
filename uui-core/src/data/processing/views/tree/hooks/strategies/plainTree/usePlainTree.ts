@@ -35,9 +35,8 @@ export function usePlainTree<TItem, TId, TFilter = any>(
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
-        itemsMap: restProps.itemsMap,
         items,
-        setItems: restProps.setItems,
+        setItems: props.setItems,
         params: { getId, complexIds },
     });
 
