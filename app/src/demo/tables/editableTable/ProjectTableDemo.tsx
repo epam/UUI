@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, Metadata, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -18,7 +18,7 @@ import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
 import css from './ProjectTableDemo.module.scss';
 
 interface FormState {
-    items: ItemsMap<number, Task>;
+    items: Record<number, Task>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -35,7 +35,7 @@ const metadata: Metadata<FormState> = {
 
 let lastId = -1;
 
-let savedValue: FormState = { items: ItemsMap.fromObject(getDemoTasks(), { getId: (item) => item.id }) };
+let savedValue: FormState = { items: getDemoTasks() };
 
 export function ProjectTableDemo() {
     const {
@@ -52,7 +52,6 @@ export function ProjectTableDemo() {
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
-    // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         let tempRelativeTask = relativeTask;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
@@ -66,20 +65,15 @@ export function ProjectTableDemo() {
         }
 
         setValue((currentValue) => {
-            const orders: string[] = [];
-            currentValue.items.forEach((item) => {
-                if (item.parentId === task.parentId) {
-                    orders.push(item.order);
-                }
-            });
-        
             task.order = getInsertionOrder(
-                orders,
+                Object.values(currentValue.items)
+                    .filter((i) => i.parentId === task.parentId)
+                    .map((i) => i.order),
                 position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
                 tempRelativeTask?.order,
             );
 
-            return { ...currentValue, items: currentValue.items.set(task.id, task) };
+            return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
         });
 
         setTableState((currentTableState) => {
@@ -91,7 +85,7 @@ export function ProjectTableDemo() {
                 selectedId: task.id,
             };
         });
-
+        
         dataTableFocusManager?.focusRow(task.id);
     }, [setValue, setTableState, dataTableFocusManager]);
 
@@ -127,12 +121,12 @@ export function ProjectTableDemo() {
             type: 'plain',
             dataSourceState: tableState,
             setDataSourceState: setTableState,
-            itemsMap: value.items,
+            items: Object.values(value.items),
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
-                ...lens.prop('items').getItem(task.id).toProps(), // pass IEditable to ezach row to allow editing
+                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {
@@ -157,7 +151,7 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            return value.items.get(tableState.selectedId);
+            return value.items[tableState.selectedId];
         }
         return undefined;
     }, [tableState.selectedId, value.items]);

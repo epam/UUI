@@ -1,8 +1,11 @@
-import { IMap } from '../../../../../../../types';
+import { IImmutableMap, IMap } from '../../../../../../../types';
 import { ITreeParams } from '../types';
 
-export function cloneMap<TKey, TValue>(map: IMap<TKey, TValue>) {
-    return new (map.constructor as any)(map) as IMap<TKey, TValue>;
+export function cloneMap<T extends IMap<any, any> | IImmutableMap<any, any>>(map: T): T extends IMap<infer TKey, infer TValue>
+    ? IMap<TKey, TValue>
+    : T extends IImmutableMap<infer TKey, infer TValue>
+        ? IImmutableMap<TKey, TValue> : never {
+    return new (map.constructor as any)(map);
 }
 
 export function newMap<TKey, TValue>(params: Partial<ITreeParams<any, any>>) {

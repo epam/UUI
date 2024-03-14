@@ -1,4 +1,4 @@
-import { IBaseMap, IMap } from '../../../../types';
+import { IImmutableMap, IMap } from '../../../../types';
 import { cloneMap, newMap } from './newTree';
 
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
@@ -8,14 +8,27 @@ export interface ItemsMapParams<TItem, TId> {
     complexIds?: boolean;
 }
 
-export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
+export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
     private _itemsMap: IMap<TId, TItem>;
+    private params: ItemsMapParams<TItem, TId>;
 
     constructor(
         itemsMap: IMap<TId, TItem>,
-        private params: ItemsMapParams<TItem, TId>,
-    ) {
-        this._itemsMap = itemsMap ? cloneMap(itemsMap) : newMap(params);
+        params: ItemsMapParams<TItem, TId>,
+    );
+
+    constructor(itemsMap: ItemsMap<TId, TItem>);
+
+    constructor(...args: [IMap<TId, TItem>, ItemsMapParams<TItem, TId>] | [ItemsMap<TId, TItem>]) {
+        if (args.length === 1) {
+            const [itemsMap] = args;
+            this.params = itemsMap.params;
+            this._itemsMap = cloneMap(this._itemsMap);
+        } else {
+            const [map, params] = args;
+            this.params = params;
+            this._itemsMap = map ? cloneMap(map) : newMap(params);
+        }
     }
 
     get(id: TId) {
@@ -28,14 +41,20 @@ export class ItemsMap<TId, TItem> implements IBaseMap<TId, TItem> {
 
     set(...args: [TId, TItem] | [TId]): ItemsMap<TId, TItem> {
         const [id, item] = args;
-        const itemsMap = cloneMap(this._itemsMap);
+        let itemsMap = cloneMap(this._itemsMap);
 
         if (args.length > 1) {
             itemsMap.set(id, item);
         } else {
-            itemsMap.delete(id);
+            itemsMap = itemsMap.set(id);
         }
 
+        return new ItemsMap(itemsMap, this.params);
+    }
+
+    delete(id: TId) {
+        const itemsMap = cloneMap(this._itemsMap);
+        itemsMap.delete(id);
         return new ItemsMap(itemsMap, this.params);
     }
 

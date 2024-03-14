@@ -1,4 +1,3 @@
-import { ITreeNodeInfo } from '../types';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap } from './map';
@@ -45,7 +44,7 @@ export class PatchHelper {
             return { treeStructure, itemsMap };
         }
 
-        const newNodeInfoById = cloneMap<TId, ITreeNodeInfo>(treeStructure.nodeInfoById);
+        const newNodeInfoById = cloneMap(treeStructure.nodeInfoById);
 
         for (const [parentId, ids] of newByParentId) {
             if (treeStructure.nodeInfoById.has(parentId)) {
