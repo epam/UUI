@@ -189,7 +189,7 @@ export default function EditableTableExample() {
     return (
         <Panel background="surface-main" shadow>
             {/* Render a panel with Save/Revert buttons to control the form */}
-            <FlexRow spacing="12" padding="12" vPadding="12" borderBottom>
+            <FlexRow columnGap="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">
                     <Button caption="Add task" onClick={ handleNewItem } />
                 </FlexCell>

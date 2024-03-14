@@ -38,7 +38,7 @@ export default function VirtualListExample() {
 
     return (
         <Panel style={ { width: '100%' } }>
-            <FlexRow vPadding="12" spacing="12">
+            <FlexRow vPadding="12" columnGap="12">
                 <NumericInput
                     placeholder="Type index"
                     value={ tempScrollTo }

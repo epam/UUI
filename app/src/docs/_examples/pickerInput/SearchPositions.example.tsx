@@ -14,7 +14,7 @@ export default function SearchPositionsExample() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <FlexRow spacing="12">
+        <FlexRow columnGap="12">
             <FlexCell minWidth={ 300 }>
                 <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="person" selectionMode="multi" valueType="id" />
             </FlexCell>

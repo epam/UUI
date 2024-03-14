@@ -11,7 +11,7 @@ export default function CustomMarkupExample() {
             <Text fontSize="14">
                 Copy Workload Based Revenue to Forecast
             </Text>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 {months.map((month) => (
                     <FlexCell minWidth={ 60 } cx={ css.textBlock } key={ month }>
                         <Text fontSize="14" lineHeight="18" cx={ css.text }>

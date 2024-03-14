@@ -75,7 +75,7 @@ export default function ServerValidationExample() {
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
-            <FlexRow vPadding="12" spacing="12">
+            <FlexRow vPadding="12" columnGap="12">
                 <FlexSpacer />
                 <Button caption="Validate" onClick={ validate } />
                 <Button caption="Save" onClick={ save } color="accent" />

@@ -35,7 +35,7 @@ export default function TypesExample() {
     };
 
     return (
-        <FlexRow spacing="18">
+        <FlexRow columnGap="18">
             <Dropdown
                 renderBody={ renderDropdownBody }
                 renderTarget={ (props) => (
