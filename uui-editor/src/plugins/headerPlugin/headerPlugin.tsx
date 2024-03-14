@@ -38,7 +38,6 @@ export const headerPlugin = () => createHeadingPlugin<WithToolbarButton>({
     },
     options: {
         bottomBarButton: HeaderButton,
-        name: 'header-button',
     },
 });
 

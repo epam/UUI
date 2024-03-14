@@ -33,7 +33,6 @@ export const quotePlugin = () => createBlockquotePlugin<WithToolbarButton>({
             options: {
                 hotkey: 'ctrl+q',
                 bottomBarButton: QuoteButton,
-                name: 'quote-plugin',
             },
         },
     },

@@ -67,7 +67,6 @@ export const iframePlugin = () => {
         },
         options: {
             bottomBarButton: IframeButton,
-            name: 'iframe-button',
         },
     });
 

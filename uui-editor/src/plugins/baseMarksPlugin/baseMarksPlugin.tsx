@@ -49,7 +49,6 @@ export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
     component: Bold,
     options: {
         floatingBarButton: BoldButton,
-        name: 'bold-button',
     },
 });
 
@@ -58,7 +57,6 @@ export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
     component: Italic,
     options: {
         floatingBarButton: ItalicButton,
-        name: 'italic-button',
     },
 });
 
@@ -67,7 +65,6 @@ const underlinePlugin = () => createUnderlinePlugin<WithToolbarButton>({
     component: Underline,
     options: {
         floatingBarButton: UnderlineButton,
-        name: 'underline-button',
     },
 });
 

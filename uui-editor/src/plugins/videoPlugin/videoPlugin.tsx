@@ -20,7 +20,6 @@ export const videoPlugin = createPluginFactory<WithToolbarButton>({
     type: 'video',
     options: {
         bottomBarButton: VideoButton,
-        name: 'video-plugin',
     },
 });
 

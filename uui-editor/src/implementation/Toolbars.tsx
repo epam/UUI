@@ -10,13 +10,11 @@ interface ToolbarButtonProps {
 }
 
 type WithFloatingButtonPlugin = {
-    name: string;
     floatingBarButton: React.ComponentType<ToolbarButtonProps>,
 };
 
 type WithBottomButtonPlugin = {
     bottomBarButton: React.ComponentType<ToolbarButtonProps>
-    name: string;
 };
 
 export type WithToolbarButton = WithBottomButtonPlugin | WithFloatingButtonPlugin | PluginOptions;
@@ -32,10 +30,10 @@ const getButtons = (editorRef: PlateEditor<Value>) => {
     return plugins.reduce<{ floating:JSX.Element[]; bottom: JSX.Element[] }>((acc, p) => {
         if (isBottomButtonPlugin(p.options)) {
             const Button = p.options.bottomBarButton;
-            acc.bottom.push(<Button key={ p.options.name } editor={ editorRef } />);
+            acc.bottom.push(<Button key={ p.key } editor={ editorRef } />);
         } else if (isFloatingButtonPlugin(p.options)) {
             const Button = p.options.floatingBarButton;
-            acc.floating.push(<Button key={ p.options.name } editor={ editorRef } />);
+            acc.floating.push(<Button key={ p.key } editor={ editorRef } />);
         }
         return acc;
     }, {

@@ -24,7 +24,6 @@ export const linkPlugin = () => createLinkPlugin<WithToolbarButton & LinkPlugin>
     options: {
         keepSelectedTextOnPaste: false,
         floatingBarButton: LinkButton,
-        name: 'link-button',
     },
 });
 

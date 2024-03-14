@@ -25,7 +25,6 @@ export const inlineCodePlugin = () => createCodePlugin<WithToolbarButton>({
     component: Code,
     options: {
         floatingBarButton: CodeButton,
-        name: 'floating-button',
     },
 });
 

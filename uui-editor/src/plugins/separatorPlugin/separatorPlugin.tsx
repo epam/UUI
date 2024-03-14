@@ -30,7 +30,6 @@ export const separatorPlugin = () => {
         },
         options: {
             bottomBarButton: SeparatorButton,
-            name: 'separator-plugin',
         },
     });
 };
