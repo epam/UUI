@@ -55,7 +55,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
         return (
             <FlexCell width="auto" cx={ [css.root, 'uui-typography', cx] }>
-                <FlexRow size={ itemSize } cx={ isMultiline && [css.multiline, css[`vertical-padding-${itemSize}`]] } spacing="12">
+                <FlexRow size={ itemSize } cx={ isMultiline && [css.multiline, css[`vertical-padding-${itemSize}`]] } columnGap="12">
                     {avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } />}
                     {icon && <IconContainer icon={ icon } />}
                     <FlexCell width="auto">

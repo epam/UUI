@@ -6,7 +6,7 @@ export default function ColorsExample() {
         
         <Panel style={ { padding: '12px', flex: '1 1 0' } }>
             <Text fontSize="14">Semantic colors, use for appropriate sense</Text>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <Badge color="info" fill="solid" caption="Info" />
                 <Badge color="success" fill="solid" caption="Success" />
                 <Badge color="critical" fill="solid" caption="Critical" />

@@ -91,7 +91,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                     } }
                                 />
                                 <FlexCell grow={ 1 }>
-                                    <FlexRow spacing="18" cx={ [css.clickArea] } onClick={ () => this.props.onValueChange({ ...item, isFolded: !item.isFolded }) }>
+                                    <FlexRow columnGap="18" cx={ [css.clickArea] } onClick={ () => this.props.onValueChange({ ...item, isFolded: !item.isFolded }) }>
                                         <RichTextView cx={ [css.itemTitle] }>
                                             <h3 style={ { margin: '20px 0' } }>{ item.title }</h3>
                                         </RichTextView>

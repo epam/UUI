@@ -28,7 +28,7 @@ export default function PickerInputWithCustomFooter() {
 
     return (
         <FlexCell width={ 612 }>
-            <FlexRow spacing="12">
+            <FlexRow columnGap="12">
                 <PickerInput
                     dataSource={ dataSource }
                     value={ singlePickerValue }

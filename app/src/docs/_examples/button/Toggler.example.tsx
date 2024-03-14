@@ -15,7 +15,7 @@ export default function ButtonAsToggler() {
     const dataSource = useLazyDataSource({ api: personsApi }, []);
 
     return (
-        <FlexRow spacing="12">
+        <FlexRow columnGap="12">
             <Dropdown
                 renderBody={ (props) => (
                     <Panel background="surface-main" { ...props }>
