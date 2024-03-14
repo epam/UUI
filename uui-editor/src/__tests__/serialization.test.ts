@@ -18,7 +18,7 @@ import {
     iframePlugin,
     separatorPlugin,
     tablePlugin,
-    inlineCodePlugin,
+    codeBlockPlugin,
 } from '../plugins';
 import { defaultPlugins } from '../defaultPlugins';
 import { createPlateEditor } from '@udecode/plate-core';
@@ -54,7 +54,7 @@ const plugins = [
     iframePlugin(),
     separatorPlugin(),
     tablePlugin(),
-    inlineCodePlugin(),
+    codeBlockPlugin(),
 ];
 
 const initEditor = () => {
