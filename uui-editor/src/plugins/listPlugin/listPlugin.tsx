@@ -45,7 +45,6 @@ export const listPlugin = () => createListPlugin<WithToolbarButton>({
     },
     options: {
         bottomBarButton: ListButton,
-        name: 'list-button',
     },
 });
 

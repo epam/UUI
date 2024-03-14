@@ -26,7 +26,6 @@ export const attachmentPlugin = () => {
         component: AttachmentBlock,
         options: {
             bottomBarButton: AttachFileButton,
-            name: 'attach-file-button',
         },
     });
 

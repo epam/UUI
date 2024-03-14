@@ -73,7 +73,6 @@ export const imagePlugin = () => {
         ],
         options: {
             bottomBarButton: ImageButton,
-            name: 'image-button',
         },
     });
 

@@ -31,7 +31,6 @@ export const placeholderPlugin = (params: PlaceholderPluginParams) => {
         options: {
             bottomBarButton: PlaceholderButton,
             params,
-            name: 'placeholder-plugin',
         },
     });
 

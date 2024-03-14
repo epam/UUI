@@ -63,7 +63,6 @@ export const notePlugin = () => {
         ],
         options: {
             bottomBarButton: NoteButton,
-            name: 'note-plugin',
         },
     });
     return createNotePlugin();

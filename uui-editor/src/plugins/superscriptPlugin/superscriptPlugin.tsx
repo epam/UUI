@@ -13,7 +13,6 @@ export const superscriptPlugin = () => createSuperscriptPlugin<WithToolbarButton
     type: SUPERSCRIPT_TYPE,
     options: {
         floatingBarButton: SuperscriptButton,
-        name: 'superscription-button',
     },
 });
 

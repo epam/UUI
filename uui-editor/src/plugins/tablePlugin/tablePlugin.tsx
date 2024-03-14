@@ -102,7 +102,6 @@ export const tablePlugin = () => createTablePlugin<WithToolbarButton & TablePlug
     options: {
         enableMerging: true,
         bottomBarButton: TableButton,
-        name: 'table-button',
     },
 });
 
