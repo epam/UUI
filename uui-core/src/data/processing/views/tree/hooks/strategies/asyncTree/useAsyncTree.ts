@@ -37,7 +37,6 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const { itemsMap, setItems } = useItemsStorage({
         itemsMap: props.itemsMap,
-        items: props.items,
         setItems: props.setItems,
         params: { getId, complexIds },
     });
@@ -46,9 +45,9 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const baseTree = useMemo(() => {
         if (isLoaded) {
-            return TreeState.createFromItems(undefined, itemsMap, props, setItems);
+            return TreeState.createFromItemsMap(itemsMap, setItems, { getId, getParentId, complexIds });
         }
-        return TreeState.blank(props, itemsMap, setItems);
+        return TreeState.blank({ getId, getParentId, complexIds }, itemsMap, setItems);
     }, [...deps, isLoaded]);
 
     const [incommingTree, setIncommingTree] = useState(baseTree);
@@ -84,7 +83,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     }, [treeWithData]);
 
     const reload = useCallback(() => {
-        setIncommingTree(TreeState.blank(props, itemsMap, setItems));
+        setIncommingTree(TreeState.blank({ getId, getParentId, complexIds }, itemsMap, setItems));
         setIsForceReload(true);
     }, [setIsForceReload]);
 

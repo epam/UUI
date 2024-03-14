@@ -47,12 +47,13 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
         
+        const { items, ...props } = { ...this.props, ...options };
+        
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, selectionTree, totalCount, ...restProps } = useTree({
             type: 'async',
-            ...this.props,
             api: this.api,
-            ...options,
+            ...props,
             itemsMap,
             setItems: this.itemsStorage.setItems,
             itemsStatusMap: this.itemsStatusMap,

@@ -1,7 +1,6 @@
-import { IMap, LazyDataSourceApi, PatchItemsOptions } from '../../../../../../../types';
-import { RecordStatus } from '../../../types';
+import { LazyDataSourceApi, PatchItemsOptions } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
-import { CommonDataSourceConfig, SharedItemsState } from '../types/common';
+import { CommonDataSourceConfig, ItemsStatuses, SharedItemsState } from '../types/common';
 
 /**
  * Get assumed node children count configuration.
@@ -24,17 +23,13 @@ export type LazyTreeProps<TItem, TId, TFilter> =
     & PatchItemsOptions<TItem, TId>
     & GetChildCount<TItem>
     & SharedItemsState<TItem, TId>
+    & ItemsStatuses<TId>
     & {
 
         /**
          * Type of the tree to be supported.
          */
         type: typeof STRATEGIES.lazy,
-
-        /**
-         * Map of items statuses.
-         */
-        itemsStatusMap?: IMap<TId, RecordStatus>;
 
         /**
          * A function to retrieve the data, asynchronously.
