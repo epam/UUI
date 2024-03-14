@@ -19,6 +19,7 @@
 * [PickerInput]: fixed 'unknown records' removing
 * [PickerInput]: Fixed focus reset after clicking outside
 * [PickerList]: aligned caption by the left side in the footer.
+* [DropdownContainer]: disable scroll to the focused element after dropdown close
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
@@ -31,6 +32,7 @@
 * [TextArea]: fixed ability to scroll when `readonly` or `disable`;
 * теперь по дефолту модальные окна закрываются по изменению роута, но вы так же можете отключить это поведение для определенной модалки через пропсу
 * [ModalBlocker]: now the Modals closed by default if the URL was changed. You can turn this off using property `disableCloseOnRouterChange`={true}.
+* [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead. See more: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
 
 # 5.6.1 - 19.02.2024
 

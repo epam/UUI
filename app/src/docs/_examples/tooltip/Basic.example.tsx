@@ -3,7 +3,7 @@ import { Button, FlexRow, Tooltip } from '@epam/uui';
 
 export default function BasicTooltipExample() {
     return (
-        <FlexRow spacing="12">
+        <FlexRow columnGap="12">
             <Tooltip content="Some text">
                 <Button caption="Top" onClick={ () => null } />
             </Tooltip>

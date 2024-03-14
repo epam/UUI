@@ -67,7 +67,7 @@ export class DownloadsDoc extends BaseDocsBlock {
     }: any) {
         return (
             <FlexCell minWidth={ 320 }>
-                <FlexRow spacing="12">
+                <FlexRow columnGap="12">
                     <IconContainer icon={ image } />
                     <FlexCell width="auto">
                         { title === 'UUI Illustrations' ? (
@@ -115,7 +115,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                     </RichTextView>
                     <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
                         <FlexCell minWidth={ 320 }>
-                            <FlexRow spacing="12">
+                            <FlexRow columnGap="12">
                                 <div className={ cx(css.downloadsOval, css.fontPackBackground) }>
                                     <IconContainer icon={ FontIcon } />
                                 </div>
@@ -137,7 +137,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                             </FlexRow>
                         </FlexCell>
                         <FlexCell minWidth={ 320 }>
-                            <FlexRow spacing="12">
+                            <FlexRow columnGap="12">
                                 <div className={ cx(css.downloadsOval, css.logotypesBackground) }>
                                     <IconContainer icon={ LogotypeIcon } />
                                 </div>
@@ -155,7 +155,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                             </FlexRow>
                         </FlexCell>
                         <FlexCell minWidth={ 320 }>
-                            <FlexRow spacing="12">
+                            <FlexRow columnGap="12">
                                 <div className={ cx(css.downloadsOval, css.iconSetBackground) }>
                                     <IconContainer icon={ DownloadIcon } />
                                 </div>
@@ -175,7 +175,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                     </FlexRow>
                     <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
                         <FlexCell minWidth={ 480 }>
-                            <FlexRow spacing="12">
+                            <FlexRow columnGap="12">
                                 <div className={ cx(css.downloadsOval, css.illustrationsBackground) }>
                                     <IconContainer icon={ IllustrationsIcon } />
                                 </div>
