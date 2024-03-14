@@ -26,6 +26,9 @@ import { createDeserializeMdPlugin, deserializeMd } from '@udecode/plate-seriali
 import { remarkNodeTypesMap, serialize } from './remark-slate';
 import { createTempEditor } from './helpers';
 
+/**
+ * Represents serializer type
+ */
 export type SerializerType = 'html' | 'md';
 
 export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
