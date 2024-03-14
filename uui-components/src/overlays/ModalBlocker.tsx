@@ -7,9 +7,17 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
     public static contextType = UuiContext;
     public context: UuiContexts;
 
+    private unsubscribeFromRouter:() => void | null = null;
+
     componentDidMount() {
         document.body.style.overflow = 'hidden';
         !this.props.disableCloseByEsc && window.addEventListener('keydown', this.keydownHandler);
+
+        if (!this.props.disableCloseOnRouterChange) {
+            this.unsubscribeFromRouter = this.context.uuiRouter.listen(() => {
+                this.urlChangeHandler();
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -18,7 +26,15 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
         if (!this.context.uuiModals.getOperations().length) {
             document.body.style.overflow = 'visible';
         }
+
+        if (this.unsubscribeFromRouter) {
+            this.unsubscribeFromRouter();
+        }
     }
+
+    urlChangeHandler = () => {
+        !this.props.disableCloseOnRouterChange && this.context.uuiModals.closeAll();
+    };
 
     keydownHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
