@@ -356,6 +356,22 @@ export class TreeState<TItem, TId> {
         );
     }
 
+    public static createFromItemsMap<TItem, TId>(
+        itemsMap: ItemsMap<TId, TItem> | undefined,
+        setItems: ItemsStorage<TItem, TId>['setItems'],
+        params: ITreeParams<TItem, TId>,
+    ) {
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
+        const treeStructure = TreeStructure.createFromItems({ params, items: itemsMap, itemsAccessor });
+        return new TreeState(
+            treeStructure,
+            treeStructure,
+            TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap)),
+            itemsMap,
+            setItems,
+        );
+    }
+
     public static blank<TItem, TId>(params: ITreeParams<TItem, TId>, itemsMap: ItemsMap<TId, TItem>, setItems: ItemsStorage<TItem, TId>['setItems']): TreeState<TItem, TId> {
         const treeStructure = TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap));
 

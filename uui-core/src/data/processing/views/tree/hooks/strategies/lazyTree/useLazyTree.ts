@@ -36,7 +36,11 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         [itemsStatusCollector, props.api],
     );
 
-    const blankTree = useMemo(() => TreeState.blank(props, itemsMap, setItems), deps);
+    const blankTree = useMemo(
+        () => TreeState.blank({ getId, getParentId, getChildCount, complexIds }, itemsMap, setItems),
+        deps,
+    );
+
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
     const prevDataSourceState = useSimplePrevious(dataSourceState);

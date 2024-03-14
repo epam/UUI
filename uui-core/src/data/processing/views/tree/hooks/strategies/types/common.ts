@@ -1,6 +1,7 @@
-import { CascadeSelection, DataRowOptions, DataSourceState, SetDataSourceState, SortingOption } from '../../../../../../../types';
+import { CascadeSelection, DataRowOptions, DataSourceState, IMap, SetDataSourceState, SortingOption } from '../../../../../../../types';
 import { ItemsMap } from '../../../ItemsMap';
 import { ItemsStorage } from '../../../ItemsStorage';
+import { RecordStatus } from '../../../types';
 
 /**
  * DataSource configuration.
@@ -111,6 +112,13 @@ export interface SharedItemsState<TItem, TId> {
      * Items updating listener, which fires on items loading/reloading/reset.
      */
     setItems?: ItemsStorage<TItem, TId>['setItems'];
+}
+
+export interface ItemsStatuses<TId> {
+    /**
+     * Map of items statuses.
+     */
+    itemsStatusMap?: IMap<TId, RecordStatus>;
 }
 
 export interface SearchConfig<TItem> {
