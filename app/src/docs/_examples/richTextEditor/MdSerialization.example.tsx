@@ -57,7 +57,7 @@ export default function SlateEditorBasicExample() {
                 onValueChange={ onChangeEditorValue }
                 mode="form"
                 placeholder="Add description"
-                minHeight={ 300 }
+                minHeight={ 150 }
                 fontSize="14"
                 plugins={ mdSerializationsWorkingPlugins }
             />
