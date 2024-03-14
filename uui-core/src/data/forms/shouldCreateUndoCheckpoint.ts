@@ -1,6 +1,6 @@
-import { IBaseMap } from '../../types';
+import { IMap } from '../../types';
 
-type FieldValue = Object | Array<any> | IBaseMap<string, any>;
+type FieldValue = Object | Array<any> | IMap<string, any>;
 
 const getKeys = (a: FieldValue, b: FieldValue, c: FieldValue) => {
     if (Array.isArray(a) && Array.isArray(b) && Array.isArray(c)) {
@@ -10,7 +10,7 @@ const getKeys = (a: FieldValue, b: FieldValue, c: FieldValue) => {
     return Array.from(new Set([...getObjectOrMapKeys(a), ...getObjectOrMapKeys(b), ...getObjectOrMapKeys(c)]));
 };
 
-const getObjectOrMapKeys = (a: Object | IBaseMap<string, any> | any) => {
+const getObjectOrMapKeys = (a: Object | IMap<string, any> | any) => {
     if (typeof a !== 'object') {
         return [];
     }

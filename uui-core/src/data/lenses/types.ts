@@ -1,10 +1,14 @@
-import { ICanBeInvalid, IEditable, IHasValidationMessage, IBaseMap } from '../../types';
+import { ICanBeInvalid, IEditable, IHasValidationMessage, IImmutableMap, IMap } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
 /**
  * IMap element, supported by ILens.
  */
-export type IMapElement<MapType> = MapType extends IBaseMap<any, infer Item> ? Item : never;
+export type IMapElement<MapType> = MapType extends IMap<any, infer Item>
+    ? Item
+    : MapType extends IImmutableMap<any, infer Item>
+        ? Item
+        : never;
 
 export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
     /** If T is a complex value (object or array), this property contains validation states of inner items */

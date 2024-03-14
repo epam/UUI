@@ -16,7 +16,7 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
     }
 
     public getItem<TId>(id: TId): LensBuilder<TRoot, IMapElement<TFocused>> {
-        return this.compose(Impl.get(id) as any, id);
+        return this.compose(Impl.getItem(id) as any, id);
     }
 
     public set(value: TFocused) {

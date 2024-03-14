@@ -25,24 +25,23 @@ export type CX = ClassValue;
 
 export type Icon = React.FC<any>;
 
-/**
- * Map interface.
- */
-export interface IMap<TKey, TValue> extends IBaseMap<TKey, TValue> {
-    /**
-     * IMap setter.
-     * @param key - key of the map.
-     * @param value - value of the map, to be set by key.
-     */
-    set(key: TKey, value: TValue): IMap<TKey, TValue>;
-    /**
-     * Removes item with provided key from the map.
-     * @param key - key of an item.
-     */
+export interface IMap<TKey, TValue> {
+    constructor: Function;
+    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    get(key: TKey): TValue | undefined;
+    set(key: TKey, value?: TValue): IMap<TKey, TValue>;
     delete(key: TKey): boolean;
-    /**
-     * Size of the map.
-     */
+    has(key: TKey): boolean;
+    size: number;
+}
+
+export interface IImmutableMap<TKey, TValue> {
+    constructor: Function;
+    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    get(key: TKey): TValue | undefined;
+    set(key: TKey, value?: TValue): IImmutableMap<TKey, TValue>;
+    delete(key: TKey): IImmutableMap<TKey, TValue>;
+    has(key: TKey): boolean;
     size: number;
 }
 
@@ -52,33 +51,3 @@ export type AnalyticsEvent = {
     /** Any data, which will be sent with event */
     [key: string]: any;
 } | null;
-
-/**
- * Base map interface.
- */
-export interface IBaseMap<TKey, TValue> {
-    /**
-     * IBaseMap contructor.
-     */
-    constructor: Function;
-    /**
-     * Iterator through items.
-     */
-    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
-    /**
-     * IBaseMap getter.
-     * @param key - key of an item.
-     */
-    get(key: TKey): TValue | undefined;
-    /**
-     * IBaseMap setter.
-     * @param key - key of the map.
-     * @param value - value of the map, to be set by key.
-     */
-    set(key: TKey, value?: TValue): IBaseMap<TKey, TValue>;
-    /**
-     * Checks if item with provided key is present in the map.
-     * @param key - key of an item.
-     */
-    has(key: TKey): boolean;
-}

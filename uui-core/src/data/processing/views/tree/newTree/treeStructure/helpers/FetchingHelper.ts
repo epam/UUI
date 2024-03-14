@@ -25,7 +25,7 @@ export class FetchingHelper {
             },
         );
 
-        const newItemsMap = itemsMap.setItems(response.items, { reset: true });
+        const newItemsMap = itemsMap.clear().setItems(response.items);
 
         return {
             itemsMap: newItemsMap,
