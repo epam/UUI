@@ -18,8 +18,8 @@ export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
 export interface ILens<TFocused> {
     /** Get lens value */
     get(): TFocused;
-    /** Get lens value of the IBaseMap by provided id. */
-    getItem<TId>(id: TId): ILens<NonNullable<IMapElement<TFocused>>>;
+    /** Get lens value of the IMap or IImmutableMap by provided id. */
+    key<TId>(id: TId): ILens<NonNullable<IMapElement<TFocused>>>;
 
     /** Set new lens value */
     set(value: TFocused): void;

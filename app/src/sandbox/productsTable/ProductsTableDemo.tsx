@@ -59,7 +59,7 @@ export function ProductsTableDemo() {
         api: svc.api.demo.products,
         patchItems: updatedRows.items,
         getId: (i) => i.ProductID,
-        getRowOptions: (product) => ({ ...lens.prop('items').getItem(product.ProductID).default(product).toProps() }),
+        getRowOptions: (product) => ({ ...lens.prop('items').key(product.ProductID).default(product).toProps() }),
         backgroundReload: true,
     }, []);
     
