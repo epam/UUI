@@ -17,7 +17,7 @@ import {
     imagePlugin,
     videoPlugin,
     iframePlugin,
-    inlineCodePlugin,
+    codeBlockPlugin,
     paragraphPlugin,
     boldPlugin,
     italicPlugin,
@@ -42,7 +42,7 @@ export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
     imagePlugin(),
     videoPlugin(),
     iframePlugin(),
-    inlineCodePlugin(),
+    codeBlockPlugin(),
 ];
 
 export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
