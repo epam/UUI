@@ -78,6 +78,10 @@ $text-size-count: 24px;
 
     :global(.uui-caption) {
         @include text-size($text-size-caption, 0);
+
+        &.caption-with-notify {
+            padding-right: 9px;
+        }
     }
 
     // Sizes
