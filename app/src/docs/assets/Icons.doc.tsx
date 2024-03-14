@@ -28,7 +28,7 @@ export function IconsDoc() {
         currentIcon: null,
         selectedIcon: null,
         search: '',
-        controlSize: '30',
+        controlSize: '36',
         topIndex: 0,
         visibleCount: 100500,
         isLocked: true,
@@ -88,13 +88,12 @@ export function IconsDoc() {
     );
 
     const getImportCode = (icon: IconBase<Icon>) => {
-        const sourcePath = '@epam/assets/icons/';
         const iconName = icon.name.split('/').reverse()[0].split('.')[0];
 
         if (iconName.includes('_') || iconName.includes('-')) {
-            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${sourcePath}${icon.name}';`;
+            return `import { ReactComponent as ${iconName.split(new RegExp(['_', '-'].join('|'), 'g')).reduce((p, c) => Number.isInteger(Number(c)) ? p : p.concat(c[0].toUpperCase() + c.slice(1)), '')}Icon } from '${icon.path}/${icon.name}';`;
         }
-        return `import { ReactComponent as ${iconName}Icon } from '${sourcePath}${icon.name}';`;
+        return `import { ReactComponent as ${iconName}Icon } from '${icon.path}/${icon.name}';`;
     };
 
     const renderImport = () => {
@@ -112,9 +111,9 @@ export function IconsDoc() {
         const icon = state.selectedIcon.icon;
         return (
             <FlexCell width="100%">
-                <FlexRow size="24" spacing="12">
+                <FlexRow size="24" columnGap="12">
                     <FlexCell width="auto" shrink={ 0 }>
-                        <IconButton onClick={ () => {} } icon={ icon } />
+                        <IconButton size={ state.controlSize as any } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
                         <Button size={ state.controlSize } onClick={ () => {} } icon={ icon } />
@@ -135,7 +134,7 @@ export function IconsDoc() {
 
     const renderControlSize = () => (
         <div className={ cx(css.controlSizeWrapper, { [css.hideControlSize]: state.isLocked, [css.showControlSize]: !state.isLocked }) }>
-            <FlexRow padding="24" vPadding="24" spacing="12" size="24" borderBottom cx={ css.controlSizeContent }>
+            <FlexRow padding="24" vPadding="24" columnGap="12" size="24" borderBottom cx={ css.controlSizeContent }>
                 <FlexCell width="auto">
                     <Text fontWeight="600" size="24" fontSize="14">
                         Control size:

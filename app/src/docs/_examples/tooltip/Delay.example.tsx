@@ -9,7 +9,7 @@ export default function TriggerConfigurationWithDelayExample() {
                 Project Team
             </Text>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
-                <FlexRow spacing="6" size="24">
+                <FlexRow columnGap="6" size="24">
                     <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
                     <Text fontSize="14" lineHeight="24" cx={ css.text }>
                         Ann Zaharova
@@ -17,7 +17,7 @@ export default function TriggerConfigurationWithDelayExample() {
                 </FlexRow>
             </Tooltip>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
-                <FlexRow spacing="6" size="24">
+                <FlexRow columnGap="6" size="24">
                     <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
                     <Text fontSize="14" lineHeight="24" cx={ css.text }>
                         Alexander Sozonov
@@ -25,7 +25,7 @@ export default function TriggerConfigurationWithDelayExample() {
                 </FlexRow>
             </Tooltip>
             <Tooltip content="Experiance Designer" openDelay={ 250 }>
-                <FlexRow spacing="6" size="24">
+                <FlexRow columnGap="6" size="24">
                     <Avatar size="18" alt="avatar" img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" />
                     <Text fontSize="14" lineHeight="24" cx={ css.text }>
                         Peter Drummer

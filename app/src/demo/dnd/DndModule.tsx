@@ -55,7 +55,7 @@ export class DndModule extends React.Component<DndModuleProps> {
                     return (
                         <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
-                                <FlexRow cx={ css.item } size="48" padding="12" spacing="12">
+                                <FlexRow cx={ css.item } size="48" padding="12" columnGap="12">
                                     <DragHandle cx={ [css.dragHandle] } />
                                     <IconContainer
                                         icon={ item.isCompleted ? CompleteIcon : ScheduleIcon }
