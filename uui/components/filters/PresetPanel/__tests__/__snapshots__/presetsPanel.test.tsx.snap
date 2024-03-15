@@ -15,11 +15,11 @@ exports[`PresetsPanel should render with minimum props 1`] = `
   }
 >
   <div
-    className="uui-flex-row root spacing-12 presetsWrapper container align-items-center"
+    className="uui-flex-row root presetsWrapper container align-items-center"
     style={
       Object {
         "columnGap": undefined,
-        "rowGap": undefined,
+        "rowGap": "12px",
       }
     }
   >

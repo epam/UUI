@@ -86,7 +86,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" alignItems="center" spacing="12" borderBottom={ true } cx={ css.container }>
+                <FlexRow padding="12" alignItems="center" rowGap="12" borderBottom={ true } cx={ css.container }>
                     <FlexCell width="100%">
                         <NumericInput
                             value={ value?.from ?? null }
