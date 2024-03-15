@@ -1,20 +1,24 @@
-import { PlateEditor, PlatePluginComponent, isMarkActive } from '@udecode/plate-common';
+import {
+    PlateEditor, PlatePluginComponent, isMarkActive,
+} from '@udecode/plate-common';
 import React from 'react';
 
 import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
-import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin } from '@udecode/plate-basic-marks';
+import {
+    MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE, createBoldPlugin, createItalicPlugin, createUnderlinePlugin,
+} from '@udecode/plate-basic-marks';
 import { ReactComponent as BoldIcon } from '../../icons/bold.svg';
 import { ReactComponent as ItalicIcon } from '../../icons/italic.svg';
 import { ReactComponent as UnderlineIcon } from '../../icons/underline.svg';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 
-const BOLD_KEY = 'uui-richTextEditor-bold';
-const ITALIC_KEY = 'uui-richTextEditor-italic';
-const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
+export const BOLD_KEY = 'uui-richTextEditor-bold';
+export const ITALIC_KEY = 'uui-richTextEditor-italic';
+export const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
 
 const Bold: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
@@ -40,30 +44,27 @@ const Underline: PlatePluginComponent = (props) => {
     );
 };
 
-const boldPlugin = createBoldPlugin<IHasToolbarButton>({
+export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
     type: BOLD_KEY,
     component: Bold,
     options: {
         floatingBarButton: BoldButton,
-        name: 'bold-button',
     },
 });
 
-const italicPlugin = createItalicPlugin<IHasToolbarButton>({
+export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
     type: ITALIC_KEY,
     component: Italic,
     options: {
         floatingBarButton: ItalicButton,
-        name: 'italic-button',
     },
 });
 
-const underlinePlugin = createUnderlinePlugin<IHasToolbarButton>({
+const underlinePlugin = () => createUnderlinePlugin<WithToolbarButton>({
     type: UNDERLINE_KEY,
     component: Underline,
     options: {
         floatingBarButton: UnderlineButton,
-        name: 'underline-button',
     },
 });
 
@@ -105,7 +106,7 @@ export function UnderlineButton({ editor }: IToolbarButton) {
 }
 
 export const baseMarksPlugin = () => ([
-    boldPlugin,
-    underlinePlugin,
-    italicPlugin,
+    boldPlugin(),
+    underlinePlugin(),
+    italicPlugin(),
 ]);

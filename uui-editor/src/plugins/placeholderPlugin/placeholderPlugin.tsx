@@ -5,9 +5,11 @@ import { isPluginActive, isTextSelected } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
 
-import { PlateEditor, createPluginFactory, getPluginOptions, insertElements } from '@udecode/plate-common';
+import {
+    PlateEditor, createPluginFactory, getPluginOptions, insertElements,
+} from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 const KEY = 'placeholder';
 
@@ -20,7 +22,7 @@ export interface PlaceholderPluginParams {
 }
 
 export const placeholderPlugin = (params: PlaceholderPluginParams) => {
-    const createPlaceholderPlugin = createPluginFactory<IHasToolbarButton & { params: PlaceholderPluginParams }>({
+    const createPlaceholderPlugin = createPluginFactory<WithToolbarButton & { params: PlaceholderPluginParams }>({
         key: KEY,
         isElement: true,
         isInline: true,
@@ -73,14 +75,24 @@ export function PlaceholderButton({ editor }: IPlaceholderButton): any {
         <Dropdown
             renderTarget={ (props) => (
                 <ToolbarButton
-                    caption={ <div style={ { height: 42, display: 'flex', alignItems: 'center' } }>Insert Placeholder</div> }
+                    caption={ <div style={ {
+                        height: 42,
+                        display: 'flex',
+                        alignItems: 'center',
+                    } }
+                    >
+                        Insert Placeholder
+                    </div> }
                     isDisabled={ isTextSelected(editor, true) }
                     { ...props }
                 />
             ) }
             renderBody={ renderDropdownBody }
             placement="top-start"
-            modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
+            modifiers={ [{
+                name: 'offset',
+                options: { offset: [0, 3] },
+            }] }
         />
     );
 }
