@@ -35,6 +35,7 @@ interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     onBlur?: FocusEventHandler<HTMLDivElement>;
     onFocus?: FocusEventHandler<HTMLDivElement>;
     scrollbars?: boolean;
+    toolbarPosition?: 'floating' | 'fixed';
 }
 
 interface PlateEditorProps extends SlateEditorProps {
@@ -45,7 +46,6 @@ function Editor(props: PlateEditorProps) {
     const editor = useEditorState();
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
-    const textMode = !props.plugins?.length;
 
     const renderEditor = () => (
         <Fragment>
@@ -73,7 +73,7 @@ function Editor(props: PlateEditorProps) {
                 } }
                 style={ { minHeight: props.minHeight } }
             />
-            {!textMode && <Toolbars />}
+            <Toolbars toolbarPosition={ props.toolbarPosition } />
         </Fragment>
     );
 
