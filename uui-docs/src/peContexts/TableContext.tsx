@@ -125,7 +125,7 @@ export function TableContext(contextProps: DemoComponentProps) {
                     { ...dataView.getListProps() }
                 />
             </Panel>
-            <FlexRow spacing="12" margin="12">
+            <FlexRow rowGap="12" margin="12">
                 <FlexSpacer />
                 <FlexCell width="auto">
                     <Button color="primary" caption="Save" onClick={ save } />

@@ -75,7 +75,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         const dirPath = this.props.path.split('/').slice(0, -1);
         return (
             <>
-                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
+                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" rowGap="12">
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
                 <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter] }>

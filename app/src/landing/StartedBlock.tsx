@@ -18,7 +18,7 @@ export class StartedBlock extends React.Component {
                     <RichTextView>
                         <h2 className={ css.header }>Getting Started</h2>
                     </RichTextView>
-                    <FlexRow spacing="18" cx={ css.content }>
+                    <FlexRow rowGap="18" cx={ css.content }>
                         <div className={ css.contentColumn }>
                             <div className={ css.contentColumnWrapper }>
                                 <div className={ css.contentIcon } style={ { backgroundColor: '#E3FCFC' } }>

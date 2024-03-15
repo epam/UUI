@@ -74,11 +74,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
+      className="uui-flex-row root size-36 padding-24 borderBottom searchArea container align-items-center"
       style={
         Object {
           "columnGap": undefined,
-          "rowGap": undefined,
+          "rowGap": "12px",
         }
       }
     >
@@ -158,11 +158,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
+            className="uui-flex-row root size-24 padding-24 groupTitle container align-items-center"
             style={
               Object {
                 "columnGap": undefined,
-                "rowGap": undefined,
+                "rowGap": "6px",
               }
             }
           >

@@ -150,7 +150,7 @@ export function ThemeDemo() {
                     </FlexRow>
                     <FlexRow vPadding="12">
                         <LabeledInput label="Status">
-                            <FlexRow spacing="12">
+                            <FlexRow rowGap="12">
                                 <Badge color="success" fill="outline" caption="Approved" size="24" />
                                 <Badge color="info" fill="outline" caption="Active" size="24" />
                             </FlexRow>
@@ -166,7 +166,7 @@ export function ThemeDemo() {
                         .get()
                         .map((record, index) => {
                             return (
-                                <FlexRow key={ index } spacing="12" vPadding="12" alignItems="top">
+                                <FlexRow key={ index } rowGap="12" vPadding="12" alignItems="top">
                                     <FlexCell width={ 242 }>
                                         <LabeledInput label="Country" { ...lens.prop('visaRecords').index(index).prop('country').toProps() }>
                                             <PickerInput<Country, string>
@@ -181,7 +181,7 @@ export function ThemeDemo() {
                                     </FlexCell>
                                     <FlexCell grow={ 1 } rawProps={ { style: { width: '310px' } } }>
                                         <LabeledInput label="Term">
-                                            <FlexRow spacing="6">
+                                            <FlexRow rowGap="6">
                                                 <FlexCell width={ 152 }>
                                                     <DatePicker
                                                         placeholder="From:"
@@ -240,7 +240,7 @@ export function ThemeDemo() {
                     <FlexRow vPadding="12" borderBottom>
                         <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
                     </FlexRow>
-                    <FlexRow vPadding="24" spacing="12">
+                    <FlexRow vPadding="24" rowGap="12">
                         <FlexSpacer />
                         <Button caption="Cancel" onClick={ showModal } color="secondary" fill="outline" />
                         <Button caption="SAVE" onClick={ save } color="primary" />

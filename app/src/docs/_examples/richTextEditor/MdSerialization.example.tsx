@@ -43,7 +43,7 @@ export default function SlateEditorBasicExample() {
 
     return (
         <Panel cx={ css.root }>
-            <FlexRow spacing="18" vPadding="12">
+            <FlexRow rowGap="18" vPadding="12">
                 <MultiSwitch
                     items={ switchItems }
                     value={ type }
