@@ -6,7 +6,7 @@ import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 
-import { PositionedToolbar } from '../../implementation/PositionedToolbar';
+import { FloatingToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { DeserializeHtml, PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
@@ -40,7 +40,7 @@ function TableRenderer(props: any) {
                 </div>
             ) }
             renderBody={ () => (
-                <PositionedToolbar
+                <FloatingToolbar
                     placement="bottom"
                     children={
                         canMerge

@@ -18,7 +18,7 @@ interface ToolbarProps {
     placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
-export function PositionedToolbar(props: ToolbarProps): any {
+export function FloatingToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = useEditorState();
     const inFocus = useEventEditorSelectors.focus() === editor.id;

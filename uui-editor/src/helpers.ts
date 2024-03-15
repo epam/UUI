@@ -93,6 +93,3 @@ export const createTempEditor = (plugins: PlatePlugin[]) => {
     });
 };
 
-export const getPlainText = (nodes: TElement[]) => {
-    return nodes.map((n) => Node.string(n)).join('\n');
-};

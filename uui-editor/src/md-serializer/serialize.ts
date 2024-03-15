@@ -185,12 +185,10 @@ export function serialize(
 
         case nodeTypes.ul_list:
         case nodeTypes.ol_list:
-            return `\n${children}\n`;
+            return `\n${children}`;
 
         case nodeTypes.listItem:
             const isOL = chunk && chunk.parentType === nodeTypes.ol_list;
-            //     const treatAsLeaf = (chunk as BlockType).children.length === 1
-            // && isLeafNode((chunk as BlockType).children[0]);
 
             let spacer = '';
             for (let k = 0; listDepth > k; k++) {

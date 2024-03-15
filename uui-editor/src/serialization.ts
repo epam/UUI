@@ -1,6 +1,7 @@
 import {
     PlatePlugin,
     Value,
+    createNode,
     deserializeHtml,
     parseHtmlDocument,
 } from '@udecode/plate-common';
@@ -21,15 +22,14 @@ import {
     paragraphPlugin,
     boldPlugin,
     italicPlugin,
+    PARAGRAPH_TYPE,
 } from './plugins';
 import { createDeserializeMdPlugin, deserializeMd } from '@udecode/plate-serializer-md';
-import { remarkNodeTypesMap, serialize } from './remark-slate';
+import { remarkNodeTypesMap, serialize } from './md-serializer';
 import { createTempEditor } from './helpers';
+import { BaseEditor, Editor } from 'slate';
 
-/**
- * Represents serializer type
- */
-export type SerializerType = 'html' | 'md';
+type SerializerType = 'html' | 'md';
 
 export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
     ...baseMarksPlugin(),
@@ -75,7 +75,13 @@ export const createDeserializer = (type: SerializerType = 'html') => {
     } else {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
         return (data: string) => {
-            return deserializeMd<Value>(editor, data);
+            editor.children = deserializeMd<Value>(editor, data);
+            Editor.normalize(editor as BaseEditor, { force: true });
+
+            // escape from invalid empty state
+            return !!editor.children.length
+                ? editor.children as EditorValue
+                : [createNode(PARAGRAPH_TYPE)];
         };
     }
 };
@@ -90,10 +96,9 @@ export const createSerializer = (type: SerializerType = 'html') => {
         };
     } else {
         return (value: EditorValue) => {
-            return value?.map((v) => serialize(
-                v,
-                { nodeTypes: remarkNodeTypesMap },
-            )).join('');
+            return value
+                ?.map((v) => serialize(v, { nodeTypes: remarkNodeTypesMap }))
+                .join('');
         };
     }
 };

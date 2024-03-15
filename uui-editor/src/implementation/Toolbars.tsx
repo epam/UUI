@@ -3,7 +3,7 @@ import {
     useEditorRef, isEditorFocused, PlateEditor, WithPlatePlugin, Value, PluginOptions,
 } from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
-import { PositionedToolbar } from './PositionedToolbar';
+import { FloatingToolbar } from './PositionedToolbar';
 
 interface ToolbarButtonProps {
     editor: PlateEditor;
@@ -42,7 +42,11 @@ const getButtons = (editorRef: PlateEditor<Value>) => {
     });
 };
 
-export function Toolbars() {
+export function Toolbars({
+    toolbarPosition = 'floating',
+}: {
+    toolbarPosition?: 'floating' | 'fixed';
+}) {
     const editorRef = useEditorRef();
     const isActive = isEditorFocused(editorRef);
 
@@ -50,12 +54,14 @@ export function Toolbars() {
 
     return (
         <Fragment>
-            <PositionedToolbar isImage={ false } editor={ editorRef }>
-                { floating}
-            </PositionedToolbar>
+            { toolbarPosition === 'floating' && (
+                <FloatingToolbar isImage={ false } editor={ editorRef }>
+                    { floating }
+                </FloatingToolbar>
+            ) }
             {isActive && (
                 <StickyToolbar isReadonly={ false }>
-                    { bottom }
+                    { toolbarPosition === 'floating' ? bottom : [...floating, ...bottom] }
                 </StickyToolbar>
             )}
         </Fragment>
