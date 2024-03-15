@@ -22,9 +22,8 @@ import {
 } from '../plugins';
 import { defaultPlugins } from '../defaultPlugins';
 import { createPlateEditor } from '@udecode/plate-core';
-import { editorValueMock } from './data/md-serialization';
 import { createTempEditor } from '../helpers';
-import { expectedSlateValue, inputMarkdowValue } from './data/md-deserialization';
+import { expectedSlateValue, inputMarkdowValue, editorValueMock } from './data/md-serialization';
 
 export const readTestFile = (filepath: string): string => {
     const absoluteFilepath = path.resolve(__dirname, filepath);
