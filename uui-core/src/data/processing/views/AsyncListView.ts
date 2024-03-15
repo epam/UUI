@@ -31,7 +31,13 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             this.isLoading = false;
             this.update({ value: this.value, onValueChange: this.onValueChange }, { ...this.props, items });
             this.isReloading = false;
-            this._forceUpdate();
+
+            // While react 18 without concurrent mode, current force setState calls rerender immidiately
+            // without updated items in AsyncDataSource, which provides an old link to views with old trees.
+            // To prevent such a behavior, it is required to put a force update to the macrotask queue to be executed
+            // after the current Promise.
+            setTimeout(() => this._forceUpdate(), 0);
+
             return items;
         });
     }
