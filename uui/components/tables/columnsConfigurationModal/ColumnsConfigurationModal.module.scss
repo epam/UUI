@@ -18,6 +18,8 @@
             > :global(.uui-caption) {
                 font-family: var(--uui-font); //TODO: rework component
                 font-weight: 600;
+                padding-left: 0;
+                padding-right: 0;
             }
         }
 
