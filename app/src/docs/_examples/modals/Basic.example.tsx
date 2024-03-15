@@ -58,7 +58,7 @@ export function BasicModalExample(modalProps: IModal<string>) {
                     <ModalFooter>
                         <FlexSpacer />
                         <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => modalProps.abort() } />
-                        <Button color="accent" caption="Ok" onClick={ () => modalProps.success('Success action') } />
+                        <Button color="primary" caption="Ok" onClick={ () => modalProps.success('Success action') } />
                     </ModalFooter>
                 </Panel>
             </ModalWindow>

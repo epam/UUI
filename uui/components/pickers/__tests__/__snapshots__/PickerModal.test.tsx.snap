@@ -415,7 +415,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </button>
       <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -1796,7 +1796,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         </div>
       </button>
       <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -2048,7 +2048,7 @@ exports[`PickerModal should open body 1`] = `
             </div>
           </button>
           <button
-            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
             tabindex="0"
             type="button"
           >

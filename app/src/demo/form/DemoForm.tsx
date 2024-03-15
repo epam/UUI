@@ -520,7 +520,7 @@ export function DemoForm() {
                     <hr className={ css.divider } />
                     <FlexRow columnGap="12">
                         <FlexSpacer />
-                        <Button caption="Save" color="accent" onClick={ save } />
+                        <Button caption="Save" color="primary" onClick={ save } />
                     </FlexRow>
                 </FlexCell>
             </Panel>
