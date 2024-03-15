@@ -14,6 +14,11 @@ export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IH
     disableCloseByEsc?: boolean;
     /** Pass true to disabled modal closing by click outside modal window */
     disallowClickOutside?: boolean;
+    /**
+     * Pass true to disable modal close by router change.
+     * If omitted, modal window will be closed on any router change.
+     */
+    disableCloseOnRouterChange?: boolean;
 }
 
 export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {

@@ -21,22 +21,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "403, 404, 500, or other error status is returned from the server. ErrorContext replaces their children with an appropriate error screen."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "data": {},
-        "type": "list-item",
-        "children": [
-          {
-            "data": {},
-            "type": "list-item-child",
-            "children": [
-              {
-                "text": "Network and server failures. APIContext will start pinging /auth/ping endpoint until it gets OK. Then it will retry failed requests. A splash screen will be shown until a network connection is recovered."
+                "text": "403, 404, 500, or other error status is returned from the server. ErrorContext replaces their children with an appropriate error screen"
               }
             ]
           }
@@ -74,14 +59,13 @@
                 "uui-richTextEditor-span-mark": true
               },
               {
-                "text": "API).   "
+                "text": "API)"
               }
             ]
           }
         ]
       },
       {
-        "data": {},
         "type": "list-item",
         "children": [
           {
@@ -89,7 +73,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "Authentication lost scenario. The server is required to return 401, if auth cookie is not found or is invalid during the XHR call. This is required because ordinary login redirect responses can't be detected from JS during XHR calls. ApiContext will open /auth/login page in such case. The page should process the usual login process before opening. After the auth process, the page opens, and the script inside it should send a Cross Window Message to the app. Upon receiving the message, failed requests are retried. A splash screen will be shown until the problem is recovered."
+                "text": "Network failures and Authentication lost scenario"
               }
             ]
           }
@@ -118,6 +102,44 @@
     "children": [
       {
         "text": "Errors are discarded on navigation (e.g., clicking a main menu item), and all pending API calls are canceled. Also, we close all modal windows on any JS/API error. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-error",
+    "children": [
+      {
+        "text": "Please note that you need to wrap your application with the UUI "
+      },
+      {
+        "data": {
+          "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+        },
+        "type": "link",
+        "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
+        "children": [
+          {
+            "text": "ContextProvider"
+          }
+        ]
+      },
+      {
+        "text": " in order to use the API context. \n\nAdditionally, for error handling, you need to wrap your app with the "
+      },
+      {
+        "text": "ErrorHandler",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " component. This component subscribes to the reported errors and replaces "
+      },
+      {
+        "text": "ErrorHandler",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " children with appropriate error screen or starts the recovery process depending on the error type."
       }
     ]
   }

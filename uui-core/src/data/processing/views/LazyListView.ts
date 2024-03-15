@@ -283,9 +283,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             });
         }
 
-        response.items = [...response.items, ...cachedItems];
-
-        return response;
+        return { ...response, items: [...response.items, ...cachedItems] };
     };
 
     // Loads node. Returns promise to a loaded node.

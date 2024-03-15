@@ -22562,6 +22562,8 @@
       "    disableCloseByEsc?: boolean;",
       "    /** Pass true to disabled modal closing by click outside modal window */",
       "    disallowClickOutside?: boolean;",
+      "    /** Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes. */",
+      "    disableUrlChangeHandler?: boolean;",
       "}"
      ]
     },
@@ -22605,6 +22607,22 @@
       "comment": {
        "raw": [
         "Pass true to disabled modal closing by click outside modal window"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "disableUrlChangeHandler",
+      "name": "disableUrlChangeHandler",
+      "comment": {
+       "raw": [
+        "Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes."
        ]
       },
       "typeValue": {
@@ -65017,6 +65035,23 @@
       "required": false
      },
      {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
       "uid": "borderBottom",
       "name": "borderBottom",
       "comment": {
@@ -69511,11 +69546,161 @@
     "typeValue": {
      "raw": "ModalFooterProps",
      "print": [
-      "interface ModalFooterProps extends RowMods, ModalFooterCoreProps {",
+      "interface ModalFooterProps extends FlexRowProps, ModalFooterCoreProps {",
       "}"
      ]
     },
     "props": [
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "key",
+      "name": "key",
+      "typeValue": {
+       "raw": "null | string | number"
+      },
+      "from": "@types/react:Attributes",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "alignItems",
+      "name": "alignItems",
+      "comment": {
+       "raw": [
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default 'center'"
+       ],
+       "tags": {
+        "@default": "center"
+       }
+      },
+      "typeValue": {
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "center",
+        "bottom",
+        "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "columnGap",
+      "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
      {
       "uid": "size",
       "name": "size",
@@ -69537,6 +69722,23 @@
         "48",
         null
        ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui:RowMods",
       "required": false
@@ -69684,67 +69886,6 @@
       },
       "from": "@epam/uui:RowMods",
       "required": false
-     },
-     {
-      "uid": "borderTop",
-      "name": "borderTop",
-      "comment": {
-       "raw": [
-        "Pass true to enable the top border of ModalFooter"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ModalFooterCoreProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
      }
     ],
     "propsFromUnion": false
@@ -69791,6 +69932,23 @@
         "48",
         null
        ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui:RowMods",
       "required": false
@@ -78409,6 +78567,8 @@
       "type RowMods = {",
       "    /** Defines row size */",
       "    size?: null | '24' | '30' | '36' | '42' | '48';",
+      "    /** Pass true, to enable row top border */",
+      "    borderTop?: boolean;",
       "    /** Pass true, to enable row bottom border */",
       "    borderBottom?: boolean;",
       "    /** Defines row margin */",
@@ -78448,6 +78608,22 @@
         "48",
         null
        ]
+      },
+      "required": false
+     },
+     {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -87837,6 +88013,23 @@
       "required": false
      },
      {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
       "uid": "borderBottom",
       "name": "borderBottom",
       "comment": {
@@ -95166,6 +95359,23 @@
       "required": false
      },
      {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
       "uid": "borderBottom",
       "name": "borderBottom",
       "comment": {
@@ -97823,6 +98033,23 @@
         "48",
         null
        ]
+      },
+      "from": "@epam/uui:RowMods",
+      "required": false
+     },
+     {
+      "uid": "borderTop",
+      "name": "borderTop",
+      "comment": {
+       "raw": [
+        "Pass true, to enable row top border"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui:RowMods",
       "required": false

@@ -1,12 +1,4 @@
 .preset {
-    &:global(.uui-has-right-icon) {
-        &:global(.uui-presets-panel-preset) {
-            :global(.uui-caption) {
-                padding-right: 0;
-            }
-        }
-    }
-
     &:global(.uui-button-box) {
         padding-right: 3px;
     }

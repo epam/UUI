@@ -1,37 +1,24 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "Example where data is retrieved using "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=dataSources-lazy-dataSource",
+        "target": "_blank",
+        "children": [
           {
-            "object": "text",
-            "text": "Example where data is retrieved using ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "LazyDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " — items are loading in small groups when the user scrolls to them.",
-            "marks": []
+            "text": "LazyDataSource"
           }
         ]
+      },
+      {
+        "text": " — items are loading in small groups when the user scrolls to them."
       }
     ]
   }
-}
+]
