@@ -20,7 +20,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "90vh",
+        "height": "95vh",
         "width": "420px",
       }
     }
@@ -204,6 +204,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
+                      height={18}
+                      width={18}
                     />
                   </div>
                   Not pinned
