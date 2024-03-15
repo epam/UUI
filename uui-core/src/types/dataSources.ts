@@ -1,6 +1,6 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
-import { ItemsMap } from '../data/processing/views/tree/ItemsMap';
+import { IImmutableMap, IMap } from './objects';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -152,7 +152,7 @@ export interface PatchItemsOptions<TItem, TId> {
     /**
      * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
      */
-    patchItems?: ItemsMap<TId, TItem>;
+    patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
     /**
      * To enable deleting of the items, it is required to specify getter for deleted state.
      */

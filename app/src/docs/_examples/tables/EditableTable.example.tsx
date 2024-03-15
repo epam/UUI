@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataTableRowProps, ItemsMap, Metadata, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, DataTableRowProps, IMap, Metadata, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
@@ -7,6 +7,8 @@ import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-
 import css from './TablesExamples.module.scss';
 import { TApi } from '../../../data';
 import { useDataTableFocusManager } from '@epam/uui-components';
+import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
+import { ReactComponent as redoIcon } from '@epam/assets/icons/content-edit_redo-outline.svg';
 
 // Define a blank item - for use as a new item, and to simplify mock data definition below
 const blankItem: Partial<TodoTask> = {
@@ -21,7 +23,7 @@ const blankItem: Partial<TodoTask> = {
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
 // However, we'll have an object here to extend the form state if needed later.
 interface FormState {
-    items: ItemsMap<number, TodoTask>;
+    items: IMap<number, TodoTask>;
 }
 
 // Define priorities to use in PickerInput
@@ -44,7 +46,8 @@ const metadata: Metadata<FormState> = {
 };
 
 let savedItem: FormState = {
-    items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
+    // items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
+    items: new Map<number, TodoTask>(),
 };
 
 // To store the last item id used
@@ -55,7 +58,7 @@ export default function EditableTableExample() {
 
     // Use form to manage state of the editable table
     const {
-        lens, save, revert, value, setValue, isChanged,
+        lens, save, revert, undo, canUndo, redo, canRedo, value, setValue, isChanged,
     } = useForm<FormState>({
         value: savedItem,
         onSave: (newValue) => {
@@ -202,6 +205,12 @@ export default function EditableTableExample() {
                     <Button caption="Add task" onClick={ handleNewItem } />
                 </FlexCell>
                 <FlexSpacer />
+                <FlexCell width="auto">
+                    <IconButton size="18" icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <IconButton size="18" icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+                </FlexCell>
                 <FlexCell width="auto">
                     <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="secondary" />
                 </FlexCell>
