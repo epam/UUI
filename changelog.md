@@ -19,7 +19,6 @@
     * Fixed fetching missing parents for selected element in PickerInput.
 * [PickerInput]: fixed 'unknown records' removing
 * [PickerInput]: Fixed focus reset after clicking outside
-* [PickerInput]: fixed toggler focus blur in case searchPosition = 'none'
 * [PickerList]: aligned caption by the left side in the footer.
 * [DropdownContainer]: disable scroll to the focused element after dropdown close
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
@@ -36,10 +35,15 @@
 * [ModalBlocker]: now the Modals closed by default if the URL was changed. You can turn this off using property `disableCloseOnRouterChange`={true}.
 * [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead. See more: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
 
+# 5.6.2 - 15.03.2024
+
+**What's Fixed**
+* [PickerInput]: fixed toggler blur in case searchPosition = 'none'
+
 # 5.6.1 - 19.02.2024
 
 **What's Fixed**
-[LazyListView]: refetch on search clear.
+* [LazyListView]: refetch on search clear.
 
 # 5.6.0 - 08.02.2024
 
