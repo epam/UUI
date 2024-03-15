@@ -147,9 +147,9 @@ function SemanticBlocks(props: SemanticBlocksProps) {
                                 <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
                                     { item.value.toUpperCase() }
                                 </Text>
-                                <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }>
-                                    { item.baseToken }
-                                </Text>
+                                {/* <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }> */}
+                                {/*    { item.baseToken } */}
+                                {/* </Text> */}
                             </div>
                         </Tooltip>
                     </div>
@@ -216,7 +216,7 @@ function SemanticTable({ group, details, setDetails, borderRef }: ISemanticTable
                         size="30"
                         fill="none"
                         color="primary"
-                        caption={ details ? 'Hide details' : 'Show details' }
+                        caption={ details ? 'Hide hex' : 'Show hex' }
                         icon={ details ? hideDetailsIcon : showDetailsIcon }
                         onClick={ () => setDetails((prev) => !prev) }
                     />
