@@ -34,7 +34,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             view.loadData().then((loadedItems) => {
                 if (loadedItems !== undefined) {
                     this.setProps({ ...this.props, items: loadedItems }); 
-                    view._forceUpdate();
+                    this.updateViews();
                 }
             });
         }
