@@ -3,7 +3,7 @@ import { TTokensDocGroupCfg } from './types';
 export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     {
         title: 'Semantic',
-        description: 'The theme default semantic palette tokens. These tokens reuses in all components and also can be used for custom content, following their roles',
+        description: 'The theme default semantic palette tokens. These tokens reuses in all components and can be used for custom content, following their roles.',
         subgroupsHeader: [
             'light highlights and backgrounds mostly',
             'light component backgrounds',
@@ -82,13 +82,13 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
         items: ('core/icons/'),
     },
     {
-        title: 'Controls',
-        description: 'Tokens for control components, like TextInput, PickerInput, Checkboxes and etc.',
-        items: ('core/controls/'),
-    },
-    {
         title: 'Other',
         description: 'Other tokens.',
         items: ('core/other/'),
+    },
+    {
+        title: 'Controls',
+        description: 'Tokens for control components, like TextInput, PickerInput, Checkboxes and etc.',
+        items: ('core/controls/'),
     },
 ];
