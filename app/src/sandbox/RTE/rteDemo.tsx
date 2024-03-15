@@ -95,7 +95,7 @@ export function RichTextEditorDemo() {
 
     return (
         <div className={ cx(css.wrapper, css.uuiThemePromo) }>
-            <FlexRow rowGap="12">
+            <FlexRow spacing="12">
                 <FlexCell width={ 300 }>
                     <PickerInput<string, string>
                         value={ contentName }

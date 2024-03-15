@@ -19,7 +19,7 @@ export default function BasicExample() {
                     </Text>
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
-                    <FlexRow rowGap="12">
+                    <FlexRow spacing="12">
                         <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
                         <Button color="secondary" fill="outline" size="30" caption="Cancel" onClick={ () => null } />
                     </FlexRow>

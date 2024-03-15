@@ -152,7 +152,7 @@ export default function BasicExample() {
                 </LabeledInput>
             </FlexRow>
             <h4>LinkButton</h4>
-            <FlexRow rowGap="12">
+            <FlexRow spacing="12">
                 <LinkButton caption="BUTTON-LINK"></LinkButton>
                 <LinkButton caption="SHARE"></LinkButton>
                 <LinkButton caption="ADD"></LinkButton>

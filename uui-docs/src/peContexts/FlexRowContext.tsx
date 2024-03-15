@@ -5,7 +5,7 @@ import { DemoComponentProps } from '../types';
 
 function FlexRowContext({ DemoComponent, props }: DemoComponentProps) {
     return (
-        <FlexRow cx={ css.root } rowGap="18">
+        <FlexRow cx={ css.root } spacing="18">
             <FlexCell width={ 150 } grow={ 1 }>
                 <TextInput value={ null } onValueChange={ null } placeholder="Placeholder" />
             </FlexCell>

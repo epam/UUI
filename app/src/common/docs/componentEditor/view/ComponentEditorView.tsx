@@ -107,7 +107,7 @@ const ContextSwitcher = React.memo(
                 key="head"
                 size="36"
                 padding="12"
-                rowGap="6"
+                spacing="6"
                 background="surface-main"
                 borderBottom
                 cx={ css.contextSettingRow }

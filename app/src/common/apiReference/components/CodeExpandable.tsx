@@ -25,7 +25,7 @@ export function CodeExpandable(props: { showCode: boolean; docsGenType: TType })
     const gitUrl = buildGitURL(relativeUrl);
     return (
         <div className={ css.root }>
-            <FlexRow size="36" padding="12" rowGap="6" borderBottom={ isCodeExpanded }>
+            <FlexRow size="36" padding="12" spacing="6" borderBottom={ isCodeExpanded }>
                 <Switch label="View Code" value={ isCodeExpanded } onValueChange={ () => setIsCodeExpanded((prev) => !prev) } />
                 <FlexSpacer />
                 <LinkButton href={ gitUrl } target="_blank" caption={ relativeUrl } />
