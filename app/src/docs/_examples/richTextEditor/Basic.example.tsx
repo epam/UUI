@@ -58,7 +58,7 @@ export default function SlateEditorBasicExample() {
 
     return (
         <Panel cx={ css.root }>
-            <FlexRow rowGap="18" vPadding="12">
+            <FlexRow spacing="18" vPadding="12">
                 <MultiSwitch
                     items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
                     value={ fontSize }

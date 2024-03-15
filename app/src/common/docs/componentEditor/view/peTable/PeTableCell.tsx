@@ -36,7 +36,7 @@ export function PeTableCell<TProps>(props: IPeTableCellProps<TProps>): React.Rea
         };
         const Component = typeof PE === 'string' ? SharedPropEditorsMap[PE] : PE;
         return (
-            <FlexRow size="24" rowGap="6" rawProps={ { style: { marginTop: '6px', marginBottom: '6px', flexWrap: 'wrap' } } }>
+            <FlexRow size="24" spacing="6" rawProps={ { style: { marginTop: '6px', marginBottom: '6px', flexWrap: 'wrap' } } }>
                 <Component { ...peProps } />
                 <FlexSpacer />
                 {

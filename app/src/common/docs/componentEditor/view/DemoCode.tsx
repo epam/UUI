@@ -20,7 +20,7 @@ export function DemoCode(props: IDemoCode) {
     const { tagName, demoComponentProps } = props;
     return (
         <>
-            <FlexRow key="code-head" size="36" padding="12" rowGap="6" borderBottom={ showCode }>
+            <FlexRow key="code-head" size="36" padding="12" spacing="6" borderBottom={ showCode }>
                 <Switch label="View Code" value={ showCode } onValueChange={ () => setShowCode((prev) => !prev) } />
                 <FlexSpacer />
                 <Tooltip content="Copy code" placement="top">

@@ -191,7 +191,7 @@ export const children = [
                     </LabeledInput>
                 </FlexRow>
                 <h4>LinkButton</h4>
-                <FlexRow rowGap="6">
+                <FlexRow spacing="6">
                     <LinkButton caption="BUTTON-LINK"></LinkButton>
                     <LinkButton caption="SHARE"></LinkButton>
                     <LinkButton caption="ADD"></LinkButton>
