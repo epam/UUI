@@ -1,4 +1,6 @@
-import { PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor } from '@udecode/plate-common';
+import {
+    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor,
+} from '@udecode/plate-common';
 import React from 'react';
 
 import { UploadFileToggler } from '@epam/uui-components';
@@ -10,13 +12,13 @@ import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
-import { IHasToolbarButton } from "../../implementation/Toolbars";
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 export const IFRAME_PLUGIN_TYPE = 'iframe';
 
 export const iframePlugin = () => {
-    const createIframePlugin = createPluginFactory<IHasToolbarButton>({
+    const createIframePlugin = createPluginFactory<WithToolbarButton>({
         key: IFRAME_PLUGIN_KEY,
         type: IFRAME_PLUGIN_TYPE,
         isElement: true,
@@ -29,7 +31,12 @@ export const iframePlugin = () => {
                 getNode: (el: HTMLElement) => {
                     const url = el.getAttribute('src');
                     if (url) {
-                        return { type, url, src: url, data: { src: url } };
+                        return {
+                            type,
+                            url,
+                            src: url,
+                            data: { src: url },
+                        };
                     }
                 },
             },
@@ -45,7 +52,10 @@ export const iframePlugin = () => {
                 if (!videoEntry) return;
 
                 const endPoint = getEndPoint(editor, videoEntry[1]);
-                selectEditor(editor, { at: endPoint.path, focus: true });
+                selectEditor(editor, {
+                    at: endPoint.path,
+                    focus: true,
+                });
             },
             onKeyDown: (editor) => (event) => {
                 if (!getBlockAboveByType(editor, ['iframe'])) return;

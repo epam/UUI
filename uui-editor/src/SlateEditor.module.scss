@@ -1,5 +1,5 @@
 :global(.uui-typography) {
-    //We need to highlight visited links only in readonly mode
+    // We need to highlight visited links only in readonly mode
     &:not(:global(.uui-readonly)) {
         a:visited {
             color: var(--uui-link);
@@ -27,11 +27,6 @@
     :global(.unordered-list),
     blockquote {
         margin: 12px 0;
-    }
-
-    // TODO: remove it when update slate on 0.5+ version
-    .contentEditable {
-        -webkit-user-modify: read-write !important;
     }
 
     :global(.ordered-list),
@@ -89,7 +84,6 @@
 
 .placeholder {
     position: absolute;
-    top: 0;
     left: 12px;
     max-width: 100%;
     display: block;
@@ -101,23 +95,11 @@
     padding: 0 12px;
 }
 
-.placeholder-text {
-    top: 0;
-}
-
-.placeholder-14 {
-    font-size: 14px;
-}
-
-.placeholder-16 {
-    font-size: 16px;
-}
-
 .scrollbars {
     height: 100%;
-}
 
-.scrollbars > div {
-    display: flex;
-    flex-direction: column;
+    & > div {
+        display: flex;
+        flex-direction: column;
+    }
 }
