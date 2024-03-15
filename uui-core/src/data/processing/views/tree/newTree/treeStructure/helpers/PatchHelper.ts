@@ -14,7 +14,7 @@ export class PatchHelper {
         let isPatched = false;
         let newItemsMap = itemsMap;
         const newItems: TItem[] = [];
-        patchItems.forEach((item, id) => {
+        for (const [id, item] of patchItems) {
             const parentId = treeStructure.getParams().getParentId?.(item) ?? undefined;
 
             if (isDeleted?.(item)) {
@@ -38,7 +38,7 @@ export class PatchHelper {
                 newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
             }
             isPatched = true;
-        });
+        }
 
         if (!isPatched) {
             return { treeStructure, itemsMap };

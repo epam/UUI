@@ -1,4 +1,4 @@
-import { CascadeSelection, DataSourceState, IMap, Position } from '../../../../../../../types';
+import { CascadeSelection, DataSourceState, IImmutableMap, IMap, Position } from '../../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from './map';
 import { LazyListViewProps } from '../../../../types';
@@ -111,7 +111,7 @@ export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<T
 export interface PatchItemsIntoTreeStructureOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
-    patchItems?: ItemsMap<TId, TItem>;
+    patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
     isDeleted?: (item: TItem) => boolean;
     getPosition?: (item: TItem) => Position<TId>;
 }
