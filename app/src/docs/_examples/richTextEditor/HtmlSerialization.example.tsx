@@ -70,7 +70,7 @@ export default function SlateEditorBasicExample() {
 
     return (
         <Panel cx={ css.root }>
-            <FlexRow spacing="18" vPadding="12">
+            <FlexRow columnGap="18" vPadding="12">
                 <Switch
                     value={ type === 'view' }
                     onValueChange={ onToggleViewMode }
