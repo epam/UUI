@@ -1,7 +1,12 @@
+# 5.6.2 - 15.03.2024
+
+**What's Fixed**
+* [PickerInput]: fixed toggler focus blur in case searchPosition = 'none'
+
 # 5.6.1 - 19.02.2024
 
 **What's Fixed**
-[LazyListView]: refetch on search clear.
+* [LazyListView]: refetch on search clear.
 
 # 5.6.0 - 08.02.2024
 
