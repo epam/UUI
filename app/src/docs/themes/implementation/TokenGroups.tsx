@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Blocker, Button, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
+import { Blocker, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
 import { INotificationContext, useUuiContext } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { useTokensDoc } from './useTokensDoc';
 import { ISemanticTableProps, ISkinTitleProps, ITokensDocGroup, ITokensDocItem, SemanticBlocksProps } from './types';
 import cx from 'classnames';
 import css from './TokenGroups.module.scss';
-import { ReactComponent as hideDetailsIcon } from '@epam/assets/icons/common/action-eye-off-outline-18.svg';
-import { ReactComponent as showDetailsIcon } from '@epam/assets/icons/common/action-eye-outline-18.svg';
+// import { ReactComponent as hideDetailsIcon } from '@epam/assets/icons/common/action-eye-off-outline-18.svg';
+// import { ReactComponent as showDetailsIcon } from '@epam/assets/icons/common/action-eye-outline-18.svg';
 
 // The config file with titles and descriptions to data groups and subgroups placed here: ( app/src/sandbox/tokens/docs/config.ts )
 
@@ -72,7 +72,7 @@ function Groups(props: { group: ITokensDocGroup, level: number }) {
 }
  
 function SemanticBlocks(props: SemanticBlocksProps) {
-    const { subgroup, details, openedDropdownId, setOpenedDropdownId } = props;
+    const { subgroup, openedDropdownId, setOpenedDropdownId } = props;
     const { uuiNotifications } = useUuiContext();
 
     if (subgroup._type === 'group_with_items') {
@@ -144,9 +144,9 @@ function SemanticBlocks(props: SemanticBlocksProps) {
                                 <Text cx={ [css.var] } onClick={ semanticClickHandler }>
                                     {item.cssVar.replace(/^--uui-/, '')}
                                 </Text>
-                                <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }>
-                                    { item.value.toUpperCase() }
-                                </Text>
+                                {/* <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" onClick={ semanticClickHandler }> */}
+                                {/*    { item.value.toUpperCase() } */}
+                                {/* </Text> */}
                                 {/* <Text cx={ [css.semanticItem, !details && css.hiddenItem] } fontSize="12" color="tertiary" onClick={ semanticClickHandler }> */}
                                 {/*    { item.baseToken } */}
                                 {/* </Text> */}
@@ -166,7 +166,7 @@ function SemanticBlocks(props: SemanticBlocksProps) {
     }
 }
 
-function SemanticTable({ group, details, setDetails, borderRef }: ISemanticTableProps) {
+function SemanticTable({ group, details, borderRef }: ISemanticTableProps) {
     const [isVisible, setIsVisible] = useState(true);
     const [openedDropdownId, setOpenedDropdownId] = useState('');
     // to sort semantic table rows in correct order like in the figma
@@ -211,15 +211,15 @@ function SemanticTable({ group, details, setDetails, borderRef }: ISemanticTable
         <div>
             <div className={ cx(css.semanticTableHeader, !isVisible && css.withBorder) }>
                 <FlexCell grow={ 1 }>
-                    <Button
-                        cx={ css.hideButton }
-                        size="30"
-                        fill="none"
-                        color="primary"
-                        caption={ details ? 'Hide hex' : 'Show hex' }
-                        icon={ details ? hideDetailsIcon : showDetailsIcon }
-                        onClick={ () => setDetails((prev) => !prev) }
-                    />
+                    {/* <Button */}
+                    {/*    cx={ css.hideButton } */}
+                    {/*    size="30" */}
+                    {/*    fill="none" */}
+                    {/*    color="primary" */}
+                    {/*    caption={ details ? 'Hide hex' : 'Show hex' } */}
+                    {/*    icon={ details ? hideDetailsIcon : showDetailsIcon } */}
+                    {/*    onClick={ () => setDetails((prev) => !prev) } */}
+                    {/* /> */}
                 </FlexCell>
                 {group.subgroupsHeader.map((header) => <Text key={ header } fontSize="12" fontStyle="italic" cx={ [css.smallPaddings, css.tableHeader] }>{header}</Text>)}
             </div>
