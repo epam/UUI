@@ -92,7 +92,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ styles.modal } height="90vh">
+            <ModalWindow cx={ styles.modal } height="95vh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
                     <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
@@ -158,7 +158,7 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
                 const toggleIcon = isOpened ? ExpandedIcon : CollapsedIcon;
                 return (
                     <span className={ cx(styles.subgroupTitle) }>
-                        <IconContainer icon={ toggleIcon } flipY={ false } />
+                        <IconContainer size={ 18 } icon={ toggleIcon } flipY={ false } />
                         { title }
                     </span>
                 );
