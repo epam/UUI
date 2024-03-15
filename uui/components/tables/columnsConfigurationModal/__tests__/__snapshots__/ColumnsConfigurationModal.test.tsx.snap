@@ -484,7 +484,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter borderTop container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 borderTop root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": "12px",

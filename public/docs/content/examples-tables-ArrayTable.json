@@ -7,8 +7,14 @@
         "text": "Table example where data is loaded using "
       },
       {
-        "text": "ArrayDataSource",
-        "uui-richTextEditor-code": true
+        "type": "link",
+        "url": "/documents?id=dataSources-array-dataSource",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "ArrayDataSource"
+          }
+        ]
       },
       {
         "text": " -  just getting items from an array."

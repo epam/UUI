@@ -5,6 +5,8 @@ import css from './FlexRow.module.scss';
 export type RowMods = {
     /** Defines row size */
     size?: null | '24' | '30' | '36' | '42' | '48';
+    /** Pass true, to enable row top border */
+    borderTop?: boolean;
     /** Pass true, to enable row bottom border */
     borderBottom?: boolean;
     /** Defines row margin */
@@ -39,6 +41,7 @@ export const FlexRow = withMods<uuiFlexRowProps, RowMods>(uuiFlexRow, (props) =>
         props.margin && css['margin-' + props.margin],
         props.topShadow && css.topShadow,
         props.borderBottom && css.borderBottom,
+        props.borderTop && css.borderTop,
         props.spacing && css['spacing-' + props.spacing],
         props.background && css[`uui-${props.background}`],
     ];

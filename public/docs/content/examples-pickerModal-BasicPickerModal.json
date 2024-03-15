@@ -18,7 +18,27 @@
         "uui-richTextEditor-span-mark": true
       },
       {
-        "text": "ArrayDataSource",
+        "type": "link",
+        "url": "/documents?id=dataSources-array-dataSource",
+        "target": "_blank",
+        "children": [
+          {
+            "font-size": "12pt",
+            "font-family": null,
+            "background-color": null,
+            "font-weight": "400",
+            "font-style": null,
+            "font-variant": "normal",
+            "text-decoration": "none",
+            "vertical-align": "baseline",
+            "white-space": "pre-wrap",
+            "": null,
+            "uui-richTextEditor-span-mark": true,
+            "text": "ArrayDataSource"
+          }
+        ]
+      },
+      {
         "font-size": "12pt",
         "font-family": null,
         "background-color": null,
@@ -30,21 +50,7 @@
         "white-space": "pre-wrap",
         "": null,
         "uui-richTextEditor-span-mark": true,
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": ".",
-        "font-size": "12pt",
-        "font-family": null,
-        "background-color": null,
-        "font-weight": "400",
-        "font-style": null,
-        "font-variant": "normal",
-        "text-decoration": "none",
-        "vertical-align": "baseline",
-        "white-space": "pre-wrap",
-        "": null,
-        "uui-richTextEditor-span-mark": true
+        "text": "."
       }
     ]
   },
