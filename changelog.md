@@ -1,7 +1,7 @@
 # 5.6.2 - 15.03.2024
 
 **What's Fixed**
-* [PickerInput]: fixed toggler focus blur in case searchPosition = 'none'
+* [PickerInput]: fixed toggler blur in case searchPosition = 'none'
 
 # 5.6.1 - 19.02.2024
 
