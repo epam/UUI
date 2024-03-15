@@ -33,7 +33,7 @@ export class DemoErrorBoundary extends React.Component<{ children: React.ReactNo
         if (isRenderBlocked) {
             return (
                 <div>
-                    <FlexRow spacing="12" padding="12">
+                    <FlexRow rowGap="12" padding="12">
                         <Text color="critical">
                             An error has occured. Please check the browser console for details.
                             You might need to set different props values and try again.

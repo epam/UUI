@@ -35,7 +35,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                     <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }>
                         <b>{props.data?.caption}</b>
                     </Text>
-                    <FlexRow spacing="6">
+                    <FlexRow rowGap="6">
                         <IconButton icon={ goFromPoint } color="gray50" onClick={ () => null } />
                         <IconButton icon={ arrowExpandIcon } color="gray50" onClick={ () => null } />
                     </FlexRow>
@@ -74,7 +74,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                 </FlexRow>
                 <div className={ css.infoBlock }>
                     {Object.entries(props?.data.options).map((val, index) => (
-                        <FlexRow key={ `${index}-option` } spacing="6" cx={ css.infoBlockRow }>
+                        <FlexRow key={ `${index}-option` } rowGap="6" cx={ css.infoBlockRow }>
                             <IconContainer cx={ css.infoItem } icon={ val[1].icon } />
                             <Text cx={ css.infoItem } color="gray80">
                                 {val[1].prefix}
