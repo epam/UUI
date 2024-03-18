@@ -18,7 +18,7 @@ export default function BasicDropdownExample() {
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
                     <FlexRow columnGap="12">
-                        <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button color="primary" size="30" caption="Some Action" onClick={ () => null } />
                         <Button fill="outline" size="30" color="secondary" caption="Cancel" onClick={ () => props.onClose() } />
                     </FlexRow>
                 </FlexCell>

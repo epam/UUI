@@ -26,9 +26,9 @@ export function ScrollSpyModal() {
                             </ScrollBars>
                             <ModalFooter>
                                 <FlexSpacer />
-                                <Button color="gray" fill="white" caption="Cancel" onClick={ () => modalProps.abort() } />
+                                <Button color="secondary" fill="white" caption="Cancel" onClick={ () => modalProps.abort() } />
                                 <Button
-                                    color="green"
+                                    color="primary"
                                     caption="Ok"
                                     onClick={ () => {
                                         scrollToElement('b');
