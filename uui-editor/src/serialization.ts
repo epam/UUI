@@ -28,6 +28,7 @@ import { createDeserializeMdPlugin, deserializeMd } from '@udecode/plate-seriali
 import { remarkNodeTypesMap, serialize } from './md-serializer';
 import { createTempEditor } from './helpers';
 import { BaseEditor, Editor } from 'slate';
+import { createAutoformatPlugin } from './plugins/autoformatPlugin/autoformatPlugin';
 
 type SerializerType = 'html' | 'md';
 

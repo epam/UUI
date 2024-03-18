@@ -4079,6 +4079,14 @@
     "@typescript-eslint/types" "5.62.0"
     eslint-visitor-keys "^3.3.0"
 
+"@udecode/plate-autoformat@25.0.1":
+  version "25.0.1"
+  resolved "https://registry.yarnpkg.com/@udecode/plate-autoformat/-/plate-autoformat-25.0.1.tgz#d4b042ba5ca772119a2309705ba4688265b348d3"
+  integrity sha512-/hJ74BCpaI+sLVW2MP4V7RMJz7Z8MRgGBp+8U4Dzv0HhJ6XkTnauEgYLd03gwHg8R0jkWcnQ+r3CCE0dhHrGnA==
+  dependencies:
+    "@udecode/plate-common" "25.0.1"
+    lodash "^4.17.21"
+
 "@udecode/plate-basic-marks@25.0.1":
   version "25.0.1"
   resolved "https://registry.yarnpkg.com/@udecode/plate-basic-marks/-/plate-basic-marks-25.0.1.tgz#1cec5a00c6815f8b459832b65946390da4e15f4a"

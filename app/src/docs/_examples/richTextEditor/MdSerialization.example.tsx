@@ -8,6 +8,12 @@ import {
     createSerializer,
     createDeserializer,
     mdSerializationsWorkingPlugins,
+    defaultPlugins,
+    boldPlugin,
+    italicPlugin,
+    linkPlugin,
+    listPlugin,
+    headerPlugin,
 } from '@epam/uui-editor';
 import css from './SlateEditorBasicExample.module.scss';
 import { demoData } from '@epam/uui-docs';
@@ -22,6 +28,15 @@ const switchItems = [{
     id: 'md',
     caption: 'Markdow',
 }];
+
+const plugins = [
+    ...defaultPlugins,
+    boldPlugin(),
+    italicPlugin(),
+    linkPlugin(),
+    listPlugin(),
+    headerPlugin(),
+];
 
 export default function SlateEditorBasicExample() {
     const [value, setValue] = useState<EditorValue>(
@@ -63,7 +78,7 @@ export default function SlateEditorBasicExample() {
                         placeholder="Add description"
                         minHeight={ 150 }
                         fontSize="14"
-                        plugins={ mdSerializationsWorkingPlugins }
+                        plugins={ plugins }
                         toolbarPosition="fixed"
                     />
                 ) : (
@@ -72,7 +87,7 @@ export default function SlateEditorBasicExample() {
                         onValueChange={ (v) => {
                             setMdContent(v);
                         } }
-                        rows={ 8 }
+                        rows={ 12 }
                         placeholder="Please type markdown here"
                     />
                 )}
