@@ -133,7 +133,7 @@ export function ThemeElectricDemo() {
                     </FlexRow>
                     <FlexRow vPadding="12">
                         <LabeledInput label="Status">
-                            <FlexRow spacing="12">
+                            <FlexRow columnGap="12">
                                 <Badge color="success" fill="outline" caption="Approved" size="24" />
                                 <Badge color="info" fill="outline" caption="Active" size="24" />
                             </FlexRow>
@@ -149,7 +149,7 @@ export function ThemeElectricDemo() {
                         .get()
                         .map((record, index) => {
                             return (
-                                <FlexRow key={ index } spacing="12" vPadding="12" alignItems="top">
+                                <FlexRow key={ index } columnGap="12" vPadding="12" alignItems="top">
                                     <FlexCell width={ 242 }>
                                         <LabeledInput label="Country" { ...lens.prop('visaRecords').index(index).prop('country').toProps() }>
                                             <PickerInput<Country, string>
@@ -164,7 +164,7 @@ export function ThemeElectricDemo() {
                                     </FlexCell>
                                     <FlexCell grow={ 1 } rawProps={ { style: { width: '310px' } } }>
                                         <LabeledInput label="Term">
-                                            <FlexRow spacing="6">
+                                            <FlexRow columnGap="6">
                                                 <FlexCell width={ 152 }>
                                                     <DatePicker
                                                         placeholder="From:"
@@ -223,7 +223,7 @@ export function ThemeElectricDemo() {
                     <FlexRow vPadding="12" borderBottom>
                         <Switch label="I agree to display ads" { ...lens.prop('displayAdsAgreed').toProps() } />
                     </FlexRow>
-                    <FlexRow vPadding="24" spacing="12">
+                    <FlexRow vPadding="24" columnGap="12">
                         <FlexSpacer />
                         <Button caption="Cancel" onClick={ showModal } color="secondary" fill="outline" />
                         <Button caption="SAVE" onClick={ save } color="primary" />
@@ -236,7 +236,7 @@ export function ThemeElectricDemo() {
     return (
         <div className="uui-theme-electric" style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex', flexDirection: 'column' } }>
             <div style={ { background: 'var(--uui-neutral-80)', marginTop: '12px' } }>
-                <FlexRow spacing="12" vPadding="24" padding="12">
+                <FlexRow columnGap="12" vPadding="24" padding="12">
                     <PromoButton caption="BUTTON" size="36" onClick={ () => {} } />
                     <PromoButton caption="BUTTON" size="36" isDisabled onClick={ () => {} } />
                     <PromoButton caption="BUTTON" size="42" onClick={ () => {} } />

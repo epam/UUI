@@ -1,0 +1,41 @@
+[
+    {
+      "data": {},
+      "type": "paragraph",
+      "children": [
+        {
+          "text": "By default "
+        },
+        {
+          "text": "SlateEditor",
+          "uui-richTextEditor-code": true
+        },
+        {
+          "text": " component worked with JSON format of value, but you can serialize/deserialize json value to the Markdown format via "
+        },
+        {
+          "text": "serializeMd",
+          "uui-richTextEditor-code": true
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "deserializeMd",
+          "uui-richTextEditor-code": true
+        },
+        {
+          "text": " helpers."
+        }
+      ]
+    },
+    {
+      "data": {},
+      "type": "note-warning",
+      "children": [
+        {
+          "text": "Note, currently Markdown workes only with limited set of plugins, such as: paragraphPlugin, boldPlugin, italicPlugin, headerPlugin, linkPlugin, listPlugin."
+        }
+      ]
+    }
+  ]

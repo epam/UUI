@@ -88,12 +88,14 @@ function enableMockForCommon3rdPartyDeps() {
          * @param {any} props.children - Component's children prop
          * @returns {JSX.Element}
          */
-        default: ({ children }) => React.createElement(React.Fragment, {}, children),
+        // @ts-ignore
+        default: React.forwardRef(({ children }, ref) => React.createElement(React.Fragment, {}, children)),
         /**
          * @param {object} props - Component's props
          * @param {any} props.children - Component's children prop
          * @returns {JSX.Element}
          */
-        FreeFocusInside: ({ children }) => React.createElement(React.Fragment, {}, children),
+        // @ts-ignore
+        FreeFocusInside: React.forwardRef(({ children }, ref) => React.createElement(React.Fragment, {}, children)),
     }));
 }

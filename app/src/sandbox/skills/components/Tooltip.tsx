@@ -12,7 +12,7 @@ interface ITooltip {
 const Tooltip: React.FC<ITooltip> = ({ level, data }) => {
     return (
         <div className={ css.tooltipContainer }>
-            <FlexRow spacing="6" cx={ css.tooltipHeader }>
+            <FlexRow columnGap="6" cx={ css.tooltipHeader }>
                 <Text cx={ css.tooltipHeaderItem } color="gray60">
                     Current level:
                 </Text>
@@ -21,7 +21,7 @@ const Tooltip: React.FC<ITooltip> = ({ level, data }) => {
                 </Text>
             </FlexRow>
             {Object.entries(data.options).map((val, index) => (
-                <FlexRow key={ `${index}-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
+                <FlexRow key={ `${index}-tooltip` } columnGap="6" cx={ css.tooltipBlockRow }>
                     <IconContainer cx={ css.tooltipItem } icon={ val[1].icon } style={ { fill: val[1].activeColor } } />
                     <Text cx={ css.tooltipItem } color="gray60">
                         {val[1].prefix}

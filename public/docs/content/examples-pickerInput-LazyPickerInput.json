@@ -7,8 +7,14 @@
         "text": "You can achieve a lazy loading pattern, by passing "
       },
       {
-        "text": "LazyDataSource",
-        "uui-richTextEditor-code": true
+        "type": "link",
+        "url": "/documents?id=dataSources-lazy-dataSource",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "LazyDataSource"
+          }
+        ]
       },
       {
         "text": " to PickerInput."

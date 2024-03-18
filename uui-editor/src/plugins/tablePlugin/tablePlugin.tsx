@@ -6,7 +6,7 @@ import { useFocused, useReadOnly, useSelected } from 'slate-react';
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 
-import { PositionedToolbar } from '../../implementation/PositionedToolbar';
+import { FloatingToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { DeserializeHtml, PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
@@ -17,7 +17,7 @@ import { createInitialTable, selectFirstCell } from './utils';
 import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 const noop = () => {};
 
@@ -40,7 +40,7 @@ function TableRenderer(props: any) {
                 </div>
             ) }
             renderBody={ () => (
-                <PositionedToolbar
+                <FloatingToolbar
                     placement="bottom"
                     children={
                         canMerge
@@ -74,7 +74,7 @@ const createGetNodeFunc = (type: string) => {
     return getNode;
 };
 
-export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlugin>({
+export const tablePlugin = () => createTablePlugin<WithToolbarButton & TablePlugin>({
     overrideByKey: {
         [ELEMENT_TABLE]: {
             type: 'table',
@@ -102,7 +102,6 @@ export const tablePlugin = () => createTablePlugin<IHasToolbarButton & TablePlug
     options: {
         enableMerging: true,
         bottomBarButton: TableButton,
-        name: 'table-button',
     },
 });
 

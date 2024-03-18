@@ -50,10 +50,6 @@
 .modal-footer {
     border-bottom-left-radius: var(--uui-modals-border-radius);
     border-bottom-right-radius: var(--uui-modals-border-radius);
-
-    &.border-top {
-        border-top: 1px solid var(--uui-divider);
-    }
 }
 
 .modal-header {
