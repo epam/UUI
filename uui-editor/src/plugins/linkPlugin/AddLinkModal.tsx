@@ -55,6 +55,7 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
                     <FlexSpacer />
                     <Button
                         color="secondary"
+                        fill="outline"
                         caption="Delete"
                         onClick={ () => {
                             setLink('');
@@ -63,7 +64,7 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
                         } }
                     />
                     <Button
-                        color="accent"
+                        color="primary"
                         caption="Save"
                         onClick={ () => {
                             upsertLink(editor, {

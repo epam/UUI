@@ -97,7 +97,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
         return (
             <div className={ css.wrapper }>
                 {this.props.title && (
-                    <FlexRow spacing="6" cx={ css.titleRow }>
+                    <FlexRow columnGap="6" cx={ css.titleRow }>
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
                             {this.props.title}
                         </div>

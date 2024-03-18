@@ -80,7 +80,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                     <ModalFooter borderTop>
                         <FlexSpacer />
                         <Button color="secondary" fill="outline" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
-                        <Button color="accent" caption="Confirm" onClick={ save } />
+                        <Button color="primary" caption="Confirm" onClick={ save } />
                     </ModalFooter>
                     <FlexSpacer />
                 </ScrollBars>

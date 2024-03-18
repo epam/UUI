@@ -62,11 +62,11 @@ export default function ComplexFormValidationExample() {
         <FlexCell width="100%">
             { lens.get().map(renderUser) }
             <FlexRow>
-                <Button caption="Add user" onClick={ () => lens.update((current) => [...current, emptyUser]) } color="primary" />
+                <Button caption="Add user" onClick={ () => lens.update((current) => [...current, emptyUser]) } color="primary" fill="outline" />
             </FlexRow>
             <FlexRow vPadding="12">
                 <FlexSpacer />
-                <Button caption="Save" onClick={ save } color="accent" />
+                <Button caption="Save" onClick={ save } color="primary" />
             </FlexRow>
         </FlexCell>
     );

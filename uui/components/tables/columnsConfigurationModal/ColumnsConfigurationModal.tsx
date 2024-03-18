@@ -28,7 +28,7 @@ export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IMo
 }
 
 const renderGroupTitle = (title: string, amount: number) => (
-    <FlexRow size="24" padding="24" spacing="6" cx={ styles.groupTitle }>
+    <FlexRow size="24" padding="24" columnGap="6" cx={ styles.groupTitle }>
         <Text cx={ styles.groupTitleText } fontWeight="600" lineHeight="24" fontSize="14">
             {title}
         </Text>
@@ -94,7 +94,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         <ModalBlocker { ...modalProps }>
             <ModalWindow cx={ styles.modal } height="95vh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
-                <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
+                <FlexRow padding="24" borderBottom={ true } columnGap="12" cx={ styles.searchArea }>
                     <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
                     <Dropdown
                         closeOnTargetClick={ true }

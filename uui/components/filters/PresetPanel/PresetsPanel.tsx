@@ -105,7 +105,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     return (
         <FlexCell grow={ 1 } minWidth={ 310 } rawProps={ props.rawProps }>
-            <FlexRow size={ null } spacing="12" cx={ css.presetsWrapper }>
+            <FlexRow size={ null } columnGap="12" cx={ css.presetsWrapper }>
                 <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
         </FlexCell>
