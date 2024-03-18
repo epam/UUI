@@ -661,7 +661,7 @@ describe('PickerInput', () => {
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.change(dom.input, { target: { value: 'A' } });
         const pickerBody = await PickerInputTestObject.findDialog();
-        expect(pickerBody).toBeInTheDocument();
+        await waitFor(() => expect(pickerBody).toBeInTheDocument());
     });
 
     it('should use modal edit mode', async () => {
