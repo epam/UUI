@@ -762,7 +762,7 @@ exports[`PickerList should open body 1`] = `
             </div>
           </button>
           <button
-            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+            class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
             tabindex="0"
             type="button"
           >
