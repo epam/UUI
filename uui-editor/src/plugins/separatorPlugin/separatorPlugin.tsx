@@ -1,5 +1,7 @@
 import React from 'react';
-import { PlateEditor, createPluginFactory, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType } from '@udecode/plate-common';
+import {
+    PlateEditor, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType,
+} from '@udecode/plate-common';
 
 import { isPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
@@ -7,16 +9,15 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
+import { createHorizontalRulePlugin } from '@udecode/plate-horizontal-rule';
 
 export const SEPARATOR_KEY = 'separatorBLock';
 
 export const separatorPlugin = () => {
-    const createSeparatorPlugin = createPluginFactory<IHasToolbarButton>({
+    return createHorizontalRulePlugin<WithToolbarButton>({
         key: SEPARATOR_KEY,
         type: SEPARATOR_KEY,
-        isElement: true,
-        isVoid: true,
         component: Separator,
         handlers: {
             onKeyDown: (editor) => (event) => {
@@ -27,19 +28,10 @@ export const separatorPlugin = () => {
                 }
             },
         },
-        deserializeHtml: {
-            rules: [
-                {
-                    validNodeName: 'HR',
-                },
-            ],
-        },
         options: {
             bottomBarButton: SeparatorButton,
         },
     });
-
-    return createSeparatorPlugin();
 };
 
 interface ToolbarButtonProps {

@@ -1,43 +1,69 @@
-import React from 'react';
-import { useEventPlateId, useEditorRef, useEditorState, isEditorFocused, PlateEditor, WithPlatePlugin } from '@udecode/plate-common';
+import React, { Fragment, useMemo } from 'react';
+import {
+    useEditorRef, isEditorFocused, PlateEditor, WithPlatePlugin, Value, PluginOptions,
+} from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
-import { PositionedToolbar } from './PositionedToolbar';
+import { FloatingToolbar } from './PositionedToolbar';
 
 interface ToolbarButtonProps {
     editor: PlateEditor;
 }
-export interface IHasToolbarButton {
-    floatingBarButton?: React.ComponentType<ToolbarButtonProps>,
-    bottomBarButton?: React.ComponentType<ToolbarButtonProps>
-    name?: string;
-}
-export function MarksToolbar() {
+
+type WithFloatingButtonPlugin = {
+    floatingBarButton: React.ComponentType<ToolbarButtonProps>,
+};
+
+type WithBottomButtonPlugin = {
+    bottomBarButton: React.ComponentType<ToolbarButtonProps>
+};
+
+export type WithToolbarButton = WithBottomButtonPlugin | WithFloatingButtonPlugin | PluginOptions;
+
+type WithButtonPlugin = WithPlatePlugin<WithToolbarButton, Value, PlateEditor<Value>>;
+
+const isBottomButtonPlugin = (options?: WithToolbarButton): options is WithBottomButtonPlugin => !!options && 'bottomBarButton' in options;
+
+const isFloatingButtonPlugin = (options?: WithToolbarButton): options is WithFloatingButtonPlugin => !!options && 'floatingBarButton' in options;
+
+const getButtons = (editorRef: PlateEditor<Value>) => {
+    const plugins = editorRef?.plugins as WithButtonPlugin[];
+    return plugins.reduce<{ floating:JSX.Element[]; bottom: JSX.Element[] }>((acc, p) => {
+        if (isBottomButtonPlugin(p.options)) {
+            const Button = p.options.bottomBarButton;
+            acc.bottom.push(<Button key={ p.key } editor={ editorRef } />);
+        } else if (isFloatingButtonPlugin(p.options)) {
+            const Button = p.options.floatingBarButton;
+            acc.floating.push(<Button key={ p.key } editor={ editorRef } />);
+        }
+        return acc;
+    }, {
+        floating: [],
+        bottom: [],
+    });
+};
+
+export function Toolbars({
+    toolbarPosition = 'floating',
+}: {
+    toolbarPosition?: 'floating' | 'fixed';
+}) {
     const editorRef = useEditorRef();
+    const isActive = isEditorFocused(editorRef);
+
+    const { bottom, floating } = useMemo(() => getButtons(editorRef), [editorRef.plugins]);
 
     return (
-        <PositionedToolbar isImage={ false } editor={ editorRef }>
-            { editorRef?.plugins.map((p: WithPlatePlugin<IHasToolbarButton>) => {
-                const Button = p.options?.floatingBarButton;
-                return Button && <Button key={ p.options.name } editor={ editorRef } />;
-            }) }
-        </PositionedToolbar>
-    );
-}
-
-export function MainToolbar() {
-    const editor = useEditorState(useEventPlateId());
-    const isActive = isEditorFocused(editor);
-
-    if (!isActive) {
-        return null;
-    }
-
-    return (
-        <StickyToolbar isReadonly={ false }>
-            { editor?.plugins.map((p: WithPlatePlugin<IHasToolbarButton>) => {
-                const Button = p.options?.bottomBarButton;
-                return Button && <Button key={ p.key } editor={ editor } />;
-            }) }
-        </StickyToolbar>
+        <Fragment>
+            { toolbarPosition === 'floating' && (
+                <FloatingToolbar isImage={ false } editor={ editorRef }>
+                    { floating }
+                </FloatingToolbar>
+            ) }
+            {isActive && (
+                <StickyToolbar isReadonly={ false }>
+                    { toolbarPosition === 'floating' ? bottom : [...floating, ...bottom] }
+                </StickyToolbar>
+            )}
+        </Fragment>
     );
 }

@@ -1,13 +1,15 @@
 import React from 'react';
 
 import { ELEMENT_BLOCKQUOTE, createBlockquotePlugin } from '@udecode/plate-block-quote';
-import { PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType } from '@udecode/plate-common';
+import {
+    PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType,
+} from '@udecode/plate-common';
 
 import { isPluginActive } from '../../helpers';
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
@@ -22,7 +24,7 @@ const Quote: PlatePluginComponent = function (props) {
     );
 };
 
-export const quotePlugin = () => createBlockquotePlugin<IHasToolbarButton>({
+export const quotePlugin = () => createBlockquotePlugin<WithToolbarButton>({
     overrideByKey: {
         [ELEMENT_BLOCKQUOTE]: {
             key: QUOTE_PLUGIN_KEY,

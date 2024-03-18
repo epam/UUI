@@ -492,7 +492,9 @@ describe('PickerInput', () => {
             expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
 
             await PickerInputTestObject.clickSelectAllOptions();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+            });
 
             await PickerInputTestObject.clickClearAllOptions();
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
@@ -658,7 +660,8 @@ describe('PickerInput', () => {
 
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.change(dom.input, { target: { value: 'A' } });
-        expect(await screen.findByRole('dialog')).toBeInTheDocument();
+        const pickerBody = await PickerInputTestObject.findDialog();
+        expect(pickerBody).toBeInTheDocument();
     });
 
     it('should use modal edit mode', async () => {
