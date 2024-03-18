@@ -84,6 +84,8 @@
 
 .modal {
     &:global(.uui-modal-window) {
+        max-height: 95vh;
+
         @media (max-width: 640px) {
             min-height: 100dvh;
         }
