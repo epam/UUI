@@ -1,21 +1,25 @@
-import React, { FocusEventHandler, Fragment, KeyboardEventHandler, useMemo, useRef, useState } from 'react';
-import { IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod } from '@epam/uui-core';
+import React, {
+    FocusEventHandler, Fragment, KeyboardEventHandler, useMemo, useRef,
+} from 'react';
+import {
+    IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod,
+} from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui';
-
-import { Plate, PlateContent, PlateEditor, Value, createPlugins, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
+import {
+    Plate, PlateContent, PlateEditor, PlatePlugin, Value, createPlugins, useEditorState, useEventEditorSelectors,
+} from '@udecode/plate-common';
 
 import { createPlateUI } from './components';
 import { migrateSchema } from './migration';
-import { baseMarksPlugin } from './plugins';
-import { MainToolbar, MarksToolbar } from './implementation/Toolbars';
+import { baseMarksPlugin, paragraphPlugin } from './plugins';
+import { Toolbars } from './implementation/Toolbars';
 import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
-import { isEditorValueEmpty } from './helpers';
 
 import css from './SlateEditor.module.scss';
 
-const basePlugins: any = [
-    baseMarksPlugin(),
+const basePlugins: PlatePlugin[] = [
+    ...baseMarksPlugin(),
     ...defaultPlugins,
 ];
 
@@ -31,6 +35,7 @@ interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     onBlur?: FocusEventHandler<HTMLDivElement>;
     onFocus?: FocusEventHandler<HTMLDivElement>;
     scrollbars?: boolean;
+    toolbarPosition?: 'floating' | 'fixed';
 }
 
 interface PlateEditorProps extends SlateEditorProps {
@@ -39,7 +44,6 @@ interface PlateEditorProps extends SlateEditorProps {
 
 function Editor(props: PlateEditorProps) {
     const editor = useEditorState();
-
     const focusedEditorId = useEventEditorSelectors.focus();
     const isFocused = editor.id === focusedEditorId;
 
@@ -49,13 +53,15 @@ function Editor(props: PlateEditorProps) {
                 id={ props.id }
                 autoFocus={ props.autoFocus }
                 readOnly={ props.isReadonly }
-                placeholder={ props.placeholder }
                 className={ css.editor }
                 onKeyDown={ props.onKeyDown }
                 onBlur={ props.onBlur }
                 onFocus={ props.onFocus }
+                // enable placeholder
+                placeholder={ props.placeholder }
+                // customize placeholder render
                 renderPlaceholder={ ({ attributes }) => {
-                    return isEditorValueEmpty(editor.children) && (
+                    return (
                         <div
                             { ...attributes }
                             style={ { pointerEvents: 'none' } }
@@ -67,8 +73,7 @@ function Editor(props: PlateEditorProps) {
                 } }
                 style={ { minHeight: props.minHeight } }
             />
-            <MainToolbar />
-            <MarksToolbar />
+            <Toolbars toolbarPosition={ props.toolbarPosition } />
         </Fragment>
     );
 
@@ -99,11 +104,11 @@ function Editor(props: PlateEditorProps) {
 
 function SlateEditor(props: SlateEditorProps) {
     const currentId = useRef(String(Date.now()));
-    const [editor, setEditor] = useState<PlateEditor>();
+    const editor = useRef<PlateEditor | null>(null);
 
     const plugins = useMemo(
         () => {
-            return createPlugins((props.plugins || []).flat(), { components: createPlateUI() });
+            return createPlugins((props.plugins || [paragraphPlugin()]).flat(), { components: createPlateUI() });
         },
         [props.plugins],
     );
@@ -118,8 +123,8 @@ function SlateEditor(props: SlateEditorProps) {
     }, [props.value]);
 
     const forceUpdate = useForceUpdate();
-    if (value && editor?.children && editor.children !== value) {
-        editor.children = value;
+    if (value && editor.current?.children && editor.current.children !== value) {
+        editor.current.children = value;
         forceUpdate();
     }
 
@@ -129,7 +134,7 @@ function SlateEditor(props: SlateEditorProps) {
             initialValue={ value }
             plugins={ plugins }
             onChange={ onChange }
-            editorRef={ setEditor }
+            editorRef={ editor }
             // we override plate core insertData plugin
             // so, we need to disable default implementation
             disableCorePlugins={ { insertData: true } }

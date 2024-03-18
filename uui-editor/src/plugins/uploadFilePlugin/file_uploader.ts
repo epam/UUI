@@ -1,6 +1,6 @@
 import { ATTACHMENT_PLUGIN_TYPE } from '../attachmentPlugin/attachmentPlugin';
 import { IMAGE_PLUGIN_TYPE } from '../imagePlugin/imagePlugin';
-import { IFRAME_PLUGIN_TYPE, } from '../iframePlugin/iframePlugin';
+import { IFRAME_PLUGIN_TYPE } from '../iframePlugin/iframePlugin';
 import { useCallback } from 'react';
 import type { FileUploadResponse } from '@epam/uui-core';
 import {
@@ -25,7 +25,10 @@ type UploadFile = (
 const UPLOAD_BLOCKS = {
     attachment: (file: FileUploadResponse) => ({
         type: ATTACHMENT_PLUGIN_TYPE,
-        data: { ...file, fileName: file.name },
+        data: {
+            ...file,
+            fileName: file.name,
+        },
         children: [{ text: '' }],
     }),
     image: (file: FileUploadResponse) => ({
@@ -61,8 +64,8 @@ const upload = async (
     return filesData;
 };
 
-const isValidFileType = (fileType: string) => {
-    return Object.keys(UPLOAD_BLOCKS).includes(fileType);
+const isValidFileType = (fileType?: string) => {
+    return fileType && Object.keys(UPLOAD_BLOCKS).includes(fileType);
 };
 
 const buildFragments = (
@@ -79,7 +82,7 @@ const buildFragments = (
     });
 };
 
-export const createFileUploader = (options: UploadFileOptions) =>
+export const createFileUploader = (options?: UploadFileOptions) =>
     async (
         editor: PlateEditor,
         files: File[],
@@ -121,6 +124,7 @@ export const useFilesUploader = (editor: PlateEditor) => {
             }
 
             console.error('Upload function was not provided for upload plugin.');
+            return Promise.reject();
         },
         [editor],
     );

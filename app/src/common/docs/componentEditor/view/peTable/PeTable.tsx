@@ -49,7 +49,7 @@ PeTable.displayName = 'PeTable';
 const PeTableToolbar = React.memo(
     function PeTableToolbarComponent<TProps>({ title, onResetAllProps, tooltip }: Pick<IPeTableProps<TProps>, 'title' | 'onResetAllProps'> & { tooltip: string }) {
         return (
-            <FlexRow key="head" size="36" padding="12" borderBottom spacing="6" cx={ css.boxSizing }>
+            <FlexRow key="head" size="36" padding="12" borderBottom columnGap="6" cx={ css.boxSizing }>
                 <Tooltip content={ tooltip }>
                     <Text fontSize="16" lineHeight="24" cx={ css.vPadding } fontWeight="600">
                         {title}
@@ -69,7 +69,7 @@ const PeTableToolbar = React.memo(
 );
 const PeTableHeader = React.memo(function HeaderComponent() {
     return (
-        <FlexRow key="table-head" size="36" padding="12" spacing="6" borderBottom cx={ css.boxSizing } background="surface-main">
+        <FlexRow key="table-head" size="36" padding="12" columnGap="6" borderBottom cx={ css.boxSizing } background="surface-main">
             <FlexCell key="name" width={ 130 }>
                 <Text size="24" fontWeight="600">
                     NAME

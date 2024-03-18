@@ -8,11 +8,11 @@ import { ELEMENT_LINK, LinkPlugin, createLinkPlugin } from '@udecode/plate-link'
 import { isPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
-const LINK_ELEMENT = 'link';
+export const LINK_ELEMENT = 'link';
 
-export const linkPlugin = () => createLinkPlugin<IHasToolbarButton & LinkPlugin>({
+export const linkPlugin = () => createLinkPlugin<WithToolbarButton & LinkPlugin>({
     type: LINK_ELEMENT,
     overrideByKey: {
         [ELEMENT_LINK]: {
@@ -24,7 +24,6 @@ export const linkPlugin = () => createLinkPlugin<IHasToolbarButton & LinkPlugin>
     options: {
         keepSelectedTextOnPaste: false,
         floatingBarButton: LinkButton,
-        name: 'link-button',
     },
 });
 

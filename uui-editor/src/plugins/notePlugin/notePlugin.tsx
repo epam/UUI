@@ -8,9 +8,11 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
-import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
+import {
+    PlateEditor, createPluginFactory, getBlockAbove,
+} from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const noteTypes = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 
@@ -24,7 +26,7 @@ function Note(props: any) {
 }
 
 export const notePlugin = () => {
-    const createNotePlugin = createPluginFactory<IHasToolbarButton>({
+    const createNotePlugin = createPluginFactory<WithToolbarButton>({
         key: 'note',
         isElement: true,
         isVoid: false,
@@ -85,9 +87,17 @@ export function NoteButton({ editor }: IToolbarNote) {
                     { ...props }
                 />
             ) }
-            renderBody={ (props) => <NoteBar editor={ editor } type={ type } { ...props } /> }
+            renderBody={ (props) => (
+                <NoteBar
+                    editor={ editor } type={ type }
+                    { ...props }
+                />
+            ) }
             placement="top-start"
-            modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
+            modifiers={ [{
+                name: 'offset',
+                options: { offset: [0, 3] },
+            }] }
         />
     );
 }
