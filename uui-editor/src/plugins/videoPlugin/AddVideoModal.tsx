@@ -70,9 +70,9 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                 </FlexRow>
                 <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button color="secondary" caption="Cancel" onClick={ () => abort() } />
+                    <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => abort() } />
                     <Button
-                        color="accent"
+                        color="primary"
                         caption="Ok"
                         isDisabled={ !src }
                         onClick={ createVideoBlock }
