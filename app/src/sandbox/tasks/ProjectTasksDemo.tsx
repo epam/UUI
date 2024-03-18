@@ -86,7 +86,7 @@ export function ProjectTasksDemo() {
 
     return (
         <Panel background="surface-main" style={ { width: '100%' } }>
-            <FlexRow spacing="12" margin="12">
+            <FlexRow columnGap="12" margin="12">
                 <FlexCell width="auto">
                     <IconButton icon={ insertAfter } onClick={ () => insertTask('top', null, null) } />
                 </FlexCell>

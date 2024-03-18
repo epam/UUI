@@ -11,14 +11,14 @@ import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-set
 export function CardExample() {
     return (
         <Panel cx={ css.panel } style={ { display: 'inline-flex' } }>
-            <FlexRow alignItems="center" spacing="6" cx={ css.iconRow }>
+            <FlexRow alignItems="center" columnGap="6" cx={ css.iconRow }>
                 <IconContainer icon={ gitIcon } cx={ css.icon } />
                 <IconContainer icon={ PinterestIcon } cx={ css.icon } />
                 <IconContainer icon={ InstagramIcon } cx={ css.icon } />
                 <FlexSpacer />
                 <IconContainer icon={ InfoIcon } cx={ css.icon } />
             </FlexRow>
-            <FlexRow alignItems="center" spacing="12" margin="12">
+            <FlexRow alignItems="center" columnGap="12" margin="12">
                 <FlexCell width="100%">
                     <Text cx={ css.text } lineHeight="24" fontSize="16" color="secondary">
                         John Doe
@@ -28,7 +28,7 @@ export function CardExample() {
                     </Text>
                 </FlexCell>
             </FlexRow>
-            <FlexRow padding="12" spacing="6" cx={ css.footer }>
+            <FlexRow padding="12" columnGap="6" cx={ css.footer }>
                 <IconContainer icon={ GearIcon } cx={ css.icon } />
                 <FlexSpacer />
                 <Text size="36" color="secondary">

@@ -69,6 +69,22 @@ describe('ApiContext', () => {
         });
     });
 
+    it('should handle connection lost in manual mode', async () => {
+        const fetchMock = getFetchMock(408);
+        global.fetch = fetchMock;
+
+        context.processRequest('path', 'POST', testData, { errorHandling: 'manual' });
+        await delay(100);
+
+        const call: any = context.getActiveCalls()[0];
+        expect(call.status).toEqual('scheduled');
+
+        expect(fetchMock).toBeCalledWith('/auth/ping', {
+            method: 'GET',
+            credentials: 'include',
+        });
+    });
+
     it('should handle auth lost', async () => {
         const fetchMock = getFetchMock(401);
         global.fetch = fetchMock;
@@ -77,6 +93,25 @@ describe('ApiContext', () => {
         global.open = windowOpenMock as any;
 
         context.processRequest('path', 'POST', testData);
+        await delay(100);
+
+        const call: any = context.getActiveCalls()[0];
+        expect(call.status).toEqual('scheduled');
+        await delay();
+
+        expect(windowOpenMock).toBeCalledWith('/auth/login');
+
+        (global.open as any).mockClear();
+    });
+
+    it('should handle auth lost with manual mode', async () => {
+        const fetchMock = getFetchMock(401);
+        global.fetch = fetchMock;
+
+        const windowOpenMock = jest.fn(() => {});
+        global.open = windowOpenMock as any;
+
+        context.processRequest('path', 'POST', testData, { errorHandling: 'manual' });
         await delay(100);
 
         const call: any = context.getActiveCalls()[0];
@@ -128,6 +163,22 @@ describe('ApiContext', () => {
         expect(call.status).toEqual('error');
         expect(call.httpStatus).toEqual(500);
         expect(call.responseData).toEqual({ error: 'error' });
+    });
+
+    it('should handler non valid json parsing error with ok status', async () => {
+        const fetchMock = jest.fn(() => {
+            return Promise.resolve({
+                json: () => Promise.reject(),
+                ok: true,
+                status: 200,
+            } as any);
+        });
+
+        context = new ApiContext({ fetch: fetchMock });
+        await context.processRequest('path', 'POST', testData).catch(() => {});
+        const call = context.getActiveCalls()[0];
+
+        expect(call.status).toEqual('error');
     });
 
     it('should survive non-json error responses', async () => {

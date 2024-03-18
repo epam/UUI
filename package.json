@@ -76,6 +76,7 @@
     "lerna": "3.22.1",
     "lint-staged": "12.5.0",
     "tslib": "^2.6.2",
-    "typedoc": "0.17.4"
+    "typedoc": "0.17.4",
+    "postcss-scss": "^4.0.6"
   }
 }

@@ -213,7 +213,7 @@ export function ProjectTableDemo() {
 
     return (
         <Panel cx={ css.container }>
-            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
+            <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
                         <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />

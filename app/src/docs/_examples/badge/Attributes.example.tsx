@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, FlexCell, FlexRow, Panel, Text, Badge } from '@epam/uui';
 
-import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
+import { ReactComponent as notificationIcon } from '@epam/assets/icons/notification-done-outline.svg';
 import css from './AttributesExample.module.scss';
 
 export default function AttributesExample() {
@@ -22,7 +22,7 @@ export default function AttributesExample() {
             </FlexRow>
             <FlexRow>
                 <Panel>
-                    <FlexRow alignItems="center" spacing="6">
+                    <FlexRow alignItems="center" columnGap="6">
                         <Badge color="success" size="24" fill="outline" icon={ notificationIcon } caption="Available" />
                         <Badge color="info" size="24" fill="outline" caption="Bench" />
                         <Badge color="warning" size="24" fill="outline" caption="Remote" />

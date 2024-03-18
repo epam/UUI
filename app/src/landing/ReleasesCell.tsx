@@ -46,7 +46,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
             <div className={ cx(css.wrapper, `${layout}-width`) }>
                 <div ref={ this.cellRef } className={ css.column }>
                     <RichTextView size="16">
-                        <FlexRow spacing="12">
+                        <FlexRow columnGap="12">
                             <h3>{header}</h3>
                             <div className={ css.releaseDate }>{dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}</div>
                         </FlexRow>

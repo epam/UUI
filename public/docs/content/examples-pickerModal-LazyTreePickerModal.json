@@ -1,37 +1,24 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "You can achieve a lazy loading pattern, bypassing "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=dataSources-lazy-dataSource",
+        "target": "_blank",
+        "children": [
           {
-            "object": "text",
-            "text": "You can achieve a lazy loading pattern, bypassing ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "LazyDataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " to PickerModal.",
-            "marks": []
+            "text": "LazyDataSource"
           }
         ]
+      },
+      {
+        "text": " to PickerModal."
       }
     ]
   }
-}
+]

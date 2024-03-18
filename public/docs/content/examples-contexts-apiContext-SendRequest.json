@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To send a request within the UUI ApiContext, use the "
+      },
+      {
+        "text": "processRequest",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " method. It takes the request URL as the first parameter and the request type and body as the second and third parameters. Additionally, you can provide request options as fourth parameter."
+      }
+    ]
+  }
+]

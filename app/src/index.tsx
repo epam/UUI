@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
@@ -47,12 +47,12 @@ const apm = initApm({
 apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
-    const [isLoaded, setIsLoaded] = React.useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
     const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router });
 
-    React.useEffect(() => {
+    useEffect(() => {
         Object.assign(svc, services);
-        services.uuiAnalytics.addListener(new GAListener(GA_CODE));
+        isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
         services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
         setIsLoaded(true);
     }, [services]);

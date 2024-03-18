@@ -31,8 +31,7 @@ export default function LazyTreePicker() {
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
-                cascadeSelection="explicit"
-                maxItems={ 300 }
+                cascadeSelection="implicit"
             />
         </FlexCell>
     );

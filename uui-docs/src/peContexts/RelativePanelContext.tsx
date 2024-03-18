@@ -18,7 +18,7 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
     renderForm() {
         return (
             <React.Fragment>
-                <FlexRow spacing="12" padding="24" vPadding="24">
+                <FlexRow columnGap="12" padding="24" vPadding="24">
                     <LabeledInput label="Name">
                         <TextInput value="Alex" onValueChange={ null } />
                     </LabeledInput>
@@ -26,7 +26,7 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                         <TextInput value="Belarus" onValueChange={ null } />
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow spacing="12" padding="24" vPadding="24">
+                <FlexRow columnGap="12" padding="24" vPadding="24">
                     <LabeledInput label="Age">
                         <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null } />
                     </LabeledInput>
@@ -34,7 +34,7 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                         <DatePicker format="DD/MM/YYYY" value="2021-08-08" onValueChange={ null } />
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow spacing="12" padding="24" vPadding="24">
+                <FlexRow columnGap="12" padding="24" vPadding="24">
                     <FlexSpacer />
                     <Button color="accent" caption="Submit" />
                     <Button color="primary" fill="none" caption="Cancel" />

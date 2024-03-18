@@ -6,6 +6,7 @@ import { universities } from './universities';
 import { loremIpsum } from './loremIpsum';
 import { slateInitialValue } from './slateInitialValue';
 import { slateSerializationInitialData } from './slateSerializationInitialData';
+import { slateMdSerializationInitialData } from './slateMdSerializationInitialData';
 import { workloadItems } from './workload';
 import { locations } from './locationsData';
 
@@ -18,6 +19,7 @@ export const demoData = {
     loremIpsum,
     slateInitialValue,
     slateSerializationInitialData,
+    slateMdSerializationInitialData,
     workloadItems,
     locations,
 };

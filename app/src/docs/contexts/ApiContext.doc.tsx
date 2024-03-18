@@ -8,9 +8,11 @@ export class ApiContextDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="api-context-descriptions" />
 
-                {this.renderSectionTitle('Examples')}
+                <DocExample title="How to send a request" path="./_examples/contexts/apiContext/SendRequest.example.tsx" onlyCode={ true } />
 
-                <DocExample title="Handle server errors" path="./_examples/contexts/apiContext/ApiContextBase.example.tsx" />
+                <DocExample title="Congigure error handling type" path="./_examples/contexts/apiContext/ErrorHandlingTypes.example.tsx" />
+
+                <DocExample title="Auth and Connection lost handling" path="./_examples/contexts/apiContext/AuthAndConnectionLostHandling.example.tsx" />
 
                 <DocExample title="Throw errors from your code" path="./_examples/contexts/apiContext/ApiContextThrowUUIError.example.tsx" />
 

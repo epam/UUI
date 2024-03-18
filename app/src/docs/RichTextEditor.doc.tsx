@@ -9,7 +9,8 @@ export class RichTextEditorDoc extends BaseDocsBlock {
         return (
             <span className={ cx(css.wrapper) }>
                 <DocExample path="./_examples/richTextEditor/Basic.example.tsx" />
-                <DocExample title="HTML format" path="./_examples/richTextEditor/Serialization.example.tsx" />
+                <DocExample title="HTML format" path="./_examples/richTextEditor/HtmlSerialization.example.tsx" />
+                <DocExample title="MD format" path="./_examples/richTextEditor/MdSerialization.example.tsx" />
                 <DocExample title="Inner scroll behavior" path="./_examples/richTextEditor/WithInnerScroll.example.tsx" />
             </span>
         );
