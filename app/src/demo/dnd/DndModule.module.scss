@@ -27,10 +27,9 @@
         width: 36px;
         height: 36px;
         padding: 6px;
-        margin-top: auto;
-        margin-bottom: auto;
         border-radius: 50%;
         box-sizing: border-box;
+        align-self: center;
 
         &.complete-icon {
             background-color: #EEFFCC;
