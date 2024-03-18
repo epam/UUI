@@ -14,7 +14,7 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
     const name = prop.name;
 
     return (
-        <FlexRow size="36" borderBottom padding="12" spacing="6">
+        <FlexRow size="36" borderBottom padding="12" columnGap="6">
             <FlexCell key="name" width={ 130 }>
                 <Text>{name}</Text>
             </FlexCell>
