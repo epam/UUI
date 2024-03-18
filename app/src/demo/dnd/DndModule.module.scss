@@ -23,15 +23,12 @@
         background-color: var(--uui-surface-main);
     }
 
-    .item {
-        background-color: var(--uui-surface-main);
-    }
-
     .module-icon {
         width: 36px;
         height: 36px;
         padding: 6px;
-        margin: auto;
+        margin-top: auto;
+        margin-bottom: auto;
         border-radius: 50%;
         box-sizing: border-box;
 
