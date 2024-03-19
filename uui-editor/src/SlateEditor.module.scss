@@ -12,7 +12,8 @@
 }
 
 .editor {
-    padding: 0 24px;
+    // 1px fixes: https://github.com/epam/UUI/issues/1856
+    padding: 1px 24px;
     flex: 1;
 }
 

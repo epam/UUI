@@ -21,6 +21,7 @@ import {
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
 import { AnchorDoc } from '../docs/anchor/Anchor.doc';
+import { RichTextEditorSerializersDoc } from '../docs/RichTextEditorSerializers.doc';
 
 export interface DocItem {
     id: string;
@@ -94,6 +95,7 @@ const componentsStructure = sortBy(
         { id: 'timePicker', name: 'Time Picker', component: TimePickerDoc, parentId: 'components' },
         { id: 'tooltip', name: 'Tooltip', component: TooltipDoc, parentId: 'components' },
         { id: 'richTextEditor', name: 'Rich Text Editor', component: RichTextEditorDoc, parentId: 'components' },
+        { id: 'richTextEditorSerializers', name: 'Rich Text Editor Serializers', component: RichTextEditorSerializersDoc, parentId: 'components' },
         { id: 'form', name: 'Form', component: FormDoc, parentId: 'components' },
         { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
         { id: 'verticalTabButton', name: 'Vertical Tab Button', component: VerticalTabButtonDoc, parentId: 'components' },
