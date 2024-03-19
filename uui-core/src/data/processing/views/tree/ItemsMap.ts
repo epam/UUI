@@ -23,7 +23,7 @@ export class ItemsMap<TId, TItem> implements IImmutableMap<TId, TItem> {
         if (args.length === 1) {
             const [itemsMap] = args;
             this.params = itemsMap.params;
-            this._itemsMap = cloneMap(this._itemsMap);
+            this._itemsMap = cloneMap(itemsMap._itemsMap);
         } else {
             const [map, params] = args;
             this.params = params;

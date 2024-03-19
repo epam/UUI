@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IMap, ITree, ItemsMap, Metadata, Position, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, ITree, ItemsMap, Metadata,
+    PatchOrderingMap, PatchOrderingType, PatchOrderingTypes, SortingOption, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -16,10 +17,12 @@ import { getColumns } from './columns';
 import css from './ProjectTableDemo.module.scss';
 import { TApi } from '../../data';
 import { ProjectTask } from '@epam/uui-docs';
+import { getInsertionOrder } from './helpers';
 
 interface FormState {
     items: ItemsMap<number, ProjectTask>;
-    positions: IMap<number, Position<number>>;
+    sorting: SortingOption<any>[],
+    ordering: PatchOrderingMap<number>,
 }
 
 const metadata: Metadata<FormState> = {
@@ -36,14 +39,16 @@ const metadata: Metadata<FormState> = {
 
 let lastId = -1;
 
+const defaultSorting = [{ field: 'order' }];
 let savedValue: FormState = {
     items: ItemsMap.blank({ getId: (item) => item.id }),
-    positions: new Map(),
+    sorting: defaultSorting,
+    ordering: PatchOrderingMap.blank(),
 };
 
 export function ProjectTableDemo() {
     const svc = useUuiContext<TApi, UuiContexts>();
-
+    const [tableState, setState] = useState<DataTableState>({ sorting: defaultSorting });
     const {
         value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
     } = useForm<FormState>({
@@ -55,7 +60,17 @@ export function ProjectTableDemo() {
         getMetadata: () => metadata,
     });
 
-    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
+    const setTableState = useCallback<React.Dispatch<React.SetStateAction<DataTableState>>>((newState) => {
+        setState((st) => {
+            const updatedTableState = typeof newState === 'function' ? { ...newState(st) } : { ...st, ...newState };
+
+            if (st.sorting !== updatedTableState.sorting) {
+                setValue((currentValue) => ({ ...currentValue, sorting: updatedTableState.sorting, ordering: currentValue.ordering.allToSorting() }));
+            }
+            return updatedTableState;
+        });
+    }, [setValue]);
+
     const dataTableFocusManager = useDataTableFocusManager<ProjectTask['id']>({}, []);
 
     const currentTreeRef = useRef<ITree<ProjectTask, number>>(null);
@@ -63,13 +78,13 @@ export function ProjectTableDemo() {
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         let tempRelativeTask = relativeTask;
-        let newItemPosition: Position<number>;
+        let newItemPosition: PatchOrderingType;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
 
         if (position === 'inside') {
             task.parentId = relativeTask.id;
             tempRelativeTask = null; // just insert as the first child
-            newItemPosition = 'top';
+            newItemPosition = PatchOrderingTypes.TOP;
         }
 
         if (tempRelativeTask) {
@@ -77,49 +92,38 @@ export function ProjectTableDemo() {
         }
 
         setValue((currentValue) => {
-            // task.order = getInsertionOrder(
-            //     orders,
-            //     position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            //     tempRelativeTask?.order,
-            // );
+            if (value.sorting.length === 1 && value.sorting[0]?.field === 'order') {
+                task.order = getInsertionOrder(
+                    Object.values(currentValue.items)
+                        .filter((i) => i.parentId === task.parentId)
+                        .map((i) => i.order),
+                    position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+                    tempRelativeTask?.order,
+                );
+            }
 
             if (tempRelativeTask) {
                 if (position === 'bottom') {
-                    newItemPosition = { after: tempRelativeTask.id };
+                    const { ids } = currentTreeRef.current.getItems(tempRelativeTask.parentId);
+                    const index = ids.findIndex((id) => id === tempRelativeTask.id);
+                    newItemPosition = [PatchOrderingTypes.INDEX, index];
                 }
 
                 if (position === 'top') {
                     const { ids } = currentTreeRef.current.getItems(tempRelativeTask.parentId);
                     const index = ids.findIndex((id) => id === tempRelativeTask.id);
-                    if (index <= 0) {
-                        newItemPosition = 'top';
-                    } else {
-                        const afterId = ids[index - 1];
-                        newItemPosition = { after: afterId };
+                    if (index > 0) {
+                        newItemPosition = [PatchOrderingTypes.INDEX, index - 1];
                     }
                 }
             }
 
-            const newPositions = new Map(currentValue.positions);
-            if (existingTask) {
-                let newRelativeTasksPosition: Position<number>;
-                const { ids } = currentTreeRef.current.getItems(existingTask.parentId);
-                const index = ids.findIndex((id) => id === existingTask.id);
-                if (index <= 0) {
-                    newRelativeTasksPosition = 'top';
-                } else {
-                    const afterId = ids[index - 1];
-                    newRelativeTasksPosition = { after: afterId };
-                }
-                for (const [id, prevPosition] of currentValue.positions) {
-                    if (typeof prevPosition === 'object' && 'after' in prevPosition && prevPosition.after === existingTask.id) {
-                        newPositions.set(id, newRelativeTasksPosition);
-                    }
-                }
-            }
-            newPositions.set(task.id, newItemPosition);
-
-            return { ...currentValue, items: currentValue.items.set(task.id, task), positions: newPositions };
+            return {
+                ...currentValue,
+                items: currentValue.items.set(task.id, task),
+                positions: newItemPosition ? currentValue.ordering.set(task.id, newItemPosition) : currentValue.ordering,
+                index: [],
+            };
         });
 
         setTableState((currentTableState) => {
@@ -133,7 +137,7 @@ export function ProjectTableDemo() {
         });
 
         dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, setTableState, dataTableFocusManager]);
+    }, [setValue, setTableState, dataTableFocusManager, value.sorting]);
 
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => ({
@@ -162,6 +166,17 @@ export function ProjectTableDemo() {
         [],
     );
 
+    useEffect(() => {
+        if (tableState.sorting !== value.sorting) {
+            setState((state) => {
+                if (state.sorting !== value.sorting) {
+                    return { ...state, sorting: value.sorting };
+                }
+                return state;
+            });
+        }
+    }, [setTableState, value.sorting, tableState.sorting]);
+
     const { tree, ...restProps } = useTree<ProjectTask, number>(
         {
             type: 'lazy',
@@ -176,7 +191,17 @@ export function ProjectTableDemo() {
             getChildCount: (task) => task.childCount,
             backgroundReload: true,
             patchItems: value.items,
-            getPosition: (item: ProjectTask) => value.positions.has(item.id) ? value.positions.get(item.id) : 'initial',
+            getPatchOrder: (item: ProjectTask, isNew: boolean) => {
+                const ordering = value.ordering.get(item.id);
+                if (ordering) {
+                    return ordering;
+                }
+                return (isNew ? PatchOrderingTypes.TOP : PatchOrderingTypes.INITIAL);
+            },
+            sortBy: (item, sorting) => {
+                return item[sorting.field as keyof ProjectTask];
+            },
+
             isDeleted: (item) => item.isDeleted,
             getRowOptions: (task) => ({
                 ...lens.prop('items').key(task.id).toProps(), // pass IEditable to ezach row to allow editing
@@ -265,7 +290,7 @@ export function ProjectTableDemo() {
             </>
         );
     };
-
+    
     return (
         <Panel cx={ css.container }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">

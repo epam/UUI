@@ -20,6 +20,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             caption: 'Name',
             width: 300,
             fix: 'left',
+            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('name').toProps() }
@@ -34,6 +35,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             caption: 'Estimate',
             info: 'Estimate in man/days',
             width: 120,
+            isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
