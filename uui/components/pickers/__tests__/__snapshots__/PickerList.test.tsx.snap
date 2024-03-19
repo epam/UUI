@@ -152,7 +152,7 @@ exports[`PickerList should open body 1`] = `
         aria-modal="true"
         class="uui-modal-window root modal container"
         role="dialog"
-        style="width: 600px; height: 700px;"
+        style="width: 600px; height: 700px; max-height: 80dvh;"
       >
         <div
           class="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
