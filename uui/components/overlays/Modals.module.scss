@@ -25,13 +25,11 @@
         background-color: var(--uui-modals-bg);
         overflow: auto;
         border-radius: var(--uui-modals-border-radius);
-        max-height: 80vh;
         max-width: 100vw;
         box-shadow: var(--uui-modals-shadow);
 
         @media (max-width: 640px) {
             min-width: 100vw;
-            max-height: 100dvh;
             border-radius: 0;
         }
 

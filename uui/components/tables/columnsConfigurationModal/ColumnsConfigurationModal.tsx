@@ -92,7 +92,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ styles.modal } height="95vh">
+            <ModalWindow cx={ styles.modal } height="95dvh" maxHeight="95dvh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } columnGap="12" cx={ styles.searchArea }>
                     <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />

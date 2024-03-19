@@ -20,7 +20,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "95vh",
+        "height": "95dvh",
+        "maxHeight": "95dvh",
         "width": "420px",
       }
     }
