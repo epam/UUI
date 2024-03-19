@@ -6,6 +6,7 @@ export const i18n = {
     },
     fileCard: {
         fileSizeProgress: ' of ',
+        failedUploadErrorMessage: 'Upload failed',
     },
     pickerModal: {
         headerTitle: 'Please select',

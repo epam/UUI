@@ -10,6 +10,7 @@
 * [IconButton]: added property `size`;
 * [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
 * [FlexRow]: added property `topBorder` to add border on the top of the FlexRow;
+* [FileUpload]: move wordings to the i18n
 
 
 **What's Fixed**
@@ -34,6 +35,7 @@
 * [TextArea]: fixed ability to scroll when `readonly` or `disable`;
 * [ModalBlocker]: now the Modals closed by default if the URL was changed. You can turn this off using property `disableCloseOnRouterChange`={true}.
 * [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead. See more: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
+* [DataTableHeaderCell]: stopped other onClick events during resizing process;
 
 # 5.6.2 - 15.03.2024
 
