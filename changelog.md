@@ -12,7 +12,7 @@
 * [FlexRow]: added property `topBorder` to add border on the top of the FlexRow;
 * [FileUpload]: move wordings to the i18n
 * [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile. 
-* [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh`.
+* [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 
 
 **What's Fixed**
