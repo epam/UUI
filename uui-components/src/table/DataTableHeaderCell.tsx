@@ -8,10 +8,15 @@ interface DataTableRenderProps {
 }
 
 export interface HeaderCellContentProps extends DndActorRenderParams {
+    /** Called when resizing is started */
     onResizeStart: (e: React.MouseEvent) => void;
+    /** Called when resizing is ended */
     onResizeEnd: (e: MouseEvent) => void;
+    /** Called during the resizing process */
     onResize: (e: MouseEvent) => void;
+    /** Called when sorting */
     toggleSort: (e: React.MouseEvent) => void;
+    /** Indicates that resizing process is active */
     isResizing: boolean;
 }
 
