@@ -10,6 +10,7 @@
 * [IconButton]: added property `size`;
 * [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
 * [FlexRow]: added property `topBorder` to add border on the top of the FlexRow;
+* [FileUpload]: move wordings to the i18n
 
 
 **What's Fixed**
