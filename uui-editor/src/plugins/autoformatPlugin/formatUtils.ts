@@ -24,7 +24,6 @@ export const format = (editor: PlateEditor, customFormatting: any) => {
 
 export const formatList = (editor: PlateEditor, elementType: string) => {
     format(editor, () => {
-        console.log('toggling list');
         toggleList(editor, {
             type: elementType,
         });

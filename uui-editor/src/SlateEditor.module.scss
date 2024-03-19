@@ -84,6 +84,7 @@
 }
 
 .placeholder {
+    pointer-events: none;
     position: absolute;
     left: 12px;
     max-width: 100%;

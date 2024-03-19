@@ -14,7 +14,6 @@ export const autoformatLists: AutoformatRule[] = [
         match: ['* ', '- '],
         preFormat,
         format: (editor) => {
-            console.log('format list');
             formatList(editor, ELEMENT_UL_CUSTOM);
         },
     },
