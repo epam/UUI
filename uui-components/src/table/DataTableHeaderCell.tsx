@@ -9,9 +9,10 @@ interface DataTableRenderProps {
 
 export interface HeaderCellContentProps extends DndActorRenderParams {
     onResizeStart: (e: React.MouseEvent) => void;
-    onResizeEnd: (e: React.MouseEvent) => void;
+    onResizeEnd: (e: MouseEvent) => void;
     onResize: (e: MouseEvent) => void;
     toggleSort: (e: React.MouseEvent) => void;
+    isResizing: boolean;
 }
 
 interface DataTableHeaderCellState {
@@ -49,17 +50,20 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         this.setState({ isResizing: true, resizeStartX: e.clientX, originalWidth: this.props.column.width });
 
         document.addEventListener('mousemove', this.onResize);
-        document.addEventListener('mouseup', this.onResizeEnd);
+        document.addEventListener('click', this.onResizeEnd);
 
         e.preventDefault();
         e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
     };
 
-    onResizeEnd = () => {
+    onResizeEnd = (e: MouseEvent) => {
         this.setState({ isResizing: false });
 
         document.removeEventListener('mousemove', this.onResize);
-        document.removeEventListener('mouseup', this.onResizeEnd);
+        document.removeEventListener('click', this.onResizeEnd);
+
+        e.preventDefault();
+        e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
     };
 
     onResize = (e: MouseEvent) => {
@@ -95,6 +99,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             onResizeEnd: this.onResizeEnd,
             onResizeStart: this.onResizeStart,
             toggleSort: this.toggleSort,
+            isResizing: this.state.isResizing,
             ...dndProps,
             ref: (node) => {
                 (this.cellRef.current as unknown as React.Ref<HTMLElement>) = node;
