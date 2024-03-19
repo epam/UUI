@@ -21,6 +21,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
@@ -200,6 +201,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
