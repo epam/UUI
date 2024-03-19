@@ -1,6 +1,7 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
 import { IImmutableMap, IMap } from './objects';
+import { PatchOrderingType } from '../data';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -166,6 +167,9 @@ export interface PatchItemsOptions<TItem, TId> {
      * @default 'initial'
      */
     getPosition?: (item: TItem) => Position<TId>;
+
+    getPatchOrder?: (item: TItem, isNew: boolean) => PatchOrderingType;
+    sortBy?(item: TItem, sorting: SortingOption): any;
 }
 
 export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
