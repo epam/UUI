@@ -4,6 +4,7 @@ import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '
 import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
+import { isMobile } from '@epam/uui-core';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './Modals.module.scss';
 
@@ -20,6 +21,11 @@ interface ModalWindowMods {
      * @default 'auto'
      */
     height?: number | string;
+    /**
+     * Defines component max-height.
+     * @default '80vh'
+     */
+    maxHeight?: number | string;
 }
 
 export interface ModalWindowCoreProps extends uuiModalWindowProps {}
@@ -38,11 +44,13 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowMods>(
         };
         const width = normalize(props.width) || '420px';
         const height = normalize(props.height) || 'auto';
+        const maxHeight = isMobile() ? '100dvh' : (normalize(props.maxHeight) || '80dvh');
         return {
             style: {
                 ...props.style,
                 width,
                 height,
+                maxHeight,
             },
         };
     },
