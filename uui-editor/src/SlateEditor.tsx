@@ -59,9 +59,14 @@ function Editor(props: PlateEditorProps) {
                 onKeyDown={ props.onKeyDown }
                 onBlur={ props.onBlur }
                 onFocus={ props.onFocus }
+                // 1. /**
+                //  * Empty isEditorValueEmpty check needs to gix issue with placeholder in lists and other elements
+                //  * Do not use renderPlaceholder to avoid a lot of bugs like https://github.com/epam/UUI/issues/2022
+                //  */
+                // placeholder={ isEditorValueEmpty(editor.children) ? props.placeholder : undefined }
+                // 2.
                 // enable placeholder
                 placeholder={ props.placeholder }
-                // customize placeholder render to fix issues
                 renderPlaceholder={ withPlaceholder(editor) }
                 style={ { minHeight: props.minHeight } }
             />
