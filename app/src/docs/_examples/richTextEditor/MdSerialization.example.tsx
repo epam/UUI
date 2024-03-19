@@ -69,7 +69,6 @@ export default function SlateEditorBasicExample() {
             {type === 'slate'
                 ? (
                     <SlateEditor
-                        autoFocus
                         value={ value }
                         onValueChange={ (newValue) => {
                             setValue(newValue);
@@ -83,7 +82,6 @@ export default function SlateEditorBasicExample() {
                     />
                 ) : (
                     <TextArea
-                        autoFocus
                         value={ mdContent }
                         onValueChange={ (v) => {
                             setMdContent(v);
