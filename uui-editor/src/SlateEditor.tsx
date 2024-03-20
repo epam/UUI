@@ -136,25 +136,4 @@ function SlateEditor(props: SlateEditorProps) {
     );
 }
 
-const dataSlatePlaceholder = { 'data-slate-placeholder': true };
-
-const withPlaceholder = (editor: PlateEditor<Value>) => {
-    return function Placeholder({ children }: RenderPlaceholderProps): JSX.Element | null {
-        // fixes placeholder in lists and other elements
-        if (isEditorValueEmpty(editor.children)) {
-            return (
-                <div
-                    // skip ref from attributes to fix: https://github.com/epam/UUI/issues/2022
-                    { ...dataSlatePlaceholder }
-                    contentEditable={ false }
-                    className={ css.placeholder }
-                >
-                    { children }
-                </div>
-            );
-        }
-        return null;
-    };
-};
-
 export { SlateEditor, basePlugins };
