@@ -26,7 +26,6 @@ export const toDoListPlugin = () => {
         },
         options: {
             bottomBarButton: ToDoListButton,
-            name: 'todo-list-plugin',
         },
     });
 };
