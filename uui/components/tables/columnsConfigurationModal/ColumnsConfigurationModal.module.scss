@@ -18,6 +18,8 @@
             > :global(.uui-caption) {
                 font-family: var(--uui-font); //TODO: rework component
                 font-weight: 600;
+                padding-left: 0;
+                padding-right: 0;
             }
         }
 
@@ -76,14 +78,6 @@
 
         :global(.uui-icon) {
             fill: var(--uui-text-tertiary);
-        }
-    }
-}
-
-.modal {
-    &:global(.uui-modal-window) {
-        @media (max-width: 640px) {
-            min-height: 100dvh;
         }
     }
 }
