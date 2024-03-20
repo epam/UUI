@@ -191,14 +191,14 @@ export default function EditableTableExample() {
             {/* Render a panel with Save/Revert buttons to control the form */}
             <FlexRow columnGap="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">
-                    <Button caption="Add task" onClick={ handleNewItem } />
+                    <Button caption="Add task" fill="outline" color="primary" onClick={ handleNewItem } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
-                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="secondary" />
+                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="secondary" fill="outline" />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Save" onClick={ save } color="accent" isDisabled={ !isChanged } />
+                    <Button caption="Save" onClick={ save } color="primary" isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
             <FlexRow>

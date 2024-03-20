@@ -21,6 +21,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
@@ -163,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </button>
       <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -200,6 +201,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
@@ -334,7 +336,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
         </div>
       </button>
       <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
