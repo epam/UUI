@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dropdown, FlexRow, Panel, Text, Badge } from '@epam/uui';
-import { ReactComponent as mediaIcon } from '@epam/assets/icons/common/media-play-fill-18.svg';
-import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-24.svg';
-import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
+import { ReactComponent as mediaIcon } from '@epam/assets/icons/media-play-fill-opt.2.svg';
+import { ReactComponent as doneIcon } from '@epam/assets/icons/notification-done-outline.svg';
+import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 
 export default function TypesExample() {
     return (

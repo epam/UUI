@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, FlexCell, FlexRow, Panel, Text, Badge } from '@epam/uui';
 
-import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
+import { ReactComponent as notificationIcon } from '@epam/assets/icons/notification-done-outline.svg';
 import css from './AttributesExample.module.scss';
 
 export default function AttributesExample() {

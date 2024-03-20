@@ -1,5 +1,5 @@
 {
- "version": "5.6.1",
+ "version": "5.7.0-alpha.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -22562,8 +22562,11 @@
       "    disableCloseByEsc?: boolean;",
       "    /** Pass true to disabled modal closing by click outside modal window */",
       "    disallowClickOutside?: boolean;",
-      "    /** Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes. */",
-      "    disableUrlChangeHandler?: boolean;",
+      "    /**",
+      "     * Pass true to disable modal close by router change.",
+      "     * If omitted, modal window will be closed on any router change.",
+      "     */",
+      "    disableCloseOnRouterChange?: boolean;",
       "}"
      ]
     },
@@ -22618,11 +22621,12 @@
       "required": false
      },
      {
-      "uid": "disableUrlChangeHandler",
-      "name": "disableUrlChangeHandler",
+      "uid": "disableCloseOnRouterChange",
+      "name": "disableCloseOnRouterChange",
       "comment": {
        "raw": [
-        "Indicates is callback urlChangeHandler is disabled. This callback will close all modals if the URL changes."
+        "Pass true to disable modal close by router change.",
+        " If omitted, modal window will be closed on any router change."
        ]
       },
       "typeValue": {
@@ -70457,6 +70461,24 @@
        ],
        "tags": {
         "@default": "auto"
+       }
+      },
+      "typeValue": {
+       "raw": "string | number"
+      },
+      "from": "@epam/uui:ModalWindowMods",
+      "required": false
+     },
+     {
+      "uid": "maxHeight",
+      "name": "maxHeight",
+      "comment": {
+       "raw": [
+        "Defines component max-height.",
+        " @default '80vh'"
+       ],
+       "tags": {
+        "@default": "80vh"
        }
       },
       "typeValue": {
