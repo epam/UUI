@@ -56,8 +56,8 @@ const componentsStructure = sortBy(
         { id: 'flexSpacer', name: 'Flex Spacer', component: FlexSpacerDoc, parentId: 'flexItems', order: 4 },
 
         { id: 'richTextEditor', name: 'Rich Text Editor', parentId: 'components' },
-        { id: 'rteOverview', name: 'Rich Text Editor Overview', component: RichTextEditorDoc, parentId: 'richTextEditor', order: 1 },
-        { id: 'rteSerializers', name: 'Rich Text Editor Serializers', component: RichTextEditorSerializersDoc, parentId: 'richTextEditor', order: 2 },
+        { id: 'rteOverview', name: 'Overview', component: RichTextEditorDoc, parentId: 'richTextEditor', order: 1, tags: ['richTextEditor'] },
+        { id: 'rteSerializers', name: 'Serializers', component: RichTextEditorSerializersDoc, parentId: 'richTextEditor', order: 2, tags: ['richTextEditor']},
 
         { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
         { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
@@ -78,6 +78,7 @@ const componentsStructure = sortBy(
         { id: 'radioInput', name: 'Radio Input', component: RadioInputDoc, parentId: 'components' },
         { id: 'rangeDatePicker', name: 'Range Date Picker', component: RangeDatePickerDoc, parentId: 'components' },
         { id: 'rating', name: 'Rating', component: RatingDoc, parentId: 'components' },
+        { id: 'richTextView', name: 'RichTextView', component: RichTextViewDoc, parentId: 'components' },
         { id: 'searchInput', name: 'Search Input', component: SearchInputDoc, parentId: 'components' },
         { id: 'slider', name: 'Slider', component: SliderDoc, parentId: 'components' },
         { id: 'sliderRating', name: 'Slider Rating', component: SliderRatingDoc, parentId: 'components' },
