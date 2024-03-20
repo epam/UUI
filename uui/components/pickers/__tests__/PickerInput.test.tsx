@@ -662,7 +662,7 @@ describe('PickerInput', () => {
         fireEvent.change(dom.input, { target: { value: 'A' } });
         await waitFor(async () => {
             const pickerBody = await PickerInputTestObject.findDialog();
-            expect(pickerBody).toBeInTheDocument();
+            return expect(pickerBody).toBeInTheDocument();
         });
     });
 
