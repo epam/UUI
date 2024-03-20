@@ -42,10 +42,10 @@
     "lodash.debounce": "4.0.8",
     "lodash.invert": "4.3.0",
     "react-popper": "2.3.0",
-    "slate": "0.102.0",
-    "slate-history": "0.100.0",
-    "slate-hyperscript": "0.100.0",
-    "slate-react": "0.102.0"
+    "slate": "0.94.1",
+    "slate-history": "0.93.0",
+    "slate-hyperscript": "0.81.3",
+    "slate-react": "0.99.0"
   },
   "devDependencies": {
     "@types/lodash.debounce": "4.0.7",
