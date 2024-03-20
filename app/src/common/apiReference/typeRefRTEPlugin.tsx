@@ -102,9 +102,9 @@ export function AddTypeRefTableModal({ editor, success, abort, ...props }: AddTy
                 </FlexRow>
                 <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button color="secondary" caption="Cancel" onClick={ () => abort() } />
+                    <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => abort() } />
                     <Button
-                        color="accent"
+                        color="primary"
                         caption="Ok"
                         isDisabled={ !typePath }
                         onClick={ createTypeRefTableBlock }

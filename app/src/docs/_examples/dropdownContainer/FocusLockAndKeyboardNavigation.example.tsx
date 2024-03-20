@@ -19,7 +19,7 @@ export default function FocusLockAndKeyboardNavigationExample() {
                 </Text>
                 <FlexCell>
                     <FlexRow columnGap="12">
-                        <Button color="accent" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button color="primary" size="30" caption="Some Action" onClick={ () => null } />
                         <Button fill="outline" size="30" color="neutral" caption="Cancel" onClick={ () => null } />
                     </FlexRow>
                 </FlexCell>
