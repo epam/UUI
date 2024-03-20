@@ -21,6 +21,7 @@ import {
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
 import { AnchorDoc } from '../docs/anchor/Anchor.doc';
+import { RichTextEditorSerializersDoc } from '../docs/RichTextEditorSerializers.doc';
 
 export interface DocItem {
     id: string;
@@ -53,6 +54,11 @@ const componentsStructure = sortBy(
         { id: 'flexRow', name: 'Flex Row', component: FlexRowDoc, parentId: 'flexItems', order: 2 },
         { id: 'flexCell', name: 'Flex Cell', component: FlexCellDoc, parentId: 'flexItems', order: 3 },
         { id: 'flexSpacer', name: 'Flex Spacer', component: FlexSpacerDoc, parentId: 'flexItems', order: 4 },
+
+        { id: 'richTextEditor', name: 'Rich Text Editor', parentId: 'components', tags: ['RTE', 'RichTextEditor'] },
+        { id: 'rteOverview', name: 'Overview', component: RichTextEditorDoc, parentId: 'richTextEditor', order: 1, tags: ['RTE', 'RichTextEditor'] },
+        { id: 'rteSerializers', name: 'Serializers', component: RichTextEditorSerializersDoc, parentId: 'richTextEditor', order: 2, tags: ['RTE', 'RichTextEditor'] },
+
         { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
         { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
         { id: 'countIndicator', name: 'Count Indicator', component: CountIndicatorDoc, parentId: 'components' },
@@ -72,7 +78,7 @@ const componentsStructure = sortBy(
         { id: 'radioInput', name: 'Radio Input', component: RadioInputDoc, parentId: 'components' },
         { id: 'rangeDatePicker', name: 'Range Date Picker', component: RangeDatePickerDoc, parentId: 'components' },
         { id: 'rating', name: 'Rating', component: RatingDoc, parentId: 'components' },
-        { id: 'richTextView', name: 'Rich Text View', component: RichTextViewDoc, parentId: 'components' },
+        { id: 'richTextView', name: 'RichTextView', component: RichTextViewDoc, parentId: 'components' },
         { id: 'searchInput', name: 'Search Input', component: SearchInputDoc, parentId: 'components' },
         { id: 'slider', name: 'Slider', component: SliderDoc, parentId: 'components' },
         { id: 'sliderRating', name: 'Slider Rating', component: SliderRatingDoc, parentId: 'components' },
@@ -93,7 +99,6 @@ const componentsStructure = sortBy(
         { id: 'textPlaceholder', name: 'Text Placeholder', component: TextPlaceholderDoc, parentId: 'components' },
         { id: 'timePicker', name: 'Time Picker', component: TimePickerDoc, parentId: 'components' },
         { id: 'tooltip', name: 'Tooltip', component: TooltipDoc, parentId: 'components' },
-        { id: 'richTextEditor', name: 'Rich Text Editor', component: RichTextEditorDoc, parentId: 'components', tags: ['RTE', 'RichTextEditor'] },
         { id: 'form', name: 'Form', component: FormDoc, parentId: 'components', tags: ['useForm'] },
         { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
         { id: 'verticalTabButton', name: 'Vertical Tab Button', component: VerticalTabButtonDoc, parentId: 'components' },

@@ -17,6 +17,8 @@ import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
 
 import css from './SlateEditor.module.scss';
+import { isEditorValueEmpty } from './helpers';
+import { RenderPlaceholderProps } from 'slate-react';
 
 const basePlugins: PlatePlugin[] = [
     ...baseMarksPlugin(),
@@ -57,20 +59,7 @@ function Editor(props: PlateEditorProps) {
                 onKeyDown={ props.onKeyDown }
                 onBlur={ props.onBlur }
                 onFocus={ props.onFocus }
-                // enable placeholder
-                placeholder={ props.placeholder }
-                // customize placeholder render
-                renderPlaceholder={ ({ attributes }) => {
-                    return (
-                        <div
-                            { ...attributes }
-                            style={ { pointerEvents: 'none' } }
-                            className={ css.placeholder }
-                        >
-                            { props.placeholder }
-                        </div>
-                    );
-                } }
+                placeholder={ isEditorValueEmpty(editor.children) ? props.placeholder : undefined }
                 style={ { minHeight: props.minHeight } }
             />
             <Toolbars toolbarPosition={ props.toolbarPosition } />
