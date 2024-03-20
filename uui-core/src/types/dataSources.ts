@@ -168,8 +168,9 @@ export interface PatchItemsOptions<TItem, TId> {
      */
     getPosition?: (item: TItem) => Position<TId>;
 
-    getPatchOrder?: (item: TItem, isNew: boolean) => PatchOrderingType;
+    // getPatchOrder?: (item: TItem, isNew: boolean) => PatchOrderingType;
     sortBy?(item: TItem, sorting: SortingOption): any;
+    getNewItemPosition?: (item: TItem) => PatchOrderingType;
 }
 
 export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
