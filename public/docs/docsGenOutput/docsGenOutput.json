@@ -34156,10 +34156,16 @@
      "raw": "HeaderCellContentProps",
      "print": [
       "interface HeaderCellContentProps extends DndActorRenderParams {",
+      "    /** Called when resizing is started */",
       "    onResizeStart: (e: React.MouseEvent) => void;",
-      "    onResizeEnd: (e: React.MouseEvent) => void;",
+      "    /** Called when resizing is ended */",
+      "    onResizeEnd: (e: MouseEvent) => void;",
+      "    /** Called during the resizing process */",
       "    onResize: (e: MouseEvent) => void;",
+      "    /** Called when sorting */",
       "    toggleSort: (e: React.MouseEvent) => void;",
+      "    /** Indicates that resizing process is active */",
+      "    isResizing: boolean;",
       "}"
      ]
     },
@@ -34167,6 +34173,11 @@
      {
       "uid": "onResizeStart",
       "name": "onResizeStart",
+      "comment": {
+       "raw": [
+        "Called when resizing is started"
+       ]
+      },
       "typeValue": {
        "raw": "(e: React.MouseEvent<Element, MouseEvent>) => void"
       },
@@ -34178,8 +34189,13 @@
      {
       "uid": "onResizeEnd",
       "name": "onResizeEnd",
+      "comment": {
+       "raw": [
+        "Called when resizing is ended"
+       ]
+      },
       "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => void"
+       "raw": "(e: MouseEvent) => void"
       },
       "editor": {
        "type": "func"
@@ -34189,6 +34205,11 @@
      {
       "uid": "onResize",
       "name": "onResize",
+      "comment": {
+       "raw": [
+        "Called during the resizing process"
+       ]
+      },
       "typeValue": {
        "raw": "(e: MouseEvent) => void"
       },
@@ -34200,11 +34221,32 @@
      {
       "uid": "toggleSort",
       "name": "toggleSort",
+      "comment": {
+       "raw": [
+        "Called when sorting"
+       ]
+      },
       "typeValue": {
        "raw": "(e: React.MouseEvent<Element, MouseEvent>) => void"
       },
       "editor": {
        "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "isResizing",
+      "name": "isResizing",
+      "comment": {
+       "raw": [
+        "Indicates that resizing process is active"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": true
      },
@@ -65340,45 +65382,18 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "IconButtonProps",
+     "raw": "IconButtonCoreProps",
      "print": [
       "/** Represents the Core properties of the IconButton component. */",
-      "type IconButtonCoreProps = uuiComponents.IconButtonProps;"
+      "type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'> & {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: '18' | '24' | '30' | '36';",
+      "};"
      ]
     },
     "props": [
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Called when component is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e?: any) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IClickable",
-      "required": false
-     },
-     {
-      "uid": "clickAnalyticsEvent",
-      "name": "clickAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "An analytics event to send (via AnalyticsContext) when component is clicked.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | { [key: string]: any; name: string; }"
-      },
-      "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
      {
       "uid": "tabIndex",
       "name": "tabIndex",
@@ -65414,6 +65429,52 @@
       "required": false
      },
      {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "clickAnalyticsEvent",
+      "name": "clickAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "An analytics event to send (via AnalyticsContext) when component is clicked.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -65424,7 +65485,6 @@
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
       "required": false
      },
@@ -65494,20 +65554,6 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -65587,12 +65633,17 @@
        ]
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "'18' | '36' | '24' | '30'"
       },
       "editor": {
-       "type": "number"
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36"
+       ]
       },
-      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      }
     ],
@@ -65620,7 +65671,7 @@
      "raw": "IconButtonProps",
      "print": [
       "/** Represents the properties of the IconButton component. */",
-      "type IconButtonProps = Omit<IconButtonCoreProps, 'size'> & IconButtonMods;"
+      "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
      ]
     },
     "props": [
@@ -65855,6 +65906,29 @@
       "required": false
      },
      {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '36' | '24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36"
+       ]
+      },
+      "from": "@epam/uui:IconButtonCoreProps",
+      "required": false
+     },
+     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -65878,29 +65952,6 @@
         "error",
         "neutral",
         "secondary"
-       ]
-      },
-      "from": "@epam/uui:IconButtonMods",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36"
        ]
       },
       "from": "@epam/uui:IconButtonMods",
@@ -88231,6 +88282,37 @@
     },
     "props": [
      {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -88245,6 +88327,20 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      },
      {
@@ -88263,23 +88359,6 @@
       "required": false
      },
      {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
       "uid": "isDisabled",
       "name": "isDisabled",
       "comment": {
@@ -88294,21 +88373,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
       "required": false
      },
      {
@@ -88380,20 +88444,6 @@
       "required": false
      },
      {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -88458,7 +88508,7 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui-components:IconButtonProps",
+      "from": "@epam/uui:IconButtonCoreProps",
       "required": false
      },
      {
@@ -88470,10 +88520,16 @@
        ]
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "'36' | '18' | '24' | '30'"
       },
       "editor": {
-       "type": "number"
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36"
+       ]
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -95529,6 +95585,23 @@
     },
     "props": [
      {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -95561,23 +95634,6 @@
       "required": false
      },
      {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
       "uid": "isDisabled",
       "name": "isDisabled",
       "comment": {
@@ -95605,7 +95661,6 @@
       "typeValue": {
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
       "required": false
      },
@@ -95756,7 +95811,7 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui-components:IconButtonProps",
+      "from": "@epam/uui:IconButtonCoreProps",
       "required": false
      },
      {
@@ -95768,10 +95823,16 @@
        ]
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "'36' | '18' | '24' | '30'"
       },
       "editor": {
-       "type": "number"
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36"
+       ]
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
