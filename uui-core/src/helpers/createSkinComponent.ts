@@ -3,7 +3,7 @@ import { CX } from '../types';
 
 export function createSkinComponent<SourceProps, SkinProps = {}>(
     Component: React.ComponentType<SourceProps>,
-    getProps?: (props: Readonly<SkinProps>) => Partial<SkinProps>,
+    getProps?: (props: Readonly<SkinProps>) => Partial<SkinProps | SourceProps>,
     getCx?: (props: Readonly<SkinProps>) => CX,
 ) : (props: SkinProps & React.RefAttributes<any>) => React.ReactElement | null {
     if (!getProps && !getCx) {
