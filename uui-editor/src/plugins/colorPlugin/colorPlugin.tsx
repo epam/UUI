@@ -26,7 +26,6 @@ export const colorPlugin = () => createFontColorPlugin({
     },
     options: {
         floatingBarButton: ColorButton,
-        name: 'color-button',
     },
 });
 
