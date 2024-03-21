@@ -37,7 +37,11 @@ export type NodeTypes = {
 export interface LeafType {
     text: string;
     strikeThrough?: boolean;
-    parentType?: string;
+    parent?: {
+        type: string,
+        index: number,
+        length: number
+    },
     ['uui-richTextEditor-bold']?: boolean;
     ['uui-richTextEditor-italic']?: boolean;
     ['uui-richTextEditor-code']?: boolean;
@@ -45,7 +49,11 @@ export interface LeafType {
 
 export interface BlockType {
     type: string;
-    parentType?: string;
+    parent?: {
+        type: string,
+        index: number,
+        length: number
+    },
     url?: string;
     caption?: Array<BlockType | LeafType>;
     language?: string;
