@@ -5,23 +5,16 @@
     padding-top: 6px;
 
     .group-title {
-        margin-bottom: -6px;
+        margin-bottom: 6px;
 
         > .group-title-text {
             padding-top: 0;
+            padding-bottom: 0;
         }
 
 
         > .group-title-badge {
             top: -3px;
-
-            > :global(.uui-caption) {
-                font-family: var(--uui-font); //TODO: rework component
-                font-weight: 600;
-                padding-left: 0;
-                padding-right: 0;
-                color: var(--uui-neutral-70);
-            }
         }
 
         &:not(:first-child) {
