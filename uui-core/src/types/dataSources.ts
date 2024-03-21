@@ -2,6 +2,7 @@ import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
 import { IImmutableMap, IMap } from './objects';
 import { PatchOrderingType } from '../data';
+import { SortConfig } from '../data/processing/views/tree/hooks/strategies/types';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -146,31 +147,25 @@ export type PositionType = 'initial' | 'top' | 'bottom';
  */
 export type Position<TId> = PositionType | { after: TId };
 
-/**
- * Patching tree configuration.
- */
-export interface PatchItemsOptions<TItem, TId> {
-    /**
-     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
-     */
-    patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
     /**
      * To enable deleting of the items, it is required to specify getter for deleted state.
      */
-    isDeleted?: (item: TItem) => boolean;
-    /**
-     * To specify the position an item to be moved, it is required to provide a `getPosition` function.
-     * @returns `initial` - doesn't move an element, only updates its content;
-     * @returns `top` - moves an element to the top of the children list;
-     * @returns `bottom` - moves an element to the bottom of the children list;
-     * @returns `{ after: TId }` - moves an element after an element with id === `after`.
-     * @default 'initial'
-     */
-    getPosition?: (item: TItem) => Position<TId>;
-
-    // getPatchOrder?: (item: TItem, isNew: boolean) => PatchOrderingType;
-    sortBy?(item: TItem, sorting: SortingOption): any;
+    isDeleted?(item: TItem): boolean;
     getNewItemPosition?: (item: TItem) => PatchOrderingType;
+    patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+}
+
+/**
+ * Patching tree configuration.
+ */
+export interface ExtendedPatchItemsOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchItemsOptions<TItem, TId>, 'patchItems'> {
+    /**
+     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
+     */
+    sortedPatch?: IMap<TId, TItem[]>;
+    patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+    sorting: DataSourceState<TFilter, TId>['sorting'];
 }
 
 export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {

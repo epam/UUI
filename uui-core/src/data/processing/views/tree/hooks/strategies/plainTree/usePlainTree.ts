@@ -71,7 +71,9 @@ export function usePlainTree<TItem, TId, TFilter = any>(
         tree: treeWithSelectedOnly,
         patchItems: showSelectedOnly ? null : restProps.patchItems,
         isDeleted: restProps.isDeleted,
-        getPosition: restProps.getPosition,
+        getNewItemPosition: restProps.getNewItemPosition,
+        sorting: dataSourceState.sorting,
+        sortBy: restProps.sortBy,
     });
 
     const reload = useCallback(() => {

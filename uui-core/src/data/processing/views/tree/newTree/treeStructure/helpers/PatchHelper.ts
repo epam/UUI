@@ -1,51 +1,121 @@
+import { PatchOrderingTypes } from '../../../PatchOrderingMap';
+import { buildComparators, composeComparetors } from '../../../helpers';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap } from './map';
+import { cloneMap, newMap } from './map';
 import { InsertIntoPositionOptions, PatchItemsIntoTreeStructureOptions } from './types';
 
 export class PatchHelper {
     public static patchItems<TItem, TId>({
-        itemsMap, treeStructure, patchItems, isDeleted, getPosition = () => 'initial',
+        itemsMap,
+        treeStructure,
+        sortedPatch,
+        patchItemsAtLastSort,
+        isDeleted,
+        getNewItemPosition = () => PatchOrderingTypes.TOP,
+        sorting,
+        sortBy,
     }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
-        if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, newItems: [] };
+        if (!sortedPatch || !sortedPatch.size) return { treeStructure, itemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
 
         let isPatched = false;
         let newItemsMap = itemsMap;
         const newItems: TItem[] = [];
-        for (const [id, item] of patchItems) {
-            const parentId = treeStructure.getParams().getParentId?.(item) ?? undefined;
+        const comparators = buildComparators({ sorting, sortBy });
+        const composedComparator = composeComparetors(comparators);
 
-            if (isDeleted?.(item)) {
-                const children = [...(newByParentId.get(parentId) ?? [])];
-                newByParentId.set(parentId, this.deleteFromChildren(id, children));
-                newByParentId.delete(id);
-                isPatched = true;
-                return;
+        const deletedMap = newMap({ complexIds: treeStructure.getParams().complexIds });
+
+        for (const [patchParentId, sortedPatchItems] of sortedPatch) {
+            if (!newByParentId.has(patchParentId)) {
+                newByParentId.set(patchParentId, sortedPatchItems.map((item) => treeStructure.getParams().getId(item)));
+                newItems.push(...sortedPatchItems);
+                newItemsMap = newItemsMap.setItems(sortedPatchItems);
+                continue;
             }
+            let sortedItems: TId[] = [];
+            const itemIds = newByParentId.get(patchParentId);
+            for (let i = 0, k = 0; i < sortedPatchItems.length; i++) {
+                const patchItemId = treeStructure.getParams().getId(sortedPatchItems[i]);
+                if (isDeleted?.(sortedPatchItems[i])) {
+                    deletedMap.set(patchItemId, true);
+                }
+                for (let j = k; j < itemIds.length; j ++) {
+                    const patchItemParentId = treeStructure.getParams().getParentId?.(sortedPatchItems[i]);
+                    const inOriginalTree = itemsMap.has(patchItemId);
+                    const inPatchBeforeSort = patchItemsAtLastSort.has(patchItemId);
 
-            const existingItem = newItemsMap.get(id);
-            newItemsMap = newItemsMap.set(id, item);
-            newItems.push(item);
-            const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) ?? undefined : undefined;
-            const children = newByParentId.get(parentId) ?? [];
+                    const prevPatchItemParentId = inPatchBeforeSort
+                        ? treeStructure.getParams().getParentId?.(patchItemsAtLastSort.get(patchItemId))
+                        : undefined;
+                    const originalItemParentId = inOriginalTree ? treeStructure.getParams().getParentId?.(itemsMap.get(patchItemId)) : undefined;
 
-            const newChildren = this.insertIntoPosition({ params: treeStructure.getParams(), item, ids: children, position: getPosition(item) });
-            newByParentId.set(parentId, newChildren);
-            if (existingItem && existingItemParentId !== parentId) {
-                const prevParentChildren = treeStructure.byParentId.get(existingItemParentId) ?? [];
-                newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
+                    const isNew = (!inPatchBeforeSort && !inOriginalTree)
+                        || (inPatchBeforeSort && patchItemParentId !== prevPatchItemParentId)
+                        || (inOriginalTree && patchItemId !== originalItemParentId);
+
+                    if (inOriginalTree && patchItemId !== originalItemParentId) {
+                        const originalItems = newByParentId.get(originalItemParentId);
+                        newByParentId.set(originalItemParentId, originalItems.filter((id) => patchItemId !== id));
+                    }
+
+                    if (isNew) {
+                        const position = getNewItemPosition(sortedPatchItems[i]);
+                        if (position === PatchOrderingTypes.TOP) {
+                            sortedItems.unshift(patchItemId);
+                        } else {
+                            sortedItems.push(patchItemId);
+                        }
+                        newItemsMap = newItemsMap.set(patchItemId, sortedPatchItems[i]);
+                        isPatched = true;
+                        break;
+                    }
+
+                    if (deletedMap.has(patchItemId)) {
+                        isPatched = true;
+                        break;
+                    }
+
+                    let patchItemToCompare;
+                    if (inPatchBeforeSort) {
+                        patchItemToCompare = patchItemsAtLastSort.get(patchItemId);
+                    } else if (inOriginalTree) {
+                        patchItemToCompare = itemsMap.get(patchItemId);
+                    } else {
+                        patchItemToCompare = sortedPatchItems[i];
+                    }
+
+                    const item = itemsMap.get(itemIds[j]);
+                    const result = composedComparator(patchItemToCompare, item);
+                    if (result === -1) {
+                        sortedItems.push(patchItemId);
+                        newItemsMap = newItemsMap.set(patchItemId, sortedPatchItems[i]);
+                        isPatched = true;
+                        k = j;
+                        break;
+                    } else {
+                        if (!deletedMap.has(patchItemId)) {
+                            sortedItems.push(treeStructure.getParams().getId(item));
+                        } else {
+                            isPatched = true;
+                        }
+                    }
+                }
+
+                if (i === sortedPatchItems.length - 1 && k !== itemIds.length - 1) {
+                    sortedItems = sortedItems.concat(itemIds.slice(k, itemIds.length));
+                }
             }
-            isPatched = true;
+            newByParentId.set(patchParentId, sortedItems);
         }
 
         if (!isPatched) {
-            return { treeStructure, itemsMap };
+            return { treeStructure, itemsMap, newItems };
         }
 
         const newNodeInfoById = cloneMap(treeStructure.nodeInfoById);
-
         for (const [parentId, ids] of newByParentId) {
             if (treeStructure.nodeInfoById.has(parentId)) {
                 const prevNodeInfo = treeStructure.nodeInfoById.get(parentId);
@@ -68,6 +138,70 @@ export class PatchHelper {
             newItems,
         };
     }
+    // public static patchItems1<TItem, TId>({
+    //     itemsMap, treeStructure, patchItems, isDeleted, getPosition = () => 'initial',
+    // }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
+    //     if (!patchItems || !patchItems.size) return { treeStructure, itemsMap, newItems: [] };
+
+    //     const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
+
+    //     let isPatched = false;
+    //     let newItemsMap = itemsMap;
+    //     const newItems: TItem[] = [];
+    //     for (const [id, item] of patchItems) {
+    //         const parentId = treeStructure.getParams().getParentId?.(item) ?? undefined;
+
+    //         if (isDeleted?.(item)) {
+    //             const children = [...(newByParentId.get(parentId) ?? [])];
+    //             newByParentId.set(parentId, this.deleteFromChildren(id, children));
+    //             newByParentId.delete(id);
+    //             isPatched = true;
+    //             return;
+    //         }
+
+    //         const existingItem = newItemsMap.get(id);
+    //         newItemsMap = newItemsMap.set(id, item);
+    //         newItems.push(item);
+    //         const existingItemParentId = existingItem ? treeStructure.getParams().getParentId?.(existingItem) ?? undefined : undefined;
+    //         const children = newByParentId.get(parentId) ?? [];
+
+    //         const newChildren = this.insertIntoPosition({ params: treeStructure.getParams(), item, ids: children, position: getPosition(item) });
+    //         newByParentId.set(parentId, newChildren);
+    //         if (existingItem && existingItemParentId !== parentId) {
+    //             const prevParentChildren = treeStructure.byParentId.get(existingItemParentId) ?? [];
+    //             newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
+    //         }
+    //         isPatched = true;
+    //     }
+
+    //     if (!isPatched) {
+    //         return { treeStructure, itemsMap };
+    //     }
+
+    //     const newNodeInfoById = cloneMap(treeStructure.nodeInfoById);
+
+    //     for (const [parentId, ids] of newByParentId) {
+    //         if (treeStructure.nodeInfoById.has(parentId)) {
+    //             const prevNodeInfo = treeStructure.nodeInfoById.get(parentId);
+    //             if (prevNodeInfo.count !== undefined) {
+    //                 newNodeInfoById.set(parentId, { ...prevNodeInfo, count: ids.length });
+    //             } else {
+    //                 newNodeInfoById.set(parentId, prevNodeInfo);
+    //             }
+    //         }
+    //     }
+
+    //     return {
+    //         treeStructure: TreeStructure.create(
+    //             treeStructure.getParams(),
+    //             ItemsAccessor.toItemsAccessor(newItemsMap),
+    //             newByParentId,
+    //             newNodeInfoById,
+    //         ),
+    //         itemsMap: newItemsMap,
+    //         newItems,
+    //     };
+    // }
 
     private static deleteFromChildren<TId>(id: TId, children: TId[]) {
         const foundIndex = children.findIndex((childId) => childId === id);
