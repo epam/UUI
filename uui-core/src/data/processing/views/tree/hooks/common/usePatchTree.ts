@@ -12,11 +12,15 @@ export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItems
 }
 
 const groupByParentId = <TItem, TId>(
-    patchItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+    patchItems: IMap<TId, TItem> | IImmutableMap<TId, TItem> | undefined,
     getParentId?: (item: TItem) => TId,
     complexIds?: boolean,
 ): IMap<TId, TItem[]> => {
     const patchByParentId = newMap<TId, TItem[]>({ getParentId, complexIds });
+    if (!patchItems) {
+        return patchByParentId;
+    }
+
     for (const [, item] of patchItems) {
         const parentId = getParentId?.(item);
         if (!patchByParentId.has(parentId)) {
@@ -50,9 +54,9 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
             const bId = getId(b);
 
             if (!patchItemsAtLastSort.has(bId) && !patchItemsAtLastSort.has(aId)) {
-                const aPosition = getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
+                const aPosition = getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? -1 : 1;
                 const bPosition = getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
-                return (aPosition === bPosition) ? -aPosition : aPosition - bPosition;
+                return (aPosition === bPosition) ? 1 : aPosition - bPosition;
             }
 
             if (!patchItemsAtLastSort.has(bId)) {
@@ -96,21 +100,30 @@ const getSortedPatchByParentId = <TItem, TId, TFilter>(
     complexIds?: boolean,
 ) => {
     const grouped = groupByParentId(patchItems, getParentId, complexIds);
-    return sortPatchByParentId(grouped, getNewItemPosition, patchItemsAtLastSort ?? newMap({ complexIds }), sortBy, sorting, getId, getParentId);
+    return sortPatchByParentId(grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, getId, getParentId);
 };
 
 export function usePatchTree<TItem, TId, TFilter = any>(
-    { tree, patchItems, getNewItemPosition, isDeleted, sorting, sortBy }: UsePatchTreeProps<TItem, TId, TFilter>,
+    {
+        tree,
+        patchItems,
+        getNewItemPosition = () => PatchOrderingTypes.TOP,
+        isDeleted,
+        sorting,
+        sortBy,
+    }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
-    const patchItemsAtLastSort = useMemo(() => patchItems, [sorting]);
-    const prevPatchItemsAtLastSort = useSimplePrevious(patchItemsAtLastSort);
-
+    const prevPatchItems = useSimplePrevious(patchItems);
     const params = tree.visible.getParams();
-    const actualPatchItemsAtLastSort = !prevPatchItemsAtLastSort ? newMap<TId, TItem>({ complexIds: params.complexIds }) : patchItemsAtLastSort;
+
+    const patchItemsAtLastSort = useMemo(() => {
+        return prevPatchItems === null ? newMap<TId, TItem>({ complexIds: params.complexIds }) : patchItems;
+    }, [sorting]);
+
     const sortedPatch = useMemo(
         () => getSortedPatchByParentId(
             patchItems,
-            actualPatchItemsAtLastSort,
+            patchItemsAtLastSort,
             getNewItemPosition,
             sortBy,
             sorting,
@@ -124,7 +137,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
     return useMemo(() => {
         return tree.patchItems({
             sortedPatch,
-            patchItemsAtLastSort: actualPatchItemsAtLastSort,
+            patchItemsAtLastSort,
             getNewItemPosition,
             isDeleted,
             sorting,

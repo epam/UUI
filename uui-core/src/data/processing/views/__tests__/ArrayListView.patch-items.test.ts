@@ -31,8 +31,10 @@ describe('ArrayListView - patch items', () => {
         return ItemsMap.fromObject<string, LocationItem>(itemsObj, { getId: ({ id }) => id });
     }
 
-    // @TODO: discuss bug with patchItems initial and tree from itemsMap!!!
-    it.each([undefined, () => PatchOrderingTypes.TOP])
+    it.each([
+        undefined,
+        () => PatchOrderingTypes.TOP,
+    ])
     ('should add items to the beginning of the list if item is not in list', async (getNewItemPosition) => {
         const dataSource = getArrayLocationsDS({
             patchItems: createItemsMap({
@@ -42,7 +44,23 @@ describe('ArrayListView - patch items', () => {
                     type: 'continent',
                     __typename: 'Location',
                     childCount: 0,
-                } }),
+                },
+                AN: {
+                    id: 'c-AN',
+                    name: 'Antarctica',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+                NA: {
+                    id: 'c-NA',
+                    name: 'North America',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+            }),
+
             getNewItemPosition,
         });
 
@@ -59,6 +77,8 @@ describe('ArrayListView - patch items', () => {
         await waitFor(() => {
             const view = hookResult.result.current;
             expectViewToLookLike(view, [
+                { id: 'c-NA' },
+                { id: 'c-AN' },
                 { id: 'c-AS' },
                 { id: 'c-AF' },
                 { id: 'c-EU' },
@@ -66,80 +86,222 @@ describe('ArrayListView - patch items', () => {
         });
 
         const view = hookResult.result.current;
-        expect(view.getListProps().rowsCount).toEqual(3);
+        expect(view.getListProps().rowsCount).toEqual(5);
     });
 
-    // it('should add items to the beginning of the list if position is top', async () => {
-    //     const dataSource = getArrayLocationsDS({
-    //         patchItems: createItemsMap({
-    //             AS: {
-    //                 id: 'c-AS',
-    //                 name: 'Asia',
-    //                 type: 'continent',
-    //                 __typename: 'Location',
-    //                 childCount: 0,
-    //             } }),
-    //         getPosition: () => 'top',
-    //     });
+    it('should add items to the end of the list if item is not in list and position is BOTTOM', async () => {
+        const dataSource = getArrayLocationsDS({
+            patchItems: createItemsMap({
+                AS: {
+                    id: 'c-AS',
+                    name: 'Asia',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+                AN: {
+                    id: 'c-AN',
+                    name: 'Antarctica',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+                NA: {
+                    id: 'c-NA',
+                    name: 'North America',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+            }),
 
-    //     currentValue.visibleCount = 5;
-    //     const hookResult = renderHook(
-    //         ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-    //         { initialProps: {
-    //             value: currentValue,
-    //             onValueChange: onValueChanged,
-    //             props: {},
-    //         } },
-    //     );
+            getNewItemPosition: () => PatchOrderingTypes.BOTTOM,
+        });
 
-    //     await waitFor(() => {
-    //         const view = hookResult.result.current;
-    //         expectViewToLookLike(view, [
-    //             { id: 'c-AS' },
-    //             { id: 'c-AF' },
-    //             { id: 'c-EU' },
-    //         ]);
-    //     });
+        currentValue.visibleCount = 5;
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
 
-    //     const view = hookResult.result.current;
-    //     expect(view.getListProps().rowsCount).toEqual(3);
-    // });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+                { id: 'c-AS' },
+                { id: 'c-AN' },
+                { id: 'c-NA' },
+            ]);
+        });
 
-    // it('should add items to the end of the list if bottom position is passed', async () => {
-    //     const dataSource = getArrayLocationsDS({
-    //         patchItems: createItemsMap({
-    //             AS: {
-    //                 id: 'c-AS',
-    //                 name: 'Asia',
-    //                 type: 'continent',
-    //                 __typename: 'Location',
-    //                 childCount: 0,
-    //             } }),
-    //         getPosition: () => 'bottom',
-    //     });
+        const view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(5);
+    });
 
-    //     currentValue.visibleCount = 5;
-    //     const hookResult = renderHook(
-    //         ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-    //         { initialProps: {
-    //             value: currentValue,
-    //             onValueChange: onValueChanged,
-    //             props: {},
-    //         } },
-    //     );
+    it.each([
+        undefined,
+        () => PatchOrderingTypes.TOP,
+    ])('should add items to the top by parent', async (getNewItemPosition) => {
+        const patchItems = createItemsMap({
+            AS: {
+                id: 'c-AS',
+                name: 'Asia',
+                type: 'continent',
+                __typename: 'Location',
+                parentId: 'c-AF',
+                childCount: 0,
+            },
+            AN: {
+                id: 'c-AN',
+                name: 'Antarctica',
+                type: 'continent',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            NA: {
+                id: 'c-NA',
+                name: 'North America',
+                type: 'continent',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 0,
+            },
+        });
 
-    //     await waitFor(() => {
-    //         const view = hookResult.result.current;
-    //         expectViewToLookLike(view, [
-    //             { id: 'c-AF' },
-    //             { id: 'c-EU' },
-    //             { id: 'c-AS' },
-    //         ]);
-    //     });
+        const dataSource = getArrayLocationsDS({});
 
-    //     const view = hookResult.result.current;
-    //     expect(view.getListProps().rowsCount).toEqual(3);
-    // });
+        currentValue.visibleCount = 10;
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {
+                    patchItems, getNewItemPosition,
+                },
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(2);
+
+        const rowAF = view.getVisibleRows()[0];
+        await act(() => {
+            rowAF.onFold?.(rowAF);
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems, getNewItemPosition } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-AF' },
+                    { id: 'c-NA', parentId: 'c-AF' },
+                    { id: 'c-AN', parentId: 'c-AF' },
+                    { id: 'c-AS', parentId: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'GM', parentId: 'c-AF' },
+                    { id: 'c-EU' },
+                ],
+            );
+        });
+    });
+
+    it('should add items to the bottom by parent', async () => {
+        const getNewItemPosition = () => PatchOrderingTypes.BOTTOM;
+        const patchItems = createItemsMap({
+            AS: {
+                id: 'c-AS',
+                name: 'Asia',
+                type: 'continent',
+                __typename: 'Location',
+                parentId: 'c-AF',
+                childCount: 0,
+            },
+            AN: {
+                id: 'c-AN',
+                name: 'Antarctica',
+                type: 'continent',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            NA: {
+                id: 'c-NA',
+                name: 'North America',
+                type: 'continent',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 0,
+            },
+        });
+
+        const dataSource = getArrayLocationsDS({});
+
+        currentValue.visibleCount = 10;
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {
+                    patchItems, getNewItemPosition,
+                },
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(2);
+
+        const rowAF = view.getVisibleRows()[0];
+        await act(() => {
+            rowAF.onFold?.(rowAF);
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems, getNewItemPosition } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'GM', parentId: 'c-AF' },
+                    { id: 'c-AS', parentId: 'c-AF' },
+                    { id: 'c-AN', parentId: 'c-AF' },
+                    { id: 'c-NA', parentId: 'c-AF' },
+                    { id: 'c-EU' },
+                ],
+            );
+        });
+    });
 
     // it('should add items by parent', async () => {
     //     const dataSource = getArrayLocationsDS({

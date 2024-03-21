@@ -37,6 +37,7 @@ export class PatchHelper {
             }
             let sortedItems: TId[] = [];
             const itemIds = newByParentId.get(patchParentId);
+            const newBottomItems: TId[] = [];
             for (let i = 0, k = 0; i < sortedPatchItems.length; i++) {
                 const patchItemId = treeStructure.getParams().getId(sortedPatchItems[i]);
                 if (isDeleted?.(sortedPatchItems[i])) {
@@ -56,7 +57,7 @@ export class PatchHelper {
                         || (inPatchBeforeSort && patchItemParentId !== prevPatchItemParentId)
                         || (inOriginalTree && patchItemId !== originalItemParentId);
 
-                    if (inOriginalTree && patchItemId !== originalItemParentId) {
+                    if (inOriginalTree && patchItemParentId !== originalItemParentId) {
                         const originalItems = newByParentId.get(originalItemParentId);
                         newByParentId.set(originalItemParentId, originalItems.filter((id) => patchItemId !== id));
                     }
@@ -66,7 +67,7 @@ export class PatchHelper {
                         if (position === PatchOrderingTypes.TOP) {
                             sortedItems.unshift(patchItemId);
                         } else {
-                            sortedItems.push(patchItemId);
+                            newBottomItems.push(patchItemId);
                         }
                         newItemsMap = newItemsMap.set(patchItemId, sortedPatchItems[i]);
                         isPatched = true;
@@ -108,6 +109,7 @@ export class PatchHelper {
                     sortedItems = sortedItems.concat(itemIds.slice(k, itemIds.length));
                 }
             }
+            sortedItems = sortedItems.concat(newBottomItems);
             newByParentId.set(patchParentId, sortedItems);
         }
 
