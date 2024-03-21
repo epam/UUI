@@ -42,4 +42,4 @@ next-app/yarn-error.log*
 public/docs/docsGenOutput/docsGenStats.json
 
 #icon source
-/icons/
+/icons-source/
