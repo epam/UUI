@@ -24,11 +24,10 @@ import {
     italicPlugin,
     PARAGRAPH_TYPE,
 } from './plugins';
-import { createDeserializeMdPlugin, deserializeMd } from '@udecode/plate-serializer-md';
 import { remarkNodeTypesMap, serialize } from './md-serializer';
 import { createTempEditor, isEditorValueEmpty } from './helpers';
 import { BaseEditor, Editor } from 'slate';
-import { createAutoformatPlugin } from './plugins/autoformatPlugin/autoformatPlugin';
+import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin/deserializeMdPlugin';
 
 type SerializerType = 'html' | 'md';
 

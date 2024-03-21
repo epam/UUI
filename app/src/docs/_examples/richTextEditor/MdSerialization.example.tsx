@@ -39,7 +39,7 @@ const plugins = [
 
 export default function SlateEditorBasicExample() {
     const [value, setValue] = useState<EditorValue>(
-        deserializeMd(demoData.slateMdSerializationInitialData),
+        () => deserializeMd(demoData.slateMdSerializationInitialData),
     );
 
     const [mdContent, setMdContent] = useState('');
@@ -86,7 +86,7 @@ export default function SlateEditorBasicExample() {
                         onValueChange={ (v) => {
                             setMdContent(v);
                         } }
-                        rows={ 16 }
+                        rows={ 26 }
                         placeholder="Please type markdown here"
                     />
                 )}
