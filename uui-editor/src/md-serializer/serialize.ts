@@ -71,13 +71,17 @@ export function serialize(
                     );
                 }
 
+                const listProps = isList || selfIsList ? {
+                    index,
+                    length: all.length,
+                } : {};
+
                 return serialize(
                     {
                         ...c,
                         parent: {
                             type,
-                            index,
-                            length: all.length,
+                            ...listProps,
                         },
                     },
                     {
@@ -107,6 +111,8 @@ export function serialize(
                 );
             }).join('');
     }
+
+    console.log('chunk', chunk);
 
     // This is pretty fragile code, check the long comment where we iterate over children
     if (
@@ -212,14 +218,14 @@ export function serialize(
             const emptyBefore = isNewLine ? '\n' : '';
 
             const isLastItem = chunk.parent
-                && (chunk.parent.length - 1 === chunk.parent.index)
+                && (chunk.parent.length! - 1 === chunk.parent.index)
                 && (chunk as BlockType).children.length === 1;
             const emptyAfter = isLastItem && listDepth === 0 ? '\n' : '';
 
-            return `${emptyBefore}${spacer}${isOL ? '1.' : '-'} ${children}${emptyAfter}`;
+            return `${emptyBefore}${spacer}${isOL ? '1.' : '-'} ${children}`;
 
         case nodeTypes.paragraph:
-            return `${children}\n`;
+            return `\n${children}\n`;
 
         case nodeTypes.thematic_break:
             return '\n---\n';
