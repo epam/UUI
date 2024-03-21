@@ -94,7 +94,7 @@ let outputFolder = '';
 
 switch (iconType) {
     case 'icons':
-        inputFolder = 'icons/process_icons';
+        inputFolder = 'icons-source';
         outputFolder = 'epam-assets/icons';
         break;
 }
