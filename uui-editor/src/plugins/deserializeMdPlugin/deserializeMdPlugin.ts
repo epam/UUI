@@ -106,7 +106,7 @@ const htmlRule: RemarkElementRule<Value> = {
     transform: (node, options) => {
         return {
             type: getPluginType(options.editor, ELEMENT_PARAGRAPH),
-            children: [{ text: node.value?.replace(/<br>/g, '') || '' }],
+            children: [{ text: node.value?.replace(/(<br>)|(<br\/>)/g, '') || '' }],
         };
     },
 };
