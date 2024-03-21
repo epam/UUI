@@ -112,8 +112,6 @@ export function serialize(
             }).join('');
     }
 
-    console.log('chunk', chunk);
-
     // This is pretty fragile code, check the long comment where we iterate over children
     if (
         !ignoreParagraphNewline
