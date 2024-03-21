@@ -22,6 +22,7 @@
     * Fixed fetching missing parents for selected element in PickerInput.
 * [PickerInput]: fixed 'unknown records' removing
 * [PickerInput]: Fixed focus reset after clicking outside
+* [PickerInput]: fixed unnecessary PickerInput `onValueChange` calls on `dataSourceState` change(search, focusedIndex change) in single select with `valueType=entity`.
 * [PickerList]: aligned caption by the left side in the footer.
 * [DropdownContainer]: disable scroll to the focused element after dropdown close
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
