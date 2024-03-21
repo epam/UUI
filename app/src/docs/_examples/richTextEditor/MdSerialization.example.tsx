@@ -25,7 +25,7 @@ const switchItems = [{
     caption: 'Slate',
 }, {
     id: 'md',
-    caption: 'Markdow',
+    caption: 'Markdown',
 }];
 
 const plugins = [
