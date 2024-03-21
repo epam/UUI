@@ -191,13 +191,8 @@ export function ProjectTableDemo() {
             getChildCount: (task) => task.childCount,
             backgroundReload: true,
             patchItems: value.items,
-            getPatchOrder: (item: ProjectTask, isNew: boolean) => {
-                const ordering = value.ordering.get(item.id);
-                if (ordering) {
-                    return ordering;
-                }
-                return (isNew ? PatchOrderingTypes.TOP : PatchOrderingTypes.INITIAL);
-            },
+
+            getNewItemPosition: () => PatchOrderingTypes.TOP,
             sortBy: (item, sorting) => {
                 return item[sorting.field as keyof ProjectTask];
             },

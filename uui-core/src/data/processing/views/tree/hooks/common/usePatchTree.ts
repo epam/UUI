@@ -2,15 +2,13 @@ import { useMemo } from 'react';
 import { TreeState, cloneMap, newMap } from '../../newTree';
 import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions } from '../../../../../../types';
 import { SortConfig } from '../strategies/types';
-import { buildComparators, buildSorter, composeComparetors } from '../../helpers';
+import { buildComparators, composeComparetors } from '../../helpers';
 import { PatchOrderingTypes } from '../../PatchOrderingMap';
+import { useSimplePrevious } from '../../../../../../hooks';
 
 export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId>, SortConfig<TItem> {
     tree: TreeState<TItem, TId>;
     sorting: DataSourceState<TFilter, TId>['sorting'];
-    complexIds?: boolean;
-    getParentId?: (item: TItem) => TId;
-    getId: (item: TItem) => TId;
 }
 
 const groupByParentId = <TItem, TId>(
@@ -98,20 +96,40 @@ const getSortedPatchByParentId = <TItem, TId, TFilter>(
     complexIds?: boolean,
 ) => {
     const grouped = groupByParentId(patchItems, getParentId, complexIds);
-    return sortPatchByParentId(grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, getId, getParentId);
+    return sortPatchByParentId(grouped, getNewItemPosition, patchItemsAtLastSort ?? newMap({ complexIds }), sortBy, sorting, getId, getParentId);
 };
 
 export function usePatchTree<TItem, TId, TFilter = any>(
-    { tree, patchItems, getNewItemPosition, isDeleted, getPosition, sorting, sortBy, getId, getParentId, complexIds }: UsePatchTreeProps<TItem, TId, TFilter>,
+    { tree, patchItems, getNewItemPosition, isDeleted, sorting, sortBy }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
     const patchItemsAtLastSort = useMemo(() => patchItems, [sorting]);
+    const prevPatchItemsAtLastSort = useSimplePrevious(patchItemsAtLastSort);
 
+    const params = tree.visible.getParams();
+    const actualPatchItemsAtLastSort = !prevPatchItemsAtLastSort ? newMap<TId, TItem>({ complexIds: params.complexIds }) : patchItemsAtLastSort;
     const sortedPatch = useMemo(
-        () => getSortedPatchByParentId(patchItems, patchItemsAtLastSort, getNewItemPosition, sortBy, sorting, getId, getParentId, complexIds),
+        () => getSortedPatchByParentId(
+            patchItems,
+            actualPatchItemsAtLastSort,
+            getNewItemPosition,
+            sortBy,
+            sorting,
+            params.getId,
+            params.getParentId,
+            params.complexIds,
+        ),
         [patchItems, sorting],
     );
 
     return useMemo(() => {
-        return tree.patchItems({ patchItems, isDeleted, getPosition });
+        return tree.patchItems({
+            sortedPatch,
+            patchItemsAtLastSort: actualPatchItemsAtLastSort,
+            getNewItemPosition,
+            isDeleted,
+            sorting,
+            sortBy,
+            ...tree.visible.getParams(),
+        });
     }, [tree, patchItems]);
 }

@@ -11,7 +11,7 @@ import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
 import { PatchItemsIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
-import { PatchItemsOptions } from '../../../../../../types';
+import { ExtendedPatchItemsOptions } from '../../../../../../types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -167,13 +167,18 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    private patchItemsTreeStructure({ treeStructure, itemsMap, patchItems, isDeleted, getPosition }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems({
+    private patchItemsTreeStructure(
+        { treeStructure, itemsMap, sortedPatch, patchItemsAtLastSort, isDeleted, getNewItemPosition, sorting, sortBy }: PatchItemsIntoTreeStructureOptions<TItem, TId>,
+    ) {
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems<TItem, TId>({
             treeStructure,
             itemsMap: itemsMap,
-            patchItems,
+            sortedPatch,
+            getNewItemPosition,
+            patchItemsAtLastSort,
             isDeleted,
-            getPosition,
+            sorting,
+            sortBy,
         });
 
         if (newTreeStructure === treeStructure && newItemsMap === itemsMap && !newItems.length) {
@@ -183,21 +188,29 @@ export class TreeState<TItem, TId> {
         return { treeStructure: newTreeStructure, itemsMap: newItemsMap };
     }
 
-    public patchItems({ patchItems, isDeleted, getPosition }: PatchItemsOptions<TItem, TId>): TreeState<TItem, TId> {
+    public patchItems(
+        { sortedPatch, patchItemsAtLastSort, isDeleted, getNewItemPosition, sorting, sortBy }: ExtendedPatchItemsOptions<TItem, TId>,
+    ): TreeState<TItem, TId> {
         const { treeStructure: newFull } = this.patchItemsTreeStructure({
             treeStructure: this.getTreeStructure('full'),
             itemsMap: this.itemsMap,
-            patchItems,
+            sortedPatch,
+            patchItemsAtLastSort,
             isDeleted,
-            getPosition,
+            getNewItemPosition,
+            sorting,
+            sortBy,
         });
 
         const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchItemsTreeStructure({
             treeStructure: this.getTreeStructure('visible'),
             itemsMap: this.itemsMap,
-            patchItems,
+            sortedPatch,
+            patchItemsAtLastSort,
             isDeleted,
-            getPosition,
+            getNewItemPosition,
+            sorting,
+            sortBy,
         });
 
         if (this.getTreeStructure('full') === newFull && this.getTreeStructure('visible') === newVisible) {
