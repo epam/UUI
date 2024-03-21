@@ -17,7 +17,7 @@ const isLeafNode = (node: BlockType | LeafType): node is LeafType => {
 
 const VOID_ELEMENTS: Array<keyof NodeTypes> = ['thematic_break', 'image'];
 
-const BREAK_TAG = '<br>';
+const BREAK_TAG = '<br/>';
 
 export function serialize(
     chunk: BlockType | LeafType,
@@ -45,7 +45,7 @@ export function serialize(
 
     if (!isLeafNode(chunk)) {
         children = chunk.children
-            .map((c: BlockType | LeafType) => {
+            .map((c: BlockType | LeafType, index, all) => {
                 const isList = !isLeafNode(c)
                     ? (LIST_TYPES as string[]).includes(c.type || '')
                     : false;
@@ -71,10 +71,18 @@ export function serialize(
                     );
                 }
 
+                const listProps = isList || selfIsList ? {
+                    index,
+                    length: all.length,
+                } : {};
+
                 return serialize(
                     {
                         ...c,
-                        parentType: type,
+                        parent: {
+                            type,
+                            ...listProps,
+                        },
                     },
                     {
                         nodeTypes,
@@ -108,7 +116,7 @@ export function serialize(
     if (
         !ignoreParagraphNewline
          && (text === '' || text === '\n')
-          && chunk.parentType === nodeTypes.paragraph
+          && chunk.parent?.type === nodeTypes.paragraph
     ) {
         type = nodeTypes.paragraph;
         children = BREAK_TAG;
@@ -185,10 +193,11 @@ export function serialize(
 
         case nodeTypes.ul_list:
         case nodeTypes.ol_list:
-            return `\n${children}`;
+            const newLineAfter = listDepth === 0 ? '\n' : '';
+            return `${children}${newLineAfter}`;
 
         case nodeTypes.listItem:
-            const isOL = chunk && chunk.parentType === nodeTypes.ol_list;
+            const isOL = chunk && chunk.parent?.type === nodeTypes.ol_list;
 
             let spacer = '';
             for (let k = 0; listDepth > k; k++) {
@@ -199,10 +208,22 @@ export function serialize(
                     spacer += '  ';
                 }
             }
-            return `${spacer}${isOL ? '1.' : '-'} ${children}\n`;
+
+            const isNewLine = chunk && (
+                chunk.parent?.type === nodeTypes.ol_list
+                || chunk.parent?.type === nodeTypes.ul_list
+            );
+            const emptyBefore = isNewLine ? '\n' : '';
+
+            const isLastItem = chunk.parent
+                && (chunk.parent.length! - 1 === chunk.parent.index)
+                && (chunk as BlockType).children.length === 1;
+            const emptyAfter = isLastItem && listDepth === 0 ? '\n' : '';
+
+            return `${emptyBefore}${spacer}${isOL ? '1.' : '-'} ${children}`;
 
         case nodeTypes.paragraph:
-            return `${children}\n`;
+            return `\n${children}\n`;
 
         case nodeTypes.thematic_break:
             return '\n---\n';
