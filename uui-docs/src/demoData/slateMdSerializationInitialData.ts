@@ -1,14 +1,10 @@
 export const slateMdSerializationInitialData = `### Basic layout
-We support inline text styles: **bold**, _italic_, underlined, several UUI-friendly text colors: red, yellow, and green.
+We support inline text styles such as **bold** and _italic_ . Additionally, we provide support for three levels of headers and hyperlinks.
+
 Numbered lists:
 
 1. In edit mode, we detect  '1. ' and start list automatically
 1. You can use 'tab' / 'shift/tab' to indent the list
-
-<br>
-
-1. breaken list item
-2. second item of breaking list
 
 Bullet lists:
 

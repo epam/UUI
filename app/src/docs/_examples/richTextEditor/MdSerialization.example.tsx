@@ -86,7 +86,7 @@ export default function SlateEditorBasicExample() {
                         onValueChange={ (v) => {
                             setMdContent(v);
                         } }
-                        rows={ 26 }
+                        rows={ 22 }
                         placeholder="Please type markdown here"
                     />
                 )}

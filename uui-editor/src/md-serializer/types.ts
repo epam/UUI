@@ -39,8 +39,8 @@ export interface LeafType {
     strikeThrough?: boolean;
     parent?: {
         type: string,
-        index: number,
-        length: number
+        index?: number,
+        length?: number
     },
     ['uui-richTextEditor-bold']?: boolean;
     ['uui-richTextEditor-italic']?: boolean;
@@ -51,8 +51,8 @@ export interface BlockType {
     type: string;
     parent?: {
         type: string,
-        index: number,
-        length: number
+        index?: number,
+        length?: number
     },
     url?: string;
     caption?: Array<BlockType | LeafType>;
