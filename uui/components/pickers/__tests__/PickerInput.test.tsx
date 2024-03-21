@@ -660,10 +660,8 @@ describe('PickerInput', () => {
 
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.change(dom.input, { target: { value: 'A' } });
-        await waitFor(async () => {
-            const pickerBody = await PickerInputTestObject.findDialog();
-            return expect(pickerBody).toBeInTheDocument();
-        });
+        const pickerBody = await PickerInputTestObject.findDialog();
+        return expect(pickerBody).toBeInTheDocument();
     });
 
     it('should use modal edit mode', async () => {
@@ -1073,6 +1071,24 @@ describe('PickerInput', () => {
 
             fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
             expect(mocks.onValueChange).toHaveBeenCalledWith([2]);
+        });
+
+        it.each<[undefined | null | []]>([[[]]])
+        ('should not call onValueChange on edit search if emptyValue = %s does not equal to the initial value', async (emptyValue) => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                emptyValue: emptyValue,
+                value: undefined,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            const bodyInput = await within(dialog).findByPlaceholderText('Search');
+            fireEvent.change(bodyInput, { target: { value: 'A' } });
+
+            expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
         });
     });
 });
