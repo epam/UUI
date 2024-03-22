@@ -8,7 +8,9 @@ import {
     Image,
     useMediaState,
 } from '@udecode/plate-media';
-import { useFocused, useReadOnly, useSelected } from 'slate-react';
+import {
+    useFocused, useReadOnly, useSelected,
+} from 'slate-react';
 import cx from 'classnames';
 import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
@@ -35,7 +37,7 @@ export function ImageElement({
 
     useMediaState();
 
-    const imageRef = useRef(null);
+    const imageRef = useRef<HTMLImageElement>(null);
 
     const isCaptionEnabled = useMemo(() => {
         const imageWidth = imageRef.current?.width;
@@ -66,10 +68,12 @@ export function ImageElement({
                         minWidth: MIN_IMG_WIDTH,
                     } }
                 >
-                    <ResizeHandle
-                        options={ { direction: 'left' } }
-                        className={ cx(resizeHandleClasses) }
-                    />
+                    {!readOnly && (
+                        <ResizeHandle
+                            options={ { direction: 'left' } }
+                            className={ cx(resizeHandleClasses) }
+                        />
+                    )}
                     <Image
                         { ...nodeProps }
                         className={ cx(
@@ -79,10 +83,12 @@ export function ImageElement({
                         ) }
                         ref={ imageRef }
                     />
-                    <ResizeHandle
-                        options={ { direction: 'right' } }
-                        className={ cx(resizeHandleClasses) }
-                    />
+                    {!readOnly && (
+                        <ResizeHandle
+                            options={ { direction: 'right' } }
+                            className={ cx(resizeHandleClasses) }
+                        />
+                    )}
                 </Resizable>
 
                 {isCaptionEnabled && (
