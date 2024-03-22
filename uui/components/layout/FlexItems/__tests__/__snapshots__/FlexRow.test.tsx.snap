@@ -4,7 +4,7 @@ exports[`FlexRow should be rendered correctly 1`] = `
 <div
   className="uui-flex-row root size-36 container align-items-center"
   style={
-    Object {
+    {
       "columnGap": undefined,
       "rowGap": undefined,
     }
@@ -18,7 +18,7 @@ exports[`FlexRow should be rendered correctly with props 1`] = `
   id="123"
   onClick={[Function]}
   style={
-    Object {
+    {
       "columnGap": "24px",
       "rowGap": "24px",
     }

@@ -24,7 +24,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -40,7 +40,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       role="button"
-      style={Object {}}
+      style={{}}
       tabIndex={-1}
     >
       <svg

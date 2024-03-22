@@ -4,7 +4,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
 <div
   className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
   style={
-    Object {
+    {
       "display": "flex",
       "height": "100%",
       "overflow": "hidden",
@@ -15,7 +15,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
 >
   <div
     style={
-      Object {
+      {
         "WebkitOverflowScrolling": "touch",
         "bottom": 0,
         "flex": "1 1 auto",
@@ -38,7 +38,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
   <div
     className="uui-track-horizontal"
     style={
-      Object {
+      {
         "display": "none",
         "height": 6,
         "position": "absolute",
@@ -52,7 +52,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
   <div
     className="uui-track-vertical"
     style={
-      Object {
+      {
         "display": "none",
         "position": "absolute",
         "width": 6,

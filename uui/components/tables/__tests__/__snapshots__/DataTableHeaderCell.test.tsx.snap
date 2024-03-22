@@ -7,7 +7,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
   onClick={[Function]}
   role="columnheader"
   style={
-    Object {
+    {
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,

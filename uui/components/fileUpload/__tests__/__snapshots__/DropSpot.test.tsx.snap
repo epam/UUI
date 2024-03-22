@@ -14,7 +14,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-24 container align-items-center"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "rowGap": undefined,
         }
@@ -22,7 +22,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled iconBlue"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -76,7 +76,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
     <div
       className="uui-flex-row root size-24 container align-items-center"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "rowGap": undefined,
         }
@@ -84,7 +84,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
     >
       <div
         className="container uui-icon uui-enabled iconBlue"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""

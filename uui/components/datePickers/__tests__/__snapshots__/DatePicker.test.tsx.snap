@@ -9,7 +9,7 @@ exports[`DatePicker should render with maximum props defined 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""
@@ -38,7 +38,7 @@ exports[`DatePicker should render with minimum props defined 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

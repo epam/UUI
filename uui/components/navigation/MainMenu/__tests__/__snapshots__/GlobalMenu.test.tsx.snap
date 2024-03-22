@@ -7,7 +7,7 @@ exports[`GlobalMenu should be rendered correctly 1`] = `
 >
   <div
     className="container uui-icon uui-enabled globalMenuIcon"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

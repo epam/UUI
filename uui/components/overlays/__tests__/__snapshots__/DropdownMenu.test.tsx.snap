@@ -5,7 +5,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
   className="uui-dropdown-body -lock-focus root bodyRoot root container"
   role="menu"
   style={
-    Object {
+    {
       "maxHeight": undefined,
       "maxWidth": undefined,
       "minHeight": undefined,
@@ -20,7 +20,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     onKeyDown={[Function]}
     role="menuitem"
     style={
-      Object {
+      {
         "columnGap": undefined,
         "rowGap": undefined,
       }
@@ -55,7 +55,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     onKeyDown={[Function]}
     role="menuitem"
     style={
-      Object {
+      {
         "columnGap": undefined,
         "rowGap": undefined,
       }
@@ -77,7 +77,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""

@@ -4,7 +4,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
 <div
   className="uui-flex-row root container align-items-center"
   style={
-    Object {
+    {
       "columnGap": undefined,
       "rowGap": undefined,
     }
@@ -14,7 +14,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
     className="uui-flex-row avatars container avatar-right container align-items-center"
     role="group"
     style={
-      Object {
+      {
         "--overlap": "-9px",
         "columnGap": undefined,
         "rowGap": undefined,

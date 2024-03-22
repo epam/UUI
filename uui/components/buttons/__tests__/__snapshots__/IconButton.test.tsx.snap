@@ -8,7 +8,7 @@ exports[`IconButton should be rendered correctly 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   />
 </button>
 `;
@@ -23,7 +23,7 @@ exports[`IconButton should be rendered correctly with props 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

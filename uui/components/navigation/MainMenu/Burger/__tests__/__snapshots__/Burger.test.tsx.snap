@@ -10,7 +10,7 @@ exports[`Burger should render with maximum props 1`] = `
   >
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""

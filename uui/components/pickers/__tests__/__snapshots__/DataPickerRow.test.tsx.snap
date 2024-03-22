@@ -6,7 +6,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   className="uui-flex-row pickerRow container align-items-center"
   role="option"
   style={
-    Object {
+    {
       "columnGap": undefined,
       "rowGap": undefined,
     }
@@ -16,7 +16,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
     className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
     role="cell"
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "0",
         "flexGrow": 1,
@@ -50,7 +50,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
   onClick={[Function]}
   role="option"
   style={
-    Object {
+    {
       "columnGap": undefined,
       "rowGap": undefined,
     }
@@ -60,7 +60,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
     className="flexCell cell data-picker-cell size-48 padding-24 padding-left-24 align-widgets-top"
     role="cell"
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "0",
         "flexGrow": 1,
@@ -86,7 +86,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           <div
             aria-label="Selected"
             className="container uui-icon uui-enabled iconPrimary"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""

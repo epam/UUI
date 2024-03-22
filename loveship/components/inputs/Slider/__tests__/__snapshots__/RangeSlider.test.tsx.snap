@@ -11,7 +11,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
   <div
     className="uui-slider-filled"
     style={
-      Object {
+      {
         "left": 0,
         "width": 0,
       }
@@ -23,7 +23,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     <div
       className="uui-slider-scale-dot uui-slider-scale-filled-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -31,7 +31,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -41,7 +41,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     <div
       className="uui-slider-scale-dot uui-slider-scale-filled-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -49,7 +49,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -70,7 +70,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     onMouseUp={[Function]}
     role="slider"
     style={
-      Object {
+      {
         "transform": "translateX(0px)",
       }
     }
@@ -89,7 +89,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     onMouseUp={[Function]}
     role="slider"
     style={
-      Object {
+      {
         "transform": "translateX(0px)",
       }
     }
@@ -109,7 +109,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
   <div
     className="uui-slider-filled"
     style={
-      Object {
+      {
         "left": 0,
         "width": 0,
       }
@@ -121,7 +121,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     <div
       className="uui-slider-scale-dot uui-slider-scale-filled-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -129,7 +129,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -139,7 +139,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     <div
       className="uui-slider-scale-dot uui-slider-scale-filled-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -147,7 +147,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -168,7 +168,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     onMouseUp={[Function]}
     role="slider"
     style={
-      Object {
+      {
         "transform": "translateX(0px)",
       }
     }
@@ -187,7 +187,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     onMouseUp={[Function]}
     role="slider"
     style={
-      Object {
+      {
         "transform": "translateX(0px)",
       }
     }

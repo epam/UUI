@@ -11,7 +11,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       aria-label="Increment hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -45,13 +45,13 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
       </div>
     </div>
@@ -59,7 +59,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       aria-label="Decrement hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -75,7 +75,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       aria-label="Increment minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -109,13 +109,13 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
       </div>
     </div>
@@ -123,7 +123,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       aria-label="Decrement minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -138,7 +138,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -166,7 +166,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -189,7 +189,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       aria-label="Increment hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -223,13 +223,13 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
       </div>
     </div>
@@ -237,7 +237,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       aria-label="Decrement hours"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -253,7 +253,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       aria-label="Increment minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -287,13 +287,13 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
           role="button"
-          style={Object {}}
+          style={{}}
         />
       </div>
     </div>
@@ -301,7 +301,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       aria-label="Decrement minutes"
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -316,7 +316,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -344,7 +344,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""

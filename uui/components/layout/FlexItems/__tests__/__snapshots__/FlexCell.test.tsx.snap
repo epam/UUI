@@ -4,7 +4,7 @@ exports[`FlexCell should be rendered correctly 1`] = `
 <div
   className="flexCell"
   style={
-    Object {
+    {
       "alignSelf": undefined,
       "flexBasis": "0",
       "flexGrow": undefined,
@@ -21,7 +21,7 @@ exports[`FlexCell should be rendered correctly with props 1`] = `
   className="flexCell"
   onClick={[Function]}
   style={
-    Object {
+    {
       "alignSelf": "center",
       "flexBasis": "100%",
       "flexGrow": 1,

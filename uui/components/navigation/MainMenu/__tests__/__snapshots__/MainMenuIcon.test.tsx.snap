@@ -11,7 +11,7 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""
@@ -28,7 +28,7 @@ exports[`MainMenuIcon should be rendered correctly with minimum props 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

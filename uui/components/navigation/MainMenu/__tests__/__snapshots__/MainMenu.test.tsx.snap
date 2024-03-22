@@ -10,7 +10,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
     <div
       className="uui-flex-row container align-items-center"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "rowGap": undefined,
         }
@@ -25,7 +25,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -53,7 +53,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
     <div
       className="uui-flex-row container align-items-center"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "rowGap": undefined,
         }
@@ -68,7 +68,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -89,7 +89,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
     <div
       className="uui-mainmenu-server-badge-label"
       style={
-        Object {
+        {
           "background": "#39b7ac",
         }
       }
