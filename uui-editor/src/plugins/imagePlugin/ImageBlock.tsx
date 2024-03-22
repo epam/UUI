@@ -1,8 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+    useCallback, useEffect, useRef, useState,
+} from 'react';
 import cx from 'classnames';
-import { PlateEditor, PlatePluginComponent, PlateRenderElementProps, Value, findNodePath, getBlockAbove, setElements } from '@udecode/plate-common';
+import {
+    PlateEditor, PlateRenderElementProps, Value, findNodePath, getBlockAbove, setElements,
+} from '@udecode/plate-common';
 import { useFocused, useSelected } from 'slate-react';
-import { Dropdown, FlexRow, Spinner } from '@epam/uui';
+import {
+    Dropdown, FlexRow, Spinner,
+} from '@epam/uui';
 import { ImageElement } from './ImageElement';
 
 import debounce from 'lodash.debounce';
@@ -10,11 +16,16 @@ import invert from 'lodash.invert';
 
 import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
-import { IImageElement, PlateImgAlign, SlateImgAlign } from './types';
+import {
+    IImageElement, PlateImgAlign, SlateImgAlign,
+} from './types';
 
 interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
 
-const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
+const IMAGE_STYLES = {
+    paddingTop: 0,
+    paddingBottom: 0,
+};
 const PLATE_TO_SLATE_IMG_ALIGN = {
     left: 'align-left',
     right: 'align-right',
@@ -33,14 +44,20 @@ const getUpdatedElement = (
     ...element,
     data: {
         ...(element.data || {}),
-        imageSize: { width, height: '100%' },
+        imageSize: {
+            width,
+            height: '100%',
+        },
         align,
     },
 });
 
-const debounced = debounce((exec: () => void) => exec(), 100, { leading: true, trailing: false });
+const debounced = debounce((exec: () => void) => exec(), 100, {
+    leading: true,
+    trailing: false,
+});
 
-const isImgElem = (editor?: PlateEditor, element?: IImageElement) => editor && element.type === 'image';
+const isImgElem = (editor?: PlateEditor, element?: IImageElement) => editor && element?.type === 'image';
 
 const useUpdatingElement = ({ element, editor }: { element: IImageElement, editor: PlateEditor }) => {
     const prevNodeWidthRef = useRef(element.width);
@@ -69,9 +86,11 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
         }), [element.width]);
 };
 
-export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageElement>> = function (props) {
-    const { editor, element, children } = props;
-    const ref = useRef(null);
+export function Image(props: PlateRenderElementProps<Value, IImageElement>): JSX.Element {
+    const {
+        editor, element, children,
+    } = props;
+    const ref = useRef<HTMLDivElement>(null);
     const isFocused = useFocused();
     const isSelected = useSelected();
 
@@ -79,12 +98,15 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     const [showToolbar, setShowToolbar] = useState(false);
 
     // controls slate element structure
-    useUpdatingElement({ element, editor });
+    useUpdatingElement({
+        element,
+        editor,
+    });
 
     // toolbar
     useEffect(() => {
         const block = getBlockAbove(editor);
-        setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'image');
+        setShowToolbar(isSelected && isFocused && !!block?.length && block[0].type === 'image');
     }, [isSelected, isFocused]);
 
     const onChangeDropDownValue = useCallback((value: boolean) => () => {
@@ -99,7 +121,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
 
     // width
     const setMaxWidth = useCallback(() => {
-        const newWidth = ref?.current?.clientWidth;
+        const newWidth = ref.current?.clientWidth;
         if (newWidth) {
             element.width = newWidth;
             setElements(editor, getUpdatedElement(element, { width: newWidth }));
@@ -107,13 +129,9 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
     }, [editor, element]);
 
     const isFullWidth = useCallback(() => {
-        const clientWidth = ref?.current?.clientWidth;
+        const clientWidth = ref.current?.clientWidth;
         return !clientWidth || (clientWidth === element.width);
     }, [element.width]);
-
-    if (!editor) {
-        return null;
-    }
 
     if (element.type === 'loader') {
         return (
@@ -158,4 +176,4 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
             placement="top"
         />
     );
-};
+}
