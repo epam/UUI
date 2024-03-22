@@ -660,9 +660,10 @@ describe('PickerInput', () => {
 
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
-        // eslint-disable-next-line testing-library/no-unnecessary-act
+        jest.useFakeTimers();
+        fireEvent.change(dom.input, { target: { value: 'A' } });
         act(() => {
-            fireEvent.change(dom.input, { target: { value: 'A' } });
+            jest.runAllTimers();
         });
         const pickerBody = await PickerInputTestObject.findDialog();
         return expect(pickerBody).toBeInTheDocument();
