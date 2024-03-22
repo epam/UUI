@@ -22,7 +22,7 @@ const groupByParentId = <TItem, TId>(
     }
 
     for (const [, item] of patchItems) {
-        const parentId = getParentId?.(item);
+        const parentId = getParentId?.(item) ?? undefined;
         if (!patchByParentId.has(parentId)) {
             patchByParentId.set(parentId, []);
         }
@@ -66,13 +66,13 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
             if (!patchItemsAtLastSort.has(aId)) {
                 return getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? 1 : -1;
             }
-            const prevBParentId = getParentId(patchItemsAtLastSort.get(bId));
-            const bParentId = getParentId(b);
+            const prevBParentId = getParentId?.(patchItemsAtLastSort.get(bId)) ?? undefined;
+            const bParentId = getParentId?.(b) ?? undefined;
             if (prevBParentId !== bParentId) {
                 return -1;
             }
-            const prevAParentId = getParentId(patchItemsAtLastSort.get(aId));
-            const aParentId = getParentId(a);
+            const prevAParentId = getParentId?.(patchItemsAtLastSort.get(aId)) ?? undefined;
+            const aParentId = getParentId?.(a) ?? undefined;
             if (prevAParentId !== aParentId) {
                 return -1;
             }
