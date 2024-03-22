@@ -1,10 +1,9 @@
-import { CascadeSelection, DataSourceState, IImmutableMap, IMap, ExtendedPatchItemsOptions, Position } from '../../../../../../../types';
+import { CascadeSelection, DataSourceState, IMap, ExtendedPatchItemsOptions } from '../../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from './map';
 import { LazyListViewProps } from '../../../../types';
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../../ItemsMap';
-import { ITreeParams } from '../types';
 import { ITree } from '../../ITree';
 import { NOT_FOUND_RECORD } from '../../exposed';
 
@@ -111,13 +110,6 @@ export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<T
 export interface PatchItemsIntoTreeStructureOptions<TItem, TId> extends ExtendedPatchItemsOptions<TItem, TId> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
-}
-
-export interface InsertIntoPositionOptions<TItem, TId> {
-    params: ITreeParams<TItem, TId>;
-    ids: TId[];
-    item: TItem;
-    position: Position<TId>;
 }
 
 export interface PatchChildrenOptions<TItem, TId> {
