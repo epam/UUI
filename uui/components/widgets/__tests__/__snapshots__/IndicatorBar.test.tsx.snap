@@ -21,7 +21,7 @@ exports[`IndicatorBar should be rendered correctly with props 1`] = `
     className="bar bar"
     role="progressbar"
     style={
-      Object {
+      {
         "width": "20%",
       }
     }

@@ -21,7 +21,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -48,7 +48,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -105,7 +105,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
         <div
           className="uui-calendar-days"
           style={
-            Object {
+            {
               "height": "216px",
             }
           }

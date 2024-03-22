@@ -4,7 +4,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
 <div
   className="flexCell"
   style={
-    Object {
+    {
       "alignSelf": undefined,
       "flexBasis": "0",
       "flexGrow": 1,
@@ -17,7 +17,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
   <div
     className="uui-flex-row root presetsWrapper container align-items-center"
     style={
-      Object {
+      {
         "columnGap": "12px",
         "rowGap": undefined,
       }
@@ -29,7 +29,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
       <div
         className="uui-flex-row container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -38,7 +38,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
         <div
           className="uui-flex-row root size-36 container align-items-center"
           style={
-            Object {
+            {
               "columnGap": undefined,
               "rowGap": undefined,
             }
@@ -62,7 +62,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
             </div>
             <div
               className="container uui-icon uui-enabled"
-              style={Object {}}
+              style={{}}
             >
               <svg
                 className=""
@@ -81,7 +81,7 @@ exports[`PresetsPanel should render with minimum props 1`] = `
           >
             <div
               className="container uui-icon uui-enabled"
-              style={Object {}}
+              style={{}}
             >
               <svg
                 className=""

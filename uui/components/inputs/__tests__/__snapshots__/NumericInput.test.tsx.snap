@@ -27,7 +27,7 @@ exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
       onClick={[Function]}
       role="button"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -37,7 +37,7 @@ exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
       onClick={[Function]}
       role="button"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -74,7 +74,7 @@ exports[`NumericInput snapshots should be rendered with minimum props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
       onClick={[Function]}
       role="button"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -84,7 +84,7 @@ exports[`NumericInput snapshots should be rendered with minimum props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
       onClick={[Function]}
       role="button"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""

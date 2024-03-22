@@ -13,7 +13,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
   >
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -75,7 +75,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
   >
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""

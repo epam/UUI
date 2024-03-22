@@ -4,7 +4,7 @@ exports[`Modals should be rendered correctly 1`] = `
 <div
   className="container modalBlocker"
   style={
-    Object {
+    {
       "zIndex": 1,
     }
   }
@@ -19,7 +19,7 @@ exports[`Modals should be rendered correctly 1`] = `
     className="uui-modal-window root modal container"
     role="dialog"
     style={
-      Object {
+      {
         "height": "300px",
         "maxHeight": "80dvh",
         "width": "300px",
@@ -29,7 +29,7 @@ exports[`Modals should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 padding-6 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -46,7 +46,7 @@ exports[`Modals should be rendered correctly 1`] = `
       <div
         className="flexCell"
         style={
-          Object {
+          {
             "alignSelf": undefined,
             "flexBasis": "auto",
             "flexGrow": undefined,
@@ -65,7 +65,7 @@ exports[`Modals should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -77,7 +77,7 @@ exports[`Modals should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 padding-18 vPadding-24 root modalFooter container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -91,7 +91,7 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
 <div
   className="container modalBlocker"
   style={
-    Object {
+    {
       "zIndex": 1,
     }
   }
@@ -106,7 +106,7 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
     className="uui-modal-window root modal container"
     role="dialog"
     style={
-      Object {
+      {
         "height": "auto",
         "maxHeight": "80dvh",
         "width": "420px",
@@ -116,7 +116,7 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -125,7 +125,7 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }

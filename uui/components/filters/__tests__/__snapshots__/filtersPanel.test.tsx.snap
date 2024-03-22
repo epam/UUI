@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
-Array [
+[
   <div
     className=""
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "auto",
         "flexGrow": undefined,
@@ -21,7 +21,7 @@ Array [
       onKeyDown={[Function]}
       role="button"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxWidth": "300px",
           "rowGap": undefined,
@@ -32,7 +32,7 @@ Array [
       <div
         className="uui-flex-row titleWrapper container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -55,7 +55,7 @@ Array [
       </div>
       <div
         className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -66,7 +66,7 @@ Array [
   <div
     className=""
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "auto",
         "flexGrow": undefined,
@@ -82,7 +82,7 @@ Array [
       onKeyDown={[Function]}
       role="button"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxWidth": "400px",
           "rowGap": undefined,
@@ -93,7 +93,7 @@ Array [
       <div
         className="uui-flex-row titleWrapper container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -107,7 +107,7 @@ Array [
       </div>
       <div
         className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -118,7 +118,7 @@ Array [
   <div
     className=""
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "auto",
         "flexGrow": undefined,
@@ -134,7 +134,7 @@ Array [
       onKeyDown={[Function]}
       role="button"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxWidth": "300px",
           "rowGap": undefined,
@@ -145,7 +145,7 @@ Array [
       <div
         className="uui-flex-row titleWrapper container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -159,7 +159,7 @@ Array [
       </div>
       <div
         className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -170,7 +170,7 @@ Array [
   <div
     className=""
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "auto",
         "flexGrow": undefined,
@@ -186,7 +186,7 @@ Array [
       onKeyDown={[Function]}
       role="button"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxWidth": "auto",
           "rowGap": undefined,
@@ -197,7 +197,7 @@ Array [
       <div
         className="uui-flex-row titleWrapper container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -211,7 +211,7 @@ Array [
       </div>
       <div
         className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -222,7 +222,7 @@ Array [
   <div
     className=""
     style={
-      Object {
+      {
         "alignSelf": undefined,
         "flexBasis": "auto",
         "flexGrow": undefined,
@@ -238,7 +238,7 @@ Array [
       onKeyDown={[Function]}
       role="button"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxWidth": "auto",
           "rowGap": undefined,
@@ -249,7 +249,7 @@ Array [
       <div
         className="uui-flex-row titleWrapper container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -263,7 +263,7 @@ Array [
       </div>
       <div
         className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -279,7 +279,7 @@ Array [
   >
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""

@@ -4,7 +4,7 @@ exports[`Blocker should be rendered correctly 1`] = `
 <div
   className="container uui-blocker-container root"
   style={
-    Object {
+    {
       "minHeight": undefined,
     }
   }

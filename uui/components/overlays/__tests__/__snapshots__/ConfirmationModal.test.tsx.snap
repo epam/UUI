@@ -4,7 +4,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
 <div
   className="container modalBlocker"
   style={
-    Object {
+    {
       "zIndex": 1,
     }
   }
@@ -19,7 +19,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     className="uui-modal-window root modal container"
     role="dialog"
     style={
-      Object {
+      {
         "height": "auto",
         "maxHeight": "80dvh",
         "width": "420px",
@@ -29,7 +29,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -46,7 +46,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       <div
         className="flexCell"
         style={
-          Object {
+          {
             "alignSelf": undefined,
             "flexBasis": "auto",
             "flexGrow": undefined,
@@ -65,7 +65,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -77,7 +77,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     <div
       className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
       style={
-        Object {
+        {
           "display": "flex",
           "height": "100%",
           "overflow": "hidden",
@@ -88,7 +88,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     >
       <div
         style={
-          Object {
+          {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
             "flex": "1 1 auto",
@@ -113,7 +113,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       <div
         className="uui-track-horizontal"
         style={
-          Object {
+          {
             "display": "none",
             "height": 6,
             "position": "absolute",
@@ -127,7 +127,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       <div
         className="uui-track-vertical"
         style={
-          Object {
+          {
             "display": "none",
             "position": "absolute",
             "width": 6,
@@ -142,7 +142,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -184,7 +184,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
 <div
   className="container modalBlocker"
   style={
-    Object {
+    {
       "zIndex": 1,
     }
   }
@@ -199,7 +199,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     className="uui-modal-window root modal container"
     role="dialog"
     style={
-      Object {
+      {
         "height": "auto",
         "maxHeight": "80dvh",
         "width": "420px",
@@ -209,7 +209,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -226,7 +226,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       <div
         className="flexCell"
         style={
-          Object {
+          {
             "alignSelf": undefined,
             "flexBasis": "auto",
             "flexGrow": undefined,
@@ -245,7 +245,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -257,7 +257,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     <div
       className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
       style={
-        Object {
+        {
           "display": "flex",
           "height": "100%",
           "overflow": "hidden",
@@ -268,7 +268,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     >
       <div
         style={
-          Object {
+          {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
             "flex": "1 1 auto",
@@ -285,7 +285,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       <div
         className="uui-track-horizontal"
         style={
-          Object {
+          {
             "display": "none",
             "height": 6,
             "position": "absolute",
@@ -299,7 +299,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       <div
         className="uui-track-vertical"
         style={
-          Object {
+          {
             "display": "none",
             "position": "absolute",
             "width": 6,
@@ -314,7 +314,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
-Array [
+[
   <button
     aria-expanded={true}
     aria-haspopup={true}
@@ -17,7 +17,7 @@ Array [
     </div>
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className="flipY"
@@ -30,7 +30,7 @@ Array [
     data-placement="bottom-start"
     role="dialog"
     style={
-      Object {
+      {
         "zIndex": undefined,
       }
     }
@@ -38,7 +38,7 @@ Array [
     <div
       className="uui-dropdown-body -lock-focus root container container"
       style={
-        Object {
+        {
           "maxHeight": undefined,
           "maxWidth": "auto",
           "minHeight": undefined,
@@ -50,7 +50,7 @@ Array [
       <div
         className="flexCell sortingPanelContainer"
         style={
-          Object {
+          {
             "alignSelf": undefined,
             "flexBasis": "0",
             "flexGrow": undefined,
@@ -66,7 +66,7 @@ Array [
           onKeyDown={[Function]}
           role="menuitem"
           style={
-            Object {
+            {
               "columnGap": undefined,
               "rowGap": undefined,
             }
@@ -80,7 +80,7 @@ Array [
           >
             <div
               className="container uui-icon uui-enabled"
-              style={Object {}}
+              style={{}}
             >
               <svg
                 className=""
@@ -99,7 +99,7 @@ Array [
           onKeyDown={[Function]}
           role="menuitem"
           style={
-            Object {
+            {
               "columnGap": undefined,
               "rowGap": undefined,
             }
@@ -113,7 +113,7 @@ Array [
           >
             <div
               className="container uui-icon uui-enabled"
-              style={Object {}}
+              style={{}}
             >
               <svg
                 className=""

@@ -13,7 +13,7 @@ exports[`Alert should render with maximum props 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -48,7 +48,7 @@ exports[`Alert should render with maximum props 1`] = `
     >
       <div
         className="container uui-icon uui-enabled"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -87,7 +87,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -114,7 +114,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -141,7 +141,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -168,7 +168,7 @@ exports[`WarningAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""

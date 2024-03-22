@@ -8,7 +8,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
   <span
     className="loadingWord animatedLoading"
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
@@ -24,7 +24,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
   <span
     className="loadingWord"
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
@@ -32,7 +32,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
   <span
     className="loadingWord"
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
@@ -40,7 +40,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
   <span
     className="loadingWord"
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
@@ -48,7 +48,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
   <span
     className="loadingWord"
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
@@ -56,7 +56,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
   <span
     className="loadingWord"
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }

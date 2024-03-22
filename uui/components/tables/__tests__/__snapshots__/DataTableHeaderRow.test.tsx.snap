@@ -5,7 +5,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
   className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
   role="row"
   style={
-    Object {
+    {
       "columnGap": undefined,
       "minWidth": "0px",
       "rowGap": undefined,
@@ -15,7 +15,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
   <div
     className="section scrollingSection uui-table-scrolling-section"
     style={
-      Object {
+      {
         "--uui-dt-cell-border-width": "1px",
         "flex": "1 0 0px",
         "minWidth": "0px",
@@ -30,7 +30,7 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
   className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
   role="row"
   style={
-    Object {
+    {
       "columnGap": undefined,
       "minWidth": "0px",
       "rowGap": undefined,
@@ -40,7 +40,7 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
   <div
     className="section scrollingSection uui-table-scrolling-section"
     style={
-      Object {
+      {
         "--uui-dt-cell-border-width": "1px",
         "flex": "1 0 0px",
         "minWidth": "0px",

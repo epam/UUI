@@ -11,7 +11,7 @@ exports[`ProgressBar should be rendered correctly 1`] = `
     className="bar bar"
     role="progressbar"
     style={
-      Object {
+      {
         "width": "20%",
       }
     }
@@ -24,7 +24,7 @@ exports[`ProgressBar should be rendered correctly 1`] = `
   <div
     className="label topLabel"
     style={
-      Object {
+      {
         "clipPath": "inset(0 0 0 20%)",
       }
     }
@@ -45,7 +45,7 @@ exports[`ProgressBar should be rendered correctly with custom label 1`] = `
     className="bar bar"
     role="progressbar"
     style={
-      Object {
+      {
         "width": "56%",
       }
     }
@@ -58,7 +58,7 @@ exports[`ProgressBar should be rendered correctly with custom label 1`] = `
   <div
     className="label topLabel"
     style={
-      Object {
+      {
         "clipPath": "inset(0 0 0 56%)",
       }
     }
@@ -79,7 +79,7 @@ exports[`ProgressBar should be rendered correctly with striped animation 1`] = `
     className="bar bar"
     role="progressbar"
     style={
-      Object {
+      {
         "width": "56%",
       }
     }
@@ -98,7 +98,7 @@ exports[`ProgressBar should be rendered correctly without label 1`] = `
     className="bar bar"
     role="progressbar"
     style={
-      Object {
+      {
         "width": "56%",
       }
     }

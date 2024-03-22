@@ -222,7 +222,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
   >
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <div
         data-testid="test-icon"
@@ -245,7 +245,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -269,7 +269,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
   >
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <div
         data-testid="test-icon"
@@ -292,7 +292,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -327,7 +327,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
     />
     <div
       className="container uui-icon uui-enabled"
-      style={Object {}}
+      style={{}}
     >
       <div
         data-testid="test-icon"
@@ -339,7 +339,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -378,7 +378,7 @@ exports[`PickerInput should render input as invalid 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -412,7 +412,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -431,7 +431,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
-        style={Object {}}
+        style={{}}
       >
         <svg
           className=""
@@ -447,7 +447,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       role="button"
-      style={Object {}}
+      style={{}}
       tabIndex={-1}
     >
       <svg
@@ -487,7 +487,7 @@ exports[`PickerInput should render with minimum props 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -526,7 +526,7 @@ exports[`PickerInput should render with mode = cell 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -565,7 +565,7 @@ exports[`PickerInput should render with mode = form 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -604,7 +604,7 @@ exports[`PickerInput should render with mode = inline 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -643,7 +643,7 @@ exports[`PickerInput should render with mode = undefined 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""
@@ -682,7 +682,7 @@ exports[`PickerInput should support single line 1`] = `
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      style={{}}
     >
       <svg
         className=""

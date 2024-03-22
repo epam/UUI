@@ -18,7 +18,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable"
     onClick={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""
@@ -36,7 +36,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

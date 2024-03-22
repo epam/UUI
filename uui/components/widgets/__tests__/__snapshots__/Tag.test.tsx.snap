@@ -17,7 +17,7 @@ exports[`Tag should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable"
     onClick={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""
@@ -36,7 +36,7 @@ exports[`Tag should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable -clickable"
     onClick={[Function]}
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

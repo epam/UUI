@@ -49,7 +49,7 @@ exports[`Calendar should be rendered correctly 1`] = `
     <div
       className="uui-calendar-days"
       style={
-        Object {
+        {
           "height": "180px",
         }
       }

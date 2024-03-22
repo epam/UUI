@@ -16,7 +16,7 @@ exports[`Dropdown should be rendered correctly 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""
@@ -41,7 +41,7 @@ exports[`Dropdown should be rendered correctly with more props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
-    style={Object {}}
+    style={{}}
   >
     <svg
       className=""

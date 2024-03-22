@@ -4,7 +4,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
 <div
   className="container modalBlocker"
   style={
-    Object {
+    {
       "zIndex": 1,
     }
   }
@@ -19,7 +19,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     className="uui-modal-window root modal container"
     role="dialog"
     style={
-      Object {
+      {
         "height": "700px",
         "maxHeight": "80dvh",
         "width": "600px",
@@ -29,7 +29,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -46,7 +46,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       <div
         className="flexCell"
         style={
-          Object {
+          {
             "alignSelf": undefined,
             "flexBasis": "auto",
             "flexGrow": undefined,
@@ -65,7 +65,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -77,7 +77,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     <div
       className="flexCell subHeaderWrapper"
       style={
-        Object {
+        {
           "alignSelf": undefined,
           "flexBasis": "0",
           "flexGrow": undefined,
@@ -90,7 +90,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       <div
         className="uui-flex-row root size-36 vPadding-24 container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -103,7 +103,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -129,7 +129,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 body modal undefined container align-items-center"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxHeight": undefined,
           "maxWidth": undefined,
@@ -140,7 +140,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       <div
         className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
         style={
-          Object {
+          {
             "display": "flex",
             "height": "100%",
             "overflow": "hidden",
@@ -151,7 +151,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <div
           style={
-            Object {
+            {
               "WebkitOverflowScrolling": "touch",
               "bottom": 0,
               "display": "flex",
@@ -170,14 +170,14 @@ exports[`PickerModal should be rendered correctly 1`] = `
           <div
             className="listContainer"
             style={
-              Object {
+              {
                 "minHeight": "0px",
               }
             }
           >
             <div
               style={
-                Object {
+                {
                   "marginTop": 0,
                 }
               }
@@ -189,7 +189,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -199,7 +199,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -218,7 +218,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -231,7 +231,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -240,7 +240,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -272,7 +272,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -282,7 +282,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -301,7 +301,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -314,7 +314,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -323,7 +323,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -354,7 +354,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         <div
           className="container uui-blocker-container root"
           style={
-            Object {
+            {
               "minHeight": undefined,
             }
           }
@@ -364,7 +364,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         <div
           className="uui-track-horizontal"
           style={
-            Object {
+            {
               "display": "none",
               "height": 6,
               "position": "absolute",
@@ -378,7 +378,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         <div
           className="uui-track-vertical"
           style={
-            Object {
+            {
               "display": "none",
               "position": "absolute",
               "width": 6,
@@ -394,7 +394,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -436,7 +436,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
 <div
   className="container modalBlocker"
   style={
-    Object {
+    {
       "zIndex": 1,
     }
   }
@@ -451,7 +451,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     className="uui-modal-window root modal container"
     role="dialog"
     style={
-      Object {
+      {
         "height": "700px",
         "maxHeight": "80dvh",
         "width": "600px",
@@ -461,7 +461,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }
@@ -478,7 +478,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       <div
         className="flexCell"
         style={
-          Object {
+          {
             "alignSelf": undefined,
             "flexBasis": "auto",
             "flexGrow": undefined,
@@ -497,7 +497,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -509,7 +509,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     <div
       className="flexCell subHeaderWrapper"
       style={
-        Object {
+        {
           "alignSelf": undefined,
           "flexBasis": "0",
           "flexGrow": undefined,
@@ -522,7 +522,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       <div
         className="uui-flex-row root size-36 vPadding-24 container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -535,7 +535,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
-            style={Object {}}
+            style={{}}
           >
             <svg
               className=""
@@ -586,7 +586,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     <div
       className="uui-flex-row root size-36 body modal undefined container align-items-center"
       style={
-        Object {
+        {
           "columnGap": undefined,
           "maxHeight": undefined,
           "maxWidth": undefined,
@@ -597,7 +597,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       <div
         className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
         style={
-          Object {
+          {
             "display": "flex",
             "height": "100%",
             "overflow": "hidden",
@@ -608,7 +608,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       >
         <div
           style={
-            Object {
+            {
               "WebkitOverflowScrolling": "touch",
               "bottom": 0,
               "display": "flex",
@@ -627,14 +627,14 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           <div
             className="listContainer"
             style={
-              Object {
+              {
                 "minHeight": "0px",
               }
             }
           >
             <div
               style={
-                Object {
+                {
                   "marginTop": 0,
                 }
               }
@@ -646,7 +646,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -656,7 +656,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -690,7 +690,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -703,7 +703,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -712,7 +712,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -744,7 +744,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -754,7 +754,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -788,7 +788,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -801,7 +801,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -810,7 +810,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -842,7 +842,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -852,7 +852,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -886,7 +886,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -899,7 +899,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -908,7 +908,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -940,7 +940,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -950,7 +950,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -984,7 +984,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -997,7 +997,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1006,7 +1006,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1038,7 +1038,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1048,7 +1048,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1082,7 +1082,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1095,7 +1095,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1104,7 +1104,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1136,7 +1136,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1146,7 +1146,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1180,7 +1180,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1193,7 +1193,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1202,7 +1202,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1234,7 +1234,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1244,7 +1244,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1278,7 +1278,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1291,7 +1291,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1300,7 +1300,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1332,7 +1332,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1342,7 +1342,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1376,7 +1376,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1389,7 +1389,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1398,7 +1398,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1430,7 +1430,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1440,7 +1440,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1474,7 +1474,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1487,7 +1487,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1496,7 +1496,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1528,7 +1528,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1538,7 +1538,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1572,7 +1572,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1585,7 +1585,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1594,7 +1594,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1626,7 +1626,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 onClick={[Function]}
                 role="option"
                 style={
-                  Object {
+                  {
                     "columnGap": undefined,
                     "rowGap": undefined,
                   }
@@ -1636,7 +1636,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                   className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
-                    Object {
+                    {
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1670,7 +1670,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                       <div
                         className="flexCell root uui-typography"
                         style={
-                          Object {
+                          {
                             "alignSelf": undefined,
                             "flexBasis": "auto",
                             "flexGrow": undefined,
@@ -1683,7 +1683,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         <div
                           className="uui-flex-row root size-36 container align-items-center"
                           style={
-                            Object {
+                            {
                               "columnGap": "12px",
                               "rowGap": undefined,
                             }
@@ -1692,7 +1692,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           <div
                             className="flexCell"
                             style={
-                              Object {
+                              {
                                 "alignSelf": undefined,
                                 "flexBasis": "auto",
                                 "flexGrow": undefined,
@@ -1723,7 +1723,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         <div
           className="container uui-blocker-container root"
           style={
-            Object {
+            {
               "minHeight": undefined,
             }
           }
@@ -1733,7 +1733,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         <div
           className="uui-track-horizontal"
           style={
-            Object {
+            {
               "display": "none",
               "height": 6,
               "position": "absolute",
@@ -1747,7 +1747,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         <div
           className="uui-track-vertical"
           style={
-            Object {
+            {
               "display": "none",
               "position": "absolute",
               "width": 6,
@@ -1763,7 +1763,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     <div
       className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
-        Object {
+        {
           "columnGap": "12px",
           "rowGap": undefined,
         }

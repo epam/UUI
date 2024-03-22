@@ -1,33 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`serialization should paste data with tables 1`] = `
-Array [
-  Object {
-    "children": Array [
-      Object {
+[
+  {
+    "children": [
+      {
         "text": "",
       },
     ],
     "type": "paragraph",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "text": "",
       },
     ],
     "type": "paragraph",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
             "background": "rgb(255, 255, 0)",
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Sinple ",
                   },
                 ],
@@ -36,12 +36,12 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
+          {
             "background": "rgb(255, 255, 0)",
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Table ",
                   },
                 ],
@@ -53,13 +53,13 @@ Array [
         ],
         "type": "table_row",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "With yellow ",
                   },
                 ],
@@ -68,11 +68,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "back ",
                   },
                 ],
@@ -87,23 +87,23 @@ Array [
     ],
     "type": "table",
   },
-  Object {
-    "children": Array [
-      Object {
+  {
+    "children": [
+      {
         "text": "",
       },
     ],
     "type": "paragraph",
   },
-  Object {
-    "children": Array [
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "",
                   },
                 ],
@@ -112,11 +112,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Lorem ipsum ",
                   },
                 ],
@@ -125,11 +125,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Lorem ipsum ",
                   },
                 ],
@@ -138,11 +138,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Lorem ipsum ",
                   },
                 ],
@@ -154,13 +154,13 @@ Array [
         ],
         "type": "table_row",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "1 ",
                   },
                 ],
@@ -169,11 +169,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "In eleifend velit vitae libero sollicitudin euismod. ",
                   },
                 ],
@@ -182,11 +182,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Lorem ",
                   },
                 ],
@@ -195,11 +195,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "",
                   },
                 ],
@@ -211,32 +211,32 @@ Array [
         ],
         "type": "table_row",
       },
-      Object {
-        "children": Array [
-          Object {
-            "attributes": Object {
+      {
+        "children": [
+          {
+            "attributes": {
               "colspan": "4",
             },
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "2 ",
                   },
                 ],
                 "type": "paragraph",
               },
-              Object {
-                "children": Array [
-                  Object {
+              {
+                "children": [
+                  {
                     "text": "Cras fringilla ipsum magna, in fringilla dui commodo a. ",
                   },
                 ],
                 "type": "paragraph",
               },
-              Object {
-                "children": Array [
-                  Object {
+              {
+                "children": [
+                  {
                     "text": "Ipsum ",
                   },
                 ],
@@ -248,13 +248,13 @@ Array [
         ],
         "type": "table_row",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "3 ",
                   },
                 ],
@@ -263,22 +263,22 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "attributes": Object {
+          {
+            "attributes": {
               "colspan": "2",
             },
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Aliquam erat volutpat. ",
                   },
                 ],
                 "type": "paragraph",
               },
-              Object {
-                "children": Array [
-                  Object {
+              {
+                "children": [
+                  {
                     "text": "Lorem ",
                   },
                 ],
@@ -287,11 +287,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "",
                   },
                 ],
@@ -303,32 +303,32 @@ Array [
         ],
         "type": "table_row",
       },
-      Object {
-        "children": Array [
-          Object {
-            "attributes": Object {
+      {
+        "children": [
+          {
+            "attributes": {
               "colspan": "4",
             },
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "4 ",
                   },
                 ],
                 "type": "paragraph",
               },
-              Object {
-                "children": Array [
-                  Object {
+              {
+                "children": [
+                  {
                     "text": "Fusce vitae vestibulum velit. ",
                   },
                 ],
                 "type": "paragraph",
               },
-              Object {
-                "children": Array [
-                  Object {
+              {
+                "children": [
+                  {
                     "text": "Lorem ",
                   },
                 ],
@@ -340,13 +340,13 @@ Array [
         ],
         "type": "table_row",
       },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "5 ",
                   },
                 ],
@@ -355,11 +355,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Etiam vehicula luctus fermentum. ",
                   },
                 ],
@@ -368,11 +368,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "Ipsum ",
                   },
                 ],
@@ -381,11 +381,11 @@ Array [
             ],
             "type": "table_cell",
           },
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
-                  Object {
+          {
+            "children": [
+              {
+                "children": [
+                  {
                     "text": "",
                   },
                 ],

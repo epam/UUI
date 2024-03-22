@@ -12,7 +12,7 @@ exports[`Slider should render with maximum props 1`] = `
   <div
     className="uui-slider-filled"
     style={
-      Object {
+      {
         "width": 0,
       }
     }
@@ -23,7 +23,7 @@ exports[`Slider should render with maximum props 1`] = `
     <div
       className="uui-slider-scale-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -31,7 +31,7 @@ exports[`Slider should render with maximum props 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -41,7 +41,7 @@ exports[`Slider should render with maximum props 1`] = `
     <div
       className="uui-slider-scale-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -49,7 +49,7 @@ exports[`Slider should render with maximum props 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -69,7 +69,7 @@ exports[`Slider should render with maximum props 1`] = `
     onMouseUp={[Function]}
     role="slider"
     style={
-      Object {
+      {
         "transform": "translateX(0px)",
       }
     }
@@ -90,7 +90,7 @@ exports[`Slider should render with minimum props 1`] = `
   <div
     className="uui-slider-filled"
     style={
-      Object {
+      {
         "width": 0,
       }
     }
@@ -101,7 +101,7 @@ exports[`Slider should render with minimum props 1`] = `
     <div
       className="uui-slider-scale-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -109,7 +109,7 @@ exports[`Slider should render with minimum props 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -119,7 +119,7 @@ exports[`Slider should render with minimum props 1`] = `
     <div
       className="uui-slider-scale-dot"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -127,7 +127,7 @@ exports[`Slider should render with minimum props 1`] = `
     <div
       className="uui-slider-scale-number"
       style={
-        Object {
+        {
           "transform": "translateX(0px)",
         }
       }
@@ -147,7 +147,7 @@ exports[`Slider should render with minimum props 1`] = `
     onMouseUp={[Function]}
     role="slider"
     style={
-      Object {
+      {
         "transform": "translateX(0px)",
       }
     }

@@ -7,7 +7,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
   <div
     className="uui-flex-row root size-36 daySelection container container align-items-top"
     style={
-      Object {
+      {
         "columnGap": undefined,
         "rowGap": undefined,
       }
@@ -16,7 +16,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
     <div
       className="flexCell"
       style={
-        Object {
+        {
           "alignSelf": undefined,
           "flexBasis": "auto",
           "flexGrow": undefined,
@@ -29,7 +29,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
       <div
         className="uui-flex-row root size-36 container align-items-center"
         style={
-          Object {
+          {
             "columnGap": undefined,
             "rowGap": undefined,
           }
@@ -38,7 +38,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
         <div
           className="uui-flex-row root size-36 bodesWrapper container align-items-top"
           style={
-            Object {
+            {
               "columnGap": undefined,
               "rowGap": undefined,
             }
@@ -64,7 +64,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   >
                     <div
                       className="container uui-icon uui-enabled"
-                      style={Object {}}
+                      style={{}}
                     >
                       <svg
                         className=""
@@ -91,7 +91,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   >
                     <div
                       className="container uui-icon uui-enabled"
-                      style={Object {}}
+                      style={{}}
                     >
                       <svg
                         className=""
@@ -148,7 +148,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="uui-calendar-days"
                     style={
-                      Object {
+                      {
                         "height": "180px",
                       }
                     }
@@ -642,7 +642,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   >
                     <div
                       className="container uui-icon uui-enabled"
-                      style={Object {}}
+                      style={{}}
                     >
                       <svg
                         className=""
@@ -669,7 +669,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   >
                     <div
                       className="container uui-icon uui-enabled"
-                      style={Object {}}
+                      style={{}}
                     >
                       <svg
                         className=""
@@ -726,7 +726,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="uui-calendar-days"
                     style={
-                      Object {
+                      {
                         "height": "180px",
                       }
                     }
