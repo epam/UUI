@@ -29,7 +29,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         showSelectedOnly,
         patchItems,
         isDeleted,
-        getPosition,
+        getNewItemPosition,
         itemsStatusMap,
         selectAll,
         isLoaded,
@@ -119,7 +119,9 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         tree: treeWithSelectedOnly,
         patchItems: showSelectedOnly ? null : patchItems,
         isDeleted,
-        getPosition,
+        getNewItemPosition,
+        sorting: dataSourceState.sorting,
+        sortBy,
     });
 
     const totalCount = useMemo(() => {

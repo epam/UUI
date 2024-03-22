@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataTableRowProps, IMap, Metadata, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrderingTypes, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
@@ -23,7 +23,7 @@ const blankItem: Partial<TodoTask> = {
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
 // However, we'll have an object here to extend the form state if needed later.
 interface FormState {
-    items: IMap<number, TodoTask>;
+    items: IImmutableMap<number, TodoTask>;
 }
 
 // Define priorities to use in PickerInput
@@ -46,8 +46,8 @@ const metadata: Metadata<FormState> = {
 };
 
 let savedItem: FormState = {
-    // items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
-    items: new Map<number, TodoTask>(),
+    items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
+    // items: ItemsMap.blank<number, TodoTask>({ }),
 };
 
 // To store the last item id used
@@ -115,6 +115,7 @@ export default function EditableTableExample() {
                     ),
                     fix: 'left',
                     width: 300,
+                    isSortable: true,
                 },
                 {
                     key: 'isDone',
@@ -185,7 +186,7 @@ export default function EditableTableExample() {
             ...lens.prop('items').key(item.id).default(item).toProps(),
         }),
         patchItems: value.items,
-        getPosition: (item: TodoTask) => item.isNew ? 'bottom' : 'initial',
+        getNewItemPosition: () => PatchOrderingTypes.TOP,
         isDeleted: (item) => item.isDeleted,
     });
 
