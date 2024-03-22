@@ -18,7 +18,6 @@ const JSDOM_ENV_CONFIG = {
     testEnvironmentOptions: {
         url: 'http://localhost',
     },
-    setupFiles: ['<rootDir>/node_modules/react-app-polyfill/jsdom'],
     setupFilesAfterEnv: ['<rootDir>/uui-build/jest/setupJsDom.js'],
     testMatch: ['<rootDir>/**/__tests__/**/*.test.{js,ts,tsx}'],
     transform: {
