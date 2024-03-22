@@ -27,12 +27,14 @@ export class PatchHelper {
         const composedComparator = composeComparetors(comparators);
 
         const deletedMap = newMap({ complexIds: treeStructure.getParams().complexIds });
+        const alreadyPushed = newMap({ complexIds: treeStructure.getParams().complexIds });
 
         for (const [patchParentId, sortedPatchItems] of sortedPatch) {
+            newItemsMap = newItemsMap.setItems(sortedPatchItems);
+
             if (!newByParentId.has(patchParentId)) {
                 newByParentId.set(patchParentId, sortedPatchItems.map((item) => treeStructure.getParams().getId(item)));
                 newItems.push(...sortedPatchItems);
-                newItemsMap = newItemsMap.setItems(sortedPatchItems);
                 continue;
             }
             let sortedItems: TId[] = [];
@@ -69,7 +71,6 @@ export class PatchHelper {
                         } else {
                             newBottomItems.push(patchItemId);
                         }
-                        newItemsMap = newItemsMap.set(patchItemId, sortedPatchItems[i]);
                         isPatched = true;
                         break;
                     }
@@ -90,15 +91,25 @@ export class PatchHelper {
 
                     const item = itemsMap.get(itemIds[j]);
                     const result = composedComparator(patchItemToCompare, item);
+                    // console.log('patchItemId, itemId', patchItemId, itemIds[j], result);
                     if (result === -1) {
                         sortedItems.push(patchItemId);
-                        newItemsMap = newItemsMap.set(patchItemId, sortedPatchItems[i]);
                         isPatched = true;
                         k = j;
                         break;
                     } else {
-                        if (!deletedMap.has(patchItemId)) {
-                            sortedItems.push(treeStructure.getParams().getId(item));
+                        if (!deletedMap.has(itemIds[j])) {
+                            if (!alreadyPushed.has(itemIds[j])) {
+                                sortedItems.push(itemIds[j]);
+                                alreadyPushed.set(itemIds[j], true);
+                                if (k === itemIds.length - 1 && i === sortedPatchItems.length - 1) {
+                                    sortedItems.push(patchItemId);
+                                }
+                            }
+                            if (k === itemIds.length - 1) {
+                                sortedItems.push(patchItemId);
+                            }
+                            k = j;
                         } else {
                             isPatched = true;
                         }
