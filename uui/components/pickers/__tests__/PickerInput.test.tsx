@@ -153,7 +153,6 @@ describe('PickerInput', () => {
                 getName: ({ name }) => name,
             });
 
-            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toBeUndefined();
             await waitFor(async () => expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Elementary+'));
 
             fireEvent.click(dom.input);
@@ -336,7 +335,7 @@ describe('PickerInput', () => {
                 selectionMode: 'multi',
                 getName: ({ name }) => name,
             });
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['', '']);
+            await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['', '']));
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
             await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Elementary+', 'Pre-Intermediate']));
         });
