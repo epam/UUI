@@ -60,12 +60,10 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
 describe('RangeDatePickerBody', () => {
     it('should be rendered correctly', async () => {
         const value: RangeDatePickerBodyValue<RangeDatePickerValue> = {
-            view: 'DAY_SELECTION',
             selectedDate: {
                 from: null,
                 to: null,
             },
-            month: dayjs('2020-09-03'),
             inFocus: 'from',
         };
         const tree = await renderSnapshotWithContextAsync(

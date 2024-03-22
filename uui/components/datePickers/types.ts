@@ -139,12 +139,7 @@ export interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HT
 
 export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
-export interface DatePickerBodyValue<TSelection> {
-    selectedDate: TSelection | null;
-    month: Dayjs;
-    view: ViewType;
-}
-
-export interface RangeDatePickerBodyValue<TSelection> extends DatePickerBodyValue<TSelection> {
+export interface RangeDatePickerBodyValue<TSelection> {
     inFocus: 'from' | 'to';
+    selectedDate: TSelection | null;
 }

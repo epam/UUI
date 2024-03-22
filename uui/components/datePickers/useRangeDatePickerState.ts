@@ -1,9 +1,8 @@
-import dayjs, { Dayjs } from 'dayjs';
 import { useState, useEffect } from 'react';
 import { IControlled, useUuiContext } from '@epam/uui-core';
-import { toCustomDateRangeFormat, valueFormat } from './helpers';
+import { toCustomDateRangeFormat } from './helpers';
 import {
-    RangeDatePickerValue, RangeDatePickerProps, ViewType, RangeDatePickerInputType, RangeDatePickerBodyValue,
+    RangeDatePickerValue, RangeDatePickerProps, RangeDatePickerInputType, RangeDatePickerBodyValue,
 } from './types';
 
 export type UseRangeDatePickerState =
@@ -21,20 +20,11 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
         toCustomDateRangeFormat(value, format),
     );
+    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(inFocusInitial);
 
     useEffect(() => {
         setInputValue(toCustomDateRangeFormat(value, format));
     }, [format, value, setInputValue]);
-
-    const [bodyState, setBodyState] = useState<{
-        view: ViewType;
-        month: Dayjs;
-        inFocus: RangeDatePickerInputType
-    }>({
-        view: 'DAY_SELECTION',
-        month: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
-        inFocus: inFocusInitial,
-    });
 
     const onValueChange = (newValue: RangeDatePickerValue) => {
         const fromChanged = value.from !== newValue.from;
@@ -51,17 +41,13 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
 
     const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
         setInputValue(toCustomDateRangeFormat(newValue.selectedDate, format));
-        setBodyState((prev) => ({
-            view: newValue.view ?? prev.view,
-            month: newValue.month ?? prev.month,
-            inFocus: newValue.inFocus ?? prev.inFocus,
-        }));
+        setInFocus(newValue.inFocus ?? inFocus);
         onValueChange(newValue.selectedDate);
 
         const toChanged = value.to !== newValue.selectedDate.to;
         const closeBody = newValue.selectedDate.from
          && newValue.selectedDate.to
-          && bodyState.inFocus === 'to'
+          && inFocus === 'to'
            && toChanged;
         if (closeBody) {
             props.onOpenChange?.(false);
@@ -69,10 +55,10 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     };
 
     return {
-        ...bodyState,
         inputValue,
+        inFocus,
         setInputValue,
-        setBodyState,
+        setInFocus,
         onValueChange,
         onBodyValueChange,
     };

@@ -11,9 +11,7 @@ import css from './RangeDatePicker.module.scss';
 import { RangeDatePickerInputType, RangeDatePickerProps } from './types';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import {
-    defaultFormat, defaultRangeValue, getMonthOnOpening,
-} from './helpers';
+import { defaultFormat, defaultRangeValue } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
 import { useRangeDatePickerState } from './useRangeDatePickerState';
 
@@ -32,11 +30,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
 
     const {
         inputValue,
-        month,
-        view,
         inFocus,
         setInputValue,
-        setBodyState,
+        setInFocus,
         onValueChange,
         onBodyValueChange,
     } = useRangeDatePickerState({
@@ -51,11 +47,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     });
 
     const toggleIsOpen = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
-        setBodyState({
-            view: 'DAY_SELECTION',
-            month: getMonthOnOpening(focus, value),
-            inFocus: newIsOpen ? focus : null,
-        });
+        setInFocus(newIsOpen ? focus : null);
         setIsOpen(newIsOpen);
         props.onOpenChange?.(newIsOpen);
     };
@@ -80,8 +72,6 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                         cx={ cx(props.bodyCx) }
                         value={ {
                             selectedDate: value,
-                            month,
-                            view,
                             inFocus,
                         } }
                         onValueChange={ onBodyValueChange }
