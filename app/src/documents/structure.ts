@@ -78,7 +78,7 @@ const componentsStructure = sortBy(
         { id: 'radioInput', name: 'Radio Input', component: RadioInputDoc, parentId: 'components' },
         { id: 'rangeDatePicker', name: 'Range Date Picker', component: RangeDatePickerDoc, parentId: 'components' },
         { id: 'rating', name: 'Rating', component: RatingDoc, parentId: 'components' },
-        { id: 'richTextView', name: 'RichTextView', component: RichTextViewDoc, parentId: 'components' },
+        { id: 'richTextView', name: 'Rich Text View', component: RichTextViewDoc, parentId: 'components' },
         { id: 'searchInput', name: 'Search Input', component: SearchInputDoc, parentId: 'components' },
         { id: 'slider', name: 'Slider', component: SliderDoc, parentId: 'components' },
         { id: 'sliderRating', name: 'Slider Rating', component: SliderRatingDoc, parentId: 'components' },
