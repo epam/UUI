@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
 } from '@epam/uui-test-utils';
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
@@ -659,7 +659,11 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input);
 
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        fireEvent.change(dom.input, { target: { value: 'A' } });
+
+        // eslint-disable-next-line testing-library/no-unnecessary-act
+        act(() => {
+            fireEvent.change(dom.input, { target: { value: 'A' } });
+        });
         const pickerBody = await PickerInputTestObject.findDialog();
         return expect(pickerBody).toBeInTheDocument();
     });
