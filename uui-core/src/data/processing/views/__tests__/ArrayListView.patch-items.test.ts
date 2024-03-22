@@ -6,6 +6,8 @@ import { act } from 'react-dom/test-utils';
 import { PatchOrderingTypes } from '../tree';
 import { ArrayListViewProps } from '../types';
 
+type ExtendedLocationItem = LocationItem & { isDeleted?: boolean };
+
 describe('ArrayListView - patch items', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const onValueChanged = (newValue: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
@@ -28,8 +30,8 @@ describe('ArrayListView - patch items', () => {
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
     }
 
-    function createItemsMap(itemsObj: Record<string, LocationItem>) {
-        return ItemsMap.fromObject<string, LocationItem>(itemsObj, { getId: ({ id }) => id });
+    function createItemsMap(itemsObj: Record<string, LocationItem | ExtendedLocationItem>) {
+        return ItemsMap.fromObject<string, LocationItem | ExtendedLocationItem>(itemsObj, { getId: ({ id }) => id });
     }
 
     it.each([
@@ -304,7 +306,7 @@ describe('ArrayListView - patch items', () => {
         });
     });
 
-    it('should fix position of item from patch till the next sorting change', async () => {
+    it('should fix position of item from patch till the next sorting change and apply sorting after sorting change', async () => {
         const getNewItemPosition = () => PatchOrderingTypes.TOP;
         const patchItems = createItemsMap({
             AS1: {
@@ -548,7 +550,6 @@ describe('ArrayListView - patch items', () => {
 
         await waitFor(() => {
             view = hookResult.result.current;
-            // console.log(view.getVisibleRows());
             expectViewToLookLike(
                 view,
                 [
@@ -681,7 +682,6 @@ describe('ArrayListView - patch items', () => {
 
         await waitFor(() => {
             view = hookResult.result.current;
-            // console.log(view.getVisibleRows().map((value) => value?.value?.name));
             expectViewToLookLike(
                 view,
                 [
@@ -804,122 +804,349 @@ describe('ArrayListView - patch items', () => {
         });
     });
 
-    // it('should add items by parent', async () => {
-    //     const dataSource = getArrayLocationsDS({
-    //         patchItems: createItemsMap({
-    //             YT: {
-    //                 id: 'YT',
-    //                 name: 'Mayotte',
-    //                 parentId: 'c-AF',
-    //                 type: 'country',
-    //                 __typename: 'Location',
-    //                 childCount: 0,
-    //             } }),
-    //         getPosition: () => 'bottom',
-    //     });
+    it('should delete items from tree', async () => {
+        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const patchItems = createItemsMap({
+            AS1: {
+                id: 'c-AS1',
+                name: 'Asia1',
+                type: 'continent',
+                __typename: 'Location',
+                parentId: 'c-AF',
+                childCount: 0,
+                isDeleted: true,
+            },
+            NA1: {
+                id: 'c-NA1',
+                name: 'North America1',
+                type: 'continent',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            EU: {
+                id: 'c-EU',
+                type: 'continent',
+                name: 'Europe',
+                __typename: 'Location',
+                childCount: 1,
+                isDeleted: true,
+            },
+            GM: {
+                id: 'GM',
+                name: 'Gambia',
+                type: 'country',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 6,
+                isDeleted: true,
+            },
+            BJ: {
+                id: 'BJ',
+                name: 'Benin',
+                type: 'country',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 10,
+            },
+        });
 
-    //     currentValue.visibleCount = 6;
-    //     const hookResult = renderHook(
-    //         ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-    //         { initialProps: {
-    //             value: currentValue,
-    //             onValueChange: onValueChanged,
-    //             props: {},
-    //         } },
-    //     );
+        const emptyPatchItems: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
+        const dataSource = getArrayLocationsDS({});
 
-    //     await waitFor(() => {
-    //         const view = hookResult.result.current;
-    //         expect(view.getListProps().isReloading).toBeFalsy();
-    //     }, { timeout: 300 });
+        currentValue.visibleCount = 10;
+        currentValue.sorting = [{ field: 'name', direction: 'desc' }];
+        const props: Partial<ArrayListViewProps<ExtendedLocationItem, string, any>> = {
+            patchItems: emptyPatchItems,
+            getNewItemPosition,
+            isDeleted: (item) => item.isDeleted ?? false,
+        };
 
-    //     await waitFor(() => {
-    //         const view = hookResult.result.current;
-    //         expectViewToLookLike(view, [
-    //             { id: 'c-AF' },
-    //             { id: 'c-EU' },
-    //         ]);
-    //     });
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props,
+            } },
+        );
 
-    //     let view = hookResult.result.current;
-    //     const rows = view.getVisibleRows();
-    //     const rowAF = rows[0];
-    //     await act(() => {
-    //         rowAF.onFold?.(rowAF);
-    //     });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-EU' },
+                { id: 'c-AF' },
+            ]);
+        });
 
-    //     hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(2);
 
-    //     await waitFor(() => {
-    //         view = hookResult.result.current;
-    //         expectViewToLookLike(
-    //             view,
-    //             [
-    //                 { id: 'c-AF' },
-    //                 { id: 'DZ', parentId: 'c-AF' },
-    //                 { id: 'BJ', parentId: 'c-AF' },
-    //                 { id: 'GM', parentId: 'c-AF' },
-    //                 { id: 'YT', parentId: 'c-AF' },
-    //                 { id: 'c-EU' },
-    //             ],
-    //         );
-    //     });
-    // });
+        const rowAF = view.getVisibleRows()[1];
+        await act(() => {
+            rowAF.onFold?.(rowAF);
+        });
 
-    // it('should add items by parent after some item', async () => {
-    //     const dataSource = getArrayLocationsDS({
-    //         patchItems: createItemsMap({
-    //             YT: {
-    //                 id: 'YT',
-    //                 name: 'Mayotte',
-    //                 parentId: 'c-AF',
-    //                 type: 'country',
-    //                 __typename: 'Location',
-    //                 childCount: 0,
-    //             } }),
-    //         getPosition: () => ({ after: 'DZ' }),
-    //     });
+        currentValue.visibleCount = 10;
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems: emptyPatchItems } });
 
-    //     currentValue.visibleCount = 6;
-    //     const hookResult = renderHook(
-    //         ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-    //         { initialProps: {
-    //             value: currentValue,
-    //             onValueChange: onValueChanged,
-    //             props: {},
-    //         } },
-    //     );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-EU' },
+                    { id: 'c-AF' },
+                    { id: 'GM', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
 
-    //     await waitFor(() => {
-    //         const view = hookResult.result.current;
-    //         expectViewToLookLike(view, [
-    //             { id: 'c-AF' },
-    //             { id: 'c-EU' },
-    //         ]);
-    //     });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
 
-    //     let view = hookResult.result.current;
-    //     const rows = view.getVisibleRows();
-    //     const rowAF = rows[0];
-    //     await act(() => {
-    //         rowAF.onFold?.(rowAF);
-    //     });
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    // { id: 'c-EU' },
+                    { id: 'c-AF' },
+                    { id: 'c-NA1', parentId: 'c-AF' },
+                    // { id: 'c-AS1', parentId: 'c-AF' },
+                    // { id: 'GM', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
+    });
 
-    //     hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+    it('should update items', async () => {
+        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const patchItems = createItemsMap({
+            AS1: {
+                id: 'c-AS1',
+                name: 'Asia1',
+                type: 'continent',
+                __typename: 'Location',
+                parentId: 'c-AF',
+                childCount: 0,
+            },
+            NA1: {
+                id: 'c-NA1',
+                name: 'North America1',
+                type: 'continent',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            EU: {
+                id: 'c-EU',
+                type: 'continent',
+                name: 'Europe',
+                __typename: 'Location',
+                childCount: 1,
+            },
+            GM: {
+                id: 'GM',
+                name: 'Gambia',
+                type: 'country',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 6,
+            },
+            BJ: {
+                id: 'BJ',
+                name: 'Benin',
+                type: 'country',
+                parentId: 'c-AF',
+                __typename: 'Location',
+                childCount: 10,
+            },
+        });
 
-    //     await waitFor(() => {
-    //         view = hookResult.result.current;
-    //         expectViewToLookLike(
-    //             view,
-    //             [
-    //                 { id: 'c-AF' },
-    //                 { id: 'DZ', parentId: 'c-AF' },
-    //                 { id: 'YT', parentId: 'c-AF' },
-    //                 { id: 'BJ', parentId: 'c-AF' },
-    //                 { id: 'GM', parentId: 'c-AF' },
-    //                 { id: 'c-EU' },
-    //             ],
-    //         );
-    //     }, { timeout: 300 });
-    // });
+        const emptyPatchItems: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
+        const dataSource = getArrayLocationsDS({});
+
+        currentValue.visibleCount = 10;
+        currentValue.sorting = [{ field: 'name', direction: 'desc' }];
+        const props: Partial<ArrayListViewProps<ExtendedLocationItem, string, any>> = {
+            patchItems: emptyPatchItems,
+            getNewItemPosition,
+        };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props,
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-EU' },
+                { id: 'c-AF' },
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(2);
+
+        const rowAF = view.getVisibleRows()[1];
+        await act(() => {
+            rowAF.onFold?.(rowAF);
+        });
+
+        currentValue.visibleCount = 10;
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems: emptyPatchItems } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-EU' },
+                    { id: 'c-AF' },
+                    { id: 'GM', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-EU' },
+                    { id: 'c-AF' },
+                    { id: 'c-NA1', parentId: 'c-AF' },
+                    { id: 'c-AS1', parentId: 'c-AF' },
+                    { id: 'GM', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
+    });
+
+    it('should move items from parent to parent', async () => {
+        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const patchItems = createItemsMap({
+            GM: {
+                id: 'GM',
+                name: 'Gambia',
+                type: 'country',
+                parentId: 'c-EU',
+                __typename: 'Location',
+                childCount: 6,
+            },
+            BJ: {
+                id: 'BJ',
+                name: 'Benin',
+                type: 'country',
+                parentId: 'c-EU',
+                __typename: 'Location',
+                childCount: 10,
+            },
+        });
+
+        const emptyPatchItems: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
+        const dataSource = getArrayLocationsDS({});
+
+        currentValue.visibleCount = 10;
+        currentValue.sorting = [{ field: 'name', direction: 'desc' }];
+        const props: Partial<ArrayListViewProps<ExtendedLocationItem, string, any>> = {
+            patchItems: emptyPatchItems,
+            getNewItemPosition,
+        };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props,
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-EU' },
+                { id: 'c-AF' },
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(2);
+
+        const rowAF = view.getVisibleRows()[1];
+        await act(() => {
+            rowAF.onFold?.(rowAF);
+        });
+
+        currentValue.visibleCount = 10;
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems: emptyPatchItems } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-EU' },
+                    { id: 'c-AF' },
+                    { id: 'GM', parentId: 'c-AF' },
+                    { id: 'BJ', parentId: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-EU' },
+                    { id: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
+
+        const rowEU = view.getVisibleRows()[0];
+        await act(() => {
+            rowEU.onFold?.(rowEU);
+        });
+
+        currentValue.visibleCount = 10;
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 'c-EU' },
+                    { id: 'BJ', parentId: 'c-EU' },
+                    { id: 'GM', parentId: 'c-EU' },
+                    { id: 'GB', parentId: 'c-EU' },
+
+                    { id: 'c-AF' },
+                    { id: 'DZ', parentId: 'c-AF' },
+                ],
+            );
+        });
+    });
 });
