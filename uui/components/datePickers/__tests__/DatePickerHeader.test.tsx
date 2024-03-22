@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import { fireEvent, setupComponentForTest, screen, within, userEvent } from '@epam/uui-test-utils';
 import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
-import { getNextMonthFromCurrent, getNextYearFromCurrent, getNextListYearFromCurrent } from '../helpers';
+import { getNextMonth, getNextYear, getNextYearsList } from '../helpers';
 import { ViewType } from '../types';
 
 async function setupDatePickerHeader(params: { initialDate: string, viewType?: ViewType, onValueChange?: jest.Mock }) {
@@ -114,7 +114,7 @@ describe('DatePickerHeader', () => {
 
             expect(onValueChangeMock).toHaveBeenCalledWith({
                 view: 'DAY_SELECTION',
-                month: getNextMonthFromCurrent(dayjs('2017-01-22').startOf('day')),
+                month: getNextMonth(dayjs('2017-01-22').startOf('day')),
             });
         });
 
@@ -130,7 +130,7 @@ describe('DatePickerHeader', () => {
 
             expect(onValueChangeMock).toHaveBeenCalledWith({
                 view: 'MONTH_SELECTION',
-                month: getNextYearFromCurrent(dayjs('2017-01-22').startOf('day')),
+                month: getNextYear(dayjs('2017-01-22').startOf('day')),
             });
         });
 
@@ -146,7 +146,7 @@ describe('DatePickerHeader', () => {
 
             expect(onValueChangeMock).toHaveBeenCalledWith({
                 view: 'YEAR_SELECTION',
-                month: getNextListYearFromCurrent(dayjs('2017-01-22').startOf('day')),
+                month: getNextYearsList(dayjs('2017-01-22').startOf('day')),
             });
         });
 
@@ -162,7 +162,7 @@ describe('DatePickerHeader', () => {
 
             expect(onValueChangeMock).toHaveBeenCalledWith({
                 view: 'YEAR_SELECTION',
-                month: getNextListYearFromCurrent(dayjs('2017-01-22').startOf('day')),
+                month: getNextYearsList(dayjs('2017-01-22').startOf('day')),
             });
         });
     });

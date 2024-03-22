@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import {
@@ -9,12 +9,19 @@ import { MonthSelection, YearSelection } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
-import { CommonDatePickerBodyProps, DatePickerBodyValue } from './types';
-import { uuiDatePickerBodyBase, valueFormat } from './helpers';
+import { CommonDatePickerBodyProps, ViewType } from './types';
+import {
+    getNewMonth, uuiDatePickerBodyBase, valueFormat,
+} from './helpers';
 
-export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<DatePickerBodyValue<string>> {
+export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
     isHoliday?: (day: Dayjs) => boolean;
 }
+
+export type BodySettings = {
+    month: Dayjs;
+    view: ViewType;
+};
 
 dayjs.extend(updateLocale);
 
@@ -23,17 +30,62 @@ export const uuiDatePickerBody = {
     separator: 'uui-datepickerBody-separator',
 } as const;
 
-export function DatePickerBody({
-    value,
-    onValueChange,
+export function DatePickerBody(props: DatePickerBodyProps) {
+    const { value, onValueChange } = props;
+    const [{ view, month }, _setState] = useState<BodySettings>({
+        view: 'DAY_SELECTION',
+        month: getNewMonth(value),
+    });
+
+    return (
+        <StatelessDatePickerBody
+            { ...props }
+            value={ {
+                selectedDate: value,
+                month,
+                view,
+            } }
+            onValueChange={ ({
+                month: m,
+                view: v,
+                selectedDate,
+            }) => {
+                _setState({
+                    month: getNewMonth(m),
+                    view: v,
+                });
+                onValueChange(selectedDate);
+            } }
+        />
+    );
+}
+
+export interface StatelessDatePickerBodyValue<TSelection> {
+    selectedDate: TSelection | null;
+    month: Dayjs;
+    view: ViewType;
+}
+
+export interface StatelessDatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<StatelessDatePickerBodyValue<string>> {
+    isHoliday?: (day: Dayjs) => boolean;
+}
+
+export function StatelessDatePickerBody({
     renderDay,
     isHoliday,
     cx: classes,
     filter,
     forwardedRef,
     rawProps,
-}: DatePickerBodyProps) {
-    const selectedDate = dayjs(value.selectedDate);
+    value,
+    onValueChange,
+}: StatelessDatePickerBodyProps) {
+    const {
+        selectedDate: _selectedDate,
+        month,
+        view,
+    } = value;
+    const selectedDate = dayjs(_selectedDate);
 
     const onMonthClick = (newDate: Dayjs) => {
         onValueChange({
@@ -61,7 +113,7 @@ export function DatePickerBody({
     };
 
     const getView = () => {
-        switch (value.view) {
+        switch (view) {
             case 'MONTH_SELECTION':
                 return (
                     <MonthSelection
@@ -101,8 +153,8 @@ export function DatePickerBody({
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>
                 <DatePickerHeader
                     value={ {
-                        view: value.view,
-                        month: value.month,
+                        view,
+                        month,
                     } }
                     onValueChange={ (newValue) => {
                         onValueChange({

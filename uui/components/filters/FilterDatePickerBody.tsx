@@ -1,7 +1,5 @@
-import React, {
-    Fragment, useEffect, useState,
-} from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import React, { Fragment } from 'react';
+import dayjs from 'dayjs';
 import { i18n } from '../../i18n';
 import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
@@ -9,10 +7,8 @@ import {
 } from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
-import {
-    DatePickerBody, DatePickerProps, DatePickerBodyValue, ViewType,
-} from '../datePickers';
-import { getNewMonth } from '../datePickers/helpers';
+import { DatePickerProps } from '../datePickers';
+import { DatePickerBody } from '../datePickers/DatePickerBody';
 
 /**
  * Represents the properties of the FiterDatePicker
@@ -22,24 +18,6 @@ export interface FilterDatePickerProps extends DatePickerProps, IDropdownBodyPro
 export function FilterDatePickerBody(props: FilterDatePickerProps) {
     const { value } = props;
     const context = useUuiContext();
-
-    const [{
-        view,
-        month,
-    }, setState] = useState<{
-        month: Dayjs;
-        view: ViewType;
-    }>({
-        view: 'DAY_SELECTION',
-        month: getNewMonth(value),
-    });
-
-    useEffect(() => {
-        setState((prev) => ({
-            ...prev,
-            month: getNewMonth(value),
-        }));
-    }, [value]);
 
     const handleValueChange = (newValue: string | null) => {
         props.onValueChange(newValue);
@@ -53,15 +31,10 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
         }
     };
 
-    const handleBodyChange = (newValue: DatePickerBodyValue<string>) => {
-        if (newValue.selectedDate && value !== newValue.selectedDate) {
-            handleValueChange(newValue.selectedDate);
+    const handleBodyChange = (newValue: string) => {
+        if (newValue && value !== newValue) {
+            handleValueChange(newValue);
         }
-
-        setState({
-            month: getNewMonth(newValue.month),
-            view: newValue.view,
-        });
     };
 
     return (
@@ -69,11 +42,7 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
             <FlexRow borderBottom={ true }>
                 <DatePickerBody
                     filter={ props.filter }
-                    value={ {
-                        selectedDate: value,
-                        month,
-                        view,
-                    } }
+                    value={ value }
                     onValueChange={ handleBodyChange }
                     renderDay={ props.renderDay }
                     isHoliday={ props.isHoliday }

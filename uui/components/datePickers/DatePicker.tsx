@@ -7,16 +7,14 @@ import { TextInput } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
-import { DatePickerBody } from './DatePickerBody';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+import { DatePickerProps } from './types';
 import {
-    DatePickerProps, DatePickerBodyValue, ViewType,
-} from './types';
-import {
-    defaultFormat, getNewMonth, supportedDateFormats, toCustomDateFormat, toValueDateFormat,
+    defaultFormat, supportedDateFormats, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
+import { DatePickerBody } from './DatePickerBody';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -32,33 +30,14 @@ const isValidDate = (input: string, format: string, filter?:(day: dayjs.Dayjs) =
     return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
 };
 
-interface DatePickerState {
-    isOpen: boolean;
-    month: Dayjs;
-    view: ViewType;
-}
-
 export function DatePickerComponent(props: DatePickerProps) {
     const { format = defaultFormat, value } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
-
-    const [{
-        isOpen,
-        view,
-        month,
-    }, setState] = useState<DatePickerState>({
-        isOpen: false,
-        view: 'DAY_SELECTION',
-        month: getNewMonth(value),
-    });
+    const [isBodyOpen, setBodyIsOpen] = useState(false);
 
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
-        setState((prev) => ({
-            ...prev,
-            month: getNewMonth(value),
-        }));
     }, [value]);
 
     const onValueChange = (newValue: string | null) => {
@@ -74,24 +53,10 @@ export function DatePickerComponent(props: DatePickerProps) {
         }
     };
 
-    const onBodyValueChange = (newValue: DatePickerBodyValue<string>) => {
-        setState((prev) => ({
-            ...prev,
-            month: getNewMonth(newValue.month),
-            view: newValue.view,
-            // isOpen: value === newValue.selectedDate,
-            // TODO: improve this. when the same date is clicked it should close body
-        }));
-
-        onValueChange(newValue.selectedDate);
-    };
-
-    const toggleIsOpen = (open: boolean) => {
-        setState({
-            isOpen: open,
-            view: 'DAY_SELECTION',
-            month: getNewMonth(value),
-        });
+    const onBodyValueChange = (newValue: string | null) => {
+        console.log('newValue', newValue, value);
+        setBodyIsOpen(newValue === value);
+        onValueChange(newValue);
     };
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -102,7 +67,7 @@ export function DatePickerComponent(props: DatePickerProps) {
         } else {
             onValueChange(null);
         }
-        toggleIsOpen(false);
+        setBodyIsOpen(false);
     };
 
     const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
@@ -122,7 +87,7 @@ export function DatePickerComponent(props: DatePickerProps) {
                 { ...renderProps }
                 onClick={ null }
                 isDropdown={ false }
-                cx={ cx(props.inputCx, isOpen && uuiMod.focus) }
+                cx={ cx(props.inputCx, isBodyOpen && uuiMod.focus) }
                 icon={ props.mode !== EditMode.CELL && systemIcons.calendar }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
@@ -141,7 +106,7 @@ export function DatePickerComponent(props: DatePickerProps) {
                 isReadonly={ props.isReadonly }
                 tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
                 onFocus={ (e) => {
-                    toggleIsOpen(true);
+                    setBodyIsOpen(true);
                     props.onFocus?.(e);
                 } }
                 onBlur={ onBlur }
@@ -156,11 +121,7 @@ export function DatePickerComponent(props: DatePickerProps) {
         return (
             <DropdownContainer { ...renderProps } focusLock={ false }>
                 <DatePickerBody
-                    value={ {
-                        selectedDate: value,
-                        month,
-                        view,
-                    } }
+                    value={ value }
                     onValueChange={ onBodyValueChange }
                     cx={ cx(props.bodyCx) }
                     filter={ props.filter }
@@ -175,12 +136,12 @@ export function DatePickerComponent(props: DatePickerProps) {
 
     return (
         <Dropdown
-            value={ isOpen }
+            value={ isBodyOpen }
             modifiers={ modifiers }
             placement={ props.placement }
             forwardedRef={ props.forwardedRef }
             onValueChange={ (v) => {
-                toggleIsOpen(v);
+                setBodyIsOpen(v);
             } }
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || renderInput(renderProps);

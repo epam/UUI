@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { renderSnapshotWithContextAsync, renderWithContextAsync, fireEvent, screen } from '@epam/uui-test-utils';
-import { DatePickerBody } from '../DatePickerBody';
+import {
+    renderSnapshotWithContextAsync, renderWithContextAsync, fireEvent, screen,
+} from '@epam/uui-test-utils';
+import { StatelessDatePickerBody } from '../DatePickerBody';
 import dayjs, { Dayjs } from 'dayjs';
 
 describe('DataPicker', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <DatePickerBody
+            <StatelessDatePickerBody
                 value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '',
@@ -21,7 +23,7 @@ describe('DataPicker', () => {
     it('should change selectedDate on day click', async () => {
         const handleChange = jest.fn();
         await renderWithContextAsync(
-            <DatePickerBody
+            <StatelessDatePickerBody
                 value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '',
@@ -43,7 +45,7 @@ describe('DataPicker', () => {
     it('should not change selected date if there is filter', async () => {
         const handleChange = jest.fn();
         await renderWithContextAsync(
-            <DatePickerBody
+            <StatelessDatePickerBody
                 value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '2017-01-22',

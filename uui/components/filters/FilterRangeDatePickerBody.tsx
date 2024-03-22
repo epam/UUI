@@ -21,11 +21,9 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
 
     const {
         inputValue,
-        month,
-        view,
         inFocus,
         setInputValue,
-        setBodyState,
+        setInFocus,
         onValueChange,
         onBodyValueChange,
     } = useRangeDatePickerState({
@@ -48,8 +46,6 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                 <RangeDatePickerBody
                     value={ {
                         selectedDate: value,
-                        month,
-                        view,
                         inFocus,
                     } }
                     onValueChange={ onBodyValueChange }
@@ -71,10 +67,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                                 if (props.onFocus) {
                                     props.onFocus(event, inputType);
                                 }
-                                setBodyState((prev) => ({
-                                    ...prev,
-                                    inFocus: inputType,
-                                }));
+                                setInFocus(inputType);
                             } }
                             onBlur={ (event, inputType, v) => {
                                 if (props.onBlur) {
