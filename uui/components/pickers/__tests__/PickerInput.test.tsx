@@ -665,6 +665,7 @@ describe('PickerInput', () => {
         act(() => {
             jest.runAllTimers();
         });
+        jest.useRealTimers();
         const pickerBody = await PickerInputTestObject.findDialog();
         return expect(pickerBody).toBeInTheDocument();
     });
