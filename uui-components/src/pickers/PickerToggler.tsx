@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable } from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
-import { useCallback } from 'react';
 import { getMaxItems } from './helpers';
 
 export interface PickerTogglerProps<TItem = any, TId = any>
@@ -27,6 +26,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     * HTML ID attribute for the toggler input
     */
     id?: string;
+    collapsedNames?: string[];
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -37,7 +37,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
-    const handleClick = useCallback(
+    const handleClick = React.useCallback(
         (event: Event) => {
             if (props.isInteractedOutside(event) && inFocus) {
                 blur();
@@ -104,26 +104,32 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderItems = () => {
         const maxItems = getMaxItems(props.maxItems);
-        if (props.selectedRowsCount > maxItems) {
-            return props.renderItem?.({
-                value: i18n.pickerToggler.createItemValue(props.selectedRowsCount, props.entityName || ''),
-                onCheck: () => {
-                    props.onClear?.();
+
+        const multiItems = props.selection?.map((row) => {
+            const newMultiItems = { ...row,
+                caption: props.getName(row.value),
+                isCollapsed: false,
+                isDisabled: row.isDisabled,
+                onClear: () => {
+                    row.onCheck?.(row);
                     // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
                     toggleContainer.current?.focus();
-                },
+                } };
+            return props.renderItem?.(newMultiItems);
+        });
+
+        if (props.selectedRowsCount > maxItems) {
+            const collapsedItem = props.renderItem?.({
+                caption: i18n.pickerToggler.createCollapsedName(props.selectedRowsCount - maxItems, props.entityName || ''),
+                isCollapsed: true,
+                onClear: null,
+                isDisabled: false,
+                id: 'collapsed',
             } as any);
-        } else {
-            return props.selection?.map((row) => {
-                const newRow = { ...row,
-                    onCheck: () => {
-                        row.onCheck?.(row);
-                        // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
-                        toggleContainer.current?.focus();
-                    } };
-                return props.renderItem?.(newRow);
-            });
+            multiItems.push(collapsedItem);
         }
+
+        return multiItems;
     };
 
     const renderInput = () => {

@@ -268,11 +268,18 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
+    const getCollapsedNames = (allSelectedRow: DataRowProps<TItem, TId>[], selectedRows: DataRowProps<TItem, TId>[]) => {
+        return [...allSelectedRow.filter((a) => !selectedRows.some((b) => a.id === b.id))]
+            .map((row: { value: { name?: string } }) => row?.value?.name);
+    };
+
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
         const selectedRows = getSelectedRows(itemsToTake);
+        const allSelectedRow = getSelectedRows();
+        const collapsedNames = getCollapsedNames(allSelectedRow, selectedRows);
         const {
             isDisabled,
             autoFocus,
@@ -312,6 +319,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onBlur: props.onBlur,
             selection: selectedRows,
             selectedRowsCount,
+            collapsedNames,
             placeholder: getPlaceholder(),
             getName: (i: any) => getName(i),
             entityName: getEntityName(selectedRowsCount),
