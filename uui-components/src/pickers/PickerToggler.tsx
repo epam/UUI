@@ -123,9 +123,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             const collapsedItem = props.renderItem?.({
                 caption: i18n.pickerToggler.createCollapsedName(props.selectedRowsCount - maxItems, props.entityName || ''),
                 isCollapsed: true,
-                onClear: null,
                 isDisabled: false,
-                id: 'collapsed',
+                onClear: null,
             } as any);
             multiItems.push(collapsedItem);
         }

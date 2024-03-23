@@ -10,12 +10,13 @@ import { DataPickerBody } from './DataPickerBody';
 import { DataPickerRow } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem } from './PickerItem';
+import { PickerTogglerTagProps } from './PickerTogglerTag';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
 
 export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
-    renderTag?: (props: DataRowProps<TItem, TId>) => React.ReactNode;
+    renderTag?: (props: PickerTogglerTagProps<TItem, TId>) => JSX.Element;
 };
 
 function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -68,7 +69,12 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const renderTarget = (targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) => {
-        const renderTargetFn = props.renderToggler || ((props) => <PickerToggler { ...props } />);
+        const renderTargetFn = props.renderToggler || ((pickerTogglerProps) => (
+            <PickerToggler
+                { ...pickerTogglerProps }
+                renderItem={ props.renderTag ? (renderItemProps) => props.renderTag(renderItemProps) : null }
+            />
+        ));
 
         return (
             <IEditableDebouncer
@@ -108,7 +114,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             .join(' / ');
     };
 
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
+    const renderRowItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
         const { flattenSearchResults } = view.getConfig();
 
         return (
@@ -132,7 +138,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                 key={ rowProps.rowKey }
                 size={ getRowSize() }
                 padding={ props.editMode === 'modal' ? '24' : '12' }
-                renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
+                renderItem={ (item, itemProps) => renderRowItem(item, itemProps, dsState) }
             />
         );
     };
