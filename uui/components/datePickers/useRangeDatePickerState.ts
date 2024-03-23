@@ -22,6 +22,10 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     );
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(inFocusInitial);
 
+    /**
+     * Remove sync when text input will be uncontrolled.
+     * Currently it handles value comp prop updates and any value set.
+     */
     useEffect(() => {
         setInputValue(toCustomDateRangeFormat(value, format));
     }, [format, value, setInputValue]);
@@ -44,12 +48,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
         setInFocus(newValue.inFocus ?? inFocus);
         onValueChange(newValue.selectedDate);
 
-        const toChanged = value.to !== newValue.selectedDate.to;
-        const closeBody = newValue.selectedDate.from
-         && newValue.selectedDate.to
-          && inFocus === 'to'
-           && toChanged;
-        if (closeBody) {
+        if (!!newValue.selectedDate.from && !!newValue.selectedDate.to) {
             props.onOpenChange?.(false);
         }
     };

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+    useEffect, useMemo, useState,
+} from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
     DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod, withMods,
@@ -36,6 +38,10 @@ export function DatePickerComponent(props: DatePickerProps) {
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
 
+    /**
+     * Remove sync when text input will be uncontrolled.
+     * Currently it handles value comp prop updates and any value set.
+     */
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
     }, [value]);
@@ -54,8 +60,7 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const onBodyValueChange = (newValue: string | null) => {
-        console.log('newValue', newValue, value);
-        setBodyIsOpen(newValue === value);
+        setBodyIsOpen(false);
         onValueChange(newValue);
     };
 

@@ -18,7 +18,7 @@ import {
     RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue,
 } from './types';
 import {
-    BodySettings, StatelessDatePickerBody, StatelessDatePickerBodyValue,
+    DatePickerBodyOptions, StatelessDatePickerBody, StatelessDatePickerBodyValue,
 } from './DatePickerBody';
 
 dayjs.extend(isoWeek);
@@ -109,7 +109,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
     const selectedDate = _selectedDate || defaultRangeValue;
 
     const [activeMonth, setActiveMonth] = useState<RangeDatePickerInputType>(null);
-    const [{ view, month }, setBodyState] = useState<BodySettings>({
+    const [{ view, month }, setBodyState] = useState<DatePickerBodyOptions>({
         view: 'DAY_SELECTION',
         month: dayjs(_selectedDate.from, valueFormat).isValid()
             ? dayjs(_selectedDate.from, valueFormat)
@@ -128,9 +128,9 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         return defaultRangeValue;
     };
 
-    const onBodyValueChange = (v: StatelessDatePickerBodyValue<string>, part: 'from' | 'to') => {
+    const onBodyValueChange = (v: string | null, part: 'from' | 'to') => {
         // selectedDate can be null, other params should always have values
-        const newRange = v.selectedDate ? getRange(v.selectedDate) : selectedDate;
+        const newRange = v ? getRange(v) : selectedDate;
         const fromChanged = selectedDate?.from !== newRange.from;
         const toChanged = selectedDate?.to !== newRange.to;
 
@@ -142,12 +142,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
         }
 
         setActiveMonth(part);
-        setBodyState({
-            view: v.view,
-            month: part === 'from' ? v.month : v.month.subtract(1, 'month'),
-        });
         props.onValueChange({
-            ...props.value,
             selectedDate: newRange,
             inFocus: newInFocus ?? props.value.inFocus,
         });
@@ -165,13 +160,13 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
     const from: StatelessDatePickerBodyValue<string> = {
         month,
         view: activeMonth === 'from' ? view : 'DAY_SELECTION',
-        selectedDate: null,
+        value: null,
     };
 
     const to: StatelessDatePickerBodyValue<string> = {
         view: activeMonth === 'to' ? view : 'DAY_SELECTION',
         month: month.add(1, 'month'),
-        selectedDate: null,
+        value: null,
     };
 
     const renderPresets = (presets: RangeDatePickerPresets) => {
@@ -191,7 +186,6 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                                 to: dayjs(presetVal.to).format(valueFormat),
                             },
                         });
-                        // toggleIsOpen(false);
                     } }
                     presets={ presets }
                 />
@@ -211,8 +205,9 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                             <StatelessDatePickerBody
                                 key="date-picker-body-left"
                                 cx={ cx(css.fromPicker) }
-                                value={ from }
+                                { ...from }
                                 onValueChange={ (v) => onBodyValueChange(v, 'from') }
+                                onOptionsChange={ (o) => { setBodyState(o); } }
                                 filter={ props.filter }
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
@@ -220,8 +215,14 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                             <StatelessDatePickerBody
                                 key="date-picker-body-right"
                                 cx={ cx(css.toPicker) }
-                                value={ to }
+                                { ...to }
                                 onValueChange={ (v) => onBodyValueChange(v, 'to') }
+                                onOptionsChange={ (o) => {
+                                    setBodyState({
+                                        view: o.view,
+                                        month: o.month.subtract(1, 'month'),
+                                    });
+                                } }
                                 filter={ props.filter }
                                 renderDay={ props.renderDay || renderDay }
                                 isHoliday={ props.isHoliday }
