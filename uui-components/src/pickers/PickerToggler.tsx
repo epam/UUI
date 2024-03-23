@@ -26,7 +26,6 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     * HTML ID attribute for the toggler input
     */
     id?: string;
-    collapsedNames?: string[];
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -106,7 +105,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const maxItems = getMaxItems(props.maxItems);
 
         const multiItems = props.selection?.map((row) => {
-            const newMultiItems = { ...row,
+            const newMultiItems = {
+                ...row,
+                rowProps: row,
                 caption: props.getName(row.value),
                 isCollapsed: false,
                 isDisabled: row.isDisabled,

@@ -2,12 +2,17 @@ import * as React from 'react';
 import * as types from '../types';
 import { Tag, TagProps } from '../widgets';
 import { Tooltip } from '../overlays';
+import { DataRowProps } from '@epam/uui-core';
 
-export interface PickerTogglerTagProps extends TagProps {
+export type PickerTogglerTagProps<TItem, TId> = TagProps & DataRowProps<TItem, TId>& {
+    /** Defines component size */
     size?: types.ControlSize;
-    collapsedNames?: string;
+    /** If this is true, then the PickerTogglerTag will be an additional tag with the number of collapsed elements in the caption. */
     isCollapsed?: boolean;
-}
+    withTooltip?: boolean;
+    tooltipInfo?: string;
+    rowProps?: DataRowProps<TItem, TId>,
+};
 
 const getPickerTogglerButtonSize = (propSize?: types.ControlSize):TagProps['size'] => {
     switch (propSize) {
@@ -26,20 +31,18 @@ const getPickerTogglerButtonSize = (propSize?: types.ControlSize):TagProps['size
     }
 };
 
-export function PickerTogglerTag(props: PickerTogglerTagProps) {
+export function PickerTogglerTag(props: PickerTogglerTagProps<any, any>) {
     const tagProps = {
         ...props,
         tabIndex: -1,
         size: getPickerTogglerButtonSize(props.size),
     };
 
-    if (props.isCollapsed && props.collapsedNames?.length) {
-        return (
-            <Tooltip content={ props.collapsedNames } openDelay={ 400 }>
+    return props.withTooltip && !props.isCollapsed
+        ? (
+            <Tooltip content={ props.tooltipInfo } openDelay={ 400 }>
                 <Tag { ...tagProps } />
             </Tooltip>
-        );
-    }
-
-    return <Tag { ...tagProps } />;
+        )
+        : <Tag { ...tagProps } />;
 }

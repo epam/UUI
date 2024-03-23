@@ -23,6 +23,7 @@ import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
 import { PalettePage } from './tokens/palette/palettePage';
+import { PickerTogglerTagDemo } from './pickerTogglerTag/PickerTogglerTagDemo';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -46,6 +47,7 @@ export function SandboxPage() {
             { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
+            { id: 'pickerTogglerTag', name: 'PickerTogglerTag', component: PickerTogglerTagDemo },
         ],
         [],
     );

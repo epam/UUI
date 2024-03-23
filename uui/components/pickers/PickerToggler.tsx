@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as types from '../types';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
-import { DataRowProps } from '@epam/uui-core';
 import { PickerTogglerTag, PickerTogglerTagProps } from './PickerTogglerTag';
 import css from './PickerToggler.module.scss';
 import { systemIcons } from '../../icons/icons';
@@ -26,12 +25,12 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
 }
 
 function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) {
-    const renderItem = (itemProps: DataRowProps<TItem, TId> & PickerTogglerTagProps) => (
+    const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => (
         <PickerTogglerTag
             { ...itemProps }
-            key={ itemProps.id as string }
+            rowProps={ itemProps.rowProps }
+            key={ itemProps.rowProps.id as string }
             size={ props.size }
-            collapsedNames={ props.collapsedNames?.join(', ') }
             isDisabled={ props.isDisabled || props.isReadonly || itemProps.isDisabled }
         />
     );

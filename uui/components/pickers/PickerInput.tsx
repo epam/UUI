@@ -14,7 +14,9 @@ import { PickerItem } from './PickerItem';
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId>;
+export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
+    renderTag?: (props: DataRowProps<TItem, TId>) => React.ReactNode;
+};
 
 function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const toggleModalOpening = () => {
