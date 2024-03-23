@@ -4,14 +4,15 @@ import { Tag, TagProps } from '../widgets';
 import { Tooltip } from '../overlays';
 import { DataRowProps } from '@epam/uui-core';
 
-export type PickerTogglerTagProps<TItem, TId> = TagProps & DataRowProps<TItem, TId>& {
+export type PickerTogglerTagProps<TItem, TId> = TagProps & {
     /** Defines component size */
     size?: types.ControlSize;
     /** If this is true, then the PickerTogglerTag will be an additional tag with the number of collapsed elements in the caption. */
     isCollapsed?: boolean;
-    withTooltip?: boolean;
-    tooltipInfo?: string;
-    rowProps?: DataRowProps<TItem, TId>,
+    /** Defines content for tooltip */
+    tooltipContent?: string;
+    /** Defines row props (see more: uui-components/src/pickers/PickerToggler.tsx PickerTogglerProps<TItem = any, TId = any>) */
+    rowProps?: DataRowProps<TItem, TId>;
 };
 
 const getPickerTogglerButtonSize = (propSize?: types.ControlSize):TagProps['size'] => {
@@ -31,16 +32,16 @@ const getPickerTogglerButtonSize = (propSize?: types.ControlSize):TagProps['size
     }
 };
 
-export function PickerTogglerTag(props: PickerTogglerTagProps<any, any>) {
+export function PickerTogglerTag(props: PickerTogglerTagProps<any, any>): JSX.Element {
     const tagProps = {
         ...props,
         tabIndex: -1,
         size: getPickerTogglerButtonSize(props.size),
     };
 
-    return props.withTooltip && !props.isCollapsed
+    return (props.tooltipContent)
         ? (
-            <Tooltip content={ props.tooltipInfo } openDelay={ 400 }>
+            <Tooltip content={ props.tooltipContent } openDelay={ 400 }>
                 <Tag { ...tagProps } />
             </Tooltip>
         )

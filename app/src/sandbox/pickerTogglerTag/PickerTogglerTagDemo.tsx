@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { FlexCell, FlexRow, LabeledInput, NumericInput, PickerInput } from '@epam/uui';
+import { FlexCell, FlexRow, LabeledInput, NumericInput, PickerInput, PickerTogglerTag } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
+import { ReactComponent as myIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 const cascadeSelectionModes: Array<{ id: 'explicit' | 'implicit'; caption: string }> = [
     {
@@ -51,6 +52,15 @@ export function PickerTogglerTagDemo() {
                     valueType="id"
                     cascadeSelection={ cascadeSelection }
                     maxItems={ maxItems }
+                    renderTag={ (props) => (
+                        <PickerTogglerTag
+                            { ...props }
+                            key={ props.isCollapsed ? 'collapsed' : props.rowProps?.id as string }
+                            color="info"
+                            tooltipContent={ !props.isCollapsed && `${props.rowProps?.path.map((i) => i.value.name).join('/')}/${props.caption}` }
+                            icon={ !props.isCollapsed && myIcon }
+                        />
+                    ) }
                 />
             </FlexRow>
         </FlexCell>
