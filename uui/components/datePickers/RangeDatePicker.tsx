@@ -11,7 +11,9 @@ import css from './RangeDatePicker.module.scss';
 import { RangeDatePickerInputType, RangeDatePickerProps } from './types';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import { defaultFormat, defaultRangeValue } from './helpers';
+import {
+    defaultFormat, defaultRangeValue, getMonthOnOpen, getValidMonth,
+} from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
 import { useRangeDatePickerState } from './useRangeDatePickerState';
 
@@ -24,13 +26,20 @@ const modifiers = [{
 
 function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     const { value: _value, format = defaultFormat } = props;
-    const value = _value || defaultRangeValue;
-
+    const value = _value || defaultRangeValue; // also handles null in comparison to default value
     const [isOpen, setIsOpen] = useState(false);
+
+    const onOpenChange = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
+        setInFocus(newIsOpen && focus ? focus : null);
+        setIsOpen(newIsOpen);
+        props.onOpenChange?.(newIsOpen);
+    };
 
     const {
         inputValue,
         inFocus,
+        month,
+        setMonth,
         setInputValue,
         setInFocus,
         onValueChange,
@@ -38,26 +47,17 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     } = useRangeDatePickerState({
         value,
         format,
+        onOpenChange,
         getValueChangeAnalyticsEvent: props.getValueChangeAnalyticsEvent,
         onValueChange: props.onValueChange,
-        onOpenChange: (newIsOpen: boolean) => {
-            toggleIsOpen(newIsOpen);
-            props.onOpenChange?.(newIsOpen);
-        },
     });
-
-    const toggleIsOpen = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
-        setInFocus(newIsOpen ? focus : null);
-        setIsOpen(newIsOpen);
-        props.onOpenChange?.(newIsOpen);
-    };
 
     // mainly for closing body on tab
     const onInputWrapperBlur: React.FocusEventHandler<HTMLDivElement> = (event) => {
         if (isFocusReceiverInsideFocusLock(event)) {
             return;
         }
-        toggleIsOpen(false);
+        onOpenChange(false);
     };
 
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
@@ -71,7 +71,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     <RangeDatePickerBody
                         cx={ cx(props.bodyCx) }
                         value={ {
-                            selectedDate: value,
+                            month,
+                            selectedDate: _value,
                             inFocus,
                         } }
                         onValueChange={ onBodyValueChange }
@@ -105,7 +106,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                         ) }
                         onClick={ (event) => {
                             if (!props.isDisabled) {
-                                renderProps.onClick(event);
+                                renderProps.onClick?.(event);
                             }
                         } }
                         onBlur={ onInputWrapperBlur }
@@ -121,12 +122,20 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                             inFocus={ inFocus }
                             value={ inputValue }
                             format={ format }
-                            onValueChange={ setInputValue }
+                            onValueChange={ (i) =>{
+                                setInputValue(i);
+
+                                const validMonth = getValidMonth(i, inFocus, format, props.filter);
+                                if (validMonth) {
+                                    setMonth(validMonth);
+                                }
+                            } }
                             onFocus={ (event, inputType) => {
                                 if (props.onFocus) {
                                     props.onFocus(event, inputType);
                                 }
-                                toggleIsOpen(true, inputType);
+                                setMonth(getMonthOnOpen(value, inputType));
+                                onOpenChange(true, inputType);
                             } }
                             onBlur={ (event, inputType, v) => {
                                 if (props.onBlur) {
@@ -141,7 +150,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                 );
             } }
             renderBody={ (renderProps) => renderBody(renderProps) }
-            onValueChange={ toggleIsOpen }
+            onValueChange={ (v) => onOpenChange(v) }
             value={ isOpen }
             modifiers={ modifiers }
             placement={ props.placement }

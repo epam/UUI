@@ -32,10 +32,13 @@ export const uuiDatePickerBody = {
 
 export function DatePickerBody(props: DatePickerBodyProps) {
     const { value, onValueChange } = props;
-    const [{ view, month }, setState] = useState<DatePickerBodyOptions>({
-        view: 'DAY_SELECTION',
-        month: getNewMonth(value),
-    });
+    const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
+    const [view, setView] = useState<ViewType>('DAY_SELECTION');
+
+    useEffect(() => {
+        setMonth(getNewMonth(value));
+        setView('DAY_SELECTION');
+    }, [value, setMonth]);
 
     return (
         <StatelessDatePickerBody
@@ -43,7 +46,8 @@ export function DatePickerBody(props: DatePickerBodyProps) {
             month={ month }
             view={ view }
             onValueChange={ onValueChange }
-            onOptionsChange={ (o) => setState(o) }
+            onMonthChange={ (m) => setMonth(m) }
+            onViewChange={ (v) => setView(v) }
         />
     );
 }
@@ -56,7 +60,8 @@ export interface StatelessDatePickerBodyValue<TSelection> {
 
 export interface StatelessDatePickerBodyProps extends CommonDatePickerBodyProps, StatelessDatePickerBodyValue<string> {
     onValueChange: (value: string | null) => void;
-    onOptionsChange: (o: DatePickerBodyOptions) => void;
+    onMonthChange: (m: Dayjs) => void;
+    onViewChange: (v: ViewType) => void;
     isHoliday?: (day: Dayjs) => boolean;
 }
 
@@ -71,22 +76,19 @@ export function StatelessDatePickerBody({
     month,
     view,
     onValueChange,
-    onOptionsChange,
+    onMonthChange,
+    onViewChange,
 }: StatelessDatePickerBodyProps) {
     const selectedDate = dayjs(value);
 
     const onMonthClick = (newDate: Dayjs) => {
-        onOptionsChange({
-            month: newDate,
-            view: 'DAY_SELECTION',
-        });
+        onMonthChange(newDate);
+        onViewChange('DAY_SELECTION');
     };
 
     const onYearClick = (newDate: Dayjs) => {
-        onOptionsChange({
-            month: newDate,
-            view: 'MONTH_SELECTION',
-        });
+        onMonthChange(newDate);
+        onViewChange('MONTH_SELECTION');
     };
 
     const onDayClick = (day: Dayjs) => {
@@ -140,7 +142,8 @@ export function StatelessDatePickerBody({
                         month,
                     } }
                     onValueChange={ (newValue) => {
-                        onOptionsChange(newValue);
+                        onMonthChange(newValue.month);
+                        onViewChange(newValue.view);
                     } }
                 />
                 {getView()}

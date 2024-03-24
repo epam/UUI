@@ -309,7 +309,6 @@ describe('RangeDataPicker', () => {
         /**
          * 'from'
          */
-
         const [, oct11] = await within(dialog).findAllByText('11');
         await userEvent.click(oct11);
         // should focus 'from' input

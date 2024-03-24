@@ -6,7 +6,6 @@ import { FlexCell, FlexRow } from '../layout';
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import css from './FilterNumericBody.module.scss';
-import { RangeDatePickerInputType } from '../datePickers';
 
 interface INumericRangeValue {
     /**
@@ -41,7 +40,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         return from > to;
     };
 
-    const rangeValueHandler = (type: RangeDatePickerInputType) => (val: number) => {
+    const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
         const value = props.value as INumericRangeValue;
         switch (type) {
             case 'from': {

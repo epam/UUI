@@ -59,7 +59,7 @@ export function RangeDatePickerInput({
         }
     }, [size]);
 
-    const onInputChange = (newValue: string, inputType: RangeDatePickerInputType) => {
+    const onInputChange = (newValue: string, inputType: 'from' | 'to') => {
         const newInputValue = {
             ...inputValue,
             [inputType]: newValue,
@@ -72,7 +72,7 @@ export function RangeDatePickerInput({
         onFocus(event, inputType);
     };
 
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
         const selectedDate = toValueDateRangeFormat(inputValue, format);
 
         if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
@@ -103,8 +103,8 @@ export function RangeDatePickerInput({
                 cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'from' && uuiMod.focus) }
                 size={ size || '36' }
                 placeholder={ getPlaceholder ? getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
-                value={ inputValue.from }
-                onValueChange={ (v) => onInputChange(v, 'from') }
+                value={ inputValue.from || undefined }
+                onValueChange={ (v) => onInputChange(v || '', 'from') }
                 onFocus={ (event) => handleFocus(event, 'from') }
                 onBlur={ (event) => handleBlur(event, 'from') }
                 isInvalid={ isInvalid }
@@ -119,13 +119,13 @@ export function RangeDatePickerInput({
                 cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'to' && uuiMod.focus) }
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                 size={ size || '36' }
-                value={ inputValue.to }
+                value={ inputValue.to || undefined }
                 onCancel={ () => {
                     if (clearAllowed) {
                         onClear(defaultRangeValue);
                     }
                 } }
-                onValueChange={ (v) => onInputChange(v, 'to') }
+                onValueChange={ (v) => onInputChange(v || '', 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
                 onBlur={ (e) => handleBlur(e, 'to') }
                 isInvalid={ isInvalid }

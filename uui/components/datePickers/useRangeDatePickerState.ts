@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { IControlled, useUuiContext } from '@epam/uui-core';
-import { toCustomDateRangeFormat } from './helpers';
+import { useUuiContext } from '@epam/uui-core';
+import { getMonthOnOpen, toCustomDateRangeFormat } from './helpers';
 import {
     RangeDatePickerValue, RangeDatePickerProps, RangeDatePickerInputType, RangeDatePickerBodyValue,
 } from './types';
 
 export type UseRangeDatePickerState =
-    IControlled<RangeDatePickerValue> &
-    Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'getValueChangeAnalyticsEvent'> & {
-        inFocusInitial?: RangeDatePickerInputType | null;
+    Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'getValueChangeAnalyticsEvent' | 'onValueChange'> & {
+        value: NonNullable<RangeDatePickerProps['value']>;
+        inFocusInitial?: RangeDatePickerInputType;
     };
 
 export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
@@ -21,6 +21,8 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
         toCustomDateRangeFormat(value, format),
     );
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(inFocusInitial);
+    const [month, setMonth] = useState(getMonthOnOpen(value, inFocus));
+    // console.log('month', month);
 
     /**
      * Remove sync when text input will be uncontrolled.
@@ -31,8 +33,8 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     }, [format, value, setInputValue]);
 
     const onValueChange = (newValue: RangeDatePickerValue) => {
-        const fromChanged = value.from !== newValue.from;
-        const toChanged = value.to !== newValue.to;
+        const fromChanged = value?.from !== newValue?.from;
+        const toChanged = value?.to !== newValue?.to;
         if (fromChanged || toChanged) {
             props.onValueChange(newValue);
 
@@ -46,16 +48,25 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
         setInputValue(toCustomDateRangeFormat(newValue.selectedDate, format));
         setInFocus(newValue.inFocus ?? inFocus);
+        setMonth(newValue.month);
         onValueChange(newValue.selectedDate);
 
-        if (!!newValue.selectedDate.from && !!newValue.selectedDate.to) {
+        const toChanged = value.to !== newValue.selectedDate.to;
+        const closeBody = newValue.selectedDate.from && newValue.selectedDate.to
+         && inFocus === 'to'
+           && toChanged;
+
+        // console.log('toChanged', toChanged, 'inFocus', inFocus);
+        if (closeBody) {
             props.onOpenChange?.(false);
         }
     };
 
     return {
+        month,
         inputValue,
         inFocus,
+        setMonth,
         setInputValue,
         setInFocus,
         onValueChange,

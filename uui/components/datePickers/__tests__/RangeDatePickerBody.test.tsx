@@ -9,9 +9,11 @@ import {
 } from '@epam/uui-test-utils';
 import { RangeDatePickerValue, RangeDatePickerBodyValue } from '../types';
 
+type RangeBodyProps = RangeDatePickerBodyProps<RangeDatePickerValue | null>;
+
 type RangePickerSetupProps =
-    Pick<RangeDatePickerBodyValue<RangeDatePickerValue>, 'selectedDate' | 'inFocus'> &
-    Pick<RangeDatePickerBodyProps<RangeDatePickerValue>, 'presets' | 'filter' | 'isHoliday'>;
+    Pick<RangeDatePickerBodyValue<RangeDatePickerValue | null>, 'selectedDate' | 'inFocus'> &
+    Pick<RangeBodyProps, 'presets' | 'filter' | 'isHoliday'>;
 
 function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
     // @ts-ignore
@@ -24,15 +26,16 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
         selectedDate, inFocus, presets, filter, isHoliday,
     } = params;
 
-    const { result, mocks } = await setupComponentForTest<RangeDatePickerBodyProps<RangeDatePickerValue>>(
+    const _value: RangeDatePickerBodyValue<RangeDatePickerValue | null> = {
+        selectedDate,
+        inFocus,
+        month: dayjs('2019-10-12').startOf('day'),
+    };
+
+    const { result, mocks } = await setupComponentForTest<RangeBodyProps>(
         (context) => {
             return {
-                value: {
-                    view: 'DAY_SELECTION',
-                    selectedDate,
-                    month: dayjs('2019-10-12').startOf('day'),
-                    inFocus,
-                },
+                value: _value,
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
                 presets,
                 filter,
@@ -64,6 +67,7 @@ describe('RangeDatePickerBody', () => {
                 from: null,
                 to: null,
             },
+            month: dayjs('2019-10-12').startOf('day'),
             inFocus: 'from',
         };
         const tree = await renderSnapshotWithContextAsync(
@@ -89,7 +93,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'to',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: '2019-10-13',
                 to: '2019-10-17',
@@ -101,7 +104,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: '2019-10-13',
                 to: '2019-10-13',
@@ -123,7 +125,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'to',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: '2019-10-18',
                 to: null,
@@ -145,7 +146,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-16',
@@ -167,7 +167,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: '2019-10-11',
                 to: null,
@@ -253,7 +252,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'to',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: '2019-10-13',
                 to: null,
@@ -272,7 +270,6 @@ describe('RangeDatePickerBody', () => {
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
             month: expect.anything(),
-            view: expect.anything(),
             selectedDate: {
                 from: null,
                 to: '2019-10-17',
