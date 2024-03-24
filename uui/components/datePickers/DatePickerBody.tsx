@@ -35,6 +35,7 @@ export function DatePickerBody(props: DatePickerBodyProps) {
     const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
 
+    // sync updated props with internal state
     useEffect(() => {
         setMonth(getNewMonth(value));
         setView('DAY_SELECTION');

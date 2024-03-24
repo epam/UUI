@@ -125,6 +125,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                             onValueChange={ (i) =>{
                                 setInputValue(i);
 
+                                // preview month on correct input
                                 const validMonth = getValidMonth(i, inFocus, format, props.filter);
                                 if (validMonth) {
                                     setMonth(validMonth);
@@ -134,6 +135,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                                 if (props.onFocus) {
                                     props.onFocus(event, inputType);
                                 }
+
+                                // show selected date month on open
                                 setMonth(getMonthOnOpen(value, inputType));
                                 onOpenChange(true, inputType);
                             } }
