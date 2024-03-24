@@ -7,7 +7,9 @@ import {
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
-import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
+import {
+    defaultFormat, defaultRangeValue, getMonthOnOpen, getNewMonth,
+} from '../datePickers/helpers';
 import { RangeDatePickerProps } from '../datePickers/types';
 import css from '../datePickers/RangeDatePicker.module.scss';
 import { RangeDatePickerBody } from '../datePickers';
@@ -17,11 +19,13 @@ export interface FilterRangeDatePickerProps extends RangeDatePickerProps, IDropd
 
 export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
     const { value: _value, format = defaultFormat } = props;
-    const value = _value || defaultRangeValue;
+    const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
     const {
+        month,
         inputValue,
         inFocus,
+        setMonth,
         setInputValue,
         setInFocus,
         onValueChange,
@@ -45,6 +49,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
             <FlexRow borderBottom={ true }>
                 <RangeDatePickerBody
                     value={ {
+                        month,
                         selectedDate: value,
                         inFocus,
                     } }
@@ -67,6 +72,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                                 if (props.onFocus) {
                                     props.onFocus(event, inputType);
                                 }
+                                setMonth(getMonthOnOpen(value, inputType));
                                 setInFocus(inputType);
                             } }
                             onBlur={ (event, inputType, v) => {

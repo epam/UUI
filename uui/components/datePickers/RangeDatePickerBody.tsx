@@ -15,11 +15,9 @@ import {
 } from './helpers';
 import {
     CommonDatePickerBodyProps,
-    RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue,
+    RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue, ViewType,
 } from './types';
-import {
-    DatePickerBodyOptions, StatelessDatePickerBody, StatelessDatePickerBodyValue,
-} from './DatePickerBody';
+import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePickerBody';
 
 dayjs.extend(isoWeek);
 
@@ -29,8 +27,6 @@ export const uuiRangeDatePickerBody = {
     lastDayInRangeWrapper: 'uui-range-datepicker-last-day-in-range-wrapper',
     separator: 'uui-range-datepicker-separator',
 };
-
-export type PickerPart = 'from' | 'to' | null;
 
 export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
@@ -104,47 +100,47 @@ export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, 
     isHoliday?: (day: Dayjs) => boolean;
 }
 
-export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue>): JSX.Element {
-    const { value: { selectedDate: _selectedDate } } = props;
-    const selectedDate = _selectedDate || defaultRangeValue;
+export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>): JSX.Element {
+    const { value: _value, filter } = props;
+    const {
+        selectedDate: _selectedDate,
+        month,
+        inFocus,
+    } = _value;
+    const selectedDate = _selectedDate || defaultRangeValue; // also handles null in comparison to default value
 
-    const [activeMonth, setActiveMonth] = useState<RangeDatePickerInputType>(null);
-    const [{ view, month }, setBodyState] = useState<DatePickerBodyOptions>({
-        view: 'DAY_SELECTION',
-        month: dayjs(_selectedDate.from, valueFormat).isValid()
-            ? dayjs(_selectedDate.from, valueFormat)
-            : dayjs().startOf('day'),
-    });
+    const [activeMonth, setActiveMonth] = useState<RangeDatePickerInputType>(inFocus);
+    const [view, setView] = useState<ViewType>('DAY_SELECTION');
 
-    const getRange = (newValue: string) => {
-        if (!props.filter || props.filter(dayjs(newValue))) {
-            if (props.value.inFocus === 'from') {
+    const getRange = (newValue: string | null) => {
+        if (!filter || filter(dayjs(newValue))) {
+            if (inFocus === 'from') {
                 return getWithFrom(selectedDate, newValue);
             }
-            if (props.value.inFocus === 'to') {
+            if (inFocus === 'to') {
                 return getWithTo(selectedDate, newValue);
             }
         }
-        return defaultRangeValue;
     };
 
     const onBodyValueChange = (v: string | null, part: 'from' | 'to') => {
         // selectedDate can be null, other params should always have values
         const newRange = v ? getRange(v) : selectedDate;
-        const fromChanged = selectedDate?.from !== newRange.from;
-        const toChanged = selectedDate?.to !== newRange.to;
 
-        let newInFocus: 'from' | 'to' = null;
-        if (props.value.inFocus === 'from' && fromChanged) {
+        let newInFocus: RangeDatePickerInputType = null;
+        const fromChanged = selectedDate.from !== newRange?.from;
+        const toChanged = selectedDate.to !== newRange?.to;
+        if (inFocus === 'from' && fromChanged) {
             newInFocus = 'to';
-        } else if (props.value.inFocus === 'to' && toChanged) {
+        } else if (inFocus === 'to' && toChanged) {
             newInFocus = 'from';
         }
 
         setActiveMonth(part);
         props.onValueChange({
-            selectedDate: newRange,
-            inFocus: newInFocus ?? props.value.inFocus,
+            month,
+            selectedDate: newRange ? newRange : selectedDate,
+            inFocus: newInFocus ?? inFocus,
         });
     };
 
@@ -175,16 +171,14 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                 <div className={ uuiRangeDatePickerBody.separator } />
                 <CalendarPresets
                     onPresetSet={ (presetVal) => {
-                        setBodyState({
-                            view: 'DAY_SELECTION',
-                            month: dayjs(presetVal.from),
-                        });
+                        setView('DAY_SELECTION');
                         props.onValueChange({
                             inFocus: props.value.inFocus,
                             selectedDate: {
                                 from: dayjs(presetVal.from).format(valueFormat),
                                 to: dayjs(presetVal.to).format(valueFormat),
                             },
+                            month: dayjs(presetVal.from),
                         });
                     } }
                     presets={ presets }
@@ -207,7 +201,12 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                                 cx={ cx(css.fromPicker) }
                                 { ...from }
                                 onValueChange={ (v) => onBodyValueChange(v, 'from') }
-                                onOptionsChange={ (o) => { setBodyState(o); } }
+                                onMonthChange={ (m) => props.onValueChange({
+                                    inFocus,
+                                    selectedDate,
+                                    month: m,
+                                }) }
+                                onViewChange={ (v) => setView(v) }
                                 filter={ props.filter }
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
@@ -217,12 +216,14 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                                 cx={ cx(css.toPicker) }
                                 { ...to }
                                 onValueChange={ (v) => onBodyValueChange(v, 'to') }
-                                onOptionsChange={ (o) => {
-                                    setBodyState({
-                                        view: o.view,
-                                        month: o.month.subtract(1, 'month'),
+                                onMonthChange={ (m) => {
+                                    props.onValueChange({
+                                        inFocus,
+                                        selectedDate,
+                                        month: m.subtract(1, 'month'),
                                     });
                                 } }
+                                onViewChange={ (v) => setView(v) }
                                 filter={ props.filter }
                                 renderDay={ props.renderDay || renderDay }
                                 isHoliday={ props.isHoliday }

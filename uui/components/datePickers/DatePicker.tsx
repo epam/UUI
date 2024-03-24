@@ -1,5 +1,5 @@
 import React, {
-    useEffect, useMemo, useState,
+    useCallback, useEffect, useState,
 } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
@@ -9,14 +9,14 @@ import { TextInput } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import { DatePickerProps } from './types';
+import { DatePickerProps, ViewType } from './types';
 import {
-    defaultFormat, supportedDateFormats, toCustomDateFormat, toValueDateFormat,
+    defaultFormat, getNewMonth, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
-import { DatePickerBody } from './DatePickerBody';
+import { StatelessDatePickerBody } from './DatePickerBody';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -27,28 +27,25 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
-const isValidDate = (input: string, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
-    const parsedDate = dayjs(input, supportedDateFormats(format), true);
-    return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
-};
-
 export function DatePickerComponent(props: DatePickerProps) {
     const { format = defaultFormat, value } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
+    const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
+    const [view, setView] = useState<ViewType>('DAY_SELECTION');
 
     /**
      * Remove sync when text input will be uncontrolled.
-     * Currently it handles value comp prop updates and any value set.
+     * Currently it handles value comp prop updates.
      */
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
-    }, [value]);
+        setMonth(getNewMonth(value));
+        setView('DAY_SELECTION');
+    }, [value, setMonth, setInputValue]);
 
     const onValueChange = (newValue: string | null) => {
-        setInputValue(toCustomDateFormat(newValue, format));
-
         if (value !== newValue) {
             props.onValueChange(newValue);
 
@@ -60,16 +57,19 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const onBodyValueChange = (newValue: string | null) => {
-        setBodyIsOpen(false);
+        setInputValue(toCustomDateFormat(newValue, format));
         onValueChange(newValue);
+        setBodyIsOpen(false);
     };
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isFocusReceiverInsideFocusLock(e)) return;
 
         if (isValidDate(inputValue, format, props.filter)) {
+            setInputValue(toCustomDateFormat(inputValue, format));
             onValueChange(toValueDateFormat(inputValue, format));
         } else {
+            setInputValue(null);
             onValueChange(null);
         }
         setBodyIsOpen(false);
@@ -83,23 +83,28 @@ export function DatePickerComponent(props: DatePickerProps) {
                     propName: 'size',
                     propValue: props.size,
                     propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(props.size) !== -1,
+                    condition: () => ['48'].indexOf(props.size || '') !== -1,
                 });
             }
         }
         return (
             <TextInput
                 { ...renderProps }
-                onClick={ null }
+                // fixes a bug with body open, it skips unwanted prevent default
+                onClick={ () => {} }
                 isDropdown={ false }
                 cx={ cx(props.inputCx, isBodyOpen && uuiMod.focus) }
-                icon={ props.mode !== EditMode.CELL && systemIcons.calendar }
+                icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
                 size={ props.size || '36' }
-                value={ inputValue }
+                value={ inputValue || undefined }
                 onValueChange={ (v) => {
-                    setInputValue(v);
+                    setInputValue(v || '');
+
+                    if (isValidDate(v ?? null, format, props.filter)) {
+                        setMonth(dayjs(v));
+                    }
                 } }
                 onCancel={ () => {
                     if (!props.disableClear && !!inputValue) {
@@ -112,6 +117,7 @@ export function DatePickerComponent(props: DatePickerProps) {
                 tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
                 onFocus={ (e) => {
                     setBodyIsOpen(true);
+                    setMonth(getNewMonth(value));
                     props.onFocus?.(e);
                 } }
                 onBlur={ onBlur }
@@ -123,11 +129,17 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const renderBody = (renderProps: DropdownBodyProps) => {
+        // preview new value in date picker body while typing
+        // const _value = isValidDate(inputValue, format, props.filter) ? toValueDateFormat(inputValue, format) : value;
         return (
             <DropdownContainer { ...renderProps } focusLock={ false }>
-                <DatePickerBody
+                <StatelessDatePickerBody
                     value={ value }
+                    month={ month }
+                    view={ view }
                     onValueChange={ onBodyValueChange }
+                    onMonthChange={ (m) => setMonth(m) }
+                    onViewChange={ (v) => setView(v) }
                     cx={ cx(props.bodyCx) }
                     filter={ props.filter }
                     isHoliday={ props.isHoliday }

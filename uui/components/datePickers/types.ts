@@ -9,7 +9,7 @@ import { Dayjs } from 'dayjs';
 /**
  * Represents RangeDatePicker value
 */
-export interface RangeDatePickerValue {
+type RangeDatePickerValue = {
     /*
     * Defines DatePicker value 'from'.
     */
@@ -18,17 +18,12 @@ export interface RangeDatePickerValue {
    * Defines DatePicker value 'to'.
    */
     to: string | null;
-}
-
-/**
- * Represents RangeDatePicker input type
- */
-export type RangeDatePickerInputType = 'from' | 'to';
+};
 
 /**
  * Represents the properties of the DatePicker component
  */
-export interface DatePickerProps extends
+interface DatePickerProps extends
     CommonDatePickerProps,
     SizeMod,
     IHasEditMode,
@@ -70,10 +65,10 @@ export interface DatePickerProps extends
 /**
  * Represents the properties of the RangeDatePicker component
  */
-export interface RangeDatePickerProps extends
+interface RangeDatePickerProps extends
     SizeMod,
     IEditable<RangeDatePickerValue | null>,
-    IAnalyticableOnChange<RangeDatePickerValue>,
+    IAnalyticableOnChange<RangeDatePickerValue | null>,
     CommonDatePickerProps {
 
     /**
@@ -131,15 +126,32 @@ export interface RangeDatePickerProps extends
     };
 }
 
-export interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+/**
+ * Represents RangeDatePicker input type
+ */
+type RangeDatePickerInputType = 'from' | 'to' | null;
+
+interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
     presets?: RangeDatePickerPresets;
     renderDay?: (renderProps: DayProps) => React.ReactElement<Element>;
 }
 
-export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
+type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
-export interface RangeDatePickerBodyValue<TSelection> {
-    inFocus: 'from' | 'to';
-    selectedDate: TSelection | null;
+interface RangeDatePickerBodyValue<TSelection> {
+    inFocus: RangeDatePickerInputType;
+    selectedDate: TSelection;
+    month: Dayjs;
 }
+
+
+export type {
+    RangeDatePickerValue,
+    DatePickerProps,
+    RangeDatePickerProps,
+    RangeDatePickerInputType,
+    CommonDatePickerBodyProps,
+    ViewType,
+    RangeDatePickerBodyValue,
+};

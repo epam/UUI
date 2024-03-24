@@ -116,6 +116,7 @@ describe('DatePicker', () => {
         expect(screen.getByText('January 2017')).toBeInTheDocument();
 
         await userEvent.click(screen.getByText('22')); // select date
+
         await userEvent.click(screen.getByRole('textbox')); // open picker
 
         const datePickerBody = screen.getByTestId('datePickerBody');

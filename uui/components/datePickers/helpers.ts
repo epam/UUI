@@ -14,7 +14,7 @@ export const uuiDatePickerBodyBase = {
     container: 'uui-datepicker-container',
 } as const;
 
-export const getNewMonth = (value: string | Dayjs) => {
+export const getNewMonth = (value: string | Dayjs | null) => {
     return dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day');
 };
 
@@ -23,20 +23,36 @@ export const defaultRangeValue: RangeDatePickerValue = {
     to: null,
 };
 
-export const getMonthOnOpening = (focus: RangeDatePickerInputType, selectedDate: RangeDatePickerValue) => {
-    if (selectedDate?.from && selectedDate?.to) {
-        return dayjs(selectedDate[focus]);
-    } else if (selectedDate?.from) {
-        return dayjs(selectedDate?.from);
-    } else if (selectedDate?.to) {
-        return dayjs(selectedDate?.to);
-    } else {
-        return dayjs();
+export const rangeIsEmpty = (range: RangeDatePickerValue) => {
+    return !range.from && !range.to;
+};
+
+export const getValidMonth = (i: RangeDatePickerValue, focus: RangeDatePickerInputType, format: string, filter?: (day: dayjs.Dayjs) => boolean) => {
+    const fromValid = isValidDate(i.from, format, filter);
+    const toValid = isValidDate(i.to, format, filter);
+    if (fromValid && toValid && focus) {
+        return dayjs(i[focus]);
+    } else if (fromValid) {
+        return dayjs(i.from);
+    } else if (toValid) {
+        return dayjs(i.to);
     }
 };
 
-export const rangeIsEmpty = (range: RangeDatePickerValue) => {
-    return !range.from && !range.to;
+export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
+    if (selectedDate.from && selectedDate.to && focus) {
+        return dayjs(selectedDate[focus]);
+    } else if (selectedDate.from) {
+        return dayjs(selectedDate?.from);
+    } else if (selectedDate.to) {
+        return dayjs(selectedDate?.to);
+    }
+    return dayjs();
+};
+
+export const isValidDate = (input: string | null, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
+    const parsedDate = dayjs(input, supportedDateFormats(format), true);
+    return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
 };
 
 export const isValidRange = (range: RangeDatePickerValue) => {
@@ -47,7 +63,7 @@ export const isValidRange = (range: RangeDatePickerValue) => {
         : true;
 };
 
-export const getWithFrom = (selectedDate:RangeDatePickerValue, newValue: string) => {
+export const getWithFrom = (selectedDate: RangeDatePickerValue, newValue: string | null) => {
     if (dayjs(newValue).valueOf() <= dayjs(selectedDate.to).valueOf()) {
         // update range
         return {
@@ -63,7 +79,7 @@ export const getWithFrom = (selectedDate:RangeDatePickerValue, newValue: string)
     }
 };
 
-export const getWithTo = (selectedDate:RangeDatePickerValue, newValue: string) => {
+export const getWithTo = (selectedDate:RangeDatePickerValue, newValue: string | null) => {
     if (!selectedDate.from) {
         // started on "to" input
         return {
@@ -112,11 +128,11 @@ export const toCustomDateRangeFormat = (value: RangeDatePickerValue, format?: st
     };
 };
 
-export const toValueDateFormat = (value: string, format?: string): string => {
+export const toValueDateFormat = (value: string | null, format?: string): string | null => {
     return value ? dayjs(value, supportedDateFormats(format), true).format(valueFormat) : null;
 };
 
-export const toCustomDateFormat = (value: string | null, format?: string): string => {
+export const toCustomDateFormat = (value: string | null, format?: string): string | null => {
     const customFormat = format || defaultFormat;
     const dayjsObj = dayjs(value, supportedDateFormats(format), true);
     return dayjsObj.isValid() ? dayjsObj.format(customFormat) : null;
