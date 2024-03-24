@@ -1,14 +1,16 @@
 import { isBlock, useEditorState } from '@udecode/plate-common';
 
 import cx from 'classnames';
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import React, {
+    MouseEventHandler, useEffect, useRef, useState,
+} from 'react';
 
 import css from './StickyToolbar.module.scss';
 import { useLayer } from '@epam/uui-core';
 
 interface SidebarProps {
     isReadonly: boolean;
-    children: any;
+    children: JSX.Element[];
 }
 
 // eslint-disable-next-line react/function-component-definition
@@ -53,7 +55,10 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
             zIndex,
         } }
         >
-            <div onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) } ref={ sidebarRef }>
+            <div
+                onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) }
+                ref={ sidebarRef }
+            >
                 { children }
             </div>
         </div>

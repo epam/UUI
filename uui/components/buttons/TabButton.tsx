@@ -72,7 +72,7 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
                 />
             ) }
             { props.caption && (
-                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ cx(uuiElement.caption, props.captionCX, props.withNotify && css.captionWithNotify) }>
                     { props.caption }
                 </div>
             ) }

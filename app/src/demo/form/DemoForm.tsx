@@ -4,31 +4,11 @@ import {
 } from '@epam/uui-core';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
-import {
-    FlexCell,
-    FlexRow,
-    FlexSpacer,
-    LabeledInput,
-    Panel,
-    PickerInput,
-    RichTextView,
-    SuccessNotification,
-    ErrorNotification,
-    Text,
-    TextInput,
-    DatePicker,
-    Tooltip,
-    IconContainer,
-    Switch,
-    Button,
-    IconButton,
-    NumericInput,
-    RangeDatePicker,
-    MultiSwitch,
-    DropSpot,
-    FileCard,
-    useForm,
+import { FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification,
+    ErrorNotification, Text, TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, NumericInput,
+    RangeDatePicker, MultiSwitch, DropSpot, FileCard, useForm, IconButton,
 } from '@epam/uui';
+import { } from '@epam/loveship';
 import type {
     PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa,
 } from './types';
@@ -172,7 +152,7 @@ function PrimaryInfo({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) {
             </FlexRow>
             <FlexRow vPadding="12" alignItems="top" cx={ css.sectionRow }>
                 <FlexCell minWidth={ 324 } grow={ 1 }>
-                    <FlexRow spacing="18">
+                    <FlexRow columnGap="18">
                         <FlexCell minWidth={ 120 } grow={ 1 }>
                             <LabeledInput htmlFor="currentProject" label="Current Project" { ...lens.prop('currentProject').toProps() }>
                                 <TextInput { ...lens.prop('currentProject').toProps() } placeholder="Select Project" id="currentProject" />
@@ -185,8 +165,8 @@ function PrimaryInfo({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) {
                         </FlexCell>
                     </FlexRow>
                 </FlexCell>
-                <FlexCell minWidth={ 324 }>
-                    <FlexRow size="48" spacing="18" alignItems="bottom">
+                <FlexCell minWidth={ 324 } alignSelf="flex-end">
+                    <FlexRow size="48" columnGap="18" alignItems="bottom">
                         <Switch label="Time Reporting" { ...lens.prop('timeReporting').toProps() } isDisabled />
                         <Switch label="Remote" { ...lens.prop('remoteStatus').toProps() } isDisabled />
                     </FlexRow>
@@ -250,7 +230,7 @@ function Education({ lens }: { lens: ILens<PersonDetails['education']> }) {
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
-            <FlexRow vPadding="12" spacing="18">
+            <FlexRow vPadding="12" columnGap="18">
                 <FlexCell minWidth={ 120 }>
                     <LabeledInput htmlFor="graduationYear" label="Graduation year" { ...lens.prop('graduationYear').toProps() }>
                         <NumericInput
@@ -295,7 +275,7 @@ function Languages({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) {
                 const isClearable = index !== 0 || language || speakingLevel || writingLevel;
 
                 return (
-                    <FlexRow key={ index } vPadding="12" spacing="18" alignItems="top">
+                    <FlexRow key={ index } vPadding="12" columnGap="18" alignItems="top">
                         <FlexCell width={ 186 }>
                             <LabeledInput htmlFor={ `language-${index}` } label="Language" { ...lensItem.prop('language').toProps() }>
                                 <PickerInput
@@ -408,7 +388,7 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
             {visasLens.get().map((value, index) => {
                 const isClearable = index !== 0 || value.country || value.term;
                 return (
-                    <FlexRow key={ index } vPadding="12" spacing="18" alignItems="top">
+                    <FlexRow key={ index } vPadding="12" columnGap="18" alignItems="top">
                         <FlexCell width={ 324 }>
                             <LabeledInput htmlFor={ `travelVisasCountry-${index}` } label="Country" { ...visasLens.index(index).prop('country').toProps() }>
                                 <PickerInput
@@ -426,16 +406,16 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                                 <RangeDatePicker id="term" format="MMM D, YYYY" { ...visasLens.index(index).prop('term').toProps() } />
                             </LabeledInput>
                         </FlexCell>
-                        <FlexRow size="48" alignItems="bottom" cx={ css.clearButtonWrapper }>
+                        <FlexCell alignSelf="flex-end">
                             {isClearable && <IconButton icon={ ClearIcon } onClick={ () => removeLensItemHandler<PersonTravelVisa>(visasLens, index) } />}
-                        </FlexRow>
+                        </FlexCell>
                     </FlexRow>
                 );
             })}
             <FlexRow vPadding="12">
                 <Button onClick={ () => addLensItemHandler<PersonTravelVisa>(visasLens, emptyInfo.visa) } caption="Add One More" icon={ AddIcon } fill="none" />
             </FlexRow>
-            <FlexRow vPadding="12" spacing="18">
+            <FlexRow vPadding="12" columnGap="18">
                 <FlexCell width="100%">
                     <LabeledInput label="Scans">
                         <DropSpot infoText="Up to 20 files. Limit for 1 file is 5 MB" onUploadFiles={ (files) => uploadFile(files, scansLens) } />
@@ -518,9 +498,9 @@ export function DemoForm() {
                     <Visas lens={ lens.prop('travelVisas') } countriesDS={ countriesDS } />
                     <OtherInfo lens={ lens.prop('otherInfo') } />
                     <hr className={ css.divider } />
-                    <FlexRow spacing="12">
+                    <FlexRow columnGap="12">
                         <FlexSpacer />
-                        <Button caption="Save" color="accent" onClick={ save } />
+                        <Button caption="Save" color="primary" onClick={ save } />
                     </FlexRow>
                 </FlexCell>
             </Panel>

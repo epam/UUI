@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
-import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
-import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
-import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
-import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-row_plus_before-24.svg';
-import { ReactComponent as deleteLast } from '@epam/assets/icons/common/table-row_remove-24.svg';
-import { ReactComponent as add } from '@epam/assets/icons/common/action-add-12.svg';
+
+import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
+import { ReactComponent as redoIcon } from '@epam/assets/icons/content-edit_redo-outline.svg';
+import { ReactComponent as insertAfter } from '@epam/assets/icons/table-row_plus_after-outline.svg';
+import { ReactComponent as insertBefore } from '@epam/assets/icons/table-row_plus_before-outline.svg';
+import { ReactComponent as deleteLast } from '@epam/assets/icons/table-row_remove-outline.svg';
+import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg';
 
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
@@ -209,7 +210,7 @@ export function ProjectTableDemo() {
 
     return (
         <Panel cx={ css.container }>
-            <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
+            <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Add new task', 'Enter') } placement="bottom">
                         <Button size="30" icon={ add } caption="Add Task" onClick={ () => insertTask('bottom') } />
@@ -217,17 +218,17 @@ export function ProjectTableDemo() {
                 </FlexCell>
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Add new task below', 'Enter') } placement="bottom">
-                        <IconButton icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
+                        <IconButton size="24" icon={ insertAfter } onClick={ () => insertTask('bottom', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Add new task above', 'Shift + Enter') } placement="bottom">
-                        <IconButton icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
+                        <IconButton size="24" icon={ insertBefore } onClick={ () => insertTask('top', selectedItem) } />
                     </Tooltip>
                 </FlexCell>
                 <FlexCell width="auto">
                     <Tooltip content={ getKeybindingWithControl('Delete task', 'Backspace') } placement="bottom">
-                        <IconButton icon={ deleteLast } onClick={ () => deleteSelectedItem() } isDisabled={ selectedItem === undefined } />
+                        <IconButton size="24" icon={ deleteLast } onClick={ () => deleteSelectedItem() } isDisabled={ selectedItem === undefined } />
                     </Tooltip>
                 </FlexCell>
                 <FlexSpacer />
@@ -236,10 +237,10 @@ export function ProjectTableDemo() {
                 </FlexCell>
                 <div className={ css.divider } />
                 <FlexCell width="auto">
-                    <IconButton icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+                    <IconButton size="18" icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <IconButton icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+                    <IconButton size="18" icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
                 </FlexCell>
                 <FlexCell width="auto">
                     <Button size="30" caption="Cancel" onClick={ revert } isDisabled={ !isChanged } />

@@ -8,7 +8,7 @@ export default function AdvancedExample() {
     const renderForm = () => {
         return (
             <FlexCell minWidth={ 520 } cx={ css.form }>
-                <FlexRow spacing="12" padding="24" vPadding="24">
+                <FlexRow columnGap="12" padding="24" vPadding="24">
                     <LabeledInput label="Name">
                         <TextInput isDisabled={ isLoading } value="Alex" onValueChange={ null } />
                     </LabeledInput>
@@ -16,7 +16,7 @@ export default function AdvancedExample() {
                         <TextInput isDisabled={ isLoading } value="Belarus" onValueChange={ null } />
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow spacing="12" padding="24" vPadding="24">
+                <FlexRow columnGap="12" padding="24" vPadding="24">
                     <LabeledInput label="Age">
                         <NumericInput isDisabled={ isLoading } max={ 100 } min={ 0 } value={ 20 } onValueChange={ null } />
                     </LabeledInput>
@@ -24,7 +24,7 @@ export default function AdvancedExample() {
                         <DatePicker isDisabled={ isLoading } format="DD/MM/YYYY" value="2042-11-20" onValueChange={ null } />
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow spacing="12" padding="24" vPadding="24">
+                <FlexRow columnGap="12" padding="24" vPadding="24">
                     <FlexSpacer />
                     <Button isDisabled={ isLoading } color="accent" caption="Submit" />
                     <Button isDisabled={ isLoading } color="primary" fill="none" caption="Cancel" />

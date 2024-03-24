@@ -2,7 +2,7 @@
 
 exports[`PresetActionsDropdown should render correctly 1`] = `
 <button
-  className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-info root"
+  className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-info root tabButton"
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -13,6 +13,8 @@ exports[`PresetActionsDropdown should render correctly 1`] = `
   >
     <svg
       className=""
+      height={18}
+      width={18}
     />
   </div>
 </button>

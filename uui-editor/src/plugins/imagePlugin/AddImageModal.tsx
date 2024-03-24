@@ -31,7 +31,7 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                 </FlexRow>
                 <ModalFooter borderTop>
                     <UploadFileToggler
-                        render={ (props) => <Button { ...props } caption="Select file" /> }
+                        render={ (props) => <Button color="primary" fill="outline" { ...props } caption="Select file" /> }
                         onFilesAdded={ (acceptedFiles: File[]) => {
                             const urlName = acceptedFiles.map(({ name }) => name).join('; ');
                             setImageURL(urlName);
@@ -40,9 +40,9 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                         accept="image/*"
                     />
                     <FlexSpacer />
-                    <Button color="secondary" caption="Cancel" onClick={ abort } />
+                    <Button color="secondary" fill="outline" caption="Cancel" onClick={ abort } />
                     <Button
-                        color="accent"
+                        color="primary"
                         caption="Ok"
                         isDisabled={ !imageURL }
                         onClick={ async () => {

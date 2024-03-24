@@ -9,7 +9,7 @@ export default function AsyncPickerInputExample() {
     const dataSource = useArrayDataSource({ items: demoData.languageLevels }, []);
 
     return (
-        <FlexRow spacing="12">
+        <FlexRow columnGap="12">
             <PickerInput
                 dataSource={ dataSource }
                 value={ value }

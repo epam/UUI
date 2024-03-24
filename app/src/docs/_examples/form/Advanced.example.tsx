@@ -74,7 +74,7 @@ export default function AdvancedFormExample() {
 
     return (
         <FlexCell width="100%">
-            <FlexRow vPadding="12" spacing="12">
+            <FlexRow vPadding="12" columnGap="12">
                 <Button caption="Revert changes" onClick={ revert } isDisabled={ !canRevert } fill="outline" />
                 <FlexSpacer />
                 <Button icon={ UndoIcon } onClick={ undo } isDisabled={ !canUndo } fill="ghost" />
@@ -117,7 +117,7 @@ export default function AdvancedFormExample() {
             </FlexRow>
             <FlexRow vPadding="12">
                 <FlexSpacer />
-                <Button caption="Save" onClick={ save } color="accent" />
+                <Button caption="Save" onClick={ save } color="primary" />
             </FlexRow>
         </FlexCell>
     );

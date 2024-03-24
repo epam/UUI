@@ -1,0 +1,48 @@
+[
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In case of network failure, the APIContext will initiate continuous pinging to the default ping endpoint(/auth/ping) until a successful response is received. Subsequently, any failed requests will be retried automatically. During this process, a modal window will be displayed, providing visual feedback until the network connection is restored. You can change default ping endpoint via ContextProvider "
+      },
+      {
+        "text": "apiPingPath",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\nIn the scenario where authentication is lost, the server is required to return a 401 status code if the auth cookie is not found or is invalid during an XHR call. This is essential because ordinary login redirect responses cannot be detected from JavaScript during XHR calls. In such cases, the ApiContext will open the re-login page by default '/auth/login' url. The page is expected to go through the standard login process before completing the authentication. Once the authentication process is successful, the page will open, and the script inside it should send an "
+      },
+      {
+        "text": "authSuccess",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " Cross Window Message to "
+      },
+      {
+        "text": "window.opener",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". Upon receiving this message, any previously failed requests will be retried. You can change default relogin path by passing "
+      },
+      {
+        "text": "apiReloginPath",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " ContextProvider prop."
+      }
+    ]
+  }
+]

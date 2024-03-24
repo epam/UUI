@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Panel, FlexRow, RichTextView, Switch } from '@epam/promo';
+import {
+    Panel, FlexRow, RichTextView, Switch,
+} from '@epam/promo';
 import {
     SlateEditor,
     imagePlugin,
@@ -17,6 +19,7 @@ import {
     createDeserializer,
     paragraphPlugin,
     uploadFilePlugin,
+    defaultPlugins,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
@@ -29,8 +32,9 @@ const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
 };
 
 const plugins = [
+    ...defaultPlugins,
+    ...baseMarksPlugin(),
     paragraphPlugin(),
-    baseMarksPlugin(),
     headerPlugin(),
     superscriptPlugin(),
     listPlugin(),
@@ -68,8 +72,12 @@ export default function SlateEditorBasicExample() {
 
     return (
         <Panel cx={ css.root }>
-            <FlexRow spacing="18" vPadding="12">
-                <Switch value={ type === 'view' } onValueChange={ onToggleViewMode } label="View mode" />
+            <FlexRow columnGap="18" vPadding="12">
+                <Switch
+                    value={ type === 'view' }
+                    onValueChange={ onToggleViewMode }
+                    label="View mode"
+                />
             </FlexRow>
             {
                 type === 'view'

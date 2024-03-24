@@ -12,7 +12,7 @@ export default function FlexCellExample() {
                     Identity Document
                 </Text>
             </FlexRow>
-            <FlexRow padding="12" vPadding="18" spacing="18">
+            <FlexRow padding="12" vPadding="18" columnGap="18">
                 <FlexCell width="auto" grow={ 2 }>
                     <FlexRow padding="12" vPadding="18">
                         <LabeledInput label="First Name">
@@ -38,7 +38,7 @@ export default function FlexCellExample() {
             </FlexRow>
             <FlexSpacer />
 
-            <FlexRow padding="12" vPadding="12" spacing="12">
+            <FlexRow padding="12" vPadding="12" columnGap="12">
                 <FlexSpacer />
 
                 <Button caption="Submit" onClick={ () => null } color="accent" />

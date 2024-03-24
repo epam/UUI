@@ -8,10 +8,16 @@ interface DataTableRenderProps {
 }
 
 export interface HeaderCellContentProps extends DndActorRenderParams {
+    /** Called when resizing is started */
     onResizeStart: (e: React.MouseEvent) => void;
-    onResizeEnd: (e: React.MouseEvent) => void;
+    /** Called when resizing is ended */
+    onResizeEnd: (e: MouseEvent) => void;
+    /** Called during the resizing process */
     onResize: (e: MouseEvent) => void;
+    /** Called when sorting */
     toggleSort: (e: React.MouseEvent) => void;
+    /** Indicates that resizing process is active */
+    isResizing: boolean;
 }
 
 interface DataTableHeaderCellState {
@@ -49,17 +55,20 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         this.setState({ isResizing: true, resizeStartX: e.clientX, originalWidth: this.props.column.width });
 
         document.addEventListener('mousemove', this.onResize);
-        document.addEventListener('mouseup', this.onResizeEnd);
+        document.addEventListener('click', this.onResizeEnd);
 
         e.preventDefault();
         e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
     };
 
-    onResizeEnd = () => {
+    onResizeEnd = (e: MouseEvent) => {
         this.setState({ isResizing: false });
 
         document.removeEventListener('mousemove', this.onResize);
-        document.removeEventListener('mouseup', this.onResizeEnd);
+        document.removeEventListener('click', this.onResizeEnd);
+
+        e.preventDefault();
+        e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
     };
 
     onResize = (e: MouseEvent) => {
@@ -95,6 +104,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             onResizeEnd: this.onResizeEnd,
             onResizeStart: this.onResizeStart,
             toggleSort: this.toggleSort,
+            isResizing: this.state.isResizing,
             ...dndProps,
             ref: (node) => {
                 (this.cellRef.current as unknown as React.Ref<HTMLElement>) = node;

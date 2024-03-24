@@ -9,6 +9,11 @@
         outline: none;
         border-width: 1px;
     }
+
+    :global(.uui-disabled), :global(.uui-readonly) {
+        resize: none;
+        overflow-y: auto;
+    }
 }
 
 .auto-size {

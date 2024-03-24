@@ -8,7 +8,7 @@ export default function DelayForOpenAndCloseExample() {
     const renderDropdownBody = (props: DropdownBodyProps, name: string) => {
         return (
             <DropdownContainer vPadding="24" padding="18" focusLock={ false } { ...props }>
-                <FlexRow alignItems="center" spacing="12">
+                <FlexRow alignItems="center" columnGap="12">
                     <Avatar size="48" alt="avatar" img={ `https://api.dicebear.com/7.x/pixel-art/svg?seed=${name}&radius=50&backgroundColor=b6e3f4` } />
 
                     <FlexCell width="100%">

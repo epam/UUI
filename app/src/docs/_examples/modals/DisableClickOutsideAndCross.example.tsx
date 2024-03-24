@@ -21,7 +21,7 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
                     <ModalFooter>
                         <FlexSpacer />
                         <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => props.abort() } />
-                        <Button color="accent" caption="Ok" onClick={ () => props.success('Success action') } />
+                        <Button color="primary" caption="Ok" onClick={ () => props.success('Success action') } />
                     </ModalFooter>
                 </Panel>
             </ModalWindow>

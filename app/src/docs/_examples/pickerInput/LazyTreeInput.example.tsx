@@ -31,7 +31,7 @@ export default function LazyTreePicker() {
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
-                cascadeSelection="explicit"
+                cascadeSelection="implicit"
             />
         </FlexCell>
     );

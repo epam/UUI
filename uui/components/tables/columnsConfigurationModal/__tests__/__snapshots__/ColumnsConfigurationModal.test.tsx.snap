@@ -20,16 +20,17 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "90vh",
+        "height": "95dvh",
+        "maxHeight": "95dvh",
         "width": "420px",
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -74,10 +75,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 borderBottom spacing-12 searchArea container align-items-center"
+      className="uui-flex-row root size-36 padding-24 borderBottom searchArea container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -158,10 +159,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-flex-row root size-24 padding-24 spacing-6 groupTitle container align-items-center"
+            className="uui-flex-row root size-24 padding-24 groupTitle container align-items-center"
             style={
               Object {
-                "columnGap": undefined,
+                "columnGap": "6px",
                 "rowGap": undefined,
               }
             }
@@ -171,16 +172,14 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               Displayed in table
             </div>
-            <span
-              className="uui-button-box uui-enabled uui-badge root size-18 uui-fill-solid uui-color-neutral groupTitleBadge"
-              tabIndex={-1}
+            <div
+              className="root uui-count_indicator size-18 uui-color-neutral"
             >
-              <div
-                className="uui-caption"
-              >
-                2
-              </div>
-            </span>
+              2
+            </div>
+            <div
+              className="flexSpacer"
+            />
           </div>
           <div
             aria-expanded={true}
@@ -204,6 +203,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
+                      height={18}
+                      width={18}
                     />
                   </div>
                   Not pinned
@@ -484,10 +485,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter borderTop container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 borderTop root modalFooter container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }

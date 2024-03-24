@@ -5,7 +5,7 @@ import css from './SizeExample.module.scss';
 export default function SizeExample() {
     return (
         <FlexCell width="auto" cx={ css.container }>
-            <FlexRow alignItems="top" spacing="12">
+            <FlexRow alignItems="top" columnGap="12">
                 <Tag size="42" caption="Simple Tag" />
                 <Tag size="36" caption="Simple Tag" />
                 <Tag size="30" caption="Simple Tag" />
