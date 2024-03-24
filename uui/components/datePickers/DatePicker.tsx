@@ -1,6 +1,4 @@
-import React, {
-    useCallback, useEffect, useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
     DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod, withMods,

@@ -145,7 +145,6 @@ interface RangeDatePickerBodyValue<TSelection> {
     month: Dayjs;
 }
 
-
 export type {
     RangeDatePickerValue,
     DatePickerProps,
