@@ -1,5 +1,5 @@
 :global(.uui-typography) {
-    //We need to highlight visited links only in readonly mode
+    // We need to highlight visited links only in readonly mode
     &:not(:global(.uui-readonly)) {
         a:visited {
             color: var(--uui-link);
@@ -12,8 +12,15 @@
 }
 
 .editor {
-    padding: 0 24px;
+    // padding: 1px; fixes marging collapse https://github.com/epam/UUI/issues/1856
+    padding: 1px 24px 0;
+    margin-top: -1px;
     flex: 1;
+
+    // reverts https://github.com/ianstormtaylor/slate/pull/5423
+    span[data-slate-placeholder='true'] {
+        top: initial !important;
+    }
 }
 
 .container {
@@ -27,11 +34,6 @@
     :global(.unordered-list),
     blockquote {
         margin: 12px 0;
-    }
-
-    // TODO: remove it when update slate on 0.5+ version
-    .contentEditable {
-        -webkit-user-modify: read-write !important;
     }
 
     :global(.ordered-list),
@@ -87,37 +89,11 @@
     }
 }
 
-.placeholder {
-    position: absolute;
-    top: 0;
-    left: 12px;
-    max-width: 100%;
-    display: block;
-    user-select: none;
-    text-decoration: none;
-    color: var(--uui-text-tertiary);
-    font-family: var(--uui-font);
-    line-height: 1.5;
-    padding: 0 12px;
-}
-
-.placeholder-text {
-    top: 0;
-}
-
-.placeholder-14 {
-    font-size: 14px;
-}
-
-.placeholder-16 {
-    font-size: 16px;
-}
-
 .scrollbars {
     height: 100%;
-}
 
-.scrollbars > div {
-    display: flex;
-    flex-direction: column;
+    & > div {
+        display: flex;
+        flex-direction: column;
+    }
 }

@@ -73,7 +73,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         </LabeledInput>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow size="36" spacing="12" alignItems="top" vPadding="18" padding="24" topShadow>
+                <FlexRow size="36" columnGap="12" alignItems="top" vPadding="18" padding="24" topShadow>
                     <LabeledInput size={ size } label="Name" { ...validationProps }>
                         <TextInput
                             value={ this.state.textValue }
@@ -84,14 +84,14 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         />
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow size="36" spacing="12" alignItems="top" vPadding="18" padding="24">
+                <FlexRow size="36" columnGap="12" alignItems="top" vPadding="18" padding="24">
                     <FlexCell grow={ 1 }>
                         <LabeledInput size={ size } label="Demo Component" { ...validationProps }>
                             <DemoComponent { ...props } isInvalid={ this.state.isInvalid } isDisabled={ this.state.isDisabled } />
                         </LabeledInput>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow size="36" spacing="12" alignItems="top" vPadding="18" padding="24">
+                <FlexRow size="36" columnGap="12" alignItems="top" vPadding="18" padding="24">
                     <FlexCell grow={ 1 }>
                         <LabeledInput size={ size } label="Country" { ...validationProps }>
                             <TextInput
@@ -109,7 +109,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         </LabeledInput>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow size="36" spacing="12" alignItems="top" vPadding="18" padding="24">
+                <FlexRow size="36" columnGap="12" alignItems="top" vPadding="18" padding="24">
                     <FlexCell grow={ 1 }>
                         <LabeledInput size={ size } label="Demo Component" { ...validationProps }>
                             <DemoComponent { ...props } isInvalid={ this.state.isInvalid } isDisabled={ this.state.isDisabled } />
@@ -129,7 +129,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         </LabeledInput>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow size="36" spacing="12" alignItems="top" vPadding="18" padding="24">
+                <FlexRow size="36" columnGap="12" alignItems="top" vPadding="18" padding="24">
                     <FlexCell grow={ 1 }>
                         <Checkbox
                             isInvalid={ this.state.isInvalid }
@@ -140,7 +140,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         />
                     </FlexCell>
                 </FlexRow>
-                <FlexRow size="36" spacing="12" alignItems="top" vPadding="18" padding="24">
+                <FlexRow size="36" columnGap="12" alignItems="top" vPadding="18" padding="24">
                     <FlexSpacer />
                     <Button size={ size } color="secondary" fill="outline" caption="Cancel" />
                     <Button size={ size } color="accent" fill="solid" caption="Submit" />

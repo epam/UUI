@@ -43,8 +43,8 @@ export default function ConfigurePortalTargetAndPlacement() {
                     </FlexCell>
                 </FlexRow>
                 <div className={ css.divider }></div>
-                <FlexRow spacing="12" padding="18" vPadding="24">
-                    <Button color="accent" size="30" caption="Save" onClick={ () => null } />
+                <FlexRow columnGap="12" padding="18" vPadding="24">
+                    <Button color="primary" size="30" caption="Save" onClick={ () => null } />
                     <Button fill="outline" size="30" color="secondary" caption="Cancel" onClick={ () => props.onClose() } />
                 </FlexRow>
             </Panel>

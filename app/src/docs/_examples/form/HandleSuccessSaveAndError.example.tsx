@@ -57,7 +57,7 @@ export default function HandleSuccessSaveAndErrorExample() {
             </FlexRow>
             <FlexRow vPadding="12">
                 <FlexSpacer />
-                <Button caption="Save" onClick={ save } color="accent" />
+                <Button caption="Save" onClick={ save } color="primary" />
             </FlexRow>
         </FlexCell>
     );

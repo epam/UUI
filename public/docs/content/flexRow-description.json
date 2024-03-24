@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "FlexRow is a FlexBox container with items arranged along the horizontal axis from left to right. It's a horizontal FlexBox container.",
-            "marks": []
-          }
-        ]
+        "text": "FlexRow is a FlexBox container with items arranged along the horizontal axis from left to right. It's a horizontal FlexBox container."
       }
     ]
   }
-}
+]

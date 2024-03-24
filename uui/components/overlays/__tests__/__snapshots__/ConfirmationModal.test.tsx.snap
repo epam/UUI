@@ -21,15 +21,16 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -139,10 +140,10 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -163,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </button>
       <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"
@@ -200,15 +201,16 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -310,10 +312,10 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -334,7 +336,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
         </div>
       </button>
       <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-accent uui-size-36"
+        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
         onClick={[Function]}
         tabIndex={0}
         type="button"

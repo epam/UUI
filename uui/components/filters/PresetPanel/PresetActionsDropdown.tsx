@@ -122,10 +122,12 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const renderTarget = useCallback((dropdownProps: IDropdownToggler) => {
         return (
             <IconButton
-                cx={ dropdownProps.isOpen && css.targetOpen }
+                cx={ [css.tabButton, dropdownProps.isOpen && css.targetOpen] }
                 color={ props.preset.id === props.activePresetId ? 'info' : 'neutral' }
                 { ...dropdownProps }
                 icon={ MenuIcon }
+                isDropdown={ false }
+                size="18"
             />
         );
     }, []);

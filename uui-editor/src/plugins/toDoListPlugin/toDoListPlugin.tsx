@@ -5,16 +5,18 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
 
-import { PlateEditor, focusEditor, getBlockAbove, toggleNodeType } from '@udecode/plate-common';
+import {
+    PlateEditor, focusEditor, getBlockAbove, toggleNodeType,
+} from '@udecode/plate-common';
 import { ELEMENT_TODO_LI, createTodoListPlugin } from '@udecode/plate-list';
 import { ToDoItem } from './ToDoItem';
-import { IHasToolbarButton } from '../../implementation/Toolbars';
+import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const TODO_ELEMENT_KEY = 'toDoItem';
 
 export const toDoListPlugin = () => {
     // TODO: implement withOverrides for toggling between lists and todo lists
-    return createTodoListPlugin<IHasToolbarButton>({
+    return createTodoListPlugin<WithToolbarButton>({
         overrideByKey: {
             [ELEMENT_TODO_LI]: {
                 key: TODO_ELEMENT_KEY,

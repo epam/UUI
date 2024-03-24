@@ -8,6 +8,11 @@
         margin-left: 12px;
         display: flex;
         align-items: center;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
     }
 
     .infoText {
@@ -24,8 +29,8 @@
 
     .itemIcon {
         margin: 5px 0;
-        width: 36px;
-        height: 36px;
+        width: 30px;
+        height: 30px;
         align-items: center;
         border: 1px solid var(--uui-divider);
         border-radius: 3px;

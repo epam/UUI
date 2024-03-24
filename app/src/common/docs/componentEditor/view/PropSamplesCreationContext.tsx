@@ -1,7 +1,7 @@
 import { Icon } from '@epam/uui-core';
 import { IPropSamplesCreationContext, PropDocPropsUnknown } from '@epam/uui-docs';
 import { svc } from '../../../../services';
-import { getIconList } from '../../../../documents/iconListHelpers';
+import { getAllIcons } from '../../../../documents/iconListHelpers';
 
 export class PropSamplesCreationContext implements IPropSamplesCreationContext {
     constructor(
@@ -14,7 +14,7 @@ export class PropSamplesCreationContext implements IPropSamplesCreationContext {
     }
 
     getIconList = () => {
-        return getIconList<Icon>(true);
+        return getAllIcons<Icon>();
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

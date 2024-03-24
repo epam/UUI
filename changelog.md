@@ -1,17 +1,30 @@
 # 5.x.x - xx.xx.2024
 **What's New**
+* Scaling icons
+* Added possibility to pin columns to the right side of the table via columns config dialog
+* [DataTable]: added Expand All/Collapse All
 * [Paginator]: added `isDisabled` property.
 * [ColumnsConfigurationModal]
     * Added the ability to pin columns to the right.
 * [RTE]: added `onFocus` prop
-  
+* [IconButton]: added property `size`;
+* [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
+* [FlexRow]: added property `topBorder` to add border on the top of the FlexRow;
+* [FileUpload]: move wordings to the i18n
+* [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile. 
+* [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
+
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
-    * Fixed returning checked = [] if emptyValue is not passed to PickerInput.
+    * Fixed returning checked = [] if emptyValue is not passed to PickerInput.(!!!need to revert!!!)
     * Fixed partially selected with predefined selected value.
     * Fixed fetching missing parents for selected element in PickerInput.
-    * Fixed focus reset after clicking outside.
+* [PickerInput]: fixed 'unknown records' removing
+* [PickerInput]: Fixed focus reset after clicking outside
+* [PickerInput]: fixed unnecessary PickerInput `onValueChange` calls on `dataSourceState` change(search, focusedIndex change) in single select with `valueType=entity`.
+* [PickerList]: aligned caption by the left side in the footer.
+* [DropdownContainer]: disable scroll to the focused element after dropdown close
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed tabled border rendering issues in Firefox
@@ -19,11 +32,23 @@
 * [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
+* [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
+* [IconButton]: fixed property `isDropdown`;
+* [Switch]: fixed property `isReadonly`;
+* [TextArea]: fixed ability to scroll when `readonly` or `disable`;
+* [ModalBlocker]: now the Modals closed by default if the URL was changed. You can turn this off using property `disableCloseOnRouterChange`={true}.
+* [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead. See more: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
+* [DataTableHeaderCell]: stopped other onClick events during resizing process;
+
+# 5.6.2 - 15.03.2024
+
+**What's Fixed**
+* [PickerInput]: fixed toggler blur in case searchPosition = 'none'
 
 # 5.6.1 - 19.02.2024
 
 **What's Fixed**
-[LazyListView]: refetch on search clear.
+* [LazyListView]: refetch on search clear.
 
 # 5.6.0 - 08.02.2024
 

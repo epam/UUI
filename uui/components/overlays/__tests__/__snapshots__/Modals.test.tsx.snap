@@ -21,15 +21,16 @@ exports[`Modals should be rendered correctly 1`] = `
     style={
       Object {
         "height": "300px",
+        "maxHeight": "80dvh",
         "width": "300px",
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-6 vPadding-12 borderBottom spacing-12 root modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-6 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -74,10 +75,10 @@ exports[`Modals should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-18 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      className="uui-flex-row root size-36 padding-18 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
@@ -107,24 +108,25 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
     style={
       Object {
         "height": "auto",
+        "maxHeight": "80dvh",
         "width": "420px",
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 spacing-12 root modalHeader container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }
     />
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 spacing-12 root modalFooter container align-items-center"
+      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
-          "columnGap": undefined,
+          "columnGap": "12px",
           "rowGap": undefined,
         }
       }

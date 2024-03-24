@@ -12,6 +12,13 @@
     }
 }
 
+.tab-button {
+    :global(.uui-icon) {
+        width: 18px;
+        height: 18px;
+    }
+}
+
 .targetOpen {
     &:global(.uui-button-box) {
         :global(.uui-icon) {

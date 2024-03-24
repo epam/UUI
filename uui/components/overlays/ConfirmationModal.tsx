@@ -32,7 +32,7 @@ export class ConfirmationModal extends React.Component<ConfirmationModalWindowPr
                         {this.props.hideCancelButton || (
                             <Button caption={ i18n.form.modals.discardButton } onClick={ () => this.props.success(false) } fill="outline" color="secondary" />
                         )}
-                        <Button caption={ i18n.form.modals.saveButton } onClick={ () => this.props.success(true) } color="accent" />
+                        <Button caption={ i18n.form.modals.saveButton } onClick={ () => this.props.success(true) } color="primary" />
                     </ModalFooter>
                 </ModalWindow>
             </ModalBlocker>

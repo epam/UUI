@@ -25,14 +25,10 @@ interface PickerBindingHelper<TItem, TId> {
 
 class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> {
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
-        if (dsState && Array.isArray(dsState.checked) && dsState.checked && dsState.checked.length > 0) {
-            if (props.valueType === 'entity') {
-                return dsState.checked.map((id) => dataSource && dataSource.getById(id));
-            }
-            return dsState.checked;
-        } else {
-            return 'emptyValue' in props ? props.emptyValue : [];
+        if (props.valueType === 'entity') {
+            return dsState.checked?.map((id) => dataSource && dataSource.getById(id));
         }
+        return dsState.checked;
     }
 
     applyValueToDataSourceState(
@@ -41,9 +37,9 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> 
         props: PickerBaseProps<TId, TItem>,
         dataSource: IDataSource<TItem, TId, any>,
     ): DataSourceState<any, TId> {
-        value = (Array.isArray(value) && value) || [];
+        let checked = value;
         if (props.valueType === 'entity') {
-            value = value.map((entity: any) => {
+            checked = value?.map((entity: any) => {
                 dataSource && dataSource.setItem(entity);
                 return dataSource && dataSource.getId(entity);
             });
@@ -52,7 +48,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> 
         return {
             ...dsState,
             selectedId: null,
-            checked: value,
+            checked: checked,
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,
         };
@@ -74,15 +70,16 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId>
         props: PickerBaseProps<TId, TItem>,
         dataSource: IDataSource<TItem, TId, any>,
     ): DataSourceState<any, TId> {
-        const id = props.valueType === 'entity' ? dataSource && dataSource.getId(value) : value;
+        let selectedId = value;
 
-        if (value && props.valueType === 'entity') {
-            dataSource && dataSource.setItem(value);
+        if (value && props.valueType === 'entity' && dataSource) {
+            dataSource.setItem(value);
+            selectedId = dataSource.getId(value);
         }
 
         return {
             ...dsState,
-            selectedId: id,
+            selectedId: selectedId,
             checked: null,
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,

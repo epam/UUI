@@ -103,7 +103,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         <Tooltip content={ file.error.message } placement="bottom-start">
             <div className={ css.errorBlock }>
                 <IconContainer icon={ ErrorIcon } size={ 12 } cx={ css.defaultColor } />
-                Upload failed
+                {i18n.fileCard.failedUploadErrorMessage}
             </div>
         </Tooltip>
     );
@@ -128,7 +128,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
             minWidth={ width }
             width={ !width ? '100%' : undefined }
         >
-            <FlexRow size="36" alignItems="top" spacing="6">
+            <FlexRow size="36" alignItems="top" columnGap="6">
                 {fileExtension && getIcon(fileExtension)}
                 <FlexCell width="100%">
                     <Text size="18" fontSize="14" lineHeight="18" color={ (progress < 100 || error?.isError) ? 'tertiary' : 'primary' } cx={ css.fileName }>

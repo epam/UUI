@@ -1,6 +1,7 @@
 import * as uuiComponents from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
+import { createSkinComponent } from '@epam/uui-core';
 import css from './IconButton.module.scss';
+import { systemIcons } from '../../icons/icons';
 
 interface IconButtonMods {
     /**
@@ -11,13 +12,27 @@ interface IconButtonMods {
 }
 
 /** Represents the Core properties of the IconButton component. */
-export type IconButtonCoreProps = uuiComponents.IconButtonProps;
+export type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'> & {
+    /**
+     * Defines component size.
+     */
+    size?: '18' | '24' | '30' | '36';
+};
 
 /** Represents the properties of the IconButton component. */
 export type IconButtonProps = IconButtonCoreProps & IconButtonMods;
 
-function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
-    return ['uui-icon_button', `uui-color-${mods.color || 'neutral'}`, css.root];
+function applyIconButtonMods(props: IconButtonProps) {
+    return ['uui-icon_button', `uui-color-${props.color || 'neutral'}`, css.root];
 }
 
-export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiComponents.IconButton, applyIconButtonMods);
+export const IconButton = createSkinComponent<uuiComponents.IconButtonProps, IconButtonProps>(
+    uuiComponents.IconButton,
+    (props) => {
+        return {
+            dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
+            size: props.size && Number(props.size),
+        };
+    },
+    applyIconButtonMods,
+);
