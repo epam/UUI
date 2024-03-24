@@ -16,7 +16,8 @@ export const renderFooter = (ctx: IPropSamplesCreationContext<DatePickerProps>) 
         value: () => (
             <FlexRow cx={ css.footer } size="48">
                 <LinkButton
-                    size="36" caption="Today"
+                    size="36"
+                    caption="Today"
                     onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('YYYY-MM-DD')) }
                 />
             </FlexRow>

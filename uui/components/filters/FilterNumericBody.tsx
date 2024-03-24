@@ -80,8 +80,10 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                 <FlexSpacer />
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        isDisabled={ isClearDisabled } size={ size }
-                        caption={ i18n.pickerInput.clearSelectionButtonSingle } onClick={ clearSelection }
+                        isDisabled={ isClearDisabled }
+                        size={ size }
+                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
+                        onClick={ clearSelection }
                     />
                 </FlexCell>
             </FlexRow>
@@ -93,8 +95,10 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         return (
             <div>
                 <FlexRow
-                    padding="12" alignItems="center"
-                    spacing="12" borderBottom={ true }
+                    padding="12"
+                    alignItems="center"
+                    spacing="12"
+                    borderBottom={ true }
                     cx={ css.container }
                 >
                     <FlexCell width="100%">
@@ -125,8 +129,10 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
     return (
         <div>
             <FlexRow
-                padding="12" alignItems="center"
-                borderBottom={ true } cx={ css.container }
+                padding="12"
+                alignItems="center"
+                borderBottom={ true }
+                cx={ css.container }
             >
                 <FlexCell width={ 130 }>
                     <NumericInput

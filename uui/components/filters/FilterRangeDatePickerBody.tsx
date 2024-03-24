@@ -8,7 +8,7 @@ import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
 import {
-    defaultFormat, defaultRangeValue, getMonthOnOpen, getNewMonth,
+    defaultFormat, defaultRangeValue, getMonthOnOpen,
 } from '../datePickers/helpers';
 import { RangeDatePickerProps } from '../datePickers/types';
 import css from '../datePickers/RangeDatePicker.module.scss';

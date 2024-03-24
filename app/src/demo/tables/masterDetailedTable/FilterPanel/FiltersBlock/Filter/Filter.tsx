@@ -70,7 +70,8 @@ function FilterImpl<TFilter extends Record<string, any>>(props: IFilterProps<TFi
             <div className={ css.title } onClick={ toggle }>
                 <div>{props.filterConfig.title}</div>
                 <IconContainer
-                    icon={ ArrowDown } flipY={ isOpened }
+                    icon={ ArrowDown }
+                    flipY={ isOpened }
                     cx={ css.icon }
                 />
             </div>
