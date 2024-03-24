@@ -102,6 +102,7 @@ export function DatePickerComponent(props: DatePickerProps) {
                 onValueChange={ (v) => {
                     setInputValue(v || '');
 
+                    // preview month on correct input
                     if (isValidDate(v ?? null, format, props.filter)) {
                         setMonth(dayjs(v));
                     }
@@ -116,8 +117,9 @@ export function DatePickerComponent(props: DatePickerProps) {
                 isReadonly={ props.isReadonly }
                 tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
                 onFocus={ (e) => {
-                    setBodyIsOpen(true);
+                    // show selected date month on open
                     setMonth(getNewMonth(value));
+                    setBodyIsOpen(true);
                     props.onFocus?.(e);
                 } }
                 onBlur={ onBlur }

@@ -171,6 +171,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                 <div className={ uuiRangeDatePickerBody.separator } />
                 <CalendarPresets
                     onPresetSet={ (presetVal) => {
+                        // enable day if smth other were selected
                         setView('DAY_SELECTION');
                         props.onValueChange({
                             inFocus: props.value.inFocus,
