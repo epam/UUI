@@ -16,7 +16,7 @@ exports[`Avatar should be rendered correctly with props 1`] = `
   className="avatar"
   height="36"
   onError={[Function]}
-  src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
+  src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg"
   width="36"
 />
 `;
