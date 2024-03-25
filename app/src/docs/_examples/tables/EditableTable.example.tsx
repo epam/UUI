@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrderingTypes, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrderingTypes, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
@@ -53,6 +53,8 @@ let savedItem: FormState = {
 // To store the last item id used
 let id = -1;
 
+const defaultSorting: DataSourceState['sorting'] = [{ field: 'id', direction: 'asc' }];
+
 export default function EditableTableExample() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
@@ -87,7 +89,23 @@ export default function EditableTableExample() {
     }, [setValue]);
 
     // Use state to hold DataTable state - current sorting, filtering, etc.
-    const [tableState, setTableState] = useState({});
+    const [tableState, setTableState] = useState<DataSourceState>({ sorting: defaultSorting });
+
+    const onTableStateChange = useCallback((state: React.SetStateAction<DataSourceState>) => {
+        setTableState((currentTableState) => {
+            let updatedState: DataSourceState;
+            if (typeof state === 'function') {
+                updatedState = state(currentTableState);
+            } else {
+                updatedState = state;
+            }
+            
+            if (!updatedState.sorting || !updatedState.sorting.length) {
+                updatedState.sorting = defaultSorting;
+            }
+            return updatedState;
+        });
+    }, [setTableState]);
 
     // Define DataSource to use in PickerInput in the 'tags' column
     const pickerDataSource = useArrayDataSource({ items: tags }, []);
@@ -181,7 +199,7 @@ export default function EditableTableExample() {
 
     // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
     // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
-    const view = dataSource.useView(tableState, setTableState, {
+    const view = dataSource.useView(tableState, onTableStateChange, {
         getRowOptions: (item: TodoTask) => ({
             ...lens.prop('items').key(item.id).default(item).toProps(),
         }),
@@ -225,7 +243,7 @@ export default function EditableTableExample() {
                     { ...view.getListProps() }
                     getRows={ view.getVisibleRows }
                     value={ tableState }
-                    onValueChange={ setTableState }
+                    onValueChange={ onTableStateChange }
                     columns={ columns }
                     headerTextCase="upper"
                     renderRow={ renderRow }

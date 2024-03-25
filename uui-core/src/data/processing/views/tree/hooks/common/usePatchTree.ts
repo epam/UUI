@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
-import { TreeState, cloneMap, newMap } from '../../newTree';
+import { NOT_FOUND_RECORD, TreeState, cloneMap, newMap } from '../../newTree';
 import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions } from '../../../../../../types';
 import { SortConfig } from '../strategies/types';
 import { buildComparators, composeComparetors } from '../../helpers';
 import { PatchOrderingTypes } from '../../PatchOrderingMap';
 import { useSimplePrevious } from '../../../../../../hooks';
+import { ITree } from '../../newTree/ITree';
 
 export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId>, SortConfig<TItem> {
     tree: TreeState<TItem, TId>;
@@ -33,6 +34,7 @@ const groupByParentId = <TItem, TId>(
 };
 
 export const sortPatchByParentId = <TItem, TId, TFilter>(
+    tree: ITree<TItem, TId>,
     groupedByParentId: IMap<TId, TItem[]>,
     getNewItemPosition: PatchItemsOptions<TItem, TId>['getNewItemPosition'],
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
@@ -53,31 +55,40 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
             const aId = getId(a);
             const bId = getId(b);
 
-            if (!patchItemsAtLastSort.has(bId) && !patchItemsAtLastSort.has(aId)) {
+            const aInOriginalTree = tree.getById(aId) !== NOT_FOUND_RECORD;
+            const bInOriginalTree = tree.getById(bId) !== NOT_FOUND_RECORD;
+            const aInPatchBeforeSort = patchItemsAtLastSort.has(aId);
+            const bInPatchBeforeSort = patchItemsAtLastSort.has(bId);
+
+            if (!bInPatchBeforeSort && !aInPatchBeforeSort && !aInOriginalTree && !bInOriginalTree) {
                 const aPosition = getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? -1 : 1;
                 const bPosition = getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
                 return (aPosition === bPosition) ? 1 : aPosition - bPosition;
             }
 
-            if (!patchItemsAtLastSort.has(bId)) {
+            if (!bInPatchBeforeSort && !aInOriginalTree) {
                 return getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
             }
 
-            if (!patchItemsAtLastSort.has(aId)) {
+            if (!aInPatchBeforeSort && !aInOriginalTree) {
                 return getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? 1 : -1;
             }
-            const prevBParentId = getParentId?.(patchItemsAtLastSort.get(bId)) ?? undefined;
+
+            const bItem = patchItemsAtLastSort.get(bId) ?? tree.getById(bId) as TItem;
+            const prevBParentId = getParentId?.(bItem) ?? undefined;
             const bParentId = getParentId?.(b) ?? undefined;
             if (prevBParentId !== bParentId) {
-                return -1;
-            }
-            const prevAParentId = getParentId?.(patchItemsAtLastSort.get(aId)) ?? undefined;
-            const aParentId = getParentId?.(a) ?? undefined;
-            if (prevAParentId !== aParentId) {
-                return -1;
+                return getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
             }
 
-            const result = composedComparator(patchItemsAtLastSort.get(aId), patchItemsAtLastSort.get(bId));
+            const aItem = patchItemsAtLastSort.get(aId) ?? tree.getById(aId) as TItem;
+            const prevAParentId = getParentId?.(aItem) ?? undefined;
+            const aParentId = getParentId?.(a) ?? undefined;
+            if (prevAParentId !== aParentId) {
+                return getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? 1 : -1;
+            }
+
+            const result = composedComparator(aItem, bItem);
             if (result === 0) {
                 return indexes.get(a) - indexes.get(b);
             }
@@ -90,6 +101,7 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
 };
 
 const getSortedPatchByParentId = <TItem, TId, TFilter>(
+    tree: ITree<TItem, TId>,
     patchItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     getNewItemPosition: PatchItemsOptions<TItem, TId>['getNewItemPosition'],
@@ -100,7 +112,7 @@ const getSortedPatchByParentId = <TItem, TId, TFilter>(
     complexIds?: boolean,
 ) => {
     const grouped = groupByParentId(patchItems, getParentId, complexIds);
-    return sortPatchByParentId(grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, getId, getParentId);
+    return sortPatchByParentId(tree, grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, getId, getParentId);
 };
 
 export function usePatchTree<TItem, TId, TFilter = any>(
@@ -122,6 +134,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
 
     const sortedPatch = useMemo(
         () => getSortedPatchByParentId(
+            tree.visible,
             patchItems,
             patchItemsAtLastSort,
             getNewItemPosition,
