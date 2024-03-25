@@ -50,7 +50,7 @@ export class PatchHelper {
                 patchedItems.set(id, true);
             }
 
-            for (let i = 0, k = 0, lastPushedPatch = null, lastPushedRegular = null; i < sortedPatchItems.length; i++) {
+            for (let i = 0, k = 0, lastPushedPatchIndex = null, lastPushedExistingIndex = null; i < sortedPatchItems.length; i++) {
                 const patchItemId = treeStructure.getParams().getId(sortedPatchItems[i]);
 
                 for (let j = k; j < itemIds.length; j ++) {
@@ -59,17 +59,15 @@ export class PatchHelper {
                             updatedItemsToIds.set(patchItemId, j);
                         }
 
-                        if (j === itemIds.length - 1 && !deletedMap.get(patchItemId)) {
+                        if (deletedMap.get(patchItemId)) {
+                            isPatched = true;
+                        } else if (j === itemIds.length - 1) {
                             sortedItems.push(patchItemId);
                             isPatched = true;
                         }
 
-                        if (deletedMap.get(patchItemId)) {
-                            isPatched = true;
-                        }
-
                         k = j;
-                        lastPushedPatch = i;
+                        lastPushedPatchIndex = i;
                         continue;
                     }
 
@@ -103,7 +101,7 @@ export class PatchHelper {
                         } else {
                             newBottomItems.push(patchItemId);
                         }
-                        lastPushedPatch = i;
+                        lastPushedPatchIndex = i;
                         isPatched = true;
 
                         break;
@@ -122,7 +120,7 @@ export class PatchHelper {
                     const result = composedComparator(patchItemToCompare, item);
                     if (result === -1 || (result === 0 && updatedItemsToIds.has(patchItemId) && (updatedItemsToIds.get(patchItemId) < j))) {
                         sortedItems.push(patchItemId);
-                        lastPushedPatch = i;
+                        lastPushedPatchIndex = i;
                         isPatched = true;
                         k = j;
 
@@ -133,13 +131,13 @@ export class PatchHelper {
                         } else if (!patchedItems.get(itemIds[j])) {
                             sortedItems.push(itemIds[j]);
                         }
-                        lastPushedRegular = j;
+                        lastPushedExistingIndex = j;
                         k = j;
                     }
                 }
 
-                if (lastPushedRegular === itemIds.length - 1 && (lastPushedPatch === null || lastPushedPatch < sortedPatchItems.length - 1)) {
-                    for (let l = (lastPushedPatch ?? -1) + 1; l < sortedPatchItems.length; l ++) {
+                if (lastPushedExistingIndex === itemIds.length - 1 && (lastPushedPatchIndex === null || lastPushedPatchIndex < sortedPatchItems.length - 1)) {
+                    for (let l = (lastPushedPatchIndex ?? -1) + 1; l < sortedPatchItems.length; l ++) {
                         const id = treeStructure.getParams().getId(sortedPatchItems[l]);
                         if (!deletedMap.get(id)) {
                             sortedItems.push(id);
@@ -149,8 +147,8 @@ export class PatchHelper {
                     break;
                 }
 
-                if (i === sortedPatchItems.length - 1 && (lastPushedRegular === null || lastPushedRegular < itemIds.length - 1)) {
-                    for (let j = (lastPushedRegular ?? -1) + 1; j < itemIds.length; j ++) {
+                if (i === sortedPatchItems.length - 1 && (lastPushedExistingIndex === null || lastPushedExistingIndex < itemIds.length - 1)) {
+                    for (let j = (lastPushedExistingIndex ?? -1) + 1; j < itemIds.length; j ++) {
                         if (!patchedItems.get(itemIds[j]) && !deletedMap.get(itemIds[j])) {
                             sortedItems.push(itemIds[j]);
                         }
