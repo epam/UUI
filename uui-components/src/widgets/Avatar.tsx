@@ -46,7 +46,7 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
             height={ props.size }
             src={
                 props.isLoading || !props.img || isError
-                    ? 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg'
+                    ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg'
                     : props.img
             }
             alt={ props.alt }
