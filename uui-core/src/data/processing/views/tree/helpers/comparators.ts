@@ -6,7 +6,7 @@ export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<
 
     if (options.sorting) {
         options.sorting.forEach((sortingOption) => {
-            const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+            const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] ?? '');
             const sign = sortingOption.direction === 'desc' ? -1 : 1;
             comparators.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
         });

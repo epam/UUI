@@ -41,11 +41,17 @@ export class PatchHelper {
             }
             let sortedItems: TId[] = [];
             const newBottomItems: TId[] = [];
+            const patchedItems = newMap<TId, boolean>({ complexIds: treeStructure.getParams().complexIds });
+            for (const item of sortedPatchItems) {
+                const id = treeStructure.getParams().getId(item);
+                if (isDeleted?.(item)) {
+                    deletedMap.set(id, true);
+                }
+                patchedItems.set(id, true);
+            }
             for (let i = 0, k = 0; i < sortedPatchItems.length; i++) {
                 const patchItemId = treeStructure.getParams().getId(sortedPatchItems[i]);
-                if (isDeleted?.(sortedPatchItems[i])) {
-                    deletedMap.set(patchItemId, true);
-                }
+
                 for (let j = k; j < itemIds.length; j ++) {
                     const patchItemParentId = treeStructure.getParams().getParentId?.(sortedPatchItems[i]) ?? undefined;
                     const inOriginalTree = itemsMap.has(patchItemId);
@@ -65,27 +71,36 @@ export class PatchHelper {
                         newByParentId.set(originalItemParentId, originalItems.filter((id) => patchItemId !== id));
                     }
 
-                    if (deletedMap.get(patchItemId)) {
-                        isPatched = true;
-                        break;
-                    }
-
                     if (isNew) {
-                        const position = getNewItemPosition(sortedPatchItems[i]);
-                        if (position === PatchOrderingTypes.TOP) {
-                            sortedItems.unshift(patchItemId);
-                        } else {
-                            newBottomItems.push(patchItemId);
+                        if (!alreadyPushed.get(patchItemId) && !deletedMap.get(patchItemId)) {
+                            const position = getNewItemPosition(sortedPatchItems[i]);
+                            if (position === PatchOrderingTypes.TOP) {
+                                sortedItems.unshift(patchItemId);
+                            } else {
+                                newBottomItems.push(patchItemId);
+                            }
+                            isPatched = true;
+                            alreadyPushed.set(patchItemId, true);
                         }
-                        isPatched = true;
-                        alreadyPushed.set(patchItemId, true);
-                        break;
+                        if (!deletedMap.get(patchItemId)) {
+                            isPatched = true;
+                        }
+
+                        if (i === sortedPatchItems.length - 1 && k <= itemIds.length - 1) {
+                            if (!deletedMap.get(itemIds[j]) && !alreadyPushed.get(itemIds[j])) {
+                                sortedItems.push(itemIds[j]);
+                                alreadyPushed.set(itemIds[j], true);
+                            }
+                            continue;
+                        } else {
+                            break;
+                        }
                     }
 
                     let patchItemToCompare;
-                    if (inPatchBeforeSort) {
+                    if (inPatchBeforeSort && !deletedMap.get(patchItemId)) {
                         patchItemToCompare = patchItemsAtLastSort.get(patchItemId);
-                    } else if (inOriginalTree) {
+                    } else if (inOriginalTree && !deletedMap.get(patchItemId)) {
                         patchItemToCompare = itemsMap.get(patchItemId);
                     } else {
                         patchItemToCompare = sortedPatchItems[i];
@@ -94,38 +109,63 @@ export class PatchHelper {
                     if (itemIds[j] === patchItemId) {
                         updatedItemsToIds.set(patchItemId, j);
                         k = j;
-                        continue;
-                    }
-                    const item = itemsMap.get(itemIds[j]);
-                    const result = composedComparator(patchItemToCompare, item);
-                    if (result === -1 || (result === 0 && updatedItemsToIds.has(patchItemId) && (updatedItemsToIds.get(patchItemId) < j))) {
-                        sortedItems.push(patchItemId);
-                        alreadyPushed.set(patchItemId, true);
-
                         isPatched = true;
-                        k = j;
-                        break;
-                    } else {
-                        if (!deletedMap.get(itemIds[j])) {
-                            if (!alreadyPushed.has(itemIds[j])) {
+
+                        if (j === itemIds.length - 1 && !deletedMap.get(patchItemId) && !alreadyPushed.get(patchItemId)) {
+                            sortedItems.push(patchItemId);
+                            alreadyPushed.set(patchItemId, true);
+                            break;
+                        } else {
+                            continue;
+                        }
+                    }
+
+                    const item = itemsMap.get(itemIds[j]);
+                    const result = deletedMap.get(patchItemId) ? 1 : composedComparator(patchItemToCompare, item);
+                    if (deletedMap.get(patchItemId)) {
+                        isPatched = true;
+                        if (i < sortedPatchItems.length - 1) {
+                            break;
+                        }
+                    }
+                    if (result === -1 || (result === 0 && updatedItemsToIds.has(patchItemId) && (updatedItemsToIds.get(patchItemId) < j))) {
+                        if (!alreadyPushed.get(patchItemId)) {
+                            sortedItems.push(patchItemId);
+                            alreadyPushed.set(patchItemId, true);
+
+                            isPatched = true;
+                        }
+
+                        if (i === sortedPatchItems.length - 1 && k < itemIds.length - 1) {
+                            if (!deletedMap.get(itemIds[j]) && !alreadyPushed.get(itemIds[j]) && !patchedItems.get(itemIds[j])) {
                                 sortedItems.push(itemIds[j]);
                                 alreadyPushed.set(itemIds[j], true);
-                                k = j;
-                            }
-                            if (k === itemIds.length - 1) {
-                                sortedItems.push(patchItemId);
-                                alreadyPushed.set(patchItemId, true);
+                            } else {
                                 isPatched = true;
                             }
+                            continue;
+                        } else {
                             k = j;
+                            break;
+                        }
+                    } else {
+                        if (!deletedMap.get(itemIds[j])) {
+                            if (!alreadyPushed.has(itemIds[j]) && !patchedItems.get(itemIds[j])) {
+                                sortedItems.push(itemIds[j]);
+                                alreadyPushed.set(itemIds[j], true);
+                            }
                         } else {
                             isPatched = true;
                         }
-                    }
-                }
 
-                if (i === sortedPatchItems.length - 1 && (k === 0 || k !== itemIds.length - 1)) {
-                    sortedItems = sortedItems.concat(itemIds.slice(k, itemIds.length).filter((id) => !deletedMap.get(id) && !alreadyPushed.get(id)));
+                        k = j;
+
+                        if (k === itemIds.length - 1 && !alreadyPushed.has(patchItemId) && !deletedMap.get(patchItemId)) {
+                            sortedItems.push(patchItemId);
+                            alreadyPushed.set(patchItemId, true);
+                            isPatched = true;
+                        }
+                    }
                 }
             }
             sortedItems = sortedItems.concat(newBottomItems);
