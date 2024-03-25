@@ -16,6 +16,10 @@ const pickerHeight = 300;
 const pickerWidth = 360;
 
 export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
+    /**
+     * Render Callback for making custom Tags.
+     * If omitted, they will be rendered by default component PickerTogglerTag.
+     */
     renderTag?: (props: PickerTogglerTagProps<TItem, TId>) => JSX.Element;
 };
 
