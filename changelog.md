@@ -3,11 +3,11 @@
 **What's New**
 * New Scaling Icons Approach:
   - Components now define the icon size based on their `props.size` value. You no longer need to pass an icon with an appropriate size for the component's size. The provided icon will now be scaled by the component itself.
-  - Added a new icons pack, new icons placed under the '@epam/assets/icon' path. Old icons still exist under the '@epam/assets/icon/common' path.
+  - Added a new icons pack, new icons placed under the '@epam/assets/icons' path. Old icons still exist under the '@epam/assets/icons/common' path.
   - This change doesn't require any immediate action from your side. You can continue using icons from the old icons pack. However, please note that icons which were passed to the components without adhering to the guidelines may now be scaled according to these guidelines.
 * [DataTable]: Added possibility to pin columns to the right side of the table via columns config dialog
 * [DataTable]: added 'Expand All/Collapse All' action in table header. They isn't rendered by default, to turn on pass `showFoldAll={ true }` to the DataTable props.
-* [RTE]: added serialazer/deserializer for MD format. Read more [here](https://uui.epam.com/documents?id=rteSerializers&category=richTextEditor&theme=electric#md_format).
+* [RTE]: added serializer/deserializer for MD format. Read more [here](https://uui.epam.com/documents?id=rteSerializers&category=richTextEditor&theme=electric#md_format).
 * [RTE]: added `onFocus` prop
 * [Modals]: now the Modals closed by default if the URL was changed. You can turn this off passing `disableCloseOnRouterChange={true}` prop to ModalBlocker component.
 * [Modals]: added `maxHeight` prop
@@ -37,7 +37,6 @@
 * [RTE]: fixed editor focusable area and appearing cursor on first click
 * [RTE]: disable image resizing in readonly mode
 * [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
@@ -72,7 +71,7 @@
 * [RTE]: fixed editor focusable area and appearing cursor on first click
 * [RTE]: disable image resizing in readonly mode
 * [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+* [DataTable]: changed default column `minWidth` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
