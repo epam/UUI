@@ -7,7 +7,7 @@
   - This change doesn't require any immediate action from your side. You can continue using icons from the old icons pack. However, please note that icons which were passed to the components without adhering to the guidelines may now be scaled according to these guidelines.
 * [DataTable]: Added possibility to pin columns to the right side of the table via columns config dialog
 * [DataTable]: added 'Expand All/Collapse All' action in table header. They isn't rendered by default, to turn on pass `showFoldAll={ true }` to the DataTable props.
-* [RTE]: added serialazer/deserializer for MD format. Read more [here](https://uui.epam.com//documents?id=rteSerializers&category=richTextEditor&theme=electric#md_format).
+* [RTE]: added serialazer/deserializer for MD format. Read more [here](https://uui.epam.com/documents?id=rteSerializers&category=richTextEditor&theme=electric#md_format).
 * [RTE]: added `onFocus` prop
 * [Modals]: now the Modals closed by default if the URL was changed. You can turn this off passing `disableCloseOnRouterChange={true}` prop to ModalBlocker component.
 * [Modals]: added `maxHeight` prop
