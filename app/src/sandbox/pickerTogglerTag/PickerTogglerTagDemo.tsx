@@ -52,15 +52,39 @@ export function PickerTogglerTagDemo() {
                     valueType="id"
                     cascadeSelection={ cascadeSelection }
                     maxItems={ maxItems }
-                    renderTag={ (props) => (
-                        <PickerTogglerTag
-                            { ...props }
-                            key={ props.isCollapsed ? 'collapsed' : props.rowProps?.id as string }
-                            color="info"
-                            tooltipContent={ !props.isCollapsed && `${props.rowProps?.path.map((i) => i.value.name).join('/')}/${props.caption}` }
-                            icon={ !props.isCollapsed && myIcon }
-                        />
-                    ) }
+                    renderTag={ (props) => {
+                        return (
+                            <PickerTogglerTag
+                                { ...props }
+                                key={ props.isCollapsed ? 'collapsed' : props.rowProps?.id as string }
+                                tooltipContent={ !props.isCollapsed && `${props.rowProps?.path.map((i) => i.value.name).join('/')}/${props.caption}` }
+                                icon={ !props.isCollapsed && myIcon }
+                            />
+                        );
+
+                        // if (props.isCollapsed) {
+                        //     return (
+                        //         <Button
+                        //             { ...props }
+                        //             size="30"
+                        //             key="collapsed"
+                        //             color="secondary"
+                        //         />
+                        //     );
+                        // } else {
+                        //     return (
+                        //         <Tooltip content={ `${props.rowProps?.path.map((i) => i.value.name).join('/')}/${props.caption}` }>
+                        //             <Button
+                        //                 { ...props }
+                        //                 size="30"
+                        //                 key={ props.rowProps?.id as string }
+                        //                 color="accent"
+                        //                 icon={ myIcon }
+                        //             />
+                        //         </Tooltip>
+                        //     );
+                        // }
+                    } }
                 />
             </FlexRow>
         </FlexCell>
