@@ -12,7 +12,7 @@ import { RangeDatePickerInputType, RangeDatePickerProps } from './types';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import {
-    defaultFormat, defaultRangeValue, getMonthOnOpen, getValidMonth,
+    defaultFormat, defaultRangeValue, getMonthOnOpen,
 } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
 import { useRangeDatePickerState } from './useRangeDatePickerState';
@@ -38,8 +38,6 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     const {
         inputValue,
         inFocus,
-        month,
-        setMonth,
         setInputValue,
         setInFocus,
         onValueChange,
@@ -71,7 +69,6 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                     <RangeDatePickerBody
                         cx={ cx(props.bodyCx) }
                         value={ {
-                            month,
                             selectedDate: _value,
                             inFocus,
                         } }
@@ -124,20 +121,12 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                             format={ format }
                             onValueChange={ (i) =>{
                                 setInputValue(i);
-
-                                // preview month on correct input
-                                const validMonth = getValidMonth(i, inFocus, format, props.filter);
-                                if (validMonth) {
-                                    setMonth(validMonth);
-                                }
                             } }
                             onFocus={ (event, inputType) => {
                                 if (props.onFocus) {
                                     props.onFocus(event, inputType);
                                 }
 
-                                // show selected date month on open
-                                setMonth(getMonthOnOpen(value, inputType));
                                 onOpenChange(true, inputType);
                             } }
                             onBlur={ (event, inputType, v) => {

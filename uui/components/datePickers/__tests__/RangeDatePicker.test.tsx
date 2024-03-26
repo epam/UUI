@@ -252,6 +252,7 @@ describe('RangeDataPicker', () => {
         });
     });
 
+    // TODO: break down to multiple tests
     it('should focus corresponding input on picker value changes starting from start date', async () => {
         const value = {
             from: '2019-09-10',
@@ -290,6 +291,7 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('Oct 25, 2019');
     });
 
+    // TODO: break down to multiple tests
     it('should focus corresponding input on picker values change starting from end date', async () => {
         const value = {
             from: '2019-09-10',
@@ -333,7 +335,7 @@ describe('RangeDataPicker', () => {
         expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
 
         // now we have Oct with Nov
-        const [oct15] = await within(dialog).findAllByText('15');
+        const [, oct15] = await within(dialog).findAllByText('15');
         await userEvent.click(oct15);
         // should clear and focus 'to' input, when selecting older date
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
@@ -342,7 +344,7 @@ describe('RangeDataPicker', () => {
         expect(dom.from.value).toBe('Oct 15, 2019');
         expect(dom.to.value).toBe('');
 
-        const [oct10] = await within(dialog).findAllByText('10');
+        const [, oct10] = await within(dialog).findAllByText('10');
         await userEvent.click(oct10);
         // should not change focus when earlier date selected for 'to' input
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
@@ -351,7 +353,7 @@ describe('RangeDataPicker', () => {
         expect(dom.from.value).toBe('Oct 10, 2019');
         expect(dom.to.value).toBe('');
 
-        const [oct17] = await within(dialog).findAllByText('17');
+        const [, oct17] = await within(dialog).findAllByText('17');
         await userEvent.click(oct17);
         // should move focus from inputs when two dates selected
         expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();

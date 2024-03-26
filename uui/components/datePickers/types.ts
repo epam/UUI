@@ -1,9 +1,9 @@
 import {
-    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasForwardedRef, IHasPlaceholder, IHasRawProps, RangeDatePickerPresets,
+    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasForwardedRef, IHasPlaceholder, IHasRawProps,
 } from '@epam/uui-core';
 import { IHasEditMode, SizeMod } from '../types';
 import { ReactElement, ReactNode } from 'react';
-import { DayProps } from '@epam/uui-components';
+import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
 import { Dayjs } from 'dayjs';
 
 /**
@@ -142,7 +142,6 @@ type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 interface RangeDatePickerBodyValue<TSelection> {
     inFocus: RangeDatePickerInputType;
     selectedDate: TSelection;
-    month: Dayjs;
 }
 
 export type {
