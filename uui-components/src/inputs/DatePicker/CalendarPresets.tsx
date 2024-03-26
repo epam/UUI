@@ -25,6 +25,9 @@ export type RangeDatePickerPresets = {
     };
 };
 
+/**
+ * Represents RangeDatePickerPresetValue
+ */
 export interface RangeDatePickerPresetValue {
     /**
      * Range from value
