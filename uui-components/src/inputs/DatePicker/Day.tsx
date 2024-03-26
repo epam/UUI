@@ -11,10 +11,13 @@ import { uuiDaySelection } from './calendarConstants';
  */
 export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
-    cx?: CX;
     renderDayNumber?: (param: Dayjs) => any;
     isSelected?: boolean;
     isHoliday?: boolean;
+    /**
+     * CSS classes to put on the day component
+     */
+    cx?: CX;
 }
 
 dayjs.extend(isToday);

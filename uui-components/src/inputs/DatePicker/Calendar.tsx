@@ -18,12 +18,18 @@ import css from './Calendar.module.scss';
 export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     value?: TSelection;
     onValueChange: (day: Dayjs) => void;
-    month: Dayjs;
     renderDay?: (renderProps: DayProps) => ReactElement<Element>;
     filter?(day: Dayjs): boolean;
     hideAnotherMonths?: boolean;
-    cx?: CX;
     isHoliday?: (day: Dayjs) => boolean;
+    /**
+     * Represents displayed month
+     */
+    month: Dayjs;
+    /**
+     * CSS classes to put on the calendar component
+     */
+    cx?: CX;
 }
 
 dayjs.extend(localeData);
@@ -124,7 +130,10 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
 
     const renderWeekdays = () =>
         dayjs.weekdaysShort(true).map((weekday, index) => (
-            <div key={ `${weekday}-${index}` } className={ uuiDaySelection.weekday }>
+            <div
+                key={ `${weekday}-${index}` }
+                className={ uuiDaySelection.weekday }
+            >
                 {weekday}
             </div>
         ));
@@ -139,7 +148,10 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                 <div className={ uuiDaySelection.weekdaysContainer }>
                     {renderWeekdays()}
                 </div>
-                <div className={ uuiDaySelection.days } style={ { height: weeksHeight } }>
+                <div
+                    className={ uuiDaySelection.days }
+                    style={ { height: weeksHeight } }
+                >
                     {renderDaysTable()}
                 </div>
             </div>

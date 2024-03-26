@@ -15,6 +15,9 @@ import {
 } from './helpers';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
+    /**
+     * Manually handles holidays
+     */
     isHoliday?: (day: Dayjs) => boolean;
 }
 
