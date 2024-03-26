@@ -11,9 +11,7 @@ import css from './RangeDatePicker.module.scss';
 import { RangeDatePickerInputType, RangeDatePickerProps } from './types';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import {
-    defaultFormat, defaultRangeValue, getMonthOnOpen,
-} from './helpers';
+import { defaultFormat, defaultRangeValue } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
 import { useRangeDatePickerState } from './useRangeDatePickerState';
 
