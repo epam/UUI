@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import {
-    uuiMod, DropdownBodyProps, withMods, isFocusReceiverInsideFocusLock,
+    DropdownBodyProps, withMods, isFocusReceiverInsideFocusLock, useUuiContext,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
@@ -26,6 +26,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     const { value: _value, format = defaultFormat } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
     const [isOpen, setIsOpen] = useState(false);
+    const context = useUuiContext();
 
     const onOpenChange = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
         setInFocus(newIsOpen && focus ? focus : null);
@@ -44,8 +45,13 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         value,
         format,
         onOpenChange,
-        getValueChangeAnalyticsEvent: props.getValueChangeAnalyticsEvent,
-        onValueChange: props.onValueChange,
+        onValueChange: (newValue) => {
+            props.onValueChange(newValue);
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue, value);
+                context.uuiAnalytics.sendEvent(event);
+            }
+        },
     });
 
     // mainly for closing body on tab
@@ -89,54 +95,40 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         <Dropdown
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || (
-                    <div
+                    <RangeDatePickerInput
                         ref={ renderProps.ref }
-                        className={ cx(
-                            props.inputCx,
-                            css.dateInputGroup,
-                            props.isDisabled && uuiMod.disabled,
-                            props.isReadonly && uuiMod.readonly,
-                            props.isInvalid && uuiMod.invalid,
-                            inFocus && uuiMod.focus,
-                        ) }
-                        onClick={ (event) => {
-                            if (!props.isDisabled) {
-                                renderProps.onClick?.(event);
-                            }
-                        } }
+                        cx={ props.inputCx }
+                        onClick={ renderProps.onClick }
                         onBlur={ onInputWrapperBlur }
-                    >
-                        <RangeDatePickerInput
-                            isDisabled={ props.isDisabled }
-                            isInvalid={ props.isInvalid }
-                            isReadonly={ props.isReadonly }
-                            size={ props.size }
-                            getPlaceholder={ props.getPlaceholder }
-                            disableClear={ props.disableClear }
-                            rawProps={ props.rawProps }
-                            inFocus={ inFocus }
-                            value={ inputValue }
-                            format={ format }
-                            onValueChange={ (i) =>{
-                                setInputValue(i);
-                            } }
-                            onFocus={ (event, inputType) => {
-                                if (props.onFocus) {
-                                    props.onFocus(event, inputType);
-                                }
+                        isDisabled={ props.isDisabled }
+                        isInvalid={ props.isInvalid }
+                        isReadonly={ props.isReadonly }
+                        size={ props.size }
+                        getPlaceholder={ props.getPlaceholder }
+                        disableClear={ props.disableClear }
+                        rawProps={ props.rawProps }
+                        inFocus={ inFocus }
+                        value={ inputValue }
+                        format={ format }
+                        onValueChange={ (i) =>{
+                            setInputValue(i);
+                        } }
+                        onInputFocus={ (event, inputType) => {
+                            if (props.onFocus) {
+                                props.onFocus(event, inputType);
+                            }
 
-                                onOpenChange(true, inputType);
-                            } }
-                            onBlur={ (event, inputType, v) => {
-                                if (props.onBlur) {
-                                    props.onBlur(event, inputType);
-                                }
-                                setInputValue(v.inputValue);
-                                onValueChange(v.selectedDate);
-                            } }
-                            onClear={ onValueChange }
-                        />
-                    </div>
+                            onOpenChange(true, inputType);
+                        } }
+                        onInputBlur={ (event, inputType, v) => {
+                            if (props.onBlur) {
+                                props.onBlur(event, inputType);
+                            }
+                            setInputValue(v.inputValue);
+                            onValueChange(v.selectedDate);
+                        } }
+                        onClear={ onValueChange }
+                    />
                 );
             } }
             renderBody={ (renderProps) => renderBody(renderProps) }

@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import dayjs from 'dayjs';
 import {
-    IEditable, devLogger, cx, uuiMod,
+    IEditable, devLogger, cx, uuiMod, IHasCX, IClickable,
 } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 import { SizeMod } from '../types';
@@ -18,21 +18,28 @@ import {
 /**
  * Represents RangeDatePickerInputProps
  */
-export interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>,
+export interface RangeDatePickerInputProps
+    extends IEditable<RangeDatePickerValue>,
+    IHasCX,
     SizeMod,
+    IClickable,
     Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'rawProps'> {
     /**
      * Currently setting date
      */
     inFocus: RangeDatePickerInputType,
     /**
-     * Handles focus event on input element
-     */
-    onFocus: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+     * Handles blur event on input wrapper element
+    */
+    onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
     /**
-     * Handles blur event on input element
+    * Handles focus event on input element
+    */
+    onInputFocus: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+    /**
+    * Handles blur event on input element
      */
-    onBlur: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType, newValues: {
+    onInputBlur: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType, newValues: {
         selectedDate: RangeDatePickerValue;
         inputValue: RangeDatePickerValue;
     }) => void;
@@ -42,7 +49,7 @@ export interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValu
     onClear: (value: RangeDatePickerValue) => void;
 }
 
-export function RangeDatePickerInput({
+export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
     isDisabled,
     isInvalid,
     isReadonly,
@@ -53,13 +60,16 @@ export function RangeDatePickerInput({
     inFocus,
     format,
     onValueChange,
-    onFocus,
     onBlur,
+    onInputFocus,
+    onInputBlur,
+    onClick,
     onClear,
     getPlaceholder,
     filter,
     id,
-}: RangeDatePickerInputProps): JSX.Element {
+    cx: classes,
+}, ref): JSX.Element => {
     useEffect(() => {
         if (__DEV__) {
             if (size === '48') {
@@ -84,19 +94,19 @@ export function RangeDatePickerInput({
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
-        onFocus(event, inputType);
+        onInputFocus(event, inputType);
     };
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
         const selectedDate = toValueDateRangeFormat(inputValue, format);
 
         if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
-            onBlur(event, inputType, {
+            onInputBlur(event, inputType, {
                 inputValue: toCustomDateRangeFormat(selectedDate, format),
                 selectedDate,
             });
         } else {
-            onBlur(event, inputType, {
+            onInputBlur(event, inputType, {
                 inputValue: {
                     ...inputValue,
                     [inputType]: null,
@@ -112,7 +122,23 @@ export function RangeDatePickerInput({
     const clearAllowed = !disableClear && inputValue.from && inputValue.to;
 
     return (
-        <Fragment>
+        <div
+            ref={ ref }
+            className={ cx(
+                classes,
+                css.dateInputGroup,
+                isDisabled && uuiMod.disabled,
+                isReadonly && uuiMod.readonly,
+                isInvalid && uuiMod.invalid,
+                inFocus && uuiMod.focus,
+            ) }
+            onClick={ (event) => {
+                if (!isDisabled) {
+                    onClick?.(event);
+                }
+            } }
+            onBlur={ onBlur }
+        >
             <TextInput
                 icon={ systemIcons.calendar }
                 cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'from' && uuiMod.focus) }
@@ -149,6 +175,6 @@ export function RangeDatePickerInput({
                 isDropdown={ false }
                 rawProps={ rawProps?.to }
             />
-        </Fragment>
+        </div>
     );
-}
+});

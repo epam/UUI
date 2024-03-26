@@ -26,10 +26,6 @@ export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttr
      * Represents displayed month
      */
     month: Dayjs;
-    /**
-     * CSS classes to put on the calendar component
-     */
-    cx?: CX;
 }
 
 dayjs.extend(localeData);
