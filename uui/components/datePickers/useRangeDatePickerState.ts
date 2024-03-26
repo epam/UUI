@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUuiContext } from '@epam/uui-core';
-import { getMonthOnOpen, toCustomDateRangeFormat } from './helpers';
+import { toCustomDateRangeFormat } from './helpers';
 import {
     RangeDatePickerValue, RangeDatePickerProps, RangeDatePickerInputType, RangeDatePickerBodyValue,
 } from './types';
