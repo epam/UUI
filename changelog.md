@@ -21,6 +21,8 @@
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 * [DatePicker] renderDay prop callback signature updated
 * [RangeDatePicker] renderDay prop callback signature updated
+* [DatePickerBody] props breaking changes
+* [RangeDatePickerBody] props breaking changes
 * [ColumnsConfigurationModal]: small visual tweaks
 * [Avatar]: changed default avatar img
 
