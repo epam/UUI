@@ -16,7 +16,6 @@ import {
 } from './helpers';
 import { DatePickerBody } from './DatePickerBody';
 
-dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;

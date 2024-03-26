@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useUuiContext } from '@epam/uui-core';
 import { toCustomDateRangeFormat } from './helpers';
 import {
     RangeDatePickerValue, RangeDatePickerProps, RangeDatePickerInputType, RangeDatePickerBodyValue,
 } from './types';
 
 export type UseRangeDatePickerState =
-    Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'getValueChangeAnalyticsEvent' | 'onValueChange'> & {
+    Pick<RangeDatePickerProps, 'format' | 'onOpenChange' | 'onValueChange'> & {
         value: NonNullable<RangeDatePickerProps['value']>;
         inFocusInitial?: RangeDatePickerInputType;
     };
@@ -15,7 +14,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     const {
         value, format, inFocusInitial = null,
     } = props;
-    const context = useUuiContext();
 
     const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
         toCustomDateRangeFormat(value, format),
@@ -31,11 +29,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
         const toChanged = value?.to !== newValue?.to;
         if (fromChanged || toChanged) {
             props.onValueChange(newValue);
-
-            if (props.getValueChangeAnalyticsEvent) {
-                const event = props.getValueChangeAnalyticsEvent(newValue, value);
-                context.uuiAnalytics.sendEvent(event);
-            }
         }
     };
 
@@ -49,7 +42,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
          && inFocus === 'to'
            && toChanged;
 
-        // console.log('toChanged', toChanged, 'inFocus', inFocus);
         if (closeBody) {
             props.onOpenChange?.(false);
         }
@@ -60,7 +52,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
         inFocus,
         setInputValue,
         setInFocus,
-        onValueChange,
         onBodyValueChange,
+        onValueChange,
     };
 };
