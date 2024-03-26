@@ -21,13 +21,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
         toCustomDateRangeFormat(value, format),
     );
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(inFocusInitial);
-    const [month, setMonth] = useState(getMonthOnOpen(value, inFocus));
-    // console.log('month', month);
 
-    /**
-     * Remove sync when text input will be uncontrolled.
-     * Currently it handles value comp prop updates and any value set.
-     */
     useEffect(() => {
         setInputValue(toCustomDateRangeFormat(value, format));
     }, [format, value, setInputValue]);
@@ -48,7 +42,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
         setInputValue(toCustomDateRangeFormat(newValue.selectedDate, format));
         setInFocus(newValue.inFocus ?? inFocus);
-        setMonth(newValue.month);
         onValueChange(newValue.selectedDate);
 
         const toChanged = value.to !== newValue.selectedDate.to;
@@ -63,10 +56,8 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     };
 
     return {
-        month,
         inputValue,
         inFocus,
-        setMonth,
         setInputValue,
         setInFocus,
         onValueChange,

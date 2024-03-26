@@ -7,9 +7,7 @@ import {
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
-import {
-    defaultFormat, defaultRangeValue, getMonthOnOpen,
-} from '../datePickers/helpers';
+import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
 import { RangeDatePickerProps } from '../datePickers/types';
 import css from '../datePickers/RangeDatePicker.module.scss';
 import { RangeDatePickerBody } from '../datePickers';
@@ -22,10 +20,8 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
     const {
-        month,
         inputValue,
         inFocus,
-        setMonth,
         setInputValue,
         setInFocus,
         onValueChange,
@@ -49,7 +45,6 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
             <FlexRow borderBottom={ true }>
                 <RangeDatePickerBody
                     value={ {
-                        month,
                         selectedDate: value,
                         inFocus,
                     } }
@@ -59,7 +54,10 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                 />
             </FlexRow>
             <FlexCell alignSelf="stretch">
-                <FlexRow padding="24" vPadding="12">
+                <FlexRow
+                    padding="24"
+                    vPadding="12"
+                >
                     <div className={ cx(css.dateInputGroup, inFocus && uuiMod.focus) }>
                         <RangeDatePickerInput
                             size="30"
@@ -72,7 +70,6 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                                 if (props.onFocus) {
                                     props.onFocus(event, inputType);
                                 }
-                                setMonth(getMonthOnOpen(value, inputType));
                                 setInFocus(inputType);
                             } }
                             onBlur={ (event, inputType, v) => {

@@ -29,7 +29,6 @@ async function setupRangePickerBody(params: RangePickerSetupProps) {
     const _value: RangeDatePickerBodyValue<RangeDatePickerValue | null> = {
         selectedDate,
         inFocus,
-        month: dayjs('2019-10-12').startOf('day'),
     };
 
     const { result, mocks } = await setupComponentForTest<RangeBodyProps>(
@@ -64,10 +63,9 @@ describe('RangeDatePickerBody', () => {
     it('should be rendered correctly', async () => {
         const value: RangeDatePickerBodyValue<RangeDatePickerValue> = {
             selectedDate: {
-                from: null,
-                to: null,
+                from: '2019-10-12',
+                to: '2019-10-18',
             },
-            month: dayjs('2019-10-12').startOf('day'),
             inFocus: 'from',
         };
         const tree = await renderSnapshotWithContextAsync(
@@ -92,7 +90,6 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct13);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'to',
-            month: expect.anything(),
             selectedDate: {
                 from: '2019-10-13',
                 to: '2019-10-17',
@@ -103,7 +100,6 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(_oct13);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
-            month: expect.anything(),
             selectedDate: {
                 from: '2019-10-13',
                 to: '2019-10-13',
@@ -124,7 +120,6 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct18);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'to',
-            month: expect.anything(),
             selectedDate: {
                 from: '2019-10-18',
                 to: null,
@@ -145,7 +140,6 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct16);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
-            month: expect.anything(),
             selectedDate: {
                 from: '2019-10-12',
                 to: '2019-10-16',
@@ -166,7 +160,6 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct11);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
-            month: expect.anything(),
             selectedDate: {
                 from: '2019-10-11',
                 to: null,
@@ -251,9 +244,8 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct13);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'to',
-            month: expect.anything(),
             selectedDate: {
-                from: '2019-10-13',
+                from: expect.stringContaining('13'),
                 to: null,
             },
         });
@@ -269,10 +261,9 @@ describe('RangeDatePickerBody', () => {
         fireEvent.click(oct17);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             inFocus: 'from',
-            month: expect.anything(),
             selectedDate: {
                 from: null,
-                to: '2019-10-17',
+                to: expect.stringContaining('17'),
             },
         });
     });

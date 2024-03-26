@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
+import { cx, IControlled } from '@epam/uui-core';
 import {
-    cx, IControlled, RangeDatePickerPresets,
-} from '@epam/uui-core';
-import {
-    uuiDaySelection, Day, DayProps,
+    uuiDaySelection, Day, DayProps, RangeDatePickerPresets,
 } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { CalendarPresets } from './CalendarPresets';
 import css from './RangeDatePickerBody.module.scss';
 import {
-    defaultRangeValue, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
+    defaultRangeValue, getMonthOnOpen, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
 import {
     CommonDatePickerBodyProps,
@@ -103,14 +101,15 @@ export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, 
 export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>): JSX.Element {
     const { value: _value, filter } = props;
     const {
-        selectedDate: _selectedDate,
-        month,
-        inFocus,
+        selectedDate: _selectedDate, inFocus,
     } = _value;
     const selectedDate = _selectedDate || defaultRangeValue; // also handles null in comparison to default value
 
     const [activeMonth, setActiveMonth] = useState<RangeDatePickerInputType>(inFocus);
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
+    const [month, setMonth] = useState(() => {
+        return getMonthOnOpen(selectedDate, inFocus);
+    });
 
     const getRange = (newValue: string | null) => {
         if (!filter || filter(dayjs(newValue))) {
@@ -138,7 +137,6 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
 
         setActiveMonth(part);
         props.onValueChange({
-            month,
             selectedDate: newRange ? newRange : selectedDate,
             inFocus: newInFocus ?? inFocus,
         });
@@ -173,13 +171,13 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                     onPresetSet={ (presetVal) => {
                         // enable day if smth other were selected
                         setView('DAY_SELECTION');
+                        setMonth(dayjs(presetVal.from));
                         props.onValueChange({
                             inFocus: props.value.inFocus,
                             selectedDate: {
                                 from: dayjs(presetVal.from).format(valueFormat),
                                 to: dayjs(presetVal.to).format(valueFormat),
                             },
-                            month: dayjs(presetVal.from),
                         });
                     } }
                     presets={ presets }
@@ -189,24 +187,28 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
     };
 
     return (
-        <div className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) } { ...props.rawProps }>
+        <div
+            className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) }
+            { ...props.rawProps }
+        >
             <FlexRow
                 cx={ [view === 'DAY_SELECTION' && css.daySelection, css.container] }
                 alignItems="top"
             >
                 <FlexCell width="auto">
                     <FlexRow>
-                        <FlexRow cx={ css.bodesWrapper } alignItems="top">
+                        <FlexRow
+                            cx={ css.bodesWrapper }
+                            alignItems="top"
+                        >
                             <StatelessDatePickerBody
                                 key="date-picker-body-left"
                                 cx={ cx(css.fromPicker) }
                                 { ...from }
                                 onValueChange={ (v) => onBodyValueChange(v, 'from') }
-                                onMonthChange={ (m) => props.onValueChange({
-                                    inFocus,
-                                    selectedDate,
-                                    month: m,
-                                }) }
+                                onMonthChange={ (m) => {
+                                    setMonth(m);
+                                } }
                                 onViewChange={ (v) => setView(v) }
                                 filter={ props.filter }
                                 isHoliday={ props.isHoliday }
@@ -218,11 +220,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                                 { ...to }
                                 onValueChange={ (v) => onBodyValueChange(v, 'to') }
                                 onMonthChange={ (m) => {
-                                    props.onValueChange({
-                                        inFocus,
-                                        selectedDate,
-                                        month: m.subtract(1, 'month'),
-                                    });
+                                    setMonth(m.subtract(1, 'month'));
                                 } }
                                 onViewChange={ (v) => setView(v) }
                                 filter={ props.filter }
