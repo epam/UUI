@@ -5,7 +5,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import localeData from 'dayjs/plugin/localeData.js';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import {
-    arrayToMatrix, cx, CX, IHasCX, IHasForwardedRef, IHasRawProps,
+    arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
 import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';

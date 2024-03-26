@@ -8,7 +8,6 @@ import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { DatePickerProps } from './types';
 import {
