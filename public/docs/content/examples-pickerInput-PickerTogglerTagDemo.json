@@ -3,14 +3,21 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "In this example we use "
+        "text": "In this example, we use "
       },
       {
         "text": "renderTag",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " callback to make custom Tags with Tooltip if they are not a Tag for collapsed values."
+        "text": " callback to make custom Tags with Tooltip if they are not a Tag for collapsed values. "
+      },
+      {
+        "text": "PickerTogglerTag",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is a component we recommend to use for rendering Tags."
       }
     ]
   }

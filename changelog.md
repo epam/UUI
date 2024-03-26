@@ -1,3 +1,10 @@
+# 5.7.1 - xx.xx.2024
+
+**What's New**
+* [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`. 
+* [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput. 
+
+
 # 5.7.0 - 25.03.2024
 
 **What's New**
