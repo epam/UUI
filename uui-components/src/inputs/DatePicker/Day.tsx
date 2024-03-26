@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isToday from 'dayjs/plugin/isToday.js';
 import {
-    CX, IEditable, IHasCX, IHasForwardedRef, IHasRawProps, cx, uuiMarkers,
+    IEditable, IHasCX, IHasForwardedRef, IHasRawProps, cx, uuiMarkers,
 } from '@epam/uui-core';
 import { uuiDaySelection } from './calendarConstants';
 
