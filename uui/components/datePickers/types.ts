@@ -139,8 +139,17 @@ interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttri
 
 type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
+/**
+ * Represents date picker body value
+ */
 interface RangeDatePickerBodyValue<TSelection> {
+    /**
+     * Currently setting date
+     */
     inFocus: RangeDatePickerInputType;
+    /**
+     * Date currently set
+     */
     selectedDate: TSelection;
 }
 

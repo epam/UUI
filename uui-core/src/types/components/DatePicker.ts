@@ -6,6 +6,9 @@ import {
 } from '../props';
 import { CX } from '../objects';
 
+/**
+ * Represents CommonDatePickerProps
+*/
 export interface CommonDatePickerProps extends IDisableable,
     ICanBeReadonly,
     IHasForwardedRef<HTMLElement> {

@@ -15,15 +15,30 @@ import {
     defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat,
 } from './helpers';
 
+/**
+ * Represents RangeDatePickerInputProps
+ */
 export interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>,
     SizeMod,
     Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'rawProps'> {
+    /**
+     * Currently setting date
+     */
     inFocus: RangeDatePickerInputType,
+    /**
+     * Handles focus event on input element
+     */
     onFocus: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+    /**
+     * Handles blur event on input element
+     */
     onBlur: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType, newValues: {
         selectedDate: RangeDatePickerValue;
         inputValue: RangeDatePickerValue;
     }) => void;
+    /**
+     * Clears inputs
+     */
     onClear: (value: RangeDatePickerValue) => void;
 }
 
