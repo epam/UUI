@@ -156,6 +156,18 @@ export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
     patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 }
 
+export type SortedPatchByParentId<TItem, TId> = IMap<
+TId,
+{
+    top: TId[],
+    bottom: TId[],
+    updated: TId[],
+    moved: TId[],
+    updatedItemsMap: IMap<TId, TItem>,
+    newItems: TItem[],
+}
+>;
+
 /**
  * Patching tree configuration.
  */
@@ -163,7 +175,7 @@ export interface ExtendedPatchItemsOptions<TItem, TId, TFilter = any> extends So
     /**
      * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
      */
-    sortedPatch?: IMap<TId, TItem[]>;
+    sortedPatch?: SortedPatchByParentId<TItem, TId>,
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     sorting: DataSourceState<TFilter, TId>['sorting'];
 }

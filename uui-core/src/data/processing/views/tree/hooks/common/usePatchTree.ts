@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { NOT_FOUND_RECORD, TreeState, cloneMap, newMap } from '../../newTree';
-import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions } from '../../../../../../types';
+import { NOT_FOUND_RECORD, TreeState, newMap } from '../../newTree';
+import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions, SortedPatchByParentId } from '../../../../../../types';
 import { SortConfig } from '../strategies/types';
 import { buildComparators, composeComparetors } from '../../helpers';
 import { PatchOrderingTypes } from '../../PatchOrderingMap';
@@ -40,62 +40,83 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     sortBy: SortConfig<TItem>['sortBy'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
+    isDeleted: undefined | ((item: TItem) => boolean),
     getId: (item: TItem) => TId,
     getParentId: (item: TItem) => TId,
+    complexIds?: boolean,
 ) => {
     const comparators = buildComparators({ sorting, sortBy });
     const composedComparator = composeComparetors(comparators);
 
-    const sorted = cloneMap(groupedByParentId);
-    for (const [parentId, items] of sorted) {
+    const sorted: SortedPatchByParentId<TItem, TId> = newMap({ complexIds });
+    for (const [parentId, items] of groupedByParentId) {
         const indexes = new Map<TItem, number>();
         items.forEach((item, index) => indexes.set(item, index));
 
-        const sortedItems = [...items].sort((a, b) => {
-            const aId = getId(a);
-            const bId = getId(b);
+        const top: TId[] = [];
+        const bottom: TId[] = [];
+        const updated: TId[] = [];
+        const movedToOtherParent: TId[] = [];
+        const updatedItemsMap: IMap<TId, TItem> = newMap({ complexIds });
+        const newItems: TItem[] = [];
 
-            const aInOriginalTree = tree.getById(aId) !== NOT_FOUND_RECORD;
-            const bInOriginalTree = tree.getById(bId) !== NOT_FOUND_RECORD;
-            const aInPatchBeforeSort = patchItemsAtLastSort.has(aId);
-            const bInPatchBeforeSort = patchItemsAtLastSort.has(bId);
+        for (const item of items) {
+            const id = getId(item);
+            const itemInOriginalTree = tree.getById(id) !== NOT_FOUND_RECORD;
+            const itemInPatchBeforeSort = patchItemsAtLastSort.has(id);
+            updatedItemsMap.set(id, item);
+            newItems.push(item);
 
-            if (!bInPatchBeforeSort && !aInPatchBeforeSort && !aInOriginalTree && !bInOriginalTree) {
-                const aPosition = getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? -1 : 1;
-                const bPosition = getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
-                return (aPosition === bPosition) ? 1 : aPosition - bPosition;
+            if (!itemInPatchBeforeSort && !itemInOriginalTree) {
+                const position = getNewItemPosition(item);
+
+                if (isDeleted?.(item)) {
+                    continue;
+                }
+
+                if (position === PatchOrderingTypes.BOTTOM) {
+                    bottom.push(id);
+                } else {
+                    top.unshift(id);
+                }
+                continue;
+            }
+            const prevItem = patchItemsAtLastSort.get(id) ?? tree.getById(id) as TItem;
+            const prevParentId = getParentId?.(prevItem) ?? undefined;
+            const newParentId = getParentId?.(item) ?? undefined;
+            if (prevParentId !== newParentId) {
+                if (itemInOriginalTree) {
+                    movedToOtherParent.push(id);
+                }
+
+                const position = getNewItemPosition(item);
+                if (position === PatchOrderingTypes.BOTTOM) {
+                    bottom.push(id);
+                } else {
+                    top.unshift(id);
+                }
+
+                continue;
             }
 
-            if (!bInPatchBeforeSort && !aInOriginalTree) {
-                return getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
-            }
+            updated.push(id);
+        }
 
-            if (!aInPatchBeforeSort && !aInOriginalTree) {
-                return getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? 1 : -1;
-            }
-
+        const sortedUpdated = [...updated].sort((aId, bId) => {
+            const a = updatedItemsMap.get(aId);
+            const b = updatedItemsMap.get(bId);
             const bItem = patchItemsAtLastSort.get(bId) ?? tree.getById(bId) as TItem;
-            const prevBParentId = getParentId?.(bItem) ?? undefined;
-            const bParentId = getParentId?.(b) ?? undefined;
-            if (prevBParentId !== bParentId) {
-                return getNewItemPosition(b) === PatchOrderingTypes.BOTTOM ? -1 : 1;
-            }
-
             const aItem = patchItemsAtLastSort.get(aId) ?? tree.getById(aId) as TItem;
-            const prevAParentId = getParentId?.(aItem) ?? undefined;
-            const aParentId = getParentId?.(a) ?? undefined;
-            if (prevAParentId !== aParentId) {
-                return getNewItemPosition(a) === PatchOrderingTypes.BOTTOM ? 1 : -1;
-            }
 
             const result = composedComparator(aItem, bItem);
             if (result === 0) {
                 return indexes.get(a) - indexes.get(b);
             }
+
             return result;
         });
 
-        sorted.set(parentId, sortedItems);
+        sorted.set(parentId, { top, bottom, updated: sortedUpdated, moved: movedToOtherParent, updatedItemsMap, newItems });
     }
     return sorted;
 };
@@ -107,12 +128,13 @@ const getSortedPatchByParentId = <TItem, TId, TFilter>(
     getNewItemPosition: PatchItemsOptions<TItem, TId>['getNewItemPosition'],
     sortBy: SortConfig<TItem>['sortBy'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
+    isDeleted?: (item: TItem) => boolean,
     getId?: (item: TItem) => TId,
     getParentId?: (item: TItem) => TId,
     complexIds?: boolean,
 ) => {
     const grouped = groupByParentId(patchItems, getParentId, complexIds);
-    return sortPatchByParentId(tree, grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, getId, getParentId);
+    return sortPatchByParentId(tree, grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, isDeleted, getId, getParentId);
 };
 
 export function usePatchTree<TItem, TId, TFilter = any>(
@@ -140,6 +162,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             getNewItemPosition,
             sortBy,
             sorting,
+            isDeleted,
             params.getId,
             params.getParentId,
             params.complexIds,
