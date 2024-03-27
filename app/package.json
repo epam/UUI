@@ -20,7 +20,7 @@
     "@epam/assets": "5.7.0",
     "@epam/draft-rte": "5.7.0",
     "@epam/electric": "5.7.0",
-    "@epam/internal": "0.0.1",
+    "@epam/internal": "0.0.2",
     "@epam/loveship": "5.7.0",
     "@epam/promo": "5.7.0",
     "@epam/uui": "5.7.0",
