@@ -35,9 +35,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     };
 
     const {
-        inputValue,
         inFocus,
-        setInputValue,
         setInFocus,
         onValueChange,
         onBodyValueChange,
@@ -99,35 +97,27 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                         ref={ renderProps.ref }
                         cx={ props.inputCx }
                         onClick={ renderProps.onClick }
-                        onBlur={ onInputWrapperBlur }
                         isDisabled={ props.isDisabled }
                         isInvalid={ props.isInvalid }
                         isReadonly={ props.isReadonly }
                         size={ props.size }
                         getPlaceholder={ props.getPlaceholder }
                         disableClear={ props.disableClear }
-                        rawProps={ props.rawProps }
+                        rawProps={ {
+                            ...props.rawProps,
+                            wrapper: {
+                                onBlur: onInputWrapperBlur,
+                            },
+                        } }
                         inFocus={ inFocus }
-                        value={ inputValue }
+                        value={ value }
                         format={ format }
-                        onValueChange={ (i) =>{
-                            setInputValue(i);
+                        onValueChange={ onValueChange }
+                        onFocus={ (e, i) => {
+                            props.onFocus?.(e, i);
+                            onOpenChange(true, i);
                         } }
-                        onInputFocus={ (event, inputType) => {
-                            if (props.onFocus) {
-                                props.onFocus(event, inputType);
-                            }
-
-                            onOpenChange(true, inputType);
-                        } }
-                        onInputBlur={ (event, inputType, v) => {
-                            if (props.onBlur) {
-                                props.onBlur(event, inputType);
-                            }
-                            setInputValue(v.inputValue);
-                            onValueChange(v.selectedDate);
-                        } }
-                        onClear={ onValueChange }
+                        onBlur={ props.onBlur }
                     />
                 );
             } }

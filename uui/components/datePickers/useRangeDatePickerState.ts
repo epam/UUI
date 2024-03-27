@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { toCustomDateRangeFormat } from './helpers';
+import { useState } from 'react';
 import {
     RangeDatePickerValue, RangeDatePickerProps, RangeDatePickerInputType, RangeDatePickerBodyValue,
 } from './types';
@@ -11,18 +10,8 @@ export type UseRangeDatePickerState =
     };
 
 export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
-    const {
-        value, format, inFocusInitial = null,
-    } = props;
-
-    const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
-        toCustomDateRangeFormat(value, format),
-    );
+    const { value, inFocusInitial = null } = props;
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(inFocusInitial);
-
-    useEffect(() => {
-        setInputValue(toCustomDateRangeFormat(value, format));
-    }, [format, value, setInputValue]);
 
     const onValueChange = (newValue: RangeDatePickerValue) => {
         const fromChanged = value?.from !== newValue?.from;
@@ -33,7 +22,6 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     };
 
     const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
-        setInputValue(toCustomDateRangeFormat(newValue.selectedDate, format));
         setInFocus(newValue.inFocus ?? inFocus);
         onValueChange(newValue.selectedDate);
 
@@ -48,9 +36,7 @@ export const useRangeDatePickerState = (props: UseRangeDatePickerState) => {
     };
 
     return {
-        inputValue,
         inFocus,
-        setInputValue,
         setInFocus,
         onBodyValueChange,
         onValueChange,
