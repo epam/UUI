@@ -1,23 +1,34 @@
-# 5.x.x - xx.xx.2024
+# 5.7.0 - 25.03.2024
+
 **What's New**
-* Scaling icons
-* Added possibility to pin columns to the right side of the table via columns config dialog
-* [DataTable]: added Expand All/Collapse All
-* [Paginator]: added `isDisabled` property.
-* [ColumnsConfigurationModal]
-    * Added the ability to pin columns to the right.
+* New Scaling Icons Approach:
+  - Components now define the icon size based on their `props.size` value. You no longer need to pass an icon with an appropriate size for the component's size. The provided icon will now be scaled by the component itself.
+  - Added a new icons pack, new icons placed under the '@epam/assets/icon' path. Old icons still exist under the '@epam/assets/icon/common' path.
+  - This change doesn't require any immediate action from your side. You can continue using icons from the old icons pack. However, please note that icons which were passed to the components without adhering to the guidelines may now be scaled according to these guidelines.
+* [DataTable]: Added possibility to pin columns to the right side of the table via columns config dialog
+* [DataTable]: added 'Expand All/Collapse All' action in table header. They isn't rendered by default, to turn on pass `showFoldAll={ true }` to the DataTable props.
+* [RTE]: added serialazer/deserializer for MD format. Read more [here](https://uui.epam.com/documents?id=rteSerializers&category=richTextEditor&theme=electric#md_format).
 * [RTE]: added `onFocus` prop
-* [IconButton]: added property `size`;
-* [TimePicker]: added property `disableClear` to disable inputs' clear cross, if it needs;
-* [FlexRow]: added property `topBorder` to add border on the top of the FlexRow;
+* [Modals]: now the Modals closed by default if the URL was changed. You can turn this off passing `disableCloseOnRouterChange={true}` prop to ModalBlocker component.
+* [Modals]: added `maxHeight` prop
+* [Paginator]: added `isDisabled` property
+* [IconButton]: added property `size`
+* [TimePicker]: added property `disableClear` to disable inputs' clear cross
+* [FlexRow]: deprecated property `spacing`, it will be removed in future releases. Please use `columnGap` instead. `spacing` prop now works via `columnGap`.
+* [FlexRow]: added property `topBorder` to add border on the top of the FlexRow
 * [FileUpload]: move wordings to the i18n
-* [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile. 
+* [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile.
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
+* [DatePicker] renderDay prop callback signature updated
+* [RangeDatePicker] renderDay prop callback signature updated
+* [DatePickerBody] props breaking changes
+* [RangeDatePickerBody] props breaking changes
+* [ColumnsConfigurationModal]: small visual tweaks
+* [Avatar]: changed default avatar img
 
 
 **What's Fixed**
 * [PickerInput]: fixed loading of selectedId with parents.
-    * Fixed returning checked = [] if emptyValue is not passed to PickerInput.(!!!need to revert!!!)
     * Fixed partially selected with predefined selected value.
     * Fixed fetching missing parents for selected element in PickerInput.
 * [PickerInput]: fixed 'unknown records' removing
@@ -27,18 +38,56 @@
 * [DropdownContainer]: disable scroll to the focused element after dropdown close
 * [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
-* [RTE]: fixed tabled border rendering issues in Firefox
+* [RTE]: fixed table border rendering issues in Firefox
 * [RTE]: fixed placeholder position in Safari
+* [RTE]: fixed editor focusable area and appearing cursor on first click
+* [RTE]: disable image resizing in readonly mode
+* [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
 * [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+* [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
-* [SlateEditor]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
+* [ApiContext]: add link to the login page in 'auth lost' modal
 * [IconButton]: fixed property `isDropdown`;
 * [Switch]: fixed property `isReadonly`;
 * [TextArea]: fixed ability to scroll when `readonly` or `disable`;
-* [ModalBlocker]: now the Modals closed by default if the URL was changed. You can turn this off using property `disableCloseOnRouterChange`={true}.
-* [FlexRow]: deprecated property `spacing`, it will be removed in future release. Please use `columnGap` instead. See more: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
-* [DataTableHeaderCell]: stopped other onClick events during resizing process;
+* [Modals]: change 'accent' buttons to 'primary' in UUI built in modals
+* [Badge]: small style tweaks according to the design
+
+# 5.6.2 - 15.03.2024
+
+**What's Fixed**
+* [PickerInput]: fixed toggler blur in case searchPosition = 'none' i18n
+* [ColumnsConfigurationModal]: small visual tweaks
+* [Avatar]: changed default avatar img
+
+
+**What's Fixed**
+* [PickerInput]: fixed loading of selectedId with parents.
+    * Fixed partially selected with predefined selected value.
+    * Fixed fetching missing parents for selected element in PickerInput.
+* [PickerInput]: fixed 'unknown records' removing
+* [PickerInput]: Fixed focus reset after clicking outside
+* [PickerInput]: fixed unnecessary PickerInput `onValueChange` calls on `dataSourceState` change(search, focusedIndex change) in single select with `valueType=entity`.
+* [PickerList]: aligned caption by the left side in the footer.
+* [DropdownContainer]: disable scroll to the focused element after dropdown close
+* [DropdownContainer]: fixed warning about incorrect ref in React strict mode
+* [Avatar]: change type of 'img' prop to also accept null value
+* [RTE]: fixed table border rendering issues in Firefox
+* [RTE]: fixed placeholder position in Safari
+* [RTE]: fixed editor focusable area and appearing cursor on first click
+* [RTE]: disable image resizing in readonly mode
+* [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
+* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+* [DataTable]: prevent sorting change on column resize;
+* [Blocker]: changed the exit animation duration from 1000ms to 200ms
+* [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
+* [ApiContext]: add link to the login page in 'auth lost' modal
+* [IconButton]: fixed property `isDropdown`;
+* [Switch]: fixed property `isReadonly`;
+* [TextArea]: fixed ability to scroll when `readonly` or `disable`;
+* [Modals]: change 'accent' buttons to 'primary' in UUI built in modals
+* [Badge]: small style tweaks according to the design
 
 # 5.6.2 - 15.03.2024
 

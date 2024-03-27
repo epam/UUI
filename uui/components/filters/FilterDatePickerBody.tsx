@@ -50,7 +50,10 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
                 />
             </FlexRow>
             <FlexCell alignSelf="stretch">
-                <FlexRow padding="24" vPadding="12">
+                <FlexRow
+                    padding="24"
+                    vPadding="12"
+                >
                     <Text>{value ? dayjs(value).format('MMM DD, YYYY') : ''}</Text>
                     <FlexSpacer />
                     <LinkButton

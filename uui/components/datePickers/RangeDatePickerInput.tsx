@@ -1,7 +1,9 @@
-import React, { Fragment, useEffect } from 'react';
+import React, {
+    forwardRef, useEffect, useState,
+} from 'react';
 import dayjs from 'dayjs';
 import {
-    IEditable, devLogger, cx, uuiMod,
+    IEditable, devLogger, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
 } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 import { SizeMod } from '../types';
@@ -15,36 +17,74 @@ import {
     defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat,
 } from './helpers';
 
-export interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>,
+/**
+ * Represents RangeDatePickerInputProps
+ */
+export interface RangeDatePickerInputProps
+    extends IEditable<RangeDatePickerValue>,
+    IHasCX,
     SizeMod,
-    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'rawProps'> {
+    IClickable,
+    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {
+    /**
+     * rawProps as HTML attributes
+     */
+    rawProps?: {
+        /**
+         * Any HTML attributes (native or 'data-') to put on 'from' input
+         */
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /**
+         * Any HTML attributes (native or 'data-') to put on 'to' input
+         */
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+    };
+    /**
+     * Currently setting date
+     */
     inFocus: RangeDatePickerInputType,
-    onFocus: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
-    onBlur: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType, newValues: {
-        selectedDate: RangeDatePickerValue;
-        inputValue: RangeDatePickerValue;
-    }) => void;
-    onClear: (value: RangeDatePickerValue) => void;
+    /**
+     * Handles focus event on input element
+    */
+    onFocusInput: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+    /**
+    * Handles blur event on input element
+   */
+    onBlurInput?: (event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void;
+    /**
+   * Handles blur event on root element
+   */
+    onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
 }
 
-export function RangeDatePickerInput({
+export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
     isDisabled,
     isInvalid,
     isReadonly,
     size,
     disableClear,
     rawProps,
-    value: inputValue,
+    value,
     inFocus,
     format,
     onValueChange,
-    onFocus,
     onBlur,
-    onClear,
+    onFocusInput,
+    onBlurInput,
+    onClick,
     getPlaceholder,
     filter,
     id,
-}: RangeDatePickerInputProps): JSX.Element {
+    cx: classes,
+}, ref): JSX.Element => {
+    const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
+        toCustomDateRangeFormat(value, format),
+    );
+
+    useEffect(() => {
+        setInputValue(toCustomDateRangeFormat(value, format));
+    }, [format, value, setInputValue]);
+
     useEffect(() => {
         if (__DEV__) {
             if (size === '48') {
@@ -60,36 +100,31 @@ export function RangeDatePickerInput({
     }, [size]);
 
     const onInputChange = (newValue: string, inputType: 'from' | 'to') => {
-        const newInputValue = {
+        setInputValue({
             ...inputValue,
             [inputType]: newValue,
-        };
-
-        onValueChange(newInputValue);
+        });
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
-        onFocus(event, inputType);
+        onFocusInput(event, inputType);
     };
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
-        const selectedDate = toValueDateRangeFormat(inputValue, format);
+        onBlurInput?.(event, inputType);
 
+        const selectedDate = toValueDateRangeFormat(inputValue, format);
         if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
-            onBlur(event, inputType, {
-                inputValue: toCustomDateRangeFormat(selectedDate, format),
-                selectedDate,
-            });
+            setInputValue(toCustomDateRangeFormat(selectedDate, format));
+            onValueChange(selectedDate);
         } else {
-            onBlur(event, inputType, {
-                inputValue: {
-                    ...inputValue,
-                    [inputType]: null,
-                },
-                selectedDate: {
-                    ...selectedDate,
-                    [inputType]: null,
-                },
+            setInputValue({
+                ...inputValue,
+                [inputType]: null,
+            });
+            onValueChange({
+                ...selectedDate,
+                [inputType]: null,
             });
         }
     };
@@ -97,7 +132,23 @@ export function RangeDatePickerInput({
     const clearAllowed = !disableClear && inputValue.from && inputValue.to;
 
     return (
-        <Fragment>
+        <div
+            ref={ ref }
+            className={ cx(
+                classes,
+                css.dateInputGroup,
+                isDisabled && uuiMod.disabled,
+                isReadonly && uuiMod.readonly,
+                isInvalid && uuiMod.invalid,
+                inFocus && uuiMod.focus,
+            ) }
+            onClick={ (event) => {
+                if (!isDisabled) {
+                    onClick?.(event);
+                }
+            } }
+            onBlur={ onBlur }
+        >
             <TextInput
                 icon={ systemIcons.calendar }
                 cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'from' && uuiMod.focus) }
@@ -122,7 +173,7 @@ export function RangeDatePickerInput({
                 value={ inputValue.to || undefined }
                 onCancel={ () => {
                     if (clearAllowed) {
-                        onClear(defaultRangeValue);
+                        onValueChange(defaultRangeValue);
                     }
                 } }
                 onValueChange={ (v) => onInputChange(v || '', 'to') }
@@ -134,6 +185,6 @@ export function RangeDatePickerInput({
                 isDropdown={ false }
                 rawProps={ rawProps?.to }
             />
-        </Fragment>
+        </div>
     );
-}
+});
