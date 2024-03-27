@@ -88,6 +88,7 @@ export function usePlainTree<TItem, TId, TFilter = any>(
 
     return {
         tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
+        treeWithoutPatch: treeWithSelectedOnly.visible,
         selectionTree: tree.full,
         totalCount,
         rowOptions,

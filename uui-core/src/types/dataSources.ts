@@ -153,6 +153,7 @@ export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
      */
     isDeleted?(item: TItem): boolean;
     getNewItemPosition?: (item: TItem) => PatchOrderingType;
+    getItemTemporaryOrder?: (item: TItem) => string;
     patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 }
 
@@ -163,6 +164,7 @@ TId,
     bottom: TId[],
     updated: TId[],
     moved: TId[],
+    withTempOrder: TId[],
     updatedItemsMap: IMap<TId, TItem>,
     newItems: TItem[],
 }
@@ -171,7 +173,7 @@ TId,
 /**
  * Patching tree configuration.
  */
-export interface ExtendedPatchItemsOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchItemsOptions<TItem, TId>, 'patchItems'> {
+export interface ExtendedPatchItemsOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchItemsOptions<TItem, TId>, 'patchItems' | 'getNewItemPosition'> {
     /**
      * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
      */

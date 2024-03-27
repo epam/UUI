@@ -19,7 +19,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         filter, backgroundReload, showSelectedOnly,
         isFoldedByDefault, getId, getParentId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions, selectAll, fetchStrategy,
-        getChildCount, itemsStatusMap, complexIds, patchItems, isDeleted, getNewItemPosition, sortBy,
+        getChildCount, itemsStatusMap, complexIds, patchItems, isDeleted, getNewItemPosition, sortBy, getItemTemporaryOrder,
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
@@ -163,6 +163,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         patchItems: showSelectedOnly ? null : patchItems,
         isDeleted,
         getNewItemPosition,
+        getItemTemporaryOrder,
         sorting: dataSourceState.sorting,
         sortBy,
     });
@@ -179,6 +180,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     return {
         tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
+        treeWithoutPatch: treeWithSelectedOnly.visible,
         selectionTree: tree.full,
         totalCount,
         dataSourceState,

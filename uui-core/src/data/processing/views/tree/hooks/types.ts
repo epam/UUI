@@ -21,6 +21,7 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
      */
     selectionTree: ITree<TItem, TId>;
 
+    treeWithoutPatch: ITree<TItem, TId>;
     /**
      * Total count of the rows.
      */
