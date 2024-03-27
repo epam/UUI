@@ -18,10 +18,15 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
     const context = useUuiContext();
 
+    const onOpenChange = (newIsOpen: boolean) => {
+        if (!newIsOpen) {
+            props.onClose?.();
+        }
+        props.onOpenChange?.(newIsOpen);
+    };
+
     const {
-        inputValue,
         inFocus,
-        setInputValue,
         setInFocus,
         onValueChange,
         onBodyValueChange,
@@ -36,12 +41,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                 context.uuiAnalytics.sendEvent(event);
             }
         },
-        onOpenChange: (newIsOpen: boolean) => {
-            if (!newIsOpen) {
-                props.onClose?.();
-            }
-            props.onOpenChange?.(newIsOpen);
-        },
+        onOpenChange,
     });
 
     return (
@@ -67,26 +67,19 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                         disableClear={ props.disableClear }
                         inFocus={ inFocus }
                         format={ format }
-                        value={ inputValue }
-                        onValueChange={ setInputValue }
-                        onInputFocus={ (event, inputType) => {
+                        value={ value }
+                        onValueChange={ onValueChange }
+                        onFocus={ (event, inputType) => {
                             if (props.onFocus) {
                                 props.onFocus(event, inputType);
                             }
                             setInFocus(inputType);
                         } }
-                        onInputBlur={ (event, inputType, v) => {
-                            if (props.onBlur) {
-                                props.onBlur(event, inputType);
-                            }
-                            setInputValue(v.inputValue);
-                            onValueChange(v.selectedDate);
-                        } }
-                        onClear={ onValueChange }
+                        onBlur={ props.onBlur }
                     />
                     <FlexSpacer />
                     <LinkButton
-                        isDisabled={ !inputValue.from && !inputValue.to }
+                        isDisabled={ !value.from && !value.to }
                         caption={ i18n.pickerModal.clearAllButton }
                         onClick={ () => onValueChange(defaultRangeValue) }
                     />
