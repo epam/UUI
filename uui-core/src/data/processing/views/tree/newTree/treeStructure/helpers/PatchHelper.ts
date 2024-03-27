@@ -1,87 +1,98 @@
+import { IImmutableMap, IMap } from '../../../../../../../types';
 import { numberToOrder } from '../../../../../../../helpers';
 import { buildComparators, composeComparetors } from '../../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap, newMap } from './map';
+import { cloneMap } from './map';
+import { merge } from './merge';
 import { PatchItemsIntoTreeStructureOptions } from './types';
+import { ItemsMap } from '../../../ItemsMap';
 
-function merge<TId>(
-    mergeSrcArr: TId[],
-    mergeTgArr: TId[],
-    compare: (idFromSource: TId, idFromTarget: TId, sourceIndex: number, targetIndex: number) => number,
-    isDeleted?: (id: TId) => boolean,
-    initialArr: TId[] = [],
-    complexIds?: boolean,
-) {
-    let srcItemIndex = 0,
-        tgItemIndex = 0;
+interface ApplyPatchSortingOptions<TItem, TId> {
+    comparator: (a: TItem, b: TItem) => number;
+    patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+    originalItemsMap: ItemsMap<TId, TItem>;
+    patchedItemsMap: ItemsMap<TId, TItem>;
+    isDeleted: (id: TId) => boolean;
+    complexIds?: boolean;
+}
 
-    const updatedItemsToIds = newMap<TId, number>({ complexIds });
-    const merged: TId[] = [...initialArr];
-    const patchedItems = newMap<TId, boolean>({ complexIds });
-
-    mergeSrcArr.forEach((id) => {
-        patchedItems.set(id, true);
-    });
-
-    while (srcItemIndex < mergeSrcArr.length || tgItemIndex < mergeTgArr.length) {
-        if (srcItemIndex >= mergeSrcArr.length) {
-            if (!patchedItems.get(mergeTgArr[tgItemIndex]) && !isDeleted?.(mergeTgArr[tgItemIndex])) {
-                merged.push(mergeTgArr[tgItemIndex]);
-            }
-            tgItemIndex++;
-            continue;
-        }
-
-        if (tgItemIndex >= mergeTgArr.length) {
-            if (!isDeleted?.(mergeSrcArr[srcItemIndex])) {
-                merged.push(mergeSrcArr[srcItemIndex]);
-            }
-            srcItemIndex++;
-            continue;
-        }
-
-        const srcItemId = mergeSrcArr[srcItemIndex];
-        const tgItemId = mergeTgArr[tgItemIndex];
-
-        if (isDeleted?.(mergeSrcArr[srcItemIndex])) {
-            srcItemIndex++;
-            continue;
-        }
-
-        if (isDeleted?.(mergeTgArr[tgItemIndex])) {
-            tgItemIndex++;
-            continue;
-        }
-
-        if (srcItemId === tgItemId) {
-            updatedItemsToIds.set(mergeSrcArr[srcItemIndex], tgItemIndex);
-        }
-
-        if (patchedItems.has(tgItemId)) {
-            tgItemIndex++;
-            continue;
-        }
-
-        const result = compare(srcItemId, tgItemId, srcItemIndex, tgItemIndex);
-        if (result === -1 || (result === 0 && updatedItemsToIds.has(srcItemId) && (updatedItemsToIds.get(srcItemId) < tgItemIndex))) {
-            merged.push(srcItemId);
-            srcItemIndex++;
-        } else {
-            if (!patchedItems.has(tgItemId) && !isDeleted?.(tgItemId)) {
-                merged.push(tgItemId);
-            }
-            tgItemIndex++;
-        }
-    }
-
-    return merged;
+interface ApplyPatchTemporaryReorderingOptions<TItem, TId> {
+    getItemTemporaryOrder: (item: TItem) => string;
+    patchedItemsMap: ItemsMap<TId, TItem>;
+    isDeleted: (id: TId) => boolean;
+    complexIds?: boolean;
 }
 
 export class PatchHelper {
+    private static applyPatchSorting<TItem, TId>(
+        patchIds: TId[],
+        originalIds: TId[],
+        {
+            comparator,
+            patchItemsAtLastSort,
+            originalItemsMap,
+            patchedItemsMap,
+            isDeleted,
+            complexIds,
+        }: ApplyPatchSortingOptions<TItem, TId>,
+        initialIds: TId[] = [],
+    ) {
+        return merge(
+            patchIds,
+            originalIds,
+            (patchItemId, itemId) => {
+                const inPatchBeforeSort = patchItemsAtLastSort.has(patchItemId);
+                const inOriginalTree = originalItemsMap.has(patchItemId);
+
+                let patchItemToCompare;
+                if (inPatchBeforeSort) {
+                    patchItemToCompare = patchItemsAtLastSort.get(patchItemId);
+                } else if (inOriginalTree) {
+                    patchItemToCompare = originalItemsMap.get(patchItemId);
+                } else {
+                    patchItemToCompare = patchedItemsMap.get(patchItemId);
+                }
+
+                const item = originalItemsMap.get(itemId);
+                return comparator(patchItemToCompare, item);
+            },
+            initialIds,
+            { isDeleted, complexIds },
+        );
+    }
+
+    private static applyPatchTemporaryReordering<TItem, TId>(
+        patchIds: TId[],
+        originalIds: TId[],
+        {
+            getItemTemporaryOrder,
+            patchedItemsMap,
+            isDeleted,
+            complexIds,
+        }: ApplyPatchTemporaryReorderingOptions<TItem, TId>,
+    ) {
+        const tempOrderComparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+        return merge(
+            patchIds,
+            originalIds,
+
+            (patchItemId, itemId, _, itemIndex) => {
+                const a = patchedItemsMap.get(patchItemId);
+                const b = patchedItemsMap.get(itemId);
+
+                const aTempOrder = getItemTemporaryOrder(a);
+                const bTempOrder = getItemTemporaryOrder(b) ?? numberToOrder(itemIndex + 11);
+                return tempOrderComparator(aTempOrder, bTempOrder);
+            },
+            [],
+            { isDeleted, complexIds },
+        );
+    }
+
     public static patchItems<TItem, TId>({
-        itemsMap,
+        itemsMap: originalItemsMap,
         treeStructure,
         sortedPatch,
         patchItemsAtLastSort,
@@ -90,66 +101,50 @@ export class PatchHelper {
         sorting,
         sortBy,
     }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
-        if (!sortedPatch || !sortedPatch.size) return { treeStructure, itemsMap, newItems: [] };
+        if (!sortedPatch || !sortedPatch.size) return { treeStructure, itemsMap: originalItemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
-        let newItemsMap = itemsMap;
+        let patchedItemsMap = originalItemsMap;
         let newItems: TItem[] = [];
         const comparators = buildComparators({ sorting, sortBy });
         const composedComparator = composeComparetors(comparators);
 
         const complexIds = treeStructure.getParams().complexIds;
 
+        let isUpdated = false;
         for (const [patchParentId, sortedPatchItems] of sortedPatch) {
-            newItemsMap = newItemsMap.setItems(sortedPatchItems.newItems);
+            patchedItemsMap = patchedItemsMap.setItems(sortedPatchItems.newItems);
             newItems = newItems.concat(sortedPatchItems.newItems);
             const itemIds = newByParentId.get(patchParentId) ?? [];
 
-            let sortedItems = merge(
+            // eslint-disable-next-line no-loop-func
+            const isDeletedFn = (id: TId) => isDeleted?.(patchedItemsMap.get(id)) ?? false;
+
+            const [sortedItems, isUpdatedOnPatch] = this.applyPatchSorting(
                 sortedPatchItems.updated,
                 itemIds,
-                // eslint-disable-next-line no-loop-func
-                (patchItemId, itemId) => {
-                    const inPatchBeforeSort = patchItemsAtLastSort.has(patchItemId);
-                    const inOriginalTree = itemsMap.has(patchItemId);
-
-                    let patchItemToCompare;
-                    if (inPatchBeforeSort) {
-                        patchItemToCompare = patchItemsAtLastSort.get(patchItemId);
-                    } else if (inOriginalTree) {
-                        patchItemToCompare = itemsMap.get(patchItemId);
-                    } else {
-                        patchItemToCompare = newItemsMap.get(patchItemId);
-                    }
-
-                    const item = itemsMap.get(itemId);
-                    return composedComparator(patchItemToCompare, item);
+                {
+                    comparator: composedComparator,
+                    patchItemsAtLastSort,
+                    originalItemsMap,
+                    patchedItemsMap,
+                    isDeleted: isDeletedFn,
+                    complexIds,
                 },
-                // eslint-disable-next-line no-loop-func
-                (id) => isDeleted?.(newItemsMap.get(id)) ?? false,
                 sortedPatchItems.top,
-                complexIds,
             );
 
-            sortedItems = sortedItems.concat(sortedPatchItems.bottom);
+            const sortedItemsWithBottom = sortedItems.concat(sortedPatchItems.bottom);
 
-            const tempOrderComparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
-            sortedItems = merge(
+            const [reorderedItems, isUpdatedOnReordering] = this.applyPatchTemporaryReordering(
                 sortedPatchItems.withTempOrder,
-                sortedItems,
-                // eslint-disable-next-line no-loop-func
-                (patchItemId, itemId, _, itemIndex) => {
-                    const a = newItemsMap.get(patchItemId);
-                    const b = newItemsMap.get(itemId);
-
-                    const aTempOrder = getItemTemporaryOrder(a);
-                    const bTempOrder = getItemTemporaryOrder(b) ?? numberToOrder(itemIndex + 11);
-                    return tempOrderComparator(aTempOrder, bTempOrder);
+                sortedItemsWithBottom,
+                {
+                    getItemTemporaryOrder,
+                    patchedItemsMap,
+                    isDeleted: isDeletedFn,
+                    complexIds,
                 },
-                // eslint-disable-next-line no-loop-func
-                (id) => isDeleted?.(newItemsMap.get(id)) ?? false,
-                [],
-                complexIds,
             );
 
             sortedPatchItems.moved.forEach((id) => {
@@ -161,12 +156,15 @@ export class PatchHelper {
                 }
             });
 
-            newByParentId.set(patchParentId, sortedItems);
+            newByParentId.set(patchParentId, reorderedItems);
+            if (isUpdatedOnReordering || isUpdatedOnPatch) {
+                isUpdated = true;
+            }
         }
 
-        // if (!isPatched) {
-        //     return { treeStructure, itemsMap, newItems };
-        // }
+        if (!isUpdated) {
+            return { treeStructure, itemsMap: originalItemsMap, newItems };
+        }
 
         const newNodeInfoById = cloneMap(treeStructure.nodeInfoById);
         for (const [parentId, ids] of newByParentId) {
@@ -183,11 +181,11 @@ export class PatchHelper {
         return {
             treeStructure: TreeStructure.create(
                 treeStructure.getParams(),
-                ItemsAccessor.toItemsAccessor(newItemsMap),
+                ItemsAccessor.toItemsAccessor(patchedItemsMap),
                 newByParentId,
                 newNodeInfoById,
             ),
-            itemsMap: newItemsMap,
+            itemsMap: patchedItemsMap,
             newItems,
         };
     }
