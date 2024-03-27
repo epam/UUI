@@ -157,9 +157,7 @@ export function ProjectTableDemo() {
                 task.tempOrder = getBeforeItemTemporaryOrder(tempRelativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
             }
         }
-        // console.log('position', position);
-        // console.log('relativeTask', relativeTask);
-        // console.log('task', task);
+
         setValue((currentValue) => {
             return {
                 ...currentValue,

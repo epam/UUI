@@ -138,7 +138,7 @@ export class PatchHelper {
                 sortedPatchItems.withTempOrder,
                 sortedItems,
                 // eslint-disable-next-line no-loop-func
-                (patchItemId, itemId, patchItemIndex, itemIndex) => {
+                (patchItemId, itemId, _, itemIndex) => {
                     const a = newItemsMap.get(patchItemId);
                     const b = newItemsMap.get(itemId);
 
