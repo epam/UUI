@@ -52,6 +52,7 @@ export function DatePickerComponent(props: DatePickerProps) {
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isFocusReceiverInsideFocusLock(e)) return;
+        props.onBlur?.(e);
 
         if (isValidDate(inputValue, format, props.filter)) {
             setInputValue(toCustomDateFormat(inputValue, format));

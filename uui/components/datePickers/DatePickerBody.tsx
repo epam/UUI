@@ -21,11 +21,6 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
     isHoliday?: (day: Dayjs) => boolean;
 }
 
-export type DatePickerBodyOptions = {
-    month: Dayjs;
-    view: ViewType;
-};
-
 dayjs.extend(updateLocale);
 
 export const uuiDatePickerBody = {
