@@ -1,3 +1,4 @@
+import { numberToOrder } from '../../../../../../../helpers';
 import { buildComparators, composeComparetors } from '../../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
 import { ItemsAccessor } from '../ItemsAccessor';
@@ -8,7 +9,7 @@ import { PatchItemsIntoTreeStructureOptions } from './types';
 function merge<TId>(
     mergeSrcArr: TId[],
     mergeTgArr: TId[],
-    compare: (idFromSource: TId, idFromTarget: TId) => number,
+    compare: (idFromSource: TId, idFromTarget: TId, sourceIndex: number, targetIndex: number) => number,
     isDeleted?: (id: TId) => boolean,
     initialArr: TId[] = [],
     complexIds?: boolean,
@@ -41,6 +42,9 @@ function merge<TId>(
             continue;
         }
 
+        const srcItemId = mergeSrcArr[srcItemIndex];
+        const tgItemId = mergeTgArr[tgItemIndex];
+
         if (isDeleted?.(mergeSrcArr[srcItemIndex])) {
             srcItemIndex++;
             continue;
@@ -51,24 +55,22 @@ function merge<TId>(
             continue;
         }
 
-        const patchItemId = mergeSrcArr[srcItemIndex];
-        const originalItemId = mergeTgArr[tgItemIndex];
-        if (patchItemId === originalItemId) {
+        if (srcItemId === tgItemId) {
             updatedItemsToIds.set(mergeSrcArr[srcItemIndex], tgItemIndex);
         }
 
-        if (patchedItems.has(originalItemId)) {
+        if (patchedItems.has(tgItemId)) {
             tgItemIndex++;
             continue;
         }
 
-        const result = compare(patchItemId, originalItemId);
-        if (result === -1 || (result === 0 && updatedItemsToIds.has(patchItemId) && (updatedItemsToIds.get(patchItemId) < tgItemIndex))) {
-            merged.push(patchItemId);
+        const result = compare(srcItemId, tgItemId, srcItemIndex, tgItemIndex);
+        if (result === -1 || (result === 0 && updatedItemsToIds.has(srcItemId) && (updatedItemsToIds.get(srcItemId) < tgItemIndex))) {
+            merged.push(srcItemId);
             srcItemIndex++;
         } else {
-            if (!patchedItems.has(originalItemId) && !isDeleted?.(originalItemId)) {
-                merged.push(originalItemId);
+            if (!patchedItems.has(tgItemId) && !isDeleted?.(tgItemId)) {
+                merged.push(tgItemId);
             }
             tgItemIndex++;
         }
@@ -83,6 +85,7 @@ export class PatchHelper {
         treeStructure,
         sortedPatch,
         patchItemsAtLastSort,
+        getItemTemporaryOrder,
         isDeleted,
         sorting,
         sortBy,
@@ -129,6 +132,26 @@ export class PatchHelper {
             );
 
             sortedItems = sortedItems.concat(sortedPatchItems.bottom);
+
+            const tempOrderComparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+            sortedItems = merge(
+                sortedPatchItems.withTempOrder,
+                sortedItems,
+                // eslint-disable-next-line no-loop-func
+                (patchItemId, itemId, patchItemIndex, itemIndex) => {
+                    const a = newItemsMap.get(patchItemId);
+                    const b = newItemsMap.get(itemId);
+
+                    const aTempOrder = getItemTemporaryOrder(a);
+                    const bTempOrder = getItemTemporaryOrder(b) ?? numberToOrder(itemIndex + 11);
+                    return tempOrderComparator(aTempOrder, bTempOrder);
+                },
+                // eslint-disable-next-line no-loop-func
+                (id) => isDeleted?.(newItemsMap.get(id)) ?? false,
+                [],
+                complexIds,
+            );
+
             sortedPatchItems.moved.forEach((id) => {
                 const item = treeStructure.getById(id);
                 if (item !== NOT_FOUND_RECORD) {

@@ -3,6 +3,11 @@ import trimEnd from 'lodash.trimend';
 export const minOrderStr = '0';
 export const maxOrderStr = 'zzzz';
 
+export function numberToOrder(a: number) {
+    const radix = 36;
+    return a.toString(radix);
+}
+
 /**
  * Calculates a string, which is between two strings, if strings are sorted in alphabetic order.
  *
@@ -61,7 +66,7 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
         const bDigit = parseInt(bChar || 'z', radix);
 
         const midDigit = Math.floor((aDigit + bDigit) / 2);
-        result += midDigit.toString(radix);
+        result += numberToOrder(midDigit);
 
         if (aDigit !== midDigit) {
             break;

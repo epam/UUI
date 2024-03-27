@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, ITree, ItemsMap, Metadata,
-    PatchOrderingMap, PatchOrderingType, PatchOrderingTypes, SortingOption, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, Metadata,
+    PatchOrderingTypes, SortingOption, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -17,12 +17,11 @@ import { getColumns } from './columns';
 import css from './ProjectTableDemo.module.scss';
 import { TApi } from '../../data';
 import { ProjectTask } from '@epam/uui-docs';
-import { getInsertionOrder } from './helpers';
+import { getAfterItemTemporaryOrder, getBeforeItemTemporaryOrder, getBottomTemporaryOrder, getTopTemporaryOrder } from './helpers';
 
 interface FormState {
     items: ItemsMap<number, ProjectTask>;
     sorting: SortingOption<any>[],
-    ordering: PatchOrderingMap<number>,
 }
 
 const metadata: Metadata<FormState> = {
@@ -43,7 +42,6 @@ const defaultSorting = [{ field: 'order' }];
 let savedValue: FormState = {
     items: ItemsMap.blank({ getId: (item) => item.id }),
     sorting: defaultSorting,
-    ordering: PatchOrderingMap.blank(),
 };
 
 export function ProjectTableDemo() {
@@ -65,98 +63,20 @@ export function ProjectTableDemo() {
             const updatedTableState = typeof newState === 'function' ? { ...newState(st) } : { ...st, ...newState };
 
             if (st.sorting !== updatedTableState.sorting) {
-                setValue((currentValue) => ({ ...currentValue, sorting: updatedTableState.sorting, ordering: currentValue.ordering.allToSorting() }));
+                setValue((currentValue) => {
+                    let newItems = ItemsMap.blank<number, ProjectTask>({ getId: (item) => item.id });
+                    currentValue.items.forEach(({ tempOrder, ...item }) => {
+                        newItems = newItems.set(item.id, item);
+                    });
+
+                    return { ...currentValue, items: newItems, sorting: updatedTableState.sorting };
+                });
             }
             return updatedTableState;
         });
     }, [setValue]);
 
     const dataTableFocusManager = useDataTableFocusManager<ProjectTask['id']>({}, []);
-
-    const currentTreeRef = useRef<ITree<ProjectTask, number>>(null);
-
-    // Insert new/exiting top/bottom or above/below relative to other task
-    const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        let tempRelativeTask = relativeTask;
-        let newItemPosition: PatchOrderingType;
-        const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-
-        if (position === 'inside') {
-            task.parentId = relativeTask.id;
-            tempRelativeTask = null; // just insert as the first child
-            newItemPosition = PatchOrderingTypes.TOP;
-        }
-
-        if (tempRelativeTask) {
-            task.parentId = tempRelativeTask.parentId;
-        }
-
-        setValue((currentValue) => {
-            if (value.sorting.length === 1 && value.sorting[0]?.field === 'order') {
-                task.order = getInsertionOrder(
-                    Object.values(currentValue.items)
-                        .filter((i) => i.parentId === task.parentId)
-                        .map((i) => i.order),
-                    position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-                    tempRelativeTask?.order,
-                );
-            }
-
-            if (tempRelativeTask) {
-                if (position === 'bottom') {
-                    const { ids } = currentTreeRef.current.getItems(tempRelativeTask.parentId);
-                    const index = ids.findIndex((id) => id === tempRelativeTask.id);
-                    newItemPosition = [PatchOrderingTypes.INDEX, index];
-                }
-
-                if (position === 'top') {
-                    const { ids } = currentTreeRef.current.getItems(tempRelativeTask.parentId);
-                    const index = ids.findIndex((id) => id === tempRelativeTask.id);
-                    if (index > 0) {
-                        newItemPosition = [PatchOrderingTypes.INDEX, index - 1];
-                    }
-                }
-            }
-
-            return {
-                ...currentValue,
-                items: currentValue.items.set(task.id, task),
-                positions: newItemPosition ? currentValue.ordering.set(task.id, newItemPosition) : currentValue.ordering,
-                index: [],
-            };
-        });
-
-        setTableState((currentTableState) => {
-            return {
-                ...currentTableState,
-                folded: position === 'inside'
-                    ? { ...currentTableState.folded, [`${task.parentId}`]: false }
-                    : currentTableState.folded,
-                selectedId: task.id,
-            };
-        });
-
-        dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, setTableState, dataTableFocusManager, value.sorting]);
-
-    const deleteTask = useCallback((task: Task) => {
-        setValue((currentValue) => ({
-            ...currentValue, items: currentValue.items.set(task.id, { ...task, isDeleted: true }),
-        }));
-    }, [setValue]);
-
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<ProjectTask & { isTask: boolean }, Task>) => {
-        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
-            return null;
-        } else {
-            return { bottom: true, top: true, inside: true };
-        }
-    }, []);
-
-    const handleDrop = useCallback(
-        (params: DropParams<ProjectTask, Task>) => insertTask(params.position, params.dstData, params.srcData),
-        [insertTask],
-    );
 
     const searchHandler = useCallback(
         (val: string | undefined) => setTableState((currentTableState) => ({
@@ -177,7 +97,9 @@ export function ProjectTableDemo() {
         }
     }, [setTableState, value.sorting, tableState.sorting]);
 
-    const { tree, ...restProps } = useTree<ProjectTask, number>(
+    const getItemTemporaryOrder = (item: ProjectTask) => item.tempOrder; 
+
+    const { tree, treeWithoutPatch, ...restProps } = useTree<ProjectTask, number>(
         {
             type: 'lazy',
             api: (rq, ctx) => {
@@ -193,30 +115,105 @@ export function ProjectTableDemo() {
             patchItems: value.items,
 
             getNewItemPosition: () => PatchOrderingTypes.TOP,
+            getItemTemporaryOrder, 
             sortBy: (item, sorting) => {
                 return item[sorting.field as keyof ProjectTask];
             },
 
             isDeleted: (item) => item.isDeleted,
-            getRowOptions: (task) => ({
-                ...lens.prop('items').key(task.id).toProps(), // pass IEditable to ezach row to allow editing
-                // checkbox: { isVisible: true },
-                isSelectable: true,
-                dnd: {
-                    srcData: { ...task, isTask: true },
-                    dstData: { ...task, isTask: true },
-                    canAcceptDrop: handleCanAcceptDrop,
-                    onDrop: handleDrop,
-                },
-            }),
         },
         [],
     );
 
-    currentTreeRef.current = tree;
+    // Insert new/exiting top/bottom or above/below relative to other task
+    const insertTask = useCallback((position: DropPosition, relativeTask: ProjectTask | null = null, existingTask: ProjectTask | null = null) => {
+        let tempRelativeTask = relativeTask;
+        const task: ProjectTask = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
 
+        if (position === 'inside') {
+            task.parentId = relativeTask.id;
+            task.tempOrder = getTopTemporaryOrder(relativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
+            tempRelativeTask = null; // just insert as the first child
+        }
+
+        if (tempRelativeTask) {
+            task.parentId = tempRelativeTask.parentId;
+        }
+
+        if (!tempRelativeTask) {
+            if (position === 'top') {
+                task.tempOrder = getTopTemporaryOrder(undefined, tree, treeWithoutPatch, getItemTemporaryOrder);
+            }
+            if (position === 'bottom') {
+                task.tempOrder = getBottomTemporaryOrder(undefined, tree, treeWithoutPatch, getItemTemporaryOrder);
+            }
+        }
+        if (tempRelativeTask) {
+            if (position === 'bottom') {
+                task.tempOrder = getAfterItemTemporaryOrder(tempRelativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
+            }
+
+            if (position === 'top') {
+                task.tempOrder = getBeforeItemTemporaryOrder(tempRelativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
+            }
+        }
+        // console.log('position', position);
+        // console.log('relativeTask', relativeTask);
+        // console.log('task', task);
+        setValue((currentValue) => {
+            return {
+                ...currentValue,
+                items: currentValue.items.set(task.id, task),
+            };
+        });
+
+        setTableState((currentTableState) => {
+            return {
+                ...currentTableState,
+                folded: position === 'inside'
+                    ? { ...currentTableState.folded, [`${task.parentId}`]: false }
+                    : currentTableState.folded,
+                selectedId: task.id,
+            };
+        });
+
+        dataTableFocusManager?.focusRow(task.id);
+    }, [setValue, setTableState, dataTableFocusManager, tree, treeWithoutPatch]);
+
+    const deleteTask = useCallback((task: Task) => {
+        setValue((currentValue) => ({
+            ...currentValue, items: currentValue.items.set(task.id, { ...task, isDeleted: true }),
+        }));
+    }, [setValue]);
+
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<ProjectTask & { isTask: boolean }, Task>) => {
+        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+            return null;
+        } else {
+            return { bottom: true, top: true, inside: true };
+        }
+    }, []);
+
+    const handleDrop = useCallback(
+        (params: DropParams<ProjectTask, Task>) => insertTask(params.position, params.dstData, params.srcData),
+        [insertTask],
+    );
+
+    // console.log(value.items);
     const { rows, listProps } = useDataRows({
-        tree, ...restProps,
+        tree,
+        ...restProps,
+        getRowOptions: (task) => ({
+            ...lens.prop('items').key(task.id).toProps(), // pass IEditable to ezach row to allow editing
+            // checkbox: { isVisible: true },
+            isSelectable: true,
+            dnd: {
+                srcData: { ...task, isTask: true },
+                dstData: { ...task, isTask: true },
+                canAcceptDrop: handleCanAcceptDrop,
+                onDrop: handleDrop,
+            },
+        }),
     });
 
     const columns = useMemo(

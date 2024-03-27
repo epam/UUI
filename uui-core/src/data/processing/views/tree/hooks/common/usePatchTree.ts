@@ -37,6 +37,7 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
     tree: ITree<TItem, TId>,
     groupedByParentId: IMap<TId, TItem[]>,
     getNewItemPosition: PatchItemsOptions<TItem, TId>['getNewItemPosition'],
+    getItemTemporaryOrder: PatchItemsOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     sortBy: SortConfig<TItem>['sortBy'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
@@ -59,6 +60,7 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
         const movedToOtherParent: TId[] = [];
         const updatedItemsMap: IMap<TId, TItem> = newMap({ complexIds });
         const newItems: TItem[] = [];
+        const withTempOrder: TId[] = [];
 
         for (const item of items) {
             const id = getId(item);
@@ -66,6 +68,15 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
             const itemInPatchBeforeSort = patchItemsAtLastSort.has(id);
             updatedItemsMap.set(id, item);
             newItems.push(item);
+            const tempOrder = getItemTemporaryOrder?.(item);
+
+            if (tempOrder) {
+                if (isDeleted?.(item)) {
+                    continue;
+                }
+                withTempOrder.push(id);
+                continue;
+            }
 
             if (!itemInPatchBeforeSort && !itemInOriginalTree) {
                 const position = getNewItemPosition(item);
@@ -102,7 +113,7 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
             updated.push(id);
         }
 
-        const sortedUpdated = [...updated].sort((aId, bId) => {
+        const sortedUpdated = updated.sort((aId, bId) => {
             const a = updatedItemsMap.get(aId);
             const b = updatedItemsMap.get(bId);
             const bItem = patchItemsAtLastSort.get(bId) ?? tree.getById(bId) as TItem;
@@ -116,7 +127,22 @@ export const sortPatchByParentId = <TItem, TId, TFilter>(
             return result;
         });
 
-        sorted.set(parentId, { top, bottom, updated: sortedUpdated, moved: movedToOtherParent, updatedItemsMap, newItems });
+        const comparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+        const sortedWithTempOrder = withTempOrder.sort((aId, bId) => {
+            const a = updatedItemsMap.get(aId);
+            const b = updatedItemsMap.get(bId);
+            return comparator(getItemTemporaryOrder(a), getItemTemporaryOrder((b)));
+        });
+
+        sorted.set(parentId, {
+            top,
+            bottom,
+            updated: sortedUpdated,
+            moved: movedToOtherParent,
+            withTempOrder: sortedWithTempOrder,
+            updatedItemsMap,
+            newItems,
+        });
     }
     return sorted;
 };
@@ -126,6 +152,7 @@ const getSortedPatchByParentId = <TItem, TId, TFilter>(
     patchItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     getNewItemPosition: PatchItemsOptions<TItem, TId>['getNewItemPosition'],
+    getItemTemporaryOrder: PatchItemsOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
     sortBy: SortConfig<TItem>['sortBy'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
     isDeleted?: (item: TItem) => boolean,
@@ -134,7 +161,7 @@ const getSortedPatchByParentId = <TItem, TId, TFilter>(
     complexIds?: boolean,
 ) => {
     const grouped = groupByParentId(patchItems, getParentId, complexIds);
-    return sortPatchByParentId(tree, grouped, getNewItemPosition, patchItemsAtLastSort, sortBy, sorting, isDeleted, getId, getParentId);
+    return sortPatchByParentId(tree, grouped, getNewItemPosition, getItemTemporaryOrder, patchItemsAtLastSort, sortBy, sorting, isDeleted, getId, getParentId);
 };
 
 export function usePatchTree<TItem, TId, TFilter = any>(
@@ -142,6 +169,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         tree,
         patchItems,
         getNewItemPosition = () => PatchOrderingTypes.TOP,
+        getItemTemporaryOrder,
         isDeleted,
         sorting,
         sortBy,
@@ -160,6 +188,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             patchItems,
             patchItemsAtLastSort,
             getNewItemPosition,
+            getItemTemporaryOrder,
             sortBy,
             sorting,
             isDeleted,
@@ -174,7 +203,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         return tree.patchItems({
             sortedPatch,
             patchItemsAtLastSort,
-            getNewItemPosition,
+            getItemTemporaryOrder,
             isDeleted,
             sorting,
             sortBy,

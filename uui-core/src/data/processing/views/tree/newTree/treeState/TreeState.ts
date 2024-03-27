@@ -168,14 +168,14 @@ export class TreeState<TItem, TId> {
     }
 
     private patchItemsTreeStructure(
-        { treeStructure, itemsMap, sortedPatch, patchItemsAtLastSort, isDeleted, getNewItemPosition, sorting, sortBy }: PatchItemsIntoTreeStructureOptions<TItem, TId>,
+        { treeStructure, itemsMap, sortedPatch, patchItemsAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: PatchItemsIntoTreeStructureOptions<TItem, TId>,
     ) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems<TItem, TId>({
             treeStructure,
             itemsMap: itemsMap,
             sortedPatch,
-            getNewItemPosition,
             patchItemsAtLastSort,
+            getItemTemporaryOrder,
             isDeleted,
             sorting,
             sortBy,
@@ -189,15 +189,15 @@ export class TreeState<TItem, TId> {
     }
 
     public patchItems(
-        { sortedPatch, patchItemsAtLastSort, isDeleted, getNewItemPosition, sorting, sortBy }: ExtendedPatchItemsOptions<TItem, TId>,
+        { sortedPatch, patchItemsAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: ExtendedPatchItemsOptions<TItem, TId>,
     ): TreeState<TItem, TId> {
         const { treeStructure: newFull } = this.patchItemsTreeStructure({
             treeStructure: this.getTreeStructure('full'),
             itemsMap: this.itemsMap,
             sortedPatch,
             patchItemsAtLastSort,
+            getItemTemporaryOrder,
             isDeleted,
-            getNewItemPosition,
             sorting,
             sortBy,
         });
@@ -207,8 +207,8 @@ export class TreeState<TItem, TId> {
             itemsMap: this.itemsMap,
             sortedPatch,
             patchItemsAtLastSort,
+            getItemTemporaryOrder,
             isDeleted,
-            getNewItemPosition,
             sorting,
             sortBy,
         });

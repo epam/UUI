@@ -33,6 +33,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         itemsStatusMap,
         selectAll,
         isLoaded,
+        getItemTemporaryOrder,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -120,6 +121,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         patchItems: showSelectedOnly ? null : patchItems,
         isDeleted,
         getNewItemPosition,
+        getItemTemporaryOrder,
         sorting: dataSourceState.sorting,
         sortBy,
     });
@@ -132,6 +134,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     return {
         tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
+        treeWithoutPatch: treeWithSelectedOnly.visible,
         selectionTree: tree.full,
         reload,
         totalCount,

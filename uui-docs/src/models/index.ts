@@ -306,4 +306,5 @@ export interface ProjectTask {
     isNew?: boolean;
     isDeleted?: boolean;
     childCount?: number;
+    tempOrder?: string;
 }
