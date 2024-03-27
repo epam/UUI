@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue,
+    IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 
 export const uuiPresets = {
@@ -8,6 +8,40 @@ export const uuiPresets = {
     header: 'uui-presets-header',
     item: 'uui-presets-item',
 } as const;
+
+export type RangeDatePickerPresets = {
+    /**
+     * Preset config
+     */
+    [key: string]: {
+        /**
+         * Name of the preset to display in rangeDatePicker body
+         */
+        name: React.ReactNode;
+        /**
+         * A pure function that gets range value which will be applied by preset selection
+         */
+        getRange: () => RangeDatePickerPresetValue;
+    };
+};
+
+/**
+ * Represents RangeDatePickerPresetValue
+ */
+export interface RangeDatePickerPresetValue {
+    /**
+     * Range from value
+     */
+    from?: string;
+    /**
+     * Range to value
+     */
+    to?: string;
+    /**
+     * Preset order in presets list
+     */
+    order?: number;
+}
 
 export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     presets: RangeDatePickerPresets;

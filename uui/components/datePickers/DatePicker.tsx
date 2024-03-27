@@ -7,16 +7,14 @@ import { TextInput } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
-import dayjs, { Dayjs } from 'dayjs';
-import utc from 'dayjs/plugin/utc.js';
+import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import { DatePickerProps, ViewType } from './types';
+import { DatePickerProps } from './types';
 import {
-    defaultFormat, getNewMonth, isValidDate, toCustomDateFormat, toValueDateFormat,
+    defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
-import { StatelessDatePickerBody } from './DatePickerBody';
+import { DatePickerBody } from './DatePickerBody';
 
-dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
@@ -30,18 +28,10 @@ export function DatePickerComponent(props: DatePickerProps) {
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
-    const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
-    const [view, setView] = useState<ViewType>('DAY_SELECTION');
 
-    /**
-     * Remove sync when text input will be uncontrolled.
-     * Currently it handles value comp prop updates.
-     */
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
-        setMonth(getNewMonth(value));
-        setView('DAY_SELECTION');
-    }, [value, setMonth, setInputValue]);
+    }, [value, setInputValue]);
 
     const onValueChange = (newValue: string | null) => {
         if (value !== newValue) {
@@ -62,6 +52,7 @@ export function DatePickerComponent(props: DatePickerProps) {
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isFocusReceiverInsideFocusLock(e)) return;
+        props.onBlur?.(e);
 
         if (isValidDate(inputValue, format, props.filter)) {
             setInputValue(toCustomDateFormat(inputValue, format));
@@ -99,11 +90,6 @@ export function DatePickerComponent(props: DatePickerProps) {
                 value={ inputValue || undefined }
                 onValueChange={ (v) => {
                     setInputValue(v || '');
-
-                    // preview month on correct input
-                    if (isValidDate(v ?? null, format, props.filter)) {
-                        setMonth(dayjs(v));
-                    }
                 } }
                 onCancel={ () => {
                     if (!props.disableClear && !!inputValue) {
@@ -115,8 +101,6 @@ export function DatePickerComponent(props: DatePickerProps) {
                 isReadonly={ props.isReadonly }
                 tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
                 onFocus={ (e) => {
-                    // show selected date month on open
-                    setMonth(getNewMonth(value));
                     setBodyIsOpen(true);
                     props.onFocus?.(e);
                 } }
@@ -129,17 +113,14 @@ export function DatePickerComponent(props: DatePickerProps) {
     };
 
     const renderBody = (renderProps: DropdownBodyProps) => {
-        // preview new value in date picker body while typing
-        // const _value = isValidDate(inputValue, format, props.filter) ? toValueDateFormat(inputValue, format) : value;
         return (
-            <DropdownContainer { ...renderProps } focusLock={ false }>
-                <StatelessDatePickerBody
+            <DropdownContainer
+                { ...renderProps }
+                focusLock={ false }
+            >
+                <DatePickerBody
                     value={ value }
-                    month={ month }
-                    view={ view }
                     onValueChange={ onBodyValueChange }
-                    onMonthChange={ (m) => setMonth(m) }
-                    onViewChange={ (v) => setView(v) }
                     cx={ cx(props.bodyCx) }
                     filter={ props.filter }
                     isHoliday={ props.isHoliday }

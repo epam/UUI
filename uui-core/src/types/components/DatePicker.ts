@@ -6,6 +6,9 @@ import {
 } from '../props';
 import { CX } from '../objects';
 
+/**
+ * Represents CommonDatePickerProps
+*/
 export interface CommonDatePickerProps extends IDisableable,
     ICanBeReadonly,
     IHasForwardedRef<HTMLElement> {
@@ -53,35 +56,4 @@ export interface CommonDatePickerProps extends IDisableable,
      * CSS class(es) to put on datepicker body
      */
     bodyCx?: CX;
-}
-
-export type RangeDatePickerPresets = {
-    /**
-     * Preset config
-     */
-    [key: string]: {
-        /**
-         * Name of the preset to display in rangeDatePicker body
-         */
-        name: ReactNode;
-        /**
-         * A pure function that gets range value which will be applied by preset selection
-         */
-        getRange: () => RangeDatePickerPresetValue;
-    };
-};
-
-export interface RangeDatePickerPresetValue {
-    /**
-     * Range from value
-     */
-    from?: string;
-    /**
-     * Range to value
-     */
-    to?: string;
-    /**
-     * Preset order in presets list
-     */
-    order?: number;
 }
