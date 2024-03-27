@@ -17,8 +17,8 @@ const pickerWidth = 360;
 
 export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
     /**
-     * Render Callback for making custom Tags.
-     * If omitted, they will be rendered by default component PickerTogglerTag.
+     * Render callback for picker toggler selection tag
+     * If omitted, default `PickerTogglerTag` component will be rendered
      */
     renderTag?: (props: PickerTogglerTagProps<TItem, TId>) => JSX.Element;
 };
@@ -73,12 +73,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const renderTarget = (targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) => {
-        const renderTargetFn = props.renderToggler || ((pickerTogglerProps) => (
-            <PickerToggler
-                { ...pickerTogglerProps }
-                renderItem={ props.renderTag ? (renderItemProps) => props.renderTag(renderItemProps) : null }
-            />
-        ));
+        const renderTargetFn = props.renderToggler || ((props) => <PickerToggler { ...props } />);
 
         return (
             <IEditableDebouncer
@@ -184,12 +179,13 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const rows = getRows();
+    const renderItem = props.renderTag ? props.renderTag : null;
 
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
                 const targetProps = getTogglerProps();
-                return renderTarget({ ...dropdownProps, ...targetProps });
+                return renderTarget({ ...dropdownProps, ...targetProps, renderItem });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
             value={ shouldShowBody() }

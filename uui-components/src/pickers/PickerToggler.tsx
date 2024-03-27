@@ -103,14 +103,18 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderItems = () => {
         const maxItems = getMaxItems(props.maxItems);
+        let isDisabled = props.isDisabled || props.isReadonly;
 
         const multiItems = props.selection?.map((row) => {
+            isDisabled = isDisabled || row.isDisabled;
+
             const newMultiItems = {
                 ...row,
+                key: row?.id as string,
                 rowProps: row,
                 caption: props.getName(row.value),
                 isCollapsed: false,
-                isDisabled: row.isDisabled,
+                isDisabled,
                 onClear: () => {
                     row.onCheck?.(row);
                     // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
@@ -121,9 +125,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
         if (props.selectedRowsCount > maxItems) {
             const collapsedItem = props.renderItem?.({
-                caption: i18n.pickerToggler.createCollapsedName(props.selectedRowsCount - maxItems, props.entityName || ''),
+                key: 'collapsed',
+                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
                 isCollapsed: true,
-                isDisabled: false,
+                isDisabled,
                 onClear: null,
             } as any);
             multiItems.push(collapsedItem);
