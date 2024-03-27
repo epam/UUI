@@ -3,20 +3,9 @@ import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-cor
 import { FlexCell, PickerInput, PickerTogglerTag, Tooltip } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 
-const cascadeSelectionModes: Array<{ id: 'explicit' | 'implicit'; caption: string }> = [
-    {
-        id: 'explicit',
-        caption: 'Explicit cascade selection',
-    }, {
-        id: 'implicit',
-        caption: 'Implicit cascade selection',
-    },
-];
-
 export default function PickerTogglerTagDemoExample() {
     const svc = useUuiContext();
-    const [value, onValueChange] = useState<string[]>();
-    const [cascadeSelection] = useState(cascadeSelectionModes[0].id);
+    const [value, onValueChange] = useState<string[]>([]);
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
@@ -42,7 +31,6 @@ export default function PickerTogglerTagDemoExample() {
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
-                cascadeSelection={ cascadeSelection }
                 maxItems={ 2 }
                 renderTag={ (props) => {
                     if (props.isCollapsed) {

@@ -25,15 +25,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
 }
 
 function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
-    const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => (
-        <PickerTogglerTag
-            { ...itemProps }
-            rowProps={ itemProps.rowProps }
-            key={ itemProps.isCollapsed ? 'collapsed' : itemProps.rowProps?.id as string }
-            size={ props.size }
-            isDisabled={ props.isDisabled || props.isReadonly || itemProps.isDisabled }
-        />
-    );
+    const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => <PickerTogglerTag { ...itemProps } size={ props.size } />;
 
     return (
         <UuiPickerToggler

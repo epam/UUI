@@ -1,5 +1,5 @@
 {
- "version": "5.7.0-alpha.0",
+ "version": "5.7.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -72061,8 +72061,8 @@
      "print": [
       "type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {",
       "    /**",
-      "     * Render Callback for making custom Tags.",
-      "     * If omitted, they will be rendered by default component PickerTogglerTag.",
+      "     * Render callback for picker toggler selection tag",
+      "     * If omitted, default `PickerTogglerTag` component will be rendered",
       "     */",
       "    renderTag?: (props: PickerTogglerTagProps<TItem, TId>) => JSX.Element;",
       "};"
@@ -73003,8 +73003,8 @@
       "name": "renderTag",
       "comment": {
        "raw": [
-        "Render Callback for making custom Tags.",
-        " If omitted, they will be rendered by default component PickerTogglerTag."
+        "Render callback for picker toggler selection tag",
+        " If omitted, default `PickerTogglerTag` component will be rendered"
        ]
       },
       "typeValue": {
