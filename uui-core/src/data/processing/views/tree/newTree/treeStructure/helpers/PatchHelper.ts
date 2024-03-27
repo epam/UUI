@@ -9,7 +9,7 @@ import { merge } from './merge';
 import { PatchItemsIntoTreeStructureOptions } from './types';
 import { ItemsMap } from '../../../ItemsMap';
 
-interface ApplyPatchSortingOptions<TItem, TId> {
+interface ApplyPatchWithSortingOptions<TItem, TId> {
     comparator: (a: TItem, b: TItem) => number;
     patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
     originalItemsMap: ItemsMap<TId, TItem>;
@@ -26,7 +26,7 @@ interface ApplyPatchTemporaryReorderingOptions<TItem, TId> {
 }
 
 export class PatchHelper {
-    private static applyPatchSorting<TItem, TId>(
+    private static applyPatchWithSorting<TItem, TId>(
         patchIds: TId[],
         originalIds: TId[],
         {
@@ -36,7 +36,7 @@ export class PatchHelper {
             patchedItemsMap,
             isDeleted,
             complexIds,
-        }: ApplyPatchSortingOptions<TItem, TId>,
+        }: ApplyPatchWithSortingOptions<TItem, TId>,
         initialIds: TId[] = [],
     ) {
         return merge(
@@ -120,7 +120,7 @@ export class PatchHelper {
             // eslint-disable-next-line no-loop-func
             const isDeletedFn = (id: TId) => isDeleted?.(patchedItemsMap.get(id)) ?? false;
 
-            const [sortedItems, isUpdatedOnPatch] = this.applyPatchSorting(
+            const [sortedItems, isUpdatedOnPatch] = this.applyPatchWithSorting(
                 sortedPatchItems.updated,
                 itemIds,
                 {
