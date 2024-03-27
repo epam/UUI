@@ -1424,10 +1424,10 @@
   dependencies:
     normalize.css "^7.0.0"
 
-"@epam/internal@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.1.tgz#742bbc31ef813264007346365aaf312c7b335a40"
-  integrity sha512-gd+4xCPGAfDZf3I2DtV86pva9/LOaSWu2e+qAuqfkt2uQ0cOqq+xD7aZxHP6PZHr742/tsrRc5BZOW9q1630uQ==
+"@epam/internal@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.2.tgz#e2d4ed2c44b9f8aeac4c5c58bb3850c1b71bc08c"
+  integrity sha512-S5yHaiUocQnDo6mVVYTQcYbUWX3p+z96oeQsCLURgtrNAJsQygYfa0taRH1SmcgMQUu45+CymjV50zdeCKoN9A==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
