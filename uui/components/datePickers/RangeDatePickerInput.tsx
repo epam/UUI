@@ -25,7 +25,6 @@ export interface RangeDatePickerInputProps
     IHasCX,
     SizeMod,
     IClickable,
-    // IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {
     /**
      * rawProps as HTML attributes
@@ -39,10 +38,6 @@ export interface RangeDatePickerInputProps
          * Any HTML attributes (native or 'data-') to put on 'to' input
          */
         to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-        /**
-         * Any HTML attributes (native or 'data-') to put on inputs wrapper
-         */
-        wrapper?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
     /**
      * Currently setting date
@@ -50,12 +45,16 @@ export interface RangeDatePickerInputProps
     inFocus: RangeDatePickerInputType,
     /**
      * Handles focus event on input element
-     */
-    onFocus?: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+    */
+    onFocusInput: (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
     /**
-     * Handles blur event on input element
-     */
-    onBlur?: (event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void;
+    * Handles blur event on input element
+   */
+    onBlurInput?: (event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void;
+    /**
+   * Handles blur event on root element
+   */
+    onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
 }
 
 export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
@@ -69,8 +68,9 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     inFocus,
     format,
     onValueChange,
-    onFocus,
     onBlur,
+    onFocusInput,
+    onBlurInput,
     onClick,
     getPlaceholder,
     filter,
@@ -107,13 +107,13 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
-        onFocus?.(event, inputType);
+        onFocusInput(event, inputType);
     };
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
-        onBlur?.(event, inputType);
-        const selectedDate = toValueDateRangeFormat(inputValue, format);
+        onBlurInput?.(event, inputType);
 
+        const selectedDate = toValueDateRangeFormat(inputValue, format);
         if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
@@ -147,7 +147,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                     onClick?.(event);
                 }
             } }
-            { ...rawProps?.wrapper }
+            onBlur={ onBlur }
         >
             <TextInput
                 icon={ systemIcons.calendar }

@@ -69,13 +69,13 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                         format={ format }
                         value={ value }
                         onValueChange={ onValueChange }
-                        onFocus={ (event, inputType) => {
+                        onFocusInput={ (event, inputType) => {
                             if (props.onFocus) {
                                 props.onFocus(event, inputType);
                             }
                             setInFocus(inputType);
                         } }
-                        onBlur={ props.onBlur }
+                        onBlurInput={ props.onBlur }
                     />
                     <FlexSpacer />
                     <LinkButton
