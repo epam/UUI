@@ -103,21 +103,17 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
                         size={ props.size }
                         getPlaceholder={ props.getPlaceholder }
                         disableClear={ props.disableClear }
-                        rawProps={ {
-                            ...props.rawProps,
-                            wrapper: {
-                                onBlur: onInputWrapperBlur,
-                            },
-                        } }
+                        rawProps={ props.rawProps }
                         inFocus={ inFocus }
                         value={ value }
                         format={ format }
                         onValueChange={ onValueChange }
-                        onFocus={ (e, i) => {
+                        onBlur={ onInputWrapperBlur }
+                        onFocusInput={ (e, i) => {
                             props.onFocus?.(e, i);
                             onOpenChange(true, i);
                         } }
-                        onBlur={ props.onBlur }
+                        onBlurInput={ props.onBlur }
                     />
                 );
             } }
