@@ -38,7 +38,6 @@ const defaultPresets: ITablePreset[] = [
 export function FilteredTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
-    const [totalCount, setTotalCount] = useState(0);
     const [initialPresets] = useState<ITablePreset<DataQueryFilter<Person>>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
     const tableStateApi = useTableState<DataQueryFilter<Person>>({
@@ -56,7 +55,6 @@ export function FilteredTable() {
             page: rq.page,
             pageSize: rq.pageSize,
         });
-        setTotalCount(() => result.totalCount);
         result.count = result.items.length;
         result.from = 0;
         return result;
@@ -91,6 +89,8 @@ export function FilteredTable() {
         setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi
     } = tableStateApi;
 
+    const listProps = view.getListProps();
+
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
@@ -118,7 +118,7 @@ export function FilteredTable() {
                 allowColumnsReordering={ true }
                 { ...listProps }
             />
-            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ totalCount } />
+            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ listProps.totalCount } />
         </div>
     );
 }

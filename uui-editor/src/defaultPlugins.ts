@@ -10,6 +10,7 @@ import {
     TODO_ELEMENT_KEY,
     noteTypes,
 } from './plugins';
+import { createAutoformatPlugin } from './plugins/autoformatPlugin/autoformatPlugin';
 
 const resetBlockTypesCommonRule = {
     types: [
@@ -42,10 +43,11 @@ const resetBlockTypePlugin: { options: Partial<ResetNodePlugin> } = {
  * with the following list when disableCorePlugins prop hasn't been set
  * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
  */
-export const defaultPlugins: any = [
+export const defaultPlugins = [
     createDeserializeDocxPlugin(), // depends on juice plugin
     createJuicePlugin(),
     paragraphPlugin(),
     createResetNodePlugin(resetBlockTypePlugin),
     createSoftBreakPlugin(),
+    createAutoformatPlugin(),
 ];

@@ -303,7 +303,7 @@ function TokenGroupItems(props: { items: ITokensDocItem[] }) {
             <FlexRow cx={ css.tokenCard } borderBottom={ true } alignItems="center" key={ item.value + item.cssVar }>
                 <FlexCell width="auto">
                     <Tooltip renderContent={ renderTooltipContent } placement="top" openDelay={ 200 }>
-                        <Text cx={ css.var } onClick={ () => copyTextToClipboard(item.cssVar, () => showNotification(item.cssVar, uuiNotifications)) }>
+                        <Text cx={ css.var } onClick={ () => copyTextToClipboard(`var(${item.cssVar})`, () => showNotification(item.cssVar, uuiNotifications)) }>
                             { item.cssVar.replace(/^--uui-/, '') }
                         </Text>
                     </Tooltip>

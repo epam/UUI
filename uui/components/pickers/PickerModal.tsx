@@ -89,7 +89,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                 )}
                 <FlexSpacer />
                 <Button fill="outline" color="secondary" caption={ i18n.pickerModal.cancelButton } onClick={ () => props.abort() } />
-                <Button color="accent" caption={ i18n.pickerModal.selectButton } onClick={ () => props.success(selection as any) } />
+                <Button color="primary" caption={ i18n.pickerModal.selectButton } onClick={ () => props.success(selection as any) } />
             </>
         );
     };
