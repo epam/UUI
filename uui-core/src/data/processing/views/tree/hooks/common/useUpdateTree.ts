@@ -22,7 +22,7 @@ export function useUpdateTree<TItem, TId>(
     const depsChanged = useDepsChanged(deps);
 
     const updatedTree = useMemo(() => {
-        if (treeRef.current === null || prevTree !== tree || shouldUpdate || depsChanged) {
+        if (treeRef.current === null || prevTree !== tree || shouldUpdate() || depsChanged) {
             treeRef.current = update(tree);
         }
         return treeRef.current;

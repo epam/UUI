@@ -20,7 +20,7 @@ export function useSelectedOnlyTree<TItem, TId, TFilter = any>(
         tree,
         shouldUpdate: () => isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState),
         update: (currentTree) => currentTree.buildSelectedOnly(getChecked(dataSourceState)),
-    }, [dataSourceState, ...deps]);
+    }, [dataSourceState.checked, dataSourceState.selectedId, ...deps]);
 
     if (isLoading || selectedOnlyTree === null) {
         return tree;

@@ -67,6 +67,7 @@ export function merge<TId>(
         }
 
         if (patchedItems.has(tgItemId)) {
+            isUpdated = true;
             tgItemIndex++;
             continue;
         }

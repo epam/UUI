@@ -24,6 +24,7 @@ interface PickerBindingHelper<TItem, TId> {
 }
 
 class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> {
+    emptyValueArray: any[] = [];
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
         if (dsState && Array.isArray(dsState.checked) && dsState.checked && dsState.checked.length > 0) {
             if (props.valueType === 'entity') {
@@ -41,7 +42,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> 
         props: PickerBaseProps<TId, TItem>,
         dataSource: IDataSource<TItem, TId, any>,
     ): DataSourceState<any, TId> {
-        value = (Array.isArray(value) && value) || [];
+        value = (Array.isArray(value) && value) || this.emptyValueArray;
         if (props.valueType === 'entity') {
             value = value.map((entity: any) => {
                 dataSource && dataSource.setItem(entity);
