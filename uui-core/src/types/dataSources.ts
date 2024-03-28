@@ -147,13 +147,30 @@ export type PositionType = 'initial' | 'top' | 'bottom';
  */
 export type Position<TId> = PositionType | { after: TId };
 
+/**
+ * Patch tree configuration.
+ */
 export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
     /**
      * To enable deleting of the items, it is required to specify getter for deleted state.
      */
     isDeleted?(item: TItem): boolean;
+    /**
+     * Provides information about the relative position of the new item.
+     * @param item - new item, position should be got for.
+     * @returns relative position in the list of items.
+     * @default PatchOrdering.TOP
+     */
     getNewItemPosition?: (item: TItem) => PatchOrderingType;
+    /**
+     * Provides information about the temporary order of the new item.
+     * @param item - new item, temporary order should be got for.
+     * @returns temporary order
+     */
     getItemTemporaryOrder?: (item: TItem) => string;
+    /**
+     * Items, which should be added/updated/deleted from the tree.
+     */
     patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 }
 

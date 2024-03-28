@@ -1,21 +1,21 @@
 import { useMemo } from 'react';
 import { TreeState, newMap } from '../../newTree';
 import { DataSourceState, PatchItemsOptions } from '../../../../../../types';
-import { SortConfig } from '../strategies/types';
-import { PatchOrderingTypes } from '../../PatchOrderingMap';
+import { PatchOrdering } from '../../PatchOrderingMap';
 import { useSimplePrevious } from '../../../../../../hooks';
 import { getSortedPatchByParentId } from '../../helpers/patch';
 
-export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId>, SortConfig<TItem> {
+export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId> {
     tree: TreeState<TItem, TId>;
     sorting: DataSourceState<TFilter, TId>['sorting'];
+
 }
 
 export function usePatchTree<TItem, TId, TFilter = any>(
     {
         tree,
         patchItems,
-        getNewItemPosition = () => PatchOrderingTypes.TOP,
+        getNewItemPosition = () => PatchOrdering.TOP,
         getItemTemporaryOrder,
         isDeleted,
         sorting,

@@ -3,7 +3,7 @@ import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from 
 import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
 import { ItemsMap } from '../tree/ItemsMap';
 import { act } from 'react-dom/test-utils';
-import { PatchOrderingTypes } from '../tree';
+import { PatchOrdering } from '../tree';
 import { LazyListViewProps } from '../types';
 
 type ExtendedLocationItem = LocationItem & { isDeleted?: boolean };
@@ -36,7 +36,7 @@ describe('LazyListView - patch items', () => {
 
     it.each([
         undefined,
-        () => PatchOrderingTypes.TOP,
+        () => PatchOrdering.TOP,
     ])
     ('should add items to the beginning of the list if item is not in list', async (getNewItemPosition) => {
         const { dataSource } = getLazyLocationsDS({
@@ -118,7 +118,7 @@ describe('LazyListView - patch items', () => {
                 },
             }),
 
-            getNewItemPosition: () => PatchOrderingTypes.BOTTOM,
+            getNewItemPosition: () => PatchOrdering.BOTTOM,
         });
 
         currentValue.visibleCount = 5;
@@ -148,7 +148,7 @@ describe('LazyListView - patch items', () => {
 
     it.each([
         undefined,
-        () => PatchOrderingTypes.TOP,
+        () => PatchOrdering.TOP,
     ])('should add items to the top by parent', async (getNewItemPosition) => {
         const patchItems = createItemsMap({
             'c-AS': {
@@ -228,7 +228,7 @@ describe('LazyListView - patch items', () => {
     });
 
     it('should add items to the bottom by parent', async () => {
-        const getNewItemPosition = () => PatchOrderingTypes.BOTTOM;
+        const getNewItemPosition = () => PatchOrdering.BOTTOM;
         const patchItems = createItemsMap({
             'c-AS': {
                 id: 'c-AS',
@@ -307,7 +307,7 @@ describe('LazyListView - patch items', () => {
     });
 
     it('should fix position of item from patch till the next sorting change and apply sorting after sorting change', async () => {
-        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const getNewItemPosition = () => PatchOrdering.TOP;
         const patchItems = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
@@ -805,7 +805,7 @@ describe('LazyListView - patch items', () => {
     });
 
     it('should delete items from tree', async () => {
-        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const getNewItemPosition = () => PatchOrdering.TOP;
         const patchItems = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
@@ -924,7 +924,7 @@ describe('LazyListView - patch items', () => {
     });
 
     it('should update items', async () => {
-        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const getNewItemPosition = () => PatchOrdering.TOP;
         const patchItems = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
@@ -1039,7 +1039,7 @@ describe('LazyListView - patch items', () => {
     });
 
     it('should move items from parent to parent', async () => {
-        const getNewItemPosition = () => PatchOrderingTypes.TOP;
+        const getNewItemPosition = () => PatchOrdering.TOP;
         const patchItems = createItemsMap({
             GM: {
                 id: 'GM',
@@ -1162,7 +1162,7 @@ describe('LazyListView - patch items', () => {
                 },
             }),
 
-            getNewItemPosition: () => PatchOrderingTypes.BOTTOM,
+            getNewItemPosition: () => PatchOrdering.BOTTOM,
         });
 
         currentValue.visibleCount = 5;
@@ -1244,7 +1244,7 @@ describe('LazyListView - patch items', () => {
                 },
             }),
 
-            getNewItemPosition: () => PatchOrderingTypes.BOTTOM,
+            getNewItemPosition: () => PatchOrdering.BOTTOM,
             isDeleted: (item: ExtendedLocationItem) => item.isDeleted ?? false,
         });
 

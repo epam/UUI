@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, Metadata,
-    PatchOrderingTypes, SortingOption, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
+    PatchOrdering, SortingOption, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -114,7 +114,7 @@ export function ProjectTableDemo() {
             backgroundReload: true,
             patchItems: value.items,
 
-            getNewItemPosition: () => PatchOrderingTypes.TOP,
+            getNewItemPosition: () => PatchOrdering.TOP,
             getItemTemporaryOrder, 
             sortBy: (item, sorting) => {
                 return item[sorting.field as keyof ProjectTask];

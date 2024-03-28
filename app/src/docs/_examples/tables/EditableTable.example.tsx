@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrderingTypes, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
@@ -204,7 +204,7 @@ export default function EditableTableExample() {
             ...lens.prop('items').key(item.id).default(item).toProps(),
         }),
         patchItems: value.items,
-        getNewItemPosition: () => PatchOrderingTypes.TOP,
+        getNewItemPosition: () => PatchOrdering.TOP,
         isDeleted: (item) => item.isDeleted,
     });
 

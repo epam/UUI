@@ -5,7 +5,7 @@ export interface PatchOrderingMapParams {
     complexIds?: boolean;
 }
 
-export const PatchOrderingTypes = {
+export const PatchOrdering = {
     TOP: Symbol('ORDERING_TOP'),
     BOTTOM: Symbol('ORDERING_BOTTOM'),
     INITIAL: Symbol('ORDERING_INITIAL'),
@@ -14,11 +14,11 @@ export const PatchOrderingTypes = {
 };
 
 export type PatchOrderingType =
-| typeof PatchOrderingTypes.TOP
-| typeof PatchOrderingTypes.BOTTOM
-| typeof PatchOrderingTypes.INITIAL
-| typeof PatchOrderingTypes.BY_SORTING
-| [typeof PatchOrderingTypes.INDEX, number];
+| typeof PatchOrdering.TOP
+| typeof PatchOrdering.BOTTOM
+| typeof PatchOrdering.INITIAL
+| typeof PatchOrdering.BY_SORTING
+| [typeof PatchOrdering.INDEX, number];
 
 export class PatchOrderingMap<TId> implements IImmutableMap<TId, PatchOrderingType> {
     private ordering: IMap<TId, PatchOrderingType>;
@@ -61,7 +61,7 @@ export class PatchOrderingMap<TId> implements IImmutableMap<TId, PatchOrderingTy
     allToSorting() {
         const newOrdering = cloneMap(this.ordering);
         for (const [id] of newOrdering) {
-            newOrdering.set(id, PatchOrderingTypes.BY_SORTING);
+            newOrdering.set(id, PatchOrdering.BY_SORTING);
         }
         return new PatchOrderingMap(this.params, newOrdering);
     }
