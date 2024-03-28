@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Slider',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

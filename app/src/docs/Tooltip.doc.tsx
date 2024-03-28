@@ -10,7 +10,7 @@ import { getCurrentTheme } from '../helpers';
 export class TooltipDoc extends BaseDocsBlock {
     title = 'Tooltip';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Tooltip',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:TooltipProps', component: uui.Tooltip },

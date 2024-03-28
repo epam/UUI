@@ -10,7 +10,7 @@ import { getCurrentTheme } from '../helpers';
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'IconButton',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {

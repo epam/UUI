@@ -10,7 +10,7 @@ import { childrenExamples } from './panelExamples';
 export class PanelDoc extends BaseDocsBlock {
     title = 'Panel';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Panel',
         contexts: [TDocContext.Resizable, TDocContext.Default],
         bySkin: {

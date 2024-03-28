@@ -11,7 +11,7 @@ import { CardExample } from './cardExample';
 export class AnchorDoc extends BaseDocsBlock {
     title = 'Anchor';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Anchor',
         bySkin: {
             [TSkin.Loveship]: { type: '@epam/uui-components:AnchorProps', component: loveship.Anchor },

@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
 export class FlexCellDoc extends BaseDocsBlock {
     title = 'FlexCell';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'FlexCell',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:FlexCellProps', component: uui.FlexCell },

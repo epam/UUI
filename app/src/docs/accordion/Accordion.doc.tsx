@@ -11,7 +11,7 @@ import { IControlled } from '@epam/uui-core';
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Accordion',
         contexts: [TDocContext.Resizable],
         bySkin: {

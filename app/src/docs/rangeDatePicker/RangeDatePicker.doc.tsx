@@ -16,7 +16,7 @@ import {
 export class RangeDatePickerDoc extends BaseDocsBlock {
     title = 'RangeDatePicker';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'RangeDatePicker',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {

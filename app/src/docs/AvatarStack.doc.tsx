@@ -11,7 +11,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class AvatarStackDoc extends BaseDocsBlock {
     title = 'AvatarStack';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'AvatarStack',
         bySkin: {
             [TSkin.Loveship]: { type: '@epam/uui-components:AvatarStackProps', component: loveship.AvatarStack },

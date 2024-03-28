@@ -11,7 +11,7 @@ import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'ControlGroup',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {

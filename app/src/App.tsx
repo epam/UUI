@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import { DocumentsPage } from './documents';
 import { DemoPage } from './demo';
 import { SandboxPage } from './sandbox/SandboxPage';
+import { PreviewPage } from './preview/previewPage';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Route path="/documents" Component={ DocumentsPage } />
             <Route path="/demo" Component={ DemoPage } />
             <Route path="/sandbox" Component={ SandboxPage } />
+            <Route path="/preview" Component={ PreviewPage } />
         </Routes>
     );
 }

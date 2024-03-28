@@ -1,0 +1,35 @@
+{
+  "name": "@epam/uui-e2e-tests",
+  "version": "5.6.1",
+  "description": "",
+  "author": "EPAM",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "pw": "ts-node scripts/cmd/cmdRunPw.ts",
+    "pw-docker": "ts-node scripts/cmd/cmdRunPwDocker.ts",
+    "docker": "podman compose -f ./.docker-compose.yml up --build",
+    "test-e2e": "yarn pw test",
+    "test-e2e-update": "yarn test-e2e --update-snapshots",
+    "test-e2e-deps-install": "yarn pw install --with-deps chromium webkit",
+    "test-e2e-report-show": "yarn pw show-report uui-e2e-tests/tests/.report/report",
+    "docker-test-e2e": "yarn pw-docker",
+    "docker-test-e2e-update": "yarn pw-docker --update"
+  },
+  "dependencies": {
+    "@playwright/test": "1.42.1",
+    "typescript": "4.9.3",
+    "ts-node": "10.9.1",
+    "cross-spawn": "7.0.3",
+    "@types/node": "*",
+    "tslib": "^2.6.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16",
+    "address": "2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb"
+}

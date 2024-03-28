@@ -9,7 +9,7 @@ import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Switch',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

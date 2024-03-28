@@ -1,5 +1,9 @@
 .root {
-    margin: 24px;
-    padding: 12px;
     display: flex;
+
+    &:not(.preview) {
+        margin: 24px;
+        padding: 12px;
+    }
 }
+

@@ -10,7 +10,7 @@ import { renderTogglerExamples } from './pickerInputExamples';
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'PickerInput',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form],
         bySkin: {
