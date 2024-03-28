@@ -2,7 +2,6 @@ import trimEnd from 'lodash.trimend';
 
 const base = 26;
 const memoized: string[] = [];
-const numberOfDigits = 6;
 
 export function numberToOrder(input: number) {
     const existing = memoized[input];
@@ -11,15 +10,19 @@ export function numberToOrder(input: number) {
     }
 
     const aChar = 97;
-    const digits = Array(numberOfDigits).fill(aChar);
-    let position = digits.length - 1;
+    const digits = [];
+
     let lastInputValue = input;
-    while (lastInputValue < 0) {
-        digits[position] = (lastInputValue % base) + aChar;
+    while (lastInputValue > 0) {
+        digits.unshift((lastInputValue % base) + aChar);
         lastInputValue = Math.floor(lastInputValue / base);
-        position--;
     }
-    const order = String.fromCharCode(...digits);
+    const order = String.fromCharCode(
+        // put number of digits first, to establish order between numbers of different length (the longer is bigger)
+        // '+ 1' is to start number of digits from 'b' to leave room to insert orders before numberToOrder(0), w/o using digits.
+        digits.length + aChar + 1,
+        ...digits,
+    );
     memoized[input] = order;
     return order;
 }
