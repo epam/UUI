@@ -1,15 +1,11 @@
 import * as React from 'react';
 import * as types from '../types';
 import { Tag, TagProps } from '../widgets';
-import { DataRowProps } from '@epam/uui-core';
+import { IRenderItemProps } from '@epam/uui-components';
 
-export interface PickerTogglerTagProps<TItem, TId> extends TagProps {
+export interface PickerTogglerTagProps<TItem, TId> extends IRenderItemProps<TItem, TId>, TagProps {
     /** Defines component size */
     size?: types.ControlSize;
-    /** If this is true, then the PickerTogglerTag will be an additional tag with the number of collapsed elements in the caption. */
-    isCollapsed?: boolean;
-    /** Defines row props (see more: uui-components/src/pickers/PickerToggler.tsx PickerTogglerProps<TItem = any, TId = any>) */
-    rowProps?: DataRowProps<TItem, TId>;
 }
 
 const getPickerTogglerButtonSize = (propSize?: types.ControlSize):TagProps['size'] => {
