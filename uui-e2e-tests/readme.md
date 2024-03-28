@@ -1,8 +1,11 @@
 ### Podman installation
 #### Windows
-1. Open https://github.com/containers/podman/releases/tag/v5.0.0
-2. Scroll to the bottom of the page and download ```podman-5.0.0-setup.exe```. Install it. Note: you might need to restart computer after that.
-3. Open console as admin and run next commands:
+1. Install Podman from here: https://github.com/containers/podman/releases/tag/v5.0.0 Note: you might need to restart computer after that.
+2. Download "Docker Compose" via Powershell (with Admin privileges)
+```shell
+Start-BitsTransfer -Source "https://github.com/docker/compose/releases/download/v2.26.0/docker-compose-Windows-x86_64.exe" -Destination $Env:ProgramFiles\Docker\docker-compose.exe
+```
+3. Run next commands:
     ```bash
     podman machine init
     podman machine set --rootful
@@ -12,15 +15,15 @@
 
 #### MacOS
 1. Install Podman with command below. Note: you might need to restart computer after that.
-    ```bash
+    ```shell
     brew install podman
     ```
-2. Install docker compose
-    ```bash
+2. Install "Docker Compose"
+    ```shell
     brew install docker-compose
     ```
-3. Open console as admin and run next commands:
-    ```bash
+3. Run next commands:
+    ```shell
     podman machine init
     podman machine set --rootful
     podman machine set --user-mode-networking
@@ -35,7 +38,7 @@
 
 #### NPM tasks to use
 Note: If you run the tests for the very first time, it will take some time to download necessary docker images (about 8-10min).
-```bash
+```shell
 # Run tests in docker container
 yarn docker-test-e2e
 
