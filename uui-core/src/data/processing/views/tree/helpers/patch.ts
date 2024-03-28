@@ -2,7 +2,7 @@ import { NOT_FOUND_RECORD, newMap } from '../newTree';
 import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions, SortedPatchByParentId } from '../../../../../types';
 import { SortConfig } from '../hooks/strategies/types';
 import { buildComparators, composeComparetors } from '../helpers';
-import { PatchOrderingTypes } from '../PatchOrderingMap';
+import { PatchOrdering } from '../PatchOrderingMap';
 import { ITree } from '../newTree/ITree';
 
 const groupByParentId = <TItem, TId>(
@@ -69,7 +69,7 @@ const getPatchItemsByCategories = <TItem, TId>(
                 continue;
             }
 
-            if (position === PatchOrderingTypes.BOTTOM) {
+            if (position === PatchOrdering.BOTTOM) {
                 bottom.push(id);
             } else {
                 top.unshift(id);
@@ -85,7 +85,7 @@ const getPatchItemsByCategories = <TItem, TId>(
             }
 
             const position = getNewItemPosition(item);
-            if (position === PatchOrderingTypes.BOTTOM) {
+            if (position === PatchOrdering.BOTTOM) {
                 bottom.push(id);
             } else {
                 top.unshift(id);
