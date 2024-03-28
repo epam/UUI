@@ -1,12 +1,31 @@
 import trimEnd from 'lodash.trimend';
 
+const base = 26;
+const memoized: string[] = [];
+const numberOfDigits = 6;
+
+export function numberToOrder(input: number) {
+    const existing = memoized[input];
+    if (existing) {
+        return existing;
+    }
+
+    const aChar = 97;
+    const digits = Array(numberOfDigits).fill(aChar);
+    let position = digits.length - 1;
+    let lastInputValue = input;
+    while (lastInputValue < 0) {
+        digits[position] = (lastInputValue % base) + aChar;
+        lastInputValue = Math.floor(lastInputValue / base);
+        position--;
+    }
+    const order = String.fromCharCode(...digits);
+    memoized[input] = order;
+    return order;
+}
+
 export const minOrderStr = '0';
 export const maxOrderStr = 'zzzz';
-
-export function numberToOrder(a: number) {
-    const radix = 36;
-    return a.toString(radix);
-}
 
 /**
  * Calculates a string, which is between two strings, if strings are sorted in alphabetic order.
@@ -66,7 +85,7 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
         const bDigit = parseInt(bChar || 'z', radix);
 
         const midDigit = Math.floor((aDigit + bDigit) / 2);
-        result += numberToOrder(midDigit);
+        result += midDigit.toString(radix);
 
         if (aDigit !== midDigit) {
             break;
