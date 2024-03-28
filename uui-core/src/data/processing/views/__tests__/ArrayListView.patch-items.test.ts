@@ -41,21 +41,21 @@ describe('ArrayListView - patch items', () => {
     ('should add items to the beginning of the list if item is not in list', async (getNewItemPosition) => {
         const dataSource = getArrayLocationsDS({
             patchItems: createItemsMap({
-                AS: {
+                'c-AS': {
                     id: 'c-AS',
                     name: 'Asia',
                     type: 'continent',
                     __typename: 'Location',
                     childCount: 0,
                 },
-                AN: {
+                'c-AN': {
                     id: 'c-AN',
                     name: 'Antarctica',
                     type: 'continent',
                     __typename: 'Location',
                     childCount: 0,
                 },
-                NA: {
+                'c-NA': {
                     id: 'c-NA',
                     name: 'North America',
                     type: 'continent',
@@ -95,21 +95,21 @@ describe('ArrayListView - patch items', () => {
     it('should add items to the end of the list if item is not in list and position is BOTTOM', async () => {
         const dataSource = getArrayLocationsDS({
             patchItems: createItemsMap({
-                AS: {
+                'c-AS': {
                     id: 'c-AS',
                     name: 'Asia',
                     type: 'continent',
                     __typename: 'Location',
                     childCount: 0,
                 },
-                AN: {
+                'c-AN': {
                     id: 'c-AN',
                     name: 'Antarctica',
                     type: 'continent',
                     __typename: 'Location',
                     childCount: 0,
                 },
-                NA: {
+                'c-NA': {
                     id: 'c-NA',
                     name: 'North America',
                     type: 'continent',
@@ -151,7 +151,7 @@ describe('ArrayListView - patch items', () => {
         () => PatchOrderingTypes.TOP,
     ])('should add items to the top by parent', async (getNewItemPosition) => {
         const patchItems = createItemsMap({
-            AS: {
+            'c-AS': {
                 id: 'c-AS',
                 name: 'Asia',
                 type: 'continent',
@@ -159,7 +159,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AN: {
+            'c-AN': {
                 id: 'c-AN',
                 name: 'Antarctica',
                 type: 'continent',
@@ -167,7 +167,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA: {
+            'c-NA': {
                 id: 'c-NA',
                 name: 'North America',
                 type: 'continent',
@@ -230,7 +230,7 @@ describe('ArrayListView - patch items', () => {
     it('should add items to the bottom by parent', async () => {
         const getNewItemPosition = () => PatchOrderingTypes.BOTTOM;
         const patchItems = createItemsMap({
-            AS: {
+            'c-AS': {
                 id: 'c-AS',
                 name: 'Asia',
                 type: 'continent',
@@ -238,7 +238,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AN: {
+            'c-AN': {
                 id: 'c-AN',
                 name: 'Antarctica',
                 type: 'continent',
@@ -246,7 +246,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA: {
+            'c-NA': {
                 id: 'c-NA',
                 name: 'North America',
                 type: 'continent',
@@ -309,7 +309,7 @@ describe('ArrayListView - patch items', () => {
     it('should fix position of item from patch till the next sorting change and apply sorting after sorting change', async () => {
         const getNewItemPosition = () => PatchOrderingTypes.TOP;
         const patchItems = createItemsMap({
-            AS1: {
+            'c-AS1': {
                 id: 'c-AS1',
                 name: 'Asia1',
                 type: 'continent',
@@ -317,7 +317,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AS2: {
+            'c-AS2': {
                 id: 'c-AS2',
                 name: 'Asia2',
                 type: 'continent',
@@ -325,7 +325,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AS3: {
+            'c-AS3': {
                 id: 'c-AS3',
                 name: 'Asia3',
                 type: 'continent',
@@ -333,7 +333,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AN1: {
+            'c-AN1': {
                 id: 'c-AN1',
                 name: 'Antarctica1',
                 type: 'continent',
@@ -341,7 +341,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            AN2: {
+            'c-AN2': {
                 id: 'c-AN2',
                 name: 'Antarctica2',
                 type: 'continent',
@@ -349,7 +349,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            AN3: {
+            'c-AN3': {
                 id: 'c-AN3',
                 name: 'Antarctica3',
                 type: 'continent',
@@ -357,7 +357,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA1: {
+            'c-NA1': {
                 id: 'c-NA1',
                 name: 'North America1',
                 type: 'continent',
@@ -365,7 +365,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA2: {
+            'c-NA2': {
                 id: 'c-NA2',
                 name: 'North America2',
                 type: 'continent',
@@ -373,7 +373,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA3: {
+            'c-NA3': {
                 id: 'c-NA3',
                 name: 'North America3',
                 type: 'continent',
@@ -465,7 +465,7 @@ describe('ArrayListView - patch items', () => {
             );
         });
         const newPatchItems = createItemsMap({
-            AS1: {
+            'c-AS1': {
                 id: 'c-AS1',
                 name: 'XA1',
                 type: 'continent',
@@ -473,7 +473,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AS2: {
+            'c-AS2': {
                 id: 'c-AS2',
                 name: 'XA2',
                 type: 'continent',
@@ -481,7 +481,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AS3: {
+            'c-AS3': {
                 id: 'c-AS3',
                 name: 'XA3',
                 type: 'continent',
@@ -489,7 +489,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            AN1: {
+            'c-AN1': {
                 id: 'c-AN1',
                 name: 'BA1',
                 type: 'continent',
@@ -497,7 +497,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            AN2: {
+            'c-AN2': {
                 id: 'c-AN2',
                 name: 'BA2',
                 type: 'continent',
@@ -505,7 +505,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            AN3: {
+            'c-AN3': {
                 id: 'c-AN3',
                 name: 'BA3',
                 type: 'continent',
@@ -513,7 +513,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA1: {
+            'c-NA1': {
                 id: 'c-NA1',
                 name: 'DA1',
                 type: 'continent',
@@ -521,7 +521,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA2: {
+            'c-NA2': {
                 id: 'c-NA2',
                 name: 'DA2',
                 type: 'continent',
@@ -529,7 +529,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            NA3: {
+            'c-NA3': {
                 id: 'c-NA3',
                 name: 'DA3',
                 type: 'continent',
@@ -807,7 +807,7 @@ describe('ArrayListView - patch items', () => {
     it('should delete items from tree', async () => {
         const getNewItemPosition = () => PatchOrderingTypes.TOP;
         const patchItems = createItemsMap({
-            AS1: {
+            'c-AS1': {
                 id: 'c-AS1',
                 name: 'Asia1',
                 type: 'continent',
@@ -816,7 +816,7 @@ describe('ArrayListView - patch items', () => {
                 childCount: 0,
                 isDeleted: true,
             },
-            NA1: {
+            'c-NA1': {
                 id: 'c-NA1',
                 name: 'North America1',
                 type: 'continent',
@@ -824,7 +824,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            EU: {
+            'c-EU': {
                 id: 'c-EU',
                 type: 'continent',
                 name: 'Europe',
@@ -926,7 +926,7 @@ describe('ArrayListView - patch items', () => {
     it('should update items', async () => {
         const getNewItemPosition = () => PatchOrderingTypes.TOP;
         const patchItems = createItemsMap({
-            AS1: {
+            'c-AS1': {
                 id: 'c-AS1',
                 name: 'Asia1',
                 type: 'continent',
@@ -934,7 +934,7 @@ describe('ArrayListView - patch items', () => {
                 parentId: 'c-AF',
                 childCount: 0,
             },
-            NA1: {
+            'c-NA1': {
                 id: 'c-NA1',
                 name: 'North America1',
                 type: 'continent',
@@ -942,7 +942,7 @@ describe('ArrayListView - patch items', () => {
                 __typename: 'Location',
                 childCount: 0,
             },
-            EU: {
+            'c-EU': {
                 id: 'c-EU',
                 type: 'continent',
                 name: 'Europe',
@@ -1147,6 +1147,207 @@ describe('ArrayListView - patch items', () => {
                     { id: 'DZ', parentId: 'c-AF' },
                 ],
             );
+        });
+    });
+
+    it('should add item to the end of the list and updated previous existing item', async () => {
+        const dataSource = getArrayLocationsDS({
+            patchItems: createItemsMap({
+                'c-AN': {
+                    id: 'c-AN',
+                    name: 'Antarctica',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+            }),
+
+            getNewItemPosition: () => PatchOrderingTypes.BOTTOM,
+        });
+
+        currentValue.visibleCount = 5;
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+                { id: 'c-AN' },
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(3);
+
+        const updatedPatch = createItemsMap({
+            'c-AN': {
+                id: 'c-AN',
+                name: 'Antarctica',
+                type: 'continent',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            'c-EU': {
+                id: 'c-EU',
+                name: 'EU',
+                type: 'continent',
+                __typename: 'Location',
+                childCount: 0,
+            },
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: updatedPatch } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU',
+                    value: {
+                        id: 'c-EU',
+                        name: 'EU',
+                        type: 'continent',
+                        __typename: 'Location',
+                        childCount: 0,
+                    },
+                },
+                { id: 'c-AN',
+                    value: {
+                        id: 'c-AN',
+                        name: 'Antarctica',
+                        type: 'continent',
+                        __typename: 'Location',
+                        childCount: 0,
+                    },
+                },
+            ]);
+        });
+    });
+
+    it('should remove updated item and add new to the bottom', async () => {
+        const dataSource = getArrayLocationsDS({
+            patchItems: createItemsMap({
+                'c-AN': {
+                    id: 'c-AN',
+                    name: 'Antarctica',
+                    type: 'continent',
+                    __typename: 'Location',
+                    childCount: 0,
+                },
+            }),
+
+            getNewItemPosition: () => PatchOrderingTypes.BOTTOM,
+            isDeleted: (item: ExtendedLocationItem) => item.isDeleted ?? false,
+        });
+
+        currentValue.visibleCount = 5;
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props: {},
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU' },
+                { id: 'c-AN' },
+            ]);
+        });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(3);
+
+        const updatedPatch = createItemsMap({
+            'c-AN': {
+                id: 'c-AN',
+                name: 'Antarctica',
+                type: 'continent',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            'c-EU': {
+                id: 'c-EU',
+                name: 'EU',
+                type: 'continent',
+                __typename: 'Location',
+                childCount: 0,
+            },
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: updatedPatch } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU',
+                    value: {
+                        id: 'c-EU',
+                        name: 'EU',
+                        type: 'continent',
+                        __typename: 'Location',
+                        childCount: 0,
+                    },
+                },
+                { id: 'c-AN',
+                    value: {
+                        id: 'c-AN',
+                        name: 'Antarctica',
+                        type: 'continent',
+                        __typename: 'Location',
+                        childCount: 0,
+                    },
+                },
+            ]);
+        });
+
+        const updatedPatchWithDeleted = createItemsMap({
+            'c-AN': {
+                id: 'c-AN',
+                name: 'Antarctica',
+                type: 'continent',
+                __typename: 'Location',
+                childCount: 0,
+            },
+            'c-EU': {
+                id: 'c-EU',
+                name: 'EU',
+                type: 'continent',
+                __typename: 'Location',
+                childCount: 0,
+                isDeleted: true,
+            },
+        });
+
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: updatedPatchWithDeleted } });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-AN',
+                    value: {
+                        id: 'c-AN',
+                        name: 'Antarctica',
+                        type: 'continent',
+                        __typename: 'Location',
+                        childCount: 0,
+                    },
+                },
+            ]);
         });
     });
 });
