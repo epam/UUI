@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useCallback, useMemo } from 'react';
 import { DocBuilder, useDocBuilderGen } from '@epam/uui-docs';
-import { getSkin } from '../../common/docs/componentEditor/utils';
-import { loadDocsGenType } from '../../common/apiReference/dataHooks';
+import { getSkin, useDocBuilderGenCtx } from '../../common/docs/componentEditor/utils';
 import { RenderCaseView } from './view/renderCaseView';
 import { PreviewLayout } from './view/previewLayout';
 import { TComponentPreviewParams } from './types';
@@ -37,7 +36,8 @@ export function ComponentPreview(props: {
         return getConfigByComponentId(componentId);
     }, [componentId]);
 
-    const { isLoaded, docs } = useDocBuilderGen({ config: compConfig, skin, loadDocsGenType });
+    const docBuilderGenCtx = useDocBuilderGenCtx();
+    const { isLoaded, docs } = useDocBuilderGen({ config: compConfig, skin, docBuilderGenCtx });
 
     const allRenderCases = useMemo(() => {
         if (docs) {

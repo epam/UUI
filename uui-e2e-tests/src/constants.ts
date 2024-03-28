@@ -83,7 +83,7 @@ export enum TComponentId {
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.badge]: ('Colors' | 'Sizes')[],
+    [TComponentId.badge]: ('Colors' | 'Sizes with icon' | 'Sizes without icon')[],
 };
 
 /*

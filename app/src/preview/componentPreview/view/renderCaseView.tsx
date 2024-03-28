@@ -80,13 +80,22 @@ export class RenderCaseView extends React.PureComponent<ISingleRenderCaseView, I
         const SelectedDemoContext = context.context;
         const inputValues = this.getInputValues();
 
-        let propsStr = '';
+        let propsStrObj = '';
+        let propsStrObjFormatted = '';
         try {
-            propsStr = JSON.stringify(inputValues, undefined, 1);
+            propsStrObj = JSON.stringify(inputValues, undefined, 1);
+            propsStrObjFormatted = Object.keys(inputValues).sort().reduce((acc, name, i) => {
+                const value = inputValues[name];
+                if (value !== undefined) {
+                    const lb = i === 0 ? '' : '\n';
+                    return acc + lb + `${name} = ${JSON.stringify(value)}`;
+                }
+                return acc;
+            }, '');
         } catch (err) {}
 
         return (
-            <div className={ css.root } data-props={ propsStr }>
+            <div className={ css.root } data-props={ propsStrObj } title={ propsStrObjFormatted }>
                 <SelectedDemoContext
                     DemoComponent={ DemoComponent }
                     props={ inputValues }

@@ -8,10 +8,9 @@ import {
     PropDocUnknown, TDocContext, DocBuilder,
 } from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { getSkin } from './utils';
+import { getSkin, useDocBuilderGenCtx } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
 import { TTheme } from '../docsConstants';
-import { loadDocsGenType } from '../../apiReference/dataHooks';
 import {
     buildExamplesAndFindById,
     buildExamplesAndFindByValue,
@@ -39,7 +38,9 @@ export function ComponentEditorWrapper(props: {
     } = props;
     const componentId = useQuery('id');
     const skin = getSkin(theme, isSkin);
-    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, loadDocsGenType });
+    const docBuilderGenCtx = useDocBuilderGenCtx();
+
+    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
 
     React.useEffect(() => {
         if (!config) {
@@ -179,7 +180,9 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 newExampleId,
             });
         } else {
-            console.error(`Unknown example id=${newExampleId}`, prop);
+            if (newExampleId !== undefined) {
+                console.error(`Unknown example id=${newExampleId}`, prop);
+            }
             this.setPropExampleAndValue({
                 prop,
                 newValue: undefined,

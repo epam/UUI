@@ -26,6 +26,15 @@ export class DocPreviewBuilder<TProps> {
             ...previewItem,
         });
     }
+
+    update(id: string, updateFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
+        const prev = this.listOfPreviews.find((i) => i.id === id);
+        if (prev) {
+            prev.matrix = { ...updateFn(prev.matrix) };
+        } else {
+            throw new Error(`Unable to find preview by id = ${id}`);
+        }
+    }
 }
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {

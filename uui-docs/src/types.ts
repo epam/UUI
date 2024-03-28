@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IDemoApi } from './demoApi';
-import { Icon } from '@epam/uui-core';
 
 export interface DemoComponentProps<TProps = PropDocPropsUnknown> {
     DemoComponent: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
@@ -26,13 +25,6 @@ export interface IPropSamplesCreationContext<TProps = PropDocPropsUnknown> {
     getSelectedProps(): TProps;
     demoApi: IDemoApi;
     forceUpdate: () => void;
-
-    /**
-     * Currently, the "uui-docs" module is built using Rollup
-     * and therefore can't use webpack-specific API (require.context)
-     * to collect all icons from the epam-assets module. So it's a workaround.     *
-     */
-    getIconList?: () => IconBase<Icon>[];
 }
 
 export type PropExampleObject<TProp> = {

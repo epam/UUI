@@ -17,7 +17,7 @@ const server = {
 };
 //
 const parentDir = isDocker ? '' : 'uui-e2e-tests/';
-const testMatch = `${parentDir}tests/screenshots.e2e.ts`;
+const testMatch = `${parentDir}tests/*.e2e.ts`;
 const outputDir = `${parentDir}tests/.report/results`;
 const outputFolder = `${parentDir}tests/.report/report`;
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{projectName}/{arg}{ext}';
