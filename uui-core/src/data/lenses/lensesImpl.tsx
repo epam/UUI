@@ -1,5 +1,5 @@
 import { IImmutableMap, IMap, Metadata } from '../../types';
-import { cloneMap } from '../processing/views/tree/newTree';
+import { cloneMap } from '../processing';
 import { blankValidationState } from '../validation';
 import { ValidationState } from './types';
 

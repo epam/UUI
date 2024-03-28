@@ -1,6 +1,6 @@
 import { useSimplePrevious } from '../../../../../../hooks';
 import { DataSourceState } from '../../../../../../types';
-import { TreeState } from '../../newTree';
+import { TreeState } from '../../treeState';
 import { getChecked, isSelectedOrCheckedChanged } from '../strategies/checked';
 import { useUpdateTree } from './useUpdateTree';
 

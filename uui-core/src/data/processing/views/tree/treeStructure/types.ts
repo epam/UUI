@@ -1,4 +1,4 @@
-import { NOT_FOUND_RECORD } from '../../constants';
+import { NOT_FOUND_RECORD } from '../constants';
 
 export interface IItemsAccessor<TItem, TId> {
     get: (id: TId) => TItem | typeof NOT_FOUND_RECORD;

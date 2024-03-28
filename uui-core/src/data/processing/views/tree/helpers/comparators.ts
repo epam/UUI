@@ -1,4 +1,4 @@
-import { ApplySortOptions } from '../newTree/treeState/types';
+import { ApplySortOptions } from '../treeState/types';
 
 export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => {
     const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;

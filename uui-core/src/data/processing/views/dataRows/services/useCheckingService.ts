@@ -3,9 +3,10 @@ import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
 import { ITree, NOT_FOUND_RECORD } from '../../tree';
 import { CommonDataSourceConfig, GetItemStatus } from '../../tree/hooks/strategies/types';
 import { CascadeSelectionService } from './useCascadeSelectionService';
-import { CheckingHelper, FAILED_RECORD } from '../../tree/newTree';
+import { FAILED_RECORD } from '../../tree';
 import { isInProgress } from '../../helpers';
 import { buildParentsLookup, idToKey } from './buildParentsLookup';
+import { CheckingHelper } from '../../tree/treeStructure';
 
 /**
  * Checking service configuration.

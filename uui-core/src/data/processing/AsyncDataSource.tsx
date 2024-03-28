@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
-import { useCascadeSelectionService, useDataRows, useTree } from './views';
+import { useCascadeSelectionService, useDataRows, useTree, newMap } from './views';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { AsyncListViewProps } from './views/types';
-import { newMap } from './views/tree/newTree';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 

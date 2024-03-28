@@ -1,5 +1,5 @@
 import { TreeStructure } from '../TreeStructure';
-import { getSearchFilter } from '../../../../../../querying';
+import { getSearchFilter } from '../../../../../querying';
 import sortBy from 'lodash.sortby';
 import { ApplySearchToTreeSnapshotOptions, SearchOptions } from './types';
 

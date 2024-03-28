@@ -5,9 +5,9 @@ import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector } from '../../common';
-import { TreeState } from '../../../newTree';
+import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
-import { getSelectedAndChecked } from '../../../newTree/treeStructure';
+import { getSelectedAndChecked } from '../../../treeStructure';
 import { isSelectedOrCheckedChanged } from '../checked';
 
 export function useLazyTree<TItem, TId, TFilter = any>(

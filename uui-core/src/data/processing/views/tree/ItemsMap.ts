@@ -1,5 +1,5 @@
 import { IImmutableMap, IMap } from '../../../../types';
-import { cloneMap, newMap } from './newTree';
+import { cloneMap, newMap } from './helpers';
 
 export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 

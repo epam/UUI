@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { PlainTreeProps } from './types';
-import { TreeState } from '../../../newTree';
+import { TreeState } from '../../../treeState';
 import { SharedItemsState } from '../types';
 
 export interface UseCreateTreeProps<TItem, TId, TFilter = any> extends

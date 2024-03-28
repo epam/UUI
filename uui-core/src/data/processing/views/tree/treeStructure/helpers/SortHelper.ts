@@ -1,4 +1,4 @@
-import { buildSorter } from '../../../helpers';
+import { buildSorter } from '../../helpers';
 import { TreeStructure } from '../TreeStructure';
 import { SortOptions } from './types';
 

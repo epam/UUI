@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { TreeState } from '../../../newTree';
+import { TreeState } from '../../../treeState';
 import { AsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
 import { useSimplePrevious } from '../../../../../../../hooks';

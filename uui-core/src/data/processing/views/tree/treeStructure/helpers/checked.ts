@@ -1,4 +1,4 @@
-import { DataSourceState } from '../../../../../../../types';
+import { DataSourceState } from '../../../../../../types';
 
 export const getSelectedAndChecked = <TId>(dataSourceState: DataSourceState<any, TId>) => {
     let checked: TId[] = [];

@@ -1,6 +1,6 @@
-import { ItemsMap } from '../../ItemsMap';
-import { NOT_FOUND_RECORD } from '../../constants';
-import { IItemsAccessor } from './types';
+import { ItemsMap } from './ItemsMap';
+import { NOT_FOUND_RECORD } from './constants';
+import { IItemsAccessor } from './treeStructure/types';
 
 export class ItemsAccessor<TItem, TId> implements IItemsAccessor<TItem, TId> {
     constructor(

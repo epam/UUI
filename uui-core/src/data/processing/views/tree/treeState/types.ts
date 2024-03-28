@@ -1,6 +1,6 @@
-import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../../types';
-import { LazyListViewProps } from '../../../types';
-import { ItemsMap } from '../../ItemsMap';
+import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../types';
+import { LazyListViewProps } from '../../types';
+import { ItemsMap } from '../ItemsMap';
 import { TreeStructure } from '../treeStructure';
 
 export interface LoadTreeOptions<TItem, TId, TFilter>

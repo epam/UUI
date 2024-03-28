@@ -3,8 +3,9 @@ import { usePlainTree } from '../usePlainTree';
 import { DataQueryFilter, DataSourceState } from '../../../../../../../../types';
 import { LocationItem } from '../../../../../../__tests__/mocks';
 import { demoData } from '@epam/uui-docs';
-import { NOT_FOUND_RECORD, TreeStructure } from '../../../../newTree';
+import { NOT_FOUND_RECORD } from '../../../../exposed';
 import { ItemsStorage } from '../../../../ItemsStorage';
+import { TreeStructure } from '../../../../treeStructure';
 
 describe('usePlainTree', () => {
     let dataSourceState: DataSourceState<DataQueryFilter<LocationItem>, string>;

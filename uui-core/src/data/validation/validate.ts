@@ -12,6 +12,10 @@ const isIterable = <U>(value: U): value is Iterable<U> => typeof value === 'obje
 const shouldAccessWithGet = <U>(value: U): value is IterableWithGet<U> => typeof value === 'object' && 'get' in value;
 
 const getValue = <U extends {}>(key: string, value: U) => {
+    if (value === null || typeof value !== 'object') {
+        return undefined;
+    }
+
     if (shouldAccessWithGet(value)) {
         return value.get(key);
     }

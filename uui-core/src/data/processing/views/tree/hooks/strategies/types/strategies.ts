@@ -3,7 +3,7 @@ import { STRATEGIES } from '../constants';
 import { LazyTreeProps } from '../lazyTree/types';
 import { PlainTreeProps } from '../../strategies/plainTree/types';
 import { AsyncTreeProps } from '../asyncTree/types';
-import { ITree } from '../../../newTree/ITree';
+import { ITree } from '../../../ITree';
 import { RecordStatus } from '../../../types';
 
 export type Strategies = typeof STRATEGIES[keyof typeof STRATEGIES];

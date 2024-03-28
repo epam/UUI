@@ -1,9 +1,10 @@
-import { NOT_FOUND_RECORD, newMap } from '../newTree';
+import { NOT_FOUND_RECORD } from '../constants';
+import { newMap } from './map';
 import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions, SortedPatchByParentId } from '../../../../../types';
 import { SortConfig } from '../hooks/strategies/types';
 import { buildComparators, composeComparetors } from '../helpers';
 import { PatchOrdering } from '../PatchOrderingMap';
-import { ITree } from '../newTree/ITree';
+import { ITree } from '../ITree';
 
 const groupByParentId = <TItem, TId>(
     patchItems: IMap<TId, TItem> | IImmutableMap<TId, TItem> | undefined,

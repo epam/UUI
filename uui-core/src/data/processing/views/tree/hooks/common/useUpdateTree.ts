@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { TreeState } from '../../newTree';
+import { TreeState } from '../../treeState';
 import { useSimplePrevious } from '../../../../../../hooks';
 import { useDepsChanged } from './useDepsChanged';
 

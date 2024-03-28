@@ -1,13 +1,13 @@
-import { IImmutableMap, IMap } from '../../../../../../../types';
-import { numberToOrder } from '../../../../../../../helpers';
-import { buildComparators, composeComparetors } from '../../../helpers';
+import { IImmutableMap, IMap } from '../../../../../../types';
+import { numberToOrder } from '../../../../../../helpers';
+import { buildComparators, composeComparetors } from '../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
-import { ItemsAccessor } from '../ItemsAccessor';
+import { ItemsAccessor } from '../../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap } from './map';
-import { merge } from './merge';
+import { cloneMap } from '../../helpers/map';
+import { merge } from '../../helpers/merge';
 import { PatchItemsIntoTreeStructureOptions } from './types';
-import { ItemsMap } from '../../../ItemsMap';
+import { ItemsMap } from '../../ItemsMap';
 
 interface ApplyPatchWithSortingOptions<TItem, TId> {
     comparator: (a: TItem, b: TItem) => number;

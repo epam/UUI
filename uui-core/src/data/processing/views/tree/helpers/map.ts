@@ -1,5 +1,5 @@
-import { IImmutableMap, IMap } from '../../../../../../../types';
-import { ITreeParams } from '../types';
+import { IImmutableMap, IMap } from '../../../../../types';
+import { ITreeParams } from '../treeStructure/types';
 
 export function cloneMap<T extends IMap<any, any> | IImmutableMap<any, any>>(map: T): T extends IMap<infer TKey, infer TValue>
     ? IMap<TKey, TValue>
