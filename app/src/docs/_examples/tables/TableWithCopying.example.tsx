@@ -107,9 +107,11 @@ export default function ProjectTimeReportDemo() {
 
     const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
+    const items = useMemo(() => Object.values(value.items), [value.items]); // TODO: discuss this memo for preventing infinite loop
+    
     const dataSource = useArrayDataSource<ProjectReport, number, DataQueryFilter<ProjectReport>>(
         {
-            items: Object.values(value.items),
+            items,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
         },

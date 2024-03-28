@@ -28,10 +28,20 @@ export type Icon = React.FC<any>;
 export interface IMap<TKey, TValue> {
     constructor: Function;
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
-    get(key: TKey): TValue;
-    set(key: TKey, value: TValue): IMap<TKey, TValue>;
-    has(key: TKey): boolean;
+    get(key: TKey): TValue | undefined;
+    set(key: TKey, value?: TValue): IMap<TKey, TValue>;
     delete(key: TKey): boolean;
+    has(key: TKey): boolean;
+    size: number;
+}
+
+export interface IImmutableMap<TKey, TValue> {
+    constructor: Function;
+    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    get(key: TKey): TValue | undefined;
+    set(key: TKey, value?: TValue): IImmutableMap<TKey, TValue>;
+    delete(key: TKey): IImmutableMap<TKey, TValue>;
+    has(key: TKey): boolean;
     size: number;
 }
 

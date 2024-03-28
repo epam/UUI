@@ -1,6 +1,6 @@
 {
   "version": "5.6.1",
-  "timestamp": "2024-03-05",
+  "timestamp": "2024-03-11",
   "sizes": {
     "templateApp": {
       "css": 283944,
@@ -36,15 +36,15 @@
     },
     "@epam/uui-core": {
       "css": 0,
-      "js": 280218
+      "js": 318874
     },
     "@epam/uui-db": {
       "css": 0,
       "js": 43327
     },
     "@epam/uui-docs": {
-      "css": 3612,
-      "js": 175560
+      "css": 3096,
+      "js": 194058
     },
     "@epam/uui-editor": {
       "css": 12940,

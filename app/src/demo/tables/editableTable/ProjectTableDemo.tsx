@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -39,7 +39,7 @@ let savedValue: FormState = { items: getDemoTasks() };
 
 export function ProjectTableDemo() {
     const {
-        lens, value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue,
+        value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
     } = useForm<FormState>({
         value: savedValue,
         onSave: async (data) => {
@@ -52,7 +52,6 @@ export function ProjectTableDemo() {
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
-    // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         let tempRelativeTask = relativeTask;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
@@ -117,17 +116,17 @@ export function ProjectTableDemo() {
         [],
     );
 
-    const { rows, listProps } = useList(
+    const { tree, ...restProps } = useTree<Task, number>(
         {
-            type: 'array',
-            listState: tableState,
-            setListState: setTableState,
+            type: 'plain',
+            dataSourceState: tableState,
+            setDataSourceState: setTableState,
             items: Object.values(value.items),
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getRowOptions: (task) => ({
-                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {
@@ -138,8 +137,12 @@ export function ProjectTableDemo() {
                 },
             }),
         },
-        [],
+        [value.items],
     );
+
+    const { rows, listProps } = useDataRows({
+        tree, ...restProps,
+    });
 
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
@@ -251,7 +254,7 @@ export function ProjectTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ () => rows }
+                rows={ rows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }

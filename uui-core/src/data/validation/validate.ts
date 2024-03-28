@@ -5,13 +5,31 @@ import { ValidationState } from '../lenses';
 export type ValidationMode = 'change' | 'save';
 export const blankValidationState: ValidationState = {};
 
+type Iterable<U> = U & { [Symbol.iterator](): IterableIterator<[string, unknown]> };
+type IterableWithGet<U> = Iterable<U> & { get(key: string): unknown };
+
+const isIterable = <U>(value: U): value is Iterable<U> => typeof value === 'object' && Symbol.iterator in value;
+const shouldAccessWithGet = <U>(value: U): value is IterableWithGet<U> => typeof value === 'object' && 'get' in value;
+
+const getValue = <U extends {}>(key: string, value: U) => {
+    if (value === null || typeof value !== 'object') {
+        return undefined;
+    }
+
+    if (shouldAccessWithGet(value)) {
+        return value.get(key);
+    }
+
+    return value[key as keyof U];
+};
+
 export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ValidationState => {
     const validateRec = <U>(innerValue: U, path: U[], innerMeta: Metadata<U>, innerInitValue: U): ValidationState => {
         const itemResult: ValidationState = validateValue(innerValue, path, innerMeta);
         const validateItem = (key: string, validationMeta: Metadata<any>) => {
-            const childValue = innerValue && (innerValue as any)[key];
+            const childValue = getValue(key, innerValue);
             const newPath = [childValue, ...path];
-            const initChildValue = innerInitValue && (innerInitValue as any)[key];
+            const initChildValue = getValue(key, innerInitValue);
             const isChildChanged = childValue !== initChildValue;
 
             let childResult;
@@ -40,8 +58,14 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
         }
 
         if (innerMeta.all && innerValue != null) {
-            for (const key in innerValue) {
-                validateItem(key, innerMeta.all);
+            if (!Array.isArray(innerValue) && isIterable(innerValue)) {
+                for (const [key] of innerValue) {
+                    validateItem(key, innerMeta.all);
+                }
+            } else {
+                for (const key in innerValue) {
+                    validateItem(key, innerMeta.all);
+                }
             }
         }
 

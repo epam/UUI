@@ -59,6 +59,7 @@ export function MasterDetailedTable() {
                 .addDefaults({
                     getType: ({ __typename }) => __typename,
                     getGroupBy: () => tableStateApi.tableState.filter?.groupBy,
+                    complexIds: true,
                     backgroundReload: true,
                     fetchStrategy: 'parallel',
                     cascadeSelection: true,

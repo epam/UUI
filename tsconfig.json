@@ -25,7 +25,8 @@
     },
     "baseUrl": ".",
     "isolatedModules": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "stripInternal": true
   },
   "exclude": [
     "node_modules",

@@ -87,7 +87,7 @@ describe('applyColumnsConfig', () => {
         const config: ColumnsConfig = {
             1: { isVisible: false, fix: 'right', order: 'v', width: 100 },
             2: { isVisible: true, order: 's', fix: undefined, width: 200 },
-            3: { isVisible: true, order: 'm', fix: 'left', width: 300 },
+            3: { isVisible: true, order: 'u', fix: 'left', width: 300 },
         };
 
         const result = getColumnsConfig(columns, config);

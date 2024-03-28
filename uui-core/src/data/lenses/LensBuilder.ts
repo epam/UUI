@@ -1,7 +1,7 @@
 import { IEditable } from '../../types';
 import * as Impl from './lensesImpl';
 import { ILensImpl } from './lensesImpl';
-import { ILens, ArrayElement } from './types';
+import { ILens, ArrayElement, IMapElement } from './types';
 
 export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused> {
     public readonly handleValueChange: (newValue: TFocused) => void = null;
@@ -13,6 +13,10 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
 
     public get(): TFocused {
         return this.lens.get(null);
+    }
+
+    public key<TId>(id: TId): LensBuilder<TRoot, IMapElement<TFocused>> {
+        return this.compose(Impl.key(id) as any, id);
     }
 
     public set(value: TFocused) {

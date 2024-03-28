@@ -9,6 +9,10 @@ export const setupJsDom = setupJsDomAll.setupJsDom as (global?: any, params?: { 
 export * from './src/extensions/testingLibraryReactExt';
 // Utility function to mock adaptive panel items width
 export { mockAdaptivePanelLayout } from './src/mocks/adaptivePanelMockUtils';
+
+// Utility function to create mocked dataSources
+export * from './src/mocks/dataSources';
+
 // mocks
 export { mockReactPortalsForSnapshots } from './src/mocks/reactPortalsMockUtils';
 export { SvgMock } from './src/mocks/svgrMock';

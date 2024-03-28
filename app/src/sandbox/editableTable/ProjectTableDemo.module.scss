@@ -1,0 +1,20 @@
+.container {
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+
+.search {
+    align-self: flex-start;
+}
+
+.divider {
+    border-left: 1px solid var(--uui-divider);
+    height: 30px;
+}
+
+.statusIcon {
+    padding-left: 6px;
+    width: 10px;
+    height: 10px;
+}

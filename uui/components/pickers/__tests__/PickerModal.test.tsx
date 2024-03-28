@@ -1,10 +1,9 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { PickerModalTestObject, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest } from '@epam/uui-test-utils';
+import { PickerModalTestObject, act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor } from '@epam/uui-test-utils';
 import { PickerModal, PickerModalProps } from '../PickerModal';
-import { mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType } from './mocks';
+import { Item, mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
 import { Button, Modals } from '@epam/uui-components';
 import { CascadeSelection, UuiContext } from '@epam/uui-core';
-import { act } from 'react-dom/test-utils';
 
 const onValueChangeMock = jest.fn();
 
@@ -48,8 +47,10 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
                         );
                     })
                     .then((newSelection) => {
-                        onValueChange(newSelection as any);
-                        onValueChangeMock(newSelection);
+                        act(() => {
+                            onValueChange(newSelection as any);
+                            onValueChangeMock(newSelection);
+                        });
                     })
                     .catch(() => {});
             }, [context.uuiModals, initialValue]);
@@ -116,7 +117,7 @@ describe('PickerModal', () => {
     });
 
     it('should open body', async () => {
-        const { dom, result } = await setupPickerModalForTest({
+        const { dom, result } = await setupPickerModalForTest<Item, number>({
             selectionMode: 'single',
             dataSource: mockSmallDataSourceAsync,
             getName: ({ name }) => name,
@@ -155,9 +156,7 @@ describe('PickerModal', () => {
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
-            });
+            await PickerModalTestObject.clickSelectItems();
 
             expect(PickerModalTestObject.queryDialog()).not.toBeInTheDocument();
 
@@ -202,9 +201,7 @@ describe('PickerModal', () => {
             const checkedOption = await PickerModalTestObject.findSelectedOption();
             expect(checkedOption).toEqual('A1');
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
-            });
+            await PickerModalTestObject.clickSelectItems();
 
             expect(PickerModalTestObject.queryDialog()).not.toBeInTheDocument();
 
@@ -221,7 +218,7 @@ describe('PickerModal', () => {
             [[false], [true], ['implicit'], ['explicit']],
         )
         ('should pick single element with cascadeSelection = %s', async (cascadeSelection) => {
-            const { dom } = await setupPickerModalForTest({
+            const { dom } = await setupPickerModalForTest<TestTreeItem, number>({
                 getName: ({ name }) => name,
                 selectionMode: 'single',
                 cascadeSelection,
@@ -233,12 +230,10 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
             // Check parent
             await PickerModalTestObject.clickOptionByText('Parent 2');
-
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith(2);
             });
-
-            expect(onValueChangeMock).toHaveBeenLastCalledWith(2);
         });
     });
 
@@ -255,19 +250,20 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             await PickerModalTestObject.clickOptionCheckbox('A1');
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             });
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
 
             fireEvent.click(dom.toggler);
+            
             await PickerModalTestObject.clickOptionCheckbox('A1+');
+            await PickerModalTestObject.clickSelectItems();
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3]);
             });
-
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3]);
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
@@ -277,7 +273,8 @@ describe('PickerModal', () => {
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
             await PickerModalTestObject.clickOptionCheckbox('A1+');
-            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']);
+    
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']); 
         });
 
         it('[valueType entity] should select & clear several options', async () => {
@@ -294,14 +291,14 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionCheckbox('A1+');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
-            });
+            await PickerModalTestObject.clickSelectItems();
 
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([
-                { id: 2, level: 'A1', name: 'Elementary' },
-                { id: 3, level: 'A1+', name: 'Elementary+' },
-            ]);
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([
+                    { id: 2, level: 'A1', name: 'Elementary' },
+                    { id: 3, level: 'A1+', name: 'Elementary+' },
+                ]);
+            });
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
@@ -312,17 +309,17 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionCheckbox('A1');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1+']);
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
-            });
+            await PickerModalTestObject.clickSelectItems();
 
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([
-                { id: 3, level: 'A1+', name: 'Elementary+' },
-            ]);
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([
+                    { id: 3, level: 'A1+', name: 'Elementary+' },
+                ]);
+            });
         });
 
         it('should pick single element with cascadeSelection = false', async () => {
-            const { dom } = await setupPickerModalForTest({
+            const { dom } = await setupPickerModalForTest<TestTreeItem, number>({
                 selectionMode: 'multi',
                 cascadeSelection: false,
                 dataSource: mockTreeLikeDataSourceAsync,
@@ -334,13 +331,15 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             expect(await PickerModalTestObject.hasOptions()).toBeTruthy();
+
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             });
 
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             fireEvent.click(dom.toggler);
 
             await PickerModalTestObject.waitForOptionsToBeReady();
@@ -352,7 +351,7 @@ describe('PickerModal', () => {
             [[true], ['explicit']],
         )
         ('should pick multiple elements with cascadeSelection = %s', async (cascadeSelection) => {
-            const { dom } = await setupPickerModalForTest({
+            const { dom } = await setupPickerModalForTest<TestTreeItem, number>({
                 getName: ({ name }) => name,
                 selectionMode: 'multi',
                 cascadeSelection,
@@ -369,13 +368,13 @@ describe('PickerModal', () => {
             // Unfold parent
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
 
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+
+            await waitFor(() => {
+                // Test if checkboxes are checked/unchecked
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
             });
-
-            // Test if checkboxes are checked/unchecked
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
-
+            
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
@@ -387,12 +386,13 @@ describe('PickerModal', () => {
 
             // // Check child
             await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+
+            await waitFor(() => {
+                // Test if checkboxes are checked/unchecked
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2.1, 2.3]);
             });
 
-            // // Test if checkboxes are checked/unchecked
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2.1, 2.3]);
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
@@ -403,7 +403,7 @@ describe('PickerModal', () => {
         });
 
         it('should pick single element with cascadeSelection = implicit', async () => {
-            const { dom } = await setupPickerModalForTest({
+            const { dom } = await setupPickerModalForTest<TestTreeItem, number>({
                 getName: ({ name }) => name,
                 selectionMode: 'multi',
                 cascadeSelection: 'implicit',
@@ -419,10 +419,10 @@ describe('PickerModal', () => {
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
             // Unfold parent
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             });
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
@@ -434,11 +434,12 @@ describe('PickerModal', () => {
 
             // Check child
             await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+
+            await waitFor(() => {
+                // Test if checkboxes are checked/unchecked
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2.1, 2.3]);
             });
-            // Test if checkboxes are checked/unchecked
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2.1, 2.3]);
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
@@ -460,10 +461,11 @@ describe('PickerModal', () => {
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickSelectAllOptions();
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await PickerModalTestObject.clickSelectItems();
+
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
             });
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
@@ -474,9 +476,7 @@ describe('PickerModal', () => {
             );
 
             await PickerModalTestObject.clickClearAllOptions();
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
-            });
+            await PickerModalTestObject.clickSelectItems();
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
@@ -501,20 +501,26 @@ describe('PickerModal', () => {
 
             await PickerModalTestObject.clickShowOnlySelected();
 
-            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
-            await act(async () => {
-                await PickerModalTestObject.clickSelectItems();
+            await waitFor(async () => {
+                expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             });
-            expect(onValueChangeMock).toHaveBeenLastCalledWith([4, 2, 6, 8]);
+
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
+            await PickerModalTestObject.clickSelectItems();
+            
+            await waitFor(() => {
+                expect(onValueChangeMock).toHaveBeenLastCalledWith([4, 2, 6, 8]);
+            });
 
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickShowOnlySelected();
+            await waitFor(async () => {
+                expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
+            });
 
-            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
         });
     });

@@ -1,4 +1,5 @@
-import { Metadata } from '../../types';
+import { IImmutableMap, IMap, Metadata } from '../../types';
+import { cloneMap } from '../processing';
 import { blankValidationState } from '../validation';
 import { ValidationState } from './types';
 
@@ -54,6 +55,34 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return {
                 isDisabled, isReadonly, isRequired, ...metadataProps[name],
             };
+        },
+    };
+}
+
+export function key<TItem, TId>(id: TId): ILensImpl<IMap<TId, TItem> | IImmutableMap<TId, TItem>, TItem> {
+    return {
+        get(big: IMap<TId, TItem> | IImmutableMap<TId, TItem>) {
+            if (big == null) {
+                return undefined;
+            } else {
+                return big.get(id);
+            }
+        },
+        set(big: IMap<TId, TItem> | IImmutableMap<TId, TItem>, small: TItem) {
+            const newMap = cloneMap(big);
+            return newMap.set(id, small);
+        },
+        getValidationState(big: ValidationState) {
+            const validationStateProps = (big || blankValidationState).validationProps || {};
+            return validationStateProps[id as string];
+        },
+        getMetadata(big: Metadata<IMap<TId, TItem> | IImmutableMap<TId, TItem>>) {
+            const metadata: Metadata<IMap<TId, TItem> | IImmutableMap<TId, TItem>> = big || { all: { props: {} } };
+            const metadataProps = metadata.all;
+            const { isDisabled, isRequired, isReadonly } = metadata;
+            return {
+                ...metadataProps, isDisabled, isReadonly, isRequired,
+            } as any;
         },
     };
 }

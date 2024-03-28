@@ -23,6 +23,8 @@ import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
 import { PalettePage } from './tokens/palette/palettePage';
+import { ReactQueryLocationsTable } from './reactQueryLocationsTable';
+import { ProjectTableDemo } from './editableTable';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -32,6 +34,8 @@ export function SandboxPage() {
             { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
             { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
             { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
+            { id: 'editableTableDemo', name: 'Editable Table', component: ProjectTableDemo },
+            { id: 'reactQueryLocationsTableDemo', name: 'React-query Loactions Demo', component: ReactQueryLocationsTable },
             { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
             { id: 'responsive', name: 'Responsive', component: Responsive },

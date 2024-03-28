@@ -121,7 +121,9 @@ export class GroupingConfigBuilder<
         LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TGroupBy>[TType], TId[TType], TFilter[TType]>['api']
         >
     ) {
-        return this.entitiesConfig[this.defaultEntity].api(...apiArgs);
+        const [request, context] = apiArgs;
+        const response = await this.entitiesConfig[this.defaultEntity].api(request, context);
+        return this.getResultsWithMeta(response, context?.parent, []);
     }
 
     private getGroupByPathForParent(

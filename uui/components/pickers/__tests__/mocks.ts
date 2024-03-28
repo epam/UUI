@@ -64,7 +64,7 @@ export const mockSmallDataSource = new ArrayDataSource({
     items: smallDataSet,
 });
 
-export const mockSmallDataSourceAsync = new AsyncDataSource({
+export const mockSmallDataSourceAsync = new AsyncDataSource<Item, number>({
     api: async () => {
         await delay(50);
         return smallDataSet;

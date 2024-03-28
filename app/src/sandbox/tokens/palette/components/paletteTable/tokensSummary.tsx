@@ -19,7 +19,7 @@ export function TokensSummary(props: TokensSummaryProps) {
         [TThemeTokenValueType.direct]: 'Direct',
         [TThemeTokenValueType.chain]: 'Chain of aliases',
     };
-    const expectedValueDs = useArrayDataSource<{ id: TThemeTokenValueType, name: string }, string, never>(
+    const expectedValueDs = useArrayDataSource<{ id: TThemeTokenValueType, name: string }, string, any>(
         {
             items: Object.values(TThemeTokenValueType).map((id) => ({ id, name: MODE_LABELS[id] })),
         },

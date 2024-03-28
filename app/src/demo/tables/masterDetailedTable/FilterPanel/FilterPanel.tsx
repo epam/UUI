@@ -10,13 +10,13 @@ import { FiltersBlock } from './FiltersBlock';
 // import { ColumnsBlock } from './ColumnsBlock';
 import { GroupingBlock } from './GroupingBlock';
 
-export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState<TFilter> {
+export interface IFilterPanelProps<TFilter> extends ITableState<TFilter> {
     columns: DataColumnProps[];
     filters: TableFiltersConfig<TFilter>[];
     closePanel(): void;
 }
 
-function FilterPanel<TFilter = any>(props: IFilterPanelProps<TFilter>) {
+function FilterPanel<TFilter extends { groupBy?: string[] } = any>(props: IFilterPanelProps<TFilter>) {
     return (
         <>
             <FlexRow borderBottom size="48" padding="18">

@@ -49,7 +49,14 @@ describe('DataPickerBody', () => {
                 maxHeight={ 800 }
                 searchSize="48"
                 rows={ rows.map((props) => (
-                    <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />
+                    <DataPickerRow
+                        key={ props.id }
+                        renderItem={ (item: string) => <div>{item}</div> }
+                        id={ props.id }
+                        rowKey={ props.rowKey }
+                        index={ props.id }
+                        value={ props.value?.level }
+                    />
                 )) }
                 onKeyDown={ jest.fn }
                 rowsCount={ 7 }

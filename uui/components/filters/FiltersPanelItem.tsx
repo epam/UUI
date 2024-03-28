@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import dayjs from 'dayjs';
 import cx from 'classnames';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig } from '@epam/uui-core';
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
@@ -23,11 +23,21 @@ IEditable<any> & {
     size?: '24' | '30' | '36' | '42' | '48';
 };
 
+function useView(props: FiltersToolbarItemProps) {
+    const forceUpdate = useForceUpdate();
+
+    let useViewFn;
+    if (props.type === 'singlePicker' || props.type === 'multiPicker') {
+        useViewFn = props.dataSource.useView.bind(props.dataSource);
+    }
+    
+    return useViewFn?.({}, forceUpdate);
+}
+
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
-
     const popperModifiers: Modifier<any>[] = useMemo(() => {
         const modifiers: Modifier<any>[] = [
             {
@@ -61,7 +71,6 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
     const predicateName: string = React.useMemo(() => predicate && props.predicates.find((p) => p.predicate === predicate).name, [predicate]);
-    const forceUpdate = useForceUpdate();
 
     useEffect(() => {
         if (props.predicates && Object.keys(props.value || {})[0] && Object.keys(props.value || {})[0] !== predicate) {
@@ -170,19 +179,19 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return config.getName ? config.getName(item.value) : item.value.name;
     };
 
+    const view = useView(props);
+
     const getTogglerValue = () => {
         const currentValue = getValue();
         const defaultFormat = 'MMM DD, YYYY';
 
         switch (props.type) {
             case 'multiPicker': {
-                const view = props.dataSource.getView({}, forceUpdate);
                 let isLoading = false;
-
                 const selection = currentValue
                     ? currentValue?.slice(0, maxCount).map((i: any) => {
                         const item = view.getById(i, null);
-                        isLoading = item.isLoading;
+                        isLoading = item?.isLoading;
                         return getPickerItemName(item, props);
                     })
                     : currentValue;
@@ -204,7 +213,6 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 return { selection: [selection] };
             }
             case 'singlePicker': {
-                const view = props.dataSource.getView({}, forceUpdate);
                 if (currentValue === null || currentValue === undefined) {
                     return { selection: undefined };
                 }

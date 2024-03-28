@@ -1,0 +1,1 @@
+export { InfoSidebarPanel } from './InfoSidebarPanel';

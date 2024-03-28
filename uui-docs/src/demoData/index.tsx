@@ -8,6 +8,7 @@ import { slateInitialValue } from './slateInitialValue';
 import { slateSerializationInitialData } from './slateSerializationInitialData';
 import { slateMdSerializationInitialData } from './slateMdSerializationInitialData';
 import { workloadItems } from './workload';
+import { locations } from './locationsData';
 
 export const demoData = {
     featureClasses,
@@ -20,4 +21,5 @@ export const demoData = {
     slateSerializationInitialData,
     slateMdSerializationInitialData,
     workloadItems,
+    locations,
 };

@@ -7,8 +7,10 @@ import {
 } from '@epam/uui';
 import { getFilters } from './filters';
 import {
-    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
+    useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
     DataQueryFilter,
+    useTree,
+    useDataRows,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -58,22 +60,24 @@ export function FilteredTable() {
         return result;
     }, [svc.api.demo]);
 
-    const dataSource = useLazyDataSource<Person, number, Person>(
-        {
-            api: api,
-            selectAll: false,
-            backgroundReload: true,
-        },
-        [],
-    );
-
-    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
+    const { tree, ...restProps } = useTree<Person, number>({ 
+        type: 'lazy',
+        api: api,
+        getId: (item) => item.id,
+        selectAll: false,
+        backgroundReload: true,
+        dataSourceState: tableStateApi.tableState,
+        setDataSourceState: tableStateApi.setTableState,
         rowOptions: {
             isSelectable: true,
             onClick: (rowProps) => {
                 rowProps.onSelect(rowProps);
             },
         },
+    }, []);
+
+    const { rows, listProps } = useDataRows({ 
+        tree, ...restProps,
     });
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({
@@ -84,8 +88,6 @@ export function FilteredTable() {
     const {
         setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi
     } = tableStateApi;
-
-    const listProps = view.getListProps();
 
     return (
         <div className={ css.container }>
@@ -105,7 +107,7 @@ export function FilteredTable() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ view.getVisibleRows }
+                rows={ rows }
                 columns={ personColumns }
                 value={ tableStateApi.tableState }
                 onValueChange={ tableStateApi.setTableState }

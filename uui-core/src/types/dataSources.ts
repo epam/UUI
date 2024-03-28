@@ -1,5 +1,8 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
+import { IImmutableMap, IMap } from './objects';
+import { PatchOrderingType } from '../data';
+import { SortConfig } from '../data/processing/views/tree/hooks/strategies/types';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -69,9 +72,12 @@ export interface IDataSource<TItem, TId, TFilter> {
     getId(item: TItem): TId;
     getById(id: TId): TItem | void;
     setItem(item: TItem): void;
-    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
-    useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any, deps?: any[]): IDataSourceView<TItem, TId, TFilter>;
-    unsubscribeView(onValueChange: (val: DataSourceState<any, TId>) => any): void;
+    useView(
+        value: DataSourceState<any, TId>,
+        onValueChange: SetDataSourceState<TFilter, TId>,
+        options?: any,
+        deps?: any[],
+    ): IDataSourceView<TItem, TId, TFilter>;
 }
 
 /** Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc. */
@@ -117,6 +123,13 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     foldAll?: boolean;
 }
 
+/**
+ * DataSource state update handler.
+ */
+export type SetDataSourceState<TFilter = Record<string, any>, TId = any> = (
+    updateState: (prevState: DataSourceState<TFilter, TId>) => DataSourceState<TFilter, TId>
+) => void;
+
 export const CascadeSelectionTypes = {
     IMPLICIT: 'implicit',
     EXPLICIT: 'explicit',
@@ -124,8 +137,69 @@ export const CascadeSelectionTypes = {
 
 export type CascadeSelection = boolean | typeof CascadeSelectionTypes.EXPLICIT | typeof CascadeSelectionTypes.IMPLICIT;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface BaseListViewProps<TItem, TId, TFilter> {
+/**
+ * Type of the position an item to be placed to.
+ */
+export type PositionType = 'initial' | 'top' | 'bottom';
+
+/**
+ * Position an item should be placed to.
+ */
+export type Position<TId> = PositionType | { after: TId };
+
+/**
+ * Patch tree configuration.
+ */
+export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
+    /**
+     * To enable deleting of the items, it is required to specify getter for deleted state.
+     */
+    isDeleted?(item: TItem): boolean;
+    /**
+     * Provides information about the relative position of the new item.
+     * @param item - new item, position should be got for.
+     * @returns relative position in the list of items.
+     * @default PatchOrdering.TOP
+     */
+    getNewItemPosition?: (item: TItem) => PatchOrderingType;
+    /**
+     * Provides information about the temporary order of the new item.
+     * @param item - new item, temporary order should be got for.
+     * @returns temporary order
+     */
+    getItemTemporaryOrder?: (item: TItem) => string;
+    /**
+     * Items, which should be added/updated/deleted from the tree.
+     */
+    patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+}
+
+export type SortedPatchByParentId<TItem, TId> = IMap<
+TId,
+{
+    top: TId[],
+    bottom: TId[],
+    updated: TId[],
+    moved: TId[],
+    withTempOrder: TId[],
+    updatedItemsMap: IMap<TId, TItem>,
+    newItems: TItem[],
+}
+>;
+
+/**
+ * Patching tree configuration.
+ */
+export interface ExtendedPatchItemsOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchItemsOptions<TItem, TId>, 'patchItems' | 'getNewItemPosition'> {
+    /**
+     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
+     */
+    sortedPatch?: SortedPatchByParentId<TItem, TId>,
+    patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+    sorting: DataSourceState<TFilter, TId>['sorting'];
+}
+
+export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
     /**
      * Should return unique ID of the TItem
      * If omitted, we assume that every TItem has and unique id in its 'id' field.
@@ -201,6 +275,12 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * If reloading is started, `view.getListProps` returns `isReloading` flag, set to `true`.
      */
     backgroundReload?: boolean;
+
+    /**
+     * Enables show selected only mode of the dataSource.
+     * If enabled, `useView` returns only selected rows from `IDataSourceView.getVisibleRows`.
+     */
+    showSelectedOnly?: boolean;
 }
 
 export type IDataSourceViewConfig = {
@@ -217,22 +297,10 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];
     getSelectedRowsCount(): number;
     reload(): void;
-    /**
-     * Activates IDataSourceView.
-     * After view activation, it becomes able to listen to updates.
-     */
-    activate(): void;
-    /**
-     * Deactivates IDataSourceView.
-     * After view deactivation, it becomes impossible to listen to updates.
-     */
-    deactivate(): void;
-    loadData(): void;
     clearAllChecked(): void;
-    _forceUpdate(): void;
+
     selectAll?: ICheckable;
 };
 

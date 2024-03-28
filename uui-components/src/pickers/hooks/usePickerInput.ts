@@ -26,12 +26,30 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const pickerInputState = usePickerInputState({
         dataSourceState: { visibleCount: initialRowsVisible },
     });
+
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged,
-        dataSourceState, setDataSourceState, showSelected, setShowSelected,
+        dataSourceState, setDataSourceState, setShowSelected,
     } = pickerInputState;
 
-    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
+    const defaultShouldShowBody = () => {
+        const searchPosition = props.searchPosition || 'input';
+        const isOpened = opened && !props.isDisabled;
+
+        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
+            const isEnoughSearchLength = dataSourceState.search
+                ? dataSourceState.search.length >= props.minCharsToSearch
+                : false;
+            return isEnoughSearchLength && isOpened;
+        }
+        return isOpened;
+    };
+
+    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
+
+    const showSelectedOnly = !shouldShowBody() || pickerInputState.showSelected;
+
+    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showSelectedOnly }, pickerInputState);
     const {
         context,
         view,
@@ -42,8 +60,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         isSingleSelect,
         getListProps,
         getName,
-        getSelectedRows,
         handleSelectionValueChange,
+        getSelectedRows,
     } = picker;
 
     const lens = useMemo(
@@ -126,21 +144,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         clearSelection();
     };
 
-    const defaultShouldShowBody = () => {
-        const searchPosition = props.searchPosition || 'input';
-        const isOpened = opened && !props.isDisabled;
-
-        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
-            const isEnoughSearchLength = dataSourceState.search
-                ? dataSourceState.search.length >= props.minCharsToSearch
-                : false;
-            return isEnoughSearchLength && isOpened;
-        }
-        return isOpened;
-    };
-
-    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
-
     const handlePickerInputKeyboard = (
         rows: DataRowProps<TItem, TId>[],
         e: React.KeyboardEvent<HTMLElement>,
@@ -222,14 +225,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const getRows = () => {
         if (!shouldShowBody()) return [];
 
-        let preparedRows: DataRowProps<TItem, TId>[];
-
-        if (!showSelected) {
-            preparedRows = view.getVisibleRows();
-        } else {
-            const { topIndex, visibleCount } = dataSourceState;
-            preparedRows = view.getSelectedRows({ topIndex, visibleCount });
-        }
+        const preparedRows = view.getVisibleRows();
 
         return preparedRows.map((rowProps) => {
             const newRowProps = { ...rowProps };
@@ -268,11 +264,15 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
-    const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
+    const selectedRows = useMemo(() => {
         const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
         const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        const selectedRows = getSelectedRows(itemsToTake);
+        return getSelectedRows(itemsToTake);
+    }, [view, dataSourceState.checked, props.maxItems]);
+
+    const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
+        const selectedRowsCount = view.getSelectedRowsCount();
         const {
             isDisabled,
             autoFocus,

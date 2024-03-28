@@ -10,7 +10,6 @@ import {
     useArrayDataSource,
     DataTableCellProps,
     RenderCellProps,
-    useList,
 } from '@epam/uui-core';
 import { useForm } from '@epam/promo';
 import * as promo from '@epam/promo';
@@ -282,11 +281,8 @@ export default function TableCellsStylesSandbox() {
         [skinName],
     );
 
-    const { rows, listProps } = useList(
+    const dataSource = useArrayDataSource(
         {
-            type: 'array',
-            listState: tableState,
-            setListState: setTableState,
             items,
             getId: ({ id: listId }) => listId,
             getRowOptions: (_: Item, index: number) => ({
@@ -296,6 +292,8 @@ export default function TableCellsStylesSandbox() {
         [],
     );
 
+    const view = dataSource.useView(tableState, setTableState, {});
+
     const renderRow = useCallback(
         (props: DataTableRowProps<Item, number>) => {
             return <skin.DataTableRow { ...props } />;
@@ -303,7 +301,7 @@ export default function TableCellsStylesSandbox() {
         [skinName],
     );
 
-    // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
+    // Render the table, passing the prepared data to it in form of getRows callback, list props (e.g. items counts)
     return (
         <skin.Panel key={ skinName } cx={ [css.wrapper, skinName !== 'uui' && css[`uui-theme-${skinName}`]] }>
             <skin.FlexRow>
@@ -318,8 +316,8 @@ export default function TableCellsStylesSandbox() {
                 </skin.FlexCell>
             </skin.FlexRow>
             <skin.DataTable
-                { ...listProps }
-                getRows={ () => rows }
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
                 value={ tableState }
                 onValueChange={ setTableState }
                 columns={ columns }
