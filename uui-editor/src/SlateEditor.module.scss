@@ -12,8 +12,15 @@
 }
 
 .editor {
-    padding: 0 24px;
+    // padding: 1px; fixes marging collapse https://github.com/epam/UUI/issues/1856
+    padding: 1px 24px 0;
+    margin-top: -1px;
     flex: 1;
+
+    // reverts https://github.com/ianstormtaylor/slate/pull/5423
+    span[data-slate-placeholder='true'] {
+        top: initial !important;
+    }
 }
 
 .container {
@@ -80,19 +87,6 @@
     &:global(.uui-readonly) {
         border-color: transparent;
     }
-}
-
-.placeholder {
-    position: absolute;
-    left: 12px;
-    max-width: 100%;
-    display: block;
-    user-select: none;
-    text-decoration: none;
-    color: var(--uui-text-tertiary);
-    font-family: var(--uui-font);
-    line-height: 1.5;
-    padding: 0 12px;
 }
 
 .scrollbars {

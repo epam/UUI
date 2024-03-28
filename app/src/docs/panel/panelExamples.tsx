@@ -78,8 +78,8 @@ export const childrenExamples = [
                 </FlexRow>
                 <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button caption="Cancel" onClick={ () => {} } color="secondary" />
-                    <Button caption="Ok" onClick={ () => {} } color="accent" fill="solid" />
+                    <Button caption="Cancel" onClick={ () => {} } color="secondary" fill="outline" />
+                    <Button caption="Ok" onClick={ () => {} } color="primary" fill="solid" />
                 </ModalFooter>
             </>
         ),

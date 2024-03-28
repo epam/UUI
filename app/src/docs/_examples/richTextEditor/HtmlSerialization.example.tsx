@@ -19,6 +19,7 @@ import {
     createDeserializer,
     paragraphPlugin,
     uploadFilePlugin,
+    defaultPlugins,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
@@ -31,6 +32,7 @@ const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
 };
 
 const plugins = [
+    ...defaultPlugins,
     ...baseMarksPlugin(),
     paragraphPlugin(),
     headerPlugin(),

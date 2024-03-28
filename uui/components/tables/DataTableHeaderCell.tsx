@@ -124,6 +124,8 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
+        const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
+
         return (
             <FlexCell
                 { ...this.props.column }
@@ -148,7 +150,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     props.isDraggedOut && css.isDraggedOut,
                     props.isDndInProgress && css['dnd-marker-' + props.position],
                 ) }
-                onClick={ !this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick }
+                onClick={ onClickEvent }
                 rawProps={ {
                     role: 'columnheader',
                     'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',

@@ -4,31 +4,11 @@ import {
 } from '@epam/uui-core';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
-import {
-    FlexCell,
-    FlexRow,
-    FlexSpacer,
-    LabeledInput,
-    Panel,
-    PickerInput,
-    RichTextView,
-    SuccessNotification,
-    ErrorNotification,
-    Text,
-    TextInput,
-    DatePicker,
-    Tooltip,
-    IconContainer,
-    Switch,
-    Button,
-    IconButton,
-    NumericInput,
-    RangeDatePicker,
-    MultiSwitch,
-    DropSpot,
-    FileCard,
-    useForm,
+import { FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification,
+    ErrorNotification, Text, TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, NumericInput,
+    RangeDatePicker, MultiSwitch, DropSpot, FileCard, useForm, IconButton,
 } from '@epam/uui';
+import { } from '@epam/loveship';
 import type {
     PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa,
 } from './types';
@@ -185,7 +165,7 @@ function PrimaryInfo({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) {
                         </FlexCell>
                     </FlexRow>
                 </FlexCell>
-                <FlexCell minWidth={ 324 }>
+                <FlexCell minWidth={ 324 } alignSelf="flex-end">
                     <FlexRow size="48" columnGap="18" alignItems="bottom">
                         <Switch label="Time Reporting" { ...lens.prop('timeReporting').toProps() } isDisabled />
                         <Switch label="Remote" { ...lens.prop('remoteStatus').toProps() } isDisabled />
@@ -426,9 +406,9 @@ function Visas({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                                 <RangeDatePicker id="term" format="MMM D, YYYY" { ...visasLens.index(index).prop('term').toProps() } />
                             </LabeledInput>
                         </FlexCell>
-                        <FlexRow size="48" alignItems="bottom" cx={ css.clearButtonWrapper }>
+                        <FlexCell alignSelf="flex-end">
                             {isClearable && <IconButton icon={ ClearIcon } onClick={ () => removeLensItemHandler<PersonTravelVisa>(visasLens, index) } />}
-                        </FlexRow>
+                        </FlexCell>
                     </FlexRow>
                 );
             })}
@@ -520,7 +500,7 @@ export function DemoForm() {
                     <hr className={ css.divider } />
                     <FlexRow columnGap="12">
                         <FlexSpacer />
-                        <Button caption="Save" color="accent" onClick={ save } />
+                        <Button caption="Save" color="primary" onClick={ save } />
                     </FlexRow>
                 </FlexCell>
             </Panel>

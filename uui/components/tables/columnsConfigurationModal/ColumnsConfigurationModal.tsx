@@ -13,7 +13,7 @@ import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
 import { Button, LinkButton } from '../../buttons';
 import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
 import { Text } from '../../typography';
-import { Badge } from '../../widgets';
+import { CountIndicator } from '../../widgets';
 import { SearchInput } from '../../inputs';
 
 import { i18n as uuiI18n } from '../../../i18n';
@@ -32,7 +32,8 @@ const renderGroupTitle = (title: string, amount: number) => (
         <Text cx={ styles.groupTitleText } fontWeight="600" lineHeight="24" fontSize="14">
             {title}
         </Text>
-        <Badge cx={ styles.groupTitleBadge } caption={ amount } color="neutral" size="18" />
+        <CountIndicator caption={ amount } color="neutral" size="18" />
+        <FlexSpacer />
     </FlexRow>
 );
 
@@ -92,7 +93,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ styles.modal } height="90vh">
+            <ModalWindow cx={ styles.modal } height="95dvh" maxHeight="95dvh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } columnGap="12" cx={ styles.searchArea }>
                     <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
@@ -158,7 +159,7 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
                 const toggleIcon = isOpened ? ExpandedIcon : CollapsedIcon;
                 return (
                     <span className={ cx(styles.subgroupTitle) }>
-                        <IconContainer icon={ toggleIcon } flipY={ false } />
+                        <IconContainer size={ 18 } icon={ toggleIcon } flipY={ false } />
                         { title }
                     </span>
                 );
