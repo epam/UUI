@@ -89,8 +89,6 @@ export function FilteredTable() {
         setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi
     } = tableStateApi;
 
-    const listProps = view.getListProps();
-
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
