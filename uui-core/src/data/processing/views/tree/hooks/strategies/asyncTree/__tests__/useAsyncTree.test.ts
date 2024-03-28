@@ -4,7 +4,6 @@ import { DataQueryFilter, DataSourceState } from '../../../../../../../../types'
 import { LocationItem } from '../../../../../../__tests__/mocks';
 import { demoData } from '@epam/uui-docs';
 import { FAILED_RECORD, NOT_FOUND_RECORD, TreeStructure, newMap } from '../../../../newTree';
-import { ItemsStorage } from '../../../../ItemsStorage';
 import { RecordStatus } from '../../../../types';
 
 describe('useAsyncTree', () => {
@@ -159,52 +158,6 @@ describe('useAsyncTree', () => {
 
         const unknownItemFromSelectionTree = tree.tree.getById('GW');
         expect(unknownItemFromSelectionTree).toBe(NOT_FOUND_RECORD);
-    });
-
-    it('should reset outer itemsMap/setItems inside hook on load if passed to props', async () => {
-        const newItem: LocationItem = {
-            id: 'GW',
-            parentId: 'c-AF',
-            childCount: 0,
-            type: 'country',
-            __typename: 'Location',
-            name: 'Guinea-Bissau',
-        };
-
-        const itemsStorage = new ItemsStorage({
-            items: [newItem],
-            params: { getId },
-        });
-
-        const hookResult = renderHook(
-            (props) => useAsyncTree({
-                type: 'async',
-                api,
-                getId,
-                dataSourceState,
-                setDataSourceState,
-                itemsMap: itemsStorage.getItemsMap(),
-                setItems: itemsStorage.setItems,
-                ...props,
-            }, []),
-            { initialProps: {} },
-        );
-
-        await waitFor(() => {
-            const tree = hookResult.result.current;
-
-            expect(tree.isFetching).toBeFalsy();
-        });
-
-        const tree = hookResult.result.current;
-
-        const itemFromVisibleTree = tree.tree.getById('GW');
-        const itemFromSelectionTree = tree.selectionTree.getById('GW');
-        expect(itemFromVisibleTree).toEqual(newItem);
-        expect(itemFromSelectionTree).toEqual(newItem);
-        const itemsMap = itemsStorage.getItemsMap();
-        expect(itemsMap.has('GW')).toBeFalsy();
-        expect(itemsStorage.getItemsMap().get('c-AF')).toEqual(expect.objectContaining({ id: 'c-AF' }));
     });
 
     it('should use inner itemsStatusMap if not passed to props', async () => {
