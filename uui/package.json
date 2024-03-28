@@ -19,7 +19,8 @@
     "dayjs": "1.10.7",
     "lodash.sortby": "4.7.0",
     "react-focus-lock": "2.9.2",
-    "react-popper": "2.3.0"
+    "react-popper": "2.3.0",
+    "@popperjs/core": "2.9.0"
   },
   "peerDependencies": {
     "prop-types": "*",

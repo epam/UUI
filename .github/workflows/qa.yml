@@ -3,7 +3,7 @@ name: qa
 # Controls when the action will run.
 on:
     push:
-        branches: [ rc-5.2.0 ]
+        branches: [ refactor-date-picker ]
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 

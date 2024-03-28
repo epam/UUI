@@ -95,7 +95,7 @@ async function setupFilterPanelComponent({ filtersConfig }: { filtersConfig: Tab
             return {
                 filters: filtersConfig,
                 tableState: {},
-                setTableState: jest.fn().mockImplementation((newTableState) => contextRef.current.setProperty('tableState', newTableState)),
+                setTableState: jest.fn().mockImplementation((newTableState) => contextRef.current?.setProperty('tableState', newTableState)),
             };
         },
         (props) => <FiltersPanel { ...props } />,
@@ -158,7 +158,7 @@ describe('FiltersPanel', () => {
             await user.click(screen.getByRoleAndText({ role: 'button', text: 'Status:Red' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Red' })).toHaveAttribute('aria-selected', 'true');
-            
+
             await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR' }));
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Red' })).toHaveAttribute('aria-selected', 'false');
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });

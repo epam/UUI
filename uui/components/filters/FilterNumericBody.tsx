@@ -64,7 +64,10 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const size = isMobile() ? '48' : '36';
         const clearSelection = () => {
             if (isInRangePredicate) {
-                props.onValueChange({ from: null, to: null });
+                props.onValueChange({
+                    from: null,
+                    to: null,
+                });
             } else {
                 props.onValueChange(null);
             }
@@ -76,7 +79,12 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
             <FlexRow padding="12">
                 <FlexSpacer />
                 <FlexCell width="auto" alignSelf="center">
-                    <LinkButton isDisabled={ isClearDisabled } size={ size } caption={ i18n.pickerInput.clearSelectionButtonSingle } onClick={ clearSelection } />
+                    <LinkButton
+                        isDisabled={ isClearDisabled }
+                        size={ size }
+                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
+                        onClick={ clearSelection }
+                    />
                 </FlexCell>
             </FlexRow>
         );
@@ -86,7 +94,13 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" alignItems="center" columnGap="12" borderBottom={ true } cx={ css.container }>
+                <FlexRow
+                    padding="12"
+                    alignItems="center"
+                    spacing="12"
+                    borderBottom={ true }
+                    cx={ css.container }
+                >
                     <FlexCell width="100%">
                         <NumericInput
                             value={ value?.from ?? null }
@@ -114,7 +128,12 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
 
     return (
         <div>
-            <FlexRow padding="12" alignItems="center" borderBottom={ true } cx={ css.container }>
+            <FlexRow
+                padding="12"
+                alignItems="center"
+                borderBottom={ true }
+                cx={ css.container }
+            >
                 <FlexCell width={ 130 }>
                     <NumericInput
                         value={ typeof props.value === 'number' ? props.value : null }

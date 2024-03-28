@@ -14,6 +14,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
         className="uui-datepickerheader-header"
       >
         <button
+          aria-disabled={false}
           className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
           onClick={[Function]}
           tabIndex={0}
@@ -41,6 +42,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
           </div>
         </button>
         <button
+          aria-disabled={false}
           className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
           onClick={[Function]}
           tabIndex={0}
@@ -106,7 +108,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
           className="uui-calendar-days"
           style={
             Object {
-              "height": "216px",
+              "height": 216,
             }
           }
         >
@@ -157,7 +159,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               tabIndex={0}
             >
               <div
-                className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                className="uui-calendar-clickable-day -clickable uui-calendar-selected-day uui-calendar-day-wrapper"
                 onClick={[Function]}
               >
                 <div

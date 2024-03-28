@@ -1,5 +1,5 @@
 import css from './Calendar.module.scss';
-import { Calendar as uuiCalendar, CalendarProps } from '@epam/uui-components';
+import { CalendarProps, Calendar as uuiCalendar } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { Dayjs } from 'dayjs';
 

@@ -2,44 +2,48 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isToday from 'dayjs/plugin/isToday.js';
 import {
-    cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef,
+    IEditable, IHasCX, IHasForwardedRef, IHasRawProps, cx, uuiMarkers,
 } from '@epam/uui-core';
 import { uuiDaySelection } from './calendarConstants';
 
-dayjs.extend(isToday);
-
-export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+/**
+ * Represents the properties of the Day component
+ */
+export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IHasCX {
     filter?(day: Dayjs): boolean;
-    getDayCX?: (day: Dayjs) => CX;
     renderDayNumber?: (param: Dayjs) => any;
     isSelected?: boolean;
     isHoliday?: boolean;
 }
 
-export class Day extends React.Component<DayProps> {
-    render() {
-        if (!this.props.value) return null;
-        const isCurrent = this.props.value.isToday();
-        const isPassedFilter = this.props.filter ? this.props.filter(this.props.value) : true;
+dayjs.extend(isToday);
 
-        return (
-            <div
-                onClick={ isPassedFilter ? () => this.props.onValueChange(this.props.value) : undefined }
-                className={ cx([
-                    isPassedFilter && uuiDaySelection.clickable,
-                    isPassedFilter && uuiMarkers.clickable,
-                    isCurrent && uuiDaySelection.currentDay,
-                    this.props.isSelected && uuiDaySelection.selectedDay,
-                    this.props.filter && !this.props.filter(this.props.value) && uuiDaySelection.filteredDay,
-                    this.props?.getDayCX && this.props.getDayCX(this.props.value),
-                    uuiDaySelection.dayWrapper,
-                    this.props.isHoliday && uuiDaySelection.holiday,
-                ]) }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
-            >
-                <div className={ uuiDaySelection.day }>{this.props.renderDayNumber ? this.props.renderDayNumber(this.props.value) : this.props.value.format('D')}</div>
+export function Day(props: DayProps): JSX.Element {
+    const isCurrent = props.value.isToday();
+    const isPassedFilter = props.filter ? props.filter(props.value) : true;
+
+    const dayNumber = props.renderDayNumber
+        ? props.renderDayNumber(props.value)
+        : props.value.format('D');
+    return (
+        <div
+            onClick={ isPassedFilter ? () => props.onValueChange(props.value) : undefined }
+            className={ cx([
+                isPassedFilter && uuiDaySelection.clickable,
+                isPassedFilter && uuiMarkers.clickable,
+                isCurrent && uuiDaySelection.currentDay,
+                props.isSelected && uuiDaySelection.selectedDay,
+                props.filter && !props.filter(props.value) && uuiDaySelection.filteredDay,
+                props.cx,
+                uuiDaySelection.dayWrapper,
+                props.isHoliday && uuiDaySelection.holiday,
+            ]) }
+            ref={ props.forwardedRef }
+            { ...props.rawProps }
+        >
+            <div className={ uuiDaySelection.day }>
+                {dayNumber}
             </div>
-        );
-    }
+        </div>
+    );
 }
