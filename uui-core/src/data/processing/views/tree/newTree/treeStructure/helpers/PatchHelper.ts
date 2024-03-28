@@ -157,7 +157,7 @@ export class PatchHelper {
             });
 
             newByParentId.set(patchParentId, reorderedItems);
-            if (isUpdatedOnReordering || isUpdatedOnPatch) {
+            if (isUpdatedOnReordering || isUpdatedOnPatch || sortedPatchItems.top.length || sortedPatchItems.bottom.length || sortedPatchItems.moved.length) {
                 isUpdated = true;
             }
         }
