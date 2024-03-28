@@ -3,8 +3,9 @@ import { useAsyncTree } from '../useAsyncTree';
 import { DataQueryFilter, DataSourceState } from '../../../../../../../../types';
 import { LocationItem } from '../../../../../../__tests__/mocks';
 import { demoData } from '@epam/uui-docs';
-import { FAILED_RECORD, NOT_FOUND_RECORD, TreeStructure, newMap } from '../../../../newTree';
 import { RecordStatus } from '../../../../types';
+import { TreeStructure } from '../../../../treeStructure';
+import { FAILED_RECORD, NOT_FOUND_RECORD, newMap } from '../../../../exposed';
 
 describe('useAsyncTree', () => {
     let dataSourceState: DataSourceState<DataQueryFilter<LocationItem>, string>;

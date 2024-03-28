@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
-import { TreeState, newMap } from '../../newTree';
+import { newMap } from '../../helpers';
 import { DataSourceState, PatchItemsOptions } from '../../../../../../types';
 import { PatchOrdering } from '../../PatchOrderingMap';
 import { useSimplePrevious } from '../../../../../../hooks';
 import { getSortedPatchByParentId } from '../../helpers/patch';
+import { TreeState } from '../../treeState';
 
 export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId> {
     tree: TreeState<TItem, TId>;

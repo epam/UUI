@@ -1,4 +1,4 @@
-import { ITree } from '../newTree/exposed';
+import { ITree } from '../ITree';
 import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
 
 /**

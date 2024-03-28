@@ -1,11 +1,11 @@
 import isEqual from 'lodash.isequal';
-import { LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../../../types';
+import { LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap, newMap } from './map';
-import { ItemsAccessor } from '../ItemsAccessor';
+import { cloneMap, newMap } from '../../helpers/map';
+import { ItemsAccessor } from '../../ItemsAccessor';
 import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
 import { ITreeNodeInfo } from '../types';
-import { NOT_FOUND_RECORD } from '../../../constants';
+import { NOT_FOUND_RECORD } from '../../constants';
 import { getSelectedAndChecked } from './checked';
 
 export class FetchingHelper {

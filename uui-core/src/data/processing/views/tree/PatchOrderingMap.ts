@@ -1,5 +1,5 @@
 import { IImmutableMap, IMap } from '../../../../types';
-import { cloneMap, newMap } from './newTree';
+import { cloneMap, newMap } from './helpers';
 
 export interface PatchOrderingMapParams {
     complexIds?: boolean;

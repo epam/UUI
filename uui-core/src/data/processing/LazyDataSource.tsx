@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree } from './views';
+import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree, newMap } from './views';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState, IDataSourceView, IMap, SetDataSourceState } from '../../types';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { RecordStatus } from './views/tree/types';
-import { newMap } from './views/tree/newTree';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
 

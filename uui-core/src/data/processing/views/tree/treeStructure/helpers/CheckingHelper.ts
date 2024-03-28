@@ -1,7 +1,7 @@
-import { CascadeSelectionTypes } from '../../../../../../../types';
+import { CascadeSelectionTypes } from '../../../../../../types';
 import { Tree } from '../../Tree';
-import { NOT_FOUND_RECORD, ROOT_ID } from '../../../constants';
-import { newMap } from './map';
+import { NOT_FOUND_RECORD, ROOT_ID } from '../../constants';
+import { newMap } from '../../helpers/map';
 import { ActForCheckableOptions, CascadeSelectionOptions, CheckParentsWithFullCheckOptions, ClearIfTreeNotLoadedOptions, ClearUnknownItemsOptions, SelectionOptions } from './types';
 
 export class CheckingHelper {

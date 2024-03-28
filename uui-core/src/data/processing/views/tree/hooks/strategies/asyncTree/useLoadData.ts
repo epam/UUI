@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, IMap, LazyDataSourceApi } from '../../../../../../../types';
-import { NOT_FOUND_RECORD, TreeState, getSelectedAndChecked } from '../../../newTree';
+import { TreeState } from '../../../treeState';
 import { useSimplePrevious } from '../../../../../../../hooks';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { RecordStatus } from '../../../types';
 import { useItemsStatusCollector } from '../../common';
 import { useDepsChanged } from '../../common/useDepsChanged';
+import { getSelectedAndChecked } from '../../../treeStructure';
+import { NOT_FOUND_RECORD } from '../../../constants';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;

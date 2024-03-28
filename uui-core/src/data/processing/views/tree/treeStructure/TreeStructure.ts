@@ -1,10 +1,10 @@
-import { IMap } from '../../../../../../types';
+import { IMap } from '../../../../../types';
 import { ITreeNodeInfo, ITreeParams, IItemsAccessor } from './types';
-import { newMap } from './helpers';
-import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../../constants';
-import { ItemsMap } from '../../ItemsMap';
+import { newMap } from '../helpers';
+import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
+import { ItemsMap } from '../ItemsMap';
 import { ITree, ITreeItemsInfo, ITreeNodeStatus } from '../ITree';
-import { Tree } from '../Tree';
+import { Tree } from '../';
 
 export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
     constructor(

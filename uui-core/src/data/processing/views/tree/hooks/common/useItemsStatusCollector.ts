@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { IMap } from '../../../../../../types';
-import { ITreeParams } from '../../newTree/exposed';
+import { ITreeParams } from '../../';
 import { RecordStatus } from '../../types';
 import { ItemsStatusCollector } from '../../ItemsStatusCollector';
 

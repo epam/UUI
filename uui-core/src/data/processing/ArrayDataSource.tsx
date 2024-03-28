@@ -1,10 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState, SetDataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
-import { ArrayListViewProps, useCascadeSelectionService, useDataRows } from './views';
-import { ITree, useTree } from './views/tree';
+import { ArrayListViewProps, useCascadeSelectionService, useDataRows, newMap, ITree, useTree } from './views';
 import { ItemsStorage } from './views/tree/ItemsStorage';
-import { newMap } from './views/tree/newTree';
 import { IMap } from '../../types';
 import { RecordStatus } from './views/tree/types';
 

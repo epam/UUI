@@ -1,4 +1,4 @@
-import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from '../constants';
+import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from './constants';
 import { ITreeNodeInfo, ITreeParams } from './treeStructure/types';
 
 /**

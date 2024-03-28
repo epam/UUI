@@ -1,7 +1,8 @@
 import { IMap, LazyDataSourceApi } from '../../../../types';
 import { ItemsMap } from './ItemsMap';
-import { FAILED_RECORD, LOADED_RECORD, LOADING_RECORD, NOT_FOUND_RECORD, PENDING_RECORD, newMap } from './newTree';
-import { ITreeParams } from './newTree/exposed';
+import { FAILED_RECORD, LOADED_RECORD, LOADING_RECORD, NOT_FOUND_RECORD, PENDING_RECORD } from './constants';
+import { ITreeParams } from './exposed';
+import { newMap } from './helpers';
 import { RecordStatus } from './types';
 
 export class ItemsStatusCollector<TItem, TId, TFilter = any> {

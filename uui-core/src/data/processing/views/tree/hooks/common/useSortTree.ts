@@ -1,6 +1,6 @@
 import { useSimplePrevious } from '../../../../../../hooks';
 import { DataSourceState, SortingOption } from '../../../../../../types';
-import { TreeState } from '../../newTree';
+import { TreeState } from '../../treeState';
 import { useUpdateTree } from './useUpdateTree';
 
 export type UseSortTreeProps<TItem, TId, TFilter = any> = {

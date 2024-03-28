@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import { ITree } from '../../tree';
 import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords } from '../../tree/hooks/strategies/types';
-import { CheckingHelper, FAILED_RECORD, NOT_FOUND_RECORD } from '../../tree/newTree';
+import { FAILED_RECORD, NOT_FOUND_RECORD } from '../../tree';
 import { isInProgress } from '../../helpers';
+import { CheckingHelper } from '../../tree/treeStructure';
 
 /**
  * Cascade selection service configuration.

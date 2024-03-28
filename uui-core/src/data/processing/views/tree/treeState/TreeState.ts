@@ -1,17 +1,18 @@
-import { ItemsStorage } from '../../ItemsStorage';
+import { ItemsStorage } from '../ItemsStorage';
 import {
     FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions,
 } from './types';
-import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper, cloneMap, newMap } from '../treeStructure';
-import { ItemsMap } from '../../ItemsMap';
-import { ItemsAccessor } from '../treeStructure/ItemsAccessor';
-import { NOT_FOUND_RECORD } from '../../constants';
+import { TreeStructure, FetchingHelper, FilterHelper, SortHelper, SearchHelper, PatchHelper } from '../treeStructure';
+import { ItemsMap } from '../ItemsMap';
+import { ItemsAccessor } from '../ItemsAccessor';
+import { NOT_FOUND_RECORD } from '../constants';
+import { cloneMap, newMap } from '../helpers';
 import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
 import { PatchItemsIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
-import { ExtendedPatchItemsOptions } from '../../../../../../types';
+import { ExtendedPatchItemsOptions } from '../../../../../types';
 
 export class TreeState<TItem, TId> {
     protected constructor(

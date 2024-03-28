@@ -1,5 +1,5 @@
 import { ITree } from '../../ITree';
-import { NOT_FOUND_RECORD } from '../../exposed';
+import { NOT_FOUND_RECORD } from '../../constants';
 
 export class TreeHelper {
     public static getParents<TItem, TId>(id: TId, tree: ITree<TItem, TId>) {

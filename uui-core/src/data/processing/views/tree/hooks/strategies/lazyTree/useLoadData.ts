@@ -1,11 +1,12 @@
 import { useCallback, useRef } from 'react';
 import { CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
 import isEqual from 'lodash.isequal';
-import { ROOT_ID, TreeState } from '../../../newTree';
-import { TreeStructureId } from '../../../newTree/treeState/types';
-import { Tree } from '../../../newTree/Tree';
+import { TreeState } from '../../../treeState';
+import { Tree } from '../../../Tree';
 import { GetChildCount } from './types';
 import { CommonDataSourceConfig } from '../types';
+import { ROOT_ID } from '../../../constants';
+import { TreeStructureId } from '../../../treeState/types';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     GetChildCount<TItem>,
