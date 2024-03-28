@@ -1,16 +1,27 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps } from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
+
+export interface IRenderItemProps<TItem, TId> extends IHasCaption, IDisableable {
+    /** Key for the component */
+    key: string;
+    /** DataRowProps object of the rendered item */
+    rowProps?: DataRowProps<TItem, TId>;
+    /** Indicates that tag is collapsed rest selected items, like '+N items selected' */
+    isCollapsed?: boolean;
+    /** Call to clear a value */
+    onClear?(e?: any): void;
+}
 
 export interface PickerTogglerProps<TItem = any, TId = any>
     extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
-    renderItem?(props: DataRowProps<TItem, TId>): React.ReactNode;
+    renderItem?(props: IRenderItemProps<TItem, TId>): React.ReactNode;
     getName?: (item: TItem) => string;
     entityName?: string;
     maxItems?: number;
@@ -105,11 +116,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const maxItems = getMaxItems(props.maxItems);
         let isDisabled = props.isDisabled || props.isReadonly;
 
-        const multiItems = props.selection?.map((row) => {
+        const tags = props.selection?.map((row) => {
             isDisabled = isDisabled || row.isDisabled;
 
-            const newMultiItems = {
-                ...row,
+            const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
                 caption: props.getName(row.value),
@@ -120,21 +130,21 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
                     toggleContainer.current?.focus();
                 } };
-            return props.renderItem?.(newMultiItems);
+            return props.renderItem?.(tagProps);
         });
 
         if (props.selectedRowsCount > maxItems) {
-            const collapsedItem = props.renderItem?.({
+            const collapsedTagProps = props.renderItem?.({
                 key: 'collapsed',
                 caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
                 isCollapsed: true,
                 isDisabled,
                 onClear: null,
             } as any);
-            multiItems.push(collapsedItem);
+            tags.push(collapsedTagProps);
         }
 
-        return multiItems;
+        return tags;
     };
 
     const renderInput = () => {

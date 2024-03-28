@@ -25,14 +25,20 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
 }
 
 function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
-    const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => <PickerTogglerTag { ...itemProps } size={ props.size } />;
+    const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
+        const itemPropsWithSize = { ...itemProps, size: props.size };
+        if (!!props.renderItem) {
+            return props.renderItem(itemPropsWithSize);
+        }
+        return <PickerTogglerTag { ...itemPropsWithSize } />;
+    };
 
     return (
         <UuiPickerToggler
             { ...props }
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
-            renderItem={ !!props.renderItem ? props.renderItem : renderItem }
+            renderItem={ renderItem }
             getName={ (item) => (props.getName ? props.getName(item) : item) }
             cancelIcon={ systemIcons.clear }
             dropdownIcon={ systemIcons.foldingArrow }
