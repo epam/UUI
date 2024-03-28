@@ -8,12 +8,13 @@ import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
 import css from './RangeDatePicker.module.scss';
-import { RangeDatePickerInputType, RangeDatePickerProps } from './types';
+import {
+    RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
+} from './types';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
-import { useRangeDatePickerState } from './useRangeDatePickerState';
 
 dayjs.extend(customParseFormat);
 
@@ -25,8 +26,22 @@ const modifiers = [{
 function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     const { value: _value, format = defaultFormat } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
-    const [isOpen, setIsOpen] = useState(false);
+
     const context = useUuiContext();
+    const [isOpen, setIsOpen] = useState(false);
+    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(null);
+
+    const onValueChange = (newValue: RangeDatePickerValue) => {
+        const fromChanged = value?.from !== newValue?.from;
+        const toChanged = value?.to !== newValue?.to;
+        if (fromChanged || toChanged) {
+            props.onValueChange(newValue);
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue, value);
+                context.uuiAnalytics.sendEvent(event);
+            }
+        }
+    };
 
     const onOpenChange = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
         setInFocus(newIsOpen && focus ? focus : null);
@@ -34,23 +49,19 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
         props.onOpenChange?.(newIsOpen);
     };
 
-    const {
-        inFocus,
-        setInFocus,
-        onValueChange,
-        onBodyValueChange,
-    } = useRangeDatePickerState({
-        value,
-        format,
-        onOpenChange,
-        onValueChange: (newValue) => {
-            props.onValueChange(newValue);
-            if (props.getValueChangeAnalyticsEvent) {
-                const event = props.getValueChangeAnalyticsEvent(newValue, value);
-                context.uuiAnalytics.sendEvent(event);
-            }
-        },
-    });
+    const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
+        setInFocus(newValue.inFocus ?? inFocus);
+        onValueChange(newValue.selectedDate);
+
+        const toChanged = value.to !== newValue.selectedDate.to;
+        const closeBody = newValue.selectedDate.from && newValue.selectedDate.to
+         && inFocus === 'to'
+           && toChanged;
+
+        if (closeBody) {
+            onOpenChange(false);
+        }
+    };
 
     // mainly for closing body on tab
     const onInputWrapperBlur: React.FocusEventHandler<HTMLDivElement> = (event) => {
