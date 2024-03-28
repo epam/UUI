@@ -1,17 +1,31 @@
 ### Podman installation
 #### Windows
 1. Open https://github.com/containers/podman/releases/tag/v5.0.0
-2. Scroll to the bottom of the page and download ```podman-5.0.0-setup.exe```. Install it.
-3. Open PowerShell console as Administrator and run next commands:
-```bash
-podman machine init
-podman machine set --rootful
-podman machine set --user-mode-networking
-podman machine start
-```
+2. Scroll to the bottom of the page and download ```podman-5.0.0-setup.exe```. Install it. Note: you might need to restart computer after that.
+3. Open console as admin and run next commands:
+    ```bash
+    podman machine init
+    podman machine set --rootful
+    podman machine set --user-mode-networking
+    podman machine start
+    ```
 
 #### MacOS
-// TBD
+1. Install Podman with command below. Note: you might need to restart computer after that.
+    ```bash
+    brew install podman
+    ```
+2. Install docker compose
+    ```bash
+    brew install docker-compose
+    ```
+3. Open console as admin and run next commands:
+    ```bash
+    podman machine init
+    podman machine set --rootful
+    podman machine set --user-mode-networking
+    podman machine start
+    ```
 
 ### Running tests in local environment
 #### Prerequisites
