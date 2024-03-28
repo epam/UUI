@@ -336,7 +336,6 @@ describe('PickerInput', () => {
                 selectionMode: 'multi',
                 getName: ({ name }) => name,
             });
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['', '']);
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
             await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Elementary+', 'Pre-Intermediate']));
         });
@@ -443,10 +442,10 @@ describe('PickerInput', () => {
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });
 
-        it('should wrap up if number of elements is greater than maxItems', async () => {
+        it('should wrap up extra items if number of elements is greater than maxItems', async () => {
             const { mocks, dom } = await setupPickerInputForTest({
                 value: undefined,
-                maxItems: 3,
+                maxItems: 2,
                 entityPluralName: 'languages',
                 selectionMode: 'multi',
             });
@@ -463,7 +462,7 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickOptionByText('A2');
             await PickerInputTestObject.clickOptionByText('A2+');
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['4 languages selected']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2 languages selected']);
         });
 
         it('should disable clear', async () => {
