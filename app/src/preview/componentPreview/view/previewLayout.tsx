@@ -9,7 +9,6 @@ import css from './previewLayout.module.scss';
 import { useCallback, useMemo } from 'react';
 import { cx } from '@epam/uui-core';
 import {
-    CELL_SIZE_DEFAULT,
     SCREENSHOT_WIDTH_LIMIT,
 } from '../constants';
 import { TPreviewCellSize } from '@epam/uui-docs';
@@ -43,29 +42,29 @@ export function PreviewLayout(props: IPreviewLayout) {
     }, [error]);
 
     const layoutSize = useMemo(() => {
-        let requestedWidthPx;
-        let requestedHeightPxOrStr;
+        let cellWidth: string;
+        let cellHeight: string;
+        let layoutWidth: string;
         if (cellSize) {
             const wh = cellSize.split('-').map((s) => parseInt(s));
-            requestedWidthPx = wh[0];
-            requestedHeightPxOrStr = wh[1];
+            const requestedWidthPx = wh[0];
+            const requestedHeightPx = wh[1];
+            cellWidth = `${requestedWidthPx}px`;
+            cellHeight = `${requestedHeightPx}px`;
+            let numOfColumns = Math.floor(SCREENSHOT_WIDTH_LIMIT / requestedWidthPx);
+            if (totalNumberOfCells && totalNumberOfCells < numOfColumns) {
+                numOfColumns = totalNumberOfCells;
+            }
+            layoutWidth = `${numOfColumns * requestedWidthPx}px`;
         } else {
-            requestedWidthPx = CELL_SIZE_DEFAULT.width;
-            requestedHeightPxOrStr = CELL_SIZE_DEFAULT.height;
+            cellWidth = 'auto';
+            cellHeight = 'auto';
+            layoutWidth = '100%';
         }
-
-        const cellWidth = `${requestedWidthPx}px`;
-        const cellHeight = typeof requestedHeightPxOrStr === 'number' ? `${requestedHeightPxOrStr}px` : requestedHeightPxOrStr;
-
-        let numOfColumns = Math.floor(SCREENSHOT_WIDTH_LIMIT / requestedWidthPx);
-        if (totalNumberOfCells && totalNumberOfCells < numOfColumns) {
-            numOfColumns = totalNumberOfCells;
-        }
-
         return {
             cellWidth,
             cellHeight,
-            layoutFixedWidth: `${numOfColumns * requestedWidthPx}px`,
+            layoutWidth,
         };
     }, [cellSize, totalNumberOfCells]);
 
@@ -74,12 +73,19 @@ export function PreviewLayout(props: IPreviewLayout) {
             return null;
         }
 
+        const withOutline = totalNumberOfCells > 1;
+
         return (
             <React.Fragment>
                 {
                     new Array(totalNumberOfCells).fill(null).map((_, index) => {
                         return (
-                            <div data-index={ index } key={ index } className={ css.cell } style={ { width: layoutSize.cellWidth, height: layoutSize.cellHeight } }>
+                            <div
+                                data-index={ index }
+                                key={ index }
+                                className={ cx(css.cell, withOutline && css.withOutline) }
+                                style={ { width: layoutSize.cellWidth, height: layoutSize.cellHeight } }
+                            >
                                 { renderCell({ index }) }
                             </div>
                         );
@@ -94,6 +100,7 @@ export function PreviewLayout(props: IPreviewLayout) {
         'aria-label': PREVIEW_REGION_ATTRS.previewContentLabel,
         'aria-busy': !isLoaded,
     };
+    const style = { width: layoutSize.layoutWidth };
 
     return (
         <FlexRow cx={ css.root } rawProps={ attrs }>
@@ -106,7 +113,7 @@ export function PreviewLayout(props: IPreviewLayout) {
             }
             {
                 isLoaded && (
-                    <FlexCell cx={ css.previewWrapper } rawProps={ { style: { width: layoutSize.layoutFixedWidth } } }>
+                    <FlexCell cx={ css.previewWrapper } rawProps={ { style } }>
                         { renderErr() }
                         <div className={ cx(css.preview) }>
                             { renderAllCells() }
