@@ -2,9 +2,9 @@
 #### Windows
 1. Install Podman from here: https://github.com/containers/podman/releases/tag/v5.0.0 Note: you might need to restart computer after that.
 2. Download "Docker Compose" via Powershell (with Admin privileges)
-```shell
-Start-BitsTransfer -Source "https://github.com/docker/compose/releases/download/v2.26.0/docker-compose-Windows-x86_64.exe" -Destination $Env:ProgramFiles\Docker\docker-compose.exe
-```
+    ```shell
+    Start-BitsTransfer -Source "https://github.com/docker/compose/releases/download/v2.26.0/docker-compose-Windows-x86_64.exe" -Destination $Env:ProgramFiles\Docker\docker-compose.exe
+    ```
 3. Run next commands:
     ```bash
     podman machine init
