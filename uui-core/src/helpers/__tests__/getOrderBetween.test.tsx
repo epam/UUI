@@ -1,4 +1,4 @@
-import { getOrderBetween } from '../getOrderBetween';
+import { getOrderBetween, numberToOrder } from '../getOrderBetween';
 
 describe('getOrderBetween', () => {
     it('computes order between existing', () => {
@@ -65,5 +65,47 @@ describe('getOrderBetween', () => {
         expect(hasDigits(order)).toBe(true);
         expect(order > 'a11').toBe(true);
         expect(order < 'a12').toBe(true);
+    });
+
+    it('can convert number to order', () => {
+        const o1 = numberToOrder(1);
+        const o2 = numberToOrder(2);
+        expect(o1 < o2).toBe(true);
+    });
+
+    it('can find order between orders generated with numberToOrder', () => {
+        const o1 = numberToOrder(0);
+        const o2 = numberToOrder(1);
+        const o3 = numberToOrder(51);
+        const o4 = numberToOrder(100500);
+
+        const o0 = getOrderBetween(null, o1);
+        const o12 = getOrderBetween(o1, o2);
+        const o23 = getOrderBetween(o2, o3);
+        const o34 = getOrderBetween(o3, o4);
+        const o40 = getOrderBetween(o4, null);
+
+        expect(o0 < o1).toBe(true);
+        expect(o1 < o12).toBe(true);
+        expect(o12 < o2).toBe(true);
+        expect(o2 < o23).toBe(true);
+        expect(o23 < o3).toBe(true);
+        expect(o3 < o34).toBe(true);
+        expect(o34 < o4).toBe(true);
+        expect(o4 < o40).toBe(true);
+    });
+
+    it('numberToOrder can handle huge numbers', () => {
+        const o1 = numberToOrder(1000000000);
+        const o2 = numberToOrder(10050010050);
+        const o3 = numberToOrder(123456789123);
+        const o4 = numberToOrder(9999999999999);
+        expect(o1.length < 20).toBe(true);
+        expect(o2.length < 20).toBe(true);
+        expect(o3.length < 20).toBe(true);
+        expect(o4.length < 20).toBe(true);
+        expect(o1 < o2).toBe(true);
+        expect(o2 < o3).toBe(true);
+        expect(o3 < o4).toBe(true);
     });
 });
