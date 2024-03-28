@@ -45,4 +45,25 @@ describe('getOrderBetween', () => {
         expect(order > '9999').toBe(true);
         expect(order < 'z').toBe(true);
     });
+
+    it('can insert before "a"', () => {
+        const order = getOrderBetween(null, 'a');
+        expect(order < 'a').toBe(true);
+    });
+
+    const hasDigits = (s: string) => !!s.match(/\d+/);
+
+    it('does not generate digits if possible', () => {
+        const order = getOrderBetween('bb', 'bbb');
+        expect(hasDigits(order)).toBe(false);
+        expect(order > 'bb').toBe(true);
+        expect(order < 'bbb').toBe(true);
+    });
+
+    it('generates digits if needed', () => {
+        const order = getOrderBetween('a11', 'a12');
+        expect(hasDigits(order)).toBe(true);
+        expect(order > 'a11').toBe(true);
+        expect(order < 'a12').toBe(true);
+    });
 });
