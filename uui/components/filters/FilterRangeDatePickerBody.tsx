@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
     FlexRow, FlexSpacer, FlexCell,
@@ -7,9 +7,10 @@ import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
 import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
-import { RangeDatePickerProps } from '../datePickers/types';
+import {
+    RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
+} from '../datePickers/types';
 import { RangeDatePickerBody } from '../datePickers';
-import { useRangeDatePickerState } from '../datePickers/useRangeDatePickerState';
 
 export interface FilterRangeDatePickerProps extends RangeDatePickerProps, IDropdownBodyProps {}
 
@@ -25,24 +26,33 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
         props.onOpenChange?.(newIsOpen);
     };
 
-    const {
-        inFocus,
-        setInFocus,
-        onValueChange,
-        onBodyValueChange,
-    } = useRangeDatePickerState({
-        value,
-        format,
-        inFocusInitial: 'from',
-        onValueChange: (newValue) => {
+    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>('from');
+
+    const onValueChange = (newValue: RangeDatePickerValue) => {
+        const fromChanged = value?.from !== newValue?.from;
+        const toChanged = value?.to !== newValue?.to;
+        if (fromChanged || toChanged) {
             props.onValueChange(newValue);
             if (props.getValueChangeAnalyticsEvent) {
                 const event = props.getValueChangeAnalyticsEvent(newValue, value);
                 context.uuiAnalytics.sendEvent(event);
             }
-        },
-        onOpenChange,
-    });
+        }
+    };
+
+    const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
+        setInFocus(newValue.inFocus ?? inFocus);
+        onValueChange(newValue.selectedDate);
+
+        const toChanged = value.to !== newValue.selectedDate.to;
+        const closeBody = newValue.selectedDate.from && newValue.selectedDate.to
+         && inFocus === 'to'
+           && toChanged;
+
+        if (closeBody) {
+            onOpenChange(false);
+        }
+    };
 
     return (
         <Fragment>
