@@ -4,7 +4,7 @@ import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { DataPickerRow, FlexRow, PickerInput, Text } from '@epam/uui';
 import css from './IconPicker.module.scss';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 interface IconPickerInnerProps extends IEditable<IHasIcon> {
     icons: IconBase<Icon>[];
@@ -24,12 +24,11 @@ export function IconPickerWithInfo(props: IconPickerInnerProps) {
         icon: null,
     });
 
-    const icons: { [key: string]: IconBase<Icon> } = {};
-
-    useEffect(() => {
-        props.icons.forEach((icon) => {
-            icons[icon.id] = icon;
-        });
+    const icons = useMemo(() => {
+        return props.icons.reduce<{ [key: string]: IconBase<Icon> }>((acc, icon) => {
+            acc[icon.id] = icon;
+            return acc;
+        }, {});
     }, [props.icons]);
 
     const renderItem = (item: IconBase<Icon>) => {

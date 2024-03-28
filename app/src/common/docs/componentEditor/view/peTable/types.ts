@@ -3,7 +3,6 @@ import {
     IPropSamplesCreationContext,
     PropDoc, TDocsGenExportedType,
 } from '@epam/uui-docs';
-import { TPreviewRef } from '../../../../../preview/componentPreview/utils/previewLinkUtils';
 
 export interface IPeTableProps<TProps> {
     inputData: {
@@ -21,7 +20,6 @@ export interface IPeTableProps<TProps> {
     propDoc: PropDoc<TProps, keyof TProps>[]
     title: string;
     typeRef: TDocsGenExportedType;
-    previewRef: TPreviewRef;
 }
 
 export interface IPeTableRowProps<TProps> {

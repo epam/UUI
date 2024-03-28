@@ -2,7 +2,7 @@
 #### Windows
 1. Open https://github.com/containers/podman/releases/tag/v5.0.0
 2. Scroll to the bottom of the page and download ```podman-5.0.0-setup.exe```. Install it.
-3. Open PowerShell console as Administrator and run with next commands:
+3. Open PowerShell console as Administrator and run next commands:
 ```bash
 podman machine init
 podman machine set --rootful

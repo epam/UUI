@@ -31,7 +31,7 @@ function runPlaywright() {
 
 function throwUnsupportedEnvErr() {
     const SCRIPT_ERR = {
-        UNSUPPORTED_ENV: '\nThis script is not designed to run in CI or in Docker. Aborted. \n',
+        UNSUPPORTED_ENV: '\nThis script is designed to run only in CI or Docker. Aborted. \n',
     };
     console.error(SCRIPT_ERR.UNSUPPORTED_ENV);
     process.exit(1);

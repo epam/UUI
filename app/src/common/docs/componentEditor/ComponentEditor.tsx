@@ -233,7 +233,9 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         const { isSkin, theme, componentId, docs } = this.props;
         const { inputData } = this.state;
         const context = this.getSelectedCtxName() as TDocContext;
-        return buildPreviewRef({ context, inputData, isSkin, theme, componentId, docs });
+        if (docs) {
+            return buildPreviewRef({ context, inputData, isSkin, theme, componentId, docs });
+        }
     };
 
     getSelectedCtxName = () => {
@@ -265,7 +267,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
                 selectedCtxName={ selectedCtxName }
                 tagName={ tagName }
                 title={ title }
-                onBuildPreviewRef={ this.handleBuildPreviewRef }
+                previewRef={ this.handleBuildPreviewRef() }
                 onChangeSelectedCtx={ this.handleChangeContext }
                 onPropExampleIdChange={ this.handlePropExampleIdChange }
                 onPropValueChange={ this.handlePropValueChange }
