@@ -3,7 +3,7 @@ import { newMap } from './map';
 import { DataSourceState, IImmutableMap, IMap, PatchItemsOptions, SortedPatchByParentId } from '../../../../../types';
 import { SortConfig } from '../hooks/strategies/types';
 import { buildComparators, composeComparetors } from '../helpers';
-import { PatchOrdering } from '../PatchOrderingMap';
+import { PatchOrdering } from '../constants';
 import { ITree } from '../ITree';
 
 const groupByParentId = <TItem, TId>(

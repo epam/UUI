@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { newMap } from '../../helpers';
 import { DataSourceState, PatchItemsOptions } from '../../../../../../types';
-import { PatchOrdering } from '../../PatchOrderingMap';
+import { PatchOrdering } from '../../constants';
 import { useSimplePrevious } from '../../../../../../hooks';
 import { getSortedPatchByParentId } from '../../helpers/patch';
 import { TreeState } from '../../treeState';
