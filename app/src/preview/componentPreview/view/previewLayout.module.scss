@@ -8,10 +8,7 @@
     flex-direction: column;
     align-items: flex-start;
     background-color: transparent;
-
-    .toolbar {
-        display: none;
-    }
+    padding: 24px;
 
     .preview-wrapper {
         flex-basis: auto;
@@ -19,7 +16,6 @@
         .preview {
             display: flex;
             flex-wrap: wrap;
-            padding: 0;
 
             .cell {
                 box-sizing: border-box;

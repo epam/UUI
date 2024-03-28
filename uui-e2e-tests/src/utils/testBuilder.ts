@@ -3,6 +3,9 @@ import { test } from '../fixtures';
 import { PreviewPageParams, ScreenshotTestParamsSingle, TMatrix, TTheme } from '../types';
 import { TPreviewIdByComponentId, TComponentId } from '../constants';
 
+type TCtx = {
+    seenTestNames: Set<string>
+};
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrix[]> = new Map();
 
@@ -26,47 +29,56 @@ export class TestBuilder {
     }
 
     buildTests(params?: { runId?: string }) {
+        const ctx: TCtx = {
+            seenTestNames: new Set<string>(),
+        };
+
         const runId = params?.runId;
         this.cfgByComponent.forEach((matrix, componentId) => {
             matrix.forEach((m) => {
-                createScreenshotTestsSingle({
+                createTestsForSingleComponentId({
                     runId,
                     componentId,
                     matrix: m,
-                });
+                }, ctx);
             });
         });
     }
 }
 
-function createScreenshotTestsSingle(builderParams: ScreenshotTestParamsSingle) {
+function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: TCtx) {
     const { componentId, matrix } = builderParams;
     matrix.theme.forEach((theme) => {
         matrix.isSkin.forEach((isSkin) => {
             matrix.previewId.forEach((previewId) => {
                 const pageParams = { theme, isSkin, previewId, componentId };
-                createSingleScreenshotTest({ builderParams, pageParams });
+                testScreenshot({ builderParams, pageParams, ctx });
             });
         });
     });
 }
 
-function createSingleScreenshotTest(
-    params: { builderParams: ScreenshotTestParamsSingle, pageParams: PreviewPageParams },
+function testScreenshot(
+    params: { builderParams: ScreenshotTestParamsSingle, pageParams: PreviewPageParams, ctx: TCtx },
 ) {
-    const { pageParams, builderParams } = params;
+    const { pageParams, builderParams, ctx } = params;
 
     const testName = createUniqueTestName(params);
+    if (ctx.seenTestNames.has(testName)) {
+        throw new Error(`Duplicated test found: "${testName}"`);
+    } else {
+        ctx.seenTestNames.add(testName);
+    }
 
     test.describe(() => {
         test(testName, async ({ previewPage }) => {
             await previewPage.editPreview(pageParams);
-            await previewPage.waitBeforeScreenshot();
+            const opts = await previewPage.getScreenshotOptions();
 
             if (builderParams.onBeforeAssertion) {
                 await builderParams.onBeforeAssertion({ previewPage, pageParams });
             }
-            await expect(previewPage.page).toHaveScreenshot(`${testName}.png`, { fullPage: true });
+            await expect(previewPage.page).toHaveScreenshot(`${testName}.png`, { ...opts });
         });
     });
 }

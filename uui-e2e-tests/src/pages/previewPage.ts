@@ -1,16 +1,19 @@
 import type { Page, Locator } from '@playwright/test';
-import { PreviewPageParams } from '../types';
+import { PreviewPageParams, TClip } from '../types';
 import { PlayWriteInterfaceName, PREVIEW_URL } from '../constants';
 
 export class PreviewPage {
     private locators: {
         regionContentNotBusy: Locator;
+        regionScreenshotContent: Locator;
     };
 
     constructor(public readonly page: Page) {
         const regionContentNotBusy = page.locator('[aria-label="Preview Content"][aria-busy="false"]');
+        const regionScreenshotContent = page.locator('[aria-label="Preview Content"][aria-busy="false"] > div');
         this.locators = {
             regionContentNotBusy,
+            regionScreenshotContent,
         };
     }
 
@@ -18,9 +21,11 @@ export class PreviewPage {
         await this.page.goto(PREVIEW_URL);
     }
 
-    async waitBeforeScreenshot(): Promise<void> {
+    async getScreenshotOptions(): Promise<{ fullPage?: boolean; clip: TClip }> {
         // in some very rare cases, the content is not fully ready, this small timeout solves the issue.
         await this.page.waitForTimeout(10);
+        const clip = await this.locators.regionScreenshotContent.boundingBox() as TClip;
+        return { fullPage: true, clip };
     }
 
     async editPreview(params: PreviewPageParams) {

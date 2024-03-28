@@ -5,7 +5,6 @@ import { getSkin } from '../../common/docs/componentEditor/utils';
 import { loadDocsGenType } from '../../common/apiReference/dataHooks';
 import { RenderCaseView } from './view/renderCaseView';
 import { PreviewLayout } from './view/previewLayout';
-import { PreviewToolbar } from './view/previewToolbar';
 import { TComponentPreviewParams } from './types';
 import { getConfigByComponentId } from './utils/previewUtils';
 
@@ -111,14 +110,6 @@ export function ComponentPreview(props: {
             totalNumberOfCells={ totalNumberOfCases }
             cellSize={ allRenderCases?.cellSize }
             isLoaded={ isLoaded }
-            renderToolbar={
-                () => (
-                    <PreviewToolbar
-                        value={ props.params }
-                        onValueChange={ props.onParamsChange }
-                    />
-                )
-            }
             renderCell={ renderCell }
         />
     );

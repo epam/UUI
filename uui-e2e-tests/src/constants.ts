@@ -86,22 +86,15 @@ export type TPreviewIdByComponentId = {
     [TComponentId.badge]: ('Colors' | 'Sizes')[],
 };
 
-/**
- *
- * Please choose the "viewport" carefully, because it affects:
- *  1) size of a screenshot
- *  2) how fast screenshots are compared
- *
- * NOTE: Height is not important for visual regression tests,
- * because it will always be resized to the actual content height before making a screenshot.
+/*
  */
 export const SHARED_DEVICE_CFG: Record<string, Partial<PlaywrightTestOptions>> = {
     DEFAULT: {
         locale: 'en-US',
         timezoneId: 'EET',
         viewport: {
-            width: 480,
-            height: 60,
+            width: 1024,
+            height: 768,
         },
     },
 };

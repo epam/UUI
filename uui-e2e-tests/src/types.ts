@@ -1,6 +1,8 @@
 import { TPreviewIdByComponentId, TComponentId } from './constants';
 import type { PreviewPage } from './pages/previewPage';
 
+export type TClip = { x: number, y: number, width: number, height: number };
+
 export enum TTheme {
     electric = 'electric',
     loveship = 'loveship',

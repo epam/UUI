@@ -9,32 +9,26 @@ import css from './previewLayout.module.scss';
 import { useCallback, useMemo } from 'react';
 import { cx } from '@epam/uui-core';
 import {
-    CELL_SIZE_DEFAULT_PX,
-    SIDE_PADDING_OF_LAYOUT_PX,
-    MAX_ALLOWED_LAYOUT_WIDTH_PX,
+    CELL_SIZE_DEFAULT,
+    SCREENSHOT_WIDTH_LIMIT,
 } from '../constants';
 import { TPreviewCellSize } from '@epam/uui-docs';
 
 interface IPreviewLayout {
     error: string | undefined;
     isLoaded: boolean;
-    renderToolbar: () => (React.ReactNode | undefined);
     renderCell: (params: { index: number }) => (React.ReactNode | undefined);
     totalNumberOfCells: number;
     cellSize: TPreviewCellSize | undefined;
 }
 
-const TOOLBAR_REGION_ATTRS = {
-    role: 'region',
-    'aria-label': 'Preview Toolbar',
-};
 const PREVIEW_REGION_ATTRS = {
-    'aria-label': 'Preview Content',
+    previewContentLabel: 'Preview Content',
     role: 'region',
 };
 
 export function PreviewLayout(props: IPreviewLayout) {
-    const { renderCell, renderToolbar, isLoaded, cellSize, totalNumberOfCells, error } = props;
+    const { renderCell, isLoaded, cellSize, totalNumberOfCells, error } = props;
 
     const renderErr = useCallback(() => {
         if (error) {
@@ -49,22 +43,29 @@ export function PreviewLayout(props: IPreviewLayout) {
     }, [error]);
 
     const layoutSize = useMemo(() => {
-        const [
-            requestedWidthPx = CELL_SIZE_DEFAULT_PX.width,
-            requestedHeightPx = CELL_SIZE_DEFAULT_PX.height,
-        ] = cellSize?.split('-').map((s) => typeof s === 'string' ? parseInt(s) : undefined) || [];
+        let requestedWidthPx;
+        let requestedHeightPxOrStr;
+        if (cellSize) {
+            const wh = cellSize.split('-').map((s) => parseInt(s));
+            requestedWidthPx = wh[0];
+            requestedHeightPxOrStr = wh[1];
+        } else {
+            requestedWidthPx = CELL_SIZE_DEFAULT.width;
+            requestedHeightPxOrStr = CELL_SIZE_DEFAULT.height;
+        }
 
         const cellWidth = `${requestedWidthPx}px`;
-        const cellHeight = requestedHeightPx ? `${requestedHeightPx}px` : 'auto';
-        let howManyFits = Math.floor((MAX_ALLOWED_LAYOUT_WIDTH_PX - SIDE_PADDING_OF_LAYOUT_PX) / requestedWidthPx);
-        if (totalNumberOfCells && totalNumberOfCells < howManyFits) {
-            howManyFits = totalNumberOfCells;
+        const cellHeight = typeof requestedHeightPxOrStr === 'number' ? `${requestedHeightPxOrStr}px` : requestedHeightPxOrStr;
+
+        let numOfColumns = Math.floor(SCREENSHOT_WIDTH_LIMIT / requestedWidthPx);
+        if (totalNumberOfCells && totalNumberOfCells < numOfColumns) {
+            numOfColumns = totalNumberOfCells;
         }
 
         return {
             cellWidth,
             cellHeight,
-            layoutFixedWidth: `${howManyFits * requestedWidthPx + SIDE_PADDING_OF_LAYOUT_PX}px`,
+            layoutFixedWidth: `${numOfColumns * requestedWidthPx}px`,
         };
     }, [cellSize, totalNumberOfCells]);
 
@@ -88,14 +89,14 @@ export function PreviewLayout(props: IPreviewLayout) {
         );
     }, [layoutSize, isLoaded, renderCell, totalNumberOfCells]);
 
-    const commonAttrs = {
+    const attrs = {
         role: 'region',
-        'aria-label': PREVIEW_REGION_ATTRS['aria-label'],
+        'aria-label': PREVIEW_REGION_ATTRS.previewContentLabel,
         'aria-busy': !isLoaded,
     };
 
     return (
-        <FlexRow cx={ css.root } rawProps={ commonAttrs }>
+        <FlexRow cx={ css.root } rawProps={ attrs }>
             {
                 !isLoaded && (
                     <div className={ css.spinner }>
@@ -105,17 +106,12 @@ export function PreviewLayout(props: IPreviewLayout) {
             }
             {
                 isLoaded && (
-                    <>
-                        <FlexCell cx={ css.toolbar } rawProps={ TOOLBAR_REGION_ATTRS }>
-                            { renderToolbar() }
-                        </FlexCell>
-                        <FlexCell cx={ css.previewWrapper } rawProps={ { style: { width: layoutSize.layoutFixedWidth } } }>
-                            { renderErr() }
-                            <div className={ cx(css.preview) }>
-                                { renderAllCells() }
-                            </div>
-                        </FlexCell>
-                    </>
+                    <FlexCell cx={ css.previewWrapper } rawProps={ { style: { width: layoutSize.layoutFixedWidth } } }>
+                        { renderErr() }
+                        <div className={ cx(css.preview) }>
+                            { renderAllCells() }
+                        </div>
+                    </FlexCell>
                 )
             }
         </FlexRow>
