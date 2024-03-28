@@ -13,5 +13,9 @@ export {
     PENDING_RECORD,
     LOADING_RECORD,
     LOADED_RECORD,
+
+    PatchOrdering,
 } from './constants';
 export { CompositeKeysMap, newMap, cloneMap } from './helpers';
+
+export type { PatchOrderingType } from './types';

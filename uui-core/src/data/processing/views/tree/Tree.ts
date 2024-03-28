@@ -2,7 +2,8 @@ import isEqual from 'lodash.isequal';
 import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../types';
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD } from './constants';
-import { FetchingHelper, ITreeNodeInfo } from './treeStructure';
+import { FetchingHelper } from './treeStructure/helpers/FetchingHelper';
+import { ITreeNodeInfo } from './treeStructure/types';
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
