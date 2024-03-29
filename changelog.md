@@ -7,6 +7,7 @@
     * [Patch items in Lazy/Async/Array dataSources]: the possibility to add/move/delete items from Array/Async/Lazy DataSources was added. To provide this functionality, three options were added:
       * [BaseListViewProps.patchItems]: To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
       * [BaseListViewProps.isDeleted]: To enable deleting of the items, it is required to specify getter of deleting state.
+      * [BaseListViewProps.fixItemBetweenSortings]: If enabled, positions of items between sorting changes are fixed.
       * [BaseListViewProps.getNewItemPosition]: To specify the position an item to be moved, `getNewItemPosition` function may be provided. If not provided, new items will be placed at the top of the list. It can return a various of position configurations:
         * `PatchOrdering.TOP` - moves an element to the top of the children list;
         * `PatchOrdering.BOTTOM` - moves an element to the bottom of the children list;
