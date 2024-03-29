@@ -61,7 +61,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, selectionTree, reload, totalCount, ...restProps } = useTree({
-            type: 'plain',
+            type: 'sync',
             ...restDSProps,
             ...options,
             

@@ -1,5 +1,5 @@
 export const STRATEGIES = {
-    plain: 'plain',
+    sync: 'sync',
     async: 'async',
     lazy: 'lazy',
 } as const;

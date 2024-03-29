@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from '@epam/uui-test-utils';
-import { usePlainTree } from '../usePlainTree';
+import { useSyncTree } from '../useSyncTree';
 import { DataQueryFilter, DataSourceState } from '../../../../../../../../types';
 import { LocationItem } from '../../../../../../__tests__/mocks';
 import { demoData } from '@epam/uui-docs';
@@ -7,7 +7,7 @@ import { NOT_FOUND_RECORD } from '../../../../exposed';
 import { ItemsStorage } from '../../../../ItemsStorage';
 import { TreeStructure } from '../../../../treeStructure';
 
-describe('usePlainTree', () => {
+describe('useSyncTree', () => {
     let dataSourceState: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const setDataSourceState = (newDsState: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
         if (typeof newDsState === 'function') {
@@ -28,8 +28,8 @@ describe('usePlainTree', () => {
 
     it('should path through minimal props', async () => {
         const hookResult = renderHook(
-            (props) => usePlainTree({
-                type: 'plain',
+            (props) => useSyncTree({
+                type: 'sync',
                 items,
                 getId,
                 dataSourceState,
@@ -70,8 +70,8 @@ describe('usePlainTree', () => {
         const showSelectedOnly = true;
 
         const hookResult = renderHook(
-            (props) => usePlainTree({
-                type: 'plain',
+            (props) => useSyncTree({
+                type: 'sync',
                 items,
                 getId,
                 getParentId,
@@ -112,8 +112,8 @@ describe('usePlainTree', () => {
 
     it('should defined itemsMap/setItems inside hook if not passed to props', async () => {
         const hookResult = renderHook(
-            (props) => usePlainTree({
-                type: 'plain',
+            (props) => useSyncTree({
+                type: 'sync',
                 items,
                 getId,
                 dataSourceState,
@@ -152,8 +152,8 @@ describe('usePlainTree', () => {
         expect(itemsStorage.getItemsMap().get('GM')).toBeUndefined();
 
         const hookResult = renderHook(
-            (props) => usePlainTree({
-                type: 'plain',
+            (props) => useSyncTree({
+                type: 'sync',
                 items,
                 getId,
                 dataSourceState,

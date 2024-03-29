@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { PlainTreeProps } from './types';
+import { SyncTreeProps } from './types';
 import { useCreateTree } from './useCreateTree';
 import {
     useFilterTree, useSearchTree, useSortTree, useDataSourceStateWithDefaults,
@@ -7,8 +7,8 @@ import {
 } from '../../common';
 import { UseTreeResult } from '../../types';
 
-export function usePlainTree<TItem, TId, TFilter = any>(
-    { sortSearchByRelevance = true, items, ...restProps }: PlainTreeProps<TItem, TId, TFilter>,
+export function useSyncTree<TItem, TId, TFilter = any>(
+    { sortSearchByRelevance = true, items, ...restProps }: SyncTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): UseTreeResult<TItem, TId, TFilter> {
     const props = { ...restProps, sortSearchByRelevance };

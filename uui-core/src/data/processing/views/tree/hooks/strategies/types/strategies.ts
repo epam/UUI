@@ -1,7 +1,7 @@
 import { UseTreeResult } from '../../types';
 import { STRATEGIES } from '../constants';
 import { LazyTreeProps } from '../lazyTree/types';
-import { PlainTreeProps } from '../../strategies/plainTree/types';
+import { SyncTreeProps } from '../syncTree/types';
 import { AsyncTreeProps } from '../asyncTree/types';
 import { ITree } from '../../../ITree';
 import { RecordStatus } from '../../../types';
@@ -20,7 +20,7 @@ export type TreeHook<T extends Strategies> =
  * useTree hook configuration.
  */
 export type UseTreeProps<TItem, TId, TFilter = any> = (
-    PlainTreeProps<TItem, TId, TFilter>
+    SyncTreeProps<TItem, TId, TFilter>
     | AsyncTreeProps<TItem, TId, TFilter>
     | LazyTreeProps<TItem, TId, TFilter>
 );
