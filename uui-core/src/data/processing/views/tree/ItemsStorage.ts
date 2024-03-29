@@ -1,11 +1,13 @@
-import { ItemsMap, ItemsMapParams, OnUpdate } from './ItemsMap';
+import { ItemsMap, ItemsMapParams } from './ItemsMap';
+
+export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
 
 export interface ModificationOptions {
     reset?: boolean;
     on?: 'load' | 'patch'
 }
 
-interface ItemsStorageParams<TItem, TId> {
+export interface ItemsStorageParams<TItem, TId> {
     items?: TItem[];
     params: ItemsMapParams<TItem, TId>;
 }

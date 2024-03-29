@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { DataSourceState, DataColumnProps, useUuiContext, useTree, useDataRows, useCascadeSelectionService } from '@epam/uui-core';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -54,8 +54,7 @@ export default function TableWithPinnedRows() {
         [],
     );
 
-    const { tree, selectionTree, loadMissingRecordsOnCheck, ...restProps } = useTree<Location, string, unknown>({
-        type: 'lazy',
+    const dataSource = useLazyDataSource<Location, string, unknown>({
         api: (request, ctx) => {
             const filter = { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, filter });
@@ -65,8 +64,6 @@ export default function TableWithPinnedRows() {
         getChildCount: (l) => l.childCount,
         backgroundReload: true,
         cascadeSelection: 'explicit',
-        dataSourceState: tableState,
-        setDataSourceState: setTableState,
         rowOptions: {
             checkbox: { isVisible: true },
             // To make some row `pinned`, it is required to define `pin` function.
@@ -75,24 +72,15 @@ export default function TableWithPinnedRows() {
         },
     }, []);
 
-    const cascadeSelectionService = useCascadeSelectionService({
-        tree: selectionTree,
-        cascadeSelection: restProps.cascadeSelection,
-        getRowOptions: restProps.getRowOptions,
-        rowOptions: restProps.rowOptions,
-        getItemStatus: restProps.getItemStatus,
-        loadMissingRecordsOnCheck,
-    });
-
-    const { rows, listProps } = useDataRows({ tree, ...restProps, ...cascadeSelectionService });
-
+    const view = dataSource.useView(tableState, setTableState);
+    
     return (
         <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
-                { ...listProps }
-                rows={ rows }
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
                 headerTextCase="upper"
                 columns={ locationsColumns }
             />
