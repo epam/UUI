@@ -4,10 +4,12 @@
     &.size-#{$size} {
         height: #{$size}px;
 
-        @include scalable-icon-size($size);
+        // icons always 18 by design
+        @include scalable-icon-size(36);
 
         ~ :global(.config-icon) {
-            @include scalable-icon-size($size);
+            // icons always 18 by design
+            @include scalable-icon-size(36);
         }
     }
 }

@@ -1,6 +1,7 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
+
 * [useTree]: useTree hook is added.
   * [Features]:
     * [BaseListViewProps.showSelectedOnly]: The flow of rendering selected rows was changed. Previously, there was a separate flow of rendering selected rows, with using the `IDataSourceView.getSelectedRows` method. Currently, a new property, `showSelectedOnly`, was added. If this feature is turned on, selected rows are returned from `IDataSourceView.getVisibleRows`.
@@ -35,16 +36,53 @@
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
 
+# 5.7.1 - 29.03.2024
+
+**What's Fixed**
+
+* [TabButton, VerticalTabButton]: set 18 icon size for all button sizes according to design
+* [DataPickerHeader]: changed close icon to match design
+* [DataTableHeaderCell]: set 18 size for all icons by design
+
 # 5.7.0 - 25.03.2024
 
 **What's New**
+* New Scaling Icons Approach:
+  - Components now define the icon size based on their `props.size` value. You no longer need to pass an icon with an appropriate size for the component's size. The provided icon will now be scaled by the component itself.
+  - Added a new icons pack, new icons placed under the '@epam/assets/icons' path. Old icons still exist under the '@epam/assets/icons/common' path.
+  - This change doesn't require any immediate action from your side. You can continue using icons from the old icons pack. However, please note that icons which were passed to the components without adhering to the guidelines may now be scaled according to these guidelines.
+* [DataTable]: Added possibility to pin columns to the right side of the table via columns config dialog
+* [DataTable]: added 'Expand All/Collapse All' action in table header. They isn't rendered by default, to turn on pass `showFoldAll={ true }` to the DataTable props.
+* [RTE]: added serializer/deserializer for MD format. Read more [here](https://uui.epam.com/documents?id=rteSerializers&category=richTextEditor&theme=electric#md_format).
+* [RTE]: added `onFocus` prop
+* [Modals]: now the Modals closed by default if the URL was changed. You can turn this off passing `disableCloseOnRouterChange={true}` prop to ModalBlocker component.
+* [Modals]: added `maxHeight` prop
+* [Paginator]: added `isDisabled` property
+* [IconButton]: added property `size`
+* [TimePicker]: added property `disableClear` to disable inputs' clear cross
+* [FlexRow]: deprecated property `spacing`, it will be removed in future releases. Please use `columnGap` instead. `spacing` prop now works via `columnGap`.
+* [FlexRow]: added property `topBorder` to add border on the top of the FlexRow
+* [FileUpload]: move wordings to the i18n
+* [ColumnsConfigurationModal]: small visual tweaks
+* [Avatar]: changed default avatar img
+
+
+**What's Fixed**
+* [PickerInput]: fixed loading of selectedId with parents.
+    * Fixed partially selected with predefined selected value.
+    * Fixed fetching missing parents for selected element in PickerInput.
+* [PickerInput]: fixed 'unknown records' removing
+* [PickerInput]: Fixed focus reset after clicking outside
+* [PickerInput]: fixed unnecessary PickerInput `onValueChange` calls on `dataSourceState` change(search, focusedIndex change) in single select with `valueType=entity`.
+* [PickerList]: aligned caption by the left side in the footer.
+* [DropdownContainer]: disable scroll to the focused element after dropdown close
+* [DropdownContainer]: fixed warning about incorrect ref in React strict mode
 * [Avatar]: change type of 'img' prop to also accept null value
 * [RTE]: fixed table border rendering issues in Firefox
 * [RTE]: fixed placeholder position in Safari
 * [RTE]: fixed editor focusable area and appearing cursor on first click
 * [RTE]: disable image resizing in readonly mode
 * [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
@@ -78,7 +116,7 @@
 * [RTE]: fixed editor focusable area and appearing cursor on first click
 * [RTE]: disable image resizing in readonly mode
 * [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: changed default column `minWidht` value for resizing. For first columns now it's `78px`, for others `54px`.
+* [DataTable]: changed default column `minWidth` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
