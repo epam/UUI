@@ -1,9 +1,9 @@
 import { useAsyncTree } from './asyncTree';
 import { useLazyTree } from './lazyTree';
-import { usePlainTree } from './plainTree';
+import { useSyncTree } from './syncTree';
 
 export const strategies = {
-    plain: usePlainTree,
+    sync: useSyncTree,
     async: useAsyncTree,
     lazy: useLazyTree,
 };
