@@ -172,6 +172,12 @@ export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
      * Items, which should be added/updated/deleted from the tree.
      */
     patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+
+    /**
+     * If enabled, items position is fixed between sorting.
+     * @default true
+     */
+    fixItemBetweenSortings?: boolean;
 }
 
 export type SortedPatchByParentId<TItem, TId> = IMap<
