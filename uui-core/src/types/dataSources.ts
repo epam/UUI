@@ -163,9 +163,12 @@ export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
      */
     getNewItemPosition?: (item: TItem) => PatchOrderingType;
     /**
+     *
      * Provides information about the temporary order of the new item.
      * @param item - new item, temporary order should be got for.
      * @returns temporary order
+     *
+     * @experimental The API of this feature can be changed in the future releases.
      */
     getItemTemporaryOrder?: (item: TItem) => string;
     /**
