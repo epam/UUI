@@ -12,6 +12,10 @@ export interface ItemsStorageParams<TItem, TId> {
     params: ItemsMapParams<TItem, TId>;
 }
 
+/**
+ * Storage of items with subscriptions. Enables sharing loaded data between multiple consumers.
+ * @internal For internal usage only. API can be changed in future releases.
+ */
 export class ItemsStorage<TItem, TId> {
     private subs: Map<OnUpdate<TId, TItem>, void> = new Map();
     private _itemsMap: ItemsMap<TId, TItem>;
