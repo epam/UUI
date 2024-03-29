@@ -57,7 +57,7 @@ export function ProductsTableDemo() {
 
     const dataSource = useLazyDataSource({
         api: svc.api.demo.products,
-        patchItems: updatedRows.items,
+        patch: updatedRows.items,
         getId: (i) => i.ProductID,
         getRowOptions: (product) => ({ ...lens.prop('items').key(product.ProductID).default(product).toProps() }),
         backgroundReload: true,

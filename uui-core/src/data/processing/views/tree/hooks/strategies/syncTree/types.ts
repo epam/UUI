@@ -1,11 +1,11 @@
-import { PatchItemsOptions } from '../../../../../../../types';
+import { PatchOptions } from '../../../../../../../types';
 import { ItemsStorage } from '../../../ItemsStorage';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig, FilterConfig, SearchConfig, SortConfig } from '../types/common';
 
 export type SyncTreeProps<TItem, TId, TFilter> =
     CommonDataSourceConfig<TItem, TId, TFilter>
-    & PatchItemsOptions<TItem, TId>
+    & PatchOptions<TItem, TId>
     & SearchConfig<TItem>
     & SortConfig<TItem>
     & FilterConfig<TItem, TFilter>

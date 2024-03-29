@@ -6,12 +6,12 @@ import { ItemsAccessor } from '../../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap } from '../../helpers/map';
 import { merge } from '../../helpers/merge';
-import { PatchItemsIntoTreeStructureOptions } from './types';
+import { PatchIntoTreeStructureOptions } from './types';
 import { ItemsMap } from '../../ItemsMap';
 
 interface ApplyPatchWithSortingOptions<TItem, TId> {
     comparator: (a: TItem, b: TItem) => number;
-    patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
     originalItemsMap: ItemsMap<TId, TItem>;
     patchedItemsMap: ItemsMap<TId, TItem>;
     isDeleted: (id: TId) => boolean;
@@ -31,7 +31,7 @@ export class PatchHelper {
         originalIds: TId[],
         {
             comparator,
-            patchItemsAtLastSort,
+            patchAtLastSort,
             originalItemsMap,
             patchedItemsMap,
             isDeleted,
@@ -43,12 +43,12 @@ export class PatchHelper {
             patchIds,
             originalIds,
             (patchItemId, itemId) => {
-                const inPatchBeforeSort = patchItemsAtLastSort.has(patchItemId);
+                const inPatchBeforeSort = patchAtLastSort.has(patchItemId);
                 const inOriginalTree = originalItemsMap.has(patchItemId);
 
                 let patchItemToCompare;
                 if (inPatchBeforeSort) {
-                    patchItemToCompare = patchItemsAtLastSort.get(patchItemId);
+                    patchItemToCompare = patchAtLastSort.get(patchItemId);
                 } else if (inOriginalTree) {
                     patchItemToCompare = originalItemsMap.get(patchItemId);
                 } else {
@@ -91,16 +91,16 @@ export class PatchHelper {
         );
     }
 
-    public static patchItems<TItem, TId>({
+    public static patch<TItem, TId>({
         itemsMap: originalItemsMap,
         treeStructure,
         sortedPatch,
-        patchItemsAtLastSort,
+        patchAtLastSort,
         getItemTemporaryOrder,
         isDeleted,
         sorting,
         sortBy,
-    }: PatchItemsIntoTreeStructureOptions<TItem, TId>) {
+    }: PatchIntoTreeStructureOptions<TItem, TId>) {
         if (!sortedPatch || !sortedPatch.size) return { treeStructure, itemsMap: originalItemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
@@ -112,32 +112,32 @@ export class PatchHelper {
         const complexIds = treeStructure.getParams().complexIds;
 
         let isUpdated = false;
-        for (const [patchParentId, sortedPatchItems] of sortedPatch) {
-            patchedItemsMap = patchedItemsMap.setItems(sortedPatchItems.newItems);
-            newItems = newItems.concat(sortedPatchItems.newItems);
+        for (const [patchParentId, sorted] of sortedPatch) {
+            patchedItemsMap = patchedItemsMap.setItems(sorted.newItems);
+            newItems = newItems.concat(sorted.newItems);
             const itemIds = newByParentId.get(patchParentId) ?? [];
 
             // eslint-disable-next-line no-loop-func
             const isDeletedFn = (id: TId) => isDeleted?.(patchedItemsMap.get(id)) ?? false;
 
             const [sortedItems, isUpdatedOnPatch] = this.applyPatchWithSorting(
-                sortedPatchItems.updated,
+                sorted.updated,
                 itemIds,
                 {
                     comparator: composedComparator,
-                    patchItemsAtLastSort,
+                    patchAtLastSort,
                     originalItemsMap,
                     patchedItemsMap,
                     isDeleted: isDeletedFn,
                     complexIds,
                 },
-                sortedPatchItems.top,
+                sorted.top,
             );
 
-            const sortedItemsWithBottom = sortedItems.concat(sortedPatchItems.bottom);
+            const sortedItemsWithBottom = sortedItems.concat(sorted.bottom);
 
             const [reorderedItems, isUpdatedOnReordering] = this.applyPatchTemporaryReordering(
-                sortedPatchItems.withTempOrder,
+                sorted.withTempOrder,
                 sortedItemsWithBottom,
                 {
                     getItemTemporaryOrder,
@@ -147,7 +147,7 @@ export class PatchHelper {
                 },
             );
 
-            sortedPatchItems.moved.forEach((id) => {
+            sorted.moved.forEach((id) => {
                 const item = treeStructure.getById(id);
                 if (item !== NOT_FOUND_RECORD) {
                     const parentId = treeStructure.getParams().getParentId?.(item) ?? undefined;
@@ -157,7 +157,7 @@ export class PatchHelper {
             });
 
             newByParentId.set(patchParentId, reorderedItems);
-            if (isUpdatedOnReordering || isUpdatedOnPatch || sortedPatchItems.top.length || sortedPatchItems.bottom.length || sortedPatchItems.moved.length) {
+            if (isUpdatedOnReordering || isUpdatedOnPatch || sorted.top.length || sorted.bottom.length || sorted.moved.length) {
                 isUpdated = true;
             }
         }

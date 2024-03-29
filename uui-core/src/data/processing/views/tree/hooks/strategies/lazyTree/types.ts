@@ -1,4 +1,4 @@
-import { LazyDataSourceApi, PatchItemsOptions } from '../../../../../../../types';
+import { LazyDataSourceApi, PatchOptions } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig, ItemsStatuses, SharedItemsState } from '../types/common';
 
@@ -20,7 +20,7 @@ export interface GetChildCount<TItem> {
 
 export type LazyTreeProps<TItem, TId, TFilter> =
     CommonDataSourceConfig<TItem, TId, TFilter>
-    & PatchItemsOptions<TItem, TId>
+    & PatchOptions<TItem, TId>
     & GetChildCount<TItem>
     & SharedItemsState<TItem, TId>
     & ItemsStatuses<TId>

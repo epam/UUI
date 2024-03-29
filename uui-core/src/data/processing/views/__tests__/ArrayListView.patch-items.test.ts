@@ -40,7 +40,7 @@ describe('ArrayListView - patch items', () => {
     ])
     ('should add items to the beginning of the list if item is not in list', async (getNewItemPosition) => {
         const dataSource = getArrayLocationsDS({
-            patchItems: createItemsMap({
+            patch: createItemsMap({
                 'c-AS': {
                     id: 'c-AS',
                     name: 'Asia',
@@ -94,7 +94,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should add items to the end of the list if item is not in list and position is BOTTOM', async () => {
         const dataSource = getArrayLocationsDS({
-            patchItems: createItemsMap({
+            patch: createItemsMap({
                 'c-AS': {
                     id: 'c-AS',
                     name: 'Asia',
@@ -150,7 +150,7 @@ describe('ArrayListView - patch items', () => {
         undefined,
         () => PatchOrdering.TOP,
     ])('should add items to the top by parent', async (getNewItemPosition) => {
-        const patchItems = createItemsMap({
+        const patch = createItemsMap({
             'c-AS': {
                 id: 'c-AS',
                 name: 'Asia',
@@ -186,7 +186,7 @@ describe('ArrayListView - patch items', () => {
                 value: currentValue,
                 onValueChange: onValueChanged,
                 props: {
-                    patchItems, getNewItemPosition,
+                    patch, getNewItemPosition,
                 },
             } },
         );
@@ -207,7 +207,7 @@ describe('ArrayListView - patch items', () => {
             rowAF.onFold?.(rowAF);
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems, getNewItemPosition } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch, getNewItemPosition } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -229,7 +229,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should add items to the bottom by parent', async () => {
         const getNewItemPosition = () => PatchOrdering.BOTTOM;
-        const patchItems = createItemsMap({
+        const patch = createItemsMap({
             'c-AS': {
                 id: 'c-AS',
                 name: 'Asia',
@@ -265,7 +265,7 @@ describe('ArrayListView - patch items', () => {
                 value: currentValue,
                 onValueChange: onValueChanged,
                 props: {
-                    patchItems, getNewItemPosition,
+                    patch, getNewItemPosition,
                 },
             } },
         );
@@ -286,7 +286,7 @@ describe('ArrayListView - patch items', () => {
             rowAF.onFold?.(rowAF);
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems, getNewItemPosition } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch, getNewItemPosition } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -308,7 +308,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should fix position of item from patch till the next sorting change and apply sorting after sorting change', async () => {
         const getNewItemPosition = () => PatchOrdering.TOP;
-        const patchItems = createItemsMap({
+        const patch = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
                 name: 'Asia1',
@@ -382,14 +382,14 @@ describe('ArrayListView - patch items', () => {
                 childCount: 0,
             },
         });
-        const emptyPatchItems: ItemsMap<string, LocationItem> | undefined = undefined;
+        const emptyPatch: ItemsMap<string, LocationItem> | undefined = undefined;
 
         const dataSource = getArrayLocationsDS({});
 
         currentValue.visibleCount = 10;
         currentValue.sorting = [{ field: 'name', direction: 'desc' }];
         const props: Partial<ArrayListViewProps<LocationItem, string, any>> = {
-            patchItems: emptyPatchItems,
+            patch: emptyPatch,
             getNewItemPosition,
         };
 
@@ -419,7 +419,7 @@ describe('ArrayListView - patch items', () => {
         });
 
         currentValue.visibleCount = 10;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: emptyPatchItems, getNewItemPosition } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch: emptyPatch, getNewItemPosition } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -436,7 +436,7 @@ describe('ArrayListView - patch items', () => {
         });
 
         currentValue.visibleCount = 20;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems, getNewItemPosition } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch, getNewItemPosition } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -464,7 +464,7 @@ describe('ArrayListView - patch items', () => {
                 ],
             );
         });
-        const newPatchItems = createItemsMap({
+        const newPatch = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
                 name: 'XA1',
@@ -543,7 +543,7 @@ describe('ArrayListView - patch items', () => {
             value: currentValue,
             onValueChange: onValueChanged,
             props: {
-                patchItems: newPatchItems,
+                patch: newPatch,
                 getNewItemPosition,
             },
         });
@@ -675,7 +675,7 @@ describe('ArrayListView - patch items', () => {
             value: currentValue,
             onValueChange: onValueChanged,
             props: {
-                patchItems: newPatchItems,
+                patch: newPatch,
                 getNewItemPosition,
             },
         });
@@ -806,7 +806,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should delete items from tree', async () => {
         const getNewItemPosition = () => PatchOrdering.TOP;
-        const patchItems = createItemsMap({
+        const patch = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
                 name: 'Asia1',
@@ -851,13 +851,13 @@ describe('ArrayListView - patch items', () => {
             },
         });
 
-        const emptyPatchItems: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
+        const emptyPatch: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
         const dataSource = getArrayLocationsDS({});
 
         currentValue.visibleCount = 10;
         currentValue.sorting = [{ field: 'name', direction: 'desc' }];
         const props: Partial<ArrayListViewProps<ExtendedLocationItem, string, any>> = {
-            patchItems: emptyPatchItems,
+            patch: emptyPatch,
             getNewItemPosition,
             isDeleted: (item) => item.isDeleted ?? false,
         };
@@ -888,7 +888,7 @@ describe('ArrayListView - patch items', () => {
         });
 
         currentValue.visibleCount = 10;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems: emptyPatchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch: emptyPatch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -904,7 +904,7 @@ describe('ArrayListView - patch items', () => {
             );
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -925,7 +925,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should update items', async () => {
         const getNewItemPosition = () => PatchOrdering.TOP;
-        const patchItems = createItemsMap({
+        const patch = createItemsMap({
             'c-AS1': {
                 id: 'c-AS1',
                 name: 'Asia1',
@@ -967,13 +967,13 @@ describe('ArrayListView - patch items', () => {
             },
         });
 
-        const emptyPatchItems: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
+        const emptyPatch: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
         const dataSource = getArrayLocationsDS({});
 
         currentValue.visibleCount = 10;
         currentValue.sorting = [{ field: 'name', direction: 'desc' }];
         const props: Partial<ArrayListViewProps<ExtendedLocationItem, string, any>> = {
-            patchItems: emptyPatchItems,
+            patch: emptyPatch,
             getNewItemPosition,
         };
 
@@ -1003,7 +1003,7 @@ describe('ArrayListView - patch items', () => {
         });
 
         currentValue.visibleCount = 10;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems: emptyPatchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch: emptyPatch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1019,7 +1019,7 @@ describe('ArrayListView - patch items', () => {
             );
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1040,7 +1040,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should move items from parent to parent', async () => {
         const getNewItemPosition = () => PatchOrdering.TOP;
-        const patchItems = createItemsMap({
+        const patch = createItemsMap({
             GM: {
                 id: 'GM',
                 name: 'Gambia',
@@ -1059,13 +1059,13 @@ describe('ArrayListView - patch items', () => {
             },
         });
 
-        const emptyPatchItems: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
+        const emptyPatch: ItemsMap<string, ExtendedLocationItem> | undefined = undefined;
         const dataSource = getArrayLocationsDS({});
 
         currentValue.visibleCount = 10;
         currentValue.sorting = [{ field: 'name', direction: 'desc' }];
         const props: Partial<ArrayListViewProps<ExtendedLocationItem, string, any>> = {
-            patchItems: emptyPatchItems,
+            patch: emptyPatch,
             getNewItemPosition,
         };
 
@@ -1095,7 +1095,7 @@ describe('ArrayListView - patch items', () => {
         });
 
         currentValue.visibleCount = 10;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems: emptyPatchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch: emptyPatch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1111,7 +1111,7 @@ describe('ArrayListView - patch items', () => {
             );
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1131,7 +1131,7 @@ describe('ArrayListView - patch items', () => {
         });
 
         currentValue.visibleCount = 10;
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patchItems } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { ...props, patch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1152,7 +1152,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should add item to the end of the list and updated previous existing item', async () => {
         const dataSource = getArrayLocationsDS({
-            patchItems: createItemsMap({
+            patch: createItemsMap({
                 'c-AN': {
                     id: 'c-AN',
                     name: 'Antarctica',
@@ -1204,7 +1204,7 @@ describe('ArrayListView - patch items', () => {
             },
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: updatedPatch } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch: updatedPatch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1234,7 +1234,7 @@ describe('ArrayListView - patch items', () => {
 
     it('should remove updated item and add new to the bottom', async () => {
         const dataSource = getArrayLocationsDS({
-            patchItems: createItemsMap({
+            patch: createItemsMap({
                 'c-AN': {
                     id: 'c-AN',
                     name: 'Antarctica',
@@ -1287,7 +1287,7 @@ describe('ArrayListView - patch items', () => {
             },
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: updatedPatch } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch: updatedPatch } });
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -1332,7 +1332,7 @@ describe('ArrayListView - patch items', () => {
             },
         });
 
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patchItems: updatedPatchWithDeleted } });
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { patch: updatedPatchWithDeleted } });
 
         await waitFor(() => {
             view = hookResult.result.current;

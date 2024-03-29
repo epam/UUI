@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { newMap } from '../../helpers';
-import { DataSourceState, PatchItemsOptions } from '../../../../../../types';
+import { DataSourceState, PatchOptions } from '../../../../../../types';
 import { PatchOrdering } from '../../constants';
 import { useSimplePrevious } from '../../../../../../hooks';
 import { getSortedPatchByParentId } from '../../helpers/patch';
 import { TreeState } from '../../treeState';
 
-export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItemsOptions<TItem, TId> {
+export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchOptions<TItem, TId> {
     tree: TreeState<TItem, TId>;
     sorting: DataSourceState<TFilter, TId>['sorting'];
 
@@ -15,7 +15,7 @@ export interface UsePatchTreeProps<TItem, TId, TFilter = any> extends PatchItems
 export function usePatchTree<TItem, TId, TFilter = any>(
     {
         tree,
-        patchItems,
+        patch,
         getNewItemPosition = () => PatchOrdering.TOP,
         getItemTemporaryOrder,
         fixItemBetweenSortings = true,
@@ -24,36 +24,36 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         sortBy,
     }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
-    const prevPatchItems = useSimplePrevious(patchItems);
+    const prevPatch = useSimplePrevious(patch);
     const params = tree.visible.getParams();
 
-    const patchItemsAtLastSort = useMemo(() => {
-        return prevPatchItems === null ? newMap<TId, TItem>({ complexIds: params.complexIds }) : patchItems;
+    const patchAtLastSort = useMemo(() => {
+        return prevPatch === null ? newMap<TId, TItem>({ complexIds: params.complexIds }) : patch;
     }, [sorting]);
 
     const sortedPatch = useMemo(
         () => getSortedPatchByParentId(
             tree.visible,
-            patchItems,
-            fixItemBetweenSortings ? patchItemsAtLastSort : patchItems,
+            patch,
+            fixItemBetweenSortings ? patchAtLastSort : patch,
             getNewItemPosition,
             getItemTemporaryOrder,
             sortBy,
             sorting,
             isDeleted,
         ),
-        [patchItems, sorting],
+        [patch, sorting],
     );
 
     return useMemo(() => {
-        return tree.patchItems({
+        return tree.patch({
             sortedPatch,
-            patchItemsAtLastSort: fixItemBetweenSortings ? patchItemsAtLastSort : patchItems,
+            patchAtLastSort: fixItemBetweenSortings ? patchAtLastSort : patch,
             getItemTemporaryOrder,
             isDeleted,
             sorting,
             sortBy,
             ...tree.visible.getParams(),
         });
-    }, [tree, patchItems]);
+    }, [tree, patch]);
 }

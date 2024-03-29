@@ -69,7 +69,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
 
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
-        patchItems: showSelectedOnly ? null : restProps.patchItems,
+        patch: showSelectedOnly ? null : restProps.patch,
         isDeleted: restProps.isDeleted,
         getNewItemPosition: restProps.getNewItemPosition,
         sorting: dataSourceState.sorting,
