@@ -30,6 +30,7 @@
     "stylelint": "yarn --cwd uui-build lint --stylelint",
     "stylelint-fix": "yarn stylelint --fix",
     "test": "node uui-build/scripts/runTests.js --config=./jest.config.js",
+    "test-watch": "yarn test --watchAll",
     "test-ci": "cross-env CI=true yarn test",
     "test-report": "yarn test --collectCoverage",
     "test-typecheck": "tsc --project ./tsconfig.test.json",
