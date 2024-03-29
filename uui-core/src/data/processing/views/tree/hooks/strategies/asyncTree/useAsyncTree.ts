@@ -27,7 +27,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isFoldedByDefault,
         cascadeSelection,
         showSelectedOnly,
-        patchItems,
+        patch,
         isDeleted,
         getNewItemPosition,
         itemsStatusMap,
@@ -118,7 +118,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
-        patchItems: showSelectedOnly ? null : patchItems,
+        patch: showSelectedOnly ? null : patch,
         isDeleted,
         getNewItemPosition,
         getItemTemporaryOrder,

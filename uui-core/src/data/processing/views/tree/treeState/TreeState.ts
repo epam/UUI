@@ -10,9 +10,9 @@ import { NOT_FOUND_RECORD } from '../constants';
 import { cloneMap, newMap } from '../helpers';
 import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
-import { PatchItemsIntoTreeStructureOptions } from '../treeStructure/helpers/types';
+import { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
-import { ExtendedPatchItemsOptions } from '../../../../../types';
+import { ExtendedPatchOptions } from '../../../../../types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -168,14 +168,14 @@ export class TreeState<TItem, TId> {
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
-    private patchItemsTreeStructure(
-        { treeStructure, itemsMap, sortedPatch, patchItemsAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: PatchItemsIntoTreeStructureOptions<TItem, TId>,
+    private patchTreeStructure(
+        { treeStructure, itemsMap, sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: PatchIntoTreeStructureOptions<TItem, TId>,
     ) {
-        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patchItems<TItem, TId>({
+        const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
             treeStructure,
             itemsMap: itemsMap,
             sortedPatch,
-            patchItemsAtLastSort,
+            patchAtLastSort,
             getItemTemporaryOrder,
             isDeleted,
             sorting,
@@ -189,25 +189,25 @@ export class TreeState<TItem, TId> {
         return { treeStructure: newTreeStructure, itemsMap: newItemsMap };
     }
 
-    public patchItems(
-        { sortedPatch, patchItemsAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: ExtendedPatchItemsOptions<TItem, TId>,
+    public patch(
+        { sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: ExtendedPatchOptions<TItem, TId>,
     ): TreeState<TItem, TId> {
-        const { treeStructure: newFull } = this.patchItemsTreeStructure({
+        const { treeStructure: newFull } = this.patchTreeStructure({
             treeStructure: this.getTreeStructure('full'),
             itemsMap: this.itemsMap,
             sortedPatch,
-            patchItemsAtLastSort,
+            patchAtLastSort,
             getItemTemporaryOrder,
             isDeleted,
             sorting,
             sortBy,
         });
 
-        const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchItemsTreeStructure({
+        const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchTreeStructure({
             treeStructure: this.getTreeStructure('visible'),
             itemsMap: this.itemsMap,
             sortedPatch,
-            patchItemsAtLastSort,
+            patchAtLastSort,
             getItemTemporaryOrder,
             isDeleted,
             sorting,

@@ -150,7 +150,7 @@ export type Position<TId> = PositionType | { after: TId };
 /**
  * Patch tree configuration.
  */
-export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
+export interface PatchOptions<TItem, TId> extends SortConfig<TItem> {
     /**
      * To enable deleting of the items, it is required to specify getter for deleted state.
      */
@@ -174,7 +174,7 @@ export interface PatchItemsOptions<TItem, TId> extends SortConfig<TItem> {
     /**
      * Items, which should be added/updated/deleted from the tree.
      */
-    patchItems?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 
     /**
      * If enabled, items position is fixed between sorting.
@@ -199,16 +199,16 @@ TId,
 /**
  * Patching tree configuration.
  */
-export interface ExtendedPatchItemsOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchItemsOptions<TItem, TId>, 'patchItems' | 'getNewItemPosition'> {
+export interface ExtendedPatchOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchOptions<TItem, TId>, 'patch' | 'getNewItemPosition'> {
     /**
-     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patchItems` map.
+     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patch` map.
      */
     sortedPatch?: SortedPatchByParentId<TItem, TId>,
-    patchItemsAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     sorting: DataSourceState<TFilter, TId>['sorting'];
 }
 
-export interface BaseListViewProps<TItem, TId, TFilter> extends PatchItemsOptions<TItem, TId> {
+export interface BaseListViewProps<TItem, TId, TFilter> extends PatchOptions<TItem, TId> {
     /**
      * Should return unique ID of the TItem
      * If omitted, we assume that every TItem has and unique id in its 'id' field.

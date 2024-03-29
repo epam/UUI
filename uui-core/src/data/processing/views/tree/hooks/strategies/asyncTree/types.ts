@@ -1,4 +1,4 @@
-import { PatchItemsOptions } from '../../../../../../../types';
+import { PatchOptions } from '../../../../../../../types';
 import { STRATEGIES } from '../constants';
 import { CommonDataSourceConfig, FilterConfig, ItemsStatuses, SearchConfig, SharedItemsState, SortConfig } from '../types/common';
 
@@ -7,7 +7,7 @@ import { CommonDataSourceConfig, FilterConfig, ItemsStatuses, SearchConfig, Shar
  */
 export interface AsyncTreeProps<TItem, TId, TFilter> extends
     CommonDataSourceConfig<TItem, TId, TFilter>,
-    PatchItemsOptions<TItem, TId>,
+    PatchOptions<TItem, TId>,
     SharedItemsState<TItem, TId>,
     SearchConfig<TItem>,
     SortConfig<TItem>,

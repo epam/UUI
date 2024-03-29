@@ -203,7 +203,7 @@ export default function EditableTableExample() {
         getRowOptions: (item: TodoTask) => ({
             ...lens.prop('items').key(item.id).default(item).toProps(),
         }),
-        patchItems: value.items,
+        patch: value.items,
         getNewItemPosition: () => PatchOrdering.TOP,
         isDeleted: (item) => item.isDeleted,
     });

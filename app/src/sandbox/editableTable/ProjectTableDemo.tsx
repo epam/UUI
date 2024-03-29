@@ -112,7 +112,7 @@ export function ProjectTableDemo() {
             getParentId: (i) => i.parentId,
             getChildCount: (task) => task.childCount,
             backgroundReload: true,
-            patchItems: value.items,
+            patch: value.items,
 
             getNewItemPosition: () => PatchOrdering.TOP,
             getItemTemporaryOrder, 

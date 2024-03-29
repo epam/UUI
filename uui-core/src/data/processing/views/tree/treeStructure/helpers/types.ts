@@ -1,4 +1,4 @@
-import { CascadeSelection, DataSourceState, IMap, ExtendedPatchItemsOptions } from '../../../../../../types';
+import { CascadeSelection, DataSourceState, IMap, ExtendedPatchOptions } from '../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from '../../helpers';
 import { LazyListViewProps } from '../../../types';
@@ -107,7 +107,7 @@ export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<T
     treeStructure: TreeStructure<TItem, TId>;
 }
 
-export interface PatchItemsIntoTreeStructureOptions<TItem, TId> extends Omit<ExtendedPatchItemsOptions<TItem, TId>, 'getNewItemPosition'> {
+export interface PatchIntoTreeStructureOptions<TItem, TId> extends Omit<ExtendedPatchOptions<TItem, TId>, 'getNewItemPosition'> {
     treeStructure: TreeStructure<TItem, TId>;
     itemsMap: ItemsMap<TId, TItem>;
 }
