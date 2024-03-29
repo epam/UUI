@@ -18,6 +18,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         patchItems,
         getNewItemPosition = () => PatchOrdering.TOP,
         getItemTemporaryOrder,
+        fixItemBetweenSortings = true,
         isDeleted,
         sorting,
         sortBy,
@@ -34,7 +35,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         () => getSortedPatchByParentId(
             tree.visible,
             patchItems,
-            patchItemsAtLastSort,
+            fixItemBetweenSortings ? patchItemsAtLastSort : patchItems,
             getNewItemPosition,
             getItemTemporaryOrder,
             sortBy,
@@ -47,7 +48,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
     return useMemo(() => {
         return tree.patchItems({
             sortedPatch,
-            patchItemsAtLastSort,
+            patchItemsAtLastSort: fixItemBetweenSortings ? patchItemsAtLastSort : patchItems,
             getItemTemporaryOrder,
             isDeleted,
             sorting,

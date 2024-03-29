@@ -122,6 +122,7 @@ export function ProjectTableDemo() {
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
+            fixItemBetweenSortings: false,
             getRowOptions: (task) => ({
                 ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
                 // checkbox: { isVisible: true },
