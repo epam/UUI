@@ -9,8 +9,7 @@ import { getFilters } from './filters';
 import {
     useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
     DataQueryFilter,
-    useTree,
-    useDataRows,
+    useLazyDataSource,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -60,14 +59,11 @@ export function FilteredTable() {
         return result;
     }, [svc.api.demo]);
 
-    const { tree, ...restProps } = useTree<Person, number>({ 
-        type: 'lazy',
+    const dataSource = useLazyDataSource<Person, number, DataQueryFilter<Person>>({ 
         api: api,
         getId: (item) => item.id,
         selectAll: false,
         backgroundReload: true,
-        dataSourceState: tableStateApi.tableState,
-        setDataSourceState: tableStateApi.setTableState,
         rowOptions: {
             isSelectable: true,
             onClick: (rowProps) => {
@@ -76,9 +72,7 @@ export function FilteredTable() {
         },
     }, []);
 
-    const { rows, listProps } = useDataRows({ 
-        tree, ...restProps,
-    });
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({
         ...tableStateApi.tableState,
@@ -107,16 +101,16 @@ export function FilteredTable() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                rows={ rows }
+                getRows={ view.getVisibleRows }
                 columns={ personColumns }
                 value={ tableStateApi.tableState }
                 onValueChange={ tableStateApi.setTableState }
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
-                { ...listProps }
+                { ...view.getListProps() }
             />
-            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ listProps.totalCount } />
+            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ view.getListProps().totalCount } />
         </div>
     );
 }

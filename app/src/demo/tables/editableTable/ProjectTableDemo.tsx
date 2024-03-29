@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -116,11 +116,8 @@ export function ProjectTableDemo() {
         [],
     );
 
-    const { tree, ...restProps } = useTree<Task, number>(
+    const dataSource = useArrayDataSource<Task, number, any>(
         {
-            type: 'plain',
-            dataSourceState: tableState,
-            setDataSourceState: setTableState,
             items: Object.values(value.items),
             getSearchFields: (item) => [item.name],
             getId: (i) => i.id,
@@ -140,9 +137,7 @@ export function ProjectTableDemo() {
         [value.items],
     );
 
-    const { rows, listProps } = useDataRows({
-        tree, ...restProps,
-    });
+    const view = dataSource.useView(tableState, setTableState);
 
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
@@ -159,7 +154,7 @@ export function ProjectTableDemo() {
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
         
-        const prevRows = [...rows];
+        const prevRows = [...view.getVisibleRows()];
         deleteTask(selectedItem);
         const index = prevRows.findIndex((task) => task.id === selectedItem.id);
         const newSelectedIndex = index === prevRows.length - 1
@@ -170,7 +165,7 @@ export function ProjectTableDemo() {
             ...state,
             selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
         }));
-    }, [deleteTask, rows, selectedItem, setTableState]);
+    }, [deleteTask, view, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
         if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'Enter') {
@@ -254,7 +249,7 @@ export function ProjectTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                rows={ rows }
+                getRows={ view.getVisibleRows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }
@@ -262,7 +257,7 @@ export function ProjectTableDemo() {
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
-                { ...listProps }
+                { ...view.getListProps() }
             />
         </Panel>
     );

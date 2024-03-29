@@ -1,8 +1,6 @@
 import { IImmutableMap, IMap } from '../../../../types/objects';
 import { cloneMap, newMap } from './helpers/map';
 
-export type OnUpdate<TId, TItem> = (newItemsMap: ItemsMap<TId, TItem>) => void;
-
 export interface ItemsMapParams<TItem, TId> {
     getId: (item: TItem) => TId;
     complexIds?: boolean;
