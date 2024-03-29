@@ -83,7 +83,7 @@ export class PatchHelper {
                 const b = patchedItemsMap.get(itemId);
 
                 const aTempOrder = getItemTemporaryOrder(a);
-                const bTempOrder = getItemTemporaryOrder(b) ?? numberToOrder(itemIndex + 11);
+                const bTempOrder = getItemTemporaryOrder(b) ?? numberToOrder(itemIndex);
                 return tempOrderComparator(aTempOrder, bTempOrder);
             },
             [],

@@ -1,120 +1,39 @@
-import { ITree, NOT_FOUND_RECORD, getOrderBetween, numberToOrder } from '@epam/uui-core';
+import { getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
 
-const shift = 10;
-
-const getItemOrder = <TItem, TId>(
-    id: TId,
-    tree: ITree<TItem, TId>,
-    treeWithoutPatch: ITree<TItem, TId>,
-    getTemporaryOrder: (item: TItem) => string,
-) => {
-    const item = tree.getById(id);
-    if (item === NOT_FOUND_RECORD) {
-        throw Error(`Unknown id = ${id}`);
-    }
-    const parentId = tree.getParams().getParentId?.(item) ?? undefined;
-
-    const order = getTemporaryOrder?.(item);
-    if (order) {
-        return order;
-    }
-    const { ids: originalIds } = treeWithoutPatch.getItems(parentId);
-    const itemIndex = originalIds.findIndex((originalId) => id === originalId);
-    return itemIndex === -1 ? numberToOrder(shift) : numberToOrder(itemIndex + shift + 1);
-};
-
-export function getTopTemporaryOrder<TItem, TId>(
-    parentId: TId,
-    tree: ITree<TItem, TId>,
-    treeWithoutPatch: ITree<TItem, TId>,
-    getTemporaryOrder: (item: TItem) => string,
-) {
-    const { ids } = tree.getItems(parentId);
-    const [first] = ids;
-
-    if (first === undefined) {
-        return getOrderBetween(numberToOrder(shift), numberToOrder(shift + 1));
+/**
+ * Finds a string, which is placed alphabetically in desired position of the list.
+ * If relativeTo is not specified, it is assumed that you need 'before' the first or 'after' the last item
+ * If relativeTo is specified, location is before/after the relativeTo string.
+ *  @see getOrderString function for details about order strings.
+ */
+export function getInsertionOrder(existingOrders: string[], position: 'before' | 'after', relativeTo?: string) {
+    if (!relativeTo) {
+        if (position === 'before') {
+            // inserting at the top of the list, is the same as inserting after the minOrder
+            relativeTo = minOrderStr;
+            position = 'after';
+        } else if (position === 'after') {
+            // inserting at the bottom of the list, is the same as inserting before the maxOrder
+            relativeTo = maxOrderStr;
+            position = 'before';
+        }
     }
 
-    const firstItem = tree.getById(first);
-    if (firstItem === NOT_FOUND_RECORD) {
-        return getOrderBetween(numberToOrder(shift), numberToOrder(shift + 1));
+    if (position === 'before') {
+        let maxOrder = minOrderStr;
+        existingOrders.forEach((order) => {
+            if (order < relativeTo && order > maxOrder) {
+                maxOrder = order;
+            }
+        });
+        return getOrderBetween(maxOrder, relativeTo);
+    } else {
+        let minOrder = maxOrderStr;
+        existingOrders.forEach((order) => {
+            if (order > relativeTo && order < minOrder) {
+                minOrder = order;
+            }
+        });
+        return getOrderBetween(relativeTo, minOrder);
     }
-
-    const firstItemOrder = getItemOrder(first, tree, treeWithoutPatch, getTemporaryOrder);
-    return getOrderBetween(numberToOrder(shift), firstItemOrder);
-}
-
-export function getBottomTemporaryOrder<TItem, TId>(
-    parentId: TId,
-    tree: ITree<TItem, TId>,
-    treeWithoutPatch: ITree<TItem, TId>,
-    getTemporaryOrder: (item: TItem) => string,
-) {
-    const { ids } = tree.getItems(parentId);
-    const last = ids[ids.length - 1];
-
-    if (last === undefined) {
-        return getOrderBetween(numberToOrder(36), null);
-    }
-
-    const lastItem = tree.getById(last);
-    if (lastItem === NOT_FOUND_RECORD) {
-        return getOrderBetween(numberToOrder(36), null);
-    }
-
-    const lastItemOrder = getItemOrder(last, tree, treeWithoutPatch, getTemporaryOrder);
-    return getOrderBetween(lastItemOrder, null);
-}
-
-export function getAfterItemTemporaryOrder<TItem, TId>(
-    afterId: TId,
-    tree: ITree<TItem, TId>,
-    treeWithoutPatch: ITree<TItem, TId>,
-    getTemporaryOrder: (item: TItem) => string,
-) {
-    const item = tree.getById(afterId);
-    if (item === NOT_FOUND_RECORD) {
-        throw Error(`Unknown id = ${afterId}`);
-    }
-
-    const parentId = tree.getParams().getParentId?.(item) ?? undefined;
-
-    const { ids } = tree.getItems(parentId);
-    const afterIndex = ids.findIndex((id) => id === afterId);
-    const afterItemOrder = getItemOrder(afterId, tree, treeWithoutPatch, getTemporaryOrder);
-    if (afterIndex === ids.length - 1) {
-        return getOrderBetween(afterItemOrder, null);
-    }
-
-    const nextId = ids[afterIndex + 1];
-    const nextItemOrder = getItemOrder(nextId, tree, treeWithoutPatch, getTemporaryOrder);
-
-    return getOrderBetween(afterItemOrder, nextItemOrder);
-}
-
-export function getBeforeItemTemporaryOrder<TItem, TId>(
-    beforeId: TId,
-    tree: ITree<TItem, TId>,
-    treeWithoutPatch: ITree<TItem, TId>,
-    getTemporaryOrder: (item: TItem) => string,
-) {
-    const item = tree.getById(beforeId);
-    if (item === NOT_FOUND_RECORD) {
-        throw Error(`Unknown id = ${beforeId}`);
-    }
-
-    const parentId = tree.getParams().getParentId?.(item) ?? undefined;
-
-    const { ids } = tree.getItems(parentId);
-    const beforeIndex = ids.findIndex((id) => id === beforeId);
-    const beforeItemOrder = getItemOrder(beforeId, tree, treeWithoutPatch, getTemporaryOrder);
-
-    if (beforeIndex === 0) {
-        return getOrderBetween(numberToOrder(shift), beforeItemOrder);
-    }
-
-    const previousId = ids[beforeIndex - 1];
-    const previousItemOrder = getItemOrder?.(previousId, tree, treeWithoutPatch, getTemporaryOrder);
-    return getOrderBetween(previousItemOrder, beforeItemOrder);
 }
