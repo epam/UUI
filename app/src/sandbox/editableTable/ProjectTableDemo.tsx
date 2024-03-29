@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, Metadata,
-    PatchOrdering, SortingOption, UuiContexts, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
+    PatchOrdering, SortingOption, UuiContexts, numberToOrder, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -17,7 +17,7 @@ import { getColumns } from './columns';
 import css from './ProjectTableDemo.module.scss';
 import { TApi } from '../../data';
 import { ProjectTask } from '@epam/uui-docs';
-import { getAfterItemTemporaryOrder, getBeforeItemTemporaryOrder, getBottomTemporaryOrder, getTopTemporaryOrder } from './helpers';
+import { getInsertionOrder } from './helpers';
 
 interface FormState {
     items: ItemsMap<number, ProjectTask>;
@@ -97,7 +97,7 @@ export function ProjectTableDemo() {
         }
     }, [setTableState, value.sorting, tableState.sorting]);
 
-    const getItemTemporaryOrder = (item: ProjectTask) => item.tempOrder; 
+    const getItemTemporaryOrder = (item: ProjectTask) => item.tempOrder;
 
     const { tree, treeWithoutPatch, ...restProps } = useTree<ProjectTask, number>(
         {
@@ -115,7 +115,7 @@ export function ProjectTableDemo() {
             patch: value.items,
 
             getNewItemPosition: () => PatchOrdering.TOP,
-            getItemTemporaryOrder, 
+            getItemTemporaryOrder,
             sortBy: (item, sorting) => {
                 return item[sorting.field as keyof ProjectTask];
             },
@@ -126,37 +126,45 @@ export function ProjectTableDemo() {
     );
 
     // Insert new/exiting top/bottom or above/below relative to other task
-    const insertTask = useCallback((position: DropPosition, relativeTask: ProjectTask | null = null, existingTask: ProjectTask | null = null) => {
-        let tempRelativeTask = relativeTask;
+    const insertTask = useCallback((
+        position: DropPosition,
+        relativeTask: ProjectTask | null = null,
+        existingTask: ProjectTask | null = null,
+    ) => {
         const task: ProjectTask = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
+        let insertPosition: 'before' | 'after' = position === 'top' ? 'before' : 'after';
 
         if (position === 'inside') {
             task.parentId = relativeTask.id;
-            task.tempOrder = getTopTemporaryOrder(relativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
-            tempRelativeTask = null; // just insert as the first child
+            insertPosition = 'before';
+        } else if (relativeTask) {
+            task.parentId = relativeTask.parentId;
         }
 
-        if (tempRelativeTask) {
-            task.parentId = tempRelativeTask.parentId;
-        }
+        // Re-create the list of items, along with tempOrders.
+        // As tempOrder of items in original list is implicit, we'll re-create their tempOrders first from their original indexes.
+        const originalItemsOrdersById = new Map<number, string>();
 
-        if (!tempRelativeTask) {
-            if (position === 'top') {
-                task.tempOrder = getTopTemporaryOrder(undefined, tree, treeWithoutPatch, getItemTemporaryOrder);
-            }
-            if (position === 'bottom') {
-                task.tempOrder = getBottomTemporaryOrder(undefined, tree, treeWithoutPatch, getItemTemporaryOrder);
-            }
-        }
-        if (tempRelativeTask) {
-            if (position === 'bottom') {
-                task.tempOrder = getAfterItemTemporaryOrder(tempRelativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
-            }
+        treeWithoutPatch.getItems(task.parentId).ids.forEach((id, index) => {
+            originalItemsOrdersById.set(id, numberToOrder(index));
+        });
 
-            if (position === 'top') {
-                task.tempOrder = getBeforeItemTemporaryOrder(tempRelativeTask.id, tree, treeWithoutPatch, getItemTemporaryOrder);
+        const getTempOrderById = (id: number) => {
+            const item = tree.getById(id) as ProjectTask;
+            if (!item.tempOrder) {
+                return originalItemsOrdersById.get(id);
+            } else {
+                return item.tempOrder;
             }
-        }
+        };
+
+        const itemOrders = tree.getItems(task.parentId).ids.map(getTempOrderById);
+
+        task.tempOrder = getInsertionOrder(
+            itemOrders,
+            insertPosition,
+            relativeTask && getTempOrderById(relativeTask.id),
+        );
 
         setValue((currentValue) => {
             return {
@@ -221,14 +229,14 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            return value.items.get(tableState.selectedId);
+            return tree.getById(tableState.selectedId) as ProjectTask;
         }
         return undefined;
     }, [tableState.selectedId, value.items]);
 
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
-        
+
         const prevRows = [...rows];
         deleteTask(selectedItem);
         const index = prevRows.findIndex((task) => task.id === selectedItem.id);
@@ -273,14 +281,14 @@ export function ProjectTableDemo() {
         const controlKey = navigator.platform.indexOf('Mac') === 0 ? '⌘' : 'Ctrl';
         return (
             <>
-                { tooltip } 
+                { tooltip }
                 {' '}
                 <br />
                 { `(${controlKey} + ${keybindingWithoutControl})` }
             </>
         );
     };
-    
+
     return (
         <Panel cx={ css.container }>
             <FlexRow spacing="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
