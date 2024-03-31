@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, ItemsMap, Metadata,
-    PatchOrdering, SortingOption, UuiContexts, numberToOrder, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
+    PatchOrdering, SortingOption, UuiContexts, getOrderBetween, numberToOrder, useDataRows, useTree, useUuiContext } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -17,7 +17,6 @@ import { getColumns } from './columns';
 import css from './ProjectTableDemo.module.scss';
 import { TApi } from '../../data';
 import { ProjectTask } from '@epam/uui-docs';
-import { getInsertionOrder } from './helpers';
 
 interface FormState {
     items: ItemsMap<number, ProjectTask>;
@@ -132,39 +131,47 @@ export function ProjectTableDemo() {
         existingTask: ProjectTask | null = null,
     ) => {
         const task: ProjectTask = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-        let insertPosition: 'before' | 'after' = position === 'top' ? 'before' : 'after';
 
         if (position === 'inside') {
             task.parentId = relativeTask.id;
-            insertPosition = 'before';
+            position = 'top';
+            relativeTask = null;
         } else if (relativeTask) {
             task.parentId = relativeTask.parentId;
         }
 
-        // Re-create the list of items, along with tempOrders.
-        // As tempOrder of items in original list is implicit, we'll re-create their tempOrders first from their original indexes.
-        const originalItemsOrdersById = new Map<number, string>();
+        const originalListIds = treeWithoutPatch.getItems(task.parentId).ids;
+        const currentListIds = tree.getItems(task.parentId).ids;
 
-        treeWithoutPatch.getItems(task.parentId).ids.forEach((id, index) => {
-            originalItemsOrdersById.set(id, numberToOrder(index));
-        });
+        const getIndex = (list: number[], id: number) => {
+            return list.indexOf(id);
+        };
 
-        const getTempOrderById = (id: number) => {
+        const getOrderByIndex = (index: number) => {
+            const id = currentListIds[index];
             const item = tree.getById(id) as ProjectTask;
+
+            // If item is not in patch, it's order is implied as numberToOrder() of it's original index (before any patch applied)
             if (!item.tempOrder) {
-                return originalItemsOrdersById.get(id);
+                const originalIndex = getIndex(originalListIds, id);
+                return numberToOrder(originalIndex);
             } else {
                 return item.tempOrder;
             }
         };
 
-        const itemOrders = tree.getItems(task.parentId).ids.map(getTempOrderById);
+        let relativeToIndex = relativeTask && getIndex(currentListIds, relativeTask.id);
 
-        task.tempOrder = getInsertionOrder(
-            itemOrders,
-            insertPosition,
-            relativeTask && getTempOrderById(relativeTask.id),
-        );
+        if (!relativeToIndex) {
+            relativeToIndex = position === 'top' ? 0 : currentListIds.length - 1;
+        }
+
+        const indexAbove = position === 'top' ? relativeToIndex - 1 : relativeToIndex;
+        const indexBelow = position === 'bottom' ? relativeToIndex + 1 : relativeToIndex;
+        const orderAbove = indexAbove >= 0 && getOrderByIndex(indexAbove);
+        const orderBelow = indexBelow < currentListIds.length && getOrderByIndex(indexBelow);
+
+        task.tempOrder = getOrderBetween(orderAbove, orderBelow);
 
         setValue((currentValue) => {
             return {
@@ -210,7 +217,7 @@ export function ProjectTableDemo() {
         tree,
         ...restProps,
         getRowOptions: (task) => ({
-            ...lens.prop('items').key(task.id).toProps(), // pass IEditable to ezach row to allow editing
+            ...lens.prop('items').key(task.id).toProps(), // pass IEditable to each row to allow editing
             // checkbox: { isVisible: true },
             isSelectable: true,
             dnd: {
