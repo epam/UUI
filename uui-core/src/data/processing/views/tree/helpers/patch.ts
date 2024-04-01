@@ -117,7 +117,7 @@ const sortByTemporaryOrder = <TItem, TId>(
     getItemTemporaryOrder: PatchOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
     updatedItemsMap: IMap<TId, TItem>,
 ) => {
-    const comparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+    const comparator = (a: string, b: string) => a < b ? -1 : 1;
     return withTempOrder.sort((aId, bId) => {
         const a = updatedItemsMap.get(aId);
         const b = updatedItemsMap.get(bId);
