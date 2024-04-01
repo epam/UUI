@@ -92,11 +92,11 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
-    const selectedAndChecked = getSelectedAndChecked(dataSourceState, tree.visible, patch);
+    const selectedAndChecked = getSelectedAndChecked(dataSourceState, patch);
     const shouldLoad = (!isFetching && !isLoaded && ((showSelectedOnly && selectedAndChecked.length) || !showSelectedOnly)) || forceReload;
 
     if (!isLoaded) {
-        const checked = getSelectedAndChecked(dataSourceState, tree.visible, patch);
+        const checked = getSelectedAndChecked(dataSourceState, patch);
         itemsStatusCollector.setPending(checked);
     }
 
@@ -112,7 +112,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
                 setIsLoading(true);
             }
-            const checked = getSelectedAndChecked(dataSourceState, tree.visible, patch);
+            const checked = getSelectedAndChecked(dataSourceState, patch);
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {

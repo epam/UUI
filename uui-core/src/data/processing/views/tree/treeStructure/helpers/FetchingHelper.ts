@@ -52,7 +52,7 @@ export class FetchingHelper {
             withNestedChildren,
         });
 
-        const missing = getSelectedAndChecked(dataSourceState, tree, patch);
+        const missing = getSelectedAndChecked(dataSourceState, patch);
 
         const { loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
             tree,
