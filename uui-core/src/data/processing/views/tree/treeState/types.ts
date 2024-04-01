@@ -41,6 +41,7 @@ export interface ApplySearchOptions<TItem, TId, TFilter> {
 }
 
 export interface ApplySortOptions<TItem, TId, TFilter> {
+    getId: (item: TItem) => TId;
     sorting: DataSourceState<TFilter, TId>['sorting'];
     sortBy?(item: TItem, sorting: SortingOption): any;
 }

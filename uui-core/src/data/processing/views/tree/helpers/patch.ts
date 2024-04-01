@@ -36,9 +36,6 @@ const getPatchByCategories = <TItem, TId>(
     isDeleted: undefined | ((item: TItem) => boolean),
 ) => {
     const { getId, getParentId, complexIds } = tree.getParams();
-    const indexes = new Map<TItem, number>();
-    items.forEach((item, index) => indexes.set(item, index));
-
     const top: TId[] = [];
     const bottom: TId[] = [];
     const updated: TId[] = [];
@@ -98,7 +95,7 @@ const getPatchByCategories = <TItem, TId>(
         updated.push(id);
     }
 
-    return { top, bottom, movedToOtherParent, updated, withTempOrder, updatedItemsMap, newItems, indexes };
+    return { top, bottom, movedToOtherParent, updated, withTempOrder, updatedItemsMap, newItems };
 };
 
 const sortUpdatedItems = <TItem, TId>(
@@ -106,21 +103,12 @@ const sortUpdatedItems = <TItem, TId>(
     composedComparator: (a: TItem, b: TItem) => number,
     tree: ITree<TItem, TId>,
     patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
-    updatedItemsMap: IMap<TId, TItem>,
-    indexes: Map<TItem, number>,
 ) => {
     return updated.sort((aId, bId) => {
-        const a = updatedItemsMap.get(aId);
-        const b = updatedItemsMap.get(bId);
         const bItem = patchAtLastSort.get(bId) ?? tree.getById(bId) as TItem;
         const aItem = patchAtLastSort.get(aId) ?? tree.getById(aId) as TItem;
 
-        const result = composedComparator(aItem, bItem);
-        if (result === 0) {
-            return indexes.get(a) - indexes.get(b);
-        }
-
-        return result;
+        return composedComparator(aItem, bItem);
     });
 };
 
@@ -148,12 +136,12 @@ const sortPatchByParentId = <TItem, TId, TFilter>(
     isDeleted: undefined | ((item: TItem) => boolean),
 ) => {
     const { complexIds } = tree.getParams();
-    const comparators = buildComparators({ sorting, sortBy });
-    const composedComparator = composeComparetors(comparators);
+    const comparators = buildComparators({ sorting, sortBy, getId: tree.getParams().getId });
+    const composedComparator = composeComparetors(comparators, tree.getParams().getId);
 
     const sorted: SortedPatchByParentId<TItem, TId> = newMap({ complexIds });
     for (const [parentId, items] of groupedByParentId) {
-        const { top, bottom, updated, movedToOtherParent, withTempOrder, updatedItemsMap, newItems, indexes } = getPatchByCategories(
+        const { top, bottom, updated, movedToOtherParent, withTempOrder, updatedItemsMap, newItems } = getPatchByCategories(
             items,
             tree,
             patchAtLastSort,
@@ -162,7 +150,7 @@ const sortPatchByParentId = <TItem, TId, TFilter>(
             isDeleted,
         );
 
-        const sortedUpdated = sortUpdatedItems(updated, composedComparator, tree, patchAtLastSort, updatedItemsMap, indexes);
+        const sortedUpdated = sortUpdatedItems(updated, composedComparator, tree, patchAtLastSort);
         const sortedByTempOrder = sortByTemporaryOrder(withTempOrder, getItemTemporaryOrder, updatedItemsMap);
 
         sorted.set(parentId, {
