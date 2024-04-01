@@ -160,9 +160,9 @@ export function ProjectTableDemo() {
             }
         };
 
-        let relativeToIndex = relativeTask && getIndex(currentListIds, relativeTask.id);
+        let relativeToIndex = relativeTask ? getIndex(currentListIds, relativeTask.id) : -1;
 
-        if (!relativeToIndex) {
+        if (relativeToIndex === -1) {
             relativeToIndex = position === 'top' ? 0 : currentListIds.length - 1;
         }
 
