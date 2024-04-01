@@ -3,7 +3,13 @@ import trimEnd from 'lodash.trimend';
 const base = 26;
 const memoized: string[] = [];
 
-export function numberToOrder(input: number) {
+/**
+ * Computes order string from integer item index in a sequence.
+ * Useful for creating initial orders of items, which can be later manipulated with getOrderBetween to insert or move items.
+ * @param input integer order of item
+ * @returns order string
+ */
+export function indexToOrder(input: number) {
     const existing = memoized[input];
     if (existing) {
         return existing;
