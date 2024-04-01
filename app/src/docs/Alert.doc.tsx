@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Alert',
         contexts: [TDocContext.Resizable],
         bySkin: {
