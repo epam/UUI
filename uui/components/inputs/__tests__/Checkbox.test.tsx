@@ -1,15 +1,15 @@
 import React from 'react';
-import { Checkbox } from '../Checkbox';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { Checkbox } from '@epam/uui';
 
-describe('Checkbox', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Checkbox value={ null } onValueChange={ jest.fn } />).toJSON();
+describe('TestComponent', () => {
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Checkbox value={ true } onValueChange={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Checkbox value={ null } onValueChange={ jest.fn } size="18" mode="cell" />).toJSON();
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Checkbox value={ null } onValueChange={ jest.fn } size="18" mode="cell" />);
         expect(tree).toMatchSnapshot();
     });
 });

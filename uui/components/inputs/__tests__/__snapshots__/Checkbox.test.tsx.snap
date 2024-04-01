@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox should be rendered correctly 1`] = `
+exports[`TestComponent should render with maximum props 1`] = `
 <label
-  className="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
+  className="container uui-checkbox-container root size-18 mode-cell uui-color-primary -clickable"
 >
   <div
     className="uui-checkbox"
@@ -18,20 +18,28 @@ exports[`Checkbox should be rendered correctly 1`] = `
 </label>
 `;
 
-exports[`Checkbox should be rendered correctly 2`] = `
+exports[`TestComponent should render with minimum props 1`] = `
 <label
-  className="container uui-checkbox-container root size-18 mode-cell uui-color-primary -clickable"
+  className="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
 >
   <div
-    className="uui-checkbox"
+    className="uui-checkbox uui-checked"
   >
     <input
-      aria-checked={false}
-      checked={false}
+      aria-checked={true}
+      checked={true}
       onChange={[Function]}
       tabIndex={0}
       type="checkbox"
     />
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
   </div>
 </label>
 `;
