@@ -18,7 +18,6 @@ export function merge<TId>(
         tgItemIndex = 0,
         isUpdated = false;
 
-    const updatedItemsToIds = newMap<TId, number>({ complexIds });
     const merged: TId[] = [...initialArr];
     const patchedItems = newMap<TId, boolean>({ complexIds });
 
@@ -62,10 +61,6 @@ export function merge<TId>(
             continue;
         }
 
-        if (srcItemId === tgItemId) {
-            updatedItemsToIds.set(srcItemId, tgItemIndex);
-        }
-
         if (patchedItems.has(tgItemId)) {
             isUpdated = true;
             tgItemIndex++;
@@ -73,7 +68,7 @@ export function merge<TId>(
         }
 
         const result = compare(srcItemId, tgItemId, srcItemIndex, tgItemIndex);
-        if (result === -1 || (result === 0 && updatedItemsToIds.has(srcItemId) && (updatedItemsToIds.get(srcItemId) < tgItemIndex))) {
+        if (result === -1) {
             merged.push(srcItemId);
             isUpdated = true;
             srcItemIndex++;
