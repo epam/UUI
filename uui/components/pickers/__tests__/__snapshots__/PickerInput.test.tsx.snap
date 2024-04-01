@@ -160,7 +160,9 @@ exports[`PickerInput should open body 1`] = `
           >
             <div>
               <div
+                aria-label="Loading"
                 class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+                role="alert"
               >
                 <div
                   class="container uui-spinner-container root uui-spinner"
