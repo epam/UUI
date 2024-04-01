@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { TreeState } from '../../../treeState';
 import { AsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
-import { useSimplePrevious } from '../../../../../../../hooks';
+import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import {
     useItemsStorage, useDataSourceStateWithDefaults, useFilterTree, useSortTree,
     useSearchTree, useSelectedOnlyTree, usePatchTree,
@@ -53,7 +53,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const [incommingTree, setIncommingTree] = useState(baseTree);
 
-    const prevIsForceReload = useSimplePrevious(isForceReload);
+    const prevIsForceReload = usePrevious(isForceReload);
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
     const { tree: treeWithData, itemsStatusCollector, isLoaded: isTreeLoaded, isLoading, isFetching } = useLoadData({
@@ -74,7 +74,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         itemsStatusMap,
     }, [...deps, isForceReload, incommingTree]);
 
-    const prevIsFetching = useSimplePrevious(isFetching);
+    const prevIsFetching = usePrevious(isFetching);
 
     useEffect(() => {
         if (prevIsForceReload !== isForceReload && isForceReload

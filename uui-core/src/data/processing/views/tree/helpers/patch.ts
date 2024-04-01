@@ -2,7 +2,7 @@ import { NOT_FOUND_RECORD } from '../constants';
 import { newMap } from './map';
 import { DataSourceState, IImmutableMap, IMap, PatchOptions, SortedPatchByParentId } from '../../../../../types';
 import { SortConfig } from '../hooks/strategies/types';
-import { buildComparators, composeComparetors } from '../helpers';
+import { buildComparators, composeComparators } from '../helpers';
 import { PatchOrdering } from '../constants';
 import { ITree } from '../ITree';
 
@@ -137,7 +137,7 @@ const sortPatchByParentId = <TItem, TId, TFilter>(
 ) => {
     const { complexIds } = tree.getParams();
     const comparators = buildComparators({ sorting, sortBy, getId: tree.getParams().getId });
-    const composedComparator = composeComparetors(comparators, tree.getParams().getId);
+    const composedComparator = composeComparators(comparators, tree.getParams().getId);
 
     const sorted: SortedPatchByParentId<TItem, TId> = newMap({ complexIds });
     for (const [parentId, items] of groupedByParentId) {

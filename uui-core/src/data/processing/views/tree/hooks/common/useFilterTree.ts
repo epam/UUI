@@ -1,4 +1,4 @@
-import { useSimplePrevious } from '../../../../../../hooks';
+import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../types';
 import { TreeState } from '../../treeState';
 import { useUpdateTree } from './useUpdateTree';
@@ -14,7 +14,7 @@ export function useFilterTree<TItem, TId, TFilter = any>(
     { tree, dataSourceState: { filter }, getFilter, isLoading }: UseFilterTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const prevFilter = useSimplePrevious(filter);
+    const prevFilter = usePrevious(filter);
     const filteredTree = useUpdateTree({
         tree,
         shouldUpdate: () => filter !== prevFilter,

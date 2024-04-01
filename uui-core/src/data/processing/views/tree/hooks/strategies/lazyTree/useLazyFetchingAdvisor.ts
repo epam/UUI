@@ -1,5 +1,5 @@
 import isEqual from 'lodash.isequal';
-import { useSimplePrevious } from '../../../../../../../hooks';
+import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../../types';
 import { isQueryChanged } from './helpers';
 import { useCallback, useMemo } from 'react';
@@ -29,9 +29,9 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
         return isFetchPositionAndAmountChanged;
     }, []);
 
-    const prevFilter = useSimplePrevious(filter);
-    const prevDataSourceState = useSimplePrevious(dataSourceState);
-    const prevShowSelectedOnly = useSimplePrevious(showSelectedOnly);
+    const prevFilter = usePrevious(filter);
+    const prevDataSourceState = usePrevious(dataSourceState);
+    const prevShowSelectedOnly = usePrevious(showSelectedOnly);
 
     const isFoldingChanged = !prevDataSourceState || dataSourceState.folded !== prevDataSourceState.folded;
 
