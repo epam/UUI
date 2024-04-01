@@ -4,6 +4,8 @@ on:
         branches:
             - develop
             - main
+    push:
+        branches: [ develop ]
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
