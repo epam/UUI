@@ -73,7 +73,8 @@ export class PatchHelper {
             complexIds,
         }: ApplyPatchTemporaryReorderingOptions<TItem, TId>,
     ) {
-        const tempOrderComparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+        const tempOrderComparator = (a: string, b: string) => a < b ? -1 : 1;
+
         return merge(
             patchIds,
             originalIds,
