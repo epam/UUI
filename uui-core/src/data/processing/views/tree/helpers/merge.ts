@@ -51,19 +51,19 @@ export function merge<TId>(
         const srcItemId = mergeSrcArr[srcItemIndex];
         const tgItemId = mergeTgArr[tgItemIndex];
 
-        if (isDeleted?.(mergeSrcArr[srcItemIndex])) {
+        if (isDeleted?.(srcItemId)) {
             srcItemIndex++;
             continue;
         }
 
-        if (isDeleted?.(mergeTgArr[tgItemIndex])) {
+        if (isDeleted?.(tgItemId)) {
             isUpdated = true;
             tgItemIndex++;
             continue;
         }
 
         if (srcItemId === tgItemId) {
-            updatedItemsToIds.set(mergeSrcArr[srcItemIndex], tgItemIndex);
+            updatedItemsToIds.set(srcItemId, tgItemIndex);
         }
 
         if (patchedItems.has(tgItemId)) {
