@@ -1,4 +1,4 @@
-import { useSimplePrevious } from '../../../../../../hooks';
+import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../types';
 import { TreeState } from '../../treeState';
 import { getChecked, isSelectedOrCheckedChanged } from '../strategies/checked';
@@ -14,7 +14,7 @@ export function useSelectedOnlyTree<TItem, TId, TFilter = any>(
     { tree, dataSourceState, isLoading }: UseSelectedOnlyTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const prevDataSourceState = useSimplePrevious(dataSourceState);
+    const prevDataSourceState = usePrevious(dataSourceState);
 
     const selectedOnlyTree = useUpdateTree({
         tree,

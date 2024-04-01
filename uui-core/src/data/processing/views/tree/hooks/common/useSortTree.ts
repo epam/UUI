@@ -1,4 +1,4 @@
-import { useSimplePrevious } from '../../../../../../hooks';
+import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { DataSourceState, SortingOption } from '../../../../../../types';
 import { TreeState } from '../../treeState';
 import { useUpdateTree } from './useUpdateTree';
@@ -19,7 +19,7 @@ export function useSortTree<TItem, TId, TFilter = any>(
     }: UseSortTreeProps<TItem, TId, TFilter>,
     deps: any[],
 ): TreeState<TItem, TId> {
-    const prevSorting = useSimplePrevious(sorting);
+    const prevSorting = usePrevious(sorting);
 
     const sortTree = useUpdateTree({
         tree,

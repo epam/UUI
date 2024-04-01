@@ -1,4 +1,4 @@
-import { useSimplePrevious } from '../../../../../../hooks';
+import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../types';
 import { TreeState } from '../../treeState';
 import { useUpdateTree } from './useUpdateTree';
@@ -21,7 +21,7 @@ export function useSearchTree<TItem, TId, TFilter = any>(
     }: UseSearchTreeProps<TItem, TId, TFilter>,
     deps: any[] = [],
 ) {
-    const prevSearch = useSimplePrevious(search);
+    const prevSearch = usePrevious(search);
 
     const searchTree = useUpdateTree({
         tree,

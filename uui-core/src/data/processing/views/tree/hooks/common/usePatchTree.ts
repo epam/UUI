@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { newMap } from '../../helpers';
 import { DataSourceState, PatchOptions } from '../../../../../../types';
 import { PatchOrdering } from '../../constants';
-import { useSimplePrevious } from '../../../../../../hooks';
+import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { getSortedPatchByParentId } from '../../helpers/patch';
 import { TreeState } from '../../treeState';
 
@@ -24,7 +24,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         sortBy,
     }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
-    const prevPatch = useSimplePrevious(patch);
+    const prevPatch = usePrevious(patch);
     const params = tree.visible.getParams();
 
     const patchAtLastSort = useMemo(() => {

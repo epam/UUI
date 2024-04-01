@@ -1,6 +1,6 @@
 import { IImmutableMap, IMap } from '../../../../../../types';
 import { numberToOrder } from '../../../../../../helpers';
-import { buildComparators, composeComparetors } from '../../helpers';
+import { buildComparators, composeComparators } from '../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
 import { ItemsAccessor } from '../../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
@@ -107,7 +107,7 @@ export class PatchHelper {
         let patchedItemsMap = originalItemsMap;
         let newItems: TItem[] = [];
         const comparators = buildComparators({ sorting, sortBy, getId: treeStructure.getParams().getId });
-        const composedComparator = composeComparetors(comparators, treeStructure.getParams().getId);
+        const composedComparator = composeComparators(comparators, treeStructure.getParams().getId);
 
         const complexIds = treeStructure.getParams().complexIds;
 

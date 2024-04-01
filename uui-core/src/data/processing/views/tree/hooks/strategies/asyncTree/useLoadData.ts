@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, IMap, LazyDataSourceApi } from '../../../../../../../types';
 import { TreeState } from '../../../treeState';
-import { useSimplePrevious } from '../../../../../../../hooks';
+import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { RecordStatus } from '../../../types';
 import { useItemsStatusCollector } from '../../common';
@@ -36,8 +36,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
     }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const prevDataSourceState = useSimplePrevious(dataSourceState);
-    const prevForceReload = useSimplePrevious(forceReload);
+    const prevDataSourceState = usePrevious(dataSourceState);
+    const prevForceReload = usePrevious(forceReload);
 
     const [loadedTree, setLoadedTree] = useState(tree);
     const [isLoaded, setIsLoaded] = useState(isPrevouslyLoaded);

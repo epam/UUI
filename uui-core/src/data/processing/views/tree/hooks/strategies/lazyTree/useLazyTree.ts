@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { LazyTreeProps } from './types';
-import { useSimplePrevious } from '../../../../../../../hooks';
+import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
@@ -43,7 +43,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     const [treeWithData, setTreeWithData] = useState(blankTree);
 
-    const prevDataSourceState = useSimplePrevious(dataSourceState);
+    const prevDataSourceState = usePrevious(dataSourceState);
 
     const [isFetching, setIsFetching] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
