@@ -3,7 +3,7 @@ import path from 'node:path';
 import { readEnvParams } from './cliUtils';
 import { ENV_FILES, HOST_IP_PH } from './constants';
 
-const { isCi, UUI_DOCKER_HOST_MACHINE_IP } = readEnvParams();
+const { isCi, UUI_DOCKER_HOST_MACHINE_IP = 'localhost' } = readEnvParams();
 
 const envFileName = isCi ? ENV_FILES.CI : ENV_FILES.LOCAL;
 
