@@ -10,7 +10,7 @@ import { getCurrentTheme } from '../helpers';
 export class MultiSwitchDoc extends BaseDocsBlock {
     title = 'MultiSwitch';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'MultiSwitch',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {

@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class RadioInputDoc extends BaseDocsBlock {
     title = 'RadioInput';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'RadioInput',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {

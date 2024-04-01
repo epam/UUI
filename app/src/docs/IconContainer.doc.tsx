@@ -9,7 +9,7 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 export class IconContainerDoc extends BaseDocsBlock {
     title = 'Icon Container';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'IconContainer',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {

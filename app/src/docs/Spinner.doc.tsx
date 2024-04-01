@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class SpinnerDoc extends BaseDocsBlock {
     title = 'Spinner';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Spinner',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
