@@ -1,6 +1,12 @@
-import { DataSourceState } from '../../../../../../types';
+import { DataSourceState, IImmutableMap, IMap } from '../../../../../../types';
+import { ITree } from '../../ITree';
+import { NOT_FOUND_RECORD } from '../../constants';
 
-export const getSelectedAndChecked = <TId>(dataSourceState: DataSourceState<any, TId>) => {
+export const getSelectedAndChecked = <TItem, TId>(
+    dataSourceState: DataSourceState<any, TId>,
+    tree: ITree<TItem, TId>,
+    patch: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+) => {
     let checked: TId[] = [];
     if (dataSourceState.checked?.length) {
         checked = [...dataSourceState.checked];
@@ -9,5 +15,9 @@ export const getSelectedAndChecked = <TId>(dataSourceState: DataSourceState<any,
         checked = [...checked, dataSourceState.selectedId];
     }
 
-    return checked;
+    if (!patch || !patch.size) {
+        return checked;
+    }
+
+    return checked.filter((id) => !patch.has(id) || (patch.has(id) && tree.getById(id) !== NOT_FOUND_RECORD));
 };

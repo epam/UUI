@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { DataSourceState, IMap, LazyDataSourceApi } from '../../../../../../../types';
+import { DataSourceState, IImmutableMap, IMap, LazyDataSourceApi } from '../../../../../../../types';
 import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
@@ -27,12 +27,13 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
     getId: (item: TItem) => TId;
     isLoaded?: boolean;
     onForceReloadComplete?: () => void;
+    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
     {
         tree, api, dataSourceState, showSelectedOnly, itemsStatusMap, isLoaded: isPrevouslyLoaded,
-        complexIds, getId, onForceReloadComplete, forceReload,
+        complexIds, getId, onForceReloadComplete, forceReload, patch,
     }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
@@ -91,11 +92,11 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
-    const selectedAndChecked = getSelectedAndChecked(dataSourceState);
+    const selectedAndChecked = getSelectedAndChecked(dataSourceState, tree.visible, patch);
     const shouldLoad = (!isFetching && !isLoaded && ((showSelectedOnly && selectedAndChecked.length) || !showSelectedOnly)) || forceReload;
 
     if (!isLoaded) {
-        const checked = getSelectedAndChecked(dataSourceState);
+        const checked = getSelectedAndChecked(dataSourceState, tree.visible, patch);
         itemsStatusCollector.setPending(checked);
     }
 
@@ -111,7 +112,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
             if (!isQueryChanged(prevDataSourceState, dataSourceState)) {
                 setIsLoading(true);
             }
-            const checked = getSelectedAndChecked(dataSourceState);
+            const checked = getSelectedAndChecked(dataSourceState, tree.visible, patch);
             loadData(tree, dataSourceState)
                 .then(({ isOutdated, isUpdated, tree: newTree }) => {
                     if (isUpdated && !isOutdated) {

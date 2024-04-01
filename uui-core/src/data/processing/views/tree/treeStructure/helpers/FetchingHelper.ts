@@ -42,6 +42,7 @@ export class FetchingHelper {
         tree,
         options,
         dataSourceState,
+        patch,
         withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>) {
         const { loadedItems: loadedMissingItems, loadedItemsMap, byParentId, nodeInfoById } = await this.loadMissing<TItem, TId, TFilter>({
@@ -51,7 +52,7 @@ export class FetchingHelper {
             withNestedChildren,
         });
 
-        const missing = getSelectedAndChecked(dataSourceState);
+        const missing = getSelectedAndChecked(dataSourceState, tree, patch);
 
         const { loadedItems: loadedMissingItemsAndParents } = await this.loadMissingItemsAndParents<TItem, TId, TFilter>({
             tree,

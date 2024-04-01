@@ -1,4 +1,4 @@
-import { CascadeSelection, DataSourceState, IMap, ExtendedPatchOptions } from '../../../../../../types';
+import { CascadeSelection, DataSourceState, IMap, ExtendedPatchOptions, IImmutableMap } from '../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from '../../helpers';
 import { LazyListViewProps } from '../../../types';
@@ -90,6 +90,7 @@ export interface LoadOptions<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
+    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
     withNestedChildren: boolean;
 }
 
