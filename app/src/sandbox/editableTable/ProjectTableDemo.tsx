@@ -161,7 +161,6 @@ export function ProjectTableDemo() {
         };
 
         let relativeToIndex: number;
-
         if (relativeTask) {
             relativeToIndex = getIndex(currentListIds, relativeTask.id);
         } else {
