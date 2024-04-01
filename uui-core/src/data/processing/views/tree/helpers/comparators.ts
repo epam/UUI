@@ -15,7 +15,7 @@ export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<
     return comparators;
 };
 
-export const composeComparetors = <TItem, TId>(comparators: ((a: TItem, b: TItem) => number)[], getId: (item: TItem) => TId) => {
+export const composeComparators = <TItem, TId>(comparators: ((a: TItem, b: TItem) => number)[], getId: (item: TItem) => TId) => {
     return (a: TItem, b: TItem) => {
         for (let n = 0; n < comparators.length; n++) {
             const compare = comparators[n];
@@ -40,7 +40,7 @@ export const composeComparetors = <TItem, TId>(comparators: ((a: TItem, b: TItem
 
 export const buildSorter = <TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => {
     const comparators = buildComparators(options);
-    const composedComparator = composeComparetors(comparators, options.getId);
+    const composedComparator = composeComparators(comparators, options.getId);
     return (items: TItem[]) => {
         if (comparators.length === 0) {
             return items;
