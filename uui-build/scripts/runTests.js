@@ -12,8 +12,4 @@ process.on('unhandledRejection', (err) => {
 
 const argv = process.argv.slice(2);
 
-if (!process.env.CI && argv.indexOf('--collectCoverage') === -1) {
-    argv.push('--watchAll');
-}
-
 jest.run(argv);
