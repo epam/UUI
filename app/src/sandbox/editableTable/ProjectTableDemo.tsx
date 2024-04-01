@@ -160,16 +160,17 @@ export function ProjectTableDemo() {
             }
         };
 
-        let relativeToIndex = relativeTask ? getIndex(currentListIds, relativeTask.id) : -1;
-
-        if (relativeToIndex === -1) {
+        let relativeToIndex: number;
+        if (relativeTask) {
+            relativeToIndex = getIndex(currentListIds, relativeTask.id);
+        } else {
             relativeToIndex = position === 'top' ? 0 : currentListIds.length - 1;
         }
 
         const indexAbove = position === 'top' ? relativeToIndex - 1 : relativeToIndex;
         const indexBelow = position === 'bottom' ? relativeToIndex + 1 : relativeToIndex;
-        const orderAbove = indexAbove >= 0 && getOrderByIndex(indexAbove);
-        const orderBelow = indexBelow < currentListIds.length && getOrderByIndex(indexBelow);
+        const orderAbove = indexAbove >= 0 ? getOrderByIndex(indexAbove) : null;
+        const orderBelow = indexBelow < currentListIds.length ? getOrderByIndex(indexBelow) : null;
 
         task.tempOrder = getOrderBetween(orderAbove, orderBelow);
 
