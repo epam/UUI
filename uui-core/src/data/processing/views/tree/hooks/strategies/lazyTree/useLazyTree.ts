@@ -90,7 +90,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     useEffect(() => {
         if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
-            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState));
+            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState, tree.visible, patch));
 
             loadMissing({
                 tree: treeWithData,
