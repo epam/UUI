@@ -54,6 +54,12 @@ const getPatchByCategories = <TItem, TId>(
         updatedItemsMap.set(id, item);
         newItems.push(item);
         const tempOrder = getItemTemporaryOrder?.(item);
+        const prevItem = patchAtLastSort.get(id) ?? tree.getById(id) as TItem;
+        const prevParentId = getParentId?.(prevItem) ?? undefined;
+        const newParentId = getParentId?.(item) ?? undefined;
+        if (itemInOriginalTree && prevParentId !== newParentId) {
+            movedToOtherParent.push(id);
+        }
 
         if (tempOrder) {
             if (isDeleted?.(item)) {
@@ -77,14 +83,8 @@ const getPatchByCategories = <TItem, TId>(
             }
             continue;
         }
-        const prevItem = patchAtLastSort.get(id) ?? tree.getById(id) as TItem;
-        const prevParentId = getParentId?.(prevItem) ?? undefined;
-        const newParentId = getParentId?.(item) ?? undefined;
-        if (prevParentId !== newParentId) {
-            if (itemInOriginalTree) {
-                movedToOtherParent.push(id);
-            }
 
+        if (prevParentId !== newParentId) {
             const position = getNewItemPosition(item);
             if (position === PatchOrdering.BOTTOM) {
                 bottom.push(id);
