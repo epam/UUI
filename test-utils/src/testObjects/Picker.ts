@@ -1,4 +1,4 @@
-import { fireEvent, within, screen, waitFor } from '../extensions/testingLibraryReactExt';
+import { fireEvent, within, screen, waitFor, waitForElementToBeRemoved } from '../extensions/testingLibraryReactExt';
 
 export interface OptionConfig {
     editMode?: string;
@@ -120,17 +120,12 @@ export class PickerTestObject {
         );
     }
 
-    static getSpinner(props: { editMode?: string } = {}) {
+    static querySpinner(props: { editMode?: string } = {}) {
         const dialog = within(this.getDialog(props.editMode));
         return dialog.queryByLabelText('Loading');
     }
 
     public static async waitForSpinnerToHide(editMode?: string) {
-        return await waitFor(
-            () => {
-                const spinner = this.getSpinner({ editMode });
-                expect(spinner).toBeNull();
-            },
-        );
+        return await waitForElementToBeRemoved(this.querySpinner({ editMode }));
     }
 }
