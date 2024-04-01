@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, CheckboxProps } from '../Checkbox';
-import { render, screen, fireEvent, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
+import { screen, fireEvent, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
 
 async function setupCheckbox(params: Partial<CheckboxProps>) {
     const { mocks, setProps } = await setupComponentForTest<CheckboxProps>(
@@ -71,18 +71,29 @@ describe('Checkbox', () => {
         expect(getValueChangeAnalyticsEvent).toHaveBeenCalled();
     });
 
-    it('should not handle change event when readonly', () => {
+    it('should not handle change event when readonly', async () => {
         const onValueChange = jest.fn();
-        render(<Checkbox value={ false } onValueChange={ onValueChange } isReadonly />);
+        await setupCheckbox({
+            value: false,
+            onValueChange,
+            isReadonly: true,
+            label: 'Label',
+        });
         const input = screen.getByRole('checkbox');
 
         fireEvent.click(input);
         expect(onValueChange).not.toHaveBeenCalled();
     });
 
-    it('should handle focus event', () => {
+    it('should handle focus event', async () => {
         const onFocus = jest.fn();
-        render(<Checkbox value={ false } onValueChange={ jest.fn } onFocus={ onFocus } />);
+        const onValueChange = jest.fn();
+        await setupCheckbox({
+            value: false,
+            onValueChange,
+            label: 'Label',
+            onFocus,
+        });
         const input = screen.getByRole('checkbox');
 
         input.focus();
@@ -91,9 +102,15 @@ describe('Checkbox', () => {
         expect(input).toHaveFocus();
     });
 
-    it('should handle blur event', () => {
+    it('should handle blur event', async () => {
         const onBlur = jest.fn();
-        render(<Checkbox value={ false } onValueChange={ jest.fn } onBlur={ onBlur } />);
+        const onValueChange = jest.fn();
+        await setupCheckbox({
+            value: false,
+            onValueChange,
+            label: 'Label',
+            onBlur,
+        });
         const input = screen.getByRole('checkbox');
 
         input.focus();
@@ -102,5 +119,15 @@ describe('Checkbox', () => {
 
         expect(onBlur).toHaveBeenCalled();
         expect(input).not.toHaveFocus();
+    });
+
+    it('when state equals isInvalid: true, Checkbox_container must have a \'uui-invalid\' class', async () => {
+        await setupCheckbox({
+            value: false,
+            isInvalid: true,
+        });
+        const input = screen.getByRole('checkbox');
+
+        expect(input.parentElement.parentElement).toHaveClass('uui-invalid');
     });
 });
