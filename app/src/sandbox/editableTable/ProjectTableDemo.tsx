@@ -168,8 +168,8 @@ export function ProjectTableDemo() {
 
         const indexAbove = position === 'top' ? relativeToIndex - 1 : relativeToIndex;
         const indexBelow = position === 'bottom' ? relativeToIndex + 1 : relativeToIndex;
-        const orderAbove = indexAbove >= 0 && getOrderByIndex(indexAbove);
-        const orderBelow = indexBelow < currentListIds.length && getOrderByIndex(indexBelow);
+        const orderAbove = indexAbove >= 0 ? getOrderByIndex(indexAbove) : null;
+        const orderBelow = indexBelow < currentListIds.length ? getOrderByIndex(indexBelow) : null;
 
         task.tempOrder = getOrderBetween(orderAbove, orderBelow);
 
