@@ -4,7 +4,7 @@ import { buildComparators, composeComparators } from '../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
 import { ItemsAccessor } from '../../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
-import { cloneMap } from '../../helpers/map';
+import { cloneMap, newMap } from '../../helpers/map';
 import { merge } from '../../helpers/merge';
 import { PatchIntoTreeStructureOptions } from './types';
 import { ItemsMap } from '../../ItemsMap';
@@ -111,7 +111,7 @@ export class PatchHelper {
         const composedComparator = composeComparators(comparators, treeStructure.getParams().getId);
 
         const complexIds = treeStructure.getParams().complexIds;
-
+        const parentsWithNewChildren = newMap<TId, boolean>({ complexIds });
         let isUpdated = false;
         for (const [patchParentId, sorted] of sortedPatch) {
             patchedItemsMap = patchedItemsMap.setItems(sorted.newItems);
@@ -148,6 +148,7 @@ export class PatchHelper {
                 },
             );
 
+            // eslint-disable-next-line no-loop-func
             sorted.moved.forEach((id) => {
                 const item = treeStructure.getById(id);
                 if (item !== NOT_FOUND_RECORD) {
@@ -155,6 +156,9 @@ export class PatchHelper {
                     const prevItems = newByParentId.get(parentId);
                     newByParentId.set(parentId, prevItems.filter((itemId) => itemId !== id));
                 }
+                const newItem = patchedItemsMap.get(id);
+                const newParentId = treeStructure.getParams().getParentId?.(newItem) ?? undefined;
+                parentsWithNewChildren.set(newParentId, true);
             });
 
             newByParentId.set(patchParentId, reorderedItems);
@@ -173,9 +177,12 @@ export class PatchHelper {
                 const prevNodeInfo = treeStructure.nodeInfoById.get(parentId);
                 if (prevNodeInfo.count !== undefined) {
                     newNodeInfoById.set(parentId, { ...prevNodeInfo, count: ids.length });
-                } else {
-                    newNodeInfoById.set(parentId, prevNodeInfo);
+                } else if (parentsWithNewChildren.has(parentId) && (prevNodeInfo.count === undefined)) {
+                    const { assumedCount, ...prev } = prevNodeInfo;
+                    newNodeInfoById.set(parentId, { ...prev, count: ids.length, ...(assumedCount === undefined ? {} : { assumedCount }) });
                 }
+            } else {
+                newNodeInfoById.set(parentId, { count: ids.length });
             }
         }
 

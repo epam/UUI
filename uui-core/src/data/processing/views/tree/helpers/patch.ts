@@ -54,7 +54,7 @@ const getPatchByCategories = <TItem, TId>(
         const prevItem = patchAtLastSort.get(id) ?? tree.getById(id) as TItem;
         const prevParentId = getParentId?.(prevItem) ?? undefined;
         const newParentId = getParentId?.(item) ?? undefined;
-        if (itemInOriginalTree && prevParentId !== newParentId) {
+        if (prevParentId !== newParentId) {
             movedToOtherParent.push(id);
         }
 
