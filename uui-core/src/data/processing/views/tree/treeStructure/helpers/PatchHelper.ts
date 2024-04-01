@@ -1,5 +1,5 @@
 import { IImmutableMap, IMap } from '../../../../../../types';
-import { numberToOrder } from '../../../../../../helpers';
+import { indexToOrder } from '../../../../../../helpers';
 import { buildComparators, composeComparators } from '../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
 import { ItemsAccessor } from '../../ItemsAccessor';
@@ -84,7 +84,7 @@ export class PatchHelper {
                 const b = patchedItemsMap.get(itemId);
 
                 const aTempOrder = getItemTemporaryOrder(a);
-                const bTempOrder = getItemTemporaryOrder(b) ?? numberToOrder(itemIndex);
+                const bTempOrder = getItemTemporaryOrder(b) ?? indexToOrder(itemIndex);
                 return tempOrderComparator(aTempOrder, bTempOrder);
             },
             [],
