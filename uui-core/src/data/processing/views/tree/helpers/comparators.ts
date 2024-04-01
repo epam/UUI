@@ -15,7 +15,7 @@ export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<
     return comparators;
 };
 
-export const composeComparetors = <TItem>(comparators: ((a: TItem, b: TItem) => number)[]) => {
+export const composeComparetors = <TItem, TId>(comparators: ((a: TItem, b: TItem) => number)[], getId: (item: TItem) => TId) => {
     return (a: TItem, b: TItem) => {
         for (let n = 0; n < comparators.length; n++) {
             const compare = comparators[n];
@@ -24,32 +24,30 @@ export const composeComparetors = <TItem>(comparators: ((a: TItem, b: TItem) => 
                 return result;
             }
         }
-        return 0;
+
+        let aId: TId | string = getId(a);
+        let bId: TId | string = getId(b);
+        if (typeof aId === 'object') {
+            aId = JSON.stringify(aId);
+        }
+        if (typeof bId === 'object') {
+            bId = JSON.stringify(bId);
+        }
+
+        return aId < bId ? -1 : 1;
     };
 };
 
 export const buildSorter = <TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => {
     const comparators = buildComparators(options);
-    const composedComparator = composeComparetors(comparators);
+    const composedComparator = composeComparetors(comparators, options.getId);
     return (items: TItem[]) => {
         if (comparators.length === 0) {
             return items;
         }
 
-        const indexes = new Map<TItem, number>();
-        items.forEach((item, index) => indexes.set(item, index));
-
-        const comparer = (a: TItem, b: TItem) => {
-            const result = composedComparator(a, b);
-            if (result !== 0) {
-                return result;
-            }
-            // to make sort stable, compare items indices if other comparers return 0 (equal)
-            return indexes.get(a) - indexes.get(b);
-        };
-
         items = [...items];
-        items.sort(comparer);
+        items.sort(composedComparator);
         return items;
     };
 };

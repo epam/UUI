@@ -116,7 +116,7 @@ export function ProjectTableDemo() {
             getNewItemPosition: () => PatchOrdering.TOP,
             getItemTemporaryOrder,
             sortBy: (item, sorting) => {
-                return item[sorting.field as keyof ProjectTask];
+                return item[sorting.field as keyof ProjectTask] ?? '';
             },
 
             isDeleted: (item) => item.isDeleted,

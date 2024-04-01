@@ -106,8 +106,8 @@ export class PatchHelper {
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
         let patchedItemsMap = originalItemsMap;
         let newItems: TItem[] = [];
-        const comparators = buildComparators({ sorting, sortBy });
-        const composedComparator = composeComparetors(comparators);
+        const comparators = buildComparators({ sorting, sortBy, getId: treeStructure.getParams().getId });
+        const composedComparator = composeComparetors(comparators, treeStructure.getParams().getId);
 
         const complexIds = treeStructure.getParams().complexIds;
 

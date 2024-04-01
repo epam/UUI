@@ -24,7 +24,7 @@ export function useSortTree<TItem, TId, TFilter = any>(
     const sortTree = useUpdateTree({
         tree,
         shouldUpdate: () => sorting !== prevSorting,
-        update: (currentTree) => currentTree.sort({ sorting, sortBy }),
+        update: (currentTree) => currentTree.sort({ sorting, sortBy, getId: tree.visible.getParams().getId }),
     }, [sorting, ...deps]);
 
     if (isLoading || sortTree === null) {
