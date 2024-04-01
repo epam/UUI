@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class CheckboxGroupDoc extends BaseDocsBlock {
     title = 'CheckboxGroup';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'CheckboxGroup',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {

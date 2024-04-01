@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'TextInput',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form, TDocContext.Table],
         bySkin: {

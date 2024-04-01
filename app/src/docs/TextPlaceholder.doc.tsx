@@ -9,7 +9,7 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 export class TextPlaceholderDoc extends BaseDocsBlock {
     title = 'TextPlaceholder';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'TextPlaceholder',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

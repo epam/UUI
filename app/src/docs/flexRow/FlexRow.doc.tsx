@@ -10,7 +10,7 @@ import { flexRowChildren } from './flexRowExamples';
 export class FlexRowDoc extends BaseDocsBlock {
     title = 'FlexRow';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'FlexRow',
         contexts: [TDocContext.Default, TDocContext.Resizable],
         bySkin: {

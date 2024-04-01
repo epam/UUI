@@ -9,7 +9,7 @@ import css from './styles.module.scss';
 export class SliderRatingDoc extends BaseDocsBlock {
     title = 'SliderRating';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'SliderRating',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {

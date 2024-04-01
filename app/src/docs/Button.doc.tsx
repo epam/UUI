@@ -10,7 +10,7 @@ import { getCurrentTheme } from '../helpers';
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Button',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {
