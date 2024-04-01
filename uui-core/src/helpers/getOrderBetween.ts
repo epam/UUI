@@ -27,7 +27,7 @@ export function numberToOrder(input: number) {
     return order;
 }
 
-export const minOrderStr = '0';
+export const minOrderStr = 'a';
 export const maxOrderStr = 'zzzz';
 
 /**
