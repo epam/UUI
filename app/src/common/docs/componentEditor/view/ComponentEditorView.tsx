@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Spinner, FlexRow, LinkButton, MultiSwitch, ScrollBars, Text,
+    Spinner, FlexRow, LinkButton, MultiSwitch, ScrollBars, Text, FlexSpacer,
 } from '@epam/uui';
 import {
     IPropSamplesCreationContext,
@@ -14,6 +14,8 @@ import { DemoErrorBoundary } from './DemoErrorBoundary';
 import css from './ComponentEditorView.module.scss';
 import { PeTable } from './peTable/PeTable';
 import { buildNormalizedInputValuesMap } from '../propDocUtils';
+import { TPreviewRef } from '../../../../preview/componentPreview/utils/previewLinkUtils';
+import { FullscreenBtn } from './fullscreenBtn/fullscreenBtn';
 
 type TInputData<TProps> = {
     [name in keyof TProps]: {
@@ -21,9 +23,15 @@ type TInputData<TProps> = {
         exampleId?: string | undefined;
     }
 };
-
-interface IComponentEditorViewProps<TProps> {
+interface IHaveContexts {
     contexts: DemoContext<PropDocPropsUnknown>[],
+    onChangeSelectedCtx: (name: string) => void,
+    selectedCtxName: string,
+}
+interface IHavePreviewRef {
+    previewRef: TPreviewRef | undefined;
+}
+interface IComponentEditorViewProps<TProps> extends IHaveContexts, IHavePreviewRef {
     componentKey?: string;
     DemoComponent: React.ComponentType<PropDocPropsUnknown>;
     generatedFromType?: TDocsGenExportedType;
@@ -31,12 +39,10 @@ interface IComponentEditorViewProps<TProps> {
     isInited: boolean;
     propContext: IPropSamplesCreationContext<TProps>,
     propDoc: PropDoc<TProps, keyof TProps>[]
-    selectedCtxName: string,
     tagName: string;
     title: string;
     inputData: TInputData<TProps>;
     onGetInputValues: () => PropDocPropsUnknown
-    onChangeSelectedCtx: (name: string) => void;
     onRedirectBackToDocs: () => void;
     onResetAllProps: () => void;
     onClearProp: (name: keyof TProps) => void;
@@ -86,7 +92,12 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
                 />
             </PeTable>
             <div className={ css.demoContext }>
-                <ContextSwitcher contexts={ props.contexts } selectedCtxName={ props.selectedCtxName } onChangeSelectedCtx={ props.onChangeSelectedCtx } />
+                <ContextSwitcher
+                    contexts={ props.contexts }
+                    selectedCtxName={ props.selectedCtxName }
+                    onChangeSelectedCtx={ props.onChangeSelectedCtx }
+                    previewRef={ props.previewRef }
+                />
                 <div className={ css.demoContainer }>
                     <ScrollBars>
                         <DemoErrorBoundary>
@@ -99,30 +110,32 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
     );
 }
 
-const ContextSwitcher = React.memo(
-    ({ contexts, selectedCtxName, onChangeSelectedCtx }: Pick<IComponentEditorViewProps<PropDocPropsUnknown>, 'contexts' | 'selectedCtxName' | 'onChangeSelectedCtx'>) => {
-        const availableCtxNames = contexts?.map((i) => i.name) || [];
-        return (
-            <FlexRow
-                key="head"
-                size="36"
-                padding="12"
-                columnGap="6"
-                background="surface-main"
-                borderBottom
-                cx={ css.contextSettingRow }
-            >
-                <MultiSwitch
-                    key="multi-switch"
-                    items={ availableCtxNames.map((id) => ({ caption: id, id })) }
-                    value={ selectedCtxName }
-                    onValueChange={ onChangeSelectedCtx }
-                    size="24"
-                />
-            </FlexRow>
-        );
-    },
-);
+const ContextSwitcher = React.memo((props: IHaveContexts & IHavePreviewRef) => {
+    const { contexts, selectedCtxName, onChangeSelectedCtx, previewRef } = props;
+    const availableCtxNames = contexts?.map((i) => i.name) || [];
+    return (
+        <FlexRow
+            key="head"
+            size="36"
+            padding="12"
+            columnGap="6"
+            background="surface-main"
+            borderBottom
+            cx={ css.contextSettingRow }
+        >
+            <FlexSpacer />
+            <MultiSwitch
+                key="multi-switch"
+                items={ availableCtxNames.map((id) => ({ caption: id, id })) }
+                value={ selectedCtxName }
+                onValueChange={ onChangeSelectedCtx }
+                size="24"
+            />
+            <FlexSpacer />
+            { previewRef && <FullscreenBtn previewRef={ previewRef } /> }
+        </FlexRow>
+    );
+});
 
 function NotSupportedForSkin(props: { onRedirectBackToDocs: () => void }) {
     return (

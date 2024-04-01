@@ -1,43 +1,43 @@
 import { TSkin } from '../types';
-import { DocBuilder } from '../DocBuilder';
+import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
-import { TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
+import { TTypeProp } from '../docsGen/sharedTypes';
 import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
-import { TDocConfig } from './docBuilderGenTypes';
-import { UuiContexts } from '@epam/uui-core';
+import { IDocBuilderGenCtx, TDocConfig } from './docBuilderGenTypes';
 
 interface IDocBuilderGenParams {
     config: TDocConfig,
     skin: TSkin,
-    uuiCtx: Pick<UuiContexts, 'uuiNotifications'>,
-    loadDocsGenType: (typeRef: TTypeRef) => Promise<{ content: TType }>
+    docBuilderGenCtx: IDocBuilderGenCtx,
 }
 /**
  * Generates DocBuilder using given type metadata & any optional overrides
  * @param params
  */
 export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBuilder<any> | undefined> {
-    const { config, loadDocsGenType, uuiCtx } = params;
+    const { config, docBuilderGenCtx } = params;
+    const { loadDocsGenType } = docBuilderGenCtx;
     const {
         name,
         contexts,
-        doc: skinCommonOverride,
+        doc: docCommon,
+        preview: previewCommon,
         bySkin,
     } = config;
     const forSkin = bySkin[params.skin];
     if (forSkin) {
-        const { doc: skinSpecificOverride, type: docGenType, component } = forSkin;
+        const { doc: docSkin, type: docGenType, component, preview: previewSkin } = forSkin;
         const { content: type } = await loadDocsGenType(docGenType);
 
         const docs = new DocBuilder<any>({ name, component });
         const props = type.details?.props;
         const unresolvedProps: TTypeProp[] = [];
         props?.forEach((prop) => {
-            let nextProp = buildPropDetails({ prop, docs, skin: params.skin, uuiCtx });
+            let nextProp = buildPropDetails({ prop, docs, skin: params.skin, docBuilderGenCtx });
             const isResolved = !!nextProp;
             if (!isResolved) {
-                nextProp = buildPropFallbackDetails({ prop, docs, skin: params.skin, uuiCtx });
+                nextProp = buildPropFallbackDetails({ prop, docs, skin: params.skin, docBuilderGenCtx });
                 unresolvedProps.push(prop);
             }
             const prevProp = docs.getPropDetails(prop.name);
@@ -49,9 +49,15 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
                 docs.prop(prop.name, nextProp);
             }
         });
+
+        const previewBuilder = new DocPreviewBuilder();
+        docs.setDocPreview(previewBuilder);
+        previewCommon?.(previewBuilder);
+        previewSkin?.(previewBuilder);
+
         docCommonOverride({ docs, contexts });
-        skinCommonOverride?.(docs);
-        skinSpecificOverride?.(docs);
+        docCommon?.(docs);
+        docSkin?.(docs);
 
         unresolvedProps.forEach((prop) => {
             const found = docs.props.find((p) => p.name === prop.name);

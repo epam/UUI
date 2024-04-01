@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class TabButtonDoc extends BaseDocsBlock {
     title = 'Tab Button';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'TabButton',
         contexts: [TDocContext.TabButton],
         bySkin: {

@@ -1,4 +1,4 @@
-export * from './BaseDocsBlock';
+export * from './baseDocBlock/BaseDocsBlock';
 export * from './componentEditor/ComponentEditor';
 export * from './ContentSection';
 export * from './DocExample';
