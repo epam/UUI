@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 import { DataRowProps, DataSourceState, ScrollToConfig } from '../../../../../types';
 import { idToKey, setObjectFlag } from '../../helpers';
-import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
+import { CommonTreeConfig } from '../../tree/hooks/strategies/types';
 
 /**
  * Folding service configuration.
  */
 export type UseFoldingServiceProps<TItem, TId, TFilter = any> = Pick<
-CommonDataSourceConfig<TItem, TId, TFilter>,
+CommonTreeConfig<TItem, TId, TFilter>,
 'getId' | 'dataSourceState' | 'setDataSourceState' | 'isFoldedByDefault'
 >;
 

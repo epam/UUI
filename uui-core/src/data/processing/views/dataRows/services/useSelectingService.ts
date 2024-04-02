@@ -2,14 +2,14 @@ import { useCallback, useMemo } from 'react';
 import { DataRowProps } from '../../../../../types';
 import { buildParentsLookup, idToKey } from './buildParentsLookup';
 import { ITree } from '../../tree';
-import { CommonDataSourceConfig } from '../../tree/hooks/strategies/types';
+import { CommonTreeConfig } from '../../tree/hooks/strategies/types';
 
 /**
  * Checking service configuration.
  */
 export interface UseSelectingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     'getParentId' | 'dataSourceState' | 'setDataSourceState'
     > {
     /**

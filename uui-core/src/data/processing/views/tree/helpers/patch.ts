@@ -1,7 +1,6 @@
 import { NOT_FOUND_RECORD } from '../constants';
 import { newMap } from './map';
-import { DataSourceState, IImmutableMap, IMap, PatchOptions, SortedPatchByParentId } from '../../../../../types';
-import { SortConfig } from '../hooks/strategies/types';
+import { DataSourceState, IImmutableMap, IMap, PatchOptions, SortConfig, SortedPatchByParentId } from '../../../../../types';
 import { buildComparators, composeComparators } from '../helpers';
 import { PatchOrdering } from '../constants';
 import { ITree } from '../ITree';

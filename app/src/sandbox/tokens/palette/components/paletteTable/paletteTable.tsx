@@ -90,11 +90,9 @@ export function PaletteTable(props: PaletteTableProps) {
         },
         [items],
     );
-
     const tokensDsView = tokensDs.useView(tableState, setTableState, {
         isFoldedByDefault: () => false,
     });
-
     const { columns, config: columnsConfig } = useColumnsConfig(defaultColumns, tableState.columnsConfig || {});
     const renderRow = (rowProps: DataTableRowProps<ITokenRow, string>) => {
         return (

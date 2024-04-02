@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { ITree } from '../../tree';
-import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords } from '../../tree/hooks/strategies/types';
+import { CommonTreeConfig, GetItemStatus, LoadMissingRecords } from '../../tree/hooks/strategies/types';
 import { FAILED_RECORD, NOT_FOUND_RECORD } from '../../tree';
 import { isInProgress } from '../../helpers';
 import { CheckingHelper } from '../../tree/treeStructure';
@@ -10,7 +10,7 @@ import { CheckingHelper } from '../../tree/treeStructure';
  */
 export interface UseCascadeSelectionServiceProps<TItem, TId, TFilter = any> extends
     Pick<
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,
     LoadMissingRecords<TItem, TId>,

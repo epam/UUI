@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
 import { ITree, NOT_FOUND_RECORD } from '../../tree';
-import { CommonDataSourceConfig, GetItemStatus } from '../../tree/hooks/strategies/types';
+import { CommonTreeConfig, GetItemStatus } from '../../tree/hooks/strategies/types';
 import { CascadeSelectionService } from './useCascadeSelectionService';
 import { FAILED_RECORD } from '../../tree';
 import { isInProgress } from '../../helpers';
@@ -13,7 +13,7 @@ import { CheckingHelper } from '../../tree/treeStructure';
  */
 export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     Pick<
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     'getParentId' | 'dataSourceState' | 'setDataSourceState'
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,

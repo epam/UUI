@@ -58,10 +58,9 @@ export function ProjectTasksDemo() {
     // const { tableState, setTableState } = useTableState<any>({ columns });
     const { tableState, setTableState } = useTableState({ columns });
 
-    const items = useMemo(() => Object.values(value.items), [value.items]); // TODO: discuss this memo for preventing infinite loop
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>(
         {
-            items,
+            items: Object.values(value.items),
             getId: (i) => i.id,
         },
         [],

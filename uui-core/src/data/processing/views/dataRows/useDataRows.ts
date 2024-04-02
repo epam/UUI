@@ -6,7 +6,7 @@ import { useBuildRows } from './useBuildRows';
 import { useSelectAll } from './useSelectAll';
 import { usePinnedRows } from './usePinnedRows';
 import { useUpdateRowOptions } from './useUpdateRowProps';
-import { CommonDataSourceConfig, ITreeLoadingState } from '../tree/hooks/strategies/types/common';
+import { CommonTreeConfig, ITreeLoadingState } from '../tree/hooks/strategies/types/common';
 import { NOT_FOUND_RECORD, ITree } from '../tree';
 import { EMPTY, FULLY_LOADED } from '../tree/constants';
 import { CascadeSelectionService } from './services/useCascadeSelectionService';
@@ -17,7 +17,7 @@ import { isInProgress } from '../helpers';
  * `useDataRows` configuration.
  */
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     ITreeLoadingState,
     Partial<CascadeSelectionService<TId>>,
     GetItemStatus<TId> {
