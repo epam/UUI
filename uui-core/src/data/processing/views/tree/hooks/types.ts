@@ -1,11 +1,11 @@
 import { ITree } from '../ITree';
-import { CommonDataSourceConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
+import { CommonTreeConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
 
 /**
  * Result of the useTree hook.
  */
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     ITreeLoadingState,
     ITreeActions,
     LoadMissingRecords<TItem, TId>,
@@ -21,7 +21,11 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
      */
     selectionTree: ITree<TItem, TId>;
 
+    /**
+     * Version of the tree before applying patch to it.
+     */
     treeWithoutPatch: ITree<TItem, TId>;
+
     /**
      * Total count of the rows.
      */

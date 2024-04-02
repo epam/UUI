@@ -3,14 +3,14 @@ import { CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../..
 import isEqual from 'lodash.isequal';
 import { TreeState } from '../../../treeState';
 import { Tree } from '../../../Tree';
-import { GetChildCount } from './types';
-import { CommonDataSourceConfig } from '../types';
+import { LazyTreeProps } from './types';
+import { CommonTreeConfig } from '../types';
 import { ROOT_ID } from '../../../constants';
 import { TreeStructureId } from '../../../treeState/types';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
-    GetChildCount<TItem>,
-    Pick<CommonDataSourceConfig<TItem, TId, TFilter>, 'dataSourceState' | 'cascadeSelection'> {
+    Pick<LazyTreeProps<TItem, TId, TFilter>, 'getChildCount'>,
+    Pick<CommonTreeConfig<TItem, TId, TFilter>, 'dataSourceState' | 'cascadeSelection'> {
 
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     filter?: TFilter;

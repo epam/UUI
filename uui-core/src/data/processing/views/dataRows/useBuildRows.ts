@@ -3,11 +3,11 @@ import { ITree, NOT_FOUND_RECORD, Tree } from '../tree';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
-import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
+import { CommonTreeConfig } from '../tree/hooks/strategies/types/common';
 
 export interface UseBuildRowsProps<TItem, TId, TFilter = any> extends
     Pick<
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     > {
 

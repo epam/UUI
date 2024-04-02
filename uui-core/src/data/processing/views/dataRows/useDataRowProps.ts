@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { CheckingService, FocusService, FoldingService, SelectingService } from './services';
 import { idToKey } from '../helpers';
-import { CommonDataSourceConfig } from '../tree/hooks/strategies/types/common';
+import { CommonTreeConfig } from '../tree/hooks/strategies/types/common';
 import { ITree, Tree } from '../tree';
 
 export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<CheckingService<TItem, TId>, 'clearAllChecked' | 'handleSelectAll'>,
@@ -10,7 +10,7 @@ export interface UseDataRowPropsProps<TItem, TId, TFilter = any> extends Omit<Ch
     SelectingService<TItem, TId>,
     FoldingService<TItem, TId>,
     Pick<
-    CommonDataSourceConfig<TItem, TId, TFilter>,
+    CommonTreeConfig<TItem, TId, TFilter>,
     'dataSourceState' | 'rowOptions' | 'getRowOptions' | 'getId'
     > {
     /**
