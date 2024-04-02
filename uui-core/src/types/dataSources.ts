@@ -319,18 +319,6 @@ TId,
 }
 >;
 
-/**
- * Patching tree configuration.
- */
-export interface ExtendedPatchOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchOptions<TItem, TId>, 'patch' | 'getNewItemPosition'> {
-    /**
-     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patch` map.
-     */
-    sortedPatch?: SortedPatchByParentId<TItem, TId>,
-    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
-    sorting: DataSourceState<TFilter, TId>['sorting'];
-}
-
 export interface BaseListViewProps<TItem, TId, TFilter> extends BaseDataSourceConfig<TItem, TId, TFilter> {}
 
 export type IDataSourceViewConfig = {
