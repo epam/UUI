@@ -7,8 +7,8 @@ import path from 'node:path';
 const { isDocker, isCi } = readEnvParams();
 const { UUI_APP_BASE_URL } = readEnvFile();
 
-const maxFailures = isCi ? 10 : undefined;
-const retries = isCi ? 1 : 1;
+const maxFailures = isCi ? 10 : 20;
+const retries = isCi ? 1 : 0;
 const workers = isCi ? 1 : 1;
 const forbidOnly = isCi;
 const trace = (isCi ? 'retry-with-trace' : 'retain-on-failure') as TraceMode;
