@@ -7,7 +7,7 @@ const { isCi, UUI_DOCKER_HOST_MACHINE_IP = 'localhost' } = readEnvParams();
 
 const envFileName = isCi ? ENV_FILES.CI : ENV_FILES.LOCAL;
 
-type TEnvParams = { UUI_APP_BASE_URL: string };
+type TEnvParams = { UUI_APP_BASE_URL: string, UUI_DOCKER_CONTAINER_MGMT: string };
 
 export function readEnvFile(): TEnvParams {
     const processEnv = {} as TEnvParams;

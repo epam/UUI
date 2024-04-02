@@ -1,13 +1,16 @@
 import { spawnProcessSync, hasCliArg } from '../cliUtils';
 import {
     CLI_ARGS,
-    UUI_DOCKER_CONTAINER_MGMT,
     DOCKER_CONTAINER_NAME,
     DOCKER_FILES,
     DOCKER_IMAGE_TAGS,
     YARN_TASKS,
 } from '../constants';
 import { currentMachineIpv4 } from '../ipUtils';
+import { readEnvFile } from '../envFileUtils';
+
+const envFile = readEnvFile();
+const UUI_DOCKER_CONTAINER_MGMT = envFile.UUI_DOCKER_CONTAINER_MGMT || 'podman';
 
 main();
 
