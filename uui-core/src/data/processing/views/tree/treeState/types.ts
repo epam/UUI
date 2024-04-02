@@ -1,4 +1,4 @@
-import { CascadeSelection, DataSourceState, SortingOption } from '../../../../../types';
+import { CascadeSelection, DataSourceState, IImmutableMap, IMap, SortConfig, SortedPatchByParentId, SortingOption, PatchOptions as PatchConfig } from '../../../../../types';
 import { LazyListViewProps } from '../../types';
 import { ItemsMap } from '../ItemsMap';
 import { TreeStructure } from '../treeStructure/TreeStructure';
@@ -66,4 +66,16 @@ export interface PatchOptions<TItem> {
     items: TItem[];
     isDeleted?: () => boolean;
     comparator?: ItemsComparator<TItem>;
+}
+
+/**
+ * Patching tree configuration.
+ */
+export interface ExtendedPatchOptions<TItem, TId, TFilter = any> extends SortConfig<TItem>, Omit<PatchConfig<TItem, TId>, 'patch' | 'getNewItemPosition'> {
+    /**
+     * To add/move/delete some item from the existing dataset, it is required to pass that item via the `patch` map.
+     */
+    sortedPatch?: SortedPatchByParentId<TItem, TId>,
+    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+    sorting: DataSourceState<TFilter, TId>['sorting'];
 }

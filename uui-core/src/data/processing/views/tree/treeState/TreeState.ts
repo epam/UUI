@@ -1,5 +1,6 @@
 import { ItemsStorage } from '../ItemsStorage';
 import {
+    ExtendedPatchOptions,
     FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions,
 } from './types';
@@ -11,8 +12,6 @@ import { cloneMap, newMap } from '../helpers';
 import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
 import { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
-
-import { ExtendedPatchOptions } from '../../../../../types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
