@@ -124,7 +124,7 @@ export function ProjectTableDemo() {
             getParentId: (i) => i.parentId,
             fixItemBetweenSortings: false,
             getRowOptions: (task) => ({
-                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to ezach row to allow editing
+                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
                 // checkbox: { isVisible: true },
                 isSelectable: true,
                 dnd: {
@@ -135,7 +135,7 @@ export function ProjectTableDemo() {
                 },
             }),
         },
-        [value.items],
+        [],
     );
 
     const view = dataSource.useView(tableState, setTableState);
