@@ -20,4 +20,4 @@ export const ENV_FILES = {
     LOCAL: '.env.local',
 };
 
-export const CONTAINER_MGMT = 'podman';
+export const UUI_DOCKER_CONTAINER_MGMT = process.env['UUI_DOCKER_CONTAINER_MGMT'] || 'podman';
