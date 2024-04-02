@@ -1,5 +1,13 @@
 import { ApplySortOptions } from '../treeState/types';
 
+export const simpleComparator = <T extends string | number>(a: T, b: T) => {
+    if (a < b) {
+        return -1;
+    }
+
+    return a === b ? 0 : 1;
+};
+
 export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => {
     const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
     const comparators: ((a: TItem, b: TItem) => number)[] = [];
@@ -25,16 +33,13 @@ export const composeComparators = <TItem, TId>(comparators: ((a: TItem, b: TItem
             }
         }
 
-        let aId: TId | string = getId(a);
-        let bId: TId | string = getId(b);
-        if (typeof aId === 'object') {
-            aId = JSON.stringify(aId);
-        }
-        if (typeof bId === 'object') {
-            bId = JSON.stringify(bId);
-        }
+        const aId = getId(a);
+        const bId = getId(b);
 
-        return aId < bId ? -1 : 1;
+        const aCompareId = typeof aId === 'object' && aId !== null ? JSON.stringify(aId) : aId as string | number;
+        const bCompareId = typeof bId === 'object' && bId !== null ? JSON.stringify(bId) : bId as string | number;
+
+        return simpleComparator(aCompareId, bCompareId);
     };
 };
 
