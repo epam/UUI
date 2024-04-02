@@ -8,8 +8,7 @@ import {
 import { getFilters } from './filters';
 import {
     useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
-    DataQueryFilter,
-    useLazyDataSource,
+    DataQueryFilter, useLazyDataSource,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -61,18 +60,18 @@ export function FilteredTable() {
 
     const dataSource = useLazyDataSource<Person, number, DataQueryFilter<Person>>({ 
         api: api,
-        getId: (item) => item.id,
         selectAll: false,
         backgroundReload: true,
+    }, []);
+
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             isSelectable: true,
             onClick: (rowProps) => {
                 rowProps.onSelect(rowProps);
             },
         },
-    }, []);
-
-    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
+    });
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({
         ...tableStateApi.tableState,
@@ -82,6 +81,8 @@ export function FilteredTable() {
     const {
         setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi
     } = tableStateApi;
+
+    const listProps = view.getListProps();
 
     return (
         <div className={ css.container }>
@@ -108,9 +109,9 @@ export function FilteredTable() {
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
-                { ...view.getListProps() }
+                { ...listProps }
             />
-            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ view.getListProps().totalCount } />
+            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ listProps.totalCount } />
         </div>
     );
 }
