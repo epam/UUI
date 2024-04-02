@@ -1,8 +1,8 @@
-import { CascadeSelection, DataSourceState, IMap, ExtendedPatchOptions, IImmutableMap } from '../../../../../../types';
+import { CascadeSelection, DataSourceState, IMap, IImmutableMap } from '../../../../../../types';
 import { TreeStructure } from '../TreeStructure';
 import { CompositeKeysMap } from '../../helpers';
 import { LazyListViewProps } from '../../../types';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ExtendedPatchOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../ItemsMap';
 import { ITree } from '../../ITree';
 import { NOT_FOUND_RECORD } from '../../exposed';
