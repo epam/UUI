@@ -63,3 +63,8 @@ podman image prune --all
 podman rmi --all --force
 ```
 
+### Usage of alternative tools to build/run the Docker images
+By default, Podman is used to run e2e tests. 
+But it's possible to specify some alternative tool via ```.env.local``` file using ```UUI_DOCKER_CONTAINER_MGMT=<alternative_tool>``` option. 
+Please make sure that this tool is compatible with Docker's CLI.
+

@@ -1,4 +1,8 @@
 export class Logger {
+    static warn(...args: any[]) {
+        console.error('\x1b[33m%s\x1b[0m', ...args);
+    }
+
     static error(...args: any[]) {
         console.error('\x1b[41m\x1b[37m%s\x1b[0m', ...args);
     }
