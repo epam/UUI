@@ -285,14 +285,15 @@ export default function TableCellsStylesSandbox() {
         {
             items,
             getId: ({ id: listId }) => listId,
-            getRowOptions: (_: Item, index: number) => ({
-                ...lens.prop('items').index(index).toProps(),
-            }),
         },
         [],
     );
 
-    const view = dataSource.useView(tableState, setTableState, {});
+    const view = dataSource.useView(tableState, setTableState, {
+        getRowOptions: (_: Item, index: number) => ({
+            ...lens.prop('items').index(index).toProps(),
+        }),
+    });
 
     const renderRow = useCallback(
         (props: DataTableRowProps<Item, number>) => {

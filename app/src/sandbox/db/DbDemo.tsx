@@ -78,12 +78,13 @@ export function DbDemoImpl() {
         api,
         getId: ({ id }) => id,
         getChildCount: (item: PersonTableRecord) => (item.__typename === 'PersonEmploymentGroup' ? item.count : null),
-        getRowOptions: () => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
         backgroundReload: true,
     }, []);
 
-    const view = dataSource.useView(value, onValueChange, {});
+    const view = dataSource.useView(value, onValueChange, {
+        getRowOptions: () => ({ checkbox: { isVisible: true } }),
+    });
 
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>

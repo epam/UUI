@@ -61,10 +61,12 @@ export default function TreeTableExample() {
         [],
     );
 
-    const dataSource = useAsyncDataSource<Location, string, Location>({ 
+    const dataSource = useAsyncDataSource<Location, string, Location>({
         api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
-        getId: (item) => item.id,
         getParentId: (item) => item.parentId,
+    }, []);
+
+    const view = dataSource.useView(tableState, setTableState, {
         getSearchFields: (item) => [item.name],
         sortBy: (item, sorting) => {
             switch (sorting.field) {
@@ -82,10 +84,8 @@ export default function TreeTableExample() {
         getRowOptions: (item) => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }),
-    }, []);
+    });
 
-    const view = dataSource.useView(tableState, setTableState);
-    
     return (
         <Panel background="surface-main" shadow cx={ css.container } rawProps={ { role: 'tree_grid' } }>
             <DataTable
