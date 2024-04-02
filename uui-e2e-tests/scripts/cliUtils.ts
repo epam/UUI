@@ -18,8 +18,8 @@ export function hasCliArg(arg: typeof CLI_ARGS[keyof typeof CLI_ARGS]) {
     return args.indexOf(arg) !== -1;
 }
 
-export function spawnProcessSync(params: { cmd: string, args: string[], cwd: string }) {
-    const { cwd, args, cmd } = params;
+export function spawnProcessSync(params: { cmd: string, args: string[], cwd: string, exitOnErr: boolean }) {
+    const { cwd, args, cmd, exitOnErr } = params;
     const cmdInfoAsStr = `${cmd} ${args.join(' ')}`;
 
     Logger.info(cmdInfoAsStr);
@@ -30,8 +30,13 @@ export function spawnProcessSync(params: { cmd: string, args: string[], cwd: str
         { stdio: 'inherit', cwd },
     );
 
-    if (result.error) {
-        Logger.error(`Failed to run: ${cmdInfoAsStr}: ${result.error.message}`);
+    if (result.status !== 0) {
+        const msgFromCmd = result.error?.message || '';
+        const msg = `Error returned from "${cmdInfoAsStr}" ${msgFromCmd}`;
+        if (exitOnErr) {
+            Logger.error(msg);
+            process.exit(1);
+        }
     }
 }
 

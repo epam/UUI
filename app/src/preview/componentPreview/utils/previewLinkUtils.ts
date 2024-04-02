@@ -37,7 +37,13 @@ export function buildPreviewRef(params: TBuildPreviewLinkParams): TPreviewRef {
                     });
                 }
             } else {
-                console.error(`Unable to find example of property=${name} by exampleId=${exampleId}. The property will be ignored.`);
+                const msg = `[buildPreviewRef] Unable to find example of property=${name} by exampleId=${exampleId}. The property will be ignored.`;
+                if (name === 'onValueChange') {
+                    // TODO: need find a way to convert such callback-based examples to plain array
+                    // console.debug(msg);
+                } else {
+                    console.error(msg);
+                }
             }
         } else if (value !== undefined) {
             if (['string', 'boolean', 'number'].indexOf(typeof value) !== -1) {
