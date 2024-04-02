@@ -1,7 +1,7 @@
 import { spawnProcessSync, hasCliArg } from '../cliUtils';
 import {
     CLI_ARGS,
-    CONTAINER_MGMT,
+    UUI_DOCKER_CONTAINER_MGMT,
     DOCKER_CONTAINER_NAME,
     DOCKER_FILES,
     DOCKER_IMAGE_TAGS,
@@ -12,35 +12,37 @@ import { currentMachineIpv4 } from '../ipUtils';
 main();
 
 function main() {
-    const updateSnapshots = hasCliArg(CLI_ARGS.PW_DOCKER_UPDATE_SNAPSHOTS);
-
     spawnProcessSync({
-        cmd: CONTAINER_MGMT,
+        cmd: UUI_DOCKER_CONTAINER_MGMT,
         args: [
             'build',
             '-t',
             DOCKER_IMAGE_TAGS.TEST,
             '-f',
             DOCKER_FILES.DOCKER_FILE,
+            '.',
         ],
         cwd: process.cwd(),
+        exitOnErr: true,
     });
     spawnProcessSync({
-        cmd: CONTAINER_MGMT,
+        cmd: UUI_DOCKER_CONTAINER_MGMT,
         args: [
             'rm',
-            'container',
             DOCKER_CONTAINER_NAME,
-            '--ignore',
         ],
         cwd: process.cwd(),
+        exitOnErr: false,
     });
+    const updateSnapshots = hasCliArg(CLI_ARGS.PW_DOCKER_UPDATE_SNAPSHOTS);
     spawnProcessSync({
-        cmd: CONTAINER_MGMT,
+        cmd: UUI_DOCKER_CONTAINER_MGMT,
         args: [
             'run',
             '--name',
             DOCKER_CONTAINER_NAME,
+            '--cap-add',
+            'SYS_ADMIN',
             '-it',
             '--network',
             'host',
@@ -56,6 +58,7 @@ function main() {
             updateSnapshots ? YARN_TASKS.DOCKER_TEST_E2E_UPDATE : YARN_TASKS.DOCKER_TEST_E2E,
         ],
         cwd: process.cwd(),
+        exitOnErr: true,
     });
 }
 
