@@ -6,10 +6,7 @@ import css from './TablesExamples.module.scss';
 
 export default function TableWithPinnedRows() {
     const svc = useUuiContext();
-    const [tableState, setTableState] = useState<DataSourceState>({
-        topIndex: 0,
-        visibleCount: 20,
-    });
+    const [tableState, setTableState] = useState<DataSourceState>({});
     const locationsColumns: DataColumnProps<Location>[] = useMemo(
         () => [
             {
@@ -59,21 +56,19 @@ export default function TableWithPinnedRows() {
             const filter = { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, filter });
         },
-        getId: ({ id }) => id,
         getParentId: ({ parentId }) => parentId,
         getChildCount: (l) => l.childCount,
         backgroundReload: true,
-        cascadeSelection: 'explicit',
+    }, []);
+
+    const view = dataSource.useView(tableState, setTableState, {
         rowOptions: {
-            checkbox: { isVisible: true },
             // To make some row `pinned`, it is required to define `pin` function.
             // Parents and elements of the same level can be pinned.
             pin: (location) => location.value.type !== 'city',
         },
-    }, []);
+    });
 
-    const view = dataSource.useView(tableState, setTableState);
-    
     return (
         <Panel shadow cx={ css.container }>
             <DataTable

@@ -31,7 +31,6 @@ export function DemoTablePaged() {
         });
 
         result.count = result.items.length;
-        result.totalCount = result.items.length;
         result.from = 0;
         return result;
     }, []);
@@ -67,6 +66,7 @@ export function DemoTablePaged() {
     const panelInfo = tableState.selectedId && (view.getById(tableState.selectedId, 0).value);
 
     const listProps = view.getListProps();
+
     return (
         <div className={ cx(css.container, css.uuiThemePromo) }>
             <div className={ cx(css.wrapper) }>

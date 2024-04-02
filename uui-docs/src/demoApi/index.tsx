@@ -33,7 +33,7 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         managers: lazyApi<models.Manager, string>('managers'),
         persons: lazyApi<models.Person, number>('persons'),
         personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>> & { page: number; pageSize: number }) =>
-            processRequest(origin.concat('/api/persons-paged'), 'POST', rq),
+            processRequest(origin.concat('/api/persons-paged'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.Person>>,
         personGroups,
         departments: lazyApi<models.Department, number>('departments'),
         jobTitles: lazyApi<models.JobTitle, number>('jobTitles'),
