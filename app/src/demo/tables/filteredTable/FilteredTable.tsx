@@ -58,11 +58,14 @@ export function FilteredTable() {
         return result;
     }, [svc.api.demo]);
 
-    const dataSource = useLazyDataSource<Person, number, DataQueryFilter<Person>>({ 
-        api: api,
-        selectAll: false,
-        backgroundReload: true,
-    }, []);
+    const dataSource = useLazyDataSource<Person, number, DataQueryFilter<Person>>(
+        {
+            api: api,
+            selectAll: false,
+            backgroundReload: true,
+        },
+        [],
+    );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
