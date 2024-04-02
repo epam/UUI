@@ -1,6 +1,6 @@
 import { IImmutableMap, IMap } from '../../../../../../types';
 import { indexToOrder } from '../../../../../../helpers';
-import { buildComparators, composeComparators } from '../../helpers';
+import { buildComparators, composeComparators, simpleComparator } from '../../helpers';
 import { NOT_FOUND_RECORD } from '../../exposed';
 import { ItemsAccessor } from '../../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
@@ -73,8 +73,6 @@ export class PatchHelper {
             complexIds,
         }: ApplyPatchTemporaryReorderingOptions<TItem, TId>,
     ) {
-        const tempOrderComparator = (a: string, b: string) => a < b ? -1 : 1;
-
         return merge(
             patchIds,
             originalIds,
@@ -85,7 +83,7 @@ export class PatchHelper {
 
                 const aTempOrder = getItemTemporaryOrder(a);
                 const bTempOrder = getItemTemporaryOrder(b) ?? indexToOrder(itemIndex);
-                return tempOrderComparator(aTempOrder, bTempOrder);
+                return simpleComparator(aTempOrder, bTempOrder);
             },
             [],
             { isDeleted, complexIds },
