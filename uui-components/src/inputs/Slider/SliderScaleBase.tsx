@@ -15,14 +15,22 @@ interface SliderScaleProps<THandleOffsetValue> {
 
 export abstract class SliderScaleBase<THandleOffsetValue> extends React.Component<SliderScaleProps<THandleOffsetValue>> {
     abstract renderSliderScaleElements(): React.ReactElement<SliderScaleElement>[];
+    getPrecision = (step: number): number => {
+        const stepString = step.toString();
+        const decimalIndex = stepString.indexOf('.');
+        return decimalIndex >= 0 ? stepString.length - decimalIndex - 1 : 0;
+    };
+
     generateScale = (step: number): number[] => {
         const min = this.props.min;
         const max = this.props.max;
-        const count = Math.ceil(max - min) / step;
+        const precision = this.getPrecision(step);
+        const count = (max - min) / step;
         const scale: number[] = [min];
 
         for (let i = 1; i < count; i += 1) {
-            scale.push(scale[i - 1] + step);
+            const newValue = parseFloat((min + i * step).toFixed(precision));
+            scale.push(newValue);
         }
 
         scale.push(max);
