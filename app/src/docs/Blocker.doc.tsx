@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class BlockerDoc extends BaseDocsBlock {
     title = 'Blocker';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Blocker',
         contexts: [TDocContext.RelativePanel],
         bySkin: {

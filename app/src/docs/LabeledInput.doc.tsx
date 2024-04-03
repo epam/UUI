@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class LabeledInputDoc extends BaseDocsBlock {
     title = 'Labeled Input';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'LabeledInput',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

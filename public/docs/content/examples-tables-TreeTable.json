@@ -1,53 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To make a Tree structure into your table, you should add ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "parentId",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " property to your items. Or declare which field will contain parent id value via ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getParentId",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop in DataSource.",
-            "marks": []
-          }
-        ]
+        "text": "To add a Tree structure into your table, you should add "
+      },
+      {
+        "text": "parentId",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property to your items. You can change which field will contain parent id value via "
+      },
+      {
+        "text": "getParentId",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop in DataSource."
       }
     ]
   }
-}
+]

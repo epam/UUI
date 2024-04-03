@@ -10,7 +10,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class PaginatorDoc extends BaseDocsBlock {
     title = 'Paginator';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Paginator',
         contexts: [TDocContext.Default, TDocContext.PagePanel],
         bySkin: {

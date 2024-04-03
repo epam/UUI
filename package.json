@@ -30,10 +30,14 @@
     "stylelint": "yarn --cwd uui-build lint --stylelint",
     "stylelint-fix": "yarn stylelint --fix",
     "test": "node uui-build/scripts/runTests.js --config=./jest.config.js",
+    "test-watch": "yarn test --watchAll",
     "test-ci": "cross-env CI=true yarn test",
     "test-report": "yarn test --collectCoverage",
     "test-typecheck": "tsc --project ./tsconfig.test.json",
     "test-update": "yarn test --updateSnapshot",
+    "test-e2e": "yarn --cwd uui-e2e-tests test-e2e",
+    "test-e2e-update": "yarn --cwd uui-e2e-tests test-e2e-update",
+    "test-e2e-report": "yarn --cwd uui-e2e-tests test-e2e-report",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
     "track-bundle-size-override": "yarn track-bundle-size --override-baseline"
   },
@@ -44,6 +48,7 @@
   "workspaces": {
     "packages": [
       "app",
+      "uui-e2e-tests",
       "draft-rte",
       "epam-assets",
       "epam-electric",
