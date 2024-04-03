@@ -10,7 +10,14 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " component."
+        "text": " component using the "
+      },
+      {
+        "text": "renderTag",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property to customize it."
       }
     ]
   }

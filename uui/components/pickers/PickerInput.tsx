@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
+import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile } from '@epam/uui-core';
@@ -10,7 +10,6 @@ import { DataPickerBody } from './DataPickerBody';
 import { DataPickerRow } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem } from './PickerItem';
-import { PickerTogglerTagProps } from './PickerTogglerTag';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
@@ -20,7 +19,7 @@ export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputB
      * Render callback for picker toggler selection tag
      * If omitted, default `PickerTogglerTag` component will be rendered
      */
-    renderTag?: (props: PickerTogglerTagProps<TItem, TId>) => JSX.Element;
+    renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;
 };
 
 function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
