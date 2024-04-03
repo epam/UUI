@@ -22,7 +22,7 @@ export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasL
     name?: string;
 };
 
-export function RadioInput(props: RadioInputProps) {
+export const RadioInput = React.forwardRef<HTMLLabelElement, RadioInputProps>((props, ref) => {
     const context = useUuiContext();
 
     const handleChange = () => {
@@ -44,7 +44,7 @@ export function RadioInput(props: RadioInputProps) {
                 props.cx,
                 !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
             ) }
-            ref={ props.forwardedRef }
+            ref={ ref }
             { ...props.rawProps }
         >
             <div
@@ -74,4 +74,4 @@ export function RadioInput(props: RadioInputProps) {
             )}
         </label>
     );
-}
+});
