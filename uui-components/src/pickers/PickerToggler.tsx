@@ -5,7 +5,7 @@ import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
 
-export interface IRenderItemProps<TItem, TId> extends IHasCaption, IDisableable {
+export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** Key for the component */
     key: string;
     /** DataRowProps object of the rendered item */
@@ -21,7 +21,7 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
-    renderItem?(props: IRenderItemProps<TItem, TId>): React.ReactNode;
+    renderItem?(props: PickerTogglerRenderItemParams<TItem, TId>): React.ReactNode;
     getName?: (item: TItem) => string;
     entityName?: string;
     maxItems?: number;

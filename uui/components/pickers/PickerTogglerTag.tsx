@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as types from '../types';
 import { Tag, TagProps } from '../widgets';
-import { IRenderItemProps } from '@epam/uui-components';
+import { PickerTogglerRenderItemParams } from '@epam/uui-components';
 
-export interface PickerTogglerTagProps<TItem, TId> extends IRenderItemProps<TItem, TId>, TagProps {
+export interface PickerTogglerTagProps<TItem, TId> extends PickerTogglerRenderItemParams<TItem, TId>, TagProps {
     /** Defines component size */
     size?: types.ControlSize;
 }
