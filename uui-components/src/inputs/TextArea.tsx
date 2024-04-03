@@ -37,8 +37,8 @@ interface TextAreaState {
     /** Defines boolean state of element focus. */
     inFocus?: boolean;
 }
-// React.Component<TextAreaProps, TextAreaState>
-export function TextArea(props: TextAreaProps) {
+
+export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
     const [state, setState] = useState<TextAreaState>({
         inFocus: false,
     });
@@ -122,7 +122,7 @@ export function TextArea(props: TextAreaProps) {
             { ...props.rawProps }
             tabIndex={ -1 }
             onFocus={ handleWrapperFocus }
-            ref={ props.forwardedRef }
+            ref={ ref }
         >
             <textarea
                 autoFocus={ props.autoFocus }
@@ -155,4 +155,4 @@ export function TextArea(props: TextAreaProps) {
             />
         </div>
     );
-}
+});
