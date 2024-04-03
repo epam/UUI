@@ -42,13 +42,13 @@ const personColumns: DataColumnProps<Person, number>[] = [
         key: 'jobTitle',
         caption: 'Title',
         render: (r) => <Text>{r.jobTitle}</Text>,
-        width: 200,
+        width: 220,
     },
     {
         key: 'productionCategory',
         caption: 'Is Production',
         render: (r) => <Text>{r.productionCategory ? 'Yes' : 'No' }</Text>,
-        width: 100,
+        width: 150,
     },
 ];
 
@@ -70,7 +70,7 @@ export default function WithTableExample() {
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel background="surface-main" style={ { height: '400px' } }>
+        <Panel background="surface-main" style={ { height: '400px' } } shadow={ true }>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
         </Panel>
     );

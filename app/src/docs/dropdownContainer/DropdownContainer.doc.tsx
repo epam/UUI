@@ -10,7 +10,7 @@ import { childrenLoveshipOrPromo, childrenUui } from './dropdownContainerExample
 export class DropdownContainerDoc extends BaseDocsBlock {
     title = 'Dropdown Container';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'DropdownContainer',
         bySkin: {
             [TSkin.Loveship]: {

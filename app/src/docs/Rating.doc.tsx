@@ -8,7 +8,7 @@ import * as uui from '@epam/uui';
 export class RatingDoc extends BaseDocsBlock {
     title = 'Rating';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Rating',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {
