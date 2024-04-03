@@ -3,9 +3,9 @@ import { TTokensDocGroupCfg } from './types';
 export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     {
         title: 'Semantic',
-        description: 'The theme default semantic palette tokens. These tokens reuses in all components and can be used for custom content, following their roles.',
+        description: 'Defines semantic palette. These tokens are used widely in many UUI components, to apply colors according their role. These tokens can also be utilized directly in application code, in accordance with their designated roles.',
         subgroupsHeader: [
-            'light highlights and backgrounds mostly',
+            'light highlights and backgrounds',
             'light component backgrounds',
             'light component backgrounds hover',
             'solid component backgrounds, active states and borders',
@@ -15,42 +15,42 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
         subgroups: [
             {
                 title: 'Primary',
-                description: 'Uses for primary actions and component states. It\'s primary theme color.',
+                description: 'For primary actions and component states. It\'s a primary theme color.',
                 items: ('core/semantic/primary-'),
             },
             {
                 title: 'Secondary',
-                description: 'Uses for secondary actions, component states, that are should not attract user attention.',
+                description: 'For secondary actions, component states, that should not attract user attention.',
                 items: ('core/semantic/secondary-'),
             },
             {
                 title: 'Accent',
-                description: 'Use for accents, call to actions in addition to primary color. Can be used instead of primary.',
+                description: 'For accents, call to actions, in addition to primary color. Can be used in place of primary.',
                 items: ('core/semantic/accent-'),
             },
             {
                 title: 'Info',
-                description: 'Uses in components to deliver information in a calm, normal way. Can be the same as primary.',
+                description: 'Used to deliver information in a calm, normal way.',
                 items: ('core/semantic/info-'),
             },
             {
                 title: 'Success',
-                description: 'Uses in components to deliver success message, give positive feedback.',
+                description: 'Used to deliver success message, or give positive feedback.',
                 items: ('core/semantic/success-'),
             },
             {
                 title: 'Warning',
-                description: 'Uses in components to deliver middle critical message, draw user attention from the system.',
+                description: 'Used to deliver non-critical message, draw user attention.',
                 items: ('core/semantic/warning-'),
             },
             {
                 title: 'Error',
-                description: 'Uses in components to deliver highly critical message, barrier or error, draw user attention from the system.',
+                description: 'Used to deliver critical message, barrier or error, draw user attention.',
                 items: ('core/semantic/error-'),
             },
             {
                 title: 'Critical',
-                description: 'Uses in components for destructive, critical actions or deliver critically important information.',
+                description: 'Used for destructive, critical actions or deliver critically important information.',
                 items: ('core/semantic/critical-'),
             },
 
@@ -58,7 +58,7 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     },
     {
         title: 'Neutral',
-        description: 'The greyscale, uses most often to define different levels of surfaces, text colors and some components.',
+        description: 'Grey scale palette. Used for different levels of surfaces, text colors, borders, neutral-colored component\'s parts',
         items: ('core/neutral/'),
     },
     {
@@ -88,7 +88,7 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     },
     {
         title: 'Controls',
-        description: 'Tokens for control components, like TextInput, PickerInput, Checkboxes and etc.',
+        description: 'Defines common part of controls like Input borders.',
         items: ('core/controls/'),
     },
 ];
