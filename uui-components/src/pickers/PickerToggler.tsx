@@ -1,17 +1,27 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable } from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
-import { useCallback } from 'react';
 import { getMaxItems } from './helpers';
+
+export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
+    /** Key for the component */
+    key: string;
+    /** DataRowProps object of the rendered item */
+    rowProps?: DataRowProps<TItem, TId>;
+    /** Indicates that tag is collapsed rest selected items, like '+N items selected' */
+    isCollapsed?: boolean;
+    /** Call to clear a value */
+    onClear?(e?: any): void;
+}
 
 export interface PickerTogglerProps<TItem = any, TId = any>
     extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
-    renderItem?(props: DataRowProps<TItem, TId>): React.ReactNode;
+    renderItem?(props: PickerTogglerRenderItemParams<TItem, TId>): React.ReactNode;
     getName?: (item: TItem) => string;
     entityName?: string;
     maxItems?: number;
@@ -37,7 +47,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
-    const handleClick = useCallback(
+    const handleClick = React.useCallback(
         (event: Event) => {
             if (props.isInteractedOutside(event) && inFocus) {
                 blur();
@@ -104,26 +114,37 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderItems = () => {
         const maxItems = getMaxItems(props.maxItems);
-        if (props.selectedRowsCount > maxItems) {
-            return props.renderItem?.({
-                value: i18n.pickerToggler.createItemValue(props.selectedRowsCount, props.entityName || ''),
-                onCheck: () => {
-                    props.onClear?.();
+        let isDisabled = props.isDisabled || props.isReadonly;
+
+        const tags = props.selection?.map((row) => {
+            isDisabled = isDisabled || row.isDisabled;
+
+            const tagProps = {
+                key: row?.id as string,
+                rowProps: row,
+                caption: props.getName(row.value),
+                isCollapsed: false,
+                isDisabled,
+                onClear: () => {
+                    row.onCheck?.(row);
                     // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
                     toggleContainer.current?.focus();
-                },
+                } };
+            return props.renderItem?.(tagProps);
+        });
+
+        if (props.selectedRowsCount > maxItems) {
+            const collapsedTagProps = props.renderItem?.({
+                key: 'collapsed',
+                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
+                isCollapsed: true,
+                isDisabled,
+                onClear: null,
             } as any);
-        } else {
-            return props.selection?.map((row) => {
-                const newRow = { ...row,
-                    onCheck: () => {
-                        row.onCheck?.(row);
-                        // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
-                        toggleContainer.current?.focus();
-                    } };
-                return props.renderItem?.(newRow);
-            });
+            tags.push(collapsedTagProps);
         }
+
+        return tags;
     };
 
     const renderInput = () => {
