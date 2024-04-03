@@ -23,7 +23,7 @@ export class PreviewPage {
 
     async getScreenshotOptions(): Promise<{ fullPage?: boolean; clip: TClip }> {
         // in some very rare cases, the content is not fully ready, this small timeout solves the issue.
-        await this.page.waitForTimeout(10);
+        await this.page.waitForTimeout(30);
         const clip = await this.locators.regionScreenshotContent.boundingBox() as TClip;
         return { fullPage: true, clip };
     }

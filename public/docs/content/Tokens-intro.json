@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Core tokens is a required part of each theme, this tokens is a foundation for low-level components variable and color classes."
+        "text": "Tokens are reusable variables that can represent design properties like colors, fonts, or spacing. In CSS, tokens are represented with CSS Custom Properties (aka CSS Variables)."
       }
     ],
     "data": {}
@@ -13,7 +13,25 @@
     "data": {},
     "children": [
       {
-        "text": "This part of tokens assumed as a stable theme API, so you can use them for styling your app parts and components."
+        "text": "UUI visuals are based on a set of tokens, named \"Core Tokens\", described below."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Each Theme defines its own values for all Core Tokens."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Core Tokens are not just for customizing UUI - we recommend apps built on UUI to utilize these tokens for styling their own components. This practice facilitates support for multiple themes, aids in crafting more readable and semantic CSS code, and enables quick reaction to changes in brand guidelines."
       }
     ]
   }

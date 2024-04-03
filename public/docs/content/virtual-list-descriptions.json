@@ -1,184 +1,96 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "VirtualList provides a scrollable container, which only renders a visible part of a list of components. It automatically measures the height of items to detect the position of the visible portion and adjusts scroll values and container height.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          }
-        ]
+        "text": "VirtualList provides a scrollable container, which renders only a visible part of a list of components. It automatically measures the height of items to detect the position of the visible portion and adjusts scroll values and container height.",
+        "font-size": "12pt",
+        "font-family": null,
+        "color": "#303240",
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Internally, we use this component in "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Internally, we use this component in ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataTable",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "PickerInputBody",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "to display arbitrary sized lists of ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataTableRows",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
-          }
-        ]
+        "text": "DataTable",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "As the height of an item is unknown until it's rendered, the items which are not yet rendered are estimated to have an average height of the rendered items.",
-            "marks": []
-          }
-        ]
+        "text": " and "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can also estimate initial ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "visibleCount",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", to avoid initial re-render. ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "visibleCount ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "will be updated automatically if ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "VirtualList",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " detects, that there's enough space for more items.",
-            "marks": []
-          }
-        ]
+        "text": "PickerInputBody",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " ",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "to display arbitrary sized lists of "
+      },
+      {
+        "text": "DataTableRows",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "As the height of an item is unknown until it's rendered, the items which are not yet rendered are estimated to have an average height of the rendered items."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can also estimate initial "
+      },
+      {
+        "text": "visibleCount",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", to avoid initial re-render. "
+      },
+      {
+        "text": "visibleCount ",
+        "uui-richTextEditor-italic": true
+      },
+      {
+        "text": "will be updated automatically if "
+      },
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " detects, that there's enough space for more items."
       }
     ]
   }
-}
+]

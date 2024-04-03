@@ -19,5 +19,3 @@ export const ENV_FILES = {
     CI: '.env.ci',
     LOCAL: '.env.local',
 };
-
-export const CONTAINER_MGMT = 'podman';
