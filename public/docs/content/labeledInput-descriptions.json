@@ -1,61 +1,36 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "LabeledInput adds a label and validation messages to input components.",
-            "marks": []
-          }
-        ]
+        "text": "LabeledInput wraps input components to add label, validation messages, info-tips, footnotes, char counters."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "It works great with the Form and Lenses as it automatically gets and displays an invalid component's state."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "In case you don't use the Form component, you can pass the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "It works great with the Form and Lenses as it automatically gets and displays an invalid component's state.",
-            "marks": []
-          }
-        ]
+        "text": "validationMessage",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In case you don't use the Form component, you can pass the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "validationMessage",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "  to show the validation message.",
-            "marks": []
-          }
-        ]
+        "text": "  to show the validation message."
       }
     ]
   }
-}
+]

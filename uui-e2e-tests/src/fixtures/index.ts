@@ -13,6 +13,7 @@ const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
                 const pePage = new PreviewPage(page);
                 await pePage.goto();
                 await page.addStyleTag({ path: stylePath });
+                await page.waitForTimeout(50);
                 await use(pePage);
             } finally {
                 await context.close();
