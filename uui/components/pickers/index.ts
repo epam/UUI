@@ -9,4 +9,5 @@ export * from './PickerList';
 export * from './PickerListItem';
 export * from './PickerModal';
 export * from './PickerToggler';
+export * from './PickerTogglerTag';
 export * from './highlight';

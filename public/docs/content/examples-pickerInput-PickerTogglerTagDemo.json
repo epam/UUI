@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can utilize the default UUI implementation of tags for PickerInput by using the "
+      },
+      {
+        "text": "PickerTogglerTag",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " component using the "
+      },
+      {
+        "text": "renderTag",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property to customize it."
+      }
+    ]
+  }
+]
