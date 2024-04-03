@@ -10,7 +10,7 @@ import { getCurrentTheme } from '../helpers';
 export class TagDoc extends BaseDocsBlock {
     title = 'Tag';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Tag',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

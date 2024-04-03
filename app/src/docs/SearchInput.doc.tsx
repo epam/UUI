@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class SearchInputDoc extends BaseDocsBlock {
     title = 'Search Input';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'SearchInput',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable, TDocContext.Table],
         bySkin: {
