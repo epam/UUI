@@ -9,8 +9,12 @@ import { uuiRoot } from '../../../../constants';
 
 const TEST_MAIN_FILE_PATH = path.join(uuiRoot, 'test/test.tsx');
 const TEST_DEFAULT_MODULE_NAME = '@epam/test-module';
+let testProject: tsMorph.Project;
 
 function initTestProject() {
+    if (testProject) {
+        return testProject;
+    }
     const p = path.resolve(uuiRoot, './tsconfig.json');
     const txt = fs.readFileSync(p, 'utf8').toString();
     const json = JSON.parse(txt);
@@ -22,11 +26,12 @@ function initTestProject() {
         moduleResolution: tsMorph.ModuleResolutionKind.Node16,
         skipFileDependencyResolution: true,
     };
-    return new tsMorph.Project({
+    testProject = new tsMorph.Project({
         compilerOptions,
         skipAddingFilesFromTsConfig: true,
         // Note: "useInMemoryFileSystem: true" isn't used here, because it doesn't resolve any "@types/*" from the node_modules.
     });
+    return testProject;
 }
 
 export function generateDocs(fileContent: string): Pick<TApiReferenceJson, 'docsGenTypes'> {

@@ -10,7 +10,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class StatusIndicatorDoc extends BaseDocsBlock {
     title = 'StatusIndicator';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'StatusIndicator',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {

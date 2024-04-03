@@ -10,7 +10,7 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 export class DropdownDoc extends BaseDocsBlock {
     title = 'Dropdown';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'Dropdown',
         bySkin: {
             [TSkin.Loveship]: { type: '@epam/uui-core:DropdownProps', component: loveship.Dropdown },
