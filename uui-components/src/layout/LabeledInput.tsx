@@ -22,7 +22,7 @@ const uuiLabeledInput = {
     sideNote: 'uui-labeled-input-sidenote',
 } as const;
 
-export function LabeledInput(props: LabeledInputProps) {
+export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>((props, ref) => {
     const Tooltip = props.Tooltip;
     const isCanBeOptional = !props.isRequired && props.labelPosition !== 'left' && props.isOptional;
     const isOnlyCharCounter = !props.footnote && (props.charCounter && props.maxLength && !props.isInvalid);
@@ -67,7 +67,7 @@ export function LabeledInput(props: LabeledInputProps) {
     };
 
     return (
-        <div className={ cx(css.container, props.cx) } ref={ props.forwardedRef } { ...props.rawProps }>
+        <div className={ cx(css.container, props.cx) } ref={ ref } { ...props.rawProps }>
             <div className={ cx(labelMod[props.labelPosition ? props.labelPosition : 'top']) }>
                 {props.label && (
                     <div className={ css.labelWrapper }>
@@ -100,4 +100,4 @@ export function LabeledInput(props: LabeledInputProps) {
             { isOnlyCharCounter && getCharCounter()}
         </div>
     );
-}
+});
