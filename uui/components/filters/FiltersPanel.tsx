@@ -168,9 +168,11 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     const isAllFiltersAlwaysVisible = props.filters.every((i) => i.isAlwaysVisible);
 
     useEffect(() => {
-        // Reset new filter id, after first render with autofocus
-        setNewFilterId(null);
-    }, [newFilterId]);
+        if (sortedActiveFilters.length && newFilterId && sortedActiveFilters.find(({ field }) => field === newFilterId)) {
+            // Reset new filter id, after first render with autofocus
+            setNewFilterId(null);
+        }
+    }, [newFilterId, sortedActiveFilters]);
 
     return (
         <>

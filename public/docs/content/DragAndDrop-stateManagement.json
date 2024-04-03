@@ -1,348 +1,249 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "uui-richTextEditor-header-3",
+    "children": [
       {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "State management, GetOrderBetween helper",
-            "marks": []
-          }
-        ]
-      },
+        "text": "State management, GetOrderBetween helper"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note, that Drag-n-Drop in UUI doesn't manage the state itself. It only signals you that something is dragged into something. It's up to library user to define how to store its state and update it to react to user's actions.",
-            "marks": []
-          }
-        ]
-      },
+        "text": "Note, that Drag-n-Drop in UUI doesn't manage the state itself. It only signals you that something is dragged into something. It's up to library user to define how to store its state and update it to react to user's actions."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "In case of a basic reorderable list of items, you'd need to store items in a specific order, update this order, and save changes to a server via API.",
-            "marks": []
-          }
-        ]
-      },
+        "text": "In case of a basic re-orderable list of items, you'd need to store items in a specific order, update this order, and save changes to a server via API."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The most straightforward way, is to store items in a plain array - in order they are placed. However, arrays of items are really hard to save to server - you need to always save the whole array (instead of a single item), and server-side code needs to read the entire array from DB to compare it to the new one before saving.",
-            "marks": []
-          }
-        ]
-      },
+        "text": "The most straightforward way, is to store items in a plain array - in order they are placed. However, arrays of items are really hard to save to server - you need to always save the whole array (instead of a single item), and server-side code needs to read the entire array from DB to compare it to the new one before saving."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To overcome these issues, we recommend the following approach:",
-            "marks": []
-          }
-        ]
-      },
+        "text": "To overcome these issues, we recommend the following approach:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
       {
-        "object": "block",
-        "type": "unordered-list",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "store items as you wish, in any order (in array, or Map<TId, TItem>, in useState, redux, or in any other way)",
-                    "marks": []
-                  }
-                ]
+                "text": "store items as you wish, in any order (in array, or Map<TId, TItem>, in useState, redux, or in any other way)"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "each item should have an ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "order: string",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " field",
-                    "marks": []
-                  }
-                ]
+                "text": "each item should have an "
+              },
+              {
+                "text": "order: string",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " field"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "data": {},
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "before rendering an items, sort them alphabetically, according to their 'order' field",
-                    "marks": []
-                  }
-                ]
+                "text": "before rendering items, sort them alphabetically, according to their 'order' field"
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To insert/reorder items, UUI provides ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getOrderBetween",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " helper. This helper returns a string value, which is alphabetically between two strings e.g. :",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "getOrderBetween('a', 'c') == 'b'",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "getOrderBetween('aa', 'ab') == 'abs'",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "getOrderBetween('aa', 'abs') == 'abh'",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Then, to move or insert items, use the following:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "movedItem.order = getOrderBetween(prevItem.order, nextItem.order)",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".  - to insert an item between the other two",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "getOrderBetween(null, firstItem)",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " - gets order for the first item",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "getOrderBetween(lastItem, null)",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " - get order for the last one.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note that, for all actions, only a single item needs to be updated and saved the server. ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, this approach maps well to relational Databases at backend - all you need is an 'order: varchar' column, just like any other column.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Nevertheless, UUI doesn't force you to use getOrderBetween approach. You can store items in a plain array, or in any other way, if it's suits you.",
-            "marks": []
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To insert/reorder items, UUI provides "
+      },
+      {
+        "text": "getOrderBetween",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " helper. This helper returns a string value, which is alphabetically between two strings, e.g. :"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "getOrderBetween('a', 'c') == 'b'",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "getOrderBetween('aa', 'ab') == 'abs'",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "getOrderBetween('aa', 'abs') == 'abh'",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Then, to move or insert items, use the following:"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "movedItem.order = getOrderBetween(prevItem.order, nextItem.order)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ".  - to insert an item between the other two"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "getOrderBetween(null, firstItem)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " - gets order for the first item"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "getOrderBetween(lastItem, null)",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " - get order for the last one."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Note that, for all actions, only a single item needs to be updated and saved to the server. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Also, this approach maps well to relational Databases at back-end - all you need is an 'order: varchar' column, just like any other column."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "If you have existing items in certain sequence, you can generate their initial orders with the "
+      },
+      {
+        "text": "indexToOrder",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " helper. You can then move or insert new items with "
+      },
+      {
+        "text": "getOrderBetween",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Nevertheless, UUI doesn't force you to use getOrderBetween approach. You can store items in a plain array, or in any other way, if it's suits you."
+      }
+    ]
   }
-}
+]

@@ -171,8 +171,8 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
         );
     }, []);
 
-    const setTableState = useCallback((newValue: DataTableState<TFilter, TViewState>) => {
-        params.onValueChange(() => newValue);
+    const setTableState = useCallback((newValue: React.SetStateAction<DataTableState<TFilter, TViewState>>) => {
+        params.onValueChange(typeof newValue === 'function' ? newValue : () => newValue);
     }, []);
 
     return {

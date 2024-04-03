@@ -1,6 +1,14 @@
-import { ICanBeInvalid, IEditable, IHasValidationMessage } from '../../types';
+import { ICanBeInvalid, IEditable, IHasValidationMessage, IImmutableMap, IMap } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
+/**
+ * IMap element, supported by ILens.
+ */
+export type IMapElement<MapType> = MapType extends IMap<any, infer Item>
+    ? Item
+    : MapType extends IImmutableMap<any, infer Item>
+        ? Item
+        : never;
 
 export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
     /** If T is a complex value (object or array), this property contains validation states of inner items */
@@ -10,6 +18,8 @@ export interface ValidationState extends ICanBeInvalid, IHasValidationMessage {
 export interface ILens<TFocused> {
     /** Get lens value */
     get(): TFocused;
+    /** Get lens value of the IMap or IImmutableMap by provided id. */
+    key<TId>(id: TId): ILens<NonNullable<IMapElement<TFocused>>>;
     /** Set new lens value */
     set(value: TFocused): void;
     /** Updates lens value with returned value from provided callback.

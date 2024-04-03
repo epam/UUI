@@ -1,0 +1,34 @@
+[
+  {
+    "id": 0,
+    "isDone": false,
+    "name": "Complete data sources re-work",
+    "comments": "The plan is to unite all dataSources into a single \"useList\" hook"
+  },
+  {
+    "id": 1,
+    "isDone": true,
+    "name": "Implement editable cells"
+  },
+  {
+    "id": 2,
+    "name": "Find better ways to add/remove rows",
+    "dueDate": "01-09-2022",
+    "priority": 2
+  },
+  {
+    "id": 3,
+    "name": "Finalize the \"Project\" table demo",
+    "comments": "We first need to build the add/remove rows helpers, and rows drag-n-drop"
+  },
+  {
+    "id": 4,
+    "isDone": true,
+    "name": "Complete cells replication"
+  },
+  {
+    "id": 5,
+    "name": "Better rows drag-n-drop support",
+    "comments": "With state-management helpers, and tree/hierarchy support"
+  }
+]

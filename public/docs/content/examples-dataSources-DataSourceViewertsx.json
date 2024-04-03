@@ -124,7 +124,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "getVisibleRows",
+                    "text": "getRows",
                     "marks": [
                       {
                         "object": "mark",

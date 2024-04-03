@@ -33,7 +33,6 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
     }
 
     const filteredAndSorted = items;
-
     if (request.range) {
         const from = request.range.from || 0;
         const count = request.range.count == null ? items.length : request.range.count;

@@ -8,10 +8,10 @@ import {
     DataTableState,
     IDataSourceView,
     IEditable,
+    ITree,
     LazyDataSourceApi,
     LazyListViewProps,
     Metadata,
-    Tree,
     useForm,
     useTableState,
 } from '@epam/uui-core';
@@ -40,7 +40,7 @@ type UseListProps<TItem, TId, TFilter> =
     //
     // We also need to pass metadata and validationState along with the value. It seems like we are forced to use IEditable here.
     // Let's try to use IEditable directly:
-    (Partial<IEditable<TItem[]>> | Partial<IEditable<Tree<TItem, TId>>>);
+    (Partial<IEditable<TItem[]>> | Partial<IEditable<ITree<TItem, TId>>>);
 
 interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     extends IDataSourceView<TItem, TId, TFilter>,

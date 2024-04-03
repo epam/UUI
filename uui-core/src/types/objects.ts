@@ -25,13 +25,62 @@ export type CX = ClassValue;
 
 export type Icon = React.FC<any>;
 
+/**
+ * Mutable map.
+ */
 export interface IMap<TKey, TValue> {
+    /**
+     * Must implement multiple constructors:
+     * - constructor with empty arguments or initial data (optional);
+     * - constructor, which accepts an argument of IMap<TKey, TValue> type and clones its value (mandatory).
+     */
     constructor: Function;
     [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
-    get(key: TKey): TValue;
-    set(key: TKey, value: TValue): IMap<TKey, TValue>;
-    has(key: TKey): boolean;
+    get(key: TKey): TValue | undefined;
+
+    /**
+     * Should set data to the existing map. This operation is mutable.
+     * @param key - key of a map.
+     * @param value - value, to be set into a map, using the key.
+     */
+    set(key: TKey, value?: TValue): IMap<TKey, TValue>;
+
+    /**
+     * Should delete an element, located in a map by key. This operation is mutable.
+     * @param key
+     */
     delete(key: TKey): boolean;
+    has(key: TKey): boolean;
+    size: number;
+}
+
+/**
+ * Immutable map.
+ */
+export interface IImmutableMap<TKey, TValue> {
+    /**
+     * Must implement multiple constructors:
+     * - constructor with empty arguments or initial data (optional);
+     * - constructor, which accepts an argument of IMap<TKey, TValue> type and clones its value (mandatory).
+     * The example of implementation can be found in 'uui-core/src/data/processing/views/tree/ItemsMap.ts'.
+     */
+    constructor: Function;
+    [Symbol.iterator](): IterableIterator<[TKey, TValue]>;
+    get(key: TKey): TValue | undefined;
+
+    /**
+     * Should return cloned map with new value in it. This operation is immutable.
+     * @param key - key of a map.
+     * @param value - value, to be set into a map, using the key.
+     */
+    set(key: TKey, value?: TValue): IImmutableMap<TKey, TValue>;
+
+    /**
+     * Should return a cloned map, without data, located by the key. This operation is immutable.
+     * @param key
+     */
+    delete(key: TKey): IImmutableMap<TKey, TValue>;
+    has(key: TKey): boolean;
     size: number;
 }
 

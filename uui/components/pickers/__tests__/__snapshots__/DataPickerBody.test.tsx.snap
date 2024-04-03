@@ -102,7 +102,459 @@ Array [
                 "marginTop": 0,
               }
             }
-          />
+          >
+            <div
+              aria-posinset={3}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      A1
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={4}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      A1+
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={5}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      A2
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={6}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      A2+
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={7}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      B1
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={8}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      B1+
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={9}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      B2
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={10}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      B2+
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={11}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      C1
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={12}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      C1+
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={13}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div>
+                      C2
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div

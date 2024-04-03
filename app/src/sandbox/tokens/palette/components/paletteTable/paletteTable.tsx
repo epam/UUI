@@ -90,7 +90,7 @@ export function PaletteTable(props: PaletteTableProps) {
         },
         [items],
     );
-    const tokensDsView = tokensDs.getView(tableState, setTableState, {
+    const tokensDsView = tokensDs.useView(tableState, setTableState, {
         isFoldedByDefault: () => false,
     });
     const { columns, config: columnsConfig } = useColumnsConfig(defaultColumns, tableState.columnsConfig || {});

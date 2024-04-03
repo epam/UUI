@@ -66,7 +66,7 @@ describe('columnsConfigurationActions', () => {
             const { prevConfig, columnsSorted, A } = getTestDataSet1();
             const result = toggleSingleColumnVisibility({ columnKey: A.key, prevConfig, columnsSorted });
             const expected = {
-                1: { isVisible: false, order: 'bh', width: 10 },
+                1: { isVisible: false, order: 'bm', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
                 4: { fix: 'right', isVisible: true, order: 'd', width: 10 },
@@ -81,7 +81,7 @@ describe('columnsConfigurationActions', () => {
                     fix: 'left', isVisible: true, order: 'a', width: 10,
                 },
                 2: { isVisible: true, order: 'b', width: 10 },
-                3: { isVisible: true, order: 'bh', width: 10 },
+                3: { isVisible: true, order: 'bm', width: 10 },
                 4: { fix: 'right', isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);
@@ -97,7 +97,7 @@ describe('columnsConfigurationActions', () => {
                     fix: 'left', isVisible: true, order: 'a', width: 10,
                 },
                 2: {
-                    fix: 'left', isVisible: true, order: 'ah', width: 10,
+                    fix: 'left', isVisible: true, order: 'am', width: 10,
                 },
                 3: { isVisible: false, order: 'c', width: 10 },
                 4: { fix: 'right', isVisible: true, order: 'd', width: 10 },
@@ -113,7 +113,7 @@ describe('columnsConfigurationActions', () => {
                     fix: 'left', isVisible: true, order: 'a', width: 10,
                 },
                 2: {
-                    fix: 'right', isVisible: true, order: 'bh', width: 10,
+                    fix: 'right', isVisible: true, order: 'bm', width: 10,
                 },
                 3: { isVisible: false, order: 'c', width: 10 },
                 4: { fix: 'right', isVisible: true, order: 'd', width: 10 },
@@ -125,7 +125,7 @@ describe('columnsConfigurationActions', () => {
             const { prevConfig, columnsSorted, A } = getTestDataSet1();
             const result = toggleSingleColumnPin({ columnKey: A.key, prevConfig, columnsSorted, fix: undefined });
             const expected = {
-                1: { isVisible: true, order: 'ah', width: 10 },
+                1: { isVisible: true, order: 'am', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
                 4: { fix: 'right', isVisible: true, order: 'd', width: 10 },
@@ -139,7 +139,7 @@ describe('columnsConfigurationActions', () => {
             const expected = {
                 1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
-                3: { fix: 'left', isVisible: true, order: 'ah', width: 10 },
+                3: { fix: 'left', isVisible: true, order: 'am', width: 10 },
                 4: { fix: 'right', isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);

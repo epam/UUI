@@ -1,10 +1,15 @@
+import { IImmutableMap, IMap } from './objects';
 import { ICanBeReadonly, ICanBeRequired, IDisableable } from './props';
 
 type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ArrayType)[]
     ? ArrayType
-    : ArrayOrObject extends Record<any, infer ValueType>
+    : ArrayOrObject extends IMap<any, infer ValueType>
         ? ValueType
-        : never;
+        : ArrayOrObject extends IImmutableMap<any, infer ValueType>
+            ? ValueType
+            : ArrayOrObject extends Record<any, infer ValueType>
+                ? ValueType
+                : never;
 
 export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired {
     /** Metadata for the nested fields */

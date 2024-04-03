@@ -1,240 +1,133 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI DataTable column use several properties to configure its width:  ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "width",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "(in pixels), ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "grow",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " (like in FlexBox, to configure how much column grows to occupy spare space), and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "minWidth",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "(used only to limit the column width during resizing). ",
-            "marks": []
-          }
-        ]
+        "text": "UUI DataTable column use several properties to configure its width:  "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To align column content, you can use ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "textAlign",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "alignSelf",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "justifyContent",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props. However, only ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "textAlign",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " property will affect header content, so use it instead of ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "justifyContent",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", for simple cases when you need to align both ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "–",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "rgb(32, 33, 36)",
-                    "font-family": null,
-                    "font-size": "14px",
-                    "font-style": null,
-                    "font-variant-ligatures": "normal",
-                    "font-variant-caps": "normal",
-                    "font-weight": "400",
-                    "letter-spacing": "normal",
-                    "orphans": "2",
-                    "text-align": "left",
-                    "text-indent": "0px",
-                    "text-transform": "none",
-                    "white-space": "normal",
-                    "widows": "2",
-                    "word-spacing": "0px",
-                    "-webkit-text-stroke-width": "0px",
-                    "background-color": null,
-                    "text-decoration-thickness": "initial",
-                    "text-decoration-style": "initial",
-                    "text-decoration-color": "initial",
-                    "display": "inline !important",
-                    "float": "none",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "rgb(32, 33, 36)",
-                    "font-family": null,
-                    "font-size": "14px",
-                    "font-style": null,
-                    "font-variant-ligatures": "normal",
-                    "font-variant-caps": "normal",
-                    "font-weight": "400",
-                    "letter-spacing": "normal",
-                    "orphans": "2",
-                    "text-align": "left",
-                    "text-indent": "0px",
-                    "text-transform": "none",
-                    "white-space": "normal",
-                    "widows": "2",
-                    "word-spacing": "0px",
-                    "-webkit-text-stroke-width": "0px",
-                    "background-color": null,
-                    "text-decoration-thickness": "initial",
-                    "text-decoration-style": "initial",
-                    "text-decoration-color": "initial",
-                    "display": "inline !important",
-                    "float": "none",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "header and column content.",
-            "marks": []
-          }
-        ]
+        "text": "width",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "(in pixels), "
+      },
+      {
+        "text": "grow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " (like in FlexBox, to configure how much column grows to occupy spare space), and "
+      },
+      {
+        "text": "minWidth",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "(used only to limit the column width during resizing). "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To align column content, you can use "
+      },
+      {
+        "text": "textAlign",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "alignSelf",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "justifyContent",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props. However, only "
+      },
+      {
+        "text": "textAlign",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property will affect header content, so use it instead of "
+      },
+      {
+        "text": "justifyContent",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", for simple cases when you need to align both "
+      },
+      {
+        "text": "–",
+        "color": "rgb(32, 33, 36)",
+        "font-family": null,
+        "font-size": "14px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " ",
+        "color": "rgb(32, 33, 36)",
+        "font-family": null,
+        "font-size": "14px",
+        "font-style": null,
+        "font-variant-ligatures": "normal",
+        "font-variant-caps": "normal",
+        "font-weight": "400",
+        "letter-spacing": "normal",
+        "orphans": "2",
+        "text-align": "left",
+        "text-indent": "0px",
+        "text-transform": "none",
+        "white-space": "normal",
+        "widows": "2",
+        "word-spacing": "0px",
+        "-webkit-text-stroke-width": "0px",
+        "background-color": null,
+        "text-decoration-thickness": "initial",
+        "text-decoration-style": "initial",
+        "text-decoration-color": "initial",
+        "display": "inline !important",
+        "float": "none",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": "header and column content."
       }
     ]
   }
-}
+]

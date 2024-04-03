@@ -5,5 +5,4 @@ export * from './useUuiError';
 export * from './useForceUpdate';
 export * from './useUuiServices';
 export * from './useTableState/useTableState';
-export * from './usePrevious';
 export * from './useLayer';
