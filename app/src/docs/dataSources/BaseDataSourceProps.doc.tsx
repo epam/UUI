@@ -19,6 +19,7 @@ export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
                 <DocExample title="showSelectedOnly" path="./_examples/dataSources/DataSourcePropsShowSelectedOnly.example.tsx" />
                 <DocExample title="patch" path="./_examples/dataSources/DataSourcePropsPatch.example.tsx" />
                 <DocExample title="isDeleted" path="./_examples/dataSources/DataSourcePropsPatchIsDeleted.example.tsx" />
+                <DocExample title="getNewItemPosition" path="./_examples/dataSources/DataSourcePropsPatchGetNewItemPosition.example.tsx" />
 
             </>
         );
