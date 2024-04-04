@@ -18,6 +18,7 @@ export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
                 <DocExample title="selectAll" path="./_examples/dataSources/DataSourcePropsSelectAll.example.tsx" />
                 <DocExample title="showSelectedOnly" path="./_examples/dataSources/DataSourcePropsShowSelectedOnly.example.tsx" />
                 <DocExample title="patch" path="./_examples/dataSources/DataSourcePropsPatch.example.tsx" />
+                <DocExample title="isDeleted" path="./_examples/dataSources/DataSourcePropsPatchIsDeleted.example.tsx" />
 
             </>
         );
