@@ -50,7 +50,7 @@ exports[`Calendar should be rendered correctly 1`] = `
       className="uui-calendar-days"
       style={
         Object {
-          "height": "180px",
+          "height": 180,
         }
       }
     >
