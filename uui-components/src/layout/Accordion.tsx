@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
     IHasCX, IDisableable, uuiMod, IHasChildren, Icon, cx, IHasRawProps, IHasForwardedRef, IControlled,
 } from '@epam/uui-core';
@@ -34,80 +34,79 @@ const uuiAccordion = {
 
 const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps => (props as EditableAccordionProps).onValueChange !== undefined;
 
-export class Accordion extends React.Component<AccordionProps, AccordionState> {
-    state = {
-        opened: isEditableAccordionProps(this.props) ? this.props.value : false,
+export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
+    const [state, setState] = useState<AccordionState>({
+        opened: isEditableAccordionProps(props) ? props.value : false,
+    });
+
+    const isOpened = () => {
+        return isEditableAccordionProps(props) ? props.value : state.opened;
     };
 
-    private toggleAccordion = () => {
-        const opened = this.isOpened();
+    const toggleAccordion = () => {
+        const isAccordionOpened = isOpened();
 
-        if (isEditableAccordionProps(this.props)) {
-            this.props.onValueChange(!opened);
+        if (isEditableAccordionProps(props)) {
+            props.onValueChange(!isAccordionOpened);
         } else {
-            this.setState({ opened: !opened });
+            setState({ opened: !isAccordionOpened });
         }
     };
 
-    private handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         if (e.key === ' ' || e.key === 'Enter') {
-            this.toggleAccordion();
+            toggleAccordion();
         }
     };
 
-    isOpened = () => {
-        return isEditableAccordionProps(this.props) ? this.props.value : this.state.opened;
-    };
-
-    renderHeader = () => {
-        const isAccordionOpened = this.isOpened();
+    const renderHeader = () => {
+        const isAccordionOpened = isOpened();
 
         return (
             <div
-                onKeyDown={ !this.props.isDisabled ? this.handleKeyDown : undefined }
-                onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }
-                tabIndex={ !this.props.isDisabled ? 0 : -1 }
-                className={ cx(uuiAccordion.toggler, isAccordionOpened && uuiMod.opened, this.props.isDisabled && uuiMod.disabled) }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
+                onKeyDown={ !props.isDisabled ? handleKeyDown : undefined }
+                onClick={ !props.isDisabled ? toggleAccordion : undefined }
+                tabIndex={ !props.isDisabled ? 0 : -1 }
+                className={ cx(uuiAccordion.toggler, isAccordionOpened && uuiMod.opened, props.isDisabled && uuiMod.disabled) }
+                ref={ props.forwardedRef }
+                { ...props.rawProps }
             >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
-                    {this.props.renderTitle ? this.props.renderTitle(isAccordionOpened) : <div className={ cx(uuiAccordion.title) }>{this.props.title}</div>}
+                    {props.renderTitle ? props.renderTitle(isAccordionOpened) : <div className={ cx(uuiAccordion.title) }>{props.title}</div>}
 
-                    {this.props.renderAdditionalItems?.(isAccordionOpened)}
+                    {props.renderAdditionalItems?.(isAccordionOpened)}
 
-                    {this.props.dropdownIcon !== null && (
-                        <IconContainer icon={ this.props.dropdownIcon } flipY={ isAccordionOpened } cx={ [this.props.isDisabled && uuiMod.disabled, css.arrow] } />
+                    {props.dropdownIcon !== null && (
+                        <IconContainer icon={ props.dropdownIcon } flipY={ isAccordionOpened } cx={ [props.isDisabled && uuiMod.disabled, css.arrow] } />
                     )}
                 </div>
             </div>
         );
     };
 
-    renderBody = () => (
+    const renderBody = () => (
         <div className={ uuiAccordion.body } role="region">
-            {this.props.children}
+            {props.children}
         </div>
     );
 
-    render() {
-        const isAccordionOpened = this.isOpened();
+    const isAccordionOpened = isOpened();
 
-        return (
-            <div
-                aria-disabled={ this.props.isDisabled }
-                aria-expanded={ isAccordionOpened }
-                className={ cx(
-                    uuiAccordion.container,
-                    css.container,
-                    isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.cx,
-                ) }
-            >
-                {this.renderHeader()}
-                {this.props.children && isAccordionOpened ? this.renderBody() : null}
-            </div>
-        );
-    }
-}
+    return (
+        <div
+            ref={ ref }
+            aria-disabled={ props.isDisabled }
+            aria-expanded={ isAccordionOpened }
+            className={ cx(
+                uuiAccordion.container,
+                css.container,
+                isAccordionOpened && !props.isDisabled && uuiMod.opened,
+                props.isDisabled && uuiMod.disabled,
+                props.cx,
+            ) }
+        >
+            {renderHeader()}
+            {props.children && isAccordionOpened ? renderBody() : null}
+        </div>
+    );
+});
