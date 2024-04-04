@@ -28,12 +28,14 @@ app.use((req, res, next) => {
     res.set(
         'Content-Security-Policy',
         "default-src 'self' https://*.epam.com;"
-        + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; "
-        + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
-        + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/*' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
-        + 'frame-src *; '
-        + 'img-src * data: ; '
-        + `script-src 'self' ${isDevServer() ? "'unsafe-eval' 'unsafe-inline'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,
+            + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; "
+            + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
+            + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/*' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
+            + 'frame-src *; '
+            + 'img-src * data: ; '
+            + `script-src 'self' ${
+                isDevServer() ? "'unsafe-eval' 'unsafe-inline'" : ''
+            } https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,
     );
 
     next();
@@ -52,9 +54,9 @@ if (!isDevServer()) {
         res.sendFile(path.join(__dirname, '../app/build/', 'index.html'));
     });
 
-    app.listen(5000, () => {
+    app.listen(2000, () => {
         // eslint-disable-next-line no-console
-        console.log('Example app listening on port 5000!');
+        console.log('Example app listening on port 2000!');
     });
 }
 
