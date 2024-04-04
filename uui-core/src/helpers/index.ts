@@ -4,7 +4,6 @@ export * from './parseIconViewbox';
 export * from './Debouncer';
 export * from './arrayToMatrix';
 export * from './cx';
-export * from './browser';
 export * from './IEditableDebouncer';
 export * from './urlParser';
 export * from './cookie';
