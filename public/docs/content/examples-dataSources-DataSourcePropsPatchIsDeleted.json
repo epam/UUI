@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": " To enable the deleting of the items, it is required to specify the getter for the deleted state and paste the updated item to the patch."
+        "text": "To enable deleting of items, it is required to specify the getter for the deleted state. Items for which isDeleted(item) == true - will be removed from list."
       }
     ]
   }
