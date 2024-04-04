@@ -7,13 +7,15 @@ import css from './DataSourceViewer.module.scss';
 interface Props<TItem, TId> extends IEditable<DataSourceState> {
     exampleTitle?: string;
     selectAll?: boolean;
+    showSelectedOnly?: boolean;
     getName?: (item: TItem) => string;
     dataSource: IDataSource<TItem, TId, any>;
     onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>;
+    onShowSelectedOnlyChange?: () => void;
 }
 
 export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
-    const { value, onValueChange, dataSource, exampleTitle, selectAll: showSelectAll } = props;
+    const { value, onValueChange, dataSource, exampleTitle, selectAll: showSelectAll, showSelectedOnly, onShowSelectedOnlyChange } = props;
     const view = dataSource.useView(value, onValueChange);
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
@@ -73,6 +75,13 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                         size="24"
                         caption={ hasSelection ? 'Clear all' : 'Select all' }
                         onClick={ hasSelection ? clearAll : selectAll }
+                    />
+                )}
+                {onShowSelectedOnlyChange && (
+                    <LinkButton
+                        size="24"
+                        caption={ showSelectedOnly ? 'Show all rows' : 'Show only selected rows' }
+                        onClick={ onShowSelectedOnlyChange }
                     />
                 )}
             </FlexRow>

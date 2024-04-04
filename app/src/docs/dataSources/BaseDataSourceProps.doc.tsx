@@ -16,6 +16,7 @@ export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
                 <DocExample title="isFoldedByDefault" path="./_examples/dataSources/DataSourcePropsIsFoldedByDefault.example.tsx" />
                 <DocExample title="cascadeSelection" path="./_examples/dataSources/DataSourcePropsCascadeSelection.example.tsx" />
                 <DocExample title="selectAll" path="./_examples/dataSources/DataSourcePropsSelectAll.example.tsx" />
+                <DocExample title="showSelectedOnly" path="./_examples/dataSources/DataSourcePropsShowSelectedOnly.example.tsx" />
             </>
         );
     }
