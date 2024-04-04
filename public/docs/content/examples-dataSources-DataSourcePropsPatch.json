@@ -1,0 +1,23 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Enables creating/deleting/updating/moving items on the view, without modification of the original data. It makes it possible to use patching along with UUI Forms, keeping only differences between original data and modified ones.\nExamples of real-life usage can be seen "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=editableTables&mode=doc&isSkin=null&category=tables&theme=loveship#editable_table",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "here"
+          }
+        ]
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]
