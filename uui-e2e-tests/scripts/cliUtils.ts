@@ -18,11 +18,21 @@ export function hasCliArg(arg: typeof CLI_ARGS[keyof typeof CLI_ARGS]) {
     return args.indexOf(arg) !== -1;
 }
 
-export function spawnProcessSync(params: { cmd: string, args: string[], cwd: string, exitOnErr: boolean }) {
-    const { cwd, args, cmd, exitOnErr } = params;
+export function isCmdSuccessful(params: { cmd: string, args: string[], cwd?: string }) {
+    const { cwd = process.cwd(), cmd, args } = params;
+    const result = spawn.sync(
+        cmd,
+        args,
+        { stdio: undefined, cwd },
+    );
+    return result.status === 0;
+}
+
+export function spawnProcessSync(params: { cmd: string, args: string[], cwd?: string, exitOnErr: boolean }) {
+    const { cwd = process.cwd(), args, cmd, exitOnErr } = params;
     const cmdInfoAsStr = `${cmd} ${args.join(' ')}`;
 
-    Logger.info(cmdInfoAsStr);
+    Logger.infoHighlighted(cmdInfoAsStr);
 
     const result = spawn.sync(
         cmd,
