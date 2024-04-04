@@ -9,7 +9,7 @@ You might need to restart computer after that.
     podman machine set --user-mode-networking
     podman machine start
     ```
-3. Open ```.env.local``` and set ```UUI_DOCKER_CONTAINER_MGMT=podman```
+3. Note: Podman will be used automatically (via "podman" CLI command) when Podman installation is detected
 4. Useful Podman commands. The image for UUI e2e test requires about ```2.4 Gb``` of free disk space. The following commands can help you to check how much disk space is being used.
     ```shell
     # Show podman disk usage
@@ -40,7 +40,7 @@ You might need to restart computer after that.
     # Start
     colima start
     ```
-2. Open ```.env.local``` and set ```UUI_DOCKER_CONTAINER_MGMT=docker```
+2. Note: Colima will be used automatically (via "docker" CLI command) unless Podman installation is detected
 
 #### Option 2: Podman v5.x (works only on ARM processors due to Playwrite-specific behavior)
 1. Install Podman with the command below. Please make sure that Podman version is at least ```5.0.1``` or newer. You might need to restart computer after that.
@@ -50,7 +50,8 @@ You might need to restart computer after that.
 2. Other steps are the same as for Windows (see above)
 
 ## Usage of alternative tools not mentioned in this guide
-It is possible to specify some alternative tool via ```.env.local``` file using ```UUI_DOCKER_CONTAINER_MGMT=<cmd>``` option.
+By default, if "podman" is detected, then it is used to build/run containers; otherwise "docker" is used as fallback;
+To override the default behavior, you might explicitly specify any tool via ```.env.local``` file using ```UUI_DOCKER_CONTAINER_ENGINE=<cmd>``` option.
 Please make sure that this tool is compatible with Docker's CLI.
 
 # Running tests in local environment
