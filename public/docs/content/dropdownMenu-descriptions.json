@@ -1,305 +1,177 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "DropdownMenu allows you to create vertical menus with a nested structure that pops up on hover or click (default is on hover).  ",
-            "marks": []
-          }
-        ]
+        "text": "DropdownMenu, and related set of components, allows to create vertical menus with a nested structure that pops up on hover or click (default is on hover).  "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can use UUI "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You can use UUI ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DropdownMenuButton",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " or your custom component as a menu item. ",
-            "marks": []
-          }
-        ]
+        "text": "DropdownMenuButton",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "\r",
-            "marks": []
-          }
-        ]
+        "text": " or your custom component as a menu item. "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\r"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "With the "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "With the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DropdownMenuButton",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", you can: ",
-            "marks": []
-          }
-        ]
+        "text": "DropdownMenuButton",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "unordered-list",
+        "text": ", you can: "
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "unordered-list",
+    "children": [
+      {
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
             "data": {},
-            "nodes": [
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Render a menu item with an icon in the left or right position ('left' as default).",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Highlight a menu item as selected, passing the ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "isActive",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " prop.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Mark a menu item as checked, passing the ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "isChecked",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " prop.\r",
-                    "marks": []
-                  }
-                ]
+                "text": "Render a menu item with an icon in the left or right position ('left' as default)."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "By ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "MenuSplitter",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "Highlight a menu item as selected, passing the "
+              },
+              {
+                "text": "isActive",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " prop."
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": ", you can divide menu item groups. ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "MenuHeader",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " sets a header for a group.",
-            "marks": []
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
         "data": {},
-        "nodes": [
+        "type": "list-item",
+        "children": [
           {
-            "object": "text",
-            "text": "With ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DropdownMenuSwitchButton",
-            "marks": [
+            "data": {},
+            "type": "list-item-child",
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "Mark a menu item as checked, passing the "
+              },
+              {
+                "text": "isChecked",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " prop.\r"
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": ", you can render a menu item with a switch. The ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "isSelected",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop is used as the switch value, and the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "onValueChange",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback prop is used to change the switch value. ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DropdownMenuSwitchButton",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " can also receive an icon.",
-            "marks": []
           }
         ]
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "With "
+      },
+      {
+        "text": "MenuSplitter",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", you can divide menu item groups. "
+      },
+      {
+        "text": "MenuHeader",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " provides a header for a group."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "With "
+      },
+      {
+        "text": "DropdownMenuSwitchButton",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", you can render a menu item with a switch. The "
+      },
+      {
+        "text": "isSelected",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop is used as the switch value, and the "
+      },
+      {
+        "text": "onValueChange",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback prop is used to change the switch value. "
+      },
+      {
+        "text": "DropdownMenuSwitchButton",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " can also receive an icon."
+      }
+    ]
   }
-}
+]

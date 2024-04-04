@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import css from './IconsPage.module.scss';
 import { FlexCell, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, Tooltip, NotificationCard, MultiSwitch,
     ScrollBars, SearchInput, TextInput } from '@epam/uui';
-import { ArrayDataSource, cx, Icon } from '@epam/uui-core';
+import { cx, Icon, useArrayDataSource } from '@epam/uui-core';
 import { getAllIcons } from '../../documents/iconListHelpers';
 import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
@@ -35,9 +35,10 @@ export function IconsDoc() {
     });
 
     const allIcons: IconBase<Icon>[] = getAllIcons<Icon>();
-    const iconsDS = new ArrayDataSource({
+
+    const iconsDS = useArrayDataSource<IconBase<Icon>, string, unknown>({
         items: allIcons,
-    });
+    }, []);
 
     const showNotification = () => {
         svc.uuiNotifications.show(
@@ -200,7 +201,7 @@ export function IconsDoc() {
     };
 
     const onDataSourceStateChange = (data: any) => setState(data);
-    const view = iconsDS.getView(state, onDataSourceStateChange, { getSearchFields: (l) => [l.name] });
+    const view = iconsDS.useView(state, onDataSourceStateChange, { getSearchFields: (l) => [l.name] });
     const items = view.getVisibleRows();
 
     return (
@@ -213,7 +214,7 @@ export function IconsDoc() {
                         size="42"
                         placeholder="Search icon"
                         value={ state.search }
-                        onValueChange={ (value) => setState({ ...state, search: value }) }
+                        onValueChange={ (value) => setState((currentState) => ({ ...currentState, search: value })) }
                     />
                     <FlexCell>{renderIconsBox(items)}</FlexCell>
                 </FlexCell>

@@ -1,6 +1,4 @@
-import React, {
-    Attributes, ForwardedRef, ReactNode,
-} from 'react';
+import React, { Attributes, Dispatch, ForwardedRef, ReactNode, SetStateAction } from 'react';
 import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
     IDropdownToggler, IHasValidationMessage,
@@ -418,7 +416,7 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     /** Table state value */
     tableState: DataTableState<TFilter, TViewState>;
     /** Function that updates table state value */
-    setTableState(newState: DataTableState<TFilter, TViewState>): void;
+    setTableState: Dispatch<SetStateAction<DataTableState<TFilter, TViewState>>>;
     /** Function that updates filter value */
     setFilter(filter: TFilter): void;
     /** Function that updates columns config value */

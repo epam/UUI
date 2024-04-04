@@ -11,7 +11,7 @@ import {
 export class TimePickerDoc extends BaseDocsBlock {
     title = 'TimePicker';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'TimePicker',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form, TDocContext.Table],
         bySkin: {

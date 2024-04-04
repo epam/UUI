@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    background-color: var(--uui-surface-main);
+    border-top: 1px solid var(--uui-divider);
+    box-sizing: border-box;
+}

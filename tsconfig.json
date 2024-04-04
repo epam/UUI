@@ -25,7 +25,8 @@
     },
     "baseUrl": ".",
     "isolatedModules": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "stripInternal": true
   },
   "exclude": [
     "node_modules",
@@ -35,6 +36,7 @@
     "**/node_modules",
     "**/build",
     "**/__tests__",
-    "**/globals.d.ts"
+    "**/globals.d.ts",
+    "**/uui-e2e-tests"
   ]
 }

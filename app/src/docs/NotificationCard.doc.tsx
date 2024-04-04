@@ -9,7 +9,7 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'NotificationCard',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:NotificationCardProps', component: uui.NotificationCard },

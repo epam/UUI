@@ -10,7 +10,7 @@ import { renderTogglerExamples } from './pickerInputExamples';
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'PickerInput',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form],
         bySkin: {
@@ -80,6 +80,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Picker with changed array of items" path="./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" />
                 <DocExample title="Linked pickers" path="./_examples/pickerInput/LinkedPickers.example.tsx" />
                 <DocExample title="Change portal target and dropdown placement" path="./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" />
+                <DocExample title="Custom toggler tag render" path="./_examples/pickerInput/PickerTogglerTagDemo.example.tsx" />
             </>
         );
     }
