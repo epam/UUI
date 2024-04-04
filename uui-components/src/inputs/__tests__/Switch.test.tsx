@@ -102,4 +102,15 @@ describe('Switch', () => {
         expect(handleChange).toHaveBeenCalledTimes(1);
         expect(handleChange).toHaveBeenCalledWith(true);
     });
+
+    it('using isReadonly property', async () => {
+        const handleChange = jest.fn();
+        await setupSwitch({ label: 'Test Switch', onValueChange: handleChange, isReadonly: true });
+        const switchElement: HTMLInputElement = screen.getByLabelText('Test Switch');
+
+        switchElement.click();
+
+        expect(handleChange).not.toHaveBeenCalledTimes(1);
+        expect(switchElement.checked).toBe(false);
+    });
 });
