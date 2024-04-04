@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/promo';
-import { FlexRow, PickerItem } from '@epam/uui';
+import { FlexRow, PickerItem, Switch } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
 import css from './DataSourceViewer.module.scss';
 
@@ -78,11 +78,7 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                     />
                 )}
                 {onShowSelectedOnlyChange && (
-                    <LinkButton
-                        size="24"
-                        caption={ showSelectedOnly ? 'Show all rows' : 'Show only selected rows' }
-                        onClick={ onShowSelectedOnlyChange }
-                    />
+                    <Switch label="Show selected rows only" value={ showSelectedOnly } onValueChange={ onShowSelectedOnlyChange } />
                 )}
             </FlexRow>
             { value.checked?.length > 0 && (
