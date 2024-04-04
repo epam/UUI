@@ -1,16 +1,16 @@
-import { spawnProcessSync, hasCliArg } from '../cliUtils';
+import { spawnProcessSync, hasCliArg, isCmdSuccessful } from '../cliUtils';
 import {
-    CLI_ARGS,
+    CLI_ARGS, CONTAINER_ENGINES,
     DOCKER_CONTAINER_NAME,
     DOCKER_FILES,
-    DOCKER_IMAGE_TAGS,
+    DOCKER_IMAGE_TAGS, ENV_FILES,
     YARN_TASKS,
 } from '../constants';
 import { currentMachineIpv4 } from '../ipUtils';
 import { readEnvFile } from '../envFileUtils';
+import { Logger } from '../../src/utils/logger';
 
-const envFile = readEnvFile();
-const UUI_DOCKER_CONTAINER_MGMT = envFile.UUI_DOCKER_CONTAINER_MGMT || 'podman';
+const UUI_DOCKER_CONTAINER_MGMT = getContainerMgmtTool();
 
 main();
 
@@ -25,7 +25,6 @@ function main() {
             DOCKER_FILES.DOCKER_FILE,
             '.',
         ],
-        cwd: process.cwd(),
         exitOnErr: true,
     });
     spawnProcessSync({
@@ -34,7 +33,6 @@ function main() {
             'rm',
             DOCKER_CONTAINER_NAME,
         ],
-        cwd: process.cwd(),
         exitOnErr: false,
     });
     const updateSnapshots = hasCliArg(CLI_ARGS.PW_DOCKER_UPDATE_SNAPSHOTS);
@@ -60,7 +58,6 @@ function main() {
             'yarn',
             updateSnapshots ? YARN_TASKS.DOCKER_TEST_E2E_UPDATE : YARN_TASKS.DOCKER_TEST_E2E,
         ],
-        cwd: process.cwd(),
         exitOnErr: true,
     });
 }
@@ -80,4 +77,24 @@ function getVolumesMapArgs() {
         acc.push(`${key}:${value}`);
         return acc;
     }, []);
+}
+
+function getContainerMgmtTool(): string {
+    const envFile = readEnvFile();
+    let cmdEffective: string = envFile.UUI_DOCKER_CONTAINER_ENGINE;
+    if (cmdEffective) {
+        Logger.info(`The "${cmdEffective}" container engine is explicitly specified in "${ENV_FILES.LOCAL}"; It will be used.`);
+        return cmdEffective;
+    } else {
+        const isPodmanInstalled = isCmdSuccessful({ cmd: CONTAINER_ENGINES.podman, args: ['-v'] });
+        if (isPodmanInstalled) {
+            Logger.info(`The "${CONTAINER_ENGINES.podman}" CLI detected.`);
+            cmdEffective = CONTAINER_ENGINES.podman;
+        } else {
+            // fallback
+            cmdEffective = CONTAINER_ENGINES.docker;
+        }
+        Logger.info(`No container engine is explicitly specified in "${ENV_FILES.LOCAL}"; "${cmdEffective}" will be used.`);
+    }
+    return cmdEffective;
 }
