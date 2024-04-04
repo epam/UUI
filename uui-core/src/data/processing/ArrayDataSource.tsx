@@ -23,15 +23,12 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
-        const currentItems = this.props?.items;
         this.props = props;
-        if (props.items && currentItems !== props.items) {
-            if (!this.itemsStorage) {
-                this.itemsStorage = new ItemsStorage({
-                    items: [],
-                    params: { getId: this.getId, complexIds: this.props.complexIds },
-                });
-            }
+        if (!this.itemsStorage) {
+            this.itemsStorage = new ItemsStorage({
+                items: [],
+                params: { getId: this.getId, complexIds: this.props.complexIds },
+            });
         }
     }
 
