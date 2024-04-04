@@ -1,0 +1,32 @@
+[
+  {
+    "children": [
+      {
+        "text": "To make the patch usable, it was required to add a feature to keep the position of the editable rows during editing until sorting is changed. For this purpose "
+      },
+      {
+        "text": "fixItemBetweenSortings",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " was added."
+      }
+    ],
+    "type": "paragraph"
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The only case, when sorting should be enabled during editing is the usage of orderBetween approach, where sorting is not changing. So, in such a case "
+      },
+      {
+        "text": "fixItemBetweenSortings",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " should be turned off."
+      }
+    ]
+  }
+]

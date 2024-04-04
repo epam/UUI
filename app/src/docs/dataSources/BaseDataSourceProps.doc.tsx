@@ -10,7 +10,7 @@ export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="dataSources-base-props" />
 
                 <EditableDocContent title="Common DataSource Props" fileName="dataSources-base-props-overview" />
-                
+
                 <DocExample title="getId and getParentId" path="./_examples/dataSources/DataSourcePropsIds.example.tsx" />
                 <DocExample title="complexIds" path="./_examples/dataSources/DataSourcePropsComplexIds.example.tsx" />
                 <DocExample title="isFoldedByDefault" path="./_examples/dataSources/DataSourcePropsIsFoldedByDefault.example.tsx" />
@@ -20,7 +20,7 @@ export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
                 <DocExample title="patch" path="./_examples/dataSources/DataSourcePropsPatch.example.tsx" />
                 <DocExample title="isDeleted" path="./_examples/dataSources/DataSourcePropsPatchIsDeleted.example.tsx" />
                 <DocExample title="getNewItemPosition" path="./_examples/dataSources/DataSourcePropsPatchGetNewItemPosition.example.tsx" />
-
+                <DocExample title="fixItemBetweenSortings" path="./_examples/dataSources/DataSourcePropsPatchFixItemBetweenSortings.example.tsx" />
             </>
         );
     }
