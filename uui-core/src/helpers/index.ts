@@ -5,7 +5,6 @@ export * from './Debouncer';
 export * from './arrayToMatrix';
 export * from './cx';
 export * from './browser';
-export * from './LazyLoadedMap';
 export * from './IEditableDebouncer';
 export * from './urlParser';
 export * from './cookie';
