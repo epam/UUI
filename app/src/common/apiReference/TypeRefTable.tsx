@@ -68,7 +68,7 @@ export function TypeRefTable(props: TypeRefTableProps) {
         [items, props.isGrouped],
     );
 
-    const view = exportPropsDs.getView(tableState, setTableState, {
+    const view = exportPropsDs.useView(tableState, setTableState, {
         isFoldedByDefault: () => false,
     });
 

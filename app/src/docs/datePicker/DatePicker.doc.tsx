@@ -11,7 +11,7 @@ import { renderCustomDayExample, renderFooter } from './datePickerExamples';
 export class DatePickerDoc extends BaseDocsBlock {
     title = 'DatePicker';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'DatePicker',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable, TDocContext.Table],
         bySkin: {

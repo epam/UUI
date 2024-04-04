@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
 import { Text, DataTable, Panel } from '@epam/uui';
 import { Location } from '@epam/uui-docs';
@@ -51,7 +51,7 @@ export default function TableWithPinnedRows() {
         [],
     );
 
-    const locationsDS = useLazyDataSource<Location, string, unknown>({
+    const dataSource = useLazyDataSource<Location, string, unknown>({
         api: (request, ctx) => {
             const filter = { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, filter });
@@ -61,16 +61,12 @@ export default function TableWithPinnedRows() {
         backgroundReload: true,
     }, []);
 
-    useEffect(() => {
-        return () => locationsDS.unsubscribeView(setTableState);
-    }, [locationsDS]);
-
-    const view = locationsDS.useView(tableState, setTableState, {
+    const view = dataSource.useView(tableState, setTableState, {
         rowOptions: {
             // To make some row `pinned`, it is required to define `pin` function.
             // Parents and elements of the same level can be pinned.
             pin: (location) => location.value.type !== 'city',
-        }, 
+        },
     });
 
     return (

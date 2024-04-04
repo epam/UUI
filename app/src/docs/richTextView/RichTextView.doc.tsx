@@ -10,7 +10,7 @@ import { htmlContent, children } from './richTextViewExamples';
 export class RichTextViewDoc extends BaseDocsBlock {
     title = 'RichTextView';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'RichTextView',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:RichTextViewProps', component: uui.RichTextView },

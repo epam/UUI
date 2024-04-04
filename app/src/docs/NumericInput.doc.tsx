@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class NumericInputDoc extends BaseDocsBlock {
     title = 'NumericInput';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'NumericInput',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Table, TDocContext.Resizable],
         bySkin: {

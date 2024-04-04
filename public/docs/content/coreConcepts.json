@@ -800,7 +800,7 @@
                 ]
               },
               {
-                "text": " / svc.uuiApi — makes API calls gently, handling common HTTP errors, can re-login user if session is lost w/o loosing his work."
+                "text": " / svc.uuiApi — makes API calls gently, handling common HTTP errors, can re-login user if session is lost w/o losing his work."
               }
             ]
           }

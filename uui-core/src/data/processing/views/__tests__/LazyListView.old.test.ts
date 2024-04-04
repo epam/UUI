@@ -1,7 +1,7 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { LazyListViewProps } from '../LazyListView';
-import { delay, renderHook } from '@epam/uui-test-utils';
-import { DataSourceState } from '../../../../types';
+import { renderHook, waitFor } from '@epam/uui-test-utils';
+import { DataSourceState, LazyDataSourceApi } from '../../../../types';
+import { LazyListViewProps } from '../types';
 
 interface TItem {
     id: number;
@@ -10,12 +10,29 @@ interface TItem {
 }
 
 const testItems = [
-    { id: 2, level: 'A1' }, { id: 5, level: 'A2+' }, { id: 1, level: 'A0' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 6, level: 'B' }, { id: 7, level: 'B1+', parentId: 6 }, { id: 8, level: 'B2', parentId: 6 }, { id: 9, level: 'B2+', parentId: 6 }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
+    { id: 2, level: 'A1' },
+    { id: 5, level: 'A2+' },
+    { id: 1, level: 'A0' },
+    { id: 3, level: 'A1+' },
+    { id: 4, level: 'A2' },
+    { id: 6, level: 'B' },
+    { id: 7, level: 'B1+', parentId: 6 },
+    { id: 8, level: 'B2', parentId: 6 },
+    { id: 9, level: 'B2+', parentId: 6 },
+    { id: 10, level: 'C1' },
+    { id: 11, level: 'C1+' },
+    { id: 12, level: 'C2' },
 ];
 
 describe('LazyListView - old tests', () => {
     const initialValue: DataSourceState = { topIndex: 0, visibleCount: 20 };
-    const testApi = jest.fn(() => Promise.resolve({ items: testItems }));
+    const testApi: jest.MockedFn<LazyDataSourceApi<TItem, number, any>> = jest.fn().mockImplementation(({ ids }) => {
+        if (ids) {
+            return Promise.resolve({ items: testItems.filter((item) => ids.includes(item.id)) });
+        }
+        return Promise.resolve({ items: testItems });
+    });
+
     let viewProps: LazyListViewProps<TItem, number, any>;
     let dataSource: LazyDataSource<TItem, number>;
 
@@ -32,30 +49,54 @@ describe('LazyListView - old tests', () => {
                 { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
             );
 
-            const view = hookResult.result.current;
+            let view = hookResult.result.current;
             const loadingRow = view.getById(testItems[4].id, 4);
-            expect(loadingRow.isLoading).toBe(true);
+            expect(loadingRow.isUnknown).toBe(true);
             expect(loadingRow.id).not.toBeNull();
 
-            await delay();
+            await waitFor(async () => {
+                view = hookResult.result.current;
+                const row = view.getById(testItems[4].id, 4);
+                expect(row.isUnknown).toBeFalsy();
+            });
 
             const row = view.getById(testItems[4].id, 4);
-
             expect(row.id).toBe(testItems[4].id);
             expect(row.value).toEqual(testItems[4]);
             expect(row.index).toEqual(4);
         });
 
-        it("should return loading row if item don't exist in dataSource", () => {
+        it("should return unknown row if item don't exist in dataSource", async () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
                 { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
             );
 
+            await waitFor(async () => {
+                const view = hookResult.result.current;
+                const row = view.getById(111, 111);
+                expect(row.isUnknown).toBeTruthy();
+            });
+
             const view = hookResult.result.current;
             const row = view.getById(111, 111);
+            expect(row.id).not.toBeNull();
+        });
 
-            expect(row.isLoading).toBe(true);
+        it('should return loading row if item is fetching by dataSource', async () => {
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: { value: { checked: [11], ...initialValue }, onValueChange: () => {}, props: { showSelectedOnly: true } } },
+            );
+
+            await waitFor(async () => {
+                const view = hookResult.result.current;
+                const row = view.getById(11, 11);
+                expect(row.isLoading).toBeTruthy();
+            });
+
+            const view = hookResult.result.current;
+            const row = view.getById(11, 11);
             expect(row.id).not.toBeNull();
         });
     });
@@ -66,7 +107,7 @@ describe('LazyListView - old tests', () => {
             { initialProps: { value: initialValue, onValueChange: () => {}, props: {} } },
         );
 
-        const view = hookResult.result.current;
+        let view = hookResult.result.current;
         let rows = view.getVisibleRows();
 
         // Should return loading rows for first call
@@ -74,8 +115,13 @@ describe('LazyListView - old tests', () => {
         expect(rows[5].isLoading).toBe(true);
         expect(rows[5].id).not.toBeNull();
 
-        await delay();
+        await waitFor(async () => {
+            view = hookResult.result.current;
+            const viewRows = view.getVisibleRows();
+            expect(viewRows[5].isLoading).toBeFalsy();
+        });
 
+        view = hookResult.result.current;
         rows = view.getVisibleRows();
 
         expect(rows[5].id).toEqual(testItems[5].id);

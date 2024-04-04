@@ -10,7 +10,7 @@ import { getCurrentTheme } from '../helpers';
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'LinkButton',
         contexts: [TDocContext.Default, TDocContext.Form],
         bySkin: {

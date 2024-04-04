@@ -8,14 +8,21 @@
         "uui-richTextEditor-code": true
       },
       {
-        "text": " can help you create a prefix for input. To do this, you need to wrap components in a "
+        "text": " can allow to add a prefix of suffix for inputs. To do this, you need to wrap input component, and "
+      },
+      {
+        "text": "InputAddon",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in a "
       },
       {
         "text": "ControlGroup",
         "uui-richTextEditor-code": true
       },
       {
-        "text": "."
+        "text": ".  "
       }
     ]
   }

@@ -11,7 +11,7 @@ interface IPropWithContextParam<TProps = PropDocPropsUnknown> {
     ctx: IPropSamplesCreationContext<TProps>
 }
 type TPropInputData = { value?: unknown | undefined, exampleId?: string | undefined };
-type TPropInputDataAll = { [name in keyof PropDocPropsUnknown]?: TPropInputData };
+export type TPropInputDataAll = { [name in keyof PropDocPropsUnknown]?: TPropInputData };
 
 export function buildExamplesList<TProps = PropDocPropsUnknown>(params: IPropWithContextParam<TProps>): PropExampleObject<TProps[keyof TProps]>[] {
     const { prop, ctx } = params;

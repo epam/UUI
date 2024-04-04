@@ -1,5 +1,5 @@
 {
- "version": "5.7.0-alpha.0",
+ "version": "5.7.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -14277,7 +14277,7 @@
       "    getConfig(): IDataSourceViewConfig;",
       "    getById(id: TId, index: number): DataRowProps<TItem, TId>;",
       "    getListProps(): DataSourceListProps;",
-      "    getVisibleRows(): DataRowProps<TItem, TId>[];",
+      "    getRows(): DataRowProps<TItem, TId>[];",
       "    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];",
       "    getSelectedRowsCount(): number;",
       "    reload(): void;",
@@ -14333,8 +14333,8 @@
       "required": true
      },
      {
-      "uid": "getVisibleRows",
-      "name": "getVisibleRows",
+      "uid": "getRows",
+      "name": "getRows",
       "typeValue": {
        "raw": "() => DataRowProps<TItem, TId>[]"
       },
@@ -19951,9 +19951,9 @@
       "    getParents(id: TId): TItem[];",
       "    getPathById(id: TId): DataRowPathItem<TId, TItem>[];",
       "    getPathItem(item: TItem): DataRowPathItem<TId, TItem>;",
-      "    getNodeInfo(id: TId): TreeNodeInfo;",
+      "    getNodeInfo(id: TId): ITreeNodeInfo;",
       "    isFlatList(): boolean;",
-      "    patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
+      "    patch(items: TItem[], isDeleted?: () => boolean, comparator?: ItemsComparator<TItem>): ITree<TItem, TId>;",
       "    mergeItems(tree: ITree<TItem, TId>): ITree<TItem, TId>;",
       "    cascadeSelection(currentSelection: TId[], selectedId: TId | undefined, isSelected: boolean, options?: {",
       "        isSelectable?: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;",
@@ -19962,7 +19962,7 @@
       "    load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren?: boolean): Promise<ITree<TItem, TId>>;",
       "    loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;",
       "    loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;",
-      "    getTotalRecursiveCount(): number;",
+      "    getTotalCount(): number;",
       "    forEach(action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void, options?: {",
       "        direction?: 'bottom-up' | 'top-down';",
       "        parentId?: TId;",
@@ -20102,7 +20102,7 @@
       "uid": "getNodeInfo",
       "name": "getNodeInfo",
       "typeValue": {
-       "raw": "(id: TId) => TreeNodeInfo"
+       "raw": "(id: TId) => ITreeNodeInfo"
       },
       "editor": {
        "type": "func"
@@ -20124,7 +20124,7 @@
       "uid": "patch",
       "name": "patch",
       "typeValue": {
-       "raw": "(items: TItem[], isDeletedProp?: keyof TItem | undefined, comparator?: ItemsComparator<TItem> | undefined) => ITree<TItem, TId>"
+       "raw": "(items: TItem[], isDeleted?: () => boolean, comparator?: ItemsComparator<TItem> | undefined) => ITree<TItem, TId>"
       },
       "editor": {
        "type": "func"
@@ -20187,8 +20187,8 @@
       "required": true
      },
      {
-      "uid": "getTotalRecursiveCount",
-      "name": "getTotalRecursiveCount",
+      "uid": "getTotalCount",
+      "name": "getTotalCount",
       "typeValue": {
        "raw": "() => number"
       },
@@ -21275,7 +21275,7 @@
       "comment": {
        "raw": [
         "This option is added for the purpose of supporting legacy behavior of fetching data",
-        " on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
+        " on `getRows` and `getListProps`, not to break users' own implementation of dataSources.",
         " @default true"
        ],
        "tags": {
@@ -21546,7 +21546,7 @@
       "    flattenSearchResults?: boolean;",
       "    /**",
       "     * This option is added for the purpose of supporting legacy behavior of fetching data",
-      "     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
+      "     * on `getRows` and `getListProps`, not to break users' own implementation of dataSources.",
       "     * @default true",
       "     */",
       "    legacyLoadDataBehavior?: boolean;",
@@ -21667,7 +21667,7 @@
       "comment": {
        "raw": [
         "This option is added for the purpose of supporting legacy behavior of fetching data",
-        " on `getVisibleRows` and `getListProps`, not to break users' own implementation of dataSources.",
+        " on `getRows` and `getListProps`, not to break users' own implementation of dataSources.",
         " @default true"
        ],
        "tags": {
@@ -27341,12 +27341,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:TreeNodeInfo": {
+  "@epam/uui-core:ITreeNodeInfo": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
-     "name": "TreeNodeInfo",
-     "nameFull": "TreeNodeInfo"
+     "name": "ITreeNodeInfo",
+     "nameFull": "ITreeNodeInfo"
     },
     "src": "uui-core/src/data/processing/views/tree/ITree.ts",
     "exported": true
@@ -27354,9 +27354,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TreeNodeInfo",
+     "raw": "ITreeNodeInfo",
      "print": [
-      "interface TreeNodeInfo {",
+      "interface ITreeNodeInfo {",
       "    count?: number;",
       "    totalCount?: number;",
       "}"
@@ -27389,12 +27389,12 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:TreeParams": {
+  "@epam/uui-core:ITreeParams": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
-     "name": "TreeParams",
-     "nameFull": "TreeParams<TItem, TId>"
+     "name": "ITreeParams",
+     "nameFull": "ITreeParams<TItem, TId>"
     },
     "src": "uui-core/src/data/processing/views/tree/ITree.ts",
     "exported": true
@@ -27402,9 +27402,9 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "TreeParams<TItem, TId>",
+     "raw": "ITreeParams<TItem, TId>",
      "print": [
-      "interface TreeParams<TItem, TId> {",
+      "interface ITreeParams<TItem, TId> {",
       "    getId?(item: TItem): TId;",
       "    getParentId?(item: TItem): TId | undefined;",
       "    complexIds?: boolean;",
@@ -72057,9 +72057,15 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
+     "raw": "SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerTagProps<TItem, TId>) => JSX.Element) | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerTagProps<TItem, TId>) => JSX.Element) | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerTagProps<TItem, TId>) => JSX.Element) | undefined; } | SizeMod & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerTagProps<TItem, TId>) => JSX.Element) | undefined; }",
      "print": [
-      "type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId>;"
+      "type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {",
+      "    /**",
+      "     * Render callback for picker toggler selection tag",
+      "     * If omitted, default `PickerTogglerTag` component will be rendered",
+      "     */",
+      "    renderTag?: (props: PickerTogglerTagProps<TItem, TId>) => JSX.Element;",
+      "};"
      ]
     },
     "props": [
@@ -72990,6 +72996,23 @@
        "type": "string"
       },
       "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderTag",
+      "name": "renderTag",
+      "comment": {
+       "raw": [
+        "Render callback for picker toggler selection tag",
+        " If omitted, default `PickerTogglerTag` component will be rendered"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerTogglerTagProps<TItem, TId>) => JSX.Element"
+      },
+      "editor": {
+       "type": "func"
+      },
       "required": false
      },
      {
@@ -76350,9 +76373,9 @@
      "print": [
       "interface PickerTogglerMods extends types.IHasEditMode {",
       "    /**",
-      "    * Defines component size",
-      "    * @default 36",
-      "    */",
+      "     * Defines component size",
+      "     * @default 36",
+      "     */",
       "    size?: '24' | '30' | '36' | '42' | '48';",
       "}"
      ]
@@ -76408,6 +76431,490 @@
        ]
       },
       "from": "@epam/uui:IHasEditMode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:PickerTogglerTagProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PickerTogglerTagProps",
+     "nameFull": "PickerTogglerTagProps<TItem, TId>"
+    },
+    "src": "uui/components/pickers/PickerTogglerTag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PickerTogglerTagProps<TItem, TId>",
+     "print": [
+      "interface PickerTogglerTagProps<TItem, TId> extends TagProps {",
+      "    /** Defines component size */",
+      "    size?: types.ControlSize;",
+      "    /** If this is true, then the PickerTogglerTag will be an additional tag with the number of collapsed elements in the caption. */",
+      "    isCollapsed?: boolean;",
+      "    /** Defines row props (see more: uui-components/src/pickers/PickerToggler.tsx PickerTogglerProps<TItem = any, TId = any>) */",
+      "    rowProps?: DataRowProps<TItem, TId>;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "isCollapsed",
+      "name": "isCollapsed",
+      "comment": {
+       "raw": [
+        "If this is true, then the PickerTogglerTag will be an additional tag with the number of collapsed elements in the caption."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "rowProps",
+      "name": "rowProps",
+      "comment": {
+       "raw": [
+        "Defines row props (see more: uui-components/src/pickers/PickerToggler.tsx PickerTogglerProps<TItem = any, TId = any>)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataRowProps<TItem, TId>"
+      },
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "clickAnalyticsEvent",
+      "name": "clickAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "An analytics event to send (via AnalyticsContext) when component is clicked.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "href",
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "target",
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": "isDropdown",
+      "name": "isDropdown",
+      "comment": {
+       "raw": [
+        "Shows chevron icon, enabling component to act as dropdown toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconPosition",
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Position of the icon (left of right)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "onIconClick",
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Click handler for the icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "fill",
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "Defines component fill style.",
+        " @default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline"
+       ]
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": "onClear",
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": "clearIcon",
+      "name": "clearIcon",
+      "comment": {
+       "raw": [
+        "Icon for clear value button (usually cross)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": "captionCX",
+      "name": "captionCX",
+      "comment": {
+       "raw": [
+        "CSS classes to put on the caption",
+        " @deprecated"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownIcon",
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": "count",
+      "name": "count",
+      "comment": {
+       "raw": [
+        "Count value to be placed in component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui:TagCoreProps",
+      "required": false
+     },
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color.",
+        " @default 'neutral'"
+       ],
+       "tags": {
+        "@default": "neutral"
+       }
+      },
+      "typeValue": {
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'neutral'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "info",
+        "success",
+        "warning",
+        "critical",
+        "neutral"
+       ]
+      },
+      "from": "@epam/uui:TagMods",
       "required": false
      }
     ],
@@ -88508,7 +89015,7 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui:IconButtonCoreProps",
+      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -88531,7 +89038,7 @@
         "36"
        ]
       },
-      "from": "@epam/uui-components:IconButtonProps",
+      "from": "@epam/uui:IconButtonCoreProps",
       "required": false
      },
      {
@@ -95811,7 +96318,7 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui:IconButtonCoreProps",
+      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -95834,7 +96341,7 @@
         "36"
        ]
       },
-      "from": "@epam/uui-components:IconButtonProps",
+      "from": "@epam/uui:IconButtonCoreProps",
       "required": false
      },
      {

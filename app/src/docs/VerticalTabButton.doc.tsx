@@ -9,7 +9,7 @@ import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 export class VerticalTabButtonDoc extends BaseDocsBlock {
     title = 'Vertical Tab Button';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'VerticalTabButton',
         contexts: [TDocContext.VerticalTabButton],
         bySkin: {

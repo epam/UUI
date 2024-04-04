@@ -1,52 +1,35 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "The Text component displays a single-line text with various configurations. Due to its standard set of sizes are aligned to other components (e.g., TextInput, Button), it can be used it to place text next to other components, and get it aligned correctly."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For multiline text, it's better to use "
+      },
+      {
+        "data": {
+          "url": "https://uui.epam.com/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components"
+        },
+        "type": "link",
+        "url": "https://uui.epam.com/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components",
+        "children": [
           {
-            "object": "text",
-            "text": "The Text component displays a single-line text with various configurations. Due to its standard set of sizes like in our other components(e.g., TextInput, Button), use it to place text on the same baseline with a component.",
-            "marks": []
+            "text": "RichTextView"
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For multiline text, it's better to use ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "RichTextView",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component.",
-            "marks": []
-          }
-        ]
+        "text": " component."
       }
     ]
   }
-}
+]

@@ -9,7 +9,7 @@ import { BaseDocsBlock, EditableDocContent, DocExample } from '../common';
 export class CountIndicatorDoc extends BaseDocsBlock {
     title = 'CountIndicator';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'CountIndicator',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:CountIndicatorProps', component: uui.CountIndicator },

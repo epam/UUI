@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './DataPickerHeader.module.scss';
-import { ReactComponent as CloseIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
+import { ReactComponent as CloseIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import { Text } from '../typography';
 import { IconButton } from '../buttons';
 import { FlexRow } from '../layout';

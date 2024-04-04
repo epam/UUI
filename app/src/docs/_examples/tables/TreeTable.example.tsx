@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
-import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
+import { DataSourceState, DataColumnProps, useUuiContext, LazyDataSourceApiResponse, useAsyncDataSource } from '@epam/uui-core';
 import { Text, LinkButton, DataTable, Panel } from '@epam/uui';
 import css from './TablesExamples.module.scss';
 
@@ -61,21 +61,12 @@ export default function TreeTableExample() {
         [],
     );
 
-    const locationsDS = useAsyncDataSource<Location, string, Location>(
-        {
-            api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
-        },
-        [],
-    );
-
-    useEffect(() => {
-        return () => {
-            locationsDS.unsubscribeView(setTableState);
-        };
+    const dataSource = useAsyncDataSource<Location, string, Location>({
+        api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
+        getParentId: (item) => item.parentId,
     }, []);
 
-    // handleTableStateChange function should not be re-created on each render, as it would cause performance issues.
-    const view = locationsDS.useView(tableState, setTableState, {
+    const view = dataSource.useView(tableState, setTableState, {
         getSearchFields: (item) => [item.name],
         sortBy: (item, sorting) => {
             switch (sorting.field) {

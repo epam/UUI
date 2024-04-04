@@ -40,7 +40,7 @@ jobs:
           yarn build
           cd server && yarn
       - name: test
-        run: yarn test
+        run: yarn test-ci
 
       - name: eslint
         run: yarn eslint

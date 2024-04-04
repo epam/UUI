@@ -1,13 +1,48 @@
 import type { ComponentType } from 'react';
-import type {
-    IComponentDocs, DemoContext, PropExample, PropDoc,
+import {
+    DemoContext,
+    IComponentDocs,
+    PropDoc, PropDocPropsUnknown,
+    PropExample,
+    PropExampleObject,
+    TDocContext,
+    TComponentPreviewList,
+    TComponentPreview,
+    TPreviewPropsItemRenderCases,
 } from './types';
-import { PropExampleObject } from './types';
+import { TestMatrixUtils } from './utils/testMatrixUtils';
+
+export class DocPreviewBuilder<TProps> {
+    listOfPreviews: TComponentPreviewList<TProps> = [];
+
+    /**
+     * Most recently added preview will replace another one with same ID
+     * @param previewItem
+     */
+    add(previewItem: TComponentPreview<TProps>) {
+        this.listOfPreviews = this.listOfPreviews.filter(({ id }) => id !== previewItem.id);
+        this.listOfPreviews.push({
+            id: previewItem.id,
+            ...previewItem,
+        });
+    }
+
+    update(id: string, updateFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
+        const prev = this.listOfPreviews.find((i) => i.id === id);
+        if (prev) {
+            prev.matrix = { ...updateFn(prev.matrix) };
+        } else {
+            throw new Error(`Unable to find preview by id = ${id}`);
+        }
+    }
+}
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
     props?: PropDoc<TProps, keyof TProps>[];
     contexts?: DemoContext<TProps>[];
+    docPreview?: DocPreviewBuilder<TProps>;
+
     component: IComponentDocs<TProps>['component'];
     constructor(docs: IComponentDocs<TProps>) {
         this.name = docs.name;
@@ -36,6 +71,26 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this._prop<TProp>(name, details, 'merge');
     }
 
+    /**
+     * Map of example name to example props
+     * @param propName
+     */
+    public getPropExamplesMap<TProp extends keyof TProps>(
+        propName: TProp,
+    ) {
+        const res: { [exampleName: string] : PropExampleObject<any> } = {};
+        const examples = this.getPropDetails(propName).examples;
+        if (Array.isArray(examples)) {
+            // The array of examples is always normalized here.
+            (examples as PropExampleObject<any>[]).forEach((e) => {
+                res[e.name] = e;
+            });
+        } else {
+            // cannot do anything here - just skip.
+        }
+        return res;
+    }
+
     public getPropDetails<TProp extends keyof TProps>(propName: TProp): Omit<PropDoc<TProps, TProp>, 'name'> | undefined {
         const prop = this.props.find((p) => (p.name as unknown as TProp) === propName) as PropDoc<TProps, TProp>;
         if (prop) {
@@ -60,6 +115,31 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             this.merge(propName, prevPropDetails);
         }
     }
+
+    setDocPreview(docPreview: DocPreviewBuilder<TProps>) {
+        this.docPreview = docPreview;
+    }
+
+    getPreviewRenderCaseGroups() {
+        return this.docPreview?.listOfPreviews.map((ppi) => {
+            return DocBuilder.convertPreviewPropsItemToRenderCases(ppi, this as DocBuilder<PropDocPropsUnknown>);
+        });
+    }
+
+    static convertPreviewPropsItemToRenderCases = (ppi: TComponentPreview<unknown>, docs: DocBuilder<PropDocPropsUnknown>): TPreviewPropsItemRenderCases => {
+        const result: TPreviewPropsItemRenderCases = {
+            id: ppi.id,
+            context: ppi.context || TDocContext.Default,
+            props: [],
+            cellSize: ppi.cellSize,
+        };
+        const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
+        const testMatrix = TestMatrixUtils.createTestMatrix(matrixConfig);
+        testMatrix.forEach((props) => {
+            result.props.push(props);
+        });
+        return result;
+    };
 
     private _prop<TProp extends keyof TProps>(
         name: TProp,
