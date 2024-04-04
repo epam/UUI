@@ -34,6 +34,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         selectAll,
         isLoaded,
         getItemTemporaryOrder,
+        fixItemBetweenSortings,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -122,6 +123,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isDeleted,
         getNewItemPosition,
         getItemTemporaryOrder,
+        fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
     });
