@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
-    renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent,
+    renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent, within,
 } from '@epam/uui-test-utils';
-import { DatePicker, DatePickerProps } from '../DatePicker';
+import { DatePicker } from '../DatePicker';
 import dayjs from 'dayjs';
-import { supportedDateFormats } from '@epam/uui-components';
+import { DatePickerProps } from '../types';
+import { supportedDateFormats } from '../helpers';
 
 type TestParams = Pick<DatePickerProps, 'value' | 'format' | 'isHoliday'>;
 
@@ -15,13 +16,20 @@ function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
 }
 
 async function setupDatePicker(params: TestParams) {
-    const { result, mocks, setProps } = await setupComponentForTest<DatePickerProps>(
+    const {
+        result, mocks, setProps,
+    } = await setupComponentForTest<DatePickerProps>(
         (context) => ({
             ...params,
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current?.setProperty('value', newValue);
             }),
             size: '42',
+            rawProps: {
+                body: {
+                    'data-testid': 'datePickerBody',
+                },
+            },
         }),
         (props) => <DatePicker { ...props } />,
     );
@@ -42,14 +50,18 @@ const DATE_FORMAT_CUSTOM = 'DD-MM-YYYY';
 
 describe('DatePicker', () => {
     it('should render with minimum props defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(<DatePicker format={ DATE_FORMAT_DEFAULT } value={ null } onValueChange={ jest.fn } />);
+        const tree = await renderSnapshotWithContextAsync(
+            <DatePicker
+                value={ null }
+                onValueChange={ jest.fn }
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
     it('should render with maximum props defined', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <DatePicker
-                format={ DATE_FORMAT_DEFAULT }
                 value={ null }
                 onValueChange={ jest.fn }
                 placeholder="Test"
@@ -60,24 +72,108 @@ describe('DatePicker', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should open picker on field focus', async () => {
-        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        fireEvent.focus(dom.input);
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+    it('should update input value on props update', async () => {
+        const { setProps } = await setupDatePicker({
+            value: null,
+        });
+
+        const input = screen.getByRole<HTMLInputElement>('textbox');
+        expect(input.value).toEqual('');
+        setProps({ value: '2017-01-22' });
+        expect(input.value).toEqual('Jan 22, 2017');
     });
 
-    it('should close picker on field blur', async () => {
-        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+    it('should update month of date picker body on props update', async () => {
+        const { setProps } = await setupDatePicker({
+            value: '2017-01-22',
+        });
+
+        await userEvent.click(screen.getByRole('textbox'));
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+        setProps({ value: '2017-02-22' });
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
+    });
+
+    it('should send value change in valid format', async () => {
+        const {
+            dom, mocks, result,
+        } = await setupDatePicker({
+            value: null,
+            format: DATE_FORMAT_DEFAULT,
+        });
+
+        await userEvent.type(dom.input, 'Jan 1, 2020');
+        await userEvent.click(result.container); // emit blur event
+        expect(mocks.onValueChange).toHaveBeenCalledWith('2020-01-01');
+    });
+
+    it('should reopen with selected month when previously selected another one', async () => {
+        const { result } = await setupDatePicker({
+            value: '2017-01-22',
+        });
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+
+        await userEvent.click(screen.getByText('22')); // select date
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+
+        const datePickerBody = screen.getByTestId('datePickerBody');
+        const [,,nexMonthButton] = within(datePickerBody).queryAllByRole('button');
+
+        await userEvent.click(nexMonthButton); // go to next month
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
+        await userEvent.click(nexMonthButton); // go to next month
+        expect(screen.getByText('March 2017')).toBeInTheDocument();
+
+        await userEvent.click(result.container); // emit blur event
+        expect(screen.queryByText('March 2017')).not.toBeInTheDocument();
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+        // should open month with selected date
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+    });
+
+    it('should change month and year correctly', async () => {
+        await setupDatePicker({
+            value: '2017-01-22',
+        });
+
+        await userEvent.click(screen.getByRole('textbox')); // open picker
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
+
+        const datePickerBody = screen.getByTestId('datePickerBody');
+        const [, titleButton, nextMonthButton] = within(datePickerBody).queryAllByRole('button');
+
+        await userEvent.click(nextMonthButton); // go to next month
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
+
+        await userEvent.click(titleButton);
+        const [, yearButton] = within(datePickerBody).queryAllByRole('button');
+
+        await userEvent.click(yearButton);
+        await userEvent.click(screen.getByText('2024')); // go to 2024
+        await userEvent.click(screen.getByText('Mar'));
+
+        expect(screen.getByText('March 2024')).toBeInTheDocument();
+    });
+
+    it('should open picker on field focus', async () => {
+        const { dom } = await setupDatePicker({
+            value: null,
+        });
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.focus(dom.input);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
-        fireEvent.blur(dom.input);
-        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should change input value after change props', async () => {
-        const { dom, mocks, setProps } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        const {
+            dom, mocks, setProps,
+        } = await setupDatePicker({
+            value: null,
+        });
         expect(dom.input.value).toEqual('');
         setProps({ value: '2017-01-22' });
         expect(dom.input.value).toEqual('Jan 22, 2017');
@@ -85,7 +181,9 @@ describe('DatePicker', () => {
     });
 
     it('should clear input when clear button is clicked', async () => {
-        const { dom, mocks } = await setupDatePicker({ value: '2017-01-22', format: DATE_FORMAT_DEFAULT });
+        const { dom, mocks } = await setupDatePicker({
+            value: '2017-01-22',
+        });
         const clear = screen.getByRole<HTMLButtonElement>('button');
         expect(dom.input.value).toEqual('Jan 22, 2017');
         fireEvent.click(clear);
@@ -93,21 +191,29 @@ describe('DatePicker', () => {
         expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
 
-    it('should reset invalid value onBlur', async () => {
-        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
-        expect(dom.input.value).toEqual('');
-        fireEvent.change(dom.input, { target: { value: '2019-10-47' } });
-        expect(dom.input.value).toEqual('2019-10-47');
-        expect(mocks.onValueChange).not.toHaveBeenCalled();
-        fireEvent.blur(dom.input);
-        expect(dom.input.value).toEqual('');
-        expect(mocks.onValueChange).toHaveBeenCalledWith(null);
+    it('should close picker on field blur', async () => {
+        const { dom, result } = await setupDatePicker({
+            value: null,
+        });
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        await userEvent.click(dom.input);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        await userEvent.click(result.container);
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should set new value with custom format', async () => {
-        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_CUSTOM });
+        const {
+            dom, mocks, result,
+        } = await setupDatePicker({
+            value: null,
+            format: DATE_FORMAT_CUSTOM,
+        });
+
         expect(dom.input.value).toEqual('');
-        fireEvent.change(dom.input, { target: { value: '31-01-2017' } });
+        await userEvent.type(dom.input, '31-01-2017');
+        await userEvent.click(result.container);
+
         expect(mocks.onValueChange).toHaveBeenCalledWith('2017-01-31');
         expect(dom.input.value).toEqual('31-01-2017');
     });
@@ -124,7 +230,10 @@ describe('DatePicker', () => {
     });
 
     it.each(supportedDateFormats())('should support entering date from keyboard in custom format %s', async (currentFormat) => {
-        const one = await setupDatePicker({ value: null, format: currentFormat });
+        const one = await setupDatePicker({
+            value: null,
+            format: currentFormat,
+        });
         expect(one.dom.input.value).toEqual('');
         await userEvent.type(one.dom.input, '2017-01-22');
         await userEvent.click(one.result.container); // emit blur event
@@ -149,5 +258,53 @@ describe('DatePicker', () => {
 
         expect(parentElemContainsClasses(holidayDay, ['uui-calendar-day-holiday'])).toBeTruthy();
         expect(parentElemContainsClasses(regularDay, ['uui-calendar-day-holiday'])).toBeFalsy();
+    });
+
+    it('should not fire onValueChange when value is the same on blur', async () => {
+        const {
+            dom: { input }, mocks, result,
+        } = await setupDatePicker({
+            value: '2017-01-22',
+        });
+
+        await userEvent.click(input); // open picker
+        await userEvent.click(screen.getByText('25')); // select date
+        await userEvent.click(result.container); // emit blur event (close)
+
+        await userEvent.click(input); // open picker
+        await userEvent.click(result.container); // emit blur event (close)
+
+        await userEvent.click(input); // open picker
+        await userEvent.click(result.container); // emit blur event (close)
+
+        expect(mocks.onValueChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not fire onValueChange when value is null and the same on blur', async () => {
+        const {
+            dom, mocks, result,
+        } = await setupDatePicker({
+            value: null,
+        });
+        expect(dom.input.value).toEqual('');
+
+        await userEvent.type(dom.input, '2019-10-47');
+        expect(dom.input.value).toEqual('2019-10-47');
+
+        await userEvent.click(result.container);
+        expect(dom.input.value).toEqual('');
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(null);
+    });
+
+    it('should fire onValuChange event clearing input manually', async () => {
+        const {
+            dom: { input }, mocks, result,
+        } = await setupDatePicker({
+            value: '2017-01-22',
+        });
+
+        await userEvent.clear(input);
+        await userEvent.click(result.container); // emit blur event (close)
+        expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
 });
