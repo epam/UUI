@@ -920,6 +920,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -973,20 +987,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -1353,6 +1353,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -1406,20 +1420,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -2005,6 +2005,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -2058,20 +2072,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -2424,6 +2424,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -2477,20 +2491,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -2843,6 +2843,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -2896,20 +2910,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -3305,6 +3305,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -3358,20 +3372,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -4066,6 +4066,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -4119,20 +4133,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -22631,6 +22631,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -22684,20 +22698,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -23094,6 +23094,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -23147,20 +23161,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -24597,6 +24597,10 @@
       " */",
       "interface PatchOptions<TItem, TId> extends SortConfig<TItem> {",
       "    /**",
+      "     * Items, which should be added/updated/deleted from the tree.",
+      "     */",
+      "    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;",
+      "    /**",
       "     * To enable deleting of the items, it is required to specify getter for deleted state.",
       "     */",
       "    isDeleted?(item: TItem): boolean;",
@@ -24617,10 +24621,6 @@
       "     */",
       "    getItemTemporaryOrder?: (item: TItem) => string;",
       "    /**",
-      "     * Items, which should be added/updated/deleted from the tree.",
-      "     */",
-      "    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;",
-      "    /**",
       "     * If enabled, items position is fixed between sorting.",
       "     * @default true",
       "     */",
@@ -24629,6 +24629,19 @@
      ]
     },
     "props": [
+     {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "required": false
+     },
      {
       "uid": "isDeleted",
       "name": "isDeleted",
@@ -24681,19 +24694,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "required": false
      },
@@ -29657,6 +29657,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -29710,20 +29724,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -30688,6 +30688,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -30741,20 +30755,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
@@ -31489,6 +31489,20 @@
       "required": false
      },
      {
+      "uid": "patch",
+      "name": "patch",
+      "comment": {
+       "raw": [
+        "Items, which should be added/updated/deleted from the tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
+      },
+      "from": "@epam/uui-core:PatchOptions",
+      "required": false
+     },
+     {
       "uid": "isDeleted",
       "name": "isDeleted",
       "comment": {
@@ -31542,20 +31556,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-core:PatchOptions",
-      "required": false
-     },
-     {
-      "uid": "patch",
-      "name": "patch",
-      "comment": {
-       "raw": [
-        "Items, which should be added/updated/deleted from the tree."
-       ]
-      },
-      "typeValue": {
-       "raw": "IMap<TId, TItem> | IImmutableMap<TId, TItem>"
       },
       "from": "@epam/uui-core:PatchOptions",
       "required": false
