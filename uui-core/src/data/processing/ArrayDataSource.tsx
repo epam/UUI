@@ -20,16 +20,11 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         this.setProps(props);
         const params = { getId: this.getId, complexIds: props.complexIds };
         this.itemsStatusMap = newMap(params);
+        this.itemsStorage = new ItemsStorage({ items: [], params: params });
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         this.props = props;
-        if (!this.itemsStorage) {
-            this.itemsStorage = new ItemsStorage({
-                items: [],
-                params: { getId: this.getId, complexIds: this.props.complexIds },
-            });
-        }
     }
 
     public getById = (id: TId): TItem | undefined => {
