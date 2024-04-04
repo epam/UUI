@@ -2,14 +2,7 @@
   {
     "children": [
       {
-        "text": "To make the patch usable, it was required to add a feature to keep the position of the editable rows during editing until sorting is changed. For this purpose "
-      },
-      {
-        "text": "fixItemBetweenSortings",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " was added."
+        "text": "While a row being edited, changes in its values can affect its position. For example, if we have \"Parent1\", \"Parent 2\", and \"Parent 3\", sorted by name, and the user changes \"Parent 3\" to be \"A\" - it should jump to the first position, as \"A\" should be the first item according to sorting. To avoid such jumps, the position of each item is 'fixed' - no item will change its position, until sorting is changed. "
       }
     ],
     "type": "paragraph"
@@ -18,14 +11,43 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "The only case, when sorting should be enabled during editing is the usage of orderBetween approach, where sorting is not changing. So, in such a case "
+        "text": "This behavior is controlled with the "
       },
       {
         "text": "fixItemBetweenSortings",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " should be turned off."
+        "text": " prop, and is enabled  by default."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "There are cases, when you need rows to move instantly, reflecting changes in their value. For example, if you use "
+      },
+      {
+        "text": "item.order",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "getOrderBetween",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " helper to control rows order. In this case, you want to disable this 'fixing' behavior by passing "
+      },
+      {
+        "text": "fixItemBetweenSortings: false",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
       }
     ]
   }

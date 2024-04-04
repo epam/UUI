@@ -3,7 +3,95 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Enables creating/deleting/updating/moving items on the view, without modification of the original data. It makes it possible to use patching along with UUI Forms, keeping only differences between original data and modified ones.\nExamples of real-life usage can be seen "
+        "text": "Contains a list of items, which overrides values of corresponding items in DataSource. Comparison is made by item's id (configured with "
+      },
+      {
+        "text": "getId",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop). If a patch contains an item with id=1, this item will override the existing item with the same id=1."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Patch prop, as well as complimentary settings, enables updating, adding, deleting, and moving items on the view, without modifying the original data. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Patch prop, as well as complimentary props, enables to:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "edit data, which is managed by LazyDataSource, can be huge, and can't be loaded completely"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "simplify a form initialization - the patch can start as an empty array, and the data to edit can be loaded and managed by Async or Lazy DataSource"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "simplify saving data to server - patch contains only changed data, so you can send a patch as is to server to save it"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "refresh data in DataSources, w/o loosing changes. E.g. you can change sorting in LazyDataSource, causing re-loading data, and the patch will be re-applied to the new data."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Examples of real-life usage can be seen "
       },
       {
         "type": "link",
