@@ -38,7 +38,6 @@ declare module 'react-imask' {
 }
 
 declare module 'tether-tooltip';
-declare module 'jsurl';
 declare module 'inline-style-transformer';
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
