@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": " To enable the deleting of the items, it is required to specify the getter for the deleted state and paste the updated item to the patch."
+      }
+    ]
+  }
+]
