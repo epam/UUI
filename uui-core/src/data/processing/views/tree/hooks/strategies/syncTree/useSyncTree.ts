@@ -32,6 +32,9 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         cascadeSelection,
         showSelectedOnly,
         selectAll,
+        fixItemBetweenSortings,
+        getNewItemPosition,
+        isDeleted,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -70,10 +73,11 @@ export function useSyncTree<TItem, TId, TFilter = any>(
     const tree = usePatchTree({
         tree: treeWithSelectedOnly,
         patch: showSelectedOnly ? null : restProps.patch,
-        isDeleted: restProps.isDeleted,
-        getNewItemPosition: restProps.getNewItemPosition,
+        isDeleted,
+        getNewItemPosition,
+        fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
-        sortBy: restProps.sortBy,
+        sortBy,
     });
 
     const reload = useCallback(() => {
