@@ -39,7 +39,6 @@
     "history": "4.10.1",
     "imask": "6.0.7",
     "lodash.assign": "4.2.0",
-    "lodash.clone": "4.5.0",
     "lodash.isequal": "4.5.0",
     "lodash.sortby": "4.7.0",
     "prismjs": "^1.19.0",

@@ -1,16 +1,16 @@
-import isEmpty from 'lodash.isempty';
-
 export const clearEmptyValueFromRecord = <TRecord extends Record<string, any> = Record<string, any>>(record: TRecord): TRecord => {
     if (record === undefined || record === null || typeof record !== 'object') {
         return record;
     }
 
-    const result = Object.keys(record).reduce((acc: any, key) => {
+    return Object.keys(record).reduce((acc: TRecord | undefined, key) => {
+        let newAcc = acc;
         if (record[key] !== undefined) {
-            acc[key] = record[key];
+            if (!newAcc) {
+                newAcc = {} as TRecord;
+            }
+            (newAcc as Record<string, any>)[key] = record[key];
         }
-        return acc;
-    }, {} as TRecord);
-
-    return isEmpty(result) ? undefined : result;
+        return newAcc;
+    }, undefined);
 };
