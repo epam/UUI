@@ -25,19 +25,27 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         isFoldedByDefault,
         sortBy,
         cascadeSelection,
+        showSelectedOnly,
     } = props;
 
-    const handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
-        if (showSelected && (!newDataSourceState.checked?.length || newDataSourceState.search)) {
+    const handleDataSourceValueChange = (newDataSourceState: React.SetStateAction<DataSourceState<any, TId>>) => {
+        let dsState: DataSourceState;
+        if (typeof newDataSourceState === 'function') {
+            dsState = newDataSourceState(dataSourceState);
+        } else {
+            dsState = newDataSourceState;
+        }
+
+        if (showSelected && (!dsState.checked?.length || dsState.search)) {
             setShowSelected(false);
         }
 
-        if (newDataSourceState.search !== dataSourceState.search) {
-            newDataSourceState.focusedIndex = 0;
+        if (dsState.search !== dataSourceState.search) {
+            dsState.focusedIndex = 0;
         }
 
-        setDataSourceState(newDataSourceState);
-        const newValue = dataSourceStateToValue(props, newDataSourceState, dataSource);
+        setDataSourceState(dsState);
+        const newValue = dataSourceStateToValue(props, dsState, dataSource);
 
         if (!isEqual(value, newValue)) {
             handleSelectionValueChange(newValue);
@@ -106,7 +114,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
         handleDataSourceValueChange({
             ...dataSourceState,
-            selectedId: emptyValue,
+            selectedId: emptyValue as undefined,
         });
     };
 
@@ -126,14 +134,8 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         ...(cascadeSelection ? { cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         backgroundReload: true,
+        showSelectedOnly,
     }, [dataSource]);
-
-    const getSelectedRows = (visibleCount?: number) => {
-        if (hasSelection()) {
-            return view.getSelectedRows({ visibleCount });
-        }
-        return [];
-    };
 
     const getListProps = (): DataSourceListProps => {
         const listProps = view.getListProps();
@@ -166,6 +168,19 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         selectionMode,
     });
 
+    const getSelectedRows = (itemsToTake: number) => {
+        const dsState = getDataSourceState();
+        let checked = [];
+        if (props.selectionMode === 'single') {
+            checked = dsState.selectedId !== null && dsState.selectedId !== undefined ? [dsState.selectedId] : [];
+        } else {
+            checked = dsState.checked ?? [];
+        }
+        return checked
+            .slice(0, itemsToTake)
+            .map((id, index) => view.getById(id, index));
+    };
+
     return {
         context,
         dataSourceState,
@@ -174,11 +189,11 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         getEntityName,
         isSingleSelect,
         getSelectedIdsArray,
+        getSelectedRows,
         getDataSourceState,
         getRowOptions,
         clearSelection,
         hasSelection,
-        getSelectedRows,
         view,
         getListProps,
         getFooterProps,

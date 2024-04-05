@@ -1,0 +1,54 @@
+[
+  {
+    "children": [
+      {
+        "text": "While a row being edited, changes in its values can affect its position. For example, if we have \"Parent1\", \"Parent 2\", and \"Parent 3\", sorted by name, and the user changes \"Parent 3\" to be \"A\" - it should jump to the first position, as \"A\" should be the first item according to sorting. Such jumps are usually inconvenient UX-wise. So we 'fix' item positions: no item will change its position, until sorting is changed. "
+      }
+    ],
+    "type": "paragraph"
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This behavior is controlled with the "
+      },
+      {
+        "text": "fixItemBetweenSortings",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop, and is enabled  by default."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "There are cases, when you need rows to move instantly, reflecting changes in their value. For example, if you use "
+      },
+      {
+        "text": "item.order",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "getOrderBetween",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " helper to control rows order. In this case, you want to disable this 'fixing' behavior by passing "
+      },
+      {
+        "text": "fixItemBetweenSortings: false",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]

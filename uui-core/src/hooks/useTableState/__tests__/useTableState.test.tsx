@@ -137,7 +137,7 @@ const initialTableStateValue = {
     filtersConfig: {
         filter1: {
             isVisible: true,
-            order: 'h',
+            order: 'm',
         },
     },
 };
@@ -212,11 +212,11 @@ describe('useTableState', () => {
             filtersConfig: {
                 filter1: {
                     isVisible: true,
-                    order: 'h',
+                    order: 'm',
                 },
                 filter2: {
                     isVisible: true,
-                    order: 'q',
+                    order: 's',
                 },
             },
             topIndex: 0,
@@ -250,15 +250,15 @@ describe('useTableState', () => {
             filtersConfig: {
                 filter1: {
                     isVisible: true,
-                    order: 'h',
+                    order: 'm',
                 },
                 filter2: {
                     isVisible: false,
-                    order: 'q',
+                    order: 's',
                 },
                 filter3: {
                     isVisible: true,
-                    order: 'u',
+                    order: 'v',
                 },
             },
             topIndex: 40,
@@ -299,7 +299,7 @@ describe('useTableState', () => {
             filtersConfig: {
                 filter1: {
                     isVisible: true,
-                    order: 'h',
+                    order: 'm',
                 },
             },
             viewState: { userName: 'name' },
@@ -331,15 +331,15 @@ describe('useTableState', () => {
             filtersConfig: {
                 filter1: {
                     isVisible: true,
-                    order: 'h',
+                    order: 'm',
                 },
                 filter2: {
                     isVisible: true,
-                    order: 'q',
+                    order: 's',
                 },
                 filter3: {
                     isVisible: true,
-                    order: 'u',
+                    order: 'v',
                 },
             },
         });
@@ -387,7 +387,7 @@ describe('useTableState', () => {
         const newValue = {
             filter1: {
                 isVisible: true,
-                order: 'h',
+                order: 'm',
             },
             filter2: {
                 isVisible: true,
@@ -467,11 +467,11 @@ describe('useTableState', () => {
                 filtersConfig: {
                     filter1: {
                         isVisible: true,
-                        order: 'h',
+                        order: 'm',
                     },
                     filter2: {
                         isVisible: true,
-                        order: 'q',
+                        order: 's',
                     },
                 },
             });
@@ -489,11 +489,11 @@ describe('useTableState', () => {
                 filtersConfig: {
                     filter1: {
                         isVisible: true,
-                        order: 'h',
+                        order: 'm',
                     },
                     filter2: {
                         isVisible: true,
-                        order: 'q',
+                        order: 's',
                     },
                 },
             });
@@ -608,11 +608,11 @@ describe('useTableState', () => {
             filtersConfig: {
                 filter1: {
                     isVisible: true,
-                    order: 'h',
+                    order: 'm',
                 },
                 filter2: {
                     isVisible: true,
-                    order: 'q',
+                    order: 's',
                 },
             },
         });

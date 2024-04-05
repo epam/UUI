@@ -1,0 +1,25 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Enables/disables showing selected rows only."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "If enabled in "
+      },
+      {
+        "text": "LazyDataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " since initialization, only selected/checked records are loaded. The rest of the records would be loaded after turning on a showing of all the records."
+      }
+    ]
+  }
+]

@@ -30,6 +30,7 @@
     "@epam/uui-docs": "5.7.1",
     "@epam/uui-editor": "5.7.1",
     "@epam/uui-timeline": "5.7.1",
+    "@tanstack/react-query": "^5.17.19",
     "@udecode/plate-common": "25.0.1",
     "amplitude-js": "8.9.1",
     "classnames": "2.2.6",

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
 import {
     DataColumnProps,
@@ -83,12 +83,6 @@ export default function TableCollapseExample() {
         },
         [],
     );
-
-    useEffect(() => {
-        return () => {
-            locationsDS.unsubscribeView(setTableState);
-        };
-    }, []);
 
     const view = locationsDS.useView(tableState, setTableState, {
         getSearchFields: (item) => [item.name],
