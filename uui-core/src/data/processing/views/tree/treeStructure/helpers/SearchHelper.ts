@@ -1,6 +1,5 @@
 import { TreeStructure } from '../TreeStructure';
 import { getSearchFilter } from '../../../../../querying';
-import sortBy from 'lodash.sortby';
 import { ApplySearchToTreeSnapshotOptions, SearchOptions } from './types';
 
 export class SearchHelper {
@@ -69,12 +68,20 @@ export class SearchHelper {
         }
         const itemsToSort = [...items];
 
-        return sortBy(itemsToSort, (item) => {
+        const getOrder = (item: TItem) => {
             const id = getId(item);
             if (!ranks.has(id)) {
                 return 0;
             }
             return ranks.get(id) * -1;
+        };
+
+        return itemsToSort.sort((a, b) => {
+            const aOrder = getOrder(a);
+            const bOrder = getOrder(b);
+            if (aOrder < bOrder) return -1;
+            if (aOrder > bOrder) return 1;
+            return 0;
         });
     }
 }

@@ -1,6 +1,6 @@
 import { ColumnsConfig, DataColumnProps } from '../types';
-import sortBy from 'lodash.sortby';
 import { getOrderBetween } from './getOrderBetween';
+import { getOrderComparer } from '../data';
 
 export const applyColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], config: ColumnsConfig) => {
     const newColumns = columns.reduce<DataColumnProps<TItem, TId>[]>((acc, c) => {
@@ -16,13 +16,23 @@ export const applyColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, T
         return acc;
     }, []);
 
-    return sortBy(newColumns, (i) => config[i.key].order);
+    const comparer = getOrderComparer([{ field: 'order', direction: 'asc' }]);
+
+    return [...newColumns].sort((a, b) => {
+        const aConfig = config[a.key];
+        const bConfig = config[b.key];
+
+        return comparer(aConfig, bConfig);
+    });
 };
 
 export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], config: ColumnsConfig) => {
     const resultConfig: ColumnsConfig = { };
 
-    const sortedOrders = sortBy(config, (f) => f?.order);
+    const comparer = getOrderComparer([{ field: 'order', direction: 'asc' }]);
+
+    const sortedOrders = Object.values(config ?? {}).filter(Boolean).sort(comparer);
+
     const lastItemOrder: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
 
     let prevOrder = lastItemOrder || 'a';
