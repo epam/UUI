@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Text, DataTable, Panel, IconButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
@@ -6,9 +6,10 @@ import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 
 import css from './TablesExamples.module.scss';
+import { TApi } from '../../../data';
 
 export default function CitiesTable() {
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi>();
     const [tableState, setTableState] = useState<DataSourceState>({});
 
     const renderMenu = (dropdownProps: DropdownBodyProps): ReactNode => (
@@ -103,12 +104,6 @@ export default function CitiesTable() {
         backgroundReload: true,
     }, []);
 
-    // IMPORTANT! Unsubscribe view from DataSource when you don't need it more.
-    // Pass this.handleTableStateChange function which you provided to getView as a second argument
-    useEffect(() => {
-        return () => citiesDS.unsubscribeView(setTableState);
-    }, []);
-
     // Create View according to your tableState and options
     const view = citiesDS.useView(tableState, setTableState, {
         getRowOptions: useCallback(
@@ -125,7 +120,7 @@ export default function CitiesTable() {
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
-                // Spread ListProps and provide getVisibleRows function from view to DataTable component.
+                // Spread ListProps and provide getRows function from view to DataTable component.
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To enable deleting of items, it is required to specify the getter for the deleted state. Items for which "
+      },
+      {
+        "text": "isDeleted(item) == true",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " will be removed from list."
+      }
+    ]
+  }
+]

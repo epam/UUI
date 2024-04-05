@@ -206,4 +206,15 @@ router.post('/offices', async (req, res) => {
     res.json(result);
 });
 
+router.post('/todos', async (req, res) => {
+    const data = await helpers.getData('todos');
+    res.json(data);
+});
+
+router.post('/projectTasks', async (req, res) => {
+    const data = await helpers.getProjectTasks();
+    const result = filterAndSort(req.body, data.projectTasks, 'ProjectTasks');
+    res.json(result);
+});
+
 module.exports = router;

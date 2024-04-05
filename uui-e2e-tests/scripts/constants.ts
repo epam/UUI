@@ -19,3 +19,8 @@ export const ENV_FILES = {
     CI: '.env.ci',
     LOCAL: '.env.local',
 };
+
+export const CONTAINER_ENGINES = {
+    docker: 'docker',
+    podman: 'podman',
+};

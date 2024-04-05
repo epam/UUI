@@ -140,12 +140,12 @@ describe('ArrayDataSource', () => {
         const search3List = viewSearchFirst3.getListProps();
 
         expect(depAList.rowsCount).toEqual(1);
-        expect(depAList.totalCount).toEqual(7);
+        expect(depAList.totalCount).toEqual(3);
 
         expect(depAllList.rowsCount).toEqual(2);
         expect(depAllList.totalCount).toEqual(7);
 
         expect(search3List.rowsCount).toEqual(2);
-        expect(search3List.totalCount).toEqual(7);
+        expect(search3List.totalCount).toEqual(2);
     });
 });

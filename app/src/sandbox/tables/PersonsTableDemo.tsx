@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi } from '@epam/uui-core';
+import { DataSourceState, useArrayDataSource, LazyDataSourceApiRequest, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi, useTree, useDataRows } from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType, PersonsApiResponse, PersonsSummary, PersonsTableState } from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';
@@ -123,11 +123,11 @@ export function PersonsTableDemo() {
         }
     };
 
-    const { rows, listProps, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>(
+    const tree = useTree<PersonTableRecord, PersonTableRecordId, PersonTableFilter>(
         {
             type: 'lazy',
-            listState: value,
-            setListState: onValueChange,
+            dataSourceState: value,
+            setDataSourceState: onValueChange,
             api,
             getId: (i) => [i.__typename, i.id],
             complexIds: true,
@@ -160,7 +160,8 @@ export function PersonsTableDemo() {
         },
         [value.filter?.groupBy],
     );
-
+    const { rows, listProps } = useDataRows(tree);
+    
     return (
         <div className={ cx(css.container, css.uuiThemeLoveship) }>
             <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={ true }>
@@ -182,11 +183,11 @@ export function PersonsTableDemo() {
                     />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Reload" onClick={ () => reload() } size="30" />
+                    <Button caption="Reload" onClick={ () => tree.reload() } size="30" />
                 </FlexCell>
             </FlexRow>
             <DataTable
-                getRows={ () => rows }
+                rows={ rows }
                 columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
                 value={ value }
                 onValueChange={ onValueChange }
