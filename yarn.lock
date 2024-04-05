@@ -1417,13 +1417,6 @@
   dependencies:
     "@elastic/apm-rum-core" "^5.21.0"
 
-"@epam/assets@4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.5.3.tgz#0391330577230addee7307d4ddb69fb030c2920e"
-  integrity sha512-hc6U3UxrpXX44BhwU85N+AXGClN4K18Axou1g+eRs7cJQ8SpR7l6Z9cPyoBaqTpuDUJs2UjjQGhhjFF4YNEGuw==
-  dependencies:
-    normalize.css "^7.0.0"
-
 "@epam/internal@0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.2.tgz#e2d4ed2c44b9f8aeac4c5c58bb3850c1b71bc08c"
@@ -3830,10 +3823,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash.sortedindex@4.1.6":
-  version "4.1.6"
-  resolved "https://registry.yarnpkg.com/@types/lodash.sortedindex/-/lodash.sortedindex-4.1.6.tgz#4dfb25be59db28d7f8f61fd07b7133ef834f2c40"
-  integrity sha512-4ZTb8Zrc5/5CEoiNilXA0tUXh+hg+FDfUd5Vm4MtH/vfo3YCNGRhr2wedirCGHdHJZ7JI92OAAD87Ji2ipOyKQ==
+"@types/lodash.sortedindex@^4.1.9":
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.sortedindex/-/lodash.sortedindex-4.1.9.tgz#e3401bfb6b826df4c724a07a5011c2bfda0cecb4"
+  integrity sha512-2ZFXgtArxWCEfJuV9v+aTly6yikcZxApviiMMj2ujLhPXoduJGLalqXj3LfA4MNqsRf3hxj8YUkQqyt1hBtPFg==
   dependencies:
     "@types/lodash" "*"
 
@@ -3970,6 +3963,13 @@
   version "18.0.10"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.10.tgz#3b66dec56aa0f16a6cc26da9e9ca96c35c0b4352"
   integrity sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-measure@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@types/react-measure/-/react-measure-2.0.8.tgz#3615956c685e6d9fed8380aac53590b333fae34f"
+  integrity sha512-Pu4/hQ/1AKVN6efoawtcM+l376WYOI8e1fiM6ir4pdLkHilDCkJLjUGvAm0mWKJ0GE6hzu55yCrcJ/xNyEdFwA==
   dependencies:
     "@types/react" "*"
 
@@ -7632,7 +7632,7 @@ escape-goat@^3.0.0:
   resolved "https://registry.yarnpkg.com/escape-goat/-/escape-goat-3.0.0.tgz#e8b5fb658553fe8a3c4959c316c6ebb8c842b19c"
   integrity sha512-w3PwNZJwRxlp47QGzhuEBldEqVHHhh8/tIPcl6ecf2Bou99cdAt0knihBV0Ecc7CGxYduXVBDheH1K2oADRlvw==
 
-escape-html@1.0.3, escape-html@^1.0.3, escape-html@~1.0.3:
+escape-html@^1.0.3, escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
@@ -11313,7 +11313,7 @@ lodash.sortby@4.7.0, lodash.sortby@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==
 
-lodash.sortedindex@4.1.0:
+lodash.sortedindex@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/lodash.sortedindex/-/lodash.sortedindex-4.1.0.tgz#3f6417ee20e8b22416ab005bfa16344a0446b448"
   integrity sha512-z1keXSEPjlnMmK0cAYObKzc3xxQuheOQ7tH0q4MXoWQP1KEIKJfge8wvtjLl+jSE9NxKhkUNgnrjx9PuDf3tVQ==
@@ -12572,11 +12572,6 @@ normalize-url@^6.0.1:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-6.1.0.tgz#40d0885b535deffe3f3147bec877d05fe4c5668a"
   integrity sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==
-
-normalize.css@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
-  integrity sha512-LYaFZxj2Q1Q9e1VJ0f6laG46Rt5s9URhKyckNaA2vZnL/0gwQHWhM7ALQkp3WBQKM5sXRLQ5Ehrfkp+E/ZiCRg==
 
 npm-bundled@^1.1.1:
   version "1.1.2"
