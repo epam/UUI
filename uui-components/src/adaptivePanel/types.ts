@@ -21,4 +21,6 @@ export type AdaptiveItemProps<T = unknown> = T & {
 export interface AdaptivePanelProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Array of items to be rendered in AdaptivePanel */
     items: AdaptiveItemProps[];
+    /** Defines size of the gap (gutter) between an element's 'items' in the AdaptivePanel */
+    itemsGap?: number | '6' | '12' | '18' | '24' | '36';
 }
