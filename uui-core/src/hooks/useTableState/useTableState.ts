@@ -5,8 +5,8 @@ import {
 } from '../../types';
 import { getOrderBetween } from '../../helpers';
 import { useUuiContext } from '../../services';
-import sortBy from 'lodash.sortby';
 import { stateToQueryObject, getValueFromUrl, normalizeTableStateValue, normalizeFilterConfig } from './utils';
+import { getOrderComparer } from '../../data';
 
 interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState = any> {
     /** Columns configuration, can be omitted if used without tables */
@@ -72,7 +72,8 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
     }, []);
 
     const getNewPresetOrder = useCallback(() => {
-        const maxOrder = sortBy(presets, (i) => i.order).reverse()[0]?.order;
+        const comparer = getOrderComparer([{ field: 'order', direction: 'desc' }]);
+        const maxOrder = [...presets].sort(comparer)[0]?.order;
         return getOrderBetween(maxOrder, null);
     }, [presets]);
 
