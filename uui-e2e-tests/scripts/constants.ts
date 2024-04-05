@@ -17,7 +17,7 @@ export const HOST_IP_PH = '{{HOST_NAME}}';
 
 export const ENV_FILES = {
     CI: '.env.ci',
-    LOCAL: '.env.local',
+    DOCKER: '.env.docker',
 };
 
 export const CONTAINER_ENGINES = {
