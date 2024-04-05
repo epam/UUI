@@ -11,6 +11,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
     const [isChanged, setIsChanged] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const displayedRowRef = useRef<HTMLDivElement>(null);
+    const itemsGap = props.itemsGap ? Number(props.itemsGap) : 0;
 
     const getItemsWidth = () => {
         if (!displayedRowRef.current) {
@@ -21,7 +22,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         if (!children.length) return;
         const calculatedItemsWidth: Record<string, number> = {};
         children.forEach((child, index) => {
-            calculatedItemsWidth[props.items[index].id] = Math.floor(child.getBoundingClientRect().width);
+            calculatedItemsWidth[props.items[index].id] = Math.floor(child.getBoundingClientRect().width + itemsGap);
         });
 
         return calculatedItemsWidth;
@@ -61,7 +62,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
 
     return (
         <div { ...props.rawProps } className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <FlexRow ref={ displayedRowRef }>{ renderItems() }</FlexRow>
+            <FlexRow columnGap={ props?.itemsGap } ref={ displayedRowRef }>{ renderItems() }</FlexRow>
         </div>
     );
 }
