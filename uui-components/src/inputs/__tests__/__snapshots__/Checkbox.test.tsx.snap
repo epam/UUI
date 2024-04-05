@@ -31,26 +31,3 @@ exports[`Checkbox should be rendered correctly with disabled, invalid, readonly 
   </div>
 </label>
 `;
-
-exports[`Checkbox when state equals isInvalid: true, Checkbox_container must have a 'uui-invalid' class 1`] = `
-<label
-  className="container uui-checkbox-container uui-disabled uui-readonly uui-invalid"
->
-  <div
-    className="uui-checkbox"
-  >
-    <input
-      aria-checked={false}
-      aria-disabled={true}
-      aria-readonly={true}
-      aria-required={true}
-      checked={false}
-      disabled={true}
-      readOnly={true}
-      required={true}
-      tabIndex={-1}
-      type="checkbox"
-    />
-  </div>
-</label>
-`;
