@@ -13,11 +13,9 @@
   "dependencies": {
     "@epam/uui-components": "5.7.1",
     "@epam/uui-core": "5.7.1",
-    "@types/lodash.sortby": "4.7.6",
-    "@types/lodash.sortedindex": "4.1.6",
+    "@types/lodash.sortedindex": "^4.1.9",
     "classnames": "^2.2.6",
-    "lodash.sortby": "4.7.0",
-    "lodash.sortedindex": "4.1.0"
+    "lodash.sortedindex": "^4.1.0"
   },
   "peerDependencies": {
     "react": ">=16.0.0"

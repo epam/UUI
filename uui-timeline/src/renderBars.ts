@@ -1,6 +1,6 @@
+import { getOrderComparer } from '@epam/uui-core';
 import { TimelineTransform } from './TimelineTransform';
 import { msPerDay } from './helpers';
-import sortBy from 'lodash.sortby';
 
 export interface Item {
     from: Date;
@@ -20,7 +20,8 @@ export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRende
     const pxPerDay = t.pxPerMs * msPerDay;
     const pattern = ctx.createPattern(getHatchingPattern(), 'repeat');
 
-    sortBy(items, (i) => i.priority)
+    const comparer = getOrderComparer([{ field: 'priority', direction: 'asc' }]);
+    [...items].sort(comparer)
         .filter((i) => (!i.minPixPerDay || pxPerDay > i.minPixPerDay) && (!i.maxPxPerDay || pxPerDay < i.maxPxPerDay))
         .forEach((i) => {
             const leftTopCornerX = t.getX(i.from);
