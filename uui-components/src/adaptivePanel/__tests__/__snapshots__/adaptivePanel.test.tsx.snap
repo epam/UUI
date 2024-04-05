@@ -52,3 +52,40 @@ exports[`AdaptivePanel should render some items 1`] = `
   </div>
 </div>
 `;
+
+exports[`AdaptivePanel should render some items with itemsGap 1`] = `
+<div
+  className="mainWrapper"
+>
+  <div
+    className="uui-flex-row container align-items-center"
+    style={
+      Object {
+        "columnGap": "6px",
+        "rowGap": undefined,
+      }
+    }
+  >
+    <div
+      data-label="Item snapshot-0"
+      data-testid="adaptive-item"
+    />
+    <div
+      data-label="Item snapshot-1"
+      data-testid="adaptive-item"
+    />
+    <div
+      data-label="Item snapshot-2"
+      data-testid="adaptive-item"
+    />
+    <div
+      data-label="Item snapshot-3"
+      data-testid="adaptive-item"
+    />
+    <div
+      data-label="Item snapshot-4"
+      data-testid="adaptive-item"
+    />
+  </div>
+</div>
+`;
