@@ -4,14 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "An adaptive panel component adjusts the set of its children according to its width. It measures each item's width and tries to fit as many items as possible. If some items can't fit, they will be hidden according to their priorities. Hidden items can then be collapsed to a drop-down menu, or other container. An adaptive panel also has an  "
-      },
-      {
-        "text": "itemsGap",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " property. You can set a gap between items in it and an adaptive panel will calculate the total width."
+        "text": "An adaptive panel component adjusts the set of its children according to its width. It measures each item's width and tries to fit as many items as possible. If some items can't fit, they will be hidden according to their priorities. Hidden items can then be collapsed to a drop-down menu, or other container. "
       }
     ]
   }

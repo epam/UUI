@@ -57,5 +57,21 @@
         "text": ", you can use these props."
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Additionally, the AdaptivePanel has an "
+      },
+      {
+        "text": "itemsGap",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property used to define the spacing between the items within it."
+      }
+    ]
   }
 ]
