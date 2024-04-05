@@ -1,4 +1,3 @@
-import clone from 'lodash.clone';
 import { BaseContext } from './BaseContext';
 import { LayoutContext } from './LayoutContext';
 import * as React from 'react';
@@ -78,10 +77,8 @@ export class ModalContext extends BaseContext implements IModalContext {
     }
 
     public getOperations(): ModalOperation[] {
-        return this.operations.map((op, n) => {
-            op = clone(op);
-            op.props.isActive = n === this.operations.length - 1;
-            return op;
-        });
+        return this.operations.map((op, n) => ({
+            ...op, props: { ...op.props, isActive: n === this.operations.length - 1 },
+        }));
     }
 }
