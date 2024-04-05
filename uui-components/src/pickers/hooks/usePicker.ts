@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
 import {
     DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext,
 } from '@epam/uui-core';

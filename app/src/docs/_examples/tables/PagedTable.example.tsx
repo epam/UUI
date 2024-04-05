@@ -1,9 +1,9 @@
 import React, { SetStateAction, useCallback, useMemo, useState } from 'react';
+import isEqual from 'fast-deep-equal';
 import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
-import isEqual from 'lodash.isequal';
 
 export default function PagedTable() {
     const svc = useUuiContext();

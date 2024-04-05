@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
 import {
     ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
 } from '../../types';

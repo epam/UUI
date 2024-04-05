@@ -1,5 +1,6 @@
 import * as React from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
+
 import {
     DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile,
 } from '@epam/uui-core';

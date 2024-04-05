@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { Filter } from './Filter';
+import isEqual from 'fast-deep-equal';
 import { Accordion } from '@epam/uui';
 import { TableFiltersConfig, DataTableState } from '@epam/uui-core';
-import isEqual from 'lodash.isequal';
+import { Filter } from './Filter';
 
 interface IFiltersProps<TFilter extends Record<string, any>> {
     filters: TableFiltersConfig<TFilter>[];

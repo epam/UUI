@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
 import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../types';
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD } from './constants';
