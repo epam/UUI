@@ -1,3 +1,40 @@
+import { IMap } from '../../types';
+
+type FieldValue = Object | Array<any> | IMap<string, any>;
+
+const getKeys = (a: FieldValue, b: FieldValue, c: FieldValue) => {
+    if (Array.isArray(a) && Array.isArray(b) && Array.isArray(c)) {
+        return Object.keys({ ...a, ...b, ...c });
+    }
+
+    return Array.from(new Set([...getObjectOrMapKeys(a), ...getObjectOrMapKeys(b), ...getObjectOrMapKeys(c)]));
+};
+
+const getObjectOrMapKeys = (a: Object | IMap<string, any> | any) => {
+    if (typeof a !== 'object') {
+        return [];
+    }
+
+    if (!Array.isArray(a) && Symbol.iterator in a && typeof a[Symbol.iterator] === 'function') {
+        const keys = [];
+        for (const [key] of a) {
+            keys.push(key);
+        }
+
+        return keys;
+    }
+
+    return Object.keys(a);
+};
+
+const getValue = (a: FieldValue, key: keyof Object) => {
+    if (('get' in a && typeof a.get === 'function')) {
+        return a.get(key);
+    }
+
+    return a[key];
+};
+
 /**
  * Determines if useForm should create a new undo checkpoint.
  * c is the new change, a and b are previous checkpoints.
@@ -15,7 +52,7 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
     }
 
     // The field is an object of array - need to recurse thru it
-    if (typeof c === 'object') {
+    if (typeof c === 'object' && typeof b === 'object' && typeof c === 'object') {
         // Ignore that a, b, or c might be an empty array or object and has different structure.
         // If it's type changed, we already exited with 'true' on the first step
         // If some there's a difference between keys, values, array length
@@ -23,8 +60,8 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
         a = a || {};
         b = b || {};
         c = c || {};
-        const keys: any[] = Object.keys({ ...a, ...b, ...c });
-        return keys.some((key) => shouldCreateUndoCheckpoint(a[key], b[key], c[key]));
+        const keys: any[] = getKeys(a, b, c);
+        return keys.some((key) => shouldCreateUndoCheckpoint(getValue(a, key), getValue(b, key), getValue(c, key)));
     }
 
     // The field is scalar (null, undefined, boolean, string, number, NaN)
