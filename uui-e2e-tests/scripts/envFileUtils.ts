@@ -5,7 +5,7 @@ import { ENV_FILES, HOST_IP_PH } from './constants';
 
 const { isCi, UUI_DOCKER_HOST_MACHINE_IP = 'localhost' } = readEnvParams();
 
-const envFileName = isCi ? ENV_FILES.CI : ENV_FILES.LOCAL;
+const envFileName = isCi ? ENV_FILES.CI : ENV_FILES.DOCKER;
 
 type TEnvParams = { UUI_APP_BASE_URL: string, UUI_DOCKER_CONTAINER_ENGINE: string };
 
