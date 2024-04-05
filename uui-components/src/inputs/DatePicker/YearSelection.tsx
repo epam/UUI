@@ -21,31 +21,29 @@ export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawPro
 }
 
 const getYears = (currentYear: number) => {
-    return new Array(16).fill(0).map((item, index) => currentYear - 5 + index);
+    return new Array(16).fill(0).map((_, index) => currentYear - 5 + index);
 };
 
-export class YearSelection extends React.Component<YearSelectionProps> {
-    render() {
-        return (
-            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx) } { ...this.props.rawProps }>
-                <div className={ uuiYearSelection.content }>
-                    <div className={ uuiYearSelection.yearContainer }>
-                        {arrayToMatrix(getYears(this.props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) => (
-                            <div key={ index } className={ uuiYearSelection.yearRow }>
-                                {yearRow.map((year) => (
-                                    <div
-                                        key={ year }
-                                        className={ cx(year === this.props.selectedDate.year() && uuiYearSelection.currentYear, uuiYearSelection.year) }
-                                        onClick={ () => this.props.onValueChange(this.props.value.year(year)) }
-                                    >
-                                        {year}
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
+export function YearSelection(props: YearSelectionProps) {
+    return (
+        <div className={ cx(css.container, uuiYearSelection.container, props.cx) } { ...props.rawProps }>
+            <div className={ uuiYearSelection.content }>
+                <div className={ uuiYearSelection.yearContainer }>
+                    {arrayToMatrix(getYears(props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) => (
+                        <div key={ index } className={ uuiYearSelection.yearRow }>
+                            {yearRow.map((year) => (
+                                <div
+                                    key={ year }
+                                    className={ cx(year === props.selectedDate.year() && uuiYearSelection.currentYear, uuiYearSelection.year) }
+                                    onClick={ () => props.onValueChange(props.value.year(year)) }
+                                >
+                                    {year}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }

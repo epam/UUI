@@ -1,4 +1,4 @@
-import React, { Attributes, ForwardedRef, ReactNode } from 'react';
+import React, { Attributes, Dispatch, ForwardedRef, ReactNode, SetStateAction } from 'react';
 import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
     IDropdownToggler, IHasValidationMessage,
@@ -7,10 +7,12 @@ import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataSourceState, SortDirection, SortingOption } from './dataSources';
+import {
+    DataSourceState, SortDirection, SortingOption,
+} from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { BaseDatePickerProps, TooltipCoreProps } from './components';
+import { CommonDatePickerProps, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
@@ -338,12 +340,12 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Picke
     maxBodyHeight?: number;
 };
 
-type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {
+type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
     /** Type of the filter */
     type: 'datePicker';
 };
 
-type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
     /** Type of the filter */
     type: 'rangeDatePicker';
 };
@@ -414,7 +416,7 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     /** Table state value */
     tableState: DataTableState<TFilter, TViewState>;
     /** Function that updates table state value */
-    setTableState(newState: DataTableState<TFilter, TViewState>): void;
+    setTableState: Dispatch<SetStateAction<DataTableState<TFilter, TViewState>>>;
     /** Function that updates filter value */
     setFilter(filter: TFilter): void;
     /** Function that updates columns config value */
