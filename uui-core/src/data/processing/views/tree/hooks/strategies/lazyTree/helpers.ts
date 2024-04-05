@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
 import { DataSourceState } from '../../../../../../../types';
 
 export const searchWasChanged = <TFilter, TId>(

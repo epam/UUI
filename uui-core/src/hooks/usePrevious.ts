@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
 
 export interface UsePreviousConfig {
     compare?: boolean;

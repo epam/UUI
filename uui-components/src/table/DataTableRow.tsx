@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'fast-deep-equal';
 import {
     DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
 } from '@epam/uui-core';
