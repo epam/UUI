@@ -1,7 +1,6 @@
 import React from 'react';
-import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig } from '@epam/uui-core';
+import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, getOrderComparer, IColumnConfig } from '@epam/uui-core';
 import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from './types';
-import sortBy from 'lodash.sortby';
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
     return Boolean(column.isAlwaysVisible && column.fix);
@@ -100,7 +99,14 @@ export function findLastByGroupKey<T extends GroupedDataColumnProps>(arr: T[], g
 }
 export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[]; prevConfig: ColumnsConfig }): GroupedDataColumnProps[] {
     const { prevConfig, columns } = props;
-    const sorted: DataColumnProps[] = sortBy(columns, (i) => prevConfig[i.key].order);
+
+    const comparer = getOrderComparer([{ field: 'order', direction: 'asc' }]);
+    const sorted: DataColumnProps[] = [...columns].sort((a, b) => {
+        const aConfig = prevConfig[a.key];
+        const bConfig = prevConfig[b.key];
+        return comparer(aConfig, bConfig);
+    });
+
     return sorted.map((c: DataColumnProps) => {
         const groupKey = getGroupKey(prevConfig[c.key]);
         return { ...c, groupKey };

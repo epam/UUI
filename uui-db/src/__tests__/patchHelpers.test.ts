@@ -5,8 +5,8 @@ import {
     emptyDb, sampleDb, Task, User, Manager, View, TaskDbTables,
 } from './TaskDb';
 import { DbPatch } from '../types';
-import orderBy from 'lodash.orderby';
 import { IClientIdsMap } from '..';
+import { getOrderComparer } from '@epam/uui-core';
 
 const task: Partial<Task> = {
     id: 100500,
@@ -132,8 +132,10 @@ describe('db - patchHelpers', () => {
                     },
                 ],
             };
+            const comparer = getOrderComparer([{ field: 'id', direction: 'asc' }]);
 
-            const users = orderBy(flattenResponse(response, emptyDb.tables).users, 'id');
+            const users = [...flattenResponse(response, emptyDb.tables).users ?? []].sort(comparer);
+
             expect(users).toEqual([
                 { id: 'AU', name: 'Andrei Urban', __typename: 'User' }, { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' }, { id: 'PS', name: 'Pavel Shchur', __typename: 'User' }, { id: 'YZ', name: 'Yakov Zhmurov', __typename: 'User' },
             ]);
