@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, CheckboxProps } from '../Checkbox';
-import { screen, fireEvent, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
+import { screen, fireEvent, setupComponentForTest, userEvent, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 async function setupCheckbox(params: Partial<CheckboxProps>) {
     const { mocks, setProps } = await setupComponentForTest<CheckboxProps>(
@@ -121,13 +121,19 @@ describe('Checkbox', () => {
         expect(input).not.toHaveFocus();
     });
 
-    it('when state equals isInvalid: true, Checkbox_container must have a \'uui-invalid\' class', async () => {
-        await setupCheckbox({
-            value: false,
-            isInvalid: true,
-        });
-        const input = screen.getByRole('checkbox');
-
-        expect(input.parentElement.parentElement).toHaveClass('uui-invalid');
+    it('should be rendered correctly with disabled, invalid, readonly and required state', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Checkbox
+                value={ true }
+                onValueChange={ jest.fn }
+                isDisabled={ true }
+                isInvalid={ true }
+                isReadonly={ true }
+                isRequired={ true }
+                indeterminate={ true }
+                label="Test label"
+            />,
+        );
+        expect(tree).toMatchSnapshot();
     });
 });
