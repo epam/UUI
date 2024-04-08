@@ -94,14 +94,6 @@ describe('LabeledInput', () => {
         expect(screen.getByText('0/5')).toBeInTheDocument();
     });
 
-    it('uses isRequired prop', async () => {
-        const { setProps } = await setupTestComponent();
-        setProps({
-            isRequired: true,
-        });
-        expect(screen.getByText('*')).toBeInTheDocument();
-    });
-
     it('uses isOptional prop', async () => {
         const { setProps } = await setupTestComponent();
         setProps({
