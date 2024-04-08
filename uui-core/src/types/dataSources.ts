@@ -125,9 +125,15 @@ export interface IDataSource<TItem, TId, TFilter> {
  */
 export interface PatchOptions<TItem, TId> extends SortConfig<TItem> {
     /**
+     * Items, which should be added/updated/deleted from the tree.
+     */
+    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
+
+    /**
      * To enable deleting of the items, it is required to specify getter for deleted state.
      */
     isDeleted?(item: TItem): boolean;
+
     /**
      * Provides information about the relative position of the new item.
      * @param item - new item, position should be got for.
@@ -135,6 +141,7 @@ export interface PatchOptions<TItem, TId> extends SortConfig<TItem> {
      * @default PatchOrdering.TOP
      */
     getNewItemPosition?: (item: TItem) => PatchOrderingType;
+
     /**
      *
      * Provides information about the temporary order of the new item.
@@ -144,10 +151,6 @@ export interface PatchOptions<TItem, TId> extends SortConfig<TItem> {
      * @experimental The API of this feature can be changed in the future releases.
      */
     getItemTemporaryOrder?: (item: TItem) => string;
-    /**
-     * Items, which should be added/updated/deleted from the tree.
-     */
-    patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 
     /**
      * If enabled, items position is fixed between sorting.

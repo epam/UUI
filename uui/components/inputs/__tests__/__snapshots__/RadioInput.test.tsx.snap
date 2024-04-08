@@ -1,33 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RadioInput should be rendered correctly 1`] = `
+exports[`RadioInput should be rendered correctly with maximum 1`] = `
 <label
-  className="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+  className="container uui-disabled uui-readonly uui-invalid root size-18 uui-radio-input-container uui-color-primary"
 >
   <div
     className="uui-radioinput"
   >
     <input
       aria-checked={false}
+      aria-disabled={true}
+      aria-readonly={true}
+      aria-required={true}
       checked={false}
-      onChange={[Function]}
-      type="radio"
-    />
-  </div>
-</label>
-`;
-
-exports[`RadioInput should be rendered correctly 2`] = `
-<label
-  className="container root size-18 uui-radio-input-container uui-color-primary -clickable"
->
-  <div
-    className="uui-radioinput"
-  >
-    <input
-      aria-checked={false}
-      checked={false}
-      onChange={[Function]}
+      disabled={true}
+      readOnly={true}
+      required={true}
       type="radio"
     />
   </div>
@@ -35,6 +23,23 @@ exports[`RadioInput should be rendered correctly 2`] = `
     className="uui-input-label"
   >
     Open
+  </div>
+</label>
+`;
+
+exports[`RadioInput should be rendered correctly with minimum props 1`] = `
+<label
+  className="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+>
+  <div
+    className="uui-radioinput"
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      onChange={[Function]}
+      type="radio"
+    />
   </div>
 </label>
 `;

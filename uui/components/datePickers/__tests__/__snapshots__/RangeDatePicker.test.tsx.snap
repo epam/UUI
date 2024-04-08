@@ -4,7 +4,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 <div
   className="dateInputGroup uui-disabled uui-readonly uui-invalid"
   onBlur={[Function]}
-  onClick={false}
+  onClick={[Function]}
 >
   <div
     className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
