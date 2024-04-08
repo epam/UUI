@@ -53,6 +53,16 @@ function configureWebpack(config, { paths }) {
         // (that's why we apply it only to prod)
         // see also the discussion here: https://github.com/facebook/create-react-app/discussions/11278#discussioncomment-1808511
         config.optimization.splitChunks = { chunks: 'all' };
+
+        // See: https://github.com/facebook/create-react-app/issues/13048
+        config.optimization.minimizer.forEach((p) => {
+            if (p.constructor?.name === 'TerserPlugin') {
+                p.options.compress = {
+                    ...p.options?.compress,
+                    passes: 2,
+                };
+            }
+        });
     });
 
     if (isUseBuildFolderOfDeps) {
