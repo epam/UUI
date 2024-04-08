@@ -185,15 +185,7 @@ export class CheckingHelper {
             if (checkedId != ROOT_ID) {
                 checkedIdsMap.set(checkedId, true);
             }
-            // for implicit mode, it is required to remove explicit check from children,
-            // if parent is checked
-            Tree.forEachChildren<TItem, TId>(
-                tree,
-                (id) => checkedIdsMap.delete(id),
-                isCheckable,
-                checkedId,
-                false,
-            );
+
             // In implicit mode, no children are loaded into the parent.
             // When some child is checked and the search is cleared, while checking the top parent no children will be loaded,
             // so there will be no children in the list of checked parent's children. Because of such behavior, explicitly checked
