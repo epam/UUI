@@ -159,6 +159,20 @@ export interface PatchOptions<TItem, TId> extends SortConfig<TItem> {
     fixItemBetweenSortings?: boolean;
 }
 
+export interface FlattenSearchResultsConfig {
+    /**
+     * Falls back to plain list from tree, if there's search.
+     * Default is true.
+     *
+     * If enabled, and search is active:
+     * - API will be called with parentId and parent undefined
+     * - getChildCount is ignored, all nodes are assumed to have no children
+     *
+     * See more here: https://github.com/epam/UUI/issues/8
+     */
+    flattenSearchResults?: boolean;
+}
+
 export interface BaseDataSourceConfig<TItem, TId, TFilter = any> extends PatchOptions<TItem, TId> {
     /**
      * Should return unique ID of the TItem
