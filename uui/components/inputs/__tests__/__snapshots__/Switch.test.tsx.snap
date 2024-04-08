@@ -21,32 +21,6 @@ exports[`Switch should be rendered correctly 1`] = `
 </label>
 `;
 
-exports[`Switch should be rendered correctly 2`] = `
-<label
-  className="uui-switch container root size-18 uui-color-primary -clickable"
->
-  <div
-    className="uui-switch-body"
-  >
-    <input
-      aria-checked={false}
-      checked={false}
-      onChange={[Function]}
-      role="switch"
-      type="checkbox"
-    />
-    <div
-      className="uui-switch-toggler"
-    />
-  </div>
-  <div
-    className="uui-input-label"
-  >
-    Open
-  </div>
-</label>
-`;
-
 exports[`Switch should be rendered correctly with maximum props 1`] = `
 <label
   className="uui-switch container root size-18 uui-color-primary uui-disabled uui-readonly"
