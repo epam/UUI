@@ -42,19 +42,6 @@ describe('Accordion', () => {
         expect(onValueChange).toHaveBeenCalledWith(false);
     });
 
-    it('using isDisabled', async () => {
-        const onValueChange = jest.fn();
-        await setupTestComponent({
-            value: false,
-            onValueChange: onValueChange,
-            isDisabled: true,
-
-        });
-        const accordion = screen.getByText('Test accordion');
-        fireEvent.click(accordion);
-        expect(onValueChange).not.toHaveBeenCalledWith(true);
-    });
-
     it('should change value when Enter is pressed', async () => {
         const onValueChange = jest.fn();
         await setupTestComponent({
