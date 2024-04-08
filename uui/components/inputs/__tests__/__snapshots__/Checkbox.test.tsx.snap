@@ -1,37 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox should be rendered correctly 1`] = `
+exports[`TestComponent should be rendered with maximum props 1`] = `
 <label
-  className="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
+  className="container uui-checkbox-container root size-12 mode-cell uui-color-primary uui-disabled uui-readonly uui-invalid"
 >
   <div
-    className="uui-checkbox"
+    className="uui-checkbox uui-checked"
   >
     <input
-      aria-checked={false}
-      checked={false}
-      onChange={[Function]}
-      tabIndex={0}
+      aria-checked="mixed"
+      aria-disabled={true}
+      aria-readonly={true}
+      aria-required={true}
+      checked={true}
+      disabled={true}
+      readOnly={true}
+      required={true}
+      tabIndex={-1}
       type="checkbox"
     />
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+  <div
+    className="uui-input-label"
+  >
+    Test label
   </div>
 </label>
 `;
 
-exports[`Checkbox should be rendered correctly 2`] = `
+exports[`TestComponent should render with minimum props 1`] = `
 <label
-  className="container uui-checkbox-container root size-18 mode-cell uui-color-primary -clickable"
+  className="container uui-checkbox-container root size-18 mode-form uui-color-primary -clickable"
 >
   <div
-    className="uui-checkbox"
+    className="uui-checkbox uui-checked"
   >
     <input
-      aria-checked={false}
-      checked={false}
+      aria-checked={true}
+      checked={true}
       onChange={[Function]}
       tabIndex={0}
       type="checkbox"
     />
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
   </div>
 </label>
 `;

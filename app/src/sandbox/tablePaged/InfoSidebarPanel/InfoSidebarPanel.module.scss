@@ -1,0 +1,60 @@
+@use '~@epam/promo/assets/styles/fonts' as *;
+@use '~@epam/promo/assets/styles/colors' as *;
+
+@keyframes show-info-panel {
+    0% {
+        transform: translate3d(100%, 0, 0);
+        margin-left: -360px;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        margin-left: 0;
+    }
+}
+
+@keyframes hide-info-panel {
+    0% {
+        transform: translate3d(0, 0, 0);
+        margin-left: 0;
+    }
+
+    100% {
+        transform: translate3d(100%, 0, 0);
+        margin-left: -360px;
+    }
+}
+
+body {
+    &:global(.full-screen) {
+        .wrapper {
+            height: 100vh;
+        }
+    }
+}
+
+.wrapper {
+    display: flex;
+    height: calc(100vh - 102px);
+    width: 360px;
+    border-left: 1px solid var(--uui-divider);
+
+    .no-wrap {
+        white-space: nowrap;
+    }
+}
+
+.info-sidebar-panel-wrapper {
+    width: 360px;
+    margin-left: -360px;
+
+    &:global(.show) {
+        animation: show-info-panel 500ms;
+        animation-fill-mode: forwards;
+    }
+
+    &:global(.hide) {
+        animation: hide-info-panel 500ms;
+        animation-fill-mode: forwards;
+    }
+}

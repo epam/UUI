@@ -55,7 +55,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
 export default function WithTableExample() {
     const { api } = useUuiContext();
 
-    const { tableState, setTableState } = useTableState({
+    const { tableState, setTableState } = useTableState<Person, any>({
         columns: personColumns,
     });
 
