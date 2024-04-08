@@ -9,7 +9,7 @@ import { UuiContexts } from '../../types/contexts';
 import { ValidationState } from '../lenses';
 import { useUuiContext } from '../../services';
 import { LensBuilder } from '../lenses/LensBuilder';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import { FormProps, FormSaveResponse, IFormApi } from './Form';
 import { useLock } from './useLock';
 import { shouldCreateUndoCheckpoint } from './shouldCreateUndoCheckpoint';

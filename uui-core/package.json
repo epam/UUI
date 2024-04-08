@@ -19,9 +19,9 @@
     "classnames": "2.2.6",
     "csstype": "2.6.10",
     "dayjs": "1.10.7",
-    "fast-deep-equal": "^3.1.3",
     "lodash.debounce": "4.0.8",
     "lodash.trimend": "4.5.1",
+    "react-fast-compare": "^3.2.2",
     "react-popper": "2.3.0"
   },
   "peerDependencies": {

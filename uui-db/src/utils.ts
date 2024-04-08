@@ -1,7 +1,7 @@
 import shallowEqual from 'shallowequal';
 import zip from 'lodash.zip';
 import transform from 'lodash.transform';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 
 // TBD: New typescript would contain better typing for this. Remove this hack after update.
 export const objectKeys: <T>(obj: T) => (keyof T)[] = Object.keys as any;
