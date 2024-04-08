@@ -4,13 +4,13 @@ function* rangeFromTo(start: number, end: number, step: number = 1) {
     }
 }
 
-function* reverseRangeFromTo(start: number, end: number, step: number = 1) {
-    for (let i = start; i > end; i = i - step) {
+function* reverseRangeFromTo(start: number, end: number, step: number = -1) {
+    for (let i = start; i > end; i = i + step) {
         yield i;
     }
 }
 
-function* rangeGen(start: number, end?: number, step: number = 1) {
+function* rangeGen(start: number, end?: number, step?: number) {
     if (end === undefined) {
         yield* rangeFromTo(0, start, step);
     }
@@ -22,5 +22,5 @@ function* rangeGen(start: number, end?: number, step: number = 1) {
     }
 }
 
-export const range = (start: number, end?: number, step: number = 1) =>
+export const range = (start: number, end?: number, step?: number) =>
     Array.from(rangeGen(start, end, step));
