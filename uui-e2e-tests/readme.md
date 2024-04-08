@@ -42,7 +42,7 @@ You might need to restart computer after that.
     ```
 2. Note: Colima will be used automatically (via "docker" CLI command) unless Podman installation is detected
 
-#### Option 2: Podman v5.x (works only on ARM processors due to Playwrite-specific behavior)
+#### Option 2: Podman v5.x (only for ARM processors - because chromium engine crashes on combination: macOS + Intel + Podman)
 1. Install Podman with the command below. Please make sure that Podman version is at least ```5.0.1``` or newer. You might need to restart computer after that.
     ```shell 
     brew install podman
@@ -54,7 +54,7 @@ By default, if "podman" is detected, then it is used to build/run containers; ot
 To override the default behavior, you might explicitly specify any tool via ```.env.docker``` file using ```UUI_DOCKER_CONTAINER_ENGINE=<cmd>``` option.
 Please make sure that this tool is compatible with Docker's CLI.
 
-# Running tests in local environment
+# Run tests locally (via Docker)
 ## Prerequisites
 1. Server is started. Possible options:
    * Local dev server **(this is default option)**
@@ -80,6 +80,18 @@ yarn test-e2e-update
 yarn test-e2e-report
 ```
 
+# Run tests locally (without Docker)
+> Important note. Our baseline screenshots are generated on Linux; and the generated screenshots differ for different OS/platform. This is why Docker has to be used on non-Linux computers to run the screenshots tests. 
 
+Cases when you can run tests without Docker:
+- on Linux
+- on CI (if it already uses Linux)
+- for debugging
 
-
+Here is the steps:
+```shell
+# 1. install the engines (it can be done only once)
+yarn --cwd uui-e2e-tests local-test-e2e-deps-install
+# 2. run the tests locally
+yarn --cwd uui-e2e-tests local-test-e2e
+```

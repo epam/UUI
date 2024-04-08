@@ -50,8 +50,6 @@ function main() {
             'host',
             ...getVolumesMapArgs(),
             '-e',
-            'UUI_IS_DOCKER=true',
-            '-e',
             `UUI_DOCKER_HOST_MACHINE_IP=${currentMachineIpv4}`,
             DOCKER_IMAGE_TAGS.TEST,
             updateSnapshots ? YARN_TASKS.DOCKER_TEST_E2E_UPDATE : YARN_TASKS.DOCKER_TEST_E2E,
