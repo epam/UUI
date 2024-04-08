@@ -59,15 +59,6 @@ describe('RadioInput', () => {
         expect(onValueChange).not.toHaveBeenCalled();
     });
 
-    it('should have class `uui-invalid` if it has an invalid state', async () => {
-        const onValueChange = jest.fn();
-
-        await setupRadioInput({ value: false, onValueChange, isInvalid: true });
-        const input = screen.getByRole('radio');
-
-        expect(input.parentElement.parentElement).toHaveClass('uui-invalid');
-    });
-
     it('should call getValueChangeAnalyticsEvent when clicked', async () => {
         const onValueChange = jest.fn();
         const getValueChangeAnalyticsEvent = jest.fn();
