@@ -1,4 +1,4 @@
 export * from './getFilterPredicate';
-export * from './getOrderComparer';
+export { getOrderComparer } from './getOrderComparer';
 export * from './getSearchFilter';
 export * from './runDataQuery';

@@ -18,3 +18,4 @@ export * from './searchToQuery';
 export * from './uuiLogger';
 export * from './clearEmptyValueFromRecord';
 export * from './createSkinComponent';
+export * from './orderBy';
