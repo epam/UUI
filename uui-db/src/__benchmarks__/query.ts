@@ -1,9 +1,8 @@
 import * as b from 'benny';
 import * as I from 'immutable';
 import BTree from 'sorted-btree';
-import range from 'lodash.range';
 import { Person, blankIxSet, blankIxSetNoIndex } from './testData';
-import { getFilterPredicate, getOrderComparer, orderBy } from '@epam/uui-core';
+import { getFilterPredicate, getOrderComparer, orderBy, range } from '@epam/uui-core';
 import { DbTable } from '..';
 
 [

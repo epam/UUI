@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import sortBy from 'lodash.sortby';
-import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui-core';
+import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource, orderBy } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
@@ -27,7 +26,7 @@ export default function TableWithDnDExample() {
                         : getOrderBetween(data.dstData.order, items[index + 1]?.order);
 
                     const result = items.map((item) => (item === data.srcData ? { ...data.srcData, order: newOrder } : item));
-                    const sortedResult = sortBy(result, (item) => item.order);
+                    const sortedResult = orderBy(result, (item) => item.order);
 
                     setItems(sortedResult);
                 },

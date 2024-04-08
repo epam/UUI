@@ -1,7 +1,6 @@
 import { Task } from './TaskDb';
 import { ListLoadingTracker } from '../ListLoadingTracker';
-import { DataQuery, LazyDataSourceApiResponse, runDataQuery } from '@epam/uui-core';
-import range from 'lodash.range';
+import { DataQuery, LazyDataSourceApiResponse, runDataQuery, range } from '@epam/uui-core';
 
 describe('db - ListLoadingTracker', () => {
     const testItems = range(200).map((id) => {

@@ -1,7 +1,6 @@
 import * as b from 'benny';
 import { Person } from './testData';
-import { getOrderComparer, orderBy } from '@epam/uui-core';
-import range from 'lodash.range';
+import { getOrderComparer, orderBy, range } from '@epam/uui-core';
 
 const testPersons = range(0, 1e4).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
 
