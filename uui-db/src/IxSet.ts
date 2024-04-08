@@ -1,7 +1,7 @@
 import BTree from 'sorted-btree';
 import { DbQuery } from './types';
 import {
-    DataQueryFilterCondition, DataQueryFilter, getFilterPredicate, getOrderComparer,
+    DataQueryFilterCondition, DataQueryFilter, getFilterPredicate, orderBy,
 } from '@epam/uui-core';
 
 export interface IxSetIndexDefinition<TEntity> {
@@ -194,8 +194,7 @@ export class IxSet<TEntity, TId> {
             })
             .filter((p) => p != null);
 
-        const comparer = getOrderComparer([{ field: 'score', direction: 'desc' }]);
-        plans = plans.sort(comparer);
+        plans = orderBy(plans, 'score', 'desc');
         const plan = plans[0];
 
         // const indexEntities = plan.index.tree.entries();

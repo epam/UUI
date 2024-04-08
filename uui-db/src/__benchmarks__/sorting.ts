@@ -1,6 +1,6 @@
 import * as b from 'benny';
 import { Person } from './testData';
-import { getOrderComparer } from '@epam/uui-core';
+import { getOrderComparer, orderBy } from '@epam/uui-core';
 import range from 'lodash.range';
 
 const testPersons = range(0, 1e4).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
@@ -17,9 +17,7 @@ b.suite(
 
     b.add('_.sort, hard-coded', () => {
         const arr = [...testPersons];
-        const comparer = getOrderComparer([{ field: 'name', direction: 'asc' }]);
-
-        return () => arr.sort(comparer);
+        return () => orderBy(arr, 'name');
     }),
 
     b.add('array.sort, getOrderComparer', () => {

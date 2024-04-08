@@ -3,7 +3,7 @@ import * as I from 'immutable';
 import BTree from 'sorted-btree';
 import range from 'lodash.range';
 import { Person, blankIxSet, blankIxSetNoIndex } from './testData';
-import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
+import { getFilterPredicate, getOrderComparer, orderBy } from '@epam/uui-core';
 import { DbTable } from '..';
 
 [
@@ -31,10 +31,11 @@ import { DbTable } from '..';
         `Find N entities in ${size} dataset by departmentId, sorted by name`,
 
         b.add('Array - scan', () => {
-            return () => {
-                const comparer = getOrderComparer([{ field: 'name', direction: 'asc' }]);
-                return testPersons.filter((p) => p.departmentId == 5).sort(comparer);
-            };
+            return () =>
+                orderBy(
+                    testPersons.filter((p) => p.departmentId == 5),
+                    'name',
+                );
         }),
 
         b.add('Array - with filterPredicate/orderComparer', () => {
@@ -53,12 +54,7 @@ import { DbTable } from '..';
 
         b.add('I.Map - toArray, then filter/sort', () => {
             const set = I.Map(pairs);
-            const comparer = getOrderComparer([{ field: 'name', direction: 'asc' }]);
-
-            return () => (set as I.Iterable<number, Person>)
-                .toArray()
-                .filter(filterPredicate)
-                .sort(comparer);
+            return () => orderBy((set as I.Iterable<number, Person>).toArray().filter(filterPredicate), 'name');
         }),
 
         // Super-fast by design, probably the best way to go with indexes.

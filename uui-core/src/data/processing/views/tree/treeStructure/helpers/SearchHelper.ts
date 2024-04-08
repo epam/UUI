@@ -1,6 +1,7 @@
 import { TreeStructure } from '../TreeStructure';
 import { getSearchFilter } from '../../../../../querying';
 import { ApplySearchToTreeSnapshotOptions, SearchOptions } from './types';
+import { orderBy } from '../../../../../../helpers';
 
 export class SearchHelper {
     public static search<TItem, TId, TFilter>(options: SearchOptions<TItem, TId, TFilter>): TreeStructure<TItem, TId> {
@@ -68,20 +69,12 @@ export class SearchHelper {
         }
         const itemsToSort = [...items];
 
-        const getOrder = (item: TItem) => {
+        return orderBy(itemsToSort, (item) => {
             const id = getId(item);
             if (!ranks.has(id)) {
                 return 0;
             }
-            return ranks.get(id) * -1;
-        };
-
-        return itemsToSort.sort((a, b) => {
-            const aOrder = getOrder(a);
-            const bOrder = getOrder(b);
-            if (aOrder < bOrder) return -1;
-            if (aOrder > bOrder) return 1;
-            return 0;
-        });
+            return ranks.get(id);
+        }, 'desc');
     }
 }

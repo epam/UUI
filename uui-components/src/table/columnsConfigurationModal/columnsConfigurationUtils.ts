@@ -1,5 +1,5 @@
 import React from 'react';
-import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, getOrderComparer, IColumnConfig } from '@epam/uui-core';
+import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig, orderBy } from '@epam/uui-core';
 import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from './types';
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
@@ -99,14 +99,7 @@ export function findLastByGroupKey<T extends GroupedDataColumnProps>(arr: T[], g
 }
 export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[]; prevConfig: ColumnsConfig }): GroupedDataColumnProps[] {
     const { prevConfig, columns } = props;
-
-    const comparer = getOrderComparer([{ field: 'order', direction: 'asc' }]);
-    const sorted: DataColumnProps[] = [...columns].sort((a, b) => {
-        const aConfig = prevConfig[a.key];
-        const bConfig = prevConfig[b.key];
-        return comparer(aConfig, bConfig);
-    });
-
+    const sorted: DataColumnProps[] = orderBy(columns, (i) => prevConfig[i.key].order);
     return sorted.map((c: DataColumnProps) => {
         const groupKey = getGroupKey(prevConfig[c.key]);
         return { ...c, groupKey };
