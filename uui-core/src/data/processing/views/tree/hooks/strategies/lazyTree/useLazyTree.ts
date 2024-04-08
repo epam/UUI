@@ -197,6 +197,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isFetching,
         isLoading,
         getItemStatus: itemsStatusCollector.getItemStatus(itemsMap),
+        flattenSearchResults,
         loadMissingRecordsOnCheck,
         showSelectedOnly,
         selectAll,
