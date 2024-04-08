@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import sortBy from 'lodash.sortby';
-import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
+import { ColumnsConfig, DataColumnProps, orderBy } from '@epam/uui-core';
 import { Accordion } from '@epam/uui';
 import Column from './Column';
 
@@ -13,11 +12,9 @@ interface IColumnsBlockProps {
 const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
     const items = useMemo(() => {
         const columnsConfig = props.columnsConfig || {};
-        const sortedColumns = sortBy(
+        const sortedColumns = orderBy(
             props.columns.filter((column) => !!column.caption),
-            (i) => {
-                return columnsConfig[i.key]?.order;
-            },
+            (i) => columnsConfig[i.key]?.order,
         );
 
         return sortedColumns.map((column) => ({

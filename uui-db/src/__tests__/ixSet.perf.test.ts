@@ -1,6 +1,5 @@
 import { IxSet } from '../IxSet';
-import sortBy from 'lodash.sortby';
-import range from 'lodash.range';
+import { orderBy, range } from '@epam/uui-core';
 
 interface Person {
     id: number;
@@ -56,7 +55,7 @@ describe.skip('db - IxSet Performance', () => {
         test100Persons = range(10, 110).map((id) => ({ id, name: 'Just Person', departmentId: 2 }));
         test1KPersons = range(110, 1110).map((id) => ({ id, name: `Person ${id}`, departmentId: 3 }));
         test10KPersons = range(1110, 11110).map((id) => ({ id, name: `Person ${id}`, departmentId: 3 }));
-        test100KPersons = range(111110, 111110).map((id) => ({ id, name: `Person ${id}`, departmentId: 3 }));
+        test100KPersons = range(111110).map((id) => ({ id, name: `Person ${id}`, departmentId: 3 }));
         // test1MPersons = range(200000, 1200000).map((id) => ({ id, name: 'Person ' + id, departmentId: 4 }));
 
         completeTestSetInArray = [
@@ -106,7 +105,7 @@ describe.skip('db - IxSet Performance', () => {
 
     it('Can find by DepartmentId sorted by name  - with basic array', () => {
         let result = completeTestSetInArray.filter((p) => p.departmentId === 1);
-        result = sortBy(result, 'name');
+        result = orderBy(result, 'name');
         expect(result).toEqual([
             alice, bob, edward, pete, sandra,
         ]);
@@ -123,7 +122,7 @@ describe.skip('db - IxSet Performance', () => {
 
     it('Find by location and sort by name - with basic array', () => {
         let result = completeTestSetInArray.filter((p) => p.location == 'US');
-        result = sortBy(result, 'name');
+        result = orderBy(result, 'name');
         expect(result).toEqual([pete, william]);
     });
 });

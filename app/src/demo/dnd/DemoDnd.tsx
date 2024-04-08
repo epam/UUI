@@ -1,11 +1,10 @@
 import * as React from 'react';
-import sortBy from 'lodash.sortby';
 import css from './DemoDnd.module.scss';
 import {
     FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text,
 } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
-import { DropParams, getOrderBetween } from '@epam/uui-core';
+import { DropParams, getOrderBetween, orderBy } from '@epam/uui-core';
 import { DndModule, ModuleItem } from './DndModule';
 import { DndSection, SectionItem } from './DndSection';
 import { MaterialItem } from './DndMaterial';
@@ -35,7 +34,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
     };
 
     handleMaterialDropFromSection = ({ srcData, dstData, position }: DropParams<MaterialItem, MaterialItem>) => {
-        const orderedMaterials = sortBy(this.state.sectionItems.find((i) => i.id === dstData.sectionId).materials, ['order']);
+        const orderedMaterials = orderBy(this.state.sectionItems.find((i) => i.id === dstData.sectionId).materials, 'order');
         const dstMaterialIndex = orderedMaterials.findIndex((i) => i.order === dstData.order);
         const prevMaterial = orderedMaterials[dstMaterialIndex - 1]?.order;
         const nextMaterial = orderedMaterials[dstMaterialIndex + 1]?.order;
@@ -55,8 +54,8 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
         this.setState({ ...this.state, sectionItems: this.state.sectionItems.map((i) => (i.id === newValue.id ? newValue : i)) });
 
     render() {
-        const sortedModules = sortBy(this.state.moduleItems, ['order']);
-        const sortedSections = sortBy(this.state.sectionItems, ['order']);
+        const sortedModules = orderBy(this.state.moduleItems, 'order');
+        const sortedSections = orderBy(this.state.sectionItems, 'order');
         const isDesktop = window.screen?.width >= 1280;
         return (
             <FlexRow cx={ css.root } alignItems="stretch">
