@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 import { CascadeSelectionTypes, DataSourceState, LazyDataSourceApi } from '../../../../../../../types';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import { TreeState } from '../../../treeState';
 import { Tree } from '../../../Tree';
 import { LazyTreeProps } from './types';

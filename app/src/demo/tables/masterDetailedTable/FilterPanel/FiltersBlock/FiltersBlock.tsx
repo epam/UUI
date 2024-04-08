@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import { Accordion } from '@epam/uui';
 import { TableFiltersConfig, DataTableState } from '@epam/uui-core';
 import { Filter } from './Filter';

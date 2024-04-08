@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 
 export interface UsePreviousConfig {
     compare?: boolean;

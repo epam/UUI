@@ -1,5 +1,5 @@
 import React, { SetStateAction, useCallback, useMemo, useState } from 'react';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';

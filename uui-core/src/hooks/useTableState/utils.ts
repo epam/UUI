@@ -1,4 +1,4 @@
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import { DataTableState, FiltersConfig, TableFiltersConfig } from '../../types/tables';
 import { clearEmptyValueFromRecord, getOrderBetween } from '../../helpers';
 

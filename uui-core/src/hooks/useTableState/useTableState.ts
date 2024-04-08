@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import {
     ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
 } from '../../types';

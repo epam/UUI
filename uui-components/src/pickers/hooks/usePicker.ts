@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import isEqual from 'fast-deep-equal';
+import isEqual from 'react-fast-compare';
 import {
     DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext,
 } from '@epam/uui-core';
