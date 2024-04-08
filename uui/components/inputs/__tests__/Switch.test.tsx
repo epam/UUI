@@ -8,8 +8,18 @@ describe('Switch', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<Switch value={ null } onValueChange={ jest.fn } size="18" label="Open" />);
+    it('should be rendered correctly with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Switch
+                value={ null }
+                onValueChange={ jest.fn }
+                size="18"
+                label="Open"
+                isDisabled={ true }
+                isReadonly={ true }
+                isRequired={ true }
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
