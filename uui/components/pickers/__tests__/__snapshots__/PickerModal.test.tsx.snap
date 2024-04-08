@@ -2011,7 +2011,31 @@ exports[`PickerModal should open body 1`] = `
             <div
               class="container uui-blocker-container root"
             >
-              <div />
+              <div>
+                <div
+                  aria-label="Loading"
+                  class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+                  role="alert"
+                >
+                  <div
+                    class="container uui-spinner-container root uui-spinner"
+                  >
+                    <div
+                      class="uui-spinner-animation"
+                    >
+                      <div
+                        class="uui-spinner-dot uui-spinner-dot-1"
+                      />
+                      <div
+                        class="uui-spinner-dot uui-spinner-dot-2"
+                      />
+                      <div
+                        class="uui-spinner-dot uui-spinner-dot-3"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               class="uui-track-horizontal"
