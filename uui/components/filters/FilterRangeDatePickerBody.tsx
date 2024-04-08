@@ -1,85 +1,100 @@
-import * as React from 'react';
-import cx from 'classnames';
+import React, { Fragment, useState } from 'react';
+import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
-    BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType, uuiMod,
-} from '@epam/uui-core';
-import { BaseRangeDatePicker } from '@epam/uui-components';
-import { FlexRow, FlexSpacer, FlexCell } from '../layout';
+    FlexRow, FlexSpacer, FlexCell,
+} from '../layout';
 import { LinkButton } from '../buttons';
-import { TextInput } from '../inputs';
-import { RangeDatePickerBody } from '../datePickers';
 import { i18n } from '../../i18n';
-import { systemIcons } from '../../icons/icons';
-import css from './FilterRangeDatePickerBody.module.scss';
+import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
+import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
+import {
+    RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
+} from '../datePickers/types';
+import { RangeDatePickerBody } from '../datePickers';
 
-export interface RangeDatePickerProps extends BaseRangeDatePickerProps, IDropdownBodyProps {}
+export interface FilterRangeDatePickerProps extends RangeDatePickerProps, IDropdownBodyProps {}
 
-export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePickerProps> {
-    state = {
-        ...super.getInitialState(),
-        inFocus: 'from' as RangeDatePickerInputType,
+export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
+    const { value: _value, format = defaultFormat } = props;
+    const value = _value || defaultRangeValue; // also handles null in comparison to default value
+    const context = useUuiContext();
+
+    const onOpenChange = (newIsOpen: boolean) => {
+        if (!newIsOpen) {
+            props.onClose?.();
+        }
+        props.onOpenChange?.(newIsOpen);
     };
 
-    changeIsOpen = (open: boolean) => {
-        this.toggleOpening(open);
-        this.props.onClose();
+    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>('from');
+
+    const onValueChange = (newValue: RangeDatePickerValue) => {
+        const fromChanged = value?.from !== newValue?.from;
+        const toChanged = value?.to !== newValue?.to;
+        if (fromChanged || toChanged) {
+            props.onValueChange(newValue);
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue, value);
+                context.uuiAnalytics.sendEvent(event);
+            }
+        }
     };
 
-    renderBody() {
-        return (
-            <>
-                <FlexRow borderBottom={ true }>
-                    <RangeDatePickerBody
-                        value={ this.getValue() }
-                        onValueChange={ this.onRangeChange }
-                        filter={ this.props.filter }
-                        focusPart={ this.state.inFocus }
-                        changeIsOpen={ this.changeIsOpen }
-                        presets={ this.props.presets }
+    const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
+        setInFocus(newValue.inFocus ?? inFocus);
+        onValueChange(newValue.selectedDate);
+
+        const toChanged = value.to !== newValue.selectedDate.to;
+        const closeBody = newValue.selectedDate.from && newValue.selectedDate.to
+         && inFocus === 'to'
+           && toChanged;
+
+        if (closeBody) {
+            onOpenChange(false);
+        }
+    };
+
+    return (
+        <Fragment>
+            <FlexRow borderBottom={ true }>
+                <RangeDatePickerBody
+                    value={ {
+                        selectedDate: value,
+                        inFocus,
+                    } }
+                    onValueChange={ onBodyValueChange }
+                    filter={ props.filter }
+                    presets={ props.presets }
+                />
+            </FlexRow>
+            <FlexCell alignSelf="stretch">
+                <FlexRow
+                    padding="24"
+                    vPadding="12"
+                >
+                    <RangeDatePickerInput
+                        size="30"
+                        disableClear={ props.disableClear }
+                        inFocus={ inFocus }
+                        format={ format }
+                        value={ value }
+                        onValueChange={ onValueChange }
+                        onFocusInput={ (event, inputType) => {
+                            if (props.onFocus) {
+                                props.onFocus(event, inputType);
+                            }
+                            setInFocus(inputType);
+                        } }
+                        onBlurInput={ props.onBlur }
+                    />
+                    <FlexSpacer />
+                    <LinkButton
+                        isDisabled={ !value.from && !value.to }
+                        caption={ i18n.pickerModal.clearAllButton }
+                        onClick={ () => onValueChange(defaultRangeValue) }
                     />
                 </FlexRow>
-                <FlexCell alignSelf="stretch">
-                    <FlexRow padding="24" vPadding="12">
-                        <div className={ cx(css.dateInputGroup, this.state.inFocus && uuiMod.focus) }>
-                            <TextInput
-                                icon={ systemIcons.calendar }
-                                cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'from' && uuiMod.focus) }
-                                size="30"
-                                placeholder={ i18n.rangeDatePicker.pickerPlaceholderFrom }
-                                value={ this.state.inputValue.from }
-                                onValueChange={ this.getChangeHandler('from') }
-                                onFocus={ (event) => this.handleFocus(event, 'from') }
-                                onBlur={ (event) => this.handleBlur(event, 'from') }
-                            />
-                            <div className={ css.separator } />
-                            <TextInput
-                                cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'to' && uuiMod.focus) }
-                                placeholder={ i18n.rangeDatePicker.pickerPlaceholderTo }
-                                size="30"
-                                value={ this.state.inputValue.to }
-                                onCancel={ this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
-                                onValueChange={ this.getChangeHandler('to') }
-                                onFocus={ (event) => this.handleFocus(event, 'to') }
-                                onBlur={ (event) => this.handleBlur(event, 'to') }
-                            />
-                        </div>
-                        <FlexSpacer />
-                        <LinkButton
-                            isDisabled={ !this.state.inputValue.from && !this.state.inputValue.to }
-                            caption={ i18n.pickerModal.clearAllButton }
-                            onClick={ this.handleCancel }
-                        />
-                    </FlexRow>
-                </FlexCell>
-            </>
-        );
-    }
-
-    renderInput = (): any => {
-        return null;
-    };
-
-    render() {
-        return this.renderBody();
-    }
+            </FlexCell>
+        </Fragment>
+    );
 }

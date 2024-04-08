@@ -804,6 +804,57 @@ describe('AsyncListView - patch items', () => {
         });
     });
 
+    it('should apply sort to the item during editing if fixItemBetweenSortings = false', async () => {
+        const getNewItemPosition = () => PatchOrdering.TOP;
+        const patch = createItemsMap({
+            'c-EU': {
+                id: 'c-EU',
+                type: 'continent',
+                name: '0 Europe',
+                __typename: 'Location',
+                childCount: 1,
+            },
+        });
+
+        const { dataSource } = getAsyncLocationsDS({});
+
+        currentValue.visibleCount = 10;
+        currentValue.sorting = [{ field: 'name', direction: 'desc' }];
+        const props: Partial<AsyncListViewProps<LocationItem, string, any>> = {
+            patch,
+            getNewItemPosition,
+            fixItemBetweenSortings: false,
+        };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+            { initialProps: {
+                value: currentValue,
+                onValueChange: onValueChanged,
+                props,
+            } },
+        );
+
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 'c-AF' },
+                { id: 'c-EU',
+                    value: {
+                        id: 'c-EU',
+                        type: 'continent',
+                        name: '0 Europe',
+                        __typename: 'Location',
+                        childCount: 1,
+                    },
+                },
+            ]);
+        });
+
+        const view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toEqual(2);
+    });
+
     it('should delete items from tree', async () => {
         const getNewItemPosition = () => PatchOrdering.TOP;
         const patch = createItemsMap({
