@@ -1,3 +1,4 @@
+import isEqual from 'lodash.isequal';
 import { CascadeSelectionTypes } from '../../../../../../types';
 import { Tree } from '../../Tree';
 import { NOT_FOUND_RECORD, ROOT_ID } from '../../constants';
@@ -193,6 +194,22 @@ export class CheckingHelper {
                 checkedId,
                 false,
             );
+            // In implicit mode, no children are loaded into the parent.
+            // When some child is checked and the search is cleared, while checking the top parent no children will be loaded,
+            // so there will be no children in the list of checked parent's children. Because of such behavior, explicitly checked
+            // children will not be removed from the list.
+            // To remove them, it is required to pass through all the checked items and check, if their parents don't contain the checked item.
+            if (checkedIdsMap.size) {
+                for (const [id] of checkedIdsMap) {
+                    if (isEqual(id, checkedId)) {
+                        continue;
+                    }
+                    const path = Tree.getPathById(id, tree);
+                    if (path.some((item) => isEqual(item.id, checkedId))) {
+                        checkedIdsMap.delete(id);
+                    }
+                }
+            }
 
             if (checkedId === ROOT_ID) {
                 const { ids: childrenIds } = tree.getItems(checkedId);
