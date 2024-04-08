@@ -22,7 +22,7 @@ export class Ctx {
         if (UUI_REPORT_OBSOLETE_SCREENSHOTS !== 'true') {
             return;
         }
-        const rootDir = path.resolve(this.screenshotsDir, 'linux');
+        const rootDir = path.resolve(this.screenshotsDir, process.platform);
         const engines = fs.readdirSync(rootDir);
         const obsoleteScreenshots: string[] = [];
         engines.forEach((name) => {

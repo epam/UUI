@@ -1,53 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To enable a sorting functionality, it is enough to pass a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "sorting",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " object to the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataSource",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " state.",
-            "marks": []
-          }
-        ]
+        "text": "To enable a sorting functionality, it is enough to pass a "
+      },
+      {
+        "text": "sorting",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " object to the "
+      },
+      {
+        "text": "DataSource",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " state."
       }
     ]
   }
-}
+]
