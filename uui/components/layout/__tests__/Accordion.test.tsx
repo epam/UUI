@@ -10,7 +10,15 @@ describe('Accordion', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<Accordion title="Test title" mode="inline" dropdownIcon={ systemIcons.foldingArrow } padding="18" />).toJSON();
+        const tree = renderer.create(
+            <Accordion
+                title="Test title"
+                mode="inline"
+                dropdownIcon={ systemIcons.foldingArrow }
+                padding="18"
+                isDisabled={ true }
+            />,
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

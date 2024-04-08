@@ -6,12 +6,10 @@ import css from './ControlGroup.module.scss';
 
 export interface ControlGroupProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {}
 
-export class ControlGroup extends React.Component<ControlGroupProps> {
-    render() {
-        return (
-            <div role="group" className={ cx(css.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
-                {this.props.children}
-            </div>
-        );
-    }
-}
+export const ControlGroup = React.forwardRef<HTMLDivElement, ControlGroupProps>((props, ref) => {
+    return (
+        <div role="group" className={ cx(css.container, props.cx) } ref={ ref } { ...props.rawProps }>
+            {props.children}
+        </div>
+    );
+});
