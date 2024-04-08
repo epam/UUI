@@ -12,14 +12,14 @@ function* reverseRangeFromTo(start: number, end: number, step: number = -1) {
 
 function* rangeGen(start: number, end?: number, step?: number) {
     if (end === undefined) {
-        yield* rangeFromTo(0, start, step);
+        return yield* rangeFromTo(0, start, step);
     }
 
     if (start < end) {
-        yield* rangeFromTo(start, end, step);
-    } else {
-        yield* reverseRangeFromTo(start, end, step);
+        return yield* rangeFromTo(start, end, step);
     }
+
+    return yield* reverseRangeFromTo(start, end, step);
 }
 
 export const range = (start: number, end?: number, step?: number) =>
