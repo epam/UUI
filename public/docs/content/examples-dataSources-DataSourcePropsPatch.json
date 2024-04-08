@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Contains a list of items, which overrides values of corresponding items in DataSource. Comparison is made by item's id (configured with "
+        "text": "Contains a set of items, which overrides values of corresponding items in DataSource. Comparison is made by item's ID (configured with "
       },
       {
         "text": "getId",
@@ -18,15 +18,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Patch prop, as well as complimentary settings, enables updating, adding, deleting, and moving items on the view, without modifying the original data. "
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Patch prop, as well as complimentary props, enables to:"
+        "text": "Patch prop, as well as complimentary props, allows to:"
       }
     ]
   },
@@ -40,7 +32,38 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "edit data, which is managed by LazyDataSource, can be huge, and can't be loaded completely"
+                "text": "update, add, delete, and move items, without modifying the original data"
+              }
+            ]
+          },
+          {
+            "type": "unordered-list",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "this is especially viable, when data is managed by LazyDataSource, as data set can be huge, and can't be loaded completely"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "however, this is also useful when all data can be loaded, as you don't need to mix original and updated data, which simplifies state management"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -53,7 +76,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "simplify a form initialization - the patch can start as an empty array, and the data to edit can be loaded and managed by Async or Lazy DataSource"
+                "text": "simplify a form initialization - the patch can start as an empty set, and the data to edit can be loaded and managed by Async or Lazy DataSource"
               }
             ]
           }
@@ -66,7 +89,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "simplify saving data to server - patch contains only changed data, so you can send a patch as is to server to save it"
+                "text": "simplify saving data to server - patch contains only changed data, so you can send a patch to server as is to save it"
               }
             ]
           }
@@ -105,6 +128,107 @@
       },
       {
         "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Patch accepts two types of values:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "IImmutableMap - a UUI abstraction over immutable maps (key/value collections)."
+              }
+            ]
+          },
+          {
+            "type": "unordered-list",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "UUI has built-in implementation - ItemsMap, which supports it. Using ItemsMap is recommended default approach."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "It's also straightforward to implement this interface on top of any collection. E.g. one can wrap the Map from Immutable.js."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "IMap - UUI abstraction over mutable maps. "
+              }
+            ]
+          },
+          {
+            "type": "unordered-list",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "the standard Map is compatible with this interface, so you can pass it as is"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "type": "list-item-child",
+                    "children": [
+                      {
+                        "text": "you can also implement it over any collection alike. Note, that when UUI needs to update such collection, it would copy it via constructor, so we never actually mutate it. "
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }

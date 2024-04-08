@@ -2,7 +2,7 @@
   {
     "children": [
       {
-        "text": "While a row being edited, changes in its values can affect its position. For example, if we have \"Parent1\", \"Parent 2\", and \"Parent 3\", sorted by name, and the user changes \"Parent 3\" to be \"A\" - it should jump to the first position, as \"A\" should be the first item according to sorting. To avoid such jumps, the position of each item is 'fixed' - no item will change its position, until sorting is changed. "
+        "text": "While a row being edited, changes in its values can affect its position. For example, if we have \"Parent1\", \"Parent 2\", and \"Parent 3\", sorted by name, and the user changes \"Parent 3\" to be \"A\" - it should jump to the first position, as \"A\" should be the first item according to sorting. Such jumps are usually inconvenient UX-wise. So we 'fix' item positions: no item will change its position, until sorting is changed. "
       }
     ],
     "type": "paragraph"
