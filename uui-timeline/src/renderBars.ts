@@ -1,4 +1,4 @@
-import { getOrderComparer } from '@epam/uui-core';
+import { orderBy } from '@epam/uui-core';
 import { TimelineTransform } from './TimelineTransform';
 import { msPerDay } from './helpers';
 
@@ -20,8 +20,7 @@ export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRende
     const pxPerDay = t.pxPerMs * msPerDay;
     const pattern = ctx.createPattern(getHatchingPattern(), 'repeat');
 
-    const comparer = getOrderComparer([{ field: 'priority', direction: 'asc' }]);
-    [...items].sort(comparer)
+    orderBy(items, (i) => i.priority)
         .filter((i) => (!i.minPixPerDay || pxPerDay > i.minPixPerDay) && (!i.maxPxPerDay || pxPerDay < i.maxPxPerDay))
         .forEach((i) => {
             const leftTopCornerX = t.getX(i.from);

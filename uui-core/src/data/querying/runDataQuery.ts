@@ -2,6 +2,7 @@ import { DataQuery } from '../../types/dataQuery';
 import { getOrderComparer } from './getOrderComparer';
 import { getFilterPredicate } from './getFilterPredicate';
 import { getSearchFilter } from './getSearchFilter';
+import { orderBy } from '../../helpers';
 
 export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], request: DataQuery<TItem> & { ids?: any[] }, searchBy?: (item: TItem) => string[]) {
     let items = allItems || [];
@@ -24,8 +25,12 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
         items = items.filter(predicate);
     }
 
-    const comparer = getOrderComparer(request.sorting?.length ? request.sorting : [{ field: 'name', direction: 'asc' }]);
-    items.sort(comparer);
+    if (request.sorting) {
+        const comparer = getOrderComparer(request.sorting);
+        items.sort(comparer);
+    } else {
+        items = orderBy(items, 'name');
+    }
 
     const filteredAndSorted = items;
     if (request.range) {

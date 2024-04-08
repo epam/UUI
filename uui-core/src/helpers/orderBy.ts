@@ -1,6 +1,6 @@
 import { compareScalars, getOrderComparer } from '../data/querying/getOrderComparer';
 
-export function orderBy<T>(arr: T[], by: ((item: T) => string | number | null) | keyof T, order: 'asc' | 'desc' = 'asc') {
+export function orderBy<T>(arr: T[], by: ((item: T) => string | number | null) | string, order: 'asc' | 'desc' = 'asc') {
     const sortedArr = [...arr];
 
     if (typeof by === 'function') {
