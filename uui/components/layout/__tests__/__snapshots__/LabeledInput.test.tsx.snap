@@ -1,37 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LabeledInput should be rendered correctly 1`] = `
+exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
 <div
-  className="container root size-36"
->
-  <div
-    className="uui-label-top"
-  >
-    <div>
-      <div
-        className="container uui-input-box -clickable root size-36 mode-form"
-        onFocus={[Function]}
-        tabIndex={-1}
-      >
-        <input
-          className="uui-input"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
-          type="text"
-          value=""
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`LabeledInput should be rendered correctly with props 1`] = `
-<div
-  className="container root size-36"
+  className="container root size-30"
 >
   <div
     className="uui-label-left"
@@ -43,6 +14,11 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
         className="uui-label"
       >
         Test label
+        <span
+          className="uui-labeled-input-asterisk"
+        >
+          *
+        </span>
         <div
           className="container uui-icon uui-enabled uui-labeled-input-info-icon"
           style={Object {}}
@@ -52,6 +28,14 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
           />
         </div>
       </label>
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="uui-labeled-input-sidenote"
+      >
+        Sidenote text
+      </div>
     </div>
     <div
       className="rightChildrenPosition"
@@ -87,7 +71,56 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
       className="uui-invalid-message"
       role="alert"
     >
-      Test invalid message
+      Test validation message
+    </div>
+    <div
+      className="uui-labeled-input-char-counter"
+    >
+      0/10
+    </div>
+  </div>
+  <div
+    className="uui-flex-row container align-items-top"
+    style={
+      Object {
+        "columnGap": "12px",
+        "rowGap": undefined,
+      }
+    }
+  >
+    <div
+      className="uui-labeled-input-footnote"
+    >
+      Footnote text
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LabeledInput should be rendered correctly with minimum props 1`] = `
+<div
+  className="container root size-36"
+>
+  <div
+    className="uui-label-top"
+  >
+    <div>
+      <div
+        className="container uui-input-box -clickable root size-36 mode-form"
+        onFocus={[Function]}
+        tabIndex={-1}
+      >
+        <input
+          className="uui-input"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>
