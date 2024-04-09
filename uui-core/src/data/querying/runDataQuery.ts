@@ -29,7 +29,7 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
         const comparer = getOrderComparer(request.sorting);
         items.sort(comparer);
     } else {
-        items = orderBy(items, 'name');
+        items = orderBy(items, ({ name }: any) => name);
     }
 
     const filteredAndSorted = items;

@@ -94,7 +94,7 @@ export default function DndMaterial() {
         />
     );
 
-    const sortedItems = useMemo(() => orderBy(items, 'order'), [items]);
+    const sortedItems = useMemo(() => orderBy(items, ({ order }) => order), [items]);
 
     return <FlexCell grow={ 1 }>{sortedItems.map((i, index) => renderMaterial(i, sortedItems[index - 1], sortedItems[index + 1]))}</FlexCell>;
 }

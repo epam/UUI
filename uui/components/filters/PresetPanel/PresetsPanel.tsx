@@ -91,7 +91,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
-            ...orderBy(props.presets, 'order')
+            ...orderBy(props.presets, ({ order }) => order)
                 .map((preset, index) => ({
                     id: preset.id.toString(),
                     render: () => renderPreset(preset),

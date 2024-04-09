@@ -57,8 +57,8 @@ export class DndSection extends React.Component<DndSectionProps> {
 
     render() {
         const item = this.props.value;
-        const sortedCriteria = orderBy(item.criteria, 'order');
-        const sortedMaterials = orderBy(item.materials, 'order');
+        const sortedCriteria = orderBy(item.criteria, ({ order }) => order);
+        const sortedMaterials = orderBy(item.materials, ({ order }) => order);
 
         return (
             <DndActor

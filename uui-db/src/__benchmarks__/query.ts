@@ -33,7 +33,7 @@ import { DbTable } from '..';
             return () =>
                 orderBy(
                     testPersons.filter((p) => p.departmentId == 5),
-                    'name',
+                    ({ name }) => name,
                 );
         }),
 
@@ -53,7 +53,7 @@ import { DbTable } from '..';
 
         b.add('I.Map - toArray, then filter/sort', () => {
             const set = I.Map(pairs);
-            return () => orderBy((set as I.Iterable<number, Person>).toArray().filter(filterPredicate), 'name');
+            return () => orderBy((set as I.Iterable<number, Person>).toArray().filter(filterPredicate), ({ name }) => name);
         }),
 
         // Super-fast by design, probably the best way to go with indexes.

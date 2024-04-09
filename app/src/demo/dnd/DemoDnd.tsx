@@ -34,7 +34,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
     };
 
     handleMaterialDropFromSection = ({ srcData, dstData, position }: DropParams<MaterialItem, MaterialItem>) => {
-        const orderedMaterials = orderBy(this.state.sectionItems.find((i) => i.id === dstData.sectionId).materials, 'order');
+        const orderedMaterials = orderBy(this.state.sectionItems.find((i) => i.id === dstData.sectionId).materials, ({ order }) => order);
         const dstMaterialIndex = orderedMaterials.findIndex((i) => i.order === dstData.order);
         const prevMaterial = orderedMaterials[dstMaterialIndex - 1]?.order;
         const nextMaterial = orderedMaterials[dstMaterialIndex + 1]?.order;
@@ -54,8 +54,8 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
         this.setState({ ...this.state, sectionItems: this.state.sectionItems.map((i) => (i.id === newValue.id ? newValue : i)) });
 
     render() {
-        const sortedModules = orderBy(this.state.moduleItems, 'order');
-        const sortedSections = orderBy(this.state.sectionItems, 'order');
+        const sortedModules = orderBy(this.state.moduleItems, ({ order }) => order);
+        const sortedSections = orderBy(this.state.sectionItems, ({ order }) => order);
         const isDesktop = window.screen?.width >= 1280;
         return (
             <FlexRow cx={ css.root } alignItems="stretch">

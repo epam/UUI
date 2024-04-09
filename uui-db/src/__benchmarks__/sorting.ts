@@ -16,7 +16,7 @@ b.suite(
 
     b.add('_.sort, hard-coded', () => {
         const arr = [...testPersons];
-        return () => orderBy(arr, 'name');
+        return () => orderBy(arr, ({ name }) => name);
     }),
 
     b.add('array.sort, getOrderComparer', () => {
