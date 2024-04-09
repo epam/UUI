@@ -9,7 +9,7 @@ interface MeasuredItems {
 
 const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWidth: Record<string, number>): MeasuredItems => {
     let sumChildrenWidth = 0;
-    const itemsByPriority = orderBy(items, 'priority', 'desc');
+    const itemsByPriority = orderBy(items, ({ priority }) => priority, 'desc');
 
     let maxHiddenItemPriority = -1;
 
@@ -39,7 +39,7 @@ export const measureAdaptiveItems = (items: AdaptiveItemProps[], containerWidth:
             collapsedContainer = orderBy(
                 // eslint-disable-next-line no-loop-func
                 items.filter((i) => i.collapsedContainer && i.priority > result.maxHiddenItemPriority),
-                'priority',
+                ({ priority }) => priority,
             )[0];
 
             if (!collapsedContainer) {

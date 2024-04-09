@@ -133,7 +133,7 @@ describe('db - patchHelpers', () => {
                 ],
             };
 
-            const users = orderBy(flattenResponse(response, emptyDb.tables).users ?? [], 'id');
+            const users = orderBy(flattenResponse(response, emptyDb.tables).users ?? [], ({ id }) => id);
             expect(users).toEqual([
                 { id: 'AU', name: 'Andrei Urban', __typename: 'User' }, { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' }, { id: 'PS', name: 'Pavel Shchur', __typename: 'User' }, { id: 'YZ', name: 'Yakov Zhmurov', __typename: 'User' },
             ]);

@@ -105,7 +105,7 @@ describe.skip('db - IxSet Performance', () => {
 
     it('Can find by DepartmentId sorted by name  - with basic array', () => {
         let result = completeTestSetInArray.filter((p) => p.departmentId === 1);
-        result = orderBy(result, 'name');
+        result = orderBy(result, ({ name }) => name);
         expect(result).toEqual([
             alice, bob, edward, pete, sandra,
         ]);
@@ -122,7 +122,7 @@ describe.skip('db - IxSet Performance', () => {
 
     it('Find by location and sort by name - with basic array', () => {
         let result = completeTestSetInArray.filter((p) => p.location == 'US');
-        result = orderBy(result, 'name');
+        result = orderBy(result, ({ name }) => name);
         expect(result).toEqual([pete, william]);
     });
 });

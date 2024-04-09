@@ -79,7 +79,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         const newFilter: any = {};
 
         const filtersConfig = Object.values(tableState.filtersConfig ?? {});
-        const sortedOrders = orderBy(filtersConfig, 'order');
+        const sortedOrders = orderBy(filtersConfig, ({ order }) => order);
         let lastItemOrder: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
 
         updatedFilters.forEach((filter) => {
