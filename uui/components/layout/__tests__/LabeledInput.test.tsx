@@ -4,7 +4,7 @@ import { TextInput } from '../../inputs';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('LabeledInput', () => {
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <LabeledInput>
                 <TextInput value={ null } onValueChange={ () => {} } />
@@ -14,9 +14,22 @@ describe('LabeledInput', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', async () => {
+    it('should be rendered correctly with maximum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <LabeledInput label="Test label" size="36" info="Test" isInvalid validationMessage="Test invalid message" labelPosition="left">
+            <LabeledInput
+                label="Test label"
+                size="30"
+                info="Test info"
+                isInvalid={ true }
+                validationMessage="Test validation message"
+                labelPosition="left"
+                isOptional={ true }
+                isRequired={ true }
+                charCounter={ true }
+                maxLength={ 10 }
+                footnote="Footnote text"
+                sidenote="Sidenote text"
+            >
                 <TextInput value={ null } onValueChange={ () => {} } />
             </LabeledInput>,
         );
