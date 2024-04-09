@@ -7,7 +7,7 @@ interface MeasuredItems {
     maxHiddenItemPriority: number;
 }
 
-const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWidth: Record<string, number>): MeasuredItems => {
+const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWidth: Record<string, number>, itemsGap: number): MeasuredItems => {
     let sumChildrenWidth = 0;
     const itemsByPriority = sortBy(items, (i) => i.priority).reverse();
 
@@ -19,7 +19,7 @@ const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWi
                 maxHiddenItemPriority = item.priority;
             }
         }
-        sumChildrenWidth += itemsWidth[item.id];
+        sumChildrenWidth += itemsWidth[item.id] + itemsGap;
     });
 
     return {
@@ -28,10 +28,10 @@ const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWi
         maxHiddenItemPriority: maxHiddenItemPriority,
     };
 };
-export const measureAdaptiveItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWidth: Record<string, number>): MeasuredItems => {
+export const measureAdaptiveItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWidth: Record<string, number>, itemsGap: number): MeasuredItems => {
     const itemsWithoutCollapsedContainer = items.filter((i) => !i.collapsedContainer);
 
-    let result: MeasuredItems = layoutItems(itemsWithoutCollapsedContainer, containerWidth, itemsWidth);
+    let result: MeasuredItems = layoutItems(itemsWithoutCollapsedContainer, containerWidth, itemsWidth, itemsGap);
     if (result.hidden.length > 0) {
         let collapsedContainer: AdaptiveItemProps = null;
         // if max hidden item priority more than collapsed container priority, try to re-layout items with another container with higher priority
@@ -44,7 +44,7 @@ export const measureAdaptiveItems = (items: AdaptiveItemProps[], containerWidth:
                 return result;
             }
             const itemsWithCollapsedContainer = items.filter((i) => (i.collapsedContainer ? i.id === collapsedContainer.id : true));
-            result = layoutItems(itemsWithCollapsedContainer, containerWidth, itemsWidth);
+            result = layoutItems(itemsWithCollapsedContainer, containerWidth, itemsWidth, itemsGap);
         }
     }
 

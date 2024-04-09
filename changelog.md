@@ -35,6 +35,7 @@
     * `IDataSourceView.loadData` is deprecated.
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
+  * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
 
 # 5.7.1 - 29.03.2024
 
