@@ -34,14 +34,13 @@ exports[`Accordion should be rendered correctly 1`] = `
 
 exports[`Accordion should be rendered correctly with props 1`] = `
 <div
+  aria-disabled={true}
   aria-expanded={false}
-  className="uui-accordion-container container root mode-inline padding-18"
+  className="uui-accordion-container container uui-disabled root mode-inline padding-18"
 >
   <div
-    className="uui-accordion-toggler"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    className="uui-accordion-toggler uui-disabled"
+    tabIndex={-1}
   >
     <div
       className="uui-accordion-toggle-container"
@@ -52,7 +51,7 @@ exports[`Accordion should be rendered correctly with props 1`] = `
         Test title
       </div>
       <div
-        className="container uui-icon uui-enabled arrow"
+        className="container uui-icon uui-enabled uui-disabled arrow"
         style={Object {}}
       >
         <svg
