@@ -1,6 +1,6 @@
 import {
     BaseDataSourceConfig,
-    DataSourceState, IMap, LazyDataSourceApi,
+    DataSourceState, FlattenSearchResultsConfig, IMap, LazyDataSourceApi,
     SetDataSourceState,
 } from '../../../../../../../types';
 import { ItemsMap } from '../../../ItemsMap';
@@ -70,7 +70,7 @@ export interface ItemsStatuses<TId> {
     itemsStatusMap?: IMap<TId, RecordStatus>;
 }
 
-export interface LazyDataSourceConfig<TItem, TId, TFilter> {
+export interface LazyDataSourceConfig<TItem, TId, TFilter> extends FlattenSearchResultsConfig {
     /**
      * A function to retrieve the data, asynchronously.
      * This function usually performs a REST API call.
@@ -117,18 +117,6 @@ export interface LazyDataSourceConfig<TItem, TId, TFilter> {
      * If reloading is started, `view.getListProps` returns `isReloading` flag, set to `true`.
      */
     backgroundReload?: boolean;
-
-    /**
-     * Falls back to plain list from tree, if there's search.
-     * Default is true.
-     *
-     * If enabled, and search is active:
-     * - API will be called with parentId and parent undefined
-     * - getChildCount is ignored, all nodes are assumed to have no children
-     *
-     * See more here: https://github.com/epam/UUI/issues/8
-     */
-    flattenSearchResults?: boolean;
 }
 
 export interface AsyncDataSourceConfig<TItem> {

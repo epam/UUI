@@ -1,4 +1,5 @@
 import { ITree } from '../ITree';
+import { FlattenSearchResultsConfig } from '../../../../../types';
 import { CommonTreeConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
 
 /**
@@ -9,7 +10,8 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     ITreeLoadingState,
     ITreeActions,
     LoadMissingRecords<TItem, TId>,
-    GetItemStatus<TId> {
+    GetItemStatus<TId>,
+    FlattenSearchResultsConfig {
 
     /**
      * Tree-like data, rows to be build from.
