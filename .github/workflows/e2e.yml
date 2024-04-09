@@ -15,6 +15,7 @@ jobs:
     e2e-tests:
         timeout-minutes: 60
         runs-on: ubuntu-latest
+        if: github.event.pull_request.draft == false
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
