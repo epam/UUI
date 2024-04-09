@@ -194,7 +194,7 @@ export class IxSet<TEntity, TId> {
             })
             .filter((p) => p != null);
 
-        plans = orderBy(plans, 'score', 'desc');
+        plans = orderBy(plans, (plan) => plan.score, 'desc');
         const plan = plans[0];
 
         // const indexEntities = plan.index.tree.entries();
