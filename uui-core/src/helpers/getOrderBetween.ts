@@ -1,4 +1,4 @@
-import trimEnd from 'lodash.trimend';
+import { trimEnd } from './trimEnd';
 
 const base = 26;
 const memoized: string[] = [];
