@@ -25,6 +25,11 @@ You might need to restart computer after that.
     # Delete all images. Use it only when other methods to free up space don't help.
     # When the e2e tests are run after deleting all images, all necessary dependencies will download again which takes some time.
     podman rmi --all --force
+   
+    # In case of some weird issues, you might need to remove the Podman machine using commands below. 
+    # After that, you need to init Podman again (See "Init Podman" section above).
+    podman machine stop
+    podman machine rm
     ```
 
 ## macOS
