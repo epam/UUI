@@ -21,19 +21,9 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
 
         if (!children.length) return;
         const calculatedItemsWidth: Record<string, number> = {};
-        const hasCollapsedContainer = props.items.some((i) => i.collapsedContainer);
 
         children.forEach((child, index) => {
-            let indent = itemsGap;
-            if (hasCollapsedContainer) {
-                if (props.items[index].collapsedContainer) {
-                    indent = 0;
-                }
-            } else {
-                indent = index === (props.items.length - 1) ? 0 : itemsGap;
-            }
-
-            calculatedItemsWidth[props.items[index].id] = Math.floor(child.getBoundingClientRect().width + indent);
+            calculatedItemsWidth[props.items[index].id] = Math.floor(child.getBoundingClientRect().width);
         });
 
         return calculatedItemsWidth;
@@ -67,7 +57,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         }
         const wrapperWidth = wrapperRef?.current ? Math.floor(wrapperRef.current.getBoundingClientRect().width) : 0;
 
-        const measuredItems = measureAdaptiveItems(props.items, wrapperWidth, itemsWidth);
+        const measuredItems = measureAdaptiveItems(props.items, wrapperWidth, itemsWidth, itemsGap);
         return measuredItems.displayed.map((i) => i.render(i, measuredItems.hidden, measuredItems.displayed));
     };
 
