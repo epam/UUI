@@ -1,5 +1,3 @@
-import { trimEnd } from './trimEnd';
-
 const base = 26;
 const memoized: string[] = [];
 
@@ -24,8 +22,10 @@ export function indexToOrder(input: number) {
         lastInputValue = Math.floor(lastInputValue / base);
     }
     const order = String.fromCharCode(
-        // put number of digits first, to establish order between numbers of different length (the longer is bigger)
-        // '+ 1' is to start number of digits from 'b' to leave room to insert orders before numberToOrder(0), w/o using digits.
+        // Put number of digits first, to establish order between numbers
+        // of different length (the longer is bigger)
+        // We add '+ 1' is to start number of digits from 'b'
+        // to leave room to insert orders before numberToOrder(0), w/o using digits.
         digits.length + aChar + 1,
         ...digits,
     );
@@ -68,7 +68,7 @@ export const maxOrderStr = 'zzzz';
 export function getOrderBetween(inputA: string | null, inputB: string | null): string {
     const radix = 36;
     let a = inputA;
-    let b = inputB || 'z';
+    const b = inputB || 'z';
 
     if (!a) {
         // We were generating chars 0-z prior. Now we try yo use only a-z.
@@ -79,9 +79,6 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
         // This can happen for already generated orders.
         a = (b <= 'a') ? '0' : 'a';
     }
-
-    a = trimEnd(a, '0');
-    b = trimEnd(b, '0');
 
     const throwError = () => {
         throw new Error(`getOrderBetween: can't find values between ${inputA} and ${inputB}`);
@@ -94,9 +91,17 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
     let result = '';
     let n = 0;
 
+    // If we see two close chars, like 'a' and 'b' or '1' and '2' - we can't fit another
+    // char between them at this position.
+    // However, this means that A is already less than B, and we
+    // can use this when comparing next positions.
+    let resultIsLessThanB = false;
+
     while (true) {
         const aChar = a[n];
-        const bChar = b[n];
+
+        // If result < B according to prior chars, any letter greater than aChar will be ok
+        const bChar = resultIsLessThanB ? 'z' : b[n];
 
         let aDigit = parseInt(aChar || '0', radix);
         const bDigit = parseInt(bChar || 'z', radix);
@@ -113,6 +118,10 @@ export function getOrderBetween(inputA: string | null, inputB: string | null): s
 
         if (aDigit !== midDigit) {
             break;
+        }
+
+        if (aDigit < bDigit) {
+            resultIsLessThanB = true;
         }
 
         n++;
