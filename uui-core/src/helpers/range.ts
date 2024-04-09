@@ -1,26 +1,16 @@
-function* rangeFromTo(start: number, end: number, step: number = 1) {
-    for (let i = start; i < end; i = i + step) {
-        yield i;
-    }
+function rangeFromTo(start: number, end: number, step?: number) {
+    const defaultStepForRange = (end >= start) ? 1 : -1;
+    const stepForRangeValues = step ?? defaultStepForRange;
+
+    return Array.from({ length: (end - start) / (step || defaultStepForRange) }, (_, index) => {
+        return start + (index * stepForRangeValues);
+    });
 }
 
-function* reverseRangeFromTo(start: number, end: number, step: number = -1) {
-    for (let i = start; i > end; i = i + step) {
-        yield i;
-    }
-}
-
-function* rangeGen(start: number, end?: number, step?: number) {
+export function range(start: number, end: number, step?: number) {
     if (end === undefined) {
-        return yield* rangeFromTo(0, start, step);
+        return rangeFromTo(0, start, step);
     }
 
-    if (start < end) {
-        return yield* rangeFromTo(start, end, step);
-    }
-
-    return yield* reverseRangeFromTo(start, end, step);
+    return rangeFromTo(start, end, step);
 }
-
-export const range = (start: number, end?: number, step?: number) =>
-    Array.from(rangeGen(start, end, step));
