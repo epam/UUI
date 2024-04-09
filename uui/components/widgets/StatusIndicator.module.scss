@@ -46,8 +46,8 @@
     &.size-12 {
         :global(.uui-status_indicator_dot) {
             margin-right: 4px;
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
         }
 
         :global(.uui-status_indicator_caption) {
@@ -65,8 +65,8 @@
 
     &.size-24 {
         :global(.uui-status_indicator_dot) {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
         }
     }
 }
