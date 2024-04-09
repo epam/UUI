@@ -1,0 +1,26 @@
+[
+  {
+    "children": [
+      {
+        "text": "Specifies where to put a new item. The item is considered new, if it doesn't exist in the original list, which means that items with such ID wasn't loaded from server, so it is created on client."
+      }
+    ],
+    "type": "paragraph"
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default, all new items are placed at the top of the list. You can specify bottom position if needed."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We have experimental support for positioning new items arbitrary inside the list, e.g. not at top/bottom, but somewhere between existing items. Please contact us if you need such feature."
+      }
+    ]
+  }
+]

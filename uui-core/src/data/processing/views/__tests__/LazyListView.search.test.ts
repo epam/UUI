@@ -95,6 +95,20 @@ describe('LazyListView - search', () => {
             const view = hookResult.result.current;
             const rows = view.getVisibleRows();
             expect(rows).toHaveLength(1);
+
+            expect(view.getConfig()).toEqual(expect.objectContaining({
+                cascadeSelection: undefined,
+                dataSourceState: {
+                    search: 'ABC5',
+                    topIndex: 0,
+                    visibleCount: 20,
+                },
+                flattenSearchResults: true,
+                isFetching: false,
+                isLoading: false,
+                selectAll: undefined,
+                showSelectedOnly: undefined,
+            }));
         });
 
         it('should detect if found item is last child in parent', async () => {
