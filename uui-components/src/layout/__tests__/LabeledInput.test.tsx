@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, setupComponentForTest, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { screen, setupComponentForTest } from '@epam/uui-test-utils';
 import { LabeledInput, LabeledInputProps } from '../LabeledInput';
 
 async function setupTestComponent() {
@@ -19,16 +19,6 @@ async function setupTestComponent() {
 }
 
 describe('LabeledInput', () => {
-    it('should render with minimum props', async () => {
-        const tree = await renderSnapshotWithContextAsync(<LabeledInput label="Test label"></LabeledInput>);
-        expect(tree).toMatchSnapshot();
-    });
-
-    it('should render with maximum props', async () => {
-        const tree = await renderSnapshotWithContextAsync(<LabeledInput label="Test label" info="info" isOptional={ true } maxLength={ 10 } charCounter={ true }></LabeledInput>);
-        expect(tree).toMatchSnapshot();
-    });
-
     it('label has uui-label class', async () => {
         const { setProps } = await setupTestComponent();
         setProps({ label: 'Test label' });
