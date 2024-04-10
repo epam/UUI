@@ -28,8 +28,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     });
 
     const {
-        opened, setOpened, isSearchChanged, setIsSearchChanged,
-        dataSourceState, setDataSourceState, setShowSelected,
+        opened, setOpened, isSearchChanged, setIsSearchChanged, setShowSelected, dataSourceState, setDataSourceState,
     } = pickerInputState;
 
     const defaultShouldShowBody = () => {
@@ -65,14 +64,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     } = picker;
 
     const lens = useMemo(
-        () => Lens.onEditable<DataSourceState>({ value: dataSourceState, onValueChange: setDataSourceState }),
+        () => Lens.onEditable<DataSourceState>({ value: dataSourceState, onValueChange: handleDataSourceValueChange }),
         [dataSourceState],
     );
 
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (prevValue !== props.value) {
-            setDataSourceState(
+            handleDataSourceValueChange(
                 applyValueToDataSourceState(
                     props,
                     dataSourceState,
@@ -203,7 +202,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             isOpen = value.length >= props.minCharsToSearch;
         }
 
-        setDataSourceState((dsState) => ({
+        handleDataSourceValueChange((dsState) => ({
             ...dsState,
             focusedIndex: 0,
             search: value,
@@ -214,7 +213,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     const closePickerBody = () => {
-        setDataSourceState((dsState) => ({
+        handleDataSourceValueChange((dsState) => ({
             ...dsState,
             search: '',
         }));
