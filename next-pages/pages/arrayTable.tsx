@@ -86,7 +86,7 @@ const ArrayTable = () => {
                 <Panel shadow>
                     <DataTable
                         { ...view.getListProps() }
-                        getRows={ view.getVisibleRows }
+                        getRows={ view.getRows }
                         value={ value }
                         onValueChange={ onValueChange }
                         columns={ tableColumns }
