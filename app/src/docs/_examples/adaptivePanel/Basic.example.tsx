@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import { Button, Dropdown, DropdownContainer, FlexCell, VerticalTabButton, Slider } from '@epam/uui';
-import css from './Basic.example.module.scss';
 
 export default function BasicAdaptivePanelExample() {
     const [width, setWidth] = useState<number>(100);
 
     const renderItem = (item: AdaptiveItemProps<{ data?: { caption: string } }>) => {
         return (
-            <div>
-                <Button key={ item.id } cx={ css.itemWithMargins } caption={ item.data.caption } onClick={ () => {} } />
-            </div>
+            <Button key={ item.id } caption={ item.data.caption } onClick={ () => {} } />
         );
     };
 
@@ -51,7 +48,7 @@ export default function BasicAdaptivePanelExample() {
             <Slider value={ width } onValueChange={ setWidth } min={ 0 } max={ 100 } step={ 1 } />
 
             <div style={ { width: `${width}%`, marginTop: 12 } }>
-                <AdaptivePanel items={ items } />
+                <AdaptivePanel itemsGap="6" items={ items } />
             </div>
         </FlexCell>
     );

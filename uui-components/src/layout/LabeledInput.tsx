@@ -22,8 +22,12 @@ const uuiLabeledInput = {
     sideNote: 'uui-labeled-input-sidenote',
 } as const;
 
-export class LabeledInput extends React.Component<LabeledInputProps> {
-    getSideNote = (sideNote: React.ReactNode): React.ReactNode => {
+export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>((props, ref) => {
+    const Tooltip = props.Tooltip;
+    const isCanBeOptional = !props.isRequired && props.labelPosition !== 'left' && props.isOptional;
+    const isOnlyCharCounter = !props.footnote && (props.charCounter && props.maxLength && !props.isInvalid);
+
+    const getSideNote = (sideNote: React.ReactNode): React.ReactNode => {
         return (typeof sideNote === 'string')
             ? (
                 <div className={ uuiLabeledInput.sideNote }>
@@ -32,74 +36,68 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
             ) : sideNote;
     };
 
-    getCharCounter = () => (
+    const getCharCounter = () => (
         <div className={ uuiLabeledInput.charCounter }>
-            { `${this.props.value?.length || '0'}/${this.props.maxLength}` }
+            { `${props.value?.length || '0'}/${props.maxLength}` }
         </div>
     );
 
-    getInvalidSection = () => {
-        const isCharCounterAllow = this.props.charCounter && this.props.maxLength;
+    const getInvalidSection = () => {
+        const isCharCounterAllow = props.charCounter && props.maxLength;
         return (
             <FlexRow alignItems="top" columnGap={ 12 }>
                 <div role="alert" className={ uuiElement.invalidMessage }>
-                    {this.props.validationMessage}
+                    {props.validationMessage}
                 </div>
-                { isCharCounterAllow && this.getCharCounter()}
+                { isCharCounterAllow && getCharCounter()}
             </FlexRow>
         );
     };
 
-    getFootnoteSection = () => {
-        const isCharCounterAllow = this.props.charCounter && this.props.maxLength && !this.props.isInvalid;
+    const getFootnoteSection = () => {
+        const isCharCounterAllow = props.charCounter && props.maxLength && !props.isInvalid;
         return (
             <FlexRow alignItems="top" columnGap={ 12 }>
                 <div className={ uuiLabeledInput.footNote }>
-                    { this.props.footnote }
+                    { props.footnote }
                 </div>
-                { isCharCounterAllow && this.getCharCounter() }
+                { isCharCounterAllow && getCharCounter() }
             </FlexRow>
         );
     };
 
-    render() {
-        const Tooltip = this.props.Tooltip;
-        const isCanBeOptional = !this.props.isRequired && this.props.labelPosition !== 'left' && this.props.isOptional;
-        const isOnlyCharCounter = !this.props.footnote && (this.props.charCounter && this.props.maxLength && !this.props.isInvalid);
-
-        return (
-            <div className={ cx(css.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
-                <div className={ cx(labelMod[this.props.labelPosition ? this.props.labelPosition : 'top']) }>
-                    {this.props.label && (
-                        <div className={ css.labelWrapper }>
-                            <label htmlFor={ this.props.htmlFor } className={ uuiElement.label }>
-                                {this.props.label}
-                                {this.props.isRequired && <span className={ uuiLabeledInput.asterisk }>*</span>}
-                                {this.props.info && Tooltip && (
-                                    <Tooltip content={ this.props.info }>
-                                        <IconContainer icon={ this.props.infoIcon } cx={ uuiLabeledInput.infoIcon } />
-                                    </Tooltip>
-                                )}
-                                {isCanBeOptional && (
-                                    <div className={ css.optionalFieldWrapper }>
-                                        <div className={ uuiLabeledInput.optional }>{i18n.labeledInput.optionalFieldLabel}</div>
-                                    </div>
-                                )}
-                            </label>
-                            {this.props.sidenote && (
-                                <>
-                                    <FlexSpacer />
-                                    {this.getSideNote(this.props.sidenote)}
-                                </>
+    return (
+        <div className={ cx(css.container, props.cx) } ref={ ref } { ...props.rawProps }>
+            <div className={ cx(labelMod[props.labelPosition ? props.labelPosition : 'top']) }>
+                {props.label && (
+                    <div className={ css.labelWrapper }>
+                        <label htmlFor={ props.htmlFor } className={ uuiElement.label }>
+                            {props.label}
+                            {props.isRequired && <span className={ uuiLabeledInput.asterisk }>*</span>}
+                            {props.info && Tooltip && (
+                                <Tooltip content={ props.info }>
+                                    <IconContainer icon={ props.infoIcon } cx={ uuiLabeledInput.infoIcon } />
+                                </Tooltip>
                             )}
-                        </div>
-                    )}
-                    <div className={ this.props.labelPosition === 'left' ? css.rightChildrenPosition : undefined }>{this.props.children}</div>
-                </div>
-                {this.props.isInvalid && this.getInvalidSection()}
-                {this.props.footnote && this.getFootnoteSection()}
-                { isOnlyCharCounter && this.getCharCounter()}
+                            {isCanBeOptional && (
+                                <div className={ css.optionalFieldWrapper }>
+                                    <div className={ uuiLabeledInput.optional }>{i18n.labeledInput.optionalFieldLabel}</div>
+                                </div>
+                            )}
+                        </label>
+                        {props.sidenote && (
+                            <>
+                                <FlexSpacer />
+                                {getSideNote(props.sidenote)}
+                            </>
+                        )}
+                    </div>
+                )}
+                <div className={ props.labelPosition === 'left' ? css.rightChildrenPosition : undefined }>{props.children}</div>
             </div>
-        );
-    }
-}
+            {props.isInvalid && getInvalidSection()}
+            {props.footnote && getFootnoteSection()}
+            { isOnlyCharCounter && getCharCounter()}
+        </div>
+    );
+});

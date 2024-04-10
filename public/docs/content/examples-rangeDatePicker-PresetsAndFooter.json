@@ -1,53 +1,25 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "﻿You can define range presets via the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "presets",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop and a footer via the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderFooter",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
+        "text": "﻿You can define range presets via the "
+      },
+      {
+        "text": "presets",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop and a footer via the "
+      },
+      {
+        "text": "renderFooter",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
       }
     ]
   }
-}
+]

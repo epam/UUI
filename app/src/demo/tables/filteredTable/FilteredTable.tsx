@@ -7,8 +7,8 @@ import {
 } from '@epam/uui';
 import { getFilters } from './filters';
 import {
-    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
-    DataQueryFilter,
+    useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset,
+    DataQueryFilter, useLazyDataSource,
 } from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
@@ -58,7 +58,7 @@ export function FilteredTable() {
         return result;
     }, [svc.api.demo]);
 
-    const dataSource = useLazyDataSource<Person, number, Person>(
+    const dataSource = useLazyDataSource<Person, number, DataQueryFilter<Person>>(
         {
             api: api,
             selectAll: false,

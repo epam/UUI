@@ -91,7 +91,7 @@ describe('PickerList', () => {
     });
 
     it('should open body', async () => {
-        const { result } = await setupPickerListForTest({
+        const { result } = await setupPickerListForTest<TestItemType, number>({
             value: undefined,
             selectionMode: 'single',
             dataSource: mockDataSourceAsync,
@@ -104,6 +104,7 @@ describe('PickerList', () => {
         fireEvent.click(toggler);
 
         await PickerListTestObject.waitForOptionsToBeReady('modal');
+        await PickerListTestObject.waitForSpinnerToHide('modal');
 
         expect(result.baseElement).toMatchSnapshot();
     });
@@ -198,7 +199,11 @@ describe('PickerList', () => {
 
             const optionC2 = await screen.findByText('A2+');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(5);
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(5);
+            });
+
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
             const toggler = PickerListTestObject.getPickerToggler();
@@ -220,7 +225,11 @@ describe('PickerList', () => {
 
             const optionC2 = await screen.findByText('A2+');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 5, level: 'A2+', name: 'Pre-Intermediate+' });
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 5, level: 'A2+', name: 'Pre-Intermediate+' });
+            });
+
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
             const toggler = PickerListTestObject.getPickerToggler();
@@ -243,7 +252,9 @@ describe('PickerList', () => {
 
             const optionC2 = await screen.findByText('Elementary');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+            });
         });
 
         it('should render entity name in picker toggler text', async () => {
@@ -319,8 +330,12 @@ describe('PickerList', () => {
             });
 
             await PickerListTestObject.waitForOptionsToBeReady();
+            await waitFor(() => {
+                const options = PickerListTestObject.getOptions();
+                expect(options).toHaveLength(5);
+            });
+
             const options = PickerListTestObject.getOptions();
-            expect(options).toHaveLength(5);
             expect((within(options[0]).getByRole('radio') as HTMLInputElement).checked).toBeTruthy();
         });
 
@@ -331,15 +346,17 @@ describe('PickerList', () => {
             });
 
             await PickerListTestObject.waitForOptionsToBeReady();
-            const options = PickerListTestObject.getOptions();
-            expect(options).toHaveLength(5);
-            expect(options.map((opt) => opt.textContent?.trim())).toEqual([
-                'C2',
-                'C1+',
-                'C1',
-                'B2+',
-                'B2',
-            ]);
+            
+            await waitFor(() => {
+                const options = PickerListTestObject.getOptions();
+                expect(options.map((opt) => opt.textContent?.trim())).toEqual([
+                    'C2',
+                    'C1+',
+                    'C1',
+                    'B2+',
+                    'B2',
+                ]);
+            });
         });
 
         it('should render defaultIds', async () => {
@@ -371,10 +388,16 @@ describe('PickerList', () => {
             await PickerListTestObject.waitForOptionsToBeReady();
 
             await PickerListTestObject.clickOptionCheckbox('A1');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
 
             await PickerListTestObject.clickOptionCheckbox('A1+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
+
             expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
             const toggler = PickerListTestObject.getPickerToggler();
@@ -386,9 +409,10 @@ describe('PickerList', () => {
             expect(checkedOptions1).toEqual(['A1', 'A1+']);
 
             await PickerListTestObject.clickOptionCheckbox('A1+', { editMode: 'modal' });
-
-            const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
-            expect(checkedOptions2).toEqual(['A1']);
+            await waitFor(async () => {
+                const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+                expect(checkedOptions2).toEqual(['A1']);
+            });
         });
 
         it('[valueType entity] should select & clear several options', async () => {
@@ -401,17 +425,22 @@ describe('PickerList', () => {
             await PickerListTestObject.waitForOptionsToBeReady();
 
             await PickerListTestObject.clickOptionCheckbox('A1');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([{
-                id: 2,
-                level: 'A1',
-                name: 'Elementary',
-            }]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([{
+                    id: 2,
+                    level: 'A1',
+                    name: 'Elementary',
+                }]);
+            });
 
             await PickerListTestObject.clickOptionCheckbox('A1+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([
-                { id: 2, level: 'A1', name: 'Elementary' },
-                { id: 3, level: 'A1+', name: 'Elementary+' },
-            ]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([
+                    { id: 2, level: 'A1', name: 'Elementary' },
+                    { id: 3, level: 'A1+', name: 'Elementary+' },
+                ]);
+            });
+
             expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
             const toggler = PickerListTestObject.getPickerToggler();
@@ -424,8 +453,10 @@ describe('PickerList', () => {
 
             await PickerListTestObject.clickOptionCheckbox('A1+', { editMode: 'modal' });
 
-            const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
-            expect(checkedOptions2).toEqual(['A1']);
+            await waitFor(async () => {
+                const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+                expect(checkedOptions2).toEqual(['A1']); 
+            });
         });
 
         it('should render names of items by getName', async () => {
@@ -550,11 +581,15 @@ describe('PickerList', () => {
             await PickerListTestObject.waitForOptionsToBeReady('modal');
 
             await PickerListTestObject.clickSelectAllOptions({ editMode: 'modal' });
-            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' }))
-                .toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+            await waitFor(async () => {
+                expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' }))
+                    .toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+            });
 
             await PickerListTestObject.clickClearAllOptions({ editMode: 'modal' });
-            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual([]);
+            await waitFor(async () => {
+                expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual([]);
+            });
         });
 
         it('should show only selected', async () => {
@@ -565,16 +600,25 @@ describe('PickerList', () => {
 
             await PickerListTestObject.waitForOptionsToBeReady();
 
+            await waitFor(() => {
+                expect(PickerListTestObject.getPickerToggler()).toBeInTheDocument();
+            });
+
             fireEvent.click(PickerListTestObject.getPickerToggler());
 
             await PickerListTestObject.waitForOptionsToBeReady('modal');
 
-            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual(['A1', 'A2', 'B1', 'B2']);
+            await waitFor(async () => {
+                expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual(['A1', 'A2', 'B1', 'B2']);
+            });
             expect(await PickerListTestObject.findUncheckedOptions({ editMode: 'modal' })).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
 
             await PickerListTestObject.clickShowOnlySelected({ editMode: 'modal' });
 
-            expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual(['A2', 'A1', 'B1', 'B2']);
+            await waitFor(async () => {
+                expect(await PickerListTestObject.findCheckedOptions({ editMode: 'modal' })).toEqual(['A2', 'A1', 'B1', 'B2']);
+            });
+
             expect(await PickerListTestObject.findUncheckedOptions({ editMode: 'modal' })).toEqual([]);
         });
 

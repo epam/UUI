@@ -55,9 +55,24 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
         window.removeEventListener('resize', this.handleResize);
     }
 
+    getFloatPrecision = (step: number): number => {
+        const stepString = step.toString();
+        const decimalIndex = stepString.indexOf('.');
+        return decimalIndex >= 0 ? stepString.length - decimalIndex - 1 : 0;
+    };
+
     roundToStep(value: number, step: number) {
-        const normalized = this.props.min + Math.round(Math.abs((value - this.props.min) / step)) * step;
-        return normalized > this.props.max ? this.props.max : normalized;
+        const precision = this.getFloatPrecision(step);
+        let rounded = this.props.min + Math.round(Math.abs((value - this.props.min) / step)) * step;
+        rounded = parseFloat(rounded.toFixed(precision));
+
+        if (rounded < this.props.min) {
+            return this.props.min;
+        } else if (rounded > this.props.max) {
+            return this.props.max;
+        } else {
+            return rounded;
+        }
     }
 
     handleResize = () => {

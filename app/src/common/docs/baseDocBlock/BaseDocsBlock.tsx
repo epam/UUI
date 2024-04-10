@@ -81,9 +81,9 @@ export abstract class BaseDocsBlock extends React.Component<any, {}> {
                     <DocTab
                         title={ this.title }
                         config={ this.getConfig() }
-                        renderDocTitle={ this.renderDocTitle }
-                        renderSectionTitle={ this.renderSectionTitle }
-                        renderContent={ this.renderContent }
+                        renderDocTitle={ () => this.renderDocTitle() }
+                        renderSectionTitle={ (title) => this.renderSectionTitle(title) }
+                        renderContent={ () => this.renderContent() }
                     />
                 );
             }

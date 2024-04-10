@@ -1,15 +1,30 @@
 import React from 'react';
-import { Checkbox } from '../Checkbox';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
+import { Checkbox } from '@epam/uui';
+import { ReactComponent as ActionAccountFillIcon } from '@epam/assets/icons/action-account-fill.svg';
 
-describe('Checkbox', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Checkbox value={ null } onValueChange={ jest.fn } />).toJSON();
+describe('TestComponent', () => {
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Checkbox value={ true } onValueChange={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Checkbox value={ null } onValueChange={ jest.fn } size="18" mode="cell" />).toJSON();
+    it('should be rendered with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Checkbox
+                value={ true }
+                onValueChange={ jest.fn }
+                size="12"
+                mode="cell"
+                isDisabled={ true }
+                isInvalid={ true }
+                isReadonly={ true }
+                isRequired={ true }
+                icon={ ActionAccountFillIcon }
+                indeterminate={ true }
+                label="Test label"
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
