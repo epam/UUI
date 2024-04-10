@@ -174,10 +174,14 @@ export class PatchHelper {
             if (treeStructure.nodeInfoById.has(parentId)) {
                 const prevNodeInfo = treeStructure.nodeInfoById.get(parentId);
                 if (prevNodeInfo.count !== undefined) {
-                    newNodeInfoById.set(parentId, { ...prevNodeInfo, count: ids.length });
-                } else if (parentsWithNewChildren.has(parentId) && (prevNodeInfo.count === undefined)) {
+                    // Count, different from ids.length can be sent by server.
+                    // After patch, it is required to add a delta of new and old children, to figure out,
+                    // how patch affected count by adding/deleting/moving children.
+                    const newCount = prevNodeInfo.count + (ids.length - (treeStructure.byParentId.get(parentId)?.length ?? 0));
+                    newNodeInfoById.set(parentId, { ...prevNodeInfo, count: newCount });
+                } else if (parentsWithNewChildren.has(parentId)) {
                     const { assumedCount, ...prev } = prevNodeInfo;
-                    newNodeInfoById.set(parentId, { ...prev, count: ids.length, ...(assumedCount === undefined ? {} : { assumedCount }) });
+                    newNodeInfoById.set(parentId, { ...prev, ...(assumedCount === undefined ? { count: ids.length } : { assumedCount }) });
                 }
             } else {
                 newNodeInfoById.set(parentId, { count: ids.length });

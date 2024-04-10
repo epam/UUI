@@ -1,4 +1,4 @@
-import sortBy from 'lodash.sortby';
+import { orderBy } from '@epam/uui-core';
 import {
     AccordionDoc,
     AdaptivePanelDoc,
@@ -59,7 +59,7 @@ import {
 import { AnchorDoc } from '../docs/anchor/Anchor.doc';
 import { RichTextEditorSerializersDoc } from '../docs/RichTextEditorSerializers.doc';
 
-export const componentsStructure = sortBy(
+export const componentsStructure = orderBy(
     [
         { id: 'accordion', name: 'Accordion', component: AccordionDoc, parentId: 'components' },
         { id: 'adaptivePanel', name: 'Adaptive Panel', component: AdaptivePanelDoc, parentId: 'components' },

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import clone from 'lodash.clone';
 import { BaseContext } from './BaseContext';
 import { NotificationParams, INotificationContext } from '../types/contexts';
 import { LayoutContext } from './LayoutContext';
@@ -85,10 +84,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
     }
 
     public getNotifications(): NotificationOperation[] {
-        return this.notifications.map((op) => {
-            op = clone(op);
-            return op;
-        });
+        return this.notifications;
     }
 
     public handleRedirect() {

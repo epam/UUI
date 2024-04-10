@@ -5,7 +5,7 @@ const eqPredicate = () => 0;
 // Previous versions use this comparer. While it works great for human-readable strings, it's broken for dates. Also, we need a plain sort in case of 'order' fields.
 // const compareScalars = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;
 
-function compareScalars(a: any, b: any, order: number) {
+export function compareScalars(a: any, b: any, order: number) {
     if (a == null) {
         if (b == null) {
             return 0;
