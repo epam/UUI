@@ -11,14 +11,10 @@
     "build": "node ../uui-build/scripts/buildModule"
   },
   "dependencies": {
-    "@epam/assets": "4.5.3",
     "@epam/loveship": "5.7.1",
     "@epam/promo": "5.7.1",
-    "@epam/uui-components": "5.7.1",
     "@epam/uui-core": "5.7.1",
-    "@types/shallowequal": "^1.1.1",
-    "immutable": "3.8.2",
-    "shallowequal": "^1.1.0"
+    "immutable": "3.8.2"
   },
   "peerDependencies": {
     "prop-types": "*",

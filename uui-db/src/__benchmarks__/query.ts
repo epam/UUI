@@ -1,11 +1,8 @@
 import * as b from 'benny';
 import * as I from 'immutable';
 import BTree from 'sorted-btree';
-import orderBy from 'lodash.orderby';
-import sortBy from 'lodash.sortby';
-import range from 'lodash.range';
 import { Person, blankIxSet, blankIxSetNoIndex } from './testData';
-import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
+import { getFilterPredicate, getOrderComparer, orderBy, range } from '@epam/uui-core';
 import { DbTable } from '..';
 
 [
@@ -36,7 +33,7 @@ import { DbTable } from '..';
             return () =>
                 orderBy(
                     testPersons.filter((p) => p.departmentId == 5),
-                    'name',
+                    ({ name }) => name,
                 );
         }),
 
@@ -56,7 +53,7 @@ import { DbTable } from '..';
 
         b.add('I.Map - toArray, then filter/sort', () => {
             const set = I.Map(pairs);
-            return () => sortBy((set as I.Iterable<number, Person>).toArray().filter(filterPredicate), 'name');
+            return () => orderBy((set as I.Iterable<number, Person>).toArray().filter(filterPredicate), ({ name }) => name);
         }),
 
         // Super-fast by design, probably the best way to go with indexes.

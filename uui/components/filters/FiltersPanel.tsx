@@ -1,12 +1,11 @@
 import React, {
     useCallback, useEffect, useMemo, useState,
 } from 'react';
-import sortBy from 'lodash.sortby';
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
 import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
 import {
-    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource,
+    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource, orderBy,
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
@@ -79,7 +78,8 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         const newConfig: FiltersConfig = {};
         const newFilter: any = {};
 
-        const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, (f) => f?.order);
+        const filtersConfig = Object.values(tableState.filtersConfig ?? {});
+        const sortedOrders = orderBy(filtersConfig, ({ order }) => order);
         let lastItemOrder: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
 
         updatedFilters.forEach((filter) => {
@@ -134,7 +134,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     }, [tableState.filtersConfig, filters]);
 
     const sortedActiveFilters = useMemo(() => {
-        return sortBy(selectedFilters, (f) => tableState.filtersConfig?.[f.field]?.order);
+        return orderBy(selectedFilters, (f) => tableState.filtersConfig?.[f.field]?.order);
     }, [filters, tableState.filtersConfig]);
 
     const renderAddFilterToggler = useCallback((togglerProps: PickerTogglerProps) => {

@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../../types';
 import { isQueryChanged } from './helpers';

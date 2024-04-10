@@ -1,8 +1,8 @@
 import * as b from 'benny';
 import * as I from 'immutable';
 import BTree from 'sorted-btree';
-import { Person, blankIxSet, blankIxSetNoIndex } from './testData';
-import range from 'lodash.range';
+import { Person, blankIxSet } from './testData';
+import { range } from '@epam/uui-core';
 import { DbTable } from '..';
 
 [

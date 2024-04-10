@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui-core';
+import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams, orderBy } from '@epam/uui-core';
 import { FlexRow, FlexCell, Text, IconContainer, Panel, DropMarker } from '@epam/uui';
-import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
 import css from './DndMaterial.module.scss';
@@ -95,7 +94,7 @@ export default function DndMaterial() {
         />
     );
 
-    const sortedItems = useMemo(() => sortBy(items, ['order']), [items]);
+    const sortedItems = useMemo(() => orderBy(items, ({ order }) => order), [items]);
 
     return <FlexCell grow={ 1 }>{sortedItems.map((i, index) => renderMaterial(i, sortedItems[index - 1], sortedItems[index + 1]))}</FlexCell>;
 }
