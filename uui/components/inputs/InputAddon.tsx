@@ -8,4 +8,4 @@ function applyInputAddonMods() {
     ];
 }
 
-export const InputAddon = withMods<uuiInputAddonProps>(uuiInputAddon, applyInputAddonMods);
+export const InputAddon = /* @__PURE__ */withMods<uuiInputAddonProps>(uuiInputAddon, applyInputAddonMods);

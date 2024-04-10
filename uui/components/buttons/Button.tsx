@@ -40,7 +40,7 @@ function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<uuiComponents.ButtonProps, ButtonMods>(
+export const Button = /* @__PURE__ */withMods<uuiComponents.ButtonProps, ButtonMods>(
     uuiComponents.Button,
     applyButtonMods,
     (props) => {

@@ -7,4 +7,4 @@ export function applyDateSelectionMods() {
     return [css.root];
 }
 
-export const Calendar = withMods<CalendarProps<Dayjs>>(uuiCalendar, applyDateSelectionMods);
+export const Calendar = /* @__PURE__ */withMods<CalendarProps<Dayjs>>(uuiCalendar, applyDateSelectionMods);
