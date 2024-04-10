@@ -34,7 +34,7 @@ const uuiAccordion = {
 
 const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps => (props as EditableAccordionProps).onValueChange !== undefined;
 
-export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
+export const Accordion = /* @__PURE__ */React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
     const [state, setState] = useState<AccordionState>({
         opened: isEditableAccordionProps(props) ? props.value : false,
     });

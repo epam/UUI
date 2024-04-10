@@ -8,7 +8,7 @@ import css from './GlobalMenu.module.scss';
 /** Represents the properties of the GlobalMenu component. */
 export interface GlobalMenuProps extends IAdaptiveItem, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLButtonElement>> {}
 
-export const GlobalMenu = React.forwardRef<HTMLButtonElement, GlobalMenuProps>((props, ref) => (
+export const GlobalMenu = /* @__PURE__ */React.forwardRef<HTMLButtonElement, GlobalMenuProps>((props, ref) => (
     <button ref={ ref } id="global_menu_toggle" className={ cx(css.globalMenuBtn, props.cx) } { ...props.rawProps }>
         <IconContainer size={ 36 } icon={ GlobalMenuIcon } cx={ css.globalMenuIcon } />
     </button>

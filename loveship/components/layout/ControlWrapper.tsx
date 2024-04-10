@@ -9,7 +9,7 @@ interface ControlWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<
     size: types.ControlSize;
 }
 
-export const ControlWrapper = React.forwardRef<HTMLDivElement, ControlWrapperProps>((props, ref) => {
+export const ControlWrapper = /* @__PURE__ */React.forwardRef<HTMLDivElement, ControlWrapperProps>((props, ref) => {
     if (__DEV__) {
         devLogger.warn('ControlWrapper is deprecated and will be removed in future release.');
     }

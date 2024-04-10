@@ -46,7 +46,7 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
     ];
 }
 
-export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
+export const LinkButton = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
     if (__DEV__ && props.captionCX) {
         devLogger.warn('LinkButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
     }

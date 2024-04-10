@@ -20,7 +20,7 @@ export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
 
 export type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;
 
-export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((props, ref) => {
+export const CountIndicator = /* @__PURE__ */forwardRef<HTMLDivElement, CountIndicatorProps>((props, ref) => {
     return (
         <div
             ref={ ref }

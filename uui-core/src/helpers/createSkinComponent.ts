@@ -10,7 +10,7 @@ export function createSkinComponent<SourceProps, SkinProps = {}>(
         return Component as any;
     }
 
-    const SkinComponent = React.forwardRef<any, any>((props: SkinProps, ref): React.ReactElement<any> | null => {
+    const SkinComponent = /* @__PURE__ */React.forwardRef<any, any>((props: SkinProps, ref): React.ReactElement<any> | null => {
         const allProps: any = { ...props };
 
         if (getProps) {

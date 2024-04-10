@@ -22,7 +22,7 @@ const uuiLabeledInput = {
     sideNote: 'uui-labeled-input-sidenote',
 } as const;
 
-export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>((props, ref) => {
+export const LabeledInput = /* @__PURE__ */React.forwardRef<HTMLDivElement, LabeledInputProps>((props, ref) => {
     const Tooltip = props.Tooltip;
     const isCanBeOptional = !props.isRequired && props.labelPosition !== 'left' && props.isOptional;
     const isOnlyCharCounter = !props.footnote && (props.charCounter && props.maxLength && !props.isInvalid);

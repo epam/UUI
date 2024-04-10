@@ -43,7 +43,7 @@ function applyTabButtonMods(mods: TabButtonProps) {
     ];
 }
 
-export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
+export const TabButton = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
     if (__DEV__ && props.captionCX) {
         devLogger.warn('TabButton/VerticalTabButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
     }

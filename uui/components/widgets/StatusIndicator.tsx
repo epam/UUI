@@ -30,7 +30,7 @@ export type StatusIndicatorCoreProps = IHasCX & {
 
 export type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;
 
-export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
+export const StatusIndicator = /* @__PURE__ */forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
     return (
         <div
             ref={ ref }

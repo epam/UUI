@@ -17,7 +17,7 @@ export type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | 
 export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
 & ICanRedirect & IHasRawProps<ClickableRawProps> & {};
 
-export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
+export const Clickable = /* @__PURE__ */React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
     const context = useUuiContext();
     const isAnchor = Boolean(props.href || props.link || props.type === 'anchor');
     const isButton = Boolean(!isAnchor && (props.onClick || props.type === 'button'));

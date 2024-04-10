@@ -33,7 +33,7 @@ enum uuiScrollbars {
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible'
 }
 
-export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
+export const ScrollBars = /* @__PURE__ */forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, cx: outerCx, ...props
 }, ref) => {
     const bars = useRef<ScrollbarsApi>();

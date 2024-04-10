@@ -34,7 +34,7 @@ export interface FileCardProps extends IClickable, IHasCX {
     width?: number;
 }
 
-export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, ref) => {
+export const FileCard = /* @__PURE__ */React.forwardRef<HTMLDivElement, FileCardProps>((props, ref) => {
     const [isLoadingShow, setIsLoadingShow] = React.useState<boolean>(true);
 
     const { file } = props;

@@ -39,7 +39,7 @@ interface BaseVirtualListProps
 
 export type VirtualListProps<List extends HTMLElement = any> = BaseVirtualListProps & VirtualListRenderRows<List>;
 
-export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
+export const VirtualList = /* @__PURE__ */React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
     const {
         listContainerRef, offsetY, handleScroll, estimatedHeight, scrollContainerRef,
     } = useVirtualList({
@@ -99,7 +99,7 @@ interface VirtualListViewProps extends IHasRawProps<HTMLAttributes<HTMLDivElemen
     isLoading: boolean;
 }
 
-const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((props, ref) => {
+const VirtualListView = /* @__PURE__ */React.forwardRef<HTMLDivElement, VirtualListViewProps>((props, ref) => {
     return (
         <>
             <div

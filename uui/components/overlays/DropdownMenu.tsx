@@ -75,7 +75,7 @@ export const DropdownMenuBody = /* @__PURE__ */withMods<DropdownMenuContainerPro
     },
 );
 
-export const DropdownMenuButton = forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
+export const DropdownMenuButton = /* @__PURE__ */forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
     const context = useContext(UuiContext);
 
     const {

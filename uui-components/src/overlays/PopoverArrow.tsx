@@ -8,7 +8,7 @@ interface IPopoverArrow {
     placement?: DropdownPlacement;
 }
 
-const PopoverArrow = React.forwardRef<HTMLDivElement, IPopoverArrow>(({ arrowProps, placement }, ref) => {
+const PopoverArrow = /* @__PURE__ */React.forwardRef<HTMLDivElement, IPopoverArrow>(({ arrowProps, placement }, ref) => {
     return <div ref={ ref } className="uui-popover-arrow" style={ arrowProps?.style } data-placement={ placement }></div>;
 });
 

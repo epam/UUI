@@ -22,7 +22,7 @@ export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasL
     name?: string;
 };
 
-export const RadioInput = React.forwardRef<HTMLLabelElement, RadioInputProps>((props, ref) => {
+export const RadioInput = /* @__PURE__ */React.forwardRef<HTMLLabelElement, RadioInputProps>((props, ref) => {
     const context = useUuiContext();
 
     const handleChange = () => {
