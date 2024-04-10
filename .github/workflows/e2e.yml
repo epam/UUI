@@ -15,6 +15,7 @@ jobs:
     e2e-tests:
         timeout-minutes: 60
         runs-on: ubuntu-latest
+        if: github.event.pull_request.draft == false
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
@@ -27,12 +28,12 @@ jobs:
             - name: 'Build'
               run: |
                   yarn
-                  yarn --cwd uui-e2e-tests ci-test-e2e-deps-install
+                  yarn --cwd uui-e2e-tests local-test-e2e-deps-install
                   yarn build
                   cd server && yarn
 
             - name: 'Run e2e tests'
-              run: yarn --cwd uui-e2e-tests ci-test-e2e
+              run: yarn --cwd uui-e2e-tests local-test-e2e
 
             - name: 'Upload e2e HTML report'
               if: always()

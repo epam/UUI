@@ -20,15 +20,17 @@ export class Slider extends SliderBase<number, any> {
     }
 
     handleKeyDownUpdate(type: 'left' | 'right') {
-        const {
-            value, step, min, max,
-        } = this.props;
+        const { value, step, min, max } = this.props;
+        const floatPrecision = this.getFloatPrecision(step);
+
         if (type === 'left') {
-            if (value - step < min) return;
-            else this.props.onValueChange(value - step);
+            const newValue = ((value * floatPrecision - step * floatPrecision) / floatPrecision);
+            if (newValue < min) return;
+            else this.props.onValueChange(newValue);
         } else if (type === 'right') {
-            if (value + step > max) return;
-            this.props.onValueChange(value + step);
+            const newValue = ((value * floatPrecision + step * floatPrecision) / floatPrecision);
+            if (newValue > max) return;
+            this.props.onValueChange(newValue);
         }
     }
 

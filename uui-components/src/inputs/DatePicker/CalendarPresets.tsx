@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue,
+    IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 
 export const uuiPresets = {
@@ -9,38 +9,70 @@ export const uuiPresets = {
     item: 'uui-presets-item',
 } as const;
 
+export type RangeDatePickerPresets = {
+    /**
+     * Preset config
+     */
+    [key: string]: {
+        /**
+         * Name of the preset to display in rangeDatePicker body
+         */
+        name: React.ReactNode;
+        /**
+         * A pure function that gets range value which will be applied by preset selection
+         */
+        getRange: () => RangeDatePickerPresetValue;
+    };
+};
+
+/**
+ * Represents RangeDatePickerPresetValue
+ */
+export interface RangeDatePickerPresetValue {
+    /**
+     * Range from value
+     */
+    from?: string;
+    /**
+     * Range to value
+     */
+    to?: string;
+    /**
+     * Preset order in presets list
+     */
+    order?: number;
+}
+
 export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     presets: RangeDatePickerPresets;
     onPresetSet: (nV: RangeDatePickerPresetValue) => void;
 }
 
-export class CalendarPresets extends React.Component<CalendarPresetsProps> {
-    getPresets() {
-        const presets = [];
+const getPresets = (presets: RangeDatePickerPresets) => {
+    return Object.keys(presets).map((key) => ({
+        ...presets[key].getRange(),
+        name: presets[key].name,
+        key,
+    })).sort((a, b) => a.order - b.order);
+};
 
-        for (const key in this.props.presets) {
-            if (this.props.presets[key]) {
-                presets.push({
-                    ...this.props.presets[key].getRange(),
-                    name: this.props.presets[key].name,
-                    key,
-                });
-            }
-        }
-
-        return presets.sort((a, b) => a.order - b.order);
-    }
-
-    render() {
-        return (
-            <div ref={ this.props.forwardedRef } className={ cx(uuiPresets.container, this.props.cx) } { ...this.props.rawProps }>
-                <div className={ uuiPresets.header }>Presets</div>
-                {this.getPresets().map((item) => (
-                    <div key={ item.key } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>
-                        {item.name}
-                    </div>
-                ))}
-            </div>
-        );
-    }
+export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
+    return (
+        <div
+            ref={ props.forwardedRef }
+            className={ cx(uuiPresets.container, props.cx) }
+            { ...props.rawProps }
+        >
+            <div className={ uuiPresets.header }>Presets</div>
+            {getPresets(props.presets).map((item) => (
+                <div
+                    key={ item.key }
+                    className={ uuiPresets.item }
+                    onClick={ () => props.onPresetSet(item) }
+                >
+                    {item.name}
+                </div>
+            ))}
+        </div>
+    );
 }

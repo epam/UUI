@@ -26,7 +26,7 @@ export type PersonFilters = {
     PersonEmploymentGroup: DataQueryFilter<PersonEmploymentGroup>;
 };
 
-export type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: GroupByLocation | GroupByEmployment | Array<GroupByLocation | GroupByEmployment> };
+export type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: Array<GroupByLocation | GroupByEmployment> };
 export interface Grouping {
     id: string;
     name: string;

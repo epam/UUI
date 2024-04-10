@@ -70,7 +70,9 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     });
 
     const { dataSourceState, visibleIds } = pickerListState;
-    const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(props, pickerListState);
+
+    const pickerProps = { ...props, showSelectedOnly: pickerListState.showSelected };
+    const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(pickerProps, pickerListState);
     const {
         view,
         getEntityName,
@@ -78,7 +80,21 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         getDataSourceState,
         isSingleSelect,
         getName,
+        getSelectedRows,
+        handleDataSourceValueChange,
+        getRowOptions,
     } = picker;
+
+    const onlySelectedView = props.dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
+        rowOptions: getRowOptions(),
+        getSearchFields: props.getSearchFields || ((item: TItem) => [getName(item)]),
+        ...(props.isFoldedByDefault ? { isFoldedByDefault: props.isFoldedByDefault } : {}),
+        ...(props.sortBy ? { sortBy: props.sortBy } : {}),
+        ...(props.cascadeSelection ? { cascadeSelection: props.cascadeSelection } : {}),
+        ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
+        backgroundReload: true,
+        showSelectedOnly: true,
+    }, [props.dataSource]);
 
     const getEntityNameForToggler = () => props.entityPluralName || getPluralName();
 
@@ -149,16 +165,14 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
                 }
             }
         };
-
-        addRows(view.getSelectedRows(), getMaxTotalItems());
-
+        addRows(getSelectedRows(maxTotalItems), maxTotalItems);
         if (visibleIds && result.length < maxTotalItems) {
             const rows = visibleIds.map((id, n) => view.getById(id, n));
             addRows(rows, maxTotalItems);
         }
+
         if (!props.defaultIds && result.length < maxDefaultItems) {
             const rows = view.getVisibleRows();
-
             addRows(rows, maxDefaultItems);
         }
         return sortRows(result);
@@ -172,6 +186,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         appendLastSelected,
         getSelectedIdsArray,
         view,
+        onlySelectedView,
         buildRowsList,
         getMaxDefaultItems,
         getModalTogglerCaption,

@@ -4,9 +4,10 @@ import { readEnvParams } from './scripts/cliUtils';
 import { readEnvFile } from './scripts/envFileUtils';
 import path from 'node:path';
 
-const { isDocker, isCi } = readEnvParams();
+const { isCi } = readEnvParams();
 const { UUI_APP_BASE_URL } = readEnvFile();
 
+const timeout = isCi ? 20000 : 35000;
 const maxFailures = isCi ? 10 : 20;
 const retries = isCi ? 1 : 1;
 const workers = isCi ? 1 : 1;
@@ -17,7 +18,7 @@ const server = {
     baseUrl: UUI_APP_BASE_URL,
 };
 //
-const parentDir = isDocker ? '' : '';
+const parentDir = '';
 export const screenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/__screenshots__');
 const testMatch = `${parentDir}tests/*.e2e.ts`;
 const outputDir = `${parentDir}tests/.report/results`;
@@ -26,7 +27,7 @@ const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectN
 export const stylePath = `${parentDir}src/fixtures/screenshot.css`;
 
 export default defineConfig({
-    timeout: 50000,
+    timeout,
     maxFailures,
     testMatch,
     fullyParallel: true,
@@ -46,15 +47,12 @@ export default defineConfig({
             name: 'chromium',
             use: {
                 ...devices['Desktop Chrome'],
-                ...SHARED_DEVICE_CFG.DEFAULT,
-                launchOptions: {},
             },
         },
         {
             name: 'webkit',
             use: {
                 ...devices['Desktop Safari'],
-                ...SHARED_DEVICE_CFG.DEFAULT,
             },
         },
     ],

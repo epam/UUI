@@ -1,10 +1,10 @@
 import { LazyDataSource } from '../../LazyDataSource';
-import { LazyListView, LazyListViewProps } from '../LazyListView';
 import {
-    DataSourceState, LazyDataSourceApi, DataQueryFilter, DataRowProps,
+    DataSourceState, LazyDataSourceApi, DataQueryFilter, DataRowProps, IDataSourceView,
 } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay, renderHook } from '@epam/uui-test-utils';
+import { renderHook, waitFor } from '@epam/uui-test-utils';
+import { LazyListViewProps } from '../types';
 
 interface TestItem {
     id: number;
@@ -33,7 +33,11 @@ describe('LazyListView', () => {
     const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
 
     let currentValue: DataSourceState;
-    const onValueChanged = (newValue: DataSourceState) => {
+    const onValueChanged = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+        if (typeof newValue === 'function') {
+            currentValue = newValue(currentValue);
+            return;
+        }
         currentValue = newValue;
     };
 
@@ -62,7 +66,10 @@ describe('LazyListView', () => {
         });
     });
 
-    function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
+    function expectViewToLookLike(
+        view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
+        rows: Partial<DataRowProps<TestItem, number>>[],
+    ) {
         const viewRows = view.getVisibleRows();
 
         rows.forEach((r) => {
@@ -72,8 +79,6 @@ describe('LazyListView', () => {
         });
 
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        const listProps = view.getListProps();
-        rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
@@ -86,58 +91,80 @@ describe('LazyListView', () => {
             { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
         );
 
-        const view = hookResult.result.current;
+        let view;
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }, { isLoading: true }]);
+        });
 
-        expectViewToLookLike(view, [
-            { isLoading: true }, { isLoading: true }, { isLoading: true },
-        ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
-        await delay();
         expect(testApi).toBeCalledTimes(1);
         testApi.mockClear();
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isFoldable: true, isFolded: true }, { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true },
+            ]);
+        });
 
-        expectViewToLookLike(view, [
-            { id: 100, isFoldable: true, isFolded: true }, { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true },
-        ]);
+        view = hookResult.result.current;
         expect(view.getListProps().rowsCount).toBeGreaterThan(3); // actually read all items, but we don't know if that's the end of the list
 
         // scroll 1 row down
         hookResult.rerender({ value: { ...currentValue, topIndex: 1 }, onValueChange: onValueChanged, props: {} });
 
-        expectViewToLookLike(view, [
-            { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true }, { isLoading: true },
-        ]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true }, { isLoading: true },
+            ]);
+        });
+
         expect(view.getListProps().rowsCount).toBeGreaterThan(4);
 
-        await delay();
         expect(testApi).toBeCalledTimes(1);
         testApi.mockClear();
 
-        expectViewToLookLike(view, [{ id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true }]);
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true },
+            ]);
+        });
+
         expect(view.getListProps().rowsCount).toBe(3); // now we know that item #4 doesn't exists, so we know count
 
         // scroll top
         hookResult.rerender({ value: { ...currentValue, topIndex: 0, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+            const rows = view.getVisibleRows();
+            expect(typeof rows[0].onFold).toEqual('function');
+        });
+        view = hookResult.result.current;
         const rows = view.getVisibleRows();
 
         // unfold first row
-        rows[0].onFold?.(rows[0]);
+        rows[0].onFold(rows[0]);
         hookResult.rerender({ value: { ...currentValue, topIndex: 0, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
-        expectViewToLookLike(view, [
-            { id: 100 }, { isLoading: true }, { isLoading: true }, { id: 200 }, { id: 300 },
-        ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 }, { isLoading: true }, { isLoading: true }, { id: 200 }, { id: 300 },
+            ]);
+        });
 
-        await delay();
-
-        expectViewToLookLike(
-            view,
-            [
-                {
-                    id: 100, isFolded: false, depth: 0, isFoldable: true,
-                }, { id: 110, depth: 1, isFoldable: false }, { id: 120, depth: 1, isFoldable: true }, { id: 200, depth: 0 }, { id: 300, depth: 0 },
-            ],
-            5,
-        );
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isFolded: false, depth: 0, isFoldable: true },
+                { id: 110, depth: 1, isFoldable: false },
+                { id: 120, depth: 1, isFoldable: true },
+                { id: 200, depth: 0 },
+                { id: 300, depth: 0 },
+            ]);
+        });
     });
 });

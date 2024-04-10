@@ -1,133 +1,156 @@
-import * as React from 'react';
+import React, {
+    HTMLAttributes, ReactElement, useState,
+} from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import localeData from 'dayjs/plugin/localeData.js';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import {
-    IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
+    arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
-import { Day } from './Day';
+import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
 import { i18n } from '../../i18n';
 import css from './Calendar.module.scss';
+
+/**
+ * Represents the properties of the Calendar component
+ */
+export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    value?: TSelection;
+    onValueChange: (day: Dayjs) => void;
+    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
+    filter?(day: Dayjs): boolean;
+    hideAnotherMonths?: boolean;
+    isHoliday?: (day: Dayjs) => boolean;
+    /**
+     * Represents displayed month
+     */
+    month: Dayjs;
+}
 
 dayjs.extend(localeData);
 dayjs.extend(updateLocale);
 
 const DAYS_COUNT_IN_WEEK = 7;
 
-export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
-    value: TSelection;
-    onValueChange: (day: Dayjs) => void;
-    displayedDate: Dayjs;
-    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
-    filter?(day: Dayjs): boolean;
-    hideAnotherMonths?: boolean;
-    getDayCX?: (day: Dayjs) => any;
-    isHoliday?: (day: Dayjs) => boolean;
+const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
+    return currentDate.subtract(1, 'month');
+};
+
+const getDays = (start: number, end: number, date: Dayjs): Dayjs[] => {
+    const daysMomentObjects = [];
+    for (let i = start; i <= end; i += 1) {
+        daysMomentObjects.push(date.date(i));
+    }
+    return daysMomentObjects;
+};
+
+const isHoliday = (day: Dayjs) => {
+    return day.day() === 0 || day.day() === 6;
+};
+
+function isSelected <T>(day: Dayjs, value: T): boolean {
+    if (dayjs.isDayjs(value)) {
+        return day.isSame(value);
+    } else if (Array.isArray(value)) {
+        return value.find((selectedDay) => day.isSame(selectedDay));
+    }
+    return false;
 }
 
-export class Calendar<TSelection> extends React.Component<CalendarProps<TSelection>, { weeksHeight: number }> {
-    constructor(props: CalendarProps<TSelection>) {
-        super(props);
+export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
+    useState(() => {
         dayjs.locale(i18n.datePicker.locale);
         dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
+    });
 
-        this.state = {
-            weeksHeight: this.getDaysMatrix(this.props.displayedDate?.startOf('day')).length * 36,
-        };
-    }
-
-    componentDidUpdate(prevProps: Readonly<CalendarProps<TSelection>>) {
-        if (!prevProps.displayedDate.startOf('day').isSame(this.props.displayedDate.startOf('day'))) {
-            this.setState({ weeksHeight: this.getDaysMatrix(this.props.displayedDate.startOf('day')).length * 36 });
-        }
-    }
-
-    getPrevMonthFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.subtract(1, 'month');
-    };
-
-    getNextMonthFromCurrent = (currentDate: Dayjs) => {
-        return currentDate.add(1, 'month');
-    };
-
-    getDaysToRender(days: Dayjs[]) {
-        const isSelected = (day: Dayjs) => {
-            if (!day) return;
-            if (dayjs.isDayjs(this.props.value)) {
-                return day.isSame(this.props.value);
-            } else if (Array.isArray(this.props.value)) {
-                return this.props.value.find((selectedDay) => day.isSame(selectedDay));
-            }
-        };
-
-        const isHoliday = (day: Dayjs) => {
-            if (!day) return;
-            return day.day() === 0 || day.day() === 6;
-        };
-
-        return days.map((day, index) => {
+    const getDaysToRender = (days: Dayjs[]) =>
+        days.map((day: Dayjs, index: number) => {
             return (
-                <div className={ uuiDaySelection.dayCell } tabIndex={ 0 } key={ `day-${day && day.valueOf()}-${index}` }>
-                    {this.props.renderDay ? (
-                        this.props.renderDay(day, this.props.onValueChange)
+                <div
+                    className={ uuiDaySelection.dayCell }
+                    tabIndex={ 0 }
+                    key={ `day-${props.month.valueOf()}-${day && day.valueOf()}-${index}` }
+                >
+                    {props.renderDay ? (
+                        props.renderDay({
+                            value: day,
+                            onValueChange: (v) => {
+                                props.onValueChange(v);
+                            },
+                            filter: props.filter,
+                            isHoliday: props.isHoliday ? props.isHoliday(day) : isHoliday(day),
+                            isSelected: isSelected(day, props.value),
+                        })
                     ) : (
                         <Day
                             value={ day }
-                            onValueChange={ this.props.onValueChange }
-                            isHoliday={ this.props.isHoliday ? this.props.isHoliday(day) : isHoliday(day) }
-                            isSelected={ isSelected(day) }
-                            getDayCX={ this.props.getDayCX }
-                            filter={ this.props.filter }
+                            onValueChange={ (v) =>{
+                                props.onValueChange(v);
+                            } }
+                            filter={ props.filter }
+                            isHoliday={ props.isHoliday ? props.isHoliday(day) : isHoliday(day) }
+                            isSelected={ isSelected(day, props.value) }
                         />
                     )}
                 </div>
             );
         });
-    }
 
-    getDays = (start: number, end: number, date: Dayjs): Dayjs[] => {
-        const daysMomentObjects = [];
-        for (let i = start; i <= end; i += 1) {
-            daysMomentObjects.push(date.date(i));
-        }
-        return daysMomentObjects;
-    };
-
-    getDaysMatrix(currentDate: Dayjs) {
-        let days: React.ReactElement<HTMLDivElement>[] = [];
-        const dayOfLastWeekInPrevMonth = this.getPrevMonthFromCurrent(currentDate).endOf('month').day();
-
-        days = days.concat(this.getDaysToRender(new Array(dayOfLastWeekInPrevMonth).fill(undefined)));
+    const getDaysMatrix = (currentDate: Dayjs) => {
+        const dayOfLastWeekInPrevMonth = getPrevMonthFromCurrent(currentDate).endOf('month').day();
 
         // get days of current month
-        days = days.concat(this.getDaysToRender(this.getDays(1, currentDate?.daysInMonth(), currentDate)));
+        const days = Array.from({ length: dayOfLastWeekInPrevMonth }, (_, index) => {
+            return (
+                <div
+                    className={ uuiDaySelection.dayCell }
+                    tabIndex={ 0 }
+                    key={ `day-${props.month.valueOf()}-${index}` }
+                />
+            );
+        }).concat(
+            getDaysToRender(getDays(1, currentDate?.daysInMonth(), currentDate)),
+        );
 
         return arrayToMatrix(days, DAYS_COUNT_IN_WEEK);
-    }
+    };
 
-    renderDaysTable() {
-        return this.getDaysMatrix(this.props.displayedDate?.startOf('day')).map((week, index) => {
-            return <div key={ index }>{week.map((day) => day)}</div>;
-        });
-    }
+    const daysMatrix = getDaysMatrix(props.month?.startOf('day'));
+    const weeksHeight = daysMatrix.length * 36;
 
-    render() {
-        return (
-            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiDaySelection.container, this.props.cx) } { ...this.props.rawProps }>
-                <div className={ uuiDaySelection.content }>
-                    <div className={ uuiDaySelection.weekdaysContainer }>
-                        {dayjs.weekdaysShort(true).map((weekday, index) => (
-                            <div className={ uuiDaySelection.weekday } key={ index }>
-                                {weekday}
-                            </div>
-                        ))}
-                    </div>
-                    <div className={ uuiDaySelection.days } style={ { height: `${this.state.weeksHeight}px` } }>
-                        {this.renderDaysTable()}
-                    </div>
+    const renderDaysTable = () => daysMatrix.map((week, index) => {
+        const key = `${props.month.valueOf()}-${index}`;
+        return <div key={ key }>{week.map((day) => day)}</div>;
+    });
+
+    const renderWeekdays = () =>
+        dayjs.weekdaysShort(true).map((weekday, index) => (
+            <div
+                key={ `${weekday}-${index}` }
+                className={ uuiDaySelection.weekday }
+            >
+                {weekday}
+            </div>
+        ));
+
+    return (
+        <div
+            ref={ props.forwardedRef }
+            className={ cx(css.container, uuiDaySelection.container, props.cx) }
+            { ...props.rawProps }
+        >
+            <div className={ uuiDaySelection.content }>
+                <div className={ uuiDaySelection.weekdaysContainer }>
+                    {renderWeekdays()}
+                </div>
+                <div
+                    className={ uuiDaySelection.days }
+                    style={ { height: weeksHeight } }
+                >
+                    {renderDaysTable()}
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }

@@ -3,7 +3,7 @@ import { IHasCX, IHasRawProps } from '@epam/uui-core';
 export type AdaptiveItemProps<T = unknown> = T & {
     /**
      * Render callback of the item. It renders items inside the panel and measures their width.
-     * Pay attention that we can't measure margins. If you need to have margins, please make a wrapper and add margins inside
+     * Pay attention that if you want to set some gaps between items, use AdaptivePanel property itemsGap.
      * */
     render: (item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[], displayedItems?: AdaptiveItemProps<T>[]) => any;
     /**
@@ -21,4 +21,6 @@ export type AdaptiveItemProps<T = unknown> = T & {
 export interface AdaptivePanelProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Array of items to be rendered in AdaptivePanel */
     items: AdaptiveItemProps[];
+    /** Defines size of the gap (gutter) between an element's 'items' in the AdaptivePanel */
+    itemsGap?: number | '6' | '12' | '18' | '24' | '36';
 }
