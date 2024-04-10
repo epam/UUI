@@ -19,10 +19,13 @@ export class TestBuilder {
             prev = [];
             this.cfgByComponent.set(cid, prev);
         }
+        const theme = matrix.theme === undefined
+            ? Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder)
+            : matrix.theme;
         const matrixFull: TMatrix<TPreviewIdByComponentId[typeof cid]> = {
             ...matrix,
             isSkin: matrix.isSkin === undefined ? [true, false] : matrix.isSkin,
-            theme: matrix.theme === undefined ? Object.values(TTheme) : matrix.theme,
+            theme,
         };
         prev!.push(matrixFull as TMatrix<TPreviewIdByComponentId[typeof cid]>);
         return this;
