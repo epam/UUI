@@ -1,8 +1,7 @@
 import * as React from 'react';
-import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import {
-    DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween,
+    DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween, orderBy,
 } from '@epam/uui-core';
 import {
     FlexRow, IconContainer, DropMarker, Text, RichTextView, FlexSpacer, Panel, Badge, FlexCell,
@@ -58,8 +57,8 @@ export class DndSection extends React.Component<DndSectionProps> {
 
     render() {
         const item = this.props.value;
-        const sortedCriteria = sortBy(item.criteria, ['order']);
-        const sortedMaterials = sortBy(item.materials, ['order']);
+        const sortedCriteria = orderBy(item.criteria, ({ order }) => order);
+        const sortedMaterials = orderBy(item.materials, ({ order }) => order);
 
         return (
             <DndActor
