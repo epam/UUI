@@ -8,7 +8,7 @@
   "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
+    "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts",
     "perf": "npx ts-node -T ./src/__benchmarks__/index.ts",
     "perf-prof": "node -r ts-node/register/transpile-only --prof ./src/__benchmarks__/index.ts",
     "prepublish": "yarn build"
