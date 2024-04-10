@@ -26,7 +26,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         view,
         selection,
         dataSourceStateLens,
-        showSelectedLens,
         dataSourceState,
         getDataSourceState,
         getName,
@@ -140,7 +139,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                         <Switch
                             cx={ css.switch }
                             size="18"
-                            { ...showSelectedLens.toProps() }
+                            { ...getFooterProps().showSelected }
                             isDisabled={ view.getSelectedRowsCount() < 1 }
                             label="Show only selected"
                         />

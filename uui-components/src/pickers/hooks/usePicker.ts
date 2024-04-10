@@ -155,7 +155,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
     const toggleShowOnlySelected = (val: boolean) => {
         setShowSelected(val);
-        setDataSourceState({ ...dataSourceState, search: '' });
+        handleDataSourceValueChange({ ...dataSourceState, search: '' });
     };
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> => ({
