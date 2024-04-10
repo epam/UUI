@@ -2,7 +2,7 @@ import {
     DbPatch, DbTablesSet, DbTableEntityByTable, DbView, DbRelationType, ViewCacheItem,
 } from './types';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 
 type ViewCache = Map<DbView<any, any, any, any>, Map<string, ViewCacheItem>>;
 

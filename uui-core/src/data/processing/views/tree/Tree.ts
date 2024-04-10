@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../types';
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD } from './constants';

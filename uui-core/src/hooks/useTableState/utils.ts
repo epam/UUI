@@ -1,6 +1,6 @@
+import isEqual from 'react-fast-compare';
 import { DataTableState, FiltersConfig, TableFiltersConfig } from '../../types/tables';
 import { clearEmptyValueFromRecord, getOrderBetween } from '../../helpers';
-import isEqual from 'lodash.isequal';
 
 export const stateToQueryObject = (state: DataTableState, currentQuery: any) => {
     const queryObject = {
