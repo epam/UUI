@@ -55,6 +55,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
             toggleAccordion();
         }
     };
