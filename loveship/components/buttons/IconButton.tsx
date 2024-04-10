@@ -16,7 +16,7 @@ type IconButtonMods = {
 /** Represents the properties of a IconButton component. */
 export type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;
 
-export const IconButton = createSkinComponent<uui.IconButtonProps, IconButtonProps>(
+export const IconButton = /* @__PURE__ */createSkinComponent<uui.IconButtonProps, IconButtonProps>(
     uui.IconButton,
     (props) => {
         if (__DEV__) {

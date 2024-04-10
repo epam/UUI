@@ -16,7 +16,7 @@ function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [`uui-color-${mods.color || 'white'}`];
 }
 
-export const DropdownContainer = createSkinComponent<uui.DropdownContainerProps, DropdownContainerProps>(
+export const DropdownContainer = /* @__PURE__ */createSkinComponent<uui.DropdownContainerProps, DropdownContainerProps>(
     uui.DropdownContainer,
     () => null,
     applyDropdownContainerMods,

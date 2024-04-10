@@ -16,7 +16,7 @@ type StatusIndicatorMods = {
 /** Represents the props for the StatusIndicator component. */
 export type StatusIndicatorProps = uui.StatusIndicatorCoreProps & StatusIndicatorMods;
 
-export const StatusIndicator = createSkinComponent<uui.StatusIndicatorProps, StatusIndicatorProps>(
+export const StatusIndicator = /* @__PURE__ */createSkinComponent<uui.StatusIndicatorProps, StatusIndicatorProps>(
     uui.StatusIndicator,
     (props) => ({ color: props.color || 'gray' }),
 );
