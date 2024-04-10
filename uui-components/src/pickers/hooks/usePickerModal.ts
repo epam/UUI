@@ -20,19 +20,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         selectionMode: props.selectionMode,
     });
 
-    const { dataSourceState, setDataSourceState, showSelected, setShowSelected, selection, setSelection } = pickerListState;
-    const dataSourceStateLens = useMemo(
-        () => Lens
-            .onEditable<DataSourceState>({ value: dataSourceState, onValueChange: setDataSourceState })
-            .onChange((_, newVal) => ({ ...newVal, ...initialStateValues })),
-        [dataSourceState, setDataSourceState],
-    );
-
-    const showSelectedLens = useMemo(
-        () => Lens
-            .onEditable<boolean>({ value: showSelected, onValueChange: setShowSelected }),
-        [showSelected, setShowSelected],
-    );
+    const { dataSourceState, selection, setSelection } = pickerListState;
 
     const pickerProps: PickerProps<TItem, TId> = {
         ...props,
@@ -57,10 +45,17 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         handleDataSourceValueChange,
     } = picker;
 
+    const dataSourceStateLens = useMemo(
+        () => Lens
+            .onEditable<DataSourceState>({ value: dataSourceState, onValueChange: handleDataSourceValueChange })
+            .onChange((_, newVal) => ({ ...newVal, ...initialStateValues })),
+        [dataSourceState, handleDataSourceValueChange],
+    );
+
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (prevValue !== props.initialValue) {
-            setDataSourceState(
+            handleDataSourceValueChange(
                 applyValueToDataSourceState(
                     props,
                     dataSourceState,
@@ -88,7 +83,6 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         selection,
         dataSourceState,
         dataSourceStateLens,
-        showSelectedLens,
         getName,
         getEntityName,
         getListProps,
