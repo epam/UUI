@@ -5,7 +5,8 @@
     "epam-uui-build": "./bin/cli.js"
   },
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
+    "build": "yarn build-module",
+    "build-module": "ts-node -T ts/scripts/buildUuiModule.ts",
     "generate-components-api": "ts-node ts/scripts/docsGen.ts",
     "generate-theme-tokens": "ts-node ts/scripts/themeTokensGen.ts",
     "generate-theme-mixins": "ts-node ts/scripts/themeMixinsGen.ts",
