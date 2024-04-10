@@ -7,15 +7,15 @@
     border-radius: math.div($size, 2);
 
     @if ($size == 18px) {
-        @include partial-calc(6px, 3px, 4px, $borderWidth);
+        @include partial-calc(3px, 3px, 6px, $borderWidth);
     } @else if ($size == 24px) {
-        @include partial-calc(6px, 6px, 8px, $borderWidth);
+        @include partial-calc(3px, 6px, 8px, $borderWidth);
     } @else if ($size == 30px) {
         @include partial-calc(6px, 6px, 8px, $borderWidth);
     } @else if ($size == 36px) {
         @include partial-calc(9px, 6px, 8px, $borderWidth);
     } @else if ($size == 42px) {
-        @include partial-calc(12px, 6px, 12px, $borderWidth);
+        @include partial-calc(12px, 6px, 10px, $borderWidth);
     } @else if ($size == 48px) {
         @include partial-calc(12px, 6px, 12px, $borderWidth);
     }
@@ -109,8 +109,8 @@
 
         &:global(.uui-indicator) {
             &::before {
-                top: 6px;
-                left: 8px;
+                top: 5px;
+                left: 5px;
             }
         }
 
@@ -128,7 +128,7 @@
         &:global(.uui-indicator) {
             &::before {
                 top: 7px;
-                left: 11px;
+                left: 9px;
             }
         }
 
@@ -188,7 +188,7 @@
 
         &:global(.uui-indicator) {
             &::before {
-                top: 14px;
+                top: 15px;
                 left: 17px;
             }
         }
