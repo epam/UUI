@@ -17,7 +17,7 @@ function applyLabeledInputMods(mods: LabeledInputMods) {
     return [css.root, css['size-' + (mods.size || DEFAULT_SIZE)]];
 }
 
-export const LabeledInput = withMods<uuiComponents.LabeledInputProps, LabeledInputMods>(uuiComponents.LabeledInput, applyLabeledInputMods, (props) => ({
+export const LabeledInput = /* @__PURE__ */withMods<uuiComponents.LabeledInputProps, LabeledInputMods>(uuiComponents.LabeledInput, applyLabeledInputMods, (props) => ({
     Tooltip: props.Tooltip || Tooltip,
     infoIcon: props.infoIcon || (['24', '30'].includes(props.size) ? FillInfoIcon : InfoIcon),
 }));

@@ -30,7 +30,7 @@ function applyNumericInputMods(mods: NumericInputMods) {
 /** Represents the properties of a NumericInput component. */
 export type NumericInputProps = uuiNumericInputProps & NumericInputMods;
 
-export const NumericInput = withMods<uuiNumericInputProps, NumericInputMods>(
+export const NumericInput = /* @__PURE__ */withMods<uuiNumericInputProps, NumericInputMods>(
     uuiNumericInput,
     applyNumericInputMods,
     (props) => {

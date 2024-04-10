@@ -29,6 +29,7 @@ module.exports = {
         es6: true,
         node: true,
     },
+    plugins: ['tree-shaking'],
     ignorePatterns: getIgnoredPatterns({ isCI: isCI(), isLintStaged: isLintStaged(), isLintScript: isLintScript() }),
     // We need to remove such directives only if full set of rules is checked.
     reportUnusedDisableDirectives: !shouldTurnOffRulesToBeFixed,
@@ -43,6 +44,18 @@ module.exports = {
             rules: {
                 ...uuiJsRules(),
                 ...uuiTsRules(),
+                'tree-shaking/no-side-effects-in-initialization': [
+                    2,
+                    {
+                        noSideEffectsWhenCalled: [
+                            { function: 'Object.freeze' },
+                            {
+                                module: 'react',
+                                functions: ['createContext', 'createRef'],
+                            },
+                        ],
+                    },
+                ],
                 ...uuiReactRules(),
                 ...turnOffEslintRulesToBeFixed(),
                 /**
@@ -73,6 +86,7 @@ module.exports = {
                         { group: ['*.test'], message: 'It\'s not allowed to import "*.test.*" files to any other files.' },
                     ],
                 }],
+                'tree-shaking/no-side-effects-in-initialization': 'off',
                 /**
                  * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
                  * https://github.com/testing-library/user-event/issues/650
@@ -103,6 +117,7 @@ module.exports = {
                 'import/extensions': [
                     unifiedSeverity, 'never', { ignorePackages: true },
                 ],
+                'tree-shaking/no-side-effects-in-initialization': 'off',
                 ...turnOffEslintRulesToBeFixed(),
             },
         },

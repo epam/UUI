@@ -8,7 +8,7 @@ import { ReactComponent as ConfigIcon } from '@epam/assets/icons/action-settings
 import './variables.scss';
 import css from './DataTableHeaderRow.module.scss';
 
-export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(
+export const DataTableHeaderRow = /* @__PURE__ */withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(
     uuiDataTableHeaderRow,
     () => [css.root, 'uui-dt-vars'],
     (mods) => ({

@@ -20,7 +20,7 @@ function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
 /** Represents the properties of a Rating component. */
 export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
 
-export const Rating = withMods<uuiComponents.RatingProps, RatingMods>(
+export const Rating = /* @__PURE__ */withMods<uuiComponents.RatingProps, RatingMods>(
     uuiComponents.Rating,
     applyRatingMods,
     (props) => ({

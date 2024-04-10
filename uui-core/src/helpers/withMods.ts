@@ -7,6 +7,14 @@ export function withMods<TProps, TMods = {}>(
     getCx?: (props: Readonly<TProps & TMods>) => CX,
     getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
 ) {
+    return /* @__PURE__ */_withMods<TProps, TMods>(Component, getCx, getProps);
+}
+
+function _withMods<TProps, TMods = {}>(
+    Component: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>,
+    getCx?: (props: Readonly<TProps & TMods>) => CX,
+    getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
+) {
     const wrappedComponent = forwardRef<any, TProps & TMods>((props, ref) => {
         // Most components are wrapped in withMods component.
         // Please keep this method simple, and performant

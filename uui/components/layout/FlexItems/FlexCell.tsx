@@ -8,4 +8,4 @@ type FlexCellMods = {};
 /** Represents the properties of the FlexCell component. */
 export type FlexCellProps = uuiCore.FlexCellProps & FlexCellMods;
 
-export const FlexCell = withMods<uuiCore.FlexCellProps, FlexCellMods>(uuiFlexCell, () => [css.flexCell]);
+export const FlexCell = /* @__PURE__ */withMods<uuiCore.FlexCellProps, FlexCellMods>(uuiFlexCell, () => [css.flexCell]);

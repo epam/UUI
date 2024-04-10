@@ -14,7 +14,7 @@ interface BurgerButtonMods extends IHasIcon, IDropdownToggler {
     indentLevel?: number;
 }
 
-export const BurgerButton = withMods<ButtonProps, BurgerButtonMods>(
+export const BurgerButton = /* @__PURE__ */withMods<ButtonProps, BurgerButtonMods>(
     Button,
     (props) => [
         css.root,
