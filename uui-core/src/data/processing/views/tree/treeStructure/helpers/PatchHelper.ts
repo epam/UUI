@@ -177,7 +177,7 @@ export class PatchHelper {
                     newNodeInfoById.set(parentId, { ...prevNodeInfo, count: ids.length });
                 } else if (parentsWithNewChildren.has(parentId) && (prevNodeInfo.count === undefined)) {
                     const { assumedCount, ...prev } = prevNodeInfo;
-                    newNodeInfoById.set(parentId, { ...prev, count: ids.length, ...(assumedCount === undefined ? {} : { assumedCount }) });
+                    newNodeInfoById.set(parentId, { ...prev, ...(assumedCount === undefined ? { count: ids.length } : { assumedCount }) });
                 }
             } else {
                 newNodeInfoById.set(parentId, { count: ids.length });
