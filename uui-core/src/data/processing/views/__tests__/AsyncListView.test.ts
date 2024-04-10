@@ -1,7 +1,7 @@
 import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import { AsyncDataSource, AsyncDataSourceProps } from '../../AsyncDataSource';
 import { CascadeSelection, DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView, SortDirection } from '../../../../types';
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 import { AsyncListViewProps } from '../types';
 import { LocationItem, getAsyncLocationsDS } from '../../__tests__/mocks';
 

@@ -18,7 +18,6 @@
         "@epam/uui-timeline": "<UUI_VERSION>",
         "@epam/uui-editor": "<UUI_VERSION>",
         "@epam/uui-docs": "<UUI_VERSION>",
-        "lodash.sortby": "4.7.0",
         "react-imask": "6.0.7",
         "react-measure": "2.5.2",
         "dayjs": "^1.10.7",

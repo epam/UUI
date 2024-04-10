@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 import { CascadeSelectionTypes } from '../../../../../../types';
 import { Tree } from '../../Tree';
 import { NOT_FOUND_RECORD, ROOT_ID } from '../../constants';

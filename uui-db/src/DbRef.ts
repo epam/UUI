@@ -1,17 +1,18 @@
 import { Db } from './Db';
 import {
-    DbPatch, DbTablesSet, ServerError, DbSaveResponse, DbView, ViewCacheItem, DbSubscription, DbPkFieldType,
+    DbPatch, DbTablesSet, DbSaveResponse, DbView, DbSubscription,
 } from './types';
 import {
     makeCumulativePatch, unionPatches, mergeEntityPatches, flattenResponse,
 } from './patchHelpers';
 import { TempIdMap, IClientIdsMap } from './tempIds';
-import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
+import { objectKeys } from './utils';
 import isEmpty from 'lodash.isempty';
 import { Loader, LoaderOptions } from './Loader';
-import { DataQuery, LazyDataSourceApiResponse, batch } from '@epam/uui-core';
+import { DataQuery } from '@epam/uui-core';
 import { SimpleLoadingTracker } from './SimpleLoadingTracker';
 import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTracker';
+import { batch } from './batch';
 
 export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>> {
     private base: TDb;

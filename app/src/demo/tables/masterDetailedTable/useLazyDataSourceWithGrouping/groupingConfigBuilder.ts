@@ -1,3 +1,4 @@
+import isEqual from 'react-fast-compare';
 import { DataRowOptions, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, LazyDataSourceApiResponse, LazyDataSourceProps } from '@epam/uui-core';
 import {
     BaseGroups,
@@ -6,7 +7,6 @@ import {
     GroupingConfig, GroupingsConfig, TGroupsWithMeta, ToUnion, BaseFilter, FilterFromParentId, BaseGroupBy, GroupByForType,
 } from './types';
 import { ID, PATH } from './constants';
-import isEqual from 'lodash.isequal';
 
 const DEFAULT_CONFIG = Symbol('DEFAULT_CONFIG');
 

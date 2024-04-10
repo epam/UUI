@@ -1,7 +1,7 @@
 import { TreeStructure } from '../TreeStructure';
 import { getSearchFilter } from '../../../../../querying';
-import sortBy from 'lodash.sortby';
 import { ApplySearchToTreeSnapshotOptions, SearchOptions } from './types';
+import { orderBy } from '../../../../../../helpers';
 
 export class SearchHelper {
     public static search<TItem, TId, TFilter>(options: SearchOptions<TItem, TId, TFilter>): TreeStructure<TItem, TId> {
@@ -69,12 +69,12 @@ export class SearchHelper {
         }
         const itemsToSort = [...items];
 
-        return sortBy(itemsToSort, (item) => {
+        return orderBy(itemsToSort, (item) => {
             const id = getId(item);
             if (!ranks.has(id)) {
                 return 0;
             }
-            return ranks.get(id) * -1;
-        });
+            return ranks.get(id);
+        }, 'desc');
     }
 }

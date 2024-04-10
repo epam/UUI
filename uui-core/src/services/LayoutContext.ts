@@ -1,5 +1,4 @@
 import { BaseContext } from './BaseContext';
-import maxBy from 'lodash.maxby';
 import { isClientSide } from '../helpers/ssr';
 
 export interface LayoutLayer {
@@ -26,6 +25,21 @@ function getPortalRootById(id: string) {
         root = shadow?.shadowRoot?.getElementById(id);
     }
     return root;
+}
+
+function maxBy<T>(arr: T[], getMax: (item: T) => number) {
+    let maxItem: T;
+    arr.forEach((value) => {
+        if (maxItem === undefined) {
+            maxItem = value;
+        }
+
+        if (getMax(value) > getMax(maxItem)) {
+            maxItem = value;
+        }
+    });
+
+    return maxItem;
 }
 
 export class LayoutContext extends BaseContext {

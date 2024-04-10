@@ -2,6 +2,28 @@
 
 **What's New**
 
+* [uui-core]: helpers cleanup
+  * Deprecated:
+    * `LazyLoadedMap` and related:
+      * `LazyLoadedMapLoadCallback`
+      * `UNKNOWN`
+      * `LOADING`
+      * `LOADED`
+      * `PENDING`
+      * `FAILED`
+      * `LoadingStatus`
+    * `browser` helper:
+      * `Browser`
+      * `getBrowser`
+    * `Debouncer`
+    * `parseIconViewbox`
+    * `parseStringToCSSProperties`
+    * `getScreenSize`
+    * `urlParser`
+    * `batch` and related:
+      * `batch`
+      * `BatchPromiseOptions`
+
 * [useTree]: useTree hook is added.
   * [Features]:
     * [BaseListViewProps.showSelectedOnly]: The flow of rendering selected rows was changed. Previously, there was a separate flow of rendering selected rows, with using the `IDataSourceView.getSelectedRows` method. Currently, a new property, `showSelectedOnly`, was added. If this feature is turned on, selected rows are returned from `IDataSourceView.getVisibleRows`.
