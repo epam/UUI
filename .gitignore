@@ -28,9 +28,9 @@ coverage
 .vscode/settings.json
 
 # next.js next-app
-next-app/.next/
+.next/
+.rollup.cache
 next-app/out/
-next-app/node_modules
 next-app/build
 next-app/.vercel
 next-app/npm-debug.log*
