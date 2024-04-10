@@ -1,5 +1,5 @@
 const { Chance } = require('chance'); // https://chancejs.com/
-const { getOrderBetween } = require('./getOrderBetween');
+const { indexToOrder } = require('./indexToOrder');
 const { getData } = require('./getData');
 
 const cache = {};
@@ -144,9 +144,8 @@ const getPersons = cached('persons', async () => {
 const getProjectTasks = cached('projectTasks', async () => {
     const projectTasks = await getData('projectTasks');
     projectTasks.forEach((t, index) => {
-        const prevTask = projectTasks[index - 1];
         t.parentId = t.parentId === undefined || t.parentId === null ? null : t.parentId;
-        t.order = getOrderBetween(prevTask?.order, null);
+        t.order = indexToOrder(index);
     });
     return { projectTasks };
 });
