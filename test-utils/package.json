@@ -7,7 +7,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
+    "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts",
     "prepublish": "yarn build"
   },
   "dependencies": {

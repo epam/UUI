@@ -73,9 +73,16 @@ function formatGroupedVars(grouped: Record<string, TVarGroup>, indent: number): 
 
 function formatBlockOfVariables(params: { arr: TVar[], indent: number, title: string | undefined }): string {
     const { arr, title, indent } = params;
-    const group = arr.map(({ name, value }) => {
-        return `${getIndent(indent)}${name}: ${value};`;
-    }).join('\n');
+    const _alreadyAdded = new Set<string>();
+    const group = arr.reduce<string[]>((acc, { name, value }) => {
+        const toAdd = `${getIndent(indent)}${name}: ${value};`;
+        if (!_alreadyAdded.has(toAdd)) {
+            _alreadyAdded.add(toAdd);
+            acc.push(toAdd);
+        }
+        return acc;
+    }, []).join('\n');
+
     return wrapBlockInComments({ str: group, groupName: title, indent, compact: true });
 }
 
