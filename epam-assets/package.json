@@ -5,7 +5,7 @@
   "author": "EPAM",
   "license": "MIT",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule && yarn buildTheme",
+    "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts && yarn buildTheme",
     "buildTheme": "yarn --cwd ../uui-build compile-theme-scss --dirs=./epam-assets/theme:./epam-assets/build/css/theme",
     "prepublish": "yarn build"
   },
