@@ -1,7 +1,6 @@
 import * as React from 'react';
-import range from 'lodash.range';
 import {
-    IAnalyticableOnChange, IControlled, IDisableable, IHasRawProps, UuiContext, UuiContexts,
+    IAnalyticableOnChange, IControlled, IDisableable, IHasRawProps, UuiContext, UuiContexts, range,
 } from '@epam/uui-core';
 
 export interface PaginatorRenderParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {

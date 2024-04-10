@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 import { DataSourceState } from '../../../../../../types';
 
 export const isSelectedOrCheckedChanged = (dataSourceState: DataSourceState, prevDataSourceState: DataSourceState) => {

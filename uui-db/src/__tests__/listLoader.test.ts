@@ -3,8 +3,7 @@ import {
 } from './TaskDb';
 import { DbRef } from '../DbRef';
 import { DbSaveResponse, DbPatch } from '../types';
-import { DataQuery, runDataQuery } from '@epam/uui-core';
-import range from 'lodash.range';
+import { DataQuery, runDataQuery, range } from '@epam/uui-core';
 
 const delay = (t: number) =>
     new Promise((resolve) => {

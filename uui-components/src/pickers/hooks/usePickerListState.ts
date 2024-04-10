@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import isEqual from 'react-fast-compare';
 import { usePickerState } from './usePickerState';
 import { PickerState, UsePickerStateProps } from './types';
-import isEqual from 'lodash.isequal';
 
 interface PickerListState<TId> extends PickerState {
     visibleIds: TId[];

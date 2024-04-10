@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import sortBy from 'lodash.sortby';
 import { i18n } from '../../../i18n';
 import {
-    DataTableState, IHasRawProps, IPresetsApi, ITablePreset, cx,
+    DataTableState, IHasRawProps, IPresetsApi, ITablePreset, cx, orderBy,
 } from '@epam/uui-core';
 import { AdaptiveItemProps, AdaptivePanel, ScrollBars } from '@epam/uui-components';
 import css from './PresetsPanel.module.scss';
@@ -92,14 +91,17 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
-            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({
-                id: preset.id.toString(),
-                render: () => renderPreset(preset),
-                priority: getPresetPriority(preset, index),
-                preset: preset,
-            })), {
+            ...orderBy(props.presets, ({ order }) => order)
+                .map((preset, index) => ({
+                    id: preset.id.toString(),
+                    render: () => renderPreset(preset),
+                    priority: getPresetPriority(preset, index),
+                    preset: preset,
+                })),
+            {
                 id: 'collapsedContainer', render: renderMoreButtonDropdown, priority: 100501, collapsedContainer: true,
-            }, { id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
+            },
+            { id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
         ];
     };
 
