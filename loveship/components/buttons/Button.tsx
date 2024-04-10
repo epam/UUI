@@ -48,7 +48,7 @@ function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
+export const Button = /* @__PURE__ */createSkinComponent<uui.ButtonProps, ButtonProps>(
     uui.Button as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {

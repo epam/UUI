@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext, useState, forwardRef } from 'react';
 import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
     IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps,
@@ -75,7 +75,7 @@ export const DropdownMenuBody = /* @__PURE__ */withMods<DropdownMenuContainerPro
     },
 );
 
-export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
+export const DropdownMenuButton = forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
     const context = useContext(UuiContext);
 
     const {

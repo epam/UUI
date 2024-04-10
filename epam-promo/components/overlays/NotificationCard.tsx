@@ -12,7 +12,7 @@ interface NotificationCardMods {
 /** Represents the properties of a NotificationCard component. */
 export interface NotificationCardProps extends uui.NotificationCardCoreProps, NotificationCardMods {}
 
-export const NotificationCard = createSkinComponent<uui.NotificationCardProps, NotificationCardProps>(
+export const NotificationCard = /* @__PURE__ */createSkinComponent<uui.NotificationCardProps, NotificationCardProps>(
     uui.NotificationCard,
     (props) => {
         if (__DEV__) {

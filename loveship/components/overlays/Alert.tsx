@@ -13,7 +13,7 @@ interface AlertMods {
 /** Represents the properties of the Alert component. */
 export interface AlertProps extends uui.AlertCoreProps, AlertMods {}
 
-export const Alert = createSkinComponent<uui.AlertProps, AlertProps>(
+export const Alert = /* @__PURE__ */createSkinComponent<uui.AlertProps, AlertProps>(
     uui.Alert,
     (props) => ({
         ...props,

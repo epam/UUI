@@ -25,7 +25,7 @@ export function applyButtonMods(mods: PromoButtonProps) {
     ];
 }
 
-export const PromoButton = createSkinComponent<ButtonProps, PromoButtonProps>(
+export const PromoButton = /* @__PURE__ */createSkinComponent<ButtonProps, PromoButtonProps>(
     Button,
     undefined,
     applyButtonMods,

@@ -21,6 +21,7 @@ const { turnOffEslintRulesToBeFixed, shouldTurnOffRulesToBeFixed } = require('./
 const { isCI, isLintStaged, isLintScript } = require('../utils/envUtils');
 const { getIgnoredPatterns } = require('./../../.eslintignore');
 const { unifiedSeverity } = require('./utils/rulesSeverityUtils');
+const React = require('react');
 
 process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
@@ -49,9 +50,13 @@ module.exports = {
                     {
                         noSideEffectsWhenCalled: [
                             { function: 'Object.freeze' },
+                            { function: 'React.forwardRef' },
+                            { function: 'React.createRef' },
+                            { function: 'React.memo' },
+                            { function: 'React.createContext' },
                             {
                                 module: 'react',
-                                functions: ['createContext', 'createRef'],
+                                functions: ['createContext', 'createRef', 'forwardRef', 'memo'],
                             },
                         ],
                     },

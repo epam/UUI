@@ -13,7 +13,7 @@ interface TooltipMods {
 /** Represents the properties of the Tooltip component. */
 export interface TooltipProps extends uui.TooltipCoreProps, TooltipMods {}
 
-export const Tooltip = createSkinComponent<uui.TooltipProps, TooltipProps>(
+export const Tooltip = /* @__PURE__ */createSkinComponent<uui.TooltipProps, TooltipProps>(
     uui.Tooltip,
     (props) => {
         if (__DEV__) {
