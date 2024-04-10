@@ -43,9 +43,9 @@ export default function GetRowOptionsExample() {
                     value={ productsIDs }
                     onValueChange={ setProductsIDs }
                     getRowOptions={ (item) => ({
-                        isDisabled: item.MakeFlag === true,
+                        isDisabled: item.MakeFlag,
                         checkbox: {
-                            isDisabled: productsIDs.length > 3 && !productsIDs.includes(item.ProductID),
+                            isDisabled: item.MakeFlag,
                             isVisible: true,
                         },
                     }) }
