@@ -43,7 +43,7 @@ export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React
 /** Represents the properties of the Alert component. */
 export interface AlertProps extends AlertCoreProps, AlertMods {}
 
-export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
+export const Alert = /* @__PURE__ */React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
     <div
         role="alert"
         ref={ ref }
@@ -80,10 +80,10 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
     </div>
 ));
 
-export const WarningAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ WarningIcon } color="warning" ref={ ref } { ...props } />);
+export const WarningAlert = /* @__PURE__ */React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ WarningIcon } color="warning" ref={ ref } { ...props } />);
 
-export const SuccessAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ SuccessIcon } color="success" ref={ ref } { ...props } />);
+export const SuccessAlert = /* @__PURE__ */React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ SuccessIcon } color="success" ref={ ref } { ...props } />);
 
-export const HintAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ HintIcon } color="info" ref={ ref } { ...props } />);
+export const HintAlert = /* @__PURE__ */React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ HintIcon } color="info" ref={ ref } { ...props } />);
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="error" ref={ ref } { ...props } />);
+export const ErrorAlert = /* @__PURE__ */React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="error" ref={ ref } { ...props } />);

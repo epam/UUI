@@ -15,7 +15,7 @@ function _withMods<TProps, TMods = {}>(
     getCx?: (props: Readonly<TProps & TMods>) => CX,
     getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
 ) {
-    const wrappedComponent = forwardRef<any, TProps & TMods>((props, ref) => {
+    const wrappedComponent = /* @__PURE__ */forwardRef<any, TProps & TMods>((props, ref) => {
         // Most components are wrapped in withMods component.
         // Please keep this method simple, and performant
         // Don't clone objects/arrays if not needed

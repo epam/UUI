@@ -1,10 +1,9 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import isToday from 'dayjs/plugin/isToday.js';
 import {
     IEditable, IHasCX, IHasForwardedRef, IHasRawProps, cx, uuiMarkers,
 } from '@epam/uui-core';
 import { uuiDaySelection } from './calendarConstants';
+import { Dayjs } from 'dayjs';
 
 /**
  * Represents the properties of the Day component
@@ -15,8 +14,6 @@ export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttri
     isSelected?: boolean;
     isHoliday?: boolean;
 }
-
-dayjs.extend(isToday);
 
 export function Day(props: DayProps): JSX.Element {
     const isCurrent = props.value.isToday();

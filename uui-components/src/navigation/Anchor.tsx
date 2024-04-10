@@ -5,7 +5,7 @@ import css from './Anchor.module.scss';
 
 export type AnchorProps = ClickableComponentProps & IHasChildren & {};
 
-export const Anchor = React.forwardRef<HTMLAnchorElement, AnchorProps>((props, ref) => {
+export const Anchor = /* @__PURE__ */React.forwardRef<HTMLAnchorElement, AnchorProps>((props, ref) => {
     return (
         <Clickable
             { ...props }

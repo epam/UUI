@@ -13,7 +13,7 @@ export interface AvatarStackProps extends IHasCX, IHasRawProps<React.HTMLAttribu
     renderItem?: (url: string) => React.ReactElement;
 }
 
-export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((props, ref) => {
+export const AvatarStack = /* @__PURE__ */React.forwardRef<HTMLDivElement, AvatarStackProps>((props, ref) => {
     const {
         avatarSize, urlArray, direction, avatarsCount, renderItem,
     } = props;

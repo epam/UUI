@@ -13,7 +13,7 @@ interface ToolbarButtonProps extends IHasCX, IHasCaption, IDisableable {
     editor?: Editor;
 }
 
-export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
+export const ToolbarButton = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
     <Button
         onClick={ (e) => {
             props.onClick(e);

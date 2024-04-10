@@ -18,7 +18,7 @@ interface SvgProps extends IHasCX, IHasRawProps<React.SVGAttributes<SVGSVGElemen
     height?: number | string;
 }
 
-export const Svg = React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
+export const Svg = /* @__PURE__ */React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
     if (!props.svg) return null;
 
     const {

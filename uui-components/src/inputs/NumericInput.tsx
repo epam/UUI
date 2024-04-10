@@ -76,7 +76,7 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     return maximumFractionDigits;
 };
 
-export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>((props, ref) => {
+export const NumericInput = /* @__PURE__ */React.forwardRef<HTMLDivElement, NumericInputProps>((props, ref) => {
     const {
         value: initialValue = null,
         min: initialMin,

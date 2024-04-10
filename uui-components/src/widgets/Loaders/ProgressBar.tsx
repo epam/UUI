@@ -9,7 +9,7 @@ export interface IProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttrib
     hideLabel?: boolean;
 }
 
-export const ProgressBar = React.forwardRef<HTMLDivElement, IProgressBarProps>((props, ref) => {
+export const ProgressBar = /* @__PURE__ */React.forwardRef<HTMLDivElement, IProgressBarProps>((props, ref) => {
     const { hideLabel = false, progress, label } = props;
     const barLabel = label || `${props.progress || 0}%`;
 
