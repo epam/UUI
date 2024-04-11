@@ -34,4 +34,4 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
     );
 };
 
-export default React.memo(ColumnsBlock);
+export default /* @__PURE__ */React.memo(ColumnsBlock);

@@ -274,4 +274,4 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     );
 }
 
-export const FiltersPanelItem = React.memo(FiltersToolbarItemImpl);
+export const FiltersPanelItem = /* @__PURE__ */React.memo(FiltersToolbarItemImpl);

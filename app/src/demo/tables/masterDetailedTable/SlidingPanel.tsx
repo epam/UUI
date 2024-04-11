@@ -52,4 +52,4 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({
     );
 };
 
-export const SlidingPanel = React.memo(SlidingPanelImpl);
+export const SlidingPanel = /* @__PURE__ */React.memo(SlidingPanelImpl);

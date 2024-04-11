@@ -82,4 +82,4 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     );
 }
 
-export const DataPickerFooter = React.memo(DataPickerFooterImpl);
+export const DataPickerFooter = /* @__PURE__ */React.memo(DataPickerFooterImpl);

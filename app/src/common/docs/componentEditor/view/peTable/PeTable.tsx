@@ -65,7 +65,7 @@ export function PeTable<TProps>(props: IPeTableProps<TProps>) {
 }
 PeTable.displayName = 'PeTable';
 
-const PeTableToolbar = React.memo(
+const PeTableToolbar = /* @__PURE__ */React.memo(
     function PeTableToolbarComponent<TProps>({ title, onResetAllProps, tooltip }: Pick<IPeTableProps<TProps>, 'title' | 'onResetAllProps'> & { tooltip: string }) {
         return (
             <FlexRow key="head" size="36" padding="12" borderBottom columnGap="12" cx={ [css.boxSizing, css.toolbar] }>
@@ -86,7 +86,7 @@ const PeTableToolbar = React.memo(
         );
     },
 );
-const PeTableHeader = React.memo(function HeaderComponent() {
+const PeTableHeader = /* @__PURE__ */React.memo(function HeaderComponent() {
     const getText = (msg: string) => (
         <Text size="24" fontWeight="600">
             { msg }

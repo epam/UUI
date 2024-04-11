@@ -110,7 +110,7 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
     );
 }
 
-const ContextSwitcher = React.memo((props: IHaveContexts & IHavePreviewRef) => {
+const ContextSwitcher = /* @__PURE__ */React.memo((props: IHaveContexts & IHavePreviewRef) => {
     const { contexts, selectedCtxName, onChangeSelectedCtx, previewRef } = props;
     const availableCtxNames = contexts?.map((i) => i.name) || [];
     return (
