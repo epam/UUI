@@ -11,7 +11,7 @@
     "build": "craco build",
     "build-dev": "craco build --app-dev",
     "server": "node ../server/app.js",
-    "analyzer": "source-map-explorer 'build/static/**/*.js'"
+    "analyzer": "source-map-explorer 'D:\\Projects\\EPM-UUI\\UUI_DEV\\UUI\\.templates\\uui-cra-template\\app\\build\\static\\js/**/*.js'"
   },
   "cracoConfig": "./build-config/craco.config.js",
   "dependencies": {
