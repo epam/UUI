@@ -11,7 +11,7 @@ function applyBurgerMods() {
     return [cx(css.root, 'uui-burger')];
 }
 
-export const Burger = withMods<BurgerProps, BurgerMods>(uuiBurger, applyBurgerMods, () => ({
+export const Burger = /* @__PURE__ */withMods<BurgerProps, BurgerMods>(uuiBurger, applyBurgerMods, () => ({
     burgerIcon: BurgerIcon,
     crossIcon: CrossIcon,
     burgerContentCx: css.burgerContent,

@@ -16,7 +16,7 @@ function applyMainMenuMods() {
     ];
 }
 
-export const MainMenu = withMods<uuiComponents.MainMenuProps, MainMenuMods>(uuiComponents.MainMenu, applyMainMenuMods, () => ({
+export const MainMenu = /* @__PURE__ */withMods<uuiComponents.MainMenuProps, MainMenuMods>(uuiComponents.MainMenu, applyMainMenuMods, () => ({
     Burger,
     MainMenuDropdown,
 }));

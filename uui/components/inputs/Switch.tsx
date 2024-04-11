@@ -19,4 +19,4 @@ function applySwitchMods(mods: SwitchProps) {
     ];
 }
 
-export const Switch = withMods<uuiComponents.SwitchProps, SwitchMods>(uuiComponents.Switch, applySwitchMods);
+export const Switch = /* @__PURE__ */withMods<uuiComponents.SwitchProps, SwitchMods>(uuiComponents.Switch, applySwitchMods);

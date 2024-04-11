@@ -8,4 +8,4 @@ function applySpinnerMods() {
     return [css.root, 'uui-spinner'];
 }
 
-export const Spinner = withMods<uuiSpinnerProps>(uuiSpinner, applySpinnerMods);
+export const Spinner = /* @__PURE__ */withMods<uuiSpinnerProps>(uuiSpinner, applySpinnerMods);

@@ -20,7 +20,7 @@ export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { 
 
 export const propsMods = { renderCell, renderDropMarkers };
 
-export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
+export const DataTableRow = /* @__PURE__ */withMods<DataTableRowProps, DataTableRowMods>(
     uuiDataTableRow,
     ({ borderBottom = true, size }) => {
         return [
