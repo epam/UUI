@@ -1,5 +1,5 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
+import { dayjs } from '../../../helpers/dayJsHelper';
 
 import { fireEvent, setupComponentForTest, screen, within, userEvent } from '@epam/uui-test-utils';
 import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import { dayjs, Dayjs } from '../../../helpers/dayJsHelper';
 import { uuiDaySelection } from '@epam/uui-components';
 import {
     RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets,

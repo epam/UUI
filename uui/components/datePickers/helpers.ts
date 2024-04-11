@@ -1,5 +1,7 @@
-import dayjs, { Dayjs } from 'dayjs';
 import { RangeDatePickerInputType, RangeDatePickerValue } from './types';
+import { dayjs, Dayjs } from '../../helpers/dayJsHelper';
+
+export { dayjs, type Dayjs };
 
 export const defaultFormat = 'MMM D, YYYY';
 export const valueFormat = 'YYYY-MM-DD';
@@ -27,7 +29,7 @@ export const rangeIsEmpty = (range: RangeDatePickerValue) => {
     return !range.from && !range.to;
 };
 
-export const getValidMonth = (i: RangeDatePickerValue, focus: RangeDatePickerInputType, format: string, filter?: (day: dayjs.Dayjs) => boolean) => {
+export const getValidMonth = (i: RangeDatePickerValue, focus: RangeDatePickerInputType, format: string, filter?: (day: Dayjs) => boolean) => {
     const fromValid = isValidDate(i.from, format, filter);
     const toValid = isValidDate(i.to, format, filter);
     if (fromValid && toValid && focus) {
@@ -50,7 +52,7 @@ export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeD
     return dayjs();
 };
 
-export const isValidDate = (input: string | null, format: string, filter?:(day: dayjs.Dayjs) => boolean): boolean | undefined => {
+export const isValidDate = (input: string | null, format: string, filter?:(day: Dayjs) => boolean): boolean | undefined => {
     const parsedDate = dayjs(input, supportedDateFormats(format), true);
     return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
 };
