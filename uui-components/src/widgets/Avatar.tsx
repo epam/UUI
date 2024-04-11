@@ -56,4 +56,4 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
     );
 }
 
-export const Avatar = React.forwardRef(AvatarComponent);
+export const Avatar = /* @__PURE__ */React.forwardRef(AvatarComponent);
