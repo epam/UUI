@@ -3,15 +3,32 @@ import localeData from 'dayjs/plugin/localeData';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import isToday from 'dayjs/plugin/isToday';
 
-let _extended = false;
-const dayjs = /* @__PURE__ */Object.assign((...args: any[]) => {
-    if (!_extended) {
+let _isReady = false;
+function _initDayJs() {
+    if (!_isReady) {
         dayjsOrig.extend(localeData);
         dayjsOrig.extend(updateLocale);
         dayjsOrig.extend(isToday);
-        _extended = true;
+        _isReady = true;
     }
-    return dayjsOrig(...args);
-}, dayjsOrig) as typeof dayjsOrig;
+}
+
+function wrap() {
+    return new Proxy(
+        dayjsOrig,
+        {
+            get(_, prop) {
+                _initDayJs();
+                return dayjsOrig[prop as keyof typeof dayjsOrig];
+            },
+            apply(_, __, args) {
+                _initDayJs();
+                return dayjsOrig(...args);
+            },
+        },
+    );
+}
+
+const dayjs = /* @__PURE__ */wrap();
 
 export { dayjs, type Dayjs };
