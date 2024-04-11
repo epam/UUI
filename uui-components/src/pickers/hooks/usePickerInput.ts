@@ -71,7 +71,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (prevValue !== props.value) {
-            handleDataSourceValueChange(
+            setDataSourceState(
                 applyValueToDataSourceState(
                     props,
                     dataSourceState,
@@ -202,7 +202,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             isOpen = value.length >= props.minCharsToSearch;
         }
 
-        handleDataSourceValueChange((dsState) => ({
+        setDataSourceState((dsState) => ({
             ...dsState,
             focusedIndex: 0,
             search: value,
@@ -213,7 +213,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     const closePickerBody = () => {
-        handleDataSourceValueChange((dsState) => ({
+        setDataSourceState((dsState) => ({
             ...dsState,
             search: '',
         }));
