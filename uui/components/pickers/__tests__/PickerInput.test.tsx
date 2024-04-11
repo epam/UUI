@@ -550,7 +550,7 @@ describe('PickerInput', () => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
             });
 
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2 languages selected']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2']);
         });
 
         it('should disable clear', async () => {
@@ -867,7 +867,7 @@ describe('PickerInput', () => {
                     ref={ props.ref }
                     iconPosition="left"
                     fill="ghost"
-                    caption={ props.selection?.map((s) => s.value?.name).join(', ') }
+                    caption={ props.selection?.displayedRows.map((s) => s.value?.name).join(', ') }
                 />
             ),
         });

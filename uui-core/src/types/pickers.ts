@@ -137,8 +137,11 @@ export interface IPickerToggler<TItem = any, TId = any>
     Partial<IHasPlaceholder>,
     Partial<IDisableable>,
     Partial<ICanBeInvalid> {
-    /** Array of selected rows */
-    selection?: DataRowProps<TItem, TId>[];
+    /** The object of arrays of displayed selected rows and folded selected rows */
+    selection?: {
+        displayedRows: DataRowProps<TItem, TId>[],
+        foldedRows: DataRowProps<TItem, TId>[],
+    };
     /** Amount of selected items */
     selectedRowsCount?: number;
 }
