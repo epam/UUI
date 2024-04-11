@@ -5,17 +5,34 @@ import updateLocale from 'dayjs/plugin/updateLocale.js';
 import localeData from 'dayjs/plugin/localeData';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 
-let _extended = false;
-const dayjs = /* @__PURE__ */Object.assign((...args: any[]) => {
-    if (!_extended) {
-        dayjs.extend(customParseFormat);
-        dayjs.extend(objectSupport);
-        dayjs.extend(updateLocale);
-        dayjs.extend(localeData);
-        dayjs.extend(isoWeek);
-        _extended = true;
+let _isReady = false;
+function _initDayJs() {
+    if (!_isReady) {
+        dayjsOrig.extend(customParseFormat);
+        dayjsOrig.extend(objectSupport);
+        dayjsOrig.extend(updateLocale);
+        dayjsOrig.extend(localeData);
+        dayjsOrig.extend(isoWeek);
+        _isReady = true;
     }
-    return dayjsOrig(...args);
-}, dayjsOrig) as typeof dayjsOrig;
+}
+
+function wrap() {
+    return new Proxy(
+        dayjsOrig,
+        {
+            get(_, prop) {
+                _initDayJs();
+                return dayjsOrig[prop as keyof typeof dayjsOrig];
+            },
+            apply(_, __, args) {
+                _initDayJs();
+                return dayjsOrig(...args);
+            },
+        },
+    );
+}
+
+const dayjs = /* @__PURE__ */wrap();
 
 export { dayjs, type Dayjs };
