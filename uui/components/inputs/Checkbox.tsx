@@ -38,4 +38,4 @@ const applyUUICheckboxProps = (props: CheckboxProps) => {
     };
 };
 
-export const Checkbox = withMods<uuiComponents.CheckboxProps, CheckboxMods>(uuiComponents.Checkbox, applyCheckboxMods, applyUUICheckboxProps);
+export const Checkbox = /* @__PURE__ */withMods<uuiComponents.CheckboxProps, CheckboxMods>(uuiComponents.Checkbox, applyCheckboxMods, applyUUICheckboxProps);

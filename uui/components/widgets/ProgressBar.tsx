@@ -28,6 +28,6 @@ function applyProgressBarMods(mods: ProgressBarMods) {
     ];
 }
 
-export const ProgressBar = withMods<ProgressBarProps, ProgressBarMods>(uuiProgressBar, applyProgressBarMods, (props) => ({
+export const ProgressBar = /* @__PURE__ */withMods<ProgressBarProps, ProgressBarMods>(uuiProgressBar, applyProgressBarMods, (props) => ({
     hideLabel: props.hideLabel || props.striped,
 }));
