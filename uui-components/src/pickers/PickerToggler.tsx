@@ -67,7 +67,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         // Because change of isOpen state is happening earlier than the click event handled by lister, and we have a situation that we remove listener before we could handle click the event.
         // It causes issue that input stays in focus, even after click outside the body.
         return () => window.document.removeEventListener('click', handleClick);
-    }, [props.isOpen, inFocus, handleClick, props.closePickerBody]);
+    }, [props.isOpen, inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
         if (props.isReadonly) return false;
