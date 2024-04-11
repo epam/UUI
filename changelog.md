@@ -1,3 +1,9 @@
+# 5.7.2 - 11.04.2024
+
+**What's Fixed**
+* [IconButton]: Replace the `isDropdown` prop with `showDropdownIcon` to prevent the automatic appearance of the dropdown icon when using `IconButton` as the `Dropdown` target.
+
+
 # 5.7.1 - 29.03.2024
 
 **What's Fixed**
