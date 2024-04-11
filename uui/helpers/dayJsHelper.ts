@@ -6,7 +6,7 @@ import localeData from 'dayjs/plugin/localeData';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 
 let _extended = false;
-const dayjs = ((...args: any[]) => {
+const dayjs = Object.assign((...args: any[]) => {
     if (!_extended) {
         dayjs.extend(customParseFormat);
         dayjs.extend(objectSupport);
@@ -16,6 +16,6 @@ const dayjs = ((...args: any[]) => {
         _extended = true;
     }
     return dayjsOrig(...args);
-}) as typeof dayjsOrig;
+}, dayjsOrig) as typeof dayjsOrig;
 
 export { dayjs, type Dayjs };
