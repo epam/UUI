@@ -16,7 +16,7 @@ type LinkButtonMods = {
 /** Represents the properties of a LinkButton component. */
 export type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;
 
-export const LinkButton = createSkinComponent<uui.LinkButtonProps, LinkButtonProps>(
+export const LinkButton = /* @__PURE__ */createSkinComponent<uui.LinkButtonProps, LinkButtonProps>(
     uui.LinkButton,
     (props) => {
         if (__DEV__) {

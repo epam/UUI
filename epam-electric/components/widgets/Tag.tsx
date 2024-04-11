@@ -12,4 +12,4 @@ export type TagMods = {
 /** Represents the properties of a Tag component. */
 export type TagProps = uui.TagCoreProps & TagMods;
 
-export const Tag = createSkinComponent<uui.TagProps, TagProps>(uui.Tag);
+export const Tag = /* @__PURE__ */createSkinComponent<uui.TagProps, TagProps>(uui.Tag);

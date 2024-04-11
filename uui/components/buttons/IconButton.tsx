@@ -26,7 +26,7 @@ function applyIconButtonMods(props: IconButtonProps) {
     return ['uui-icon_button', `uui-color-${props.color || 'neutral'}`, css.root];
 }
 
-export const IconButton = createSkinComponent<uuiComponents.IconButtonProps, IconButtonProps>(
+export const IconButton = /* @__PURE__ */createSkinComponent<uuiComponents.IconButtonProps, IconButtonProps>(
     uuiComponents.IconButton,
     (props) => {
         return {

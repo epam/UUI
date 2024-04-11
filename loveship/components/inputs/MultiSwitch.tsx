@@ -12,7 +12,7 @@ type MultiSwitchMods = {
 /** Represents the properties for the MultiSwitch component. */
 export type MultiSwitchProps<TValue> = uui.MultiSwitchCoreProps<TValue> & MultiSwitchMods;
 
-export const MultiSwitch = createSkinComponent<uui.MultiSwitchProps<any>, MultiSwitchProps<any>>(
+export const MultiSwitch = /* @__PURE__ */createSkinComponent<uui.MultiSwitchProps<any>, MultiSwitchProps<any>>(
     uui.MultiSwitch,
     (props) => {
         const validColor = props.color === 'night600' ? 'gray' : props.color;

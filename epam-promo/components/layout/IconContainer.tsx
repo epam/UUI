@@ -24,7 +24,7 @@ function applyIconContainerMods(mods: IconContainerMods) {
 /** Represents the properties of a IconContainer component. */
 export interface IconContainerProps extends uuiComponents.ControlIconProps, IconContainerMods {}
 
-export const IconContainer = createSkinComponent<uuiComponents.ControlIconProps, IconContainerProps>(
+export const IconContainer = /* @__PURE__ */createSkinComponent<uuiComponents.ControlIconProps, IconContainerProps>(
     uui.IconContainer,
     (props) => {
         if (__DEV__) {

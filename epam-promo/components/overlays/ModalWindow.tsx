@@ -15,7 +15,7 @@ interface ModalWindowMods {
 /** Represents the properties of a ModalWindow component. */
 export interface ModalWindowProps extends uui.ModalWindowCoreProps, ModalWindowMods {}
 
-export const ModalWindow = createSkinComponent<uui.ModalWindowProps, ModalWindowProps>(
+export const ModalWindow = /* @__PURE__ */createSkinComponent<uui.ModalWindowProps, ModalWindowProps>(
     uui.ModalWindow,
     (props) => ({
         ...props,

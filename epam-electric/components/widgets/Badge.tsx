@@ -22,7 +22,7 @@ type BadgeMods = {
 /** Represents the properties of a Badge component. */
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
-export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
+export const Badge = /* @__PURE__ */createSkinComponent<uui.BadgeProps, BadgeProps>(
     uui.Badge,
     (props) => ({
         color: props.color || 'info',

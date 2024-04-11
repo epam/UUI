@@ -23,7 +23,7 @@ function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
     ];
 }
 
-export const Rating = createSkinComponent<uuiComponents.RatingProps, RatingProps>(
+export const Rating = /* @__PURE__ */createSkinComponent<uuiComponents.RatingProps, RatingProps>(
     uuiComponents.Rating,
     () => ({ filledStarIcon: FilledStarIcon, emptyStarIcon: EmptyStarIcon, Tooltip }),
     applyRatingMods,
