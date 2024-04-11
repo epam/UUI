@@ -10,7 +10,7 @@ export const i18n = {
         showAll: 'SHOW ALL',
     },
     pickerToggler: {
-        createItemValue: (length: number, entityName: string) => `+ ${length} ${entityName} selected`,
+        createItemValue: (length: number, entityName: string) => `+ ${length} ${entityName}`,
     },
     pickerInput: {
         defaultPlaceholder: (entity: string) => `Please select ${entity}`,

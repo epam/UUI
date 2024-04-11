@@ -14,6 +14,11 @@ export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, 
     isCollapsed?: boolean;
     /** Call to clear a value */
     onClear?(e?: any): void;
+    /**
+     * The array of rows that are folded in the 'collapsed button'
+     * (only in selectionMode='multi' with maxItems property, in other ways it's an empty array)
+     */
+    collapsedRows?: DataRowProps<TItem, TId>[];
 }
 
 export interface PickerTogglerProps<TItem = any, TId = any>
@@ -73,7 +78,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.isReadonly) return false;
         else if (props.isOpen && props.searchPosition === 'input') return false;
         else if (props.minCharsToSearch && inFocus) return false;
-        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
+        else if (props.pickerMode === 'single' && props.selection && props.selection.displayedRows.length > 0) return true;
         else return false;
     };
 
@@ -116,7 +121,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const maxItems = getMaxItems(props.maxItems);
         let isDisabled = props.isDisabled || props.isReadonly;
 
-        const tags = props.selection?.map((row) => {
+        const tags = props.selection?.displayedRows?.map((row) => {
             isDisabled = isDisabled || row.isDisabled;
 
             const tagProps = {
@@ -136,10 +141,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.selectedRowsCount > maxItems) {
             const collapsedTagProps = props.renderItem?.({
                 key: 'collapsed',
-                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
+                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, ''),
                 isCollapsed: true,
                 isDisabled,
                 onClear: null,
+                collapsedRows: props.selection.foldedRows,
             } as any);
             tags.push(collapsedTagProps);
         }
@@ -148,14 +154,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderInput = () => {
-        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
+        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection.displayedRows[0];
         let placeholder: string;
         if (!isSinglePickerSelected) {
             placeholder = props.placeholder;
         }
 
         if (isSinglePickerSelected) {
-            placeholder = props.selection[0].isLoading ? undefined : props.getName(props.selection[0]?.value);
+            placeholder = props.selection.displayedRows[0].isLoading ? undefined : props.getName(props.selection.displayedRows[0]?.value);
         }
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {

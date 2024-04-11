@@ -71,7 +71,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                                 />
                             ) }
                             renderToggler={ (togglerProps) => {
-                                const row = togglerProps.selection?.[0];
+                                const row = togglerProps.selection?.displayedRows[0];
                                 const fill = row?.value?.color && togglerProps.value && row?.value?.name?.includes(togglerProps.value)
                                     ? row?.value?.color
                                     : '#E1E3EB';
