@@ -71,19 +71,16 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (prevValue !== props.value) {
-            console.log('value updated in useEffect', props.value);
-            setDataSourceState((state) => {
-                return applyValueToDataSourceState(
+            setDataSourceState((state) =>
+                applyValueToDataSourceState(
                     props,
                     state,
                     props.value,
                     props.dataSource,
-                );
-            });
+                ));
         }
     }, [props.value]);
 
-    console.log('dataSourceState', dataSourceState);
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (props.value === prevValue && props.isDisabled && opened) {
