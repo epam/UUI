@@ -1,13 +1,10 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
 import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
-import localeData from 'dayjs/plugin/localeData.js';
 import css from './MonthSelection.module.scss';
-
-dayjs.extend(localeData);
+import { dayjs, Dayjs } from '../../helpers/dayJsHelper';
 
 const MONTH_ROW_LENGTH = 3;
-const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
+const MONTHS_SHORT_ARRAY = /* @__PURE__ */dayjs.monthsShort();
 
 export const uuiMonthSelection = {
     container: 'uui-monthselection-container',

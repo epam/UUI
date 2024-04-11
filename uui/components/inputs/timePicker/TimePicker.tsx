@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import {
     CX, devLogger, DropdownBodyProps, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable,
     IHasForwardedRef, IHasPlaceholder, IHasRawProps, isFocusReceiverInsideFocusLock,
@@ -11,8 +9,7 @@ import { TimePickerBody } from '../timePicker';
 import { EditMode, IHasEditMode, SizeMod } from '../../types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
-
-dayjs.extend(customParseFormat);
+import { dayjs } from '../../../helpers/dayJsHelper';
 
 const DEFAULT_MODE = EditMode.FORM;
 

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { cx, IControlled } from '@epam/uui-core';
 import {
     uuiDaySelection, Day, DayProps, RangeDatePickerPresets,
@@ -16,8 +14,7 @@ import {
     RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue, ViewType,
 } from './types';
 import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePickerBody';
-
-dayjs.extend(isoWeek);
+import { dayjs, Dayjs } from '../../helpers/dayJsHelper';
 
 export const uuiRangeDatePickerBody = {
     inRange: 'uui-range-datepicker-in-range',

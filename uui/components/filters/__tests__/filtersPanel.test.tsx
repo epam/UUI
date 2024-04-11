@@ -5,7 +5,7 @@ import {
     setupComponentForTest, screen, within, userEvent, renderSnapshotWithContextAsync,
 } from '@epam/uui-test-utils';
 import React from 'react';
-import dayjs from 'dayjs';
+import { dayjs } from '../../../helpers/dayJsHelper';
 
 const now = dayjs();
 const TODAY_DAY_OF_MONTH = now.date().toString();

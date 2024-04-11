@@ -3,7 +3,7 @@ import {
     renderSnapshotWithContextAsync, renderWithContextAsync, fireEvent, screen,
 } from '@epam/uui-test-utils';
 import { DatePickerBody } from '../DatePickerBody';
-import dayjs, { Dayjs } from 'dayjs';
+import { dayjs, Dayjs } from '../../../helpers/dayJsHelper';
 
 describe('DataPicker', () => {
     it('should be rendered correctly', async () => {

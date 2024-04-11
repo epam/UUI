@@ -3,7 +3,7 @@ import {
     renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent, within,
 } from '@epam/uui-test-utils';
 import { DatePicker } from '../DatePicker';
-import dayjs from 'dayjs';
+import { dayjs } from '../../../helpers/dayJsHelper';
 import { DatePickerProps } from '../types';
 import { supportedDateFormats } from '../helpers';
 
