@@ -7,7 +7,7 @@ import { TApi } from '../../../data';
 export default function GetRowOptionsExample() {
     const svc = useUuiContext<TApi>();
     const [location, setLocation] = useState<string>();
-    const [productsIDs, setProductsIDs] = useState<number[]>([3]);
+    const [productsIDs, setProductsIDs] = useState<number[]>([3, 4]);
 
     const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>({
         api: () => svc.api.demo.products({}).then((r: any) => r.items),
