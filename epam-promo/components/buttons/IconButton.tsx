@@ -13,7 +13,7 @@ interface IconButtonMods {
 /** Represents the properties for the IconButton component. */
 export type IconButtonProps = uui.IconButtonCoreProps & IconButtonMods;
 
-export const IconButton = createSkinComponent<uui.IconButtonProps, IconButtonProps>(
+export const IconButton = /* @__PURE__ */createSkinComponent<uui.IconButtonProps, IconButtonProps>(
     uui.IconButton,
     (props) => ({ color: props.color ?? 'gray60' }),
 );

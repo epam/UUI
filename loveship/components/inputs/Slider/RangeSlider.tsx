@@ -21,7 +21,7 @@ export function applyRangeSliderMods() {
     ];
 }
 
-export const RangeSlider = createSkinComponent<uuiRangeSliderProps, RangeSliderProps>(
+export const RangeSlider = /* @__PURE__ */createSkinComponent<uuiRangeSliderProps, RangeSliderProps>(
     uuiRangeSlider,
     () => null,
     applyRangeSliderMods,

@@ -9,4 +9,4 @@ type CountIndicatorMods = {
 /** Represents the properties of a CountIndicator component. */
 export type CountIndicatorProps = uui.CountIndicatorCoreProps & CountIndicatorMods;
 
-export const CountIndicator = createSkinComponent<uui.CountIndicatorProps, CountIndicatorProps>(uui.CountIndicator);
+export const CountIndicator = /* @__PURE__ */createSkinComponent<uui.CountIndicatorProps, CountIndicatorProps>(uui.CountIndicator);

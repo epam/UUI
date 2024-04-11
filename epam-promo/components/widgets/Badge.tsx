@@ -34,7 +34,7 @@ function applyBadgeMods(mods: BadgeMods) {
 /** Represents the properties of a badge component. */
 export type BadgeProps = uui.BadgeCoreProps & BadgeMods;
 
-export const Badge = createSkinComponent<uui.BadgeProps, BadgeProps>(
+export const Badge = /* @__PURE__ */createSkinComponent<uui.BadgeProps, BadgeProps>(
     uui.Badge as any, // TODO: remove it when BaseButton inheritance will be reworked
     (props) => {
         if (__DEV__) {
