@@ -1,5 +1,5 @@
 {
- "version": "5.7.0-alpha.0",
+ "version": "5.7.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -34453,7 +34453,7 @@
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
-      "type IconButtonProps = ClickableComponentProps & IDropdownToggler & {",
+      "type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, 'isDropdown'> & {",
       "    /** Icon can be a React element (usually an SVG element) */",
       "    icon?: Icon;",
       "    /** Icon for drop-down toggler */",
@@ -34462,6 +34462,10 @@
       "     * Defines component size.",
       "     */",
       "    size?: number;",
+      "    /**",
+      "     * Pass true to enable dropdown icon.",
+      "     */",
+      "    showDropdownIcon?: boolean;",
       "};"
      ]
     },
@@ -34647,23 +34651,6 @@
       "required": false
      },
      {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -34708,6 +34695,22 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -65443,6 +65446,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -65557,40 +65577,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -65620,6 +65606,23 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -65724,6 +65727,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -65838,40 +65858,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -65901,6 +65887,23 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -88344,6 +88347,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "clickAnalyticsEvent",
       "name": "clickAnalyticsEvent",
       "comment": {
@@ -88444,40 +88464,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -88508,7 +88494,24 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui:IconButtonCoreProps",
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -88531,7 +88534,7 @@
         "36"
        ]
       },
-      "from": "@epam/uui-components:IconButtonProps",
+      "from": "@epam/uui:IconButtonCoreProps",
       "required": false
      },
      {
@@ -95602,6 +95605,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -95747,40 +95767,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -95811,7 +95797,24 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui:IconButtonCoreProps",
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
       "required": false
      },
      {
@@ -95834,7 +95837,7 @@
         "36"
        ]
       },
-      "from": "@epam/uui-components:IconButtonProps",
+      "from": "@epam/uui:IconButtonCoreProps",
       "required": false
      },
      {
