@@ -33,4 +33,4 @@ function GroupingBlock<TFilter extends { groupBy?: string[] }>({ tableState, set
     );
 }
 
-export default React.memo(GroupingBlock) as typeof GroupingBlock;
+export default /* @__PURE__ */React.memo(GroupingBlock) as typeof GroupingBlock;

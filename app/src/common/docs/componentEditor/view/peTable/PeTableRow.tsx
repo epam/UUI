@@ -4,7 +4,7 @@ import { IPeTableRowProps } from './types';
 import { PeTableCell } from './PeTableCell';
 import { buildExamplesList } from '../../propDocUtils';
 
-export const PeTableRow = React.memo(PropEditorRowComponent) as typeof PropEditorRowComponent;
+export const PeTableRow = /* @__PURE__ */React.memo(PropEditorRowComponent) as typeof PropEditorRowComponent;
 
 function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
     const { prop, onClearProp, propContext, exampleId, value, onValueChange, onExampleIdChange } = props;

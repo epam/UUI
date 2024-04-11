@@ -21,4 +21,4 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = (props) => {
     );
 };
 
-export const DataPickerHeader = React.memo(DataPickerHeaderImpl);
+export const DataPickerHeader = /* @__PURE__ */React.memo(DataPickerHeaderImpl);

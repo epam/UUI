@@ -69,4 +69,4 @@ const PresetsBlock: React.FC<PresetsBlockProps> = ({
     );
 };
 
-export default React.memo(PresetsBlock);
+export default /* @__PURE__ */React.memo(PresetsBlock);

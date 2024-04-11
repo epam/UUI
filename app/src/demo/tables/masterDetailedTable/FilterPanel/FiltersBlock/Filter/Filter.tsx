@@ -81,4 +81,4 @@ function FilterImpl<TFilter extends Record<string, any>>(props: IFilterProps<TFi
     );
 }
 
-export const Filter = React.memo(FilterImpl) as typeof FilterImpl;
+export const Filter = /* @__PURE__ */React.memo(FilterImpl) as typeof FilterImpl;

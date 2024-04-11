@@ -90,4 +90,4 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
     }
 });
 
-export const DataTableRow = React.memo(DataTableRowImpl, compareProps);
+export const DataTableRow = /* @__PURE__ */React.memo(DataTableRowImpl, compareProps);

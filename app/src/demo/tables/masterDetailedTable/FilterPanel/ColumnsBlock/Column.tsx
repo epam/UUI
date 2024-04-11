@@ -39,4 +39,4 @@ const Column: React.FC<IColumnProps> = ({ value, onValueChange, columnInfo }) =>
     );
 };
 
-export default React.memo(Column);
+export default /* @__PURE__ */React.memo(Column);

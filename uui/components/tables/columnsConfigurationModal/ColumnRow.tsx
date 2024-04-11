@@ -14,7 +14,7 @@ export interface ColumnRowProps<TItem, TId, TFilter> {
     renderItem?: (column: DataColumnProps<TItem, TId, TFilter>) => React.ReactNode;
 }
 
-export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any, any, any>) {
+export const ColumnRow = /* @__PURE__ */React.memo(function ColumnRow(props: ColumnRowProps<any, any, any>) {
     const { column } = props;
     const {
         toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways,

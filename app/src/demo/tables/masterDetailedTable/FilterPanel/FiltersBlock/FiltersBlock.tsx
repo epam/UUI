@@ -35,4 +35,4 @@ function FiltersBlockImpl(props: IFiltersProps<any>) {
     );
 }
 
-export const FiltersBlock = React.memo(FiltersBlockImpl) as typeof FiltersBlockImpl;
+export const FiltersBlock = /* @__PURE__ */React.memo(FiltersBlockImpl) as typeof FiltersBlockImpl;
