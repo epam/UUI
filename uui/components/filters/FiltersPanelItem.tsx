@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import dayjs from 'dayjs';
 import cx from 'classnames';
 import { Modifier } from 'react-popper';
 import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate } from '@epam/uui-core';
@@ -15,6 +14,7 @@ import { MobileDropdownWrapper } from '../pickers';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
 import css from './FiltersPanelItem.module.scss';
+import { dayjs } from '../../helpers/dayJsHelper';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &
 IEditable<any> & {
@@ -30,7 +30,7 @@ function useView(props: FiltersToolbarItemProps) {
     if (props.type === 'singlePicker' || props.type === 'multiPicker') {
         useViewFn = props.dataSource.useView.bind(props.dataSource);
     }
-    
+
     return useViewFn?.({}, forceUpdate);
 }
 

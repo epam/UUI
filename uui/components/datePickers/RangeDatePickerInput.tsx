@@ -1,7 +1,6 @@
 import React, {
     forwardRef, useEffect, useState,
 } from 'react';
-import dayjs from 'dayjs';
 import {
     IEditable, devLogger, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
 } from '@epam/uui-core';
@@ -16,6 +15,7 @@ import css from './RangeDatePicker.module.scss';
 import {
     defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat,
 } from './helpers';
+import { dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents RangeDatePickerInputProps

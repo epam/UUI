@@ -3,7 +3,7 @@ import { RangeDatePicker } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent,
 } from '@epam/uui-test-utils';
-import dayjs from 'dayjs';
+import { dayjs } from '../../../helpers/dayJsHelper';
 import { RangeDatePickerProps } from '../types';
 import { supportedDateFormats } from '../helpers';
 

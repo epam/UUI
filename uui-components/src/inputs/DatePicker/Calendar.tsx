@@ -1,9 +1,6 @@
 import React, {
     HTMLAttributes, ReactElement, useState,
 } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import localeData from 'dayjs/plugin/localeData.js';
-import updateLocale from 'dayjs/plugin/updateLocale.js';
 import {
     arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
@@ -11,6 +8,7 @@ import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
 import { i18n } from '../../i18n';
 import css from './Calendar.module.scss';
+import { dayjs, Dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents the properties of the Calendar component
@@ -27,9 +25,6 @@ export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttr
      */
     month: Dayjs;
 }
-
-dayjs.extend(localeData);
-dayjs.extend(updateLocale);
 
 const DAYS_COUNT_IN_WEEK = 7;
 
