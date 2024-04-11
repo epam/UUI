@@ -32,7 +32,7 @@ interface NotificationMods {
 
 export interface NotificationCardProps extends NotificationCardCoreProps, NotificationMods {}
 
-export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
+export const NotificationCard = /* @__PURE__ */React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
     const notificationCardNode = React.useRef(null);
 
     React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
@@ -74,19 +74,19 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     );
 });
 
-export const WarningNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+export const WarningNotification = /* @__PURE__ */React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ WarningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export const SuccessNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+export const SuccessNotification = /* @__PURE__ */React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ SuccessIcon } color="success" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export const HintNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+export const HintNotification = /* @__PURE__ */React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ HintIcon } color="info" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+export const ErrorNotification = /* @__PURE__ */React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
     <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
 ));
 

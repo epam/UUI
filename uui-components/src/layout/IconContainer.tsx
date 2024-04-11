@@ -20,7 +20,7 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<Rea
     size?: number;
 }
 
-export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
+export const IconContainer = /* @__PURE__ */React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
     const isClickable = !props.isDisabled && props.onClick;
 
     return (

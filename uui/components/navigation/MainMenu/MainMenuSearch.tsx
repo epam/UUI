@@ -8,7 +8,7 @@ import css from './MainMenuSearch.module.scss';
 /** Represents the properties of the MainMenuSearch component. */
 export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {}
 
-export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props, ref) => (
+export const MainMenuSearch = /* @__PURE__ */React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props, ref) => (
     <IEditableDebouncer
         { ...props }
         render={ (iEditable) => (

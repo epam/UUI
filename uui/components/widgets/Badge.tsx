@@ -66,7 +66,7 @@ const mapCountIndicatorSizes = {
     48: '24',
 } as const;
 
-export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, BadgeProps>((props, ref) => {
+export const Badge = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, BadgeProps>((props, ref) => {
     if (__DEV__) {
         devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
             component: 'Badge',

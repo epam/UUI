@@ -13,7 +13,7 @@ interface SvgCircleProgressProps extends IHasCX, IHasRawProps<React.SVGAttribute
     progress: number;
 }
 
-export const SvgCircleProgress = React.forwardRef<SVGSVGElement, SvgCircleProgressProps>((props, ref) => {
+export const SvgCircleProgress = /* @__PURE__ */React.forwardRef<SVGSVGElement, SvgCircleProgressProps>((props, ref) => {
     const outsetRadius = props.size / 2 - 1;
     const insetRadius = props.size / 2 - 3;
     const circumference = insetRadius * Math.PI;

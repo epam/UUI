@@ -7,7 +7,7 @@ export interface PlateTableRowElementProps extends PlateElementProps {
     hideBorder?: boolean;
 }
 
-const TableRowElement = React.forwardRef<
+const TableRowElement = /* @__PURE__ */React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 PlateTableRowElementProps
 >(({ hideBorder, children, ...props }, ref) => {

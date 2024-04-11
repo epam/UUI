@@ -25,7 +25,7 @@ export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdown
     count?: React.ReactNode;
 };
 
-export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {
+export const MainMenuButton = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {
     if (__DEV__ && props.captionCX) {
         devLogger.warn('MainMenuButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
     }

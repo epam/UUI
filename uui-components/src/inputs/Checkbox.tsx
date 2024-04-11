@@ -24,7 +24,7 @@ export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
     indeterminateIcon?: Icon;
 }
 
-export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>((props, ref) => {
+export const Checkbox = /* @__PURE__ */React.forwardRef<HTMLLabelElement, CheckboxProps>((props, ref) => {
     const context = useUuiContext();
 
     const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
