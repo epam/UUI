@@ -53,7 +53,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 blur();
             }
         },
-        [inFocus, props.closePickerBody],
+        [inFocus],
     );
     
     React.useEffect(() => {
