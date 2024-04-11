@@ -147,4 +147,4 @@ export function DatePickerComponent(props: DatePickerProps) {
     );
 }
 
-export const DatePicker = withMods(DatePickerComponent);
+export const DatePicker = /* @__PURE__ */withMods(DatePickerComponent);

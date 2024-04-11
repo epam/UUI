@@ -134,4 +134,4 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
     );
 }
 
-export const RangeDatePicker = withMods(RangeDatePickerComponent);
+export const RangeDatePicker = /* @__PURE__ */withMods(RangeDatePickerComponent);
