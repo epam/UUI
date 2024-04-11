@@ -90,7 +90,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
         );
     };
 
-    const TargetBody = React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
+    const TargetBody = /* @__PURE__ */React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
         <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, { [css.targetBodyContainerHover]: bodyProps.isOpen }]) } size="30">
             <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } style={ isFavorite?.status && { fill: '#DB3A1A' } } />
             <SmallBattery rating={ level } />

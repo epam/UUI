@@ -12,6 +12,6 @@ export type MainMenuIconProps = ButtonProps & IAdaptiveItem & {
     icon: Icon;
 };
 
-export const MainMenuIcon = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, MainMenuIconProps>((props, ref) => (
+export const MainMenuIcon = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement, MainMenuIconProps>((props, ref) => (
     <IconButton ref={ ref } icon={ props.icon } cx={ cx(props.cx, css.container) } { ...props } />
 ));

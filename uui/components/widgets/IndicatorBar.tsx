@@ -9,7 +9,7 @@ interface IIndicatorProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     progress?: number;
 }
 
-export const IndicatorBar = React.forwardRef<HTMLDivElement, IIndicatorProps>((props, ref) => {
+export const IndicatorBar = /* @__PURE__ */React.forwardRef<HTMLDivElement, IIndicatorProps>((props, ref) => {
     const { progress } = props;
 
     return progress || progress === 0 ? (

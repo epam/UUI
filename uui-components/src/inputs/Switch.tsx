@@ -19,7 +19,7 @@ export interface SwitchProps
     id?: string;
 }
 
-export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>((props, ref) => {
+export const Switch = /* @__PURE__ */React.forwardRef<HTMLLabelElement, SwitchProps>((props, ref) => {
     const context = useUuiContext();
 
     const toggle = () => {

@@ -17,7 +17,7 @@ export interface TableCellElementProps
     isHeader?: boolean;
 }
 
-const TableCellElement = React.forwardRef<
+const TableCellElement = /* @__PURE__ */React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 TableCellElementProps
 >(({ children, className, style, hideBorder, ...props }, ref) => {
@@ -124,7 +124,7 @@ TableCellElementProps
 });
 TableCellElement.displayName = 'TableCellElement';
 
-const TableCellHeaderElement = React.forwardRef<
+const TableCellHeaderElement = /* @__PURE__ */React.forwardRef<
 React.ElementRef<typeof TableCellElement>,
 TableCellElementProps
 >((props, ref) => {

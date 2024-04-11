@@ -4,7 +4,7 @@ import {
     FlexRowProps, uuiMarkers, isEventTargetInsideClickable, cx,
 } from '@epam/uui-core';
 
-export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => (
+export const FlexRow = /* @__PURE__ */React.forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => (
     <div
         ref={ ref }
         onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }

@@ -6,7 +6,7 @@ import { uuiMod } from '@epam/uui-core';
 
 import css from './Separator.module.scss';
 
-const Separator = React.forwardRef<React.ElementRef<typeof PlateElement>, PlateElementProps>(({ className, nodeProps, ...props }, ref) => {
+const Separator = /* @__PURE__ */React.forwardRef<React.ElementRef<typeof PlateElement>, PlateElementProps>(({ className, nodeProps, ...props }, ref) => {
     const { children } = props;
 
     const selected = useSelected();

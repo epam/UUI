@@ -15,7 +15,7 @@ export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
     size?: number;
 };
 
-export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
+export const IconButton = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
     const size = props.size && Number(props.size);
     return (
         <Clickable

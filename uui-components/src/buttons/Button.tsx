@@ -18,7 +18,7 @@ export type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon 
     dropdownIcon?: Icon;
 };
 
-export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
+export const Button = /* @__PURE__ */React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
     if (__DEV__ && props.captionCX) {
         devLogger.warn('Button: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
     }
