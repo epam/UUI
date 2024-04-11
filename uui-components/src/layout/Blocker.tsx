@@ -25,7 +25,7 @@ const uuiBlocker = {
     exitActive: 'uui-blocker-exit-active',
 } as const;
 
-export const Blocker = forwardRef<HTMLDivElement, BlockerProps>((props, ref) => {
+export const Blocker = /* @__PURE__ */forwardRef<HTMLDivElement, BlockerProps>((props, ref) => {
     const [isEnter, setIsEnter] = useState(false);
     const transitionRef = React.createRef<HTMLDivElement>();
 
