@@ -94,11 +94,12 @@ async function createRollupConfigForModule(options) {
                 inlineSources: true,
                 noEmitOnError: !isWatch,
                 newLine: 'LF',
+                jsx: 'react-jsx',
             }),
             svgr({
                 ref: true,
                 exportType: 'named',
-                jsxRuntime: 'classic',
+                jsxRuntime: 'automatic',
                 // list of plugins in "preset-default": https://github.com/svg/svgo/blob/cb1569b2215dda19b0d4b046842344218fd31f06/plugins/preset-default.js
                 svgoConfig: {
                     plugins: [
