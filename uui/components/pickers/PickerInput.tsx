@@ -198,7 +198,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     );
 }
 
-export const PickerInput = React.forwardRef(PickerInputComponent) as <TItem, TId>(
+export const PickerInput = /* @__PURE__ */React.forwardRef(PickerInputComponent) as <TItem, TId>(
     props: PickerInputProps<TItem, TId>,
     ref: React.ForwardedRef<HTMLElement>
 ) => JSX.Element;

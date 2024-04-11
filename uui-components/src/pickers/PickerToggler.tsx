@@ -249,7 +249,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     );
 }
 
-export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
+export const PickerToggler = /* @__PURE__ */React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
     props: PickerTogglerProps<TItem, TId>,
     ref: React.ForwardedRef<HTMLElement>
 ) => JSX.Element;

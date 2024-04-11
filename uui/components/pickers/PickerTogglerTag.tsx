@@ -25,7 +25,7 @@ const getPickerTogglerButtonSize = (propSize?: types.ControlSize):TagProps['size
     }
 };
 
-export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<any, any>, ref: React.Ref<HTMLElement>) => {
+export const PickerTogglerTag = /* @__PURE__ */React.forwardRef((props: PickerTogglerTagProps<any, any>, ref: React.Ref<HTMLElement>) => {
     const tagProps = {
         ...props,
         tabIndex: -1,

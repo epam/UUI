@@ -67,7 +67,7 @@ export interface DropdownContainerProps
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
 }
 
-export const DropdownContainer = React.forwardRef((props: DropdownContainerProps, ref: React.ForwardedRef<HTMLElement>) => {
+export const DropdownContainer = /* @__PURE__ */React.forwardRef((props: DropdownContainerProps, ref: React.ForwardedRef<HTMLElement>) => {
     const {
         focusLock = true,
         returnFocus = true,

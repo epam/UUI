@@ -52,7 +52,7 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     };
 }
 
-export const DataTableRowContainer = React.forwardRef(
+export const DataTableRowContainer = /* @__PURE__ */React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
         function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
             return columns.reduce<React.ReactNode[]>((cells, column) => {
