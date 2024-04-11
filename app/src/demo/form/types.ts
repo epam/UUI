@@ -10,11 +10,6 @@ export interface PersonLocation {
     city?: string;
 }
 
-export interface PersonContacts {
-    phoneNumber?: string;
-    email?: string;
-}
-
 export interface PersonPrimaryInfo {
     status?: string;
     productionCategory?: string;
