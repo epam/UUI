@@ -60,4 +60,4 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
     );
 }
 
-export const MultiSwitch = React.forwardRef(MultiSwitchComponent);
+export const MultiSwitch = /* @__PURE__ */React.forwardRef(MultiSwitchComponent);
