@@ -57,7 +57,7 @@ export interface RangeDatePickerInputProps
     onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
 }
 
-export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
+export const RangeDatePickerInput = /* @__PURE__ */forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
     isDisabled,
     isInvalid,
     isReadonly,
