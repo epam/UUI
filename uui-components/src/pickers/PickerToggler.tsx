@@ -55,7 +55,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         },
         [inFocus],
     );
-    
+
     React.useEffect(() => {
         // We need to subscribe on any document clicks, when body is open to be able to make blur on toggler in case of click outside the body.
         (props.isOpen || inFocus) && window.document.addEventListener('click', handleClick);
