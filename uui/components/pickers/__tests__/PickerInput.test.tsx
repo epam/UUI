@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
+    delayAct,
 } from '@epam/uui-test-utils';
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
@@ -20,7 +21,6 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                         if (typeof newValue === 'function') {
                             const v = newValue(params.value);
                             context.current?.setProperty('value', v);
-                            return;
                         }
                         context.current?.setProperty('value', newValue);
                     }),
@@ -278,10 +278,16 @@ describe('PickerInput', () => {
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
             });
 
+            // After clearing of all the items, debounced version of clear search is called.
+            // If update items just after clearing, handleDataSourceValueChange with old value will be called.
+            // So, to wait for all debounced events execution, delayAct should be called.
+            await delayAct();
+
             setProps({ disableClear: true, value: 2 });
             await waitFor(() => {
                 expect(within(dom.container).queryByRole('button', { name: 'Clear' })).not.toBeInTheDocument();
             });
+
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('A1');
         });
 
