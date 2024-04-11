@@ -4,7 +4,7 @@ import updateLocale from 'dayjs/plugin/updateLocale';
 import isToday from 'dayjs/plugin/isToday';
 
 let _extended = false;
-const dayjs = ((...args: any[]) => {
+const dayjs = /* @__PURE__ */Object.assign((...args: any[]) => {
     if (!_extended) {
         dayjsOrig.extend(localeData);
         dayjsOrig.extend(updateLocale);
@@ -12,6 +12,6 @@ const dayjs = ((...args: any[]) => {
         _extended = true;
     }
     return dayjsOrig(...args);
-}) as typeof dayjsOrig;
+}, dayjsOrig) as typeof dayjsOrig;
 
 export { dayjs, type Dayjs };
