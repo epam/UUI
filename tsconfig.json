@@ -13,7 +13,7 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "noEmitOnError": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "./build",
     "rootDir": ".",
     "importHelpers": true,
