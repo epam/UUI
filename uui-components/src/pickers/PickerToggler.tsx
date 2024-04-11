@@ -114,22 +114,27 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderItems = () => {
         const maxItems = getMaxItems(props.maxItems);
-        let isDisabled = props.isDisabled || props.isReadonly;
+        const isPickerDisabled = props.isDisabled || props.isReadonly;
+        let areAllDisabled = isPickerDisabled;
 
         const tags = props.selection?.map((row) => {
-            isDisabled = isDisabled || row.isDisabled;
+            if (!isPickerDisabled && !row.isDisabled) {
+                areAllDisabled = false;
+            }
 
             const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
                 caption: props.getName(row.value),
                 isCollapsed: false,
-                isDisabled,
+                isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
                     row.onCheck?.(row);
                     // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
                     toggleContainer.current?.focus();
-                } };
+                },
+            };
+
             return props.renderItem?.(tagProps);
         });
 
@@ -138,7 +143,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 key: 'collapsed',
                 caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
                 isCollapsed: true,
-                isDisabled,
+                isDisabled: areAllDisabled,
                 onClear: null,
             } as any);
             tags.push(collapsedTagProps);
