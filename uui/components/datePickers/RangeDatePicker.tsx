@@ -134,4 +134,4 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     );
 }
 
-export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);
+export const RangeDatePicker = /* @__PURE__ */React.forwardRef(RangeDatePickerComponent);
