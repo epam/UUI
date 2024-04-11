@@ -88,4 +88,4 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
  * Useful for search inputs, or any other components that cause expensive computations on change.
  * Wrapped component still behaves as controlled component, and will react to external value changes immediately.
  */
-export const IEditableDebouncer = React.memo(IEditableDebouncerImpl) as typeof IEditableDebouncerImpl;
+export const IEditableDebouncer = /* @__PURE__ */React.memo(IEditableDebouncerImpl) as typeof IEditableDebouncerImpl;

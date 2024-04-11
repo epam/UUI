@@ -43,4 +43,4 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
     );
 };
 
-export const ColumnHeaderDropdown = React.memo(ColumnHeaderDropdownImpl);
+export const ColumnHeaderDropdown = /* @__PURE__ */React.memo(ColumnHeaderDropdownImpl);

@@ -37,4 +37,4 @@ function FilterPanel<TFilter extends { groupBy?: string[] } = any>(props: IFilte
     );
 }
 
-export default React.memo(FilterPanel) as typeof FilterPanel;
+export default /* @__PURE__ */React.memo(FilterPanel) as typeof FilterPanel;

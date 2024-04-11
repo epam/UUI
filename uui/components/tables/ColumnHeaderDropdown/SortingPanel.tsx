@@ -24,4 +24,4 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
     );
 };
 
-export const SortingPanel = React.memo(SortingPanelImpl);
+export const SortingPanel = /* @__PURE__ */React.memo(SortingPanelImpl);

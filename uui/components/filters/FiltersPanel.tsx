@@ -222,4 +222,4 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     );
 }
 
-export const FiltersPanel = React.memo(FiltersToolbarImpl) as typeof FiltersToolbarImpl;
+export const FiltersPanel = /* @__PURE__ */React.memo(FiltersToolbarImpl) as typeof FiltersToolbarImpl;
