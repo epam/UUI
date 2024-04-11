@@ -78,5 +78,7 @@ export enum TComponentId {
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
+    [TComponentId.accordion]: ('Headers' | 'Unfolded body')[],
+    [TComponentId.alert]: ('Colors' | 'Layout')[],
     [TComponentId.badge]: ('Colors' | 'Sizes with icon' | 'Sizes without icon')[],
 };

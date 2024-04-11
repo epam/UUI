@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 import * as electric from '@epam/electric';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 
 export class AlertDoc extends BaseDocsBlock {
@@ -31,6 +31,33 @@ export class AlertDoc extends BaseDocsBlock {
                     { name: '1 action', value: [{ name: 'ACTION 1', action: () => {} }] },
                     { name: '2 actions', value: [{ name: 'ACTION 1', action: () => {} }, { name: 'ACTION 2', action: () => {} }] },
                 ],
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.AlertProps | loveship.AlertProps | promo.AlertProps>) => {
+            docPreview.add({
+                id: 'Colors',
+                matrix: {
+                    icon: { examples: ['action-account-fill.svg'] },
+                    onClose: { examples: ['callback'] },
+                    actions: { examples: ['2 actions'] },
+                    size: { values: ['36'] },
+                    color: { examples: '*' },
+                },
+                cellSize: '240-100',
+                context: TDocContext.Resizable,
+            });
+            docPreview.add({
+                id: 'Layout',
+                matrix: {
+                    color: { examples: ['info'] },
+                    icon: { examples: [undefined, 'action-account-fill.svg'] },
+                    onClose: { examples: [undefined, 'callback'] },
+                    size: { examples: '*' },
+                    children: { examples: ['Short', 'Long'] },
+                    actions: { examples: [undefined, '1 action', '2 actions'] },
+                },
+                cellSize: '320-130',
+                context: TDocContext.Resizable,
             });
         },
     };

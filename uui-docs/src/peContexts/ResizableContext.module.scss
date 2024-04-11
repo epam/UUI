@@ -1,6 +1,9 @@
 .panel {
     flex: 1;
-    margin: 24px;
+
+    &:not(.preview) {
+        margin: 24px;
+    }
 
     .slider {
         margin: 24px 0;
