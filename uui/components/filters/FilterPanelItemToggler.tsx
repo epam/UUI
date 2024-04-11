@@ -18,7 +18,7 @@ export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, ID
     predicateName: string | null;
 }
 
-export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
+export const FilterPanelItemToggler = /* @__PURE__ */React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled) return;
         e.preventDefault();

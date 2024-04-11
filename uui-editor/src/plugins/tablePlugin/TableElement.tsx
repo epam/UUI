@@ -27,7 +27,7 @@ interface OldTableElement extends TTableElement {
 const getDefaultColWidths = (columnsNumber: number) =>
     Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
-const TableElement = React.forwardRef<
+const TableElement = /* @__PURE__ */React.forwardRef<
 React.ElementRef<typeof PlateElement>,
 PlateElementProps
 >(({ className, children, ...props }, ref) => {

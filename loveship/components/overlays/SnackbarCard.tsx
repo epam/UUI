@@ -23,7 +23,7 @@ const SnackbarIcon = {
     info: InfoIcon,
 };
 
-export const SnackbarCard = React.forwardRef<HTMLDivElement, SnackbarCardProps>((props, ref) => {
+export const SnackbarCard = /* @__PURE__ */React.forwardRef<HTMLDivElement, SnackbarCardProps>((props, ref) => {
     if (__DEV__) {
         devLogger.warn('SnackbarCard is deprecated and will be deleted in a future release. Please, use the NotificationCard instead it.');
     }

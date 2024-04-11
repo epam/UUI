@@ -8,7 +8,7 @@ export interface IndeterminateBarMods extends IHasCX {
     size?: '12' | '18' | '24';
 }
 
-export const IndeterminateBar = React.forwardRef<HTMLDivElement, IndeterminateBarMods>((props, ref) => {
+export const IndeterminateBar = /* @__PURE__ */React.forwardRef<HTMLDivElement, IndeterminateBarMods>((props, ref) => {
     return (
         <div ref={ ref } className={ cx('uui-indeterminate_bar', props.cx, css.root, css[`size-${props.size || 12}`]) }>
             <div className={ cx(css.progressBar) } />

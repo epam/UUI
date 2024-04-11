@@ -38,7 +38,7 @@ interface TextAreaState {
     inFocus?: boolean;
 }
 
-export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
+export const TextArea = /* @__PURE__ */React.forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
     const [state, setState] = useState<TextAreaState>({
         inFocus: false,
     });

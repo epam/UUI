@@ -36,7 +36,7 @@ export const TextInput = /* @__PURE__ */withMods<CoreTextInputProps, TextInputMo
     dropdownIcon: systemIcons.foldingArrow,
 }));
 
-export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
+export const SearchInput = /* @__PURE__ */React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
     // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
     const { ...textInputProps } = props;
     delete textInputProps.getValueChangeAnalyticsEvent;

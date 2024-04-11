@@ -11,7 +11,7 @@ export interface MainMenuAvatarProps extends IClickable, IAdaptiveItem, IDropdow
     icon?: Icon;
 }
 
-export const MainMenuAvatar = React.forwardRef<HTMLButtonElement, MainMenuAvatarProps>((props, ref) => (
+export const MainMenuAvatar = /* @__PURE__ */React.forwardRef<HTMLButtonElement, MainMenuAvatarProps>((props, ref) => (
     <button
         ref={ ref }
         className={ cx(css.container, props.isDropdown && css.dropdown, props.isOpen && css.open, props.onClick && uuiMarkers.clickable, props.cx) }
