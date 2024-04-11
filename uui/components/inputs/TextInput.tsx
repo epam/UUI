@@ -30,7 +30,7 @@ export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
 /** Represents the properties for a SearchInput component. */
 export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
-export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, () => ({
+export const TextInput = /* @__PURE__ */withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, () => ({
     acceptIcon: systemIcons.accept,
     cancelIcon: systemIcons.clear,
     dropdownIcon: systemIcons.foldingArrow,

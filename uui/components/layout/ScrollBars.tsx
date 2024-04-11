@@ -8,4 +8,4 @@ function applyScrollBarsMods() {
     ];
 }
 
-export const ScrollBars = withMods<ScrollbarProps>(uuiScrollBars, applyScrollBarsMods);
+export const ScrollBars = /* @__PURE__ */withMods<ScrollbarProps>(uuiScrollBars, applyScrollBarsMods);

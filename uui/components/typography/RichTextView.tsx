@@ -11,7 +11,7 @@ interface RichTextViewMods {
 
 export type RichTextViewProps = uuiComponents.RichTextViewProps & RichTextViewMods;
 
-export const RichTextView = withMods<uuiComponents.RichTextViewProps, RichTextViewMods>(
+export const RichTextView = /* @__PURE__ */withMods<uuiComponents.RichTextViewProps, RichTextViewMods>(
     uuiComponents.RichTextView,
     (mods: RichTextViewMods) => ['uui-typography', `uui-typography-size-${mods.size || '14'}`],
 );

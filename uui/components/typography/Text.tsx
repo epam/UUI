@@ -56,4 +56,4 @@ function applyTextMods(mods: TextProps) {
     ].concat(textClasses);
 }
 
-export const Text = withMods<uuiComponents.TextProps, TextProps>(uuiComponents.Text, applyTextMods);
+export const Text = /* @__PURE__ */withMods<uuiComponents.TextProps, TextProps>(uuiComponents.Text, applyTextMods);

@@ -26,7 +26,7 @@ export type RowMods = {
 /** Represents the properties of the FlexRow component. */
 export interface FlexRowProps extends uuiFlexRowProps, RowMods {}
 
-export const FlexRow = withMods<uuiFlexRowProps, RowMods>(uuiFlexRow, (props) => {
+export const FlexRow = /* @__PURE__ */withMods<uuiFlexRowProps, RowMods>(uuiFlexRow, (props) => {
     if (__DEV__) {
         if (props.spacing) {
             devLogger.warn('[FlexRow]: The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.');

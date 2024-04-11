@@ -8,7 +8,7 @@ import { isMobile } from '@epam/uui-core';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './Modals.module.scss';
 
-export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
+export const ModalBlocker = /* @__PURE__ */withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
 
 interface ModalWindowMods {
     /**
@@ -32,7 +32,7 @@ export interface ModalWindowCoreProps extends uuiModalWindowProps {}
 
 export interface ModalWindowProps extends ModalWindowCoreProps, ModalWindowMods {}
 
-export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowMods>(
+export const ModalWindow = /* @__PURE__ */withMods<uuiModalWindowProps, ModalWindowMods>(
     uuiModalWindow,
     () => [css.root, css.modal],
     (props) => {
