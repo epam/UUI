@@ -62,6 +62,8 @@ const demoItems: TodoTask[] = [
 ];
 
 let savedItem: FormState = {
+    // ItemsMap is an immutable map implementation provided by UUI.
+    // You can also use plain JS Map, through it will be a bit less convenient.
     items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
 };
 
