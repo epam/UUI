@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import {
-    DropdownBodyProps, withMods, isFocusReceiverInsideFocusLock, useUuiContext,
+    DropdownBodyProps, isFocusReceiverInsideFocusLock, useUuiContext,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
@@ -23,7 +23,7 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
-function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
+function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const { value: _value, format = defaultFormat } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
@@ -133,9 +133,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps): JSX.Element {
             value={ isOpen }
             modifiers={ modifiers }
             placement={ props.placement }
-            forwardedRef={ props.forwardedRef }
+            forwardedRef={ ref }
         />
     );
 }
 
-export const RangeDatePicker = withMods(RangeDatePickerComponent);
+export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);

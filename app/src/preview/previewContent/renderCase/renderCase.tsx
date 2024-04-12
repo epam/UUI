@@ -1,20 +1,15 @@
 import * as React from 'react';
-import { DemoContext, DocBuilder, PropDocPropsUnknown } from '@epam/uui-docs';
-
-import {
-    buildNormalizedInputValuesMap,
-    buildPropInputDataAll,
-    TPropInputDataAll,
-} from '../../../common/docs/componentEditor/propDocUtils';
+import { DocBuilder, PropDocPropsUnknown, TDocContext } from '@epam/uui-docs';
+import { formatPropsForNativeTooltip } from './renderCaseUtils';
+import { buildNormalizedInputValuesMap, buildPropInputDataAll, TPropInputDataAll } from '../../../common/docs/componentEditor/propDocUtils';
 import { PropSamplesCreationContext } from '../../../common/docs/componentEditor/view/PropSamplesCreationContext';
 
-import css from './renderCaseView.module.scss';
+import css from './renderCase.module.scss';
 
 interface ISingleRenderCaseView {
     docs: DocBuilder<PropDocPropsUnknown>;
-    DemoComponent: React.ComponentType<PropDocPropsUnknown>;
     renderCaseProps: Record<string, unknown>;
-    context: DemoContext<PropDocPropsUnknown>;
+    context: TDocContext;
 }
 
 interface ISingleRenderCaseViewState {
@@ -22,7 +17,7 @@ interface ISingleRenderCaseViewState {
     isInited: boolean
 }
 
-export class RenderCaseView extends React.PureComponent<ISingleRenderCaseView, ISingleRenderCaseViewState> {
+export class RenderCase extends React.PureComponent<ISingleRenderCaseView, ISingleRenderCaseViewState> {
     state = { inputData: {}, isInited: false };
 
     private propExamplesCtx = new PropSamplesCreationContext({
@@ -71,35 +66,19 @@ export class RenderCaseView extends React.PureComponent<ISingleRenderCaseView, I
     };
 
     render = () => {
+        const { context, docs } = this.props;
         const { isInited } = this.state;
+
         if (!isInited) {
             return null;
         }
 
-        const { DemoComponent, context } = this.props;
-        const SelectedDemoContext = context.context;
+        const SelectedDemoContext = docs.contexts.find(({ name }) => name === context).context;
         const inputValues = this.getInputValues();
-
-        let propsStrObj = '';
-        let propsStrObjFormatted = '';
-        try {
-            propsStrObj = JSON.stringify(inputValues, undefined, 1);
-            propsStrObjFormatted = Object.keys(inputValues).sort().reduce((acc, name, i) => {
-                const value = inputValues[name] as any;
-                if (value !== undefined) {
-                    const lb = i === 0 ? '' : '\n';
-                    let v = JSON.stringify(value);
-                    if (v === undefined || v === '{}') {
-                        v = value.name || '...';
-                    }
-                    return acc + lb + `${name} = ${v}`;
-                }
-                return acc;
-            }, '');
-        } catch (err) {}
-
+        const { propsForTooltip, propsForDataAttr } = formatPropsForNativeTooltip(inputValues);
+        const DemoComponent = docs.component;
         return (
-            <div className={ css.root } data-props={ propsStrObj } title={ propsStrObjFormatted }>
+            <div className={ css.root } data-props={ propsForDataAttr } title={ propsForTooltip }>
                 <SelectedDemoContext
                     DemoComponent={ DemoComponent }
                     props={ inputValues }

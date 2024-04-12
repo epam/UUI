@@ -28,30 +28,6 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         showSelectedOnly,
     } = props;
 
-    const handleDataSourceValueChange = (newDataSourceState: React.SetStateAction<DataSourceState<any, TId>>) => {
-        let dsState: DataSourceState;
-        if (typeof newDataSourceState === 'function') {
-            dsState = newDataSourceState(dataSourceState);
-        } else {
-            dsState = newDataSourceState;
-        }
-
-        if (showSelected && (!dsState.checked?.length || dsState.search)) {
-            setShowSelected(false);
-        }
-
-        if (dsState.search !== dataSourceState.search) {
-            dsState.focusedIndex = 0;
-        }
-
-        setDataSourceState(dsState);
-        const newValue = dataSourceStateToValue(props, dsState, dataSource);
-
-        if (!isEqual(value, newValue)) {
-            handleSelectionValueChange(newValue);
-        }
-    };
-
     const handleSelectionValueChange = useCallback((newValue: any) => {
         onValueChange(newValue);
 
@@ -60,6 +36,40 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
             context.uuiAnalytics.sendEvent(event);
         }
     }, [onValueChange, getValueChangeAnalyticsEvent]);
+
+    const handleDataSourceValueChange = useCallback((newDataSourceState: React.SetStateAction<DataSourceState<any, TId>>) => {
+        setDataSourceState((st) => {
+            let newDsState: DataSourceState;
+            if (typeof newDataSourceState === 'function') {
+                newDsState = newDataSourceState(st);
+            } else {
+                newDsState = newDataSourceState;
+            }
+
+            if (showSelected && (!newDsState.checked?.length || newDsState.search)) {
+                setShowSelected(false);
+            }
+
+            if (newDsState.search !== st.search) {
+                newDsState.focusedIndex = 0;
+            }
+
+            const newValue = dataSourceStateToValue(props, newDsState, dataSource);
+
+            if (!isEqual(value, newValue)) {
+                handleSelectionValueChange(newValue);
+            }
+
+            return newDsState;
+        });
+    }, [
+        value,
+        showSelected,
+        setShowSelected,
+        setDataSourceState,
+        dataSource,
+        handleSelectionValueChange,
+    ]);
 
     const getName = (i: (TItem & { name?: string }) | void) => {
         const unknownStr = 'Unknown';

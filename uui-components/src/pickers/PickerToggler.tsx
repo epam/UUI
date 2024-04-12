@@ -62,17 +62,15 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     );
 
     React.useEffect(() => {
-        // We need to subscribe on any document clicks, when body is open to be able to make blur on toggler in case of click outside the body.
-        props.isOpen && window.document.addEventListener('click', handleClick);
+        // We need to subscribe on any document clicks, when toggler is in focus to be able to make blur on toggler in case of click outside.
+        inFocus && window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
             inputContainer.current?.focus();
         }
-        // We remove listener only when toggler became not inFocus, because in case of click outside it's not enough to do it only when isOpen changed.
-        // Because change of isOpen state is happening earlier than the click event handled by lister, and we have a situation that we remove listener before we could handle click the event.
-        // It causes issue that input stays in focus, even after click outside the body.
-        return () => !inFocus && window.document.removeEventListener('click', handleClick);
-    }, [props.isOpen, inFocus, handleClick]);
+
+        return () => window.document.removeEventListener('click', handleClick);
+    }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
         if (props.isReadonly) return false;
@@ -119,24 +117,29 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderItems = () => {
         const maxItems = getMaxItems(props.maxItems);
-        let isDisabled = props.isDisabled || props.isReadonly;
+        const isPickerDisabled = props.isDisabled || props.isReadonly;
+        let areAllDisabled = isPickerDisabled;
         const displayedRows = props.selectedRowsCount > maxItems ? props.selection.slice(0, maxItems) : props.selection;
         const collapsedRows = props.selection?.slice(maxItems);
 
         const tags = displayedRows?.map((row) => {
-            isDisabled = isDisabled || row.isDisabled;
+            if (!isPickerDisabled && !row.isDisabled) {
+                areAllDisabled = false;
+            }
 
             const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
                 caption: props.getName(row.value),
                 isCollapsed: false,
-                isDisabled,
+                isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
                     row.onCheck?.(row);
                     // When we delete item it disappears from the DOM and focus is passed to the Body. So in this case we have to return focus on the toggleContainer by hand.
                     toggleContainer.current?.focus();
-                } };
+                },
+            };
+
             return props.renderItem?.(tagProps);
         });
 
@@ -145,7 +148,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 key: 'collapsed',
                 caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, ''),
                 isCollapsed: true,
-                isDisabled,
+                isDisabled: areAllDisabled,
                 onClear: null,
                 collapsedRows,
             } as any);
