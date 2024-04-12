@@ -15,10 +15,9 @@ exports[`IconButton should be rendered correctly 1`] = `
 
 exports[`IconButton should be rendered correctly with props 1`] = `
 <button
-  aria-disabled={false}
-  className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-info root"
-  onClick={[Function]}
-  tabIndex={0}
+  aria-disabled={true}
+  className="uui-button-box uui-disabled container uui-icon_button uui-color-info root"
+  tabIndex={-1}
   type="button"
 >
   <div
@@ -27,6 +26,14 @@ exports[`IconButton should be rendered correctly with props 1`] = `
   >
     <svg
       className=""
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className="flipY"
     />
   </div>
 </button>
