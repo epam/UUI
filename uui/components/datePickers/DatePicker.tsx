@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod, withMods,
+    DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
 } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 import { EditMode } from '../types';
@@ -151,4 +151,4 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     );
 }
 
-export const DatePicker = withMods(React.forwardRef(DatePickerComponent));
+export const DatePicker = React.forwardRef(DatePickerComponent);
