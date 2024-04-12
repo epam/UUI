@@ -264,13 +264,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     const selectedRows = useMemo(() => {
-        const selectedRowsCount = view.getSelectedRowsCount();
         const allowedMaxItems = getMaxItems(props.maxItems);
-        const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        const displayedRows = getSelectedRows(itemsToTake);
-        const allRows = getSelectedRows(selectedRowsCount);
-        const foldedRows = allRows.slice(itemsToTake);
-        return { displayedRows, foldedRows };
+        return getSelectedRows(allowedMaxItems);
     }, [view, dataSourceState.checked, props.maxItems]);
 
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
@@ -294,7 +289,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
         let searchValue: string | undefined = getSearchValue();
-        if (isSingleSelect() && selectedRows.displayedRows[0]?.isLoading) {
+        if (isSingleSelect() && selectedRows[0]?.isLoading) {
             searchValue = undefined;
         }
 

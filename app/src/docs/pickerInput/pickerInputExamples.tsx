@@ -7,13 +7,13 @@ export const renderTogglerExamples = [
     {
         name: 'Button',
         value: (props: TRenderTogglerParam) => {
-            return <uui.Button { ...props } caption={ props.selection.displayedRows.map((s) => s.value.name).join(', ') } />;
+            return <uui.Button { ...props } caption={ props.selection.map((s) => s.value.name).join(', ') } />;
         },
     },
     {
         name: 'LinkButton',
         value: (props: TRenderTogglerParam) => {
-            return <uui.LinkButton { ...props } caption={ props.selection.displayedRows.map((s) => s.value.name).join(', ') } />;
+            return <uui.LinkButton { ...props } caption={ props.selection.map((s) => s.value.name).join(', ') } />;
         },
     },
     {
