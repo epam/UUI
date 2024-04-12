@@ -1,11 +1,12 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 import "normalize.css";
 import "../styles/globals.scss";
 import "@epam/uui-components/styles.css";
 import "@epam/promo/styles.css";
 import "@epam/uui/styles.css";
 import "@epam/uui-editor/styles.css";
-import { AppView } from "./AppView";
+import { AppView } from "../components/AppView";
+import Loading from "./loading";
 
 function RootLayout({ children }: PropsWithChildren) {
     return (
@@ -24,7 +25,9 @@ function RootLayout({ children }: PropsWithChildren) {
             </head>
             <body className="uui-theme-promo">
                 <div className="container">
-                    <AppView>{children}</AppView>
+                    <Suspense fallback={<Loading />}>
+                        <AppView>{children}</AppView>
+                    </Suspense>
                 </div>
             </body>
         </html>

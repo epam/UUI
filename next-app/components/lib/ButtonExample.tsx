@@ -12,7 +12,6 @@ export const ButtonExample = () => {
     const svc = useUuiContext<TApi, AppContextType>();
 
     const handleSuccess = () => {
-        console.log('Success Click');
         svc.uuiNotifications.show(() =>
             <NotificationCard id={ 1 } key={ 'keyProps' } color='info' onClose={ () => null } onSuccess={ () => null } >
                 <Text>Common notification</Text>

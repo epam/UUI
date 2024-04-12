@@ -18,14 +18,13 @@ import {
     TableFiltersConfig,
 } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
-// import { UUI_API_POINT, fetcher } from "@shared/helpers";
 
 const personsColumns: DataColumnProps<Person>[] = [
     {
         key: "name",
         caption: "NAME",
         render: (person) => (
-            <Text color="gray80" font="sans-semibold">
+            <Text color="gray80" fontWeight="400">
                 {person.name}
             </Text>
         ),
@@ -39,7 +38,7 @@ const personsColumns: DataColumnProps<Person>[] = [
         key: "profileStatus",
         caption: "Profile Status",
         render: (person) => (
-            <Text color="gray80" font="sans-semibold">
+            <Text color="gray80" fontWeight="400">
                 {person.profileStatus}
             </Text>
         ),
@@ -94,13 +93,12 @@ const TableExample = () => {
         { api: svc.api.demo.persons },
         []
     );
-
     const view = dataSource.useView(tableState, setTableState, {});
 
     return (
         <div className={"withGap"}>
             <h2>Demo example with table</h2>
-            <FlexRow spacing="6">
+            <FlexRow columnGap="6">
                 <FiltersPanel
                     filters={filters}
                     tableState={tableState}
@@ -132,28 +130,4 @@ const TableExample = () => {
     );
 };
 
-const TableLoader = async () => {
-    // await getServerSideProps();
-    return <TableExample />;
-};
-
-export default TableLoader;
-
-// async function getServerSideProps() {
-//     const personsInitBody = {
-//         filter: {},
-//         range: { from: 0, count: 20 },
-//         search: "",
-//     };
-
-//     const personsData = await fetcher(`${UUI_API_POINT}/persons`, {
-//         method: "POST",
-//         body: JSON.stringify(personsInitBody),
-//     });
-
-//     return {
-//         props: {
-//             personsData,
-//         },
-//     };
-// }
+export default TableExample;

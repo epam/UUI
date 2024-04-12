@@ -68,7 +68,7 @@ export const InputExample = () => {
             <FlexRow>
                 <NumericInput step={ 2 } value={ valueNumNull } onValueChange={ onValueChangeNumNull } min={ -10 } max={ 10 } />
             </FlexRow>
-            <FlexRow spacing='12' >
+            <FlexRow columnGap='12' >
                 <FlexCell width={ 'auto' }>
                     <PickerInput
                         dataSource={ dataSource }

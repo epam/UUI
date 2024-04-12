@@ -7,11 +7,12 @@ module.exports = {
         });
         return config;
     },
-    reactStrictMode: false,
     images: {
         domains: ['rickandmortyapi.com']
     },
     devIndicators: {
         buildActivity: false
-    }
+    },
+    reactStrictMode: true,
+    productionBrowserSourceMaps: true
 };

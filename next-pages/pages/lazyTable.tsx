@@ -106,21 +106,3 @@ const TableExample = () => {
 };
 
 export default TableExample;
-
-export async function getServerSideProps() {
-    const personsInitBody = {
-        filter: {},
-        range: {from: 0, count: 20},
-        search: "",
-    };
-
-    const personsData = await fetcher(`${UUI_API_POINT}/persons`, {
-        method: 'POST',
-        body: JSON.stringify(personsInitBody) });
-
-    return {
-        props: {
-            personsData,
-        },
-    };
-}

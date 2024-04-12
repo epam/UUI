@@ -55,7 +55,7 @@ export const AppHeader = () => {
                     .show(
                         (props: INotification) => (
                             <SuccessNotification { ...props }>
-                                <Text size="36" font="sans" fontSize="14">
+                                <Text size="36" fontSize="14">
                                     It`s Ok!
                                 </Text>
                             </SuccessNotification>
@@ -85,8 +85,8 @@ export const AppHeader = () => {
             { renderThemeSwitcher() }
             <MainMenuCustomElement priority={ 0 } estimatedWidth={ 113 }  >
                 <a className={ css.linkContainer } href={ GIT_LINK }>
-                    <IconContainer icon={ GitIcon } color='white' />
-                    <Text font='sans-semibold' fontSize='14' lineHeight='24' cx={ css.linkCaption } >Open Git</Text>
+                    <IconContainer icon={ GitIcon } />
+                    <Text fontWeight="400" fontSize='14' lineHeight='24' cx={ css.linkCaption } >Open Git</Text>
                 </a>
             </MainMenuCustomElement>
             <GlobalMenu estimatedWidth={ 60 } priority={ 100500 } />
