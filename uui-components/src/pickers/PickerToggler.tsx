@@ -121,6 +121,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const maxItems = getMaxItems(props.maxItems);
         let isDisabled = props.isDisabled || props.isReadonly;
         const displayedRows = props.selectedRowsCount > maxItems ? props.selection.slice(0, maxItems) : props.selection;
+        const collapsedRows = props.selection?.slice(maxItems);
 
         const tags = displayedRows?.map((row) => {
             isDisabled = isDisabled || row.isDisabled;
@@ -146,7 +147,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 isCollapsed: true,
                 isDisabled,
                 onClear: null,
-                collapsedRows: props.selection.slice(maxItems),
+                collapsedRows,
             } as any);
             tags.push(collapsedTagProps);
         }
