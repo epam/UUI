@@ -11,7 +11,27 @@ exports[`PickerToggler should render with maximum props 1`] = `
 >
   <div
     className="body multiline"
-  />
+  >
+    <span
+      className="uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
+      tabIndex={-1}
+    >
+      <div
+        className="uui-caption"
+      >
+        test
+      </div>
+      <div
+        className="container uui-icon uui-enabled -clickable -clickable"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </span>
+  </div>
   <div
     className="actions"
   >

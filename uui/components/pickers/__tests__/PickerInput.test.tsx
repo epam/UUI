@@ -867,7 +867,7 @@ describe('PickerInput', () => {
                     ref={ props.ref }
                     iconPosition="left"
                     fill="ghost"
-                    caption={ props.selection?.displayedRows.map((s) => s.value?.name).join(', ') }
+                    caption={ props.selection?.map((s) => s.value?.name).join(', ') }
                 />
             ),
         });

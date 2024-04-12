@@ -78,7 +78,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.isReadonly) return false;
         else if (props.isOpen && props.searchPosition === 'input') return false;
         else if (props.minCharsToSearch && inFocus) return false;
-        else if (props.pickerMode === 'single' && props.selection && props.selection.displayedRows.length > 0) return true;
+        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
         else return false;
     };
 
@@ -120,8 +120,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const renderItems = () => {
         const maxItems = getMaxItems(props.maxItems);
         let isDisabled = props.isDisabled || props.isReadonly;
+        const displayedRows = props.selectedRowsCount > maxItems ? props.selection.slice(0, maxItems) : props.selection;
 
-        const tags = props.selection?.displayedRows?.map((row) => {
+        const tags = displayedRows?.map((row) => {
             isDisabled = isDisabled || row.isDisabled;
 
             const tagProps = {
@@ -145,7 +146,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 isCollapsed: true,
                 isDisabled,
                 onClear: null,
-                collapsedRows: props.selection.foldedRows,
+                collapsedRows: props.selection.slice(maxItems),
             } as any);
             tags.push(collapsedTagProps);
         }
@@ -154,14 +155,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderInput = () => {
-        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection.displayedRows[0];
+        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         let placeholder: string;
         if (!isSinglePickerSelected) {
             placeholder = props.placeholder;
         }
 
         if (isSinglePickerSelected) {
-            placeholder = props.selection.displayedRows[0].isLoading ? undefined : props.getName(props.selection.displayedRows[0]?.value);
+            placeholder = props.selection[0].isLoading ? undefined : props.getName(props.selection[0]?.value);
         }
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
