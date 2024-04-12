@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import {
-    DropdownBodyProps, withMods, isFocusReceiverInsideFocusLock, useUuiContext,
+    DropdownBodyProps, isFocusReceiverInsideFocusLock, useUuiContext,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
@@ -138,4 +138,4 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     );
 }
 
-export const RangeDatePicker = withMods(React.forwardRef(RangeDatePickerComponent));
+export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);
