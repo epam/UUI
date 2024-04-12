@@ -8,7 +8,6 @@ import { PickerBodyBaseProps } from '../PickerBodyBase';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { handleDataSourceKeyboard } from '../KeyboardUtils';
 import { i18n } from '../../i18n';
-import { getMaxItems } from '../helpers';
 import { usePicker } from './usePicker';
 import { usePickerInputState } from './usePickerInputState';
 import { UsePickerInputProps } from './types';
@@ -263,10 +262,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
-    const selectedRows = useMemo(() => {
-        const allowedMaxItems = getMaxItems(props.maxItems);
-        return getSelectedRows(allowedMaxItems);
-    }, [view, dataSourceState.checked, props.maxItems]);
+    const selectedRows = useMemo(() => getSelectedRows(view.getSelectedRowsCount()), [view, dataSourceState.checked]);
 
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
