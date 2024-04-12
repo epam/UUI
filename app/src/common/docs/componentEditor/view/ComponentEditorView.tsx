@@ -14,7 +14,7 @@ import { DemoErrorBoundary } from './DemoErrorBoundary';
 import css from './ComponentEditorView.module.scss';
 import { PeTable } from './peTable/PeTable';
 import { buildNormalizedInputValuesMap } from '../propDocUtils';
-import { TPreviewRef } from '../../../../preview/componentPreview/utils/previewLinkUtils';
+import { TPreviewRef } from '../../../../preview/types';
 import { FullscreenBtn } from './fullscreenBtn/fullscreenBtn';
 
 type TInputData<TProps> = {
