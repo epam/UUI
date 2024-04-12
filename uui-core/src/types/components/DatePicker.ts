@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
-    ICanBeReadonly, IDisableable, IHasForwardedRef, IDropdownToggler,
+    ICanBeReadonly, IDisableable, IDropdownToggler,
 } from '../props';
 import { CX } from '../objects';
 
@@ -10,8 +10,7 @@ import { CX } from '../objects';
  * Represents CommonDatePickerProps
 */
 export interface CommonDatePickerProps extends IDisableable,
-    ICanBeReadonly,
-    IHasForwardedRef<HTMLElement> {
+    ICanBeReadonly {
     /**
      * HTML ID attribute for the toggler input
      */
