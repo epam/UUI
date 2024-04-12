@@ -83,7 +83,7 @@ const getDataSourceExamples = (ctx: IDocBuilderGenCtx) => {
 };
 
 export const getPickerBaseOptionsDoc = (ctx: IDocBuilderGenCtx) => new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
-    .prop('dataSource', { examples: getDataSourceExamples(ctx), isRequired: true })
+    .prop('dataSource', { examples: getDataSourceExamples(ctx), isRequired: true, remountOnChange: true })
     .prop('sorting', {
         examples: [
             { value: { field: 'name', direction: 'asc' }, name: 'name' }, { value: { field: 'id', direction: 'asc' }, name: 'id' }, { value: { field: 'population', direction: 'asc' }, name: 'population' },
