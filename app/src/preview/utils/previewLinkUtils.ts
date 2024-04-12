@@ -17,6 +17,7 @@ type TBuildPreviewLinkParams = {
 export function buildPreviewRef(params: TBuildPreviewLinkParams): TPreviewRef {
     const { context, inputData, theme, isSkin, componentId, docs } = params;
     const unableToSerialize: string[] = [];
+    const unableToPassProps: string[] = [];
     const initialValue = {
         id: '',
         context,
@@ -36,12 +37,8 @@ export function buildPreviewRef(params: TBuildPreviewLinkParams): TPreviewRef {
                     });
                 }
             } else {
-                const msg = `[buildPreviewRef] Unable to find example of property=${name} by exampleId=${exampleId}. The property will be ignored.`;
-                if (name === 'onValueChange') {
-                    // TODO: need find a way to convert such callback-based examples to plain array
-                    // console.debug(msg);
-                } else {
-                    console.error(msg);
+                if (name !== 'onValueChange') {
+                    unableToPassProps.push(`${name} (exampleId="${exampleId}")`);
                 }
             }
         } else if (value !== undefined) {
@@ -62,7 +59,10 @@ export function buildPreviewRef(params: TBuildPreviewLinkParams): TPreviewRef {
     const link = `${baseLink}&previewId=${encodeInlinePreviewPropsForUrl(previewProps)}`;
     let error;
     if (unableToSerialize.length) {
-        error = `The props listed below cannot be serialized for URL and will be excluded. You might want to include them as examples instead: ${unableToSerialize.join(', ')}`;
+        error = `Next props cannot be serialized for URL and will be excluded. You might want to include them as examples instead: ${unableToSerialize.join(', ')}`;
+    }
+    if (unableToPassProps.length) {
+        error = `Next props cannot be serialized for URL and will be excluded, because their examples cannot be resolved: ${unableToPassProps.join(', ')}`;
     }
 
     const predefinedPreviewRefs = docs.docPreview?.listOfPreviews.map((pp) => {

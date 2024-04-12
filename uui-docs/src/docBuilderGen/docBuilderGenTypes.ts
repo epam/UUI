@@ -3,6 +3,7 @@ import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import * as React from 'react';
 import { Icon, UuiContexts } from '@epam/uui-core';
+import { IDemoApi } from '../demoApi';
 
 export type TPropDocBuilderParams = {
     docs: DocBuilder<any>,
@@ -19,6 +20,7 @@ export interface IDocBuilderGenCtx {
      */
     getIconList: () => IconBase<Icon>[];
     uuiCtx: Pick<UuiContexts, 'uuiNotifications'>,
+    demoApi: IDemoApi,
     loadDocsGenType: (typeRef: TTypeRef) => Promise<{ content: TType }>,
 }
 
