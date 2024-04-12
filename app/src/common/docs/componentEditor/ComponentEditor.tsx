@@ -20,7 +20,7 @@ import {
     updatePropInputData,
 } from './propDocUtils';
 import { useQuery } from '../../../helpers';
-import { buildPreviewRef } from '../../../preview/componentPreview/utils/previewLinkUtils';
+import { buildPreviewRef } from '../../../preview/utils/previewLinkUtils';
 
 export function ComponentEditorWrapper(props: {
     theme: TTheme,
