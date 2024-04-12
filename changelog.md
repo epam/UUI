@@ -2,7 +2,8 @@
 
 **What's Fixed**
 * [IconButton]: Replace the `isDropdown` prop with `showDropdownIcon` to prevent the automatic appearance of the dropdown icon when using `IconButton` as the `Dropdown` target.
-
+* [ApiContext]: Added possibility to send signal about success relogin via `localStorage`, due to old mechanism with `window.opener.postMessage` was broken on SSO side by security reasons .
+  - To switch to the handling via `localStorage` replace code of `/auth/login` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
 
 # 5.7.1 - 29.03.2024
 

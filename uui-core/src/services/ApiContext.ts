@@ -92,17 +92,30 @@ export class ApiContext extends BaseContext implements IApiContext {
         if (isClientSide) {
             // If we opened another window to relogin and check auth - close this window and resume
             window.addEventListener('message', this.handleWindowMessage);
+            window.addEventListener('storage', this.handleStorageUpdate);
         }
     }
 
     private handleWindowMessage = (e: MessageEvent) => {
         if (e.data === 'authSuccess') {
-            if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
-                this.setStatus('running');
-                this.runQueue();
-                this.update({});
-            }
+            this.handleSuccessAuthRecovery();
             (e.source as any).close();
+        }
+    };
+
+    private handleStorageUpdate = () => {
+        const isRecoverySuccess = window.localStorage.getItem('uui-auth-recovery-success');
+        if (isRecoverySuccess === 'true') {
+            this.handleSuccessAuthRecovery();
+            window.localStorage.removeItem('uui-auth-recovery-success');
+        }
+    };
+
+    private handleSuccessAuthRecovery = () => {
+        if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
+            this.setStatus('running');
+            this.runQueue();
+            this.update({});
         }
     };
 
