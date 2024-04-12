@@ -26,9 +26,12 @@ export function useDocBuilderGenCtx(): IDocBuilderGenCtx {
     return useMemo(() => {
         const result: IDocBuilderGenCtx = {
             loadDocsGenType,
-            uuiCtx: { uuiNotifications: uuiCtx.uuiNotifications },
+            uuiCtx: {
+                uuiNotifications: uuiCtx.uuiNotifications,
+            },
+            demoApi: uuiCtx.api.demo,
             getIconList: getAllIcons,
         };
         return result;
-    }, [uuiCtx.uuiNotifications]);
+    }, [uuiCtx.api.demo, uuiCtx.uuiNotifications]);
 }
