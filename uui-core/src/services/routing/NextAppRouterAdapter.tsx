@@ -8,12 +8,12 @@ export interface PrefetchOptions {
     kind: 'auto' | 'full' | 'temporary';
 }
 
-type TNextAppRouter = {
+export type TNextAppRouter = {
     push(href: string, options?: NavigateOptions): void;
     replace(href: string, options?: NavigateOptions): void;
 };
 
-type ReadonlySearchParams = URLSearchParams & {
+export type ReadonlySearchParams = URLSearchParams & {
     append(): void;
     delete(): void;
     set(): void;

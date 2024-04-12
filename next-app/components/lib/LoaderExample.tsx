@@ -7,7 +7,7 @@ export const  LoaderExample = () => {
     const renderForm = () => {
         return (
             <FlexCell minWidth={ 520 } >
-                <FlexRow spacing='12' padding='24' vPadding='24'>
+                <FlexRow columnGap='12' padding='24' vPadding='24'>
                     <LabeledInput label='Name' >
                         <TextInput value={ 'Alex' }  onValueChange={ () => null }/>
                     </LabeledInput>
@@ -15,7 +15,7 @@ export const  LoaderExample = () => {
                         <TextInput value={ 'Belarus' }  onValueChange={ () => null }/>
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow spacing='12' padding='24' vPadding='24'>
+                <FlexRow columnGap='12' padding='24' vPadding='24'>
                     <LabeledInput label='Age' >
                         <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ () => null }/>
                     </LabeledInput>
@@ -23,7 +23,7 @@ export const  LoaderExample = () => {
                         <DatePicker format={ 'DD/MM/YYYY' } value={ '2042-11-20' }  onValueChange={ () => null }/>
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow spacing='12' padding='24' vPadding='24'>
+                <FlexRow columnGap='12' padding='24' vPadding='24'>
                     <FlexSpacer/>
                     <Button color='blue' caption='Submit'/>
                     <Button color='green' fill='none'  caption='Cancel'/>

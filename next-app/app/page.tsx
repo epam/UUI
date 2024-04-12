@@ -33,7 +33,7 @@ const Home: NextPage = () => {
                                             className={`${styles.cardImage} ${styles.hidden}`}
                                         />
                                         <Text
-                                            font="sans-semibold"
+                                            fontWeight="400"
                                             lineHeight="30"
                                             fontSize="24"
                                             cx={styles.cardText}

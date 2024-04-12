@@ -52,9 +52,9 @@ if (!isDevServer()) {
         res.sendFile(path.join(__dirname, '../app/build/', 'index.html'));
     });
 
-    app.listen(5000, () => {
+    app.listen(5500, () => {
         // eslint-disable-next-line no-console
-        console.log('Example app listening on port 5000!');
+        console.log('Example app listening on port 5500!');
     });
 }
 

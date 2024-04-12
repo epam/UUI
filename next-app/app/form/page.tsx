@@ -133,7 +133,7 @@ const Location = ({
                 <h3>Location</h3>
             </RichTextView>
 
-            <FlexRow vPadding="12" spacing="18" alignItems="top">
+            <FlexRow vPadding="12" columnGap="18" alignItems="top">
                 <LabeledInput
                     htmlFor="country"
                     label="Country"
@@ -190,7 +190,7 @@ const PrimaryInfo = ({
             </Tooltip>
         </FlexRow>
 
-        <FlexRow vPadding="12" spacing="18" alignItems="top">
+        <FlexRow vPadding="12" columnGap="18" alignItems="top">
             <LabeledInput
                 htmlFor="status"
                 label="Status"
@@ -214,7 +214,7 @@ const PrimaryInfo = ({
                 />
             </LabeledInput>
         </FlexRow>
-        <FlexRow vPadding="12" spacing="18" alignItems="top">
+        <FlexRow vPadding="12" columnGap="18" alignItems="top">
             <FlexCell minWidth={324}>
                 <LabeledInput
                     htmlFor="organizationalCategory"
@@ -257,9 +257,9 @@ const PrimaryInfo = ({
                 </FlexCell>
             </FlexRow>
         </FlexRow>
-        <FlexRow vPadding="12" spacing="18" alignItems="top">
+        <FlexRow vPadding="12" columnGap="18" alignItems="top">
             <FlexCell minWidth={324}>
-                <FlexRow spacing="18">
+                <FlexRow columnGap="18">
                     <FlexCell minWidth={120}>
                         <LabeledInput
                             htmlFor="currentProject"
@@ -288,7 +288,7 @@ const PrimaryInfo = ({
                     </FlexCell>
                 </FlexRow>
             </FlexCell>
-            <FlexRow size="48" spacing="18" alignItems="bottom">
+            <FlexRow size="48" columnGap="18" alignItems="bottom">
                 <Switch
                     label="Time Reporting"
                     {...lens.prop("timeReporting").toProps()}
@@ -338,7 +338,7 @@ const Education = ({ lens }: { lens: ILens<PersonDetails["education"]> }) => {
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
-            <FlexRow vPadding="12" spacing="18" alignItems="top">
+            <FlexRow vPadding="12" columnGap="18" alignItems="top">
                 <LabeledInput
                     htmlFor="faculty"
                     label="Faculty"
@@ -362,7 +362,7 @@ const Education = ({ lens }: { lens: ILens<PersonDetails["education"]> }) => {
                     />
                 </LabeledInput>
             </FlexRow>
-            <FlexRow vPadding="12" spacing="18" alignItems="top">
+            <FlexRow vPadding="12" columnGap="18" alignItems="top">
                 <LabeledInput
                     htmlFor="degree"
                     label="Degree"
@@ -386,7 +386,7 @@ const Education = ({ lens }: { lens: ILens<PersonDetails["education"]> }) => {
                     />
                 </LabeledInput>
             </FlexRow>
-            <FlexRow vPadding="12" spacing="18">
+            <FlexRow vPadding="12" columnGap="18">
                 <FlexCell minWidth={120}>
                     <LabeledInput
                         htmlFor="graduationYear"
@@ -691,7 +691,7 @@ const Visas = ({
                     fill="none"
                 />
             </FlexRow>
-            <FlexRow vPadding="12" spacing="18">
+            <FlexRow vPadding="12" columnGap="18">
                 <FlexCell width="100%">
                     <LabeledInput label="Scans">
                         <DropSpot
@@ -762,7 +762,7 @@ const DemoForm = () => {
                 .show(
                     (props) => (
                         <SuccessNotification {...props}>
-                            <Text size="36" font="sans" fontSize="14">
+                            <Text size="36" fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>

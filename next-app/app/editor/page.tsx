@@ -80,7 +80,7 @@ export default function SlateEditorBasicExample() {
         <div className={"withGap"}>
             <h2>Demo example with RichTextEditor(RTE)</h2>
             <Panel cx={css.root}>
-                <FlexRow spacing="18" vPadding="12">
+                <FlexRow columnGap="18" vPadding="12">
                     <MultiSwitch
                         items={[
                             { id: "14", caption: "14" },

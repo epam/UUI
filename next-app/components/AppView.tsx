@@ -1,19 +1,19 @@
 "use client";
 
-import { useMemo, useEffect, Suspense, PropsWithChildren } from "react";
+import { useEffect, Suspense, PropsWithChildren } from "react";
 import { ErrorHandler } from "@epam/promo";
 import { Modals, Snackbar } from "@epam/uui-components";
 import {
     DragGhost,
     GAListener,
-    NextAppRouterAdapter,
     UuiContext,
+    useNextAppRouter,
     useUuiServices,
 } from "@epam/uui-core";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { SideBar } from "./SideBar";
-import { AppHeader } from "../components/AppHeader";
-import Loading from "./loading";
+import { AppHeader } from "./AppHeader";
+import Loading from "../app/loading";
 import { TApi, apiDefinition } from "../helpers/apiDefinition";
 import { AppContextType } from "../helpers/appContext";
 import { AmplitudeListener } from "../helpers/ampListener";
@@ -26,15 +26,11 @@ export function AppView({ children }: PropsWithChildren) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
 
-    const appRouterAdapter = useMemo(
-        () => new NextAppRouterAdapter(router),
-        [router]
-    );
-
-    // avoid re-creation router adapter by updating router related stuff here
-    useEffect(() => {
-        appRouterAdapter.updateURLParams(pathname, searchParams);
-    }, [appRouterAdapter, searchParams, pathname]);
+    const appRouterAdapter = useNextAppRouter({
+        router,
+        pathname,
+        searchParams,
+    });
 
     const { services } = useUuiServices<TApi, AppContextType>({
         apiDefinition,
