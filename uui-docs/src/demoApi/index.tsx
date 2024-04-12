@@ -39,7 +39,6 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         jobTitles: lazyApi<models.JobTitle, number>('jobTitles'),
         schedules: () => processRequest(origin.concat('/api/schedules'), 'POST') as Promise<models.PersonSchedule[]>,
         personDetails: personDetailsApi,
-        todos: () => processRequest(origin.concat('/api/todos'), 'POST') as Promise<models.TodoTask[]>,
         projectTasks: lazyApi<models.ProjectTask, number>('projectTasks'),
     };
 }
