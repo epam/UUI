@@ -57,17 +57,15 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     );
 
     React.useEffect(() => {
-        // We need to subscribe on any document clicks, when body is open to be able to make blur on toggler in case of click outside the body.
-        (props.isOpen || inFocus) && window.document.addEventListener('click', handleClick);
+        // We need to subscribe on any document clicks, when toggler is in focus to be able to make blur on toggler in case of click outside.
+        inFocus && window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
             inputContainer.current?.focus();
         }
-        // We remove listener only when toggler became not inFocus, because in case of click outside it's not enough to do it only when isOpen changed.
-        // Because change of isOpen state is happening earlier than the click event handled by lister, and we have a situation that we remove listener before we could handle click the event.
-        // It causes issue that input stays in focus, even after click outside the body.
+
         return () => window.document.removeEventListener('click', handleClick);
-    }, [props.isOpen, inFocus, handleClick]);
+    }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
         if (props.isReadonly) return false;
