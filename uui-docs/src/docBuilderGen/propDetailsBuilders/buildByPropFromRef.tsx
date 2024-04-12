@@ -15,7 +15,7 @@ import {
     IHasRawProps, IHasValidationMessage,
     TextInputCoreProps,
 } from '@epam/uui-core';
-import { pickerBaseOptionsDoc } from '../../commonDocs';
+import { getPickerBaseOptionsDoc } from '../../commonDocs';
 import { IDocBuilderGenCtx, TPropDocBuilder } from '../docBuilderGenTypes';
 import {
     getRawPropsExamples,
@@ -125,7 +125,7 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { docBuil
             editorType: 'JsonEditor',
         }),
     '@epam/uui-core:ICanRedirect': () => iCanRedirectDoc,
-    '@epam/uui-core:PickerBaseOptions': () => pickerBaseOptionsDoc,
+    '@epam/uui-core:PickerBaseOptions': (params) => getPickerBaseOptionsDoc(params.docBuilderGenCtx),
     '@epam/uui-core:IControlled': () => {
         return new DocBuilder<any>({ name: '' }).implements([IControlled]);
     },
