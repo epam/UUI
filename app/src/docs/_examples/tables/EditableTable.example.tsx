@@ -1,11 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, UuiContexts, useArrayDataSource, useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
 import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.module.scss';
-import { TApi } from '../../../data';
 import { useDataTableFocusManager } from '@epam/uui-components';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/content-edit_redo-outline.svg';
@@ -17,7 +16,6 @@ const blankItem: Partial<TodoTask> = {
     priority: null,
     comments: '',
     dueDate: '',
-    isNew: true,
 };
 
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
@@ -45,19 +43,33 @@ const metadata: Metadata<FormState> = {
     },
 };
 
-let savedItem: FormState = {
-    items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
-    // items: ItemsMap.blank<number, TodoTask>({ }),
-};
-
 // To store the last item id used
 let id = -1;
+
+// Prepare mock data for the demo. Usually, you'll get initial data from server API call
+const demoItems: TodoTask[] = [
+    {
+        ...blankItem, id: 0, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook',
+    }, {
+        ...blankItem, id: 1, name: 'Implement editable cells', isDone: true,
+    }, {
+        ...blankItem, id: 2, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2,
+    }, {
+        ...blankItem, id: 3, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop',
+    }, { ...blankItem, id: 4, name: 'Complete cells replication' }, {
+        ...blankItem, id: 5, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support',
+    },
+];
+
+let savedItem: FormState = {
+    // ItemsMap is an immutable map implementation provided by UUI.
+    // You can also use plain JS Map, through it will be a bit less convenient.
+    items: ItemsMap.blank<number, TodoTask>({ getId: (todo) => todo.id }),
+};
 
 const defaultSorting: DataSourceState['sorting'] = [{ field: 'id', direction: 'asc' }];
 
 export default function EditableTableExample() {
-    const svc = useUuiContext<TApi, UuiContexts>();
-
     // Use form to manage state of the editable table
     const {
         lens, save, revert, undo, canUndo, redo, canRedo, value, setValue, isChanged,
@@ -69,20 +81,23 @@ export default function EditableTableExample() {
         },
         getMetadata: () => metadata,
     });
-    const dataTableFocusManager = useDataTableFocusManager<TodoTask['id']>({}, []);
 
-    const newItems = useMemo(() => new Map<number, boolean>(), []);
+    // Define data table focus manager, to enable focusing on cells with keyboard shortcuts
+    // and programmatically.
+    // For example, after adding a row, the first editable cell of the new row should be focused via `dataTableFocusManager`.
+    const dataTableFocusManager = useDataTableFocusManager<TodoTask['id']>({}, []);
 
     // Prepare callback to add a new item to the list.
     const handleNewItem = useCallback(() => {
         const newItem = { ...blankItem, id: --id };
-
-        newItems.set(newItem.id, true);
         // We can manipulate form state directly with the setValue
         // - pretty much like we do with the setState of React.useState.
         setValue((current) => ({ ...current, items: current.items.set(newItem.id, newItem) }));
+
+        // It is possible to focus rows programmatically via dataTableFocusManager,
+        // even those, still not present on the screen.
         dataTableFocusManager?.focusRow(newItem.id);
-    }, [setValue, newItems, dataTableFocusManager]);
+    }, [setValue, dataTableFocusManager]);
 
     const handleDeleteItem = useCallback((item: TodoTask) => {
         setValue((current) => ({ ...current, items: current.items.set(item.id, { ...item, isDeleted: true }) }));
@@ -190,9 +205,9 @@ export default function EditableTableExample() {
     // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
     // DataSources describe the way to extract some list/tree-structured data.
     // Here we'll use ArrayDataSource - which gets data from an array, which we obtain from our Form.
-    const dataSource = useAsyncDataSource<TodoTask, number, unknown>(
+    const dataSource = useArrayDataSource<TodoTask, number, unknown>(
         {
-            api: svc.api.demo.todos,
+            items: demoItems,
         },
         [],
     );
@@ -201,10 +216,14 @@ export default function EditableTableExample() {
     // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
     const view = dataSource.useView(tableState, onTableStateChange, {
         getRowOptions: (item: TodoTask) => ({
+            // Rows values are updated via lens.
             ...lens.prop('items').key(item.id).default(item).toProps(),
         }),
+        // Changed/added/removed items are stored in value.items and applied to the dataSource via patch.
         patch: value.items,
+        // Position, new items from the patch should be placed.
         getNewItemPosition: () => PatchOrdering.TOP,
+        // Getter of deleted state of the item from the patch.
         isDeleted: (item) => item.isDeleted,
     });
 

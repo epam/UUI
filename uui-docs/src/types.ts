@@ -129,7 +129,7 @@ export type TPreviewCellSize = `${TCellSize}-${TCellSize}`;
 
 export type TPreviewPropsItemRenderCases = {
     id: string;
-    context: TDocContext;
+    context: TDocContext | undefined;
     cellSize: TPreviewCellSize | undefined;
     props: Record<string, unknown>[];
 };

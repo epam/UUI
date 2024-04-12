@@ -5,7 +5,7 @@ import {
 } from '@epam/uui';
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { TPreviewRef } from '../../../../../preview/componentPreview/utils/previewLinkUtils';
+import { TPreviewRef } from '../../../../../preview/types';
 
 const LABELS = {
     Fullscreen: 'Fullscreen',

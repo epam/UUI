@@ -127,9 +127,15 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     }
 
     static convertPreviewPropsItemToRenderCases = (ppi: TComponentPreview<unknown>, docs: DocBuilder<PropDocPropsUnknown>): TPreviewPropsItemRenderCases => {
+        let ctxToSet = ppi.context || TDocContext.Default;
+        const ctxToSetSupported = !!docs.contexts.find((ctx) => ctx.name === ctxToSet);
+        if (!ctxToSetSupported) {
+            ctxToSet = undefined;
+            console.error(`The context="${ctxToSet}" is not supported by the component`);
+        }
         const result: TPreviewPropsItemRenderCases = {
             id: ppi.id,
-            context: ppi.context || TDocContext.Default,
+            context: ctxToSet,
             props: [],
             cellSize: ppi.cellSize,
         };
