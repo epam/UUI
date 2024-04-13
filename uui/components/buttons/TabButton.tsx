@@ -33,22 +33,19 @@ export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdown
     count?: React.ReactNode;
 };
 
-function applyTabButtonMods(mods: TabButtonProps) {
-    return [
-        css.root,
-        'uui-tab-button',
-        css['size-' + (mods.size || '48')],
-        mods.withNotify && css.withNotify,
-        ...getIconClass(mods),
-    ];
-}
-
 export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
     if (__DEV__ && props.captionCX) {
         devLogger.warn('TabButton/VerticalTabButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
     }
 
-    const styles = [applyTabButtonMods(props), props.cx];
+    const styles = [
+        css.root,
+        'uui-tab-button',
+        css['size-' + (props.size || '48')],
+        props.withNotify && css.withNotify,
+        ...getIconClass(props),
+        props.cx,
+    ];
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
     const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
