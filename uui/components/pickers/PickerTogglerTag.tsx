@@ -3,6 +3,7 @@ import * as types from '../types';
 import { Tag, TagProps } from '../widgets';
 import { Tooltip } from '../overlays';
 import { PickerTogglerRenderItemParams } from '@epam/uui-components';
+import css from './PickerTogglerTag.module.scss';
 
 export interface PickerTogglerTagProps<TItem, TId> extends PickerTogglerRenderItemParams<TItem, TId>, TagProps {
     /** Defines component size */
@@ -41,7 +42,7 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
                 content={ collapsedRows }
                 closeDelay={ 150 }
                 closeOnMouseLeave="boundary"
-                rawProps={ { style: { overflowY: 'auto', maxHeight: '150px' } } }
+                cx={ css.tooltip }
             >
                 <Tag ref={ ref } { ...tagProps } />
             </Tooltip>
