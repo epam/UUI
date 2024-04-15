@@ -18,6 +18,7 @@ function getIgnoredPatterns({ isCI, isLintStaged, isLintScript }) {
         'node_modules',
         'templates',
         'next-app',
+        'next-pages',
         'server/helpers/getFilterPredicate.js',
     ];
     if (isCI || isLintStaged) {
