@@ -80,7 +80,7 @@ export class NextAppRouterAdapter implements IRouterContext {
     public createHref(link: Link): string {
         return createHref(
             link,
-            process.env.basePath || process.env.NEXT_PUBLIC_BASE_PATH || '',
+            process.env.NEXT_PUBLIC_BASE_PATH || '',
         );
     }
 
