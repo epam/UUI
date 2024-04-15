@@ -714,7 +714,7 @@ describe('PickerInput', () => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
             });
 
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2 languages selected']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2']);
         });
 
         it('should disable clear', async () => {
