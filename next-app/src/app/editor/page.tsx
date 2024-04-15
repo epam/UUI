@@ -25,11 +25,12 @@ import {
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from '../../styles/SlateEditorBasicExample.module.scss';
+import { withErrorHandle } from '../../components/withErrorHandle';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';
 
-export default function SlateEditorBasicExample() {
+export default withErrorHandle(function SlateEditorBasicExample() {
   const [value, setValue] = useState<EditorValue | null>(
     demoData.slateInitialValue
   );
@@ -119,4 +120,4 @@ export default function SlateEditorBasicExample() {
       </Panel>
     </div>
   );
-}
+});

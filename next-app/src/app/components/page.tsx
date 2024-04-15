@@ -9,6 +9,7 @@ import {
   IconExample,
   AccordionExample,
 } from '../../components/lib';
+import { withErrorHandle } from '../../components/withErrorHandle';
 
 const Components = () => {
   return (
@@ -28,4 +29,4 @@ const Components = () => {
   );
 };
 
-export default Components;
+export default withErrorHandle(Components);

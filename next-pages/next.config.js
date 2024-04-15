@@ -14,4 +14,6 @@ module.exports = {
     devIndicators: {
         buildActivity: false,
     },
+    reactStrictMode: true,
+    productionBrowserSourceMaps: true
 };

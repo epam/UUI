@@ -18,6 +18,7 @@ import {
   TableFiltersConfig,
 } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
+import { withErrorHandle } from '../../components/withErrorHandle';
 
 const personsColumns: DataColumnProps<Person>[] = [
   {
@@ -136,4 +137,4 @@ const TableExample = () => {
   );
 };
 
-export default TableExample;
+export default withErrorHandle(TableExample);

@@ -8,11 +8,13 @@ To start next app with last local changes of UUI library, run this commands from
 
 ```bash
 lerna run build
-# then
-yarn run next:dev ## this script install all modules and update @epam modules with local changes and run application for manual check
+
+yarn run next-pages:dev ## this script install all modules and update @epam modules with local changes and run application for manual check
+
+yarn start-server ## this script will start local server with demo data on port 5500
 
 ## to check whether pages are rendered run tests
-cd ./next-app
+cd ./next-pages
 yarn test
 ```
 
@@ -21,7 +23,7 @@ yarn test
 If you want to start next app with last public version of uui library do this:
 
 ```bash
-cd ./next-app
+cd ./next-pages
 # remove folders ./node_modules and ./.next if they are is
 # then
 yarn
@@ -36,11 +38,11 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 
 ## Editing
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `src/pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3001/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3001/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `src/pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The `src/pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Learn More
 
