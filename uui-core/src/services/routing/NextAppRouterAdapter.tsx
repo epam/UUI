@@ -1,11 +1,7 @@
 import { IRouterContext, Link } from '../../types';
 
-export interface NavigateOptions {
+interface NavigateOptions {
     scroll?: boolean;
-}
-
-export interface PrefetchOptions {
-    kind: 'auto' | 'full' | 'temporary';
 }
 
 export type TNextAppRouter = {
@@ -47,7 +43,7 @@ export class NextAppRouterAdapter implements IRouterContext {
                 query: paramsToQuery(this.searchParams),
             })
             : {
-                pathname: undefined,
+                pathname: '',
                 query: {},
             };
     }
