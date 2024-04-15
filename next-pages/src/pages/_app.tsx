@@ -11,40 +11,40 @@ const AMPLITUDE_KEY = 'b2260a6d42a038e9f9e3863f67042cc1';
 const GA_KEY = 'UA-132675234-1';
 
 interface MyAppProps<TAppContext> extends AppProps {
-  appContext?: TAppContext;
+    appContext?: TAppContext;
 }
 
 function MyApp(props: MyAppProps<AppContextType>) {
-  const { Component, pageProps, router } = props;
+    const { Component, pageProps, router } = props;
 
-  const { services } = useUuiServicesSsr<TApi, AppContextType>({
-    apiDefinition,
-    router,
-  });
+    const { services } = useUuiServicesSsr<TApi, AppContextType>({
+        apiDefinition,
+        router,
+    });
 
-  useEffect(() => {
-    services.uuiAnalytics.addListener(new AmplitudeListener(AMPLITUDE_KEY));
-    services.uuiAnalytics.addListener(new GAListener(GA_KEY));
-  }, [services.uuiAnalytics]);
+    useEffect(() => {
+        services.uuiAnalytics.addListener(new AmplitudeListener(AMPLITUDE_KEY));
+        services.uuiAnalytics.addListener(new GAListener(GA_KEY));
+    }, [services.uuiAnalytics]);
 
-  const { isChangingRoute } = useIsChangingRoute(router);
+    const { isChangingRoute } = useIsChangingRoute(router);
 
-  return (
-    <UuiContext.Provider value={services}>
-      <MyAppView
-        isChangingRoute={isChangingRoute}
-        {...{
-          Component,
-          pageProps,
-        }}
-      />
-    </UuiContext.Provider>
-  );
+    return (
+        <UuiContext.Provider value={services}>
+            <MyAppView
+                isChangingRoute={isChangingRoute}
+                {...{
+                    Component,
+                    pageProps,
+                }}
+            />
+        </UuiContext.Provider>
+    );
 }
 
 MyApp.getInitialProps = async function getInitialProps() {
-  const appContext = await getAppContext();
-  return { appContext };
+    const appContext = await getAppContext();
+    return { appContext };
 };
 
 export default MyApp;

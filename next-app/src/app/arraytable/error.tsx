@@ -2,4 +2,4 @@
 
 import Error from '../../components/ErrorPage';
 
-export default Error
+export default Error;

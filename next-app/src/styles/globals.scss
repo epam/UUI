@@ -4,51 +4,51 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
-    sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        Segoe UI,
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        Fira Sans,
+        Droid Sans,
+        Helvetica Neue,
+        sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 60px minmax(calc(100vh - 60px), 1fr);
-  grid-template-areas:
-    'header header'
-    'sidebar main';
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px minmax(calc(100vh - 60px), 1fr);
+    grid-template-areas:
+        'header header'
+        'sidebar main';
 }
 
 .withGap {
-  display: grid;
-  gap: 1em;
+    display: grid;
+    gap: 1em;
 }
 
 .header {
-  grid-area: header;
+    grid-area: header;
 }
 
 .mainContainer {
-  grid-area: main;
-  padding: 2em;
-  background: var(--surface-color);
+    grid-area: main;
+    padding: 2em;
+    background: var(--surface-color);
 }
