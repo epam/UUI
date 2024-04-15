@@ -1,9 +1,5 @@
 {
   "root": true,
-  "extends": ["eslint:recommended", "plugin:jest/recommended"],
-  "parser": "@typescript-eslint/parser",
-  "env": {
-    "browser": true,
-    "node": true
-  }
+  "extends": ["next/core-web-vitals", "prettier", "plugin:jest/recommended"],
+  "parser": "@typescript-eslint/parser"
 }

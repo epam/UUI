@@ -109,5 +109,6 @@
         "less",
         "scss"
     ],
-    "eslint.format.enable": true
+    "eslint.format.enable": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
 }

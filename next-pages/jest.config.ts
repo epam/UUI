@@ -15,7 +15,7 @@ const config: Config = {
     testMatch: ['**/test/**/*.test.{ts,tsx}'],
     moduleNameMapper: {
         // overriding the key which is defined here: "next/dist/build/jest/jest.js"
-        '^.+\\.(svg)$': '<rootDir>/test/__mock__/svgrMock.js',
+        '^.+\\.(svg)$': '<rootDir>/src/test/__mock__/svgrMock.js',
     },
 };
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

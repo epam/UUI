@@ -1,0 +1,23 @@
+.root {
+  grid-area: header;
+
+  .linkContainer {
+    display: flex;
+    padding-left: 18px;
+    padding-right: 18px;
+
+    .linkCaption {
+      padding-left: 6px;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+  }
+
+  .switcher {
+    padding-left: 24px;
+  }
+
+  @media (max-width: 768px) {
+    min-width: 320px;
+  }
+}

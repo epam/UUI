@@ -1,0 +1,54 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/assets/theme/theme_promo' as *;
+@use '~@epam/assets/theme/theme_loveship_dark' as *;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 60px minmax(calc(100vh - 60px), 1fr);
+  grid-template-areas:
+    'header header'
+    'sidebar main';
+}
+
+.withGap {
+  display: grid;
+  gap: 1em;
+}
+
+.header {
+  grid-area: header;
+}
+
+.mainContainer {
+  grid-area: main;
+  padding: 2em;
+  background: var(--surface-color);
+}
