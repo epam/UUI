@@ -24,14 +24,13 @@ export default function PickerTogglerTagDemoExample() {
 
     const renderTag = (props: PickerTogglerTagProps<Location, string>) => {
         if (props.isCollapsed) {
-            // rendering '+ N items selected' Tag
-            return (
-                <PickerTogglerTag { ...props } key="selected" />
-            );
+            // rendering '+ N items selected' Tag, tooltip is present here by default
+            return <PickerTogglerTag { ...props } key="collapsed" />;
         } else {
             // rendering all other Tags with Tooltip
+            const tooltipContent = props.rowProps?.value?.tz ? `${props.rowProps?.value?.tz}/${props.caption}` : `${props.caption}`;
             return (
-                <Tooltip key={ props.rowProps?.id } content={ `${props.rowProps?.value?.tz}/${props.caption}` }>
+                <Tooltip key={ props.rowProps?.id } content={ tooltipContent }>
                     <PickerTogglerTag { ...props } />
                 </Tooltip>
             );

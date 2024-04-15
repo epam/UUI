@@ -14,6 +14,11 @@ export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, 
     isCollapsed?: boolean;
     /** Call to clear a value */
     onClear?(e?: any): void;
+    /**
+     * The array of rows that are folded in the 'collapsed button'
+     * (only in selectionMode='multi' with maxItems property, in other ways it's an empty array)
+     */
+    collapsedRows?: DataRowProps<TItem, TId>[];
 }
 
 export interface PickerTogglerProps<TItem = any, TId = any>
@@ -114,8 +119,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const maxItems = getMaxItems(props.maxItems);
         const isPickerDisabled = props.isDisabled || props.isReadonly;
         let areAllDisabled = isPickerDisabled;
+        const displayedRows = props.selectedRowsCount > maxItems ? props.selection.slice(0, maxItems) : props.selection;
+        const collapsedRows = props.selection?.slice(maxItems);
 
-        const tags = props.selection?.map((row) => {
+        const tags = displayedRows?.map((row) => {
             if (!isPickerDisabled && !row.isDisabled) {
                 areAllDisabled = false;
             }
@@ -139,10 +146,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.selectedRowsCount > maxItems) {
             const collapsedTagProps = props.renderItem?.({
                 key: 'collapsed',
-                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
+                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, ''),
                 isCollapsed: true,
                 isDisabled: areAllDisabled,
                 onClear: null,
+                collapsedRows,
             } as any);
             tags.push(collapsedTagProps);
         }
