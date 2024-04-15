@@ -12,29 +12,29 @@ import { DragGhost } from '@epam/uui-core';
 import type { ComponentType } from 'react';
 
 interface MyAppViewProps<TComponent, TPageProps> {
-  Component: TComponent;
-  pageProps: TPageProps;
-  isChangingRoute: boolean;
+    Component: TComponent;
+    pageProps: TPageProps;
+    isChangingRoute: boolean;
 }
 
 export function MyAppView<TComponent extends ComponentType>(
-  props: MyAppViewProps<TComponent, any>
+    props: MyAppViewProps<TComponent, any>
 ) {
-  const { Component, pageProps, isChangingRoute } = props;
+    const { Component, pageProps, isChangingRoute } = props;
 
-  return (
-    <ErrorHandler>
-      <div className='container'>
-        <AppHeader />
-        <SideBar />
-        <div className='mainContainer'>
-          <Component {...pageProps} />
-          {isChangingRoute && <Blocker isEnabled={isChangingRoute} />}
-        </div>
-        <Snackbar />
-        <Modals />
-        <DragGhost />
-      </div>
-    </ErrorHandler>
-  );
+    return (
+        <ErrorHandler>
+            <div className='container'>
+                <AppHeader />
+                <SideBar />
+                <div className='mainContainer'>
+                    <Component {...pageProps} />
+                    {isChangingRoute && <Blocker isEnabled={isChangingRoute} />}
+                </div>
+                <Snackbar />
+                <Modals />
+                <DragGhost />
+            </div>
+        </ErrorHandler>
+    );
 }

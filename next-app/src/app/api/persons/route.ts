@@ -3,13 +3,13 @@ import { HEADERS, UUI_API_POINT } from '../../../helpers/apiHelper';
 import 'server-only';
 
 export async function POST(req: Request) {
-  const reqData = await req.json();
+    const reqData = await req.json();
 
-  throw new Error('sad');
+    throw new Error('sad');
 
-  return await fetch(`${UUI_API_POINT}/persons`, {
-    headers: new Headers(HEADERS),
-    method: 'POST',
-    body: JSON.stringify(reqData),
-  });
+    return await fetch(`${UUI_API_POINT}/persons`, {
+        headers: new Headers(HEADERS),
+        method: 'POST',
+        body: JSON.stringify(reqData),
+    });
 }
