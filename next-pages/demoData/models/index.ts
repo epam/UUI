@@ -1,8 +1,8 @@
-import {FileUploadResponse} from "@epam/uui-core";
-import {TimePickerValue} from "@epam/uui";
+import { FileUploadResponse } from '@epam/uui-core';
+import { TimePickerValue } from '@epam/uui';
 
 export interface Person {
-    __typename: "Person";
+    __typename: 'Person';
     id: number;
     uid: string;
     name: string;
@@ -38,7 +38,7 @@ export interface Person {
 }
 
 export interface PersonEmploymentGroup {
-    __typename: "PersonEmploymentGroup";
+    __typename: 'PersonEmploymentGroup';
     id: number;
     name: string;
     count: number;
@@ -48,37 +48,37 @@ export interface PersonEmploymentGroup {
 }
 
 export interface Department {
-    __typename: "Department";
+    __typename: 'Department';
     id: number;
     name: string;
 }
 
 export interface Company {
-    __typename: "Company";
+    __typename: 'Company';
     id: number;
     name: string;
 }
 
 export interface JobTitle {
-    __typename: "JobTitle";
+    __typename: 'JobTitle';
     id: number;
     name: string;
 }
 
 export interface Status {
-    __typename: "Status";
+    __typename: 'Status';
     id: number;
     name: string;
 }
 
 export interface Manager {
-    __typename: "Manager";
+    __typename: 'Manager';
     id: number;
     name: string;
 }
 
 export interface Office {
-    __typename: "Office";
+    __typename: 'Office';
     id: number;
     name: string;
 }
@@ -126,7 +126,6 @@ export interface SalesPerson {
     SalesLastYear: number;
     ModifiedDate: string;
 }
-
 
 /* Geo Data */
 
@@ -188,7 +187,7 @@ export interface Language {
 }
 
 export interface Location {
-    __typename: "Location";
+    __typename: 'Location';
     id: string;
     name: string;
     type: 'city' | 'country' | 'continent';
@@ -229,10 +228,10 @@ export interface LanguageLevel {
 export interface PersonSchedule {
     email: string;
     events: {
-        "startDate": number;
-        "endDate": number;
-        "eventType": string;
-        "status": string;
+        'startDate': number;
+        'endDate': number;
+        'eventType': string;
+        'status': string;
     }[];
 }
 
@@ -262,6 +261,6 @@ export interface PersonDetails {
     numberValue?: number;
     timeValue?: TimePickerValue;
     rating?: number;
-    attachments?: ({progress?: number} & FileUploadResponse)[];
+    attachments?: ({ progress?: number } & FileUploadResponse)[];
 
 }

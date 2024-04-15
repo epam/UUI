@@ -10,7 +10,7 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 fullName: {
                     isRequired: true,
                     validators: [
-                        (value: string = "") => [!fullNameRegExp.exec(value)?.length && 'Please type correct name!'],
+                        (value: string = '') => [!fullNameRegExp.exec(value)?.length && 'Please type correct name!'],
                     ],
                 },
                 birthdayDate: { isRequired: true },

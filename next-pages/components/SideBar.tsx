@@ -2,10 +2,10 @@ import {
     ScrollBars,
     VerticalTabButton,
 } from '@epam/promo';
-import React from "react";
-import { structure } from "../helpers/structure";
+import React from 'react';
+import { structure } from '../helpers/structure';
 import { Tree, TreeListItem } from '@epam/uui-components';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 import { DataSourceState, Link } from '@epam/uui-core';
 
 interface TreeItem extends Omit<TreeListItem, 'data'> {
@@ -13,7 +13,7 @@ interface TreeItem extends Omit<TreeListItem, 'data'> {
     data: TreeListItem & { link: Link };
 }
 
-export const SideBar = () => {
+export function SideBar() {
     const [value, setValue] = React.useState<DataSourceState>({ folded: {} });
     const router = useRouter();
 
@@ -23,7 +23,7 @@ export const SideBar = () => {
                 items={ structure }
                 value={ value }
                 onValueChange={ setValue }
-                renderRow={ item => (
+                renderRow={ (item) => (
                     <VerticalTabButton
                         caption={ item.value.name }
                         isLinkActive={ router.pathname === item.value.link.pathname }
@@ -35,4 +35,4 @@ export const SideBar = () => {
             />
         </ScrollBars>
     );
-};
+}

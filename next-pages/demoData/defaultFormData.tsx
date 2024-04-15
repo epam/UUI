@@ -1,4 +1,6 @@
-import { PersonDetails, PersonLanguageInfo, PersonTravelVisa } from './models/types';
+import {
+    PersonDetails, PersonLanguageInfo, PersonTravelVisa, 
+} from './models/types';
 
 export const defaultData: PersonDetails = {
     role: 'User',
@@ -14,21 +16,27 @@ export const defaultData: PersonDetails = {
         remoteStatus: true,
     },
     personalInfo: {},
-    location: { country: '', city: ''},
+    location: {
+        country: '',
+        city: '', 
+    },
     education: {},
     languageInfo: [],
-    travelVisas: { visas: [], scans: []},
+    travelVisas: {
+        visas: [],
+        scans: [], 
+    },
     otherInfo: { tShirtSize: 0 },
 };
 
 export const emptyInfo = {
     language: {
-        language: "",
-        writingLevel: "",
-        speakingLevel: "",
+        language: '',
+        writingLevel: '',
+        speakingLevel: '',
     } as PersonLanguageInfo,
     visa: {
         country: '',
         term: {},
-    }  as PersonTravelVisa,
+    } as PersonTravelVisa,
 };

@@ -1,17 +1,22 @@
-import { render, RenderOptions } from "@testing-library/react";
+import { render, RenderOptions } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import uuiAppData from '../demoData/uuiAppData.json';
-import { useUuiServicesSsr, UuiContext } from "@epam/uui-core";
-import { apiDefinition, TApi } from "../helpers/apiDefinition";
-import { useRouter } from "next/router";
+import { useUuiServicesSsr, UuiContext } from '@epam/uui-core';
+import { apiDefinition, TApi } from '../helpers/apiDefinition';
+import { useRouter } from 'next/router';
 
 type ProviderProps = {
     children: ReactElement<any, any> | null;
 };
 
-let mockEntries: any[] = [{
+const mockEntries: any[] = [{
     isIntersecting: true,
-    boundingClientRect: { x: 10, y: 20, width: 30, height: 40 },
+    boundingClientRect: {
+        x: 10,
+        y: 20,
+        width: 30,
+        height: 40, 
+    },
 }];
 const observeFn = jest.fn();
 const unobserveFn = jest.fn();
@@ -31,14 +36,14 @@ if (typeof window !== 'undefined') {
     (window as any).IntersectionObserver = IntersectionObserverMock;
 }
 
-jest.mock("next/router", () => ({
+jest.mock('next/router', () => ({
     useRouter() {
         return {
-            route: "/",
-            pathname: "",
-            query: "",
-            asPath: "",
-            basePath: "",
+            route: '/',
+            pathname: '',
+            query: '',
+            asPath: '',
+            basePath: '',
             push: () => jest.fn(),
             events: {
                 on: () => jest.fn(),
@@ -48,18 +53,22 @@ jest.mock("next/router", () => ({
     },
 }));
 type AppContextType = typeof uuiAppData;
-const Providers = ({ children }: ProviderProps) => {
+function Providers({ children }: ProviderProps) {
     const router = useRouter();
 
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
-        appContext: uuiAppData, router: router,
+        appContext: uuiAppData,
+        router: router,
         apiDefinition,
     });
     return <UuiContext.Provider value={ services }>{ children }</UuiContext.Provider>;
-};
+}
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
-    render(ui, { wrapper: Providers, ...options });
+    render(ui, {
+        wrapper: Providers,
+        ...options, 
+    });
 
 export * from '@testing-library/react';
 export { customRender as render };

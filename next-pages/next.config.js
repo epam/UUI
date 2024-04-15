@@ -9,9 +9,9 @@ module.exports = {
     },
     reactStrictMode: false,
     images: {
-        domains: ['rickandmortyapi.com']
+        domains: ['rickandmortyapi.com'],
     },
     devIndicators: {
-        buildActivity: false
-    }
+        buildActivity: false,
+    },
 };
