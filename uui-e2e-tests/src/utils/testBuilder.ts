@@ -1,10 +1,11 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
-import { PreviewPageParams, ScreenshotTestParamsSingle, TMatrix, TTheme } from '../types';
+import { PreviewPageParams, ScreenshotTestParamsSingle, TMatrix, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
 import { testNameToFileName, createUniqueTestName } from './testNameUtils';
 import { Ctx } from './ctx';
 import { screenshotsDirAbsPath } from '../../playwright.config';
+import { PreviewPage } from '../pages/previewPage';
 
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrix[]> = new Map();
@@ -13,7 +14,8 @@ export class TestBuilder {
      * @param cid
      * @param matrix
      */
-    add<Comp extends keyof TPreviewIdByComponentId>(cid: Comp, matrix: Partial<TMatrix<TPreviewIdByComponentId[typeof cid]>> & Pick<TMatrix<TPreviewIdByComponentId[typeof cid]>, 'previewId'>) {
+    add<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>) {
+        type TPreviewsArr = TPreviewIdByComponentId[typeof cid];
         let prev = this.cfgByComponent.get(cid);
         if (!prev) {
             prev = [];
@@ -22,12 +24,15 @@ export class TestBuilder {
         const theme = matrix.theme === undefined
             ? Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder)
             : matrix.theme;
-        const matrixFull: TMatrix<TPreviewIdByComponentId[typeof cid]> = {
+        const isSkin = matrix.isSkin === undefined ? [true, false] : matrix.isSkin;
+        const onBeforeExpect = matrix.onBeforeExpect === undefined ? async () => {} : matrix.onBeforeExpect;
+        const matrixFull: TMatrix<TPreviewsArr> = {
             ...matrix,
-            isSkin: matrix.isSkin === undefined ? [true, false] : matrix.isSkin,
+            isSkin,
             theme,
+            onBeforeExpect,
         };
-        prev!.push(matrixFull as TMatrix<TPreviewIdByComponentId[typeof cid]>);
+        prev!.push(matrixFull);
         return this;
     }
 
@@ -54,18 +59,19 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
                 const testName = createUniqueTestName({ runId, pageParams });
                 const screenshotName = testNameToFileName(testName);
                 ctx.seen(testName);
-                testScreenshot({ pageParams, testName, screenshotName: `${screenshotName}.png` });
+                testScreenshot({ pageParams, testName, screenshotName: `${screenshotName}.png`, onBeforeExpect: matrix.onBeforeExpect });
             });
         });
     });
 }
 
 function testScreenshot(
-    params: { pageParams: PreviewPageParams, testName: string, screenshotName: string },
+    params: { pageParams: PreviewPageParams, testName: string, screenshotName: string, onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void> },
 ) {
-    const { pageParams, testName, screenshotName } = params;
+    const { pageParams, testName, screenshotName, onBeforeExpect } = params;
     test(testName, async ({ previewPage }) => {
         await previewPage.editPreview(pageParams);
+        await onBeforeExpect({ previewPage });
         const opts = await previewPage.getScreenshotOptions();
         await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
     });
