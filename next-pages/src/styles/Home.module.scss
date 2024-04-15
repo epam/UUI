@@ -1,0 +1,119 @@
+.container {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.spinner {
+  height: auto;
+}
+
+.progressBar {
+  width: 300px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.description {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.code {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+}
+
+.card {
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  transition: 1s;
+  background-size: 100%;
+  background-position: 0% 0%;
+}
+
+.hidden {
+  height: auto;
+  visibility: hidden;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  .cardImage {
+    background-size: 120%;
+  }
+}
+
+.cardText {
+  color: #fff;
+  margin: 1em;
+  align-items: flex-end;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.gridItem {
+  width: 50%;
+}
