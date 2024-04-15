@@ -48,6 +48,7 @@ import {
 } from '../../demoData/models/types';
 import { emptyInfo, defaultData } from '../../demoData/defaultFormData';
 import { personDetailsSchema } from '../../demoData/schemas/validationShema';
+import { withErrorHandle } from '../../components/withErrorHandle';
 
 const tShirtSizes = [
   { id: 1, caption: 'XS' },
@@ -821,4 +822,4 @@ const DemoForm = () => {
   );
 };
 
-export default DemoForm;
+export default withErrorHandle(DemoForm);

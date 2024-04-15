@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, Suspense, PropsWithChildren } from 'react';
-import { ErrorHandler } from '@epam/promo';
 import { Modals, Snackbar } from '@epam/uui-components';
 import {
   DragGhost,
@@ -44,17 +43,15 @@ export function AppView({ children }: PropsWithChildren) {
 
   return (
     <UuiContext.Provider value={services}>
-      <ErrorHandler>
-        <AppHeader />
-        <SideBar />
-        <div className='mainContainer'>
-          {/* https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states */}
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </div>
-        <Snackbar />
-        <Modals />
-        <DragGhost />
-      </ErrorHandler>
+      <AppHeader />
+      <SideBar />
+      <div className='mainContainer'>
+        {/* https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states */}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </div>
+      <Snackbar />
+      <Modals />
+      <DragGhost />
     </UuiContext.Provider>
   );
 }

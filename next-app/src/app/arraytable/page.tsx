@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { Badge } from '@epam/promo';
 import { AppContextType } from '../../helpers/appContext';
 import { TApi } from '../../helpers/apiDefinition';
+import { withErrorHandle } from '../../components/withErrorHandle';
 
 type Location = {
   name: string;
@@ -134,4 +135,4 @@ const ArrayTable = () => {
   );
 };
 
-export default ArrayTable;
+export default withErrorHandle(ArrayTable);

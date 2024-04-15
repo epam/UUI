@@ -30,6 +30,7 @@ coverage
 # next.js next-app and next-pages
 .next/
 .rollup.cache
+next-app/.swc
 next-app/out/
 next-app/build
 next-app/.vercel
@@ -37,6 +38,7 @@ next-app/npm-debug.log*
 next-app/yarn-debug.log*
 next-app/yarn-error.log*
 
+next-pages/.swc
 next-pages/out/
 next-pages/build
 next-pages/.vercel
