@@ -11,7 +11,7 @@ const postCssDynamicImport = import('rollup-plugin-postcss-modules');
 const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils');
 const { getTsConfigFile } = require('./utils/moduleTsConfigUtils');
 const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform');
-// const annotatePureFunctionCallsPlugin = require('./plugins/annotatePureFunctionCallsPlugin');
+const annotatePureFunctionCallsPlugin = require('./plugins/annotatePureFunctionCallsPlugin');
 const { onwarn } = require('./utils/rollupLoggerUtils');
 const { getSourceMapTransform } = require('./utils/moduleSourceMapsUtils');
 const { beforeRollupBuild } = require('./utils/beforeRollupBuild');
@@ -135,7 +135,7 @@ async function createRollupConfigForModule(options) {
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
             }),
-            /*             annotatePureFunctionCallsPlugin({
+            annotatePureFunctionCallsPlugin({
                 pureFunctions: [
                     'React.forwardRef',
                     'React.memo',
@@ -143,7 +143,7 @@ async function createRollupConfigForModule(options) {
                     'withMods',
                     'createSkinComponent',
                 ],
-            }), */
+            }),
             cssSourcemapPathTransformPlugin({ outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),
             visualizer({
                 // visualizer - must be the last in the list.
