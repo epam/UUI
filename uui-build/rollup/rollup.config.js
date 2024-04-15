@@ -138,7 +138,9 @@ async function createRollupConfigForModule(options) {
             annotatePureFunctionCallsPlugin({
                 pureFunctions: [
                     'React.forwardRef',
+                    'React__default.forwardRef',
                     'React.memo',
+                    'React__default.memo',
                     'forwardRef',
                     'withMods',
                     'createSkinComponent',
