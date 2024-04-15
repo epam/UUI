@@ -23,6 +23,10 @@ export class Ctx {
             return;
         }
         const rootDir = path.resolve(this.screenshotsDir, process.platform);
+        if (!fs.existsSync(rootDir)) {
+            // The directory does not exist. Obsolete screenshots check is skipped.
+            return;
+        }
         const engines = fs.readdirSync(rootDir);
         const obsoleteScreenshots: string[] = [];
         engines.forEach((name) => {
