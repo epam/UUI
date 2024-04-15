@@ -25,7 +25,7 @@ export async function getAppContext() {
         document.head.appendChild(link);
     });
 
-    const allThemes = [...builtInThemes, ...settings.customThemes ?? []];
+    const allThemes = [...builtInThemes, ...customThemes];
 
     const appContext = {
         themes: allThemes,
