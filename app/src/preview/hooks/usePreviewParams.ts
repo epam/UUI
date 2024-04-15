@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { TPreviewContentParams } from '../types';
 import { useQuery } from '../../helpers';
-import { TTheme } from '../../common/docs/docsConstants';
+import { BuiltInTheme } from '../../data';
 import { setThemeCssClass } from '../../helpers/appRootUtils';
 import { parsePreviewIdFromString } from '../utils/previewLinkUtils';
 
@@ -10,7 +10,7 @@ export function usePreviewParams(): TPreviewContentParams {
     const componentId: string = useQuery('componentId') || undefined;
     let previewId: string = useQuery('previewId') || undefined;
     previewId = previewId !== undefined ? String(previewId) : undefined;
-    const theme = useQuery('theme') as TTheme || TTheme.promo;
+    const theme = useQuery('theme') as string || BuiltInTheme.promo;
 
     useEffect(() => {
         theme && setThemeCssClass(theme);

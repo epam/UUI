@@ -1,5 +1,3 @@
-import { TTheme } from '../common/docs/docsConstants';
-
 const ROOT_ID = 'root';
 const SHADOW_ROOT_ID = 'root-shadow';
 
@@ -37,7 +35,7 @@ export function getUuiThemeRoot() {
     return document.body;
 }
 
-export function setThemeCssClass(theme: TTheme) {
+export function setThemeCssClass(theme: string) {
     const themeRoot = getUuiThemeRoot();
     const currentTheme = themeRoot.classList.value.match(/uui-theme-(\S+)\s*/)[0];
     themeRoot.classList.replace(currentTheme, `uui-theme-${theme}`);

@@ -12,7 +12,7 @@ import { Snackbar } from '@epam/uui';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
-import { getApi, TApi, TAppContext } from './data';
+import { getApi, TApi, AppContext, getAppContext } from './data';
 import { getAppRootNode } from './helpers/appRootUtils';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
@@ -48,13 +48,17 @@ apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router });
+    const { services } = useUuiServices<TApi, AppContext>({ apiDefinition, router });
 
     useEffect(() => {
-        Object.assign(svc, services);
-        isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
-        services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
-        setIsLoaded(true);
+        async function initServices() {
+            Object.assign(svc, services);
+            svc.uuiApp = await getAppContext();
+            isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
+            services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
+            setIsLoaded(true);
+        }
+        initServices();
     }, [services]);
 
     if (isLoaded) {

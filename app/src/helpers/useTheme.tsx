@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useUuiContext } from '@epam/uui-core';
 import { getCurrentTheme } from './';
-import { TTheme } from '../common/docs/docsConstants';
 import { setThemeCssClass } from './appRootUtils';
 
 export const useTheme = () => {
     const { uuiRouter } = useUuiContext();
-    const [theme, setTheme] = useState<TTheme>(getCurrentTheme());
+    const [theme, setTheme] = useState<string>(getCurrentTheme());
 
-    const toggleTheme = (newTheme: TTheme) => {
+    const toggleTheme = (newTheme: string) => {
         setTheme(newTheme);
         localStorage.setItem('app-theme', newTheme);
     };

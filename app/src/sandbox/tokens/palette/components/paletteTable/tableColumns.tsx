@@ -17,7 +17,6 @@ import {
 import { TokenInfo } from '../tokenInfo/tokenInfo';
 //
 import css from './paletteTable.module.scss';
-import { TTheme } from '../../../../../common/docs/docsConstants';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
 
 const WIDTH = {
@@ -66,7 +65,7 @@ export const getSortBy = () => {
 };
 
 export function getColumns(
-    params: { uuiTheme: TTheme, valueType: TThemeTokenValueType, filter: TLoadThemeTokensParams['filter'] },
+    params: { uuiTheme: string, valueType: TThemeTokenValueType, filter: TLoadThemeTokensParams['filter'] },
 ): DataColumnProps<ITokenRow>[] {
     const { uuiTheme, filter, valueType } = params;
     const figmaTheme = getFigmaTheme(uuiTheme);

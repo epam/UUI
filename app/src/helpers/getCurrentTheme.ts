@@ -1,9 +1,9 @@
 import { getQuery } from './getQuery';
-import { TTheme } from '../common/docs/docsConstants';
+import { BuiltInTheme } from '../data';
 
 export const QUERY_PARAM_THEME = 'theme';
-const DEFAULT_THEME = TTheme.loveship;
+const DEFAULT_THEME = BuiltInTheme.loveship;
 
-export const getCurrentTheme: () => TTheme = () => {
-    return getQuery(QUERY_PARAM_THEME) ?? (localStorage.getItem('app-theme') as TTheme) ?? DEFAULT_THEME;
+export const getCurrentTheme: () => string = () => {
+    return getQuery(QUERY_PARAM_THEME) ?? (localStorage.getItem('app-theme')) ?? DEFAULT_THEME;
 };
