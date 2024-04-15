@@ -12,6 +12,7 @@
   "exclude": [
     "node_modules",
     "next-app",
+    "next-pages",
     "templates",
     "**/build",
     "**/node_modules"
