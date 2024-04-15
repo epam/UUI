@@ -1,4 +1,5 @@
 import { TComponentId, TPreviewIdByComponentId } from './data/testData';
+import { PreviewPage } from './pages/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
 
@@ -21,7 +22,9 @@ export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByC
     theme: TTheme[];
     isSkin: boolean[];
     previewId: Previews;
+    onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>
 };
+export type TMatrixMinimal<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = Partial<TMatrix<Previews>> & { previewId: Previews };
 export type ScreenshotTestParamsSingle = {
     runId?: string;
     componentId: TComponentId;
