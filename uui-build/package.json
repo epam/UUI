@@ -30,9 +30,11 @@
     "rollup-plugin-postcss-modules": "2.1.1",
     "rollup-plugin-visualizer": "5.12.0",
     "sass": "^1.69.7",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "magic-string": "0.30.9"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "7.23.10",
     "@csstools/postcss-sass": "^5.1.1",
     "@lerna/package-graph": "6.4.0",
     "@lerna/project": "6.4.0",
