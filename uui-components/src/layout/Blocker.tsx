@@ -43,7 +43,7 @@ export const Blocker = forwardRef<HTMLDivElement, BlockerProps>((props, ref) => 
             <TransitionGroup>
                 {isEnter && (
                     <CSSTransition in={ isEnter } nodeRef={ transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
-                        <div ref={ transitionRef } className={ uuiBlocker.blocker } role="alert" aria-label="Loading">
+                        <div ref={ transitionRef } className={ uuiBlocker.blocker }>
                             {!props.hideSpinner && props.renderSpinner && props.renderSpinner(props)}
                         </div>
                     </CSSTransition>

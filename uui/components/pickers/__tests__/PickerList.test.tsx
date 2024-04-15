@@ -104,7 +104,7 @@ describe('PickerList', () => {
         fireEvent.click(toggler);
 
         await PickerListTestObject.waitForOptionsToBeReady('modal');
-        await PickerListTestObject.waitForSpinnerToHide('modal');
+        await PickerListTestObject.waitForLoadingComplete('modal');
 
         expect(result.baseElement).toMatchSnapshot();
     });
@@ -199,7 +199,7 @@ describe('PickerList', () => {
 
             const optionC2 = await screen.findByText('A2+');
             fireEvent.click(optionC2);
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith(5);
             });
