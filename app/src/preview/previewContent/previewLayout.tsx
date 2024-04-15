@@ -46,7 +46,7 @@ export function PreviewLayout(props: IPreviewLayout) {
                                 <div
                                     data-index={ index }
                                     key={ index }
-                                    className={ cx(css.cell, isShowOutline && css.withOutline) }
+                                    className={ cx(css.cell, isShowOutline && 'uui-preview-layout-cell-outline') }
                                     style={ { width: layoutSize.cellWidth, height: layoutSize.cellHeight } }
                                 >
                                     { renderCell({ index }) }

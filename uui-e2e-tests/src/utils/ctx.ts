@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { readEnvParams } from '../../scripts/cliUtils';
 import { fileNameToTestName } from './testNameUtils';
 import { Logger } from './logger';
+import { readEnvFile } from '../../scripts/envFileUtils';
 
-const { UUI_REPORT_OBSOLETE_SCREENSHOTS } = readEnvParams();
+const { UUI_REPORT_OBSOLETE_SCREENSHOTS } = readEnvFile();
 
 export class Ctx {
     private seenTestNames: Set<string> = new Set();
