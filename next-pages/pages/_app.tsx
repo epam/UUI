@@ -1,11 +1,13 @@
-import { GAListener, useUuiServicesSsr, UuiContext } from "@epam/uui-core";
+import {
+    GAListener, useUuiServicesSsr, UuiContext, 
+} from '@epam/uui-core';
 import type { AppProps } from 'next/app';
-import { apiDefinition, TApi } from "../helpers/apiDefinition";
-import { MyAppView } from "./_appView";
-import { useEffect } from "react";
-import { useIsChangingRoute } from "../hooks/useIsChangingRoute";
-import { AmplitudeListener } from "../helpers/ampListener";
-import { AppContextType, getAppContext } from "../helpers/appContext";
+import { apiDefinition, TApi } from '../helpers/apiDefinition';
+import { MyAppView } from './_appView';
+import { useEffect } from 'react';
+import { useIsChangingRoute } from '../hooks/useIsChangingRoute';
+import { AmplitudeListener } from '../helpers/ampListener';
+import { AppContextType, getAppContext } from '../helpers/appContext';
 
 const AMPLITUDE_KEY = 'b2260a6d42a038e9f9e3863f67042cc1';
 const GA_KEY = 'UA-132675234-1';
@@ -15,10 +17,13 @@ interface MyAppProps<TAppContext> extends AppProps {
 }
 
 function MyApp(props: MyAppProps<AppContextType>) {
-    const { Component, pageProps, router } = props;
+    const {
+        Component, pageProps, router, 
+    } = props;
 
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
-        apiDefinition, router,
+        apiDefinition,
+        router,
     });
 
     useEffect(() => {
@@ -30,7 +35,13 @@ function MyApp(props: MyAppProps<AppContextType>) {
 
     return (
         <UuiContext.Provider value={ services }>
-            <MyAppView isChangingRoute={ isChangingRoute } { ...{ Component, pageProps } } />
+            <MyAppView
+                isChangingRoute={ isChangingRoute }
+                { ...{
+                    Component,
+                    pageProps, 
+                } }
+            />
         </UuiContext.Provider>
     );
 }

@@ -1,12 +1,16 @@
-import {Panel, Text, DataTable, Spinner} from '@epam/promo';
-import { DataSourceState, DataColumnProps, useArrayDataSource, useUuiContext} from "@epam/uui-core";
-import { useMemo, useState} from "react";
-import Image from "next/image";
-import {Badge} from "@epam/promo";
-import { TApi } from "../helpers/apiDefinition";
-import { AppContextType } from "../helpers/appContext";
+import {
+    Panel, Text, DataTable, Spinner, 
+} from '@epam/promo';
+import {
+    DataSourceState, DataColumnProps, useArrayDataSource, useUuiContext, 
+} from '@epam/uui-core';
+import { useMemo, useState } from 'react';
+import Image from 'next/image';
+import { Badge } from '@epam/promo';
+import { TApi } from '../helpers/apiDefinition';
+import { AppContextType } from '../helpers/appContext';
 
-type Location  = {
+type Location = {
     name: string;
     url: string;
 };
@@ -32,7 +36,7 @@ export interface PagedTableState extends DataSourceState<{}> {
     totalCount: number;
 }
 
-const ArrayTable = () => {
+function ArrayTable() {
     const { uuiApp } = useUuiContext<TApi, AppContextType>();
 
     const [value, onValueChange] = useState({});
@@ -45,43 +49,67 @@ const ArrayTable = () => {
 
     const tableColumns: DataColumnProps<ItemData>[] = useMemo(() => {
         return (
-        [
-            {
-                key: 'id',
-                caption: 'Id',
-                render: item => <Text color='gray80'>{ item.id }</Text>,
-                isSortable: true,
-                isAlwaysVisible: true,
-                grow: 0, shrink: 0, width: 50,
-            }, {
-                key: 'image',
-                caption: 'Image',
-                render: item => <Image src={ item.image } width={ 70 } height={ 70 } alt="" />,
-                grow: 0, shrink: 0, width: 70,
-            }, {
-                key: 'name',
-                caption: 'Name',
-                render: item => <Text color='gray80'>{ item.name }</Text>,
-                isSortable: true,
-                grow: 0, minWidth: 150, width: 150
-            }, {
-                key: 'status',
-                caption: 'Status',
-                render: item => <Badge color={ item.status === 'Alive' ? 'green' : 'red' } fill='semitransparent' caption={ item.status } />,
-                isSortable: true,
-                grow: 0, minWidth: 150, width: 150
-            }, {
-                key: 'description',
-                caption: 'Description',
-                render: item => <Text color='gray80'>{ item.species }</Text>,
-                grow: 1, shrink: 0, width: 150,
-            },
-        ]
+            [
+                {
+                    key: 'id',
+                    caption: 'Id',
+                    render: (item) => <Text color="gray80">{ item.id }</Text>,
+                    isSortable: true,
+                    isAlwaysVisible: true,
+                    grow: 0,
+                    shrink: 0,
+                    width: 50,
+                }, {
+                    key: 'image',
+                    caption: 'Image',
+                    render: (item) => (
+                        <Image
+                            src={ item.image }
+                            width={ 70 }
+                            height={ 70 }
+                            alt=""
+                        />
+                    ),
+                    grow: 0,
+                    shrink: 0,
+                    width: 70,
+                }, {
+                    key: 'name',
+                    caption: 'Name',
+                    render: (item) => <Text color="gray80">{ item.name }</Text>,
+                    isSortable: true,
+                    grow: 0,
+                    minWidth: 150,
+                    width: 150,
+                }, {
+                    key: 'status',
+                    caption: 'Status',
+                    render: (item) => (
+                        <Badge
+                            color={ item.status === 'Alive' ? 'green' : 'red' }
+                            fill="semitransparent"
+                            caption={ item.status }
+                        />
+                    ),
+                    isSortable: true,
+                    grow: 0,
+                    minWidth: 150,
+                    width: 150,
+                }, {
+                    key: 'description',
+                    caption: 'Description',
+                    render: (item) => <Text color="gray80">{ item.species }</Text>,
+                    grow: 1,
+                    shrink: 0,
+                    width: 150,
+                },
+            ]
         );
     }, []);
 
-    return (!Object.values(view).length ? <Spinner /> :
-            <div className={ 'withGap' }>
+    return (!Object.values(view).length ? <Spinner />
+        : (
+            <div className="withGap">
                 <h2>Demo example with appData</h2>
                 <Panel shadow>
                     <DataTable
@@ -90,11 +118,12 @@ const ArrayTable = () => {
                         value={ value }
                         onValueChange={ onValueChange }
                         columns={ tableColumns }
-                        headerTextCase='upper'
+                        headerTextCase="upper"
                     />
                 </Panel>
             </div>
+        )
     );
-};
+}
 
 export default ArrayTable;

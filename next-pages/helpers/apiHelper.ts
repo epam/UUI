@@ -6,7 +6,11 @@ export const HEADERS = {
 export const UUI_API_POINT = 'https://uui.epam.com/api';
 
 export const fetcher = async (url: string, options?: RequestInit) => {
-    const res = await fetch(url, { headers: HEADERS, method: 'GET', ...options });
+    const res = await fetch(url, {
+        headers: HEADERS,
+        method: 'GET',
+        ...options, 
+    });
     const data = await res.json();
 
     if (res.status !== 200) {

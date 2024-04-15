@@ -1,5 +1,5 @@
-import { IRouterContext } from "@epam/uui-core";
-import { useEffect, useState } from "react";
+import { IRouterContext } from '@epam/uui-core';
+import { useEffect, useState } from 'react';
 
 type ClientRouterEventType = 'routeChangeComplete' | 'routeChangeError' | 'routeChangeStart';
 interface ClientRouterType extends IRouterContext {
@@ -28,7 +28,7 @@ export function useIsChangingRoute(nextRouter: any) {
             };
         });
         return () => {
-            unsubscribeArr.forEach(fn => fn());
+            unsubscribeArr.forEach((fn) => fn());
         };
     }, [nextRouter]);
     return { isChangingRoute };

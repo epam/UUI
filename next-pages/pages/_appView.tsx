@@ -4,12 +4,12 @@ import '@epam/uui-components/styles.css';
 import '@epam/promo/styles.css';
 import '@epam/uui/styles.css';
 import '@epam/uui-editor/styles.css';
-import { Blocker, ErrorHandler } from "@epam/promo";
-import { AppHeader } from "../components/AppHeader";
-import { SideBar } from "../components/SideBar";
-import { Modals, Snackbar } from "@epam/uui-components";
-import { DragGhost } from "@epam/uui-core";
-import type { ComponentType } from "react";
+import { Blocker, ErrorHandler } from '@epam/promo';
+import { AppHeader } from '../components/AppHeader';
+import { SideBar } from '../components/SideBar';
+import { Modals, Snackbar } from '@epam/uui-components';
+import { DragGhost } from '@epam/uui-core';
+import type { ComponentType } from 'react';
 
 interface MyAppViewProps<TComponent, TPageProps> {
     Component: TComponent;
@@ -18,16 +18,18 @@ interface MyAppViewProps<TComponent, TPageProps> {
 }
 
 export function MyAppView<TComponent extends ComponentType>(props: MyAppViewProps<TComponent, any>) {
-    const { Component, pageProps, isChangingRoute } = props;
+    const {
+        Component, pageProps, isChangingRoute, 
+    } = props;
 
     return (
         <ErrorHandler>
-            <div className={ 'container' }>
+            <div className="container">
                 <AppHeader />
                 <SideBar />
-                <div className={ 'mainContainer' }>
+                <div className="mainContainer">
                     <Component { ...pageProps } />
-                    { isChangingRoute && <Blocker isEnabled={ isChangingRoute }/> }
+                    { isChangingRoute && <Blocker isEnabled={ isChangingRoute } /> }
                 </div>
                 <Snackbar />
                 <Modals />
