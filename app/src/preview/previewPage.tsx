@@ -6,7 +6,7 @@ import { usePlayWrightInterface } from './hooks/usePlayWrightInterface';
 import { usePreviewPageBg } from './hooks/usePreviewPageBg';
 import { usePreviewParams } from './hooks/usePreviewParams';
 import { svc } from '../services';
-import { TTheme } from '../common/docs/docsConstants';
+import { BuiltInTheme } from '../data';
 import { formatPreviewIdToString } from './utils/previewLinkUtils';
 
 import css from './previewPage.module.scss';
@@ -36,7 +36,7 @@ export function PreviewPage() {
         svc.uuiRouter.redirect({
             pathname: '/preview',
             query: {
-                theme: newParams.theme || TTheme.promo,
+                theme: newParams.theme || BuiltInTheme.promo,
                 isSkin: newParams.isSkin ?? true,
                 componentId: newParams.componentId,
                 previewId: formatPreviewIdToString(newParams.previewId),

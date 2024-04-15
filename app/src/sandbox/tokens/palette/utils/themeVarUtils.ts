@@ -1,17 +1,17 @@
 import { IThemeVarUI, IThemeVarUIError, TThemeVarUiErr } from '../types/types';
-import { TTheme } from '../../../../common/docs/docsConstants';
+import { BuiltInTheme } from '../../../../data';
 import { TFigmaThemeName, TVarType } from '../types/sharedTypes';
 import { normalizeColor } from './colorUtils';
 
-const THEME_MAP: Record<TTheme, TFigmaThemeName | undefined> = {
-    [TTheme.electric]: TFigmaThemeName.ELECTRIC,
-    [TTheme.promo]: TFigmaThemeName.PROMO,
-    [TTheme.loveship]: TFigmaThemeName.LOVESHIP_LIGHT,
-    [TTheme.loveship_dark]: TFigmaThemeName.LOVESHIP_DARK,
-    [TTheme.vanilla_thunder]: undefined,
+const THEME_MAP: Record<string, TFigmaThemeName | undefined> = {
+    [BuiltInTheme.electric]: TFigmaThemeName.ELECTRIC,
+    [BuiltInTheme.promo]: TFigmaThemeName.PROMO,
+    [BuiltInTheme.loveship]: TFigmaThemeName.LOVESHIP_LIGHT,
+    [BuiltInTheme.loveship_dark]: TFigmaThemeName.LOVESHIP_DARK,
+    [BuiltInTheme.vanilla_thunder]: undefined,
 };
 
-export function getFigmaTheme(theme: TTheme) {
+export function getFigmaTheme(theme: string) {
     return THEME_MAP[theme];
 }
 
