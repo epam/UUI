@@ -1,9 +1,8 @@
 import React, {
     HTMLAttributes, ReactElement, useState,
 } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import localeData from 'dayjs/plugin/localeData.js';
-import updateLocale from 'dayjs/plugin/updateLocale.js';
+import { type Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
+
 import {
     arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
@@ -28,9 +27,6 @@ export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttr
     month: Dayjs;
 }
 
-dayjs.extend(localeData);
-dayjs.extend(updateLocale);
-
 const DAYS_COUNT_IN_WEEK = 7;
 
 const getPrevMonthFromCurrent = (currentDate: Dayjs) => {
@@ -50,7 +46,7 @@ const isHoliday = (day: Dayjs) => {
 };
 
 function isSelected <T>(day: Dayjs, value: T): boolean {
-    if (dayjs.isDayjs(value)) {
+    if (dayJsHelper.dayjs.isDayjs(value)) {
         return day.isSame(value);
     } else if (Array.isArray(value)) {
         return value.find((selectedDay) => day.isSame(selectedDay));
@@ -60,8 +56,8 @@ function isSelected <T>(day: Dayjs, value: T): boolean {
 
 export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
     useState(() => {
-        dayjs.locale(i18n.datePicker.locale);
-        dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
+        dayJsHelper.dayjs.locale(i18n.datePicker.locale);
+        dayJsHelper.dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
     });
 
     const getDaysToRender = (days: Dayjs[]) =>
@@ -125,7 +121,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
     });
 
     const renderWeekdays = () =>
-        dayjs.weekdaysShort(true).map((weekday, index) => (
+        dayJsHelper.dayjs.weekdaysShort(true).map((weekday, index) => (
             <div
                 key={ `${weekday}-${index}` }
                 className={ uuiDaySelection.weekday }

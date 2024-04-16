@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import isoWeek from 'dayjs/plugin/isoWeek.js';
+import { Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
 import { cx, IControlled } from '@epam/uui-core';
 import {
     uuiDaySelection, Day, DayProps, RangeDatePickerPresets,
@@ -17,8 +16,6 @@ import {
 } from './types';
 import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePickerBody';
 
-dayjs.extend(isoWeek);
-
 export const uuiRangeDatePickerBody = {
     inRange: 'uui-range-datepicker-in-range',
     firstDayInRangeWrapper: 'uui-range-datepicker-first-day-in-range-wrapper',
@@ -30,7 +27,7 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
         name: 'Today',
         getRange: () => ({
-            from: dayjs().toString(),
+            from: dayJsHelper.dayjs().toString(),
             to: undefined,
             order: 1,
         }),
@@ -38,56 +35,56 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     thisWeek: {
         name: 'This Week',
         getRange: () => ({
-            from: dayjs().startOf('isoWeek').toString(),
-            to: dayjs().endOf('isoWeek').toString(),
+            from: dayJsHelper.dayjs().startOf('isoWeek').toString(),
+            to: dayJsHelper.dayjs().endOf('isoWeek').toString(),
             order: 2,
         }),
     },
     lastWeek: {
         name: 'Last Week',
         getRange: () => ({
-            from: dayjs().startOf('isoWeek').subtract(1, 'week').toString(),
-            to: dayjs().endOf('isoWeek').subtract(1, 'week').toString(),
+            from: dayJsHelper.dayjs().startOf('isoWeek').subtract(1, 'week').toString(),
+            to: dayJsHelper.dayjs().endOf('isoWeek').subtract(1, 'week').toString(),
             order: 3,
         }),
     },
     thisMonth: {
         name: 'This Month',
         getRange: () => ({
-            from: dayjs().startOf('month').toString(),
-            to: dayjs().endOf('month').toString(),
+            from: dayJsHelper.dayjs().startOf('month').toString(),
+            to: dayJsHelper.dayjs().endOf('month').toString(),
             order: 4,
         }),
     },
     lastMonth: {
         name: 'Last Month',
         getRange: () => ({
-            from: dayjs().startOf('month').subtract(1, 'month').toString(),
-            to: dayjs().subtract(1, 'month').endOf('month').toString(),
+            from: dayJsHelper.dayjs().startOf('month').subtract(1, 'month').toString(),
+            to: dayJsHelper.dayjs().subtract(1, 'month').endOf('month').toString(),
             order: 5,
         }),
     },
     last3Month: {
         name: 'Last 3 Months',
         getRange: () => ({
-            from: dayjs().startOf('month').subtract(3, 'month').toString(),
-            to: dayjs().subtract(1, 'month').endOf('month').toString(),
+            from: dayJsHelper.dayjs().startOf('month').subtract(3, 'month').toString(),
+            to: dayJsHelper.dayjs().subtract(1, 'month').endOf('month').toString(),
             order: 5,
         }),
     },
     thisYear: {
         name: 'This Year',
         getRange: () => ({
-            from: dayjs().startOf('year').toString(),
-            to: dayjs().endOf('year').toString(),
+            from: dayJsHelper.dayjs().startOf('year').toString(),
+            to: dayJsHelper.dayjs().endOf('year').toString(),
             order: 7,
         }),
     },
     lastYear: {
         name: 'Last Year',
         getRange: () => ({
-            from: dayjs().startOf('year').subtract(1, 'year').toString(),
-            to: dayjs().subtract(1, 'year').endOf('year').toString(),
+            from: dayJsHelper.dayjs().startOf('year').subtract(1, 'year').toString(),
+            to: dayJsHelper.dayjs().subtract(1, 'year').endOf('year').toString(),
             order: 8,
         }),
     },
@@ -112,7 +109,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
     });
 
     const getRange = (newValue: string | null) => {
-        if (!filter || filter(dayjs(newValue))) {
+        if (!filter || filter(dayJsHelper.dayjs(newValue))) {
             if (inFocus === 'from') {
                 return getWithFrom(selectedDate, newValue);
             }
@@ -171,12 +168,12 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
                     onPresetSet={ (presetVal) => {
                         // enable day if smth other were selected
                         setView('DAY_SELECTION');
-                        setMonth(dayjs(presetVal.from));
+                        setMonth(dayJsHelper.dayjs(presetVal.from));
                         props.onValueChange({
                             inFocus: props.value.inFocus,
                             selectedDate: {
-                                from: dayjs(presetVal.from).format(valueFormat),
-                                to: dayjs(presetVal.to).format(valueFormat),
+                                from: dayJsHelper.dayjs(presetVal.from).format(valueFormat),
+                                to: dayJsHelper.dayjs(presetVal.to).format(valueFormat),
                             },
                         });
                     } }
@@ -249,9 +246,9 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
 const getDayCX = (day: Dayjs, selectedDate: RangeDatePickerValue): string[] => {
     const dayValue = day.valueOf();
     const fromValue = selectedDate?.from
-        ? dayjs(selectedDate.from).valueOf() : null;
+        ? dayJsHelper.dayjs(selectedDate.from).valueOf() : null;
     const toValue = selectedDate?.to
-        ? dayjs(selectedDate.to).valueOf() : null;
+        ? dayJsHelper.dayjs(selectedDate.to).valueOf() : null;
 
     const inRange = fromValue
         && toValue
