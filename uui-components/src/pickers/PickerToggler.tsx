@@ -191,16 +191,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const isTogglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>): boolean => {
-        const conditionOne = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
-        const conditionTwo = (inFocus && props.value && props.minCharsToSearch);
-        const conditionThree = (props.isOpen && props.searchPosition === 'input');
-        return !(conditionOne || conditionTwo || conditionThree);
+    const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
+        const isInteractionDisabled = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
+        const isInputFocusedAndValid = (inFocus && props.value && props.minCharsToSearch);
+        const isPickerOpenForInput = (props.isOpen && props.searchPosition === 'input');
+        return !(isInteractionDisabled || isInputFocusedAndValid || isPickerOpenForInput);
     };
 
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
-        if (!isTogglerPickerOpened(e)) return;
+        if (!shouldToggleBody(e)) return;
         toggleContainer.current.focus();
         props.onClick?.();
     };
