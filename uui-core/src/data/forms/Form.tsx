@@ -4,6 +4,7 @@ import { IEditable } from '../../types/props';
 import { Metadata } from '../../types/validation';
 import { ILens, ValidationState } from '../../data/lenses';
 import { ValidationMode } from '../../data/validation';
+import { Link } from '../../types';
 
 export interface FormSaveResponse<T> {
     /** New form value, which will replace previous one */
@@ -41,7 +42,7 @@ export interface FormProps<T> {
      * The common use-case is to show a modal with "Save Changes?" dialog
      * Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it.
      */
-    beforeLeave?: (() => Promise<boolean>) | null;
+    beforeLeave?: ((nextLocation: Link, currentLocation: Link) => Promise<boolean>) | null;
 
     /**
      * Used to restore unsaved user edits from the last session (usually to localstorage, via uuiUserSettings context)

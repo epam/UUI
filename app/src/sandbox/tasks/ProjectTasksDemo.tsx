@@ -1,9 +1,9 @@
 import {
-    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm,
+    DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, ConfirmationModal,
 } from '@epam/uui';
 import React, { useMemo } from 'react';
 import {
-    DataQueryFilter, DropPosition, Metadata, useArrayDataSource, useTableState,
+    DataQueryFilter, DropPosition, Metadata, useArrayDataSource, useTableState, useUuiContext,
 } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -34,6 +34,8 @@ let lastId = -1;
 let savedValue: FormState = { items: getDemoTasks() };
 
 export function ProjectTasksDemo() {
+    const context = useUuiContext();
+
     const {
         lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo,
     } = useForm<FormState>({
@@ -43,6 +45,16 @@ export function ProjectTasksDemo() {
             savedValue = data;
         },
         getMetadata: () => metadata,
+        // This example illustrates how to customize the 'beforeLeave' method to prevent a modal window from appearing when navigating between pages within the same domain.
+        beforeLeave: (nextLocation, currentLocation) => {
+            if (nextLocation.pathname === currentLocation.pathname) {
+                save();
+                return Promise.resolve(false);
+            } else {
+                // if it's the different domain, we show our modal window
+                return context.uuiModals.show<boolean>((modalProps) => <ConfirmationModal caption="Your data may be lost. Do you want to save data?" { ...modalProps } />);
+            }
+        },
     });
     const columns = useMemo(() => getColumns(), []);
 
