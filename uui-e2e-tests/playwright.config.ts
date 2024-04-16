@@ -4,12 +4,12 @@ import { readEnvParams } from './scripts/cliUtils';
 import { readEnvFile } from './scripts/envFileUtils';
 import path from 'node:path';
 
-const { isCi } = readEnvParams();
+const { isCi, isDocker } = readEnvParams();
 const { UUI_APP_BASE_URL } = readEnvFile();
 
 const timeout = isCi ? 20000 : 35000;
 const maxFailures = isCi ? 10 : 20;
-const retries = isCi ? 1 : 1;
+const retries = isCi ? 1 : 0;
 const workers = isCi ? 1 : 1;
 const forbidOnly = isCi;
 const trace = (isCi ? 'retry-with-trace' : 'retain-on-failure') as TraceMode;
@@ -36,7 +36,7 @@ export default defineConfig({
     workers,
     outputDir,
     snapshotPathTemplate,
-    reporter: [['html', { outputFolder, open: 'never' }]],
+    reporter: [['html', { outputFolder, open: (isDocker || isCi) ? 'never' : 'on-failure' }]],
     use: {
         baseURL: server.baseUrl,
         trace,
@@ -65,6 +65,11 @@ export default defineConfig({
         toHaveScreenshot: {
             animations: 'disabled',
             caret: 'hide',
+            /**
+             * Threshold is an acceptable perceived color difference between two pixels
+             * The default value 0.2 is not strict enough, so we are changing it to lower value.
+             */
+            threshold: 0.1,
         },
     },
 });
