@@ -122,5 +122,3 @@ const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((
         </>
     );
 });
-
-VirtualList.displayName = 'VirtualList';
