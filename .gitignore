@@ -27,24 +27,16 @@ _ReSharper.Caches
 coverage
 .vscode/settings.json
 
-# next.js next-app and next-pages
+# next.js
 .next/
 .rollup.cache
-next-app/.swc
-next-app/out/
-next-app/build
-next-app/.vercel
-next-app/npm-debug.log*
-next-app/yarn-debug.log*
-next-app/yarn-error.log*
-
-next-pages/.swc
-next-pages/out/
-next-pages/build
-next-pages/.vercel
-next-pages/npm-debug.log*
-next-pages/yarn-debug.log*
-next-pages/yarn-error.log*
+next-demo/**/.swc
+next-demo/**/out/
+next-demo/**/build
+next-demo/**/.vercel
+next-demo/**/npm-debug.log*
+next-demo/**/yarn-debug.log*
+next-demo/**/yarn-error.log*
 
 .templates
 .reports

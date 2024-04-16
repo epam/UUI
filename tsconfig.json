@@ -31,8 +31,7 @@
   "exclude": [
     "node_modules",
     "templates",
-    "next-app",
-    "next-pages",
+    "next-demo",
     "uui_globals.d.ts",
     "**/node_modules",
     "**/build",
