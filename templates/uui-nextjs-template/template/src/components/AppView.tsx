@@ -12,7 +12,7 @@ import { AppHeader } from './AppHeader';
 import { Modals } from '@epam/uui-components';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export async function AppView({ children }: PropsWithChildren) {
+export function AppView({ children }: PropsWithChildren) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
