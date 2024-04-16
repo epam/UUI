@@ -1,5 +1,5 @@
 const os = require('os');
-const { logger } = require('../../utils/loggerUtils.js');
+const { logger } = require('../../utils/loggerUtils');
 
 module.exports = { onwarn };
 
