@@ -7,15 +7,11 @@ import { TextInput } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { DatePickerProps } from './types';
 import {
     defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
 import { DatePickerBody } from './DatePickerBody';
-
-dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
 const modifiers = [{

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import updateLocale from 'dayjs/plugin/updateLocale.js';
 import {
     IControlled,
     cx,
@@ -13,6 +11,7 @@ import { CommonDatePickerBodyProps, ViewType } from './types';
 import {
     getNewMonth, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
+import { Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
     /**
@@ -20,8 +19,6 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
      */
     isHoliday?: (day: Dayjs) => boolean;
 }
-
-dayjs.extend(updateLocale);
 
 export const uuiDatePickerBody = {
     wrapper: 'uui-datepickerBody-wrapper',
@@ -78,7 +75,7 @@ export function StatelessDatePickerBody({
     onMonthChange,
     onViewChange,
 }: StatelessDatePickerBodyProps) {
-    const selectedDate = dayjs(value);
+    const selectedDate = dayJsHelper.dayjs(value);
 
     const onMonthClick = (newDate: Dayjs) => {
         onMonthChange(newDate);

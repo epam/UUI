@@ -2,17 +2,14 @@ import * as React from 'react';
 import { Icon, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
-import dayjs, { Dayjs } from 'dayjs';
+import { type Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { Button } from '../buttons';
-import localeData from 'dayjs/plugin/localeData';
 import { ViewType } from './types';
 import {
     getPrevMonth, getPrevYear, getPrevYearsList, getNextMonth, getNextYear, getNextYearsList,
 } from './helpers';
-
-dayjs.extend(localeData);
 
 export const uuiHeader = {
     container: 'uui-datepickerheader-container',
@@ -111,7 +108,7 @@ export function DatePickerHeader({
     const title = React.useMemo(
         () => {
             const monthSubstr = view !== 'MONTH_SELECTION'
-                ? dayjs.months()[month.month()]
+                ? dayJsHelper.dayjs.months()[month.month()]
                 : '';
             return `${monthSubstr} ${month.year()}`;
         },

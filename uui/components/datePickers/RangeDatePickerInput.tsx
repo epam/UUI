@@ -1,7 +1,7 @@
 import React, {
     forwardRef, useEffect, useState,
 } from 'react';
-import dayjs from 'dayjs';
+import { dayJsHelper } from '../../helpers/dayJsHelper';
 import {
     IEditable, devLogger, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
 } from '@epam/uui-core';
@@ -114,7 +114,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onBlurInput?.(event, inputType);
 
         const selectedDate = toValueDateRangeFormat(inputValue, format);
-        if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
+        if (isValidRange(selectedDate) && (!filter || filter(dayJsHelper.dayjs(selectedDate[inputType])))) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
