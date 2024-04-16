@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { readEnvParams } from '../../scripts/cliUtils';
 import { fileNameToTestName } from './testNameUtils';
 import { Logger } from './logger';
+import { readEnvFile } from '../../scripts/envFileUtils';
 
-const { UUI_REPORT_OBSOLETE_SCREENSHOTS } = readEnvParams();
+const { UUI_REPORT_OBSOLETE_SCREENSHOTS } = readEnvFile();
 
 export class Ctx {
     private seenTestNames: Set<string> = new Set();
@@ -23,6 +23,10 @@ export class Ctx {
             return;
         }
         const rootDir = path.resolve(this.screenshotsDir, process.platform);
+        if (!fs.existsSync(rootDir)) {
+            // The directory does not exist. Obsolete screenshots check is skipped.
+            return;
+        }
         const engines = fs.readdirSync(rootDir);
         const obsoleteScreenshots: string[] = [];
         engines.forEach((name) => {

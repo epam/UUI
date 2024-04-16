@@ -3,11 +3,15 @@ import path from 'node:path';
 import { readEnvParams } from './cliUtils';
 import { ENV_FILES, HOST_IP_PH } from './constants';
 
-const { isCi, UUI_DOCKER_HOST_MACHINE_IP = 'localhost' } = readEnvParams();
+const { UUI_DOCKER_HOST_MACHINE_IP = 'localhost', isDocker } = readEnvParams();
 
-const envFileName = isCi ? ENV_FILES.CI : ENV_FILES.DOCKER;
+const envFileName = isDocker ? ENV_FILES.DOCKER : ENV_FILES.LOCAL;
 
-type TEnvParams = { UUI_APP_BASE_URL: string, UUI_DOCKER_CONTAINER_ENGINE: string };
+type TEnvParams = {
+    UUI_APP_BASE_URL: string,
+    UUI_DOCKER_CONTAINER_ENGINE: string,
+    UUI_REPORT_OBSOLETE_SCREENSHOTS: string
+};
 
 export function readEnvFile(): TEnvParams {
     const processEnv = {} as TEnvParams;
