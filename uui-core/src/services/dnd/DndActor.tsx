@@ -44,9 +44,9 @@ const initialState: DndActorState = {
     },
 };
 
-export class DndActor<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
+class DndActor<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
+    static sectorPositionPriorities: Record<string, DropPosition[]>;
     state = initialState;
-    static contextType = UuiContext;
     public context: UuiContexts;
     dndRef = React.createRef<HTMLElement>();
 
@@ -122,33 +122,6 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
             targetHeight: height,
         };
     }
-
-    static sectorPositionPriorities: Record<string, DropPosition[]> = {
-        0: [
-            'top', 'right', 'inside',
-        ],
-        1: [
-            'right', 'top', 'inside',
-        ],
-        2: [
-            'right', 'bottom', 'inside',
-        ],
-        3: [
-            'bottom', 'right', 'inside',
-        ],
-        4: [
-            'bottom', 'left', 'inside',
-        ],
-        5: [
-            'left', 'bottom', 'inside',
-        ],
-        6: [
-            'left', 'top', 'inside',
-        ],
-        7: [
-            'top', 'left', 'inside',
-        ],
-    };
 
     getPosition(params: AcceptDropParams<TSrcData, TDstData>, options: DropPositionOptions): DropPosition {
         if (options == null) return null;
@@ -293,3 +266,35 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         return this.props.render(params);
     }
 }
+/* @__PURE__ */initStaticPureProps();
+function initStaticPureProps() {
+    DndActor.contextType = UuiContext;
+    DndActor.sectorPositionPriorities = {
+        0: [
+            'top', 'right', 'inside',
+        ],
+        1: [
+            'right', 'top', 'inside',
+        ],
+        2: [
+            'right', 'bottom', 'inside',
+        ],
+        3: [
+            'bottom', 'right', 'inside',
+        ],
+        4: [
+            'bottom', 'left', 'inside',
+        ],
+        5: [
+            'left', 'bottom', 'inside',
+        ],
+        6: [
+            'left', 'top', 'inside',
+        ],
+        7: [
+            'top', 'left', 'inside',
+        ],
+    };
+}
+
+export { DndActor };
