@@ -149,7 +149,6 @@ async function createRollupConfigForModule(options) {
                     /* UUI-specific */
                     'withMods',
                     'createSkinComponent',
-                    'uuiCreateDayJsHelper',
                 ],
             }),
             cssSourcemapPathTransformPlugin({ outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),
