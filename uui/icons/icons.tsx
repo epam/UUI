@@ -14,7 +14,7 @@ import { ReactComponent as TextIcon } from '@epam/assets/icons/file-file_text-fi
 import { ReactComponent as MailIcon } from '@epam/assets/icons/file-file_eml-fill.svg';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/file-file-fill.svg';
 
-export const fileIcons = {
+export const fileIcons = /* @__PURE__ */(() => ({
     docIcon: DocIcon,
     exelIcon: ExelIcon,
     pdfIcon: PdfIcon,
@@ -24,13 +24,13 @@ export const fileIcons = {
     textIcon: TextIcon,
     mailIcon: MailIcon,
     fileIcon: FileIcon,
-};
+}))();
 
-export const systemIcons = {
+export const systemIcons = /* @__PURE__ */(() => ({
     clear: btnCross,
     foldingArrow: foldingArrow,
     accept: accept,
     search: search,
     calendar: calendar,
     info: info,
-} as const;
+} as const))();

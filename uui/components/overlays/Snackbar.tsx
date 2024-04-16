@@ -5,27 +5,33 @@ import { ClearNotification } from '../../index';
 
 export interface SnackbarProps extends UuiSnackbarProps {}
 
-export class Snackbar extends React.Component<SnackbarProps> {
-    public static contextType = UuiContext;
-    public context: UuiContexts;
-    public componentDidMount() {
-        this.context.uuiNotifications.subscribe(() => this.forceUpdate());
-    }
+const SnackbarComponent = /* @__PURE__ */getSnackbarComponent();
+export { SnackbarComponent as Snackbar };
 
-    public render() {
-        let items: NotificationOperation[] = this.context.uuiNotifications.getNotifications().slice().reverse();
+function getSnackbarComponent() {
+    return class Snackbar extends React.Component<SnackbarProps> {
+        public static contextType = UuiContext;
+        public context: UuiContexts;
 
-        // add button for clear notification list
-        if (items.length > 1) {
-            const clearOperation: NotificationOperation = {
-                component: ClearNotification,
-                props: { id: 111555, key: 'clearNotification' },
-                config: { position: items[0].config.position, duration: 'forever' },
-
-            };
-            items = [clearOperation].concat(items);
+        public componentDidMount() {
+            this.context.uuiNotifications.subscribe(() => this.forceUpdate());
         }
 
-        return <UuiSnackbar forwardedRef={ this.props.forwardedRef } notifications={ items } />;
-    }
+        public render() {
+            let items: NotificationOperation[] = this.context.uuiNotifications.getNotifications().slice().reverse();
+
+            // add button for clear notification list
+            if (items.length > 1) {
+                const clearOperation: NotificationOperation = {
+                    component: ClearNotification,
+                    props: { id: 111555, key: 'clearNotification' },
+                    config: { position: items[0].config.position, duration: 'forever' },
+
+                };
+                items = [clearOperation].concat(items);
+            }
+
+            return <UuiSnackbar forwardedRef={ this.props.forwardedRef } notifications={ items } />;
+        }
+    };
 }

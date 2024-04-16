@@ -90,14 +90,23 @@ export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCa
     <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export class ClearNotification extends React.Component<{}> {
-    public static contextType = UuiContext;
-    public context: UuiContexts;
-    render() {
-        return (
-            <div className={ cx(css.notificationWrapper, css.clearButton) }>
-                <LinkButton caption={ i18n.notificationCard.closeAllNotificationsButton } onClick={ () => this.context.uuiNotifications.clearAll() } />
-            </div>
-        );
-    }
+const ClearNotificationComponent = /* @__PURE__ */getClearNotificationComponent();
+export { ClearNotificationComponent as ClearNotification };
+
+function getClearNotificationComponent() {
+    return class ClearNotification extends React.Component<{}> {
+        public static contextType = UuiContext;
+        public context: UuiContexts;
+
+        render() {
+            return (
+                <div className={ cx(css.notificationWrapper, css.clearButton) }>
+                    <LinkButton
+                        caption={ i18n.notificationCard.closeAllNotificationsButton }
+                        onClick={ () => this.context.uuiNotifications.clearAll() }
+                    />
+                </div>
+            );
+        }
+    };
 }
