@@ -8,7 +8,7 @@ import updateLocale from 'dayjs/plugin/updateLocale.js';
 export type { Dayjs } from 'dayjs';
 
 let extended = false;
-export const dayJsHelper = /* @__PURE__ */{
+export const dayJsHelper = /* @__PURE__ */(()=>({
     get dayjs() {
         if (!extended) {
             dayjs.extend(isSameOrBefore);
@@ -21,4 +21,4 @@ export const dayJsHelper = /* @__PURE__ */{
         }
         return dayjs;
     },
-};
+}))();
