@@ -11,7 +11,7 @@ lerna run build
 
 yarn run next-app:dev ## this script install all modules and update @epam modules with local changes and run application for manual check
 
-yarn start-server ## this script will start local server with demo data on port 5500
+yarn start-server ## this script will start local server with demo data on port 5000
 
 ## to check whether pages are rendered run tests
 cd ./next-app

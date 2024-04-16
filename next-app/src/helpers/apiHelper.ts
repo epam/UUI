@@ -3,4 +3,4 @@ export const HEADERS = {
     origin: '*',
 };
 
-export const UUI_API_POINT = 'http://localhost:5500/api';
+export const UUI_API_POINT = 'http://localhost:5000/api';
