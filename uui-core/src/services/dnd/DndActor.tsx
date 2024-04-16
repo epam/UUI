@@ -44,7 +44,13 @@ const initialState: DndActorState = {
     },
 };
 
-export class DndActor<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
+/**
+ * This workaround is needed to make it tree-shakable, but it does not look good.
+ * It's better to rewrite it to functional component instead.
+ * The key point here is to get rid of any static props (like sectorPositionPriorities, contextType).
+ */
+// eslint-disable-next-line max-len
+export const DndActor = /* @__PURE__ */(() => class DndActorComponent<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
     state = initialState;
     static contextType = UuiContext;
     public context: UuiContexts;
@@ -292,4 +298,4 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
         return this.props.render(params);
     }
-}
+})();
