@@ -7,7 +7,6 @@ import '@epam/uui/styles.css';
 import '@epam/uui-editor/styles.css';
 import { AppView } from '../components/AppView';
 import Loading from './loading';
-import { ErrorBoundary } from '../components/withErrorHandle';
 
 function RootLayout({ children }: PropsWithChildren) {
     return (
