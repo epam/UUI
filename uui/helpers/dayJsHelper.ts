@@ -11,7 +11,7 @@ import isoWeek from 'dayjs/plugin/isoWeek.js';
 export type { Dayjs } from 'dayjs';
 
 let extended = false;
-export const dayJsHelper = {
+export const dayJsHelper = /* @__PURE__ */{
     get dayjs() {
         if (!extended) {
             dayjs.extend(isSameOrBefore);
