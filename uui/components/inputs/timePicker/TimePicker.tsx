@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+import { dayJsHelper } from '../../../helpers/dayJsHelper';
 import {
     CX, devLogger, DropdownBodyProps, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable,
     IHasForwardedRef, IHasPlaceholder, IHasRawProps, isFocusReceiverInsideFocusLock,
@@ -11,8 +10,6 @@ import { TimePickerBody } from '../timePicker';
 import { EditMode, IHasEditMode, SizeMod } from '../../types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
-
-dayjs.extend(customParseFormat);
 
 const DEFAULT_MODE = EditMode.FORM;
 
@@ -67,7 +64,7 @@ export interface TimePickerValue {
 
 const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['format']) => {
     if (value === null) return null;
-    return dayjs()
+    return dayJsHelper.dayjs()
         .set(value)
         .format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
@@ -94,11 +91,11 @@ export function TimePicker(props: TimePickerProps) {
 
     const getFormat = () => props.format === 24 ? 'HH:mm' : 'hh:mm A';
 
-    const isTimeValid = (newValue: string) => dayjs(newValue, getFormat(), true).isValid();
+    const isTimeValid = (newValue: string) => dayJsHelper.dayjs(newValue, getFormat(), true).isValid();
 
     const formatStringTimeToObject = (stringTime: string | null) => {
         if (stringTime) {
-            const value = dayjs(stringTime, getFormat(), true);
+            const value = dayJsHelper.dayjs(stringTime, getFormat(), true);
             return { hours: value.hour(), minutes: value.minute() };
         }
         return { hours: null, minutes: null };
