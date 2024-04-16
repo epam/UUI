@@ -40,9 +40,9 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 
 You can start editing the page by modifying `src/app/layout.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3001/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `src/app/api/hello.ts`.
+[Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) can be accessed on [http://localhost:3001/api/hello](http://localhost:3001/api/hello). This endpoint can be edited in `src/app/api/hello.ts`.
 
-The `src/app/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The `src/app/api` directory is mapped to `/api/*`. Files in this directory are treated as [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) instead of React pages.
 
 ## Learn More
 
