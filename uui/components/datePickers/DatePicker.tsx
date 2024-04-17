@@ -76,6 +76,8 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 });
             }
         }
+
+        const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
                 { ...renderProps }
@@ -91,11 +93,11 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 onValueChange={ (v) => {
                     setInputValue(v || '');
                 } }
-                onCancel={ () => {
+                onCancel={ allowClear ? () => {
                     if (!props.disableClear && !!inputValue) {
                         onValueChange(null);
                     }
-                } }
+                } : undefined }
                 isInvalid={ props.isInvalid }
                 isDisabled={ props.isDisabled }
                 isReadonly={ props.isReadonly }
