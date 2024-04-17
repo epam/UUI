@@ -1,9 +1,11 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { Day, DayProps } from '@epam/uui-components';
+import { cx } from '@epam/uui-core';
 import { IPropSamplesCreationContext } from '@epam/uui-docs';
 import {
     Text, RangeDatePickerProps, RangeDatePickerValue, rangeDatePickerPresets,
+    uuiRangeDatePickerBody,
 } from '@epam/uui';
 import css from './rangeDatePickerExamples.module.scss';
 import isBetween from 'dayjs/plugin/isBetween.js';
@@ -83,6 +85,8 @@ export const renderFooterExamples = () => {
     ];
 };
 
+const format = 'DD/MM/YYYY';
+
 export const renderDayExamples = (ctx: IPropSamplesCreationContext<RangeDatePickerProps>) => {
     return [
         {
@@ -96,20 +100,35 @@ export const renderDayExamples = (ctx: IPropSamplesCreationContext<RangeDatePick
                         </>
                     );
                 };
+
+                const from = dayjs(ctx.getSelectedProps().value.from).format(format);
+                const to = dayjs(ctx.getSelectedProps().value.to).format(format);
+                const formattedValue = renderProps.value.format(format);
+
+                const inRange = ctx.getSelectedProps().value
+                && renderProps.value.isBetween(
+                    ctx.getSelectedProps().value.from,
+                    ctx.getSelectedProps().value.to,
+                    undefined,
+                    '[]',
+                );
+
+                const isFirst = formattedValue === from;
+                const isLast = formattedValue === to;
+
                 return (
                     <Day
                         { ...renderProps }
                         renderDayNumber={ getCustomDay }
                         isSelected={
-                            renderProps.value
-                            && ctx.getSelectedProps().value
-                            && renderProps.value.isBetween(
-                                ctx.getSelectedProps().value.from,
-                                ctx.getSelectedProps().value.to,
-                                undefined,
-                                '[]',
-                            )
+                            formattedValue && from && to && (isFirst || isLast)
                         }
+                        cx={ cx(
+                            renderProps.cx,
+                            inRange && uuiRangeDatePickerBody.inRange,
+                            isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
+                            isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
+                        ) }
                         filter={ ctx.getSelectedProps().filter }
                     />
                 );
