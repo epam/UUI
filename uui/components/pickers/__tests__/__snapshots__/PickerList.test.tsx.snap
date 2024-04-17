@@ -727,26 +727,24 @@ exports[`PickerList should open body 1`] = `
               class="container uui-blocker-container root"
               role="status"
             >
-              <div>
+              <div
+                class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+              >
                 <div
-                  class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+                  class="container uui-spinner-container root uui-spinner"
                 >
                   <div
-                    class="container uui-spinner-container root uui-spinner"
+                    class="uui-spinner-animation"
                   >
                     <div
-                      class="uui-spinner-animation"
-                    >
-                      <div
-                        class="uui-spinner-dot uui-spinner-dot-1"
-                      />
-                      <div
-                        class="uui-spinner-dot uui-spinner-dot-2"
-                      />
-                      <div
-                        class="uui-spinner-dot uui-spinner-dot-3"
-                      />
-                    </div>
+                      class="uui-spinner-dot uui-spinner-dot-1"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-2"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-3"
+                    />
                   </div>
                 </div>
               </div>

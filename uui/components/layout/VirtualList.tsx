@@ -118,15 +118,7 @@ const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((
             >
                 { props.children }
             </div>
-            <Blocker
-                isEnabled={ props.isLoading }
-                rawProps={ { 
-                    role: 'status',
-                    'aria-live': 'polite',
-                    'aria-busy': props.isLoading ? 'true' : 'false',
-                    'aria-label': props.isLoading ? 'Loading' : '',
-                } }
-            />
+            <Blocker isEnabled={ props.isLoading } />
         </>
     );
 });
