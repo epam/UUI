@@ -3748,48 +3748,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-core:BatchPromiseOptions": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "BatchPromiseOptions",
-     "nameFull": "BatchPromiseOptions"
-    },
-    "src": "uui-core/src/helpers/batch.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "BatchPromiseOptions",
-     "print": [
-      "interface BatchPromiseOptions {",
-      "    /** Minimum time (in ms) to pass after the last call, before triggering the batch */",
-      "    throttleMs?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "throttleMs",
-      "name": "throttleMs",
-      "comment": {
-       "raw": [
-        "Minimum time (in ms) to pass after the last call, before triggering the batch"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-core:BlockTypes": {
    "summary": {
     "module": "@epam/uui-core",
@@ -4451,7 +4409,7 @@
       "/**",
       " * Represents CommonDatePickerProps",
       "*/",
-      "interface CommonDatePickerProps extends IDisableable, ICanBeReadonly, IHasForwardedRef<HTMLElement> {",
+      "interface CommonDatePickerProps extends IDisableable, ICanBeReadonly {",
       "    /**",
       "     * HTML ID attribute for the toggler input",
       "     */",
@@ -4681,20 +4639,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -11666,6 +11610,64 @@
       "};"
      ]
     }
+   }
+  },
+  "@epam/uui-core:FlattenSearchResultsConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FlattenSearchResultsConfig",
+     "nameFull": "FlattenSearchResultsConfig"
+    },
+    "src": "uui-core/src/types/dataSources.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "FlattenSearchResultsConfig",
+     "print": [
+      "interface FlattenSearchResultsConfig {",
+      "    /**",
+      "     * Falls back to plain list from tree, if there's search.",
+      "     * Default is true.",
+      "     *",
+      "     * If enabled, and search is active:",
+      "     * - API will be called with parentId and parent undefined",
+      "     * - getChildCount is ignored, all nodes are assumed to have no children",
+      "     *",
+      "     * See more here: https://github.com/epam/UUI/issues/8",
+      "     */",
+      "    flattenSearchResults?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "flattenSearchResults",
+      "name": "flattenSearchResults",
+      "comment": {
+       "raw": [
+        "Falls back to plain list from tree, if there's search.",
+        " Default is true.",
+        "",
+        " If enabled, and search is active:",
+        " - API will be called with parentId and parent undefined",
+        " - getChildCount is ignored, all nodes are assumed to have no children",
+        "",
+        " See more here: https://github.com/epam/UUI/issues/8"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui-core:FlexCellProps": {
@@ -21834,7 +21836,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-core:LazyDataSourceConfig",
+      "from": "@epam/uui-core:FlattenSearchResultsConfig",
       "required": false
      }
     ],
@@ -22297,42 +22299,11 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-core:LazyDataSourceConfig",
+      "from": "@epam/uui-core:FlattenSearchResultsConfig",
       "required": false
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:LazyLoadedMapLoadCallback": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "LazyLoadedMapLoadCallback",
-     "nameFull": "LazyLoadedMapLoadCallback<TKey, TValue>"
-    },
-    "src": "uui-core/src/helpers/LazyLoadedMap.ts",
-    "comment": {
-     "raw": [
-      "An callback to pass to LazyLoadedMap constructor"
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "LazyLoadedMapLoadCallback<TKey, TValue>",
-     "print": [
-      "/**",
-      " * An callback to pass to LazyLoadedMap constructor",
-      " */",
-      "type LazyLoadedMapLoadCallback<TKey, TValue> = (pending: TKey[]) => Promise<[",
-      "    TKey,",
-      "    TValue",
-      "][]>;"
-     ]
-    }
    }
   },
   "@epam/uui-core:Link": {
@@ -22472,26 +22443,6 @@
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui-core:LoadingStatus": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "LoadingStatus",
-     "nameFull": "LoadingStatus"
-    },
-    "src": "uui-core/src/helpers/LazyLoadedMap.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "typeof UNKNOWN | typeof LOADING | typeof PENDING | typeof LOADED | typeof FAILED",
-     "print": [
-      "type LoadingStatus = typeof UNKNOWN | typeof LOADING | typeof PENDING | typeof LOADED | typeof FAILED;"
-     ]
-    }
    }
   },
   "@epam/uui-core:Metadata": {
@@ -29896,7 +29847,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-core:LazyDataSourceConfig",
+      "from": "@epam/uui-core:FlattenSearchResultsConfig",
       "required": false
      },
      {
@@ -29946,7 +29897,7 @@
       "/**",
       " * Result of the useTree hook.",
       " */",
-      "interface UseTreeResult<TItem, TId, TFilter = any> extends CommonTreeConfig<TItem, TId, TFilter>, ITreeLoadingState, ITreeActions, LoadMissingRecords<TItem, TId>, GetItemStatus<TId> {",
+      "interface UseTreeResult<TItem, TId, TFilter = any> extends CommonTreeConfig<TItem, TId, TFilter>, ITreeLoadingState, ITreeActions, LoadMissingRecords<TItem, TId>, GetItemStatus<TId>, FlattenSearchResultsConfig {",
       "    /**",
       "     * Tree-like data, rows to be build from.",
       "     */",
@@ -30449,6 +30400,30 @@
        "type": "func"
       },
       "from": "@epam/uui-core:GetItemStatus",
+      "required": false
+     },
+     {
+      "uid": "flattenSearchResults",
+      "name": "flattenSearchResults",
+      "comment": {
+       "raw": [
+        "Falls back to plain list from tree, if there's search.",
+        " Default is true.",
+        "",
+        " If enabled, and search is active:",
+        " - API will be called with parentId and parent undefined",
+        " - getChildCount is ignored, all nodes are assumed to have no children",
+        "",
+        " See more here: https://github.com/epam/UUI/issues/8"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:FlattenSearchResultsConfig",
       "required": false
      }
     ],
@@ -47211,6 +47186,11 @@
       "    isCollapsed?: boolean;",
       "    /** Call to clear a value */",
       "    onClear?(e?: any): void;",
+      "    /**",
+      "     * The array of rows that are folded in the 'collapsed button'",
+      "     * (only in selectionMode='multi' with maxItems property, in other ways it's an empty array)",
+      "     */",
+      "    collapsedRows?: DataRowProps<TItem, TId>[];",
       "}"
      ]
     },
@@ -47273,6 +47253,20 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "collapsedRows",
+      "name": "collapsedRows",
+      "comment": {
+       "raw": [
+        "The array of rows that are folded in the 'collapsed button'",
+        " (only in selectionMode='multi' with maxItems property, in other ways it's an empty array)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataRowProps<TItem, TId>[]"
       },
       "required": false
      },
@@ -65360,20 +65354,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -65727,20 +65707,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -79288,6 +79254,21 @@
       "required": false
      },
      {
+      "uid": "collapsedRows",
+      "name": "collapsedRows",
+      "comment": {
+       "raw": [
+        "The array of rows that are folded in the 'collapsed button'",
+        " (only in selectionMode='multi' with maxItems property, in other ways it's an empty array)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataRowProps<TItem, TId>[]"
+      },
+      "from": "@epam/uui-components:PickerTogglerRenderItemParams",
+      "required": false
+     },
+     {
       "uid": "caption",
       "name": "caption",
       "comment": {
@@ -81076,20 +81057,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -82085,20 +82052,6 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:CommonDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.MutableRefObject<HTMLElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
