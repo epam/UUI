@@ -3,7 +3,13 @@ import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IHasPlac
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
+/**
+ * PickerInput element API. Is used to describe ref to the PickerInput component.
+ */
 export interface PickerInputElement extends HTMLElement {
+    /**
+     * Closes PickerInput body.
+     */
     closePickerBody?: () => void;
 }
 
