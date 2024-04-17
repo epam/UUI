@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { cx, IControlled } from '@epam/uui-core';
@@ -98,7 +98,9 @@ export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, 
     isHoliday?: (day: Dayjs) => boolean;
 }
 
-export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>): JSX.Element {
+export const RangeDatePickerBody = forwardRef(RangeDatePickerBodyComp);
+
+function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>, ref: React.ForwardedRef<HTMLDivElement>): JSX.Element {
     const { value: _value, filter } = props;
     const {
         selectedDate: _selectedDate, inFocus,
@@ -188,6 +190,7 @@ export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePic
 
     return (
         <div
+            ref={ ref }
             className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) }
             { ...props.rawProps }
         >
