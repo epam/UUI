@@ -121,7 +121,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         toggleDropdownOpening(false);
-        handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
+        handleDataSourceValueChange((currentState) => ({ ...currentState, search: '', selectedId: row.id }));
     };
 
     const getSearchPosition = () => {
@@ -312,7 +312,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening,
-            closePickerBody: closePickerBody,
+            closePickerBody,
             rawProps: props.rawProps?.input,
             value: searchValue,
             cx: inputCx,
@@ -339,6 +339,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         handleDataSourceValueChange,
         handleSelectionValueChange,
         getSearchPosition,
+        closePickerBody,
         handlePickerInputKeyboard,
     };
 }

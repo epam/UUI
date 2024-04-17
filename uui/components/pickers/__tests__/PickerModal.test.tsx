@@ -250,6 +250,7 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             await PickerModalTestObject.clickOptionCheckbox('A1');
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']);
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -259,6 +260,7 @@ describe('PickerModal', () => {
             fireEvent.click(dom.toggler);
             
             await PickerModalTestObject.clickOptionCheckbox('A1+');
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -333,6 +335,7 @@ describe('PickerModal', () => {
             expect(await PickerModalTestObject.hasOptions()).toBeTruthy();
 
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2']);
 
             await PickerModalTestObject.clickSelectItems();
 
@@ -365,6 +368,8 @@ describe('PickerModal', () => {
 
             // Check parent
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2']);
+
             // Unfold parent
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
 
@@ -386,6 +391,8 @@ describe('PickerModal', () => {
 
             // // Check child
             await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(expect.arrayContaining(['Child 2.2']));
+
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -417,6 +424,8 @@ describe('PickerModal', () => {
 
             // Check parent
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2']);
+
             // Unfold parent
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
             await PickerModalTestObject.clickSelectItems();
@@ -434,6 +443,8 @@ describe('PickerModal', () => {
 
             // Check child
             await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(expect.arrayContaining(['Child 2.2']));
+
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -461,6 +472,8 @@ describe('PickerModal', () => {
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickSelectAllOptions();
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
+
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -476,6 +489,8 @@ describe('PickerModal', () => {
             );
 
             await PickerModalTestObject.clickClearAllOptions();
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual([]);
+
             await PickerModalTestObject.clickSelectItems();
 
             fireEvent.click(dom.toggler);
