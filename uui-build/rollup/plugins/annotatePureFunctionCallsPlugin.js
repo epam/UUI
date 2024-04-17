@@ -11,6 +11,7 @@ module.exports = annotatePureFunctionCallsPlugin;
  *
  * @param pluginOpts
  * @param pluginOpts.pureFunctions
+ * @param pluginOpts.sourcemap
  */
 function annotatePureFunctionCallsPlugin(pluginOpts = { pureFunctions: [] }) {
     const { pureFunctions = [] } = pluginOpts;
@@ -26,12 +27,12 @@ function annotatePureFunctionCallsPlugin(pluginOpts = { pureFunctions: [] }) {
 
     return {
         name: PLUGIN_NAME,
-        renderChunk(code, chunk, options) {
+        transform(code) {
             const codeAfterReplace = code.replace(replaceWhat, replaceTo);
             if (codeAfterReplace !== code) {
                 const magicString = new MagicString(codeAfterReplace);
                 const result = { code: magicString.toString() };
-                if (options.sourcemap) {
+                if (pluginOpts.sourcemap) {
                     result.map = magicString.generateMap({ hires: true });
                 }
                 return result;
