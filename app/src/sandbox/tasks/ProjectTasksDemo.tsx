@@ -47,9 +47,11 @@ export function ProjectTasksDemo() {
         getMetadata: () => metadata,
         // This example illustrates how to customize the 'beforeLeave' method to prevent a modal window from appearing when navigating between pages within the same domain.
         beforeLeave: (nextLocation, currentLocation) => {
-            if (nextLocation.pathname === currentLocation.pathname) {
-                save();
-                return Promise.resolve(false);
+            const currentPage = currentLocation.search.split('&')[0];
+            const nextPage = nextLocation.search.split('&')[0];
+
+            if ((nextLocation.pathname === currentLocation.pathname) && (currentPage === nextPage)) {
+                return Promise.resolve('remain');
             } else {
                 // if it's the different domain, we show our modal window
                 return context.uuiModals.show<boolean>((modalProps) => <ConfirmationModal caption="Your data may be lost. Do you want to save data?" { ...modalProps } />);

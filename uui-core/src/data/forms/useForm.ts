@@ -91,8 +91,16 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     const handleLeave = useCallback(async (nextLocation?: Link, currentLocation?: Link) => {
         if (props.beforeLeave) {
             const res = await props.beforeLeave(nextLocation, currentLocation);
-            if (res) return handleSave(true);
-            removeUnsavedChanges();
+            if (res === true) {
+                return handleSave(true);
+            }
+            if (res === false) {
+                removeUnsavedChanges();
+                return Promise.resolve();
+            }
+            if (res === 'remain') {
+                return Promise.resolve('remain');
+            }
         }
         return Promise.resolve();
     }, [

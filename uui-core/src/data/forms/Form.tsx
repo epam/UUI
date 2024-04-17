@@ -38,11 +38,14 @@ export interface FormProps<T> {
 
     /**
      * Called when form is unmounted, but user still have unsaved changes.
-     * Accepts a Promise<boolean> to be returned. If promise resolves to true - save procedure is performed.
+     * Accepts a Promise<boolean | 'remain'> to be returned.
+     * If promise resolves to true - save procedure is performed.
+     * If promise resolves to false - localStorage will be cleaned.
+     * If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.
      * The common use-case is to show a modal with "Save Changes?" dialog
      * Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it.
      */
-    beforeLeave?: ((nextLocation: Link, currentLocation: Link) => Promise<boolean>) | null;
+    beforeLeave?: ((nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>) | null;
 
     /**
      * Used to restore unsaved user edits from the last session (usually to localstorage, via uuiUserSettings context)
