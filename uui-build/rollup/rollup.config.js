@@ -146,9 +146,13 @@ async function createRollupConfigForModule(options) {
                     'React.memo',
                     'React__default.memo',
 
+                    /* React.createContext */
+                    'createContext',
+
                     /* UUI-specific */
                     'withMods',
                     'createSkinComponent',
+                    'pureFunction',
                 ],
             }),
             cssSourcemapPathTransformPlugin({ outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),

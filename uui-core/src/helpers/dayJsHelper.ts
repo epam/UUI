@@ -4,9 +4,9 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
 export type { Dayjs } from 'dayjs';
 
-export const dayJsHelper = uuiCreateDayJsHelper();
+export const dayJsHelper = pureFunction();
 
-function uuiCreateDayJsHelper() {
+function pureFunction() {
     let extended = false;
     return {
         get dayjs() {
