@@ -7,9 +7,9 @@ import updateLocale from 'dayjs/plugin/updateLocale.js';
 
 export type { Dayjs } from 'dayjs';
 
-export const dayJsHelper = uuiCreateDayJsHelper();
+export const dayJsHelper = pureFunction();
 
-function uuiCreateDayJsHelper() {
+function pureFunction() {
     let extended = false;
     return {
         get dayjs() {
