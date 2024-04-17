@@ -41,7 +41,8 @@
             margin-top: -2px;
         }
 
-        &.size-24 {
+        // TODO: need update
+        &:global(.uui-size-24) {
             :global(.uui-numeric-input-button-group) {
                 > * {
                     height: 11px;
@@ -49,7 +50,7 @@
             }
         }
 
-        &.size-30 {
+        &:global(.uui-size-30) {
             :global(.uui-numeric-input-button-group) {
                 > * {
                     height: 14px;
@@ -57,7 +58,7 @@
             }
         }
 
-        &.size-36 {
+        &:global(.uui-size-36) {
             :global(.uui-numeric-input-button-group) {
                 > * {
                     height: 17px;
@@ -65,7 +66,7 @@
             }
         }
 
-        &.size-42 {
+        &:global(.uui-size-42) {
             :global(.uui-numeric-input-button-group) {
                 > * {
                     height: 20px;
@@ -73,7 +74,7 @@
             }
         }
 
-        &.size-48 {
+        &:global(.uui-size-48) {
             :global(.uui-numeric-input-button-group) {
                 > * {
                     height: 23px;

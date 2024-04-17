@@ -37,7 +37,7 @@ export function getUuiThemeRoot() {
 
 export function setThemeCssClass(theme: string) {
     const themeRoot = getUuiThemeRoot();
-    const currentTheme = themeRoot.classList.value.match(/uui-theme-(\S+)\s*/)[0];
+    const currentTheme = themeRoot.classList.value.match(/uui-theme-(\S+)\s*/)[0].trim();
     themeRoot.classList.replace(currentTheme, `uui-theme-${theme}`);
 }
 

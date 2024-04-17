@@ -73,7 +73,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ svc.uuiApp.themesById[theme].name } fill="none" size="36" isDropdown={ true } />
+                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ svc.uuiApp.themesById[theme]?.name } fill="none" size="36" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"

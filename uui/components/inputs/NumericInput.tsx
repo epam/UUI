@@ -21,8 +21,7 @@ function applyNumericInputMods(mods: NumericInputMods) {
     return [
         textInputCss.root,
         css.root,
-        css['size-' + (mods.size || DEFAULT_SIZE)],
-        textInputCss['size-' + (mods.size || DEFAULT_SIZE)],
+        `uui-size-${mods.size || DEFAULT_SIZE}`,
         textInputCss['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }

@@ -8,6 +8,7 @@
 }
 
 .root {
+    // colors
     --uui-btn-bg: var(--uui-color-50);
     --uui-btn-bg-hover: var(--uui-color-60);
     --uui-btn-bg-active: var(--uui-color-70);
@@ -19,11 +20,25 @@
     --uui-btn-caption: var(--uui-color-contrast);
     --uui-btn-caption-disabled: var(--uui-text-disabled);
 
-    --uui-btn-border-radius: var(--uui-border-radius);
-
+    // fonts
     --uui-btn-font: var(--uui-font);
     --uui-btn-font-weight: var(--uui-font-weight, 600);
+
+    // sizes
+    --uui-btn-border-radius: var(--uui-border-radius);
+    --uui-btn-min-height: var(--uui-size);
+    --uui-btn-min-width: var(--uui-size);
+    --uui-btn-border-width: var(--uui-border-width);
+    --uui-btn-outer-padding: var(--uui-x-outer-padding);
+    --uui-btn-caption-padding: var(--uui-x-inner-padding);
+    --uui-btn-icon-height: var(--uui-icon-size);
+    --uui-btn-line-height: var(--uui-line-height);
+    --uui-btn-font-size: var(--uui-font-size);
+
     //
+    min-width: var(--uui-btn-min-width);
+    padding-left: calc(var(--uui-btn-outer-padding) - var(--uui-btn-border-width));
+    padding-right: calc(var(--uui-btn-outer-padding) - var(--uui-btn-border-width));
     background-color: var(--uui-btn-bg);
     color: var(--uui-btn-caption);
     fill: var(--uui-btn-caption);
@@ -45,6 +60,8 @@
         border-style: solid;
         justify-content: center;
         border-radius: var(--uui-btn-border-radius);
+        min-height: var(--uui-btn-min-height);
+        border-width: var(--uui-btn-border-width);
     }
 
     &:focus-visible {
@@ -59,6 +76,14 @@
         font-family: var(--uui-btn-font);
         font-weight: var(--uui-btn-font-weight, normal);
         user-select: none;
+        padding: calc((var(--uui-btn-min-height) - var(--uui-btn-line-height) - (var(--uui-btn-border-width) * 2)) / 2) var(--uui-btn-caption-padding);
+        line-height: var(--uui-btn-line-height);
+        font-size: var(--uui-btn-font-size);
+    }
+
+    svg {
+        height: var(--uui-btn-icon-height);
+        width: inherit;
     }
 
     &:is(:global(.-clickable), :hover, :active, :focus):global(.uui-disabled),
@@ -126,32 +151,6 @@
         --uui-btn-border-disabled: transparent;
         --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
-    }
-
-    &:global {
-        &.uui-size-18 {
-            @include button-layout(18px, 1px);
-        }
-
-        &.uui-size-24 {
-            @include button-layout(24px, 1px);
-        }
-
-        &.uui-size-30 {
-            @include button-layout(30px, 1px);
-        }
-
-        &.uui-size-36 {
-            @include button-layout(36px, 1px);
-        }
-
-        &.uui-size-42 {
-            @include button-layout(42px, 1px);
-        }
-
-        &.uui-size-48 {
-            @include button-layout(48px, 1px);
-        }
     }
 }
 
