@@ -151,6 +151,7 @@ async function createRollupConfigForModule(options) {
 
                     /* UUI-specific */
                     'withMods',
+                    'uuiCore.withMods',
                     'createSkinComponent',
                     'pureFunction',
                 ],
