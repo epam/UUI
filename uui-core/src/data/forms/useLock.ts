@@ -4,7 +4,7 @@ import { Link } from '../../types';
 
 export interface UseLockProps {
     /** Callback which will be called on router change */
-    handleLeave?: (nextLocation: Link, currentLocation: Link) => Promise<boolean>;
+    handleLeave?: (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>;
     /** Pass true, to enable lock */
     isEnabled?: boolean;
 }
@@ -21,7 +21,10 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
             const currentLocation = context.uuiRouter.getCurrentLink();
 
             return handleLeave(nextLocation, currentLocation)
-                .then(() => {
+                .then((res) => {
+                    if (res === 'remain') {
+                    // what's here?
+                    }
                     unblock();
                     context.uuiRouter.redirect(nextLocation);
                 })
