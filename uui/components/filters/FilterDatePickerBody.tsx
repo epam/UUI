@@ -60,7 +60,7 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
                         isDisabled={ !value }
                         caption={ i18n.filterToolbar.datePicker.clearCaption }
                         onClick={ () => {
-                            handleValueChange(null);
+                            handleValueChange(undefined); // null is not working with setTableData filters
                         } }
                     />
                 </FlexRow>
