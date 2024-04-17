@@ -136,17 +136,17 @@ async function createRollupConfigForModule(options) {
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
             }),
             annotatePureFunctionCallsPlugin({
+                sourcemap: true,
                 pureFunctions: [
                     /* React.forwardRef */
                     'forwardRef',
                     'React.forwardRef',
-                    'React__default.forwardRef',
 
                     /* React.memo */
                     'React.memo',
-                    'React__default.memo',
 
                     /* React.createContext */
+                    'React.createContext',
                     'createContext',
 
                     /* UUI-specific */
