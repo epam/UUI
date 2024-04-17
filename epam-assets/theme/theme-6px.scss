@@ -1,0 +1,73 @@
+.uui-6px-grid {
+    --uui-border-radius: 3px;
+
+    .uui-size-18 {
+        --uui-size: 18px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 3px;
+        --uui-x-inner-padding: 3px;
+        --uui-icon-size: 12px;
+        --uui-line-height: 12px;
+        --uui-font-size: 10px;
+    }
+
+    .uui-size-24 {
+        --uui-size: 24px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 6px;
+        --uui-x-inner-padding: 6px;
+        --uui-icon-size: 12px;
+        --uui-line-height: 18px;
+        --uui-font-size: 12px;
+    }
+
+    .uui-size-30 {
+        --uui-size: 30px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 6px;
+        --uui-x-inner-padding: 6px;
+        --uui-icon-size: 18px;
+        --uui-line-height: 18px;
+        --uui-font-size: 14px;
+    }
+
+    .uui-size-36 {
+        --uui-size: 36px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 6px;
+        --uui-x-inner-padding: 6px;
+        --uui-icon-size: 18px;
+        --uui-line-height: 18px;
+        --uui-font-size: 14px;
+    }
+
+    .uui-size-42 {
+        --uui-size: 42px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 12px;
+        --uui-x-inner-padding: 6px;
+        --uui-icon-size: 18px;
+        --uui-line-height: 24px;
+        --uui-font-size: 16px;
+    }
+
+    .uui-size-48 {
+        --uui-size: 48px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 12px;
+        --uui-x-inner-padding: 6px;
+        --uui-icon-size: 24px;
+        --uui-line-height: 24px;
+        --uui-font-size: 16px;
+    }
+
+    .uui-input-box {
+        &.uui-size-42 {
+            --uui-x-outer-padding: 6px;
+        }
+
+        &.uui-size-48 {
+            --uui-x-outer-padding: 6px;
+        }
+    }
+}

@@ -16,10 +16,10 @@ type TextInputMods = IHasEditMode & {
     size?: ControlSize | '60';
 };
 
-function applyTextInputMods(mods: TextInputMods) {
+function applyTextInputMods(mods: CoreTextInputProps & TextInputMods) {
     return [
         css.root,
-        css['size-' + (mods.size || DEFAULT_SIZE)],
+        `uui-size-${mods.size || DEFAULT_SIZE}`,
         css['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }
