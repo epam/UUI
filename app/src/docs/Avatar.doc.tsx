@@ -30,6 +30,7 @@ export class AvatarDoc extends BaseDocsBlock {
                     },
                 ],
             });
+            doc.merge('size', { editorType: 'NumEditor', examples: [36, 12, 18, 24, 30, 42, 54, 60, 72, 78, 90, 96, 120, 144] });
         },
     };
 
