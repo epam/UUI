@@ -201,9 +201,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
         const isInteractionDisabled = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
-        const isInputFocusedAndValid = (inFocus && props.value && props.minCharsToSearch);
-        const isPickerOpenForInput = (props.isOpen && props.searchPosition === 'input');
-        return !(isInteractionDisabled || isInputFocusedAndValid || isPickerOpenForInput);
+        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && props.minCharsToSearch);
+        const isPickerOpenWithSearchInInput = (props.isOpen && props.searchPosition === 'input' && (e.target as HTMLInputElement).tagName === 'INPUT');
+        return !(isInteractionDisabled || shouldOpenWithMinCharsToSearch || isPickerOpenWithSearchInInput);
     };
 
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
