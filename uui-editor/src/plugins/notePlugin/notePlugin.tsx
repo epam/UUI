@@ -89,7 +89,8 @@ export function NoteButton({ editor }: IToolbarNote) {
             ) }
             renderBody={ (props) => (
                 <NoteBar
-                    editor={ editor } type={ type }
+                    editor={ editor }
+                    type={ type }
                     { ...props }
                 />
             ) }

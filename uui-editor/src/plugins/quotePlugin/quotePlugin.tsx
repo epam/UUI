@@ -13,7 +13,7 @@ import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
-const Quote: PlatePluginComponent = function (props) {
+const Quote: PlatePluginComponent = function QuoteComponent(props) {
     return (
         <blockquote
             { ...props.attributes }

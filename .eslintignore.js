@@ -23,7 +23,6 @@ function getIgnoredPatterns({ isCI, isLintStaged, isLintScript }) {
     if (isCI || isLintStaged) {
         // ignore in CI
         // still show any errors in IDE & in local running eslint script
-        ignored.push('uui-editor'); // TODO: it's temporarily ignored, uncomment when work related to editor is finished.
     }
     if (isCI || isLintStaged || isLintScript) {
         // ignore in CI & for local running eslint script

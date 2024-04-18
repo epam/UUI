@@ -1,5 +1,5 @@
-import { FileUploadResponse } from "@epam/uui-core";
-import { TElement } from "@udecode/plate-common";
+import { FileUploadResponse } from '@epam/uui-core';
+import { TElement } from '@udecode/plate-common';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
