@@ -23734,7 +23734,7 @@
       "    /** Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field. */",
       "    getSearchFields?(item: TItem): string[];",
       "    /** Component ref */",
-      "    ref?: React.Ref<HTMLElement>;",
+      "    ref?: React.Ref<PickerInputElement>;",
       "};"
      ]
     },
@@ -23975,7 +23975,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "required": false
      }
@@ -24252,7 +24252,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (instance: HTMLElement | null) => void | React.RefObject<HTMLElement>"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -25334,6 +25334,5121 @@
        "type": "bool"
       },
       "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:PickerInputElement": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "PickerInputElement",
+     "nameFull": "PickerInputElement"
+    },
+    "src": "uui-core/src/types/pickers.ts",
+    "comment": {
+     "raw": [
+      "PickerInput element API. Is used to describe ref to the PickerInput component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PickerInputElement",
+     "print": [
+      "/**",
+      " * PickerInput element API. Is used to describe ref to the PickerInput component.",
+      " */",
+      "interface PickerInputElement extends HTMLElement {",
+      "    /**",
+      "     * Closes PickerInput body.",
+      "     */",
+      "    closePickerBody?: () => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "closePickerBody",
+      "name": "closePickerBody",
+      "comment": {
+       "raw": [
+        "Closes PickerInput body."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "accessKey",
+      "name": "accessKey",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKey)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "accessKeyLabel",
+      "name": "accessKeyLabel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/accessKeyLabel)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "autocapitalize",
+      "name": "autocapitalize",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "dir",
+      "name": "dir",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dir)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "draggable",
+      "name": "draggable",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/draggable)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "hidden",
+      "name": "hidden",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidden)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "inert",
+      "name": "inert",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/inert)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "innerText",
+      "name": "innerText",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/innerText)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "lang",
+      "name": "lang",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/lang)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "offsetHeight",
+      "name": "offsetHeight",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetHeight)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "offsetLeft",
+      "name": "offsetLeft",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetLeft)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "offsetParent",
+      "name": "offsetParent",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetParent)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | Element"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": false
+     },
+     {
+      "uid": "offsetTop",
+      "name": "offsetTop",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetTop)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "offsetWidth",
+      "name": "offsetWidth",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetWidth)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "outerText",
+      "name": "outerText",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/outerText)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "popover",
+      "name": "popover",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/popover)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": false
+     },
+     {
+      "uid": "spellcheck",
+      "name": "spellcheck",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/spellcheck)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "title",
+      "name": "title",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/title)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "translate",
+      "name": "translate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "attachInternals",
+      "name": "attachInternals",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/attachInternals)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => ElementInternals"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "click",
+      "name": "click",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/click)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "hidePopover",
+      "name": "hidePopover",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/hidePopover)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "showPopover",
+      "name": "showPopover",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/showPopover)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "togglePopover",
+      "name": "togglePopover",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(force?: boolean | undefined) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "addEventListener",
+      "name": "addEventListener",
+      "typeValue": {
+       "raw": "{ <K>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions | undefined): void; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "removeEventListener",
+      "name": "removeEventListener",
+      "typeValue": {
+       "raw": "{ <K>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions | undefined): void; (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions | undefined): void; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement",
+      "required": true
+     },
+     {
+      "uid": "attributes",
+      "name": "attributes",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/attributes)"
+       ]
+      },
+      "typeValue": {
+       "raw": "NamedNodeMap"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "classList",
+      "name": "classList",
+      "comment": {
+       "raw": [
+        "Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/classList)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DOMTokenList"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "className",
+      "name": "className",
+      "comment": {
+       "raw": [
+        "Returns the value of element's class content attribute. Can be set to change it.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/className)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "clientHeight",
+      "name": "clientHeight",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/clientHeight)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "clientLeft",
+      "name": "clientLeft",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/clientLeft)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "clientTop",
+      "name": "clientTop",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/clientTop)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "clientWidth",
+      "name": "clientWidth",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/clientWidth)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "Returns the value of element's id content attribute. Can be set to change it.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/id)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "localName",
+      "name": "localName",
+      "comment": {
+       "raw": [
+        "Returns the local name.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/localName)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "namespaceURI",
+      "name": "namespaceURI",
+      "comment": {
+       "raw": [
+        "Returns the namespace.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/namespaceURI)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": false
+     },
+     {
+      "uid": "onfullscreenchange",
+      "name": "onfullscreenchange",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/fullscreenchange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: Element, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": false
+     },
+     {
+      "uid": "onfullscreenerror",
+      "name": "onfullscreenerror",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/fullscreenerror_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: Element, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": false
+     },
+     {
+      "uid": "outerHTML",
+      "name": "outerHTML",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/outerHTML)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "ownerDocument",
+      "name": "ownerDocument",
+      "typeValue": {
+       "raw": "Document"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "part",
+      "name": "part",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/part)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DOMTokenList"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "prefix",
+      "name": "prefix",
+      "comment": {
+       "raw": [
+        "Returns the namespace prefix.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/prefix)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": false
+     },
+     {
+      "uid": "scrollHeight",
+      "name": "scrollHeight",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollHeight)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scrollLeft",
+      "name": "scrollLeft",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollLeft)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scrollTop",
+      "name": "scrollTop",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollTop)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scrollWidth",
+      "name": "scrollWidth",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollWidth)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "shadowRoot",
+      "name": "shadowRoot",
+      "comment": {
+       "raw": [
+        "Returns element's shadow root, if any, and if shadow root's mode is \"open\", and null otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/shadowRoot)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | ShadowRoot"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": false
+     },
+     {
+      "uid": "slot",
+      "name": "slot",
+      "comment": {
+       "raw": [
+        "Returns the value of element's slot content attribute. Can be set to change it.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/slot)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "tagName",
+      "name": "tagName",
+      "comment": {
+       "raw": [
+        "Returns the HTML-uppercased qualified name.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/tagName)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "attachShadow",
+      "name": "attachShadow",
+      "comment": {
+       "raw": [
+        "Creates a shadow root for element and returns it.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/attachShadow)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(init: ShadowRootInit) => ShadowRoot"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "checkVisibility",
+      "name": "checkVisibility",
+      "typeValue": {
+       "raw": "(options?: CheckVisibilityOptions | undefined) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "closest",
+      "name": "closest",
+      "comment": {
+       "raw": [
+        "Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/closest)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ <K>(selector: K): HTMLElementTagNameMap[K] | null; <K>(selector: K): SVGElementTagNameMap[K] | null; <K>(selector: K): MathMLElementTagNameMap[K] | null; <E>(selectors: string): E | null; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "computedStyleMap",
+      "name": "computedStyleMap",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/computedStyleMap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => StylePropertyMapReadOnly"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getAttribute",
+      "name": "getAttribute",
+      "comment": {
+       "raw": [
+        "Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttribute)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(qualifiedName: string) => string | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getAttributeNS",
+      "name": "getAttributeNS",
+      "comment": {
+       "raw": [
+        "Returns element's attribute whose namespace is namespace and local name is localName, and null if there is no such attribute otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null, localName: string) => string | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getAttributeNames",
+      "name": "getAttributeNames",
+      "comment": {
+       "raw": [
+        "Returns the qualified names of all element's attributes. Can contain duplicates.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNames)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => string[]"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getAttributeNode",
+      "name": "getAttributeNode",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(qualifiedName: string) => Attr | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getAttributeNodeNS",
+      "name": "getAttributeNodeNS",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getAttributeNodeNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null, localName: string) => Attr | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getBoundingClientRect",
+      "name": "getBoundingClientRect",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => DOMRect"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getClientRects",
+      "name": "getClientRects",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getClientRects)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => DOMRectList"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getElementsByClassName",
+      "name": "getElementsByClassName",
+      "comment": {
+       "raw": [
+        "Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getElementsByClassName)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(classNames: string) => HTMLCollectionOf<Element>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getElementsByTagName",
+      "name": "getElementsByTagName",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagName)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ <K>(qualifiedName: K): HTMLCollectionOf<HTMLElementTagNameMap[K]>; <K>(qualifiedName: K): HTMLCollectionOf<SVGElementTagNameMap[K]>; <K>(qualifiedName: K): HTMLCollectionOf<MathMLElementTagNameMap[K]>; <K>(qualifiedName: K): HTMLCollectionOf<HTMLElementDeprecatedTagNameMap[K]>; (qualifiedName: string): HTMLCollectionOf<Element>; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "getElementsByTagNameNS",
+      "name": "getElementsByTagNameNS",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/getElementsByTagNameNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ (namespaceURI: 'http://www.w3.org/1999/xhtml', localName: string): HTMLCollectionOf<HTMLElement>; (namespaceURI: 'http://www.w3.org/2000/svg', localName: string): HTMLCollectionOf<SVGElement>; (namespaceURI: 'http://www.w3.org/1998/Math/MathML', localName: string): HTMLCollectionOf<MathMLElement>; (namespace: string | null, localName: string): HTMLCollectionOf<Element>; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "hasAttribute",
+      "name": "hasAttribute",
+      "comment": {
+       "raw": [
+        "Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/hasAttribute)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(qualifiedName: string) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "hasAttributeNS",
+      "name": "hasAttributeNS",
+      "comment": {
+       "raw": [
+        "Returns true if element has an attribute whose namespace is namespace and local name is localName.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/hasAttributeNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null, localName: string) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "hasAttributes",
+      "name": "hasAttributes",
+      "comment": {
+       "raw": [
+        "Returns true if element has attributes, and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/hasAttributes)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "hasPointerCapture",
+      "name": "hasPointerCapture",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/hasPointerCapture)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(pointerId: number) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "insertAdjacentElement",
+      "name": "insertAdjacentElement",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentElement)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(where: InsertPosition, element: Element) => Element | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "insertAdjacentHTML",
+      "name": "insertAdjacentHTML",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentHTML)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(position: InsertPosition, text: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "insertAdjacentText",
+      "name": "insertAdjacentText",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/insertAdjacentText)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(where: InsertPosition, data: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "matches",
+      "name": "matches",
+      "comment": {
+       "raw": [
+        "Returns true if matching selectors against element's root yields element, and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/matches)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(selectors: string) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "releasePointerCapture",
+      "name": "releasePointerCapture",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/releasePointerCapture)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(pointerId: number) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "removeAttribute",
+      "name": "removeAttribute",
+      "comment": {
+       "raw": [
+        "Removes element's first attribute whose qualified name is qualifiedName.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/removeAttribute)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(qualifiedName: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "removeAttributeNS",
+      "name": "removeAttributeNS",
+      "comment": {
+       "raw": [
+        "Removes element's attribute whose namespace is namespace and local name is localName.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null, localName: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "removeAttributeNode",
+      "name": "removeAttributeNode",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/removeAttributeNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(attr: Attr) => Attr"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "requestFullscreen",
+      "name": "requestFullscreen",
+      "comment": {
+       "raw": [
+        "Displays element fullscreen and resolves promise when done.",
+        "",
+        " When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to \"show\", navigation simplicity is preferred over screen space, and if set to \"hide\", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value \"auto\" indicates no application preference.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/requestFullscreen)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(options?: FullscreenOptions | undefined) => Promise<void>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "requestPointerLock",
+      "name": "requestPointerLock",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/requestPointerLock)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scroll",
+      "name": "scroll",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scroll)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ (options?: ScrollToOptions | undefined): void; (x: number, y: number): void; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scrollBy",
+      "name": "scrollBy",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollBy)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ (options?: ScrollToOptions | undefined): void; (x: number, y: number): void; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scrollIntoView",
+      "name": "scrollIntoView",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(arg?: boolean | ScrollIntoViewOptions | undefined) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "scrollTo",
+      "name": "scrollTo",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/scrollTo)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ (options?: ScrollToOptions | undefined): void; (x: number, y: number): void; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "setAttribute",
+      "name": "setAttribute",
+      "comment": {
+       "raw": [
+        "Sets the value of element's first attribute whose qualified name is qualifiedName to value.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/setAttribute)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(qualifiedName: string, value: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "setAttributeNS",
+      "name": "setAttributeNS",
+      "comment": {
+       "raw": [
+        "Sets the value of element's attribute whose namespace is namespace and local name is localName to value.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null, qualifiedName: string, value: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "setAttributeNode",
+      "name": "setAttributeNode",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(attr: Attr) => Attr | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "setAttributeNodeNS",
+      "name": "setAttributeNodeNS",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/setAttributeNodeNS)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(attr: Attr) => Attr | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "setPointerCapture",
+      "name": "setPointerCapture",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/setPointerCapture)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(pointerId: number) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "toggleAttribute",
+      "name": "toggleAttribute",
+      "comment": {
+       "raw": [
+        "If force is not given, \"toggles\" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.",
+        "",
+        " Returns true if qualifiedName is now present, and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/toggleAttribute)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(qualifiedName: string, force?: boolean | undefined) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "webkitMatchesSelector",
+      "name": "webkitMatchesSelector",
+      "comment": {
+       "raw": [
+        "@deprecated This is a legacy alias of `matches`.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/matches)"
+       ],
+       "tags": {
+        "@deprecated": "This is a legacy alias of"
+       }
+      },
+      "typeValue": {
+       "raw": "(selectors: string) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Element",
+      "required": true
+     },
+     {
+      "uid": "baseURI",
+      "name": "baseURI",
+      "comment": {
+       "raw": [
+        "Returns node's node document's document base URL.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/baseURI)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "childNodes",
+      "name": "childNodes",
+      "comment": {
+       "raw": [
+        "Returns the children.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/childNodes)"
+       ]
+      },
+      "typeValue": {
+       "raw": "NodeListOf<ChildNode>"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "firstChild",
+      "name": "firstChild",
+      "comment": {
+       "raw": [
+        "Returns the first child.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/firstChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | ChildNode"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "isConnected",
+      "name": "isConnected",
+      "comment": {
+       "raw": [
+        "Returns true if node is connected and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/isConnected)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "lastChild",
+      "name": "lastChild",
+      "comment": {
+       "raw": [
+        "Returns the last child.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/lastChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | ChildNode"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "nextSibling",
+      "name": "nextSibling",
+      "comment": {
+       "raw": [
+        "Returns the next sibling.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/nextSibling)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | ChildNode"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "nodeName",
+      "name": "nodeName",
+      "comment": {
+       "raw": [
+        "Returns a string appropriate for the type of node.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/nodeName)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "nodeType",
+      "name": "nodeType",
+      "comment": {
+       "raw": [
+        "Returns the type of node.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/nodeType)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "nodeValue",
+      "name": "nodeValue",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/nodeValue)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "parentElement",
+      "name": "parentElement",
+      "comment": {
+       "raw": [
+        "Returns the parent element.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/parentElement)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | HTMLElement"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "parentNode",
+      "name": "parentNode",
+      "comment": {
+       "raw": [
+        "Returns the parent.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/parentNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | ParentNode"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "previousSibling",
+      "name": "previousSibling",
+      "comment": {
+       "raw": [
+        "Returns the previous sibling.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/previousSibling)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | ChildNode"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "textContent",
+      "name": "textContent",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/textContent)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": false
+     },
+     {
+      "uid": "appendChild",
+      "name": "appendChild",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/appendChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "<T extends Node>(node: T) => T"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "cloneNode",
+      "name": "cloneNode",
+      "comment": {
+       "raw": [
+        "Returns a copy of node. If deep is true, the copy also includes the node's descendants.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/cloneNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(deep?: boolean | undefined) => Node"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "compareDocumentPosition",
+      "name": "compareDocumentPosition",
+      "comment": {
+       "raw": [
+        "Returns a bitmask indicating the position of other relative to node.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/compareDocumentPosition)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(other: Node) => number"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "contains",
+      "name": "contains",
+      "comment": {
+       "raw": [
+        "Returns true if other is an inclusive descendant of node, and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/contains)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(other: Node | null) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "getRootNode",
+      "name": "getRootNode",
+      "comment": {
+       "raw": [
+        "Returns node's root.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/getRootNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(options?: GetRootNodeOptions | undefined) => Node"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "hasChildNodes",
+      "name": "hasChildNodes",
+      "comment": {
+       "raw": [
+        "Returns whether node has children.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/hasChildNodes)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "insertBefore",
+      "name": "insertBefore",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/insertBefore)"
+       ]
+      },
+      "typeValue": {
+       "raw": "<T>(node: T, child: Node | null) => T"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "isDefaultNamespace",
+      "name": "isDefaultNamespace",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/isDefaultNamespace)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "isEqualNode",
+      "name": "isEqualNode",
+      "comment": {
+       "raw": [
+        "Returns whether node and otherNode have the same properties.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/isEqualNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(otherNode: Node | null) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "isSameNode",
+      "name": "isSameNode",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/isSameNode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(otherNode: Node | null) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "lookupNamespaceURI",
+      "name": "lookupNamespaceURI",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/lookupNamespaceURI)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(prefix: string | null) => string | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "lookupPrefix",
+      "name": "lookupPrefix",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/lookupPrefix)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(namespace: string | null) => string | null"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "normalize",
+      "name": "normalize",
+      "comment": {
+       "raw": [
+        "Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/normalize)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "removeChild",
+      "name": "removeChild",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/removeChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "<T extends Node>(child: T) => T"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "replaceChild",
+      "name": "replaceChild",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/replaceChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "<T extends Node>(node: Node, child: T) => T"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "ELEMENT_NODE",
+      "name": "ELEMENT_NODE",
+      "comment": {
+       "raw": [
+        "node is an element."
+       ]
+      },
+      "typeValue": {
+       "raw": "1"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        1
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "ATTRIBUTE_NODE",
+      "name": "ATTRIBUTE_NODE",
+      "typeValue": {
+       "raw": "2"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        2
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "TEXT_NODE",
+      "name": "TEXT_NODE",
+      "comment": {
+       "raw": [
+        "node is a Text node."
+       ]
+      },
+      "typeValue": {
+       "raw": "3"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        3
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "CDATA_SECTION_NODE",
+      "name": "CDATA_SECTION_NODE",
+      "comment": {
+       "raw": [
+        "node is a CDATASection node."
+       ]
+      },
+      "typeValue": {
+       "raw": "4"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        4
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "ENTITY_REFERENCE_NODE",
+      "name": "ENTITY_REFERENCE_NODE",
+      "typeValue": {
+       "raw": "5"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        5
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "ENTITY_NODE",
+      "name": "ENTITY_NODE",
+      "typeValue": {
+       "raw": "6"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        6
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "PROCESSING_INSTRUCTION_NODE",
+      "name": "PROCESSING_INSTRUCTION_NODE",
+      "comment": {
+       "raw": [
+        "node is a ProcessingInstruction node."
+       ]
+      },
+      "typeValue": {
+       "raw": "7"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        7
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "COMMENT_NODE",
+      "name": "COMMENT_NODE",
+      "comment": {
+       "raw": [
+        "node is a Comment node."
+       ]
+      },
+      "typeValue": {
+       "raw": "8"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        8
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_NODE",
+      "name": "DOCUMENT_NODE",
+      "comment": {
+       "raw": [
+        "node is a document."
+       ]
+      },
+      "typeValue": {
+       "raw": "9"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        9
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_TYPE_NODE",
+      "name": "DOCUMENT_TYPE_NODE",
+      "comment": {
+       "raw": [
+        "node is a doctype."
+       ]
+      },
+      "typeValue": {
+       "raw": "10"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        10
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_FRAGMENT_NODE",
+      "name": "DOCUMENT_FRAGMENT_NODE",
+      "comment": {
+       "raw": [
+        "node is a DocumentFragment node."
+       ]
+      },
+      "typeValue": {
+       "raw": "11"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        11
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "NOTATION_NODE",
+      "name": "NOTATION_NODE",
+      "typeValue": {
+       "raw": "12"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        12
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_POSITION_DISCONNECTED",
+      "name": "DOCUMENT_POSITION_DISCONNECTED",
+      "comment": {
+       "raw": [
+        "Set when node and other are not in the same tree."
+       ]
+      },
+      "typeValue": {
+       "raw": "1"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        1
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_POSITION_PRECEDING",
+      "name": "DOCUMENT_POSITION_PRECEDING",
+      "comment": {
+       "raw": [
+        "Set when other is preceding node."
+       ]
+      },
+      "typeValue": {
+       "raw": "2"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        2
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_POSITION_FOLLOWING",
+      "name": "DOCUMENT_POSITION_FOLLOWING",
+      "comment": {
+       "raw": [
+        "Set when other is following node."
+       ]
+      },
+      "typeValue": {
+       "raw": "4"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        4
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_POSITION_CONTAINS",
+      "name": "DOCUMENT_POSITION_CONTAINS",
+      "comment": {
+       "raw": [
+        "Set when other is an ancestor of node."
+       ]
+      },
+      "typeValue": {
+       "raw": "8"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        8
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_POSITION_CONTAINED_BY",
+      "name": "DOCUMENT_POSITION_CONTAINED_BY",
+      "comment": {
+       "raw": [
+        "Set when other is a descendant of node."
+       ]
+      },
+      "typeValue": {
+       "raw": "16"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        16
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
+      "name": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
+      "typeValue": {
+       "raw": "32"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        32
+       ]
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Node",
+      "required": true
+     },
+     {
+      "uid": "dispatchEvent",
+      "name": "dispatchEvent",
+      "comment": {
+       "raw": [
+        "Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(event: Event) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:EventTarget",
+      "required": true
+     },
+     {
+      "uid": "ariaAtomic",
+      "name": "ariaAtomic",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaAutoComplete",
+      "name": "ariaAutoComplete",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaBusy",
+      "name": "ariaBusy",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaChecked",
+      "name": "ariaChecked",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaColCount",
+      "name": "ariaColCount",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaColIndex",
+      "name": "ariaColIndex",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaColSpan",
+      "name": "ariaColSpan",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaCurrent",
+      "name": "ariaCurrent",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaDisabled",
+      "name": "ariaDisabled",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaExpanded",
+      "name": "ariaExpanded",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaHasPopup",
+      "name": "ariaHasPopup",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaHidden",
+      "name": "ariaHidden",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaInvalid",
+      "name": "ariaInvalid",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaKeyShortcuts",
+      "name": "ariaKeyShortcuts",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaLabel",
+      "name": "ariaLabel",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaLevel",
+      "name": "ariaLevel",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaLive",
+      "name": "ariaLive",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaModal",
+      "name": "ariaModal",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaMultiLine",
+      "name": "ariaMultiLine",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaMultiSelectable",
+      "name": "ariaMultiSelectable",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaOrientation",
+      "name": "ariaOrientation",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaPlaceholder",
+      "name": "ariaPlaceholder",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaPosInSet",
+      "name": "ariaPosInSet",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaPressed",
+      "name": "ariaPressed",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaReadOnly",
+      "name": "ariaReadOnly",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaRequired",
+      "name": "ariaRequired",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaRoleDescription",
+      "name": "ariaRoleDescription",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaRowCount",
+      "name": "ariaRowCount",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaRowIndex",
+      "name": "ariaRowIndex",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaRowSpan",
+      "name": "ariaRowSpan",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaSelected",
+      "name": "ariaSelected",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaSetSize",
+      "name": "ariaSetSize",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaSort",
+      "name": "ariaSort",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaValueMax",
+      "name": "ariaValueMax",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaValueMin",
+      "name": "ariaValueMin",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaValueNow",
+      "name": "ariaValueNow",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "ariaValueText",
+      "name": "ariaValueText",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "role",
+      "name": "role",
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin",
+      "required": false
+     },
+     {
+      "uid": "animate",
+      "name": "animate",
+      "typeValue": {
+       "raw": "(keyframes: Keyframe[] | PropertyIndexedKeyframes | null, options?: number | KeyframeAnimationOptions | undefined) => Animation"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Animatable",
+      "required": true
+     },
+     {
+      "uid": "getAnimations",
+      "name": "getAnimations",
+      "typeValue": {
+       "raw": "(options?: GetAnimationsOptions | undefined) => Animation[]"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Animatable",
+      "required": true
+     },
+     {
+      "uid": "after",
+      "name": "after",
+      "typeValue": {
+       "raw": "(...nodes: (string | Node)[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ChildNode",
+      "required": true
+     },
+     {
+      "uid": "before",
+      "name": "before",
+      "typeValue": {
+       "raw": "(...nodes: (string | Node)[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ChildNode",
+      "required": true
+     },
+     {
+      "uid": "remove",
+      "name": "remove",
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ChildNode",
+      "required": true
+     },
+     {
+      "uid": "replaceWith",
+      "name": "replaceWith",
+      "typeValue": {
+       "raw": "(...nodes: (string | Node)[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ChildNode",
+      "required": true
+     },
+     {
+      "uid": "innerHTML",
+      "name": "innerHTML",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/innerHTML)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:InnerHTML",
+      "required": true
+     },
+     {
+      "uid": "nextElementSibling",
+      "name": "nextElementSibling",
+      "comment": {
+       "raw": [
+        "Returns the first following sibling that is an element, and null otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/CharacterData/nextElementSibling)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | Element"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:NonDocumentTypeChildNode",
+      "required": false
+     },
+     {
+      "uid": "previousElementSibling",
+      "name": "previousElementSibling",
+      "comment": {
+       "raw": [
+        "Returns the first preceding sibling that is an element, and null otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/CharacterData/previousElementSibling)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | Element"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:NonDocumentTypeChildNode",
+      "required": false
+     },
+     {
+      "uid": "childElementCount",
+      "name": "childElementCount",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/childElementCount)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Returns the child elements.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/children)"
+       ]
+      },
+      "typeValue": {
+       "raw": "HTMLCollection"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "firstElementChild",
+      "name": "firstElementChild",
+      "comment": {
+       "raw": [
+        "Returns the first child that is an element, and null otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/firstElementChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | Element"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": false
+     },
+     {
+      "uid": "lastElementChild",
+      "name": "lastElementChild",
+      "comment": {
+       "raw": [
+        "Returns the last child that is an element, and null otherwise.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/lastElementChild)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | Element"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": false
+     },
+     {
+      "uid": "append",
+      "name": "append",
+      "comment": {
+       "raw": [
+        "Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.",
+        "",
+        " Throws a \"HierarchyRequestError\" DOMException if the constraints of the node tree are violated.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/append)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(...nodes: (string | Node)[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "prepend",
+      "name": "prepend",
+      "comment": {
+       "raw": [
+        "Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.",
+        "",
+        " Throws a \"HierarchyRequestError\" DOMException if the constraints of the node tree are violated.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/prepend)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(...nodes: (string | Node)[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "querySelector",
+      "name": "querySelector",
+      "comment": {
+       "raw": [
+        "Returns the first element that is a descendant of node that matches selectors.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/querySelector)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ <K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null; <K extends keyof SVGElementTagNameMap>(selectors: K): SVGElementTagNameMap[K] | null; <K extends keyof MathMLElementTagNameMap>(selectors: K): MathMLElementTagNameMap[K] | null; <K extends keyof HTMLElementDeprecatedTagNameMap>(selectors: K): HTMLElementDeprecatedTagNameMap[K] | null; <E extends Element = Element>(selectors: string): E | null; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "querySelectorAll",
+      "name": "querySelectorAll",
+      "comment": {
+       "raw": [
+        "Returns all element descendants of node that match selectors.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ <K extends keyof HTMLElementTagNameMap>(selectors: K): NodeListOf<HTMLElementTagNameMap[K]>; <K extends keyof SVGElementTagNameMap>(selectors: K): NodeListOf<SVGElementTagNameMap[K]>; <K extends keyof MathMLElementTagNameMap>(selectors: K): NodeListOf<MathMLElementTagNameMap[K]>; <K extends keyof HTMLElementDeprecatedTagNameMap>(selectors: K): NodeListOf<HTMLElementDeprecatedTagNameMap[K]>; <E extends Element = Element>(selectors: string): NodeListOf<E>; }"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "replaceChildren",
+      "name": "replaceChildren",
+      "comment": {
+       "raw": [
+        "Replace all children of node with nodes, while replacing strings in nodes with equivalent Text nodes.",
+        "",
+        " Throws a \"HierarchyRequestError\" DOMException if the constraints of the node tree are violated.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/replaceChildren)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(...nodes: (string | Node)[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ParentNode",
+      "required": true
+     },
+     {
+      "uid": "assignedSlot",
+      "name": "assignedSlot",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/assignedSlot)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | HTMLSlotElement"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:Slottable",
+      "required": false
+     },
+     {
+      "uid": "attributeStyleMap",
+      "name": "attributeStyleMap",
+      "typeValue": {
+       "raw": "StylePropertyMap"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ElementCSSInlineStyle",
+      "required": true
+     },
+     {
+      "uid": "style",
+      "name": "style",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/style)"
+       ]
+      },
+      "typeValue": {
+       "raw": "CSSStyleDeclaration"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ElementCSSInlineStyle",
+      "required": true
+     },
+     {
+      "uid": "contentEditable",
+      "name": "contentEditable",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/contentEditable)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ElementContentEditable",
+      "required": true
+     },
+     {
+      "uid": "enterKeyHint",
+      "name": "enterKeyHint",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/enterKeyHint)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ElementContentEditable",
+      "required": true
+     },
+     {
+      "uid": "inputMode",
+      "name": "inputMode",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/inputMode)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ElementContentEditable",
+      "required": true
+     },
+     {
+      "uid": "isContentEditable",
+      "name": "isContentEditable",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/isContentEditable)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:ElementContentEditable",
+      "required": true
+     },
+     {
+      "uid": "onabort",
+      "name": "onabort",
+      "comment": {
+       "raw": [
+        "Fires when the user aborts the download.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/abort_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: UIEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onanimationcancel",
+      "name": "onanimationcancel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationcancel_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: AnimationEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onanimationend",
+      "name": "onanimationend",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationend_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: AnimationEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onanimationiteration",
+      "name": "onanimationiteration",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationiteration_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: AnimationEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onanimationstart",
+      "name": "onanimationstart",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationstart_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: AnimationEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onauxclick",
+      "name": "onauxclick",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/auxclick_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onbeforeinput",
+      "name": "onbeforeinput",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/beforeinput_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: InputEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onblur",
+      "name": "onblur",
+      "comment": {
+       "raw": [
+        "Fires when the object loses the input focus.",
+        " @param ev The focus event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/blur_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: FocusEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncancel",
+      "name": "oncancel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncanplay",
+      "name": "oncanplay",
+      "comment": {
+       "raw": [
+        "Occurs when playback is possible, but would require further buffering.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/canplay_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncanplaythrough",
+      "name": "oncanplaythrough",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/canplaythrough_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onchange",
+      "name": "onchange",
+      "comment": {
+       "raw": [
+        "Fires when the contents of the object or selection have changed.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onclick",
+      "name": "onclick",
+      "comment": {
+       "raw": [
+        "Fires when the user clicks the left mouse button on the object",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/click_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onclose",
+      "name": "onclose",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncontextmenu",
+      "name": "oncontextmenu",
+      "comment": {
+       "raw": [
+        "Fires when the user clicks the right mouse button in the client area, opening the context menu.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/contextmenu_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncopy",
+      "name": "oncopy",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/copy_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: ClipboardEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncuechange",
+      "name": "oncuechange",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTrackElement/cuechange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oncut",
+      "name": "oncut",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/cut_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: ClipboardEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondblclick",
+      "name": "ondblclick",
+      "comment": {
+       "raw": [
+        "Fires when the user double-clicks the object.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/dblclick_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondrag",
+      "name": "ondrag",
+      "comment": {
+       "raw": [
+        "Fires on the source object continuously during a drag operation.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/drag_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondragend",
+      "name": "ondragend",
+      "comment": {
+       "raw": [
+        "Fires on the source object when the user releases the mouse at the close of a drag operation.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dragend_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondragenter",
+      "name": "ondragenter",
+      "comment": {
+       "raw": [
+        "Fires on the target element when the user drags the object to a valid drop target.",
+        " @param ev The drag event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dragenter_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondragleave",
+      "name": "ondragleave",
+      "comment": {
+       "raw": [
+        "Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.",
+        " @param ev The drag event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dragleave_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondragover",
+      "name": "ondragover",
+      "comment": {
+       "raw": [
+        "Fires on the target element continuously while the user drags the object over a valid drop target.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dragover_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondragstart",
+      "name": "ondragstart",
+      "comment": {
+       "raw": [
+        "Fires on the source object when the user starts to drag a text selection or selected object.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dragstart_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondrop",
+      "name": "ondrop",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/drop_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: DragEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ondurationchange",
+      "name": "ondurationchange",
+      "comment": {
+       "raw": [
+        "Occurs when the duration attribute is updated.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/durationchange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onemptied",
+      "name": "onemptied",
+      "comment": {
+       "raw": [
+        "Occurs when the media element is reset to its initial state.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/emptied_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onended",
+      "name": "onended",
+      "comment": {
+       "raw": [
+        "Occurs when the end of playback is reached.",
+        " @param ev The event",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ended_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onerror",
+      "name": "onerror",
+      "comment": {
+       "raw": [
+        "Fires when an error occurs during object loading.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/error_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "OnErrorEventHandler"
+      },
+      "typeValueRef": "node_modules/typescript/lib/lib.dom.d.ts:OnErrorEventHandler",
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onfocus",
+      "name": "onfocus",
+      "comment": {
+       "raw": [
+        "Fires when the object receives focus.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/focus_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: FocusEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onformdata",
+      "name": "onformdata",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/formdata_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: FormDataEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ongotpointercapture",
+      "name": "ongotpointercapture",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/gotpointercapture_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oninput",
+      "name": "oninput",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "oninvalid",
+      "name": "oninvalid",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/invalid_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onkeydown",
+      "name": "onkeydown",
+      "comment": {
+       "raw": [
+        "Fires when the user presses a key.",
+        " @param ev The keyboard event",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/keydown_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: KeyboardEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onkeypress",
+      "name": "onkeypress",
+      "comment": {
+       "raw": [
+        "Fires when the user presses an alphanumeric key.",
+        " @param ev The event.",
+        " @deprecated",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/keypress_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: KeyboardEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onkeyup",
+      "name": "onkeyup",
+      "comment": {
+       "raw": [
+        "Fires when the user releases a key.",
+        " @param ev The keyboard event",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/keyup_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: KeyboardEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onload",
+      "name": "onload",
+      "comment": {
+       "raw": [
+        "Fires immediately after the browser loads the object.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGElement/load_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onloadeddata",
+      "name": "onloadeddata",
+      "comment": {
+       "raw": [
+        "Occurs when media data is loaded at the current playback position.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loadeddata_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onloadedmetadata",
+      "name": "onloadedmetadata",
+      "comment": {
+       "raw": [
+        "Occurs when the duration and dimensions of the media have been determined.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loadedmetadata_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onloadstart",
+      "name": "onloadstart",
+      "comment": {
+       "raw": [
+        "Occurs when Internet Explorer begins looking for media data.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loadstart_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onlostpointercapture",
+      "name": "onlostpointercapture",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/lostpointercapture_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmousedown",
+      "name": "onmousedown",
+      "comment": {
+       "raw": [
+        "Fires when the user clicks the object with either mouse button.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mousedown_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmouseenter",
+      "name": "onmouseenter",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mouseenter_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmouseleave",
+      "name": "onmouseleave",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mouseleave_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmousemove",
+      "name": "onmousemove",
+      "comment": {
+       "raw": [
+        "Fires when the user moves the mouse over the object.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mousemove_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmouseout",
+      "name": "onmouseout",
+      "comment": {
+       "raw": [
+        "Fires when the user moves the mouse pointer outside the boundaries of the object.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mouseout_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmouseover",
+      "name": "onmouseover",
+      "comment": {
+       "raw": [
+        "Fires when the user moves the mouse pointer into the object.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mouseover_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onmouseup",
+      "name": "onmouseup",
+      "comment": {
+       "raw": [
+        "Fires when the user releases a mouse button while the mouse is over the object.",
+        " @param ev The mouse event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/mouseup_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: MouseEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpaste",
+      "name": "onpaste",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/paste_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: ClipboardEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpause",
+      "name": "onpause",
+      "comment": {
+       "raw": [
+        "Occurs when playback is paused.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/pause_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onplay",
+      "name": "onplay",
+      "comment": {
+       "raw": [
+        "Occurs when the play method is requested.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/play_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onplaying",
+      "name": "onplaying",
+      "comment": {
+       "raw": [
+        "Occurs when the audio or video has started playing.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/playing_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointercancel",
+      "name": "onpointercancel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointercancel_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointerdown",
+      "name": "onpointerdown",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointerdown_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointerenter",
+      "name": "onpointerenter",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointerenter_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointerleave",
+      "name": "onpointerleave",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointerleave_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointermove",
+      "name": "onpointermove",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointermove_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointerout",
+      "name": "onpointerout",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointerout_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointerover",
+      "name": "onpointerover",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointerover_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onpointerup",
+      "name": "onpointerup",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/pointerup_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: PointerEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onprogress",
+      "name": "onprogress",
+      "comment": {
+       "raw": [
+        "Occurs to indicate progress while downloading media data.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/progress_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: ProgressEvent<EventTarget>) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onratechange",
+      "name": "onratechange",
+      "comment": {
+       "raw": [
+        "Occurs when the playback rate is increased or decreased.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ratechange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onreset",
+      "name": "onreset",
+      "comment": {
+       "raw": [
+        "Fires when the user resets a form.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/reset_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onresize",
+      "name": "onresize",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement/resize_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: UIEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onscroll",
+      "name": "onscroll",
+      "comment": {
+       "raw": [
+        "Fires when the user repositions the scroll box in the scroll bar on the object.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/scroll_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onscrollend",
+      "name": "onscrollend",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/scrollend_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onsecuritypolicyviolation",
+      "name": "onsecuritypolicyviolation",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/securitypolicyviolation_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: SecurityPolicyViolationEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onseeked",
+      "name": "onseeked",
+      "comment": {
+       "raw": [
+        "Occurs when the seek operation ends.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/seeked_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onseeking",
+      "name": "onseeking",
+      "comment": {
+       "raw": [
+        "Occurs when the current playback position is moved.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/seeking_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onselect",
+      "name": "onselect",
+      "comment": {
+       "raw": [
+        "Fires when the current selection changes.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLInputElement/select_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onselectionchange",
+      "name": "onselectionchange",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/selectionchange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onselectstart",
+      "name": "onselectstart",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Node/selectstart_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onslotchange",
+      "name": "onslotchange",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLSlotElement/slotchange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onstalled",
+      "name": "onstalled",
+      "comment": {
+       "raw": [
+        "Occurs when the download has stopped.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/stalled_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onsubmit",
+      "name": "onsubmit",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: SubmitEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onsuspend",
+      "name": "onsuspend",
+      "comment": {
+       "raw": [
+        "Occurs if the load operation has been intentionally halted.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/suspend_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontimeupdate",
+      "name": "ontimeupdate",
+      "comment": {
+       "raw": [
+        "Occurs to indicate the current playback position.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/timeupdate_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontoggle",
+      "name": "ontoggle",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/toggle_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontouchcancel",
+      "name": "ontouchcancel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/touchcancel_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TouchEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontouchend",
+      "name": "ontouchend",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/touchend_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TouchEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontouchmove",
+      "name": "ontouchmove",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/touchmove_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TouchEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontouchstart",
+      "name": "ontouchstart",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/touchstart_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TouchEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontransitioncancel",
+      "name": "ontransitioncancel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/transitioncancel_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TransitionEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontransitionend",
+      "name": "ontransitionend",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/transitionend_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TransitionEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontransitionrun",
+      "name": "ontransitionrun",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/transitionrun_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TransitionEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "ontransitionstart",
+      "name": "ontransitionstart",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/transitionstart_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: TransitionEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onvolumechange",
+      "name": "onvolumechange",
+      "comment": {
+       "raw": [
+        "Occurs when the volume is changed, or playback is muted or unmuted.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/volumechange_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onwaiting",
+      "name": "onwaiting",
+      "comment": {
+       "raw": [
+        "Occurs when playback stops because the next frame of a video resource is not available.",
+        " @param ev The event.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/waiting_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onwebkitanimationend",
+      "name": "onwebkitanimationend",
+      "comment": {
+       "raw": [
+        "@deprecated This is a legacy alias of `onanimationend`.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationend_event)"
+       ],
+       "tags": {
+        "@deprecated": "This is a legacy alias of"
+       }
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onwebkitanimationiteration",
+      "name": "onwebkitanimationiteration",
+      "comment": {
+       "raw": [
+        "@deprecated This is a legacy alias of `onanimationiteration`.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationiteration_event)"
+       ],
+       "tags": {
+        "@deprecated": "This is a legacy alias of"
+       }
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onwebkitanimationstart",
+      "name": "onwebkitanimationstart",
+      "comment": {
+       "raw": [
+        "@deprecated This is a legacy alias of `onanimationstart`.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/animationstart_event)"
+       ],
+       "tags": {
+        "@deprecated": "This is a legacy alias of"
+       }
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onwebkittransitionend",
+      "name": "onwebkittransitionend",
+      "comment": {
+       "raw": [
+        "@deprecated This is a legacy alias of `ontransitionend`.",
+        "",
+        " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/transitionend_event)"
+       ],
+       "tags": {
+        "@deprecated": "This is a legacy alias of"
+       }
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: Event) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "onwheel",
+      "name": "onwheel",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/wheel_event)"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (this: GlobalEventHandlers, ev: WheelEvent) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers",
+      "required": false
+     },
+     {
+      "uid": "autofocus",
+      "name": "autofocus",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement",
+      "required": true
+     },
+     {
+      "uid": "dataset",
+      "name": "dataset",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/dataset)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DOMStringMap"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement",
+      "required": true
+     },
+     {
+      "uid": "nonce",
+      "name": "nonce",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/nonce)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/tabIndex)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement",
+      "required": true
+     },
+     {
+      "uid": "blur",
+      "name": "blur",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/blur)"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement",
+      "required": true
+     },
+     {
+      "uid": "focus",
+      "name": "focus",
+      "comment": {
+       "raw": [
+        "[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/focus)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(options?: FocusOptions | undefined) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement",
+      "required": true
      }
     ],
     "propsFromUnion": false
@@ -27219,15 +32334,15 @@
        ]
       },
       "typeValue": {
-       "raw": "'search' | 'numeric' | 'none' | 'text' | 'tel' | 'url' | 'email' | 'decimal'"
+       "raw": "'search' | 'numeric' | 'text' | 'none' | 'tel' | 'url' | 'email' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "search",
         "numeric",
-        "none",
         "text",
+        "none",
         "tel",
         "url",
         "email",
@@ -28917,6 +34032,64 @@
      {
       "uid": "showSelectedOnly",
       "name": "showSelectedOnly",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:UsePreviousConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UsePreviousConfig",
+     "nameFull": "UsePreviousConfig"
+    },
+    "src": "uui-core/src/hooks/usePrevious.ts",
+    "comment": {
+     "raw": [
+      "Hook configuration, which defines if previous value will be deeply compared with new value to be saved or not."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UsePreviousConfig",
+     "print": [
+      "/**",
+      " * Hook configuration, which defines if previous value will be deeply compared with new value to be saved or not.",
+      " */",
+      "interface UsePreviousConfig {",
+      "    /**",
+      "     * If compare is set to true, previous value will be deeply compared with the new value,",
+      "     * and previous value will be updated only if value is changed (not the link to the object).",
+      "     * Otherwise, previous value will be returned.",
+      "     * If compare is false, previous value will be changed on every rerender.",
+      "     */",
+      "    compare?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "compare",
+      "name": "compare",
+      "comment": {
+       "raw": [
+        "If compare is set to true, previous value will be deeply compared with the new value,",
+        " and previous value will be updated only if value is changed (not the link to the object).",
+        " Otherwise, previous value will be returned.",
+        " If compare is false, previous value will be changed on every rerender."
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -32797,7 +37970,7 @@
       "    /** Image URL */",
       "    img: string | null;",
       "    /** Size  */",
-      "    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144';",
+      "    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '92' | '120' | '144';",
       "    /** True to show placeholder */",
       "    isLoading?: boolean;",
       "    /** Avatar onClick.",
@@ -32849,7 +38022,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'12' | '18' | '24' | '36' | '30' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144'"
+       "raw": "'12' | '18' | '24' | '36' | '30' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '92' | '120' | '144'"
       },
       "editor": {
        "type": "oneOf",
@@ -32866,6 +38039,8 @@
         "72",
         "78",
         "90",
+        "92",
+        "120",
         "144"
        ]
       },
@@ -44481,7 +49656,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -45573,7 +50748,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -57147,7 +62322,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -58262,7 +63437,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -58961,7 +64136,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -75060,7 +80235,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -77975,7 +83150,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -78674,7 +83849,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLElement> | (instance: HTMLElement | null) => void"
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -104200,6 +109375,28 @@
     "exported": false
    }
   },
+  "node_modules/typescript/lib/lib.dom.d.ts:Animatable": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "Animatable",
+     "nameFull": "Animatable"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:ARIAMixin": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "ARIAMixin",
+     "nameFull": "ARIAMixin"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
   "node_modules/typescript/lib/lib.dom.d.ts:Blob": {
    "summary": {
     "module": "node_modules/typescript/lib/lib.dom.d.ts",
@@ -104208,6 +109405,75 @@
      "nameFull": "Blob"
     },
     "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:ChildNode": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "ChildNode",
+     "nameFull": "ChildNode"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:Element": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "Element",
+     "nameFull": "Element"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "comment": {
+     "raw": [
+      "Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.",
+      "",
+      " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element)"
+     ]
+    },
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:ElementContentEditable": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "ElementContentEditable",
+     "nameFull": "ElementContentEditable"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:ElementCSSInlineStyle": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "ElementCSSInlineStyle",
+     "nameFull": "ElementCSSInlineStyle"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:EventTarget": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "EventTarget",
+     "nameFull": "EventTarget"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "comment": {
+     "raw": [
+      "EventTarget is a DOM interface implemented by objects that can receive events and may have listeners for them.",
+      "",
+      " [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget)"
+     ]
+    },
     "exported": false
    }
   },
@@ -104226,6 +109492,119 @@
       " [MDN Reference](https://developer.mozilla.org/docs/Web/API/File)"
      ]
     },
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:GlobalEventHandlers": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "GlobalEventHandlers",
+     "nameFull": "GlobalEventHandlers"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:HTMLElement": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "HTMLElement",
+     "nameFull": "HTMLElement"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "comment": {
+     "raw": [
+      "Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.",
+      "",
+      " [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement)"
+     ]
+    },
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:HTMLOrSVGElement": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "HTMLOrSVGElement",
+     "nameFull": "HTMLOrSVGElement"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:InnerHTML": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "InnerHTML",
+     "nameFull": "InnerHTML"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:Node": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "Node",
+     "nameFull": "Node"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "comment": {
+     "raw": [
+      "Node is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.",
+      "",
+      " [MDN Reference](https://developer.mozilla.org/docs/Web/API/Node)"
+     ]
+    },
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:NonDocumentTypeChildNode": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "NonDocumentTypeChildNode",
+     "nameFull": "NonDocumentTypeChildNode"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:OnErrorEventHandler": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "OnErrorEventHandler",
+     "nameFull": "OnErrorEventHandler"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:ParentNode": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "ParentNode",
+     "nameFull": "ParentNode"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/typescript/lib/lib.dom.d.ts:Slottable": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.dom.d.ts",
+    "typeName": {
+     "name": "Slottable",
+     "nameFull": "Slottable"
+    },
+    "src": "node_modules/typescript/lib/lib.dom.d.ts",
     "exported": false
    }
   },

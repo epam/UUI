@@ -12,7 +12,7 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
     img: string | null;
 
     /** Size  */
-    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144';
+    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '92' | '120' | '144';
 
     /** True to show placeholder */
     isLoading?: boolean;
