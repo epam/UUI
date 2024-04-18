@@ -89,15 +89,10 @@ export default function EditableTableExample() {
 
     // Prepare callback to add a new item to the list.
     const handleNewItem = useCallback(() => {
-        const newItem = { ...blankItem, id: --lastId };
-        // We can manipulate form state directly with the setValue
-        // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: current.items.set(newItem.id, newItem) }));
-
         // It is possible to focus rows programmatically via dataTableFocusManager,
         // even those, still not present on the screen.
         dataTableFocusManager?.focusRow(lastId - 1);
-    }, [setValue, dataTableFocusManager]);
+    }, [dataTableFocusManager]);
 
     const handleDeleteItem = useCallback((item: TodoTask) => {
         setValue((current) => ({ ...current, items: current.items.set(item.id, { ...item, isDeleted: true }) }));
