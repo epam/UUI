@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useImperativeHandle, useRef } from 'react';
 import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
@@ -22,7 +22,7 @@ export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputB
     renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;
 };
 
-function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
+function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
@@ -61,8 +61,16 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         getListProps,
         shouldShowBody,
         getSearchPosition,
+        closePickerBody,
         handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
+
+    const dropdownRef = useRef(null);
+
+    useImperativeHandle(ref, () => ({
+        ...dropdownRef.current,
+        closePickerBody,
+    }), [closePickerBody]);
 
     const getTogglerMods = (): PickerTogglerMods => {
         return {
@@ -193,12 +201,12 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             modifiers={ popperModifiers }
             closeBodyOnTogglerHidden={ !isMobile() }
             portalTarget={ props.portalTarget }
-            ref={ ref }
+            ref={ dropdownRef }
         />
     );
 }
 
 export const PickerInput = React.forwardRef(PickerInputComponent) as <TItem, TId>(
     props: PickerInputProps<TItem, TId>,
-    ref: React.ForwardedRef<HTMLElement>
+    ref: React.ForwardedRef<PickerInputElement>
 ) => JSX.Element;

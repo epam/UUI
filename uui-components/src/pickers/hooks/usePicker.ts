@@ -1,7 +1,7 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useLayoutEffect } from 'react';
 import isEqual from 'react-fast-compare';
 import {
-    DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext,
+    DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext, usePrevious,
 } from '@epam/uui-core';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { PickerState } from './types';
@@ -12,6 +12,8 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 ) {
     const context = useContext(UuiContext);
     const { showSelected, setShowSelected, dataSourceState, setDataSourceState } = pickerState;
+    const prevDataSourceState = usePrevious(dataSourceState);
+
     const {
         dataSource,
         emptyValue,
@@ -46,30 +48,31 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
                 newDsState = newDataSourceState;
             }
 
-            if (showSelected && (!newDsState.checked?.length || newDsState.search)) {
-                setShowSelected(false);
-            }
-
-            if (newDsState.search !== st.search) {
+            if ((newDsState.search || st.search) && newDsState.search !== st.search) {
                 newDsState.focusedIndex = 0;
-            }
-
-            const newValue = dataSourceStateToValue(props, newDsState, dataSource);
-
-            if (!isEqual(value, newValue)) {
-                handleSelectionValueChange(newValue);
             }
 
             return newDsState;
         });
-    }, [
-        value,
-        showSelected,
-        setShowSelected,
-        setDataSourceState,
-        dataSource,
-        handleSelectionValueChange,
-    ]);
+    }, [setDataSourceState]);
+
+    useLayoutEffect(() => {
+        if (showSelected && (!dataSourceState.checked?.length || dataSourceState.search)) {
+            setShowSelected(false);
+        }
+
+        if ((!prevDataSourceState && (dataSourceState.checked?.length || dataSourceState.selectedId != null))
+            || (prevDataSourceState && (
+                prevDataSourceState.checked !== dataSourceState.checked
+                || dataSourceState.selectedId !== prevDataSourceState.selectedId
+            ))
+        ) {
+            const newValue = dataSourceStateToValue(props, dataSourceState, dataSource);
+            if (!isEqual(value, newValue)) {
+                handleSelectionValueChange(newValue);
+            }
+        }
+    }, [dataSourceState]);
 
     const getName = (i: (TItem & { name?: string }) | void) => {
         const unknownStr = 'Unknown';
