@@ -1,7 +1,7 @@
 import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 
 import { AddImageModal } from './AddImageModal';
 import { Image, toPlateAlign } from './ImageBlock';
@@ -100,7 +100,7 @@ export function ImageButton({ editor }: IImageButton) {
         insertNodes<TImageElement>(editor, image);
     };
 
-    if (!isPluginActive(IMAGE_PLUGIN_KEY)) return null;
+    if (!useIsPluginActive(IMAGE_PLUGIN_KEY)) return null;
     const block = getBlockAbove(editor);
 
     return (

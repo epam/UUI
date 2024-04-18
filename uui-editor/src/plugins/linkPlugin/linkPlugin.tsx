@@ -5,7 +5,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { PlateEditor, someNode } from '@udecode/plate-common';
 import { ELEMENT_LINK, LinkPlugin, createLinkPlugin } from '@udecode/plate-link';
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { WithToolbarButton } from '../../implementation/Toolbars';
@@ -34,7 +34,7 @@ interface ToolbarLinkButtonProps {
 export function LinkButton({ editor }: ToolbarLinkButtonProps) {
     const context = useUuiContext();
 
-    if (!isPluginActive(ELEMENT_LINK)) return null;
+    if (!useIsPluginActive(ELEMENT_LINK)) return null;
 
     const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
 

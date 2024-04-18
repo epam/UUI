@@ -1,7 +1,7 @@
 import { Dropdown } from '@epam/uui-components';
 import React from 'react';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
 
@@ -42,7 +42,7 @@ interface IPlaceholderButton {
 }
 
 export function PlaceholderButton({ editor }: IPlaceholderButton): any {
-    if (!isPluginActive(KEY)) return null;
+    if (!useIsPluginActive(KEY)) return null;
     const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, KEY);
 
     const renderDropdownBody = () => {
