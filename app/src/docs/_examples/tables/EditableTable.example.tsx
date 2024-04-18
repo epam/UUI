@@ -226,6 +226,8 @@ export default function EditableTableExample() {
                 .key(item.id)
                 .default(item)
                 .onChange((_, current) => {
+                    // If placeholder is modified, new placeholder should be added.
+                    // For this purpose, lastId is updated. New placeholder will have id === lastId - 1.
                     lastId = Math.min(current.id, lastId);
 
                     return current;
