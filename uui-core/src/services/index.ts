@@ -1,6 +1,7 @@
 export * from './dnd';
 export * from './LayoutContext';
 export * from './ContextProvider';
+export * from './UuiContext';
 export * from './AnalyticsContext';
 export * from './ApiContext';
 export * from './ErrorContext';
