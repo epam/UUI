@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
@@ -11,6 +11,7 @@ import { ReactComponent as redoIcon } from '@epam/assets/icons/content-edit_redo
 
 // Define a blank item - for use as a new item, and to simplify mock data definition below
 const blankItem: Partial<TodoTask> = {
+    isDone: false,
     name: '',
     priority: null,
     comments: '',
@@ -42,6 +43,9 @@ const metadata: Metadata<FormState> = {
     },
 };
 
+// To store the last item id used
+let lastId = -1;
+
 // Prepare mock data for the demo. Usually, you'll get initial data from server API call
 const demoItems: TodoTask[] = [
     {
@@ -66,8 +70,6 @@ let savedItem: FormState = {
 const defaultSorting: DataSourceState['sorting'] = [{ field: 'id', direction: 'asc' }];
 
 export default function EditableTableExample() {
-    const lastId = useRef(-1);
-
     // Use form to manage state of the editable table
     const {
         lens, save, revert, undo, canUndo, redo, canRedo, value, setValue, isChanged,
@@ -109,7 +111,7 @@ export default function EditableTableExample() {
     }, [setTableState]);
 
     useEffect(() => {
-        dataTableFocusManager?.focusRow(lastId.current);
+        dataTableFocusManager?.focusRow(lastId - 1);
     }, [dataTableFocusManager]);
 
     // Define DataSource to use in PickerInput in the 'tags' column
@@ -202,8 +204,6 @@ export default function EditableTableExample() {
         [],
     );
 
-    const shouldAddNewPlaceholder = value.items.has(lastId.current) && !value.items.get(lastId.current).isPlaceholder;
-
     // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
     // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
     const view = dataSource.useView(tableState, onTableStateChange, {
@@ -213,11 +213,15 @@ export default function EditableTableExample() {
                 .prop('items')
                 .key(item.id)
                 .default(item)
-                .onChange((_, current) => current.isPlaceholder ? { ...current, isPlaceholder: false } : current)
+                .onChange((_, current) => {
+                    lastId = Math.min(current.id, lastId);
+
+                    return current;
+                })
                 .toProps(),
         }),
         // Changed/added/removed items are stored in value.items and applied to the dataSource via patch.
-        patch: value.items.set(lastId.current, { ...blankItem, isPlaceholder: true, id: shouldAddNewPlaceholder ? --lastId.current : lastId.current }),
+        patch: value.items.set(lastId - 1, { ...blankItem, id: lastId - 1 }), 
         // Position, new items from the patch should be placed.
         getNewItemPosition: () => PatchOrdering.BOTTOM,
         // Getter of deleted state of the item from the patch.
