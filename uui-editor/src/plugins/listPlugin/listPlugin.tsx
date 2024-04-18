@@ -2,7 +2,7 @@ import {
     PlateEditor, PlateElementProps, focusEditor,
 } from '@udecode/plate-common';
 import {
-    ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, onKeyDownList, toggleList, withList,
+    ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList,
 } from '@udecode/plate-list';
 import React, { Fragment } from 'react';
 

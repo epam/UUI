@@ -1,8 +1,8 @@
 import {
-    Range, Editor, Node,
+    Range, Editor,
 } from 'slate';
 import {
-    PlatePlugin, TElement, createPlateEditor, createPlugins, getPlugins, useEditorState,
+    PlatePlugin, createPlateEditor, createPlugins, getPlugins, useEditorState,
 } from '@udecode/plate-common';
 import { EditorValue } from './types';
 import { createPlateUI } from './components';
@@ -92,4 +92,3 @@ export const createTempEditor = (plugins: PlatePlugin[]) => {
         }),
     });
 };
-

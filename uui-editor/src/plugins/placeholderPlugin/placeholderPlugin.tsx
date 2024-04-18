@@ -75,14 +75,16 @@ export function PlaceholderButton({ editor }: IPlaceholderButton): any {
         <Dropdown
             renderTarget={ (props) => (
                 <ToolbarButton
-                    caption={ <div style={ {
-                        height: 42,
-                        display: 'flex',
-                        alignItems: 'center',
-                    } }
-                    >
-                        Insert Placeholder
-                    </div> }
+                    caption={
+                        <div style={ {
+                            height: 42,
+                            display: 'flex',
+                            alignItems: 'center',
+                        } }
+                        >
+                            Insert Placeholder
+                        </div>
+                    }
                     isDisabled={ isTextSelected(editor, true) }
                     { ...props }
                 />

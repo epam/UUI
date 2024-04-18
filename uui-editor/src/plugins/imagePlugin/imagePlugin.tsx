@@ -34,7 +34,8 @@ export const imagePlugin = () => {
             return (
                 <div style={ { textAlign: align || 'center' } }>
                     <img
-                        src={ element.url as string } style={ { width: imageElement.width } }
+                        src={ element.url as string }
+                        style={ { width: imageElement.width } }
                         alt=""
                     />
                 </div>

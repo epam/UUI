@@ -56,7 +56,8 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
         } }
         >
             <div
-                onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) }
+                onMouseDown={ onMouseDown }
+                className={ cx('slate-prevent-blur', css.sidebar) }
                 ref={ sidebarRef }
             >
                 { children }

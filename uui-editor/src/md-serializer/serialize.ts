@@ -215,11 +215,6 @@ export function serialize(
             );
             const emptyBefore = isNewLine ? '\n' : '';
 
-            const isLastItem = chunk.parent
-                && (chunk.parent.length! - 1 === chunk.parent.index)
-                && (chunk as BlockType).children.length === 1;
-            const emptyAfter = isLastItem && listDepth === 0 ? '\n' : '';
-
             return `${emptyBefore}${spacer}${isOL ? '1.' : '-'} ${children}`;
 
         case nodeTypes.paragraph:
