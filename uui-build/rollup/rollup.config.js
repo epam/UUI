@@ -153,7 +153,7 @@ async function createRollupConfigForModule(options) {
                     'withMods',
                     'uuiCore.withMods',
                     'createSkinComponent',
-                    'pureFunction',
+                    'TREE_SHAKEABLE_INIT',
                 ],
             }),
             cssSourcemapPathTransformPlugin({ outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),

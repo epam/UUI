@@ -1,6 +1,6 @@
 import { i18n as uuiI18n } from '@epam/uui-core';
 
-const pureFunction = () => ({
+const TREE_SHAKEABLE_INIT = () => ({
     ...uuiI18n,
     dataPickerBody: {
         searchPlaceholder: 'Search',
@@ -155,4 +155,4 @@ const pureFunction = () => ({
     },
 });
 
-export const i18n = pureFunction();
+export const i18n = TREE_SHAKEABLE_INIT();

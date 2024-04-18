@@ -50,8 +50,8 @@ const initialState: DndActorState = {
  * The key point here is to get rid of any static props (like sectorPositionPriorities, contextType).
  */
 
-export const DndActor = pureFunction();
-function pureFunction() {
+export const DndActor = TREE_SHAKEABLE_INIT();
+function TREE_SHAKEABLE_INIT() {
     return class DndActorComponent<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
         state = initialState;
         static contextType = UuiContext;
