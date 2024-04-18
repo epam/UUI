@@ -2,7 +2,6 @@ import {
     createInsertDataPlugin,
     select,
     findEventRange,
-    PlatePlugin,
 } from '@udecode/plate-common';
 import {
     UploadFileOptions,

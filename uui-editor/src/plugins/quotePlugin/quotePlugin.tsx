@@ -5,7 +5,7 @@ import {
     PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType,
 } from '@udecode/plate-common';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
@@ -13,7 +13,7 @@ import { WithToolbarButton } from '../../implementation/Toolbars';
 
 export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
 
-const Quote: PlatePluginComponent = function (props) {
+const Quote: PlatePluginComponent = function QuoteComponent(props) {
     return (
         <blockquote
             { ...props.attributes }
@@ -43,7 +43,7 @@ interface IToolbarButton {
 }
 
 export function QuoteButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(QUOTE_PLUGIN_KEY)) return null;
+    if (!useIsPluginActive(QUOTE_PLUGIN_KEY)) return null;
 
     const onQuoteButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
         e.preventDefault();

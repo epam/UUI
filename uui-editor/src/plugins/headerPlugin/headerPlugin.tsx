@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Dropdown } from '@epam/uui-components';
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { HeaderBar } from '../../implementation/HeaderBar';
@@ -46,7 +46,7 @@ interface IToolbarButton {
 }
 
 export function HeaderButton({ editor }: IToolbarButton): any {
-    if (!isPluginActive(KEY)) return null;
+    if (!useIsPluginActive(KEY)) return null;
 
     return (
         <Dropdown

@@ -18,17 +18,6 @@ import css from './AttachmentBlock.module.scss';
 import { setElements } from '@udecode/plate-common';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 
-function getReadableFileSizeString(fileSizeInBytes: number) {
-    let i = -1;
-    const byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
-    do {
-        fileSizeInBytes = fileSizeInBytes / 1000;
-        i++;
-    } while (fileSizeInBytes > 1000);
-
-    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
-}
-
 export function AttachmentBlock(props: any) {
     const isFocused = useFocused();
     const isSelected = useSelected() && isFocused;

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import dayjs from 'dayjs';
+import { dayJsHelper } from '../../../helpers';
 import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import {
     DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
@@ -44,7 +44,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
     }, {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{ dayjs(p.birthDate).format('MMM D, YYYY') }</Text>,
+        render: (p) => p?.birthDate && <Text>{ dayJsHelper.dayjs(p.birthDate).format('MMM D, YYYY') }</Text>,
         width: 140,
         isSortable: true,
     },

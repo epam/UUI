@@ -1,7 +1,7 @@
 import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -32,7 +32,7 @@ export function VideoButton({
 }: IVideoButton) {
     const context = useUuiContext();
 
-    if (!isPluginActive('video')) return null;
+    if (!useIsPluginActive('video')) return null;
 
     const block = getBlockAbove(editor);
 
