@@ -2,7 +2,7 @@ import { UploadFileToggler } from '@epam/uui-components';
 import { PlateEditor, focusEditor } from '@udecode/plate-common';
 import React, { memo, useCallback } from 'react';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
@@ -17,7 +17,7 @@ export const AttachFileButton = memo(({ editor }: IUploadFileButton): any => {
 
     const onFilesAdded = useCallback((files: File[]) => uploadFiles(files, 'attachment'), []);
 
-    if (!isPluginActive(ATTACHMENT_PLUGIN_KEY)) return null;
+    if (!useIsPluginActive(ATTACHMENT_PLUGIN_KEY)) return null;
 
     return (
         <UploadFileToggler

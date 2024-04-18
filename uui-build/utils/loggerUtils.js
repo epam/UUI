@@ -1,10 +1,5 @@
+/* eslint-disable no-console */
 const chalk = require('chalk');
-
-const logger = {
-    info, warn, error, success, table,
-};
-
-module.exports = { logger };
 
 function info(...args) { console.log(...args); }
 
@@ -20,3 +15,9 @@ function table({ caption, data }) {
     }
     console.table(data);
 }
+
+const logger = {
+    info, warn, error, success, table,
+};
+
+module.exports = { logger };

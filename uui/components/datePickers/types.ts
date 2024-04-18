@@ -4,7 +4,7 @@ import {
 import { IHasEditMode, SizeMod } from '../types';
 import { ReactElement, ReactNode } from 'react';
 import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
-import { Dayjs } from 'dayjs';
+import { type Dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents RangeDatePicker value

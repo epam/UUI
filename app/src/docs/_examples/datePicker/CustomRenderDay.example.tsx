@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dayjs } from 'dayjs';
+import { Dayjs } from '../../../helpers';
 import { DatePicker, FlexRow } from '@epam/uui';
 import { IconContainer, Day } from '@epam/uui-components';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
