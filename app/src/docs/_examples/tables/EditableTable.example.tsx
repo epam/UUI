@@ -87,6 +87,18 @@ export default function EditableTableExample() {
     // For example, after adding a row, the first editable cell of the new row should be focused via `dataTableFocusManager`.
     const dataTableFocusManager = useDataTableFocusManager<TodoTask['id']>({}, []);
 
+    // Prepare callback to add a new item to the list.
+    const handleNewItem = useCallback(() => {
+        const newItem = { ...blankItem, id: --lastId };
+        // We can manipulate form state directly with the setValue
+        // - pretty much like we do with the setState of React.useState.
+        setValue((current) => ({ ...current, items: current.items.set(newItem.id, newItem) }));
+
+        // It is possible to focus rows programmatically via dataTableFocusManager,
+        // even those, still not present on the screen.
+        dataTableFocusManager?.focusRow(lastId - 1);
+    }, [setValue, dataTableFocusManager]);
+
     const handleDeleteItem = useCallback((item: TodoTask) => {
         setValue((current) => ({ ...current, items: current.items.set(item.id, { ...item, isDeleted: true }) }));
     }, [setValue]);
@@ -240,6 +252,9 @@ export default function EditableTableExample() {
         <Panel background="surface-main" shadow cx={ css.container }>
             {/* Render a panel with Save/Revert buttons to control the form */}
             <FlexRow columnGap="12" padding="12" vPadding="12" borderBottom>
+                <FlexCell width="auto">
+                    <Button caption="Add task" fill="outline" color="primary" onClick={ handleNewItem } />
+                </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
                     <Button size="18" icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } fill="outline" />
