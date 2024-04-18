@@ -17,7 +17,15 @@ export const linkPlugin = () => createLinkPlugin<WithToolbarButton & LinkPlugin>
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (
-                <a { ...props.attributes } style={ { display: 'inline' } } target="_blank" href={ props.element.url }>{ props.children }</a>
+                <a
+                    { ...props.attributes }
+                    style={ { display: 'inline' } }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={ props.element.url }
+                >
+                    { props.children }
+                </a>
             ),
         },
     },
