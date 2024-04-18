@@ -67,10 +67,10 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const dropdownRef = useRef(null);
 
-    useImperativeHandle(ref, () => ({
-        ...dropdownRef.current,
-        closePickerBody,
-    }), [closePickerBody]);
+    useImperativeHandle(ref, () => {
+        dropdownRef.current.closePickerBody = closePickerBody;
+        return dropdownRef.current;
+    }, [closePickerBody]);
 
     const getTogglerMods = (): PickerTogglerMods => {
         return {

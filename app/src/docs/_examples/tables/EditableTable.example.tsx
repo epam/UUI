@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
@@ -11,7 +11,6 @@ import { ReactComponent as redoIcon } from '@epam/assets/icons/content-edit_redo
 
 // Define a blank item - for use as a new item, and to simplify mock data definition below
 const blankItem: Partial<TodoTask> = {
-    isDone: false,
     name: '',
     priority: null,
     comments: '',
@@ -43,9 +42,6 @@ const metadata: Metadata<FormState> = {
     },
 };
 
-// To store the last item id used
-let id = -1;
-
 // Prepare mock data for the demo. Usually, you'll get initial data from server API call
 const demoItems: TodoTask[] = [
     {
@@ -70,6 +66,8 @@ let savedItem: FormState = {
 const defaultSorting: DataSourceState['sorting'] = [{ field: 'id', direction: 'asc' }];
 
 export default function EditableTableExample() {
+    const lastId = useRef(-1);
+
     // Use form to manage state of the editable table
     const {
         lens, save, revert, undo, canUndo, redo, canRedo, value, setValue, isChanged,
@@ -86,18 +84,6 @@ export default function EditableTableExample() {
     // and programmatically.
     // For example, after adding a row, the first editable cell of the new row should be focused via `dataTableFocusManager`.
     const dataTableFocusManager = useDataTableFocusManager<TodoTask['id']>({}, []);
-
-    // Prepare callback to add a new item to the list.
-    const handleNewItem = useCallback(() => {
-        const newItem = { ...blankItem, id: --id };
-        // We can manipulate form state directly with the setValue
-        // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: current.items.set(newItem.id, newItem) }));
-
-        // It is possible to focus rows programmatically via dataTableFocusManager,
-        // even those, still not present on the screen.
-        dataTableFocusManager?.focusRow(newItem.id);
-    }, [setValue, dataTableFocusManager]);
 
     const handleDeleteItem = useCallback((item: TodoTask) => {
         setValue((current) => ({ ...current, items: current.items.set(item.id, { ...item, isDeleted: true }) }));
@@ -121,6 +107,10 @@ export default function EditableTableExample() {
             return updatedState;
         });
     }, [setTableState]);
+
+    useEffect(() => {
+        dataTableFocusManager?.focusRow(lastId.current);
+    }, [dataTableFocusManager]);
 
     // Define DataSource to use in PickerInput in the 'tags' column
     const pickerDataSource = useArrayDataSource({ items: tags }, []);
@@ -212,17 +202,24 @@ export default function EditableTableExample() {
         [],
     );
 
+    const shouldAddNewPlaceholder = value.items.has(lastId.current) && !value.items.get(lastId.current).isPlaceholder;
+
     // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
     // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
     const view = dataSource.useView(tableState, onTableStateChange, {
         getRowOptions: (item: TodoTask) => ({
             // Rows values are updated via lens.
-            ...lens.prop('items').key(item.id).default(item).toProps(),
+            ...lens
+                .prop('items')
+                .key(item.id)
+                .default(item)
+                .onChange((_, current) => current.isPlaceholder ? { ...current, isPlaceholder: false } : current)
+                .toProps(),
         }),
         // Changed/added/removed items are stored in value.items and applied to the dataSource via patch.
-        patch: value.items,
+        patch: value.items.set(lastId.current, { ...blankItem, isPlaceholder: true, id: shouldAddNewPlaceholder ? --lastId.current : lastId.current }),
         // Position, new items from the patch should be placed.
-        getNewItemPosition: () => PatchOrdering.TOP,
+        getNewItemPosition: () => PatchOrdering.BOTTOM,
         // Getter of deleted state of the item from the patch.
         isDeleted: (item) => item.isDeleted,
     });
@@ -239,9 +236,6 @@ export default function EditableTableExample() {
         <Panel background="surface-main" shadow cx={ css.container }>
             {/* Render a panel with Save/Revert buttons to control the form */}
             <FlexRow columnGap="12" padding="12" vPadding="12" borderBottom>
-                <FlexCell width="auto">
-                    <Button caption="Add task" fill="outline" color="primary" onClick={ handleNewItem } />
-                </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
                     <Button size="18" icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } fill="outline" />
