@@ -6,7 +6,6 @@
   "license": "MIT",
   "main": "index.js",
   "epam:uui:main": "build/index.esm.js",
-  "sideEffects": false,
   "typings": "index.d.ts",
   "scripts": {
     "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts",
