@@ -12,7 +12,7 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
     img: string | null;
 
     /** Size  */
-    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '92' | '120' | '144';
+    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144' | number;
 
     /** True to show placeholder */
     isLoading?: boolean;
@@ -37,13 +37,16 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
             setIsError(true);
         }
     }
+
+    const size = typeof props.size === 'number' ? props.size.toString() : props.size;
+
     return (
         <img
             onClick={ props.onClick }
             ref={ ref }
             className={ cx(css.avatar, props.cx) }
-            width={ props.size }
-            height={ props.size }
+            width={ size }
+            height={ size }
             src={
                 props.isLoading || !props.img || isError
                     ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg'
