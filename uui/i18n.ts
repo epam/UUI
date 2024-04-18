@@ -1,6 +1,6 @@
 import { i18n as uuiI18n } from '@epam/uui-core';
 
-export const i18n = {
+const pureFunction = () => ({
     ...uuiI18n,
     dataPickerBody: {
         searchPlaceholder: 'Search',
@@ -153,4 +153,6 @@ export const i18n = {
             },
         },
     },
-};
+});
+
+export const i18n = pureFunction();
