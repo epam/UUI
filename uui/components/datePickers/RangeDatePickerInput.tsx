@@ -130,7 +130,6 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     };
 
     const clearAllowed = !disableClear && inputValue.from && inputValue.to;
-
     return (
         <div
             ref={ ref }
@@ -171,11 +170,9 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                 size={ size || '36' }
                 value={ inputValue.to || undefined }
-                onCancel={ () => {
-                    if (clearAllowed) {
-                        onValueChange(defaultRangeValue);
-                    }
-                } }
+                onCancel={ clearAllowed ? () => {
+                    onValueChange(defaultRangeValue);
+                } : undefined }
                 onValueChange={ (v) => onInputChange(v || '', 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
                 onBlur={ (e) => handleBlur(e, 'to') }
