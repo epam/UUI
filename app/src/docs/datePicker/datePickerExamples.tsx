@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs';
+import { dayJsHelper, Dayjs } from '../../helpers';
 import {
     Day, DayProps, IconContainer,
 } from '@epam/uui-components';
@@ -18,7 +18,7 @@ export const renderFooter = (ctx: IPropSamplesCreationContext<DatePickerProps>) 
                 <LinkButton
                     size="36"
                     caption="Today"
-                    onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('YYYY-MM-DD')) }
+                    onClick={ () => ctx.getSelectedProps().onValueChange(dayJsHelper.dayjs().format('YYYY-MM-DD')) }
                 />
             </FlexRow>
         ),
