@@ -2,7 +2,7 @@ import * as React from 'react';
 import { UuiContexts } from '../../types/contexts';
 import { DndContextState } from './DndContext';
 import { LayoutLayer } from '../LayoutContext';
-import { UuiContext } from '../ContextProvider';
+import { UuiContext } from '../UuiContext';
 
 export interface DragGhostProps {}
 
@@ -18,7 +18,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     state: DragGhostState = {
         isDragging: false,
     };
-    
+
     onPointerMove = (e: PointerEvent) => {
         if (this.state.isDragging) {
             this.setState((state) => ({ ...state, pointerX: e.clientX, pointerY: e.clientY }));

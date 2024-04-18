@@ -12,7 +12,7 @@ import {
 } from '../../helpers/events';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
-import { UuiContext } from '../ContextProvider';
+import { UuiContext } from '../UuiContext';
 import { DndContextState } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
