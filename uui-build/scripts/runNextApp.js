@@ -17,9 +17,9 @@ const modulesNameMap = {
 };
 
 async function isModuleBuildExist(module) {
-    const isExists = await fs.exists(`../${module}/build`);
+    const isExists = await fs.exists(`../../${module}/build`);
     let isEmpty = false;
-    fs.readdir(`../${module}/build`, function (err, files) {
+    fs.readdir(`../../${module}/build`, function (err, files) {
         if (err) {
             console.log(err);
         } else {
@@ -50,7 +50,7 @@ async function main() {
         try {
             console.log('Start coping current version of modules');
             for await (const mPath of modulesPath) {
-                await fs.copySync(`../${mPath}/build/`, `./node_modules/@epam/${modulesNameMap[mPath]}/`);
+                await fs.copySync(`../../${mPath}/build/`, `./node_modules/@epam/${modulesNameMap[mPath]}/`);
             }
             console.log(chalk.green('All modules are copied to next app'));
             const DOT_NEXT_DIR = './.next';
