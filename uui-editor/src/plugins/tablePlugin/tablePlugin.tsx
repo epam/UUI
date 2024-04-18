@@ -3,7 +3,7 @@ import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 
 import { FloatingToolbar } from '../../implementation/PositionedToolbar';
@@ -106,7 +106,7 @@ export const tablePlugin = () => createTablePlugin<WithToolbarButton & TablePlug
 });
 
 export function TableButton({ editor }: { editor: PlateEditor; }) {
-    if (!isPluginActive(ELEMENT_TABLE)) return null;
+    if (!useIsPluginActive(ELEMENT_TABLE)) return null;
 
     const onCreateTable = async () => {
         if (!editor) return;

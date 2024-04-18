@@ -3,7 +3,7 @@ import {
 } from '@udecode/plate-common';
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { WithToolbarButton } from '../../implementation/Toolbars';
@@ -73,7 +73,7 @@ interface IToolbarButton {
 }
 
 export function BoldButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_BOLD)) return null;
+    if (!useIsPluginActive(MARK_BOLD)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, BOLD_KEY) }
@@ -84,7 +84,7 @@ export function BoldButton({ editor }: IToolbarButton) {
 }
 
 export function ItalicButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_ITALIC)) return null;
+    if (!useIsPluginActive(MARK_ITALIC)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, ITALIC_KEY) }
@@ -95,7 +95,7 @@ export function ItalicButton({ editor }: IToolbarButton) {
 }
 
 export function UnderlineButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_UNDERLINE)) return null;
+    if (!useIsPluginActive(MARK_UNDERLINE)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, UNDERLINE_KEY) }
