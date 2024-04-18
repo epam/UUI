@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
