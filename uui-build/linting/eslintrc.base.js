@@ -182,7 +182,7 @@ function uuiJsRules() {
         'no-restricted-imports': ['error', {
             patterns: [
                 { group: ['@epam/*/build/*', '@epam/*/build'], message: 'Import from "build" folder of UUI modules is not allowed.' },
-                { group: ['dayjs', 'dayjs/plugin/*'], message: 'Direct import from "dayjs" module is not allowed. Please use a reusable wrapper instead.' },
+                { group: ['dayjs', 'dayjs/plugin/*'], message: 'Direct import from "dayjs" module is not allowed. Please use a reusable wrapper instead (dayJsHelper.ts)' },
             ],
         }],
         'import/no-unresolved': [
