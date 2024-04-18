@@ -3,7 +3,7 @@ import {
     PlateEditor, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType,
 } from '@udecode/plate-common';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Separator } from './Separator';
@@ -39,7 +39,7 @@ interface ToolbarButtonProps {
 }
 
 export function SeparatorButton({ editor }: ToolbarButtonProps) {
-    if (!isPluginActive(SEPARATOR_KEY)) return null;
+    if (!useIsPluginActive(SEPARATOR_KEY)) return null;
 
     const onSeparatorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
         e.preventDefault();
