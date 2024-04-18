@@ -289,7 +289,6 @@ export interface TodoTask {
     dueDate?: string;
     comments?: string;
     isDeleted?: boolean;
-    isPlaceholder?: boolean;
 }
 
 export interface ProjectTask {
