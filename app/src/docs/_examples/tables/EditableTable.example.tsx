@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
@@ -44,7 +44,7 @@ const metadata: Metadata<FormState> = {
 };
 
 // To store the last item id used
-let id = -1;
+let lastId = -1;
 
 // Prepare mock data for the demo. Usually, you'll get initial data from server API call
 const demoItems: TodoTask[] = [
@@ -89,15 +89,10 @@ export default function EditableTableExample() {
 
     // Prepare callback to add a new item to the list.
     const handleNewItem = useCallback(() => {
-        const newItem = { ...blankItem, id: --id };
-        // We can manipulate form state directly with the setValue
-        // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: current.items.set(newItem.id, newItem) }));
-
         // It is possible to focus rows programmatically via dataTableFocusManager,
         // even those, still not present on the screen.
-        dataTableFocusManager?.focusRow(newItem.id);
-    }, [setValue, dataTableFocusManager]);
+        dataTableFocusManager?.focusRow(lastId - 1);
+    }, [dataTableFocusManager]);
 
     const handleDeleteItem = useCallback((item: TodoTask) => {
         setValue((current) => ({ ...current, items: current.items.set(item.id, { ...item, isDeleted: true }) }));
@@ -121,6 +116,10 @@ export default function EditableTableExample() {
             return updatedState;
         });
     }, [setTableState]);
+
+    useEffect(() => {
+        dataTableFocusManager?.focusRow(lastId - 1);
+    }, [dataTableFocusManager]);
 
     // Define DataSource to use in PickerInput in the 'tags' column
     const pickerDataSource = useArrayDataSource({ items: tags }, []);
@@ -217,12 +216,23 @@ export default function EditableTableExample() {
     const view = dataSource.useView(tableState, onTableStateChange, {
         getRowOptions: (item: TodoTask) => ({
             // Rows values are updated via lens.
-            ...lens.prop('items').key(item.id).default(item).toProps(),
+            ...lens
+                .prop('items')
+                .key(item.id)
+                .default(item)
+                .onChange((_, current) => {
+                    // If placeholder is modified, new placeholder should be added.
+                    // For this purpose, lastId is updated. New placeholder will have id === lastId - 1.
+                    lastId = Math.min(current.id, lastId);
+
+                    return current;
+                })
+                .toProps(),
         }),
         // Changed/added/removed items are stored in value.items and applied to the dataSource via patch.
-        patch: value.items,
+        patch: value.items.set(lastId - 1, { ...blankItem, id: lastId - 1 }), 
         // Position, new items from the patch should be placed.
-        getNewItemPosition: () => PatchOrdering.TOP,
+        getNewItemPosition: () => PatchOrdering.BOTTOM,
         // Getter of deleted state of the item from the patch.
         isDeleted: (item) => item.isDeleted,
     });
