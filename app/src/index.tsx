@@ -53,8 +53,8 @@ function UuiEnhancedApp() {
 
     useEffect(() => {
         async function initServices() {
+            services.uuiApp = await getAppContext();
             Object.assign(svc, services);
-            svc.uuiApp = await getAppContext();
             isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
             services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
             setIsLoaded(true);

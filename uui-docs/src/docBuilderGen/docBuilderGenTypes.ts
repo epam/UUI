@@ -1,6 +1,6 @@
 import { IconBase, PropDoc, TDocContext, TDocsGenExportedType, TSkin } from '../types';
 import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
-import { TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
+import { TOneOfItemType, TPropEditorType, TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import * as React from 'react';
 import { Icon, UuiContexts } from '@epam/uui-core';
 import { IDemoApi } from '../demoApi';
@@ -22,7 +22,17 @@ export interface IDocBuilderGenCtx {
     uuiCtx: Pick<UuiContexts, 'uuiNotifications'>,
     demoApi: IDemoApi,
     loadDocsGenType: (typeRef: TTypeRef) => Promise<{ content: TType }>,
+    propsOverride?: TPropEditorTypeOverride[TTypeRef];
 }
+
+export type TPropEditorTypeOverride = {
+    [typeRef: TTypeRef]: {
+        [propName: string]: {
+            mode: 'replace' | 'add',
+            editor: { type: TPropEditorType.oneOf, options: TOneOfItemType[] },
+        }
+    }
+};
 
 export type TDocConfig = {
     /**
