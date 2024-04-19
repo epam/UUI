@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, Tree, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -95,19 +95,6 @@ export function ProjectTableDemo() {
         }));
     }, [setValue]);
 
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
-        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
-            return null;
-        } else {
-            return { bottom: true, top: true, inside: true };
-        }
-    }, []);
-
-    const handleDrop = useCallback(
-        (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
-        [insertTask],
-    );
-
     const searchHandler = useCallback(
         (val: string | undefined) => setTableState((currentTableState) => ({
             ...currentTableState,
@@ -116,29 +103,48 @@ export function ProjectTableDemo() {
         [],
     );
 
-    const dataSource = useArrayDataSource<Task, number, any>(
-        {
-            items: Object.values(value.items),
-            getSearchFields: (item) => [item.name],
-            getId: (i) => i.id,
-            getParentId: (i) => i.parentId,
-            fixItemBetweenSortings: false,
-            getRowOptions: (task) => ({
-                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
-                // checkbox: { isVisible: true },
-                isSelectable: true,
-                dnd: {
-                    srcData: { ...task, isTask: true },
-                    dstData: { ...task, isTask: true },
-                    canAcceptDrop: handleCanAcceptDrop,
-                    onDrop: handleDrop,
-                },
-            }),
-        },
-        [],
+    const { tree, ...restProps } = useTree({
+        type: 'sync',
+        dataSourceState: tableState, 
+        setDataSourceState: setTableState,
+        items: Object.values(value.items),
+        getSearchFields: (item) => [item.name],
+        getId: (i) => i.id,
+        getParentId: (i) => i.parentId,
+        fixItemBetweenSortings: false,
+    }, []);
+
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
+        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+            return null;
+        } 
+        const parents = Tree.getPathById(params.dstData.id, tree);
+        if (parents.some((parent) => parent.id === params.srcData.id)) {
+            return null;
+        }
+
+        return { bottom: true, top: true, inside: true };
+    }, [tree]);
+
+    const handleDrop = useCallback(
+        (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
+        [insertTask],
     );
 
-    const view = dataSource.useView(tableState, setTableState);
+    const { rows, listProps } = useDataRows({
+        tree,
+        ...restProps,
+        getRowOptions: (task) => ({
+            ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+            isSelectable: true,
+            dnd: {
+                srcData: { ...task, isTask: true },
+                dstData: { ...task, isTask: true },
+                canAcceptDrop: handleCanAcceptDrop,
+                onDrop: handleDrop,
+            },
+        }),
+    });
 
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
@@ -155,7 +161,7 @@ export function ProjectTableDemo() {
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
         
-        const prevRows = [...view.getVisibleRows()];
+        const prevRows = [...rows];
         deleteTask(selectedItem);
         const index = prevRows.findIndex((task) => task.id === selectedItem.id);
         const newSelectedIndex = index === prevRows.length - 1
@@ -166,7 +172,7 @@ export function ProjectTableDemo() {
             ...state,
             selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
         }));
-    }, [deleteTask, view, selectedItem, setTableState]);
+    }, [deleteTask, rows, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
         if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'Enter') {
@@ -250,7 +256,7 @@ export function ProjectTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ view.getVisibleRows }
+                rows={ rows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }
@@ -258,7 +264,7 @@ export function ProjectTableDemo() {
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
-                { ...view.getListProps() }
+                { ...listProps }
             />
         </Panel>
     );
