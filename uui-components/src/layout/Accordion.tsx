@@ -69,7 +69,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
                 onClick={ !props.isDisabled ? toggleAccordion : undefined }
                 tabIndex={ !props.isDisabled ? 0 : -1 }
                 className={ cx(uuiAccordion.toggler, isAccordionOpened && uuiMod.opened, props.isDisabled && uuiMod.disabled) }
-                ref={ ref }
                 { ...props.rawProps }
             >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
@@ -95,6 +94,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
 
     return (
         <div
+            ref={ ref }
             aria-disabled={ props.isDisabled }
             aria-expanded={ isAccordionOpened }
             className={ cx(
