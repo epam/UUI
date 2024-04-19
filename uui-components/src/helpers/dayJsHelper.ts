@@ -8,7 +8,7 @@ import updateLocale from 'dayjs/plugin/updateLocale.js';
 
 export type { Dayjs } from 'dayjs';
 
-export const dayjsHelper = TREE_SHAKEABLE_INIT();
+export const uuiDayjs = TREE_SHAKEABLE_INIT();
 
 function TREE_SHAKEABLE_INIT() {
     let extended = false;

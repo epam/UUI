@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { dayJsHelper } from '../../../helpers';
+import { uuiDayjs } from '../../../helpers';
 import {
     defaultPredicates,
     rangeDatePickerPresets,
@@ -68,14 +68,14 @@ const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{dayJsHelper.dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.birthDate && <Text>{uuiDayjs.dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     },
     {
         key: 'hireDate',
         caption: 'Hire date',
-        render: (p) => p?.hireDate && <Text>{dayJsHelper.dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.hireDate && <Text>{uuiDayjs.dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     },
@@ -147,13 +147,13 @@ export default function FiltersPanelExample() {
                     last3Days: {
                         name: 'Last 3 days',
                         getRange: () => {
-                            return { from: dayJsHelper.dayjs().subtract(3, 'day').toString(), to: dayJsHelper.dayjs().toString(), order: 11 };
+                            return { from: uuiDayjs.dayjs().subtract(3, 'day').toString(), to: uuiDayjs.dayjs().toString(), order: 11 };
                         },
                     },
                     last7Days: {
                         name: 'Last 7 days',
                         getRange: () => {
-                            return { from: dayJsHelper.dayjs().subtract(7, 'day').toString(), to: dayJsHelper.dayjs().toString(), order: 12 };
+                            return { from: uuiDayjs.dayjs().subtract(7, 'day').toString(), to: uuiDayjs.dayjs().toString(), order: 12 };
                         },
                     },
                 },
