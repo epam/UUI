@@ -1,4 +1,4 @@
-import { getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
+import { IImmutableMap, ITree, getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
 import { Task } from './types';
 
 /**
@@ -39,32 +39,33 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
     }
 }
 
-const findAllChildren = (tasks: Task[], parentTask: Task) => {
-    const children = tasks.filter((task) => task.parentId === parentTask.id);
+const findAllChildren = (tree: ITree<Task, number>, parentTaskId: number) => {
+    const { ids: children } = tree.getItems(parentTaskId);
+
     let ids: number[] = [];
-    children.forEach((task) => {
-        ids.push(task.id);
-        const innerChildren = findAllChildren(tasks, task);
+    children.forEach((id) => {
+        ids.push(id);
+        const innerChildren = findAllChildren(tree, id);
         ids = ids.concat(innerChildren);
     });
     return ids;
 };
 
-export const deleteTaskWithChildren = (tasks: Record<number, Task>, taskToDelete: Task | null): Record<number, Task> => {
-    const currentTasks = { ...tasks };
+export const deleteTaskWithChildren = (taskToDelete: Task | null, tasks: IImmutableMap<number, Task>, tree: ITree<Task, number>): IImmutableMap<number, Task> => {
     let taskToBeDeleted = taskToDelete;
     if (taskToBeDeleted === undefined) {
-        const rootItems = Object.values(currentTasks).filter((task) => task.parentId === undefined);
-        taskToBeDeleted = rootItems[rootItems.length - 1];
+        const { ids: rootItemsIds } = tree.getItems(undefined);
+        const lastRootTaskId = rootItemsIds[rootItemsIds.length - 1];
+        if (lastRootTaskId === undefined) {
+            return tasks;
+        }
+        taskToBeDeleted = tasks.get(lastRootTaskId);
     }
 
-    if (!taskToBeDeleted) {
-        return currentTasks;
-    }
-
-    const childrenIds = findAllChildren(Object.values(currentTasks), taskToBeDeleted);
+    let currentTasks = tasks;
+    const childrenIds = findAllChildren(tree, taskToBeDeleted.id);
     [taskToBeDeleted.id, ...childrenIds].forEach((id) => {
-        delete currentTasks[id];
+        currentTasks = currentTasks.set(id, { ...currentTasks.get(id), isDeleted: true });
     });
 
     return currentTasks;

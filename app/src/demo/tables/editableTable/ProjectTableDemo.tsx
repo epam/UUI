@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, Tree, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -18,7 +18,7 @@ import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
 import css from './ProjectTableDemo.module.scss';
 
 interface FormState {
-    items: Record<number, Task>;
+    items: IImmutableMap<number, Task>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -35,8 +35,8 @@ const metadata: Metadata<FormState> = {
 
 let lastId = -1;
 
-let savedValue: FormState = { items: getDemoTasks() };
-
+let savedValue: FormState = { items: ItemsMap.blank<number, Task>({ getId: (item) => item.id }) };
+const items = Object.values(getDemoTasks());
 export function ProjectTableDemo() {
     const {
         value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
@@ -52,6 +52,47 @@ export function ProjectTableDemo() {
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
+    const searchHandler = useCallback(
+        (val: string | undefined) => setTableState((currentTableState) => ({
+            ...currentTableState,
+            search: val,
+        })),
+        [],
+    );
+
+    const { tree, ...restProps } = useTree({
+        type: 'sync',
+        dataSourceState: tableState, 
+        setDataSourceState: setTableState,
+        items,
+
+        patch: value.items,
+        getSearchFields: (item) => [item.name],
+        getId: (i) => i.id,
+        getParentId: (i) => i.parentId,
+        fixItemBetweenSortings: false,
+        isDeleted: ({ isDeleted }) => isDeleted,
+    }, []);
+
+    const deleteTask = useCallback((task: Task) => {
+        setValue((currentValue) => ({
+            ...currentValue,
+            items: deleteTaskWithChildren(task, currentValue.items, tree),
+        }));
+    }, [setValue, tree]);
+
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
+        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+            return null;
+        } 
+        const parents = Tree.getPathById(params.dstData.id, tree);
+        if (parents.some((parent) => parent.id === params.srcData.id)) {
+            return null;
+        }
+
+        return { bottom: true, top: true, inside: true };
+    }, [tree]);
+
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         let tempRelativeTask = relativeTask;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
@@ -65,80 +106,48 @@ export function ProjectTableDemo() {
         }
 
         setValue((currentValue) => {
+            const { ids: children } = tree.getItems(task.parentId);
+            const orders = children.map((id) => (tree.getById(id) as Task).order);
+
             task.order = getInsertionOrder(
-                Object.values(currentValue.items)
-                    .filter((i) => i.parentId === task.parentId)
-                    .map((i) => i.order),
+                orders,
                 position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
                 tempRelativeTask?.order,
             );
 
-            return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
+            return { ...currentValue, items: currentValue.items.set(task.id, task) };
         });
 
-        setTableState((currentTableState) => {
-            return {
-                ...currentTableState,
-                folded: position === 'inside'
-                    ? { ...currentTableState.folded, [`${task.parentId}`]: false }
-                    : currentTableState.folded,
-                selectedId: task.id,
-            };
-        });
+        setTableState((currentTableState) => ({
+            ...currentTableState,
+            folded: position === 'inside'
+                ? { ...currentTableState.folded, [`${task.parentId}`]: false }
+                : currentTableState.folded,
+            selectedId: task.id,
+        }));
         
         dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, setTableState, dataTableFocusManager]);
-
-    const deleteTask = useCallback((task: Task) => {
-        setValue((currentValue) => ({
-            ...currentValue, items: deleteTaskWithChildren(currentValue.items, task),
-        }));
-    }, [setValue]);
-
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
-        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
-            return null;
-        } else {
-            return { bottom: true, top: true, inside: true };
-        }
-    }, []);
+    }, [setValue, dataTableFocusManager, tree]);
 
     const handleDrop = useCallback(
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
         [insertTask],
     );
 
-    const searchHandler = useCallback(
-        (val: string | undefined) => setTableState((currentTableState) => ({
-            ...currentTableState,
-            search: val,
-        })),
-        [],
-    );
-
-    const dataSource = useArrayDataSource<Task, number, any>(
-        {
-            items: Object.values(value.items),
-            getSearchFields: (item) => [item.name],
-            getId: (i) => i.id,
-            getParentId: (i) => i.parentId,
-            fixItemBetweenSortings: false,
-            getRowOptions: (task) => ({
-                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
-                // checkbox: { isVisible: true },
-                isSelectable: true,
-                dnd: {
-                    srcData: { ...task, isTask: true },
-                    dstData: { ...task, isTask: true },
-                    canAcceptDrop: handleCanAcceptDrop,
-                    onDrop: handleDrop,
-                },
-            }),
-        },
-        [],
-    );
-
-    const view = dataSource.useView(tableState, setTableState);
+    const { rows, listProps } = useDataRows({
+        tree,
+        ...restProps,
+        getRowOptions: (task) => ({
+            ...lens.prop('items').key(task.id).toProps(), // pass IEditable to each row to allow editing
+            isSelectable: true,
+            dnd: {
+                srcData: { ...task, isTask: true },
+                dstData: { ...task, isTask: true },
+                canAcceptDrop: handleCanAcceptDrop,
+                onDrop: handleDrop,
+            },
+        }),
+    });
 
     const columns = useMemo(
         () => getColumns({ insertTask, deleteTask }),
@@ -147,7 +156,7 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            return value.items[tableState.selectedId];
+            return value.items.get(tableState.selectedId);
         }
         return undefined;
     }, [tableState.selectedId, value.items]);
@@ -155,7 +164,7 @@ export function ProjectTableDemo() {
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
         
-        const prevRows = [...view.getVisibleRows()];
+        const prevRows = [...rows];
         deleteTask(selectedItem);
         const index = prevRows.findIndex((task) => task.id === selectedItem.id);
         const newSelectedIndex = index === prevRows.length - 1
@@ -166,7 +175,7 @@ export function ProjectTableDemo() {
             ...state,
             selectedId: newSelectedIndex >= 0 ? prevRows[newSelectedIndex].id : undefined,
         }));
-    }, [deleteTask, view, selectedItem, setTableState]);
+    }, [deleteTask, rows, selectedItem, setTableState]);
 
     const keydownHandler = useCallback((event: KeyboardEvent) => {
         if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'Enter') {
@@ -250,7 +259,7 @@ export function ProjectTableDemo() {
             </FlexRow>
             <DataTable
                 headerTextCase="upper"
-                getRows={ view.getVisibleRows }
+                rows={ rows }
                 columns={ columns }
                 value={ tableState }
                 onValueChange={ setTableState }
@@ -258,7 +267,7 @@ export function ProjectTableDemo() {
                 showColumnsConfig
                 allowColumnsResizing
                 allowColumnsReordering
-                { ...view.getListProps() }
+                { ...listProps }
             />
         </Panel>
     );
