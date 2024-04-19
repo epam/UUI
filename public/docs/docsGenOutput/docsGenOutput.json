@@ -3865,7 +3865,7 @@
     "typeValue": {
      "raw": "CheckboxCoreProps",
      "print": [
-      "interface CheckboxCoreProps extends ICheckable, ICanFocus<HTMLInputElement>, IHasCX, ICanBeInvalid, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement> {",
+      "interface CheckboxCoreProps extends ICheckable, ICanFocus<HTMLInputElement>, IHasCX, ICanBeInvalid, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> {",
       "}"
      ]
     },
@@ -4083,20 +4083,6 @@
        "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -20591,7 +20577,7 @@
     "typeValue": {
      "raw": "LabeledInputCoreProps",
      "print": [
-      "interface LabeledInputCoreProps extends ICanBeInvalid, IHasCX, IHasLabel, IHasChildren, ICanBeRequired, IHasValidationMessage, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "interface LabeledInputCoreProps extends ICanBeInvalid, IHasCX, IHasLabel, IHasChildren, ICanBeRequired, IHasValidationMessage, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "    /** Position of the label, relative to the wrapped component (top of left) */",
       "    labelPosition?: 'top' | 'left';",
       "    /** Info hint text to show in tooltip */",
@@ -20862,20 +20848,6 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -37295,20 +37267,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -39668,20 +39626,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "tabIndex",
       "name": "tabIndex",
       "comment": {
@@ -40500,7 +40444,7 @@
     "typeValue": {
      "raw": "ControlGroupProps",
      "print": [
-      "interface ControlGroupProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "interface ControlGroupProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "}"
      ]
     },
@@ -40547,20 +40491,6 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -46940,20 +46870,6 @@
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
      }
     ],
     "propsFromUnion": false
@@ -52671,7 +52587,7 @@
     "typeValue": {
      "raw": "RadioInputProps",
      "print": [
-      "type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & IHasTabIndex & {",
+      "type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean> & IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & ICanFocus<HTMLInputElement> & IHasTabIndex & {",
       "    /** Icon for radio input selected state.",
       "     * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon",
       "     */",
@@ -52850,20 +52766,6 @@
        "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -60164,7 +60066,7 @@
     "typeValue": {
      "raw": "SwitchProps",
      "print": [
-      "interface SwitchProps extends IHasCX, IDisableable, Omit<IEditable<boolean>, 'isInvalid'>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex, ICanFocus<HTMLInputElement> {",
+      "interface SwitchProps extends IHasCX, IDisableable, Omit<IEditable<boolean>, 'isInvalid'>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasTabIndex, ICanFocus<HTMLInputElement> {",
       "    /** ID to put on 'input' node */",
       "    id?: string;",
       "}"
@@ -60335,20 +60237,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "tabIndex",
       "name": "tabIndex",
       "comment": {
@@ -60418,7 +60306,7 @@
     "typeValue": {
      "raw": "TextAreaProps",
      "print": [
-      "interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {",
+      "interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, ICanFocus<HTMLTextAreaElement> {",
       "    /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */",
       "    rows?: number;",
       "    /**",
@@ -60692,20 +60580,6 @@
        "raw": "React.TextareaHTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -64940,20 +64814,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -67509,20 +67369,6 @@
        "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -74637,20 +74483,6 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -85407,20 +85239,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "onFocus",
       "name": "onFocus",
       "comment": {
@@ -85964,20 +85782,6 @@
        "raw": "React.LabelHTMLAttributes<HTMLLabelElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
@@ -89167,20 +88971,6 @@
       "required": false
      },
      {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLLabelElement | null) => void | React.MutableRefObject<HTMLLabelElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
       "uid": "tabIndex",
       "name": "tabIndex",
       "comment": {
@@ -90885,20 +90675,6 @@
        "raw": "React.TextareaHTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      },
      {
