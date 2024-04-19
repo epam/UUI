@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Icon, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
-import { type Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
+import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { Button } from '../buttons';
@@ -108,7 +108,7 @@ export function DatePickerHeader({
     const title = React.useMemo(
         () => {
             const monthSubstr = view !== 'MONTH_SELECTION'
-                ? dayJsHelper.dayjs.months()[month.month()]
+                ? uuiDayjs.dayjs.months()[month.month()]
                 : '';
             return `${monthSubstr} ${month.year()}`;
         },

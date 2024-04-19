@@ -1,7 +1,7 @@
 import React, {
     HTMLAttributes, ReactElement, useMemo,
 } from 'react';
-import { type Dayjs, dayjsHelper } from '../../helpers/dayJsHelper';
+import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 
 import {
     arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
@@ -46,7 +46,7 @@ const isHoliday = (day: Dayjs) => {
 };
 
 function isSelected <T>(day: Dayjs, value: T): boolean {
-    if (dayjsHelper.dayjs.isDayjs(value)) {
+    if (uuiDayjs.dayjs.isDayjs(value)) {
         return day.isSame(value);
     } else if (Array.isArray(value)) {
         return value.find((selectedDay) => day.isSame(selectedDay));
@@ -55,7 +55,7 @@ function isSelected <T>(day: Dayjs, value: T): boolean {
 }
 
 function getWeekdaysShortStartingMonday() {
-    const instance = dayjsHelper.dayjs().locale(i18n.datePicker.locale);
+    const instance = uuiDayjs.dayjs().locale(i18n.datePicker.locale);
     const weekdaysShort = instance.localeData().weekdaysShort();
 
     const mondayIndex = weekdaysShort.findIndex((day) => day.toLowerCase().startsWith('mo'));

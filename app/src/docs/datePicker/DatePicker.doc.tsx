@@ -1,4 +1,4 @@
-import { dayJsHelper } from '../../helpers';
+import { uuiDayjs } from '../../helpers';
 import * as React from 'react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
@@ -27,7 +27,7 @@ export class DatePickerDoc extends BaseDocsBlock {
             doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });
             doc.merge('renderDay', { examples: renderCustomDayExample });
             doc.merge('renderFooter', { examples: renderFooter });
-            doc.merge('filter', { examples: [{ name: 'Filter before current day', value: (day) => day.valueOf() >= dayJsHelper.dayjs().subtract(1, 'day').valueOf() }] });
+            doc.merge('filter', { examples: [{ name: 'Filter before current day', value: (day) => day.valueOf() >= uuiDayjs.dayjs().subtract(1, 'day').valueOf() }] });
         },
     };
 
