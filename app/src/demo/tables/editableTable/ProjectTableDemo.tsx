@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, Tree, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, getOrderBetween, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -13,7 +13,7 @@ import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
-import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
+import { deleteTaskWithChildren } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
 
@@ -94,38 +94,46 @@ export function ProjectTableDemo() {
     }, [tree]);
 
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        let tempRelativeTask = relativeTask;
+        let currentPosition: DropPosition = position;
+        let currentRelativeTask: Task | null = relativeTask;
         const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-        if (position === 'inside') {
-            task.parentId = relativeTask.id;
-            tempRelativeTask = null; // just insert as the first child
+        if (currentPosition === 'inside') {
+            task.parentId = currentRelativeTask.id;
+            currentPosition = 'top' as DropPosition;
+            currentRelativeTask = null;
+        } else if (currentRelativeTask) {
+            task.parentId = currentRelativeTask.parentId;
         }
 
-        if (tempRelativeTask) {
-            task.parentId = tempRelativeTask.parentId;
+        const { ids: currentListIds } = tree.getItems(task.parentId);
+        const getOrderByIndex = (index: number) => {
+            const id = currentListIds[index];
+            const item = tree.getById(id) as Task;
+
+            return item.order;
+        };
+
+        let relativeToIndex: number = currentPosition === 'top' ? 0 : currentListIds.length - 1;
+        if (currentRelativeTask) {
+            relativeToIndex = currentListIds.indexOf(currentRelativeTask.id);
         }
 
-        setValue((currentValue) => {
-            const { ids: children } = tree.getItems(task.parentId);
-            const orders = children.map((id) => (tree.getById(id) as Task).order);
+        const indexAbove = currentPosition === 'top' ? relativeToIndex - 1 : relativeToIndex;
+        const indexBelow = currentPosition === 'bottom' ? relativeToIndex + 1 : relativeToIndex;
+        const orderAbove = indexAbove >= 0 ? getOrderByIndex(indexAbove) : null;
+        const orderBelow = indexBelow < currentListIds.length ? getOrderByIndex(indexBelow) : null;
 
-            task.order = getInsertionOrder(
-                orders,
-                position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-                tempRelativeTask?.order,
-            );
-
-            return { ...currentValue, items: currentValue.items.set(task.id, task) };
-        });
+        task.order = getOrderBetween(orderAbove, orderBelow);
+        setValue((currentValue) => ({ ...currentValue, items: currentValue.items.set(task.id, task) }));
 
         setTableState((currentTableState) => ({
             ...currentTableState,
-            folded: position === 'inside'
+            folded: currentPosition === 'inside'
                 ? { ...currentTableState.folded, [`${task.parentId}`]: false }
                 : currentTableState.folded,
             selectedId: task.id,
         }));
-        
+
         dataTableFocusManager?.focusRow(task.id);
     }, [setValue, dataTableFocusManager, tree]);
 
@@ -156,10 +164,14 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            return value.items.get(tableState.selectedId);
+            const item = tree.getById(tableState.selectedId);
+            if (item === NOT_FOUND_RECORD) {
+                return undefined;
+            }
+            return item;
         }
         return undefined;
-    }, [tableState.selectedId, value.items]);
+    }, [tableState.selectedId, tree]);
 
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
