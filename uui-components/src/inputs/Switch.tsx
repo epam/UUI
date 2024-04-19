@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers,
-    IAnalyticableOnChange, IHasForwardedRef, IHasTabIndex, ICanFocus, useUuiContext,
+    IAnalyticableOnChange, IHasTabIndex, ICanFocus, useUuiContext,
 } from '@epam/uui-core';
 import css from './Switch.module.scss';
 
@@ -12,7 +12,6 @@ export interface SwitchProps
     IHasLabel,
     IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
-    IHasForwardedRef<HTMLLabelElement>,
     IHasTabIndex,
     ICanFocus<HTMLInputElement> {
     /** ID to put on 'input' node */

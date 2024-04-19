@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
-    IHasCX, IDisableable, uuiMod, IHasChildren, Icon, cx, IHasRawProps, IHasForwardedRef, IControlled,
+    IHasCX, IDisableable, uuiMod, IHasChildren, Icon, cx, IHasRawProps, IControlled,
 } from '@epam/uui-core';
 import { IconContainer } from './IconContainer';
 import css from './Accordion.module.scss';
 
-interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Accordion title */
     title?: string | React.ReactElement;
     /** Overrides default title rendering. */
@@ -69,7 +69,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
                 onClick={ !props.isDisabled ? toggleAccordion : undefined }
                 tabIndex={ !props.isDisabled ? 0 : -1 }
                 className={ cx(uuiAccordion.toggler, isAccordionOpened && uuiMod.opened, props.isDisabled && uuiMod.disabled) }
-                ref={ props.forwardedRef }
+                ref={ ref }
                 { ...props.rawProps }
             >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
@@ -95,7 +95,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
 
     return (
         <div
-            ref={ ref }
             aria-disabled={ props.isDisabled }
             aria-expanded={ isAccordionOpened }
             className={ cx(
